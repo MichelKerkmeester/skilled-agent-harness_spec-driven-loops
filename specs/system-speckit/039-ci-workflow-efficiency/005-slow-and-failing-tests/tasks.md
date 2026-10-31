@@ -42,15 +42,15 @@ No operator decision gates this phase. Every branch point is resolved by a measu
 
 Done: `gh run view 39909844384` returned `{"conclusion":"success","seconds":791}`; checks returned `1` and `1` with `baseline-source: 001-dataset`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md` (new file). Anchor: none; the file does not exist yet.
 
 Change: read the reference run, then write the file with this shape: the heading `# R20 CLI vitest step`, the table header `| when | run id | step seconds |`, the divider `|---|---|---|`, one row `| reference | 39909844384 | 791 |`, and one line `baseline-source: 002-baseline` or `baseline-source: 001-dataset`.
 
 ```bash
 gh run view 39909844384 --json jobs --jq '.jobs[] | select(.name | startswith("Typecheck")) | .steps[] | select(.name == "CLI vitest project") | {conclusion, seconds: (((.completedAt|fromdateiso8601) - (.startedAt|fromdateiso8601)))}'
-test -f specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
-mkdir -p specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch
-cat > specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md <<'EOF'
+test -f specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
+mkdir -p specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch
+cat > specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md <<'EOF'
 # R20 CLI vitest step
 
 | when | run id | step seconds |
@@ -66,13 +66,13 @@ Expected: `{"conclusion":"success","seconds":791}`; then `BASELINE_MISSING` toda
 Check:
 
 ```bash
-grep -c '^| reference | 39909844384 | 791 |$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
-grep -cE '^baseline-source: (002-baseline|001-dataset)$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
+grep -c '^| reference | 39909844384 | 791 |$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
+grep -cE '^baseline-source: (002-baseline|001-dataset)$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
 ```
 
 Expected: `1` and `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`.
 
 Stop and escalate if: the `gh` output does not read `"seconds":791`, or the file already exists with an `after` row.
 
@@ -121,12 +121,12 @@ Stop and escalate if: any command exits non-zero twice, or the vitest version is
 
 Done: the probe header checks returned `1`, `1` and `2`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md` (new file). Anchor: none; the file does not exist yet.
 
 Change: write exactly these five lines and nothing else.
 
 ```bash
-cat > specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md <<'EOF'
+cat > specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md <<'EOF'
 # R19 probe
 
 | mode | run | exit | seconds | log |
@@ -137,14 +137,14 @@ EOF
 Check:
 
 ```bash
-grep -c '^| mode | run | exit | seconds | log |$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -c '^|---|---|---|---|---|$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -c '^|' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| mode | run | exit | seconds | log |$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^|---|---|---|---|---|$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^|' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `1`, `1`, `2`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`.
 
 Stop and escalate if: the file already holds a `| serial |` or a `| parallel |` row.
 
@@ -154,12 +154,12 @@ Stop and escalate if: the file already holds a `| serial |` or a `| parallel |` 
 
 Done after a failed first attempt: the first run, inside the codex sandbox, ended `exit=1 real=743.57` with `Test Files  1 failed | 179 passed | 3 skipped (183)`, because `tests/trigger-index-rebuild-workflow.vitest.ts > ... reads the token from a readable parent as yes` returned `false` at line 1084 (the sandbox blocks parent-process inspection). That is the Stop-if below (exit not `0`), and it fired; it is recorded in `scratch/r19-probe.md` under `## T004 first attempt, failed in the sandbox`. The rerun outside the sandbox gave `exit=0 real=625.44` with `Test Files  180 passed | 3 skipped (183)`, and the task checks returned `1`, `1`, and that line. The failing test file was then run alone outside the sandbox on 2026-10-24: `Tests  60 passed | 1 skipped (61)`, exit 0, with the readable-parent test passing. Each run's environment is in `## Run environments` in `scratch/r19-probe.md`: the serial row and the rebalanced-split runs are outside the sandbox; the three parallel runs and the two shard halves were not logged and are inferred to be outside it.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md:4`, anchor: `|---|---|---|---|---|`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md:4`, anchor: `|---|---|---|---|---|`.
 
 Change: run the `cli` project once with the real config and append one row `| serial | 1 | <exit> | <seconds> | r19-serial.log |`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 ( cd .skilled/skills/system-spec-kit/runtime/cli && /usr/bin/time -p npx vitest run --config ../../vitest.config.ts --project cli > "$PHASE/scratch/r19-serial.log" 2>&1 )
 code=$?
 real=$(awk '/^real /{print $2}' "$PHASE/scratch/r19-serial.log" | tail -1)
@@ -172,9 +172,9 @@ Expected: `exit=0 real=<a number>`; the log's `Test Files` line names `183` file
 Check:
 
 ```bash
-grep -c '^| serial | 1 |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -c '^| serial | 1 | 0 | [0-9]' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -E 'Test Files' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-serial.log | tail -1
+grep -c '^| serial | 1 |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| serial | 1 | 0 | [0-9]' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -E 'Test Files' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-serial.log | tail -1
 ```
 
 Expected: `1`, `1`, and a line naming `183`.
@@ -230,12 +230,12 @@ Stop and escalate if: the node script throws, or the diff prints anything.
 
 Done: `exit=0 real=292.33`; check returned `1`; `Test Files 180 passed | 3 skipped (183)`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| serial | 1 |` row written by T004.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| serial | 1 |` row written by T004.
 
 Change: run the `cli` project through the probe config and append one row `| parallel | 1 | <exit> | <seconds> | r19-run-1.log |`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 ( cd .skilled/skills/system-spec-kit/runtime/cli && /usr/bin/time -p npx vitest run --config ../../vitest.config.parallel-probe.ts --project cli > "$PHASE/scratch/r19-run-1.log" 2>&1 )
 code=$?
 real=$(awk '/^real /{print $2}' "$PHASE/scratch/r19-run-1.log" | tail -1)
@@ -248,7 +248,7 @@ Expected: `exit=0 real=<a number>`, and the log names `183` files.
 Check:
 
 ```bash
-grep -c '^| parallel | 1 |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| parallel | 1 |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `1`.
@@ -263,12 +263,12 @@ Stop and escalate if: the log names neither a collision token nor an assertion f
 
 Done: row check returned `1`; run returned `exit=1 real=305.59` with `Test Files 1 failed | 179 passed | 3 skipped (183)`; one test timed out at `30000ms`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 1 |` row written by T006.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 1 |` row written by T006.
 
 Change: run the probe config again and append one row `| parallel | 2 | <exit> | <seconds> | r19-run-2.log |`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 ( cd .skilled/skills/system-spec-kit/runtime/cli && /usr/bin/time -p npx vitest run --config ../../vitest.config.parallel-probe.ts --project cli > "$PHASE/scratch/r19-run-2.log" 2>&1 )
 code=$?
 real=$(awk '/^real /{print $2}' "$PHASE/scratch/r19-run-2.log" | tail -1)
@@ -281,7 +281,7 @@ Expected: `exit=0 real=<a number>`, and the log names `183` files.
 Check:
 
 ```bash
-grep -c '^| parallel | 2 |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| parallel | 2 |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `1`.
@@ -296,12 +296,12 @@ Stop and escalate if: the log names neither a collision token nor an assertion f
 
 Done: row check returned `1`; run returned `exit=1 real=311.91` with `Test Files 1 failed | 179 passed | 3 skipped (183)`; one test timed out at `30000ms`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 2 |` row written by T007.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 2 |` row written by T007.
 
 Change: run the probe config a third time and append one row `| parallel | 3 | <exit> | <seconds> | r19-run-3.log |`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 ( cd .skilled/skills/system-spec-kit/runtime/cli && /usr/bin/time -p npx vitest run --config ../../vitest.config.parallel-probe.ts --project cli > "$PHASE/scratch/r19-run-3.log" 2>&1 )
 code=$?
 real=$(awk '/^real /{print $2}' "$PHASE/scratch/r19-run-3.log" | tail -1)
@@ -314,7 +314,7 @@ Expected: `exit=0 real=<a number>`, and the log names `183` files.
 Check:
 
 ```bash
-grep -c '^| parallel | 3 |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| parallel | 3 |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `1`.
@@ -359,7 +359,7 @@ Stop and escalate if: the file still exists after two `rm` attempts.
 
 Done by operator ruling, not by the script below: the script as planned would have printed `UNCLASSIFIED: a parallel run failed without a collision token` and exited 1, because parallel rows 2 and 3 carry exit `1` and the collision log is empty (the failures are `Test timed out in 30000ms`, not an `EEXIST`, `EADDRINUSE` or `SQLITE_BUSY` token). That is the Stop-if below, and it fired. The operator then ruled on 2026-10-24, after the data was in, that a 30 s timeout that appears only in the parallel rows while the serial row passed all 183 files counts as a concurrency result, and that the outcome is `shard`. The `## Outcome` section of `scratch/r19-probe.md` was written by hand on that ruling and labels the classification as written after the data; the greps in the script were used for the collision and failure logs only. Task checks returned `1`, `1`, and `1`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 3 |` row written by T008.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `| parallel | 3 |` row written by T008.
 
 Change: append the heading `## Outcome`, the collision and failure greps' output, and exactly one line, `outcome: parallel` or `outcome: shard`.
 
@@ -368,7 +368,7 @@ Apply these two rules, in this order:
 - `outcome: shard` when any `r19-run-*.log` holds `EEXIST`, `EADDRINUSE` or `SQLITE_BUSY`, or names a path, port or database another test file owns.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 grep -nE 'EEXIST|EADDRINUSE|SQLITE_BUSY' "$PHASE"/scratch/r19-run-*.log > "$PHASE/scratch/r19-collisions.log" || true
 grep -nE 'FAIL ' "$PHASE"/scratch/r19-run-*.log > "$PHASE/scratch/r19-failures.log" || true
 nonzero=$(grep -cE '^\| parallel \| [123] \| [1-9]' "$PHASE/scratch/r19-probe.md")
@@ -390,9 +390,9 @@ Expected: `outcome=parallel` on the current tree, with both greps empty.
 Check:
 
 ```bash
-grep -c '^## Outcome$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -cE '^outcome: (parallel|shard)$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -cE '^\| parallel \| [123] \| 0 \| [0-9]' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^## Outcome$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -cE '^outcome: (parallel|shard)$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -cE '^\| parallel \| [123] \| 0 \| [0-9]' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `1`, `1`, and `3` when the outcome is `parallel`.
@@ -547,12 +547,12 @@ Stop and escalate if: the anchor text is not on the file, or any count differs.
 
 Done: `half=1/2 exit=0` and `half=2/2 exit=0`; shard checks returned `2` and `2`, with logs showing `91 passed | 1 skipped` and `89 passed | 2 skipped`. The halves ran one after the other locally (145.13 s then 561.58 s) and run concurrently on the CI runner, so these seconds do not predict the CI step time.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `outcome: shard` line written by T010.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md`, anchor: the `outcome: shard` line written by T010.
 
 Change: run each half once, sequentially, and append two rows `| shard | 1/2 | <exit> | <seconds> | r19-shard-1-2.log |` and `| shard | 2/2 | <exit> | <seconds> | r19-shard-2-2.log |`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 for half in 1/2 2/2; do
   name=$(echo "$half" | tr '/' '-')
   ( cd .skilled/skills/system-spec-kit/runtime/cli && /usr/bin/time -p npx vitest run --config ../../vitest.config.ts --project cli --shard="$half" > "$PHASE/scratch/r19-shard-$name.log" 2>&1 )
@@ -568,8 +568,8 @@ Expected: `half=1/2 exit=0` and `half=2/2 exit=0`.
 Check:
 
 ```bash
-grep -c '^| shard |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
-grep -cE '^\| shard \| [12]/2 \| 0 \| [0-9]' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -c '^| shard |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
+grep -cE '^\| shard \| [12]/2 \| 0 \| [0-9]' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md
 ```
 
 Expected: `2` and `2`.
@@ -584,12 +584,12 @@ Stop and escalate if: either half exits non-zero.
 
 Done: `40 ['failure', 'success']`; task check printed `RUNS_40`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json` (new file). Anchor: none; the file does not exist yet.
 
 Change: write the run list to that file.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 gh run list --workflow deep-loop-runtime.yml --limit 40 --json databaseId,headSha,createdAt,conclusion > "$PHASE/scratch/r21-deep-loop-runtime-runs.json"
 python3 -c "import json; d=json.load(open('$PHASE/scratch/r21-deep-loop-runtime-runs.json')); print(len(d), sorted({r['conclusion'] for r in d}))"
 ```
@@ -599,12 +599,12 @@ Expected: `40 ['failure', 'success']`.
 Check:
 
 ```bash
-python3 -c "import json,sys; d=json.load(open('specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json')); sys.exit(0 if len(d)==40 else 1)" && echo RUNS_40
+python3 -c "import json,sys; d=json.load(open('specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json')); sys.exit(0 if len(d)==40 else 1)" && echo RUNS_40
 ```
 
 Expected: `RUNS_40`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-runs.json`.
 
 Stop and escalate if: `gh` exits non-zero, or the length is not `40`.
 
@@ -614,12 +614,12 @@ Stop and escalate if: `gh` exits non-zero, or the length is not `40`.
 
 Done: `40 ['failure', 'success']`; task check printed `RUNS_40`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json` (new file). Anchor: none; the file does not exist yet.
 
 Change: write the run list to that file.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 gh run list --workflow diagram-corpus.yml --limit 40 --json databaseId,headSha,createdAt,conclusion > "$PHASE/scratch/r21-diagram-corpus-runs.json"
 python3 -c "import json; d=json.load(open('$PHASE/scratch/r21-diagram-corpus-runs.json')); print(len(d), sorted({r['conclusion'] for r in d}))"
 ```
@@ -629,12 +629,12 @@ Expected: `40 ['failure', 'success']`.
 Check:
 
 ```bash
-python3 -c "import json,sys; d=json.load(open('specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json')); sys.exit(0 if len(d)==40 else 1)" && echo RUNS_40
+python3 -c "import json,sys; d=json.load(open('specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json')); sys.exit(0 if len(d)==40 else 1)" && echo RUNS_40
 ```
 
 Expected: `RUNS_40`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-runs.json`.
 
 Stop and escalate if: `gh` exits non-zero, or the length is not `40`.
 
@@ -644,12 +644,12 @@ Stop and escalate if: `gh` exits non-zero, or the length is not `40`.
 
 Done: `39 ['failure', 'success']`; task check printed `RUNS_IN_RANGE`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json` (new file). Anchor: none; the file does not exist yet.
 
 Change: write the run list to that file.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 gh run list --workflow skill-advisor-stress.yml --limit 40 --json databaseId,headSha,createdAt,conclusion > "$PHASE/scratch/r21-skill-advisor-stress-runs.json"
 python3 -c "import json; d=json.load(open('$PHASE/scratch/r21-skill-advisor-stress-runs.json')); print(len(d), sorted({r['conclusion'] for r in d}))"
 ```
@@ -659,12 +659,12 @@ Expected: `36 ['failure', 'success']` today, because the workflow holds 36 runs 
 Check:
 
 ```bash
-python3 -c "import json,sys; d=json.load(open('specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json')); sys.exit(0 if 36 <= len(d) <= 40 else 1)" && echo RUNS_IN_RANGE
+python3 -c "import json,sys; d=json.load(open('specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json')); sys.exit(0 if 36 <= len(d) <= 40 else 1)" && echo RUNS_IN_RANGE
 ```
 
 Expected: `RUNS_IN_RANGE`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-runs.json`.
 
 Stop and escalate if: `gh` exits non-zero, or the length is below `36`.
 
@@ -674,12 +674,12 @@ Stop and escalate if: `gh` exits non-zero, or the length is below `36`.
 
 Done: `{'deep-loop-runtime': (40, 14, 0), 'diagram-corpus': (40, 12, 3), 'skill-advisor-stress': (39, 10, 6)}` at the first pull; skill-advisor-stress was re-pulled later on 2026-10-24 and now reads `(40, 10, 7)`; checks returned `3`, `3`, `3`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` (new file). Anchor: none; the file does not exist yet.
 
 Change: write the heading, one summary table with one row per workflow, and one run table per workflow. The script computes the counts and the newest green streak from the three JSON files.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 python3 - "$PHASE" <<'PY'
 import json, sys
 from pathlib import Path
@@ -717,14 +717,14 @@ Expected: `{'deep-loop-runtime': (40, 13, 3), 'diagram-corpus': (40, 12, 1), 'sk
 Check:
 
 ```bash
-grep -cE '^## (deep-loop-runtime|diagram-corpus|skill-advisor-stress) runs$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
-grep -c '^| run id | createdAt | headSha | conclusion |$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
-grep -cE '^\| (deep-loop-runtime|diagram-corpus|skill-advisor-stress) \| [0-9]+ \| [0-9]+ \| [0-9]+ \|$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -cE '^## (deep-loop-runtime|diagram-corpus|skill-advisor-stress) runs$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '^| run id | createdAt | headSha | conclusion |$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -cE '^\| (deep-loop-runtime|diagram-corpus|skill-advisor-stress) \| [0-9]+ \| [0-9]+ \| [0-9]+ \|$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 ```
 
 Expected: `3`, `3`, `3`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`.
 
 Stop and escalate if: a JSON file is missing, or the script raises.
 
@@ -734,12 +734,12 @@ Stop and escalate if: a JSON file is missing, or the script raises.
 
 Done: `wc -l` returned `41`; checks printed `EXTRACT_PRESENT` and `38` `STALE_SOURCE_DIGEST` lines naming `deep/ai-council`, `deep/review` and `deep/research`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log` (new file). Anchor: none; the file does not exist yet.
 
 Change: extract the terminal failure lines from every failed run in the window.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 : > "$PHASE/scratch/r21-deep-loop-runtime-failures.log"
 for id in $(python3 -c "import json;print(' '.join(str(r['databaseId']) for r in json.load(open('$PHASE/scratch/r21-deep-loop-runtime-runs.json')) if r['conclusion']=='failure'))"); do
   gh run view "$id" --log-failed 2>/dev/null | sed $'s/\x1b\[[0-9;]*m//g' | grep -E 'FAIL |Error:|STALE_|RESULT: FAILED' | tail -3 >> "$PHASE/scratch/r21-deep-loop-runtime-failures.log"
@@ -752,13 +752,13 @@ Expected: a non-zero line count, and the extract names `check-contract-drift.vit
 Check:
 
 ```bash
-test -s specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log && echo EXTRACT_PRESENT
-grep -c 'STALE_SOURCE_DIGEST' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log
+test -s specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log && echo EXTRACT_PRESENT
+grep -c 'STALE_SOURCE_DIGEST' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log
 ```
 
 Expected: `EXTRACT_PRESENT` and at least `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-deep-loop-runtime-failures.log`.
 
 Stop and escalate if: the extract is empty.
 
@@ -768,12 +768,12 @@ Stop and escalate if: the extract is empty.
 
 Done: `wc -l` returned `34`; checks printed `EXTRACT_PRESENT`, `11` `outside the anchor's` lines and `11` `scripts/README.md` lines.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log` (new file). Anchor: none; the file does not exist yet.
 
 Change: extract the terminal failure lines from every failed run in the window.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 : > "$PHASE/scratch/r21-diagram-corpus-failures.log"
 for id in $(python3 -c "import json;print(' '.join(str(r['databaseId']) for r in json.load(open('$PHASE/scratch/r21-diagram-corpus-runs.json')) if r['conclusion']=='failure'))"); do
   gh run view "$id" --log-failed 2>/dev/null | sed $'s/\x1b\[[0-9;]*m//g' | grep -E 'FAIL \[|RESULT: FAILED|Summary: errors' | tail -3 >> "$PHASE/scratch/r21-diagram-corpus-failures.log"
@@ -786,13 +786,13 @@ Expected: a non-zero line count, and the extract names `scripts/README.md` and `
 Check:
 
 ```bash
-test -s specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log && echo EXTRACT_PRESENT
-grep -c "outside the anchor's" specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log
+test -s specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log && echo EXTRACT_PRESENT
+grep -c "outside the anchor's" specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log
 ```
 
 Expected: `EXTRACT_PRESENT` and at least `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-diagram-corpus-failures.log`.
 
 Stop and escalate if: the extract is empty.
 
@@ -802,12 +802,12 @@ Stop and escalate if: the extract is empty.
 
 Done: `wc -l` returned `28`; checks printed `EXTRACT_PRESENT`, `21` `default is not a function` lines and `1` `opencode-plugin-bridge-stress.vitest.ts` line.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log` (new file). Anchor: none; the file does not exist yet.
 
 Change: extract the terminal failure lines from every failed run in the window.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 : > "$PHASE/scratch/r21-skill-advisor-stress-failures.log"
 for id in $(python3 -c "import json;print(' '.join(str(r['databaseId']) for r in json.load(open('$PHASE/scratch/r21-skill-advisor-stress-runs.json')) if r['conclusion']=='failure'))"); do
   gh run view "$id" --log-failed 2>/dev/null | sed $'s/\x1b\[[0-9;]*m//g' | grep -E 'FAIL |TypeError|AssertionError' | tail -3 >> "$PHASE/scratch/r21-skill-advisor-stress-failures.log"
@@ -820,13 +820,13 @@ Expected: a non-zero line count, and the extract names `opencode-plugin-bridge-s
 Check:
 
 ```bash
-test -s specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log && echo EXTRACT_PRESENT
-grep -c 'default is not a function' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log
+test -s specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log && echo EXTRACT_PRESENT
+grep -c 'default is not a function' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log
 ```
 
 Expected: `EXTRACT_PRESENT` and at least `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-skill-advisor-stress-failures.log`.
 
 Stop and escalate if: the extract is empty.
 
@@ -836,12 +836,12 @@ Stop and escalate if: the extract is empty.
 
 Done: oldest failures `b4d4e90`, `f3b4e90`, `7c65ed8` as expected; checks returned `1` and `4` (one row per distinct class — deep-loop-runtime carries both `STALE_SOURCE_DIGEST` and a new `dependency-seams` zod-pin assertion first seen at `e4af508`, which is already aligned on this tree).
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `| skill-advisor-stress |` summary row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `| skill-advisor-stress |` summary row.
 
 Change: append the heading `## Root causes`, the table header `| workflow | failing test | error class | first failing SHA | action |`, the divider, and one row per distinct class the three extracts name. The first failing SHA is the `headSha` of the oldest failed run in that workflow's window that carries the class.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 for wf in deep-loop-runtime diagram-corpus skill-advisor-stress; do
   echo -n "$wf oldest failure: "
   python3 -c "import json;d=json.load(open('$PHASE/scratch/r21-$wf-runs.json'));f=[r for r in d if r['conclusion']=='failure'];print((f[-1]['createdAt'], f[-1]['headSha'][:7]) if f else 'none')"
@@ -853,7 +853,7 @@ Expected today: `deep-loop-runtime` `('2026-10-12T09:01:37Z', 'b4d4e90')`; `diag
 Then append the rows, one per workflow whose extract names a class:
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 cat >> "$PHASE/scratch/r21-recheck.md" <<'EOF'
 
 ## Root causes
@@ -871,8 +871,8 @@ Replace any cell with what the extract actually reads. A class that is not in th
 Check:
 
 ```bash
-grep -c '^## Root causes$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
-sed -n '/^## Root causes/,/^## /p' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md | grep -cE '^\| (deep-loop-runtime|diagram-corpus|skill-advisor-stress) \|'
+grep -c '^## Root causes$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+sed -n '/^## Root causes/,/^## /p' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md | grep -cE '^\| (deep-loop-runtime|diagram-corpus|skill-advisor-stress) \|'
 ```
 
 Expected: `1` and a count equal to the number of failure classes the extracts name, which is `4` today: three workflows have failures, and deep-loop-runtime carries two classes.
@@ -887,12 +887,12 @@ Stop and escalate if: a workflow has a non-zero failure count and its extract na
 
 Done: checker printed `[CONTRACT DRIFT] OK commands=3` with `exit=0`; checks returned `1` and `1` with `drift-verdict: fresh` recorded.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `## Root causes` row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `## Root causes` row.
 
 Change: run the checker on the current tree and append a `## Contract drift` section with the command, its exit code and one line, `drift-verdict: fresh` or `drift-verdict: stale`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 node .opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs; code=$?
 echo "exit=$code"
 printf '\n## Contract drift\n\ncommand: node .opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs\ndrift-verdict: %s\n' "$([ "$code" -eq 0 ] && echo fresh || echo stale)" >> "$PHASE/scratch/r21-recheck.md"
@@ -903,8 +903,8 @@ Expected on the current tree: `OK commands=3` and `exit=0`, so `drift-verdict: f
 Check:
 
 ```bash
-grep -c '^## Contract drift$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
-grep -cE '^drift-verdict: (fresh|stale)$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '^## Contract drift$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -cE '^drift-verdict: (fresh|stale)$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 ```
 
 Expected: `1` and `1`.
@@ -996,7 +996,7 @@ File: `.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown`
 Change: write the `b1f6c78` version of the contract over the current one, run the checker, then restore the current file and prove it is byte-identical.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 cp .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/deep-ai-council.contract.current
 git show b1f6c78:.skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown > .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown
 node .opencode/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs; echo "exit=$?"
@@ -1010,14 +1010,14 @@ Expected: the first run prints `class=STALE_SOURCE_DIGEST` and `deep/ai-council`
 Then append one line to the `## Contract drift` section:
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 printf 'negative-proof: exit 2 then exit 0\n' >> "$PHASE/scratch/r21-recheck.md"
 ```
 
 Check:
 
 ```bash
-grep -c '^negative-proof: exit 2 then exit 0$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '^negative-proof: exit 2 then exit 0$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 git status --short .skilled/commands/deep/assets/compiled/ | wc -l
 ```
 
@@ -1038,7 +1038,7 @@ File: `.skilled/skills/sk-design/sk-design-diagram/scripts/README.md:9`, anchor:
 Change: read the newest run. When it is `success`, append `diagram-corpus: closed on the newest green run <run-id>` to `scratch/r21-recheck.md` and edit nothing. When it is `failure`, set the version's major.minor to the anchor's era in `.skilled/skills/sk-design/sk-design-diagram/SKILL.md` (`1.2` today), keeping the patch number.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 RUN=$(gh run list --workflow diagram-corpus.yml --limit 1 --json databaseId --jq '.[0].databaseId')
 gh run list --workflow diagram-corpus.yml --limit 1 --json databaseId,conclusion --jq '.[0]'
 gh run view "$RUN" --log-failed 2>/dev/null | sed $'s/\x1b\[[0-9;]*m//g' | grep -E 'FAIL \[|RESULT: FAILED' | tail -3
@@ -1074,7 +1074,7 @@ import skillAdvisorPlugin from '../../../../../plugins/system-skill-advisor.js';
 Change: read the newest run. When it is `success`, append `skill-advisor-stress: closed on the newest green run <run-id>` to `scratch/r21-recheck.md` and edit nothing. When it fails with `default is not a function`, align the import at `:20` and the three assertions at `:101-104` with the plugin's `export default dualPlugin('system-skill-advisor', MkSkillAdvisorPlugin)` at `.skilled/plugins/system-skill-advisor.js:1624`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 RUN=$(gh run list --workflow skill-advisor-stress.yml --limit 1 --json databaseId --jq '.[0].databaseId')
 gh run list --workflow skill-advisor-stress.yml --limit 1 --json databaseId,conclusion --jq '.[0]'
 gh run view "$RUN" --log-failed 2>/dev/null | sed $'s/\x1b\[[0-9;]*m//g' | grep -E 'FAIL |TypeError' | tail -3
@@ -1101,12 +1101,12 @@ Stop and escalate if: the newest run fails with a class other than `default is n
 
 Done, Stop-if fired and ruled by the operator: re-pulled on 2026-10-24 with `gh run list --limit 100`. Four workflows match the expected date and SHA (`repo-rules-corpus` 2026-09-18 `6cbaf58`, `chart-corpus` 2026-10-12 `f3b4e90`, `opencode-dual-version` 2026-10-20 `7584ad7`, `strict-pass-freshness-report` 2026-09-07 `bbf1ffa`). `routing-registry-drift` fired the Stop-if (a failure newer than the expected date): it failed on 2026-10-24 at `e3beac6` (run 40089268105) and `db30b0f` (run 40089318887) with `STALE COMPILED: skill-graph.json generated_at 2026-10-17T10:21:42 is older than the newest source stamp 2026-10-24T00:00:00Z (sk-code)`. The fix is `1218b94938`, and all 15 workflow runs on it are `success`, including routing-registry-drift run 40089725657. The operator ruled on 2026-10-24 to close the workflow on this evidence; its row records the 2026-10-24 failures, the cause and the fix (ADR-010 amendment). Checks returned `5` and `5`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the `negative-proof: exit 2 then exit 0` line.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the `negative-proof: exit 2 then exit 0` line.
 
 Change: append the heading `## Stale failures`, the table header `| workflow | failure date | failure SHA | failure run | later green run | verdict |`, the divider, and one row per workflow, ending in `closed`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 for w in repo-rules-corpus chart-corpus opencode-dual-version routing-registry-drift strict-pass-freshness-report; do
   echo "=== $w"
   gh run list --workflow "$w.yml" --limit 100 --json databaseId,createdAt,headSha,conclusion --jq '[.[] | select(.conclusion=="failure")][0] | {databaseId, createdAt, sha: .headSha[0:7]}'
@@ -1119,8 +1119,8 @@ Expected at planning time: `repo-rules-corpus` fails on `2026-09-18` at `6cbaf58
 Check:
 
 ```bash
-grep -cE '^\| (repo-rules-corpus|chart-corpus|opencode-dual-version|routing-registry-drift|strict-pass-freshness-report) \|' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
-grep -c '| closed |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -cE '^\| (repo-rules-corpus|chart-corpus|opencode-dual-version|routing-registry-drift|strict-pass-freshness-report) \|' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '| closed |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 ```
 
 Expected: `5` and `5`.
@@ -1135,12 +1135,12 @@ Stop and escalate if: a workflow shows no failure in its last 100 runs, or a fai
 
 Done: re-run on 2026-10-24 and scoped to the workflow files, because an unscoped `git diff -U0` also matches this packet's own documents. `rg -n 'retry|rerun|continue-on-error'` over the three workflows printed nothing (`wc -l` returned `0`); `git diff -U0 -- .github/workflows | grep -cE '^\+.*(retry|rerun|continue-on-error)'` returned `0`; `## No-retry proof` and `retry-proof: clean` are in `scratch/r21-recheck.md` (count `1`).
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `| closed |` row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `| closed |` row.
 
 Change: append the heading `## No-retry proof`, the two commands' outputs and one line, `retry-proof: clean`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 {
   printf '\n## No-retry proof\n\n'
   rg -n 'retry|rerun|continue-on-error' .github/workflows/deep-loop-runtime.yml .github/workflows/diagram-corpus.yml .github/workflows/skill-advisor-stress.yml || true
@@ -1154,7 +1154,7 @@ Expected: the two searches print nothing, so only the heading and the proof line
 Check:
 
 ```bash
-grep -c '^retry-proof: clean$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '^retry-proof: clean$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 rg -n 'retry|rerun|continue-on-error' .github/workflows/deep-loop-runtime.yml .github/workflows/diagram-corpus.yml .github/workflows/skill-advisor-stress.yml | wc -l
 git diff -U0 -- .github/workflows | grep -cE '^\+.*(retry|rerun|continue-on-error)'
 ```
@@ -1178,12 +1178,12 @@ Stop and escalate if: either search prints a line.
 
 Done: reran on 2026-10-24. `check-gate-inputs: 54 passed, 0 failed`; the real-tree gate printed `files=45 inputs_resolved=236 dynamic_inputs=9 twin_pairs=340 failures=0` and `RESULT: PASSED`; `YAML_OK`. The three `grep -c` checks on `scratch/gate-run.log` returned `1`, `1`, `1`. The log is gitignored, so the deciding lines are quoted in `scratch/gate-run.md`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log` (new file). Anchor: none; the file does not exist yet.
 
 Change: run the fixture suite, the real-tree gate and the YAML parse, and write all three outputs to the log.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 bash .github/scripts/tests/check-gate-inputs.test.sh 2>&1 | tee "$PHASE/scratch/gate-run.log" | tail -1
 bash .github/scripts/check-gate-inputs.sh 2>&1 | tee -a "$PHASE/scratch/gate-run.log" | tail -1
 python3 -c "import yaml,glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]" && echo YAML_OK | tee -a "$PHASE/scratch/gate-run.log"
@@ -1194,14 +1194,14 @@ Expected: the fixture suite's last line reads `check-gate-inputs: <N> passed, 0 
 Check:
 
 ```bash
-grep -cE '^check-gate-inputs: [0-9]+ passed, 0 failed$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
-grep -c '^RESULT: PASSED$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
-grep -c '^YAML_OK$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
+grep -cE '^check-gate-inputs: [0-9]+ passed, 0 failed$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
+grep -c '^RESULT: PASSED$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
+grep -c '^YAML_OK$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log
 ```
 
 Expected: `1`, `1`, `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/gate-run.log`.
 
 Stop and escalate if: either script prints `RESULT: FAILED`, or the YAML parse exits non-zero.
 
@@ -1216,7 +1216,7 @@ File: `.skilled/skills/system-spec-kit/vitest.config.ts`, and under the shard pa
 Change: stage only the R20 files, write the message for the recorded outcome, validate it, prove no ephemeral id entered the diff, then commit.
 
 ```bash
-if grep -q '^outcome: shard$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md; then
+if grep -q '^outcome: shard$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md; then
   git add .skilled/skills/system-spec-kit/vitest.config.ts .github/workflows/spec-kit-check.yml
   cat > /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/r20-commit.txt <<'MSG'
 ci(system-spec-kit): shard the CLI vitest project in the check job
@@ -1224,7 +1224,7 @@ ci(system-spec-kit): shard the CLI vitest project in the check job
 Two shards replace one serial run because three parallel runs collided on a
 fixture that the shards now keep apart.
 
-Spec: system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
+Spec: system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
 MSG
 else
   git add .skilled/skills/system-spec-kit/vitest.config.ts
@@ -1236,7 +1236,7 @@ longest step 791 s. Three consecutive parallel runs passed, so the project
 now runs its files in parallel, while the root project stays serial because
 its suites share mutable state.
 
-Spec: system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
+Spec: system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
 MSG
 fi
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/r20-commit.txt
@@ -1273,7 +1273,7 @@ A stale compiled contract failed the suite only after the whole run. The
 drift checker now runs first, so the same fact fails in seconds and names
 the contract to rebuild.
 
-Spec: system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
+Spec: system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
 ```
 
 The checker on the current tree printed `[CONTRACT DRIFT] OK commands=3` with `exit=0`, and `.github/workflows/deep-loop-runtime.yml:66` runs it above the suite step.
@@ -1292,14 +1292,14 @@ A stale compiled contract failed the suite only after the whole run. The
 drift checker now runs first, so the same fact fails in seconds and names
 the contract to rebuild.
 
-Spec: system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
+Spec: system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
 MSG
   node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/r21-commit.txt
   git diff --cached | grep -nE '\bR[0-9]+\b|\bD[0-9]+\b|[Pp]hase 0[0-9]' || true
   git commit -F /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Code-Environment-Public/0b9dc60c-478f-4659-8191-2da52f1cd765/scratchpad/r21-commit.txt
   git log -1 --format=%s
 else
-  echo "r21-commit: none" >> specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+  echo "r21-commit: none" >> specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 fi
 ```
 
@@ -1324,12 +1324,12 @@ Stop and escalate if: the message validator exits non-zero, or the ephemeral-id 
 
 Done, with the bar not met and the row waived. The operator ruled on 2026-10-24 (decision-record ADR-003 amendment) that AC-003 is judged on the median of the five green `Spec-Kit Check` runs on main that T035 collects, and not on the first run alone. The count-based split read 643 s (run 40090109005) and 482 s (run 40094302049), both over 400 s and superseded. Five runs have used the rebalanced split and all are green: 40102448836 at 75b27df21c read 459 s, 40107239895 at e00fef3e76 read 299 s, 40123498034 at 1c0c3534cf read 313 s, 40125544852 at 666844f806 read 451 s and 40147796034 at 8ff7da700d read 467 s, against 791 s in run 39909844384. Every head contains 04d9b0c84f. The median is 451 s and the awk check below prints `NOT_MET` with exit `1`. The five `| after |` rows are written in `scratch/r20-ci-step.md`. The Stop-if below fired, and the operator ruled on 2026-10-25 to close AC-003 by waiver (ADR-011) instead of a further re-measure, so the Expected line below is the original bar and was not reached.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `post-change-runs:` line.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `post-change-runs:` line.
 
 Change: for each `Spec-Kit Check` push run on main since 75b27df21c, oldest first, whose head contains 04d9b0c84f and which is green, append one row `| after | <run id> | <head sha> | <conclusion> | <seconds> |`. Stop at five rows.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 gh run list --workflow spec-kit-check.yml --branch main --event push --limit 30 --json databaseId,headSha,conclusion,createdAt --jq 'sort_by(.createdAt) | .[] | "\(.databaseId) \(.headSha)"'
 RUN=<run id>
 gh run view "$RUN" --json jobs --jq '.jobs[] | select(.name | startswith("Typecheck")) | .steps[] | select(.name == "CLI vitest project") | {conclusion, seconds: (((.completedAt|fromdateiso8601) - (.startedAt|fromdateiso8601)))}'
@@ -1341,8 +1341,8 @@ Expected: `"conclusion":"success"` and `COUNTS` for each row appended, and five 
 Check:
 
 ```bash
-grep -c '^| after |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
-awk -F'[|]' '/^\| after \|/ {gsub(/ /,"",$6); v[++n]=$6+0} END {for(i=2;i<=n;i++){x=v[i];j=i-1;while(j>0&&v[j]>x){v[j+1]=v[j];j--};v[j+1]=x} if(n==5&&v[3]<400){print "MEDIAN_UNDER_400";exit 0} print "NOT_MET";exit 1}' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
+grep -c '^| after |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
+awk -F'[|]' '/^\| after \|/ {gsub(/ /,"",$6); v[++n]=$6+0} END {for(i=2;i<=n;i++){x=v[i];j=i-1;while(j>0&&v[j]>x){v[j+1]=v[j];j--};v[j+1]=x} if(n==5&&v[3]<400){print "MEDIAN_UNDER_400";exit 0} print "NOT_MET";exit 1}' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
 ```
 
 Expected: `5` and `MEDIAN_UNDER_400`.
@@ -1357,12 +1357,12 @@ Stop and escalate if: the median of five reads `400` s or more, because the shar
 
 Done: five runs exist (`post-change-runs: 5 of 5` in `scratch/r20-ci-step.md`, runs 40102448836, 40107239895, 40123498034, 40125544852 and 40147796034, all green, every head containing 04d9b0c84f). The `## Green streak` section and `all_green: true` were written from those five run ids with `gh run view`, not with the `gh run list --limit 5` command in the block below, because the five newest runs of the workflow now include a red run (40149635448) and a later green run (40170908787) that are not part of the five. The check returned `1` and `5`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `| after |` row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md`, anchor: the `| after |` row.
 
 Change: append the heading `## Green streak`, one row per run `| <run id> | <createdAt> | <headSha> | <conclusion> |`, and one line `all_green: true`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 {
   printf '\n## Green streak\n\n| run id | createdAt | headSha | conclusion |\n|---|---|---|---|\n'
   gh run list --workflow spec-kit-check.yml --limit 5 --json databaseId,createdAt,headSha,conclusion --jq '.[] | "| \(.databaseId) | \(.createdAt) | \(.headSha[0:7]) | \(.conclusion) |"'
@@ -1375,8 +1375,8 @@ Expected: five rows, all `success`, and `all_green: true`.
 Check:
 
 ```bash
-grep -c '^all_green: true$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
-sed -n '/^## Green streak/,/^all_green/p' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md | grep -c '^| [0-9]\{6,\} |'
+grep -c '^all_green: true$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md
+sed -n '/^## Green streak/,/^all_green/p' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md | grep -c '^| [0-9]\{6,\} |'
 ```
 
 Expected: `1` and `5`.
@@ -1391,12 +1391,12 @@ Stop and escalate if: `all_green` is not `true`, or a run predates the R20 commi
 
 Done through the filed branch. diagram-corpus had 3 consecutive greens, so seven serial `workflow_dispatch` runs on main were dispatched and each waited on (40094359622, 40094481195, 40094626777, 40094771974, 40094888712, 40095003840, 40095154965, all `success`). Those seven are dispatched reruns of the workflow, not natural runs. Neither deep-loop-runtime nor skill-advisor-stress has `workflow_dispatch`, and no failed run was rerun. The closure read on 2026-10-25 (`scratch/r21-recheck.md`, section Window re-pull at closure) has diagram-corpus and skill-advisor-stress at ten `success` each, and deep-loop-runtime at nine `success` and one `failure` (run 40107240026, `tests/unit/jsonl-repair.vitest.ts:461`) with the four later main runs `success`. The literal check below returns `1`, not `3`, because deep-loop-runtime stays red and the 2026-10-24 readings are kept as written. AC-006 accepts a filed root cause for a workflow that stays red, which T037 holds.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the `retry-proof: clean` line.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the `retry-proof: clean` line.
 
 Change: append the heading `## Green streaks` and one line per workflow, `workflow: all_green=true count=<n>` or `workflow: all_green=false count=<n>`.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 {
   printf '\n## Green streaks\n\n'
   for w in deep-loop-runtime diagram-corpus skill-advisor-stress; do
@@ -1412,7 +1412,7 @@ When diagram-corpus has fewer than 10 runs since its last failure, dispatch it o
 Check:
 
 ```bash
-grep -cE '^(deep-loop-runtime|diagram-corpus|skill-advisor-stress): all_green=true count=10$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -cE '^(deep-loop-runtime|diagram-corpus|skill-advisor-stress): all_green=true count=10$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 ```
 
 Expected: `3`.
@@ -1427,12 +1427,12 @@ Stop and escalate if: a workflow reports `count=0`, or a workflow has no way to 
 
 Done: `grep -E ': all_green=false'` prints the deep-loop-runtime line and the 2026-10-24 skill-advisor-stress line. Only deep-loop-runtime is red at closure. Its Root causes row for `tests/unit/dependency-seams.vitest.ts`, `AssertionError: expected '4.6.6' to be '4.4.3'`, first failing SHA `e4af508`, carries the `filed:` action (Dependabot pull request 72, `OPEN` on 2026-10-25). Its row for `tests/unit/jsonl-repair.vitest.ts`, `AssertionError: expected 9 records, got 8 (line 461)`, first failing SHA `e00fef3`, carries a `filed:` action naming `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`, a separate change by the operator's ruling of 2026-10-25 (the folder exists as a scaffold). skill-advisor-stress is not red, so no filed row applies to it. `grep -c '[|] filed:'` returns `2`, and both rows are deep-loop-runtime's. The cause of the writer-lock failure stays INFERRED, not reproduced.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `## Green streaks` line.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md`, anchor: the last `## Green streaks` line.
 
 Change: for each workflow whose line reads `all_green=false`, append a row to the `## Root causes` table with the failing test, the error class, the first failing SHA, and an action cell that starts with `filed:` and carries one sentence on why the fix is not in this phase.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 grep -E ': all_green=false' "$PHASE/scratch/r21-recheck.md"
 ```
 
@@ -1441,7 +1441,7 @@ Expected: no output when all three are green; otherwise one line per workflow wh
 Check:
 
 ```bash
-grep -c '| filed:' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
+grep -c '| filed:' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md
 ```
 
 Expected: `0` when every workflow is green, otherwise one per red workflow, and AC-006 then passes through its filed-root-cause branch.
@@ -1456,12 +1456,12 @@ Stop and escalate if: a workflow is red and its failing test cannot be named fro
 
 Done. History: three rows were first left Unmet by their own rule: `grep -c '| Unmet |'` read `11` before the edit; afterwards `grep -c '| Met |'` returns `8` and `grep -c '| Unmet |'` returns `3`. AC-003 stays Unmet, awaiting CI measurement after the rebalanced split is committed. AC-006 stays Unmet: skill-advisor-stress is not red and needs three more natural runs, and deep-loop-runtime is red on an open pull request. AC-010 stays Unmet until the commits are made. Update 2026-10-25: AC-010 is now Met (commits `04d9b0c84f` and `e094a852ed`). Final state 2026-10-25: `grep -c '| Met |'` returns `10`, `grep -c '| Waived |'` returns `1` and `grep -c '| Unmet |'` returns `0`. AC-003 is Waived by the operator's ruling (ADR-011) because the median of five green runs is 451 s against the 400 s bar. AC-006 is Met through its filed-root-cause branch (deep-loop-runtime, `specs/system-deep-loop/041-writer-lock-stale-reclaim-race`). AC-004 now reads `5` root-cause rows. The stored proof commands were rewritten to run as pasted: literal pipes are written `[\|]` (a bracket expression, with the backslash only escaping the table cell), alternations use repeated `-e` patterns, and the counts match the delivered files (AC-004 reads `4` root-cause rows, AC-002 counts the `--exclude` split). AC-005 carries the routing-registry-drift date of 2026-10-24 under the operator ruling.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md`, anchor: the `| AC-001 |` row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md`, anchor: the `| AC-001 |` row.
 
 Change: for each row AC-001 to AC-011, replace `Unmet` in the Status cell with `Met` and paste the observed check output into the Verification cell. Leave a row `Unmet` when its evidence is missing.
 
 ```bash
-grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
+grep -c '| Unmet |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
 ```
 
 Expected before the edit: `11`.
@@ -1469,9 +1469,9 @@ Expected before the edit: `11`.
 Check:
 
 ```bash
-grep -c '| Met |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
-grep -c '| Waived |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
-grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
+grep -c '| Met |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
+grep -c '| Waived |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
+grep -c '| Unmet |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/acceptance-criteria.md
 ```
 
 Expected: `10`, `1` and `0` (AC-003 is Waived under ADR-011).
@@ -1486,12 +1486,12 @@ Stop and escalate if: a row has no observed output to paste.
 
 Done: `repair-derived.cjs --folder <phase> --apply` then `validate.sh <phase> --strict --no-recursive` printed `Summary: Errors: 0  Warnings: 0` and `RESULT: PASSED`; `grep -c '^RESULT: PASSED$' scratch/validate.log` returned `1`. The first run failed on a long `next_safe_action` and a `Planned` status in `spec.md` against `In progress` in the summary; both were fixed, not waived. The log is gitignored, so the line is quoted in `scratch/validate.md`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log` (new file). Anchor: none; the file does not exist yet.
 
 Change: run the strict validator and write its output to the log.
 
 ```bash
-PHASE="$PWD/specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+PHASE="$PWD/specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PHASE" --strict --no-recursive 2>&1 | tee "$PHASE/scratch/validate.log" | tail -3
 ```
 
@@ -1500,12 +1500,12 @@ Expected: `RESULT: PASSED`.
 Check:
 
 ```bash
-grep -c '^RESULT: PASSED$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log
+grep -c '^RESULT: PASSED$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log
 ```
 
 Expected: `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/validate.log`.
 
 Stop and escalate if: the validator prints `RESULT: FAILED` for any reason other than `GENERATED_METADATA_*`, `METADATA_DISK_PATH` or packet identity, which the orchestrator owns.
 
@@ -1517,15 +1517,15 @@ Evidence: the closure edits landed as `c7deb0efc6`, `docs(spec): close the slow 
 
 Not done, by instruction: the orchestrator stages and commits after an independent review. The message is written in `scratch/commit-message-closure.txt` and validates with exit `0`. The phase is closeable (see `acceptance-criteria.md` section 3), so the subject may say the criteria are closed.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests` (the packet folder). Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
 Change: stage the packet folder, including the acceptance criteria, the task statuses and the scratch evidence, validate the message, and commit, so the closure edits T038 made and the validation output T039 wrote are not left uncommitted.
 
 ```bash
-node .skilled/skills/sk-git/scripts/validate-message.mjs --commit specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
-git add specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
-git commit -F specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
-git status --porcelain -- specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests
+node .skilled/skills/sk-git/scripts/validate-message.mjs --commit specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
+git add specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
+git commit -F specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/commit-message-closure.txt
+git status --porcelain -- specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests
 ```
 
 Expected: `validate-message.mjs` exits `0`, `git log -1 --format=%s` prints `docs(spec): close the slow and failing test criteria` and `git status --porcelain` prints nothing.
@@ -1587,7 +1587,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 
 - [x] CHK-001 [P0] Requirements documented in spec.md - planned as REQ-001 to REQ-007, each naming R19, R20, R21 or the gates [EVIDENCE: spec.md rows REQ-001 to REQ-007 at lines 129-140, each naming R19, R20, R21 or the gates, read 2026-10-25]
 - [x] CHK-002 [P0] Technical approach defined in plan.md - the probe config, the config flip or the shard, and the re-check-first triage [EVIDENCE: plan.md sections 1 to 4 and the Affected Surfaces addendum (lines 74-93) hold the probe config, the shard and the re-check-first triage, read 2026-10-25]
-- [x] CHK-003 [P1] Dependencies identified and available - `gh` with the `repo` scope, T002's install and build, the 002 baseline (T001) [EVIDENCE: `gh run view` and `gh run list` ran with the existing token on 2026-10-25, T002 is marked done in this file and `ls specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` found the file on 2026-10-25, and `scratch/r20-ci-step.md` still reads `baseline-source: 001-dataset` for the 791 s reference, which the spec limits to the after-R1 figure]
+- [x] CHK-003 [P1] Dependencies identified and available - `gh` with the `repo` scope, T002's install and build, the 002 baseline (T001) [EVIDENCE: `gh run view` and `gh run list` ran with the existing token on 2026-10-25, T002 is marked done in this file and `ls specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md` found the file on 2026-10-25, and `scratch/r20-ci-step.md` still reads `baseline-source: 001-dataset` for the 791 s reference, which the spec limits to the after-R1 figure]
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -1651,7 +1651,7 @@ Stop and escalate if: the validator exits non-zero twice, or the commit stages a
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [x] CHK-050 [P1] Temp files in scratch/ only - the probe logs, the 40-run JSONs, the failed-log extracts and the measurements live under `specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/` [EVIDENCE: `ls scratch/` 2026-10-25 shows the probe logs, run JSON files, failed-log extracts and measurement tables under the phase folder]
+- [x] CHK-050 [P1] Temp files in scratch/ only - the probe logs, the 40-run JSONs, the failed-log extracts and the measurements live under `specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/` [EVIDENCE: `ls scratch/` 2026-10-25 shows the probe logs, run JSON files, failed-log extracts and measurement tables under the phase folder]
 - [x] CHK-051 [P1] scratch/ cleaned before completion - the probe config is deleted in T009; the logs and tables stay as the phase's evidence [EVIDENCE: `test ! -e .skilled/skills/system-spec-kit/vitest.config.parallel-probe.ts` exits 0 on 2026-10-25]
 <!-- /ANCHOR:file-org -->
 

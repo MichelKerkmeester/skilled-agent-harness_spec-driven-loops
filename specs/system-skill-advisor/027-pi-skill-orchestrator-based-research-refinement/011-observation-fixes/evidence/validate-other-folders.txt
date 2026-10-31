@@ -3,7 +3,7 @@
 ## before regenerating
 cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
 cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
-sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
+sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
 system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions | RESULT: PASSED | Summary: Errors: 0 Warnings: 2
 system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
 system-speckit/031-system-speckit-v4/045-v4-changelog-voice-rewrite | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
@@ -17,7 +17,7 @@ system-speckit/z_archive/022-hybrid-rag-fusion/009-perfect-session-capturing/scr
 ## after regenerating
 cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
 cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
-sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
+sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit | RESULT: FAILED | Summary: Errors: 2 Warnings: 0
 system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions | RESULT: PASSED | Summary: Errors: 0 Warnings: 2
 system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation | RESULT: PASSED | Summary: Errors: 0 Warnings: 0
 system-speckit/031-system-speckit-v4/045-v4-changelog-voice-rewrite | RESULT: PASSED | Summary: Errors: 0 Warnings: 0

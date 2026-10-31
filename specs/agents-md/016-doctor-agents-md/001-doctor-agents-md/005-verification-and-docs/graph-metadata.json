@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still disagree about the same tree",
     "created_at": "2026-10-30T11:22:45Z",
-    "last_save_at": "2026-10-31T15:21:45.239Z",
+    "last_save_at": "2026-10-31T15:23:37.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee6d7c173ce1107a030d115f3e0348f9199d6a70798a6e1c4ac8b1fc6a3046de",
+    "source_fingerprint": "sha256:ef0d8797351d9fd787f24aa525ac9453a62f8ba034bb01291f862af093065471",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56681e488330bfc2dff81777e71884212cfa16fcf623028734ed1364e6914d32",
-      "plan.md": "21fdf8abc9a63bf5e56b46d848354f34134df5e5f2e05b5459b24c5ec338eec1",
-      "tasks.md": "f5518da77e1cd0d752692fc5838ed7ef9b9e6a759642585938bc504bae253bc6",
-      "implementation-summary.md": "d7c6b45565d005b494da25ea8aba3d72eef8de3e7684fe6a17ab715e1867d216"
+      "spec.md": "bc1ed1e06e7a66d5a117cc5131e68d751a66c2ce49e643d6ef79ffe2d9ee440e",
+      "plan.md": "e346d6768db79fadc0dbb3356633b85758aa668310677a54a5d8f1c71de077a3",
+      "tasks.md": "325b17b629770ab5854ae094e2bff7c9776f77d3fcc27409da34dcbb830dfffb",
+      "implementation-summary.md": "67e966ea3286132c80ffd0e892cb11ab655edf19a5badac15a0d370c3a6f3368"
     },
     "last_active_at": null
   }

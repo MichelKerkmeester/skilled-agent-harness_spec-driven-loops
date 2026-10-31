@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Repo-Agnostic Git Workspace Rows [specs/agents/005-git-workspace-repo-agnostic]"
+title: "Implementation Plan: Repo-Agnostic Git Workspace Rows [specs/agents-md/005-git-workspace-repo-agnostic]"
 description: "Plan to rewrite the AGENTS.md Git Workspace Safety rows so they state universal principles and name sk-git, moving every repo-specific token into sk-git."
 trigger_phrases:
   - "agents.md plan"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/005-git-workspace-repo-agnostic"
+    packet_pointer: "agents-md/005-git-workspace-repo-agnostic"
     last_updated_at: "2026-08-16T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the repo-agnostic rewrite plan"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/027-alignment-preexisting-gaps"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/027-alignment-preexisting-gaps"
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Ticked the last completion criterion after the closeout gates"

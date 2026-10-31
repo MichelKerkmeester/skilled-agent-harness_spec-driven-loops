@@ -15,8 +15,8 @@
   "specId": "008",
   "folderSlug": "communication-split",
   "parentChain": [
-    "agents",
-    "009-turn-closeout-next-steps"
+    "agents-md",
+    "007-turn-closeout-next-steps"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

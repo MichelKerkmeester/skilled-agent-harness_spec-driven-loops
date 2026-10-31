@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/007-docs-and-closeout"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/007-docs-and-closeout"
     last_updated_at: "2026-10-04T13:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Reconciled the docs, wrote the changelogs and the closure record"

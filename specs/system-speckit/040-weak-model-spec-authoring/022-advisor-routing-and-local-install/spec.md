@@ -42,7 +42,7 @@ This is **Phase 22** of packet 054. Phase 21's closeout left four items for the 
 
 **Dependencies**:
 - Phase 21 replaced the system-spec-kit phrase `draft auto-repair` with `spec docs`, because the lexical lane read `:auto` as the word "auto".
-- Packet `sk-doc/063-local-command-support` added the ignore rules for private `local-*` commands, which the provision step reads.
+- Packet `commands/003-local-command-support` added the ignore rules for private `local-*` commands, which the provision step reads.
 
 **Deliverables**:
 - The doctor `lead_phrases` entry and regenerated bridges (item 1)

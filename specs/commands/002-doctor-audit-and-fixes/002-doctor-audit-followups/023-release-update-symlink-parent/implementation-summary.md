@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/023-release-update-symlink-parent"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/023-release-update-symlink-parent"
     last_updated_at: "2026-10-04T19:40:00Z"
     last_updated_by: "release-update-symlink-parent"
     recent_action: "Fixed the symlinked-parent crash and removed the fixture workaround"

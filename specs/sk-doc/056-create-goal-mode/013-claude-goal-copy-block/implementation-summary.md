@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/013-claude-goal-copy-block"
+    packet_pointer: "sk-doc/056-create-goal-mode/013-claude-goal-copy-block"
     last_updated_at: "2026-10-24T16:17:09Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Added the Claude Code fenced-block rule to every goal send surface and two playbook scenarios"

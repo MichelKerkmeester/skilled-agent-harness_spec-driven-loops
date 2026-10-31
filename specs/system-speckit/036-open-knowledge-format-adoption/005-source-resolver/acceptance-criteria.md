@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/005-source-resolver"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/005-source-resolver"
     last_updated_at: "2026-10-04T12:55:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met all seven criteria and closed the packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/037-open-knowledge-format-adoption/005-source-resolver
+**Packet:** system-speckit/036-open-knowledge-format-adoption/005-source-resolver
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

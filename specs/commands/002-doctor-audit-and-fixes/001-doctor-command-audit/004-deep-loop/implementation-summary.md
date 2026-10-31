@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop"
     last_updated_at: "2026-10-02T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "Closed the deep-loop doctor audit with a fix verdict"
@@ -103,7 +103,7 @@ The audit ran first: line-numbered source reads, an inventory of every named pat
 | `node .skilled/commands/doctor/scripts/tests/parent-skill-check-*.test.cjs` | Fail exactly as the pre-batch baseline — the temporary fixtures cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree; not a regression |
 | `rg -n 'deep_loop_graph_status\(|deep_loop_graph_query\(|deep_loop_graph_convergence\(' .skilled/commands/doctor` | No matches in the edited deep-loop files; the retired names survive only in `doctor-update.yaml`, outside this target |
 | Safe probes in `scratch/doctor-run.log` | Three `INPUT_VALIDATION` exits (code 3) on an invalid loop type, stopping before any database open; council replay `--dry-run` exits 1 on the missing state file; three `NOT RUN` entries record the skipped normal calls and report phase |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop --strict` | `RESULT: PASSED` — see the run recorded in the goal log |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop --strict` | `RESULT: PASSED` — see the run recorded in the goal log |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -119,7 +119,7 @@ The audit ran first: line-numbered source reads, an inventory of every named pat
 6. **The route validator warnings are informational.** `--scope` collides with the skill-advisor target and `--dir` with fable-mode; both are allowed by the validator.
 7. **Three doctor script tests fail on fixtures, unchanged by this batch.** The `parent-skill-check-*.test.cjs` files cannot load `@spec-kit/shared/frontmatter/parse-frontmatter.js` in this worktree and fail exactly as the pre-batch baseline did.
 
-**Follow-up status.** Items 1, 2 and 4 are resolved by `specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping`: status, query and convergence take `--read-only`, the database opens are read-only, and read-only probes against the repository database left it byte-identical. Item 7 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003. Items 3, 5 and 6 are observations, not defects.
+**Follow-up status.** Items 1, 2 and 4 are resolved by `specs/system-deep-loop/038-review-and-cli-lineage/004-read-only-and-research-bookkeeping`: status, query and convergence take `--read-only`, the database opens are read-only, and read-only probes against the repository database left it byte-identical. Item 7 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003. Items 3, 5 and 6 are observations, not defects.
 <!-- /ANCHOR:limitations -->
 
 ---

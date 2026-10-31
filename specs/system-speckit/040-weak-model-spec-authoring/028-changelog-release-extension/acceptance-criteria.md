@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/028-changelog-release-extension"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/028-changelog-release-extension"
     last_updated_at: "2026-10-28T05:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked every row Met after the review fixes"

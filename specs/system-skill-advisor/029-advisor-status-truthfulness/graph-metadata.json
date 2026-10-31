@@ -153,18 +153,18 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The doctor command audit (`specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit`) recorded that several advisor reporting surfaces disagree with what is actually on disk",
+    "causal_summary": "The doctor command audit (`specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit`) recorded that several advisor reporting surfaces disagree with what is actually on disk",
     "created_at": "2026-10-03T05:27:36Z",
-    "last_save_at": "2026-10-31T13:41:27.331Z",
+    "last_save_at": "2026-10-31T15:29:48.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:5c651b403b87f6633b954306107ea33897dc07a2a2875c9a03abca04534d10f4",
+    "source_fingerprint": "sha256:f4aa66e5b761a40bf0f96521f8e2c724185b70df5b4e983292efc460f042c3e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b7da3bf7f6d04b33ea362735a444a26d99c3252c99a7d7e79f48f65cb2b7784b"
+      "spec.md": "da6b3d8b2e0e94be16986e7232a4ec7a4369a8d6bb995950fd20106a4113caeb"
     },
     "last_active_at": null
   }

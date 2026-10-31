@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command"
+    packet_pointer: "commands/004-doctor-sk-skill-command"
     last_updated_at: "2026-10-30T06:40:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
@@ -89,7 +89,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `validate.sh specs/sk-doc/067-doctor-sk-skill-command --recursive --strict` prints `RESULT: PASSED`
+- [x] `validate.sh specs/commands/004-doctor-sk-skill-command --recursive --strict` prints `RESULT: PASSED`
 - [x] `route-validate.sh` exits 0 with `/doctor:sk-skill` `check` and `convert` routes, and `tests/run-all.sh` reports all PASS
 - [x] `node --test` on `sk-skill-check.test.cjs` and `sk-skill-convert.test.cjs` exits 0
 - [x] After convert in a temp repo, `sync-skills-hermes.cjs --check` passes, `skill-graph-freshness.cjs --strict` exits 0 and `.skilled/changelog/<name>` resolves

@@ -41,8 +41,8 @@ The playbook has eight scenarios for the required goal shapes, validation bounda
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 004 has an accepted operation list that can be copied into the argument hint without guessing (specs/sk-doc/057-create-goal-mode/spec.md:157-159).
-- [ ] Phase 007 has evidence for real requests reaching the mode through both routing stages (specs/sk-doc/057-create-goal-mode/spec.md:147-149).
+- [ ] Phase 004 has an accepted operation list that can be copied into the argument hint without guessing (specs/sk-doc/056-create-goal-mode/spec.md:157-159).
+- [ ] Phase 007 has evidence for real requests reaching the mode through both routing stages (specs/sk-doc/056-create-goal-mode/spec.md:147-149).
 - [ ] The command and playbook workflows are loaded before their artifacts are authored (.skilled/skills/sk-doc/sk-create-command/SKILL.md:96-115; .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:316-337).
 
 ### Definition of Done
@@ -69,7 +69,7 @@ Use the existing split-router command shape: the router selects the workflow ass
 
 ### Data Flow
 
-The operator invokes `/create:goal` with an operation established by Phase 004. The router loads the mode contract and presentation contract, then maps `:auto` or `:confirm` to its matching YAML asset; the command authoring contract requires every advertised suffix to resolve to a wired workflow target (.skilled/skills/sk-doc/sk-create-command/SKILL.md:313-327, 329-365). The mode writes packet goal files and does not take over session-goal setting (specs/sk-doc/057-create-goal-mode/spec.md:94-98).
+The operator invokes `/create:goal` with an operation established by Phase 004. The router loads the mode contract and presentation contract, then maps `:auto` or `:confirm` to its matching YAML asset; the command authoring contract requires every advertised suffix to resolve to a wired workflow target (.skilled/skills/sk-doc/sk-create-command/SKILL.md:313-327, 329-365). The mode writes packet goal files and does not take over session-goal setting (specs/sk-doc/056-create-goal-mode/spec.md:94-98).
 
 The root playbook indexes the eight canonical scenario files. The package validator checks the operator-scenario contract and reports the scenario count (.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:166-175, 470-490).
 <!-- /ANCHOR:architecture -->
@@ -121,7 +121,7 @@ Run the command-authoring checks, parse `command-metadata.json`, verify each mir
 | Metadata and index | JSON parses; one command entry has the correct owner and operation hint; README has one row | `node -e 'JSON.parse(require("node:fs").readFileSync(".skilled/skills/sk-doc/command-metadata.json","utf8"))'`; `rg -n '/create:goal' .skilled/commands/create/README.txt`; inspect the entry against Phase 004's accepted operation list. |
 | Runtime mirrors | Each exact path resolves to a file | `for path in .claude/commands/create/goal.md .codex/prompts/create-goal.md .pi/prompts/create-goal.md .cursor/commands/create-goal.md; do test -f "$path" || exit 1; done` |
 | Playbook package | Root and eight indexed scenarios satisfy the operator contract | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` (.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:447-490). |
-| Spec-folder structure | This Level 2 phase has no non-metadata validation errors | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/008-command-and-playbook --strict` (specs/sk-doc/057-create-goal-mode/spec.md:133-136). |
+| Spec-folder structure | This Level 2 phase has no non-metadata validation errors | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/008-command-and-playbook --strict` (specs/sk-doc/056-create-goal-mode/spec.md:133-136). |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -131,8 +131,8 @@ Run the command-authoring checks, parse `command-metadata.json`, verify each mir
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 004 operation decision | Internal, upstream | UNKNOWN in the current phase scaffold; parent assigns the decision to Phase 004 (specs/sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/spec.md:42-48, 89-103; specs/sk-doc/057-create-goal-mode/spec.md:157-159). | The argument hint cannot be finalized without inventing tokens. |
-| Phase 007 routing handoff | Internal, upstream | Its current `spec.md` is Draft; verify the completed handoff evidence before execution (specs/sk-doc/057-create-goal-mode/007-hub-routing-integration/spec.md:24-32; specs/sk-doc/057-create-goal-mode/spec.md:147-149). | Command packaging cannot establish mode reachability by itself. |
+| Phase 004 operation decision | Internal, upstream | UNKNOWN in the current phase scaffold; parent assigns the decision to Phase 004 (specs/sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring/spec.md:42-48, 89-103; specs/sk-doc/056-create-goal-mode/spec.md:157-159). | The argument hint cannot be finalized without inventing tokens. |
+| Phase 007 routing handoff | Internal, upstream | Its current `spec.md` is Draft; verify the completed handoff evidence before execution (specs/sk-doc/056-create-goal-mode/007-hub-routing-integration/spec.md:24-32; specs/sk-doc/056-create-goal-mode/spec.md:147-149). | Command packaging cannot establish mode reachability by itself. |
 | `sk-create-command` | Internal authoring workflow | Available; contract requires a thin router, wired suffix targets and presentation separation (.skilled/skills/sk-doc/sk-create-command/SKILL.md:313-365). | Command assets must not be hand-authored as a substitute. |
 | `sk-create-manual-testing-playbook` | Internal authoring workflow | Available; its package validator and file contract are documented (.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md:150-175, 447-490). | The playbook cannot pass its package gate. |
 <!-- /ANCHOR:dependencies -->

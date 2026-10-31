@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes"
     last_updated_at: "2026-10-25T20:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -61,7 +61,7 @@ Frozen choices. Changing one is an amendment.
 - [x] Strict validation fails a v2.3 fixture with its required `requirements` section removed, and recursive strict validation over `specs/` gives the same pass and fail counts before and after this phase
 - [x] `rg -l spec-authoring-card .skilled/commands/speckit/` lists the plan and implement assets, each example `tasks.md` has as many `Verify:` clauses as task lines, no system-spec-kit doc teaches `[PLACEHOLDER]` and scenario 483 runs `git status --porcelain` before its cleanup
 - [x] `scratch/p2-ledger.md` gives every P2 entry the outcome Fixed or Not reproduced with its evidence, and the three tooling-gap tests pass
-- [x] `check-example-drift.sh` and `check-card-sync.sh` exit 0, `validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`, and the closing reviews by cli-devin and then cli-codex luna report no P0 or P1
+- [x] `check-example-drift.sh` and `check-card-sync.sh` exit 0, `validate.sh specs/system-speckit/040-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`, and the closing reviews by cli-devin and then cli-codex luna report no P0 or P1
 <!-- /ANCHOR:completion -->
 
 ---

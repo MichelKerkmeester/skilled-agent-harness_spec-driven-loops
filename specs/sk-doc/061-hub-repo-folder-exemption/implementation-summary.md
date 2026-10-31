@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/062-hub-repo-folder-exemption"
+    packet_pointer: "sk-doc/061-hub-repo-folder-exemption"
     last_updated_at: "2026-10-20T18:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Implemented and verified the repo-root-hub extension"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 062-hub-repo-folder-exemption |
+| **Spec Folder** | 061-hub-repo-folder-exemption |
 | **Completed** | 2026-10-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

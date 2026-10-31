@@ -9,8 +9,8 @@
   "specId": "008",
   "folderSlug": "doctor-ownership-split",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes",
+    "commands",
+    "002-doctor-audit-and-fixes",
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,

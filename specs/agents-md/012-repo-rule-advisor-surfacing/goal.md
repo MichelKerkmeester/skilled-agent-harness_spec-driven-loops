@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing"
     last_updated_at: "2026-10-05T13:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Applied the final recommendations and closed the packet"

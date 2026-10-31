@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`/goal-opencode` works only in OpenCode, yet its file sits at `.skilled/commands/goal-opencode.md` because `.opencode/commands` is one symlink to the whole shared command tree",
     "created_at": "2026-10-28T15:46:17Z",
-    "last_save_at": "2026-10-31T15:22:12.594Z",
+    "last_save_at": "2026-10-31T15:24:08.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e487d9b97a109334abda2b4b2cfc47c57cf0ff389fe9b84f4bc42ee991a3e05",
+    "source_fingerprint": "sha256:dfebd03f1e9fc1876ecd53bbd8fffa44e830955538602be0e865e09f33334c12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "012bb93732b69b834b2503ba255f55201523037e58d1f5f15063450d235c6fe9",

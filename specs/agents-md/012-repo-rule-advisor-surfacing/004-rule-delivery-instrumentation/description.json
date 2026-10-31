@@ -22,8 +22,8 @@
   "specId": "004",
   "folderSlug": "rule-delivery-instrumentation",
   "parentChain": [
-    "agents",
-    "016-repo-rule-advisor-surfacing"
+    "agents-md",
+    "012-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 27,
   "memoryNameHistory": [

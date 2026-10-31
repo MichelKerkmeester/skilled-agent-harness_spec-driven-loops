@@ -9,8 +9,8 @@
   "specId": "003",
   "folderSlug": "advisor-bridge-activation",
   "parentChain": [
-    "agents",
-    "021-doctor-agents-md"
+    "agents-md",
+    "016-doctor-agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

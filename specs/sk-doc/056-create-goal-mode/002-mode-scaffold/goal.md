@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/002-mode-scaffold"
+    packet_pointer: "sk-doc/056-create-goal-mode/002-mode-scaffold"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned the nested mode scaffold"
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** The `sk-create-goal` workflow packet gives later goal-authoring work a phase-ready home while leaving template rendering and runtime goal state with their existing owners (`specs/sk-doc/057-create-goal-mode/goal.md:49-54`) (`specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:49-53`).
+**Objective:** The `sk-create-goal` workflow packet gives later goal-authoring work a phase-ready home while leaving template rendering and runtime goal state with their existing owners (`specs/sk-doc/056-create-goal-mode/goal.md:49-54`) (`specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:49-53`).
 
 ### Decisions
 
@@ -52,9 +52,9 @@ These choices govern this scaffold phase only.
 
 | ID | Decision |
 |----|----------|
-| M1 | Reserve `assets/` for the examples phase. This phase does not author the quality exemplars (`specs/sk-doc/057-create-goal-mode/spec.md:123`). |
-| M2 | Create `scripts/` only when phase 001 selects a mode-local checker. Phase 006 writes the checker (`specs/sk-doc/057-create-goal-mode/spec.md:126` and `specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/implementation-summary.md:52-56,85`). |
-| M3 | Prepare `changelog/` here and leave the release file to phase 009 (`specs/sk-doc/057-create-goal-mode/spec.md:129`). |
+| M1 | Reserve `assets/` for the examples phase. This phase does not author the quality exemplars (`specs/sk-doc/056-create-goal-mode/spec.md:123`). |
+| M2 | Create `scripts/` only when phase 001 selects a mode-local checker. Phase 006 writes the checker (`specs/sk-doc/056-create-goal-mode/spec.md:126` and `specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/implementation-summary.md:52-56,85`). |
+| M3 | Prepare `changelog/` here and leave the release file to phase 009 (`specs/sk-doc/056-create-goal-mode/spec.md:129`). |
 
 ### Operator copy
 

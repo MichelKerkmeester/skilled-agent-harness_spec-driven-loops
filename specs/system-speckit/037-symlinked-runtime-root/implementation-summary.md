@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/038-symlinked-runtime-root"
+    packet_pointer: "system-speckit/037-symlinked-runtime-root"
     last_updated_at: "2026-10-12T12:00:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Planned the packet and confirmed each finding against the code and two live probes"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-symlinked-runtime-root |
+| **Spec Folder** | 037-symlinked-runtime-root |
 | **Status** | Planned |
 | **Completed** | Not yet |
 | **Level** | 2 |

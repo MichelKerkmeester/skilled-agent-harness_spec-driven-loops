@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/064-readme-validation-debt"
+    packet_pointer: "sk-doc/062-readme-validation-debt"
     last_updated_at: "2026-10-31T13:30:53Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -91,8 +91,8 @@ Each row identifies one child phase and its purpose.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/ | Phase | 001-repo-doc-debt | Resolves README and changelog audit debt. |
-| specs/sk-doc/064-readme-validation-debt/002-readme-reference-debt/ | Phase | 002-readme-reference-debt | Fixes real references and counts and corrects checker false positives. |
+| specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/ | Phase | 001-repo-doc-debt | Resolves README and changelog audit debt. |
+| specs/sk-doc/062-readme-validation-debt/002-readme-reference-debt/ | Phase | 002-readme-reference-debt | Fixes real references and counts and corrects checker false positives. |
 <!-- /ANCHOR:scope -->
 
 ---

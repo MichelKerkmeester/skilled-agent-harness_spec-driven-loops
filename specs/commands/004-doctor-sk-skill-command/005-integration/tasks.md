@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/005-integration"
+    packet_pointer: "commands/004-doctor-sk-skill-command/005-integration"
     last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
     recent_action: "Wired the rows into the conversion and met every acceptance row"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-reference-template-debt/002-remaining-references"
+    packet_pointer: "sk-doc/064-reference-template-debt/002-remaining-references"
     last_updated_at: "2026-10-29T23:59:00Z"
     last_updated_by: "claude-opus-worker"
     recent_action: "Marked AC-009 and AC-010 Met after the format-spec exemption landed"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/066-reference-template-debt/002-remaining-references
+**Packet:** sk-doc/064-reference-template-debt/002-remaining-references
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-29

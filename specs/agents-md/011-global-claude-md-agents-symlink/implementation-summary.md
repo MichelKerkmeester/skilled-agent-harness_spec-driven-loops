@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/015-global-claude-md-agents-symlink"
+    packet_pointer: "agents-md/011-global-claude-md-agents-symlink"
     last_updated_at: "2026-09-25T20:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Replaced ~/.claude/CLAUDE.md with a symlink to the repo AGENTS.md after a verified backup"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-global-claude-md-agents-symlink |
+| **Spec Folder** | 011-global-claude-md-agents-symlink |
 | **Completed** | 2026-09-25 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

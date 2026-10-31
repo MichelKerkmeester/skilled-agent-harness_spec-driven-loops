@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`check-repo-rules.cjs` runs nine checks and none compares a trigger row in `REPO RULES.md` with its rule's `## Fires when` bullets",
     "created_at": "2026-10-04T14:39:58Z",
-    "last_save_at": "2026-10-31T15:21:40.645Z",
+    "last_save_at": "2026-10-31T15:23:36.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:678fcfbe1afcb67a8eb5e61019f6a458b4496331f6af44d887e9b1ad6e4b1e51",
+    "source_fingerprint": "sha256:c2c44bdc0e6cdfa8318e96ec26289b0edefb383a1f3648afdf1cd0e49425458b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a4fbc13eba6c153b8894baf0be378e3dc5df46d44bc4f936b94c235349c012fe",

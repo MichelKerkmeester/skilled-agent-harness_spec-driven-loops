@@ -49,7 +49,8 @@
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md",
       ".skilled/skills/sk-doc/sk-create-goal/SKILL.md",
-      "scratch/budget-fixture-evidence.md"
+      "scratch/budget-fixture-evidence.md",
+      "specs/sk-doc/056-create-goal-mode/005-budget-and-chat-slice-handoff/scratch/budget-fixture-evidence.md"
     ],
     "entities": [
       {
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "Goal authors need a repeatable way to budget a phase-parent directive while retaining every completion criterion",
     "created_at": "2026-09-25T18:48:49Z",
-    "last_save_at": "2026-10-31T15:22:03.633Z",
+    "last_save_at": "2026-10-31T15:24:04.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fc5b79831354a6fc1c1ff52de96f3a5f5de4f54995be76f578626c13186bae1",
+    "source_fingerprint": "sha256:ac9eec67af4c00d7dbc9d4bde8022e1a1eda0ee0880530810a4efcca72595d8b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0084c2b2d7ac2e34dbf51a6961d25f41467079b330a8a97b80406c8f8912263f",
-      "plan.md": "a43188d5a11fa42a24d1746cf79666617c7f6e7292bfb9efef08dfc411438578",
-      "tasks.md": "55c86089c5f5932183a3dc671c2ff6e5623f3ad4411d414c4bd68139e905ab69",
-      "implementation-summary.md": "e319e68bacd0a81f3a70eb7452b2a43bb95ac6c86242f6e97976883736596d39"
+      "spec.md": "2ea832208792c8ac41e542b94e9c7c65a6c711cc8fee38a0b5b4cb1b7ac13e16",
+      "plan.md": "27933ac961d23a39963948ec3548b86a5ca641dc891c92a084c76240e6f2b99a",
+      "tasks.md": "78dca9ed7a78a26fe4ebfeeafd44be0db64f136e59a33a3f89ca79b061c7ab95",
+      "implementation-summary.md": "cd7f0af0848463a3f366658b0e261a13e41590cdaf0a06be4f30f5c3e8098557"
     },
     "last_active_at": null
   }

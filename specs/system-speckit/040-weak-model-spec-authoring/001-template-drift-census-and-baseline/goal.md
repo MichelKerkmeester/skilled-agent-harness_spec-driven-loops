@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline"
     last_updated_at: "2026-10-24T00:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Closed phase 001 with the verified ledger and baseline"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt"
+    packet_pointer: "sk-doc/062-readme-validation-debt/001-repo-doc-debt"
     last_updated_at: "2026-10-27T08:00:00Z"
     last_updated_by: "lane-e-conductor"
     recent_action: "Closed all three phases with before and after counts"
@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-10-27 |
 | **Branch** | `worktrees/231-repo-doc-debt` |
 | **Parent Spec** | None |
-| **Parent Packet** | sk-doc/064-readme-validation-debt/001-repo-doc-debt |
+| **Parent Packet** | sk-doc/062-readme-validation-debt/001-repo-doc-debt |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Each child validates strict on its own and records its before and after counts from a rerun of the audit or validator |

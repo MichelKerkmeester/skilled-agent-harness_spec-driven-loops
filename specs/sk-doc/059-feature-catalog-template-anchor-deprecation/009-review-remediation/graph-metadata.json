@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The review found that four units still had unkeyed changelog entries and three of them failed the strict package check, that the parent goal named a stale mode version and described hub bumps phase 002 had made, that the sk-doc hub handoff had no target version and that phase 003 counted 19 changelog entries where it added 20",
     "created_at": "2026-10-10T23:55:38Z",
-    "last_save_at": "2026-10-31T15:22:08.123Z",
+    "last_save_at": "2026-10-31T15:24:07.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0688161088ba04703d3faba14bd382b23273b02aa6dc3b34b1cbf3a408c684ff",
+    "source_fingerprint": "sha256:f11bc6d9c7872f93ce9003851dbe7cb73555d089db540f8663cc870eb6f77550",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c4330a315613a4ef819cbf1ee9608be1ce8a7d2e40180d7389692085f0dc8fb6",
       "plan.md": "d3101db8c6d9d1ad0eaa438edbfb308403cadac459dd11b75f583673b7e88f94",
       "tasks.md": "731e81c9331c4f44e7ded592c1e4023b2272e5b6679fdbc28885b9194b93a067",
-      "implementation-summary.md": "0f09488c4e2b1490e7bda6e66866a7a92b651324c37047f74eb0b8fa3fce5df4"
+      "implementation-summary.md": "97fee7aee83f759c4ed3991ea5d4a0a65633efda0b211340449f921285dcdef9"
     },
     "last_active_at": null
   }

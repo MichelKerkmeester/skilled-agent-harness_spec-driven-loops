@@ -41,7 +41,7 @@ The repository can switch its workflows off through six repository variables, bu
 | **Phase** | 9 of 9 |
 | **Predecessor** | 006-sk-code-ci-surface (with 007-workflow-hygiene-on-off-control) |
 | **Successor** | None |
-| **Handoff Criteria** | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `17 routes validated`; `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`; `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK` with `bridges=21`; `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` exits 0 (superseded by ADR-013, the test is not written); `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED` |
+| **Handoff Criteria** | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 with `17 routes validated`; `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`; `node .skilled/commands/doctor/scripts/doctor-phrase-reach.cjs` prints `STATUS=OK` with `bridges=21`; `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` exits 0 (superseded by ADR-013, the test is not written); `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -131,7 +131,7 @@ Give the operator one read-only report of every workflow's switch state and one 
 | `.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md` | Modify | The precedence restatement names CI |
 | `.skilled/skills/sk-code/manual-testing-playbook/design-restraint/design-restraint-ladder.md` | Modify | The precedence restatement names CI |
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/tests/surface-detection.test.cjs` | Create | The five-value fixture test, including the three existing surfaces |
-| `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/` | Create | Probe, inventory, contract, report and phase-result records |
+| `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/` | Create | Probe, inventory, contract, report and phase-result records |
 
 > Superseded by ADR-013: the two compiled-manifest rows, the six `.skilled/skills/sk-code/` doc rows and the `surface-detection.test.cjs` row. None of them is created or modified, because the phase changes no sk-code file.
 <!-- /ANCHOR:scope -->
@@ -168,7 +168,7 @@ Give the operator one read-only report of every workflow's switch state and one 
 |----|-------------|
 | REQ-008 | No R-id, D-id or phase number enters a command asset, a script comment, a YAML asset, a test name, a commit message or a skill doc changed by this phase. The ids stay in these spec documents; the durable WHY stays in the code |
 | REQ-009 | The report writes nothing: `git status --porcelain -- .github .skilled` is identical before and after a report run. The scaffold and toggle print their plan first, write only after an explicit yes, and write nothing on no |
-| REQ-010 | The phase packet passes `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` with `RESULT: PASSED` |
+| REQ-010 | The phase packet passes `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring --strict` with `RESULT: PASSED` |
 | REQ-011 | `scratch/phase-result.md` records every gate command, its exit status and its last line, the R28 probe, the live report's workflow count and newest non-rebuild SHA, and the D9 answer |
 
 ### Edge cases by R-id

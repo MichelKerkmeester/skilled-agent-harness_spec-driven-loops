@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/008-orchestrate-external-cli-delegation"
+    packet_pointer: "agents/002-orchestrate-external-cli-delegation"
     last_updated_at: "2026-09-02T12:00:32Z"
     last_updated_by: "code-agent"
     recent_action: "Closed the codex sandbox_mode criterion"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/008-orchestrate-external-cli-delegation
+**Packet:** agents/002-orchestrate-external-cli-delegation
 **Level:** 2
 **Status:** In Progress
 **Date:** 2026-09-02

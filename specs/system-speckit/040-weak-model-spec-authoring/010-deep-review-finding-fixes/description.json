@@ -11,7 +11,7 @@
   "folderSlug": "deep-review-finding-fixes",
   "parentChain": [
     "system-speckit",
-    "041-weak-model-spec-authoring"
+    "040-weak-model-spec-authoring"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

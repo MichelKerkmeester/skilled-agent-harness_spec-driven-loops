@@ -13,10 +13,10 @@
     "advisor"
   ],
   "lastUpdated": "2026-10-30T05:21:11.693Z",
-  "specId": "067",
+  "specId": "004",
   "folderSlug": "doctor-sk-skill-command",
   "parentChain": [
-    "sk-doc"
+    "commands"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

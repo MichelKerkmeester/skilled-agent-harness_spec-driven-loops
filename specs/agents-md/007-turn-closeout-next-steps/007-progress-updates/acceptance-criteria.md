@@ -7,14 +7,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps/007-progress-updates"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps/007-progress-updates"
     last_updated_at: "2026-09-11T18:51:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Ran the four decision tests and recorded the AGENTS.md-row verdict"
     next_safe_action: "Operator applies the drafted AGENTS.md bullet or overrides the verdict"
     blockers: []
     key_files:
-      - "specs/agents/009-turn-closeout-next-steps/007-progress-updates/research/research.md"
+      - "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/research/research.md"
       - "repo-rules/communication.md"
       - "repo-rules/handoff-and-questions.md"
       - "AGENTS.md"
@@ -26,7 +26,7 @@ _memory:
     open_questions:
       - "Apply the drafted AGENTS.md section 3 bullet, or override the verdict toward a rule file as in phase 001?"
     answered_questions:
-      - "Spec folder: phase child 007-progress-updates under agents/009-turn-closeout-next-steps"
+      - "Spec folder: phase child 007-progress-updates under agents-md/007-turn-closeout-next-steps"
       - "Verdict: AGENTS.md-row, decided by the four-part refusal test part one"
       - "HVR in a reply: adopt phase 006's answer unchanged rather than re-opening it"
 ---
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/009-turn-closeout-next-steps/007-progress-updates
+**Packet:** agents-md/007-turn-closeout-next-steps/007-progress-updates
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-11

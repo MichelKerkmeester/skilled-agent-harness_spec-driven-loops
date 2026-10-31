@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. DENOMINATOR AND ROLE SPLIT
 
-The denominator command was `find specs -type f -name goal.md ! -path '*/z_archive/*' | wc -l`. Its observed output was `296`. The committed scan summary records the same command family, a denominator of 296 and `exitZero: 296`, so every one of the 296 `goal.cjs packet` invocations exited 0. The role split is 9 top-level goals, 17 phase-parent goals and 270 phase-child goals. (`specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/goal-corpus-scan.json:2-10`; scan method: `scratch/goal-corpus-scan.cjs:37-43,61-79,82-96`.)
+The denominator command was `find specs -type f -name goal.md ! -path '*/z_archive/*' | wc -l`. Its observed output was `296`. The committed scan summary records the same command family, a denominator of 296 and `exitZero: 296`, so every one of the 296 `goal.cjs packet` invocations exited 0. The role split is 9 top-level goals, 17 phase-parent goals and 270 phase-child goals. (`specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/goal-corpus-scan.json:2-10`; scan method: `scratch/goal-corpus-scan.cjs:37-43,61-79,82-96`.)
 
 The corpus scan emits one row per goal. Its rows retain the packet path, command, exit status, durable character count, budget state, criterion count, placeholder flags, binding style and child coverage fields. (`scratch/goal-corpus-scan.cjs:37-79`; `scratch/goal-corpus-scan.json:23-5510`.) The classifications below report that script's mechanical tests, not a human verdict on the quality or intent of every goal. (`scratch/goal-corpus-scan.cjs:45-78`.)
 
@@ -138,8 +138,8 @@ The 16 exact per-child-row packets are:
 - `specs/sk-design/019-sk-design-diagram-upgrade`
 - `specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter`
 - `specs/sk-doc/051-hub-routing-quality/001-routing-completeness`
-- `specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit`
-- `specs/sk-doc/057-create-goal-mode`
+- `specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit`
+- `specs/sk-doc/056-create-goal-mode`
 - `specs/sk-git/028-crawlable-commit-history`
 - `specs/system-skill-advisor/022-semantic-lane-enablement`
 - `specs/system-speckit/031-system-speckit-v4/008-template-contracts-and-acceptance-criteria`
@@ -295,7 +295,7 @@ Section 4 of `wave1-goal-system-audit.md` cites four defect examples: a child pl
 
 **Phase 007 exists in the phase map but has no child goal or binding row.** Command: `node .skilled/hooks/goal/bin/goal.cjs packet specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission --workspace "$PWD"`. Relevant output: the `chat_slice` binding rows end at `006-legacy-memory-surface-inventory`; the parent criterion text is also printed. Exit status: 0. The phase map names `007-deep-review-remediation` at `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/spec.md:164`. Command: `ls -l specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-deep-review-remediation/goal.md`. Relevant output: `No such file or directory`. Exit status: 1. Command: `find specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission -mindepth 2 -maxdepth 2 -type f -name goal.md -print | sort`. Relevant output: six child `goal.md` paths for phases 001 through 006, with no phase-007 path. Exit status: 0. (`scratch/wave1-goal-system-audit.md:44`; parent goal: `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73`; observed command outputs.)
 
-**Phase scaffold does not create the parent goal.** `create.sh` was not run. The parent goal log records the `create.sh --phase --level 2 --with-goal --track sk-doc --number 060` scaffold and states that it wrote child `goal.md` files but no parent goal; it records that this parent was rendered separately with the inline renderer at `--level phase`. (`specs/sk-doc/057-create-goal-mode/goal.md:129,137`.) The script source builds the fresh phase parent spec, then calls `scaffold_contract_docs` inside the loop that creates each child; that contract helper adds `goal.md` when `WITH_GOAL` is true. (`.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1275-1336,1492-1504,444-464`.)
+**Phase scaffold does not create the parent goal.** `create.sh` was not run. The parent goal log records the `create.sh --phase --level 2 --with-goal --track sk-doc --number 060` scaffold and states that it wrote child `goal.md` files but no parent goal; it records that this parent was rendered separately with the inline renderer at `--level phase`. (`specs/sk-doc/056-create-goal-mode/goal.md:129,137`.) The script source builds the fresh phase parent spec, then calls `scaffold_contract_docs` inside the loop that creates each child; that contract helper adds `goal.md` when `WITH_GOAL` is true. (`.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1275-1336,1492-1504,444-464`.)
 
 ---
 

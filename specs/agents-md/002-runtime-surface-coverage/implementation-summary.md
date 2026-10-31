@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/002-runtime-surface-coverage"
+    packet_pointer: "agents-md/002-runtime-surface-coverage"
     last_updated_at: "2026-08-04T06:30:00Z"
     last_updated_by: "pi-main-agent"
     recent_action: "Scout audit recorded; spec/plan/tasks/checklist written; implementation not started"

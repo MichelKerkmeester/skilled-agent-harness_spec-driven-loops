@@ -15,8 +15,8 @@
   "specId": "003",
   "folderSlug": "update",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes",
+    "commands",
+    "002-doctor-audit-and-fixes",
     "001-doctor-command-audit"
   ],
   "memorySequence": 1,

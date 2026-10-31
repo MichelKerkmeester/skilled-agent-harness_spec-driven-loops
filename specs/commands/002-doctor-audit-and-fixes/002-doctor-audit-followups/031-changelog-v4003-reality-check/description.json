@@ -9,8 +9,8 @@
   "specId": "031",
   "folderSlug": "changelog-v4003-reality-check",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes",
+    "commands",
+    "002-doctor-audit-and-fixes",
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,

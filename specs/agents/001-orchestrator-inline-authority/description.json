@@ -17,7 +17,7 @@
     "outright"
   ],
   "lastUpdated": "2026-08-31T11:37:28.956Z",
-  "specId": "007",
+  "specId": "001",
   "folderSlug": "orchestrator-inline-authority",
   "parentChain": [
     "agents"

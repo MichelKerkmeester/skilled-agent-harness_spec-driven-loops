@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal"
     last_updated_at: "2026-10-23T10:35:00Z"
     last_updated_by: "markdown-planner"
     recent_action: "Recorded five proposed ADRs for the planned phase"

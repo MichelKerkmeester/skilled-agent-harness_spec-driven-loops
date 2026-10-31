@@ -149,7 +149,7 @@ The closing report states the before and after per metric as a range, and the pa
 | REQ-003 | M2 counts bare v2.2 hint occurrences plus v2.3 value token occurrences, the comparability rule is recorded as an ADR, and the final side uses the exact command in `tasks.md` T006. |
 | REQ-004 | `scratch/baseline/delta.md` holds the minimum, the maximum and the mean of each of the five metrics for both sides, the delta per metric, and one sentence stating that three runs cannot support a significance claim. |
 | REQ-005 | The report folder name follows `<YYYY-MM-DD>--<subject>--<variant>`, `README.md` holds the ten numbered ALL CAPS sections, `results.csv` holds six rows and `source.md` names this packet. The reports index gains one row. |
-| REQ-006 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`. |
+| REQ-006 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`. |
 | REQ-007 | The global changelog entry and both packet-local changelog files exist, follow their templates and pass `validate_document.py`. |
 | REQ-008 | The trigger index is regenerated, `--check` exits 0, and no path outside the four index artifacts changed in that step. |
 | REQ-009 | The track root refresh ran with `--apply`, a second dry run prints `system-speckit: up to date` and exits 0, and `children_ids` equals the numbered folders on disk. |

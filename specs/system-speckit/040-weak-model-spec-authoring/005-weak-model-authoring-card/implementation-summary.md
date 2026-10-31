@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card"
     last_updated_at: "2026-10-24T20:40:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 005: card, router, inventory, guard, three smoke runs and one review"
     next_safe_action: "Phase closed; card amended on 2026-10-24"
     blockers: []
     key_files:
-      - "specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"
@@ -104,7 +104,7 @@ One execution agent ran `tasks.md` T001 to T015 and dispatched no subagent. The 
 
 | Check | Result |
 |-------|--------|
-| Strict validation of this phase folder | `validate.sh specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card --strict` printed `RESULT: PASSED` |
+| Strict validation of this phase folder | `validate.sh specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card --strict` printed `RESULT: PASSED` |
 | Card sync guard | Nine `PASS` lines, `CARD SYNC OK`, exit 0. On a copy without the card: `exit=1`, `FAIL card-exists: missing references/workflows/spec-authoring-card.md`, `CARD SYNC FAILED` |
 | Card length and scans | `wc -l` printed `172`, and the vocabulary, em dash, semicolon and unfilled-hint scans printed nothing |
 | Router | 4 intent blocks name the card, 0 name the guide, the guide appears once in `ON_DEMAND` |

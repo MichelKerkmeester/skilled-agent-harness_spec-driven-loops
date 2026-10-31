@@ -33,7 +33,7 @@ Two shell variables keep the verify lines short: `$R` is `.skilled/skills/system
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Record the starting figures (`specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md`). Verify: `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` printed `typescriptActive` 29 and `pythonActive` 39, and `node $D/doctor-phrase-reach.cjs` printed `STATUS=OK phrases=142 bridges=24`.
+- [x] T001 Record the starting figures (`specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/spec.md`). Verify: `node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` printed `typescriptActive` 29 and `pythonActive` 39, and `node $D/doctor-phrase-reach.cjs` printed `STATUS=OK phrases=142 bridges=24`.
 - [x] T002 Read the activation instructions the route manifest's header names (`.skilled/commands/doctor/_routes.yaml`). Verify: step 3 names `scoring-compatibility.json` as the only file that decides whether a derived bridge routes.
 <!-- /ANCHOR:phase-1 -->
 
@@ -59,7 +59,7 @@ Two shell variables keep the verify lines short: `$R` is `.skilled/skills/system
 - [x] T010 Run the routing slice suite (`$R/tests/doctor-routing-slice.vitest.ts`). Verify: `vitest run tests/doctor-routing-slice.vitest.ts` prints 2 passed.
 - [x] T011 Hold the accuracy ratchet (`$R/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs`). Verify: its `metrics` block equals the committed baseline: full corpus 155 of 195, holdout 49 of 66, ambiguity 19 of 24, unknown 13, gold-none false fires 5, and the three buckets unchanged.
 - [x] T012 Run the suites (`.skilled/skills/system-skill-advisor/runtime`, `.skilled/commands/doctor/scripts/tests`). Verify: `npm --prefix $R test` prints 158 files and 1353 passed, `pytest $R/tests/python` prints 8 passed, `bash $D/tests/run-all.sh` prints 931 of 931 over 41 files and `7 suite(s) passed, 0 failed`, and `bash $D/route-validate.sh` exits 0.
-- [x] T013 Add the phase row to the parent and validate the packet (`specs/agents/021-doctor-agents-md/spec.md`, `specs/agents/021-doctor-agents-md/003-advisor-bridge-activation`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED` for the parent and every child.
+- [x] T013 Add the phase row to the parent and validate the packet (`specs/agents-md/016-doctor-agents-md/spec.md`, `specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED` for the parent and every child.
 <!-- /ANCHOR:phase-3 -->
 
 ---

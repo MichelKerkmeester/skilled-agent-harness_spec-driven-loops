@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md"
     last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed all three phases and the packet"
@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | Phase 001 owns the root instruction files and phase 002 owns the route manifest read; neither phase writes a file the other phase's acceptance criteria name. |
-| D2 | No phase starts implementation before `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`, and every route, bridge, phrase and mirror count is re-measured on the branch the phase starts from. |
+| D2 | No phase starts implementation before `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) is on `main`, and every route, bridge, phrase and mirror count is re-measured on the branch the phase starts from. |
 | D3 | Reuse what already ships with tests: the rule-copy canary for the delivery budget, the gate 1 pointer sync, the repo-rules checker and the exported three-way classifier. No second implementation of any of them. |
 | D4 | Nothing is ever deleted or moved out of a repository's own text automatically; every write is a printed plan, one explicit yes and a recorded rollback. |
 | D5 | Fixtures are synthetic. No consumer checkout, no operator-local skill or command name, and no real repository path reaches a tracked file. |
@@ -77,7 +77,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
 - [x] `node .skilled/commands/doctor/scripts/agents-md-check.cjs` on this repository exits 0 and prints `STATUS=OK`
 - [x] `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` on this repository prints `NOTHING TO DO` and exits 0
 - [x] `node .skilled/commands/doctor/scripts/doctor-helper-match.cjs -- "my pre-commit hook keeps rejecting my commit"` exits 0 and its first candidate line starts `1) /doctor:git hooks`
@@ -98,7 +98,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Packet authored from two approved designs | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` printed `RESULT: PASSED` at authoring time |
+| Packet authored from two approved designs | Done | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` printed `RESULT: PASSED` at authoring time |
 | Phase 001 | Done | Five child folders closed; `agents-md-manifest.cjs --check`, `agents-md-check.cjs` and `agents-md-embed.cjs plan` all pass from the final tree |
 | Phase 002 | Done | `/doctor:helper` ships, its held-out suite passes and its bridge is derived; phase 003 activates that bridge with the three agents-md bridges |
 | Phase 003 | Done | Four bridges activated in both lanes; `doctor-phrase-reach.cjs` reports `STATUS=OK phrases=164 bridges=28` and the routing-accuracy baseline holds every metric |

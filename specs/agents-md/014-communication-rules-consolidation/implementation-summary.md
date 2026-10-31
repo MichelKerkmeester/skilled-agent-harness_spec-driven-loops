@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/018-communication-rules-consolidation"
+    packet_pointer: "agents-md/014-communication-rules-consolidation"
     last_updated_at: "2026-10-07T11:22:14Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Edited six rule files and the router after four reviews"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-communication-rules-consolidation |
+| **Spec Folder** | 014-communication-rules-consolidation |
 | **Completed** | 2026-10-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

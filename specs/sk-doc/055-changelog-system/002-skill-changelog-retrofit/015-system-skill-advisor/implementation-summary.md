@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/015-system-skill-advisor"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/015-system-skill-advisor"
     last_updated_at: "2026-09-26T08:26:59Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the system-skill-advisor rewrites in d8ff1d3bc4"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-skill-advisor.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-skill-advisor.txt"
     session_dedup:
       fingerprint: "sha256:a39b361fb43153117ad36ec517ce27d96627945ea0ece8229ab0ebd3b6104cb2"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

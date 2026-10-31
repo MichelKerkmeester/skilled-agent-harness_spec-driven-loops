@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/054-governance-doc-alignment"
+    packet_pointer: "sk-doc/053-governance-doc-alignment"
     last_updated_at: "2026-09-13T12:02:43Z"
     last_updated_by: "pi-055-authoring-session"
     recent_action: "Scaffolded the packet and authored its specification from the 006 clarity handover"

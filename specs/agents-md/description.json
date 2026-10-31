@@ -1,12 +1,15 @@
 {
-  "specFolder": "agents",
-  "description": "Track folder for agents packets — agent behavior, terminal-proof discipline, and cross-runtime surface coverage.",
+  "specFolder": "agents-md",
+  "description": "Track folder for AGENTS.md packets: the universal framework document, its repo rules, communication rules and the /doctor:agents-md command.",
   "keywords": [
-    "track"
+    "agents-md",
+    "track",
+    "agents.md",
+    "repo-rules"
   ],
   "lastUpdated": "2026-08-06T00:00:00.000Z",
-  "specId": "agents",
-  "folderSlug": "agents",
+  "specId": "agents-md",
+  "folderSlug": "agents-md",
   "parentChain": [],
   "memorySequence": 0,
   "memoryNameHistory": [],

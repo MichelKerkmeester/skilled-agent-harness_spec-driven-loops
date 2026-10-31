@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit"
     last_updated_at: "2026-10-02T18:30:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"
@@ -94,7 +94,7 @@ string, not these files.
 - [ ] `.skilled/commands/doctor/assets/doctor-mcp-install.yaml` and `doctor-mcp-debug.yaml` name no MCP server other than Code Mode
 - [ ] `.skilled/commands/doctor/env.md` exists and `.claude/commands/doctor/env.md` is a symlink to it
 - [ ] `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0
-- [ ] `validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` prints RESULT: PASSED
+- [ ] `validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` prints RESULT: PASSED
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,7 +117,7 @@ and findings belong here.
 | `/doctor:speckit` targets repaired, embeddings retired | Done | Commit `144e66669c` |
 | Rebuild moved to `/doctor:rebuild`; `/doctor:update` made release-aware | Done | Commits `b0be233a6b`, `b853457597` and `8215a33a7b`; engine tests 16 of 16 pass |
 | Route validation | Done | `route-validate.sh` exit 0, 9 routes validated, 2 warnings |
-| Recursive strict validation | Done | `validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict`: 15 of 15 folders RESULT: PASSED |
+| Recursive strict validation | Done | `validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict`: 15 of 15 folders RESULT: PASSED |
 
 ### Deviations and findings
 

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/008-gate5-card-pilot"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked AC-002, AC-004 and AC-006 met from the scored pilot and the decision in 6ffe5e5514"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot
+**Packet:** agents-md/012-repo-rule-advisor-surfacing/008-gate5-card-pilot
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-05

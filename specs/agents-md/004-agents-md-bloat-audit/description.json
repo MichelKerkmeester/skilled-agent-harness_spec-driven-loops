@@ -21,7 +21,7 @@
   "specId": "004",
   "folderSlug": "agents-md-bloat-audit",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

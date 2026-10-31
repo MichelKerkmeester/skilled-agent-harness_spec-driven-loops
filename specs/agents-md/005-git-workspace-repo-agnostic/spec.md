@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Repo-Agnostic Git Workspace Rows [specs/agents/005-git-workspace-repo-agnostic]"
+title: "Feature Specification: Repo-Agnostic Git Workspace Rows [specs/agents-md/005-git-workspace-repo-agnostic]"
 description: "The root AGENTS.md calls itself a universal template but its Git Workspace Safety table inlines this repo's sk-git implementation. Every repo-specific detail should move into sk-git so the framework doc stays portable."
 trigger_phrases:
   - "agents.md"
@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/005-git-workspace-repo-agnostic"
+    packet_pointer: "agents-md/005-git-workspace-repo-agnostic"
     last_updated_at: "2026-08-16T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Rewrote the AGENTS.md Git Workspace Safety rows repo-agnostic"

@@ -64,7 +64,7 @@ contextType: "implementation"
 - [x] T015 Validate the edited documents. Evidence: 0 issues on both READMEs and both catalog files, the agent's one finding is also in the committed file, and no file gained an HVR finding.
 - [x] T016 Run the sk-doc gates. Evidence: guard fresh, leaf manifest OK, command references OK, catalog mirror OK, package PASS, parent-skill check OK, README manifest tests 11 of 11.
 - [x] T017 Write this phase's nested changelog with `nested-changelog.js --write`.
-- [x] T018 Run `validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict`. Evidence: `RESULT: PASSED` for all 12 folders.
+- [x] T018 Run `validate.sh specs/sk-doc/056-create-goal-mode --recursive --strict`. Evidence: `RESULT: PASSED` for all 12 folders.
 <!-- /ANCHOR:phase-3 -->
 
 ---

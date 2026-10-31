@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/013-prompting-guide-alignment"
+    packet_pointer: "agents-md/010-prompting-guide-alignment"
     last_updated_at: "2026-09-24T13:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Marked AC-005 Met and closed the packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/013-prompting-guide-alignment
+**Packet:** agents-md/010-prompting-guide-alignment
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-24
@@ -86,5 +86,5 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 **Closeable:** Yes
 
-All nine criteria are Met. The three decisions the lenses could not settle were settled by the operator and applied here. The agent template's emphasis labels were deliberately left for `specs/agents/014-agent-emphasis-register`, and the adjacent defects in `implementation-summary.md` were reported but not fixed.
+All nine criteria are Met. The three decisions the lenses could not settle were settled by the operator and applied here. The agent template's emphasis labels were deliberately left for `specs/agents/004-agent-emphasis-register`, and the adjacent defects in `implementation-summary.md` were reported but not fixed.
 <!-- /ANCHOR:closure -->

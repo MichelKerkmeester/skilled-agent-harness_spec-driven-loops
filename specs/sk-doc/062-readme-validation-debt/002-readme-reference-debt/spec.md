@@ -80,7 +80,7 @@ The full per-file output is in `scratch/baseline-refs.txt` and `scratch/baseline
 
 ### Out of Scope
 - READMEs outside the 12 named files: other agents edit them, and the checker change is measured against them only to prove it adds no new failure.
-- `audit_readmes.py` and `validate_document.py`: the predecessor packet `sk-doc/064-readme-validation-debt/001-repo-doc-debt` owns them.
+- `audit_readmes.py` and `validate_document.py`: the predecessor packet `sk-doc/062-readme-validation-debt/001-repo-doc-debt` owns them.
 
 ### Files to Change
 

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine"
     last_updated_at: "2026-10-30T12:35:33Z"
     last_updated_by: "code-agent"
     recent_action: "Landed the engine, the suite and the nine fixtures; every criterion met"
@@ -107,7 +107,7 @@ The first shape of this committed the composed tree beside each recipe, six of t
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `node:test (37 files)` PASS, `unittest (1 files)` PASS, three shell suites PASS, `route-validate.sh --self-test` PASS, freshness panel PASS, `7 suite(s) passed, 0 failed`, exit 0 |
 | Read-only promise | `git status --porcelain \| shasum` gave `e257400fe1ee97622e3d5e1fe2274bf7e0edb1f8` before and after composing each of the nine recipes, running the engine twice on each and once on this repository; the suite additionally hashes each composed tree by sha256 before and after, and a write-spy over every row records no call |
 | Every fixture's state | `pure`, `adopted`, `stale`, `forked`, `foreign`, `claude-only`, `absent` classify as named; `shadowed-pin` and `over-budget` classify as `forked` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine --strict` | `Summary: Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

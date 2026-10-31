@@ -102,8 +102,8 @@ Run in the worktree on 2026-10-30 at `66157ee7e6` (the scorer JSON is abridged t
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/sk-doc/067-doctor-sk-skill-command/010-verification-and-release/scratch/after.md` | Create | Every check's command, output and exit code |
-| `specs/sk-doc/067-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path, and the four checks after it |
+| `specs/commands/004-doctor-sk-skill-command/010-verification-and-release/scratch/after.md` | Create | Every check's command, output and exit code |
+| `specs/commands/004-doctor-sk-skill-command/010-verification-and-release/scratch/workflow-run.md` | Create | The workflow-level convert run: the cancelled path, the completed path, and the four checks after it |
 | `.skilled/changelog/skilled/v4.0.1.0.md` | Extend | Framework release entry, folded into the v4.0.1.0 release by create-changelog |
 <!-- /ANCHOR:scope -->
 

@@ -54,7 +54,7 @@
   "folderSlug": "workflow-hygiene-on-off-control",
   "parentChain": [
     "system-speckit",
-    "040-ci-workflow-efficiency"
+    "039-ci-workflow-efficiency"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

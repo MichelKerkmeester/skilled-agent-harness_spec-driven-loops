@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/064-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes"
+    packet_pointer: "sk-doc/062-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes"
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "lane-l5"
     recent_action: "Recorded evidence for every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/064-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes
+**Packet:** sk-doc/062-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-27

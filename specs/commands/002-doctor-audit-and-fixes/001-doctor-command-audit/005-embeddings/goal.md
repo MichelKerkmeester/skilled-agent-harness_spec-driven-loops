@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings"
     last_updated_at: "2026-10-02T16:10:17Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

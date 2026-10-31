@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/doctor:speckit skill-advisor` checks and repairs the skill advisor",
     "created_at": "2026-10-02T16:10:23Z",
-    "last_save_at": "2026-10-31T15:21:49.802Z",
+    "last_save_at": "2026-10-31T15:23:40.855Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6d119a7011cb43647295e622386d6267f38d6e35d557d5a6fee680833b56f111",
+    "source_fingerprint": "sha256:abcbc4a1afd29b59594066a6aa4e453a54ab1949778e9d930c9eb9bf10bc1262",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6974750bcb0d3719114085f7a1199ed1f9dde3672a4cdec0f1a4b5f5b7470295",
       "plan.md": "414cf4495d08da8007412762b9a120396dec3b8a8ea6eee783e09c300dd8a173",
       "tasks.md": "c66feccacc0d7c1c910ae93b16bc3c6d019d625c9f90f08c4b7244280ac76295",
-      "implementation-summary.md": "983be21c124a5bbd97a9c3cb6ee1d3a461696016c881c5dbe89aa642bf717bc9"
+      "implementation-summary.md": "d86ac905963a7d90caca179cdd789b73a8d12859c1184afa57fcbb90843d120d"
     },
     "last_active_at": null
   }

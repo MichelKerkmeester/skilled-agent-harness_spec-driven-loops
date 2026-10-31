@@ -368,9 +368,9 @@ Build one phase at a time in this order: A, B, C, D. Each phase block in Phase 2
 
 ### Closure
 
-- [x] T074 Validate and reconcile the packet (`specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes/`)
+- [x] T074 Validate and reconcile the packet (`specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes/`)
   - Mark every `acceptance-criteria.md` row with its observed evidence, and fill `implementation-summary.md`.
-  - Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes --strict` and require `RESULT: PASSED`.
+  - Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes --strict` and require `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

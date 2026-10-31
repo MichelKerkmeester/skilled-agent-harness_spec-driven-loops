@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Repo-Agnostic Git Workspace Rows [specs/agents/005-git-workspace-repo-agnostic]"
+title: "Implementation Summary: Repo-Agnostic Git Workspace Rows [specs/agents-md/005-git-workspace-repo-agnostic]"
 description: "Summary of rewriting the AGENTS.md Git Workspace Safety rows repo-agnostic, moving repo-specific detail into sk-git."
 trigger_phrases:
   - "agents.md summary"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/005-git-workspace-repo-agnostic"
+    packet_pointer: "agents-md/005-git-workspace-repo-agnostic"
     last_updated_at: "2026-08-16T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Rewrote the AGENTS.md rows repo-agnostic and verified zero forbidden tokens"

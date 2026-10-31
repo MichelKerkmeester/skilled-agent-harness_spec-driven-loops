@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading"
     last_updated_at: "2026-10-04T15:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Synthesized the four-lineage steered research run and checked its citations"

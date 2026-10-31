@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings"
     last_updated_at: "2026-10-02T20:54:43Z"
     last_updated_by: "implementation"
     recent_action: "Retired /doctor:speckit embeddings and recorded the audit verdict"
@@ -127,7 +127,7 @@ were then closed from the audit evidence in `scratch/`.
 | Startup menu | Shows `12) runtime mirrors` and `13) router reach`, which were accepted answers but were not displayed before |
 | Removed-name scan | `rg` for `system_skill_advisor.`, `deep_loop_graph_status\|query\|convergence(` and `doctor_*` in the edited doctor files returns no matches |
 | `advisor_status` contract | An orchestrator-run `advisor_status` (exit 0) returns freshness, generation, trustState, skillCount and laneWeights with no embeddings field; the route's own command line exits 64 without `--workspace-root` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -140,7 +140,7 @@ were then closed from the audit evidence in `scratch/`.
 3. **Live provider and model-server health is UNKNOWN.** The workflow-shaped `advisor_status` call was blocked by a sandbox IPC `EPERM`, exit 75. This is not evidence that the provider or server is unhealthy. Evidence: `scratch/doctor-run.log`. Recorded, not fixed.
 4. **The presentation's generic `/doctor` forms have no matching root command files** in either checked command tree; the nested router exists and is the one in use. This is a separate doctor-surface observation, not part of the retirement. Evidence: `scratch/reality-check.md` and `scratch/proposal.md`.
 
-**Follow-up status.** Item 1 is resolved in part by `specs/system-skill-advisor/029-advisor-status-truthfulness`: `advisor_status` takes an opt-in `includeEmbeddingsHealth`. Item 4 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003's invocation sweep. Items 2 and 3 stand with the retired route: no workflow reads that payload now.
+**Follow-up status.** Item 1 is resolved in part by `specs/system-skill-advisor/029-advisor-status-truthfulness`: `advisor_status` takes an opt-in `includeEmbeddingsHealth`. Item 4 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003's invocation sweep. Items 2 and 3 stand with the retired route: no workflow reads that payload now.
 <!-- /ANCHOR:limitations -->
 
 ---

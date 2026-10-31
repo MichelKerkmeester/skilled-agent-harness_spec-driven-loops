@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface"
     last_updated_at: "2026-10-24T22:06:00Z"
     last_updated_by: "markdown"
     recent_action: "Accepted all ten ADRs with evidence"
@@ -862,7 +862,7 @@ R22 names ten rule families: the twin rule, the rebuild-skip rule, push-only sco
 <!-- ANCHOR:adr-009-context -->
 ### Context
 
-The packet ships inside `.skilled/skills/sk-code/`, which a clone may copy or vendor without this repository's `specs/` tree. A rule that cites `specs/system-speckit/040-ci-workflow-efficiency/...` sends a reader to a path that may not exist in their checkout, and it puts a packet id into shipped code.
+The packet ships inside `.skilled/skills/sk-code/`, which a clone may copy or vendor without this repository's `specs/` tree. A rule that cites `specs/system-speckit/039-ci-workflow-efficiency/...` sends a reader to a path that may not exist in their checkout, and it puts a packet id into shipped code.
 
 ### Constraints
 

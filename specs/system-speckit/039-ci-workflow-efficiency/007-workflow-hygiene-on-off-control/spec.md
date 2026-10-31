@@ -40,7 +40,7 @@ Three hygiene passes close the gaps that let a hung job hold a runner for six ho
 | **Phase** | 7 of 9 |
 | **Predecessor** | 006-sk-code-ci-surface |
 | **Successor** | 008-consolidation-decision |
-| **Handoff Criteria** | `grep -L 'permissions:' .github/workflows/*.yml` returns nothing and `python3` over all workflow files reports every job with `timeout-minutes`; `grep -c "vars.SKILLED_CI"` counts one switch line on every job except the two in `dependabot-auto-merge.yml`; the fork probe in `scratch/r26-probe.md` records one skipped run with `SKILLED_CI_REPORTS=off` and one run after it is deleted; `bash .github/scripts/check-gate-inputs.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control --strict` both print `RESULT: PASSED` |
+| **Handoff Criteria** | `grep -L 'permissions:' .github/workflows/*.yml` returns nothing and `python3` over all workflow files reports every job with `timeout-minutes`; `grep -c "vars.SKILLED_CI"` counts one switch line on every job except the two in `dependabot-auto-merge.yml`; the fork probe in `scratch/r26-probe.md` records one skipped run with `SKILLED_CI_REPORTS=off` and one run after it is deleted; `bash .github/scripts/check-gate-inputs.sh` and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control --strict` both print `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -116,7 +116,7 @@ Every job carries a timeout sized from its own execution samples, every workflow
 | `.github/workflows/message-contract.yml` | Modify | A timeout and the `SKILLED_CI_MESSAGES` switch on its one job; the two step conditions at `:45` and `:67` unchanged |
 | The remaining 17 workflow files | Modify | A timeout on every job and a switch on every job; no other line changes |
 | `.github/workflows/README.md` | Modify | A new `### On/off switches` section after the push-versus-pull-request table at `:75`, before `## 3. GUARD ENTRYPOINTS` at `:79` |
-| `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/` | Create | `phase-baseline.md`, `inventory.md`, `switch-groups.md`, `r24/`, `r26-probe.md`, `phase-result.md` |
+| `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/` | Create | `phase-baseline.md`, `inventory.md`, `switch-groups.md`, `r24/`, `r26-probe.md`, `phase-result.md` |
 
 The 17 files that receive only a timeout and a switch are `changed-packet-validation.yml`, `command-tree-parity.yml`, `deep-loop-runtime.yml`, `dispatch-enforcement-guard.yml`, `gate-inputs.yml`, `naming-standard-guard.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `pi-extension-tests.yml`, `routing-registry-drift.yml`, `sk-code-script-tests.yml`, `sk-doc-rename-harness.yml`, `sk-doc-script-tests.yml`, `sk-git-script-tests.yml`, `skill-advisor-stress.yml`, `spec-kit-check.yml` and `strict-pass-freshness-report.yml`. `.github/workflows/hooks-node-tests.yml` is absent by the time this phase starts, because `004-setup-caching-provisioning` deletes it.
 <!-- /ANCHOR:scope -->

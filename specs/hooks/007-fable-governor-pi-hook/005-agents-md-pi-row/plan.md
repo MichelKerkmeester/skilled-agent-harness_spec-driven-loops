@@ -32,7 +32,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## 1. SUMMARY
 
-Add the Pi row to AGENTS.md §8, matching sibling formatting. Check `agents/002-runtime-surface-coverage` state first to avoid duplicate work.
+Add the Pi row to AGENTS.md §8, matching sibling formatting. Check `agents-md/002-runtime-surface-coverage` state first to avoid duplicate work.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -63,7 +63,7 @@ Add the Pi row to AGENTS.md §8, matching sibling formatting. Check `agents/002-
 
 ### Phase 1: Implement
 
-1. Check `agents/002-runtime-surface-coverage` task state (T001 done?)
+1. Check `agents-md/002-runtime-surface-coverage` task state (T001 done?)
 2. Add Pi row to AGENTS.md §8 if absent
 
 ### Phase 2: Verify
@@ -87,7 +87,7 @@ Add the Pi row to AGENTS.md §8, matching sibling formatting. Check `agents/002-
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-| agents/002-runtime-surface-coverage state | |
+| agents-md/002-runtime-surface-coverage state | |
 <!-- /ANCHOR:dependencies -->
 
 ---

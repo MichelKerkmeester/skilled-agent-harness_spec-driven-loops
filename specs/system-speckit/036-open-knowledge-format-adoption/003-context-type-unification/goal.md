@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/003-context-type-unification"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/003-context-type-unification"
     last_updated_at: "2026-10-04T09:20:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Added the operator UX and command-surface criterion"

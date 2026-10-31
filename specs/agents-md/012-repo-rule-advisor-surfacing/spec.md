@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing"
     last_updated_at: "2026-10-04T13:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Planned build phases 003 to 008 from the 002 verdict"

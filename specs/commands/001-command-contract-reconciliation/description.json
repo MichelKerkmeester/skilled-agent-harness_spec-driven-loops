@@ -18,10 +18,10 @@
     "source"
   ],
   "lastUpdated": "2026-09-05T08:27:18.902Z",
-  "specId": "052",
+  "specId": "001",
   "folderSlug": "command-contract-reconciliation",
   "parentChain": [
-    "sk-doc"
+    "commands"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

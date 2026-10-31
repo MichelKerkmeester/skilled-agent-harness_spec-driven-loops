@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: AGENTS.md Bloat Audit [specs/agents/004-agents-md-bloat-audit]"
+title: "Feature Specification: AGENTS.md Bloat Audit [specs/agents-md/004-agents-md-bloat-audit]"
 description: "Read-only deep-research audit of the root AGENTS.md for removable or reducible bloat: redundancy across sections, over-long prose, content already authoritative in referenced files, verbose tables/examples, and low-value boilerplate. Produces a ranked findings report with rationale and rough line savings."
 trigger_phrases:
   - "agents.md bloat"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "agents/004-agents-md-bloat-audit"
+    packet_pointer: "agents-md/004-agents-md-bloat-audit"
     last_updated_at: "2026-08-09T05:49:52Z"
     last_updated_by: "deepseek-v4-flash"
     recent_action: "Completed 5-iteration read-only bloat audit of root AGENTS.md via fan-out lineage"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/003-trigger-and-job-hygiene"
     last_updated_at: "2026-10-25T07:02:00Z"
     last_updated_by: "markdown"
     recent_action: "Recorded ADR-012, which reads AC-009 as a floor, and marked all 17 rows Met"

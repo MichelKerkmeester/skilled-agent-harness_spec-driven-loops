@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/001-terminal-proof-discipline"
+    packet_pointer: "agents-md/001-terminal-proof-discipline"
     last_updated_at: "2026-08-05T00:00:00Z"
     last_updated_by: "pi-terminal-engineer"
     recent_action: "Amended ADR-003 to record the review-directed distributed integration"

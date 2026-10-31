@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill"
     last_updated_at: "2026-10-02T21:03:04Z"
     last_updated_by: "implementation"
     recent_action: "Verified all four acceptance criteria Met and closed the packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

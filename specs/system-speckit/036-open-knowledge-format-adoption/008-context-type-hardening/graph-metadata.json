@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 003 measured the cleanup: 33 distinct spec-doc values became 12, and 102 off-list values became 0",
     "created_at": "2026-10-04T12:00:32Z",
-    "last_save_at": "2026-10-31T15:22:13.009Z",
+    "last_save_at": "2026-10-31T15:28:35.397Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f9d9e4db2ae44cd3b42a28b7f148e9ed3f803a0bec95723a14692f224b6e881",
+    "source_fingerprint": "sha256:6ff0369eb163ec358c66819d38738d2983199e99d50b57a9357a6cd6edf3f2d4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fdf05106199010a9d8573a00d3b8890e258cbe941a347e66d05e0e75a2eca108",

@@ -37,7 +37,7 @@ This phase changes `create.sh`, the three placeholder scanners, the anchor check
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] The review is committed: `git log -1 --format=%h -- specs/system-speckit/041-weak-model-spec-authoring/review/review-report.md` prints `84887f37f7`.
+- [ ] The review is committed: `git log -1 --format=%h -- specs/system-speckit/040-weak-model-spec-authoring/review/review-report.md` prints `84887f37f7`.
 - [ ] The before census is recorded: `cat scratch/baseline/b-before-*.tsv | wc -l` prints 4719.
 - [ ] The per-rule census is recorded: `wc -l < scratch/baseline/rules-before.tsv` prints 4719.
 - [ ] The suite baseline is recorded: `tail -2 scratch/baseline/suite-runtime-before.txt` and `tail -2 scratch/baseline/suite-cli-before.txt` each print an `exit=` line.
@@ -46,7 +46,7 @@ This phase changes `create.sh`, the three placeholder scanners, the anchor check
 ### Definition of Done
 - [ ] Every row in `acceptance-criteria.md` reads `Met`.
 - [ ] The after census matches the before census: `diff <(cut -f1,2 scratch/baseline/b-before.tsv) <(cut -f1,2 scratch/baseline/b-after.tsv)` prints nothing.
-- [ ] `validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`.
+- [ ] `validate.sh specs/system-speckit/040-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`.
 - [ ] Both closing reviews report no P0 or P1.
 <!-- /ANCHOR:quality-gates -->
 
@@ -144,7 +144,7 @@ Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-dri
 Rebuild, rerun both suites and both censuses, regenerate the two stale descriptions, refresh continuity, write the release records, run the closing reviews and commit on the worktree branch.
 
 Acceptance: the after census matches the before census, no suite file fails that passed in the baseline, recursive strict validation of packet 054 passes, and both closing reviews report no P0 or P1.
-Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict | tail -1` prints `RESULT: PASSED`.
+Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring --recursive --strict | tail -1` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phases -->
 
 ---

@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/001-terminal-proof-discipline"
+    packet_pointer: "agents-md/001-terminal-proof-discipline"
     last_updated_at: "2026-08-05T00:00:00Z"
     last_updated_by: "pi-terminal-engineer"
     recent_action: "Integrated the terminal-proof rules into their existing AGENTS.md authorities"
@@ -16,7 +16,7 @@ _memory:
     blockers: []
     key_files:
       - "AGENTS.md"
-      - "specs/agents/001-terminal-proof-discipline/"
+      - "specs/agents-md/001-terminal-proof-discipline/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-05-agents-001"
@@ -56,7 +56,7 @@ The hook assessment proved the governor directive injection already exists and i
 | File | Action | Purpose |
 |------|--------|---------|
 | `AGENTS.md` | Modified | Eleven-step distributed integration across existing framework authorities; standalone protocol block removed |
-| `specs/agents/001-terminal-proof-discipline/` | Created | Level 2 packet docs |
+| `specs/agents-md/001-terminal-proof-discipline/` | Created | Level 2 packet docs |
 | `render.ts` | Modified | TERMINAL_PROOF_DIRECTIVE in the capsule |
 | `mk-skill-advisor.js` | Modified | FALLBACK_DIRECTIVE mirror |
 | `dist/` | Rebuilt | Compiled renderer and hook chain carry the new capsule |
@@ -111,6 +111,6 @@ Note on the vitest remainder: 27 failures persist that are pre-existing drift in
 ## Known Limitations
 
 - The capsule text is fixed in source; operators who want different wording edit render.ts and the plugin mirror and rebuild.
-- The folder-name convention required the packet to live at specs/agents/001-terminal-proof-discipline rather than directly at specs/agents; the user-directed track root is preserved and holds the packet.
+- The folder-name convention required the packet to live at specs/agents-md/001-terminal-proof-discipline rather than directly at specs/agents; the user-directed track root is preserved and holds the packet.
 - The completion-freshness fingerprint is a placeholder; the next memory save regenerates it.
 <!-- /ANCHOR:limitations -->

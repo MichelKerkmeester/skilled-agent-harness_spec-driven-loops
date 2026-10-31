@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled"
+    packet_pointer: "commands/004-doctor-sk-skill-command/003-convert-legacy-skilled"
     last_updated_at: "2026-10-30T07:10:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

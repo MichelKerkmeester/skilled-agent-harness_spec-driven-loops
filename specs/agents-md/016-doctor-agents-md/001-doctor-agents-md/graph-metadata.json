@@ -52,6 +52,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/spec.md",
       "scratch/baseline.txt",
       "001-manifest-and-template-block/spec.md",
       ".skilled/commands/doctor/assets/agents-md-manifest.json",
@@ -64,8 +65,7 @@
       ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
       ".skilled/commands/doctor/assets/doctor-agents-md-restore.yaml",
       ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
-      ".skilled/commands/doctor/_routes.yaml",
-      ".github/workflows/spec-kit-check.yml"
+      ".skilled/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -177,12 +177,6 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-check.yml",
-        "kind": "config",
-        "path": ".github/workflows/spec-kit-check.yml",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -211,11 +205,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The template at the repository root is the only copy of the shipped instructions anywhere in the framework, and `/doctor:update` never reads it because it enumerates release units from paths under `.skilled/`",
     "created_at": "2026-10-30T11:22:11Z",
-    "last_save_at": "2026-10-31T15:21:44.860Z",
+    "last_save_at": "2026-10-31T15:23:36.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,13 +226,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbdf1fedbfe7ba72bd5c6215bec52ecd5ce35af9299b3e12b907bd2206ab7a1d",
+    "source_fingerprint": "sha256:8977f6810b39686fe7b7f79536dd3c9d71236a072dfea3b3c163b1ce73fe8e43",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "18c88f0bdeb9f28adc527da3639480e1605f15d2eb64bfb095846f7950f013f1",
+      "spec.md": "2b0bb43c352beee821d05b474ed02fda1ed4a9ee1004cb538e17e86b8d26d9c6",
       "plan.md": "8350146052b2db6bbd1878a977f7e976e278df4d9b5271527e0e075c5b7ac7e3",
-      "tasks.md": "047a94923541df7c20857e09bfd11b1b27e812fc0aace2e2b209474772e61cb2",
-      "implementation-summary.md": "c3e690bce836fe7488f1e2054a24c6b36137aef646a9feb2d40e633ea58f5243"
+      "tasks.md": "b6b3a1a68fa92b3bdfab4e483c58734417a7999162f3db7d6182fae7eee44ef7",
+      "implementation-summary.md": "55e2d54847c06a787d54cf0d6b9c292307b513fa3f4830f2d0f1cf23c244b8d7"
     },
     "last_active_at": null
   }

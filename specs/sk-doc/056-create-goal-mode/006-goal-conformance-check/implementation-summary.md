@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/006-goal-conformance-check"
+    packet_pointer: "sk-doc/056-create-goal-mode/006-goal-conformance-check"
     last_updated_at: "2026-09-26T07:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the goal conformance checker"
@@ -87,7 +87,7 @@ The orchestrator also folded the worker's three-line step 8 into one list item. 
 
 | Decision | Why |
 |----------|-----|
-| Ship a local checker and record a validator amendment request | Phase 001 chose both: the mode can fail its own authoring runs, and only the shared validator reaches manual edits (`specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/mode-boundary.md:57`). |
+| Ship a local checker and record a validator amendment request | Phase 001 chose both: the mode can fail its own authoring runs, and only the shared validator reaches manual edits (`specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/mode-boundary.md:57`). |
 | Count one binding row per phase child | The mode's phase-parent workflow requires one row per phase folder. Range rows and phases that predate goal files therefore count as missing in the corpus report. |
 | Read criteria from the `completion` anchor first | The template puts criteria inside that anchor; a directive may repeat a heading of the same name. |
 | Report a read failure and exit 2 in corpus mode | A goal the checker cannot parse must be visible, not skipped. |
@@ -108,11 +108,11 @@ This is a request to system-spec-kit, recorded here and not implemented. The goa
 | Negative controls | `binding-row-removed-but-identifier-mentioned` fails `missing-binding-row`; `objective-placeholder`, `decision-placeholder` and `criterion-placeholder` fail `placeholder`; `criteria-count-out-of-range` fails `criteria-count`; `over-budget-parent` fails `parent-budget`. Each fails only its named check. |
 | Positive controls | The positive fixture passes all four checks; the directive-criteria regression passes `criteria-count`, and fails it with the fix disabled |
 | Corpus scan, no argument | `goals_scanned=300`, `phase_parents_scanned=30`, missing-binding-row 203, placeholder 83, criteria-count 35, parent-budget 4; one unreadable test fixture reported as ERROR; exit 2; no corpus goal changed |
-| `check-goal.cjs specs/sk-doc/057-create-goal-mode` | `RESULT: PASSED (4/4 checks)`, exit 0 |
+| `check-goal.cjs specs/sk-doc/056-create-goal-mode` | `RESULT: PASSED (4/4 checks)`, exit 0 |
 | `verify_alignment_drift.py` on an untracked copy of `scripts/` | PASS; 3 files scanned, 0 findings |
 | `package_skill.py --check --strict` on the mode | `Result: PASS` |
 | `hvr_scan.py` on `SKILL.md` | 0 hard blockers; mechanical ceiling 89/100 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/006-goal-conformance-check --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/006-goal-conformance-check --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
 
 Handoff to phase 007: the checker is the mode's verification step, every control fails for its named reason, and the four corpus counts above are the baseline.
 <!-- /ANCHOR:verification -->

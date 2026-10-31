@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/002-runtime-surface-coverage"
+    packet_pointer: "agents-md/002-runtime-surface-coverage"
     last_updated_at: "2026-08-04T06:30:00Z"
     last_updated_by: "pi-main-agent"
     recent_action: "Plan written from scout audit"
@@ -176,5 +176,5 @@ All changes are text/allowlist/test edits in git; revert via `git checkout -- <p
 2. `node .opencode/commands/scripts/validate-command-references.cjs` — exit 0
 3. `node .opencode/commands/doctor/scripts/agent-roster-mirror-check.cjs` — six surfaces reported
 4. `rg -n "three runtimes|five runtimes|Claude, Codex, OpenCode" --glob '!**/z_archive/**' --glob '!**/specs/**'` — zero hits (historical specs excluded)
-5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/agents/002-runtime-surface-coverage --strict` — exit 0
+5. `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/agents-md/002-runtime-surface-coverage --strict` — exit 0
 <!-- /ANCHOR:verification -->

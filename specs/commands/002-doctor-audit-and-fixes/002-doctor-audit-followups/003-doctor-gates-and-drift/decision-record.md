@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift"
     last_updated_at: "2026-10-03T07:00:00Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Recorded the skill-budget tooling handoff"

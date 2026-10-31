@@ -26,7 +26,7 @@ contextType: "general"
 Shell variables used by the commands below. Run every command from the repository root.
 
 ```bash
-P=specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs
+P=specs/system-speckit/039-ci-workflow-efficiency/016-ci-efficiency-release-docs
 V=.skilled/skills/sk-doc/shared/scripts/validate_document.py
 ```
 
@@ -149,7 +149,7 @@ These items are not tasks, and the reason for each one stands in the packet.
   - Deviation f (CI failure): the Message Contract run failed for this commit. See the note under T053.
 - [x] T053 Push the branch after the operator's yes, through sk-git's push command. Verify: `git rev-parse HEAD` equals `git rev-parse origin/worktrees/218-ci-efficiency-build` after the push. Evidence 2026-10-26: the check is amended (deviation c), because the CI bot's trigger-index rebuild commit `cdb16f3208` landed on main after the push, so HEAD and origin/main can no longer be equal by construction. The amended check is `git merge-base --is-ancestor cdd611f210 origin/main`, which exited 0 after `git fetch`. The six docs commits reached main through `git replay` onto origin/main and a push of the replayed tip to `refs/heads/main`. The two follow-up commits and this packet commit were then rebased locally onto `cdb16f3208` and pushed as a fast-forward, which this commit cannot record about itself.
   - Deviation c: the push went straight to main by replaying the commits onto origin/main (`git replay`, then `git push origin <sha>:refs/heads/main`), under the operator's standing instruction from 2026-10-25. As written, `git rev-parse HEAD origin/main` no longer prints the same sha twice, because origin/main moved to `cdb16f3208`, a trigger index rebuild that is not from this packet. The worktree branch was not pushed.
-  - Deviation f (CI failure, reported by the coordinator): the Message Contract workflow, run 40242193992, concluded failure on `cdd611f210` (event push). `gh run view` confirms the conclusion. Each of the six commits failed `[trailer.spec-exists]`, because each Spec trailer names `system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs` and main did not hold that folder. This packet folder was untracked when the six commits were pushed. The local `validate-message.mjs --commit` check passed only because the folder exists in the working tree. The failed run stays failed, because a rerun checks out the same tree. Lesson: commit the packet before, or together with, the first commit whose Spec trailer cites it. The fix is a packet commit to main, which the coordinator makes after closure. No task or AC is marked on the basis that CI was green on `cdd611f210`.
+  - Deviation f (CI failure, reported by the coordinator): the Message Contract workflow, run 40242193992, concluded failure on `cdd611f210` (event push). `gh run view` confirms the conclusion. Each of the six commits failed `[trailer.spec-exists]`, because each Spec trailer names `system-speckit/039-ci-workflow-efficiency/016-ci-efficiency-release-docs` and main did not hold that folder. This packet folder was untracked when the six commits were pushed. The local `validate-message.mjs --commit` check passed only because the folder exists in the working tree. The failed run stays failed, because a rerun checks out the same tree. Lesson: commit the packet before, or together with, the first commit whose Spec trailer cites it. The fix is a packet commit to main, which the coordinator makes after closure. No task or AC is marked on the basis that CI was green on `cdd611f210`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -313,7 +313,7 @@ Each row is one doc-fix item from the closure audit, with the file and line it n
 ## File Organization
 
 - [x] CHK-050 [P1] Temp files live outside the repository. The packet's `scratch/` folder holds only `.gitkeep`.
-- [x] CHK-051 [P1] `scratch/` is still clean before completion: `ls -A specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/scratch/` prints only `.gitkeep`. Evidence 2026-10-25: `ls -A` on scratch/ printed `.gitkeep` only.
+- [x] CHK-051 [P1] `scratch/` is still clean before completion: `ls -A specs/system-speckit/039-ci-workflow-efficiency/016-ci-efficiency-release-docs/scratch/` prints only `.gitkeep`. Evidence 2026-10-25: `ls -A` on scratch/ printed `.gitkeep` only.
 <!-- /ANCHOR:file-org -->
 
 ---

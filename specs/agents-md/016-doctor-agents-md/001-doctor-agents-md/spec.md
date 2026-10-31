@@ -9,14 +9,14 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md"
     last_updated_at: "2026-10-30T17:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase and all five children"
     next_safe_action: "Close the top 021 packet"
     blockers: []
     key_files:
-      - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/spec.md"
+      - "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | agents/021-doctor-agents-md |
+| **Parent Packet** | agents-md/016-doctor-agents-md |
 | **Predecessor** | None |
 | **Successor** | 002-doctor-helper |
 | **Handoff Criteria** | All five children pass `validate.sh --strict` and the three agents-md routes are live in the route manifest |
@@ -191,7 +191,7 @@ Copied from the approved design with the reasons that decided them. A change to 
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- **Precondition.** No child starts implementation until `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so every count an acceptance criterion quotes is re-measured from the branch the child starts on before its first edit, and recorded in that child's `scratch/baseline.txt`.
+- **Precondition.** No child starts implementation until `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so every count an acceptance criterion quotes is re-measured from the branch the child starts on before its first edit, and recorded in that child's `scratch/baseline.txt`.
 
 ### Phase Handoff Criteria
 

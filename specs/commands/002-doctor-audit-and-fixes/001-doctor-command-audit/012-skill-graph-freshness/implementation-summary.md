@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness"
     last_updated_at: "2026-10-02T21:10:32Z"
     last_updated_by: "doc-closure"
     recent_action: "Closed the phase documentation for the keep verdict"
@@ -106,7 +106,7 @@ The audit ran read-only first: line-numbered reads of the route, the router, the
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | Exit 0 — `OK: route-validate — 10 routes validated, 2 warnings` at audit time (`scratch/doctor-run.log:378`); after the batch, exit 0 — `OK: route-validate — 9 routes validated, 2 warnings` |
 | Batch gates | `python3 yaml.safe_load` → `YAML_OK` for every doctor asset and `_routes.yaml`; catalog mirror check `STATUS=OK`, exit 0; MCP mutation-class guard `GUARD PASS`; `skill-advisor-route-contract.test.cjs` passes and the three `parent-skill-check-*.test.cjs` files fail exactly as the pre-batch baseline |
 | Retired-name scan | `rg` for `system_skill_advisor.`, `deep_loop_graph_status|query|convergence(` and `doctor_*` in the edited doctor files returns no matches |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness --strict` | `Summary: Errors: 0  Warnings: 0`; `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---

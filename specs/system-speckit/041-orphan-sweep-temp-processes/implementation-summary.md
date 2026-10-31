@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/042-orphan-sweep-temp-processes"
+    packet_pointer: "system-speckit/041-orphan-sweep-temp-processes"
     last_updated_at: "2026-10-29T08:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped sweeper fixes, installed live agent"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 042-orphan-sweep-temp-processes |
+| **Spec Folder** | 041-orphan-sweep-temp-processes |
 | **Completed** | 2026-10-29 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

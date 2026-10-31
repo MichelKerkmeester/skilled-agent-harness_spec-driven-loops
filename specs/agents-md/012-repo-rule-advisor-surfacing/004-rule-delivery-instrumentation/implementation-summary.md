@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation"
     last_updated_at: "2026-10-04T20:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the analyzer, its tests and the baseline"

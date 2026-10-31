@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation/005-changelog-version-keys"
+    packet_pointer: "sk-doc/059-feature-catalog-template-anchor-deprecation/005-changelog-version-keys"
     last_updated_at: "2026-10-10T22:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added version keys to 217 changelog entries"
     next_safe_action: "None, the phase is closed"
     blockers: []
     key_files:
-      - "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch/add_changelog_version_keys.py"
+      - "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch/add_changelog_version_keys.py"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "t4-feature-catalog-anchor"

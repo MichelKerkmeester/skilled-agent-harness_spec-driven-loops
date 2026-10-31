@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-security-policy-alignment"
+    packet_pointer: "sk-doc/058-security-policy-alignment"
     last_updated_at: "2026-10-02T10:42:03Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Expanded SECURITY.md and validated it against the sk-doc README rule set"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 059-security-policy-alignment |
+| **Spec Folder** | 058-security-policy-alignment |
 | **Completed** | 2026-10-02 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -60,7 +60,7 @@ If you report a problem, the policy now asks for the commit SHA, the runtime and
 | File | Action | Purpose |
 |------|--------|---------|
 | `SECURITY.md` | Modified | README rule set structure and grounded new sections |
-| `specs/sk-doc/059-security-policy-alignment/` | Created | This packet |
+| `specs/sk-doc/058-security-policy-alignment/` | Created | This packet |
 | `specs/sk-doc/graph-metadata.json` | Modified | Track root lists the new packet |
 <!-- /ANCHOR:what-built -->
 

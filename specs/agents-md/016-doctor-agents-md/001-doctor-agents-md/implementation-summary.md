@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md"
     last_updated_at: "2026-10-30T17:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed all five children and the phase"
@@ -97,7 +97,7 @@ Each child's `implementation-summary.md` carries its own evidence. This document
 
 | Check | Result |
 |-------|--------|
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` | `RESULT: PASSED`, `Errors: 0  Warnings: 0` |
 | `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` | `PASS: 44 sections, 30 pins, derived matches AGENTS.md`, exit 0 |
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `STATUS=OK rows=12 findings=0 unknown=0`, exit 0 |
 | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` | `NOTHING TO DO`, exit 0 |

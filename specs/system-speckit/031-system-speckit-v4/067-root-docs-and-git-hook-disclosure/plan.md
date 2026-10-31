@@ -89,7 +89,7 @@ The test cases assert each new bypass line by its exact text, so a later edit th
 <!-- ANCHOR:dependencies -->
 ## 6. DEPENDENCIES
 
-The Off Switches subsection links the two validation switches that `specs/sk-doc/058-doc-validation-off-switches` added, and that packet's `.env.example` lines land in the same file as this phase's header and bypass list.
+The Off Switches subsection links the two validation switches that `specs/sk-doc/057-doc-validation-off-switches` added, and that packet's `.env.example` lines land in the same file as this phase's header and bypass list.
 <!-- /ANCHOR:dependencies -->
 
 ---

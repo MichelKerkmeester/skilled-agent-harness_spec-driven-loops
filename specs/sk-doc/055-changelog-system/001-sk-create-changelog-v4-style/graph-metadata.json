@@ -53,9 +53,9 @@
       ".hermes/skills/sk-create-changelog/SKILL.md",
       ".hermes/skills/sk-design/SKILL.md",
       ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json",
+      "specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style/scratch/check-changelog-structure.py",
       ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
-      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
-      "scratch/check-changelog-structure.py"
+      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md"
     ],
     "entities": [
       {
@@ -143,6 +143,12 @@
         "source": "derived"
       },
       {
+        "name": "check-changelog-structure.py",
+        "kind": "file",
+        "path": "specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style/scratch/check-changelog-structure.py",
+        "source": "derived"
+      },
+      {
         "name": "v1.3.2.0.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md",
@@ -152,12 +158,6 @@
         "name": "never-infer-release-line.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/never-infer-release-line.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-changelog-structure.py",
-        "kind": "file",
-        "path": "scratch/check-changelog-structure.py",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The sk-create-changelog template still models the machine-era changelog format",
     "created_at": "2026-09-22T07:43:08Z",
-    "last_save_at": "2026-10-31T15:21:59.062Z",
+    "last_save_at": "2026-10-31T15:23:59.608Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76e1f0f19d54b7002e2ec6e332da7b6f526ff8f6a50b22427880b800850fa0c6",
+    "source_fingerprint": "sha256:7c9ca156065e7f476b84d8f2122c28aa4233cbfb22b4363d9d255e833c6cbe75",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53538ecf0ec48234dcb849065df12e838e75d2a2e1c2bd4a1b1e8dadb36184b3",
+      "spec.md": "cd129dbbc9be54329da0f3a34bfb5d188e4a8b929e2055684abfadac412e3c6d",
       "plan.md": "b0160786161dd175db9fb01f02f9d921292eb3e33687dee13aaf7eb515784dae",
       "tasks.md": "eefdd93ca8045defb1662d4d10160b570da56a43fd1e7fe37cc19de75fcdf95a",
-      "implementation-summary.md": "2df6c95d35291a2017e8aea501d8de389656ac0e57a263b7d3e07561d41c2328"
+      "implementation-summary.md": "5797efd15ae4a3464485343f925038fede2e048b7c185e35273b5be61c055029"
     },
     "last_active_at": null
   }

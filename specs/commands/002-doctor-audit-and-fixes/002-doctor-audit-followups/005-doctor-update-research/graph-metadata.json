@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` updates an operator's framework copy to a newer release while keeping their customizations",
     "created_at": "2026-10-03T19:08:25Z",
-    "last_save_at": "2026-10-31T15:21:50.066Z",
+    "last_save_at": "2026-10-31T15:23:40.904Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:56563f2ecefdf760f4b54d3ecb81574d26570fb38cda6dfd4971e8f869ede497",
+    "source_fingerprint": "sha256:e853374b435158688ef1cdf7ee4f2298ed964cdbc70f6d4dd1e18f24034cf636",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "73e59370fa2878602236a94e404d8c57a752b3ffc3b61ab35ca4c239f480ab4f",
       "plan.md": "0305bae45eea7bba915b6ada7dc1e7db6dfeb84e25594e65475db955d79a58f8",
       "tasks.md": "dc85eb2c496a51f32165ab8ce4a960b684a28c0ac07b1d73b551e8d857850480",
-      "implementation-summary.md": "0264322e1af67827b92d8231d27cb5d6849f0f9c761aca56de87b67a2368182c",
+      "implementation-summary.md": "ffee0849ee849e946ad9803d6126c156470919f8f2b761d7fa011ef1755459d9",
       "research/research.md": "f9b6b674fc74814c2bd291dc79993e80ac913263486542ad77b68da60802d8bd"
     },
     "last_active_at": null

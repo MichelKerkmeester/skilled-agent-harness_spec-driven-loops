@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring"
     last_updated_at: "2026-10-25T10:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed the verification checklist with evidence and set the decision statuses"

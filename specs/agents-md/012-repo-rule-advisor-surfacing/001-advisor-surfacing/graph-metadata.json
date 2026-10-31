@@ -47,6 +47,8 @@
       "goal.md",
       "implementation-summary.md",
       "research/research.md",
+      "specs/agents/graph-metadata.json",
+      "specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md",
       "research/resource-map.md",
       "research/deep-research-config.json",
       "research/findings-registry.json",
@@ -56,7 +58,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md",
         "source": "derived"
       },
       {
@@ -87,6 +89,12 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -190,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Confirm Devin",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model through one door: Gate 5, which fires on the first write of a session and asks the model to match its action against the `REPO RULES.md` trigger table",
     "created_at": "2026-10-04T12:05:58Z",
-    "last_save_at": "2026-10-31T15:21:40.693Z",
+    "last_save_at": "2026-10-31T15:23:34.084Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,10 +213,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:85a38354ee26d3bf93a9288952f343924165324534109f2fdfd5bc140626f71d",
+    "source_fingerprint": "sha256:37c9326c80334178a8da2048d8e67176b987ec135aab5d84e7fa830183215bea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67bc2a9fc06d3b6917d72fe37c7dc3579bdf7056321b32be728ca10d86bb9fa0",
+      "spec.md": "589c55c607800193db84989549879b58c5d62cf4a0d234a8faa5df0f08237ae0",
       "plan.md": "ff71c880ca269192ef2e1396513d941b52bc9f849f54ca3f6ea63253b1ca4ce9",
       "tasks.md": "38f77f131d0af21a57f2bb46716d612c20bbd02bc029bd74ac3f8410335f5cc3",
       "implementation-summary.md": "2092655af6e5a581341033c3c20a0a02c1ebaa17cc863f9104c7737cf123c0f2",

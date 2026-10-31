@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/013-prompting-guide-alignment"
+    packet_pointer: "agents-md/010-prompting-guide-alignment"
     last_updated_at: "2026-09-24T13:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Applied the operator decisions and closed the packet"
@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-prompting-guide-alignment |
+| **Spec Folder** | 010-prompting-guide-alignment |
 | **Completed** | 2026-09-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -64,7 +64,7 @@ You can now ask a question-heavy model to act, and it reads first, asks once, an
 
 In the rules, a tier-3 stop comes after the reversible work is done, a model id or CLI flag is checked against the live tool before it is named as current, and a resume restatement carries your constraints in your words. `sk-prompt` now asks its one question only when someone can answer it, lets prompts address the model as "you", drops seven unsourced success percentages, asks for conclusions instead of reasoning transcripts, tags and varies few-shot examples, puts long source material first, and defines RICCE once.
 
-You then settled the three decisions the lenses left open. The stop-for-yes in `AGENTS.md` now covers irreversible actions and installs, and points to the reversibility ladder for what counts as irreversible. `sk-prompt` retries once everywhere, matching what `@prompt-improver` already did. The agent template's emphasis labels moved to their own packet, `specs/agents/014-agent-emphasis-register`, because the template and all twelve agents have to change together.
+You then settled the three decisions the lenses left open. The stop-for-yes in `AGENTS.md` now covers irreversible actions and installs, and points to the reversibility ladder for what counts as irreversible. `sk-prompt` retries once everywhere, matching what `@prompt-improver` already did. The agent template's emphasis labels moved to their own packet, `specs/agents/004-agent-emphasis-register`, because the template and all twelve agents have to change together.
 
 To make the GPT-6 Luna lens possible, `gpt-6-luna-max` and `gpt-6-luna-max-priority` joined the cli-devin roster. The full ranked list, with every rejected proposal and its reason, is `research/synthesis.md`.
 

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The sk-doc hub advertises fourteen modes across thirteen packets, but has no sk-create-goal route; its advisor identity, registry, hub router, surface router and human-facing mode table are distinct surfaces that must agree (.skilled/skills/sk-doc/SKILL.md:15,25-39,50-64; .skilled/skills/sk-doc/mode-registry.json:17-18; .skilled/skills/sk-doc/hub-router.json:4-21,49-50; .skilled/skills/sk-doc/ROUTER.md:20-35,136-164)",
     "created_at": "2026-09-25T18:48:51Z",
-    "last_save_at": "2026-10-31T15:22:04.117Z",
+    "last_save_at": "2026-10-31T15:24:04.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6cfaac225376cd0fff005eed64beb6d596575b2f0fe0e631f0f938571fbd696",
+    "source_fingerprint": "sha256:11581eb6b64d47fb0da29dd7dd6ab92351ab48677b2a3a45f67f51ce64fca8c1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ecfe6cf176d1c3235ec6b28ae314bb2942bebd81b4b023670c1cf3ee7d84f0e7",
-      "plan.md": "150ecfa87219b8f95feee79a295167186808b64a3c3d96d65aec68ba9c5aef19",
-      "tasks.md": "eaa13205c6d758a7e2d7fd79693e8fa042d8764fd86636f1e96d6f53eb583894",
-      "implementation-summary.md": "96dbb08b78521bdaee89199be3d7b35cdeae1814550baf70e0d4dbc3475bf626"
+      "spec.md": "c723564069e1de91525e5a2c6fbdced426cf69cbc46caa93d36c68d62f298b3a",
+      "plan.md": "03feb405e636cce9c4082fad8046c4aa8135b55eec122c858627adc4d34d5382",
+      "tasks.md": "e461c378fead755e5b6d0e950e6061ba264fe1dbcdcd37dfca3f31a5d4be384b",
+      "implementation-summary.md": "73ad256c360e40ec0f02c74ab49420fdf6e9357b6bfaafff6ea962d176f21330"
     },
     "last_active_at": null
   }

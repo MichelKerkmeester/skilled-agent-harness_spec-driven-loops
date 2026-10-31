@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`/speckit:implement` and `/speckit:complete` run `nested-changelog.js --write` when a packet closes, and `create.sh` writes a \"refresh the matching file in ../changelog/\" line into every phase child",
     "created_at": "2026-10-27T12:15:04Z",
-    "last_save_at": "2026-10-31T15:22:21.590Z",
+    "last_save_at": "2026-10-31T15:28:45.384Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a5c369f08d260a1c49e8a142d8306faa326b872a453640f13b5fbcfc3c03942",
+    "source_fingerprint": "sha256:7fb1cbc4ac3d475327072d04b57d7c1d82e6f564c7460497f62cea78bcd8504a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ed1756e9abd2700604c2b25241d135aa55478d8ac584d6c36725602a63586d9b",

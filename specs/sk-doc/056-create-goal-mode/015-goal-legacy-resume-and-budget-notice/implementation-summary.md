@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/015-goal-legacy-resume-and-budget-notice"
+    packet_pointer: "sk-doc/056-create-goal-mode/015-goal-legacy-resume-and-budget-notice"
     last_updated_at: "2026-10-24T19:40:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Built resume and budget notice; live run skipped on a quota error"
@@ -64,7 +64,7 @@ You get a stuck goal that comes back with the normal resume command, a `notice=`
 | `.opencode/plugins/tests/opencode-goal-capabilities.test.cjs` | Modified | One test: the budget notice appears once on `set` with a budget, and not without one or on a re-set |
 | `.skilled/hooks/goal/goal-plugin.md` | Modified | Resume wording, the `notice` output field and the budget sentence |
 | `.skilled/commands/goal-opencode.md` | Modified | The budget notice and the resume wording |
-| `specs/sk-doc/057-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md` | Modified | Limitation 2 corrected |
+| `specs/sk-doc/056-create-goal-mode/014-goal-no-budget-stop/implementation-summary.md` | Modified | Limitation 2 corrected |
 | `scratch/live-run-skip.txt`, `scratch/plugin-harness-run.mjs`, `scratch/plugin-harness-output.txt`, `scratch/gate-summary.txt` | Created | The live-run SKIP record, a no-model plugin harness run and the gate totals |
 <!-- /ANCHOR:what-built -->
 

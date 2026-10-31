@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
     last_updated_at: "2026-10-30T17:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Ran the end-to-end pass, recorded both manual answers and landed the documentation rows"
     next_safe_action: "Close the 001 phase parent and the top 021 packet"
     blockers: []
     key_files:
-      - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch/e2e"
+      - "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch/e2e"
       - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -149,7 +149,7 @@ Then the documentation pass, in the order the sk-doc router resolved it: the scr
 | `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` | `PASS: 44 sections, 30 pins, derived matches AGENTS.md`, exit 0 |
 | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` | `STATUS=OK rows=12 findings=0 unknown=0`, exit 0, `A1 install state: pure` |
 | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` | `NOTHING TO DO`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` | `RESULT: PASSED` for every folder, `Errors: 0  Warnings: 0` |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` | `RESULT: PASSED` for every folder, `Errors: 0  Warnings: 0` |
 | `python3 .skilled/skills/sk-doc/scripts/validate_document.py` on every changed document | `Total issues: 0` on each |
 | `validate-playbook-package.cjs --package system-spec-kit` | `PASS ... violations=0`, 11 warnings, all pre-existing path warnings plus one per new scenario for the generated `.cursor` path |
 | `validate_catalog_package.py --package system-spec-kit` | `PASS tier=fail violations=0` |

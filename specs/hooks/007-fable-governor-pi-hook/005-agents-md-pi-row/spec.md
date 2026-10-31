@@ -1,6 +1,6 @@
 ---
 title: "Phase 5: AGENTS.md Pi Row"
-description: "Add the Pi runtime row to AGENTS.md §8 Runtime Agent Directory Resolution, coordinated with agents/002-runtime-surface-coverage which already targets the same table for the full six-runtime update."
+description: "Add the Pi runtime row to AGENTS.md §8 Runtime Agent Directory Resolution, coordinated with agents-md/002-runtime-surface-coverage which already targets the same table for the full six-runtime update."
 trigger_phrases:
   - "AGENTS.md pi row"
   - "runtime directory pi"
@@ -22,7 +22,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
     open_questions:
-      - "Coordinated with agents/002-runtime-surface-coverage T001 (same table)"
+      - "Coordinated with agents-md/002-runtime-surface-coverage T001 (same table)"
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
@@ -70,7 +70,7 @@ AGENTS.md documents `Pi → .pi/agents/` like the other runtimes.
 - Pi row in the AGENTS.md §8 table
 
 ### Out of Scope
-- Full six-runtime table update — owned by `agents/002-runtime-surface-coverage` (T001). This phase implements the pi row if 002 has not; if 002 lands first, this phase reduces to verification.
+- Full six-runtime table update — owned by `agents-md/002-runtime-surface-coverage` (T001). This phase implements the pi row if 002 has not; if 002 lands first, this phase reduces to verification.
 
 ### Files to Change
 
@@ -121,5 +121,5 @@ AGENTS.md documents `Pi → .pi/agents/` like the other runtimes.
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Coordination with `agents/002-runtime-surface-coverage`: if that packet's T001 executes first, this phase only verifies.
+- Coordination with `agents-md/002-runtime-surface-coverage`: if that packet's T001 executes first, this phase only verifies.
 <!-- /ANCHOR:questions -->

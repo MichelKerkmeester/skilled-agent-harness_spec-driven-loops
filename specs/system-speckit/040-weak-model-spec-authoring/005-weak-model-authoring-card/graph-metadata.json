@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The router sends four authoring intents to `references/templates/template-guide.md`, a 1,200-line guide",
     "created_at": "2026-10-23T11:27:23Z",
-    "last_save_at": "2026-10-31T15:22:17.971Z",
+    "last_save_at": "2026-10-31T15:28:42.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e16941e42a12d86cbe448b8d38dd8390c945b16aa3b8173251bb84199d6da13",
+    "source_fingerprint": "sha256:17818d6f5a09bb7558c26c524db9c8e3924e0f43c7dae4121847164a18c1142c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3415f30774c8bd519987ffa5b3e58e2b4cf58bc927b61b22be201cb0ae6df72d",
+      "spec.md": "f1cc422924a00168039336d5fada49d6f45e0f50c22ac4de73e88779eaf50c21",
       "plan.md": "521eef2fccf9da3155b8b6538abf9fc73ce876d20c73d11768d0e54042df265d",
-      "tasks.md": "7faf7e20daa163a024492e6a80026fb6cb04edf6bc37f08702115b84c23a6c74",
-      "implementation-summary.md": "8105c2d265f7c683d05c099476798da83700d5e120693a5b2a650752f330329f"
+      "tasks.md": "f1950ecb6de690d98a4af040c4a92053b8db3023fdc979d269ff5a8b1ea78700",
+      "implementation-summary.md": "1c60eadf51d156d94ca3965d422ea94a8fa9bb70abc63b3dc813a69daa14750c"
     },
     "last_active_at": null
   }

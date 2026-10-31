@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/008-orchestrate-external-cli-delegation"
+    packet_pointer: "agents/002-orchestrate-external-cli-delegation"
     last_updated_at: "2026-09-02T12:00:32Z"
     last_updated_by: "code-agent"
     recent_action: "Set generator sandbox_mode to workspace-write"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-orchestrate-external-cli-delegation |
+| **Spec Folder** | 002-orchestrate-external-cli-delegation |
 | **Status** | In Progress |
 | **State** | Shipped and harness-verified 2026-09-02; the one open question is closed; awaiting operator confirmation of closure |
 | **Level** | 2 |

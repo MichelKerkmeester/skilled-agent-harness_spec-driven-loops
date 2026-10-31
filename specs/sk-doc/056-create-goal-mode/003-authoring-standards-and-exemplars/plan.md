@@ -39,7 +39,7 @@ The mode needs a content standard above the goal template's shape: the template 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 2 has passed its parent handoff: packaging gate reports PASS and the parent-skill check is OK (specs/sk-doc/057-create-goal-mode/spec.md:143).
+- [ ] Phase 2 has passed its parent handoff: packaging gate reports PASS and the parent-skill check is OK (specs/sk-doc/056-create-goal-mode/spec.md:143).
 - [ ] The template, HVR references and four corpus examples are available at their cited paths.
 
 ### Definition of Done
@@ -118,7 +118,7 @@ Follow the ordered tasks in tasks.md. Each step has an observable check.
 | Positive control | Phase-child research objective, decisions, criteria and log | Apply the relevant standards; record the objective pass and the supporting source spans in assets/goal-exemplars.md |
 | Voice review | Standards and exemplar documents | Apply hvr-rules.md and the hvr-publish-supplement.md checklist; record score and blockers |
 | Citation review | Each repository claim and each exemplar | Reopen cited spans with nl -ba and compare the quoted content |
-| Packet gate | This phase folder | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/003-authoring-standards-and-exemplars --strict; require RESULT: PASSED |
+| Packet gate | This phase folder | bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/003-authoring-standards-and-exemplars --strict; require RESULT: PASSED |
 
 <!-- /ANCHOR:testing -->
 
@@ -129,10 +129,10 @@ Follow the ordered tasks in tasks.md. Each step has an observable check.
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 2 mode packet and handoff | Internal | Pending | The mode index and skill workflow cannot be updated before they exist (specs/sk-doc/057-create-goal-mode/spec.md:143) |
+| Phase 2 mode packet and handoff | Internal | Pending | The mode index and skill workflow cannot be updated before they exist (specs/sk-doc/056-create-goal-mode/spec.md:143) |
 | Goal template | Internal | Available | Standards could contradict the required goal shape (.skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:49-128) |
 | Human Voice Rules and publish supplement | Internal | Available | Voice and publish checks would lack their source standard (.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md:31-35; .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md:67-83) |
-| Four corpus examples | Internal | Available | The positive and negative controls could not be verified (specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:41-45) |
+| Four corpus examples | Internal | Available | The positive and negative controls could not be verified (specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:41-45) |
 
 <!-- /ANCHOR:dependencies -->
 

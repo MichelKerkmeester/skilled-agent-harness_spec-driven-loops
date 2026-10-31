@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps/004-agents-md-integration"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps/004-agents-md-integration"
     last_updated_at: "2026-09-11T19:44:00+02:00"
     last_updated_by: "spec-validation-backfill"
     recent_action: "Phase closed; work recorded in tasks.md with evidence"

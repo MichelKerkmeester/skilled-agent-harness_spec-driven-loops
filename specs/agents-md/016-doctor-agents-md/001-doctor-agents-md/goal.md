@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md"
     last_updated_at: "2026-10-30T17:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed all five children and the phase"

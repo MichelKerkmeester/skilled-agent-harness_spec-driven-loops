@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift"
     last_updated_at: "2026-10-03T05:27:42Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Recorded the validation-debt sweep"
@@ -71,8 +71,8 @@ The guard reads its own manifest, `.skilled/commands/doctor/assets/mcp-mutation-
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modified | Count 154 by the stated method, with the four flag-table-only names |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json` | Modified | `target: null` plus a retirement note |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/README.md` | Modified | Says why the baseline target is null |
-| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md` | Modified | Phase Context describes the split into `/doctor:rebuild` and the three update workflows |
-| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
+| `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md` | Modified | Phase Context describes the split into `/doctor:rebuild` and the three update workflows |
+| `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modified | Limitation 2 drops the dead pattern claim; limitation 5 names `/doctor:rebuild` |
 | `.skilled/scripts/git-hooks/pre-commit` | Modified (handoff sweep) | Mutation-class trigger also matches `mcp-mutation-class-manifest.yaml`; "Fix:" line names that manifest |
 | `.skilled/scripts/git-hooks/tests/pre-commit.test.sh` | Modified (handoff sweep) | Case 29b: staging only the manifest reaches the guard |
 | `specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md` | Modified (handoff sweep) | Two continuity `key_files` paths point at the live `.skilled` runtime |
@@ -128,8 +128,8 @@ A later handoff sweep, run by the parent build orchestrator once every packet ha
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | PASS, exit 0 |
 | `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 67 passed, 0 failed |
 | `node .skilled/bin/install-codex-hooks.mjs --check --allow-worktree` | PASS, exit 0, OK |
-| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents/010-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
-| `validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
+| `node .skilled/commands/doctor/scripts/fable-mode-check.cjs --dir specs/agents-md/008-repo-rule-system-integration/research` | PASS, exit 0, metric rows printed |
+| `validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit --recursive --strict` | PASS, 15 of 15 `RESULT: PASSED` |
 | Handoff sweep: `bash .skilled/scripts/git-hooks/tests/pre-commit.test.sh` | PASS, 69 passed, 0 failed, exit 0; against the HEAD hook the new case fails (68 passed, 1 failed) |
 | Handoff sweep: `bash -n .skilled/scripts/git-hooks/pre-commit` | PASS, exit 0 |
 | Handoff sweep: retired-form `rg` | 93 hits before, 14 after (reasons below) |

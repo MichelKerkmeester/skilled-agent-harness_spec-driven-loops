@@ -57,7 +57,7 @@ contextType: "general"
 - [x] T009 Regenerate trigger index so Gate 1 surfaces this packet [evidence: `generate-trigger-index.mjs` exit 0; 27,278 docs, index sha256 e2707d78]
 - [x] T010 Negative control: each net-new phrase absent pre-edit [evidence: `git show HEAD:"REPO RULES.md" | grep -c 'answer-the-actual-request'` → 0; `git show HEAD:repo-rules/evidence-and-proof.md | grep -c 'first report is the honest one'` → 0]
 - [x] T011 Scoped diff review: only the declared files + index artifacts + packet changed [evidence: `git status --short` — `.claude/settings.json` modification is pre-existing/runtime-managed, unrelated; `AGENTS.md` +1/−1 added by T013]
-- [x] T012 `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/012-agent-avoidance-anti-patterns --strict` prints `RESULT: PASSED` [evidence: command output this session]
+- [x] T012 `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/009-agent-avoidance-anti-patterns --strict` prints `RESULT: PASSED` [evidence: command output this session]
 <!-- /ANCHOR:phase-3 -->
 
 ---

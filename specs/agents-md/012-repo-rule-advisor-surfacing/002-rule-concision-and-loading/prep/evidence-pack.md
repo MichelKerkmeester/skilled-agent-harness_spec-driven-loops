@@ -56,7 +56,7 @@ Caveats: detection is by pattern (`prep/measure-rule-compliance.py`), so a legit
 
 - `../../001-advisor-surfacing/research/research.md`: surfacing verdict. No advisor pointer, no trigger-index root, measure Gate 5 misses before any hook.
 - `specs/hooks/022-smart-rule-injection/decisions.md`: the prompt-time injection bar and the rule that frequency is read from a log, never assumed.
-- `specs/agents/010-repo-rule-system-integration/research/synthesis.md`: Gate 5 fires on write only; trigger rows that silently dropped fires.
+- `specs/agents-md/008-repo-rule-system-integration/research/synthesis.md`: Gate 5 fires on write only; trigger rows that silently dropped fires.
 - `specs/sk-communication/006-sk-communication-clarity/`: the program that wrote the communication rules, with measurement baselines in `003-root-doc-and-repo-rules/baselines/`.
 - `.skilled/hooks/injection-contract.md` and `.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts`: the existing once-per-epoch delivery and dedup machinery.
 - `.skilled/skills/sk-doc/sk-create-repo-rule/`: the authoring mode, templates and `scripts/check-repo-rules.cjs`.

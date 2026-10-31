@@ -44,7 +44,7 @@ Three serial cli-devin swe-2-max runs author the same frozen Level 3 packet in a
 
 ### Definition of Done
 - [ ] Every row in `acceptance-criteria.md` is `Met`, `Waived` or `Superseded`
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring --recursive --strict` prints `RESULT: PASSED`
 - [ ] `scratch/closeout/criteria.txt` holds seven PASS lines and the parent goal holds seven ticked boxes
 - [ ] `git status --porcelain` lists only the paths declared in `spec.md` section 3
 <!-- /ANCHOR:quality-gates -->
@@ -91,8 +91,8 @@ The folder is `.skilled/skills/system-spec-kit/benchmark/reports/$DATE--model-ev
 | Target | Path | Template |
 |--------|------|----------|
 | Global component entry | `.skilled/changelog/system-spec-kit/v2.9.0.0.md` | `.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md` compact format |
-| Packet root | `specs/system-speckit/041-weak-model-spec-authoring/changelog/changelog-054-root.md` | `.skilled/skills/system-spec-kit/templates/changelog/root.md` through the nested generator |
-| Phase child | `specs/system-speckit/041-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md` | `.skilled/skills/system-spec-kit/templates/changelog/phase.md` through the nested generator |
+| Packet root | `specs/system-speckit/040-weak-model-spec-authoring/changelog/changelog-054-root.md` | `.skilled/skills/system-spec-kit/templates/changelog/root.md` through the nested generator |
+| Phase child | `specs/system-speckit/040-weak-model-spec-authoring/changelog/changelog-054-009-authoring-benchmark-and-closeout.md` | `.skilled/skills/system-spec-kit/templates/changelog/phase.md` through the nested generator |
 
 The two nested names come from the generator's own `--json` output, observed on this tree while this plan was written. Its `outputPath` uses the packet number and the phase number, not the full packet slug.
 

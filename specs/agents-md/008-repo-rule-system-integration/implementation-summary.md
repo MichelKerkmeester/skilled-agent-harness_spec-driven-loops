@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/010-repo-rule-system-integration"
+    packet_pointer: "agents-md/008-repo-rule-system-integration"
     last_updated_at: "2026-09-11T18:25:49Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 3 template"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-repo-rule-system-integration |
+| **Spec Folder** | 008-repo-rule-system-integration |
 | **Completed** | 2026-09-11 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

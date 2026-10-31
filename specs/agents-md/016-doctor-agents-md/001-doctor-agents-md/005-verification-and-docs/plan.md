@@ -43,7 +43,7 @@ Resolve the three documentation locations first, because they decide where the w
 - [x] Every baseline command reruns from the final tree with the same pass lines
 - [x] Nine transcripts exist under `scratch/e2e/`
 - [x] The two manual rows carry a recorded unknown with its reason and the steps that answer it
-- [x] `validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] `validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---

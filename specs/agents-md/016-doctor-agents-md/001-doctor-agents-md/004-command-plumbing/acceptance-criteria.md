@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
     last_updated_at: "2026-10-30T12:40:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Met every criterion on this branch"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing`
+**Packet:** `agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

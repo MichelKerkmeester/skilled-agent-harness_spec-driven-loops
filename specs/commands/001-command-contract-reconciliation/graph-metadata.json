@@ -208,7 +208,7 @@
     ],
     "causal_summary": "`sk-create-command` teaches people how to write OpenCode commands, and its `command-contract.json` calls itself the single machine-readable source of behavioural truth that templates, validators, benchmark adapters and generated routers read instead of restating",
     "created_at": "2026-09-04T10:38:14Z",
-    "last_save_at": "2026-10-31T15:21:45.249Z",
+    "last_save_at": "2026-10-31T15:23:40.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ce0d83081358be8184e8daf658b23660e201ec0b3275d9ed49ddb2dd902a939",
+    "source_fingerprint": "sha256:e8c20a5effcc792b7e417242ba508ba76ebe7d7f3061a3d4ddb19744851086d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c1f613d05478d0bceb27fc18334a3b2725b2d488c52724c7c0def57462048ef",
       "plan.md": "8cf00c5febd6814947441279936ba78bf16a1b9d6c0f60ffd260b39bd66b4d13",
       "tasks.md": "03cbc5662be57adbec78e7a98f9a2429a0bedce0150ccc8282639994f26fa3de",
-      "implementation-summary.md": "dd8e49c84c559001f741f760197a220dcb8c84484caae891b9e81ca9475b7493"
+      "implementation-summary.md": "6f4eb663954ae86087d52f4c5cf5a34c7564862d4685ab9c5eb107312e9559ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

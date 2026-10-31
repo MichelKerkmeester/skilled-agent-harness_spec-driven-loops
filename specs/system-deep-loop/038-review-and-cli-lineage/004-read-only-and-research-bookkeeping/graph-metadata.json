@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The deep-loop graph scripts are not read-only, so no caller can promise they leave the machine unchanged",
     "created_at": "2026-10-03T05:27:39Z",
-    "last_save_at": "2026-10-31T14:04:37.041Z",
+    "last_save_at": "2026-10-31T15:29:48.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e74d627e965e60c8524e887cde5a6215619ac5258083c62d32788103fb73e9b",
+    "source_fingerprint": "sha256:cbc97b297c10f6e78223e35f80fa0ed728b29fb870e046f38faf6bbec31ea011",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4a6bd0eba47eefa9aae52f90de6a98da91ebe92502d09e377e283739f562ce14",
-      "plan.md": "2f2fa34185c42e53607ef6cb255797d5ec5723b9b0bb2076c320581d0f9efd80",
-      "tasks.md": "74f42c0eee853fac54d64071ac080752f6b47537c08c08d572e3ac3bee272a62",
+      "spec.md": "a347f13cf8c1fe108fe0347484bd28c33004d86ca9bcfbf1a619759e60b2f2a1",
+      "plan.md": "0a5a736ff230eaf5f3cef08d7ba8ba7bc4a758bc62e6eb13a81d74f8ac54741c",
+      "tasks.md": "0d15a38c4b7d27ccc5028e3a4f151fcf6e4551648d30f494c28276da642c4e69",
       "implementation-summary.md": "5e1d4ce51a3eeda63e5f02679aff91fe68c8e418ae218fe871022bb97296ad59"
     },
     "last_active_at": null

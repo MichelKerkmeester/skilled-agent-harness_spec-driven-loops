@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Processes whose parent has exited keep running out of temp and scratch folders for days: two headless Chrome instances from a benchmark crawl (14 days, about 650 MB), a `python -m http.server`, `node -e` test fixtures and `node --check` children stuck on a FIFO",
     "created_at": "2026-10-29T08:25:14Z",
-    "last_save_at": "2026-10-31T15:22:21.847Z",
+    "last_save_at": "2026-10-31T15:28:46.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed2beb312161d47fed7c00b34703ed1f0836221d1db81b0e131ba4a9dd6dbf5e",
+    "source_fingerprint": "sha256:847946828dc3a773a91d3cb5370fdd042aaf2d9b619b2cc22ba6e78f918ada72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8ff3aff78d1ba2ee96fe7957b7c702f5f552316b5288d250e929cef810038086",
       "plan.md": "7aafaad8fc983bb2d7def32330271b6e861e1491751825f293222fe1968bc0ae",
-      "tasks.md": "7cf4b0011d2501d15889c3a1dc019cb70f59c6669f3c8256ae3c057911c088e4",
+      "tasks.md": "6da92dafd2abf1dcbd9d933f9e1106d62efa1924cf64e394d7df9bafa4be00bc",
       "implementation-summary.md": "05188e9d7ad878cb344693528be4d701e463973f6b34398a147e199022919752"
     },
     "last_active_at": null

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A fresh review of the external user experience on 2026-09-28 found the root docs stale",
     "created_at": "2026-09-28T15:56:26Z",
-    "last_save_at": "2026-10-31T13:59:18.454Z",
+    "last_save_at": "2026-10-31T15:28:33.777Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e963e5391bb6c3bc9f7d5e57e7f461ee822152fddc0e6b76e87ad721692d12aa",
+    "source_fingerprint": "sha256:96c601681d90a94584471e07ce4be53ea84fc6cc436991865065fac02a534e41",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "279f87e756c3e13a1eb93c7f3971676c542c7859241146d29c0ec4cd50b12d23",
-      "plan.md": "09fda20c7760d162f38a5b2ab4993a55f709b7d452e975ee49a8cc9e3141c8e7",
+      "spec.md": "b1565a3b22c32f3be7d5f0760f8588f59c99cb62101ede52d4e2735ac9eb68fa",
+      "plan.md": "efed105fe9b88aca124ae6576292c336feab32b2b7e07593a0321452908ac841",
       "tasks.md": "5541125a29a3ffacf3964db75be92b57475bb74256db0d7411138de513cbc2f3",
-      "implementation-summary.md": "c6967b46fcc03fa0afadf50a0caa0c37d7be7859529930381342eeeb8a5c004a"
+      "implementation-summary.md": "1c8a1ff0f3d76c8e9fd189bf5b679aa425f5a4477ccdfacf1183ec729bedce8f"
     },
     "last_active_at": null
   }

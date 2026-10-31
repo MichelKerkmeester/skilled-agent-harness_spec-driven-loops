@@ -16,8 +16,8 @@
   "specId": "007",
   "folderSlug": "table-wording-experiment",
   "parentChain": [
-    "agents",
-    "016-repo-rule-advisor-surfacing"
+    "agents-md",
+    "012-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree"
     last_updated_at: "2026-10-25T00:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Ran the eight scenarios, published the report and closed the phase"
@@ -58,13 +58,13 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `wc -l < specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/scenarios.tsv` prints `8`
-- [x] `find specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs -name '*.txt' | wc -l` prints at least `8`
+- [x] `wc -l < specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/scenarios.tsv` prints `8`
+- [x] `find specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/runs -name '*.txt' | wc -l` prints at least `8`
 - [x] `R=$(find .skilled/skills/system-spec-kit/benchmark/reports -maxdepth 2 -name results.csv -path '*manual-testing-playbook--weak-model-authoring*' | head -1); test -n "$R" && wc -l < "$R"` prints `9`, `find "$(dirname "$R")/outcomes" -name '*.json' | wc -l` prints `8`, and `rg -c '^## [0-9]+\. ' "$(dirname "$R")/README.md"` prints `10`
-- [x] `grep -c '^PRIMARY_CLEAN$' specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/primary-status.txt` prints `1`
-- [x] `grep -c '^WORKTREE_GONE$' specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/worktree/removal.txt` prints `1`
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree --strict` prints `RESULT: PASSED`
-- [x] `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/review/T017.txt` prints `0`
+- [x] `grep -c '^PRIMARY_CLEAN$' specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/primary-status.txt` prints `1`
+- [x] `grep -c '^WORKTREE_GONE$' specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/worktree/removal.txt` prints `1`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree --strict` prints `RESULT: PASSED`
+- [x] `grep -cvE '^(P0|P1|P2) |^NO FINDINGS$' specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/review/T017.txt` prints `0`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -114,7 +114,7 @@ and findings belong here.
 | T005 block exit status | The T005 block ends with `test -d "$WT"` before `$WT` is defined in that shell, so the block exits 1 with an empty `WORKTREE_DIR_OK`. `env.sh` holds the right `WT`, and sourcing it then `test -d "$WT"` printed `WORKTREE_DIR_OK` |
 | T008 block extraction | The fixture block in T008 holds inner code fences, so a fence-aware extractor cuts it short. The three affected blocks were run from their exact line ranges in `tasks.md` |
 | T009 and T010 results | S1 to S7 PASS and S8 PASS on the first attempt. No FAIL, no FIXED, no ESCALATED, no SCENARIO_DEFECT. T011 did not run, `scratch/fix/` holds no brief |
-| T016 removal and the pointer file | Scenario 483 left its pointer file `specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt` untracked inside the worktree, as phase 007 forwarded. It was the only status entry. `fix.patch` holds it as a new-file diff (`git diff --no-index /dev/null`), so the gate covered it. Rollback sentence written before removal: to undo, `git worktree add -b <new branch> <dir> 95abd302c8` then `git apply scratch/fixes/fix.patch`. The removal script lives at `scratch/tools/remove-worktree.sh` |
+| T016 removal and the pointer file | Scenario 483 left its pointer file `specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt` untracked inside the worktree, as phase 007 forwarded. It was the only status entry. `fix.patch` holds it as a new-file diff (`git diff --no-index /dev/null`), so the gate covered it. Rollback sentence written before removal: to undo, `git worktree add -b <new branch> <dir> 95abd302c8` then `git apply scratch/fixes/fix.patch`. The removal script lives at `scratch/tools/remove-worktree.sh` |
 | Advisor daemon left by the S8 worker | The devin session started the skill advisor daemon with the worktree as its root (PIDs 22141 and 22142, parent 1). Both were stopped with SIGTERM before removal. No other process referenced the worktree path afterwards |
 | T016 console lines | The T016 block prints `SCRATCH_CLEAN`, `PATCH_SAVED` and `STATUS_SAVED` outside its `tee`, while AC-009 reads them from `removal.txt`. They were prepended to `removal.txt` from the console output of the same run |
 | Scenario temp folder | The scenario writes its worker files under a `mktemp -d` folder outside the repository. Its four files were copied to `scratch/runs/483.worker-1/` and byte-compared with `cmp`, then the temp folder was removed |
@@ -125,6 +125,6 @@ Review T017 (cli-devin swe-2-max, `--permission-mode auto`, one attempt, 01:54:2
 T018-APPLIED F01 report-README.md:34 provisioning tally: true gap in the review input, the tally is the last line of `scratch/worktree/provision.out`. The report `source.md` now names that file and `provision-exit.txt`, and README section 3 cites the file
 T018-APPLIED F02 report-README.md:61 timings: true gap, no duration record existed. `scratch/timings.txt` now holds the modification times and the elapsed seconds (provisioning 1094 s, S1 to S7 within 11 s of each other, S8 174 s after S7). README sections 5 and 9 cite it and say "within 11 seconds of each other" in place of "finished in 12 seconds", and the 9th section expects about 3 minutes for the eight scenarios in place of "under 5 minutes"
 T018-APPLIED F03 report-README.md:36 30 minute alarm: true gap, the alarm is line 21 of `scratch/tools/run-scenario.sh`. The report `source.md` now has a Runner row naming that file and line, and README section 3 cites it
-| Changelog and validation on 2026-10-25 | `nested-changelog.js --write` ran after the first strict pass. The generator copied raw task text into its Added, Changed and Fixed sections, so they were rewritten by hand from `implementation-summary.md` in `specs/system-speckit/041-weak-model-spec-authoring/changelog/changelog-054-008-playbook-run-in-worktree.md`. `repair-derived.cjs --apply` re-derived `graph-metadata.json` twice (generated metadata drift after the doc edits). Final `validate.sh --strict` printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, with AC_COVERAGE 9/9 |
+| Changelog and validation on 2026-10-25 | `nested-changelog.js --write` ran after the first strict pass. The generator copied raw task text into its Added, Changed and Fixed sections, so they were rewritten by hand from `implementation-summary.md` in `specs/system-speckit/040-weak-model-spec-authoring/changelog/changelog-054-008-playbook-run-in-worktree.md`. `repair-derived.cjs --apply` re-derived `graph-metadata.json` twice (generated metadata drift after the doc edits). Final `validate.sh --strict` printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, with AC_COVERAGE 9/9 |
 | Timings | Provisioning 1094 s, S1 to S7 run files written within 11 s of each other, S8 174 s after S7 (`scratch/timings.txt`). The report README cites the same numbers |
 <!-- /ANCHOR:log -->

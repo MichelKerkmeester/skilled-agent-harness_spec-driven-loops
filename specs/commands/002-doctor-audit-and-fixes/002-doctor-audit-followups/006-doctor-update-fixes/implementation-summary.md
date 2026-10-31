@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes"
     last_updated_at: "2026-10-04T08:00:00Z"
     last_updated_by: "doctor-update-fixes"
     recent_action: "Fixed and verified all 26 doctor-update findings in four phases"

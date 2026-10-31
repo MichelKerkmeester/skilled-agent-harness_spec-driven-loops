@@ -12,7 +12,7 @@
     "saves"
   ],
   "lastUpdated": "2026-10-12T09:25:17.896Z",
-  "specId": "038",
+  "specId": "037",
   "folderSlug": "symlinked-runtime-root",
   "parentChain": [
     "system-speckit"

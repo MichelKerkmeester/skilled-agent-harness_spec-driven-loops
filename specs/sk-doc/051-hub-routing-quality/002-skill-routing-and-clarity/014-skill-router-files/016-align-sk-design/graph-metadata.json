@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The machine router of the sk-design hub and its five packets moved from `SKILL.md` to `ROUTER.md`",
     "created_at": "2026-10-29T17:20:37Z",
-    "last_save_at": "2026-10-31T14:01:42.548Z",
+    "last_save_at": "2026-10-31T15:23:57.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +196,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0820284bd94f4bbb41f2a95a797f536d75fcb634b472f7d0c6d38282ade106c6",
+    "source_fingerprint": "sha256:49b28c0e7005dd79642404a99e76b6ad7bb6e420544ce417a9552eff942fb0c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "28375f30a76b703cef612c1269a53b961d1766d3579aa73d0a59eba89ad20488",
+      "spec.md": "0fffd53e9e98952b58da61fdd64f6fa9fafc38ec3171476c3131141d5749d5b7",
       "plan.md": "fd96c7015c4daa1a7792b5520a13d155aeca4791534c8708036e8088a713cf4f",
       "tasks.md": "93f7a036da23d50c0afe85a5b1bc22b80561bc75940acf3863d34a45eb3673da",
-      "implementation-summary.md": "8a7bc2f8b8142b4d4a94e23a0e3e2401b4b17e4da31a5cc3543950f4fa5f77a3"
+      "implementation-summary.md": "c032a30ee1dbc7f37069b6cd001189a834baa3b303054c927497e45fa084b977"
     },
     "last_active_at": null
   }

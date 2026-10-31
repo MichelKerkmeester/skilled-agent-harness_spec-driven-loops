@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -53,7 +53,7 @@ _memory:
 | **Branch** | `worktrees/079-doctor-command-audit` |
 | **Parent Spec** | None (top-level packet) |
 | **Parent Packet** | None (top-level packet) |
-| **Predecessor** | `system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit` |
+| **Predecessor** | `commands/002-doctor-audit-and-fixes/001-doctor-command-audit` |
 | **Successor** | None |
 | **Handoff Criteria** | Every child phase closes with its acceptance criteria Met, Waived or Superseded, and `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
@@ -112,7 +112,7 @@ Summary table of files touched across all phases — for audit trail only; per-p
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | 003 | Stated variable count |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json` | Modify | 003 | Dead corpus target |
 | `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt` | Modify | 003 | Generic `/doctor` forms |
-| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/{003-update/spec.md,013-speckit-retrieval/implementation-summary.md}` | Modify | 003 | Closed-packet corrections |
+| `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/{003-update/spec.md,013-speckit-retrieval/implementation-summary.md}` | Modify | 003 | Closed-packet corrections |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -169,12 +169,12 @@ Summary table of files touched across all phases — for audit trail only; per-p
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-trigger-index-freshness | 002-release-update-customization-signals | Phase 001's acceptance criteria are Met, Waived or Superseded, and the regenerated index reports fresh | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json` exits 0 |
-| 002-release-update-customization-signals | 003-doctor-gates-and-drift | Phase 002's acceptance criteria are Met, Waived or Superseded, and the engine suite passes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals --strict` prints `RESULT: PASSED`, and `node --test .skilled/commands/doctor/scripts/tests/release-update.test.cjs` reports `fail 0` |
-| 003-doctor-gates-and-drift | 004-doctor-scripts-conformance | Phase 003's acceptance criteria are Met and the doctor gates exit 0 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift --strict` prints `RESULT: PASSED` |
-| 004-doctor-scripts-conformance | 005-doctor-update-research | Phase 004's acceptance criteria are Met and its commit is on the branch | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance --strict` prints `RESULT: PASSED` |
-| 005-doctor-update-research | 006-doctor-update-fixes | `research/research.md` ranks every finding with a fix and a proving test, and phase 005 validates strict | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research --strict` prints `RESULT: PASSED` |
-| 006-doctor-update-fixes | 007-speckit-router-contract-drift | Phase 006's acceptance criteria are Met and the doctor suites pass | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0 once phase 007 lands |
+| 001-trigger-index-freshness | 002-release-update-customization-signals | Phase 001's acceptance criteria are Met, Waived or Superseded, and the regenerated index reports fresh | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json` exits 0 |
+| 002-release-update-customization-signals | 003-doctor-gates-and-drift | Phase 002's acceptance criteria are Met, Waived or Superseded, and the engine suite passes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals --strict` prints `RESULT: PASSED`, and `node --test .skilled/commands/doctor/scripts/tests/release-update.test.cjs` reports `fail 0` |
+| 003-doctor-gates-and-drift | 004-doctor-scripts-conformance | Phase 003's acceptance criteria are Met and the doctor gates exit 0 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift --strict` prints `RESULT: PASSED` |
+| 004-doctor-scripts-conformance | 005-doctor-update-research | Phase 004's acceptance criteria are Met and its commit is on the branch | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance --strict` prints `RESULT: PASSED` |
+| 005-doctor-update-research | 006-doctor-update-fixes | `research/research.md` ranks every finding with a fix and a proving test, and phase 005 validates strict | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research --strict` prints `RESULT: PASSED` |
+| 006-doctor-update-fixes | 007-speckit-router-contract-drift | Phase 006's acceptance criteria are Met and the doctor suites pass | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes --strict` prints `RESULT: PASSED`, and `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0 once phase 007 lands |
 | 007-speckit-router-contract-drift | 008-doctor-ownership-split | Phase 007's acceptance criteria are Met and the router generator check passes | `node .skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs --check` exits 0, and `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0 once phase 008 lands |
 | 008-doctor-ownership-split | 009-doctor-git | Phase 008's acceptance criteria are Met and the route validator passes across the four routed commands | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, and `bash .skilled/scripts/git-hooks/tests/gate-config.test.sh` passes once phase 009 lands |
 | 009-doctor-git | 010-doctor-router-gates | Phase 009's acceptance criteria are Met and `/doctor:git` passes the shared command validators | `bash .skilled/commands/doctor/scripts/route-validate.sh` exits 0, and `python3 -m pytest .skilled/skills/sk-doc/scripts/tests/test_extract_structure_regressions.py` passes once phase 010 lands |

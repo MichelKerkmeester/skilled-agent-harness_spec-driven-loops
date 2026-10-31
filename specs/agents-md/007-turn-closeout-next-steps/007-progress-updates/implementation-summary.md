@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps/007-progress-updates"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps/007-progress-updates"
     last_updated_at: "2026-09-11T18:51:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Recorded the AGENTS.md-row verdict and the drafted replacement bullet"
     next_safe_action: "Operator applies the drafted AGENTS.md bullet or overrides the verdict"
     blockers: []
     key_files:
-      - "specs/agents/009-turn-closeout-next-steps/007-progress-updates/research/research.md"
+      - "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/research/research.md"
       - "AGENTS.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

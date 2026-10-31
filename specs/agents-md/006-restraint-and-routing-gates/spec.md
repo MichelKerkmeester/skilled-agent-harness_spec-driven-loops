@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "agents/006-restraint-and-routing-gates"
+    packet_pointer: "agents-md/006-restraint-and-routing-gates"
     last_updated_at: "2026-08-29T13:43:03Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored and shipped the AGENTS.md restraint and routing edits"
@@ -92,7 +92,7 @@ Make the restraint that already exists fire before the first write, by adding an
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `AGENTS.md` | Modify | 6 added lines (§1, §2, §4 x3, §8), 3 tightened lines (§2 Output, §2 Skip, §4 repeat-attempt) |
-| `specs/agents/006-restraint-and-routing-gates/*` | Create | Level 2 packet docs + description.json + graph-metadata.json |
+| `specs/agents-md/006-restraint-and-routing-gates/*` | Create | Level 2 packet docs + description.json + graph-metadata.json |
 <!-- /ANCHOR:scope -->
 
 ---

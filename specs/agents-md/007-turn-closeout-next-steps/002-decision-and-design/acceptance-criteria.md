@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps/002-decision-and-design"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps/002-decision-and-design"
     last_updated_at: "2026-09-11T10:54:56Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

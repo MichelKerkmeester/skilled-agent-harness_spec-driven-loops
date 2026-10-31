@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/005-mcp-code-mode"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/005-mcp-code-mode"
     last_updated_at: "2026-09-25T15:48:56Z"
     last_updated_by: "generate-context"
     recent_action: "Committed, pushed and validated the mcp-code-mode rewrites"
     next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/mcp-code-mode.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/mcp-code-mode.txt"
       - ".skilled/skills/mcp-code-mode/changelog/v1.0.8.0.md"
     session_dedup:
       fingerprint: "sha256:459a8c2f255c07c2c631f5009024b588116ac8a4a9c62cf885006c5dee6ddf5c"

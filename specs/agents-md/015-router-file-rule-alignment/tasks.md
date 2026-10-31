@@ -50,7 +50,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T006 Run the repo-rule corpus checker (`.skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs`). Verify: it prints `RESULT: PASSED (11/11 checks)`.
-- [x] T007 Validate this packet (`specs/agents/020-router-file-rule-alignment`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
+- [x] T007 Validate this packet (`specs/agents-md/015-router-file-rule-alignment`). Verify: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

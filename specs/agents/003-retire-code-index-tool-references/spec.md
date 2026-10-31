@@ -10,14 +10,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/agents/011-retire-code-index-tool-references"
+    packet_pointer: "agents/003-retire-code-index-tool-references"
     last_updated_at: "2026-09-11T00:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "Site inventory complete; packet authored."
     next_safe_action: "Edit the canonical agents first, then regenerate every mirror."
     blockers: []
     key_files:
-      - "specs/agents/011-retire-code-index-tool-references/spec.md"
+      - "specs/agents/003-retire-code-index-tool-references/spec.md"
       - ".opencode/agents/review.md"
       - ".opencode/agents/deep-review.md"
       - ".opencode/skills/sk-code/sk-code-review/SKILL.md"

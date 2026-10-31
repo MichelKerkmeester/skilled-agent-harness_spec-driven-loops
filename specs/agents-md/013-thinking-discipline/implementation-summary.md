@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/017-thinking-discipline"
+    packet_pointer: "agents-md/013-thinking-discipline"
     last_updated_at: "2026-10-07T05:03:30Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped rule section 7, the AGENTS pointer and the Gate 3 trim"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-thinking-discipline |
+| **Spec Folder** | 013-thinking-discipline |
 | **Completed** | 2026-10-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -55,7 +55,7 @@ Six of the nine points were already law. The new residue now has a home: a settl
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `specs/agents/017-thinking-discipline/` | Created | Packet docs, research and reviews |
+| `specs/agents-md/013-thinking-discipline/` | Created | Packet docs, research and reviews |
 | `.skilled/repo-rules/uncertainty-and-honesty.md` | Modified | §7 SETTLED AND REOPENED, Fires-when bullet, trigger phrases, self-check item, version 1.0.1.4 |
 | `REPO RULES.md` | Modified | Router phrase for the new firing condition |
 | `AGENTS.md` | Modified | §3 pointer line; Gate 3 trimmed by 123 bytes net |

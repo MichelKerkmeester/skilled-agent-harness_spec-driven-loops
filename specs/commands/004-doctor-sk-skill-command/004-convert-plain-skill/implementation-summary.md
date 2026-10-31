@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/004-convert-plain-skill"
+    packet_pointer: "commands/004-doctor-sk-skill-command/004-convert-plain-skill"
     last_updated_at: "2026-10-30T10:45:00Z"
     last_updated_by: "code-agent-worker"
     recent_action: "Fixed the two reviews, added the approval flags and wired the integration rows"
@@ -126,7 +126,7 @@ The integration test runs apply against a copied fixture, then spawns `package_s
 | Staged tree still naming an old resource path | Exit 1, `RESOURCE_LINK_STALE`, and no staged copy is left |
 | Approved trim and approved tools on an older Skilled skill | Exit 0; each field change prints as its own plan line, the backup keeps the original text, and the undo `cp` restores it |
 | Temp-repo convert, end state | `package_skill.py --check --strict` PASS, `ci-skill-root-metadata.cjs --skill` exit 0, `sync-skills-hermes.cjs --check` PASS, `skill-graph-freshness.cjs --strict` exit 0, `.skilled/changelog/brindle-lantern` resolves to `../skills/brindle-lantern/changelog` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/067-doctor-sk-skill-command/004-convert-plain-skill --strict` | `RESULT: PASSED`; 0 errors, 0 warnings |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/004-doctor-sk-skill-command/004-convert-plain-skill --strict` | `RESULT: PASSED`; 0 errors, 0 warnings |
 <!-- /ANCHOR:verification -->
 
 ---

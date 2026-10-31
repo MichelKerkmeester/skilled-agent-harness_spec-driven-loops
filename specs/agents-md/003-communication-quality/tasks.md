@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/003-communication-quality"
+    packet_pointer: "agents-md/003-communication-quality"
     last_updated_at: "2026-08-07T08:44:03Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded task breakdown; all tasks complete"

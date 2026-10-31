@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-security-policy-alignment"
+    packet_pointer: "sk-doc/058-security-policy-alignment"
     last_updated_at: "2026-10-02T10:42:03Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Expanded SECURITY.md and validated it against the sk-doc README rule set"
@@ -85,7 +85,7 @@ Make `SECURITY.md` pass the sk-doc README standard and give reporters and users 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `SECURITY.md` | Modify | Restructure to the README rule set and expand with grounded content |
-| `specs/sk-doc/059-security-policy-alignment/` | Create | This packet |
+| `specs/sk-doc/058-security-policy-alignment/` | Create | This packet |
 | `specs/sk-doc/graph-metadata.json` | Modify | Track root lists the new packet, written by `create.sh` |
 <!-- /ANCHOR:scope -->
 
@@ -118,7 +118,7 @@ Make `SECURITY.md` pass the sk-doc README standard and give reporters and users 
 
 - **SC-001**: `validate_document.py SECURITY.md` exits 0, where it exited 1 before the change.
 - **SC-002**: DQI rises from 86 to at least 90, with 0 HVR hard blockers.
-- **SC-003**: `validate.sh specs/sk-doc/059-security-policy-alignment --strict` prints `RESULT: PASSED`.
+- **SC-003**: `validate.sh specs/sk-doc/058-security-policy-alignment --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

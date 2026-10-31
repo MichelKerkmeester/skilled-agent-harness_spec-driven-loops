@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine workflows run on every push with no path filter: eight on `main` or `skilled/`, and `message-contract.yml` on every branch",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-31T15:22:17.500Z",
+    "last_save_at": "2026-10-31T15:28:39.447Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2323458534a6106a081eccc8fa72fbc668ee200ed215aa7cc16aab7ba6ab29f7",
+    "source_fingerprint": "sha256:b397772526421297d9538ff7aea499455bab7f729225b3cb1ba7c11cfc2767d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9ace383beb13e278a2f55e34ed92c4f832109dfbf26e4b54fcaab618f1273e62",
-      "plan.md": "9e8e369c1c93b073613591963b6fcad913d10f46ade7f446c3848c7a2ddb0050",
-      "tasks.md": "34dfcfad179ba77a8404a9fa83147bad3f3842752762b05d1de3c52b497ae17b",
-      "decision-record.md": "4701431146908fed0b00061157ecdebcd630dd027f499b2c6b2dbfd96b97ed58",
+      "spec.md": "01ac2198ef5d76f4f5ecf349dc94a508c01e7c90a7980b0e975c91df24b7baa0",
+      "plan.md": "3ce0059d3d6d80d46ea9f384c16b53b883c9d674d5d999aec9e426380f98a92c",
+      "tasks.md": "8eeefcd32e10fd3dae53fde833057764eaf7655e0546bf1e60cc6764e3e23819",
+      "decision-record.md": "70ee3d821f4c57df50444400abac9ea075f9588095fddf2903b8f5dcd97402a5",
       "implementation-summary.md": "b80c04baa8fda4744ccc4edecf7b051f4d93e418c7ee5a648b58374d0e64fa91"
     },
     "last_active_at": null

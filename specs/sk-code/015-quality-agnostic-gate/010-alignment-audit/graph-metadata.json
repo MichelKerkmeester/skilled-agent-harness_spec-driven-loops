@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Nine phases changed hundreds of files across code, skills, playbooks, READMEs, workflows, commands and agents, and nobody had checked the whole set against the contracts that govern each file type",
     "created_at": "2026-10-26T19:15:18Z",
-    "last_save_at": "2026-10-31T14:04:36.037Z",
+    "last_save_at": "2026-10-31T15:29:48.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,10 +222,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1eb75c50db1d3c0753e238f3a6266903168d3d1f7b7c59fe03b76a867bb72387",
+    "source_fingerprint": "sha256:7d7e45dbe497c03422592ca19b1e5fdcdb9b8d9270d74f7b261b3c7dde14dc22",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbbe1e688b73f929e574a4db1a749548d7aef0c89d2fa51e657fb470ccfe685d",
+      "spec.md": "c331e8b38e6f68b38a36ea4897f89437d9c2ecfee20579c5873074cb97197125",
       "plan.md": "bb6a8c6dbf734dda27cba7c1ddad62a20708218e393aee194637517770f8ebce",
       "tasks.md": "f827be3ad3b93cf0660ec1ed19ed05648e1bfa6d957da4eb245b7b4e812301eb",
       "decision-record.md": "94fcbb5004e0e4bc9e1317338ace13816275951caac957b9577b254ab9de5f1e",

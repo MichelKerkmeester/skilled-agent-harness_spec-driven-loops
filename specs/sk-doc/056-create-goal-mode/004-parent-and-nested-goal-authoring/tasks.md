@@ -33,8 +33,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 [P0] Confirm phase 003 meets the parent-map incoming handoff and read its authoring rubric (specs/sk-doc/057-create-goal-mode/spec.md:144). Evidence: phase 003 closed with strict `RESULT: PASSED`; its standards and exemplars are loaded by `SKILL.md`.
-- [x] T002 [P0] Enumerate every direct child phase directory and reconcile the set with the parent spec Phase Documentation Map before authoring any binding rows (specs/sk-doc/057-create-goal-mode/spec.md:119-129; .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1064-1080). Evidence: this packet's phase map and disk agree on nine folders; the fixture's map and disk agree on three.
+- [x] T001 [P0] Confirm phase 003 meets the parent-map incoming handoff and read its authoring rubric (specs/sk-doc/056-create-goal-mode/spec.md:144). Evidence: phase 003 closed with strict `RESULT: PASSED`; its standards and exemplars are loaded by `SKILL.md`.
+- [x] T002 [P0] Enumerate every direct child phase directory and reconcile the set with the parent spec Phase Documentation Map before authoring any binding rows (specs/sk-doc/056-create-goal-mode/spec.md:119-129; .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1064-1080). Evidence: this packet's phase map and disk agree on nine folders; the fixture's map and disk agree on three.
 - [x] T003 [P1] Capture pre-phase copies of the existing mode SKILL.md and references/README.md so rollback restores only this phase’s edits. Evidence: deviation, no pre-phase copy was taken before the worker edited both files, and they are untracked. Rollback substitute: remove the lines this phase added, the `parent-and-nested-goals.md` references at `SKILL.md:52`, `SKILL.md:104` and `SKILL.md:151` and the index row at `references/README.md:26`.
 <!-- /ANCHOR:phase-1 -->
 
@@ -137,7 +137,7 @@ contextType: "general"
 - [x] CHK-FIX-003 [P0] Every operation has a named source document and goal output.
 - [x] CHK-FIX-004 [P0] A map-directory mismatch case is stated and fails closed.
 - [x] CHK-FIX-005 [P1] The operation matrix covers top-level, phase parent, child, retrofit, and phase added.
-- [x] CHK-FIX-006 [P1] The workflow keeps session binding and session objective state with the goal hooks (specs/sk-doc/057-create-goal-mode/goal.md:49-54).
+- [x] CHK-FIX-006 [P1] The workflow keeps session binding and session objective state with the goal hooks (specs/sk-doc/056-create-goal-mode/goal.md:49-54).
 - [x] CHK-FIX-007 [P1] Fixture evidence is stored only under this phase’s scratch directory.
 <!-- /ANCHOR:fix-completeness -->
 

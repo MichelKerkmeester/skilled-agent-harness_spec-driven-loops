@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape"
     last_updated_at: "2026-10-05T11:30:00Z"
     last_updated_by: "derived-sanitizer-instruction-shape"
     recent_action: "Narrowed the sanitizer filter, stamped all 14 skills and reran DOC-362 to PASS"

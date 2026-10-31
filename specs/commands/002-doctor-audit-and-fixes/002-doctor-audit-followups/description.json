@@ -13,8 +13,8 @@
   "specId": "002",
   "folderSlug": "doctor-audit-followups",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes"
+    "commands",
+    "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/002-doctor-helper"
+    packet_pointer: "agents-md/016-doctor-agents-md/002-doctor-helper"
     last_updated_at: "2026-10-30T14:05:00Z"
     last_updated_by: "code-agent"
     recent_action: "Met every criterion and recorded one command output per row"
@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `agents/021-doctor-agents-md/002-doctor-helper`
+**Packet:** `agents-md/016-doctor-agents-md/002-doctor-helper`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

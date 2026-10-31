@@ -9,8 +9,8 @@
   "specId": "017",
   "folderSlug": "doctor-playbook-git",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes",
+    "commands",
+    "002-doctor-audit-and-fixes",
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,

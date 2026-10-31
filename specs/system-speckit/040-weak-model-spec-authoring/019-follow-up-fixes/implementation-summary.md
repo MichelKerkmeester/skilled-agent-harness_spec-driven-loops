@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/019-follow-up-fixes"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/019-follow-up-fixes"
     last_updated_at: "2026-10-26T19:30:00Z"
     last_updated_by: "phase-doc-writer"
     recent_action: "Filled the phase docs for both fixes, the review and its remediation"

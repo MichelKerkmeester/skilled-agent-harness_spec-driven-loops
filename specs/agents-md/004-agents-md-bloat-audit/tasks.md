@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/004-agents-md-bloat-audit"
+    packet_pointer: "agents-md/004-agents-md-bloat-audit"
     last_updated_at: "2026-08-09T05:49:52Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Recorded audit tasks; all complete"
@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files:
       - "AGENTS.md"
-      - "specs/agents/004-agents-md-bloat-audit/research/research.md"
+      - "specs/agents-md/004-agents-md-bloat-audit/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "close-004-bloat-audit"
@@ -66,7 +66,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T004 Reconcile packet docs + strict validate [evidence: `validate.sh specs/agents/004-agents-md-bloat-audit --strict` clean; see implementation-summary]
+- [x] T004 Reconcile packet docs + strict validate [evidence: `validate.sh specs/agents-md/004-agents-md-bloat-audit --strict` clean; see implementation-summary]
 <!-- /ANCHOR:phase-3 -->
 
 ---

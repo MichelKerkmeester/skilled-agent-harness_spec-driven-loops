@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/012-agent-avoidance-anti-patterns"
+    packet_pointer: "agents-md/009-agent-avoidance-anti-patterns"
     last_updated_at: "2026-09-18T08:50:00Z"
     last_updated_by: "devin"
     recent_action: "All six criteria Met; packet closed with strict validation passed"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/012-agent-avoidance-anti-patterns
+**Packet:** agents-md/009-agent-avoidance-anti-patterns
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-18

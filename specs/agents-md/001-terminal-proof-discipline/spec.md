@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/001-terminal-proof-discipline"
+    packet_pointer: "agents-md/001-terminal-proof-discipline"
     last_updated_at: "2026-08-05T00:00:00Z"
     last_updated_by: "pi-terminal-engineer"
     recent_action: "Integrated AGENTS.md proof rules and validated the packet"
@@ -97,7 +97,7 @@ Integrate the terminal-proof mechanics into AGENTS.md's existing hard gates, evi
 | `AGENTS.md` | Modify | Distribute terminal-proof mechanics across existing framework authorities and remove the standalone protocol block |
 | `.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts` | Modify | Add TERMINAL_PROOF_DIRECTIVE and append it in the composition points |
 | `.opencode/plugins/mk-skill-advisor.js` | Modify | Mirror the directive in FALLBACK_DIRECTIVE |
-| `specs/agents/001-terminal-proof-discipline/` | Create | Level 2 packet docs |
+| `specs/agents-md/001-terminal-proof-discipline/` | Create | Level 2 packet docs |
 <!-- /ANCHOR:scope -->
 
 ---

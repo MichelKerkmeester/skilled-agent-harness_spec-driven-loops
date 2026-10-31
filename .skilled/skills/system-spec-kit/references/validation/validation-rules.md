@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.7.0
+version: 2.7.8.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -840,7 +840,7 @@ Cut in the order section 3 of `sk-create-goal`'s [budget-and-handoff.md](../../.
 | `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output  |
 | `SPECKIT_POST_VALIDATE` | unset | Set to `1` during scaffolding to run `validate.sh --quiet` after `create.sh` writes files |
 
-`validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks: on 2026-10-25, `validate.sh specs/agents/001-terminal-proof-discipline --strict --no-recursive` took 1.35 to 1.38 s across three runs on the local harness, whole process included.
+`validate.sh` delegates to the Node validation orchestrator by default. In a linked worktree whose `dist` directories are symlinks, run it with `NODE_OPTIONS=\"--preserve-symlinks --preserve-symlinks-main\"`; `NODE_PRESERVE_SYMLINKS=1` alone does not cover the main module and the orchestrator then exits 0 with no output. The strict path is designed for fast packet checks: on 2026-10-25, `validate.sh specs/agents-md/001-terminal-proof-discipline --strict --no-recursive` took 1.35 to 1.38 s across three runs on the local harness, whole process included.
 
 ### Draft Auto-Repair
 

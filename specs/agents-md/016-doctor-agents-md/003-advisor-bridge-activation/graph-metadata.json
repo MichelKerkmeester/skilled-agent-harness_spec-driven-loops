@@ -51,13 +51,16 @@
       ".skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md",
       ".hermes/skills/system-skill-advisor/SKILL.md",
       ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md",
+      "specs/agents-md/016-doctor-agents-md/spec.md",
+      "specs/agents-md/016-doctor-agents-md/graph-metadata.json",
+      "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/spec.md",
       ".skilled/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/spec.md",
         "source": "derived"
       },
       {
@@ -127,6 +130,12 @@
         "source": "derived"
       },
       {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents-md/016-doctor-agents-md/graph-metadata.json",
+        "source": "derived"
+      },
+      {
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".skilled/commands/doctor/_routes.yaml",
@@ -191,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deriving a bridge and activating it are two different acts",
     "created_at": "2026-10-30T17:18:46Z",
-    "last_save_at": "2026-10-31T15:21:45.137Z",
+    "last_save_at": "2026-10-31T15:23:36.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1761753e6d05eb80554fde6b63edf5d0853c30dad50aa6b1a62ba0345da2072b",
+    "source_fingerprint": "sha256:d75a97fbd8643212d92cbc7a8e68ca3c28c2044d49171a9c0d7d764cc8578273",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "143da5514d6e666c3d8f1079a670ae8ee1d27dfa3cf78af7b0fa18cc3fed2ede",
+      "spec.md": "c0951041ec4935b5ada579c50a9116dc461c3775bf551be543698322a8210f99",
       "plan.md": "8258a6ec54b977f8dbba8b402b404f6ee2dac1bff67d14a2ebc5951d891c47b5",
-      "tasks.md": "1c5ff0e23fde9daf6e8171b77951f32dda834a9358a700e69e74806d167973ee",
-      "implementation-summary.md": "24dceb773e1cdcaa25a58d2a0e7622be99502387bf825dbb5db24f88070ed8a2"
+      "tasks.md": "d7362240a84b03ce2b9f91c5f9b627a020e50c54708ef93b68e6480b915476b2",
+      "implementation-summary.md": "9c9916098a96ac43310aa5243e49cd24b5c013c089064f51e5bb85f632aaf7a2"
     },
     "last_active_at": null
   }

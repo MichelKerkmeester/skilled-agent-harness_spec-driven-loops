@@ -11,16 +11,16 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode"
+    packet_pointer: "sk-doc/056-create-goal-mode"
     last_updated_at: "2026-09-25T19:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Planned all nine phases; recursive strict validation passes"
     next_safe_action: "Plan phase 001: inventory the goal corpus, settle the mode contract"
     blockers: []
     key_files:
-      - "specs/sk-doc/057-create-goal-mode/goal.md"
-      - "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md"
-      - "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md"
+      - "specs/sk-doc/056-create-goal-mode/goal.md"
+      - "specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md"
+      - "specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
@@ -57,7 +57,7 @@ _memory:
 | **Created** | 2026-09-25 |
 | **Branch** | `worktrees/068-create-goal-mode` |
 | **Parent Spec** | None - this is a top-level phase parent |
-| **Parent Packet** | sk-doc/057-create-goal-mode |
+| **Parent Packet** | sk-doc/056-create-goal-mode |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | `sk-create-goal` ships as a routable sk-doc mode with a `/create:goal` command, a conformance check, a playbook and a changelog, and has authored one real packet goal end to end |

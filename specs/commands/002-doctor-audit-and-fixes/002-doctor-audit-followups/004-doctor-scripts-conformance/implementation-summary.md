@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance"
     last_updated_at: "2026-10-03T18:20:00Z"
     last_updated_by: "doctor-scripts-conformance"
     recent_action: "Verified every doctor script fix and wired the runner into CI"

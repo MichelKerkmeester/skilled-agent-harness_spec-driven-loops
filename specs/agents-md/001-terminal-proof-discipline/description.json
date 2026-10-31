@@ -20,7 +20,7 @@
   "specId": "001",
   "folderSlug": "terminal-proof-discipline",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

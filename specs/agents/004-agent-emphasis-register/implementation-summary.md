@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/014-agent-emphasis-register"
+    packet_pointer: "agents/004-agent-emphasis-register"
     last_updated_at: "2026-09-24T13:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Planned the packet"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-agent-emphasis-register |
+| **Spec Folder** | 004-agent-emphasis-register |
 | **Completed** | Not started |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

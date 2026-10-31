@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/006-convert-plumbing"
+    packet_pointer: "commands/004-doctor-sk-skill-command/006-convert-plumbing"
     last_updated_at: "2026-10-30T12:20:00Z"
     last_updated_by: "implementer"
     recent_action: "Re-verified every criterion against the engine's current interface"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/067-doctor-sk-skill-command/006-convert-plumbing
+**Packet:** commands/004-doctor-sk-skill-command/006-convert-plumbing
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

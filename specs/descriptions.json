@@ -3,7 +3,7 @@
   "generated": "2026-09-20T14:45:46Z",
   "folders": [
     {
-      "specFolder": "agents/001-terminal-proof-discipline",
+      "specFolder": "agents-md/001-terminal-proof-discipline",
       "description": "A terminal-engineer benchmark prompt encodes a verification protocol that AGENTS.md did not express: encode every requirement as an objective",
       "keywords": [
         "terminal-engineer",
@@ -22,7 +22,7 @@
       "lastUpdated": "2026-08-15T14:40:54.861Z"
     },
     {
-      "specFolder": "agents/002-runtime-surface-coverage",
+      "specFolder": "agents-md/002-runtime-surface-coverage",
       "description": "The root framework doc (`AGENTS.md`) and its mirrors still enumerate three supported runtimes \u2014 Claude Code, Codex CLI, OpenCode \u2014 while the repo",
       "keywords": [
         "root",
@@ -46,7 +46,7 @@
       "lastUpdated": "2026-08-15T14:40:54.863Z"
     },
     {
-      "specFolder": "agents/003-communication-quality",
+      "specFolder": "agents-md/003-communication-quality",
       "description": "Communication guidance in the root `AGENTS.md` is scattered and compressed across \u00a71 (Two registers, Communication, Documentation & Honesty), \u00a74, and",
       "keywords": [
         "communication",
@@ -64,7 +64,7 @@
       "lastUpdated": "2026-08-15T14:40:54.868Z"
     },
     {
-      "specFolder": "agents/004-agents-md-bloat-audit",
+      "specFolder": "agents-md/004-agents-md-bloat-audit",
       "description": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2\u20133 places), distilled duplication of",
       "keywords": [
         "root",
@@ -84,7 +84,7 @@
       "lastUpdated": "2026-08-15T14:40:54.879Z"
     },
     {
-      "specFolder": "agents/005-git-workspace-repo-agnostic",
+      "specFolder": "agents-md/005-git-workspace-repo-agnostic",
       "description": "`AGENTS.md` (and its `CLAUDE.md` symlink) is a portable framework doc, yet its Git Workspace Safety rows hardcode this repo's sk-git implementation:",
       "keywords": [
         "agents",
@@ -105,7 +105,7 @@
       "lastUpdated": "2026-08-16T09:05:15.011Z"
     },
     {
-      "specFolder": "agents/006-restraint-and-routing-gates",
+      "specFolder": "agents-md/006-restraint-and-routing-gates",
       "description": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
       "keywords": [
         "every",
@@ -121,7 +121,7 @@
       "lastUpdated": "2026-08-29T14:08:52.376Z"
     },
     {
-      "specFolder": "agents/007-orchestrator-inline-authority",
+      "specFolder": "agents/001-orchestrator-inline-authority",
       "description": "The orchestrator held no write capability in any of its four runtime dialects, and its prose forbade direct execution outright",
       "keywords": [
         "orchestrator",
@@ -140,7 +140,7 @@
       "lastUpdated": "2026-08-31T11:37:28.956Z"
     },
     {
-      "specFolder": "agents/008-orchestrate-external-cli-delegation",
+      "specFolder": "agents/002-orchestrate-external-cli-delegation",
       "description": "The `orchestrate` agent carries no documented policy for the six external CLI executor modes under",
       "keywords": [
         "orchestrate",
@@ -26497,7 +26497,7 @@
       "lastUpdated": "2026-09-05T14:42:20.141Z"
     },
     {
-      "specFolder": "sk-doc/052-command-contract-reconciliation",
+      "specFolder": "commands/001-command-contract-reconciliation",
       "description": "`sk-create-command` teaches people how to write OpenCode commands, and its `command-contract.json` calls itself the single machine-readable source of",
       "keywords": [
         "sk-create-command",

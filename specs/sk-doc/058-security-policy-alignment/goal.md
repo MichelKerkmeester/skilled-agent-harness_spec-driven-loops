@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/059-security-policy-alignment"
+    packet_pointer: "sk-doc/058-security-policy-alignment"
     last_updated_at: "2026-10-02T10:42:03Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"
@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py SECURITY.md` reports 0 hard blockers, and SECURITY.md holds no em dash or semicolon
 - [x] `git diff b0f89ee5f0 -- SECURITY.md` removes only the four renumbered H2 headings and the first reporter bullet
 - [x] `grep -Ein "bounty|CVE-|business days|security@" SECURITY.md` prints nothing
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/059-security-policy-alignment --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/058-security-policy-alignment --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

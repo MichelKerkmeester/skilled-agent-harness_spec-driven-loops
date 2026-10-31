@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env"
     last_updated_at: "2026-10-02T20:17:16Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase: every criterion Met with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

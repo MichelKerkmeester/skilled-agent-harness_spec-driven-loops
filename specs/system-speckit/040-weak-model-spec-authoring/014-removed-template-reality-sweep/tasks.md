@@ -26,7 +26,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`S` is `.skilled/skills/system-spec-kit`. `P` is this phase folder, `specs/system-speckit/041-weak-model-spec-authoring/014-removed-template-reality-sweep`.
+`S` is `.skilled/skills/system-spec-kit`. `P` is this phase folder, `specs/system-speckit/040-weak-model-spec-authoring/014-removed-template-reality-sweep`.
 <!-- /ANCHOR:notation -->
 
 ---

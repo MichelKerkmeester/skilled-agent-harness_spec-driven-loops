@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Phases 1 to 7 rewrote 548 catalog docs, 217 changelog entries and 97 other docs with one-shot scripts, renamed three scripts and bumped dozens of versions",
     "created_at": "2026-10-10T21:16:50Z",
-    "last_save_at": "2026-10-31T15:22:09.516Z",
+    "last_save_at": "2026-10-31T15:24:11.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01c26b86115783d6cd3c4bba22cfd38e425b9b4dd0c992c2e8c441e4a1aa360f",
+    "source_fingerprint": "sha256:4ef2e94b002345f64d731fa8987a4133d634a2e58a860098cf4390c2db3aff9d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "455c8900ec4cee4ccaa0afa3c6a1c4da3d6fdc0727373c5c81bd8d478ea99f1c",
       "plan.md": "af357e4092048b1cd57113d8cad7eeb37e32e04e665602d6c20685721c285d5a",
       "tasks.md": "c10ba23f92b048139a5dfe24d23b9eebdc728cbaad7cc3ff07023919ffb6a240",
-      "implementation-summary.md": "c4994f447aed608d3687e159707ecfe68dc8c842d33a9b5aca82b9c96b04a756"
+      "implementation-summary.md": "6489ce39dbdb822ae77e6e8aa6b320ca0c177be26653126d7ec2e089d3a050e7"
     },
     "last_active_at": null
   }

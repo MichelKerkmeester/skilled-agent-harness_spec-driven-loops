@@ -31,7 +31,7 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 
 Line numbers are the values on disk when this plan was written. Read the file and locate the quoted anchor before editing; a moved line is not a changed edit. When the quoted anchor is absent, stop rather than editing a nearby line.
 
-**No operator decision gates this phase.** R22 and R23 change no workflow and no repository setting. D1 (the rebuild-skip form) is read from `specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md`; D2 (main-branch cancellation) is an operator decision in the parent spec, recorded as `pr-only` on 2026-10-23; T002 writes that recorded value.
+**No operator decision gates this phase.** R22 and R23 change no workflow and no repository setting. D1 (the rebuild-skip form) is read from `specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md`; D2 (main-branch cancellation) is an operator decision in the parent spec, recorded as `pr-only` on 2026-10-23; T002 writes that recorded value.
 
 **Comment hygiene.** No task adds an R-id, a D-id or a phase number to a code comment, a JSON description, a template comment or a test name. Spec documents may cite them; the packet's code and JSON may not.
 
@@ -45,25 +45,25 @@ Line numbers are the values on disk when this plan was written. Read the file an
 
 ### T001 [x] Record the pre-phase gate baseline (AC-007)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-baseline.md` (new file). Anchor: none; the file does not exist yet.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-baseline.md` (new file). Anchor: none; the file does not exist yet.
 
 Change: create the `scratch/` directory, run the five baseline commands into `scratch/`, then write `phase-baseline.md` with one `## ` section per command holding that command's last line and exit status.
 
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch
-node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt
-bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt
-node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt
-node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt
-node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt
-grep -c '^exit=' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt
+mkdir -p specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt
+bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt
+node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt
+node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-code > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt
+node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt
+grep -c '^exit=' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-before.txt specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-before.txt specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/compiled-route-before.txt specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/leaf-manifest-before.txt specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/derived-before.txt
 ```
 
 Expected: `1` for each of the five files. The baseline values on this commit are: parent-skill `exit=1` with the single `FAIL: 12-lib` line naming `@spec-kit/shared/frontmatter/parse-frontmatter.js`; drift guards `exit=0` with `run-all-drift-guards: all 4 guards PASSED, 10 non-blocking warning(s)`; compiled-route `exit=0` with `pass 6` and `fail 0`; leaf manifest `exit=0` with `leaf-manifest.json OK`; derived freshness `exit=0` with `checked=14 fresh=14 stale=0 errored=0`. Copy those five lines into `phase-baseline.md` under `## Parent-skill check`, `## Drift guards`, `## Compiled-route suite`, `## Leaf manifest` and `## Derived freshness`.
 
-Rollback: `rm -r specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch`.
+Rollback: `rm -r specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch`.
 
 Stop and escalate if: a baseline exit differs from the values above, or the parent-skill failure is on a leg other than `12-lib`.
 
@@ -74,7 +74,7 @@ Drift: the parent-skill baseline is `exit=0` with no `12-lib` failure, because t
 
 ### T002 [x] Record the pattern inputs and the two recorded defaults (AC-002, AC-011)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md` (new file). Anchor: none.
 
 Change: write five lines under the heading `## Pattern inputs`: the observed values of the three commands below, then `d1: A` and `d2: pr-only`.
 
@@ -83,13 +83,13 @@ Check:
 ```bash
 test -f .github/actions/setup/action.yml && echo 'composite_action: present' || echo 'composite_action: absent'
 grep -c 'github/actions' .github/scripts/check-gate-inputs.sh
-grep -n 'Option A' specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md
-grep -c '^composite_action: absent$' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md
+grep -n 'Option A' specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/plan.md
+grep -c '^composite_action: absent$' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md
 ```
 
 Expected: `composite_action: absent`; `0`; one `Option A` line from 002's notes; `1`. Write `d1: A` because 002's note freezes Option A (the `[skip ci]` token) as its default. Write `d2: pr-only` because D2's recorded answer on 2026-10-23 is `pr-only`, so the template records `cancel-in-progress: ${{ github.event_name == 'pull_request' }}`. When `.github/actions/setup/action.yml` is present and the `github/actions` count is above 0, write `composite_action: present` instead and T014 writes the landed status.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/pattern-inputs.md`.
 
 Stop and escalate if: 002's plan has no `### Implementation Notes` section, or its note freezes neither Option A nor Option B.
 
@@ -100,20 +100,20 @@ Drift: the composite action is present and the gate names `github/actions` twice
 
 ### T003 [x] Record the pre-phase registration (AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json` (new file). Anchor: none.
 
 Change: write the five arrays and the canary count to one JSON object with the command below.
 
 Check:
 
 ```bash
-node -e "const fs=require('fs'); const r=require('./.skilled/skills/sk-code/mode-registry.json'); const h=require('./.skilled/skills/sk-code/hub-router.json'); const d=require('./.skilled/skills/sk-code/description.json'); const c=require('./.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json'); fs.writeFileSync('specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json', JSON.stringify({version:r.version,modes:r.modes.map(m=>m.workflowMode),surfaces:r.extensions['surface-axis'].surfaces,tieBreak:h.routerPolicy.tieBreak,routerSignals:Object.keys(h.routerSignals),vocabularyClasses:Object.keys(h.vocabularyClasses),keywords:d.keywords,canaryCases:c.cases.length},null,2)+'\n')"
-node -e "const b=require('./specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json'); console.log(b.modes.length,b.surfaces.length,b.routerSignals.length,b.canaryCases)"
+node -e "const fs=require('fs'); const r=require('./.skilled/skills/sk-code/mode-registry.json'); const h=require('./.skilled/skills/sk-code/hub-router.json'); const d=require('./.skilled/skills/sk-code/description.json'); const c=require('./.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json'); fs.writeFileSync('specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json', JSON.stringify({version:r.version,modes:r.modes.map(m=>m.workflowMode),surfaces:r.extensions['surface-axis'].surfaces,tieBreak:h.routerPolicy.tieBreak,routerSignals:Object.keys(h.routerSignals),vocabularyClasses:Object.keys(h.vocabularyClasses),keywords:d.keywords,canaryCases:c.cases.length},null,2)+'\n')"
+node -e "const b=require('./specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json'); console.log(b.modes.length,b.surfaces.length,b.routerSignals.length,b.canaryCases)"
 ```
 
 Expected: `5 3 5 18`. When `specs/sk-code/013-private-surface-skills/002-hub-surface-removal` has already landed, expect `3 1 3 18` instead; record whichever the command prints.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json`.
 
 Stop and escalate if: the printed count is neither `5 3 5 18` nor `3 1 3 18`.
 
@@ -124,7 +124,7 @@ Drift: the plan expected `5 3 5 18` or `3 1 3 18`. The surface removal landed, s
 
 ### T004 [x] Record the ordering state against the sibling removal (AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md` (new file). Anchor: none.
 
 Change: write one `ordering-state:` line plus the git log of the registry file.
 
@@ -134,12 +134,12 @@ Check:
 test -d .skilled/skills/sk-code/sk-code-webflow && echo 'webflow: present' || echo 'webflow: absent'
 test -d .skilled/skills/sk-code/sk-code-obsidian && echo 'obsidian: present' || echo 'obsidian: absent'
 git log --oneline -5 -- .skilled/skills/sk-code/mode-registry.json
-grep -c '^ordering-state: ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md
+grep -c '^ordering-state: ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md
 ```
 
 Expected: `webflow: present`, `obsidian: present`, one `ordering-state: pre-013/002` line, and `1`. Write `ordering-state: post-013/002` when both folders are absent and `ordering-state: mixed` when only one is.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/ordering-state.md`.
 
 Stop and escalate if: the state is `mixed`, because neither registration order is safe against a half-removed hub.
 
@@ -149,7 +149,7 @@ Done 2026-10-24: `webflow: absent`, `obsidian: absent`, so `scratch/ordering-sta
 
 ### T005 [x] Record the ten rule anchors (AC-002)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md` (new file). Anchor: none.
 
 Change: write ten `ANCHOR <n> <what>` headings, each followed by the quoted line and its `file:line`, from the commands below.
 
@@ -166,12 +166,12 @@ sed -n '73p' .github/workflows/README.md
 grep -c 'timeout-minutes' .github/workflows/*.yml | grep -v ':0' | wc -l
 grep -L '^permissions:' .github/workflows/*.yml | wc -l
 grep -l '^concurrency:' .github/workflows/*.yml | wc -l
-grep -c '^ANCHOR ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md
+grep -c '^ANCHOR ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md
 ```
 
 Expected: `function twin` at `.github/scripts/check-gate-inputs.sh:116`; `twin-one` at `:339`; the repo-rules comment at `.github/workflows/repo-rules-corpus.yml:9`; the push trigger at `.github/workflows/trigger-index-rebuild.yml:6-9`; the four generated paths at `:78-84`; the message-contract comment at `:2-7` and `branches: ['**']` at `:9`; the README row at `.github/workflows/README.md:73`; `6` workflows with a timeout; `12` without `permissions:`; `1` with `concurrency:`; and `10` `ANCHOR ` lines.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/source-anchors.md`.
 
 Stop and escalate if: the timeout count is not `6`, the missing-permissions count is not `12`, or the concurrency count is not `1`.
 
@@ -182,7 +182,7 @@ Drift: `concurrency:` is on 31 of 33 workflows, not 1, because the earlier phase
 
 ### T006 [x] Record the consumer inventory (AC-003, AC-008)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md` (new file). Anchor: none.
 
 Change: write one row per file that names a surface or counts surfaces, with the line number and the quoted line, from the command below.
 
@@ -190,12 +190,12 @@ Check:
 
 ```bash
 rg -n "sk-code-(webflow|skilled|obsidian)|three surfaces|three read-only|two optional examples|surfaceBundle|tieBreak" .skilled/skills/sk-code --glob '!**/changelog/**' --glob '!**/benchmark/**' --glob '!**/manual-testing-playbook/**' --glob '!**/references/**' --glob '!**/assets/**' | cut -d: -f1 | sort -u
-grep -c '^| `' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md
+grep -c '^| `' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md
 ```
 
 Expected: eleven files, and `11` rows. The files are `.skilled/skills/sk-code/SKILL.md`, `README.md`, `shared/README.md`, `shared/references/phase-detection.md`, `feature-catalog/feature-catalog.md`, `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, `mode-registry.json`, `hub-router.json`, `description.json`, `graph-metadata.json` and `sk-code-skilled/assets/scripts/verify-router-sync.cjs`. Record each file's lines and note beside `graph-metadata.json` that only `derived.causal_summary` is hand-owned.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/consumer-inventory.md`.
 
 Stop and escalate if: the file count is not eleven, or a listed file is outside `.skilled/skills/sk-code`.
 
@@ -1615,16 +1615,16 @@ Drift: the count is 777 and not 787: the only added directory is `.skilled/skill
 
 ### T060 [x] Run the hub's parent-skill check (AC-007)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md` (new file). Anchor: none.
 
 Change: run the check into `scratch/parent-skill-after.txt`, then write the `## Parent-skill check` section holding the command, the exit status and the seven PASS lines.
 
 Check:
 
 ```bash
-node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
-grep -cE '^PASS: (3g|5b|5k-alias|5k-packet|5k-canary|5l|13b-version):' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
-grep -c '^FAIL: ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
+grep -cE '^PASS: (3g|5b|5k-alias|5k-packet|5k-canary|5l|13b-version):' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
+grep -c '^FAIL: ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/parent-skill-after.txt
 ```
 
 Expected: `7` and `1`. The single FAIL is `12-lib`, the pre-existing unprovisioned-runtime failure T001 recorded. When the worktree has been provisioned, expect `0` FAIL lines and `exit=0`.
@@ -1640,16 +1640,16 @@ Drift: there is no `12-lib` failure, so the expected `1` FAIL is `0`.
 
 ### T061 [x] Run the router drift guards (AC-007)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Parent-skill check` section T060 wrote.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Parent-skill check` section T060 wrote.
 
 Change: append a `## Drift guards` section with the command, the exit status and the four `PASS:` lines.
 
 Check:
 
 ```bash
-bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
-grep -c '^PASS: ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
-grep -c '^exit=0$' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
+bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
+grep -c '^PASS: ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
+grep -c '^exit=0$' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/drift-guards-after.txt
 ```
 
 Expected: `4` and `1`.
@@ -1665,16 +1665,16 @@ Amended 2026-10-24 at closure: these four guards are not the whole local gate. T
 
 ### T062 [x] Run the compiled-route suites and the router union (AC-005, AC-007)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Drift guards` section T061 wrote.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Drift guards` section T061 wrote.
 
 Change: append a `## Suites` section with the three commands, their exit statuses and the router-sync summary line.
 
 Check:
 
 ```bash
-node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs .skilled/bin/tests/compiled-route-manifest.test.cjs .skilled/bin/tests/compiled-route-front-door.test.cjs > specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt
+node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs .skilled/bin/tests/compiled-route-manifest.test.cjs .skilled/bin/tests/compiled-route-front-door.test.cjs > specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt 2>&1; echo "exit=$?" >> specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt
 node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 4
-grep -c '^exit=0$' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt
+grep -c '^exit=0$' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/suites-after.txt
 ```
 
 Expected: `router-sync: 1/1 checks passed` for leg 4, and `1` for the suite exit.
@@ -1691,7 +1691,7 @@ Amended 2026-10-24: the gold corpus failure `85 !== 82` at `compiled-route-admis
 
 ### T063 [x] Prove the diff is scoped (AC-006, AC-010)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Suites` section T062 wrote.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Suites` section T062 wrote.
 
 Change: append a `## Scope` section with the three outputs, and record the ephemeral-id search result.
 
@@ -1700,7 +1700,7 @@ Check:
 ```bash
 git diff --cached --name-only -- .github/workflows .github/scripts .github/actions
 git diff --cached -U0 | grep -E '^\+' | grep -E -e '\bR2[2-3]\b' -e '\bD[0-9]+\b' -e '[Pp]hase 0[0-9]' -e '053-ci-workflow-efficiency'
-git status --porcelain | grep -v '^.. specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/' | grep -c '^.. \.github/' || true
+git status --porcelain | grep -v '^.. specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/' | grep -c '^.. \.github/' || true
 ```
 
 Expected: no output from the first two commands, and `0` from the third.
@@ -1716,15 +1716,15 @@ Drift: the proof reads the working tree because the index is the coordinator's. 
 
 ### T064 [x] Prove the registration survived (AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json` (new file). Anchor: none.
 
 Change: run T003's snapshot command against the same fields, writing `registration-after.json`, then append a `## Registration after` block to `phase-result.md` with the comparison output.
 
 Check:
 
 ```bash
-node -e "const fs=require('fs'); const r=require('./.skilled/skills/sk-code/mode-registry.json'); const h=require('./.skilled/skills/sk-code/hub-router.json'); const d=require('./.skilled/skills/sk-code/description.json'); const c=require('./.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json'); fs.writeFileSync('specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json', JSON.stringify({version:r.version,modes:r.modes.map(m=>m.workflowMode),surfaces:r.extensions['surface-axis'].surfaces,tieBreak:h.routerPolicy.tieBreak,routerSignals:Object.keys(h.routerSignals),vocabularyClasses:Object.keys(h.vocabularyClasses),keywords:d.keywords,canaryCases:c.cases.length},null,2)+'\n')"
-node -e "const b=require('./specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json'); const a=require('./specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json'); console.log(b.modes.every(x=>a.modes.includes(x)), b.surfaces.every(x=>a.surfaces.includes(x)), a.modes.includes('sk-code-ci'), a.surfaces.includes('sk-code-ci'), a.tieBreak.includes('sk-code-ci'), a.routerSignals.includes('sk-code-ci'), a.keywords.includes('sk-code-ci'))"
+node -e "const fs=require('fs'); const r=require('./.skilled/skills/sk-code/mode-registry.json'); const h=require('./.skilled/skills/sk-code/hub-router.json'); const d=require('./.skilled/skills/sk-code/description.json'); const c=require('./.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json'); fs.writeFileSync('specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json', JSON.stringify({version:r.version,modes:r.modes.map(m=>m.workflowMode),surfaces:r.extensions['surface-axis'].surfaces,tieBreak:h.routerPolicy.tieBreak,routerSignals:Object.keys(h.routerSignals),vocabularyClasses:Object.keys(h.vocabularyClasses),keywords:d.keywords,canaryCases:c.cases.length},null,2)+'\n')"
+node -e "const b=require('./specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-before.json'); const a=require('./specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/registration-after.json'); console.log(b.modes.every(x=>a.modes.includes(x)), b.surfaces.every(x=>a.surfaces.includes(x)), a.modes.includes('sk-code-ci'), a.surfaces.includes('sk-code-ci'), a.tieBreak.includes('sk-code-ci'), a.routerSignals.includes('sk-code-ci'), a.keywords.includes('sk-code-ci'))"
 ```
 
 Expected: `true true true true true true true`.
@@ -1740,16 +1740,16 @@ Re-run 2026-10-24 at closure on `c903c0d103`: the snapshot command exited `0` an
 
 ### T065 [x] Close the acceptance rows and validate the packet (AC-007)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md:96`, anchor: the `## 3. CLOSURE STATEMENT` heading.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md:96`, anchor: the `## 3. CLOSURE STATEMENT` heading.
 
 Change: copy the observed output of T001 and T060 to T064 into each row's Verification cell, set each Status to `Met`, and rewrite the closure statement to name the observed state. Then repair the generated metadata and validate.
 
 Check:
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface --apply
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PWD/specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface" --strict --no-recursive | tail -1
-grep -c '| Unmet |' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md
+node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface --apply
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$PWD/specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface" --strict --no-recursive | tail -1
+grep -c '| Unmet |' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/acceptance-criteria.md
 ```
 
 Expected: `RESULT: PASSED` and `0`.
@@ -1791,13 +1791,13 @@ The packet carries the rule data, the routing keywords, the hub registration and
 the message-contract exception, and the generated artifacts are rebuilt from
 those sources.
 
-Spec: system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface
+Spec: system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-ci-surface.txt
 git diff --cached --name-only | wc -l
 git commit -F /tmp/commit-msg-ci-surface.txt
 git log -1 --format=%B | grep -cE '\bR2[2-3]\b|\bD[0-9]+\b|[Pp]hase 0[0-9]'
-git log -1 --format=%B | grep -c '^Spec: system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface$'
+git log -1 --format=%B | grep -c '^Spec: system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface$'
 ```
 
 Expected: `validate-message.mjs` exits `0`; at least `30` staged paths; `0`; and `1`.
@@ -1813,15 +1813,15 @@ Drift: the orchestrator made the commit with its own message, not the text above
 
 ### T067 [x] Record the phase result and the follow-up (AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Registration after` section T064 wrote.
+File: `specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md`, anchor: the `## Registration after` section T064 wrote.
 
 Change: append a `## Phase result` section naming the commit SHA, the seven gate outcomes and the follow-up sentence.
 
 Check:
 
 ```bash
-grep -c '^## ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md
-grep -c '^follow-up: ' specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md
+grep -c '^## ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md
+grep -c '^follow-up: ' specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch/phase-result.md
 ```
 
 Expected: at least `6` and `1`. The follow-up line reads `follow-up: the hub-surface removal landed in e00fef3e76 and the registration snapshot is re-checked at closure, and keep sk-code-ci in mode-registry.json, hub-router.json, ROUTER.md and SKILL.md`.
@@ -1851,7 +1851,7 @@ The phase commit carries the packet and its registration. The closure commit
 records the acceptance rows, the post-phase registration snapshot and each
 gate's observed output, so the tree ends clean.
 
-Spec: system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface
+Spec: system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-msg-ci-surface-closure.txt
 git diff --cached --name-only | wc -l

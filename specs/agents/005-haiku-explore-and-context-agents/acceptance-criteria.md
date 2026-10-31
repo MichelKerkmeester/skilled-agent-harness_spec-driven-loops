@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/019-haiku-explore-and-context-agents"
+    packet_pointer: "agents/005-haiku-explore-and-context-agents"
     last_updated_at: "2026-10-08T09:45:00Z"
     last_updated_by: "claude"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/019-haiku-explore-and-context-agents
+**Packet:** agents/005-haiku-explore-and-context-agents
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-08

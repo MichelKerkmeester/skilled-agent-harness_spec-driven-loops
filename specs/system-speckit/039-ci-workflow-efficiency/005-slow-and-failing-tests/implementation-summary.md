@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
     last_updated_at: "2026-10-25T07:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed AC-003 by waiver and AC-006 by a filed row, with ten Met and one Waived"

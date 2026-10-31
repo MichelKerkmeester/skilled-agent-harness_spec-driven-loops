@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The shared tier loads on every sk-code route, yet eight of its docs point into `references/webflow/`, `references/opencode/`, `references/motiondev/`, `assets/webflow/` and `assets/universal/` families that no longer exist, and its links to its own files use three forms",
     "created_at": "2026-10-10T10:07:17Z",
-    "last_save_at": "2026-10-31T14:04:32.308Z",
+    "last_save_at": "2026-10-31T15:29:46.541Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:956963321b644e8ed553ceb8503b8740dd84a9b9c5e8683c7847163d4a021aaf",
+    "source_fingerprint": "sha256:c4e6ccc3ce008b38f712da1f0ce7096defeb85caf8c4489db3eb918ce1693dd0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "32b7b3c6db372206773ee10d76d6f9da4d7a39f0433402a190ce5822af3f87f5",

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/015-template-example-neutralization"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/015-template-example-neutralization"
     last_updated_at: "2026-10-26T18:30:00Z"
     last_updated_by: "closeout"
     recent_action: "Marked AC-003 Met on the review fix check's VERDICT: PASS; every row is Met"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/053-cli-hub-doc-version-reconciliation"
+    packet_pointer: "sk-doc/052-cli-hub-doc-version-reconciliation"
     last_updated_at: "2026-09-09T06:42:07Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Reconciled 355 doc versions in the cli hub"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 053-cli-hub-doc-version-reconciliation |
+| **Spec Folder** | 052-cli-hub-doc-version-reconciliation |
 | **Completed** | 2026-09-09 |
 | **Level** | 2 |
 | **Status** | Complete |

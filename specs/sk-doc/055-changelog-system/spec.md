@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system"
+    packet_pointer: "sk-doc/055-changelog-system"
     last_updated_at: "2026-10-31T13:30:53Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -92,10 +92,10 @@ Each row identifies one child phase and its purpose.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style/ | Phase | 001-sk-create-changelog-v4-style | Defines the narrative template and validation rules. |
-| specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/ | Phase | 002-skill-changelog-retrofit | Updates skill release histories to current changelog formats. |
-| specs/sk-doc/056-changelog-system/003-skilled-release-changelog/ | Phase | 003-skilled-release-changelog | Establishes a Skilled release line and searchable changelog metadata. |
-| specs/sk-doc/056-changelog-system/004-changelog-section-spacing/ | Phase | 004-changelog-section-spacing | Sets section spacing for entries and release notes. |
+| specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style/ | Phase | 001-sk-create-changelog-v4-style | Defines the narrative template and validation rules. |
+| specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/ | Phase | 002-skill-changelog-retrofit | Updates skill release histories to current changelog formats. |
+| specs/sk-doc/055-changelog-system/003-skilled-release-changelog/ | Phase | 003-skilled-release-changelog | Establishes a Skilled release line and searchable changelog metadata. |
+| specs/sk-doc/055-changelog-system/004-changelog-section-spacing/ | Phase | 004-changelog-section-spacing | Sets section spacing for entries and release notes. |
 <!-- /ANCHOR:scope -->
 
 ---

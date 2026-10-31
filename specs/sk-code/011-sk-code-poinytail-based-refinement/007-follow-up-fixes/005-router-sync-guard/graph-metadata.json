@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane",
     "created_at": "2026-10-10T05:26:28Z",
-    "last_save_at": "2026-10-31T14:04:32.094Z",
+    "last_save_at": "2026-10-31T15:29:46.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a0cdbb03ac4774fa88ffc0cd9bdfcbe9f6820b504103f23d927f3db6cc2f5b0",
+    "source_fingerprint": "sha256:550356461cc86b186b2cfe517cbbaef98eac2115acdb5b71de77d85691beb401",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d194ed2e1de7773ed5b42dd9efac4f1a64360357a0d9c723babe9eb8ab8a1880",

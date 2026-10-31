@@ -88,7 +88,7 @@ The diff of orchestrator.ts and validation-rules.md holds only hunks from this p
 | Census before the flip (`gates/census3`, working tree) | 4,642 | 4,613 | 0 | 29 | 0 |
 | Step B (`scratch/anchors-baseline-step-b.md`, working tree) | 4,642 | 4,613 | 0 | 29 | 0 |
 
-Step B changed one packet's status, from error to pass: `z_archive/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/merged-030-architecture-boundary-remediation`, a working-tree edit. The step B report measures the working tree, not HEAD, so the validator change is not isolated from the 2,083 modified spec files. Inferred, not measured: committed nested files would move from pass to error under this validator. One probe on committed `specs/agents/007-orchestrator-inline-authority/spec.md` shows three nesting errors, which supports that for one file.
+Step B changed one packet's status, from error to pass: `z_archive/022-hybrid-rag-fusion/005-architecture-audit/scratch/z-archive-prior-audit/merged-030-architecture-boundary-remediation`, a working-tree edit. The step B report measures the working tree, not HEAD, so the validator change is not isolated from the 2,083 modified spec files. Inferred, not measured: committed nested files would move from pass to error under this validator. One probe on committed `specs/agents/001-orchestrator-inline-authority/spec.md` shows three nesting errors, which supports that for one file.
 
 <!-- /ANCHOR:corpus-impact -->
 

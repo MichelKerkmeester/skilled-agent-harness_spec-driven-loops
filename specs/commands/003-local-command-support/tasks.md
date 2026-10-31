@@ -62,7 +62,7 @@ Commands run from the repository root, and every git call passes `-c core.fsmoni
 - [x] T012 Run every mirror check with the local command present (`$C`, `.skilled/commands/doctor/scripts`). Verify: all twelve exit 0, including `PASS: 196 mirrors across 8 trees` and `PASS: 39 prompts are in sync` for Codex, Pi and Hermes.
 - [x] T013 Probe the ignore rules (`.gitignore`). Verify: `git check-ignore -v --no-index` on eight `local-probe` paths exits 0, and on `.skilled/commands/doctor/local-notes.md .skilled/commands/localize.md .codex/prompts/create-local-x.md` exits 1.
 - [x] T014 Confirm the tracked change names no private command (`rg`). Verify: `rg -n -i` for the private name over the five tracked files and this folder prints nothing.
-- [x] T015 Validate the packet (`specs/sk-doc/063-local-command-support`). Verify: `SPECKIT_DRAFT_AUTO_REPAIR=0 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/063-local-command-support --strict` prints `RESULT: PASSED`.
+- [x] T015 Validate the packet (`specs/commands/003-local-command-support`). Verify: `SPECKIT_DRAFT_AUTO_REPAIR=0 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/003-local-command-support --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

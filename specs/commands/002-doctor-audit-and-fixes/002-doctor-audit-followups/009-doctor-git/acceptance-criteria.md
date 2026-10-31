@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git"
     last_updated_at: "2026-10-04T09:30:00Z"
     last_updated_by: "doctor-git"
     recent_action: "Marked every criterion met with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git
+**Packet:** commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

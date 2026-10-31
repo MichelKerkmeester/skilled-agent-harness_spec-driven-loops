@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites"
     last_updated_at: "2026-10-04T15:00:00Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites
+**Packet:** agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04
@@ -53,8 +53,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given each rule's ledger and diff, When a second reviewer compares them, Then no imperative, test, exception, Fires-when bullet or self-check item is missing | Second reviewer compared all 13 ledgers with `git diff 0f24b293b9`: one operative loss, "A tally is not a finding", restored in `.skilled/repo-rules/delegation-and-orchestration.md:162`, every other removal apparatus and no ledger omission. Recorded in `implementation-summary.md` | Met | - |
 | AC-002 | REQ-002 | Given the rewritten corpus, When the checker runs, Then it reports 10/10 | `check-repo-rules.cjs` printed RESULT: PASSED (10/10 checks) after the last rule commit, exit 0 | Met | - |
-| AC-003 | REQ-003 | Given the T003 inventory, When each referenced section is looked up after the rewrite, Then it exists with the same number | Every `## N.` heading is byte-identical to `specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/headings-before.txt:1`, so each reference in `specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/section-refs-before.txt:1` still resolves | Met | - |
-| AC-004 | REQ-004 | Given the before table, When the after table is measured, Then the corpus is at or below 91,028 bytes | `wc -c` gives 94,609 B (`specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/bytes-after.txt:14`), an 11.7% cut, above the 91,028 B target. Apparatus-only cuts stopped short, and the operator waived the target | Waived | ADR-002 |
+| AC-003 | REQ-003 | Given the T003 inventory, When each referenced section is looked up after the rewrite, Then it exists with the same number | Every `## N.` heading is byte-identical to `specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/headings-before.txt:1`, so each reference in `specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/section-refs-before.txt:1` still resolves | Met | - |
+| AC-004 | REQ-004 | Given the before table, When the after table is measured, Then the corpus is at or below 91,028 bytes | `wc -c` gives 94,609 B (`specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/bytes-after.txt:14`), an 11.7% cut, above the 91,028 B target. Apparatus-only cuts stopped short, and the operator waived the target | Waived | ADR-002 |
 | AC-005 | REQ-005 | Given the diff, When added lines are searched, Then no em dash or semicolon was added | `git diff -U0 0f24b293b9 -- .skilled/repo-rules/` added lines matching em dash or semicolon: 0 | Met | - |
 | AC-006 | REQ-007 | Given the rewritten `communication.md`, When its diff is read, Then it carries the simple-terms clause and no caveat or number rule was weakened | `.skilled/repo-rules/communication.md:62` carries the clause, committed in `0836852d04`, and the reviewer found it weakens no caveat or number rule | Met | - |
 

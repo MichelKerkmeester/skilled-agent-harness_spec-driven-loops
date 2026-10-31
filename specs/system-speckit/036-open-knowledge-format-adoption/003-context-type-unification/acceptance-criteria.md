@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/003-context-type-unification"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/003-context-type-unification"
     last_updated_at: "2026-10-04T08:04:51Z"
     last_updated_by: "scaffold"
     recent_action: "All seven criteria met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/037-open-knowledge-format-adoption/003-context-type-unification
+**Packet:** system-speckit/036-open-knowledge-format-adoption/003-context-type-unification
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

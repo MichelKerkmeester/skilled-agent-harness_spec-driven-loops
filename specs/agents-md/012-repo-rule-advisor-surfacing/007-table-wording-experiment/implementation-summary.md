@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/007-table-wording-experiment"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Committed the short wording with its ledger entry"

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/058-doc-validation-off-switches"
+    packet_pointer: "sk-doc/057-doc-validation-off-switches"
     last_updated_at: "2026-09-28T20:03:09Z"
     last_updated_by: "generate-context"
     recent_action: "Re-annotated the v4.0.0.2 tag with the release title after the changelog restyle"
@@ -18,9 +18,9 @@ _memory:
     blockers: []
     key_files:
       - ".skilled/changelog/skilled/v4.0.0.2.md"
-      - "specs/sk-doc/058-doc-validation-off-switches/tasks.md"
-      - "specs/sk-doc/058-doc-validation-off-switches/implementation-summary.md"
-      - "specs/sk-doc/058-doc-validation-off-switches/review/review-report.md"
+      - "specs/sk-doc/057-doc-validation-off-switches/tasks.md"
+      - "specs/sk-doc/057-doc-validation-off-switches/implementation-summary.md"
+      - "specs/sk-doc/057-doc-validation-off-switches/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:ba19fdad89fa8d32cf51b72a2717d07cb1c2b5c13984adf5e99db4a2c41c6ff2"
       session_id: "75aab0e6-dcc7-401b-9d10-f48248374023"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 058-doc-validation-off-switches |
+| **Spec Folder** | 057-doc-validation-off-switches |
 | **Completed** | 2026-09-28 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

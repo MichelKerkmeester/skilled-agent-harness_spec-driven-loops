@@ -60,7 +60,7 @@ contextType: "general"
 - [x] T011 Rerun the objective checks from T001 and confirm zero findings Evidence: verifier 28 files 0 findings; shellcheck exit 0; tsc 0 unused names; syntax checks clean.
 - [x] T012 Run every doctor gate on the real tree and compare exit codes with the baseline Evidence: before-and-after table in `implementation-summary.md`; every gate keeps its exit code.
 - [x] T013 Run the pre-commit hook suite and the vitest suites that read doctor sources Evidence: pre-commit 69 passed 0 failed; advisor vitest 23 of 23.
-- [x] T014 Validate this packet with `validate.sh --strict` Evidence: `validate.sh specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups --strict --recursive` printed `RESULT: PASSED` for all 5 folders.
+- [x] T014 Validate this packet with `validate.sh --strict` Evidence: `validate.sh specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups --strict --recursive` printed `RESULT: PASSED` for all 5 folders.
 <!-- /ANCHOR:phase-3 -->
 
 ---

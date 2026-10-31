@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/006-convert-plumbing"
+    packet_pointer: "commands/004-doctor-sk-skill-command/006-convert-plumbing"
     last_updated_at: "2026-10-30T12:20:00Z"
     last_updated_by: "implementer"
     recent_action: "Aligned the workflow with the engine's current interface and re-verified every gate"

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/001-terminal-proof-discipline"
+    packet_pointer: "agents-md/001-terminal-proof-discipline"
     last_updated_at: "2026-08-05T00:00:00Z"
     last_updated_by: "pi-terminal-engineer"
     recent_action: "Applied the review-directed distributed integration to AGENTS.md and packet evidence"
@@ -64,8 +64,8 @@ _memory:
 
 - [x] T004 Insert the Terminal Discipline subsection into AGENTS.md (AGENTS.md)
   - [evidence: `git diff` AGENTS.md shows 16 insertions, 0 deletions; heading at `AGENTS.md:275`]
-- [x] T005 Author packet docs: spec, plan, tasks, checklist, decision-record, implementation-summary (specs/agents/001-terminal-proof-discipline/)
-  - [evidence: `ls specs/agents/001-terminal-proof-discipline` shows all six files]
+- [x] T005 Author packet docs: spec, plan, tasks, checklist, decision-record, implementation-summary (specs/agents-md/001-terminal-proof-discipline/)
+  - [evidence: `ls specs/agents-md/001-terminal-proof-discipline` shows all six files]
 - [x] T006 Add TERMINAL_PROOF_DIRECTIVE and append it in the three composition points (.opencode/skills/system-skill-advisor/mcp-server/lib/render.ts)
   - [evidence: `grep render.ts` finds the constant and three append sites; `advisor-renderer.vitest.ts` passes]
 - [x] T007 Mirror the directive in FALLBACK_DIRECTIVE (.opencode/plugins/mk-skill-advisor.js)

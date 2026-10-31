@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled"
+    packet_pointer: "commands/004-doctor-sk-skill-command/003-convert-legacy-skilled"
     last_updated_at: "2026-10-30T08:21:36Z"
     last_updated_by: "codex"
     recent_action: "Recorded review-fix acceptance evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled
+**Packet:** commands/004-doctor-sk-skill-command/003-convert-legacy-skilled
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/010-sk-doc"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/010-sk-doc"
     last_updated_at: "2026-09-24T18:20:00Z"
     last_updated_by: "claude-code"
     recent_action: "Authored the durable directive"

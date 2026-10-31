@@ -14,10 +14,10 @@
     "catalog"
   ],
   "lastUpdated": "2026-10-26T22:10:00.000Z",
-  "specId": "063",
+  "specId": "003",
   "folderSlug": "local-command-support",
   "parentChain": [
-    "sk-doc"
+    "commands"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

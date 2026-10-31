@@ -30,11 +30,11 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor in the build worktree:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE_REL`: `specs/system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate`
+- `PHASE_REL`: `specs/system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate`
 - `PHASE`: `$WORKTREE/$PHASE_REL`
 - `SC`: `$PHASE/scratch`
-- `P1`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
-- `P2`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair`
+- `P1`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `P2`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair`
 - `S`: `.skilled/skills/system-spec-kit`
 - `TPL`: `$S/templates`
 - `ORCH`: `$WORKTREE/$S/runtime/dist/lib/validation/orchestrator.js`
@@ -341,7 +341,7 @@ cd "$WORKTREE" && rm -rf "$SC/convtest"
 
 ```bash
 cd "$WORKTREE"
-find specs -name spec.md -not -path '*/scratch/*' -not -path '*/node_modules/*' -not -path 'specs/system-speckit/041-weak-model-spec-authoring/*' | sed 's|/spec.md$||' | LC_ALL=C sort > "$CEN/folders.txt"
+find specs -name spec.md -not -path '*/scratch/*' -not -path '*/node_modules/*' -not -path 'specs/system-speckit/040-weak-model-spec-authoring/*' | sed 's|/spec.md$||' | LC_ALL=C sort > "$CEN/folders.txt"
 wc -l < "$CEN/folders.txt" | tr -d ' '
 ```
 

@@ -20,8 +20,8 @@
   "specId": "001",
   "folderSlug": "doctor-command-audit",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes"
+    "commands",
+    "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

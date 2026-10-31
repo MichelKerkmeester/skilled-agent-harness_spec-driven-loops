@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The router-file move in `sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files` gave every hub and every mode packet its own `ROUTER.md`, and a packet's machine router now lives there instead of in its `SKILL.md`",
     "created_at": "2026-10-30T05:09:03Z",
-    "last_save_at": "2026-10-31T15:21:45.046Z",
+    "last_save_at": "2026-10-31T15:23:36.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,13 +198,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f02ca0841d270c390d407da620406ab691e3d9ec013fb8f8cbf82b2c9904d8c4",
+    "source_fingerprint": "sha256:e975e95aeb124389b613db581713d6c32c1d87edacac23acbf2f802faf2c81c2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "82c6255475026590d6679d4107a062e88d71c87cb3991ede0cb1a498c479ef01",
       "plan.md": "3c32c04781b5dc6e269e7a8395abdbda7b37bb6ebe3cbffc97fadd8ac0d9f343",
-      "tasks.md": "ddf891ff3f211827ae6b23c4b828dbc84181217fd8574e82f3f8525af93c4c97",
-      "implementation-summary.md": "54d21ce68a97aa8ccde3fc72b2c7705c2e2619ff61c09b1a46eae068d3606ce1"
+      "tasks.md": "0c536d2b0127bebcc2a45f7fd82c15660bd2e4ba73d90b7f711b5203c1688941",
+      "implementation-summary.md": "01d8229ee18e2a4fdb25807867743cc61d1e1ec3d65c3bb9359cc2c1f7b4995c"
     },
     "last_active_at": null
   }

@@ -9,16 +9,16 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot"
     last_updated_at: "2026-09-25T14:07:23Z"
     last_updated_by: "generate-context"
     recent_action: "Recorded the approved style and the first wave brief fixes"
     next_safe_action: "Continue the phase waves in the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/rewrite-driver.cjs"
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/brief-rewrite.md"
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/brief-verify.md"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/rewrite-driver.cjs"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/brief-rewrite.md"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/brief-verify.md"
     session_dedup:
       fingerprint: "sha256:e9a115fce45fb96dd3a8c74a292ad464d734196ef61d7cf50d52fcded8091088"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

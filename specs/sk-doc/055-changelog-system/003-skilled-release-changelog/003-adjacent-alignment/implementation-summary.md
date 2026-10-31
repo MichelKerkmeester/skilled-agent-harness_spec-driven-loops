@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment"
+    packet_pointer: "sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment"
     last_updated_at: "2026-09-27T18:56:10Z"
     last_updated_by: "generate-context"
     recent_action: "Refreshed the README manifest after CI flagged the release line"

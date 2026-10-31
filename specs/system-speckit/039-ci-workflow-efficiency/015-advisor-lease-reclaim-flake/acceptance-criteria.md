@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/015-advisor-lease-reclaim-flake"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/015-advisor-lease-reclaim-flake"
     last_updated_at: "2026-10-28T01:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Every criterion met with observed evidence"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/040-ci-workflow-efficiency/015-advisor-lease-reclaim-flake
+**Packet:** system-speckit/039-ci-workflow-efficiency/015-advisor-lease-reclaim-flake
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-28

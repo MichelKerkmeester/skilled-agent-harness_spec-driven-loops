@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps"
     last_updated_at: "2026-09-11T00:00:00Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Scaffolded the five-phase packet and authored the parent spec"
@@ -32,7 +32,7 @@ _memory:
       - "Does the proposal survive the four decision tests as a rule file, or is it a section inside communication.md?"
       - "Naming a runtime's question tool is dispatch mechanics, which REPO RULES.md section 4 declares Out. Operator chose to name it, so section 4 needs a fourth widening or the naming has to live elsewhere."
     answered_questions:
-      - "Spec folder: new packet under the agents track, specs/agents/009-turn-closeout-next-steps"
+      - "Spec folder: new packet under the agents track, specs/agents-md/007-turn-closeout-next-steps"
       - "Research may return refuse-as-rule-file; later phases adapt to whichever shape it returns"
       - "The question-tool half names the tool per runtime rather than staying runtime-agnostic"
 ---
@@ -52,8 +52,8 @@ _memory:
 | **Status** | Complete |
 | **Created** | 2026-09-11 |
 | **Branch** | `skilled/v4.0.0.0` |
-| **Parent Packet** | agents/009-turn-closeout-next-steps |
-| **Predecessor** | agents/003-communication-quality |
+| **Parent Packet** | agents-md/007-turn-closeout-next-steps |
+| **Predecessor** | agents-md/003-communication-quality |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase validates independently before the next begins |
 <!-- /ANCHOR:metadata -->
@@ -97,7 +97,7 @@ Settle whether this behaviour may exist as a repo rule at all, using the four de
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/agents/009-turn-closeout-next-steps/001-deep-research/research/research.md` | Create | 001 | Four-iteration research output |
+| `specs/agents-md/007-turn-closeout-next-steps/001-deep-research/research/research.md` | Create | 001 | Four-iteration research output |
 | `repo-rules/<name>.md` or an existing rule file | Create or Modify | 003 | The rule content, shape decided in 002 |
 | `REPO RULES.md` | Modify | 004 | Trigger row and index row, if the content becomes a file |
 | `AGENTS.md` | Modify | 004 | Pointer only, in each governed section |

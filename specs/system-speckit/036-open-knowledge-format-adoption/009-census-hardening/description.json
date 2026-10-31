@@ -11,7 +11,7 @@
   "folderSlug": "census-hardening",
   "parentChain": [
     "system-speckit",
-    "037-open-knowledge-format-adoption"
+    "036-open-knowledge-format-adoption"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

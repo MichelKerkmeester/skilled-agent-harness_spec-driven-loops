@@ -29,8 +29,8 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment`
-- `P1`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `PHASE`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment`
+- `P1`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T002.
 <!-- /ANCHOR:notation -->
@@ -73,7 +73,7 @@ Shell variables used below, set once by the conductor:
      .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
      before you write.
   2. Run: mkdir -p .skilled/skills/system-spec-kit/manual-testing-playbook/template-authoring
-  3. Open specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md.
+  3. Open specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md.
      Sections 3.2 to 3.9 hold eight fenced blocks, one per file, in this
      order: placeholder-token-warning-while-draft, placeholder-token-error-after-draft,
      placeholder-gate-legacy-stamp-unchanged, example-drift-guard-catches-leak,
@@ -101,7 +101,7 @@ Shell variables used below, set once by the conductor:
   1. Read .skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md and
      .skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md
      before you write.
-  2. Open specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md.
+  2. Open specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md.
      Sections 3.10.1 to 3.10.4 hold four fenced blocks, one per file, in
      this order: versioned-placeholder-gate, template-section-fill-guidance,
      example-drift-guard, spec-authoring-card.
@@ -130,7 +130,7 @@ Shell variables used below, set once by the conductor:
 
   TASK: Apply six sets of exact text edits.
   1. Read .skilled/skills/sk-doc/sk-create-readme/SKILL.md before you edit a README.
-  2. Open specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md section 3.11.
+  2. Open specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/plan.md section 3.11.
      It holds edits E1.1 to E6.1. Each edit names a file, an
      exact old text and an exact new text.
   3. Apply each edit with the edit tool. Apply them in the order E1.1, E1.2, E1.3, E1.4,

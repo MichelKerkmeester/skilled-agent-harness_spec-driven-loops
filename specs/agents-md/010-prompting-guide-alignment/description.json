@@ -13,10 +13,10 @@
     "guides"
   ],
   "lastUpdated": "2026-09-24T09:48:22.308Z",
-  "specId": "013",
+  "specId": "010",
   "folderSlug": "prompting-guide-alignment",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

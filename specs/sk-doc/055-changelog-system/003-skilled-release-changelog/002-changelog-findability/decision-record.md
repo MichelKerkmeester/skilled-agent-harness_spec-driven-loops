@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability"
+    packet_pointer: "sk-doc/055-changelog-system/003-skilled-release-changelog/002-changelog-findability"
     last_updated_at: "2026-09-27T14:56:00Z"
     last_updated_by: "phase-002-orchestrator"
     recent_action: "Accepted ADR-001 to ADR-005 and recorded the Stage 2 amendments"

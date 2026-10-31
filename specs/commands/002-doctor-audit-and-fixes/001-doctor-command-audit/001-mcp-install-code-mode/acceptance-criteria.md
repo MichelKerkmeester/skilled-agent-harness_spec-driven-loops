@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode"
     last_updated_at: "2026-10-02T00:00:00Z"
     last_updated_by: "implementation"
     recent_action: "All five acceptance criteria verified Met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

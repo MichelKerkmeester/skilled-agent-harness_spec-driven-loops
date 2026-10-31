@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/015-template-example-neutralization"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/015-template-example-neutralization"
     last_updated_at: "2026-10-26T15:30:00Z"
     last_updated_by: "planner"
     recent_action: "Recorded the sweep and planned the rewrite"

@@ -1,0 +1,17 @@
+{
+  "specFolder": "agents",
+  "description": "Track folder for agent definition packets: the orchestrate, review, context and Explore agents, their tool grants, delegation policy and the agent template's emphasis register.",
+  "keywords": [
+    "agents",
+    "track",
+    "agent-definitions",
+    "subagents"
+  ],
+  "lastUpdated": "2026-10-31T15:23:27.000Z",
+  "specId": "agents",
+  "folderSlug": "agents",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

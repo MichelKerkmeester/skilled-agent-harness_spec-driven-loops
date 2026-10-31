@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/001-check-engine"
+    packet_pointer: "commands/004-doctor-sk-skill-command/001-check-engine"
     last_updated_at: "2026-10-30T07:06:56Z"
     last_updated_by: "codex"
     recent_action: "Completed interpreter discovery and verified the phase"

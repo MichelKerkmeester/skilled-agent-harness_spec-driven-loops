@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/021-ci-gate-regressions"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/021-ci-gate-regressions"
     last_updated_at: "2026-10-26T23:45:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Closed out: every completion criterion holds"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research"
     last_updated_at: "2026-10-04T05:36:11Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research
+**Packet:** system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

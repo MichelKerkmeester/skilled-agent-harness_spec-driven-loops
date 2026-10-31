@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency"
     last_updated_at: "2026-10-27T08:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All eleven phases Complete; phase map synced"
@@ -82,7 +82,7 @@ Cut the CI load and the time to a signal, give base repos and clones an on/off c
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/system-speckit/040-ci-workflow-efficiency/001-research/` | Create | 001 | Research run and synthesis |
+| `specs/system-speckit/039-ci-workflow-efficiency/001-research/` | Create | 001 | Research run and synthesis |
 | `.github/workflows/*.yml`, `.github/workflows/README.md` | Modify | 002, 003, 004, 007, 008 | Rebuild skip, triggers, concurrency, checkout depth, cache adoption, timeouts, permissions, switches, consolidation |
 | `.github/scripts/check-gate-inputs.sh` and its fixture test | Modify | 004 | Scan `.github/actions/**` (R12) |
 | `.github/actions/setup/action.yml` (composite setup action) | Create | 004 | Shared cached setup |

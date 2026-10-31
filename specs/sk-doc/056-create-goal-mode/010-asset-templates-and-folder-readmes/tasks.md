@@ -65,7 +65,7 @@ contextType: "implementation"
 - [x] T016 Validate the new and changed documents. Evidence: both READMEs 0 issues as `code_folder`, templates 0 issues as `asset`, changelog shape 0 errors, `SKILL.md`, README and command 0 issues, HVR 0 hard blockers on every authored file.
 - [x] T017 Run the five mirror checks, the parent-skill check, the package check and the playbook validator. Evidence: all pass.
 - [x] T018 Write this phase's nested changelog with `nested-changelog.js --write`.
-- [x] T019 Run `validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict`. Evidence: `RESULT: PASSED` for all 11 folders.
+- [x] T019 Run `validate.sh specs/sk-doc/056-create-goal-mode --recursive --strict`. Evidence: `RESULT: PASSED` for all 11 folders.
 <!-- /ANCHOR:phase-3 -->
 
 ---

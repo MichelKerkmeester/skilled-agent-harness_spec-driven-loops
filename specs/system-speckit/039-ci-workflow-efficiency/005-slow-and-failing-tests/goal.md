@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests"
     last_updated_at: "2026-10-25T07:20:00Z"
     last_updated_by: "markdown"
     recent_action: "Closed AC-003 by waiver and AC-006 by a filed row, with ten Met and one Waived"
@@ -64,12 +64,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `grep -cE '^outcome: (parallel|shard)$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md` returns `1`
+- [x] `grep -cE '^outcome: (parallel|shard)$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r19-probe.md` returns `1`
 - [x] `test ! -e .skilled/skills/system-spec-kit/vitest.config.parallel-probe.ts` exits `0`
 - [x] `grep -c 'fileParallelism: true' .skilled/skills/system-spec-kit/vitest.config.ts` returns `1`, or `grep -c -- '--exclude' .github/workflows/spec-kit-check.yml` returns `1`
-- [x] `grep -c '^all_green: true$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md` returns `1`
-- [x] `grep -c '| closed |' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` returns `5`
-- [x] `grep -cE '^(deep-loop-runtime|diagram-corpus|skill-advisor-stress): all_green=true count=10$' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` returns `3`, or the one workflow that stays red (deep-loop-runtime) carries a filed root cause per G7: `grep '^[|] deep-loop-runtime [|]' specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` piped to `grep -c '[|] filed:'` returns `2`
+- [x] `grep -c '^all_green: true$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md` returns `1`
+- [x] `grep -c '| closed |' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` returns `5`
+- [x] `grep -cE '^(deep-loop-runtime|diagram-corpus|skill-advisor-stress): all_green=true count=10$' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` returns `3`, or the one workflow that stays red (deep-loop-runtime) carries a filed root cause per G7: `grep '^[|] deep-loop-runtime [|]' specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r21-recheck.md` piped to `grep -c '[|] filed:'` returns `2`
 - [x] `grep -c 'check-contract-drift' .github/workflows/deep-loop-runtime.yml` returns `1`
 <!-- /ANCHOR:completion -->
 

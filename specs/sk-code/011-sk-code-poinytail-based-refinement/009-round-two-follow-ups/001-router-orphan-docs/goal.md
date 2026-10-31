@@ -90,7 +90,7 @@ and findings belong here.
 | Item | Note |
 |------|------|
 | Realpath matching for the three shared workflow docs | The brief proposed it. No router names the canonical path or the symlinks, so it finds nothing, and the allowlist the brief allowed as fallback is used with the reason beside the list |
-| Criterion 1 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 1 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/059-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 2 amended 2026-10-11 | The criterion wrote its capture into a tracked scratch file, so every rerun dirtied the tree, and it expected three guards. It now prints the same lines without writing, for the four guards the umbrella runs since phase 010 |
-| Criterion 3 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. Phase 010 added two cases, so it counts 5 |
+| Criterion 3 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/059-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file. Phase 010 added two cases, so it counts 5 |
 <!-- /ANCHOR:log -->

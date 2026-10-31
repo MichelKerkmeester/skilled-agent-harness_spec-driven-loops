@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Repo-Agnostic Git Workspace Rows [specs/agents/005-git-workspace-repo-agnostic]"
+title: "Tasks: Repo-Agnostic Git Workspace Rows [specs/agents-md/005-git-workspace-repo-agnostic]"
 description: "Task breakdown for rewriting the AGENTS.md Git Workspace Safety rows repo-agnostic."
 trigger_phrases:
   - "agents.md tasks"
@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/005-git-workspace-repo-agnostic"
+    packet_pointer: "agents-md/005-git-workspace-repo-agnostic"
     last_updated_at: "2026-08-16T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Rewrote the AGENTS.md rows and authored packet docs"

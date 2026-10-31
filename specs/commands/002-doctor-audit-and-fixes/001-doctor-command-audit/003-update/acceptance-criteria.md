@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update"
     last_updated_at: "2026-10-02T23:12:59Z"
     last_updated_by: "implementation"
     recent_action: "Closed the criteria: five Met, AC-001 Superseded through ADR-001"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/055-sk-create-readme-writing-style"
+    packet_pointer: "sk-doc/054-sk-create-readme-writing-style"
     last_updated_at: "2026-09-20T13:20:00Z"
     last_updated_by: "devin"
     recent_action: "Superseded the Problem-section guidance via ADR-001; release now carries five patterns"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 055-sk-create-readme-writing-style |
+| **Spec Folder** | 054-sk-create-readme-writing-style |
 | **Completed** | 2026-09-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

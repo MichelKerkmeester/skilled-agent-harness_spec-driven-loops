@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode"
     last_updated_at: "2026-10-02T20:17:35Z"
     last_updated_by: "deepseek-v4.1-flash"
     recent_action: "Closed the phase docs from the verified fix evidence; verdict fix, all five criteria Met"

@@ -16,10 +16,10 @@
     "helper"
   ],
   "lastUpdated": "2026-10-30T11:37:34.125Z",
-  "specId": "021",
+  "specId": "016",
   "folderSlug": "doctor-agents-md",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

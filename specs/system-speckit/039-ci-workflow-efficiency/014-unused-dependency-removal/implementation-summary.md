@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/014-unused-dependency-removal"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/014-unused-dependency-removal"
     last_updated_at: "2026-10-27T22:50:00Z"
     last_updated_by: "claude-sonnet-5-5"
     recent_action: "Removed two unused dependencies, fixed the output rule and help paths"

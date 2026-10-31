@@ -64,7 +64,7 @@ Every finding of the 2026-10-27 review is fixed or recorded with its reason, and
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-$ node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs --loop-type review --artifact-dir specs/system-speckit/041-weak-model-spec-authoring/review
+$ node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs --loop-type review --artifact-dir specs/system-speckit/040-weak-model-spec-authoring/review
 {"status":"ok","loop_type":"review","merged_lineages":2,...,"merged_verdict":"CONDITIONAL","active_p0":0,"active_p1":4}
 $ grep -n 'TOKEN_GATE_FENCE_RE\s*=' .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
 794:const TOKEN_GATE_FENCE_RE = /^\s*(```|~~~)/u;
@@ -136,7 +136,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The new fence and `--path` tests fail on the old code and pass on the new.
-- **SC-002**: `validate.sh specs/system-speckit/041-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder, and the spec-kit runtime suite has no new failure.
+- **SC-002**: `validate.sh specs/system-speckit/040-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder, and the spec-kit runtime suite has no new failure.
 <!-- /ANCHOR:success-criteria -->
 
 ---

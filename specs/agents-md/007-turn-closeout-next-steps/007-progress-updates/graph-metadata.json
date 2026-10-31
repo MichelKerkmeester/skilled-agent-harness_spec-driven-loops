@@ -45,13 +45,16 @@
       "implementation-summary.md",
       "research/research.md",
       ".opencode/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md",
+      "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/research/research.md",
+      "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/spec.md",
+      "specs/agents-md/007-turn-closeout-next-steps/spec.md",
       "repo-rules/communication.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +198,7 @@
     ],
     "causal_summary": "The operator asked for forward-looking progress updates during multi-step work: a numbered list of",
     "created_at": "2026-09-11T16:51:31Z",
-    "last_save_at": "2026-10-31T15:21:40.880Z",
+    "last_save_at": "2026-10-31T15:23:34.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +209,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:8014c657d79deeb018feaa5a05cb804bdead1d3c6cfee4477bb2707ade03de39",
+    "source_fingerprint": "sha256:1623ebb9778d7b205dbd3f41a1de83cbd81e177420cd133bb1150f36f6599f24",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "db430a17ff0a0facb14f549334e2621eacbbd8c6fda242c8cfbef50d18e986dc",
+      "spec.md": "17c1a105e2551ffaaea64b7856678acea83a9557be2cd51224cc36db32dde5c8",
       "plan.md": "a804843353d58bec4756a621c6636d01f86894d03207d4d9f585a834f3a29507",
       "tasks.md": "516b36bd847d7f69fd22cbd0c84b12cec2fb94263567870f90e44178735a8370",
-      "implementation-summary.md": "b744b9c3b8e56cfa49ac4c40d36532f0f0230947e616ad9a73efbd3f422129e7",
+      "implementation-summary.md": "5cf3bbd5614721c9183b4f263b72f44acab3e94551cb5b57feebd1e3a747d0c4",
       "research/research.md": "cae71c807f7d6aa9a2056cf0b4c4486992e7ee158362b1224d5c0b61e47a7ac6"
     },
     "last_active_at": null

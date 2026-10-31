@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/003-embed-engine"
     last_updated_at: "2026-10-30T13:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Met every completion criterion"

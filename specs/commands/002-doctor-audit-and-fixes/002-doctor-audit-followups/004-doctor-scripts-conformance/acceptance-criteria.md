@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance"
     last_updated_at: "2026-10-03T17:24:51Z"
     last_updated_by: "scaffold"
     recent_action: "Marked every criterion Met with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance
+**Packet:** commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-03

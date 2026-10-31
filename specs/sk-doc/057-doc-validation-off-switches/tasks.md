@@ -35,7 +35,7 @@ contextType: "implementation"
 ## Phase 1: Setup
 
 - [x] T001 Scaffold the packet and score its level (`recommend-level.sh`: Level 2, 50 of 100, no phases)
-- [x] T002 Reproduce the commit trap: `repair-derived.cjs` exits 2 under `SPECKIT_SKIP_VALIDATION=1` (evidence: before the fix it printed `UNREADABLE specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment` and `inspected=1 repairable=0 failed=1`, and HEAD's `validate.sh --json` under the switch exits 0 with 0 bytes on stdout)
+- [x] T002 Reproduce the commit trap: `repair-derived.cjs` exits 2 under `SPECKIT_SKIP_VALIDATION=1` (evidence: before the fix it printed `UNREADABLE specs/sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment` and `inspected=1 repairable=0 failed=1`, and HEAD's `validate.sh --json` under the switch exits 0 with 0 bytes on stdout)
 - [x] T003 Trace every consumer of the `validate.sh` JSON and every caller of the sk-doc validators (`plan.md` fix addendum)
 <!-- /ANCHOR:phase-1 -->
 

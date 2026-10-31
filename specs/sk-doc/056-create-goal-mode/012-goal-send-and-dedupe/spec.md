@@ -126,7 +126,7 @@ A parent goal sent in chat carries only its directive and fits the 4,000 limit b
 | `.skilled/commands/create/assets/create-goal-auto.yaml`, `create-goal-confirm.yaml` | Modify | The four "playbook order" lines point to section 3 |
 | `.hermes/skills/*/SKILL.md` | Regenerate | Generated copies whose source is committed or this phase's own. The cli-cursor and deep-review copies followed once their owners committed those sources, so all 71 are in sync |
 | `.skilled/skills/sk-doc/sk-create-goal/changelog/v1.2.0.0.md` | Create | The mode's release entry |
-| `specs/sk-doc/057-create-goal-mode/goal.md`, `spec.md` | Modify | Parent goal cut and phase-map status |
+| `specs/sk-doc/056-create-goal-mode/goal.md`, `spec.md` | Modify | Parent goal cut and phase-map status |
 | `.skilled/hooks/goal/lib/goal-slice.cjs`, `goal-slice.test.cjs` | Modify | Review remediation: linear frontmatter match, one-line resend reminder, missing-path containment, exported `budgetApplies` |
 | `.skilled/hooks/goal/bin/goal.cjs`, `goal.test.cjs` | Modify | Review remediation: an unknown leading flag fails, and every failure exits 1 |
 | `.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs`, `tests/check-goal.test.cjs`, `tests/fixtures/goal-fixtures.cjs` | Modify | Review remediation: the budget check uses `budgetApplies`, and a fifth check, `frontmatter-fence` |
@@ -216,7 +216,7 @@ A parent goal sent in chat carries only its directive and fits the 4,000 limit b
 - **SC-001**: `goal.cjs packet` on the parent reports `packet_budget=ok` at 3,000 durable characters or fewer, expected 2,943, and `check-goal.cjs` passes every check.
 - **SC-002**: The unfilled phase-parent asset template measures 1,623 durable and 1,218 chat characters, down from 3,156 and 2,823.
 - **SC-003**: At least 14 system-spec-kit and speckit files name `sk-create-goal` or `/create:goal`, up from 0.
-- **SC-004**: `validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` prints `RESULT: PASSED`.
+- **SC-004**: `validate.sh specs/sk-doc/056-create-goal-mode --recursive --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

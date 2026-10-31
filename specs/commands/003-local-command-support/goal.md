@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/063-local-command-support"
+    packet_pointer: "commands/003-local-command-support"
     last_updated_at: "2026-10-26T22:10:00Z"
     last_updated_by: "leaf-worker"
     recent_action: "Landed and verified local-* command support"

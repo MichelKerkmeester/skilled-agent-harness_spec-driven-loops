@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance"
     last_updated_at: "2026-10-23T14:00:00Z"
     last_updated_by: "conductor"
     recent_action: "Marked all nine criteria Met"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance
+**Packet:** system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The repository runs 33 workflows",
     "created_at": "2026-10-23T06:38:05Z",
-    "last_save_at": "2026-10-31T15:22:14.085Z",
+    "last_save_at": "2026-10-31T15:28:41.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,7 +218,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:794fcc4d0b814c866c20d3ed07d468172a501e49d81d865d1746a425fa01d28b",
+    "source_fingerprint": "sha256:92754f9f7c9a2ea673b78787b71ea2ae33dea44286f62210c8b751c4ab502f0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "45c0d20ad03008c43cc410b6ab8f40b50d5ef1783c7331dfd1cf7b31c75324e6",

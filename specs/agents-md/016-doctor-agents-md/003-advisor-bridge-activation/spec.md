@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/003-advisor-bridge-activation"
+    packet_pointer: "agents-md/016-doctor-agents-md/003-advisor-bridge-activation"
     last_updated_at: "2026-10-30T18:30:00Z"
     last_updated_by: "code-agent"
     recent_action: "Activated the four bridges and closed every gate"
@@ -56,7 +56,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of `agents/021-doctor-agents-md`.
+This is **Phase 3** of `agents-md/016-doctor-agents-md`.
 
 **Scope Boundary**: Activation only. It adds no doctor route, no router, no phrase and no workflow. It edits the advisor's activation list, the routing fixture, the generated surfaces that list feeds, the advisor's version and changelog, one catalog note and this packet.
 
@@ -142,7 +142,7 @@ Twenty-eight derived doctor routes, twenty-four of them admitted. The four missi
 | `.skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md` | Create | The release note for the activation |
 | `.hermes/skills/system-skill-advisor/SKILL.md` | Regenerate | Hermes mirror of the versioned skill file |
 | `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md` | Modify | States that every derived bridge is active |
-| `specs/agents/021-doctor-agents-md/spec.md` and `graph-metadata.json` | Modify | The phase map row and the child pointer |
+| `specs/agents-md/016-doctor-agents-md/spec.md` and `graph-metadata.json` | Modify | The phase map row and the child pointer |
 <!-- /ANCHOR:scope -->
 
 ---

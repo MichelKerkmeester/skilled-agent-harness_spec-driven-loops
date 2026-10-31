@@ -137,7 +137,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 - **Trigger**: Any mirror gate or `sk-doc` validator fails from the final state and cannot be repaired.
 - **Procedure**: `git checkout -- .opencode/agents/orchestrate.md .claude/agents/orchestrate.md
   .codex/agents/orchestrate.toml .pi/agents/orchestrate.md` and
-  `rm -rf specs/agents/008-orchestrate-external-cli-delegation`. Nothing is committed or pushed, so the
+  `rm -rf specs/agents/002-orchestrate-external-cli-delegation`. Nothing is committed or pushed, so the
   change is trivially reversible in the working tree.
 <!-- /ANCHOR:rollback -->
 

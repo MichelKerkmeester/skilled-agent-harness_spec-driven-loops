@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/003-communication-quality"
+    packet_pointer: "agents-md/003-communication-quality"
     last_updated_at: "2026-08-07T08:44:03Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Summarized shipped §8 section and .codex reconciliation"
@@ -61,13 +61,13 @@ Four small additive edits keep `.codex/AGENTS.md` in step: an early-commitment c
 |------|--------|---------|
 | `AGENTS.md` | Modified | New §8 Communication Quality; renumber §8→§9, §9→§10 |
 | `.codex/AGENTS.md` | Modified | 4 additive edits (§3, §4, §6, §7) reconciling net-new principles |
-| `specs/agents/003-communication-quality/spec.md` | Created | Level 2 specification |
-| `specs/agents/003-communication-quality/plan.md` | Created | Implementation plan |
-| `specs/agents/003-communication-quality/tasks.md` | Created | Task breakdown |
-| `specs/agents/003-communication-quality/checklist.md` | Created | Verification checklist |
-| `specs/agents/003-communication-quality/implementation-summary.md` | Created | This summary |
-| `specs/agents/003-communication-quality/description.json` | Created | Packet metadata |
-| `specs/agents/003-communication-quality/graph-metadata.json` | Created | Graph metadata |
+| `specs/agents-md/003-communication-quality/spec.md` | Created | Level 2 specification |
+| `specs/agents-md/003-communication-quality/plan.md` | Created | Implementation plan |
+| `specs/agents-md/003-communication-quality/tasks.md` | Created | Task breakdown |
+| `specs/agents-md/003-communication-quality/checklist.md` | Created | Verification checklist |
+| `specs/agents-md/003-communication-quality/implementation-summary.md` | Created | This summary |
+| `specs/agents-md/003-communication-quality/description.json` | Created | Packet metadata |
+| `specs/agents-md/003-communication-quality/graph-metadata.json` | Created | Graph metadata |
 
 `CLAUDE.md` updated automatically — it is a symlink to `AGENTS.md`.
 <!-- /ANCHOR:what-built -->

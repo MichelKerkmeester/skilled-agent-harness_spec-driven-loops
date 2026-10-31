@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split"
     last_updated_at: "2026-10-04T06:09:44Z"
     last_updated_by: "doctor-ownership-split"
     recent_action: "Marked every criterion met with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split
+**Packet:** commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

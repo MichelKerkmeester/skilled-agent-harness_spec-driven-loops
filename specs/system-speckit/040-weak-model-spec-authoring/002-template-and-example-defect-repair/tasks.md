@@ -29,9 +29,9 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor in the build worktree:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE_REL`: `specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair`
+- `PHASE_REL`: `specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair`
 - `PHASE`: `$WORKTREE/$PHASE_REL`
-- `P1`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `P1`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `LED`: `$P1/scratch/ledger/ledger.jsonl`, the verified and reviewed phase 1 ledger.
 - `KR`: `$PHASE/scratch/ledger/known-rows.jsonl`, the 25 known rows written by T004.
 - `S`: `.skilled/skills/system-spec-kit`
@@ -445,7 +445,7 @@ You write nothing, so no documentation-scope question applies. Do not edit, crea
 ROLE: You are a read-only reviewer of a text diff. Your output is checked line by line by a script.
 Run: git diff $P2START --stat
 Then run: git diff $P2START -- .skilled
-Then read $PHASE_REL/scratch/ledger/known-rows.jsonl and the rows with owner_phase 002 in specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl.
+Then read $PHASE_REL/scratch/ledger/known-rows.jsonl and the rows with owner_phase 002 in specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl.
 Check these five things:
 (1) Every changed line equals the expected_text of one row, and no other line changed.
 (2) The 18 example description lines are full sentences, start with a capital letter and hold no end of an HTML comment.

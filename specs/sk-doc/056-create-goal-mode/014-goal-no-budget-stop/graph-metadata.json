@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The OpenCode goal plugin stopped a goal three ways",
     "created_at": "2026-10-24T16:29:49Z",
-    "last_save_at": "2026-10-31T15:22:07.386Z",
+    "last_save_at": "2026-10-31T15:24:04.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +215,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d65c8dd746f18007f105360cedbd6e5da83502d4ccdb4e28e43b9370eff9b27",
+    "source_fingerprint": "sha256:bb0736905167c2319a18f27c7ca93543f39f611908bbad09efae473ea77ae8fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "45263a5029f6fc1714bc6dcdf4912bd6115a708b2d3cc412cb08d585c3601abe",

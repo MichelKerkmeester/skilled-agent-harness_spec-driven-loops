@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness"
     last_updated_at: "2026-10-03T05:27:40Z"
     last_updated_by: "build-orchestrator"
     recent_action: "Built, regenerated and verified the phase"

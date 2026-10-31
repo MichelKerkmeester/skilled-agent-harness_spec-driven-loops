@@ -115,7 +115,7 @@ A weak model reaches one short card for the authoring intents, and the long guid
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh` | Create | The sync guard |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modify | One row in the package topology list |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/card-sync.vitest.ts` | Create | Runs the guard in the suite |
-| `specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/*` and `.../scratch/runs/*` | Create | Three smoke replies and their metrics |
+| `specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card/scratch/card-bench/*` and `.../scratch/runs/*` | Create | Three smoke replies and their metrics |
 <!-- /ANCHOR:scope -->
 
 ---

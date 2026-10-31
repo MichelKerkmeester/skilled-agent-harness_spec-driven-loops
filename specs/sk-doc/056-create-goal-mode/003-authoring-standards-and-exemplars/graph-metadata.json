@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Goal files can retain a template objective, include criteria that require checking other files or state a child count that conflicts with the binding table (specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/030-mutation-suite/goal.md:43; specs/system-speckit/031-system-speckit-v4/010-goal-file-addon/goal.md:84-90; specs/sk-git/028-crawlable-commit-history/goal.md:81-90,111)",
     "created_at": "2026-09-25T18:48:47Z",
-    "last_save_at": "2026-10-31T15:22:03.640Z",
+    "last_save_at": "2026-10-31T15:24:03.999Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96149ccef1f9b9e3336551c49e686819a3d773b2cc447759fac8fbac5409735d",
+    "source_fingerprint": "sha256:4ac3fda8384f4ad80d2b9f061a9969c4626a539e05eadfdf364aacde90e3b4e8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0b7585fa79c9479e51a858d2d22bce0424fea738223e05cdb32c758ed75422c7",
-      "plan.md": "45e1b0637585986cf149d97a73b66bb78c3425b5b1ce7887bd059e03952e9dcc",
-      "tasks.md": "d8e5aac318d541c3a9bbc776d86ac6acfaaf5c5793db8863bc08ffca1682abda",
-      "implementation-summary.md": "c7d7fd2e3d1b10af236984a002f7a26a02f735b4f18547f30018ae956a88edb8"
+      "spec.md": "b454ec2554d438d6445c7c7e0c6486d059c85145cd6d41726583da8cc2286dd5",
+      "plan.md": "b6d78c82f0673350f592002163c36ca0c8e49c747a9e2b7a37136d5fd62af17d",
+      "tasks.md": "99f875389fed7e0445ac6d5503ac0b551d9f9d5df37083f9e243a69ba21cbea0",
+      "implementation-summary.md": "27495907fd38b56e30440ff2a4c5043372ce28362a0e9fcf1e78b8c5fdec9672"
     },
     "last_active_at": null
   }

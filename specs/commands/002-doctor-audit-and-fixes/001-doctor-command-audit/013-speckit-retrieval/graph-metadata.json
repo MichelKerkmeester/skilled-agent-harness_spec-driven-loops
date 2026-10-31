@@ -202,7 +202,7 @@
     ],
     "causal_summary": "`/doctor:speckit speckit-retrieval` checks the trigger index and the ripgrep retrieval recipes",
     "created_at": "2026-10-02T16:10:27Z",
-    "last_save_at": "2026-10-31T15:21:49.854Z",
+    "last_save_at": "2026-10-31T15:23:40.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eeb5502c1063affae597d68b22682cda6561f5d3a42810bf9e77b565089c351a",
+    "source_fingerprint": "sha256:18c19bfd8eccb7fd1949c146a28ef3c1adc77960f7244e5a56d8a763c765b9b1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e664bc8209ec7f4622827ef0b414129cd2643dc52f4ebe2fa2c12702bee1624",
       "plan.md": "2a6cc8d67800421af2e393d18a2eecc686f2263cb2c0eb1d3d39a2250ede589d",
       "tasks.md": "003458b46722b5be54983b8838993e9cb0f362167c2223b68c7df37cd6754a52",
-      "implementation-summary.md": "0b39d67aa84cd44174a6c09b409204af319d8718d5ff6b2ff27d26efc759d95c"
+      "implementation-summary.md": "84bb025669c31f4bc26cde1d84feddedaa6561df770d92955299a1844073c22d"
     },
     "last_active_at": null
   }

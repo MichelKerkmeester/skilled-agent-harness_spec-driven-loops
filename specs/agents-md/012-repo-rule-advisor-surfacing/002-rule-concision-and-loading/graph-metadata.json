@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 13 repo rules total about 27k tokens and sessions read only a few of them",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-31T15:21:40.790Z",
+    "last_save_at": "2026-10-31T15:23:34.108Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b9f134f3916baf983e8be7bd630b8eb011097da790593146d670f9f47a8e7fb8",
+    "source_fingerprint": "sha256:41148fb86679ae7234a44f25823a8c276016966588249a4364d7c6f875c1d96d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c734c89f4476b46b51a9d9976bb15b424861eb19b9c6b2e495958dd740c2e48f",

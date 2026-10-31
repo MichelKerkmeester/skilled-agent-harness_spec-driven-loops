@@ -26,7 +26,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-`A` is `.skilled/skills/system-skill-advisor/runtime`, and commands that name `A` run from there. `G` is `.skilled/skills/sk-git/scripts`. `P` is this phase folder, `specs/system-speckit/041-weak-model-spec-authoring/022-advisor-routing-and-local-install`. "Live" means `node .skilled/bin/skill-advisor.cjs advisor_recommend`; "local" means the scorer with an empty DB dir, semantic off and `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1`, the regime CI's routing tests use. Every other command runs from the repository root, and git runs with fsmonitor off. A box is ticked only when its Verify command printed what the line says.
+`A` is `.skilled/skills/system-skill-advisor/runtime`, and commands that name `A` run from there. `G` is `.skilled/skills/sk-git/scripts`. `P` is this phase folder, `specs/system-speckit/040-weak-model-spec-authoring/022-advisor-routing-and-local-install`. "Live" means `node .skilled/bin/skill-advisor.cjs advisor_recommend`; "local" means the scorer with an empty DB dir, semantic off and `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1`, the regime CI's routing tests use. Every other command runs from the repository root, and git runs with fsmonitor off. A box is ticked only when its Verify command printed what the line says.
 <!-- /ANCHOR:notation -->
 
 ---

@@ -114,8 +114,8 @@ Restore the coverage the gates claim, make the failing fixtures pass, extend the
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | Stated variable count |
 | `.skilled/skills/system-spec-kit/runtime/cli/metrics/fable-baseline.json` | Modify | Dead corpus target |
 | `.skilled/commands/doctor/assets/doctor-speckit-presentation.txt` | Modify | Generic `/doctor` forms |
-| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md` | Modify | Phase Context reflects the redesign |
-| `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modify | Drop the dead pattern claim; name `/doctor:rebuild` |
+| `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md` | Modify | Phase Context reflects the redesign |
+| `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md` | Modify | Drop the dead pattern claim; name `/doctor:rebuild` |
 <!-- /ANCHOR:scope -->
 
 ---

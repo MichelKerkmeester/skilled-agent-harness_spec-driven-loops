@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/005-trigger-coverage-check"
     last_updated_at: "2026-10-04T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped check 10, --root, fixtures and seven router routes"

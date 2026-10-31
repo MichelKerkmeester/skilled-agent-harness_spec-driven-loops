@@ -191,7 +191,7 @@
     ],
     "causal_summary": "55 mcp-tooling changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:09Z",
-    "last_save_at": "2026-10-31T15:21:59.733Z",
+    "last_save_at": "2026-10-31T15:24:00.162Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cd781c2f8788a1b99256dbcab1a5cdc560b99e87c0d1c33f5099b9014d25741",
+    "source_fingerprint": "sha256:408736910105d8bf2e25ba761bb414e336fd12a9778c9e3d5117769041c6777a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2ae7ca533519196e14202873a8d454afde6b7c1daed30a5a9a0c039588a9818",
       "plan.md": "1ad07eff7527ee6fd4f14f51f2019c44d46f4fb1ab64ccc59de7fcdaeb5cfc94",
       "tasks.md": "1246c94ad494bf081448e997e206d861133ace5f98713fa3865f3b1b80fe05fe",
-      "implementation-summary.md": "b8ebbe5d76012639a53b04b37d375d3aed3a4ab21270dfee5f1b0e5ceb321bd5"
+      "implementation-summary.md": "a4454560139409442852cfe1294a6f3ffe9ccb807c0aff51e83555b91378eb0f"
     },
     "last_active_at": null
   }

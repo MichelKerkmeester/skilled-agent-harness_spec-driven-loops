@@ -197,9 +197,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the 007-decommission-review-p1-p2-fixes directory exists with no goal.md (specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:44; specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73; test ! -f specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md)",
+    "causal_summary": "A parent goal can omit a phase folder that exists on disk: the 017-memory-database-decommission binding table ends at 006, while the 007-decommission-review-p1-p2-fixes directory exists with no goal.md (specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:44; specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/goal.md:66-73; test ! -f specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/007-decommission-review-p1-p2-fixes/goal.md)",
     "created_at": "2026-09-25T18:48:48Z",
-    "last_save_at": "2026-10-31T15:22:03.524Z",
+    "last_save_at": "2026-10-31T15:24:04.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:43ba1e96c89424567a0efd7b4223290eadc5284a3a5a59a94e0c0ad4e0c19ede",
+    "source_fingerprint": "sha256:085e7904da0456da4e33ccd56afcb4eaad19085ef2b9d29cf0c5b6ff8f871f57",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e5b192b789e7f03963db69a06a7be4ea4a172d5b6cece513d95c564197477ed",
-      "plan.md": "fe816feb52a393ce603bda5b7fe1a8dacb3dd4ba144aeeafb61e7f2622eb5996",
-      "tasks.md": "9978aaf0d3db6ae19224ec927d6d6891d153a32b01d4b6f5d0ceca3dd7423b32",
-      "implementation-summary.md": "1eb5514cb7b33e1664b9a3f7c5a61635dcc5eae7fbe98e59487968f7f91a5aa6"
+      "spec.md": "77dc61f167e3e531fd127d359a1b80f6ce5d6ba92c366656d7c9cab7364c24bd",
+      "plan.md": "ccc95ef963d245270106b70791c077c145747fd90f70fdf192a3c3d01d356083",
+      "tasks.md": "d6c3452284f7573cf967e88f499fddea63862240fcbc6676fabbaa8890fe53e6",
+      "implementation-summary.md": "5e49e7c2d0e001c98f65e148d1164fbc4eca1c932d4a26a6c1260020e6898fde"
     },
     "last_active_at": null
   }

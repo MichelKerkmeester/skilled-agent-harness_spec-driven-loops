@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The current validator measures the durable-slice budget and checks that listed binding rows resolve, but it returns when the binding anchor is absent and does not compare rows with phase children on disk (.skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts:1050-1080)",
     "created_at": "2026-09-25T18:48:50Z",
-    "last_save_at": "2026-10-31T15:22:03.687Z",
+    "last_save_at": "2026-10-31T15:24:03.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdbb1c5351e92a82ee1a102932554fa7aa0df6bb119fe6c7e4844d4cf22f50e5",
+    "source_fingerprint": "sha256:232b3176d3f4e21bf441f2eccaf95bf291cf57c518afbabcd204e2f08529a6dd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9f62700e2b14f5751be30613eaafe3c05886e1ae3f26e2df022316721bed860",
-      "plan.md": "9bb4794dfcb24ea1a79f1cdef56fa35e405c9f509d8eb9225822f7aae0559a40",
-      "tasks.md": "298e27d080dc08d9ec34e4271abef0f329a4b85bb17fe74ed3c16fe61f85eb5f",
-      "implementation-summary.md": "05eb764cd331f13070daf9f7f9c528ce1e63fedfc7b1909008c3eddd89f6f9d6"
+      "spec.md": "0c94a4d5ee11082382c1c60456404e676c80289c49071d43e7417e866270c0a8",
+      "plan.md": "535511a1c21a208761a6241aa1021c14f4107446a48292059f29a8302451d413",
+      "tasks.md": "bb69dc4b4568c96a44f0c970025166732bf67f632f9df82daa59ec6417b72d16",
+      "implementation-summary.md": "919b529c4a5fa0c2f399738f1ba5786291e4134945377f5acf5a514bb5b63b6d"
     },
     "last_active_at": null
   }

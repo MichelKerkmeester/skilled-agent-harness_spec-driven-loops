@@ -21,7 +21,7 @@
   "folderSlug": "addon-removal-and-speed-refinements",
   "parentChain": [
     "system-speckit",
-    "041-weak-model-spec-authoring"
+    "040-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -87,18 +87,18 @@
     ],
     "causal_summary": "The changelog template prescribed machine-era tables and stale paths, and its workflow did not enforce the concise narrative style established by v4.0.0.0",
     "created_at": "2026-10-31T13:41:22.552Z",
-    "last_save_at": "2026-10-31T15:21:58.958Z",
+    "last_save_at": "2026-10-31T15:23:58.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fbdcbee4239365f87fcadc4e61585231fca6f74ded7a75f00964d0f66d986a77",
+    "source_fingerprint": "sha256:76703cbea96340f9dccd12fc1515eb637f093d53592dd6682a8829577fe6665f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f4ee69a3b0efb1e419e1392ee6fa1bd6e4548cf4474a8656f0c66ccdcc9f832c"
+      "spec.md": "e12790601cb26a716f85bd1c6435f36b1cb4f55ed67b318d5bbac65e60c7e2f0"
     },
-    "last_active_child_id": "sk-doc/056-changelog-system/003-skilled-release-changelog",
+    "last_active_child_id": "sk-doc/055-changelog-system/003-skilled-release-changelog",
     "last_active_at": null
   }
 }

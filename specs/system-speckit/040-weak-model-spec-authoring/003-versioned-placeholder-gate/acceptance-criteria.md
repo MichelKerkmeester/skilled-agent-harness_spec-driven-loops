@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate"
     last_updated_at: "2026-10-25T21:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate
+**Packet:** system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23
@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-003 | REQ-003 | Given the new test, When T007 runs before the code change and T010 breaks the code three ways, Then the test fails first, fails under each break and passes again after the restore | T007 saves a red run in `scratch/test-red.txt`. T010 prints `M1_RED`, `M2_RED`, `M3_RED` and `GREEN_AGAIN` and then `RESTORED`. Observed: `scratch/test-red.txt` shows `Tests  1 failed \| 4 passed (5)` before the code change; T010 printed `M1_RED`, `M2_RED`, `M3_RED`, `GREEN_AGAIN` and `RESTORED` | Met | - |
 | AC-004 | REQ-004 | Given the frozen folder list, When `tasks.md` T015 runs the census after the change, Then Gate A and Gate B give the same result per folder as T006 gave before | T015 prints `CENSUS_SAME gate A` and `CENSUS_SAME gate B`. Observed: T015 printed `CENSUS_SAME gate A` and `CENSUS_SAME gate B` twice (before and after the review fix), `4496 PASS` and `192 FAIL` both times, 4688 folders | Met | - |
 | AC-005 | REQ-005 | Given the phase 1 `suite-start.txt`, When `tasks.md` T017 compares the end of this phase, Then the suite differs by one test file and five tests and nothing else | T017 second block prints `SUITE_MATCH_PLUS_NEW_TEST`. Observed: T017 second block printed `SUITE_MATCH_PLUS_NEW_TEST` on both suite runs (`exit=0`); the cli lane rose from 180 to 181 files and from 2061 to 2066 tests, the core lane stayed at 276 files and 4162 tests | Met | - |
-| AC-006 | REQ-006 | Given the finished diff, When `tasks.md` T018 runs, Then no path changed outside the file list in `spec.md` section 3 and this folder | T018 last command prints `0` and `git log -1 --format=%H` prints the hash recorded in T003. Observed: T018 last command printed `1`, the one path being `specs/system-speckit/041-weak-model-spec-authoring/goal.md`, the parent goal changed by the conductor and excluded from this phase's commit; every other changed path is in the allowed list. `git log -1 --format=%H` printed the T003 start hash | Met | - |
+| AC-006 | REQ-006 | Given the finished diff, When `tasks.md` T018 runs, Then no path changed outside the file list in `spec.md` section 3 and this folder | T018 last command prints `0` and `git log -1 --format=%H` prints the hash recorded in T003. Observed: T018 last command printed `1`, the one path being `specs/system-speckit/040-weak-model-spec-authoring/goal.md`, the parent goal changed by the conductor and excluded from this phase's commit; every other changed path is in the allowed list. `git log -1 --format=%H` printed the T003 start hash | Met | - |
 | AC-007 | REQ-007 | Given the two reference docs, When `tasks.md` T012 has run, Then `template-guide.md` no longer says `[PLACEHOLDER]` and `validation-rules.md` holds the lifecycle section | T012 prints `APPLIED 5 edits` and `APPLIED 1 edits`, the count search for the old text prints nothing and the count search for the lifecycle heading prints `1`. Observed: T012 printed `APPLIED 5 edits` and `APPLIED 1 edits`; `rg -c 'PLACEHOLDER\]'` over `template-guide.md` printed nothing (rc 1); the lifecycle search over `validation-rules.md` counts 3 lines and the heading count printed `1` | Met | - |
 | AC-008 | REQ-008 | Given a scaffold in `specs/zz-bench-gate/`, When `tasks.md` T014 runs, Then Draft passes with a warning, Complete errors, a v2.2 stamp errors and the track is deleted | T014 prints `RESULT: PASSED`, then `error` twice, then `TRACK_GONE`. Observed: T014 printed `RESULT: PASSED` with `PLACEHOLDER_FILLED` as a warning at Draft, `error 36 placeholder(s) found` at Complete, `error 30 placeholder(s) found` with a v2.2 stamp, and `TRACK_GONE` | Met | - |
 | AC-009 | REQ-009 | Given the diff, When the frontier review in `tasks.md` T019 returns, Then each P0 and P1 finding is fixed, each P2 finding is fixed or recorded, and the operator items are recorded | the verify command of T019 prints `0`, T020 prints `FINDINGS_TALLIED` with two equal numbers, and `goal.md` section 4 holds the five operator rows with probe output for OP-1 to OP-3. Observed: `scratch/review/T019.txt` holds one `P2` line (the verify command printed `0`); T020 printed `FINDINGS_TALLIED 1 1`; the finding was confirmed by reading the file and applied; `goal.md` section 4 holds the five operator rows, with probe output for OP-1 to OP-3 | Met | - |

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/021-doctor-test-environments"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/021-doctor-test-environments"
     last_updated_at: "2026-10-04T19:10:00Z"
     last_updated_by: "doctor-test-environments"
     recent_action: "Built both test environments and proved the fixture's statuses and reset"

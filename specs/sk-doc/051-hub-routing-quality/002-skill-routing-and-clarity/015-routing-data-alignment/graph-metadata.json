@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Several skills declare a phrase in one routing stage that the other stage scores differently, so a request lands on the wrong mode, on no mode, or on another skill",
     "created_at": "2026-10-29T21:26:56Z",
-    "last_save_at": "2026-10-31T14:01:43.415Z",
+    "last_save_at": "2026-10-31T15:23:58.391Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +219,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:527288a1e07c23f6c85786767d04e6948d38a71f417f58af22d40097e2331ba5",
+    "source_fingerprint": "sha256:cd2e48b7ff91ff95aeb924bf4f5bef7c197b640a3f7a5e72f230a887994b751a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b6a56f585e711c3f736b06ffdd1b394902b5d3a898ad1c54f4cac4d6bb185a14",
+      "spec.md": "a21bc4707a90781e40e04fa2e887675c30af5c7ad20480f5261b14cd993a8778",
       "plan.md": "78d86eb6ae45682b0f33609e7c1586315893d679d3f6466bb1d51bf84b20225d",
       "tasks.md": "875589ff711bdf9ca8d2ab63f4a4ecfa00f05abf3ac8714377a59995ca717437",
       "decision-record.md": "86ebe96f3703b95fc59320f0b0cde4bca095706eebc98f5b356952c814a7524e",

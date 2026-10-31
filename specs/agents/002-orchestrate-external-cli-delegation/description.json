@@ -15,7 +15,7 @@
     "modes"
   ],
   "lastUpdated": "2026-09-02T11:18:19.791Z",
-  "specId": "008",
+  "specId": "002",
   "folderSlug": "orchestrate-external-cli-delegation",
   "parentChain": [
     "agents"

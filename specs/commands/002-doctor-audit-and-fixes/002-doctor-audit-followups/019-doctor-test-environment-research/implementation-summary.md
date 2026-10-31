@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research"
     last_updated_at: "2026-10-04T17:45:00Z"
     last_updated_by: "doctor-test-environment-research"
     recent_action: "Merged the DeepSeek and LUNA lineages into research.md"
     next_safe_action: "Operator picks the worktree name and whether a second environment is built; then implement the fixes and the environment"
     blockers: []
     key_files:
-      - "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/research.md"
+      - "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "doctor-test-environment-research"

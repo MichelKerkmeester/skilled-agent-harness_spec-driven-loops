@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring"
     last_updated_at: "2026-10-26T05:35:00Z"
     last_updated_by: "conductor"
     recent_action: "Timed the refined tree with the speed loop: no measurable difference against 054 now"
@@ -51,7 +51,7 @@ _memory:
 | **Created** | 2026-10-23 |
 | **Branch** | `worktrees/217-weak-model-spec-authoring`, where every phase ran. The branch reached `main` on 2026-10-25 |
 | **Parent Spec** | None. The track folder `specs/system-speckit/` holds no `spec.md` |
-| **Parent Packet** | system-speckit/041-weak-model-spec-authoring |
+| **Parent Packet** | system-speckit/040-weak-model-spec-authoring |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Every phase in the phase map is Complete, `validate.sh --recursive --strict` on this packet prints `RESULT: PASSED`, and phase 009 reports a measured before and after for the five authoring metrics |

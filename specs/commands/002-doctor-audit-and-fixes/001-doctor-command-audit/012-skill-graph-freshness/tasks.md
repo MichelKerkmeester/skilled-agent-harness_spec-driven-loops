@@ -58,7 +58,7 @@ contextType: "general"
 - [x] T011 Rerun route validation on the post-batch manifest (.skilled/commands/doctor/scripts/route-validate.sh)
 - [x] T012 Run the batch gates: YAML parse over every doctor asset, the catalog mirror check, the MCP mutation-class guard and the doctor script tests
 - [x] T013 Scan the edited doctor files for retired identifiers (`system_skill_advisor.`, `deep_loop_graph_status|query|convergence(`, `doctor_*`)
-- [x] T014 Close the phase documentation and validate the packet (specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness)
+- [x] T014 Close the phase documentation and validate the packet (specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness)
 <!-- /ANCHOR:phase-3 -->
 
 ---

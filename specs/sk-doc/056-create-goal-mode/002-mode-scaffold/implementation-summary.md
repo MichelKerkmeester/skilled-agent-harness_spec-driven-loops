@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/002-mode-scaffold"
+    packet_pointer: "sk-doc/056-create-goal-mode/002-mode-scaffold"
     last_updated_at: "2026-09-25T20:40:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the sk-create-goal scaffold"
@@ -99,7 +99,7 @@ The orchestrator recorded the baseline: the mode directory was absent, and the p
 | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` | Exit 1; the only failure is `6a` for `sk-create-goal` |
 | `find .skilled/skills/sk-doc/sk-create-goal -name goal.md.tmpl -o -name graph-metadata.json -o -name description.json` | 0 files |
 | `git status --short .skilled/` | Only the six new files under `sk-create-goal/` |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/002-mode-scaffold --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/002-mode-scaffold --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-25 |
 <!-- /ANCHOR:verification -->
 
 ---

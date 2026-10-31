@@ -103,9 +103,9 @@ returns nothing.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/agents/009-turn-closeout-next-steps/007-progress-updates/research/research.md` | Create | The four tests, the home inventory, the verdict |
-| `specs/agents/009-turn-closeout-next-steps/007-progress-updates/spec.md` | Create | This document |
-| `specs/agents/009-turn-closeout-next-steps/spec.md` | Modify | Phase map row for 007, repaired from the scaffold's malformed output |
+| `specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/research/research.md` | Create | The four tests, the home inventory, the verdict |
+| `specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/spec.md` | Create | This document |
+| `specs/agents-md/007-turn-closeout-next-steps/spec.md` | Modify | Phase map row for 007, repaired from the scaffold's malformed output |
 <!-- /ANCHOR:scope -->
 
 ---

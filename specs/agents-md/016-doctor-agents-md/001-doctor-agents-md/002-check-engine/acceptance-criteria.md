@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine"
     last_updated_at: "2026-10-30T12:35:33Z"
     last_updated_by: "markdown-agent"
     recent_action: "Met all twelve criteria and recorded the run behind each one"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine`
+**Packet:** `agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/063-local-command-support"
+    packet_pointer: "commands/003-local-command-support"
     last_updated_at: "2026-10-26T22:10:00Z"
     last_updated_by: "leaf-worker"
     recent_action: "Landed local-* command support in five tracked files and verified it"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 063-local-command-support |
+| **Spec Folder** | 003-local-command-support |
 | **Completed** | 2026-10-26 on `worktrees/217-weak-model-spec-authoring`, not committed |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

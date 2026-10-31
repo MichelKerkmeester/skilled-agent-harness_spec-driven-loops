@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/008-gate5-card-pilot"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Held the cards back from the live router (ADR-003)"
@@ -111,7 +111,7 @@ Planned with `/speckit:plan` in auto mode after a four-agent codebase exploratio
 
 | Check | Result |
 |-------|--------|
-| Planning docs | `validate.sh specs/agents/016-repo-rule-advisor-surfacing --strict --recursive` returned RESULT: PASSED on 2026-10-04 |
+| Planning docs | `validate.sh specs/agents-md/012-repo-rule-advisor-surfacing --strict --recursive` returned RESULT: PASSED on 2026-10-04 |
 | Generator and check 11 | `test_build_rule_cards.py` 4 passed on 2026-10-04 |
 | Card router against the checker | On a scratch copy with the arm `cards` edits, check 2 failed and check 10 reported bullets=0, as expected |
 | Pre-registration before the first scored run | `3990bc9fa5` committed 2026-10-04 23:58:14, earliest run transcript `rollout-2026-10-04T23-58-29` |

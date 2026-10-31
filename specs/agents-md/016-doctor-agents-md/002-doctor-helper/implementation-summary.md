@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/002-doctor-helper"
+    packet_pointer: "agents-md/016-doctor-agents-md/002-doctor-helper"
     last_updated_at: "2026-10-30T14:10:00Z"
     last_updated_by: "code-agent"
     recent_action: "Shipped the matcher, the route, the two suites and every generated surface"

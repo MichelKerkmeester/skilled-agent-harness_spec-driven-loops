@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/064-readme-validation-debt/002-readme-reference-debt"
+    packet_pointer: "sk-doc/062-readme-validation-debt/002-readme-reference-debt"
     last_updated_at: "2026-10-27T23:30:00Z"
     last_updated_by: "readme-reference-debt-followup-worker"
     recent_action: "Added the readme-check marker and absent-by-design rules, recorded the harness follow-up"
@@ -218,7 +218,7 @@ Both checks ran on the 12 READMEs and on all 977 tracked READMEs before any chan
 | Follow-up: `test_validation_switch.py` | 8 passed, exit 0 |
 | Follow-up: `test_rename_tooling_fixture_harness.py` alone | `Ran 5 tests`, `OK`, exit 0 |
 | Follow-up: `run-script-tests.sh` after both follow-ups | `all sk-doc script tests passed`, exit 0 |
-| `run-script-tests.sh` (sk-doc script suite) | 38 PASS, 1 FAIL: `test_rename_tooling_fixture_harness.py` errors because it snapshots the live worktree and a tracked file under `specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/scratch/` was already deleted in the working tree before this packet began; it does not touch either checker. `test_validation_switch.py`, which runs both checkers, passes (8 passed) |
+| `run-script-tests.sh` (sk-doc script suite) | 38 PASS, 1 FAIL: `test_rename_tooling_fixture_harness.py` errors because it snapshots the live worktree and a tracked file under `specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch/` was already deleted in the working tree before this packet began; it does not touch either checker. `test_validation_switch.py`, which runs both checkers, passes (8 passed) |
 <!-- /ANCHOR:verification -->
 
 ---

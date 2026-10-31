@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups"
     last_updated_at: "2026-10-05T09:30:00Z"
     last_updated_by: "doctor-run-followups"
     recent_action: "Fixed the kill-switch test and stamped seven proven metadata blocks"

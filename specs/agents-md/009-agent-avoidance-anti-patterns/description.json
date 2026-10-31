@@ -21,10 +21,10 @@
     "operator"
   ],
   "lastUpdated": "2026-09-18T10:08:09.329Z",
-  "specId": "012",
+  "specId": "009",
   "folderSlug": "agent-avoidance-anti-patterns",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

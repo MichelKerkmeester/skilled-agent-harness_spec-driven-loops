@@ -30,7 +30,7 @@ contextType: "general"
 
 Every task below names one file, quotes the anchor text it edits, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
-**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control`, and a path written as `scratch/<name>` in a task means `$PHASE/scratch/<name>`. Write the full path in a command; the shell does not expand `$PHASE` unless a task sets it.
+**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control`, and a path written as `scratch/<name>` in a task means `$PHASE/scratch/<name>`. Write the full path in a command; the shell does not expand `$PHASE` unless a task sets it.
 
 **Three tokens stand for data, never for prose.**
 
@@ -54,7 +54,7 @@ Every task below names one file, quotes the anchor text it edits, gives that anc
 
 ### T001 [x] DECISION D6 (operator yes required) - approve or change the timeout floor (AC-010)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the `D6=` line.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md` (exists; written 2026-10-23 with the operator's answer). Anchor: the `D6=` line.
 
 Default: `10` minutes. It is what `max(10, ceil(3 x job p50), ceil(2 x job p100))` uses, it caps a hang at 10 minutes instead of 360, and it is the value `006-sk-code-ci-surface`'s rule data names as the default.
 
@@ -65,8 +65,8 @@ Change: the operator answered `D6=10` on 2026-10-23 and the file already holds t
 Check:
 
 ```bash
-mkdir -p specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch
-grep -cE '^D6=(5|10)$' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md
+mkdir -p specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch
+grep -cE '^D6=(5|10)$' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md
 ```
 
 Expected: `1`.
@@ -81,15 +81,15 @@ Evidence: `grep -cE '^D6=(5|10)$' scratch/decisions.md` printed `1`; the file ho
 
 ### T002 [x] Record the pre-phase baseline (AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-baseline.md` (new file). Anchor: none.
 
 Change: copy the 002 baseline's first 40 lines when it exists, otherwise copy the 001 dataset summary and write `source: 001 dataset (provisional)` as the file's first line. Then append one `## Pre-phase tree` block holding the four counts below, one per line, each with its command, and write the current `HEAD` to `scratch/phase-start-sha.txt`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
-test -f specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+test -f specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch/baseline-24h/summary.md && echo BASELINE_PRESENT || echo BASELINE_MISSING
 ls .github/workflows/*.yml | wc -l
 python3 -c "import glob,yaml; print(sum(len(yaml.safe_load(open(f))['jobs']) for f in glob.glob('.github/workflows/*.yml')))"
 grep -c 'timeout-minutes' .github/workflows/*.yml | grep -v ':0' | wc -l
@@ -101,7 +101,7 @@ grep -c '^## Pre-phase tree' "$PHASE/scratch/phase-baseline.md"
 
 Expected: `BASELINE_PRESENT` or `BASELINE_MISSING`; `33`; `44`; `6`; `12`; `SHA_PRESENT`; `1`. When `004` has landed, expect `32` files, `43` jobs, `5` files with a timeout line and `12` files without a permissions block instead; record whichever the commands print.
 
-Rollback: `rm -r specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch`.
+Rollback: `rm -r specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch`.
 
 Stop and escalate if: the file counts are neither the scaffold set nor the post-`004` set, or the `## Pre-phase tree` block is not written.
 
@@ -111,14 +111,14 @@ Evidence: `BASELINE_PRESENT`; 32 files; 43 jobs; 5 files with a timeout line; 12
 
 ### T003 [x] Confirm the dependency phases and record the final inventory (AC-003, AC-005)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md` (new file). Anchor: none.
 
 Change: run the four confirmation commands and the inventory parse below, then write one row per `(workflow, job)` pair with the columns `workflow | job | name | timeout | if | group`. Add a final line `tree: <files> files, <jobs> jobs` and, when `hooks-node-tests.yml` is absent, a line `hooks-node-tests: merged into opencode-plugin-tests.yml`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 test ! -f .github/workflows/hooks-node-tests.yml && echo 'hooks: merged' || echo 'hooks: separate'
 grep -c 'plugin-and-hook-tests' .github/workflows/opencode-plugin-tests.yml
 grep -c 'max(<floor>' .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
@@ -140,7 +140,7 @@ grep -c '^| ' "$PHASE/scratch/inventory.md"
 
 Expected: `hooks: merged` or `hooks: separate`; `1` when merged and `0` when separate; `1`; one parse line per job, `43` after `004`'s hook merge and `44` on the scaffold path; the inventory's row count equals the parse line count plus one header row.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/inventory.md`.
 
 Stop and escalate if: `job-shape-rules.md` is absent, or `grep -c 'max(<floor>'` is not `1`, or the parse prints fewer than `40` lines, or the inventory's row count differs from the parse count.
 
@@ -150,18 +150,18 @@ Evidence: dependency state read from the tree. `hooks: merged`; `grep -c plugin-
 
 ### T004 [x] Record the switch group assignment (AC-006)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md` (new file). Anchor: none.
 
 Change: read `.github/workflows/README.md:60-75` and write one table with a row per group: the variable, the README row it comes from, the workflow files in it, and its job count. FRESHNESS is the guards row at `:66` plus `naming-standard-guard.yml` at `:67`, `gate-inputs.yml` at `:68` and `changed-packet-validation.yml` at `:70`; TESTS is the path-filtered row at `:69`; REVIEW is the row at `:71`; REPORTS is `strict-pass-freshness-report.yml` and `trigger-index-rebuild.yml`; MESSAGES is `message-contract.yml`; `dependabot-auto-merge.yml` gets no group.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -cE '^\| SKILLED_CI' "$PHASE/scratch/switch-groups.md"
 python3 - <<'PY'
 import glob, re
-t = open('specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md').read()
+t = open('specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md').read()
 listed = set(re.findall(r'([a-z0-9-]+\.yml)', t))
 tree = {f.rsplit('/', 1)[-1] for f in glob.glob('.github/workflows/*.yml')}
 print('missing', sorted(tree - listed), 'extra', sorted(listed - tree))
@@ -170,7 +170,7 @@ PY
 
 Expected: `5`; `missing [] extra []`. The exempt workflow is named in the table's prose line, so the set comparison is complete without a group row for it. On the default path the counts are FRESHNESS 9 files and 13 jobs, TESTS 16 and 22, REVIEW 3 and 3, REPORTS 2 and 3, MESSAGES 1 and 1.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/switch-groups.md`.
 
 Stop and escalate if: the group count is not `5`, or `extra` is not empty, or the file counts do not sum to the tree's file count.
 
@@ -180,21 +180,21 @@ Evidence: 5 group rows; `missing [] extra []`. Counts read from the tree: FRESHN
 
 ### T005 [x] Record the constraints the passes must respect (AC-005)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md` (new file). Anchor: none.
 
 Change: write four `CONSTRAINT ` lines, each quoting its source: the message-contract prohibition from `001-research/research/research.md:189`, the protected-by-function rule that a skipped job reports Success, the four job-level `if:` sites with their exact text from the command below, and the loop-guard comment above `trigger-index-rebuild.yml:33`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -n '^    if:' .github/workflows/*.yml
 grep -c '^CONSTRAINT ' "$PHASE/scratch/constraints.md"
 ```
 
 Expected: four `if:` lines (`dependabot-auto-merge.yml:18`, `skill-doc-frontmatter.yml:52`, `trigger-index-rebuild.yml:33`, `trigger-index-rebuild.yml:186`); `4`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/constraints.md`.
 
 Stop and escalate if: the `if:` count is not four, or a quoted condition differs from the file.
 
@@ -206,14 +206,14 @@ Evidence: 4 `CONSTRAINT ` lines. Before any edit the job-level `if:` grep return
 
 Evidence: `grep -cE '^PROBE_FORK=[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' scratch/decisions.md` printed `1`; the value is `MichelKerkmeester/ci-switch-probe-throwaway`, a private throwaway repository the operator approved. A same-account fork is not possible, see `scratch/r26-probe.md`.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md:1`, anchor: the `D6=` line written by T001.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/decisions.md:1`, anchor: the `D6=` line written by T001.
 
 Change: put the fork question to the operator and append exactly one line `PROBE_FORK=<probe-fork>` naming a fork or throwaway test repository that carries this repository's workflows. The operator supplies the value; no command derives it.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -cE '^PROBE_FORK=[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' "$PHASE/scratch/decisions.md"
 ```
 
@@ -593,14 +593,14 @@ Evidence: parse printed `['auto-merge', 'metadata'] {'contents': 'read'} {'conte
 
 ### T020 [x] Gate the permissions pass and record it (AC-001, AC-002)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md` (new file). Anchor: none.
 
 Change: run the gate and the parse into the scratch file, then write `## Permissions pass` holding both outputs, the exit status and the changed-file count.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 bash .github/scripts/check-gate-inputs.sh > "$PHASE/scratch/gate-after-permissions.txt" 2>&1; echo "exit=$?" >> "$PHASE/scratch/gate-after-permissions.txt"
 python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]; print('parse ok')"
 grep -c 'RESULT: PASSED' "$PHASE/scratch/gate-after-permissions.txt"
@@ -610,7 +610,7 @@ git diff --stat .github/workflows | tail -1
 
 Expected: `parse ok`; `1`; `0`; one summary line naming `13` files changed.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/gate-after-permissions.txt`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-permissions.md specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/gate-after-permissions.txt`.
 
 Stop and escalate if: the gate does not print `RESULT: PASSED`, or the parse fails, or `grep -L` still names a file other than none.
 
@@ -627,13 +627,13 @@ Change: stage the 12 files and the permissions evidence, write the full message 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-permissions.txt <<'MSG'
 ci(workflows): declare least-privilege token scopes
 
 The twelve workflows that declared no token scope now request read access to repository contents.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-permissions.txt; echo "msg=$?"
 for f in advisory-checks agent-mirror-sync chart-corpus comment-hygiene diagram-corpus markdown-link-integrity playbook-operator-contract prompt-card-sync repo-rules-corpus rule-canary-sync runtime-no-spec-import skill-doc-frontmatter; do git add ".github/workflows/$f.yml"; done
@@ -652,7 +652,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ### T022 [x] Prove the split on a real Dependabot pull request (AC-002)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md` (new file). Anchor: none.
 
 Change: read the newest open Dependabot pull request and its newest run, then write the pull request number, the run id and both job conclusions. When none exists, write `pending: no Dependabot pull request in window` and leave the task `[B]`.
 
@@ -661,13 +661,13 @@ Check:
 ```bash
 gh pr list --author 'app/dependabot' --state open --json number,title,headRefName
 gh run list --workflow dependabot-auto-merge.yml --limit 1 --json databaseId,conclusion
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -cE 'run id: [0-9]+|pending:' "$PHASE/scratch/r25-dependabot.md"
 ```
 
 Expected: one open pull request or none; one run row or none; `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r25-dependabot.md`.
 
 Stop and escalate if: a run exists and its `metadata` job is not green, or the run id cannot be read. Never create a pull request from a non-Dependabot account to force the path, because the job's `if:` would skip it.
 
@@ -684,14 +684,14 @@ Change: stage the split workflow and its proof, write the full message below to 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-dependabot.txt <<'MSG'
 ci(dependabot): split metadata reads from the merge write scope
 
 The metadata job holds only read scopes.
 The merge job holds the write scopes and runs no repository code.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-dependabot.txt; echo "msg=$?"
 git add .github/workflows/dependabot-auto-merge.yml "$PHASE/scratch/r25-dependabot.md"
@@ -713,14 +713,14 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 ### T024 [x] Collect 40 runs of job-level timings per workflow (AC-003)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/` (new directory tree). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/` (new directory tree). Anchor: none.
 
 Change: create `runs/` and `jobs/`, write one run list per workflow with `--limit 40`, then one job file per run id. Run every list before any per-run view, so a rate-limit pause costs one workflow rather than all of them. Record the run count per workflow in `scratch/r24/sample.md`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 mkdir -p "$PHASE/scratch/r24/runs" "$PHASE/scratch/r24/jobs"
 for f in .github/workflows/*.yml; do b="$(basename "$f" .yml)"; gh run list --workflow "$(basename "$f")" --limit 40 --json databaseId,conclusion,createdAt,event,headSha > "$PHASE/scratch/r24/runs/$b.json"; done
 for id in $(python3 -c "import json,glob; print(' '.join(str(r['databaseId']) for f in glob.glob('$PHASE/scratch/r24/runs/*.json') for r in json.load(open(f))))"); do gh run view "$id" --json databaseId,conclusion,jobs > "$PHASE/scratch/r24/jobs/$id.json"; done
@@ -731,7 +731,7 @@ python3 -c "import json,glob; print(sum(len(json.load(open(f))) for f in glob.gl
 
 Expected: `32` run lists; a job-file count equal to the total run count; a total at or below `1,280`.
 
-Rollback: `rm -r specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24`.
+Rollback: `rm -r specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24`.
 
 Stop and escalate if: fewer than `30` run lists are written, or a job file is missing for a run id, or `gh` reports an authentication or scope error.
 
@@ -741,21 +741,21 @@ Evidence: 32 run lists written before any per-run view; 1157 runs listed and 115
 
 ### T025 [x] Write the sizing script (AC-003, AC-004)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs` (new file). Anchor: none.
 
 Change: write the script to read `scratch/r24/jobs/*.json`, keep only `conclusion == 'success'` runs per job, compute seconds from `startedAt` to `completedAt`, and print one markdown row per job: `| workflow | job | samples | p50 | p100 | formula | final | marker |`. It accepts `--floor <n>`, and `--assert` reads the tree and prints `values match formula: ok` and `50% rule: ok` or exits 1.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 node "$PHASE/scratch/r24/size-timeouts.mjs" --floor 10 | head -3
 node "$PHASE/scratch/r24/size-timeouts.mjs" --floor 10 | grep -c '^| '
 ```
 
 Expected: a header row, a divider row and one job row; a count equal to the job count plus `2`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/size-timeouts.mjs`.
 
 Stop and escalate if: the script exits non-zero, or the row count is not the job count plus `2`.
 
@@ -765,14 +765,14 @@ Evidence: `size-timeouts.mjs --floor 10 | head -3` printed the header row, the d
 
 ### T026 [x] Produce the sizing table (AC-003, AC-004)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md` (new file). Anchor: none.
 
 Change: run the script with D6's floor into the table, then add a `## Comparison` section naming the six jobs that already carried a value and their old number beside the new one. A job with fewer than 5 successful samples is marked `thin`, one with none takes the floor and is marked `no-sample`, and one with only failures is sized from them and marked `failed-only`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 FLOOR=$(sed -n 's/^D6=\([0-9]\+\)$/\1/p' "$PHASE/scratch/decisions.md")
 node "$PHASE/scratch/r24/size-timeouts.mjs" --floor "$FLOOR" > "$PHASE/scratch/r24/timeouts.md"
 grep -c '^| ' "$PHASE/scratch/r24/timeouts.md"
@@ -781,7 +781,7 @@ grep -cE '\| (thin|no-sample|failed-only) \|' "$PHASE/scratch/r24/timeouts.md"
 
 Expected: the job count plus `2`; at least `1`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`.
 
 Stop and escalate if: the row count is not the job count plus `2`, or any row's `final` cell is empty, or any `final` cell is below the floor.
 
@@ -799,7 +799,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/advisory-checks.yml'))['jobs']['advisory'].get('timeout-minutes'))"
-grep -E '^\| advisory-checks\.yml \| advisory \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| advisory-checks\.yml \| advisory \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -822,7 +822,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/agent-mirror-sync.yml'))['jobs']['agent-mirror-sync'].get('timeout-minutes'))"
-grep -E '^\| agent-mirror-sync\.yml \| agent-mirror-sync \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| agent-mirror-sync\.yml \| agent-mirror-sync \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -845,7 +845,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/changed-packet-validation.yml'))['jobs']['changed-packets'].get('timeout-minutes'))"
-grep -E '^\| changed-packet-validation\.yml \| changed-packets \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| changed-packet-validation\.yml \| changed-packets \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -868,7 +868,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/chart-corpus.yml'))['jobs']['corpus'].get('timeout-minutes'))"
-grep -E '^\| chart-corpus\.yml \| corpus \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| chart-corpus\.yml \| corpus \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -891,7 +891,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/command-tree-parity.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| command-tree-parity\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| command-tree-parity\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -914,7 +914,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/comment-hygiene.yml'))['jobs']['comment-hygiene'].get('timeout-minutes'))"
-grep -E '^\| comment-hygiene\.yml \| comment-hygiene \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| comment-hygiene\.yml \| comment-hygiene \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -937,7 +937,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/deep-loop-runtime.yml'))['jobs']['deep-loop-runtime'].get('timeout-minutes'))"
-grep -E '^\| deep-loop-runtime\.yml \| deep-loop-runtime \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| deep-loop-runtime\.yml \| deep-loop-runtime \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -960,7 +960,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/dependabot-auto-merge.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| dependabot-auto-merge\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| dependabot-auto-merge\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`, both equal to the floor; two rows, both marked `no-sample`.
@@ -983,7 +983,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/diagram-corpus.yml'))['jobs']['corpus'].get('timeout-minutes'))"
-grep -E '^\| diagram-corpus\.yml \| corpus \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| diagram-corpus\.yml \| corpus \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1006,7 +1006,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/dispatch-enforcement-guard.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| dispatch-enforcement-guard\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| dispatch-enforcement-guard\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -1029,7 +1029,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/gate-inputs.yml'))['jobs']['gate-inputs'].get('timeout-minutes'))"
-grep -E '^\| gate-inputs\.yml \| gate-inputs \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| gate-inputs\.yml \| gate-inputs \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1052,7 +1052,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/markdown-link-integrity.yml'))['jobs']['markdown-link-integrity'].get('timeout-minutes'))"
-grep -E '^\| markdown-link-integrity\.yml \| markdown-link-integrity \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| markdown-link-integrity\.yml \| markdown-link-integrity \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1075,7 +1075,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/message-contract.yml'))['jobs']['message-contract'].get('timeout-minutes'))"
-grep -E '^\| message-contract\.yml \| message-contract \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| message-contract\.yml \| message-contract \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1098,7 +1098,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/naming-standard-guard.yml'))['jobs']['naming-standard'].get('timeout-minutes'))"
-grep -E '^\| naming-standard-guard\.yml \| naming-standard \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| naming-standard-guard\.yml \| naming-standard \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1121,7 +1121,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/opencode-dual-version.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| opencode-dual-version\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| opencode-dual-version\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -1145,7 +1145,7 @@ Check:
 ```bash
 grep -n 'timeout-minutes' .github/workflows/opencode-plugin-tests.yml
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/opencode-plugin-tests.yml'))['jobs']; print([(j, v.get('timeout-minutes')) for j, v in d.items()])"
-grep -E '^\| opencode-plugin-tests\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| opencode-plugin-tests\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: one `timeout-minutes` line; one job, not `None`; one row; the value equals that row's final cell.
@@ -1168,7 +1168,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/pi-extension-tests.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| pi-extension-tests\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| pi-extension-tests\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -1191,7 +1191,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/playbook-operator-contract.yml'))['jobs']['operator-contract'].get('timeout-minutes'))"
-grep -E '^\| playbook-operator-contract\.yml \| operator-contract \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| playbook-operator-contract\.yml \| operator-contract \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1214,7 +1214,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/prompt-card-sync.yml'))['jobs']['card-sync'].get('timeout-minutes'))"
-grep -E '^\| prompt-card-sync\.yml \| card-sync \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| prompt-card-sync\.yml \| card-sync \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1237,7 +1237,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/repo-rules-corpus.yml'))['jobs']['repo-rules-corpus'].get('timeout-minutes'))"
-grep -E '^\| repo-rules-corpus\.yml \| repo-rules-corpus \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| repo-rules-corpus\.yml \| repo-rules-corpus \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1260,7 +1260,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/routing-registry-drift.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| routing-registry-drift\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| routing-registry-drift\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -1283,7 +1283,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/rule-canary-sync.yml'))['jobs']['rule-canary'].get('timeout-minutes'))"
-grep -E '^\| rule-canary-sync\.yml \| rule-canary \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| rule-canary-sync\.yml \| rule-canary \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1306,7 +1306,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/runtime-no-spec-import.yml'))['jobs']['no-spec-import'].get('timeout-minutes'))"
-grep -E '^\| runtime-no-spec-import\.yml \| no-spec-import \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| runtime-no-spec-import\.yml \| no-spec-import \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1329,7 +1329,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/sk-code-script-tests.yml'))['jobs']['sk-code-scripts'].get('timeout-minutes'))"
-grep -E '^\| sk-code-script-tests\.yml \| sk-code-scripts \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| sk-code-script-tests\.yml \| sk-code-scripts \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1352,7 +1352,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/sk-doc-rename-harness.yml'))['jobs']['rename-harness'].get('timeout-minutes'))"
-grep -E '^\| sk-doc-rename-harness\.yml \| rename-harness \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| sk-doc-rename-harness\.yml \| rename-harness \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1375,7 +1375,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/sk-doc-script-tests.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| sk-doc-script-tests\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| sk-doc-script-tests\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: three job ids, none `None`; three rows; each value equals its own row's final cell.
@@ -1398,7 +1398,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/sk-git-script-tests.yml'))['jobs']['sk-git-scripts'].get('timeout-minutes'))"
-grep -E '^\| sk-git-script-tests\.yml \| sk-git-scripts \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| sk-git-script-tests\.yml \| sk-git-scripts \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1421,7 +1421,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/skill-advisor-stress.yml'))['jobs']['skill-advisor-stress'].get('timeout-minutes'))"
-grep -E '^\| skill-advisor-stress\.yml \| skill-advisor-stress \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| skill-advisor-stress\.yml \| skill-advisor-stress \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1444,7 +1444,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/skill-doc-frontmatter.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| skill-doc-frontmatter\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| skill-doc-frontmatter\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: two job ids, neither `None`; two rows; each value equals its own row's final cell.
@@ -1467,7 +1467,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/spec-kit-check.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| spec-kit-check\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| spec-kit-check\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: three job ids, none `None`; three rows; each value equals its own row's final cell.
@@ -1490,7 +1490,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; print(yaml.safe_load(open('.github/workflows/strict-pass-freshness-report.yml'))['jobs']['strict-pass-freshness'].get('timeout-minutes'))"
-grep -E '^\| strict-pass-freshness-report\.yml \| strict-pass-freshness \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| strict-pass-freshness-report\.yml \| strict-pass-freshness \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 ```
 
 Expected: an integer; one row; the integer equals that row's final cell.
@@ -1513,7 +1513,7 @@ Check:
 
 ```bash
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/trigger-index-rebuild.yml'))['jobs']; print({j: v.get('timeout-minutes') for j, v in d.items()})"
-grep -E '^\| trigger-index-rebuild\.yml \|' specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
+grep -E '^\| trigger-index-rebuild\.yml \|' specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md
 grep -c 'Trigger-Index-Rebuild: ci' .github/workflows/trigger-index-rebuild.yml
 ```
 
@@ -1537,7 +1537,7 @@ Check:
 
 ```bash
 test -f .github/workflows/hooks-node-tests.yml && echo present || echo absent
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -c 'hooks-node-tests: merged into opencode-plugin-tests.yml' "$PHASE/scratch/inventory.md"
 ```
 
@@ -1553,14 +1553,14 @@ Evidence: `test -f .github/workflows/hooks-node-tests.yml` printed `absent`; `gr
 
 ### T060 [x] Prove the timeout pass (AC-003, AC-004)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`. Anchor: none; append a `## R24 proof` section.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r24/timeouts.md`. Anchor: none; append a `## R24 proof` section.
 
 Change: run the assertion and the parse, then record both outputs and the count of marked rows under `## R24 proof`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 FLOOR=$(sed -n 's/^D6=\([0-9]\+\)$/\1/p' "$PHASE/scratch/decisions.md")
 node "$PHASE/scratch/r24/size-timeouts.mjs" --assert --floor "$FLOOR"
 python3 -c "import yaml,glob; d=[(f,j,v) for f in glob.glob('.github/workflows/*.yml') for j,v in yaml.safe_load(open(f))['jobs'].items()]; print('jobs',len(d),'no-timeout',[(f,j) for f,j,v in d if 'timeout-minutes' not in v])"
@@ -1586,14 +1586,14 @@ Change: stage every workflow file and the sizing evidence, write the full messag
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-timeouts.txt <<'MSG'
 ci(workflows): size every job timeout from its own samples
 
 Each job timeout is sized from forty runs of its own job-level samples.
 The floor and the 50% rule are applied to every value.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-timeouts.txt; echo "msg=$?"
 git add .github/workflows/*.yml "$PHASE/scratch/r24"
@@ -2283,21 +2283,21 @@ Evidence: 1 `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_REPORTS != 'off'` l
 
 ### T091 [x] Record that `trigger-index-rebuild.yml` takes no bare switch (AC-005)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md` (new file). Anchor: none.
 
 Change: write one line `trigger-index-rebuild.yml: both jobs carry a condition, so T092 and T093 AND the switch onto them`. This task changes no workflow file; both jobs are covered by the two tasks that follow.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 grep -c 'both jobs carry a condition' "$PHASE/scratch/pass-switch.md"
 python3 -c "import yaml; d=yaml.safe_load(open('.github/workflows/trigger-index-rebuild.yml'))['jobs']; print(sorted(d))"
 ```
 
 Expected: `1`; `['push', 'rebuild']`.
 
-Rollback: `rm specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`.
+Rollback: `rm specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`.
 
 Stop and escalate if: either job is missing from the parse, or a job's `if:` is absent.
 
@@ -2407,14 +2407,14 @@ Evidence: `grep -c '^### On/off switches$'` printed `1`; the six-name loop print
 
 ### T096 [x] Prove the switch pass (AC-005, AC-006)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`. Anchor: none; append a `## R26 proof` section.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/pass-switch.md`. Anchor: none; append a `## R26 proof` section.
 
 Change: run the counts and the gate, then the negative control. The switch count is `42` when `.github/workflows/hooks-node-tests.yml` is absent and `43` when it is present, because that file carries one job; compute the expected value from the file's presence rather than copying one number. Copy `trigger-index-rebuild.yml` to `scratch/trigger-index-rebuild-mutant.yml`, replace the parenthesised `rebuild` condition with `if: vars.SKILLED_CI != 'off'`, and run the T093 assertion against the copy. The copy must print `True False True` and exit `1`, because the original expression is gone; write `mutant: rejected` only on that failure. Record the counts, the gate line and the mutant result, then remove the copy.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 SWITCHES=$(grep -c "vars.SKILLED_CI != 'off'" .github/workflows/*.yml | awk -F: '{s+=$2} END {print s}')
 if test -f .github/workflows/hooks-node-tests.yml; then EXPECTED=43; else EXPECTED=42; fi
 printf 'switches %s expected %s\n' "$SWITCHES" "$EXPECTED"
@@ -2461,14 +2461,14 @@ Change: stage every workflow YAML (not the README) and the switch proof, write t
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-switches.txt <<'MSG'
 ci(workflows): gate every job behind a repository switch
 
 Every job except Dependabot's two now answers the switch and its group variable.
 The three existing conditions keep their expression as a conjunct.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-switches.txt; echo "msg=$?"
 git add .github/workflows/*.yml "$PHASE/scratch/pass-switch.md"
@@ -2494,13 +2494,13 @@ Change: stage the README, write the full message below to `/tmp/commit-readme.tx
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-readme.txt <<'MSG'
 docs(ci): document the workflow switches
 
 The README now names the six variables, the five groups and the one token that disables a job.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-readme.txt; echo "msg=$?"
 git add .github/workflows/README.md
@@ -2525,7 +2525,7 @@ Stop and escalate if: the validator exits non-zero, or the commit stages a path 
 
 Evidence: `scratch/r26-probe.md` holds `off: skipped` (run 40150455358, run conclusion `skipped`, job `skipped`) and `unset: ran` (run 40150476111, job `failure` because the probe tree holds only `.github/`, which the task accepts as not skipped). Deviations: the probe repository holds one commit with the source commit's `.github/` tree (`git rev-parse HEAD:.github/workflows` equal to `1af96f305a2bda0903dbfb9bf3ef5280e1850eb6` on both sides) instead of the full history, and the off arm's run conclusion is `skipped` rather than the `success` the task expected. Variables were set and deleted only in the probe repository, with before and after values recorded. Deleting the probe repository needs the `delete_repo` scope and is left to the operator.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/r26-probe.md` (new file). Anchor: none.
 
 Precondition: T097's `ci(workflows): gate every job behind a repository switch` commit and T098's `docs(ci): document the workflow switches` commit are on `HEAD`, and the fork named by the `PROBE_FORK=` line in `scratch/decisions.md` carries this repository's workflows. Push the phase `HEAD` to the fork's `main` before the first dispatch; without it the fork runs the pre-phase workflow, the switch is absent, and the `off` run cannot skip.
 
@@ -2535,7 +2535,7 @@ Check:
 
 ```bash
 set -euo pipefail
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 PROBE_FORK=$(sed -n 's/^PROBE_FORK=//p' "$PHASE/scratch/decisions.md")
 test -n "$PROBE_FORK"
 FORK_URL="https://github.com/$PROBE_FORK.git"
@@ -2594,14 +2594,14 @@ Stop and escalate if: the push is rejected, the fork's `main` does not equal `HE
 
 ### T100 [x] Read the first 24 hours of runs for a timeout kill (AC-003)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md` (new file). Anchor: none.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md` (new file). Anchor: none.
 
 Change: read the newest 300 runs, grep every non-success run's log for the kill message, and write `timeout kills: <n>` followed by any hit's run id. When a job was killed, raise its value from a fresh sample in `scratch/r24/timeouts.md` and record the old value, the new one and the run id.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 gh run list --limit 300 --json databaseId,name,conclusion,createdAt > "$PHASE/scratch/runs-24h.json"
 python3 -c "import json; d=json.load(open('$PHASE/scratch/runs-24h.json')); print(len(d), sum(1 for r in d if r['conclusion']!='success'))"
 grep -cE '^timeout kills: [0-9]+$' "$PHASE/scratch/phase-result.md"
@@ -2619,14 +2619,14 @@ Evidence: the check printed `690 26` and `1`, and `scratch/phase-result.md` hold
 
 ### T101 [x] Run the final gates and record the phase result (AC-009, AC-011, AC-012)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md`. Anchor: none; append a `## Final gates` section.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch/phase-result.md`. Anchor: none; append a `## Final gates` section.
 
 Change: run the gate commands, record each output verbatim, then mark T001 to T101 `[x]` in `tasks.md` and set `Closeable: Yes` in `acceptance-criteria.md` only when every row is `Met`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 BASE=$(cat "$PHASE/scratch/phase-start-sha.txt")
 bash .github/scripts/check-gate-inputs.sh
 python3 -c "import yaml, glob; [yaml.safe_load(open(f)) for f in glob.glob('.github/workflows/*.yml')]; print('parse ok')"
@@ -2647,21 +2647,21 @@ Evidence: the gate printed `failures=0` and `RESULT: PASSED`, the parse printed 
 
 ### T102 [x] Commit the closure records (AC-009, AC-011, AC-012)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md`, `acceptance-criteria.md` and the verification records under `scratch/`. Anchor: none; T101 has closed the acceptance rows and set `Closeable: Yes`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/tasks.md`, `acceptance-criteria.md` and the verification records under `scratch/`. Anchor: none; T101 has closed the acceptance rows and set `Closeable: Yes`.
 
 Change: mark T102 `[x]` in `tasks.md`, stage the two spec documents and `scratch/`, write the full message below to `/tmp/commit-closure.txt`, validate it, then commit with `git commit -F`. The closure edits and the probe records land in one commit, so the phase tree ends clean.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 cat > /tmp/commit-closure.txt <<'MSG'
 docs(spec): close the workflow hygiene phase
 
 Record the completed task list, the acceptance criteria and the probe results in
 one closure commit.
 
-Spec: system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
+Spec: system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control
 MSG
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit /tmp/commit-closure.txt; echo "msg=$?"
 git add "$PHASE/tasks.md" "$PHASE/acceptance-criteria.md" "$PHASE/scratch"
@@ -2671,7 +2671,7 @@ git log -1 --format=%s
 git status --short | wc -l
 ```
 
-Expected: `msg=0`; every staged path under `specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/`; `docs(spec): close the workflow hygiene phase`; `0`.
+Expected: `msg=0`; every staged path under `specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/`; `docs(spec): close the workflow hygiene phase`; `0`.
 
 Rollback: `git reset --soft HEAD~1`, restore the previous `[x]` marks and `Closeable:` value with `git checkout -- "$PHASE/tasks.md" "$PHASE/acceptance-criteria.md"`, and delete `/tmp/commit-closure.txt`.
 

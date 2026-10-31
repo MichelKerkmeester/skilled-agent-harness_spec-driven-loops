@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The deep review found a routing regression: the bare keyword `concurrency group` sent a worker-pool prompt to the CI surface and failed the guard test written to prevent it",
     "created_at": "2026-10-25T17:19:17Z",
-    "last_save_at": "2026-10-31T15:22:17.098Z",
+    "last_save_at": "2026-10-31T15:28:38.975Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +212,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8406534a09fd372bb352b4732a0ed35a6493d5c66909a550d81f2c5d4b5aac8c",
+    "source_fingerprint": "sha256:80d923489f0afaf07a78912c1d7dce8fe2e6237f7d300004b5f53a7b5e6ecb85",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d6919cc6e203075ff75abed9aeb92a89aaa1569ca99f1781732bdb7d8b5d541",
+      "spec.md": "01548b94523f66d7a63cc626f9169b044db2da4ca6f4a071afca67d325e80d48",
       "plan.md": "372bb7b9bea11ce6f2d5e01be584265faf2254ad7247e6131faeadfb81edc67e",
       "tasks.md": "9baf7164c4bc73c8b7c112f505f2180032f451595a4f01b130c4c74a5582fce9",
       "implementation-summary.md": "37ba914489ef8443ac6d91846bd54c99350b056c7f7941417eed3f3f0a23df2b"

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/060-feature-catalog-template-anchor-deprecation"
+    packet_pointer: "sk-doc/059-feature-catalog-template-anchor-deprecation"
     last_updated_at: "2026-10-10T19:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Closed both phases"
@@ -41,7 +41,7 @@ _memory:
 | **Created** | 2026-10-10 |
 | **Branch** | `worktrees/096-feature-catalog-anchor-deprecation` |
 | **Parent Spec** | None |
-| **Parent Packet** | sk-doc/060-feature-catalog-template-anchor-deprecation |
+| **Parent Packet** | sk-doc/059-feature-catalog-template-anchor-deprecation |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | No feature catalog file or catalog template in the repository carries the template-name comment |

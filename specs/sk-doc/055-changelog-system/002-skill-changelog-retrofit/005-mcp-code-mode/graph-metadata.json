@@ -191,7 +191,7 @@
     ],
     "causal_summary": "9 mcp-code-mode changelogs predate the compact and expanded format that sk-create-changelog now defines",
     "created_at": "2026-09-24T16:54:09Z",
-    "last_save_at": "2026-10-31T15:21:59.453Z",
+    "last_save_at": "2026-10-31T15:23:59.949Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec7b47d9730624b4ac1ac646f1d377d517f36726e9375bdca0bd920c9872b527",
+    "source_fingerprint": "sha256:06e550c7c8972bc77b311ce762328848f811b22f89fd121e3ed9aa95616a0258",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a26179f66e6ea544e2b27153a01b242c1b3db317857b0c603d66636c7a91841e",
       "plan.md": "d6cc138bbc7e0ef321dcf29e423c399d4d5ccf314e6b577d9b95b391d8b45fdc",
       "tasks.md": "edb00e25fccc5f11a06c67ffb2e33d25e481c236aa4201fa7e66bc5853f54892",
-      "implementation-summary.md": "f4b4f795f604ede4198904bf9372257f041994ed4bfa5f6e5515a94fe39efcc1"
+      "implementation-summary.md": "ad7929ef510595944bc9aa7e0a49736aee1e2a95f74acf0ff39617d52c9ebff0"
     },
     "last_active_at": null
   }

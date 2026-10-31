@@ -39,15 +39,15 @@ contextType: "general"
 
 This is **Phase 7** of the Create the sk-create-goal sk-doc mode that authors packet goals specification.
 
-**Scope Boundary**: Modify the seven named sk-doc hub routing surfaces only. Do not create the mode or command, edit system-spec-kit, or change runtime goal state. The parent assigns command creation to phase 008 and keeps session objectives and runtime binding out of scope (specs/sk-doc/057-create-goal-mode/spec.md:94-109,128-129).
+**Scope Boundary**: Modify the seven named sk-doc hub routing surfaces only. Do not create the mode or command, edit system-spec-kit, or change runtime goal state. The parent assigns command creation to phase 008 and keeps session objectives and runtime binding out of scope (specs/sk-doc/056-create-goal-mode/spec.md:94-109,128-129).
 
 **Dependencies**:
-- Phase 006 must satisfy the incoming handoff: each negative conformance fixture fails for its named reason and the positive fixture passes (specs/sk-doc/057-create-goal-mode/spec.md:147).
-- Phases 002-006 must provide the mode packet and its goal-authoring leaves before the exact stage-two leaf set can be selected (specs/sk-doc/057-create-goal-mode/spec.md:122-127).
+- Phase 006 must satisfy the incoming handoff: each negative conformance fixture fails for its named reason and the positive fixture passes (specs/sk-doc/056-create-goal-mode/spec.md:147).
+- Phases 002-006 must provide the mode packet and its goal-authoring leaves before the exact stage-two leaf set can be selected (specs/sk-doc/056-create-goal-mode/spec.md:122-127).
 - The current advisor CLI, compiled-route CLI, leaf-manifest generator and explicit-path parent-skill check must be available (.skilled/skills/sk-doc/SKILL.md:54-58; .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:240-255).
 
 **Deliverables**:
-- A synchronized `sk-create-goal` registry entry, stage-one router signal and tie-break, stage-two intent/resource map and full-inventory entry, hub advisor vocabulary, human-facing mode row/count, description update and regenerated leaf manifest (.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:222-233; specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:3-17).
+- A synchronized `sk-create-goal` registry entry, stage-one router signal and tie-break, stage-two intent/resource map and full-inventory entry, hub advisor vocabulary, human-facing mode row/count, description update and regenerated leaf manifest (.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:222-233; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:3-17).
 - Before-and-after results for the same ten newcomer prompts and negative replays for session-goal phrases and `/goal-opencode` and `/goal-cursor`.
 
 **Changelog**:
@@ -78,9 +78,9 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 - Replay positive requests through the advisor and hub router, exercise fixed out-of-domain phrases and measure one unchanged ten-prompt newcomer corpus before and after. The prior frontmatter integration recorded zero of ten newcomer prompts at its initial measurement, then used the same corpus for its after measurement (specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/spec.md:20-31; specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/implementation-summary.md:89-92).
 
 ### Out of Scope
-- Creating or changing the `sk-create-goal` packet, its authoring logic or goal template. Earlier phases own the packet, while system-spec-kit owns the template and existing goal validation (specs/sk-doc/057-create-goal-mode/spec.md:85-92; specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:3-18).
-- Creating `/create:goal`, its assets, command metadata or runtime command mirrors. Phase 008 owns these files (specs/sk-doc/057-create-goal-mode/spec.md:100-109,128-129).
-- Changing session objective setting, binding, update/resend behavior, `/goal-opencode`, `/goal-cursor` or any system-spec-kit files; these belong to the existing hook/host surfaces (specs/sk-doc/057-create-goal-mode/spec.md:94-98; .skilled/skills/system-spec-kit/SKILL.md:149-160,483-485; specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
+- Creating or changing the `sk-create-goal` packet, its authoring logic or goal template. Earlier phases own the packet, while system-spec-kit owns the template and existing goal validation (specs/sk-doc/056-create-goal-mode/spec.md:85-92; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-goal-system-audit.md:3-18).
+- Creating `/create:goal`, its assets, command metadata or runtime command mirrors. Phase 008 owns these files (specs/sk-doc/056-create-goal-mode/spec.md:100-109,128-129).
+- Changing session objective setting, binding, update/resend behavior, `/goal-opencode`, `/goal-cursor` or any system-spec-kit files; these belong to the existing hook/host surfaces (specs/sk-doc/056-create-goal-mode/spec.md:94-98; .skilled/skills/system-spec-kit/SKILL.md:149-160,483-485; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
 
 ### Files to Change
 
@@ -145,7 +145,7 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 002-006 mode packet | Its actual leaf paths are not yet known at this planning stage; the root router cannot name verified leaves before they exist | At execution, enumerate the completed packet and use only paths that exist on disk, then regenerate the manifest (specs/sk-doc/057-create-goal-mode/spec.md:122-127). |
+| Dependency | Phases 002-006 mode packet | Its actual leaf paths are not yet known at this planning stage; the root router cannot name verified leaves before they exist | At execution, enumerate the completed packet and use only paths that exist on disk, then regenerate the manifest (specs/sk-doc/056-create-goal-mode/spec.md:122-127). |
 | Dependency | Advisor and compiled-route CLIs | Without an available advisor or route output, two-stage reachability cannot be claimed | Record the unavailable command and output, repair the transport or keep the routing claim open; do not infer a pass (.skilled/skills/sk-doc/SKILL.md:54-58; .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:250-259). |
 | Risk | A broad alias captures session-goal phrases or host commands | High; it routes runtime goal management into a file-authoring mode | Replay all six out-of-domain phrases at both stages and remove any alias that selects `sk-create-goal` (.skilled/repo-rules/skill-hub-routing.md:92-96; .skilled/skills/system-spec-kit/SKILL.md:160,483-485). |
 | Risk | A mode is registered but remains unreachable or has no selected leaves | High; registration alone does not prove the two routing stages agree | Run positive replays through advisor and compiled route, then run the explicit sk-doc parent-skill check (.skilled/repo-rules/skill-hub-routing.md:43-60,81-88). |
@@ -163,7 +163,7 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 - **NFR-P01**: This phase adds routing metadata only; no latency or throughput target is introduced. Stage-one and stage-two routing remain separate contracts (.skilled/skills/sk-doc/SKILL.md:50-64).
 
 ### Security
-- **NFR-S01**: Do not add aliases for session-goal setting, binding, updating or resending, or for `/goal-opencode` and `/goal-cursor` (.skilled/skills/system-spec-kit/SKILL.md:160,483-485; specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
+- **NFR-S01**: Do not add aliases for session-goal setting, binding, updating or resending, or for `/goal-opencode` and `/goal-cursor` (.skilled/skills/system-spec-kit/SKILL.md:160,483-485; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
 
 ### Reliability
 - **NFR-R01**: Keep stage-one and stage-two phrase intent aligned, then require one positive two-stage replay and six zero-target out-of-domain replays (.skilled/repo-rules/skill-hub-routing.md:53-60,250-266).
@@ -185,7 +185,7 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 - Parent-skill check failure: correct only this mode's in-scope registration surfaces and rerun against the explicit sk-doc path (.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:240-248).
 
 ### State Transitions
-- Partial integration: keep `spec.md` status Draft and do not hand off to phase 008 until both routing stages and the out-of-domain replays pass (specs/sk-doc/057-create-goal-mode/spec.md:147-149).
+- Partial integration: keep `spec.md` status Draft and do not hand off to phase 008 until both routing stages and the out-of-domain replays pass (specs/sk-doc/056-create-goal-mode/spec.md:147-149).
 - Generated manifest stale after a registry or packet leaf change: regenerate it with the owning generator, never edit its JSON by hand (.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:232).
 <!-- /ANCHOR:edge-cases -->
 
@@ -209,7 +209,7 @@ Goal-authoring requests reach sk-create-goal through both sk-doc routing stages 
 
 - Which exact authoring-only aliases select sk-doc at stage one and sk-create-goal at stage two while all six session-goal and host-command probes remain outside the mode? Settle the candidate set by replay, not by phrase intuition.
 - The exact `RESOURCE_MAP` leaf paths are UNKNOWN until phases 002-006 produce the mode packet; enumerate and verify the real leaves at execution rather than inventing paths.
-- The sk-doc contract makes the mode packet's `Keyword triggers:` line the routing vocabulary source (.skilled/skills/sk-doc/SKILL.md:50-52), while this phase's frozen file list names only hub surfaces (specs/sk-doc/057-create-goal-mode/spec.md:100-109). Confirm before execution that phases 001-006 already fixed the final alias line; if not, resolve the scope boundary before editing any out-of-scope packet file.
+- The sk-doc contract makes the mode packet's `Keyword triggers:` line the routing vocabulary source (.skilled/skills/sk-doc/SKILL.md:50-52), while this phase's frozen file list names only hub surfaces (specs/sk-doc/056-create-goal-mode/spec.md:100-109). Confirm before execution that phases 001-006 already fixed the final alias line; if not, resolve the scope boundary before editing any out-of-scope packet file.
 <!-- /ANCHOR:questions -->
 
 ---

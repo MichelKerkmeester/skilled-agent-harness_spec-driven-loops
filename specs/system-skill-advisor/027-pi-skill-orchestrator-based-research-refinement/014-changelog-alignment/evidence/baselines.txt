@@ -3,8 +3,8 @@
 ## Working tree before any phase 14 edit to a changelog (other sessions' files included)
  M .skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts
  M specs/agents/graph-metadata.json
- M specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/description.json
-?? specs/agents/015-global-claude-md-agents-symlink/
+ M specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/description.json
+?? specs/agents-md/011-global-claude-md-agents-symlink/
 
 ## Newest entry and SKILL.md version per component
 system-skill-advisor         newest=0.11.1.0   SKILL.md=0.11.1.0
@@ -54,9 +54,9 @@ v0.9.0.md
 ./specs/hooks/007-fable-governor-pi-hook/review/deep-review-config.json
 ./specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-1.md
 ./specs/hooks/007-fable-governor-pi-hook/review/prompts/iteration-2.md
-./specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-skill-advisor.txt
-./specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/opus-review.jsonl
-./specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/state.jsonl
+./specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-skill-advisor.txt
+./specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/opus-review.jsonl
+./specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/state.jsonl
 ./specs/system-skill-advisor/017-advisor-audit-and-state-containment/002-advisor-surface-audit/research/advisor-audit-research.md
 ./specs/system-skill-advisor/024-mcp-decommission-cli-front-door/010-deep-research-residue/research/lineages/deepseek-research/iterations/iteration-004.md
 ./specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/012-reverify-follow-ups/evidence/goal-reverify/changes-since-phase-11.txt

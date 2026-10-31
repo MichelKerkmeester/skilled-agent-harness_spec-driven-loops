@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/003-advisor-bridge-activation"
+    packet_pointer: "agents-md/016-doctor-agents-md/003-advisor-bridge-activation"
     last_updated_at: "2026-10-30T18:30:00Z"
     last_updated_by: "code-agent"
     recent_action: "Activated four doctor bridges in both lanes and closed every gate"
@@ -77,9 +77,9 @@ The routing slice grew thirteen rows in four waves, one wave per bridge. A wave 
 | `.skilled/skills/system-skill-advisor/changelog/v0.17.30.0.md` | Created | The release note |
 | `.hermes/skills/system-skill-advisor/SKILL.md` | Regenerated | Mirror of the versioned skill file |
 | `.skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md` | Modified | Says every derived bridge is active |
-| `specs/agents/021-doctor-agents-md/spec.md` | Modified | The phase 3 row and its handoff row |
-| `specs/agents/021-doctor-agents-md/graph-metadata.json` | Regenerated | The parent's child pointer |
-| `specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/` | Created | This packet |
+| `specs/agents-md/016-doctor-agents-md/spec.md` | Modified | The phase 3 row and its handoff row |
+| `specs/agents-md/016-doctor-agents-md/graph-metadata.json` | Regenerated | The parent's child pointer |
+| `specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/` | Created | This packet |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -140,7 +140,7 @@ Read before and after on the same branch, with the same commands.
 | `bash .skilled/commands/doctor/scripts/tests/run-all.sh` | `tests 931`, `pass 931`, `fail 0` over 41 files; `7 suite(s) passed, 0 failed`, exit 0 |
 | `bash .skilled/commands/doctor/scripts/route-validate.sh` | `OK: route-validate — 24 routes validated, 5 warnings`, exit 0 |
 | `node .skilled/skills/system-spec-kit/runtime/cli/hermes/sync-skills-hermes.cjs --check` | `PASS: 65 Hermes skill copies in sync`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` | `RESULT: PASSED` for the parent and both earlier phases plus this child |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` | `RESULT: PASSED` for the parent and both earlier phases plus this child |
 <!-- /ANCHOR:verification -->
 
 ---

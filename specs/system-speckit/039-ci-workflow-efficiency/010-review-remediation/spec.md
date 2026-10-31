@@ -93,7 +93,7 @@ Every confirmed finding the operator did not hold back is fixed, and each check 
 | `.skilled/skills/system-skill-advisor/runtime/vitest.config.ts` | Modify | The config comment gives the real reason it avoids a vitest import |
 | `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml`, `doctor-ci-presentation.txt`, `ci.md`, `scripts/tests/doctor-ci-contract.test.cjs` | Modify | The master-switch refusal names its reason, and the test holds the two copies equal |
 | `.skilled/skills/sk-git/scripts/worktree-provision-paths.txt` | Modify | Exclude the ClickUp placeholder tree, which declares no dependencies, so the provisioning completeness test passes |
-| `specs/system-speckit/040-ci-workflow-efficiency/{002,003,004}-*/` records | Modify, Create | The 003 criterion text, the 002 band remainder with its evidence file, the 004 cache entry note |
+| `specs/system-speckit/039-ci-workflow-efficiency/{002,003,004}-*/` records | Modify, Create | The 003 criterion text, the 002 band remainder with its evidence file, the 004 cache entry note |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "8d34a774672bc66650d5542863930e4a8742a3f103aabe55ffffbb17007a7240",
+  "manifestHash": "9a63514886c92daac2fd46669357b35fca7fc0951bbf850ad0f8905770f7dc6d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -34544,241 +34544,241 @@
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/agents/001-terminal-proof-discipline/review-report.md",
+      "path": "specs/agents-md/001-terminal-proof-discipline/review-report.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/agents/004-agents-md-bloat-audit/research/deep-research-dashboard.md",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/deep-research-dashboard.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/agents/004-agents-md-bloat-audit/research/deep-research-strategy.md",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/deep-research-strategy.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/agents/004-agents-md-bloat-audit/research/fanout-attribution.md",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/fanout-attribution.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 3,
-      "path": "specs/agents/004-agents-md-bloat-audit/research/research.md",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/research.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "valid-empty-list",
       "line": 4,
-      "path": "specs/agents/004-agents-md-bloat-audit/research/resource-map.md",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/resource-map.md",
       "rawKey": "trigger_phrases",
       "reason": "declared empty trigger list"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/010-repo-rule-system-integration/research/cross-lineage-synthesis.md",
+      "path": "specs/agents-md/008-repo-rule-system-integration/research/cross-lineage-synthesis.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/010-repo-rule-system-integration/research/synthesis.md",
+      "path": "specs/agents-md/008-repo-rule-system-integration/research/synthesis.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-agents.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-luna-agents.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-prompt.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-luna-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-luna-rules.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-luna-rules.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-agents.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-mimo-agents.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-prompt.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-mimo-prompt.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/013-prompting-guide-alignment/research/lens-mimo-rules.md",
+      "path": "specs/agents-md/010-prompting-guide-alignment/research/lens-mimo-rules.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/fanout-attribution.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/resource-map.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/answer-the-actual-request.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/answer-the-actual-request.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/blast-radius.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/blast-radius.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-decisions.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-decisions.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-handoff.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-handoff.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-prose.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication-prose.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/communication.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/delegation-and-orchestration.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/delegation-and-orchestration.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/evidence-and-proof.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/evidence-and-proof.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/prevent-overengineering.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/prevent-overengineering.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/root-cause-and-debugging.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/root-cause-and-debugging.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/scope-discipline.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/scope-discipline.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/skill-hub-routing.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/skill-hub-routing.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/uncertainty-and-honesty.ledger.md",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/ledgers/uncertainty-and-honesty.ledger.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/017-thinking-discipline/research/reviews/claude-opus-5.5-high.md",
+      "path": "specs/agents-md/013-thinking-discipline/research/reviews/claude-opus-5.5-high.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/017-thinking-discipline/research/reviews/deepseek-v4.1-flash-max.md",
+      "path": "specs/agents-md/013-thinking-discipline/research/reviews/deepseek-v4.1-flash-max.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/017-thinking-discipline/research/reviews/gpt-6-luna-max-fast.md",
+      "path": "specs/agents-md/013-thinking-discipline/research/reviews/gpt-6-luna-max-fast.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/018-communication-rules-consolidation/research/analysis-under-review.md",
+      "path": "specs/agents-md/014-communication-rules-consolidation/research/analysis-under-review.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/claude-opus-5.5-xhigh.md",
+      "path": "specs/agents-md/014-communication-rules-consolidation/research/reviews/claude-opus-5.5-xhigh.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/deepseek-v4.1-flash-max.md",
+      "path": "specs/agents-md/014-communication-rules-consolidation/research/reviews/deepseek-v4.1-flash-max.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/gpt-6-luna-max-fast.md",
+      "path": "specs/agents-md/014-communication-rules-consolidation/research/reviews/gpt-6-luna-max-fast.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/agents/018-communication-rules-consolidation/research/reviews/swe-2-max.md",
+      "path": "specs/agents-md/014-communication-rules-consolidation/research/reviews/swe-2-max.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -35818,6 +35818,288 @@
       "line": 1,
       "path": "specs/cli-orca/002-consolidate-official-orca-skills/review/synthesis-remediation-plan.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/research.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "valid-empty-list",
@@ -40577,163 +40859,163 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/deep-review-dashboard.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-001.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-002.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-003.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-004.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-005.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-1.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-2.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-3.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-4.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-5.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/resource-map.md",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/058-doc-validation-off-switches/review/fanout-attribution.md",
+      "path": "specs/sk-doc/057-doc-validation-off-switches/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/058-doc-validation-off-switches/review/review-report.md",
+      "path": "specs/sk-doc/057-doc-validation-off-switches/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-dashboard.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-strategy.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/deep-review-strategy.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-002.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-003.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-004.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-005.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-1.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-2.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-3.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-4.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-5.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -68097,674 +68379,392 @@
     },
     {
       "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/deep-research-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-001.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-006.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-007.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-008.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-009.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/iterations/iteration-010.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-10.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-6.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-7.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-8.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/prompts/iteration-9.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/deep-research-dashboard.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/deep-review-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-001.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-002.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-003.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-004.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-005.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/iterations/iteration-006.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-1.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-2.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/prompts/iteration-6.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/deep-research-dashboard.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/iterations/iteration-003.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/prompts/iteration-3.md",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research/research/fanout-attribution.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research/research/research.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/deep-review-dashboard.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/iterations/iteration-001.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/iterations/iteration-002.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/iterations/iteration-004.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/iterations/iteration-005.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/prompts/iteration-1.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/prompts/iteration-2.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/prompts/iteration-3.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/prompts/iteration-4.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/prompts/iteration-5.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/review/review-report.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/deep-research-dashboard.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/deep-research-strategy.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/deep-research-strategy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-001.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-001.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-002.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-002.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-003.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-003.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-004.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-004.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-005.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-005.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-006.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-006.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-007.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-007.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-008.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-008.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-009.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-009.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-010.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-010.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-011.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-011.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-012.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-012.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-013.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-013.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-014.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-014.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-015.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-015.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-016.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-016.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-017.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-017.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-018.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-018.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-019.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-019.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/iterations/iteration-020.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/iterations/iteration-020.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-1.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-1.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-10.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-10.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-11.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-11.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-12.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-12.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-13.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-13.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-14.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-14.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-15.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-15.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-16.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-16.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-17.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-17.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-18.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-18.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-19.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-19.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-2.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-2.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-20.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-20.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-3.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-3.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-4.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-4.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-5.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-5.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-6.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-6.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-7.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-7.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-8.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-8.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/prompts/iteration-9.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/prompts/iteration-9.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/research/resource-map.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/review/fanout-attribution.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/review/review-report.md",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/research/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/review-report.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/review-report.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review/fanout-attribution.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review/fanout-attribution.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
       "category": "missing-frontmatter",
       "line": 1,
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review/review-report.md",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
     }
   ],
@@ -69438,183 +69438,183 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/002-runtime-surface-coverage/scratch",
+      "path": "specs/agents-md/002-runtime-surface-coverage/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/004-agents-md-bloat-audit/research/lineages",
+      "path": "specs/agents-md/004-agents-md-bloat-audit/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/007-orchestrator-inline-authority/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/001-deep-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/008-orchestrate-external-cli-delegation/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/001-deep-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/001-deep-research/research/lineages",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/002-decision-and-design/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/001-deep-research/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/003-rule-authoring/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/002-decision-and-design/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/004-agents-md-integration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/003-rule-authoring/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/005-verification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/004-agents-md-integration/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/006-synthesis-presentation/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/005-verification/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/006-synthesis-presentation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/007-progress-updates/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/scratch",
+      "path": "specs/agents-md/007-turn-closeout-next-steps/008-communication-split/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/007-progress-updates/scratch",
+      "path": "specs/agents-md/008-repo-rule-system-integration/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/009-turn-closeout-next-steps/008-communication-split/scratch",
+      "path": "specs/agents-md/008-repo-rule-system-integration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/010-repo-rule-system-integration/research/lineages",
+      "path": "specs/agents-md/009-agent-avoidance-anti-patterns/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/010-repo-rule-system-integration/scratch",
+      "path": "specs/agents-md/010-prompting-guide-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/012-agent-avoidance-anti-patterns/scratch",
+      "path": "specs/agents-md/011-global-claude-md-agents-symlink/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/013-prompting-guide-alignment/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/014-agent-emphasis-register/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/015-global-claude-md-agents-symlink/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/lineages",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/research/lineages",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/005-trigger-coverage-check/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/004-rule-delivery-instrumentation/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/007-table-wording-experiment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/005-trigger-coverage-check/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/008-gate5-card-pilot/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/009-rule-delivery-debugging/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/007-table-wording-experiment/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/008-gate5-card-pilot/scratch",
+      "path": "specs/agents-md/012-repo-rule-advisor-surfacing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging/scratch",
+      "path": "specs/agents-md/013-thinking-discipline/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface/scratch",
+      "path": "specs/agents-md/014-communication-rules-consolidation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/016-repo-rule-advisor-surfacing/scratch",
+      "path": "specs/agents-md/015-router-file-rule-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/017-thinking-discipline/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/018-communication-rules-consolidation/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/002-check-engine/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/019-haiku-explore-and-context-agents/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/003-embed-engine/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/020-router-file-rule-alignment/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/002-check-engine/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/002-doctor-helper/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/scratch",
+      "path": "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs/scratch",
+      "path": "specs/agents-md/z_archive",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/001-doctor-agents-md/scratch",
+      "path": "specs/agents/001-orchestrator-inline-authority/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/002-doctor-helper/scratch",
+      "path": "specs/agents/002-orchestrate-external-cli-delegation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/scratch",
+      "path": "specs/agents/004-agent-emphasis-register/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/agents/z_archive",
+      "path": "specs/agents/005-haiku-explore-and-context-agents/scratch",
       "reason": "excluded directory"
     },
     {
@@ -70475,6 +70475,250 @@
     },
     {
       "path": "specs/cli-orca/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/001-command-contract-reconciliation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/006-fable-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/009-runtime-mirrors/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/007-speckit-router-contract-drift/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/010-doctor-router-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/012-changelog-v4003-update/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/014-doctor-playbook-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/015-doctor-playbook-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/016-doctor-playbook-deep-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/017-doctor-playbook-git/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/018-doctor-playbook-mcp/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/020-doctor-contract-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/021-doctor-test-environments/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/022-doctor-playbook-environment-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/023-release-update-symlink-parent/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/024-doctor-docs-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/025-doctor-scenario-runs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/029-main-ci-regenerations/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/031-changelog-v4003-reality-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/032-orphan-process-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/003-local-command-support/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/001-check-engine/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/002-check-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/003-convert-legacy-skilled/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/004-convert-plain-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/005-integration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/006-convert-plumbing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/007-docs-and-changelogs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/008-hub-gap-report/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/009-mirror-and-template-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/010-verification-and-release/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/004-doctor-sk-skill-command/scratch",
       "reason": "excluded directory"
     },
     {
@@ -72350,327 +72594,275 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/052-command-contract-reconciliation/scratch",
+      "path": "specs/sk-doc/052-cli-hub-doc-version-reconciliation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/053-cli-hub-doc-version-reconciliation/scratch",
+      "path": "specs/sk-doc/053-governance-doc-alignment/research/root-doc-staleness/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/054-governance-doc-alignment/research/root-doc-staleness/lineages",
+      "path": "specs/sk-doc/053-governance-doc-alignment/research/router-alignment/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/054-governance-doc-alignment/research/router-alignment/lineages",
+      "path": "specs/sk-doc/053-governance-doc-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/054-governance-doc-alignment/scratch",
+      "path": "specs/sk-doc/054-sk-create-readme-writing-style/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/055-sk-create-readme-writing-style/scratch",
+      "path": "specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/001-tooling-and-pilot/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/002-cli-external-orchestration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/002-cli-external-orchestration/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/003-cli-jev/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/003-cli-jev/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/004-cli-orca/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/004-cli-orca/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/005-mcp-code-mode/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/005-mcp-code-mode/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/006-mcp-tooling/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/006-mcp-tooling/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/007-sk-code/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/007-sk-code/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/008-sk-communication/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/008-sk-communication/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/009-sk-design/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/009-sk-design/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/010-sk-doc/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/010-sk-doc/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/011-sk-git/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/011-sk-git/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/012-sk-prompt/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/012-sk-prompt/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/013-sk-vision/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/013-sk-vision/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/014-system-deep-loop/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/014-system-deep-loop/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/015-system-skill-advisor/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/015-system-skill-advisor/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/016-system-spec-kit/scratch",
+      "path": "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch",
+      "path": "specs/sk-doc/055-changelog-system/003-skilled-release-changelog/001-release-line-split/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/001-release-line-split/scratch",
+      "path": "specs/sk-doc/055-changelog-system/003-skilled-release-changelog/002-changelog-findability/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/002-changelog-findability/scratch",
+      "path": "specs/sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/003-skilled-release-changelog/003-adjacent-alignment/scratch",
+      "path": "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/056-changelog-system/004-changelog-section-spacing/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/002-mode-scaffold/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/002-mode-scaffold/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/003-authoring-standards-and-exemplars/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/003-authoring-standards-and-exemplars/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/005-budget-and-chat-slice-handoff/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/006-goal-conformance-check/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/006-goal-conformance-check/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/007-hub-routing-integration/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/007-hub-routing-integration/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/008-command-and-playbook/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/008-command-and-playbook/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/009-verification-and-closeout/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/010-asset-templates-and-folder-readmes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/010-asset-templates-and-folder-readmes/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/011-cross-surface-references/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/011-cross-surface-references/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/013-claude-goal-copy-block/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/013-claude-goal-copy-block/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/014-goal-no-budget-stop/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/014-goal-no-budget-stop/scratch",
+      "path": "specs/sk-doc/056-create-goal-mode/015-goal-legacy-resume-and-budget-notice/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/057-create-goal-mode/015-goal-legacy-resume-and-budget-notice/scratch",
+      "path": "specs/sk-doc/057-doc-validation-off-switches/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/058-doc-validation-off-switches/review/lineages",
+      "path": "specs/sk-doc/057-doc-validation-off-switches/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/058-doc-validation-off-switches/scratch",
+      "path": "specs/sk-doc/058-security-policy-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/059-security-policy-alignment/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/001-source-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/001-source-deprecation/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/002-retroactive-removal/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/003-feature-catalog-findings/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/004-leftover-template-comments/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/005-changelog-version-keys/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/006-skill-package-doc-findings/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/009-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/009-review-remediation/scratch",
+      "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/scratch",
+      "path": "specs/sk-doc/060-root-readme-section-spacing/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/061-root-readme-section-spacing/scratch",
+      "path": "specs/sk-doc/061-hub-repo-folder-exemption/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/062-hub-repo-folder-exemption/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/001-broken-references/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/063-local-command-support/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/002-readme-template-conformance/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/001-broken-references/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/003-changelog-omissions/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/002-readme-template-conformance/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/004-benchmark-report-readmes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/003-changelog-omissions/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/005-reference-and-coverage-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/004-benchmark-report-readmes/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/006-audit-and-validator-accuracy/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/005-reference-and-coverage-fixes/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/006-audit-and-validator-accuracy/scratch",
+      "path": "specs/sk-doc/062-readme-validation-debt/002-readme-reference-debt/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/007-alignment-fixes/scratch",
+      "path": "specs/sk-doc/063-opencode-native-surfaces/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/064-readme-validation-debt/002-readme-reference-debt/scratch",
+      "path": "specs/sk-doc/064-reference-template-debt/001-diagram-references/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/sk-doc/065-opencode-native-surfaces/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/066-reference-template-debt/001-diagram-references/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/066-reference-template-debt/002-remaining-references/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/001-check-engine/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/002-check-plumbing/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/003-convert-legacy-skilled/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/004-convert-plain-skill/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/005-integration/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/006-convert-plumbing/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/007-docs-and-changelogs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/008-hub-gap-report/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/009-mirror-and-template-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/010-verification-and-release/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/sk-doc/067-doctor-sk-skill-command/scratch",
+      "path": "specs/sk-doc/064-reference-template-debt/002-remaining-references/scratch",
       "reason": "excluded directory"
     },
     {
@@ -76082,447 +76274,255 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/001-mcp-install-code-mode/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/002-mcp-debug-code-mode/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/003-update/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/002-baseline-and-decisions/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/003-context-type-unification/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/005-embeddings/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/004-citation-drift-detection/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/006-fable-mode/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/005-source-resolver/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/007-parent-skill/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/007-docs-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/008-context-type-hardening/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/009-runtime-mirrors/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/009-census-hardening/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/010-skill-advisor/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/010-source-tag-hardening/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/012-skill-graph-freshness/scratch",
+      "path": "specs/system-speckit/036-open-knowledge-format-adoption/012-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/scratch",
+      "path": "specs/system-speckit/037-symlinked-runtime-root/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env/scratch",
+      "path": "specs/system-speckit/038-research-folder-continuity/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/001-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/003-doctor-gates-and-drift/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/004-doctor-scripts-conformance/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/004-setup-caching-provisioning/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/006-doctor-update-fixes/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/006-sk-code-ci-surface/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/007-speckit-router-contract-drift/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/008-doctor-ownership-split/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/009-doctor-git/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/010-doctor-router-gates/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/010-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/011-changelog-v4003-research/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/011-ci-health-followups/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/012-changelog-v4003-update/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/012-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/014-doctor-playbook-spec-kit/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/015-doctor-playbook-skill-advisor/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/016-doctor-playbook-deep-loop/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/016-ci-efficiency-release-docs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/017-doctor-playbook-git/scratch",
+      "path": "specs/system-speckit/039-ci-workflow-efficiency/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/018-doctor-playbook-mcp/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/research/lineages",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/020-doctor-contract-fixes/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/021-doctor-test-environments/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/022-doctor-playbook-environment-migration/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/023-release-update-symlink-parent/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/024-doctor-docs-alignment/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/025-doctor-scenario-runs/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/026-doctor-run-followups/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/research/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/028-advisor-stress-fixtures/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/029-main-ci-regenerations/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/030-cursor-reconcile-test-exemption/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/031-changelog-v4003-reality-check/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/032-orphan-process-check/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/015-template-example-neutralization/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research/research/lineages",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/002-baseline-and-decisions/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/019-follow-up-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/003-context-type-unification/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/020-alignment-audit-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/004-citation-drift-detection/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/005-source-resolver/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/007-docs-and-closeout/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/023-deep-review-remediation/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/008-context-type-hardening/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/024-typed-command-ambiguity/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/009-census-hardening/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/025-deprecate-nested-changelogs/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/010-source-tag-hardening/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/026-alignment-findings-fixes/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/037-open-knowledge-format-adoption/012-review-remediation/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/028-changelog-release-extension/scratch",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/038-symlinked-runtime-root/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/039-research-folder-continuity/scratch",
+      "path": "specs/system-speckit/040-weak-model-spec-authoring/review/lineages",
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/001-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/002-rebuild-fanout-removal/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/003-trigger-and-job-hygiene/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/004-setup-caching-provisioning/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/005-slow-and-failing-tests/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/006-sk-code-ci-surface/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/007-workflow-hygiene-on-off-control/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/010-review-remediation/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/011-ci-health-followups/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/012-alignment-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/013-killer-test-spawn-race/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/014-unused-dependency-removal/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/015-advisor-lease-reclaim-flake/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/016-ci-efficiency-release-docs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/040-ci-workflow-efficiency/review/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/research/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/012-authoring-speed-fixes-and-alignment/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/014-removed-template-reality-sweep/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/015-template-example-neutralization/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/016-scaffold-filler-section-trim/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/017-measured-behavior-and-draft-metadata/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/018-benchmark-redesign-and-remeasure/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/019-follow-up-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/020-alignment-audit-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/021-ci-gate-regressions/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/022-advisor-routing-and-local-install/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/023-deep-review-remediation/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/024-typed-command-ambiguity/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/025-deprecate-nested-changelogs/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/026-alignment-findings-fixes/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/027-alignment-preexisting-gaps/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/028-changelog-release-extension/scratch",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/041-weak-model-spec-authoring/review/lineages",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/system-speckit/042-orphan-sweep-temp-processes/scratch",
+      "path": "specs/system-speckit/041-orphan-sweep-temp-processes/scratch",
       "reason": "excluded directory"
     },
     {

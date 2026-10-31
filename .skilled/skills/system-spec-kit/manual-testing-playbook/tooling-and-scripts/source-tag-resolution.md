@@ -1,7 +1,7 @@
 ---
 title: "465 -- Source tag resolution"
 description: "This scenario validates source tag resolution for `465`. It focuses on the SOURCE_TAGS helper checking every [SOURCE: ...] citation in a research packet with no warning when the cutoff is moved back, and skipping the same packet with one line naming the cutoff when it is not."
-version: 2.7.1.0
+version: 2.7.2.0
 ---
 
 # 465 -- Source tag resolution
@@ -42,8 +42,8 @@ Operators run the exact prompt and command sequence for `465` and confirm the ex
 
 ### Commands
 
-1. `SPECKIT_SOURCE_TAG_CUTOFF=2000-01-01 node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research; echo "exit=$?"`
-2. `node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research; echo "exit=$?"`
+1. `SPECKIT_SOURCE_TAG_CUTOFF=2000-01-01 node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research; echo "exit=$?"`
+2. `node .skilled/skills/system-spec-kit/runtime/cli/rules/check-source-tags-helper.mjs specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research; echo "exit=$?"`
 
 ### Expected
 
@@ -64,7 +64,7 @@ Capture the full stdout and the exit line of both steps.
 2. When step 1's count differs from 47, the packet's research artifacts changed: count the `[SOURCE: ...]` path citations outside `prompts/` folders and fenced blocks before failing the step.
 3. When step 1 prints a `SKIP` line, the override did not reach the helper: a malformed value prints `SPECKIT_SOURCE_TAG_CUTOFF='<value>' is not an ISO date; using 2026-10-04` on stderr and falls back to the default.
 4. When a run exits 2, the helper could not read the folder, the repository or the redirect table `.skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json`.
-5. Record the scenario as SKIP only with a specific blocker, such as the packet folder `specs/system-speckit/037-open-knowledge-format-adoption/001-okf-deep-research` missing from the checkout under test.
+5. Record the scenario as SKIP only with a specific blocker, such as the packet folder `specs/system-speckit/036-open-knowledge-format-adoption/001-okf-deep-research` missing from the checkout under test.
 
 ---
 

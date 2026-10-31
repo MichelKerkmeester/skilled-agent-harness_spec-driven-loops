@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-root-readme-section-spacing"
+    packet_pointer: "sk-doc/060-root-readme-section-spacing"
     last_updated_at: "2026-10-17T16:59:22Z"
     last_updated_by: "claude-opus"
     recent_action: "Filled the acceptance criteria: all five met with observed evidence"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/061-root-readme-section-spacing
+**Packet:** sk-doc/060-root-readme-section-spacing
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-17

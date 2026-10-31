@@ -109,22 +109,22 @@ Produce one decision record that carries the nine workflows' 13 jobs measured be
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` | Create | The commit the phase started on, so its own diff range is exact |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md` | Create | The post-007 job inventory |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` | Create | The 9 workflow rows and 13 job rows with the 001 and 002 before numbers |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` | Create | The 1,000-run list taken after phase 007 |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` | Create | The newest 40 run ids per workflow |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` | Create | Job-level samples for the nine workflows |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` | Create | The machine-readable window start, end and hours per workflow |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/snapshot-window.md` | Create | The human rendering of the window and its run counts |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` | Create | The arithmetic: job seconds, billed minutes, merge bound, `--check` |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.json` | Create | The machine-readable form of the computed table |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.md` | Create | The computed table the decision record quotes |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` | Create | The decision record with the before and after numbers and D8's answer |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` | Create | D8's answer as one line, written before any merge task |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` | Create only if D8 = no | The empty-diff proof |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` | Create only if D8 = yes | The forced-failure probe |
-| `specs/system-speckit/040-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md` | Create | The gate outputs and, under D8 = yes, the post-merge re-measure |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-start-sha.txt` | Create | The commit the phase started on, so its own diff range is exact |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/pre-merge-inventory.md` | Create | The post-007 job inventory |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-baseline.md` | Create | The 9 workflow rows and 13 job rows with the 001 and 002 before numbers |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/runs-after.json` | Create | The 1,000-run list taken after phase 007 |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/index.json` | Create | The newest 40 run ids per workflow |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/jobs/<workflow>/<run-id>.json` | Create | Job-level samples for the nine workflows |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/window.json` | Create | The machine-readable window start, end and hours per workflow |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/snapshot-window.md` | Create | The human rendering of the window and its run counts |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.mjs` | Create | The arithmetic: job seconds, billed minutes, merge bound, `--check` |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.json` | Create | The machine-readable form of the computed table |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-cost.md` | Create | The computed table the decision record quotes |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/consolidation-decision.md` | Create | The decision record with the before and after numbers and D8's answer |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/d8-answer.md` | Create | D8's answer as one line, written before any merge task |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/no-merge.md` | Create only if D8 = no | The empty-diff proof |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/merge-probe.md` | Create only if D8 = yes | The forced-failure probe |
+| `specs/system-speckit/039-ci-workflow-efficiency/008-consolidation-decision/scratch/phase-result.md` | Create | The gate outputs and, under D8 = yes, the post-merge re-measure |
 | `.github/workflows/always-run-guards.yml` | Create only if D8 = yes | One workflow, one job, the approved always-run steps |
 | `.github/workflows/advisory-checks.yml`, `changed-packet-validation.yml`, `command-tree-parity.yml`, `dispatch-enforcement-guard.yml`, `gate-inputs.yml`, `playbook-operator-contract.yml`, `rule-canary-sync.yml`, `sk-doc-script-tests.yml` | Delete only if D8 = yes | Their steps move into the merged file |
 | `.github/workflows/README.md` | Modify only if D8 = yes | The contents table, the push/PR table and the switch-group section |

@@ -18,8 +18,8 @@
   "specId": "002",
   "folderSlug": "rule-concision-and-loading",
   "parentChain": [
-    "agents",
-    "016-repo-rule-advisor-surfacing"
+    "agents-md",
+    "012-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

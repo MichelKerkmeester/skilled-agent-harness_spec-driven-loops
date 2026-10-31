@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/025-deprecate-nested-changelogs"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/025-deprecate-nested-changelogs"
     last_updated_at: "2026-10-27T16:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built and verified the deprecation, fixed the review findings"

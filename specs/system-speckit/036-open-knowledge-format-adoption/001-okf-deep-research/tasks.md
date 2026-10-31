@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold the phased packet with `create.sh` (`specs/system-speckit/037-open-knowledge-format-adoption/`)
+- [x] T001 Scaffold the phased packet with `create.sh` (`specs/system-speckit/036-open-knowledge-format-adoption/`)
 - [x] T002 Seed the OKF source (`scratch/seed/okf-SPEC.md`, `scratch/seed/okf-README.md`)
 - [x] T003 Smoke-test the opencode-go DeepSeek route at max and child web access
 <!-- /ANCHOR:phase-1 -->

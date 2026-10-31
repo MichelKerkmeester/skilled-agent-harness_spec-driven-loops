@@ -8,14 +8,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "specs/agents/011-retire-code-index-tool-references"
+    packet_pointer: "agents/003-retire-code-index-tool-references"
     last_updated_at: "2026-09-11T00:00:00.000Z"
     last_updated_by: "claude"
     recent_action: "All references removed, every gate green."
     next_safe_action: "Nothing outstanding."
     blockers: []
     key_files:
-      - "specs/agents/011-retire-code-index-tool-references/implementation-summary.md"
+      - "specs/agents/003-retire-code-index-tool-references/implementation-summary.md"
       - ".opencode/agents/review.md"
       - ".opencode/agents/deep-review.md"
     session_dedup:

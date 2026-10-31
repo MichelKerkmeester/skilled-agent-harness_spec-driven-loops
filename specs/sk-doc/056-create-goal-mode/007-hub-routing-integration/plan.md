@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | Advisor CLI, compiled-route CLI, leaf-manifest generator/check and explicit-path parent-skill check |
 
 ### Overview
-This phase plans how sk-create-goal will connect to every named sk-doc hub routing surface after phases 002-006 produce its packet, without implementing the mode or command. It records a ten-prompt baseline, wires both routing stages, regenerates the leaf manifest and replays positive and negative requests before handoff to phase 008 (specs/sk-doc/057-create-goal-mode/spec.md:100-109,127-149).
+This phase plans how sk-create-goal will connect to every named sk-doc hub routing surface after phases 002-006 produce its packet, without implementing the mode or command. It records a ten-prompt baseline, wires both routing stages, regenerates the leaf manifest and replays positive and negative requests before handoff to phase 008 (specs/sk-doc/056-create-goal-mode/spec.md:100-109,127-149).
 <!-- /ANCHOR:summary -->
 
 ---
@@ -93,7 +93,7 @@ Required inventories:
 <!-- ANCHOR:phases -->
 ## 4. IMPLEMENTATION PHASES
 
-Follow the ordered tasks in `tasks.md`; it owns task state. Phase 1 records the exact ten-prompt baseline and checks candidate wording against the mode packet's existing `Keyword triggers:` source line. If that line does not already support the chosen aliases, stop before routing writes and resolve the phase boundary rather than edit an out-of-scope packet file. Phase 2 edits only the seven hub surfaces in spec.md, then regenerates the manifest. Phase 3 repeats the same prompts, runs six out-of-domain probes and both routing stages, runs the parent-skill check with the sk-doc path, and validates this packet. The mode packet's exact leaf paths remain UNKNOWN until phases 002-006 materialize them; read the completed packet and do not invent paths (specs/sk-doc/057-create-goal-mode/spec.md:100-109,122-127; .skilled/skills/sk-doc/SKILL.md:50-52).
+Follow the ordered tasks in `tasks.md`; it owns task state. Phase 1 records the exact ten-prompt baseline and checks candidate wording against the mode packet's existing `Keyword triggers:` source line. If that line does not already support the chosen aliases, stop before routing writes and resolve the phase boundary rather than edit an out-of-scope packet file. Phase 2 edits only the seven hub surfaces in spec.md, then regenerates the manifest. Phase 3 repeats the same prompts, runs six out-of-domain probes and both routing stages, runs the parent-skill check with the sk-doc path, and validates this packet. The mode packet's exact leaf paths remain UNKNOWN until phases 002-006 materialize them; read the completed packet and do not invent paths (specs/sk-doc/056-create-goal-mode/spec.md:100-109,122-127; .skilled/skills/sk-doc/SKILL.md:50-52).
 <!-- /ANCHOR:phases -->
 
 ---
@@ -108,7 +108,7 @@ Follow the ordered tasks in `tasks.md`; it owns task state. Phase 1 records the 
 | Stage two | Does the hub route a real prompt to sk-create-goal and avoid it for out-of-domain prompts? | `node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "Write the goal document for this spec packet and make its completion checks testable."`, repeated for each listed prompt |
 | Hub invariant | Do registrations, tie-break and generated inventory pass for the touched hub? | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc` |
 | Generated inventory | Does the manifest match the current registry and packet leaves? | `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs --check .skilled/skills/sk-doc` |
-| Packet docs | Do the planning documents meet the strict spec contract? | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/007-hub-routing-integration --strict` |
+| Packet docs | Do the planning documents meet the strict spec contract? | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/007-hub-routing-integration --strict` |
 
 Run the advisor and compiled-route commands once for each of the following ten newcomer prompts before any routing edits, then repeat the exact same strings after regeneration:
 
@@ -125,7 +125,7 @@ Run the advisor and compiled-route commands once for each of the following ten n
 
 The initial baseline is an observation, not an assumed result. A prior frontmatter mode moved from zero of ten newcomer prompts at its initial measurement and repeated the same corpus after routing changes (specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/spec.md:20-31; specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/010-fix-newcomer-reachability-for-sk-create-frontmatter-routing/implementation-summary.md:89-92).
 
-Replay every retained alias against a plausible out-of-domain request, then replay these six fixed out-of-domain prompts through both CLIs and require zero `sk-create-goal` targets (.skilled/repo-rules/skill-hub-routing.md:92-96): `Set the goal for this session.`; `Bind the goal to this session.`; `Update the goal for the current session.`; `Resend the goal.`; `How do I use /goal-opencode?`; `Read a packet with /goal-cursor.` These are hook/host surfaces rather than packet-goal authoring (.skilled/skills/system-spec-kit/SKILL.md:160,483-485; specs/sk-doc/057-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
+Replay every retained alias against a plausible out-of-domain request, then replay these six fixed out-of-domain prompts through both CLIs and require zero `sk-create-goal` targets (.skilled/repo-rules/skill-hub-routing.md:92-96): `Set the goal for this session.`; `Bind the goal to this session.`; `Update the goal for the current session.`; `Resend the goal.`; `How do I use /goal-opencode?`; `Read a packet with /goal-cursor.` These are hook/host surfaces rather than packet-goal authoring (.skilled/skills/system-spec-kit/SKILL.md:160,483-485; specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/scratch/wave1-mode-anatomy-audit.md:24-31).
 
 Also replay two sibling-owned controls before and after: `Create an OpenCode agent with agent frontmatter and a permission object.` and `Write release notes since the last version.` Each must retain its existing non-goal mode route; the frontmatter integration used these types of sibling checks to detect keyword capture (specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/004-routing-integration/implementation-summary.md:74-89). A previous hub-routing guardrail required a negative control because its first table-presence check still passed after the mode row was removed (specs/sk-doc/z_archive/040-create-repo-rules/009-hub-routing-guardrails/implementation-summary.md:87-89,115-124).
 <!-- /ANCHOR:testing -->
@@ -137,7 +137,7 @@ Also replay two sibling-owned controls before and after: `Create an OpenCode age
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 006 conformance gate | Internal, predecessor handoff | Pending at planning time; must pass before integration | A broken or incomplete check leaves claimed defects unguarded (specs/sk-doc/057-create-goal-mode/spec.md:147). |
+| Phase 006 conformance gate | Internal, predecessor handoff | Pending at planning time; must pass before integration | A broken or incomplete check leaves claimed defects unguarded (specs/sk-doc/056-create-goal-mode/spec.md:147). |
 | Phases 002-006 mode packet | Internal, predecessor work | Pending at planning time; must be present at execution | The final stage-two leaf paths cannot be verified or added to the resource map. |
 | Advisor and compiled-route CLIs | Internal tooling | Available in the documented command contract; live result not yet measured | No stage-one or compiled hub-route proof can be claimed (.skilled/skills/sk-doc/SKILL.md:54-58; .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:250-255). |
 | Parent-skill check | Internal tooling | Available; run with `.skilled/skills/sk-doc` explicitly | A no-argument result may describe the wrong hub (.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:240-248). |

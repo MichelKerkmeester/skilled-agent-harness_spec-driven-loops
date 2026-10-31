@@ -26,7 +26,7 @@ contextType: "general"
 
 **Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
 
-Commands run from the repository root unless stated. `M` is `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh`. `L` is `specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop`. `G` is `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git`.
+Commands run from the repository root unless stated. `M` is `specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/check-goal-file-manifest.sh`. `L` is `specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop`. `G` is `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=core.fsmonitor GIT_CONFIG_VALUE_0=false git`.
 <!-- /ANCHOR:notation -->
 
 ---

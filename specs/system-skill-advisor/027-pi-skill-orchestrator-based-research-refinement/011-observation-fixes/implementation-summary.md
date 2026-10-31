@@ -94,7 +94,7 @@ The 18 folders, under `specs/`:
 - `cli-external-orchestration/071-cli-hermes-creation/013-close-silent-preflight-holes`
 - `cli-external-orchestration/071-cli-hermes-creation/016-dispatch-enforcement-ci-guard`, found at final state
 - `cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin`
-- `sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
+- `sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring/scratch/001-parent-and-nested-goals-fixture/001-source-audit`
 - `system-speckit/031-system-speckit-v4/038-goal-unification/009-close-open-decisions`
 - `system-speckit/031-system-speckit-v4/038-goal-unification/011-goal-drift-remediation`, numbered
 - `system-speckit/031-system-speckit-v4/` children `045-v4-changelog-voice-rewrite`, `046-v4-changelog-remediation`, `047-v4-changelog-review-fixes`, `048-gate-3-mutation-time-delivery`, `049-gate-3-delivery-residue` and `050-ci-cleanup-pi-proof`

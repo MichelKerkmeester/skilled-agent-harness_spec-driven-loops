@@ -12,10 +12,10 @@
     "layout"
   ],
   "lastUpdated": "2026-10-30T05:09:03.801Z",
-  "specId": "020",
+  "specId": "015",
   "folderSlug": "router-file-rule-alignment",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

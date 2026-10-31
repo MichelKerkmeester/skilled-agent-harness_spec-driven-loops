@@ -14,10 +14,10 @@
     "rule"
   ],
   "lastUpdated": "2026-09-25T20:03:32.801Z",
-  "specId": "015",
+  "specId": "011",
   "folderSlug": "global-claude-md-agents-symlink",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

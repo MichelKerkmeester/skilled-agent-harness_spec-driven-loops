@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card"
     last_updated_at: "2026-10-23T14:30:00Z"
     last_updated_by: "conductor"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card
+**Packet:** system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23
@@ -61,7 +61,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-008 | REQ-008 | Given three Level 1 smoke runs, When T013 has run after the third, Then `baseline.json` holds three runs with five metrics each and one run records a strict pass with zero tokens | `jq '.runs \| length' $PHASE/scratch/card-bench/baseline.json` prints `3`, `jq '.runs[] \| keys \| length'` prints `6` three times, and `jq '[.runs[] \| select(.strict_passed == 1 and .leftover_tokens == 0)] \| length'` prints at least `1` Observed: `baseline.json` holds 3 runs, each with 6 keys, and 3 runs record `strict_passed` 1 with `leftover_tokens` 0. | Met | - |
 | AC-009 | REQ-009 | Given the phase diff, When the frontier review in T014 returns, Then each finding is applied or recorded with a reason | `scratch/review/T014.txt` exists and the applied-or-recorded count is written in `goal.md` section 4 Observed: `scratch/review/T014.txt` holds 8 finding lines (3 P1, 5 P2), all recorded with a reason in `goal.md` section 4. | Met | - |
 
-Correction 2026-10-25: in the AC-008 command, `$PHASE` is the phase folder `specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card` under the build worktree, as `tasks.md` defines it.
+Correction 2026-10-25: in the AC-008 command, `$PHASE` is the phase folder `specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card` under the build worktree, as `tasks.md` defines it.
 
 ### Status values
 

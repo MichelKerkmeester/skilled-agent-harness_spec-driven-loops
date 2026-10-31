@@ -9731,7 +9731,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/041-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md",
+      "file": "specs/system-speckit/040-weak-model-spec-authoring/011-authoring-speed-research/scratch/speed-loop/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
@@ -9748,7 +9748,7 @@
         }
       ],
       "document_type": "readme",
-      "file": "specs/system-speckit/041-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
+      "file": "specs/system-speckit/040-weak-model-spec-authoring/013-addon-removal-and-speed-refinements/scratch/analysis/README.md",
       "return_code": 1,
       "total_issues": 1,
       "valid": false,

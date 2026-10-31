@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/061-root-readme-section-spacing"
+    packet_pointer: "sk-doc/060-root-readme-section-spacing"
     last_updated_at: "2026-10-17T16:59:22Z"
     last_updated_by: "claude-opus"
     recent_action: "Filled the packet docs and recorded the root README exemption with its test evidence"
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 061-root-readme-section-spacing |
+| **Spec Folder** | 060-root-readme-section-spacing |
 | **Completed** | 2026-10-17 |
 | **Level** | 2 |
 | **Status** | Complete |

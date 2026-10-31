@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes"
+    packet_pointer: "commands/002-doctor-audit-and-fixes"
     last_updated_at: "2026-10-31T13:30:53Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"

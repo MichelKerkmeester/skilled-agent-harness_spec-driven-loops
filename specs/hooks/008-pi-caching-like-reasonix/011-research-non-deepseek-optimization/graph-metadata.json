@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive DeepSeek-direct extension",
     "created_at": "2026-08-09T05:53:50.261Z",
-    "last_save_at": "2026-10-07T15:56:13.170Z",
+    "last_save_at": "2026-10-31T15:29:46.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3393fa958d7ee72c9ee387a2f37139450fe30ddcfeecc4c69024a294b93c204d",
+    "source_fingerprint": "sha256:6e68c261ff5f12ef11bf2e4ef2ff44456fc105488ee3f0fd2194e891499b9f87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9fba5b905da5aa9cf985d9489eb9c4fcec29d13dc49b7d1c32c8c96077746700",
       "plan.md": "87b15f4de0e474fc9738bd7c38b7080b32db0e64c4f771f7fa3e2d6dbf0d862c",
-      "tasks.md": "8c0ffd758b4bcc3643af43556d0ea6d644ba750c7598256a55e4504f6e66238b",
-      "implementation-summary.md": "c7e5c7250890073f70d4562806d620be524392d71f933d9956eb647a54b771b7"
+      "tasks.md": "59f9cdd676caa539d8efb607f999c4c4ba1439d44e4149a8067e407377bf9a20",
+      "implementation-summary.md": "db3697cdecf2ffac31c5c11127572d4e57329675c2c1ad3004f3ec811bc3172e"
     },
     "last_active_child_id": null,
     "last_active_at": null

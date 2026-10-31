@@ -112,16 +112,16 @@
     ],
     "causal_summary": "The reference format asks every tracked `references//.md` doc (READMEs aside) for an overview section, numbered ALL-CAPS sections in sequence and a `---` rule between sections",
     "created_at": "2026-10-29T21:27:27Z",
-    "last_save_at": "2026-10-31T15:22:11.911Z",
+    "last_save_at": "2026-10-31T15:24:08.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4df7526edba5db3126595dfa91a88f8020df9fa10c37c84d890ce9af23ffa781",
+    "source_fingerprint": "sha256:bad7e0296e294b4b3b6d465c0a48c4d82832f1b6a04a7fab9b5cd5bd1bf6e713",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "155af70c33ea67898c53c68e2f03c46fed2ff77cfdbc5af45973134ef1bc2943"
+      "spec.md": "a17d9e9331aabcacb864252a76194d9ced8262212e4c3469e07a1e89b3b6d5a4"
     },
     "last_active_at": null
   }

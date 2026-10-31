@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The goal-persistence work is only proven where a unit test can reach",
     "created_at": "2026-10-24T19:03:14Z",
-    "last_save_at": "2026-10-31T14:04:32.246Z",
+    "last_save_at": "2026-10-31T15:29:46.559Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:03e9b8a6e8e290039d453ca4d32c54eda041afd47b1261ba265509fdbcae905b",
+    "source_fingerprint": "sha256:6c9267f0cf7dc559bdad8d950578da49450ea75a6f8ea02d8389f4f2f9db017c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ca0428d4c51fb04e1987b962e4764b7f3e2795af9d8fe641acd11961152aa33",
       "plan.md": "92105af0fa418b5f296fe378b6e9d2a16bcbf40307880a6e58cceb5d1c8580db",
       "tasks.md": "44bdd9632d431432c3b85ee1f3dc2d195352bf1170af03fb80e656aeab163c18",
       "decision-record.md": "d8fb2a92497b1570eadb488ab9ca5a0487a475bb3818cd9449f93f30202852f4",
-      "implementation-summary.md": "0e4f2c0a0afa57220973bfb259017babf365083c6b1219c0d3e947bf5547900d"
+      "implementation-summary.md": "4e268f5190284ec93a6097bf413428ed12fc8901a958a86ae885c28f3f7f30b8"
     },
     "last_active_at": null
   }

@@ -17,8 +17,8 @@
   "specId": "002",
   "folderSlug": "doctor-helper",
   "parentChain": [
-    "agents",
-    "021-doctor-agents-md"
+    "agents-md",
+    "016-doctor-agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

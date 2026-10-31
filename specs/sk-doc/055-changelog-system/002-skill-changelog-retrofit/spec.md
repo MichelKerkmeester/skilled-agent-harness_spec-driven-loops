@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit"
     last_updated_at: "2026-09-24T18:25:00Z"
     last_updated_by: "claude-code"
     recent_action: "Split the packet into a tooling phase and fifteen per-skill phases"
@@ -78,7 +78,7 @@ Every skill changelog reads in the current format and still records exactly what
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/*` | Create | 001-tooling-and-pilot | Checker, briefs, driver and run records |
+| `specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/*` | Create | 001-tooling-and-pilot | Checker, briefs, driver and run records |
 | `.skilled/skills/<skill>/**/changelog/**/*.md` (547 listed) | Modify | 001 to 016 | Rewritten in place in the compact or expanded format |
 <!-- /ANCHOR:scope -->
 

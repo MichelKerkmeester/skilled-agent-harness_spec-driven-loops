@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget"
     last_updated_at: "2026-10-02T21:04:43Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase: every criterion Met with observed evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/011-skill-budget
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

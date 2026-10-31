@@ -9,8 +9,8 @@
   "specId": "009",
   "folderSlug": "mirror-and-template-fixes",
   "parentChain": [
-    "sk-doc",
-    "067-doctor-sk-skill-command"
+    "commands",
+    "004-doctor-sk-skill-command"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

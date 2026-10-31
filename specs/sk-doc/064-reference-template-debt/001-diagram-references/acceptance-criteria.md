@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/066-reference-template-debt/001-diagram-references"
+    packet_pointer: "sk-doc/064-reference-template-debt/001-diagram-references"
     last_updated_at: "2026-10-29T23:30:00Z"
     last_updated_by: "claude-sonnet-worker"
     recent_action: "Recorded evidence for every criterion"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/066-reference-template-debt/001-diagram-references
+**Packet:** sk-doc/064-reference-template-debt/001-diagram-references
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-29

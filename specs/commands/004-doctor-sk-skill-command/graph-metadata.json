@@ -216,17 +216,17 @@
     ],
     "causal_summary": "An adopter who brings a plain agent skill, or a Skilled skill whose machine router still sits inside `SKILL.md`, has no command that says how far the skill is from the current Skilled format, and no path that converts it in place",
     "created_at": "2026-10-30T05:21:11Z",
-    "last_save_at": "2026-10-31T15:21:54.525Z",
+    "last_save_at": "2026-10-31T15:23:45.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e6626debe83971c07c8d3480111385973bd90840cb99b291392a78029c516128",
+    "source_fingerprint": "sha256:726e09d454ab8f1eb9a8fc383b02b9ff4ef6541e57f85ae1cb105404c4d0cc87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cb70c6717c818034d33a38f1b68d5b772c16adeb39da0cdd05953ee96490a648"
+      "spec.md": "14eee220a7549583b4ae942f1fd91397666d5f7eb58e7cb4b2f4002a960ea2f9"
     },
     "last_active_at": null
   }

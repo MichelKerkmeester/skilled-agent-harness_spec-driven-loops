@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate"
     last_updated_at: "2026-10-24T15:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase after the review fix and the second census and suite run"
@@ -64,7 +64,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `scratch/census/a-before.tsv` equals `a-after.tsv`, and the path, verdict and placeholder columns of `b-before.tsv` equal those of `b-after.tsv`
 - [x] `python3 -I "$PHASE/scratch/tools/suite_compare.py" "$P1/scratch/baseline/suite-start.txt" "$PHASE/scratch/suite-end.txt" 1 5` prints `SUITE_MATCH_PLUS_NEW_TEST`
 - [x] `rg -c 'PLACEHOLDER\]' .skilled/skills/system-spec-kit/references/templates/template-guide.md` prints nothing, `validation-rules.md` holds the lifecycle section, and `scratch/review/T019.txt` holds only `P0`, `P1` or `P2` lines or the single line `NO FINDINGS`, with each P0 and P1 line fixed
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring/003-versioned-placeholder-gate --strict` prints `RESULT: PASSED`, `git status --porcelain` lists no changed path outside the file list in `spec.md` section 3 and this phase folder, and `git log -1 --format=%H` prints the start commit until the phase's one local commit
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring/003-versioned-placeholder-gate --strict` prints `RESULT: PASSED`, `git status --porcelain` lists no changed path outside the file list in `spec.md` section 3 and this phase folder, and `git log -1 --format=%H` prints the start commit until the phase's one local commit
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,7 +98,7 @@ and findings belong here.
 | Census after and compare (T015) | Done | Gate A `4688` rows, `CENSUS_SAME gate A`. Gate B `4688` rows on three shards, `CENSUS_SAME gate B`, `4496 PASS` and `192 FAIL`, the same as the baseline. No rerun was needed |
 | Ledger rows owned by this phase (T016) | Done | `HANDLED L-A-019`, `HANDLED L-A-021`. `OPEN L-A-015`, `OPEN L-A-016` (core spec.md.tmpl), `OPEN L-A-018` (core plan.md.tmpl), `OPEN L-A-020` (core tasks.md.tmpl). `OUTSIDE L-B-029`, `L-B-030`, `L-B-031`, `L-C-005`, `L-C-006`, `L-C-008`, `L-C-012`, `L-C-014`, `L-C-015`, `L-C-020`, `L-C-025`, `L-C-028`. The four OPEN rows are explained in the ledger table below |
 | Suite compared with the phase 1 start (T017) | Done | Two full runs, both `exit=0` and `SUITE_MATCH_PLUS_NEW_TEST`: the first before the review fix took about 37 minutes, the second after it about 43 minutes. Core lane 276 files and 4162 tests as at the start, cli lane 180 to 181 files and 2061 to 2066 tests. Block 3 matched no `upgrade-level` line (the log lists no line for those files) and counted `0` lines starting `FAIL` (ADR-006 probe: the `upgrade-legacy` test, fixed in T013, passed) |
-| Scope check (T018) | Done | Printed `1`: the only extra path is `specs/system-speckit/041-weak-model-spec-authoring/goal.md`, the parent goal changed by the conductor on purpose (see the deviation row). Nothing else is outside the file list |
+| Scope check (T018) | Done | Printed `1`: the only extra path is `specs/system-speckit/040-weak-model-spec-authoring/goal.md`, the parent goal changed by the conductor on purpose (see the deviation row). Nothing else is outside the file list |
 | Frontier review and findings (T019, T020) | Done | cli-devin `swe-2-max`, read-only. `T019.txt` holds one `P2` line, verify `0`. The finding was true and is applied. After the fix: build run, `Tests  5 passed (5)`, harness `8/8` and `3/3`, template tests `32 passed (32)`, T015 `CENSUS_SAME` twice, T018 `1` (parent goal). `FINDINGS_TALLIED 1 1` |
 | Phase closed and committed locally (T021) | Done | Strict validation of this folder printed `RESULT: PASSED`. One local commit on the worktree branch, never pushed. The commit hash is in the implementation summary and the report |
 

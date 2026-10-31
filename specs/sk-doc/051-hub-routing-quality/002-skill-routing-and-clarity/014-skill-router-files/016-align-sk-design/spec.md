@@ -91,7 +91,7 @@ Battery: {"fail":7,"pass":111,"not_applicable":3}
 - Recheck the full battery against the worktree and classify each failure.
 
 ### Out of Scope
-- The reference-format failures of the 30 sk-design-diagram type and import-export references - they fail at the base too; the parent spec sends the debt to `specs/sk-doc/066-reference-template-debt/`.
+- The reference-format failures of the 30 sk-design-diagram type and import-export references - they fail at the base too; the parent spec sends the debt to `specs/sk-doc/064-reference-template-debt/`.
 - Routing-data changes, such as `hub-router.json` weights and a new intent or resource - the packet decision is that no skill routes differently; these go to the routing follow-up recorded in the parent spec.
 
 ### Files to Change
@@ -153,7 +153,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Should the 30 sk-design-diagram type and import-export references be brought to the reference format? Answered: yes, in `specs/sk-doc/066-reference-template-debt/`, which renumbers each file and its section references with one script after this packet closes.
+- Should the 30 sk-design-diagram type and import-export references be brought to the reference format? Answered: yes, in `specs/sk-doc/064-reference-template-debt/`, which renumbers each file and its section references with one script after this packet closes.
 - Do E-03 and D-01 belong here? Decision: no; each needs routing data and is carried to the routing follow-up recorded in the parent spec.
 <!-- /ANCHOR:questions -->
 

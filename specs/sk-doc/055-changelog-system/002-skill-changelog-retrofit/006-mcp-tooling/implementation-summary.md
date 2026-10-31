@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/006-mcp-tooling"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/006-mcp-tooling"
     last_updated_at: "2026-09-26T08:26:15Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the mcp-tooling rewrites in 7ba6e1ea9d"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/mcp-tooling.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/mcp-tooling.txt"
     session_dedup:
       fingerprint: "sha256:636c2e0800353a0c713b3be5d4a0b4c50574090c54408a56b949c4dbc59ae46e"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

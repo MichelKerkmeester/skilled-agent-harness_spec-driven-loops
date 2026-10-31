@@ -5,7 +5,7 @@
       "class": "exact-phrase",
       "expectedBehaviour": "The whole normalized prompt equals a declared phrase, so both lexical arms return its owning document at the exact class.",
       "expectedPaths": [
-        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        "specs/agents-md/001-terminal-proof-discipline/decision-record.md"
       ],
       "id": "case-01-exact-phrase",
       "query": "terminal proof decisions",
@@ -16,7 +16,7 @@
       "class": "uppercase-case-fold",
       "expectedBehaviour": "Both arms lowercase before matching, so an all-caps prompt resolves identically to the exact-phrase case.",
       "expectedPaths": [
-        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        "specs/agents-md/001-terminal-proof-discipline/decision-record.md"
       ],
       "id": "case-02-uppercase-case-fold",
       "query": "TERMINAL PROOF DECISIONS",
@@ -27,7 +27,7 @@
       "class": "punctuation-separator",
       "expectedBehaviour": "Every run of non-alphanumeric characters collapses to one separator, so hyphens and slashes resolve to the same normalized phrase.",
       "expectedPaths": [
-        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        "specs/agents-md/001-terminal-proof-discipline/decision-record.md"
       ],
       "id": "case-03-punctuation-separator",
       "query": "terminal-proof/decisions",
@@ -40,14 +40,14 @@
       "expectedPaths": [],
       "id": "case-04-three-char-partial-token",
       "query": "roo",
-      "specFolder": "specs/agents/001-terminal-proof-discipline"
+      "specFolder": "specs/agents-md/001-terminal-proof-discipline"
     },
     {
       "allowedDivergence": [],
       "class": "multi-word-subset",
       "expectedBehaviour": "A contiguous subset of a longer declared phrase scores as phrase containment in both arms.",
       "expectedPaths": [
-        "specs/agents/001-terminal-proof-discipline/decision-record.md"
+        "specs/agents-md/001-terminal-proof-discipline/decision-record.md"
       ],
       "id": "case-05-multi-word-subset",
       "query": "proof decisions",
@@ -63,9 +63,9 @@
       "class": "short-token-rule",
       "expectedBehaviour": "The two-character token is dropped from the candidate gate and reported as discarded, while the full normalized prompt still scores as an exact match against the declared phrase.",
       "expectedPaths": [
-        "specs/agents/001-terminal-proof-discipline/plan.md",
-        "specs/agents/003-communication-quality/plan.md",
-        "specs/agents/005-git-workspace-repo-agnostic/plan.md"
+        "specs/agents-md/001-terminal-proof-discipline/plan.md",
+        "specs/agents-md/003-communication-quality/plan.md",
+        "specs/agents-md/005-git-workspace-repo-agnostic/plan.md"
       ],
       "id": "case-06-short-token-rule",
       "query": "agents md plan",
@@ -101,11 +101,11 @@
       "class": "scope-collision",
       "expectedBehaviour": "The same phrase is declared in several packets. Scoping to one packet must return only that packet's documents in both arms, with no leakage from the others.",
       "expectedPaths": [
-        "specs/agents/003-communication-quality/plan.md"
+        "specs/agents-md/003-communication-quality/plan.md"
       ],
       "id": "case-09-scope-collision",
       "query": "agents md plan",
-      "specFolder": "specs/agents/003-communication-quality"
+      "specFolder": "specs/agents-md/003-communication-quality"
     },
     {
       "allowedDivergence": [
@@ -146,10 +146,10 @@
       "class": "duplicate-phrase-across-paths",
       "expectedBehaviour": "One phrase declared by four documents returns all four in both arms; the mapping is many-to-many and no owner is collapsed away.",
       "expectedPaths": [
-        "specs/agents/003-communication-quality/implementation-summary.md",
-        "specs/agents/003-communication-quality/plan.md",
-        "specs/agents/003-communication-quality/spec.md",
-        "specs/agents/003-communication-quality/tasks.md"
+        "specs/agents-md/003-communication-quality/implementation-summary.md",
+        "specs/agents-md/003-communication-quality/plan.md",
+        "specs/agents-md/003-communication-quality/spec.md",
+        "specs/agents-md/003-communication-quality/tasks.md"
       ],
       "id": "case-13-duplicate-phrase-across-paths",
       "query": "communication quality",

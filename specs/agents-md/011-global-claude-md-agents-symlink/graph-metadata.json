@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The global Claude Code instruction file, `~/.claude/CLAUDE.md`, held a \"Context Compaction Behavior\" block",
     "created_at": "2026-09-25T20:03:32Z",
-    "last_save_at": "2026-10-31T15:21:40.552Z",
+    "last_save_at": "2026-10-31T15:23:34.222Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e47ea934d5ffafb919a01aa26f834bfe884fb860d4079032e086af35e20b7bf6",
+    "source_fingerprint": "sha256:dcf2b2dc6a75284d96e5e98ae9c4bf338d7ca5844beae7fd07482a7d07039e2f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1661e9ce6f4bb8c3aeb74e95f8381283a51c053b95f5fb8853f19063eb77444f",
       "plan.md": "6190de135b810d614eb9377b0d2340f18ed45c7af308de3b43310201c1a6771d",
-      "tasks.md": "e12910bf8de9c00c6193c32ccb77448398f49e1a60396b8f6babe0d87b32ccff",
+      "tasks.md": "8cf37275fd505f74b5b7c9d18fc5ff96a8a6631ba8dbefd6051c8dc07a9d0459",
       "implementation-summary.md": "d36f099a2bb6703ab906cf941952d9578e00cc392aef1c3be9f706d7744277f2"
     },
     "last_active_at": null

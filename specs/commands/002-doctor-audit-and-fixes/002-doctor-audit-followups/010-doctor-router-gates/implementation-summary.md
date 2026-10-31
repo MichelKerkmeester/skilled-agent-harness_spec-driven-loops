@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/010-doctor-router-gates"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/010-doctor-router-gates"
     last_updated_at: "2026-10-04T10:30:00Z"
     last_updated_by: "doctor-router-gates"
     recent_action: "Added the input gate to two doctor routers and exempted commands from the extractor's array rule"

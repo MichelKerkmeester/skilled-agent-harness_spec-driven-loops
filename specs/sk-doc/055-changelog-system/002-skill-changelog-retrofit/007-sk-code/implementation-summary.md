@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/007-sk-code"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/007-sk-code"
     last_updated_at: "2026-09-26T08:26:18Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the sk-code rewrites in 24841a6882"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-code.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/sk-code.txt"
     session_dedup:
       fingerprint: "sha256:73c6b4a983c68842b4457bcdd503d5a339d170ee371db95e2aeaa081569c91ae"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

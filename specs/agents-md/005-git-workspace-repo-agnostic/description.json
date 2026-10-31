@@ -22,7 +22,7 @@
   "specId": "005",
   "folderSlug": "git-workspace-repo-agnostic",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

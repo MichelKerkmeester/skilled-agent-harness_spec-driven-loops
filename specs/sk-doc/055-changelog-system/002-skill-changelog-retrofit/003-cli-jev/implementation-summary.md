@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/003-cli-jev"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/003-cli-jev"
     last_updated_at: "2026-09-25T17:07:01Z"
     last_updated_by: "generate-context"
     recent_action: "Committed, pushed and validated the cli-jev rewrites"
     next_safe_action: "Continue with the parent packet's remaining phases"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/cli-jev.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/cli-jev.txt"
       - ".skilled/skills/cli-jev/cli-usage/changelog/v1.0.1.0.md"
     session_dedup:
       fingerprint: "sha256:6ad243d38c80f9bf851bcf4be01b352d3e2460819babb392ad5230c533842f0f"

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair"
     last_updated_at: "2026-10-25T21:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -62,7 +62,7 @@ Frozen choices. Changing one is an amendment.
 - [x] `test ! -e .skilled/skills/system-spec-kit/templates/.hashes` succeeds, and `rg -l --hidden '\.hashes' .skilled --glob '!**/node_modules/**' --glob '!.git'` exits with code 1
 - [x] `tasks.md` T014 prints `SUITE_MATCH`, and `tasks.md` T013 prints `0` changed paths that no row names
 - [x] `scratch/review/T015.txt` holds only lines that start with `P0`, `P1` or `P2`, or the single line `NO FINDINGS`. Each P0 and P1 line is fixed
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---

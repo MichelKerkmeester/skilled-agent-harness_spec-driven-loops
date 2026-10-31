@@ -93,7 +93,7 @@ The route outputs are trimmed to the action and targets. Full output is in `scra
 ### Out of Scope
 - Advisor scoring code, such as the read-only explainer floor - it decides three of the items, and changing it is a scorer change rather than routing data.
 - Widening `generate-router-intent-signals.cjs --check` past hub roots - it would add 118 phrases to five standalone skills, many of them generic, so it is not cheap (ADR-003).
-- Reference format debt - it belongs to `specs/sk-doc/066-reference-template-debt/`.
+- Reference format debt - it belongs to `specs/sk-doc/064-reference-template-debt/`.
 
 ### Files to Change
 

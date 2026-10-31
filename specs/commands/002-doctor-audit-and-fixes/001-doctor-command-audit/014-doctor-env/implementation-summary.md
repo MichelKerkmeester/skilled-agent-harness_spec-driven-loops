@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env"
     last_updated_at: "2026-10-02T20:17:16Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed the phase docs"
@@ -105,7 +105,7 @@ The phase ran as an audit first and an apply second. Three executors took part. 
 | Symlink: `ls -l .claude/commands/doctor/env.md` | `-> ../../../.skilled/commands/doctor/env.md` |
 | Runtime mirror sync: Codex, Pi and Hermes prompt `--check`, `sync-runtime-mirrors --check` | Every mirror in sync |
 | Recorded run: `scratch/doctor-env-run.md` | 158 unique variables, 0 malformed rows, 17 sections, 14 per-invocation switches; the added-row copy parsed 159; a dry run showed the exact line and wrote nothing; a confirmed write to a disposable copy changed one line and the repo reader honoured it; no secret value was asked for or written |
-| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env --strict` | Summary: Errors: 0, Warnings: 0; RESULT: PASSED |
+| Packet validation: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/014-doctor-env --strict` | Summary: Errors: 0, Warnings: 0; RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -118,7 +118,7 @@ The phase ran as an audit first and an apply second. Three executors took part. 
 3. **Recorded finding: the reference's stated count is stale.** ENV-REFERENCE.md says it documents 144 unique variables, while its tables hold 158. The 14 git-hook marker rows added to section 5 did not update the stated count. The phase records this and leaves it, because the reference is outside its scope.
 4. **Shell profiles are never written.** The command prints one export line instead. That is the designed boundary, not a gap.
 
-**Follow-up status.** Item 3 is resolved by `specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: ENV-REFERENCE.md states 154 by its own method and names the 158 total. Items 1, 2 and 4 stand as recorded; 4 is the designed boundary.
+**Follow-up status.** Item 3 is resolved by `specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups` phase 003: ENV-REFERENCE.md states 154 by its own method and names the 158 total. Items 1, 2 and 4 stand as recorded; 4 is the designed boundary.
 <!-- /ANCHOR:limitations -->
 
 ---

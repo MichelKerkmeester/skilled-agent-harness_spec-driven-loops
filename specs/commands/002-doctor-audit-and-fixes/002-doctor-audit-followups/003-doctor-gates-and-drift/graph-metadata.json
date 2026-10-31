@@ -54,13 +54,13 @@
       ".skilled/commands/doctor/assets/doctor-speckit-presentation.txt",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update/spec.md",
+      "specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval/implementation-summary.md",
       ".skilled/scripts/git-hooks/tests/pre-commit.test.sh",
       "specs/system-speckit/031-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/acceptance-criteria.md",
       ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
       ".skilled/commands/doctor/assets/doctor-mcp-install.yaml",
-      ".skilled/commands/doctor/speckit.md",
-      "scratch/findings-recheck.md",
-      ".skilled/commands/doctor/scripts/audit_descriptions.py"
+      ".skilled/commands/doctor/speckit.md"
     ],
     "entities": [
       {
@@ -166,18 +166,6 @@
         "source": "derived"
       },
       {
-        "name": "findings-recheck.md",
-        "kind": "doc",
-        "path": "scratch/findings-recheck.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit_descriptions.py",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/audit_descriptions.py",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +194,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nine defects recorded across the audit remain open",
     "created_at": "2026-10-03T05:27:41Z",
-    "last_save_at": "2026-10-31T15:21:50.203Z",
+    "last_save_at": "2026-10-31T15:23:40.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5afd8ffa26b2740d7513ed22bcd861e2e9303153ec96330bb75642438996d1e",
+    "source_fingerprint": "sha256:33f831bfc168ec8f1eb297cf6f32b8210270bc241728bcaea58548e1b2252137",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80c6bdd053ede6dfe4d2feea6bd133a42139c5834110667d882d4096c74808e0",
+      "spec.md": "77d790676f98e699a27cd361165714326911a907ec513c69a0bb95ee42619c10",
       "plan.md": "4619d281242fe70ce5047c46cae2e1758b543a1a32a7ce5a617a692960e0e8f1",
-      "tasks.md": "c965c47277b922ec0fc6afb34290062852810efa2103fece76d712610bdad7b2",
-      "decision-record.md": "30d3ae3212977c4910b324191c1e2e795e9c1a25718f546c29a4d98b26afa830",
-      "implementation-summary.md": "ac504642e65ace5785772486647dfe4045a49daacfe8e138ebca3e7278edd421"
+      "tasks.md": "00b804e68c21373bf3bc7218de283d13d6dca46cf964e693b5fe18674fa4b8cb",
+      "decision-record.md": "9b06bc8e4cf2d0dad38169b1838a6b066b77aa0d711b9c2dc2a7561e0f8ee1c7",
+      "implementation-summary.md": "7b3cb2dfd6a080a8833181add1569602c1d98c4c5c88ea1dcd10364bcfeb42f7"
     },
     "last_active_at": null
   }

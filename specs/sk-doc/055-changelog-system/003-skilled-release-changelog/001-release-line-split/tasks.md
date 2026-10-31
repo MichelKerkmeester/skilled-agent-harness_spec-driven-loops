@@ -32,7 +32,7 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold the packet, then restructure it as a phase parent when phase 2 was added (`specs/sk-doc/056-changelog-system/003-skilled-release-changelog/`)
+- [x] T001 Scaffold the packet, then restructure it as a phase parent when phase 2 was added (`specs/sk-doc/055-changelog-system/003-skilled-release-changelog/`)
 - [x] T002 Record the move list, the release versions and a hash of every note before the move (session scratchpad)
 - [x] T003 Move the 45 notes with `mv -n` and confirm every hash unchanged after (`.skilled/changelog/skilled/**`)
 <!-- /ANCHOR:phase-1 -->

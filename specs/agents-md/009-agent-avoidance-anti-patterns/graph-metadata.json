@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A pasted user report (Reddit r/ClaudeAI thread \"Claude's habit of inventing rules to avoid helping\", full text supplied by the operator; the thread itself is fetch-blocked) catalogs six agent behaviors that all read as diligence and all function as avoidance: (1) unsolicited warnings wrapped around mundane requests, (2) silent reinterpretation into a \"safer\" version of the ask, (3) restrictions cited that do not exist and quietly change under pushback, (4) refusals dressed as policy whose real answer is \"I just don't want to\", (5) \"done\" claims that become honest only after interrogation, and",
     "created_at": "2026-09-18T08:12:37Z",
-    "last_save_at": "2026-10-31T15:21:40.725Z",
+    "last_save_at": "2026-10-31T15:23:34.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09ac1c1b0aa7b4afaec04a62fcd249d24d54a178c619f54efe05a827b43625df",
+    "source_fingerprint": "sha256:f2bab9694445f70f2e8cce30ba87b4c3d0f6a58ffd5168a1cf0bdbcf3b2743d8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "308fd525625b7f522daa8aaa5ebd8b62efbd5e27de9f33cfd9139e4ae4eb8c62",
+      "spec.md": "6b8c997ffb33b60c52f3d9e6f5ffcb085c4a7ee7eb5af767a0e41bc0eabba73b",
       "plan.md": "0294001ae5fb174abae7e3e8b97689a8ba2cde55329c8bf28f5ae5ba04d572be",
-      "tasks.md": "881849aca59e9ad7adc563c1093dcd0cb04dd67b29f7712ba5bcae53fabaf1a3",
-      "implementation-summary.md": "e4313191a0f29cd989650e43b544d882e7f3d10bc605365bce2372c116ae20d8"
+      "tasks.md": "3814d72194e83eca0fbde71eae20534f8ba7151433520b341f8326f9680a9c1d",
+      "implementation-summary.md": "42a0fc5cc5aecbe97f060dcdb2242ce66bdc3a2699240e6117edaf2b793605b6"
     },
     "last_active_at": null
   }

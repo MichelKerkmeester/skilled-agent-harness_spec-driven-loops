@@ -145,19 +145,19 @@
     ],
     "causal_summary": "Google Cloud published the Open Knowledge Format (OKF) in June 2026 as an open, vendor-neutral way to package agent-readable knowledge as a directory of markdown files with YAML frontmatter",
     "created_at": "2026-10-04T05:36:10Z",
-    "last_save_at": "2026-10-31T15:22:12.767Z",
+    "last_save_at": "2026-10-31T15:28:35.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:538a66abb5c2f70cbbdae03a4e750e76ce105618f2d8622f7e542b690291b256",
+    "source_fingerprint": "sha256:c2e99c3b4a9fdac0c0fcb31b6f4303f61140672da41bf7fe4b6aafe25159066f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6e4ffec05d4d223e709d06c5be57f59dde76cedb45f73a0f1e6ed8500d4a2b44"
     },
-    "last_active_child_id": "system-speckit/037-open-knowledge-format-adoption/009-census-hardening",
+    "last_active_child_id": "system-speckit/036-open-knowledge-format-adoption/009-census-hardening",
     "last_active_at": "2026-10-06T04:47:45.402Z"
   }
 }

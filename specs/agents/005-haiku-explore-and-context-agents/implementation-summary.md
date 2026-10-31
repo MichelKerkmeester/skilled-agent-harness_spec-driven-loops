@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/019-haiku-explore-and-context-agents"
+    packet_pointer: "agents/005-haiku-explore-and-context-agents"
     last_updated_at: "2026-10-08T10:15:00Z"
     last_updated_by: "claude"
     recent_action: "Landed Explore override and context pin"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-haiku-explore-and-context-agents |
+| **Spec Folder** | 005-haiku-explore-and-context-agents |
 | **Completed** | 2026-10-08 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

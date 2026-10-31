@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/011-cross-surface-references"
+    packet_pointer: "sk-doc/056-create-goal-mode/011-cross-surface-references"
     last_updated_at: "2026-09-26T14:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Named the goal mode across READMEs, agent, catalog and advisor bridges"
@@ -106,7 +106,7 @@ The orchestrator did this phase directly, in the main checkout at the operator's
 | Agent and runtime mirrors | 12 agents, 71 Hermes copies and 170 runtime mirrors in sync |
 | Edited documents | 0 issues on both READMEs and both catalog files, with HVR counts unchanged on every file |
 | sk-doc gates | Guard fresh, leaf manifest OK, command references OK, catalog mirror OK, package PASS, parent-skill OK, README manifest tests 11 of 11 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict` | `RESULT: PASSED` for all 12 folders |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode --recursive --strict` | `RESULT: PASSED` for all 12 folders |
 <!-- /ANCHOR:verification -->
 
 ---

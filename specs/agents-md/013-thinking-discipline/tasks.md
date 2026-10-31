@@ -31,7 +31,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Scaffold the packet in the agents track (`specs/agents/017-thinking-discipline/`)
+- [x] T001 Scaffold the packet in the agents track (`specs/agents-md/013-thinking-discipline/`)
 - [x] T002 Map all nine points to existing homes with citations (`research/research.md`)
 - [x] T003 [P] DeepSeek V4.1 Flash max review via cli-pi (`research/reviews/deepseek-v4.1-flash-max.md`)
 - [x] T004 [P] GPT-6 Luna max fast review via cli-codex (`research/reviews/gpt-6-luna-max-fast.md`)

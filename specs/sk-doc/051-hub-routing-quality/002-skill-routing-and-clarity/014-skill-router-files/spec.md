@@ -162,7 +162,7 @@ Set per phase from the research findings; each child's `spec.md` lists its files
 The alignment phases found items this packet may not fix, because the packet decision is that no skill routes differently after the move and the completion criteria hold the routing numbers fixed. Each item has a home that is built once this packet closes:
 
 - **Routing data.** Vocabulary in `graph-metadata.json` intent signals, aliases and weights in `hub-router.json`, the sk-prompt `NO_LOAD_INTENTS` wiring, the sk-design-diagram theming route and the mcp-notion routing gold go to `../015-routing-data-alignment/`. That phase changes routing on purpose, records a new scorer and replay baseline, and refutes the items a review found to be correct behavior: cli-classifier D-05, mcp-tooling D-09, the sk-git router-reach allowlist entry and the YAML-frontmatter half of sk-prompt D-03.
-- **Reference format debt.** 56 tracked references fail the reference format at the base commit, 34 of them in sk-design-diagram (no `## 1. OVERVIEW`, lowercase numbered H2s). They go to `specs/sk-doc/066-reference-template-debt/`, which renumbers each file's sections and its section references with one script and changes no routing.
+- **Reference format debt.** 56 tracked references fail the reference format at the base commit, 34 of them in sk-design-diagram (no `## 1. OVERVIEW`, lowercase numbered H2s). They go to `specs/sk-doc/064-reference-template-debt/`, which renumbers each file's sections and its section references with one script and changes no routing.
 
 <!-- /ANCHOR:phase-map -->
 

@@ -450,9 +450,9 @@ spec-gate-enforce.ts, task-dispatch-guard.ts
  ... (322 earlier lines, ctrl+o to expand)
  specs/system-deep-loop/z_archive/022-sk-deep-research-evolution/003-sk-deep-research-testing-playbook/tasks.md:84:- [ ] T027 Record validation evidence and handoff notes for the playbook
  implementation (`manual_testing_playbook/`)
- specs/agents/001-terminal-proof-discipline/decision-record.md:191:- The plan completes with proof rather than a handoff note.
- specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch:24662:     "automatic handoff note": [
- specs/agents/009-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch:41996:     "completion with handoff note": [
+ specs/agents-md/001-terminal-proof-discipline/decision-record.md:191:- The plan completes with proof rather than a handoff note.
+ specs/agents-md/007-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch:24662:     "automatic handoff note": [
+ specs/agents-md/007-turn-closeout-next-steps/006-synthesis-presentation/research/lineages/pi-deepseek/containment-reverted/1-2026-09-11T14-13-57.964Z.patch:41996:     "completion with handoff note": [
 
  [Full output: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/pi-bash-4e6162eb12d1a35e.log. Truncated: 136 lines shown (50.0KB limit)]
 

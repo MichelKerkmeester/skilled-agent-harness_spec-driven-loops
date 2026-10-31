@@ -90,7 +90,7 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Predecessor**: `specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt`
+- **Predecessor**: `specs/sk-doc/062-readme-validation-debt/001-repo-doc-debt`
 <!-- /ANCHOR:cross-refs -->
 
 ---

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/009-turn-closeout-next-steps/006-synthesis-presentation"
+    packet_pointer: "agents-md/007-turn-closeout-next-steps/006-synthesis-presentation"
     last_updated_at: "2026-09-11T14:02:47Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"

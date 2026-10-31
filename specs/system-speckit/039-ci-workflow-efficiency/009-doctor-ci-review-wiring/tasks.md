@@ -31,7 +31,7 @@ A task closed by a decision record is `[x]` with a `Superseded:` evidence line t
 
 Every task below names one file, quotes the anchor text it edits or reads, gives that anchor's line number, puts every command in a fenced block, states the expected result, names the acceptance criterion it satisfies, gives a rollback, and gives one concrete stop condition.
 
-**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring`. Set `PHASE` in the same block as any command that uses it.
+**Path convention.** Run every command from the repository root. `PHASE` means `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring`. Set `PHASE` in the same block as any command that uses it.
 
 **Anchor convention.** Every line number was read on this packet's scaffold commit. Phase 006 adds a `sk-code-ci/` packet and phase 007 adds a switch line to every job and an `### On/off switches` section to `.github/workflows/README.md`, so a line in those files moves by the time these tasks run. Locate the quoted text and edit there. An absent anchor is a stop, never a nearby edit.
 
@@ -53,9 +53,9 @@ Every task below names one file, quotes the anchor text it edits or reads, gives
 
 ### T001 [x] DECISION D9 (operator yes required): run the R28 probe and record the answer (AC-001, AC-002)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe.md` (new file), and `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md`, anchor: the `phases` anchor close at line 160, the last line of the Implementation Notes block.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe.md` (new file), and `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md`, anchor: the `phases` anchor close at line 160, the last line of the Implementation Notes block.
 
-Read the operator's yes from `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe-approval.md`, which must exist and hold the approval line `R28 probe: approved by the operator on 2026-10-23`. `gh variable set` changes repository settings, so that recorded approval is the stop-for-yes gate. If the file is missing or lacks the approval line, run no `gh` write, stop this task and escalate.
+Read the operator's yes from `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/r28-probe-approval.md`, which must exist and hold the approval line `R28 probe: approved by the operator on 2026-10-23`. `gh variable set` changes repository settings, so that recorded approval is the stop-for-yes gate. If the file is missing or lacks the approval line, run no `gh` write, stop this task and escalate.
 
 Change: run the four commands below in order, then write one line per command to the new scratch file in the form `<step> exit=<code>` plus the observed output, then insert the single line `D9: write` before the plan.md anchor when the set exits 0, or `D9: print` when it exits non-zero.
 
@@ -69,7 +69,7 @@ gh variable get SKILLED_CI_PROBE
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -cE '^(set|get|delete|get-after-delete) exit=[0-9]+$' "$PHASE/scratch/r28-probe.md"
 grep -c 'SKILLED_CI_PROBE' "$PHASE/scratch/r28-probe.md"
 grep -cE '^D9: (write|print)$' "$PHASE/plan.md"
@@ -88,7 +88,7 @@ Evidence: the approval file holds the approval line (count 1) and the probe was 
 
 ### T002 [x] Install and build the tools the gates need (AC-008)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/toolchain.md` (new file). Anchor (read): `.github/workflows/spec-kit-check.yml:205`, the line `      - name: Install test dependencies`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/toolchain.md` (new file). Anchor (read): `.github/workflows/spec-kit-check.yml:205`, the line `      - name: Install test dependencies`.
 
 Change: run the install and build set below, then write one line per tool to the new scratch file: the Node version, the Python version, the PyYAML version, and the word `advisor-built`.
 
@@ -106,7 +106,7 @@ npm --prefix .skilled/skills/system-skill-advisor/runtime run build
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 ( cd .skilled && node -e "require('yaml'); console.log('yaml ok')" )
 test -f .skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/scorer/fusion.js && echo advisor-built
 python3 -c "import yaml; print(yaml.__version__)"
@@ -125,7 +125,7 @@ Evidence: all eight install and build steps exited 0 (pip pyyaml 6.0.3, the four
 
 ### T003 [x] Confirm the dependency phases and record the inventory (AC-003, AC-008)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/inventory.md` (new file). Anchor (read): `.github/workflows/README.md:24`, the line `| Workflow | Responsibility |`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/inventory.md` (new file). Anchor (read): `.github/workflows/README.md:24`, the line `| Workflow | Responsibility |`.
 
 Change: run the five commands below, then write one table with the file count, the job count, the switch-line count and the six variable names read from the `### On/off switches` section of `.github/workflows/README.md`, plus one `state:` line in the form `state: <files> files, <jobs> jobs, <switch> switch lines; merged=<yes|no>, hooks=<present|absent>`, where `merged` follows the presence of `.github/workflows/always-run-guards.yml` and `hooks` the presence of `.github/workflows/hooks-node-tests.yml`. Mark T010 and T011 blocked while a `006` template or the README section is absent.
 
@@ -147,7 +147,7 @@ Expected: `006: ready`; `006-protected: ready`; `1`; the counts the commands pri
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c '^| ' "$PHASE/scratch/inventory.md"
 for v in SKILLED_CI SKILLED_CI_TESTS SKILLED_CI_REPORTS SKILLED_CI_REVIEW SKILLED_CI_FRESHNESS SKILLED_CI_MESSAGES; do grep -q "$v" "$PHASE/scratch/inventory.md" || echo "missing: $v"; done
 if [ -f .github/workflows/always-run-guards.yml ]; then merged=yes; else merged=no; fi
@@ -173,7 +173,7 @@ Evidence: the blocker is cleared from the tree. The five commands printed `006: 
 
 ### T004 [x] Record the pre-phase baseline (AC-007, AC-008)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/pre-phase.md` (new file). Anchor (read): `.skilled/commands/doctor/_routes.yaml:46`, the line `routes:`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/pre-phase.md` (new file). Anchor (read): `.skilled/commands/doctor/_routes.yaml:46`, the line `routes:`.
 
 Change: run the five commands below and write one row per command with its exit status and its last output line.
 
@@ -190,7 +190,7 @@ Expected before the phase: `14 routes validated`; `"status": "fresh"`; `STATUS=O
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c '14 routes validated' "$PHASE/scratch/pre-phase.md"
 grep -c '"status": "fresh"' "$PHASE/scratch/pre-phase.md"
 grep -c 'bridges=18' "$PHASE/scratch/pre-phase.md"
@@ -232,7 +232,7 @@ Change: create the script with these fixed contracts.
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 node --check .skilled/commands/doctor/scripts/ci-report.cjs
 node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh > "$PHASE/scratch/report-smoke.json"
 python3 -c "import json,glob; d=json.load(open('$PHASE/scratch/report-smoke.json')); print(len(d['workflows']), len(glob.glob('.github/workflows/*.yml')))"
@@ -383,7 +383,7 @@ Evidence: the blocker is cleared, because both templates and the protected set e
 
 ### T011 [x] Create the toggle workflow (AC-007)
 
-File: `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md`, the single line matching `^D9: (write|print)$` written by T001.
+File: `.skilled/commands/doctor/assets/doctor-ci-toggle.yaml` (new file). Anchor (read): `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md`, the single line matching `^D9: (write|print)$` written by T001.
 
 Change: create the YAML for the shape the anchor names. Both shapes accept only `SKILLED_CI`, `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`; print the current state; print the exact `gh variable set <name> --body off` or `gh variable delete <name>` command; ask for an explicit yes. Refuse any other name with `REFUSE: <name> is not a documented switch`. Refuse `SKILLED_CI_MESSAGES=off` while the `### On/off switches` section of `.github/workflows/README.md` contains `SKILLED_CI_MESSAGES must stay unset`, with `REFUSE: SKILLED_CI_MESSAGES must stay unset while the ruleset requires that context`. Under `<D9> = write`, run the command after the yes and read the state back with `gh variable list --json name,value`. Under `<D9> = print`, print the command, print `Run this command yourself; this route writes nothing`, and stop. Under the print shape, do not use the word sequence `write to`.
 
@@ -393,7 +393,7 @@ Check:
 for v in SKILLED_CI SKILLED_CI_TESTS SKILLED_CI_REPORTS SKILLED_CI_REVIEW SKILLED_CI_FRESHNESS SKILLED_CI_MESSAGES; do grep -q "$v" .skilled/commands/doctor/assets/doctor-ci-toggle.yaml || echo "missing: $v"; done
 grep -cE 'gh variable set|gh variable delete' .skilled/commands/doctor/assets/doctor-ci-toggle.yaml
 grep -c 'SKILLED_CI_MESSAGES must stay unset' .skilled/commands/doctor/assets/doctor-ci-toggle.yaml
-grep -c '^D9: (write|print)$' specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md || true
+grep -c '^D9: (write|print)$' specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/plan.md || true
 ```
 
 Expected: nothing printed by the loop; at least `2`; at least `1`; `1`.
@@ -623,7 +623,7 @@ Evidence: `node --test .skilled/commands/doctor/scripts/tests/doctor-ci-contract
 
 ### T017 [x] Run the doctor script suite (AC-005, AC-011, AC-020, AC-021)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/doctor-suite.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/tests/run-all.sh:102`, the line `printf '\n[run-all] %d suite(s) passed, %d failed\n' "$passed_count" "${#failed_suites[@]}"`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/doctor-suite.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/tests/run-all.sh:102`, the line `printf '\n[run-all] %d suite(s) passed, %d failed\n' "$passed_count" "${#failed_suites[@]}"`.
 
 Change: run the runner, then write its exit status, its suite count and its last line to the new scratch file.
 
@@ -634,7 +634,7 @@ bash .skilled/commands/doctor/scripts/tests/run-all.sh
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -cE '^\[run-all\] [0-9]+ suite\(s\) passed, 0 failed$' "$PHASE/scratch/doctor-suite.md"
 grep -c 'exit=0' "$PHASE/scratch/doctor-suite.md"
 ```
@@ -880,7 +880,7 @@ Superseded: ADR-013 (operator ruling of 2026-10-25, "Drop R30, keep the hub."). 
 
 ### T025 [x] SUPERSEDED (ADR-013): Run the sk-code tests and drift guards (AC-015)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/sk-code-gates.md` (new file). Anchor (read): `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1`, the line `#!/usr/bin/env bash`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/sk-code-gates.md` (new file). Anchor (read): `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh:1`, the line `#!/usr/bin/env bash`.
 
 Change: run the two gates and write each command, its exit status and its last line to the new scratch file.
 
@@ -892,7 +892,7 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c 'all 4 guards PASSED' "$PHASE/scratch/sk-code-gates.md"
 grep -c 'exit=0' "$PHASE/scratch/sk-code-gates.md"
 ```
@@ -911,7 +911,7 @@ Superseded: ADR-013 (operator ruling of 2026-10-25, "Drop R30, keep the hub."). 
 
 ### T026 [x] Record the compiled-route observation (AC-022)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/compiled-route.md` (new file). Anchor (read): `.skilled/skills/sk-code/hub-router.json:5`, the line `    "defaultMode": null,`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/compiled-route.md` (new file). Anchor (read): `.skilled/skills/sk-code/hub-router.json:5`, the line `    "defaultMode": null,`.
 
 Change: run the route twice, once without a hint and once with `--surface-hint CI`, and write both JSON lines plus one verdict line to the new scratch file.
 
@@ -923,7 +923,7 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review the GitHub A
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c '"sk-code-ci"' "$PHASE/scratch/compiled-route.md"
 grep -cE '^(bundles: (yes|no)|verdict: .+)$' "$PHASE/scratch/compiled-route.md"
 ```
@@ -944,7 +944,7 @@ Evidence: both runs exited 0 and returned `selectionKind` `surfaceBundle` with `
 
 ### T027 [x] Run the doctor gates and record them (AC-008, AC-009)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/doctor-gates.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/route-validate.sh:1`, the line `#!/usr/bin/env bash`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/doctor-gates.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/route-validate.sh:1`, the line `#!/usr/bin/env bash`.
 
 Change: run the three gates and write each command, its exit status and its last line to the new scratch file.
 
@@ -959,7 +959,7 @@ Expected: `17 routes validated`; `"status": "fresh"` with `"changed": []`; `STAT
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c '17 routes validated' "$PHASE/scratch/doctor-gates.md"
 grep -c '"status": "fresh"' "$PHASE/scratch/doctor-gates.md"
 grep -c 'STATUS=OK phrases=[0-9]* bridges=21' "$PHASE/scratch/doctor-gates.md"
@@ -977,12 +977,12 @@ Evidence: `route-validate.sh` exit 0, `OK: route-validate`, then `17 routes vali
 
 ### T028 [x] Run the live report and record the newest non-rebuild SHA (AC-003, AC-004)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/live-report.md` and `scratch/live-report.json` (new files). Anchor (read): `.github/workflows/README.md:24`, the line `| Workflow | Responsibility |`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/live-report.md` and `scratch/live-report.json` (new files). Anchor (read): `.github/workflows/README.md:24`, the line `| Workflow | Responsibility |`.
 
 Change: run the report, reduce it to the count, the SHA and the switch set, read the SHA's last commit-message line, and write all four values to the new scratch file.
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 node .skilled/commands/doctor/scripts/ci-report.cjs --json > "$PHASE/scratch/live-report.json"
 python3 -c "import json; d=json.load(open('$PHASE/scratch/live-report.json')); print(len(d['workflows']), d['newestNonRebuildSha'], sorted({w['switch'] for w in d['workflows']}))"
 gh api repos/{owner}/{repo}/commits/<newestNonRebuildSha> --jq .commit.message | awk 'NF{last=$0} END{print last}'
@@ -993,7 +993,7 @@ Expected: the workflow count equals `ls .github/workflows/*.yml | wc -l`; a 40-h
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -cE '^workflows: [0-9]+$' "$PHASE/scratch/live-report.md"
 grep -cE 'newest non-rebuild SHA: [0-9a-f]{40}' "$PHASE/scratch/live-report.md"
 grep -cE '^last message line: ' "$PHASE/scratch/live-report.md"
@@ -1011,12 +1011,12 @@ Evidence: `ci-report.cjs --json` exit 0 (read-only `gh` calls). 32 workflows aga
 
 ### T029 [x] Prove the report writes nothing (AC-017)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/report-read-only.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/ci-report.cjs:1`, the line `#!/usr/bin/env node`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/report-read-only.md` (new file). Anchor (read): `.skilled/commands/doctor/scripts/ci-report.cjs:1`, the line `#!/usr/bin/env node`.
 
 Change: capture the tree status, run the report, capture it again, and write the diff result to the new scratch file.
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 git status --porcelain -- .github .skilled > "$PHASE/scratch/status-before.txt"
 node .skilled/commands/doctor/scripts/ci-report.cjs --json --no-gh > /dev/null
 git status --porcelain -- .github .skilled > "$PHASE/scratch/status-after.txt"
@@ -1026,7 +1026,7 @@ diff -u "$PHASE/scratch/status-before.txt" "$PHASE/scratch/status-after.txt"
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c 'status-identical: yes' "$PHASE/scratch/report-read-only.md"
 git diff --exit-code -- .github/workflows && echo workflows-untouched
 ```
@@ -1045,12 +1045,12 @@ Evidence: `scratch/report-read-only.md` now exists (created 2026-10-25 by the or
 
 ### T030 [x] Run the full gate and write the phase result (AC-008, AC-009, AC-016)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/phase-result.md` (new file). Anchor (read): `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:42`, the line `| **Handoff Criteria** |`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/scratch/phase-result.md` (new file). Anchor (read): `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/spec.md:42`, the line `| **Handoff Criteria** |`.
 
 Change: run the eight commands below, write each command, its exit status and its last line to the new scratch file, add the D9 answer, the live report's workflow count and SHA, and the line `ephemeral-id hits: 0`.
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 bash .skilled/commands/doctor/scripts/tests/run-all.sh
 node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/*.test.cjs
 bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
@@ -1066,7 +1066,7 @@ Expected: every suite passes; `17 routes validated`; `"status": "fresh"`; `STATU
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -cE 'RESULT: (PASSED|FAILED)' "$PHASE/scratch/phase-result.md"
 grep -c 'ephemeral-id hits: 0' "$PHASE/scratch/phase-result.md"
 grep -cE '^D9: (write|print)$' "$PHASE/scratch/phase-result.md"
@@ -1092,7 +1092,7 @@ File: the staged paths under `.skilled/commands/doctor/`, `.skilled/skills/syste
 Change: make four commits, one per concern, in this order: the report, the scaffold and toggle, the sk-code surface, and the `/doctor:setup` row. Unstage the earlier tasks' paths first so no concern leaks into another commit. For each commit, stage only that concern's paths, write the full message to `$PHASE/scratch/commit-<concern>.txt`, run the validator and require exit 0, then commit with `git commit -F`.
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 git reset
 
 git add .skilled/commands/doctor/ci.md .skilled/commands/doctor/assets/doctor-ci-presentation.txt .skilled/commands/doctor/assets/doctor-ci-report.yaml .skilled/commands/doctor/scripts/ci-report.cjs .skilled/commands/doctor/scripts/tests/ci-report.test.cjs
@@ -1102,7 +1102,7 @@ feat(doctor): report every workflow switch state
 
 The report lists every workflow with its switch state, trigger, filters and drift flags.
 
-Spec: system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+Spec: system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-report.txt"
 git commit -F "$PHASE/scratch/commit-report.txt"
@@ -1114,7 +1114,7 @@ feat(doctor): scaffold and toggle ci workflows
 
 The scaffold creates new workflows from the sk-code-ci templates, and the toggle changes one documented switch after an explicit yes.
 
-Spec: system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+Spec: system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-scaffold-toggle.txt"
 git commit -F "$PHASE/scratch/commit-scaffold-toggle.txt"
@@ -1126,7 +1126,7 @@ feat(sk-code): add the ci surface value
 
 The shared detection contract, the review router and the hub restatements name CI after SKILLED, and the versions and compiled route follow.
 
-Spec: system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+Spec: system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-sk-code.txt"
 git commit -F "$PHASE/scratch/commit-sk-code.txt"
@@ -1138,7 +1138,7 @@ docs(doctor): list the ci command in setup
 
 The setup target list gains one report row so the command is discoverable.
 
-Spec: system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+Spec: system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-setup-row.txt"
 git commit -F "$PHASE/scratch/commit-setup-row.txt"
@@ -1163,14 +1163,14 @@ Evidence: three commits landed on `main`, not four. `git fetch -q origin main` e
 
 ### T032 [x] Close the acceptance rows (AC-001 to AC-022)
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md`, anchor: `| AC-001 | R28 | REQ-001 |` at the first criteria row.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md`, anchor: `| AC-001 | R28 | REQ-001 |` at the first criteria row.
 
 Change: for each row, replace `Unmet` with `Met` when its verification command passed in T027 to T031, and leave `Unmet` otherwise. Write the command and its observed result in the row's Verification cell when the cell does not already name one. Set the closure statement's `**Closeable:**` value to `Yes` only when every row is `Met`, `Waived` or `Superseded`.
 
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 grep -c '| Unmet |' "$PHASE/acceptance-criteria.md" || true
 grep -c '^| AC-0' "$PHASE/acceptance-criteria.md"
 grep -c '^\*\*Closeable:\*\* ' "$PHASE/acceptance-criteria.md"
@@ -1190,19 +1190,19 @@ Evidence: the check block printed `0` for `grep -c '| Unmet |'`, `22` for the AC
 
 Evidence: the closure edits landed as `8811c7e36d`, `docs(spec): close the doctor ci and review wiring criteria`, and `git merge-base --is-ancestor 8811c7e36d origin/main` exits 0 (observed 2026-10-25). The 19 workflow runs on that push all concluded `success`, including Spec-Kit Check and Routing Registry Drift Guard.
 
-File: `specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
+File: `specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring/acceptance-criteria.md`. Anchor (read): `.skilled/skills/sk-git/scripts/validate-message.mjs:1`, the line `#!/usr/bin/env node`.
 
 Change: stage the closure file, write the full message to `$PHASE/scratch/commit-closure.txt`, run the validator and require exit 0, then commit with `git commit -F`. The message has a conventional subject, a blank line, a prose body, a blank line, and the `Spec:` trailer.
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 git add "$PHASE/acceptance-criteria.md"
 cat > "$PHASE/scratch/commit-closure.txt" <<'EOF'
 docs(spec): close the acceptance criteria
 
 Every criterion row carries its observed result and the closure statement records the verdict.
 
-Spec: system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+Spec: system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 EOF
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-closure.txt"
 git commit -F "$PHASE/scratch/commit-closure.txt"
@@ -1211,7 +1211,7 @@ git commit -F "$PHASE/scratch/commit-closure.txt"
 Check:
 
 ```bash
-PHASE=specs/system-speckit/040-ci-workflow-efficiency/009-doctor-ci-review-wiring
+PHASE=specs/system-speckit/039-ci-workflow-efficiency/009-doctor-ci-review-wiring
 node .skilled/skills/sk-git/scripts/validate-message.mjs --commit "$PHASE/scratch/commit-closure.txt"
 git log -1 --format=%s
 git status --porcelain -- "$PHASE/acceptance-criteria.md" | grep -c . || true

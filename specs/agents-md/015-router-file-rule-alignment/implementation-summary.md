@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/020-router-file-rule-alignment"
+    packet_pointer: "agents-md/015-router-file-rule-alignment"
     last_updated_at: "2026-10-30T05:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Aligned the hub routing rule and its trigger row with the per-skill ROUTER.md layout"
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-router-file-rule-alignment |
+| **Spec Folder** | 015-router-file-rule-alignment |
 | **Completed** | 2026-10-30 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
@@ -91,7 +91,7 @@ The edits went straight onto `main` as one commit. The repo-rule corpus checker 
 | `grep -c "a mode packet's own \`ROUTER.md\`" .skilled/repo-rules/skill-hub-routing.md` | PASS, prints 1 |
 | `grep -c "a mode packet's own" "REPO RULES.md"` | PASS, prints 1 |
 | `check-repo-rules.cjs` | PASS, `RESULT: PASSED (11/11 checks)` |
-| `validate.sh specs/agents/020-router-file-rule-alignment --strict` | PASS, `RESULT: PASSED` |
+| `validate.sh specs/agents-md/015-router-file-rule-alignment --strict` | PASS, `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---

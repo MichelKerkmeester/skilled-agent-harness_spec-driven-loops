@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The fleet move to `ROUTER.md` took each trailing `MACHINE ROUTER` section verbatim into `ROUTER.md` under `## 3",
     "created_at": "2026-10-30T05:21:13Z",
-    "last_save_at": "2026-10-31T15:21:58.701Z",
+    "last_save_at": "2026-10-31T15:23:46.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ae49e14bf7bfde757c5f473ca585c9bb54542384ffe72a0d34d95a8d2141fd79",
+    "source_fingerprint": "sha256:5e91efb84d6819fa0b58c98192456bcc33e6df9eff544603286cb60983986a69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "be0f1bacfa0babaf97d96477dac084cdc6c5b9ccdf4df8c8e2f309b3fc2d89f5",
       "plan.md": "4d8f2986a9d95be5e5e594f4ef7018ce64b1705360b21152d9839499f578ced9",
       "tasks.md": "a37295be61d68bbfba845720ad50d1839192ff7cb0c527b2bd9b083f2d3a7acf",
-      "implementation-summary.md": "5d16aebdd204a302588aad9795db92764b9e184f975d34e3c86046cc830cd3a3"
+      "implementation-summary.md": "0597b960b724087ef50aa512d1c1f9bd77cea5a156232e4f33b4a925643db278"
     },
     "last_active_at": null
   }

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands",
+  "spec_folder": "commands",
+  "parent_id": null,
+  "children_ids": [
+    "commands/001-command-contract-reconciliation",
+    "commands/002-doctor-audit-and-fixes",
+    "commands/003-local-command-support",
+    "commands/004-doctor-sk-skill-command"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "commands",
+      "track",
+      "slash-commands",
+      "doctor"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [],
+    "entities": [],
+    "causal_summary": "Track folder for command packets that serve the whole command tree rather than one skill: the command contract, local-* command support and the cross-skill /doctor commands.",
+    "created_at": "2026-10-31T15:23:27.000Z",
+    "last_save_at": "2026-10-31T15:23:27.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [],
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "source_doc_hashes": {},
+    "last_active_child_id": "agents-md/008-repo-rule-system-integration",
+    "last_active_at": "2026-09-11T20:59:38.392Z"
+  }
+}

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair"
     last_updated_at: "2026-10-25T21:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair
+**Packet:** system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair
 **Level:** 3
 **Status:** Complete
 **Date:** 2026-10-23

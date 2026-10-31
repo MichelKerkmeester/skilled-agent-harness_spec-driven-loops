@@ -202,7 +202,7 @@
     ],
     "causal_summary": "After phase 1, 27 reference docs still fail the format",
     "created_at": "2026-10-29T21:27:28Z",
-    "last_save_at": "2026-10-31T15:22:12.648Z",
+    "last_save_at": "2026-10-31T15:24:09.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1361965d78a843885a657c6dacea0b316a513369e6db54089229e4b5a160213e",
+    "source_fingerprint": "sha256:c449b4ebd18640b71a69b0f3c726f6d441abd2b2ff3524bae4336218efbc93ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "614441c493471e517a7756289f318d509bc74a06ddc5e1e10ad9730958b04cee",
       "plan.md": "9db46ceaacc766d732ed1a4fd59f19b32b32bced1e36d45f3cf7b52f5d7793a9",
       "tasks.md": "c52b2ff85b769e1f16fb1a84adba36ec82b245ebf83a2ac397c5739caa4d46b2",
-      "decision-record.md": "2c775ba521cc0f68ab4fb2436cad9d8e0f54a4c16f9a7d2bedc884062ef0e4be",
+      "decision-record.md": "dbcd85db3ca9c835f76c4323c3573988a82018ceaa9c73b51a37c82aecd6a122",
       "implementation-summary.md": "d2083e45a2ab94f4efbd2f49e9259b97b19419281d10757a22c57c26e7d39e6a"
     },
     "last_active_at": null

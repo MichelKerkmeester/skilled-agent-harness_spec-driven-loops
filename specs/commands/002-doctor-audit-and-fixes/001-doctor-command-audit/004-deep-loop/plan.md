@@ -108,7 +108,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Route and presentation | Route manifest, router table, all three presentation displays | `bash .skilled/commands/doctor/scripts/route-validate.sh` → exit 0, 9 routes, 2 informational warnings; `I1` and `J1` PASS |
 | Retired-name scan | Edited doctor files | `rg` for `deep_loop_graph_status(`, `deep_loop_graph_query(` and `deep_loop_graph_convergence(` → no matches |
 | Shared doctor gates | Command catalog, mutation classes, route contract | catalog mirror → `STATUS=OK`; mutation-class guard → `GUARD PASS`; `skill-advisor-route-contract.test.cjs` passes |
-| Packet validation | This phase's docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop --strict` → `RESULT: PASSED` |
+| Packet validation | This phase's docs | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/004-deep-loop --strict` → `RESULT: PASSED` |
 <!-- /ANCHOR:testing -->
 
 ---

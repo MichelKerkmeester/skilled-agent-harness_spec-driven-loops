@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/016-scaffold-filler-section-trim"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/016-scaffold-filler-section-trim"
     last_updated_at: "2026-10-26T17:50:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed out: all criteria Met"

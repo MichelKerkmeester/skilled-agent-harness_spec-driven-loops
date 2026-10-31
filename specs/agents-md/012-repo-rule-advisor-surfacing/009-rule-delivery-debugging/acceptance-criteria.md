@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/009-rule-delivery-debugging"
     last_updated_at: "2026-10-04T21:40:04Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/016-repo-rule-advisor-surfacing/009-rule-delivery-debugging
+**Packet:** agents-md/012-repo-rule-advisor-surfacing/009-rule-delivery-debugging
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-04

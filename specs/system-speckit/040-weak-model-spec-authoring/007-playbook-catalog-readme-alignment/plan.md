@@ -996,7 +996,7 @@ Run steps 1 to 4 from the checkout root. Step 1 writes the scratch path to a fix
 
 ```bash
 OUT="$(mktemp -d)"
-POINTER=specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
+POINTER=specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt
 mkdir -p "$(dirname "$POINTER")"
 printf '%s\n' "$OUT" > "$POINTER"
 echo "out=$OUT"
@@ -1035,7 +1035,7 @@ echo "brief=$(wc -l < "$OUT/brief.txt") lines"
 2. Dispatch one worker with cli-devin.
 
 ```bash
-OUT="$(cat specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+OUT="$(cat specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
 AI_SESSION_CHILD=1 SYSTEM_SPEC_GATE_ENFORCE=0 devin -p --model swe-2-max --permission-mode dangerous -- "$(cat "$OUT/brief.txt")" </dev/null > "$OUT/reply.txt" 2> "$OUT/reply.err"
 echo "devin_exit=$?"
 tail -n 1 "$OUT/reply.txt"
@@ -1044,7 +1044,7 @@ tail -n 1 "$OUT/reply.txt"
 3. Validate the packet and count the tokens left.
 
 ```bash
-OUT="$(cat specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
+OUT="$(cat specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt)"
 P=specs/zz-pb-card/001-card-authoring
 test -f "$P/spec.md" && echo "packet=$P"
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh "$P" --strict > "$OUT/val.txt" 2>&1
@@ -1062,7 +1062,7 @@ test ! -d specs/zz-pb-card && echo "cleanup=ok"
 
 ### Expected
 
-Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20. Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
+Step 1 prints `out=` followed by the scratch path, then `pointer=specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment/scratch/verify/scenario-483-out.txt`, then a brief line count above 20. Step 2 prints `devin_exit=0`, then the worker's last `RESULT` line, and leaves the reply file in the scratch path. Step 3 prints `packet=specs/zz-pb-card/001-card-authoring`, then `val_exit=0`, then `RESULT: PASSED`, then `0`. Step 4 prints `cleanup=ok`.
 
 ### Evidence
 
@@ -1974,7 +1974,7 @@ GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
 You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatched worker as pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/041-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
+  specs/system-speckit/040-weak-model-spec-authoring/007-playbook-catalog-readme-alignment
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 A failed edit match means a stale anchor: re-read the file and retry; halt only after three

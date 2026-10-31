@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The session's `/goal` requires green CI on the final main commit, and sk-doc Script Tests was red on main",
     "created_at": "2026-10-21T17:36:21Z",
-    "last_save_at": "2026-10-31T14:04:32.201Z",
+    "last_save_at": "2026-10-31T15:29:46.517Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6f9643c1900cbeb3385acb2c5820fcc7b87babb0e47f59c84b641a53dad78b98",
+    "source_fingerprint": "sha256:b43be41e9485e6db7cb62498f199bb71b0db859019e89219cdd828b33b5bde50",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b20b861782d1d4b1a165b73da0c1a7089f4450c17801ba398e5a4fb3999dc10d",
+      "spec.md": "cf0ce4083952dc8fe462c3fc5e738ed0d1f24522d80df0351dc8976cd9843619",
       "plan.md": "e2e2898265f61b908b33cebab56bc2cdbd6381aa84d3b9763656e95f59ecf608",
       "tasks.md": "e1879f687b12fc35b35658fb7f3756afabebed92b5c452b92364337dceea5ff9",
-      "implementation-summary.md": "df10eaa36fd0e90f0d2de0070d62212eb80a005ed147a436fcb50725c7cc7558"
+      "implementation-summary.md": "8bf4c13fe2198c159f34f43008968425518bcd169b610825bb906559797e83c6"
     },
     "last_active_at": null
   }

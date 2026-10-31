@@ -29,7 +29,7 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline`
+- `PHASE`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T003.
 <!-- /ANCHOR:notation -->
@@ -244,7 +244,7 @@ Shell variables used below, set once by the conductor:
 
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
-  Read specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
+  Read specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl
   and dropped.jsonl in the same folder. For each ledger row, open the named file and check:
   (1) the defect is real, (2) expected_text is correct finished text, (3) owner_phase is right.
   For each dropped row, check whether it is a real defect that was described badly.

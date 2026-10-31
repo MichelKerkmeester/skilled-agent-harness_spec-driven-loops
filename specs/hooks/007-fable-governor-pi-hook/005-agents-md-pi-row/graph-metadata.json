@@ -188,7 +188,7 @@
     ],
     "causal_summary": "AGENTS.md §8 Runtime Agent Directory Resolution lists Opencode, Claude Code, and Codex CLI — pi is absent, so pi agents resolving their directory have no documented row (research B2 confirmed the omission)",
     "created_at": "2026-08-04T12:04:55Z",
-    "last_save_at": "2026-08-30T15:39:09.210Z",
+    "last_save_at": "2026-10-31T15:29:46.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,13 +197,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:483ae51e9eb1dc1747349ba26b4dec8ea4136f6a8432fd442a392174b478e710",
+    "source_fingerprint": "sha256:92f0190a865bcd5fbca43f464067644870f5a1b9720db3c0b5b23636ca15c80f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f9fe5535cab73f97fe708187b827c81bcc2391b01fba4485658f23865dc09113",
-      "plan.md": "b885d30dbca77cb47f2df9cb82ac87b6737da2549ce7d98364b68d8632b09e61",
-      "tasks.md": "4d6a7453233a71423f84be5d66498653f78ab88f27db1a4d9e545d30822187d1",
-      "implementation-summary.md": "5a759d6a9e4f9cc25975de5ad9003fba2d8b741cfb3d87943cfeaa2a40fb48ba"
+      "spec.md": "fc83a6a36bebf99256f399ba9c017424f7256f24e7e7811f93694f21b65f682e",
+      "plan.md": "1d345da18e806310697092197ec6aaaf2c903cd2d094d6ce149e27df4e05c697",
+      "tasks.md": "bc6800866e560615142285acb3c832b5e426892cb82eccc24525f19e3a088000",
+      "implementation-summary.md": "729b8985e2e58aebe4926210b6f275fad2dd8b5327327dec85e5779ac7f411bc"
     },
     "last_active_child_id": null,
     "last_active_at": null

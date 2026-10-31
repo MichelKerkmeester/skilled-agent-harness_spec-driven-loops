@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The audit reports 119 broken references",
     "created_at": "2026-10-27T06:53:10Z",
-    "last_save_at": "2026-10-31T15:22:08.313Z",
+    "last_save_at": "2026-10-31T15:24:08.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da6e1c371700726c0e1006592b5fc25adf8d6e95ba1677d5387040c2fb5e63b7",
+    "source_fingerprint": "sha256:93f27e19c979d4c9669fc6fd425581abc1d4e387953b1bfa48686ecf1c1355c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8e0f269911d577a9080cb98143a0a6f49a7955ef2e4075353f42131bf2725792",

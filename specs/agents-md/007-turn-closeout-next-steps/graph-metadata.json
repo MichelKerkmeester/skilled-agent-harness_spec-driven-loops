@@ -120,16 +120,16 @@
     ],
     "causal_summary": "Nothing in the framework binds a turn to end with what the operator has to do next",
     "created_at": "2026-09-11T10:54:55Z",
-    "last_save_at": "2026-10-31T15:21:40.578Z",
+    "last_save_at": "2026-10-31T15:23:33.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b7a19b0ad6c263d912e5b56555864df23e068e41dcd1c91bf3575c77f00b593e",
+    "source_fingerprint": "sha256:a8876e1c82fe2787025869eb506b05704ed3415b20be60ee5efd655898747f6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "feb930d14a96873bac99da68f0b00c7679be6a67134b7473faa6f99b13ce0f51"
+      "spec.md": "5eef49602726b1fa732ba5e3d9299257024a5607e0282e986f94d062f68905fa"
     },
     "last_active_at": null
   }

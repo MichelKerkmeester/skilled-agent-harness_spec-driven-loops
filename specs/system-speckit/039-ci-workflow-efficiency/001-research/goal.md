@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/001-research"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/001-research"
     last_updated_at: "2026-10-23T12:05:42Z"
     last_updated_by: "devin"
     recent_action: "Authored the durable directive"

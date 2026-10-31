@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`packageskill.py --check --strict` failed sk-code-skilled because `routerreplaylib.cjs`, `verifydocclaims.cjs` and `verifyroutersync.cjs` break the kebab-case rule for package files",
     "created_at": "2026-10-10T19:23:39Z",
-    "last_save_at": "2026-10-31T15:22:08.007Z",
+    "last_save_at": "2026-10-31T15:24:07.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +203,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:184c4d705608b5c8ca449c6436b3cd63949b6a238581b57380d8c1aa181bd08b",
+    "source_fingerprint": "sha256:241c73e14968062872ae0901b30a3be632d7334cffde6b7bbcbfa0a243cb67ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "9b4eae18360be4bf5da54f193ed57d60d57acc6308360332c25aaefdd2cf88f9",

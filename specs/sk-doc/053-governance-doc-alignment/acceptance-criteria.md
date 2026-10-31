@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/054-governance-doc-alignment"
+    packet_pointer: "sk-doc/053-governance-doc-alignment"
     last_updated_at: "2026-09-13T13:14:56Z"
     last_updated_by: "pi-055-authoring-session"
     recent_action: "Mapped the six requirements to acceptance criteria, all six Unmet at Draft"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/054-governance-doc-alignment
+**Packet:** sk-doc/053-governance-doc-alignment
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-09-13

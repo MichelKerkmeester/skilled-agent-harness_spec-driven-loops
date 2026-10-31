@@ -188,7 +188,7 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-09-11T10:54:57Z",
-    "last_save_at": "2026-10-31T15:21:40.503Z",
+    "last_save_at": "2026-10-31T15:23:34.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,7 +198,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:558350997939262db6a9f4b2766147dc9b625f0f6e7fdea29e16f2866e2f01b9",
+    "source_fingerprint": "sha256:0af1be9b9b2ce6e444aa1857fbbbbb483dc589b2adb699fd23adb48c78a44c16",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "94374b4f0e22109afeb73eec8b42177e0e04ec3ca651cf2cd3e71b6449cc529d",

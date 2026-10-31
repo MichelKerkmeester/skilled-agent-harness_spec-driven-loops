@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The new `draft-auto-repair.vitest.ts` imports the internal validation orchestrator, so the CLI AST import check exits 1 and the `npm run check` gate in CI fails (Measured Behavior below)",
     "created_at": "2026-10-26T19:01:01Z",
-    "last_save_at": "2026-10-31T15:22:21.212Z",
+    "last_save_at": "2026-10-31T15:28:44.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c9b8b1554e0bff349993338520ed70e1da431c0f9cbcc9791d65393b1d1f649f",
+    "source_fingerprint": "sha256:438aeece906e6754000c01a6770fecb5f462bed8ebc13b017f605fc505ff0f09",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "258eee782a4180d30f5354d2bafae769bc576d0e1c1964ccd38b5603937266ce",
+      "spec.md": "ad8f7f1ac7728db0f4a44d038e5ab3df55bff41be3f9a8c84f15fba83149dd90",
       "plan.md": "348438a06dd519b77b803472f8468d1d17e27e1cff6253e29d31338d8ecf91b4",
-      "tasks.md": "6ab9a94919b20a6819449fdb6444752a56d7f27d9bc16c51d9fdb5d9b1f12434",
-      "implementation-summary.md": "d4f6d2c660a2f369447dc166c2f6f97dd2fbc8a755b8335e7e284f5ec4c2e2ef"
+      "tasks.md": "a34a0f8159a154d0e10f2ee5648c68253277bbd03195c4985fc60cb9acc71073",
+      "implementation-summary.md": "bad41bb3e52cf672592dd8c226fdd464368c38d745a054824bb7d374b9db64b7"
     },
     "last_active_at": null
   }

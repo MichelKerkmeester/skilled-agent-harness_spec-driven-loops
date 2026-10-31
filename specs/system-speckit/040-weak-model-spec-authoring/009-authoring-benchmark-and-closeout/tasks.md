@@ -29,7 +29,7 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PKT`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring`
+- `PKT`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring`
 - `PHASE`: `$PKT/009-authoring-benchmark-and-closeout`
 - `SC`: `$PHASE/scratch`
 - `S`: `.skilled/skills/system-spec-kit`
@@ -244,9 +244,9 @@ MD
       '```'
     printf '\nThe three final runs take about 20 minutes, against 17 minutes on the baseline side. The metric commands are in `tasks.md` T006. The raw run logs stay in the source packet named in `source.md`.\n\n'
     printf '## 10. CROSS-LINKS\n\n'
-    printf -- '- Source packet: `specs/system-speckit/041-weak-model-spec-authoring`\n'
-    printf -- '- Baseline measurement: `specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json`\n'
-    printf -- '- Delta: `specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json`\n'
+    printf -- '- Source packet: `specs/system-speckit/040-weak-model-spec-authoring`\n'
+    printf -- '- Baseline measurement: `specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json`\n'
+    printf -- '- Delta: `specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json`\n'
   } > "$REPORT/README.md"
   {
     printf '# system-spec-kit Benchmark Sources\n\n'
@@ -255,12 +255,12 @@ MD
     printf 'This map names where the raw evidence behind this folder lives. The folder holds curated outputs only.\n\n'
     printf '| Resource | Purpose |\n|---|---|\n'
     printf '| Target skill | `.skilled/skills/system-spec-kit` |\n'
-    printf '| Source packet | `specs/system-speckit/041-weak-model-spec-authoring` |\n'
-    printf '| Baseline runs | `specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json` |\n'
-    printf '| Final runs | `specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/baseline.json` |\n'
-    printf '| Metric commands | `specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md` T006 |\n'
-    printf '| Delta | `specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json` |\n'
-    printf '| Run briefs | `specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/briefs/T005-*.txt` |\n'
+    printf '| Source packet | `specs/system-speckit/040-weak-model-spec-authoring` |\n'
+    printf '| Baseline runs | `specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline-swe-l3/baseline.json` |\n'
+    printf '| Final runs | `specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/baseline.json` |\n'
+    printf '| Metric commands | `specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/tasks.md` T006 |\n'
+    printf '| Delta | `specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json` |\n'
+    printf '| Run briefs | `specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/briefs/T005-*.txt` |\n'
     printf '| Model | cli-devin `swe-2-max` |\n\n'
     printf '## 2. BOUNDARY\n\n'
     printf 'The corpus is an input and is never rewritten by a run. This folder holds outputs only, and a run whose result changes gets a new folder rather than overwriting this one.\n\n'
@@ -292,7 +292,7 @@ MD
 
   A weak model can now see what a template still needs, because every hint in the five core templates is a value token that fails validation once the packet leaves Draft. The four authoring intents also load a short card rather than the long guide, and the examples no longer teach the defects the old text carried.
 
-  > Spec folder: `specs/system-speckit/041-weak-model-spec-authoring` (Level 2)
+  > Spec folder: `specs/system-speckit/040-weak-model-spec-authoring` (Level 2)
 
   &nbsp;
 
@@ -331,14 +331,14 @@ MD
   contextType: "general"
   _memory:
     continuity:
-      packet_pointer: "system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
+      packet_pointer: "system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout"
       last_updated_at: "__DATE__T00:00:00Z"
       last_updated_by: "conductor"
       recent_action: "Closed the phase and wrote the operator handoff"
       next_safe_action: "Operator reviews the local commit and decides the follow-up phase"
       blockers: []
       key_files:
-        - "specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json"
+        - "specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/scratch/baseline/delta.json"
       session_dedup:
         fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
         session_id: "054-weak-model-spec-authoring-closeout"
@@ -384,10 +384,10 @@ MD
   | `.skilled/skills/system-spec-kit/benchmark/reports/__REPORT_NAME__/` | Created | Report, results and source map |
   | `.skilled/skills/system-spec-kit/benchmark/reports/README.md` | Modified | One run index row |
   | `.skilled/changelog/system-spec-kit/v2.9.0.0.md` | Created | Global changelog entry |
-  | `specs/system-speckit/041-weak-model-spec-authoring/changelog/` | Created | Root and phase nested changelogs |
+  | `specs/system-speckit/040-weak-model-spec-authoring/changelog/` | Created | Root and phase nested changelogs |
   | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` and three sidecars | Modified | Regenerated index |
   | `specs/system-speckit/graph-metadata.json` | Modified | Refreshed track children |
-  | `specs/system-speckit/041-weak-model-spec-authoring/spec.md` and `goal.md` | Modified | Status, map and log |
+  | `specs/system-speckit/040-weak-model-spec-authoring/spec.md` and `goal.md` | Modified | Status, map and log |
   | `specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/spec.md` | Modified | One map row |
   <!-- /ANCHOR:what-built -->
 
@@ -640,7 +640,7 @@ MD
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
   Read the working tree diff against the commit named as Phase start commit in
-  specs/system-speckit/041-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
+  specs/system-speckit/040-weak-model-spec-authoring/009-authoring-benchmark-and-closeout/goal.md
   section 4.
   Check these claims against the files and the commands:
   (1) every number in the benchmark report folder matches scratch/baseline/delta.json,

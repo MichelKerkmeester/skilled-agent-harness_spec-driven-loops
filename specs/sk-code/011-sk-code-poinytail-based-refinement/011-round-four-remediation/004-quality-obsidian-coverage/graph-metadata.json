@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The `sk-code` hub detects three surfaces, WEBFLOW, OPENCODE and OBSIDIAN, but the quality mode's Target-Path Checklist Map (`.skilled/skills/sk-code/sk-code-quality/SKILL.md` lines 116 to 124) has rows for OpenCode and Webflow targets only",
     "created_at": "2026-10-10T14:44:44Z",
-    "last_save_at": "2026-10-31T14:04:32.207Z",
+    "last_save_at": "2026-10-31T15:29:46.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0862626cc8da2d487886daf55fb48fb1ec43ba68804600e45a8b56d52d16cae5",
+    "source_fingerprint": "sha256:89b56ba720cb19fddf595ccdd88e0129d209ef15373f6c3002213bb279208f30",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e550802bb57c221dea7d1e6cc4659d8743d0945c6683bff524ac875a4ac136fc",

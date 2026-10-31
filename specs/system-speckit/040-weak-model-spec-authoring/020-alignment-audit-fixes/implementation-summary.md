@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/020-alignment-audit-fixes"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/020-alignment-audit-fixes"
     last_updated_at: "2026-10-26T20:45:00Z"
     last_updated_by: "closeout-doc-writer"
     recent_action: "Closed out: every acceptance row Met, residuals recorded"
@@ -72,7 +72,7 @@ All paths are under `.skilled/skills/system-spec-kit/` unless they start with a 
 | `SKILL.md`, `.hermes/skills/system-spec-kit/SKILL.md` | Modified | Under the 5,000-word gate, version 2.12.1.0 |
 | `changelog/v2.9.0.0.md` to `v2.12.0.0.md`, `changelog/v2.12.1.0.md` | Modified, Created | Compact entries, no test counts, the new release note |
 | `README.md` (root), `README.md`, `runtime/cli/spec/README.md`, `.skilled/commands/README.txt`, `.skilled/commands/speckit/README.txt` | Modified | Rule counts, `--quiet`, Draft auto-repair, no em dashes |
-| `specs/system-speckit/041-weak-model-spec-authoring/changelog/` | Modified | Root changelog through 019, phase changelogs on the template heading set |
+| `specs/system-speckit/040-weak-model-spec-authoring/changelog/` | Modified | Root changelog through 019, phase changelogs on the template heading set |
 | `.skilled/agents/orchestrate.md`, `.claude/agents/orchestrate.md`, `.codex`, `.pi` and `.hermes` copies | Modified | Exit-code rule and real template source |
 | `.skilled/commands/speckit/{plan,implement,complete}.md` | Modified | Three warn-only rules named |
 | `.skilled/commands/speckit/assets/speckit-{plan,implement,complete}.yaml` | Modified | The guard scripts run as a non-blocking check in every `post_write_validation` gate |

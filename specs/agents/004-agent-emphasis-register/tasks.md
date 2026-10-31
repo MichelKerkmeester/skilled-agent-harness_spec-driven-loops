@@ -77,7 +77,7 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Origin**: `specs/agents/013-prompting-guide-alignment/research/synthesis.md` §3
+- **Origin**: `specs/agents-md/010-prompting-guide-alignment/research/synthesis.md` §3
 <!-- /ANCHOR:cross-refs -->
 
 ---

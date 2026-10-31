@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/003-communication-quality"
+    packet_pointer: "agents-md/003-communication-quality"
     last_updated_at: "2026-08-07T08:44:03Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored Level 2 specification for the AGENTS.md communication-quality change"
@@ -79,7 +79,7 @@ Add a dedicated Communication Quality section to the universal `AGENTS.md` carry
 |-----------|-------------|-------------|
 | `AGENTS.md` | Modify | New §8 Communication Quality; renumber §8→§9, §9→§10 |
 | `.codex/AGENTS.md` | Modify | 4 additive edits reconciling net-new principles |
-| `specs/agents/003-communication-quality/*` | Create | Level 2 spec docs + description.json + graph-metadata.json |
+| `specs/agents-md/003-communication-quality/*` | Create | Level 2 spec docs + description.json + graph-metadata.json |
 <!-- /ANCHOR:scope -->
 
 ---

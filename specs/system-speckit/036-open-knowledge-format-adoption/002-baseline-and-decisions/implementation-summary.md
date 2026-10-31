@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/002-baseline-and-decisions"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/002-baseline-and-decisions"
     last_updated_at: "2026-10-04T08:04:51Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Phase closed: decisions approved with the UX condition"

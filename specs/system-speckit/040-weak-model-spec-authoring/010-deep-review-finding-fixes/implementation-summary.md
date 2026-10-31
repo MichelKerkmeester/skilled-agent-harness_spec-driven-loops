@@ -7,18 +7,18 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes"
     last_updated_at: "2026-10-25T22:20:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed the phase"
     next_safe_action: "None; the speed loop ran on 2026-10-26"
     blockers: []
     key_files:
-      - "specs/system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes/plan.md"
-      - "specs/system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes/tasks.md"
-      - "specs/system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md"
-      - "specs/system-speckit/041-weak-model-spec-authoring/010-deep-review-finding-fixes/acceptance-criteria.md"
-      - "specs/system-speckit/041-weak-model-spec-authoring/review/review-report.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes/plan.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes/tasks.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes/spec.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/010-deep-review-finding-fixes/acceptance-criteria.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-010-deep-review-finding-fixes"

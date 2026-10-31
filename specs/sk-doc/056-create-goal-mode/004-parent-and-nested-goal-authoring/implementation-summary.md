@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring"
+    packet_pointer: "sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring"
     last_updated_at: "2026-09-26T00:20:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Built the workflow reference and proved it with the fixture"
@@ -115,7 +115,7 @@ The copy was moved out to the session scratchpad afterwards.
 | Phase-add check | Rows 3 to 4 for 4 folders, 0 `SPECDOC_SUFFICIENCY_006`, chat slice carries the new row |
 | `package_skill.py --check --strict` on the mode | `Result: PASS` |
 | `hvr_scan.py` on the new reference | 0 hard blockers, mechanical ceiling 88/100 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode/004-parent-and-nested-goal-authoring --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode/004-parent-and-nested-goal-authoring --strict` | `RESULT: PASSED`, 0 errors and 0 warnings, on 2026-09-26 |
 <!-- /ANCHOR:verification -->
 
 ---

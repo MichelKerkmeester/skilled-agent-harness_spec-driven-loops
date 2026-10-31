@@ -35,7 +35,7 @@ contextType: "general"
 
 - [x] T001 Record the six baseline commands into `scratch/baseline.txt` (`scratch/`). Verify: `rg -c 'run-all' scratch/baseline.txt` prints at least `1`. Evidence: `scratch/baseline.txt` holds the six commands twice, once before this child's first edit and once from the finished tree, and `rg -c 'run-all'` prints 16 across both captures. Every command exits 0 at both ends.
 - [x] T002 Resolve the three documentation locations (`D/scripts/README.markdown`, the playbook, the changelog). Verify: the three resolved paths are written into `scratch/doc-locations.txt`. Evidence: `wc -l scratch/doc-locations.txt` prints `3`, one line per location, and `scratch/router-answers.txt` records the three `compiled-route.cjs --hub sk-doc` answers that produced them: `sk-create-changelog`, `sk-create-manual-testing-playbook` and `sk-create-feature-catalog`.
-- [x] T003 Confirm children 001 to 004 pass (`specs/agents/021-doctor-agents-md/001-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: the recursive gate prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, and each of the four child folders carries all its tasks `[x]` and all its criteria `Met`.
+- [x] T003 Confirm children 001 to 004 pass (`specs/agents-md/016-doctor-agents-md/001-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: the recursive gate prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, and each of the four child folders carries all its tasks `[x]` and all its criteria `Met`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,7 +58,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T011 Rerun every baseline command from the final tree (`scratch/baseline.txt`). Verify: each prints the same pass line it printed before the work started. Evidence: the canary prints `OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s)).`, the gate 1 pointer sync prints `PASS: 1 instruction files carry the root Gate 1 lookup.`, the repo-rules checker prints `RESULT: PASSED (11/11 checks)`, `route-validate.sh` prints `OK: route-validate — 24 routes validated, 5 warnings`, the family runner ends `7 suite(s) passed, 0 failed`, and `wc -c < AGENTS.md` prints 27888, which is unchanged by this child.
-- [x] T012 Run the recursive phase gate (`specs/agents/021-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: every folder prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, including this one.
+- [x] T012 Run the recursive phase gate (`specs/agents-md/016-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: every folder prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, including this one.
 - [x] T013 Confirm the change list (`git status --porcelain`). Verify: the list names only files named by children 001 to 005. Evidence: `git status --porcelain` names the README doctor section, the script README, the catalog and playbook rows, the four changelogs, the two new scenario files, three skill version carriers with their Hermes copies, the retrieval corpus that the Trigger Index Rebuild CI workflow rebuilds after the merge, the re-minted sk-doc activation manifest, and this packet's own documents. Every path is named by a child or by this child's own task list, and the deviations are recorded in `implementation-summary.md`.
 - [x] T014 Confirm no local-only path appears (`git status --porcelain`). Verify: `rg -n 'local-' <(git status --porcelain)` prints nothing. Evidence: prints nothing, exit 1.
 <!-- /ANCHOR:phase-3 -->
@@ -103,7 +103,7 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [x] CHK-001 [P0] Children 001 to 004 pass. Verify: the recursive gate exits 0. Evidence: `validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` exits 0 with `RESULT: PASSED`.
+- [x] CHK-001 [P0] Children 001 to 004 pass. Verify: the recursive gate exits 0. Evidence: `validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` exits 0 with `RESULT: PASSED`.
 - [x] CHK-002 [P0] The baseline is recorded. Verify: `rg -c 'check-rule-copies' scratch/baseline.txt` prints at least `1`. Evidence: prints 2, one capture before this child's edits and one after.
 - [x] CHK-003 [P1] The three documentation locations are resolved. Verify: `wc -l scratch/doc-locations.txt` prints `3`. Evidence: prints 3, and `scratch/router-answers.txt` carries the router output behind each one.
 <!-- /ANCHOR:pre-impl -->

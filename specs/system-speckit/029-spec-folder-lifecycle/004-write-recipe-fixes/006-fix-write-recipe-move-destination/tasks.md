@@ -33,8 +33,8 @@ Shell variables used below, set once by the conductor in the build worktree:
 - `PHASE`: `$WORKTREE/$PHASE_REL`
 - `S`: `.skilled/skills/system-spec-kit`
 - `RECIPE`: `$S/references/workflows/spec-folder-write-recipe.md`
-- `APPLIER`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/tools/apply_row.py`
-- `LED`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl`
+- `APPLIER`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair/scratch/tools/apply_row.py`
+- `LED`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/ledger/ledger.jsonl`
 - `KR`: `$PHASE/scratch/known-rows.jsonl`
 - `START`: the commit hash recorded by T002.
 - `C` and `R`: set inside the T005 and T007 blocks that use them, so run each block and its Verify command in the same shell.
@@ -167,7 +167,7 @@ JSONL
 
   ```bash
   cd "$WORKTREE"
-  REF="$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt"
+  REF="$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/001-template-drift-census-and-baseline/scratch/baseline/suite-start.txt"
   if [ -s "$REF" ]; then SRC_START="$REF"; else SRC_START="$PHASE/scratch/suite-start.txt"; fi
   for w in start end; do
     if [ "$w" = start ]; then src="$SRC_START"; else src="$PHASE/scratch/suite-end.txt"; fi

@@ -17,7 +17,7 @@
   "specId": "006",
   "folderSlug": "restraint-and-routing-gates",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

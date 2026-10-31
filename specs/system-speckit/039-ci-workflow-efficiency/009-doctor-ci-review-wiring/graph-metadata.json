@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The on/off control lands six repository variables, but a clone cannot see which jobs a tree has switched off without reading every `if:` line, and there is no command that creates a new workflow with the timeout, permissions, concurrency and switch shape the standard requires",
     "created_at": "2026-10-23T08:48:01Z",
-    "last_save_at": "2026-10-31T15:22:18.019Z",
+    "last_save_at": "2026-10-31T15:28:39.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c969385085f334ee82b1fee58d31e24b54025b197e8f5185c5ee2dcfaad88277",
+    "source_fingerprint": "sha256:2e84c81d02a2cccc62ad9b287828e2c6ad5c02d6bf5a80bf695ffd8eabfbdeb1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "634900c09d43bab3506b20954d7b03943c1fce60fd7805088293d9de7db52792",
-      "plan.md": "d182d6e93e6e7760df2d5dae3d2c7e4597e7c442ed43b7512f49473c61c61d25",
-      "tasks.md": "cf3a0d0b2b7e5008fbe4a597147569e59fa7ad42b2510bd2bc13a4ae404fff4e",
-      "decision-record.md": "1a2658096b9dcf88b0d050ef26b145979a378ce4fa05542ca35fbb6a4ebdfffc",
+      "spec.md": "488f7ebe453f4f184ff0d47f06d5bccf091701246710be8f1b6062efdc3bc201",
+      "plan.md": "f073756da410dd4f5f9ed38e6c7526d23869c5d5c7e57518e0641d70e3498e45",
+      "tasks.md": "4ac45213c8722d1d3c63abb04b269c7237e3ee4d059369388d081c3faba52650",
+      "decision-record.md": "842698af4b77d2a13338e78e87797ffa28a6b30849360faf389300259c3f79fc",
       "implementation-summary.md": "d9a817b7ba513ec714a2cdb431e6274f94ae7fe609d2640fc2ac9a4d97c55490"
     },
     "last_active_at": null

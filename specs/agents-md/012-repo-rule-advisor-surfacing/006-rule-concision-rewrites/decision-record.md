@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/006-rule-concision-rewrites"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/006-rule-concision-rewrites"
     last_updated_at: "2026-10-04T22:55:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded the operator's waiver of the byte target"

@@ -65,4 +65,4 @@ The capsule is reminder-only: a model-visible line cannot stop `bash` spawning `
 2. Sync `injection-contract.md:50-58` "Fable-5" label to the model-agnostic governor wording.
 3. Add the pi directive capsule line (Layer 1) at `prompt-advisor.ts:52` or sibling extension.
 4. Add the `tool_call` deny (Layer 3) reusing DISPATCH_SHAPES, override token = explicit cli-* name in user text.
-5. Optionally add pi row to AGENTS.md §8 agent-directory table (tracked separately in `agents/002-runtime-surface-coverage`).
+5. Optionally add pi row to AGENTS.md §8 agent-directory table (tracked separately in `agents-md/002-runtime-surface-coverage`).

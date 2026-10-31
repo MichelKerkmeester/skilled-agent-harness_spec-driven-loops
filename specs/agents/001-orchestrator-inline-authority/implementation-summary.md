@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/007-orchestrator-inline-authority"
+    packet_pointer: "agents/001-orchestrator-inline-authority"
     last_updated_at: "2026-08-31T06:37:55Z"
     last_updated_by: "claude-code"
     recent_action: "Granted bounded inline authority and opened the caller gate to operators"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-orchestrator-inline-authority |
+| **Spec Folder** | 001-orchestrator-inline-authority |
 | **Completed** | 2026-08-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

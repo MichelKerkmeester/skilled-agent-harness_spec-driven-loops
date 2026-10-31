@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** agents/007-orchestrator-inline-authority
+**Packet:** agents/001-orchestrator-inline-authority
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-08-31

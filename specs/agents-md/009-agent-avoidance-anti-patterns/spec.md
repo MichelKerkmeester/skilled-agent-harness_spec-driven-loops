@@ -71,7 +71,7 @@ Give the failure family one home — a new repo rule naming the six shapes and t
 | `REPO RULES.md` | Modify | +1 trigger-table row, +1 index row |
 | `repo-rules/evidence-and-proof.md` | Modify | +1 sentence in §10 close-out |
 | `AGENTS.md` | Modify | +1 routing sentence in §8 (reply-facing trigger reachability) |
-| `specs/agents/012-agent-avoidance-anti-patterns/*` | Create | Level 2 packet docs |
+| `specs/agents-md/009-agent-avoidance-anti-patterns/*` | Create | Level 2 packet docs |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Regenerate | Committed artifact so Gate 1 can surface this packet |
 <!-- /ANCHOR:scope -->
 
@@ -205,7 +205,7 @@ The audit result. "Home" means the file+section that settles the behavior today.
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
 - **Acceptance Criteria**: See `acceptance-criteria.md`
-- **Precedent packet**: `specs/agents/006-restraint-and-routing-gates/` (same shape: audit then amend doctrine)
-- **Bloat baseline**: `specs/agents/004-agents-md-bloat-audit/` (why AGENTS.md stays a router)
+- **Precedent packet**: `specs/agents-md/006-restraint-and-routing-gates/` (same shape: audit then amend doctrine)
+- **Bloat baseline**: `specs/agents-md/004-agents-md-bloat-audit/` (why AGENTS.md stays a router)
 - **Analyzed source**: pasted Reddit r/ClaudeAI post `1wi6o5h` (operator-supplied text)
 <!-- /ANCHOR:related-docs -->

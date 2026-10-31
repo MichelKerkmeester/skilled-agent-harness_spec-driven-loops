@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
     last_updated_at: "2026-10-30T15:20:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Implemented the command plumbing and ran every gate"
@@ -147,7 +147,7 @@ The counts after the change, all measured on this branch:
 | `bash .skilled/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh` | `PASS: 207 mirrors across 9 trees are in sync`, exit 0 |
 | `node .skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs` | `STATUS=OK`, 41 commands covered, exit 0 |
 | `derive-command-bridges.cjs --check` after a second run | `"status": "fresh"`, `"changed": []`, exit 0 |
-| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing --strict` | `RESULT: PASSED`, Errors 0, Warnings 0 |
+| `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing --strict` | `RESULT: PASSED`, Errors 0, Warnings 0 |
 <!-- /ANCHOR:verification -->
 
 ---

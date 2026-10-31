@@ -25,7 +25,7 @@
   "specId": "002",
   "folderSlug": "runtime-surface-coverage",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

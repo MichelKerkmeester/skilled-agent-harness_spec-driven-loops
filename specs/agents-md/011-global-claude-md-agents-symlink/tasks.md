@@ -51,7 +51,7 @@ contextType: "general"
 
 - [x] T004 `readlink` prints the repo `AGENTS.md` path and `cmp` reports no difference against it (`~/.claude/CLAUDE.md`)
 - [x] T005 `grep -c "Context Compaction Behavior"` on the linked file returns 0 (`~/.claude/CLAUDE.md`)
-- [x] T006 Fill the packet docs and pass `validate.sh --strict` (`specs/agents/015-global-claude-md-agents-symlink/`)
+- [x] T006 Fill the packet docs and pass `validate.sh --strict` (`specs/agents-md/011-global-claude-md-agents-symlink/`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

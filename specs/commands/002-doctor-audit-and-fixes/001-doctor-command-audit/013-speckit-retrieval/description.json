@@ -17,8 +17,8 @@
   "specId": "013",
   "folderSlug": "speckit-retrieval",
   "parentChain": [
-    "system-speckit",
-    "036-doctor-audit-and-fixes",
+    "commands",
+    "002-doctor-audit-and-fixes",
     "001-doctor-command-audit"
   ],
   "memorySequence": 0,

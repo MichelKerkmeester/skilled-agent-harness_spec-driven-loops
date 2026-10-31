@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/007-docs-and-changelogs"
+    packet_pointer: "commands/004-doctor-sk-skill-command/007-docs-and-changelogs"
     last_updated_at: "2026-10-30T12:50:00Z"
     last_updated_by: "markdown-worker"
     recent_action: "Corrected every doc against the shipped command and wrote the five changelog entries"

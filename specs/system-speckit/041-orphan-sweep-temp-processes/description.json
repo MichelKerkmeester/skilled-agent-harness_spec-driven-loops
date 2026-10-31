@@ -13,7 +13,7 @@
     "launchagent"
   ],
   "lastUpdated": "2026-10-29T08:25:14.263Z",
-  "specId": "042",
+  "specId": "041",
   "folderSlug": "orphan-sweep-temp-processes",
   "parentChain": [
     "system-speckit"

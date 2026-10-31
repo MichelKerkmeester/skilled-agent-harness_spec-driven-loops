@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
     last_updated_at: "2026-10-30T17:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Pass captured, both rows answered, docs landed"
@@ -57,7 +57,7 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 
 - [x] Every baseline command from the parent phase spec reruns from the final tree with the same pass line
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`
 - [x] `ls scratch/e2e | wc -l` prints `9`, one transcript per fixture
 - [x] Both manual rows carry a recorded observation or a recorded unknown with its reason
 - [x] `git status --porcelain` names only files named by children 001 to 005 and no local-only path

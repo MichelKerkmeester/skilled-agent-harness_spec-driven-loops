@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance"
     last_updated_at: "2026-10-24T19:45:00Z"
     last_updated_by: "conductor"
     recent_action: "Closed phase 004: fill lines, aligned examples and two guards"
     next_safe_action: "Start phase 005"
     blockers: []
     key_files:
-      - "specs/system-speckit/041-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md"
+      - "specs/system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance/tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "054-weak-model-spec-authoring-planning"

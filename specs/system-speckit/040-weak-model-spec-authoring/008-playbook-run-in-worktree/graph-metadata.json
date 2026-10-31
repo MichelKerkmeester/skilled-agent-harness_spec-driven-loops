@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Phase 007 adds playbook scenarios that claim new gate, guard and card behavior",
     "created_at": "2026-10-23T11:27:26Z",
-    "last_save_at": "2026-10-31T15:22:18.862Z",
+    "last_save_at": "2026-10-31T15:28:42.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:02ceff8ccbc1dc77e779832900bbd3a0094723d8ced0639cacc1e8d4940aae6a",
+    "source_fingerprint": "sha256:22fe84736ce9d26045dd971f4f6a8aae3530414c40a4a7aa1979164ac80bb62c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c78c67fc843b687f2df35db305e399467f0fe504c9ebf5643ed6772918c3799",
-      "plan.md": "c24a23d3d7adb9f6ea4c3cc06d65e49d2008780642d8e6fedfcd0bb6d0fcd276",
-      "tasks.md": "087dace7a98f3a27a26a42802c76923e6598bc1e6b4cc033617efc8442107a86",
-      "implementation-summary.md": "b5669fff704954f9a628fba421f4456da0307fe97cd075684bea070933747162"
+      "plan.md": "2e9138a90884c02ff8ef720c3ccbc2349f1724dd3464101860358de179349073",
+      "tasks.md": "6db15dd1d8db16c602fc405222e66f5515786d027de62f3820346af24f7fcc8f",
+      "implementation-summary.md": "7eceb63992dadbc2741054671dd9f6edbfbdb7af85f0b5ce1cf400f0206a7483"
     },
     "last_active_at": null
   }

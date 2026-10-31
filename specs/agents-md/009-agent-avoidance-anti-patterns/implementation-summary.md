@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/012-agent-avoidance-anti-patterns"
+    packet_pointer: "agents-md/009-agent-avoidance-anti-patterns"
     last_updated_at: "2026-09-18T08:45:00Z"
     last_updated_by: "devin"
     recent_action: "Authored the rule file, wired the router, amended §10, validated strict"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-agent-avoidance-anti-patterns |
+| **Spec Folder** | 009-agent-avoidance-anti-patterns |
 | **Completed** | 2026-09-18 |
 | **Level** | 2 |
 | **Branch** | `skilled/v4.0.0.0` |
@@ -67,7 +67,7 @@ Every behavior in the complaint now has a named home. Warnings must answer the a
 | `repo-rules/evidence-and-proof.md` | Modified | §10 close-out: the first report is the honest one — accuracy gained only under interrogation failed when written |
 | `AGENTS.md` | Modified | §8: +1 routing sentence so the reply-facing trigger loads on read-only turns, where Gate 5 never fires (amended in review) |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` + 3 fixtures | Regenerated | Committed Gate 1 artifact so this packet is retrievable |
-| `specs/agents/012-agent-avoidance-anti-patterns/*` | Created | Level 2 packet docs |
+| `specs/agents-md/009-agent-avoidance-anti-patterns/*` | Created | Level 2 packet docs |
 <!-- /ANCHOR:what-built -->
 
 ---

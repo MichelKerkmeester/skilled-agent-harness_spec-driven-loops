@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`/doctor:update` is not safe to build on yet",
     "created_at": "2026-10-03T21:06:40Z",
-    "last_save_at": "2026-10-31T15:21:50.483Z",
+    "last_save_at": "2026-10-31T15:23:41.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:50c7f96d9d1c2bd740531fa913b8611f7b22980dfc00fe73db9a2c3d0d7d8e13",
+    "source_fingerprint": "sha256:ecbea83c6817d72f50043f22635ad4dcb1f09942da26738332a351501f0186e2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d1d4b534c0baea2d033b6535b70f569334e6c8b4360b4d0436e0937e7974ba6b",
       "plan.md": "f95e85645538246705bfe3a329dc1663f19bd6c253b40f9f3b57c786661d9cb2",
-      "tasks.md": "a4de2218fda56eb2e44fd5ff37aa57daa7f9cb15a60b393f7dad70affb3669d1",
+      "tasks.md": "0f6f28dc45d4cb2e016a443e5059090bb6af44803b4ebea2107f8d1b64d607e9",
       "implementation-summary.md": "7b0212676dc6ddd5a4c163b96db1a7cfad619b87768784750d9df835cf809fd7"
     },
     "last_active_at": null

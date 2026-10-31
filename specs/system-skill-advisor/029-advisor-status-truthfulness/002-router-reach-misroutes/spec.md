@@ -23,7 +23,7 @@ The doctor's router-reach probe recorded 14 wrong-hub and 18 outranked phrases a
 
 **Key Decisions**: The live fleet run is the gate before any vocabulary edit; fixes land in the owning skill's routing vocabulary, never in the probe or the doctor; allowlist entries require a recorded rationale for the phrase, the winner and the dispute.
 
-**Critical Dependencies**: A live advisor daemon answering with a generation number; the probe script and allowlist at `.skilled/skills/sk-doc/sk-create-skill/scripts/`; the doctor route contract from `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach`.
+**Critical Dependencies**: A live advisor daemon answering with a generation number; the probe script and allowlist at `.skilled/skills/sk-doc/sk-create-skill/scripts/`; the doctor route contract from `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach`.
 
 ---
 <!-- ANCHOR:metadata -->
@@ -55,7 +55,7 @@ This is **Phase 2** of the Make the advisor's freshness, scan and routing report
 **Dependencies**:
 - A live advisor daemon reachable by `.skilled/bin/skill-advisor.cjs`, answering with `trustState.generation` and no degraded marker.
 - The full-fleet inventory: every hub with both `ROUTER.md` and `mode-registry.json` under `.skilled/skills/` (seven hubs at audit time).
-- The recorded audit evidence in `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch/`, including the misroute list and the degraded-response proof.
+- The recorded audit evidence in `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch/`, including the misroute list and the degraded-response proof.
 
 **Deliverables**:
 - A recorded live full-fleet run with its generation number and complete classification counts.
@@ -73,7 +73,7 @@ This is **Phase 2** of the Make the advisor's freshness, scan and routing report
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`). The same log shows the advisor response used for scoring was a degraded local-scorer envelope with no recommendations and no trust state (`doctor-run.log:21-34`), which the phase summary records as a limitation: the wrong-hub and outranked rows are fallback-scoring observations, not verified live routes (limitations 1-2). Recorded examples include `jev mcp server` losing to `mcp-code-mode=0.8500`, `full plugin and memory stack` ranking `memory:save` and `system-spec-kit` at 0.9500, and `notion mcp` losing to `mcp-code-mode=0.9500` (`doctor-run.log:43,45,66`). Only one hub was rerun live after the batch (`--hub sk-doc --limit 5`, advisor generation 3, `RESULT: PASSED`; limitation 3), so the fleet-wide truth is unknown. At planning time, live probes of the three cited examples answered from a live advisor (`trustState.generation: 7`, `sourceSignaturePresent: true`) with the expected hub on top: `jev mcp server` → `cli-classifier` 0.792, `full plugin and memory stack` → `cli-external-orchestration` 0.770, `notion mcp` → `mcp-tooling` 0.727. The recorded list therefore cannot be treated as a fix list; it must be re-derived against the live scorer.
+The source audit's fleet run reported `checked=7 hub(s), wrong-hub=14, outranked=18, no-reach=221, allowed=8, probe-error=0`, `advisor generation: unknown`, `RESULT: FAILED` (`specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach/scratch/doctor-run.log:303-305`). The same log shows the advisor response used for scoring was a degraded local-scorer envelope with no recommendations and no trust state (`doctor-run.log:21-34`), which the phase summary records as a limitation: the wrong-hub and outranked rows are fallback-scoring observations, not verified live routes (limitations 1-2). Recorded examples include `jev mcp server` losing to `mcp-code-mode=0.8500`, `full plugin and memory stack` ranking `memory:save` and `system-spec-kit` at 0.9500, and `notion mcp` losing to `mcp-code-mode=0.9500` (`doctor-run.log:43,45,66`). Only one hub was rerun live after the batch (`--hub sk-doc --limit 5`, advisor generation 3, `RESULT: PASSED`; limitation 3), so the fleet-wide truth is unknown. At planning time, live probes of the three cited examples answered from a live advisor (`trustState.generation: 7`, `sourceSignaturePresent: true`) with the expected hub on top: `jev mcp server` → `cli-classifier` 0.792, `full plugin and memory stack` → `cli-external-orchestration` 0.770, `notion mcp` → `mcp-tooling` 0.727. The recorded list therefore cannot be treated as a fix list; it must be re-derived against the live scorer.
 
 ### Purpose
 Replace fallback-scoring observations with live routing facts: rerun the full fleet, fix the misroutes that actually reproduce in the vocabulary that owns them, and leave a rerun that proves the fleet reaches its hubs or records why a remaining case is accepted.
@@ -92,7 +92,7 @@ Replace fallback-scoring observations with live routing facts: rerun the full fl
 - A final full-fleet rerun after the fixes, and scratch evidence for each step.
 
 ### Out of Scope
-- The probe script, doctor route workflow, presentation and route validator - fixed and verified in `specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach`.
+- The probe script, doctor route workflow, presentation and route validator - fixed and verified in `specs/commands/002-doctor-audit-and-fixes/001-doctor-command-audit/008-router-reach`.
 - `no-reach` rows: the workflow reports them but does not fail on them (`doctor-router-reach.yaml:34-35`).
 - `allowed` disputes: accepted by the allowlist contract.
 - Scoring lane weight changes, phrase bounds and fusion behavior - Phase 3 owns the scorer contract.

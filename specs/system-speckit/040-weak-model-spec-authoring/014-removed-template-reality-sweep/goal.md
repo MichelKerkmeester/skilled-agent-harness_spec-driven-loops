@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/041-weak-model-spec-authoring/014-removed-template-reality-sweep"
+    packet_pointer: "system-speckit/040-weak-model-spec-authoring/014-removed-template-reality-sweep"
     last_updated_at: "2026-10-26T11:50:29Z"
     last_updated_by: "conductor"
     recent_action: "Recorded the fixes, review and guard evidence"

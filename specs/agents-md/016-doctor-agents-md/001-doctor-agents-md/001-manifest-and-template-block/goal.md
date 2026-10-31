@@ -10,13 +10,13 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/001-manifest-and-template-block"
     last_updated_at: "2026-10-30T12:40:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored the durable directive"
     next_safe_action: "Execute against the completion criteria"
     blockers:
-      - "Waits on /doctor:sk-skill (packet sk-doc/067-doctor-sk-skill-command) landing on main"
+      - "Waits on /doctor:sk-skill (packet commands/004-doctor-sk-skill-command) landing on main"
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"

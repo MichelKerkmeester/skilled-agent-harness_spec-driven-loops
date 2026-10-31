@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/012-goal-send-and-dedupe"
+    packet_pointer: "sk-doc/056-create-goal-mode/012-goal-send-and-dedupe"
     last_updated_at: "2026-09-27T07:58:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Met all forty-one criteria with evidence"
@@ -41,7 +41,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/057-create-goal-mode/012-goal-send-and-dedupe
+**Packet:** sk-doc/056-create-goal-mode/012-goal-send-and-dedupe
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-09-26
@@ -129,10 +129,10 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help | grep -c
 rg -n "chat slice is over 4,000|when the slice is longer" .skilled AGENTS.md | wc -l
 grep -c "budget-and-handoff.md" AGENTS.md
 # V15, V16
-node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/sk-doc/057-create-goal-mode
-node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-doc/057-create-goal-mode --workspace "$PWD" | grep -E "packet_durable_chars|packet_budget"
+node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/sk-doc/056-create-goal-mode
+node .skilled/hooks/goal/bin/goal.cjs packet specs/sk-doc/056-create-goal-mode --workspace "$PWD" | grep -E "packet_durable_chars|packet_budget"
 # V17
-bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/057-create-goal-mode --recursive --strict
+bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-create-goal-mode --recursive --strict
 # V18, V19
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help | grep -A2 -- "--with-goal"
 sed -n 232p .skilled/skills/system-spec-kit/README.md
@@ -206,7 +206,7 @@ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-p
 # V52, from an isolated clone with this phase's files copied in
 ONLY_TESTS=test_rename_tooling_fixture_harness.py bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh
 # V53
-python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py specs/sk-doc/057-create-goal-mode/012-goal-send-and-dedupe/review/review-report.md
+python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/review/review-report.md
 # V54
 node .skilled/bin/compiled-route-guard.cjs
 # V55

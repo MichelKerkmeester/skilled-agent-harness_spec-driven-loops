@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/007-docs-and-changelogs"
+    packet_pointer: "commands/004-doctor-sk-skill-command/007-docs-and-changelogs"
     last_updated_at: "2026-10-30T12:45:00Z"
     last_updated_by: "markdown-worker"
     recent_action: "Corrected every doc against the shipped command and wrote the five changelog entries"
@@ -92,7 +92,7 @@ Five changelog entries went in through create-changelog, one per touched skill, 
 | `.skilled/skills/sk-doc/sk-create-command/changelog/v1.0.10.0.md` | Added | The command contract's entry for the doctor family row |
 | `.skilled/skills/system-skill-advisor/changelog/v0.17.26.0.md` | Added | The advisor entry for the two command bridges and the moved parity baselines |
 | `.skilled/skills/sk-prompt/changelog/v4.0.1.0.md` | Added | The entry for the description that stopped claiming one pass |
-| `specs/sk-doc/067-doctor-sk-skill-command/007-docs-and-changelogs/` | Modified | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and this summary, plus the four evidence files under `scratch/` |
+| `specs/commands/004-doctor-sk-skill-command/007-docs-and-changelogs/` | Modified | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `goal.md` and this summary, plus the four evidence files under `scratch/` |
 <!-- /ANCHOR:what-built -->
 
 ---

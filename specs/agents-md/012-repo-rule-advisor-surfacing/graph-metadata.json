@@ -167,19 +167,19 @@
     ],
     "causal_summary": "Repo rules in `.skilled/repo-rules/` reach the model only through Gate 5 and the reply-time load line in `AGENTS.md`",
     "created_at": "2026-10-04T13:11:17Z",
-    "last_save_at": "2026-10-31T15:21:40.426Z",
+    "last_save_at": "2026-10-31T15:23:33.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:bf53982b5667ffb68618a2c3b829df0dfe74e1ff52cb8c37fb47225a9c06e48d",
+    "source_fingerprint": "sha256:80a2cabd973dd6bb4d28854651235922e7556ad67d0156b3156d27f1828c2182",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "061b083a87b53b1523b936d06d3a2ba618e51e8c796c5f9a64ca77bf1bda6aa7"
     },
-    "last_active_child_id": "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
+    "last_active_child_id": "agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface",
     "last_active_at": "2026-10-05T10:38:45.444Z"
   }
 }

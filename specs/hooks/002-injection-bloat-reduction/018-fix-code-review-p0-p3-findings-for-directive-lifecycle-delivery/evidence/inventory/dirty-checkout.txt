@@ -42,7 +42,7 @@
  M .pi/PLUGINS.md
  M .pi/extensions/README.md
  M .pi/settings.json
- M specs/agents/004-agents-md-bloat-audit/description.json
+ M specs/agents-md/004-agents-md-bloat-audit/description.json
  D specs/cli-external-orchestration/032-goal-hooks-cross-runtime/001-goal-core-and-state/checklist.md
  D specs/cli-external-orchestration/032-goal-hooks-cross-runtime/001-goal-core-and-state/description.json
  D specs/cli-external-orchestration/032-goal-hooks-cross-runtime/001-goal-core-and-state/graph-metadata.json

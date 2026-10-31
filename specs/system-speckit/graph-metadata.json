@@ -14,13 +14,12 @@
     "system-speckit/033-goal-parent-single-limit",
     "system-speckit/034-align-runtime-code-with-sk-code-skilled",
     "system-speckit/035-plugin-scanner-readiness",
-    "system-speckit/036-doctor-audit-and-fixes",
-    "system-speckit/037-open-knowledge-format-adoption",
-    "system-speckit/038-symlinked-runtime-root",
-    "system-speckit/039-research-folder-continuity",
-    "system-speckit/040-ci-workflow-efficiency",
-    "system-speckit/041-weak-model-spec-authoring",
-    "system-speckit/042-orphan-sweep-temp-processes"
+    "system-speckit/036-open-knowledge-format-adoption",
+    "system-speckit/037-symlinked-runtime-root",
+    "system-speckit/038-research-folder-continuity",
+    "system-speckit/039-ci-workflow-efficiency",
+    "system-speckit/040-weak-model-spec-authoring",
+    "system-speckit/041-orphan-sweep-temp-processes"
   ],
   "manual": {
     "depends_on": [],

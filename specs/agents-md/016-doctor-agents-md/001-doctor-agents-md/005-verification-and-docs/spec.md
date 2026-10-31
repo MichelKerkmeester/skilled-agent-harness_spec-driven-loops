@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs"
     last_updated_at: "2026-10-30T17:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Ran the end-to-end pass, recorded both manual answers and landed the documentation rows"
@@ -52,12 +52,12 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 5** of the `/doctor:agents-md` build inside `agents/021-doctor-agents-md`.
+This is **Phase 5** of the `/doctor:agents-md` build inside `agents-md/016-doctor-agents-md`.
 
 **Scope Boundary**: The end-to-end pass, the two manual rows and the documentation rows. It changes no engine and no route.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
+- `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
 - Children 001 to 004 must be complete, because this child proves their work from the final tree.
 
 **Deliverables**:
@@ -77,7 +77,7 @@ The engines can each pass their own suite and still fail together: a check that 
 Prove the pair together on every fixture, record the two manual answers, and leave the family's docs naming the new engines, the new command and the two manual rows.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -137,7 +137,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | Every baseline command from the parent phase spec reruns from the final tree and prints the same pass lines it printed before the work started. |
 | REQ-002 | The check and embed pair runs end to end on copies of all nine fixtures, and every transcript is captured under `scratch/e2e/`. |
 | REQ-003 | The reconfigured repository state agrees across the two engines: a repository the check calls `pure` yields `NOTHING TO DO` from embed. |
-| REQ-004 | The phase gate passes from the final tree: `validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. |
+| REQ-004 | The phase gate passes from the final tree: `validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -160,7 +160,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **SC-001**: Every baseline command prints its pre-work pass line from the final tree.
 - **SC-002**: `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` prints `RESULT: PASSED (11/11 checks)`.
-- **SC-003**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`.
+- **SC-003**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:success-criteria -->
 
 ---

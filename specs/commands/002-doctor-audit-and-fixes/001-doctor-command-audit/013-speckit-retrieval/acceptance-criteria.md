@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval"
     last_updated_at: "2026-10-02T21:12:00Z"
     last_updated_by: "closing-session"
     recent_action: "Set every criterion to Met and wrote the closure statement"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval
+**Packet:** commands/002-doctor-audit-and-fixes/001-doctor-command-audit/013-speckit-retrieval
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-02

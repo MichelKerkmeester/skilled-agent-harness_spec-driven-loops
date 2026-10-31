@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/055-sk-create-readme-writing-style"
+    packet_pointer: "sk-doc/054-sk-create-readme-writing-style"
     last_updated_at: "2026-09-20T13:20:00Z"
     last_updated_by: "devin"
     recent_action: "AC-004 superseded, scope extended to sk-create-skill templates"

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A deep-loop run can spend twenty minutes producing a ranked set of recommendations and then report an iteration count, four file paths and a status token",
     "created_at": "2026-09-11T14:02:46Z",
-    "last_save_at": "2026-10-31T15:21:40.888Z",
+    "last_save_at": "2026-10-31T15:23:34.160Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,7 +202,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:664772981fc0e3025a3127ba7ca3fb2abdaf5f39169cdf77e8df3f7534b9f67a",
+    "source_fingerprint": "sha256:8b1c7e7ca086c728e0d73a747daf0efabc27c52aad39473a404c0448bf3433e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d871db85ad1fe8199824b356e6001c4bdf078b5cc98589c4d3f84211bf0104c",

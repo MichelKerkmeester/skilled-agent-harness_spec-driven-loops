@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The placeholder gate treats ``` and ~~~ as one fence marker, so a ``` line inside a ~~~ block hides an unfilled value token later in a v2.3 doc",
     "created_at": "2026-10-27T07:26:53Z",
-    "last_save_at": "2026-10-31T15:22:21.245Z",
+    "last_save_at": "2026-10-31T15:28:44.281Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dddfc5b70ab94e6bea2969b9c403640d081db913a401bad8c52bfd5ed3eb2560",
+    "source_fingerprint": "sha256:172245088bf48cb82d89fa69408f607c482701da10465fab6a989d6e4c01bbf1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c0d3653eba13655acc5243f47baa6f2155da7a4b97b1d771c9fa7287f09def6b",
+      "spec.md": "18888ea18562c4ca932bfedde050731cccb7dc97754d1bcb76aa72f238c1bc40",
       "plan.md": "3d82b65d3472bb218e0cb1e802131fc0560a2cede7040023da09c8859339cf6f",
-      "tasks.md": "069518fb2282123c885e75658eab84d7eb35aefbe6168d81f1bb19905dd95226",
+      "tasks.md": "02ae40f2b6ef54a17600d337a7fab53bd7db2b4ce8dcf045d392bc9f8f500d16",
       "implementation-summary.md": "657253104832ac0aca292f71e97a3d8706086af4955c1b19db2f30f6ebc6b86c"
     },
     "last_active_at": null

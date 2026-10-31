@@ -19,7 +19,7 @@
   "specId": "003",
   "folderSlug": "communication-quality",
   "parentChain": [
-    "agents"
+    "agents-md"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

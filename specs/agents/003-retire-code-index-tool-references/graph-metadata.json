@@ -43,6 +43,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "specs/agents/003-retire-code-index-tool-references/spec.md",
       ".opencode/agents/review.md",
       ".opencode/agents/deep-review.md",
       ".opencode/skills/sk-code/sk-code-review/SKILL.md"
@@ -51,7 +52,7 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/agents/003-retire-code-index-tool-references/spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +196,7 @@
     ],
     "causal_summary": "The `systemcodeindex` MCP server was deregistered from every runtime surface",
     "created_at": "2026-09-11T20:34:22.159Z",
-    "last_save_at": "2026-10-31T15:21:44.859Z",
+    "last_save_at": "2026-10-31T15:23:29.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f96d36f615d1e00b217a12f8114a3e70dcfb7e8267ac70d5fda121e2f5387c61",
+    "source_fingerprint": "sha256:221af53d552b391cddc8c0c36afb59954dd364a5d9d4c6f5c0ae9c419d66b3ee",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c4e8b5a93814727871079f7f5559d54689aead0364cd526182b2e397020a4a3",
+      "spec.md": "7b30b3b8a7a71a5fac12ded2e07577c6afcb478d6a5678ba9e4a34a68055b3f6",
       "plan.md": "8c187be3500073e8f47581cf5b08b3c98a014667c1d4a8b3bcf66319ebe03298",
       "tasks.md": "482c081188c7d6b036bf4650be206c36b30fe03eb46723a0548a4b23fde15352",
-      "implementation-summary.md": "5af696fdbe5e892189958e93ff9020efced83046fc74361c893725000e94270f"
+      "implementation-summary.md": "a09bf52dc48038d698a6f3f32f48c76d3a4f7a7cde733eac4df8d8edfebf8c53"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The alignment audit found seven places where CI or its tests disagreed with the tree",
     "created_at": "2026-10-27T19:53:13Z",
-    "last_save_at": "2026-10-31T15:22:17.263Z",
+    "last_save_at": "2026-10-31T15:28:39.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a26c2f5ce36d3ca4f3dc7dad7752de84ed4aa174a0d593340e82189ffc9b227",
+    "source_fingerprint": "sha256:2cf2de5b7af2fb3d56e8305601d97103cf9fc81a6cb92dda99f7a374129e5489",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "516227f33ab614747488e84c4ac5c7d71ec63dbc8a2da6c16af1c7f45f375e1b",

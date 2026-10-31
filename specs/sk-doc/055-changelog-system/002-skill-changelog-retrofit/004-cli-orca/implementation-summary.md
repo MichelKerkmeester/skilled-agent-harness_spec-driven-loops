@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/004-cli-orca"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/004-cli-orca"
     last_updated_at: "2026-09-25T18:31:36Z"
     last_updated_by: "generate-context"
     recent_action: "Committed the corrected cli-orca rewrite in 8f2cbbd4d3 and recorded the reopen"

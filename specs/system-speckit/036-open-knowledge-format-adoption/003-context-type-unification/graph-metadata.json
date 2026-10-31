@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two aliases (`decision` to `planning`, `discovery` to `general`), and the `sk-doc` contract lists the same four",
     "created_at": "2026-10-04T08:04:51Z",
-    "last_save_at": "2026-10-31T15:22:12.532Z",
+    "last_save_at": "2026-10-31T15:28:35.445Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:164e9dbf382060ba26f5a492353da367a23d8d9a39c2dd4ea154c26376948dad",
+    "source_fingerprint": "sha256:eaed3b3d4c4c5b523e6669e597535385756812c2876979edf64d7867370c7210",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e88856b6a8ec1b7810235cc7efee1c968213f0863b4419f9f92ddb39811e0260",

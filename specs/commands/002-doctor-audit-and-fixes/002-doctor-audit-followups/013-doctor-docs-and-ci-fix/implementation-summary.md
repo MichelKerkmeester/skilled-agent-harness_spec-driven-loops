@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix"
+    packet_pointer: "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix"
     last_updated_at: "2026-10-04T10:40:00Z"
     last_updated_by: "doctor-docs-and-ci-fix"
     recent_action: "Fixed the doctor CI install and added doctor pointers to the README and targeted skills"

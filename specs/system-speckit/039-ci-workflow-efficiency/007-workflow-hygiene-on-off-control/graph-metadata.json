@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A GitHub Actions job with no `timeout-minutes` inherits the 360-minute default, so a hung install or a stuck test holds a runner for six hours",
     "created_at": "2026-10-23T08:48:00Z",
-    "last_save_at": "2026-10-31T15:22:17.130Z",
+    "last_save_at": "2026-10-31T15:28:39.506Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de931d2082a36c529c75a9b8414b5e126b57f00a424579eb1a6a78b6b335a840",
+    "source_fingerprint": "sha256:e507c6426f322809dec89bb2245760ca7ab9221ad389ee0099b2a25570af2585",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "848f89307af6d4047a8bd34d561657601e1d617f45d08ec4d46438f1a90c82ec",
+      "spec.md": "ecbad723bff20f85d887983ce2481e3ce533b07e652e2656a4af2fdf92b0abc0",
       "plan.md": "34a379e8624f3fa0523a32de44099cf223aacdde9cd4f0788216a6984a466355",
-      "tasks.md": "15dbe85126fcd1f4568e33971489e2e94e54ce73f1481ad334d9aa93f160a9c4",
-      "decision-record.md": "464910d28e9a75e85294ff080f3e3c76ddf2dafb73c2d2b1dbe6eb78ce2e5ac7",
-      "implementation-summary.md": "52b8b3ef7f97602c1e9320776665ecf1f69cc40d38b964dbd61499a9201e45f3"
+      "tasks.md": "b13e36dc2fd9e5238ffbe7d15a021633cd7a2bc475ee84c5c9390ff9117ea525",
+      "decision-record.md": "93a2e3b5681809a577d9c3f40aaf0bffc5e706820cea95d6ff1dfd2dddb6efd2",
+      "implementation-summary.md": "9db49ad4bd709e41933fbd22d1b2fd8b800a280325dcbdb813343550deff7744"
     },
     "last_active_at": null
   }

@@ -10,16 +10,16 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md"
     last_updated_at: "2026-10-30T17:50:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Closed all three phases and the packet"
     next_safe_action: "None: the packet is complete"
     blockers: []
     key_files:
-      - "specs/agents/021-doctor-agents-md/001-doctor-agents-md/spec.md"
-      - "specs/agents/021-doctor-agents-md/002-doctor-helper/spec.md"
-      - "specs/agents/021-doctor-agents-md/003-advisor-bridge-activation/spec.md"
+      - "specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/spec.md"
+      - "specs/agents-md/016-doctor-agents-md/002-doctor-helper/spec.md"
+      - "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "worktree-292-doctor-agents-md"
@@ -56,7 +56,7 @@ _memory:
 | **Created** | 2026-10-30 |
 | **Branch** | `worktrees/292-doctor-agents-md` |
 | **Parent Spec** | None (top-level packet) |
-| **Parent Packet** | agents/021-doctor-agents-md |
+| **Parent Packet** | agents-md/016-doctor-agents-md |
 | **Predecessor** | None |
 | **Successor** | None |
 | **Handoff Criteria** | Both phases pass `validate.sh --recursive --strict` and every command-based acceptance criterion in their children is met |
@@ -131,7 +131,7 @@ Summary of aggregate file scope. Per-phase detail lives in each child's plan.md,
 - Parent spec tracks aggregate progress via this map
 - Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
 - Run `validate.sh --recursive` on parent to validate all phases as integrated unit
-- **Precondition on both phases.** No phase starts implementation until `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so the route, bridge, phrase and mirror counts every acceptance criterion quotes must be re-measured from the branch the phase actually starts on. The two phases also share those counts: whichever lands second re-measures and rebases its numbers.
+- **Precondition on both phases.** No phase starts implementation until `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) is on `main`. That command adds one route, one router file and one advisor bridge, so the route, bridge, phrase and mirror counts every acceptance criterion quotes must be re-measured from the branch the phase actually starts on. The two phases also share those counts: whichever lands second re-measures and rebases its numbers.
 
 ### Phase Handoff Criteria
 

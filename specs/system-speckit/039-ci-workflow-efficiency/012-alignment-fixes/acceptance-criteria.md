@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency/012-alignment-fixes"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency/012-alignment-fixes"
     last_updated_at: "2026-10-27T21:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All seven criteria met with recorded commands"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/040-ci-workflow-efficiency/012-alignment-fixes
+**Packet:** system-speckit/039-ci-workflow-efficiency/012-alignment-fixes
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-27

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/040-ci-workflow-efficiency"
+    packet_pointer: "system-speckit/039-ci-workflow-efficiency"
     last_updated_at: "2026-10-25T22:10:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All ten phases closed; the six criteria rechecked on main"
@@ -85,8 +85,8 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/040-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
-- [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/040-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-speckit/039-ci-workflow-efficiency --recursive --strict` prints `RESULT: PASSED` for all eleven folders
+- [ ] Every R1-R30 is closed in its owning phase, and `rg -c '\| Unmet \|' specs/system-speckit/039-ci-workflow-efficiency/00*/acceptance-criteria.md` prints nothing
 - [ ] `gh run list --commit <sha> --json event,workflowName --jq '[.[] | select(.event != "dynamic" or .workflowName != "CodeQL")]'` returns `[]` for each of three consecutive post-change rebuild commits; GitHub's CodeQL default setup runs as a `dynamic` event on every push
 - [ ] `rg -o --no-filename 'vars\.SKILLED_CI[A-Z_]*' .github/workflows/*.yml | sort -u | wc -l` returns `6`
 - [ ] `.skilled/skills/sk-code/sk-code-ci/SKILL.md` and `.skilled/commands/doctor/ci.md` exist

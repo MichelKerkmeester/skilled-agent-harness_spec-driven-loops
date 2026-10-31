@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/002-rule-concision-and-loading"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/002-rule-concision-and-loading"
     last_updated_at: "2026-10-04T16:40:25Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Authored the durable directive"

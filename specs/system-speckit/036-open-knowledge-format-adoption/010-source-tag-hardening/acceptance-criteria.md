@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/010-source-tag-hardening"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/010-source-tag-hardening"
     last_updated_at: "2026-10-04T12:00:35Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All seven criteria met with evidence"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/037-open-knowledge-format-adoption/010-source-tag-hardening
+**Packet:** system-speckit/036-open-knowledge-format-adoption/010-source-tag-hardening
 **Level:** 2
 **Status:** Draft
 **Date:** 2026-10-04

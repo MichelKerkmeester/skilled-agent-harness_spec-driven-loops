@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing"
     last_updated_at: "2026-10-30T15:20:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Implemented the command plumbing on this branch"
@@ -55,12 +55,12 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 4** of the `/doctor:agents-md` build inside `agents/021-doctor-agents-md`.
+This is **Phase 4** of the `/doctor:agents-md` build inside `agents-md/016-doctor-agents-md`.
 
 **Scope Boundary**: The human and machine surface around the two engines. It changes no engine behaviour.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. That command is the read-only exemplar whose shape this router copies.
+- `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then. That command is the read-only exemplar whose shape this router copies.
 - The check and embed engines must exist and answer before their workflows can name them.
 
 **Deliverables**:
@@ -81,7 +81,7 @@ The doctor family is validated by shape, not by intent. A command with a missing
 Wire the three targets the way the family already validates them, and pin the contract in a suite so the next router that lands cannot skip the setup list, the phrase rule or the mutation class.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

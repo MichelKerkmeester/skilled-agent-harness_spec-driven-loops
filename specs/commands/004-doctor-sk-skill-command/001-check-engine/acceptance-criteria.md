@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/067-doctor-sk-skill-command/001-check-engine"
+    packet_pointer: "commands/004-doctor-sk-skill-command/001-check-engine"
     last_updated_at: "2026-10-30T12:00:00Z"
     last_updated_by: "codex"
     recent_action: "Read a target from another Skilled repository against its own repository"
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** sk-doc/067-doctor-sk-skill-command/001-check-engine
+**Packet:** commands/004-doctor-sk-skill-command/001-check-engine
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The `cli-external-orchestration` hub carries 363 versioned docs",
     "created_at": "2026-09-09T06:42:07Z",
-    "last_save_at": "2026-10-31T15:21:59.467Z",
+    "last_save_at": "2026-10-31T15:23:57.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2ec5b6eb16bb4393c31517875b89c9bb3f486b90a6e4188aae6f9947bc52f14",
+    "source_fingerprint": "sha256:40b15f101d6e07b241f5984b8d090e3fea7a873a20c69403ae1bc1fb1c2604de",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af5b2bddedac2f5868593b1d4154944bf8f430eeeec2c51d933e42d79c502ab6",

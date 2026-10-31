@@ -7,14 +7,14 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/056-changelog-system/002-skill-changelog-retrofit/014-system-deep-loop"
+    packet_pointer: "sk-doc/055-changelog-system/002-skill-changelog-retrofit/014-system-deep-loop"
     last_updated_at: "2026-09-26T08:26:55Z"
     last_updated_by: "generate-context"
     recent_action: "Committed and pushed the system-deep-loop rewrites in 9a89ac328e"
     next_safe_action: "Close the parent packet"
     blockers: []
     key_files:
-      - "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-deep-loop.txt"
+      - "specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/scratch/lists/system-deep-loop.txt"
     session_dedup:
       fingerprint: "sha256:70658a272f29ab378299ae7b2a641fe327ad0f0765e1231dca8f47a3ac0e407b"
       session_id: "fb879d4c-5543-4760-8339-b0f3499f278d"

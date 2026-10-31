@@ -7,22 +7,19 @@
     "sk-doc/049-frontmatter-and-description-budget",
     "sk-doc/050-playbook-coverage-and-sync",
     "sk-doc/051-hub-routing-quality",
-    "sk-doc/052-command-contract-reconciliation",
-    "sk-doc/053-cli-hub-doc-version-reconciliation",
-    "sk-doc/054-governance-doc-alignment",
-    "sk-doc/055-sk-create-readme-writing-style",
-    "sk-doc/056-changelog-system",
-    "sk-doc/057-create-goal-mode",
-    "sk-doc/058-doc-validation-off-switches",
-    "sk-doc/059-security-policy-alignment",
-    "sk-doc/060-feature-catalog-template-anchor-deprecation",
-    "sk-doc/061-root-readme-section-spacing",
-    "sk-doc/062-hub-repo-folder-exemption",
-    "sk-doc/063-local-command-support",
-    "sk-doc/064-readme-validation-debt",
-    "sk-doc/065-opencode-native-surfaces",
-    "sk-doc/066-reference-template-debt",
-    "sk-doc/067-doctor-sk-skill-command"
+    "sk-doc/052-cli-hub-doc-version-reconciliation",
+    "sk-doc/053-governance-doc-alignment",
+    "sk-doc/054-sk-create-readme-writing-style",
+    "sk-doc/055-changelog-system",
+    "sk-doc/056-create-goal-mode",
+    "sk-doc/057-doc-validation-off-switches",
+    "sk-doc/058-security-policy-alignment",
+    "sk-doc/059-feature-catalog-template-anchor-deprecation",
+    "sk-doc/060-root-readme-section-spacing",
+    "sk-doc/061-hub-repo-folder-exemption",
+    "sk-doc/062-readme-validation-debt",
+    "sk-doc/063-opencode-native-surfaces",
+    "sk-doc/064-reference-template-debt"
   ],
   "manual": {
     "depends_on": [],
@@ -66,7 +63,7 @@
     "source_doc_hashes": {
       "spec.md": "b9985bd3dad00992e93327d6ce711bdbb53ef0080114052cd3772a01ba5ee111"
     },
-    "last_active_child_id": "sk-doc/056-changelog-system/001-sk-create-changelog-v4-style",
+    "last_active_child_id": "sk-doc/055-changelog-system/001-sk-create-changelog-v4-style",
     "last_active_at": "2026-09-23T07:04:14.640Z"
   }
 }

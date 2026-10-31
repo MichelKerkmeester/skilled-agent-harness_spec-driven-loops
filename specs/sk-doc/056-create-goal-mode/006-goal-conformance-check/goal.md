@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/006-goal-conformance-check"
+    packet_pointer: "sk-doc/056-create-goal-mode/006-goal-conformance-check"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned goal conformance checks"

@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/011-frontmatter-values-to-sk-doc"
     last_updated_at: "2026-10-04T19:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "All six criteria met"

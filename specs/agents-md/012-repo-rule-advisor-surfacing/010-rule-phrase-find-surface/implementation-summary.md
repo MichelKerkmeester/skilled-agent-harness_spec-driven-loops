@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/010-rule-phrase-find-surface"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/010-rule-phrase-find-surface"
     last_updated_at: "2026-10-05T13:30:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Added 18 plain phrases; 26 of 26 queries find their rule"

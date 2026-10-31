@@ -11,7 +11,7 @@
   "folderSlug": "adjacent-alignment",
   "parentChain": [
     "sk-doc",
-    "056-changelog-system",
+    "055-changelog-system",
     "003-skilled-release-changelog"
   ],
   "memorySequence": 3,

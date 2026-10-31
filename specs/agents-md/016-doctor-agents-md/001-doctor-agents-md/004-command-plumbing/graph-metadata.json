@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The doctor family is validated by shape, not by intent",
     "created_at": "2026-10-30T11:22:44Z",
-    "last_save_at": "2026-10-31T15:21:45.326Z",
+    "last_save_at": "2026-10-31T15:23:37.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:54633ea0377e8bb3eb1a12fa797f5f0073dbfbeec0cb54ef0620b89ea1860edb",
+    "source_fingerprint": "sha256:59c1052a92134c6332a9985a87bc84aecaf5785ab0335049a93a8d0812b064f2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "27c35e8b535cf63a65a389d6fbaadb9209245773d75a39ff550f87d7b7f2fa1d",
+      "spec.md": "0740ab661a81331987d9c578e2ecff431184071a5a9d39097808db60d7af56d0",
       "plan.md": "a77fdc08ae9b6f5d4b708715179097974a5c0bc7ad02d118cba28c43f3ab90fb",
-      "tasks.md": "f29b17c27ef5586d107990bd26d320ed141a695319b1c924b98393045062ec6e",
-      "implementation-summary.md": "6dade83276df0a982638bd7a6da165a4ac328b733b67da38efe96f819e3dbb4e"
+      "tasks.md": "22883b69e58b1d75ce7d3786538224293f524500fee8ec26ffee8caf81652fdb",
+      "implementation-summary.md": "e6c334b7518d17bca1167538315fc819f632b3e736c12dfdb6fa63d52beb9fd6"
     },
     "last_active_at": null
   }

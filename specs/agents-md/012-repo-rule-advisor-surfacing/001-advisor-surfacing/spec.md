@@ -62,8 +62,8 @@ A research verdict, grounded in this repository, on which surface (if any) shoul
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/research/` | Create | Deep-research state, iterations and synthesis |
-| `specs/agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md` | Modify | Generated findings block after synthesis |
+| `specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/research/` | Create | Deep-research state, iterations and synthesis |
+| `specs/agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing/spec.md` | Modify | Generated findings block after synthesis |
 <!-- /ANCHOR:scope -->
 
 ---

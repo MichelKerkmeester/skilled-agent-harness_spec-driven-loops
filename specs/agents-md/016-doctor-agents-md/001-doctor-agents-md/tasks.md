@@ -35,7 +35,7 @@ contextType: "general"
 
 - [x] T001 Confirm `/doctor:sk-skill` is on the start branch (`.skilled/commands/doctor/sk-skill.md`). Verify: `git -c core.fsmonitor=false log --oneline -1 -- .skilled/commands/doctor/sk-skill.md` prints a commit. Evidence: prints `afb71aa136`, and both of its routes validate in the family manifest.
 - [x] T002 Record the six baseline commands into `scratch/baseline.txt` (`scratch/`). Verify: `rg -c 'routes validated' scratch/baseline.txt` prints at least `1`. Evidence: the file holds all six commands with their exit codes, and `rg -c 'routes validated' scratch/baseline.txt` prints 1.
-- [x] T003 Confirm all five child folders carry spec, plan, tasks and criteria (`001-manifest-and-template-block` to `005-verification-and-docs`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` exits 0. Evidence: exits 0 with `RESULT: PASSED` and `Errors: 0  Warnings: 0`, and each child validates on its own as well.
+- [x] T003 Confirm all five child folders carry spec, plan, tasks and criteria (`001-manifest-and-template-block` to `005-verification-and-docs`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` exits 0. Evidence: exits 0 with `RESULT: PASSED` and `Errors: 0  Warnings: 0`, and each child validates on its own as well.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,7 +56,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T009 Rerun every baseline command from the final tree (`scratch/baseline.txt`). Verify: each prints its pre-work pass line. Evidence: the canary prints `OK: all rule invariants present`, the gate 1 pointer sync prints `PASS: 1 instruction files carry the root Gate 1 lookup.`, the repo-rules checker prints `RESULT: PASSED (11/11 checks)`, `route-validate.sh` prints `OK: route-validate — 24 routes validated, 5 warnings`, the runner ends `7 suite(s) passed, 0 failed`, and the root file is 27888 bytes.
-- [x] T010 Run the recursive phase gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: exits 0 and prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
+- [x] T010 Run the recursive phase gate (`specs/agents-md/016-doctor-agents-md/001-doctor-agents-md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED`. Evidence: exits 0 and prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
 - [x] T011 Confirm the change list (`git status --porcelain`). Verify: the list names only the files the five children name. Evidence: every path is named by a child's own list or by a close-out document, and the two deviations (the re-minted sk-doc activation manifest and the regenerated Hermes copies, with the retrieval corpus left to the Trigger Index Rebuild workflow after the merge) are recorded in the last child's implementation summary.
 <!-- /ANCHOR:phase-3 -->
 

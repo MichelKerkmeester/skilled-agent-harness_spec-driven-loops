@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/003-agents-md-delivery-prefix"
     last_updated_at: "2026-10-04T15:00:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Shipped the delivery prefix and its guard"

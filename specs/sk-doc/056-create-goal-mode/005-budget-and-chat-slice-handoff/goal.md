@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/057-create-goal-mode/005-budget-and-chat-slice-handoff"
+    packet_pointer: "sk-doc/056-create-goal-mode/005-budget-and-chat-slice-handoff"
     last_updated_at: "2026-09-25T19:30:00Z"
     last_updated_by: "gpt-6-luna"
     recent_action: "Planned budget and slice handoff phase"
@@ -53,7 +53,7 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| L1 | The observed fixed-text cost is an authoring constraint, not a system-spec-kit amendment by itself: the parent goal was cut from 4,820 to 3,735 characters without dropping a criterion. Raise an amendment only if a future contract conflict cannot be resolved under the current budget (specs/sk-doc/057-create-goal-mode/goal.md:52-54,136, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71). |
+| L1 | The observed fixed-text cost is an authoring constraint, not a system-spec-kit amendment by itself: the parent goal was cut from 4,820 to 3,735 characters without dropping a criterion. Raise an amendment only if a future contract conflict cannot be resolved under the current budget (specs/sk-doc/056-create-goal-mode/goal.md:52-54,136, .skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md:61-71). |
 
 ### Operator copy
 
@@ -111,5 +111,5 @@ and findings belong here.
 | Evidence location | The worker ran the temporary fixture under the packet-root `scratch/` and wrote its evidence there; the orchestrator moved the evidence into this phase's `scratch/` and removed the empty root folder. |
 | Line-cite drift | The reference cited the parent log by line number; that log grows every phase, so the cite now names the log row instead. |
 | Wiring amendment | Operator approved on 2026-09-26: this phase also wires its new file into `SKILL.md` and `references/README.md` (REQ-007). No parent decision or criterion changed. |
-| Fixed-text cost | No amendment is planned on current evidence. The parent log records a 3,735-character result with no criterion dropped (specs/sk-doc/057-create-goal-mode/goal.md:136). |
+| Fixed-text cost | No amendment is planned on current evidence. The parent log records a 3,735-character result with no criterion dropped (specs/sk-doc/056-create-goal-mode/goal.md:136). |
 <!-- /ANCHOR:log -->

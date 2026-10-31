@@ -104,6 +104,6 @@ and findings belong here.
 | Umbrella warnings unchanged | The baseline warning count of 247 holds after wiring. |
 | New guard files are untracked | The alignment-drift scan reads git-tracked files only, so it does not see the new guard files until they are staged. |
 | spec.md status is the orchestrator's | spec.md still reads Status Planned, and the brief keeps spec.md out of this build. The implementation summary reads "Built, awaiting orchestrator status update". The validator does not classify that wording, so its status cross-doc check does not apply. When the orchestrator sets spec.md Status to Complete, rerun `validate.sh --strict` to confirm the two documents agree. A Complete status here fails the cross-doc check until spec.md changes. |
-| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/060-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
+| Criterion 2 amended 2026-10-11 | The sk-code-skilled scripts were renamed to kebab-case by `sk-doc/059-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names`, so the criterion names the current file |
 | Criterion 4 amended 2026-10-11 | Phase 010 added the doc-claims guard and phase 012 added the warning count, so the summary line reads all 4 guards and a warning count |
 <!-- /ANCHOR:log -->

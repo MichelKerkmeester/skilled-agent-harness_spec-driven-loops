@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/006-restraint-and-routing-gates"
+    packet_pointer: "agents-md/006-restraint-and-routing-gates"
     last_updated_at: "2026-08-29T13:43:03Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Applied nine AGENTS.md edits, then seven review fixes"

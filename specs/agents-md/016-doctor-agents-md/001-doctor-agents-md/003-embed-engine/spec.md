@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md/003-embed-engine"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md/003-embed-engine"
     last_updated_at: "2026-10-30T13:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Built the plan, apply and restore engine, the preservation proof and its suite"
@@ -52,12 +52,12 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the `/doctor:agents-md` build inside `agents/021-doctor-agents-md`.
+This is **Phase 3** of the `/doctor:agents-md` build inside `agents-md/016-doctor-agents-md`.
 
 **Scope Boundary**: The engine, its suite, the preservation function, the backups and the restore route. It adds no route manifest entry and no human-facing presentation, which child 004 owns.
 
 **Dependencies**:
-- `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
+- `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) must be on `main` before implementation starts, and every phrase, route, bridge and mirror count is re-measured then.
 - The check report from child 002 is this engine's input, and the exported three-way classifier from the update engine is its merge primitive.
 
 **Deliverables**:
@@ -77,7 +77,7 @@ Carrying a repository's own lines into a block is where this command can do real
 Make the write path provable. Compose in memory, show the diff and the ledger, hash what was shown, refuse an apply that would write anything else, back up before the first byte, and prove after the write that every repo-unique line is still there. When the proof fails, restore automatically.
 
 ### Precondition
-Implementation starts only after `/doctor:sk-skill` (packet `sk-doc/067-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
+Implementation starts only after `/doctor:sk-skill` (packet `commands/004-doctor-sk-skill-command`) lands on `main`. That command adds a router, a route and an advisor bridge, so the route, bridge, phrase and mirror counts this packet quotes are re-measured from the branch the child starts on, and recorded in `scratch/baseline.txt` before the first edit.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

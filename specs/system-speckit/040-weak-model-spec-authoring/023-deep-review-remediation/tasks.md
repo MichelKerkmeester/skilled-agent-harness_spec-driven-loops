@@ -58,7 +58,7 @@ contextType: "implementation"
 
 - [x] T010 Review the code diff with a fresh Opus medium reviewer and fix what it confirms. Verify: its P1 (CRLF) and P2s 2 to 8 are fixed with tests.
 - [x] T011 Rerun the build and the full spec-kit suite. Verify: `npm run build` exits 0 and `npx vitest run` prints 0 failed files.
-- [x] T012 Validate the packet. Verify: `validate.sh specs/system-speckit/041-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder.
+- [x] T012 Validate the packet. Verify: `validate.sh specs/system-speckit/040-weak-model-spec-authoring --strict --recursive` prints `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---

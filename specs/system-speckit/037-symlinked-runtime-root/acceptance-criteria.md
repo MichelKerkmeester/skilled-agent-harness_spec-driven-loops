@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/038-symlinked-runtime-root"
+    packet_pointer: "system-speckit/037-symlinked-runtime-root"
     last_updated_at: "2026-10-12T12:00:00Z"
     last_updated_by: "claude-opus-5.5"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -39,7 +39,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** system-speckit/038-symlinked-runtime-root
+**Packet:** system-speckit/037-symlinked-runtime-root
 **Level:** 2
 **Status:** Planned
 **Date:** 2026-10-12

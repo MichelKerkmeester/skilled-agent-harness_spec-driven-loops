@@ -64,7 +64,7 @@ contextType: "general"
 - [x] T015 Run the family validators (`D/scripts`). Verify: `bash D/scripts/route-validate.sh` exits 0 and `bash .skilled/skills/system-spec-kit/runtime/cli/validate-command-tree-parity.sh` exits 0. Evidence: `route-validate.sh` exits 0 with `OK: route-validate — 24 routes validated, 5 warnings`; `validate-command-tree-parity.sh` exits 0 with 207 mirrors in sync.
 - [x] T016 Run the suite runner (`D/scripts/tests`). Verify: `bash D/scripts/tests/run-all.sh` ends `0 failed`. Evidence: `run-all.sh` ends `7 suite(s) passed, 0 failed`; node:test ran 41 files and 911 tests with `fail 0`.
 - [x] T017 Confirm the bridge stays inactive (`scoring-compatibility.json`). Verify: `node D/scripts/doctor-phrase-reach.cjs` exits 0 and the new bridge is absent from the activation list. Evidence: `doctor-phrase-reach.cjs` prints `STATUS=OK phrases=142 bridges=24`, and the three new bridges carry `"enabled": false` in both scorers.
-- [x] T018 Run the child gate (`specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md/004-command-plumbing --strict` prints `RESULT: PASSED`. Evidence: `validate.sh ... --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
+- [x] T018 Run the child gate (`specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing/`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md/004-command-plumbing --strict` prints `RESULT: PASSED`. Evidence: `validate.sh ... --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

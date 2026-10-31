@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The citation scanner behind `SOURCETAGS` spends 6.9 to 9.9 seconds on a git listing that takes 0.9 seconds without the file-system monitor, and once hung for 28 minutes",
     "created_at": "2026-10-25T21:55:27Z",
-    "last_save_at": "2026-10-31T15:22:20.914Z",
+    "last_save_at": "2026-10-31T15:28:43.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,7 +207,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f2925acc43928ae3962bfa8ccea2b5f209fdd6f1bef881195b7bb93959ed870",
+    "source_fingerprint": "sha256:702c88a466f9457ebc1b93592a060ae3b4e6c877b3ea0e61df52c97830d989fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a6df66013c65a305ddb4ade3f06888f701dbf49d1860a52b21c4e13e17aa5790",

@@ -24,8 +24,8 @@
   "specId": "006",
   "folderSlug": "synthesis-presentation",
   "parentChain": [
-    "agents",
-    "009-turn-closeout-next-steps"
+    "agents-md",
+    "007-turn-closeout-next-steps"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

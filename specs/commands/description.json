@@ -1,0 +1,17 @@
+{
+  "specFolder": "commands",
+  "description": "Track folder for command packets that serve the whole command tree rather than one skill: the command contract, local-* command support and the cross-skill /doctor commands.",
+  "keywords": [
+    "commands",
+    "track",
+    "slash-commands",
+    "doctor"
+  ],
+  "lastUpdated": "2026-10-31T15:23:27.000Z",
+  "specId": "commands",
+  "folderSlug": "commands",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "track"
+}

@@ -60,7 +60,7 @@
       "scratch/validate.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs",
       ".skilled/skills/sk-design/sk-design-diagram/scripts/check-diagram-corpus.cjs",
-      "scripts/README.md"
+      "specs/system-speckit/039-ci-workflow-efficiency/005-slow-and-failing-tests/scratch/r20-ci-step.md"
     ],
     "entities": [
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`spec-kit-check`'s `check` job is the repository's most expensive job at 1,215 s, and 791 s of it, 65.1%, is one step: the `CLI vitest project` at `spec-kit-check.yml:124-128` runs 183 test files one after another because the `cli` project sets `fileParallelism: false` at `.skilled/skills/system-spec-kit/vitest.config.ts:67` without a stated reason (`iteration-005.md:30-69`)",
     "created_at": "2026-10-23T08:47:52Z",
-    "last_save_at": "2026-10-31T15:22:17.005Z",
+    "last_save_at": "2026-10-31T15:28:39.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cef5317bb475433758fd7b57a538ee62269dfdcf8b7538c7dab48e6766c0098c",
+    "source_fingerprint": "sha256:bc66644ff462b04a438876f085bfd3b2b2aa9539dd3b070cf26fe30c4b8d707b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85d6d9e6724d855185d2300c0eb29a0d7ca7896b7819099103236d1cddac13e0",
       "plan.md": "b9b7bb23d924820668129e6cab1a602d7c0f47aa57025c3067b017988cea23df",
-      "tasks.md": "c3dc4cdc18b9d6b0ace37707b31d0ded000be7d3f862ea431632bceeaf00d0cc",
-      "decision-record.md": "b9c758e6f49f884fc06c042c08c1258937fe12955675cc20636cef30348e5d28",
+      "tasks.md": "494a16c398f535d8b6b0dc1b607b480d33cfa6b99ce2b1239a05444a493c0282",
+      "decision-record.md": "a2179e5c6ee4e1d723ae8cbdaeab950b2a8d70d2545de70f4eff3a72296029cd",
       "implementation-summary.md": "08643fc47d9c7e8d7ba07f6c26da97797bdbc238ece801fed2379ebdd6b594c7"
     },
     "last_active_at": null

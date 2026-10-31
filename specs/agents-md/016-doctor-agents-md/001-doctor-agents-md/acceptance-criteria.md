@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "agents/021-doctor-agents-md/001-doctor-agents-md"
+    packet_pointer: "agents-md/016-doctor-agents-md/001-doctor-agents-md"
     last_updated_at: "2026-10-30T17:40:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Every criterion met and the phase closed"
@@ -37,7 +37,7 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** `agents/021-doctor-agents-md/001-doctor-agents-md`
+**Packet:** `agents-md/016-doctor-agents-md/001-doctor-agents-md`
 **Level:** 2
 **Status:** Complete
 **Date:** 2026-10-30
@@ -52,7 +52,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | D30 | Given the five child folders, When each is validated, Then every one prints `RESULT: PASSED` and its criteria read `Met` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents/021-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, and each child validates on its own: 005 records its own run at 005-verification-and-docs/scratch/gate.txt:4 | Met | - |
+| AC-001 | D30 | Given the five child folders, When each is validated, Then every one prints `RESULT: PASSED` and its criteria read `Met` | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/agents-md/016-doctor-agents-md/001-doctor-agents-md --recursive --strict` prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`, and each child validates on its own: 005 records its own run at 005-verification-and-docs/scratch/gate.txt:4 | Met | - |
 | AC-002 | D8 | Given the manifest, When its freshness check runs, Then it exits 0 with a `PASS` line naming the section and pin counts | `node .skilled/commands/doctor/scripts/agents-md-manifest.cjs --check` prints `PASS: 44 sections, 30 pins, derived matches AGENTS.md` at 005-verification-and-docs/scratch/baseline.txt:129, exit 0 | Met | - |
 | AC-003 | D15 | Given this repository, When the check engine runs, Then it exits 0 with `STATUS=OK` and `A1 install state: pure` | `node .skilled/commands/doctor/scripts/agents-md-check.cjs` prints `A1 install state: pure` and `STATUS=OK rows=12 findings=0 unknown=0` at 005-verification-and-docs/scratch/baseline.txt:136, exit 0 | Met | - |
 | AC-004 | D23 | Given this repository, When the embed plan runs, Then it prints `NOTHING TO DO` and writes nothing | `node .skilled/commands/doctor/scripts/agents-md-embed.cjs plan` prints `[agents-md-embed] plan for <this repository> (state: pure)` then `NOTHING TO DO` at 005-verification-and-docs/scratch/baseline.txt:214, exit 0, and `git status --porcelain` lists nothing it wrote | Met | - |

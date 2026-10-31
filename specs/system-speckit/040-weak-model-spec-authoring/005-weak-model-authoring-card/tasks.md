@@ -30,7 +30,7 @@ contextType: "general"
 
 Shell variables used below, set once by the conductor:
 - `WORKTREE`: the build worktree path recorded in `../goal.md` section 4.
-- `PHASE`: `$WORKTREE/specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card`
+- `PHASE`: `$WORKTREE/specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card`
 - `S`: `.skilled/skills/system-spec-kit`
 - `START`: the commit hash recorded by T002.
 <!-- /ANCHOR:notation -->
@@ -353,7 +353,7 @@ echo "CARD SYNC OK"
   ```text
   You are a read-only reviewer. Do not edit, create or delete any file.
   Read the diff of the working tree against the commit named in
-  specs/system-speckit/041-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md
+  specs/system-speckit/040-weak-model-spec-authoring/005-weak-model-authoring-card/goal.md
   section 4 as Start commit.
   Check these claims against the files:
   (1) the card at .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md

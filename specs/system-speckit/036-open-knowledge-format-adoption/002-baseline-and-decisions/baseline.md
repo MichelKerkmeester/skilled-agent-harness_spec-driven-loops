@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/037-open-knowledge-format-adoption/002-baseline-and-decisions"
+    packet_pointer: "system-speckit/036-open-knowledge-format-adoption/002-baseline-and-decisions"
     last_updated_at: "2026-10-04T08:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Added the two-family labeled sample and D3 inputs"
@@ -37,7 +37,7 @@ Run from the repository root.
 
 ```bash
 C=5285608745fe243e633c6e396345611e32744113
-S=specs/system-speckit/037-open-knowledge-format-adoption/002-baseline-and-decisions/scratch
+S=specs/system-speckit/036-open-knowledge-format-adoption/002-baseline-and-decisions/scratch
 git log -M --diff-filter=R --name-status --format='C %H %ct' $C > "$TMPDIR/okf-renames.txt"   # about 2m15s
 python3 $S/census.py $C "$TMPDIR/okf-renames.txt" > $S/census-5285608745.json                # about 16s
 python3 $S/sample_draw.py $C 20261004 20 > $S/sample-rows.jsonl
@@ -157,6 +157,6 @@ The D3 threshold was fixed in `decision-record.md` at 2026-10-04T08:33:14Z, befo
 
 **What the data shows beyond D3.** Line drift into markdown is common: about a third of in-range citations in the sample point at the wrong lines of a file that still holds the cited text. Six of the 13 targets are skill `SKILL.md` or `README.md` files, which use headings but not `<!-- ANCHOR:` markers. A citation form keyed on heading slugs would cover all 13 targets. Counting headings would change condition 3 after the data was read, so it is recorded here as an option for the operator, not applied.
 
-**Hand check.** The orchestrator checked five rows by hand (d3-05, d3-12, d3-21, d3-30, d3-37) and agreed with the Claude labels on all five. d3-21 is a confirmed relocatable miss: the cited row of `specs/sk-doc/057-create-goal-mode/spec.md` moved from line 146 to 149.
+**Hand check.** The orchestrator checked five rows by hand (d3-05, d3-12, d3-21, d3-30, d3-37) and agreed with the Claude labels on all five. d3-21 is a confirmed relocatable miss: the cited row of `specs/sk-doc/056-create-goal-mode/spec.md` moved from line 146 to 149.
 
 **Known flaws.** In d3-26 and d3-27, a bare `README.md` citation was resolved to the repo-root README, while the citing text means another README. Neither is a relocatable miss. The same short-name problem drives the large ambiguous and gone counts in section 3. The three miss-or-support disagreements (d3-07, d3-14, d3-37) are all one labeler's partial against the other's supports.

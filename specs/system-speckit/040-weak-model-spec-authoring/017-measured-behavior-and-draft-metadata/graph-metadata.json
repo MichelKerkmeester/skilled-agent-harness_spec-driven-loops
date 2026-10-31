@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Graders found a wrong report shape (\"five-row\", \"nine-line\", \"eight-line\") in 5 of 12 benchmark packets (`../015-template-example-neutralization/scratch/evidence-summary.md:28-29`), and four of those authors had run the script (`insight-review.md:31`), so running a command does not stop an author from misstating its output; nothing asks the author to quote it",
     "created_at": "2026-10-26T15:03:32Z",
-    "last_save_at": "2026-10-31T15:22:21.100Z",
+    "last_save_at": "2026-10-31T15:28:43.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +218,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:597f9ef6ba2cdbe8c253a532b217fbde46af2136996fde7eac06fbe64a48b68c",
+    "source_fingerprint": "sha256:4e82b953a14c65b75bd07717c505264875cc912f5cf1d533a5d71ff437336b0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c1e74e61a50936584c44c3039e4b06fba4aa0a7dc7e6ebb27512f59dbd520e1f",
       "plan.md": "c42b8f3b38ea6eda30b011225c9b13c1fc054053728a10414965b5a114ef2795",
-      "tasks.md": "edf806157020188b449de54a8753aadb3fd5f977625fb6ba8e1d34f88bd51554",
+      "tasks.md": "e13300f95315de84ee1e09830176a5d913ad43be9ccc2cbc6efb06f7ffa1195c",
       "implementation-summary.md": "82bb0a1e5a15310b6630c9c543c610cb56d454616c1d5c4dab54fb0a03ded44c"
     },
     "last_active_at": null

@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "research"
 _memory:
   continuity:
-    packet_pointer: "agents/016-repo-rule-advisor-surfacing/001-advisor-surfacing"
+    packet_pointer: "agents-md/012-repo-rule-advisor-surfacing/001-advisor-surfacing"
     last_updated_at: "2026-10-04T12:55:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Synthesized the two-lineage deep-research run and checked its citations"

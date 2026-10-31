@@ -23,7 +23,7 @@
   "folderSlug": "tooling-and-pilot",
   "parentChain": [
     "sk-doc",
-    "056-changelog-system",
+    "055-changelog-system",
     "002-skill-changelog-retrofit"
   ],
   "memorySequence": 1,

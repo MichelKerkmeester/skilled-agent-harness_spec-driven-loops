@@ -17,7 +17,7 @@
     "flash"
   ],
   "lastUpdated": "2026-10-27T06:06:24.542Z",
-  "specId": "041",
+  "specId": "040",
   "folderSlug": "weak-model-spec-authoring",
   "parentChain": [
     "system-speckit"

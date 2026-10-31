@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
     "created_at": "2026-10-12T09:25:17Z",
-    "last_save_at": "2026-10-31T15:22:13.454Z",
+    "last_save_at": "2026-10-31T15:28:37.810Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +217,7 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a9c0e1be754ad871295fa7129a099433d6e111f86afc9d8489247ba47926342",
+    "source_fingerprint": "sha256:34fca3f833bcab53f1c9a5ed1945f9976af0cb5fa078f49b16a7a623afd92a6b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6238c8a3dd51a842deb1b1707cb40218d8d625a972385e274e3598623202253e",

@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phase 013 checked its removal with name sweeps over the template file names, which miss prose that still calls a deleted template an add-on, add-on lists and counts, and runtime mirrors outside `.skilled/`",
     "created_at": "2026-10-26T11:50:28Z",
-    "last_save_at": "2026-10-31T15:22:21.051Z",
+    "last_save_at": "2026-10-31T15:28:43.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20a655464fc3a964484f6d6586f910aa4ed11990203327fb823089790e26c28c",
+    "source_fingerprint": "sha256:9ab3d764611740da48673048759980a835fe006fb780b2e950328cadf682cbf4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "68371acd6830fd2f03bda99ad2515306bac544a690cb619ddd7aac24c469efb4",
       "plan.md": "48acebe10ddb114e7a4f26f360df1d28e91dccc01eb08faa28fedf724e5adcb0",
-      "tasks.md": "bfd823cab5c792957943f01f85f04868cf1d2f596f28b64f5926a9dd9e4d5e52",
+      "tasks.md": "d4cc43e3328b7361267bdd3e1f16623bd89ea8450309afccd6819aa78800e4b8",
       "implementation-summary.md": "5f63ece59f639d94bc4e7232017b72c0ec051c16d257d5d22857dd6224edf882"
     },
     "last_active_at": null

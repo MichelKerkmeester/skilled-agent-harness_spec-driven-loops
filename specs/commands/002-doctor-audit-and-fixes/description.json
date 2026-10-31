@@ -8,10 +8,10 @@
     "fixes"
   ],
   "lastUpdated": "2026-10-31T13:31:06.000Z",
-  "specId": "036",
+  "specId": "002",
   "folderSlug": "doctor-audit-and-fixes",
   "parentChain": [
-    "system-speckit"
+    "commands"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

@@ -341,7 +341,7 @@ You are a dispatched Task subagent. This repository's AGENTS.md treats a dispatc
 pre-resolved for the spec-folder question, and this prompt is that pre-resolution.
 
 Your write authority is already bound. The spec folder is:
-  specs/system-speckit/041-weak-model-spec-authoring/002-template-and-example-defect-repair
+  specs/system-speckit/040-weak-model-spec-authoring/002-template-and-example-defect-repair
 
 Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
 A failed edit match means a stale anchor: re-read the file and retry; halt only after three

@@ -89,7 +89,7 @@ Entries written to the v4 contract still ran long. The workflow drew content fro
 | `.skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.2.0.md` | Create | Concision pass: the mode's entry, written to the new rules |
 | `.skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/*.md` | Modify | Concision pass: CHG-008 and CHG-009 cite rule 7, the renumbered release-line rule |
 | `.hermes/skills/sk-create-changelog/SKILL.md` | Regenerate | Concision pass: generated copy of the new `SKILL.md` |
-| `specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style/*` | Create | This packet's docs and nested changelog entry |
+| `specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style/*` | Create | This packet's docs and nested changelog entry |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -132,7 +132,7 @@ Entries written to the v4 contract still ran long. The workflow drew content fro
 - **SC-001**: The rewritten template, read beside `v4.0.0.0.md`, models the same structure and voice; a changelog generated from it would not look out of place in `.skilled/changelog/system-spec-kit/`.
 - **SC-002**: The worked example passes the packet's own validation checks; a deliberately wrong sample (old table format) fails them.
 - **SC-003**: `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py` passes on every rewritten file.
-- **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/056-changelog-system/001-sk-create-changelog-v4-style --strict` returns RESULT: PASSED.
+- **SC-004**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/055-changelog-system/001-sk-create-changelog-v4-style --strict` returns RESULT: PASSED.
 - **SC-005**: After the concision pass, the mode's new entry and the lean worked example carry fewer bullets than the entries they follow, in the same voice, and sk-doc serves compiled routing again once the commit re-mints its manifest.
 <!-- /ANCHOR:success-criteria -->
 
