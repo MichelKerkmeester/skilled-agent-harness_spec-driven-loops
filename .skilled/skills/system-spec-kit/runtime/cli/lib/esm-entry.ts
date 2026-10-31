@@ -17,6 +17,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
  * ordinary rather than exotic, since a worktree sharing a build directory and a temporary
  * directory under an aliased root both produce it.
  *
+ * Each side is resolved on its own. Under --preserve-symlinks-main Node keeps the linked spelling
+ * in the module's own URL as well, so neither side can be assumed canonical already.
+ *
  * Resolution failure falls back to the unresolved comparison rather than raising. These callers
  * include hooks and validators, where returning the conservative answer is better than throwing.
  *
@@ -29,15 +32,25 @@ export function isMainModule(importMetaUrl: string): boolean {
     return false;
   }
 
-  const absolute = path.resolve(entrypoint);
-  let canonical = absolute;
+  const launch = canonicalPath(entrypoint);
+  let modulePath: string;
   try {
-    canonical = realpathSync(absolute);
+    modulePath = fileURLToPath(importMetaUrl);
   } catch {
-    // Falls through to the unresolved path below.
+    // A URL that names no file cannot be the entrypoint file; compare it unresolved.
+    return importMetaUrl === pathToFileURL(launch).href;
   }
 
-  return importMetaUrl === pathToFileURL(canonical).href;
+  return launch === canonicalPath(modulePath);
+}
+
+function canonicalPath(filePath: string): string {
+  const absolute = path.resolve(filePath);
+  try {
+    return realpathSync(absolute);
+  } catch {
+    return absolute;
+  }
 }
 
 /**

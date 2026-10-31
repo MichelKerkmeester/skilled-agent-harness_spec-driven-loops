@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-10-12 |
 | **Branch** | `scaffold/051-symlinked-runtime-root` |
 | **Related** | `system-speckit/031-system-speckit-v4/039-entry-point-symlink-resolution`, whose fix covers the case without the flag |
@@ -96,6 +96,8 @@ A save run from a repository that links `.skilled` resolves that repository as i
 |----|-------------|
 | REQ-003 | An explicit `--project-root` overrides the derived root |
 | REQ-004 | A save whose input holds no exchanges either refuses with a non-zero exit or writes and exits non-zero with a warning naming the empty input |
+
+REQ-004 is settled by the empty-save decision in `implementation-summary.md`: a save with nothing in it already exits 1 with `INSUFFICIENT_CONTEXT_ABORT` and names the missing evidence, so no workflow code changed and a test pins the behaviour.
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -174,6 +176,8 @@ A save run from a repository that links `.skilled` resolves that repository as i
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Refuse an empty-exchanges save, or write it and exit non-zero with a warning? Refusing is simpler and loses nothing a reader needs. Warning keeps hooks that save every turn from failing loudly. Decide after counting empty saves in recent hook logs.
-- Does any reader of `CONFIG.PROJECT_ROOT` mean the runtime repository rather than the project? The inventory in the plan answers this before the root changes.
+Both planning questions are answered, and `implementation-summary.md` records the evidence.
+
+- Empty saves: neither option was taken. The existing `INSUFFICIENT_CONTEXT_ABORT` gate already exits 1 on a save with nothing in it, and refusing on empty exchanges alone would fail every Stop-hook auto-save.
+- Readers of `CONFIG.PROJECT_ROOT`: every one is project-owned. Runtime assets such as the templates stay script-relative.
 <!-- /ANCHOR:questions -->

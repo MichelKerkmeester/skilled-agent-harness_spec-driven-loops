@@ -40,9 +40,9 @@ The entry guard is half fixed. The earlier packet canonicalized the launch path 
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is Met, each case having failed against the pre-change code
-- [ ] Runtime build, CLI build and both typechecks pass
-- [ ] `validate.sh --strict` passes on this folder
+- [x] Every row in `acceptance-criteria.md` is Met, each case having failed against the pre-change code — 8 of 8; the failing runs and the controls that pass either way are in `scratch/verification-evidence.md`
+- [x] Runtime build, CLI build and both typechecks pass — `npm run typecheck` and `npm run build` exit 0 in both workspaces. `npm run typecheck:tests` in `runtime` reports the same 99 errors as main
+- [ ] `validate.sh --strict` passes on this folder — the five documents raise no error and `AC_CLOSURE` reads 8/8. Two `GENERATED_METADATA_*` errors stay until `repair-derived.cjs` refreshes `description.json` and `graph-metadata.json`
 <!-- /ANCHOR:quality-gates -->
 
 ---

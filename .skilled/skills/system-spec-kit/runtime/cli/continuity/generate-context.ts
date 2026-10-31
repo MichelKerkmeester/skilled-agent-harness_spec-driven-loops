@@ -25,6 +25,7 @@ import {
   findChildFolderSync,
 } from '../core/index.js';
 import { resolveSpecFolderCanonical } from '../core/spec-root-canonical-resolver.js';
+import { gitTopLevel } from '../core/config.js';
 import { assertSpecWriteAllowed } from '../core/spec-root-write-guard.js';
 import { runWorkflow, releaseFilesystemLock } from '../core/workflow.js';
 import { loadCollectedData } from '../loaders/index.js';
@@ -85,6 +86,8 @@ Options:
                          description.json, graph-metadata.json and the phase-parent pointers;
                          only full-auto writes the continuity fields. hybrid behaves like plan-only.
   --full-auto       Shortcut for --planner-mode full-auto
+  --project-root <dir>  The repository to save into. Defaults to the git top-level of the
+                        working directory, and must sit inside it.
 
 Examples:
   node generate-context.js ${SESSION_SCOPED_SAVE_CONTEXT_EXAMPLE}
@@ -1127,6 +1130,46 @@ function validateArguments(): void {
 // ───────────────────────────────────────────────────────────────────
 // 6. MAIN ENTRY POINT
 // ───────────────────────────────────────────────────────────────────
+
+/** Split `--project-root <dir>` out of argv, so the parser below never sees it. */
+function takeProjectRootOption(argv: string[]): { value: string | null; rest: string[] } {
+  const rest: string[] = [];
+  let value: string | null = null;
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] !== '--project-root') {
+      rest.push(argv[i]);
+      continue;
+    }
+    const candidate = argv[i + 1];
+    if (!candidate || candidate.startsWith('--')) {
+      throw new Error('--project-root requires a directory');
+    }
+    value = candidate;
+    i++;
+  }
+  return { value, rest };
+}
+
+/**
+ * Check an explicit project root. It has to exist, and it has to sit inside the repository the
+ * run started in, so the option can narrow the target but never send a save somewhere else.
+ */
+function resolveProjectRootOption(value: string): string {
+  const resolved = path.resolve(value);
+  if (!fsSync.existsSync(resolved) || !fsSync.statSync(resolved).isDirectory()) {
+    throw new Error(`--project-root is not a directory: ${resolved}`);
+  }
+  const repository = gitTopLevel(process.cwd());
+  if (repository) {
+    const canonical = fsSync.realpathSync(resolved);
+    const canonicalRepository = fsSync.realpathSync(repository);
+    const relative = path.relative(canonicalRepository, canonical);
+    if (relative.startsWith('..') || path.isAbsolute(relative)) {
+      throw new Error(`--project-root must be inside the working repository ${canonicalRepository}: ${resolved}`);
+    }
+  }
+  return resolved;
+}
 async function main(
   argv: string[] = process.argv.slice(2),
   stdinReader: (stdin?: NodeJS.ReadStream) => Promise<string> = readAllStdin,
@@ -1141,6 +1184,11 @@ async function main(
   CONFIG.PROJECT_ROOT = projectRoot;
 
   try {
+    const projectRootOption = takeProjectRootOption(argv);
+    argv = projectRootOption.rest;
+    if (projectRootOption.value !== null) {
+      CONFIG.PROJECT_ROOT = resolveProjectRootOption(projectRootOption.value);
+    }
     const parsed = await parseArguments(argv, stdinReader);
     CONFIG.DATA_FILE = parsed.dataFile;
     CONFIG.SPEC_FOLDER_ARG = parsed.specFolderArg && isUnqualifiedSpecFolderReference(parsed.specFolderArg)
@@ -1176,7 +1224,7 @@ async function main(
     }
   } catch (error: unknown) {
     const errMsg = error instanceof Error ? error.message : String(error);
-    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires|Continuity rejected/.test(errMsg);
+    const isExpected = /Spec folder not found|No spec folders|specs\/ directory|retry attempts|Expected|Invalid JSON provided|requires a target spec folder|requires an inline JSON string|requires? a non-empty JSON object|JSON object payload|no longer supported|session-id requires|project-root|Continuity rejected/.test(errMsg);
 
     if (isExpected) {
       console.error(`\nError: ${errMsg}`);

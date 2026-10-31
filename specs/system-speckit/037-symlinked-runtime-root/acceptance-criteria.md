@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/037-symlinked-runtime-root"
-    last_updated_at: "2026-10-12T12:00:00Z"
-    last_updated_by: "claude-opus-5.5"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Write the T001 to T003 cases and record each failing against the current code"
+    last_updated_at: "2026-10-31T17:40:00Z"
+    last_updated_by: "deepseek-v4.1-flash-1017"
+    recent_action: "Set every criterion Met with the run and the case that prove it"
+    next_safe_action: "None. Rerun the cited cases before reopening a row"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts"
@@ -21,9 +21,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-10-12-symlinked-runtime-root-plan"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "AC-007: a save with nothing in it already exits 1 with INSUFFICIENT_CONTEXT_ABORT, so the criterion is met by a test rather than a workflow change"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.2 -->
 # Acceptance Criteria: Symlinked runtime: entry guard, project root and empty saves
@@ -41,7 +42,7 @@ _memory:
 
 **Packet:** system-speckit/037-symlinked-runtime-root
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-10-12
 <!-- /ANCHOR:metadata -->
 
@@ -52,18 +53,18 @@ _memory:
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it.
 
-Vitest commands run from `.skilled/skills/system-spec-kit/runtime`. Probe commands run from the `AI Systems` repository, whose `.skilled` links to this runtime. Each case must be seen failing against the current code before it counts.
+Vitest commands run from `.skilled/skills/system-spec-kit/runtime`, and the cli cases run from `runtime/cli` where they need that project. Probe commands run from a temp repository whose `.skilled` links to the build under test. Each case must be seen failing against the current code before it counts.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a script launched through a symlinked path with `--preserve-symlinks-main`, When it asks whether it is the entrypoint, Then the answer is yes | `npx vitest run tests/esm-entry-symlink.vitest.ts -t "recognizes the entrypoint under preserve-symlinks-main"`. Fails today because `cli/lib/esm-entry.ts:40` compares a canonical launch path with a non-canonical module URL | Unmet | - |
-| AC-002 | REQ-001 | Given the same script imported rather than executed under the flag, When it asks the same question, Then the answer is no | `npx vitest run tests/esm-entry-symlink.vitest.ts -t "stays dormant on import under preserve-symlinks-main"`. The control: a guard that always answered yes would pass AC-001 and fail here | Unmet | - |
-| AC-003 | REQ-001 | Given `generate-description.js` with no arguments, When it runs with `--preserve-symlinks-main` through `.skilled`, Then it prints its usage and exits 1, as it does without the flag | `node --preserve-symlinks-main .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js`, then read its exit status. On 2026-10-12 this printed 0 bytes and `0`, against usage and `1` without the flag | Unmet | - |
-| AC-004 | REQ-001 | Given `generate-context.js --not-an-option`, When it runs with the flag through `.skilled`, Then it reports the unknown option and exits 1 | `node --preserve-symlinks-main .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --not-an-option`, then read its exit status. On 2026-10-12 this printed 0 bytes and `0`, against an error and `1` without the flag | Unmet | - |
-| AC-005 | REQ-002 | Given a temp git repository whose `.skilled` links to this runtime and which holds a spec packet, When `generate-context.js` saves to that packet from there, Then the write lands in the temp repository and no `divergent-duplicate` refusal is raised | A case named `saves to the linked repository's own packet` in `cli/tests/generate-context-linked-root.vitest.ts`. Fails today because `cli/core/config.ts:299` resolves the root to this runtime repository | Unmet | - |
-| AC-006 | REQ-003 | Given `--project-root` naming the temp repository, When the save runs from an unrelated directory, Then the write lands in the named repository | A case named `honours an explicit project root` in the same file. Fails today because the CLI rejects `--project-root` as an unknown option | Unmet | - |
-| AC-007 | REQ-004 | Given a save input whose `exchanges` array is empty, When the save runs, Then it exits non-zero and stderr names the empty input | A case named `does not exit 0 on an empty save` in the same file. Fails today because `cli/core/workflow.ts:1517-1520` only warns and the save exits 0 | Unmet | - |
-| AC-008 | REQ-001 | Given the spec-kit suites, both builds and both typechecks, When they run from the final state, Then they pass and the test count differs from the baseline only by the added cases | `npm test` in `runtime` and in `runtime/cli`, with the baseline captured at T004 | Unmet | - |
+| AC-001 | REQ-001 | Given a script launched through a symlinked path with `--preserve-symlinks-main`, When it asks whether it is the entrypoint, Then the answer is yes | `npx vitest run tests/esm-entry-symlink.vitest.ts` from `runtime` → `Tests 11 passed (11)`. The case is `lets a script launched through a symlink with --preserve-symlinks-main know it was run` at `.skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts:184`, and the direct module-URL case is `recognizes the entrypoint when the module URL keeps the linked path` at `.skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts:98`. Against the old guard the new cases read `Tests 3 failed \| 8 passed (11)` | Met | - |
+| AC-002 | REQ-001 | Given the same script imported rather than executed under the flag, When it asks the same question, Then the answer is no | `leaves an imported module dormant under --preserve-symlinks-main` at `.skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts:201` passes in the same `Tests 11 passed (11)` run, and passed against the old guard too: it is the control against a guard that answered yes every time | Met | - |
+| AC-003 | REQ-001 | Given `generate-description.js` with no arguments, When it runs with `--preserve-symlinks-main` through `.skilled`, Then it prints its usage and exits 1, as it does without the flag | From a temp repository whose `.skilled` links to the build under test: `node --preserve-symlinks-main .skilled/skills/system-spec-kit/runtime/cli/dist/spec-folder/generate-description.js` → exit 1 with 92 bytes of usage, the same as without the flag. Main's build with the flag exited 0 with 0 bytes. Recorded at scratch/verification-evidence.md:62 | Met | - |
+| AC-004 | REQ-001 | Given `generate-context.js --not-an-option`, When it runs with the flag through `.skilled`, Then it reports the unknown option and exits 1 | Same setup: `node --preserve-symlinks-main .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --not-an-option` → exit 1 with 1049 bytes, against 854 without the flag. Main's build with the flag exited 0 with 0 bytes. The case at `.skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts:138` asserts `Unknown option: --not-an-option` on stderr and the same exit status with and without the flag | Met | - |
+| AC-005 | REQ-002 | Given a temp git repository whose `.skilled` links to this runtime and which holds a spec packet, When `generate-context.js` saves to that packet from there, Then the write lands in the temp repository and no `divergent-duplicate` refusal is raised | `npx vitest run --config ../../vitest.config.ts --project cli tests/symlinked-project-root.vitest.ts` from `runtime/cli` → `Tests 10 passed (10)`. The case is `saves to the linked repository's own packet` at `.skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts:108`, which asserts exit 0 with `description.json` and `graph-metadata.json` in the temp repository and nothing under the runtime repository's `specs/demo`. Against main's build the same save exits 1 with `Spec packet write blocked for "demo/001-demo": collision class is divergent-duplicate (no readable packet roots)`, at scratch/verification-evidence.md:38 | Met | - |
+| AC-006 | REQ-003 | Given `--project-root` naming the temp repository, When the save runs from an unrelated directory, Then the write lands in the named repository | The case `honours an explicit project root from a directory outside any repository` at `.skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts:119`, part of `Tests 10 passed (10)`. It runs from a directory outside any repository with `--project-root` naming the linked repository, and asserts exit 0 with `graph-metadata.json` landing in that repository | Met | - |
+| AC-007 | REQ-004 | Given a save input whose `exchanges` array is empty, When the save runs, Then it exits non-zero and stderr names the empty input | The case `does not exit 0 on a save with nothing in it` at `.skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts:129` sends `exchanges: []` and asserts a non-zero exit with `INSUFFICIENT_CONTEXT_ABORT` and `No primary evidence was captured` on stderr. The measurement behind it, and the decision to change no workflow code, are at scratch/verification-evidence.md:91 | Met | - |
+| AC-008 | REQ-001 | Given the spec-kit suites, both builds and both typechecks, When they run from the final state, Then they pass and the test count differs from the baseline only by the added cases | `npm run typecheck` and `npm run build` in `runtime` and in `runtime/cli` → exit 0. The cli suite read `Test Files 193 passed \| 3 skipped (196)` and `Tests 2255 passed \| 20 skipped (2275)`, against main's `2245 passed \| 20 skipped`: a delta of exactly the 10 new cases. The runtime suite read `Tests 4220 passed \| 21 skipped (4241)` with no main baseline captured, so its delta is not stated. Recorded at scratch/verification-evidence.md:86 | Met | - |
 
 ### Status values
 
@@ -88,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Planned. No criterion has been worked yet.
+Every criterion is met with a recorded run. Nothing was waived, so the decision record carries no closure ADR.
 <!-- /ANCHOR:closure -->

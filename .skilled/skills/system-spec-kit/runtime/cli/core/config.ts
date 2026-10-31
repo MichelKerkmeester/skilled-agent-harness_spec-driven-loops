@@ -8,6 +8,7 @@
 // Central configuration loader — reads JSONC config, resolves paths, exports CONFIG object
 import * as path from 'path';
 import * as fsSync from 'fs';
+import { execFileSync } from 'child_process';
 import { stripJsoncComments } from '@spec-kit/shared/utils/jsonc-strip';
 import { structuredLog } from '../utils/logger.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
@@ -89,6 +90,61 @@ function findScriptsRoot(startDir: string): string {
 }
 
 const SCRIPTS_DIR: string = findScriptsRoot(moduleDir);
+
+// The repository that holds this runtime. It owns the templates and other assets, which is why
+// those stay script-relative, but it is only the project when a session runs inside it.
+const RUNTIME_REPOSITORY_ROOT: string = path.resolve(SCRIPTS_DIR, '..', '..', '..', '..', '..');
+
+function usesSpecKit(dir: string): boolean {
+  return fsSync.existsSync(path.join(dir, '.skilled', 'skills', 'system-spec-kit'));
+}
+
+/** The git top-level holding `cwd`, or null outside a repository. */
+export function gitTopLevel(cwd: string): string | null {
+  try {
+    const top = execFileSync('git', ['rev-parse', '--show-toplevel'], {
+      cwd,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    }).trim();
+    return top.length > 0 ? top : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Resolve the repository whose spec folders a run reads and writes.
+ *
+ * The project is the caller's repository, not the one this runtime lives in. A repository that
+ * links `.skilled` from a shared checkout reaches this module through the link, and Node resolves
+ * the module to the shared checkout, so a root derived from the module's location named the
+ * shared checkout and every save looked for its packet in the wrong tree. The working directory's
+ * git top-level is the caller's repository, whether it is a subfolder, a worktree or the runtime
+ * repository itself.
+ *
+ * @param cwd - The directory the run started in
+ * @param runtimeRoot - The repository holding this runtime, the last fallback
+ * @returns The project root, with a stderr note whenever the runtime repository is the fallback
+ */
+export function resolveProjectRoot(
+  cwd: string = process.cwd(),
+  runtimeRoot: string = RUNTIME_REPOSITORY_ROOT,
+): string {
+  const top = gitTopLevel(cwd);
+  if (top && usesSpecKit(top)) {
+    return top;
+  }
+  if (usesSpecKit(cwd)) {
+    return path.resolve(cwd);
+  }
+  process.stderr.write(
+    `[spec-kit] ${cwd} is not inside a repository that uses spec-kit; `
+      + `using the runtime repository ${runtimeRoot} as the project root\n`,
+  );
+  return runtimeRoot;
+}
 
 // ───────────────────────────────────────────────────────────────────
 // 4. CONFIG VALIDATION
@@ -296,7 +352,7 @@ const STATIC_CONFIG = Object.freeze({
   TIMEZONE_OFFSET_HOURS: userConfig.timezoneOffsetHours,
   TOOL_PREVIEW_LINES: userConfig.toolPreviewLines,
   TEMPLATE_DIR: path.join(SCRIPTS_DIR, '..', '..', 'templates'),
-  PROJECT_ROOT: path.resolve(SCRIPTS_DIR, '..', '..', '..', '..', '..'),
+  PROJECT_ROOT: resolveProjectRoot(),
   MAX_FILES_IN_MEMORY: userConfig.maxFilesInMemory,
   MAX_OBSERVATIONS: userConfig.maxObservations,
   MIN_PROMPT_LENGTH: userConfig.minPromptLength,

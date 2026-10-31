@@ -9,7 +9,7 @@
 
 import { realpathSync } from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 /**
  * Return whether the current module URL is the process entrypoint.
@@ -19,6 +19,9 @@ import { pathToFileURL } from 'node:url';
  * exactly as it was typed. Reaching a module through a linked directory therefore made a file
  * differ from itself, and the caller concluded it was merely imported: the work was skipped and
  * the process still exited 0, which is indistinguishable from having done it.
+ *
+ * Each side is resolved on its own. Under --preserve-symlinks-main Node keeps the linked spelling
+ * in the module's own URL as well, so neither side can be assumed canonical already.
  *
  * Resolution failure falls back to the unresolved comparison rather than raising, because the
  * callers here are hooks and validators, where a conservative answer beats a thrown one.
@@ -32,13 +35,23 @@ export function isMainModule(importMetaUrl: string): boolean {
     return false;
   }
 
-  const absolute = path.resolve(entrypoint);
-  let canonical = absolute;
+  const launch = canonicalPath(entrypoint);
+  let modulePath: string;
   try {
-    canonical = realpathSync(absolute);
+    modulePath = fileURLToPath(importMetaUrl);
   } catch {
-    // Falls through to the unresolved path below.
+    // A URL that names no file cannot be the entrypoint file; compare it unresolved.
+    return importMetaUrl === pathToFileURL(launch).href;
   }
 
-  return importMetaUrl === pathToFileURL(canonical).href;
+  return launch === canonicalPath(modulePath);
+}
+
+function canonicalPath(filePath: string): string {
+  const absolute = path.resolve(filePath);
+  try {
+    return realpathSync(absolute);
+  } catch {
+    return absolute;
+  }
 }

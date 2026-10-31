@@ -93,6 +93,48 @@ describe('isMainModule', () => {
     }
   });
 
+  // Under --preserve-symlinks-main Node keeps the linked spelling in the module's own URL too, so
+  // the module side can arrive non-canonical. Both sides naming the same file must still match.
+  it('recognizes the entrypoint when the module URL keeps the linked path', () => {
+    const root = makeRoot();
+    mkdirSync(join(root, 'real'));
+    mkdirSync(join(root, 'link'));
+    const real = join(root, 'real', 'tool.mjs');
+    writeFileSync(real, '\n', 'utf8');
+    const linked = join(root, 'link', 'tool.mjs');
+    symlinkSync(real, linked);
+
+    const original = process.argv[1];
+    try {
+      process.argv[1] = linked;
+      expect(isMainModule(pathToFileURL(linked).href)).toBe(true);
+      process.argv[1] = real;
+      expect(isMainModule(pathToFileURL(linked).href)).toBe(true);
+    } finally {
+      process.argv[1] = original;
+    }
+  });
+
+  it('reports false for a linked module URL that names a different file', () => {
+    const root = makeRoot();
+    mkdirSync(join(root, 'real'));
+    mkdirSync(join(root, 'link'));
+    const entry = join(root, 'real', 'entry.mjs');
+    const library = join(root, 'real', 'library.mjs');
+    writeFileSync(entry, '\n', 'utf8');
+    writeFileSync(library, '\n', 'utf8');
+    const linkedLibrary = join(root, 'link', 'library.mjs');
+    symlinkSync(library, linkedLibrary);
+
+    const original = process.argv[1];
+    try {
+      process.argv[1] = entry;
+      expect(isMainModule(pathToFileURL(linkedLibrary).href)).toBe(false);
+    } finally {
+      process.argv[1] = original;
+    }
+  });
+
   it('reports false rather than raising when the launch path does not exist', () => {
     const root = makeRoot();
     const missing = join(root, 'gone', 'tool.mjs');
@@ -114,8 +156,8 @@ describe('the plain-JavaScript twin', () => {
   const twin = resolve(__dirname, '..', 'cli', 'lib', 'esm-entry.mjs');
 
   /** What a real child process concludes when launched by `launchPath`. */
-  function askChild(launchPath: string): string {
-    const result = spawnSync(process.execPath, [launchPath], { encoding: 'utf8' });
+  function askChild(launchPath: string, nodeFlags: string[] = []): string {
+    const result = spawnSync(process.execPath, [...nodeFlags, launchPath], { encoding: 'utf8' });
     if (result.status !== 0) {
       throw new Error(`probe failed: ${result.stderr || result.stdout}`);
     }
@@ -137,6 +179,46 @@ describe('the plain-JavaScript twin', () => {
 
     expect(askChild(real)).toBe('ENTRY');
     expect(askChild(join(root, 'link', 'tool.mjs'))).toBe('ENTRY');
+  });
+
+  it('lets a script launched through a symlink with --preserve-symlinks-main know it was run', () => {
+    const root = makeRoot();
+    mkdirSync(join(root, 'real'));
+    mkdirSync(join(root, 'link'));
+    const real = join(root, 'real', 'tool.mjs');
+    writeFileSync(
+      real,
+      `import { isMainModule } from ${JSON.stringify(pathToFileURL(twin).href)};\n`
+        + 'process.stdout.write(isMainModule(import.meta.url) ? "ENTRY" : "NOT-ENTRY");\n',
+      'utf8',
+    );
+    symlinkSync(real, join(root, 'link', 'tool.mjs'));
+
+    expect(askChild(join(root, 'link', 'tool.mjs'), ['--preserve-symlinks-main'])).toBe('ENTRY');
+    expect(askChild(real, ['--preserve-symlinks-main'])).toBe('ENTRY');
+  });
+
+  it('leaves an imported module dormant under --preserve-symlinks-main', () => {
+    const root = makeRoot();
+    mkdirSync(join(root, 'real'));
+    mkdirSync(join(root, 'link'));
+    const library = join(root, 'real', 'library.mjs');
+    writeFileSync(
+      library,
+      `import { isMainModule } from ${JSON.stringify(pathToFileURL(twin).href)};\n`
+        + 'export const verdict = isMainModule(import.meta.url) ? "ENTRY" : "NOT-ENTRY";\n',
+      'utf8',
+    );
+    const entry = join(root, 'real', 'entry.mjs');
+    writeFileSync(
+      entry,
+      `const m = await import(${JSON.stringify(pathToFileURL(library).href)});\n`
+        + 'process.stdout.write(m.verdict);\n',
+      'utf8',
+    );
+    symlinkSync(entry, join(root, 'link', 'entry.mjs'));
+
+    expect(askChild(join(root, 'link', 'entry.mjs'), ['--preserve-symlinks-main'])).toBe('NOT-ENTRY');
   });
 
   it('leaves an imported module dormant', () => {
@@ -164,7 +246,7 @@ describe('the plain-JavaScript twin', () => {
 // exclude one another's trees, and the scripts that run before any build can import neither. They
 // have to answer identically, or fixing one leaves the others quietly wrong.
 describe('the copies agree', () => {
-  it('answers identically for a symlinked launch path, a direct one, and an import', () => {
+  it('answers identically for symlinked and direct launch paths and module URLs, and an import', () => {
     const root = makeRoot();
     mkdirSync(join(root, 'real'));
     mkdirSync(join(root, 'link'));
@@ -179,6 +261,8 @@ describe('the copies agree', () => {
       [linked, pathToFileURL(real).href, true],
       [real, pathToFileURL(real).href, true],
       [real, pathToFileURL(other).href, false],
+      [linked, pathToFileURL(linked).href, true],
+      [real, pathToFileURL(linked).href, true],
     ];
 
     const original = process.argv[1];

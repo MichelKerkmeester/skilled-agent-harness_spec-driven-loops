@@ -37,27 +37,28 @@
       "code"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts",
-      ".skilled/skills/system-spec-kit/runtime/lib/esm-entry.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
-      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
-      ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
-      "runtime/tests/esm-entry-symlink.vitest.ts",
       "runtime/cli/lib/esm-entry.ts",
       "runtime/lib/esm-entry.ts",
       "runtime/cli/lib/esm-entry.mjs",
       "runtime/cli/core/config.ts",
       "runtime/cli/continuity/generate-context.ts",
-      "runtime/cli/core/workflow.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/esm-entry.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts",
+      "runtime/cli/tests/symlinked-project-root.vitest.ts",
+      "continuity/migrate-trigger-phrase-residual.ts",
+      "continuity/backfill-frontmatter.ts"
     ],
     "entities": [
       {
@@ -93,37 +94,49 @@
       {
         "name": "esm-entry.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.ts",
+        "path": "runtime/cli/lib/esm-entry.ts",
         "source": "derived"
       },
       {
         "name": "esm-entry.mjs",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/esm-entry.mjs",
+        "path": "runtime/cli/lib/esm-entry.mjs",
         "source": "derived"
       },
       {
         "name": "config.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/config.ts",
+        "path": "runtime/cli/core/config.ts",
         "source": "derived"
       },
       {
         "name": "generate-context.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "path": "runtime/cli/continuity/generate-context.ts",
         "source": "derived"
       },
       {
         "name": "esm-entry-symlink.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/tests/esm-entry-symlink.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "symlinked-project-root.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/symlinked-project-root.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "migrate-trigger-phrase-residual.ts",
+        "kind": "code",
+        "path": "continuity/migrate-trigger-phrase-residual.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-frontmatter.ts",
+        "kind": "code",
+        "path": "continuity/backfill-frontmatter.ts",
         "source": "derived"
       },
       {
@@ -191,23 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
     "created_at": "2026-10-12T09:25:17Z",
-    "last_save_at": "2026-10-31T15:28:37.810Z",
+    "last_save_at": "2026-10-31T17:44:49.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34fca3f833bcab53f1c9a5ed1945f9976af0cb5fa078f49b16a7a623afd92a6b",
+    "source_fingerprint": "sha256:0d7f6e3dcd25e876943771f0cc24021aa30f1962667322a528f9eca9cfc735c9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6238c8a3dd51a842deb1b1707cb40218d8d625a972385e274e3598623202253e",
-      "plan.md": "fa40797f980bfa5ed3356ec559f2e4675a9d3302e3f4dced1e038f7d6c86770e",
-      "tasks.md": "aaf5836427b96aacfde92e315851ee571cd2ba349889131251364bfab842603d",
-      "implementation-summary.md": "64c0821821fbda00fbc0b4c3720604e5b729e479798aba24567a7f09290dbbb7"
+      "spec.md": "6f83a8050193f4e0602f51a6b009945dcfb7c94db361fb5f7d87b5f49802325a",
+      "plan.md": "bb9dca68ad2a21b4d23f445d2d6aed12ecd2e14458c9e85bc132866528142b6e",
+      "tasks.md": "7c2d240c5b4a48b75d22bdab485dffd5adc72f02d31cbf9670a35a732eca081f",
+      "implementation-summary.md": "02edede529ce703ee3952d03de09ef7f41ed5e6e86ea7ab1820716cd722b113c"
     },
     "last_active_at": null
   }
