@@ -150,7 +150,7 @@ Two plan entries changed. `workflow.ts` stayed untouched, for the reason under E
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Two maintenance scripts keep their own `resolveProjectRoot()`** `continuity/migrate-trigger-phrase-residual.ts` and `continuity/backfill-frontmatter.ts` sit outside this packet's frozen scope and still resolve from the script's location.
+1. **The two maintenance scripts now share the resolver** A follow-up commit replaced the local `resolveProjectRoot()` in `continuity/migrate-trigger-phrase-residual.ts` and `continuity/backfill-frontmatter.ts` with the one in `core/config.ts`, so they resolve the caller's repository too. `tests/backfill-frontmatter.vitest.ts`, `tests/memory-quality-phase6-migration.vitest.ts` (4 passed) and `node tests/test-frontmatter-backfill.js` (pass=15, fail=0, the same as main) pass after it.
 2. **The graph-metadata write guard trusts a workspace only when it carries `.opencode`** A linked repository without that folder still receives no `graph-metadata.json`, so the test repository links both `.skilled` and `.opencode`.
 3. **`npm run typecheck:tests` in `runtime` is red** 99 errors, the same 99 as main. The one that names a `config.ts` is `shared/config.ts`, a file this change does not touch.
 4. **The runtime suite has no main baseline** The cli suite's delta is exactly the 10 added cases. The runtime suite's delta is not stated because no baseline was captured for it.

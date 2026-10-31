@@ -10,7 +10,7 @@ Recorded on 2026-10-31 in the worktree `worktrees/public/304-doctor-symlink-inst
   - git context: `session-extractor.ts`, plus `extractGitContext` in `workflow.ts`
   - session file paths: `session-extractor.ts`
 
-  None of them reads a runtime asset. `TEMPLATE_DIR` and the config file path stay script-relative and unchanged. Two maintenance scripts, `continuity/migrate-trigger-phrase-residual.ts` and `continuity/backfill-frontmatter.ts`, keep their own `resolveProjectRoot()`. They are outside this packet's frozen scope and are noted, not changed.
+  None of them reads a runtime asset. `TEMPLATE_DIR` and the config file path stay script-relative and unchanged. Two maintenance scripts, `continuity/migrate-trigger-phrase-residual.ts` and `continuity/backfill-frontmatter.ts`, keep their own `resolveProjectRoot()`. They were outside this packet's first commit. A follow-up commit points both at the shared resolver in `core/config.ts`.
 
 ## The fix
 

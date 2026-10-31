@@ -19,10 +19,8 @@ import {
   SPEC_DOC_BASENAMES,
   type ClassifiedDocument,
 } from '../lib/frontmatter-migration.js';
-import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
-import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
-
-const moduleDir = dirnameFromImportMeta(import.meta.url);
+import { isMainModule } from '../lib/esm-entry.js';
+import { resolveProjectRoot } from '../core/config.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -83,22 +81,6 @@ interface MigrationReport {
 // ───────────────────────────────────────────────────────────────────
 // 3. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
-
-function resolveProjectRoot(): string {
-  const candidates = [
-    findRepoRoot(moduleDir),
-    process.cwd(),
-  ];
-
-  for (const candidate of candidates) {
-    const templates = path.join(candidate, '.skilled', 'skills', 'system-spec-kit', 'templates');
-    if (fs.existsSync(templates)) {
-      return candidate;
-    }
-  }
-
-  return candidates[0];
-}
 
 const PROJECT_ROOT = resolveProjectRoot();
 const TEMPLATES_ROOT = path.join(PROJECT_ROOT, '.skilled', 'skills', 'system-spec-kit', 'templates');

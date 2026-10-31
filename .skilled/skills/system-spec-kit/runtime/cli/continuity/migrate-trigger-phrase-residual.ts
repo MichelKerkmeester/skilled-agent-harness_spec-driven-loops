@@ -23,10 +23,8 @@ import {
   isAllowlistedShortProductName,
   sanitizeTriggerPhrase,
 } from '../lib/trigger-phrase-sanitizer.js';
-import { dirnameFromImportMeta, isMainModule } from '../lib/esm-entry.js';
-import { findRepoRoot } from '@spec-kit/runtime/hooks/lib/workspace/repo-root.mjs';
-
-const moduleDir = dirnameFromImportMeta(import.meta.url);
+import { isMainModule } from '../lib/esm-entry.js';
+import { resolveProjectRoot } from '../core/config.js';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. TYPE DEFINITIONS
@@ -134,21 +132,6 @@ Default scan roots:
     character replaced by "-")
 `;
 
-function resolveProjectRoot(): string {
-  const candidates = [
-    findRepoRoot(moduleDir),
-    process.cwd(),
-  ];
-
-  for (const candidate of candidates) {
-    const skillRoot = path.join(candidate, '.skilled', 'skills', 'system-spec-kit');
-    if (fs.existsSync(skillRoot)) {
-      return candidate;
-    }
-  }
-
-  return candidates[0];
-}
 
 const PROJECT_ROOT = resolveProjectRoot();
 const LIVE_REPO_MEMORY_ROOT = path.join(PROJECT_ROOT, '.opencode', 'specs');

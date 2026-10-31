@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
     "created_at": "2026-10-12T09:25:17Z",
-    "last_save_at": "2026-10-31T17:44:49.839Z",
+    "last_save_at": "2026-10-31T17:59:44.661Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d7f6e3dcd25e876943771f0cc24021aa30f1962667322a528f9eca9cfc735c9",
+    "source_fingerprint": "sha256:8a71e010cbd61383d067592215c251f385d95b80091a0be7f8937ce5effe7442",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f83a8050193f4e0602f51a6b009945dcfb7c94db361fb5f7d87b5f49802325a",
       "plan.md": "bb9dca68ad2a21b4d23f445d2d6aed12ecd2e14458c9e85bc132866528142b6e",
       "tasks.md": "7c2d240c5b4a48b75d22bdab485dffd5adc72f02d31cbf9670a35a732eca081f",
-      "implementation-summary.md": "02edede529ce703ee3952d03de09ef7f41ed5e6e86ea7ab1820716cd722b113c"
+      "implementation-summary.md": "c5605ea249b62e44be7835bdb446b2fa2904c684a42448baaade6a38e7cfb152"
     },
     "last_active_at": null
   }
