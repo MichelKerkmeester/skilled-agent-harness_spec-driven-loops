@@ -42,7 +42,7 @@ for layout in today skilled-only whole-link; do
     development="$ROOT/$layout-${entry#.}/Development"
     code_environment="$development/Code_Environment"
     checkout="$code_environment/Public"
-    mkdir -p "$code_environment/Barter/specs" "$code_environment/Websites/anobel.com/specs" \
+    mkdir -p "$code_environment/Barter/specs" "$code_environment/Websites/A. Nobel & Zn./specs" \
       "$development/AI_Systems/Barter/specs" "$checkout/$real/bin"
     cp "$RELINKER" "$checkout/$real/bin/relink-local-specs.sh"
     [ "$layout" != "today" ] || mkdir -p "$checkout/.skilled/future-task-placeholder"
@@ -57,7 +57,7 @@ for layout in today skilled-only whole-link; do
     expect "$layout through $entry: barter pointer lands under the checkout's specs" \
       test "$(readlink "$checkout/specs/barter")" = "$code_environment/Barter/specs"
     expect "$layout through $entry: anobel.com pointer lands under the checkout's specs" \
-      test "$(readlink "$checkout/specs/anobel.com")" = "$code_environment/Websites/anobel.com/specs"
+      test "$(readlink "$checkout/specs/anobel.com")" = "$code_environment/Websites/A. Nobel & Zn./specs"
     expect "$layout through $entry: ai-systems pointer lands under the checkout's specs" \
       test "$(readlink "$checkout/specs/ai-systems")" = "$development/AI_Systems/Barter/specs"
     expect "$layout through $entry: no pointer lands inside the source tree" \

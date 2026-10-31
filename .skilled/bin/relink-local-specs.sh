@@ -21,7 +21,7 @@ DEV_DIR="$(cd "$CE_DIR/.." && pwd)"                   # the Development root
 # link-relative-to-repo  ->  external real target
 MAP=(
   "specs/barter|$CE_DIR/Barter/specs"
-  "specs/anobel.com|$CE_DIR/Websites/anobel.com/specs"
+  "specs/anobel.com|$CE_DIR/Websites/A. Nobel & Zn./specs"
   "specs/ai-systems|$DEV_DIR/AI_Systems/Barter/specs"
 )
 
