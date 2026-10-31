@@ -37,6 +37,8 @@ const INSTALL_PHRASES = [
   'use skilled in my own project',
   'onboard a project repo to skilled',
   'guide me through installing skilled',
+  'skilled in my other repository',
+  'skilled in another repository',
 ];
 const WORKFLOW_STEP_NAMES = ['Locate', 'Ask', 'Inspect', 'Checklist', 'Warn'];
 const SAVE_CAVEAT = 'context saves from a linked repository resolve the project root through the link until the symlinked-runtime-root fix ships, so run /doctor:setup from inside the target repo and check that a save lands in that repo\'s own specs/.';

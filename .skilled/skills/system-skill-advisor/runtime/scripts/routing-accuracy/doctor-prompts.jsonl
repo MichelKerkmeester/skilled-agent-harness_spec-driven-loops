@@ -69,3 +69,6 @@
 {"id":"doctor-b-agents-md-restore-01","prompt":"/doctor:agents-md restore","expected_top":"command-doctor-agents-md-restore","expected_second":null,"wave":"B-agents-md-restore"}
 {"id":"doctor-b-agents-md-restore-02","prompt":"undo an agents md embed run","expected_top":"sk-doc","expected_second":"command-doctor-agents-md-restore","wave":"B-agents-md-restore"}
 {"id":"doctor-b-agents-md-restore-03","prompt":"restore agents md from the backup","expected_top":"command-doctor-agents-md-restore","expected_second":null,"wave":"B-agents-md-restore"}
+{"id":"doctor-b-install-01","prompt":"set up skilled in my other repository","expected_top":"command-doctor-install","expected_second":null,"wave":"B-install"}
+{"id":"doctor-b-install-02","prompt":"set up skilled","expected_top":"command-doctor-setup","expected_second":null,"wave":"B-install"}
+{"id":"doctor-b-symlink-check-01","prompt":"the skilled links in my project are broken","expected_top":"command-doctor-symlink-check","expected_second":null,"wave":"B-symlink-check"}

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A doctor command that no entry point names is a command nobody runs",
     "created_at": "2026-10-31T13:38:33Z",
-    "last_save_at": "2026-10-31T16:29:17.122Z",
+    "last_save_at": "2026-10-31T21:08:55.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aba94cd15a37bdcc877f56f66b3232c3ff4bff8f51513e4330383b3ea02c1190",
+    "source_fingerprint": "sha256:3075b15fd8535f18fb44ec91b89c6355715f9a728cfd4ac99eb5b7269d428be2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7b1cf0ba801bcaea4f1ad6c9dc4d5cb39ec8ab09f0132e257a89ffd4e19a4298",
       "plan.md": "0426a25e126660b446cb1b25b9f62b057d7d9a5870c7535f6ff50d0af3fe96e7",
       "tasks.md": "adfde5ac01735d5417bfea6b9bdd0ba82d8ce3e03e4659ccf52e97aa88a4602f",
       "decision-record.md": "c5067cb875aae96462d76931f1d2132a91a24a068f1b4f6aad103118ea452314",
-      "implementation-summary.md": "e3d5e714e089e75354ca17024c4680555fc9c7ba4818b0eb15a03667718794df"
+      "implementation-summary.md": "4c61c3f9929f0bb5777393636f7b89a22facfb9af963e7a5cf32ab6d336cbcb5"
     },
     "last_active_at": null
   }

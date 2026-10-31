@@ -946,7 +946,9 @@
             "set up skilled in another repo",
             "use skilled in my own project",
             "onboard a project repo to skilled",
-            "guide me through installing skilled"
+            "guide me through installing skilled",
+            "skilled in my other repository",
+            "skilled in another repository"
           ],
           "intentSignals": [
             "/doctor:install"
@@ -1616,6 +1618,9 @@
             "find broken skilled symlinks",
             "which runtime folders are linked",
             "is skilled linked into my project",
+            "the skilled links are broken",
+            "broken skilled links in my project",
+            "skilled links in my project",
             "/doctor:symlink"
           ],
           "intentSignals": [
@@ -1658,7 +1663,9 @@
             "symlink skilled into my project",
             "link the claude folder into my repo",
             "repair broken skilled symlinks",
-            "create the skilled links in a repo"
+            "create the skilled links in a repo",
+            "link skilled into my repo",
+            "link skilled into another project"
           ],
           "intentSignals": [
             "/doctor:symlink link"

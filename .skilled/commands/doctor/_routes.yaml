@@ -548,6 +548,9 @@ routes:
       - "find broken skilled symlinks"
       - "which runtime folders are linked"
       - "is skilled linked into my project"
+      - "the skilled links are broken"
+      - "broken skilled links in my project"
+      - "skilled links in my project"
 
   - command: /doctor:symlink
     target: link
@@ -565,6 +568,8 @@ routes:
       - "link the claude folder into my repo"
       - "repair broken skilled symlinks"
       - "create the skilled links in a repo"
+      - "link skilled into my repo"
+      - "link skilled into another project"
 
   - command: /doctor:symlink
     target: unlink
@@ -600,6 +605,8 @@ routes:
       - "use skilled in my own project"
       - "onboard a project repo to skilled"
       - "guide me through installing skilled"
+      - "skilled in my other repository"
+      - "skilled in another repository"
 
 # ─────────────────────────────────────────────────────────────────
 # COMPANION COMMAND ROUTES (/doctor:mcp sub-actions)

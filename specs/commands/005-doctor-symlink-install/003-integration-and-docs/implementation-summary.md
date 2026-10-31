@@ -139,7 +139,13 @@ The last step is the packet validator. `bash .skilled/skills/system-spec-kit/run
 2. **The bridge files are proved live, not proved byte-identical.** The recorded run is the deriver in regenerate mode exiting 0, not `--check`. The phrase reach probe and the advisor picks prove the generated files are loaded and routing; a `--check` run is the cheap way to close the rest.
 3. **The held-out ranking fixture is unchanged and hash-pinned.** Ranking is proved on the tune rows only.
 4. **Broken links in a target repo are reported, not repaired.** `/doctor:symlink link` writes only after a yes and a printed plan digest, so a drifted repo stays drifted until someone approves the plan.
-5. **The generated metadata was re-derived after the last doc edit.** `repair-derived.cjs --folder specs/commands/005-doctor-symlink-install/003-integration-and-docs --apply` reported `repaired=1 failed=0`, and strict validation then printed `RESULT: PASSED`. Any later edit to these docs needs the same re-derive before validation passes again.
+5. **Doctor bridges match their own wording only.** A follow-up probe with reworded prompts, one per doctor command, found the doctor command in the recommendations for 3 of 16 and first for none. "set up skilled in my other repository" went to `/doctor:setup`. The follow-up added these phrases:
+   - install: "skilled in my other repository" and "skilled in another repository"
+   - symlink check: "the skilled links are broken", "broken skilled links in my project" and "skilled links in my project"
+   - symlink link: "link skilled into my repo" and "link skilled into another project"
+
+   It also added three rows to the advisor's `doctor-prompts.jsonl`. Two of them fail on the old phrases. After the change, phrase reach reports `STATUS=OK phrases=191 bridges=32`, the doctor node tests pass 991 of 991, and the advisor suite passes 1353 with 8 skipped. Three more install phrases were dropped because the `/doctor:helper` ranker put `/doctor:symlink check` first for them. Reworded prompts for the other doctor commands still miss, and fixing that is a change to how the advisor scores.
+6. **The generated metadata was re-derived after the last doc edit.** `repair-derived.cjs --folder specs/commands/005-doctor-symlink-install/003-integration-and-docs --apply` reported `repaired=1 failed=0`, and strict validation then printed `RESULT: PASSED`. Any later edit to these docs needs the same re-derive before validation passes again.
 <!-- /ANCHOR:limitations -->
 
 ---
