@@ -121,7 +121,7 @@ Two corrections came out of the phase review, both now in the shipped files and 
 
 1. **The check reports manifest entries, not the whole repository.** A broken link outside the manifest stays unreported, and Obsidian Plugin's `.pi-subagents` link is one. ADR-001 settles the standard: the check answers whether each framework entry is what it should be, and the target repository's own links belong to whoever made them. AC-004 was `Superseded` for that reason, and AC-007 asks for what the command proves.
 2. **The guide never closes the loop.** It prints the five commands and stops. Whether they were run, and whether they worked, is `/doctor:setup`'s job from inside the target repo.
-3. **The caveat line is a warning, not a fix.** Context saves from a linked repository still resolve the project root through the link until the symlinked-runtime-root packet ships.
+3. **The caveat line now states where a save lands.** It first warned that saves from a linked repository resolved the project root through the link. Once `system-speckit/037-symlinked-runtime-root` shipped, a save resolves the project root from the working directory's git top-level, so the line now says to run saves from inside the target repo and not from the Skilled checkout. The workflow, the presentation, the contract test and the root README carry the same wording.
 4. **Nothing checks the printed checklist against execution.** The steps are data the operator runs by hand, so a step that fails at run time prints the failing command's own error, not the guide's.
 <!-- /ANCHOR:limitations -->
 

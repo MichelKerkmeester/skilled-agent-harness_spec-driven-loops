@@ -282,7 +282,7 @@ Unlink removes only what that run created and restores only what it replaced. A 
 
 Run `/doctor:symlink check --root <dir>` at any time. It reports each framework folder as linked whole, merged, partly merged, missing or broken, names missing entries and broken links, and warns about absolute links that git already tracks. When the checkout gains new commands or prompts, a merged folder shows them as missing, and `/doctor:symlink link` adds them.
 
-> **Context saves.** A save run from a linked project currently resolves the project root through the link. Until that fix ships, run `/doctor:setup` from inside the project and check that a save lands in the project's own `specs/` folder.
+> **Context saves.** A save lands in the project's own `specs/` folder when it runs from inside the project. Run `/doctor:setup` and your saves from the project, not from the Skilled checkout.
 
 &nbsp;
 

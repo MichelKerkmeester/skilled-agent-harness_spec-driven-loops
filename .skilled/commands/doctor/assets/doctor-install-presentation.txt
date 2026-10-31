@@ -140,7 +140,7 @@ A printed step is handed back, never run: each writing command shows its own pla
 Print this one line word for word after the steps, on every run, before the result. It is fixed: do not shorten it and do not rewrite it in the operator's words.
 
 ```text
-context saves from a linked repository resolve the project root through the link until the symlinked-runtime-root fix ships, so run /doctor:setup from inside the target repo and check that a save lands in that repo's own specs/.
+context saves land in the target repo's own specs/ when they run from inside it, so run /doctor:setup and later saves from inside the target repo, not from the Skilled checkout.
 ```
 
 ## 8. Result Templates
@@ -195,6 +195,6 @@ STATUS=FAIL ERROR="[message]"
 | A step prints `n/a` as its class | That printed command has no route in the manifest yet. The command still works; only its class is unknown |
 | A line reads `local` or `foreign-link` | Left alone on purpose. Move that file or link yourself, or bring it under step 1's shape, and rerun the guide |
 | Only the steps are wanted | `list` prints them with no build check and no inspection |
-| A saved session lands in the checkout's `specs/` | The caveat in section 7. Run `/doctor:setup` from inside the target repo and check where the save went |
+| A saved session lands in the checkout's `specs/` | The save ran from the Skilled checkout. Run it again from inside the target repo, as the caveat in section 7 says |
 
 End interactive presentations with: `What would you like to do next?`

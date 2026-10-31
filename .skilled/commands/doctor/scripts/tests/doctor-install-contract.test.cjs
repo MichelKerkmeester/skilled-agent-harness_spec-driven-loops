@@ -41,7 +41,7 @@ const INSTALL_PHRASES = [
   'skilled in another repository',
 ];
 const WORKFLOW_STEP_NAMES = ['Locate', 'Ask', 'Inspect', 'Checklist', 'Warn'];
-const SAVE_CAVEAT = 'context saves from a linked repository resolve the project root through the link until the symlinked-runtime-root fix ships, so run /doctor:setup from inside the target repo and check that a save lands in that repo\'s own specs/.';
+const SAVE_CAVEAT = 'context saves land in the target repo\'s own specs/ when they run from inside it, so run /doctor:setup and later saves from inside the target repo, not from the Skilled checkout.';
 
 const CONTRACT = JSON.parse(read(path.join(CONTRACT_ASSETS, 'command-contract.json')));
 const SCHEMA = JSON.parse(read(path.join(CONTRACT_ASSETS, 'command-contract.schema.json')));
