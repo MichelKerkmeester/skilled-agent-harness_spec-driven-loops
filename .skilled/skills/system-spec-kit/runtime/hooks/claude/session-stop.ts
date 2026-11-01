@@ -9,9 +9,9 @@ import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
 import { createRequire } from 'node:module';
-import { dirname, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { createInterface } from 'node:readline';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
   parseHookStdin, hookLog, withTimeout, HOOK_TIMEOUT_MS, getRequiredSessionId,
   type HookInput,
@@ -88,6 +88,28 @@ function resolveGenerateContextScriptPath(): string | null {
   }
 
   return null;
+}
+
+// A captured answer only becomes durable once a decision record quotes it, so the
+// session end reports what is still queued. Best-effort by design: a missing or
+// unreadable queue must never fail the Stop hook.
+export async function decisionCaptureNudge(
+  projectDir: string,
+  sessionId: string,
+): Promise<string | null> {
+  try {
+    const corePath = join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
+    const core = (await import(pathToFileURL(corePath).href)) as {
+      takeNudge?: (dir: string, session: string) => number;
+    };
+    const count = core.takeNudge?.(projectDir, sessionId) ?? 0;
+    if (count > 0) {
+      return `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.`;
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
 
 export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed';
@@ -627,6 +649,16 @@ async function main(): Promise<void> {
     return;
   }
   await processStopHook(input);
+
+  if (typeof input.session_id === 'string' && input.session_id.length > 0) {
+    const projectDir = process.env.CLAUDE_PROJECT_DIR
+      || (typeof input.cwd === 'string' ? input.cwd : '')
+      || process.cwd();
+    const message = await decisionCaptureNudge(projectDir, input.session_id);
+    if (message) {
+      process.stdout.write(`${JSON.stringify({ systemMessage: message })}\n`);
+    }
+  }
 }
 
 // ───────────────────────────────────────────────────────────────────

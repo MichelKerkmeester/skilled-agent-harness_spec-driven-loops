@@ -1,0 +1,61 @@
+{
+  "session_id": "00000000-0000-4000-8000-000000000001",
+  "transcript_path": "/REDACTED/.claude/projects/REDACTED/00000000-0000-4000-8000-000000000001.jsonl",
+  "cwd": "/REDACTED/project",
+  "scratchpad_dir": "/REDACTED/scratchpad",
+  "prompt_id": "00000000-0000-4000-8000-000000000002",
+  "permission_mode": "bypassPermissions",
+  "effort": {
+    "level": "high"
+  },
+  "hook_event_name": "PostToolUse",
+  "tool_name": "AskUserQuestion",
+  "tool_input": {
+    "questions": [
+      {
+        "question": "Probe test question for 042 T001 (harmless, the answer is not used): which option do you pick?",
+        "header": "Probe test",
+        "options": [
+          {
+            "label": "Probe answer A",
+            "description": "Any choice works; this only checks that the hook sees the answer."
+          },
+          {
+            "label": "Probe answer B",
+            "description": "Any choice works; this only checks that the hook sees the answer."
+          }
+        ],
+        "multiSelect": false
+      }
+    ],
+    "answers": {
+      "Probe test question for 042 T001 (harmless, the answer is not used): which option do you pick?": "Probe answer A"
+    },
+    "annotations": {}
+  },
+  "tool_response": {
+    "questions": [
+      {
+        "question": "Probe test question for 042 T001 (harmless, the answer is not used): which option do you pick?",
+        "header": "Probe test",
+        "options": [
+          {
+            "label": "Probe answer A",
+            "description": "Any choice works; this only checks that the hook sees the answer."
+          },
+          {
+            "label": "Probe answer B",
+            "description": "Any choice works; this only checks that the hook sees the answer."
+          }
+        ],
+        "multiSelect": false
+      }
+    ],
+    "answers": {
+      "Probe test question for 042 T001 (harmless, the answer is not used): which option do you pick?": "Probe answer A"
+    },
+    "annotations": {}
+  },
+  "tool_use_id": "toolu_REDACTED0001",
+  "duration_ms": 1
+}

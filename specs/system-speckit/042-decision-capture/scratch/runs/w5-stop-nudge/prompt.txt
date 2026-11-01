@@ -1,0 +1,48 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, keep every existing behavior of the Stop hook, run the CHECK, report honestly.
+
+TASK: Make the Claude Stop hook print one user-visible nudge when operator answers captured this session are still waiting for a full-auto save.
+
+ALLOWED WRITE PATHS (nothing else):
+  .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+  .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+
+BANNED OPERATIONS: any git command that writes; npm/npx install; npm run build; editing any other file; opening any .env or token file; running opencode.
+
+CONTEXT: read .skilled/hooks/decision-capture/lib/capture-core.mjs. Its export takeNudge(projectDir, sessionId) returns the pending answer count the first time it rises and 0 otherwise. It imports only node built-ins.
+
+CHANGE in session-stop.ts:
+1. Add, in the HELPERS section, an exported function:
+   export async function decisionCaptureNudge(projectDir: string, sessionId: string): Promise<string | null>
+   It dynamic-imports pathToFileURL(join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs')).href (import pathToFileURL from 'node:url' and join from 'node:path' alongside the existing imports), calls takeNudge(projectDir, sessionId), and returns
+   `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.`
+   when count > 0, else null. Any thrown error returns null: the hook must never fail because of the nudge. Add a one-line WHY comment.
+2. In main(), after `await processStopHook(input);`, when input.session_id is a non-empty string: projectDir = process.env.CLAUDE_PROJECT_DIR || (typeof input.cwd === 'string' ? input.cwd : '') || process.cwd(); const message = await decisionCaptureNudge(projectDir, input.session_id); when message is set, write `${JSON.stringify({ systemMessage: message })}\n` to process.stdout. Nothing else in main() or processStopHook changes.
+
+TESTS: append a describe block to hook-session-stop.vitest.ts. In each test make a mkdtempSync project dir, copy the real core with fs.copyFileSync from path.resolve(__dirname or import.meta.dirname, '../../../../hooks/decision-capture/lib/capture-core.mjs') into <tmp>/.skilled/hooks/decision-capture/lib/capture-core.mjs, and remove the tmp dir after. Tests:
+- with two queued records for session 's1' (write <tmp>/.skilled/skills/.state/decision-capture/<hex of 's1'>.jsonl with two JSON lines that have distinct `key` fields, hex = Buffer.from('s1').toString('hex')), decisionCaptureNudge returns a message starting with '2 operator answer(s)', and a second call returns null
+- with no queue, it returns null
+- with a project dir that has no capture-core.mjs, it returns null and does not throw
+
+CHECK (run from .skilled/skills/system-spec-kit/runtime and paste the output tails):
+  ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts
+  ../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <test counts and tsc exit code>
+STATUS=OK|FAIL <one line why>

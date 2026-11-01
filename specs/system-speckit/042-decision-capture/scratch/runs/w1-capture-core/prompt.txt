@@ -1,0 +1,66 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, copy the house style of the file named under STYLE, keep the change small, run the CHECK, report honestly.
+
+TASK: Create a Node ESM module that captures answers to an "ask the user a question" tool into a local queue, plus its Claude hook adapter and a node:test suite.
+
+ALLOWED WRITE PATHS (create these three files, nothing else):
+  .skilled/hooks/decision-capture/lib/capture-core.mjs
+  .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+  .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+
+BANNED OPERATIONS: any git command that writes (add, commit, push, checkout, reset, stash, branch); npm/npx install; editing or deleting any file outside the three paths above; opening any .env or token file; running opencode.
+
+STYLE: read .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs first and copy its header box, numbered ALL-CAPS section dividers, fail-open main() and imports of isHookEnabled ('../../shared/hook-flags.mjs') and readStdin ('../../shared/hook-adapter-shared.cjs'). Read .skilled/hooks/goal/lib/goal-core.cjs lines 683-735 and copy its mkdir lock (acquire with retry, stale reap after 120000 ms, Atomics.wait between retries, release in finally). Comments explain WHY; never put spec, task, requirement or ADR ids in comments.
+
+capture-core.mjs MUST export exactly these:
+1. QUEUE_RELATIVE_DIR = '.skilled/skills/.state/decision-capture'
+2. queueDir(projectDir) -> path.join(projectDir, QUEUE_RELATIVE_DIR)
+3. toolSourceKey(runtime, sessionId, toolUseId, questionIndex) -> `${runtime}:${sessionId}:${toolUseId}:${questionIndex}`
+4. chatSourceKey(runtime, sessionId, questionTurnId, answerTurnId) -> `${runtime}:${sessionId}:chat:${questionTurnId}:${answerTurnId}`
+5. isProcessQuestion({ question, header, options }) -> true when ANY holds (case-insensitive):
+   - question or header matches /\bgate\s*3\b/, /\bspec[\s-]?folder\b/, /\bpacket folder\b/, /\bworktree\b/, or /\bbranch\b/ together with one of current|new|create|work on
+   - question matches /\b(commit|push)\b/ together with one of may|should|can|ok|okay|permission|go ahead|proceed|allowed|approve
+   - any option label matches /^[A-D]\)\s*(Existing|New|Related|Skip)\b/
+   - question matches /documentation/ together with /folder|packet/
+6. normalizeAskUserQuestion({ runtime, sessionId, toolUseId, toolInput, toolResponse, source, now }) -> array of records, [] on anything malformed. toolInput.questions is an array of { question, header, options:[{label, description}], multiSelect }. toolResponse.answers is an object mapping the exact question text to the answer (a string, or an array of strings joined with ', '). For each question index i with a non-empty answer that is not a process question, emit:
+   { key: toolSourceKey(runtime, sessionId, toolUseId, i), kind: 'tool', runtime, session_id: sessionId, tool_use_id: toolUseId, question_index: i, question, header: header || '', options: option labels as strings, multi_select: Boolean(multiSelect), answer, source, captured_at: now }
+   Keep question and answer text byte-exact (no trim). A question with no answer is skipped. If toolInput.questions is missing, use toolResponse.questions.
+7. queueFile(projectDir, sessionId) -> path.join(queueDir(projectDir), Buffer.from(String(sessionId),'utf8').toString('hex') + '.jsonl')
+8. appendRecords(projectDir, sessionId, records) -> { appended, skipped }. Under the lock, read existing keys from queueFile, append only records whose key is new (one JSON line each), mkdir -p the dir with mode 0o700. Never throws for an empty list.
+9. readQueue(projectDir, sessionId) -> records array; ignores blank or unparseable lines; [] when the file is missing.
+10. readConsumedKeys(projectDir) -> Set of `key` values from queueDir/consumed.jsonl (lines like {"key":"...","packet":"...","id":"Q004","at":"..."}); empty Set when missing; ignores bad lines.
+11. pendingRecords(projectDir, sessionId) -> readQueue records whose key is not in readConsumedKeys.
+12. takeNudge(projectDir, sessionId) -> number. Count = pendingRecords length. Read the previous count from queueDir/<same hex>.nudge (a plain integer, 0 when missing). If count > previous, write count to that file and return count; otherwise return 0. If count is 0, write 0 and return 0.
+
+ask-capture-posttooluse.mjs: if !isHookEnabled('decision-capture') exit 0. Parse stdin JSON; if tool_name !== 'AskUserQuestion' exit 0. projectDir = payload.cwd || process.env.CLAUDE_PROJECT_DIR || process.cwd(). records = normalizeAskUserQuestion({ runtime:'claude', sessionId: payload.session_id, toolUseId: payload.tool_use_id, toolInput: payload.tool_input, toolResponse: payload.tool_response, source:'hook', now: new Date().toISOString() }); appendRecords when records.length > 0. Print nothing, exit 0 always, catch everything.
+
+capture-core.test.mjs uses node:test and node:assert/strict with a fresh fs.mkdtempSync dir per test as projectDir. Tests (one each):
+- a valid two-question input yields two records with the exact keys and byte-exact answer text
+- appending the same records twice appends them once (second call returns appended 0)
+- malformed input (null toolInput, questions not an array, answers missing) returns [] and writes no file
+- process questions are dropped: a Gate 3 question with options 'A) Existing','B) New','D) Skip'; a worktree question with options 'A) Create a git worktree','B) Work on current branch'; 'May I commit and push these changes?'; while 'Which colour should the badge use?' is kept
+- pendingRecords excludes a key listed in consumed.jsonl
+- takeNudge returns 2 the first time with two pending records, then 0 on the next call
+- the adapter: spawn `node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` with stdin JSON {tool_name:'AskUserQuestion', session_id:'s1', tool_use_id:'t1', cwd:<tmpdir>, tool_input:{questions:[...]}, tool_response:{answers:{...}}}; it exits 0, prints nothing, and the queue file has one line. Also a stdin of 'not json' exits 0.
+
+CHECK (run from the repository root and paste the full output):
+  node --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node --check .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <pass/fail counts copied from the node --test output>
+STATUS=OK|FAIL <one line why>

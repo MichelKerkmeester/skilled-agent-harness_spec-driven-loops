@@ -1,0 +1,71 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, mirror how the existing `_continuity` field is carried, keep every existing behavior, run the CHECK, report honestly.
+
+TASK: Carry an `operatorDecisions` array from the save payload to the existing decision-record writer during a --full-auto save. The writer already exists: `writeDecisionRecord`, `recordConsumedKeys` and `DecisionRecordWriteError` are exported from '@spec-kit/runtime/api' (source: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts). Read that file first. Do not change it.
+
+ALLOWED WRITE PATHS (edit only these; all under .skilled/skills/system-spec-kit/runtime/cli/):
+  utils/input-normalizer.ts
+  types/session-types.ts
+  core/workflow.ts
+  continuity/generate-context.ts   (HELP_TEXT only)
+  tests/save-continuity-write.vitest.ts
+
+BANNED OPERATIONS: any git command that writes; npm/npx install; npm run build; editing any other file; opening any .env or token file; running opencode.
+
+STEP 1 input-normalizer.ts. Find every place `_continuity` / `continuityFields` / `extractContinuityFields` appears (around lines 150, 186, 675, 875, 1079, 1123) and mirror it for operator decisions:
+- export function extractOperatorDecisions(data): OperatorDecisionPayload[] | null. Read data.operatorDecisions ?? data.operator_decisions; null when absent. Map each entry, accepting snake or camel keys: sourceKey|source_key, decided, why, supersedes, carriedBy|carried_by, question, options (default []), answer, scope (default 'local'). Export the OperatorDecisionPayload interface with those camelCase fields; scope is 'local' | 'cross-phase'.
+- add 'operatorDecisions', 'operator_decisions' to KNOWN_RAW_INPUT_FIELDS.
+- in validateInputData push an error (same style as the other errors) when the value is present but not an array; when an entry lacks a non-blank sourceKey, decided, carriedBy, question or answer (message names the index and field, e.g. `operatorDecisions[0].decided is required`); when sourceKey does not match /^[A-Za-z0-9:._-]+$/; when options is not an array of strings; when scope is not 'local' or 'cross-phase'.
+- set `_operatorDecisions` on the normalized object next to each place `_continuity` is set, and declare `_operatorDecisions?: OperatorDecisionPayload[];` next to `_continuity?` in the interface near line 150.
+
+STEP 2 types/session-types.ts: add `_operatorDecisions?: Array<Record<string, unknown>>;` with a one-line comment, next to `_continuity?` (line 144).
+
+STEP 3 core/workflow.ts:
+- in the preloaded merge (around line 1064) add `_operatorDecisions: n._operatorDecisions ?? preloadedData._operatorDecisions,`.
+- add `writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError` to the existing '@spec-kit/runtime/api' import (line 66), and `isPhaseParent` from '../spec/is-phase-parent.js'.
+- add `async function planOperatorDecisions(params: { targetPath; collectedData; plannerMode; log; warn })` after writePlannedContinuity. Return null when collectedData._operatorDecisions is empty. When plannerMode !== 'full-auto', log `   Operator decisions proposed (written only by a --full-auto save):` then one line `   - <sourceKey>: <decided>` per entry, and return null. Otherwise resolve one folder per entry: scope 'cross-phase' -> targetPath when isPhaseParent(targetPath), else path.dirname(targetPath) when isPhaseParent of it, else targetPath. Scope 'local' -> targetPath when it is not a phase parent; else resolveContinuityLeaf(targetPath, payloadPaths, hints) dynamically imported from '../continuity/generate-context.js' exactly as planContinuityWrite does, with payloadPaths built the same way; an 'unresolved' result warns `   Operator decision <sourceKey> not written: <reason>` and skips that entry. Return the entries grouped by folder in first-seen order.
+- add `async function writePlannedOperatorDecisions(params: { plan; targetPath; now; log; warn })`. For each group: when the folder is not the target (compare canonicalPath), hold acquireCanonicalSaveLock(folder) as writePlannedContinuity does. Call writeDecisionRecord(folder, entries mapped to { sourceKey, decided, why, supersedes, carriedBy, question, options, answer }). Then recordConsumedKeys(CONFIG.PROJECT_ROOT, the folder relative to CONFIG.PROJECT_ROOT, result.ids, now). When the folder is not the target and result.changed, refresh its graph metadata exactly as writePlannedContinuity does (refreshGraphMetadata with saveLineage 'same_pass'). Log `   Wrote <n> operator decision(s) to <relative folder>` and, when levelMarkerAdded, `   Added the missing level marker to <relative folder>/spec.md`. A DecisionRecordWriteError warns `   Operator decisions not written to <relative folder>: <message>` and leaves those keys unconsumed; any other error is rethrown.
+- call planOperatorDecisions right after `const continuityPlan = await planContinuityWrite({...});` (around line 1765) with the same arguments, and call writePlannedOperatorDecisions right after the `if (continuityPlan) { await writePlannedContinuity(...) }` block (around line 1880), before stampCompletionFingerprintIfNeeded, with now: metadataSaveTimestamp.
+
+STEP 4 continuity/generate-context.ts HELP_TEXT: after the "Continuity fields" block add:
+  Operator decisions (optional, written only by a --full-auto save):
+  - operatorDecisions[] (or operator_decisions): one entry per confirmed operator answer with
+    sourceKey, decided, carriedBy, question and answer, plus optional why, supersedes, options[]
+    and scope ("local", the default, or "cross-phase")
+  - sourceKey comes from the decision-capture queue or transcript sweep, and maps to one stable Q id
+  - A missing why is written as "Not stated." and a missing supersedes as "None"
+  - The writer upserts decision-record.md, keeps the verbatim question, options and answer in its
+    appendix, then records the key as consumed. A plan-only save lists the entries and writes nothing
+  - A local entry aimed at a phase parent follows the continuity leaf rule; a cross-phase entry goes
+    to the phase parent. An unresolved target writes nothing and leaves the entry pending
+
+STEP 5 tests/save-continuity-write.vitest.ts: add a new describe block that reuses the file's buildWorkspace(), save(), read() and the same beforeEach/afterEach mocking. Helper entry: { sourceKey: 'claude:s1:toolu_a:0', decided: 'Use the blue badge.', carriedBy: 'REQ-001', question: 'Which colour should the badge use?', options: ['Blue','Green'], answer: 'Blue' }. Tests:
+- full-auto save targeting LEAF with operatorDecisions writes LEAF/decision-record.md holding `| Q001 | Use the blue badge. | Not stated. | None | REQ-001 |` and `<!-- source: claude:s1:toolu_a:0 -->`, and root/.skilled/skills/.state/decision-capture/consumed.jsonl contains the key
+- the same full-auto save run twice leaves LEAF/decision-record.md byte-identical
+- a plan-only save (fullAuto false) creates no decision-record.md and no consumed.jsonl
+- target PARENT with scope 'cross-phase' writes PARENT/decision-record.md; target PARENT with scope 'local' and filesModified naming a file inside LEAF writes LEAF/decision-record.md
+- target PARENT with scope 'local' and filesModified naming one file in LEAF and one in OTHER writes no decision-record.md anywhere and leaves consumed.jsonl without the key
+- an entry missing decided makes the save fail (expect the save promise to reject) and writes no decision-record.md
+
+CHECK (run from .skilled/skills/system-spec-kit/runtime/cli, paste the output tails):
+  ../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/save-continuity-write.vitest.ts tests/input-normalizer-unit.vitest.ts tests/decision-record-writer.vitest.ts
+  ../../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <test counts and tsc exit code>
+STATUS=OK|FAIL <one line why>

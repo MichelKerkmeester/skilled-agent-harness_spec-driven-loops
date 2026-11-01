@@ -44,6 +44,7 @@ This table is the single source of truth for repo-authored hook kill-switch name
 | `skill-advisor` | `SYSTEM_SKILL_ADVISOR_DISABLED` | `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED`, `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED`, `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED` | enabled | inject | wired |
 | `spec-gate` | `SYSTEM_SPEC_GATE_DISABLED` | `SPECKIT_SPEC_GATE_DISABLED` | enabled | notice / deny | wired |
 | `completion` | `SYSTEM_COMPLETION_DISABLED` | `SYSTEM_COMPLETION_SENTINEL_DISABLED`, `SYSTEM_SPECKIT_COMPLETION_DISABLED` | enabled | warn | wired |
+| `decision-capture` | `SYSTEM_DECISION_CAPTURE_DISABLED` | none | enabled | queue (local, for the next save) | wired |
 | `codex-watchdog` | `CODEX_HOOKS_WATCHDOG_DISABLED` | `CODEX_WATCHDOG_DISABLED` | enabled | warn | wired |
 | `permission-policy` | `SYSTEM_PERMISSION_POLICY_DISABLED` | none | enabled | deny | wired |
 | `directive-lifecycle` | `SYSTEM_DIRECTIVE_LIFECYCLE_DISABLED` | none | enabled | inject cadence | wired |
@@ -123,6 +124,10 @@ hooks/
 |   +-- codex/    (same pair)
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/)
++-- decision-capture/                # operator answers queued for the next full-auto save
+|   +-- lib/capture-core.mjs, capture-core.test.mjs
+|   +-- claude/   ask-capture-posttooluse.mjs (PostToolUse on AskUserQuestion), fixtures/
+|   `-- bin/      sweep-transcript.mjs (Claude), sweep-opencode.mjs, sweep-devin.mjs, their tests, fixtures/
 +-- mcp-route-guard/                 # native mcp_* call -> Code Mode routing advisory
 |   +-- lib/mcp-route-guard.cjs, mcp-route-guard.test.cjs
 |   +-- claude/, devin/, codex/      mcp-route-guard.cjs
@@ -185,11 +190,12 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
+| `decision-capture` | claude (PostToolUse), plus save-time sweeps in `bin/` that read Claude, OpenCode and Devin transcripts | none |
 | session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop and compact-pointer on SessionStart after a compaction. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.
 
-`shared/hook-adapter-shared.cjs` is the stdin reader for the adapters that parse a raw JSON payload. The CommonJS adapters `require` it: `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs`, `task-dispatch/{claude,devin}/task-dispatch-guard.cjs` and `post-edit-quality/{claude,codex,devin}`. The ESM adapters import `readStdin` from it by name: `classifier-injection-screen/{claude,devin}`, `dispatch/{claude,codex,cursor,devin}` (preflight), `dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor` and `task-dispatch/{cursor,claude}`. Every one gives up at a 3000 ms deadline when its host never closes stdin.
+`shared/hook-adapter-shared.cjs` is the stdin reader for the adapters that parse a raw JSON payload. The CommonJS adapters `require` it: `mcp-route-guard/{claude,codex,devin}/mcp-route-guard.cjs`, `task-dispatch/{claude,devin}/task-dispatch-guard.cjs` and `post-edit-quality/{claude,codex,devin}`. The ESM adapters import `readStdin` from it by name: `classifier-injection-screen/{claude,devin}`, `decision-capture/claude`, `dispatch/{claude,codex,cursor,devin}` (preflight), `dispatch/{claude,codex,devin}` (audit), `goal/{cursor,devin}`, `mcp-route-guard/cursor` and `task-dispatch/{cursor,claude}`. Every one gives up at a 3000 ms deadline when its host never closes stdin.
 
 ---
 
@@ -264,6 +270,7 @@ For the *why* behind each absence, why a runtime has no adapter for a concern, s
 |---|---|---|---|---|---|---|
 | `codex-watchdog` | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | by-design: OpenCode plugin audits Codex hook installation | ✓ covered | by-design: OpenCode plugin audits Codex hook installation |
 | `completion` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
+| `decision-capture` | ✓ covered | unverified: no answered question tool call was found to probe | unverified: no answered question tool call was found to probe | by-design: the save-time transcript sweep reads answers from the stored transcript | by-design: the save-time transcript sweep reads answers from the stored session | unverified: no answered question tool call was found to probe |
 | `directive-lifecycle` | ✓ covered | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in the shared `user-prompt-submit` lifecycle | by-design: embedded in `system-skill-advisor` lifecycle state | by-design: embedded in `prompt-advisor.ts` directive de-dup |
 | `dispatch` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered |
 | `dist-freshness` | ✓ covered | ✓ covered | ✓ covered | ✓ covered | ✓ covered | by-design: runs `check-dist-staleness.sh --all` bundled into `session-start-advisories.ts` |

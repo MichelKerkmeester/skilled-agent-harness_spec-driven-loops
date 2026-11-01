@@ -1,0 +1,18 @@
+{
+  "id": "decision-capture",
+  "concern": "Queue operator answers to AskUserQuestion for the next full-auto save",
+  "bindings": {
+    "claude": [
+      {
+        "event": "PostToolUse",
+        "group": 4,
+        "slot": 0,
+        "matcher": "AskUserQuestion",
+        "runner": "node",
+        "script": ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+        "timeout": 5,
+        "fallback": "envelope"
+      }
+    ]
+  }
+}

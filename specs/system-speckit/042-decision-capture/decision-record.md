@@ -135,6 +135,111 @@ Scores are qualitative fit against the stated constraints, not measured results.
 
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
+---
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Refine the build plan against the code it touches
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-11-01 |
+| **Deciders** | Build orchestrator, on the operator's instruction to re-level and refine the plan (Q005) |
+
+---
+
+<!-- ANCHOR:adr-002-context -->
+### Context
+
+The operator asked for the packet to move to Level 3 and for the plan to be checked against the code and the overengineering rule before any build. Reading the named files showed four places where the plan asked for work that the code already does, cannot reach, or would duplicate.
+
+### Constraints
+
+- Every requirement and acceptance criterion stays in force. A refinement may change how a requirement is met, never whether.
+- Shared surfaces keep their contracts: the runtime API exports, the validation orchestrator, the hook registry and the save payload.
+<!-- /ANCHOR:adr-002-context -->
+
+---
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+
+**We chose**: six refinements, each tied to an observed fact.
+
+1. `spec-doc-structure.ts` is not changed. Its ADR sufficiency check only reads anchors whose id starts with `adr-` (`spec-doc-structure.ts:1244`), and a copy of this packet with its ADR removed and only the two operator anchors kept passed `SPEC_DOC_SUFFICIENCY`, `ANCHORS_VALID` and `TEMPLATE_SOURCE`. T015 becomes a check, not an edit.
+2. The transcript sweep carries its own small JSONL reader. `claude-transcript.ts` reads token usage and assistant text only (`claude-transcript.ts:117-150`, `:292`) and never reads `toolUseResult` or user turns, and a hook-side `.mjs` would have to load its compiled build.
+3. Target routing moves from the writer to `workflow.ts`. The existing child resolver, `resolveContinuityLeaf`, lives in the CLI layer (`generate-context.ts:783`), which the runtime library cannot import. The workflow resolves each entry's folder and the writer receives a resolved folder.
+4. The writer reuses the validator's own level detection. `detectLevel` (`orchestrator.ts:191`) gains an `export`, and `api/index.ts` re-exports the writer, the same path the continuity writer already uses (`api/index.ts:118`). Both are additive.
+5. The Claude PostToolUse adapter is built and tested, but its registration waits for the live T001 probe. A dispatched worker cannot answer an AskUserQuestion, so the main session runs the probe. When the registration lands it also needs a row in the `.skilled/hooks/README.md` kill-switch index and coverage matrix.
+6. Queue consumption is recorded in a gitignored `consumed.jsonl` beside the queue. The tracked appendix carries each item's source key in an HTML comment, so a re-save on any machine maps the same key to the same Q id.
+
+**How it works**: The changes alter where code lives and what is reused. No requirement is removed. The phase recommendation from `recommend-level.sh` (30 of 50 against a threshold of 25) was declined: the operator asked for a Level 3 standard packet, and the work is one feature with one frozen scope.
+<!-- /ANCHOR:adr-002-decision -->
+
+---
+
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **A. Refine against the code, keep every requirement** | Avoids two no-op edits and one duplicate parser, and reuses the existing resolver and level detection. | Adds two small export lines to shared modules. | 9/10, chosen |
+| **B. Build the plan exactly as written** | No plan change to review. | Edits a validator that already behaves correctly and reimplements a resolver the writer cannot reach. | 4/10, rejected |
+| **C. Split the work into phases** | Matches the phase score. | The operator asked for Level 3, and phasing adds parent docs for one feature. | 3/10, rejected |
+
+Scores are qualitative fit against the stated constraints, not measured results.
+<!-- /ANCHOR:adr-002-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+
+**What improves**:
+- Two planned edits that would have changed nothing are dropped, and one parser is not duplicated.
+- The level guard and the routing use the same code the validator and the save already trust.
+
+**What it costs**:
+- Claude live capture is not registered until T001 runs. Mitigation: the transcript sweep runs at every save and recovers the same answers.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| A later change to `resolveContinuityLeaf` changes decision routing too. | Medium | The writer tests and the save test cover standard, parent and child routing. |
+| The probe shows PostToolUse carries no answers. | Low | The adapter writes nothing in that case, and the sweep stays the source. |
+<!-- /ANCHOR:adr-002-consequences -->
+
+---
+
+<!-- ANCHOR:adr-002-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | Each refinement answers an observed mismatch between the plan and the code. |
+| 2 | **Beyond Local Maxima?** | PASS | Building as written and phasing were compared. |
+| 3 | **Sufficient?** | PASS | Every REQ keeps a task and a test. |
+| 4 | **Fits Goal?** | PASS | Capture, rewrite and record behave as ADR-001 describes. |
+| 5 | **Open Horizons?** | PASS | Runtime adapters stay gated on probes. |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-002-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+
+**What changes**: plan.md, tasks.md and spec.md name the refined files. `orchestrator.ts` and `api/index.ts` gain one export each.
+
+**How to roll back**: Revert the two export lines and restore the routing call in the writer. The packet docs revert with `git checkout` of this folder.
+
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->
+
 
 ---
 
@@ -146,6 +251,10 @@ Scores are qualitative fit against the stated constraints, not measured results.
 | Q001 | Store the exact operator question, options and answer in a tracked appendix beside its decision entry. | The record stays portable and auditable with its decision. | None | REQ-007, operator-answers-verbatim |
 | Q002 | Filter process questions about Gate 3, folder and branch selection and commit or push permission. | Administrative choices do not belong in the product decision record. | None | REQ-003, capture filter |
 | Q003 | Include plain chat questions when the session model confirms a matching operator reply at save time. | Chat questions have no tool event, and the transcript can retain the exchange. | None | REQ-002, transcript sweep |
+| Q004 | Build this packet on the current branch, main, and leave it uncommitted until the main session asks. | Not stated. | None | plan.md rollback plan, tasks.md scope |
+| Q005 | Run the build now, beside the Barter work, with DeepSeek v4.1 flash workers under a fresh Opus orchestrator that first moves the packet to Level 3 and refines the plan against the repo rules. | Not stated. | None | spec.md Level 3, ADR-002, scratch/runs/ |
+| Q006 | Build transcript readers for OpenCode and Devin in this packet instead of waiving AC-009. | Not stated. | None | AC-009, REQ-009, bin/sweep-opencode.mjs, bin/sweep-devin.mjs |
+| Q007 | Commit the build only after the live probe settles T001, and leave the commit to the main session. | Not stated. | None | tasks.md T001, plan.md rollback plan |
 
 <!-- /ANCHOR:operator-decisions -->
 
@@ -174,7 +283,31 @@ Question: Capture plain chat questions too?
 Options: Yes, confirmed at save (rec.); Tool questions only
 Answer: Yes, confirmed at save (Recommended)
 
-No Gate 3 packet-folder choice is included. It is a process question and the selected filter excludes it.
+### Q004
+
+Question: The 042 decision-capture build (Skilled specs/system-speckit/042-decision-capture) needs a git workspace choice before it can start. The repo rule says I must ask rather than pick. Where should it run?
+Options: A) Create a git worktree; B) Work on current branch
+Answer: B) Work on current branch
+
+### Q005
+
+Question: When should the 042 build run, and on what?
+Options: Now, alongside Barter (Recommended); After Barter phase 010; Probe only for now
+Answer: Alongside barter use deepseek v4.1 flash max 1017 llmgateway orchestrated by fresh opus who will first chsnge spec to kevel 3 and verfiy / refine plan as needed and checks repo rules regarding overengineering snd other relevant things
+
+### Q006
+
+Question: AC-009 in 042: OpenCode and Devin keep AskUserQuestion-style answers in their own transcripts, but no adapter reads them yet, so their decisions aren't captured. Build adapters or waive?
+Options: Waive for now (Recommended); Build both adapters
+Answer: Build both adapters
+
+### Q007
+
+Question: When should the 042 decision-capture build be committed to Skilled main? It's Level 3 now, 20 of 22 tasks done, all its tests pass (20/0, 35/35, 19/19 rerun by me) and it strict-validates. Rollback: git revert of the commit.
+Options: After the probe settles T001 (Recommended); Commit and push now; Hold for my review
+Answer: After the probe settles T001 (Recommended)
+
+No Gate 3 packet-folder choice is included. It is a process question and the selected filter excludes it. Q004 is a workspace question of the kind Q002 filters, and it is recorded here by the operator's explicit instruction for this build. Q007 is a commit-permission question and is recorded the same way. The T001 probe-consent question is a process question and is left out.
 
 <!-- /ANCHOR:operator-answers-verbatim -->
 

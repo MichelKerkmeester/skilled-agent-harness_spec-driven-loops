@@ -113,6 +113,8 @@ export interface RawInputData {
   causal_links?: Record<string, unknown>;
   saveMode?: SaveMode | string;
   save_mode?: SaveMode | string;
+  operatorDecisions?: Array<Record<string, unknown>>;
+  operator_decisions?: Array<Record<string, unknown>>;
   [key: string]: unknown;
 }
 
@@ -148,6 +150,7 @@ export interface NormalizedData {
   completionPercent?: number;
   saveMode?: SaveMode;
   _continuity?: ContinuityFieldPatch;
+  _operatorDecisions?: OperatorDecisionPayload[];
   // TODO: Remove index signature once all dynamic fields are explicitly declared
   [key: string]: unknown;
 }
@@ -192,6 +195,125 @@ export function extractContinuityFields(data: Record<string, unknown>): Continui
     patch[snakeKey] = value;
   }
   return Object.keys(patch).length > 0 ? patch : null;
+}
+
+/** The scope one operator decision applies to: this packet, or the phase parent above it. */
+export type OperatorDecisionScope = 'local' | 'cross-phase';
+
+/**
+ * One operator decision a save payload carries, normalized to camelCase. The
+ * decision-record writer owns the id the entry lands on; this shape only keeps
+ * what the operator was asked and answered.
+ */
+export interface OperatorDecisionPayload {
+  sourceKey: string;
+  decided: string;
+  why?: string;
+  supersedes?: string;
+  carriedBy: string;
+  question: string;
+  options: string[];
+  answer: string;
+  scope: OperatorDecisionScope;
+}
+
+type RequiredOperatorDecisionField = 'sourceKey' | 'decided' | 'carriedBy' | 'question' | 'answer';
+
+const OPERATOR_DECISION_SOURCE_KEY_RE = /^[A-Za-z0-9:._-]+$/u;
+const OPERATOR_DECISION_SCOPES: ReadonlySet<string> = new Set(['local', 'cross-phase']);
+const OPERATOR_DECISION_REQUIRED_FIELDS: ReadonlyArray<readonly [RequiredOperatorDecisionField, string]> = [
+  ['sourceKey', 'source_key'],
+  ['decided', 'decided'],
+  ['carriedBy', 'carried_by'],
+  ['question', 'question'],
+  ['answer', 'answer'],
+];
+
+function readOperatorDecisionField(raw: Record<string, unknown>, camelKey: string, snakeKey: string): unknown {
+  return raw[camelKey] !== undefined ? raw[camelKey] : raw[snakeKey];
+}
+
+function operatorDecisionText(value: unknown): string {
+  return typeof value === 'string' ? value : '';
+}
+
+/**
+ * Report every problem in a raw operatorDecisions array. File-mode payloads meet
+ * this through validateInputData, while --json payloads never pass that loader,
+ * so the extractor reports the same errors before a save can write anything.
+ */
+export function collectOperatorDecisionErrors(entries: unknown[], label: string): string[] {
+  const errors: string[] = [];
+
+  for (let index = 0; index < entries.length; index += 1) {
+    const entry = entries[index];
+    if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) {
+      errors.push(`${label}[${index}] must be an object`);
+      continue;
+    }
+
+    const raw = entry as Record<string, unknown>;
+    for (const [camelKey, snakeKey] of OPERATOR_DECISION_REQUIRED_FIELDS) {
+      const value = readOperatorDecisionField(raw, camelKey, snakeKey);
+      if (typeof value !== 'string' || value.trim().length === 0) {
+        errors.push(`${label}[${index}].${camelKey} is required`);
+        continue;
+      }
+      if (camelKey === 'sourceKey' && !OPERATOR_DECISION_SOURCE_KEY_RE.test(value.trim())) {
+        errors.push(`${label}[${index}].sourceKey must contain only letters, digits and : . _ -`);
+      }
+    }
+
+    if (raw.options !== undefined
+      && (!Array.isArray(raw.options) || raw.options.some((option) => typeof option !== 'string'))) {
+      errors.push(`${label}[${index}].options must be an array of strings`);
+    }
+    if (raw.scope !== undefined
+      && (typeof raw.scope !== 'string' || !OPERATOR_DECISION_SCOPES.has(raw.scope))) {
+      errors.push(`${label}[${index}].scope must be "local" or "cross-phase"`);
+    }
+  }
+
+  return errors;
+}
+
+/**
+ * Pick the operator decisions out of a raw save payload, accepting the snake_case
+ * and camelCase spellings. An absent field returns null. An invalid entry throws
+ * the same errors validateInputData reports, because an inline JSON payload never
+ * reaches the file loader that would otherwise reject it.
+ * @returns The decisions present, or null when the payload carries none.
+ */
+export function extractOperatorDecisions(data: Record<string, unknown>): OperatorDecisionPayload[] | null {
+  const declared = data.operatorDecisions !== undefined ? data.operatorDecisions : data.operator_decisions;
+  if (declared === undefined || declared === null) {
+    return null;
+  }
+  if (!Array.isArray(declared)) {
+    throw new Error('Input validation failed: operatorDecisions must be an array');
+  }
+
+  const errors = collectOperatorDecisionErrors(declared, 'operatorDecisions');
+  if (errors.length > 0) {
+    throw new Error(`Input validation failed: ${errors.join('; ')}`);
+  }
+
+  return declared.map((entry): OperatorDecisionPayload => {
+    const raw = entry as Record<string, unknown>;
+    const why = raw.why;
+    const supersedes = raw.supersedes;
+    return {
+      sourceKey: operatorDecisionText(readOperatorDecisionField(raw, 'sourceKey', 'source_key')).trim(),
+      decided: operatorDecisionText(raw.decided).trim(),
+      ...(typeof why === 'string' && why.length > 0 ? { why } : {}),
+      ...(typeof supersedes === 'string' && supersedes.length > 0 ? { supersedes } : {}),
+      carriedBy: operatorDecisionText(readOperatorDecisionField(raw, 'carriedBy', 'carried_by')).trim(),
+      question: operatorDecisionText(raw.question),
+      options: Array.isArray(raw.options) ? raw.options as string[] : [],
+      answer: operatorDecisionText(raw.answer),
+      scope: raw.scope === 'cross-phase' ? 'cross-phase' : 'local',
+    };
+  });
 }
 
 function normalizeCompletionPercent(value: unknown): number | null {
@@ -673,6 +795,7 @@ function normalizeFileEntryLike(file: NormalizedFileEntry | Record<string, unkno
  */
 function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
   const continuityFields = extractContinuityFields(data);
+  const operatorDecisions = extractOperatorDecisions(data);
   const explicitTitle = normalizeOptionalText(data.title);
   const explicitDescription = normalizeOptionalText(data.description);
   const explicitCausalLinks = normalizeCausalLinks(data.causalLinks ?? data.causal_links);
@@ -873,6 +996,9 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
     cloned.observations = dedupeObservationsByNarrative(cloned.observations);
     if (continuityFields) {
       cloned._continuity = continuityFields;
+    }
+    if (operatorDecisions) {
+      cloned._operatorDecisions = operatorDecisions;
     }
 
     return cloned;
@@ -1078,6 +1204,9 @@ function normalizeInputData(data: RawInputData): NormalizedData | RawInputData {
   if (continuityFields) {
     normalized._continuity = continuityFields;
   }
+  if (operatorDecisions) {
+    normalized._operatorDecisions = operatorDecisions;
+  }
 
   console.log('   \u2713 Transformed manual format to MCP-compatible structure');
   return normalized;
@@ -1121,6 +1250,8 @@ const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
   'completion_pct', 'completionPct',
   'open_questions', 'openQuestions',
   'answered_questions', 'answeredQuestions',
+  // Operator decisions the full-auto save writes into a decision record.
+  'operatorDecisions', 'operator_decisions',
   // Preflight/postflight epistemic tracking fields.
   'knowledgeScore', 'knowledge_score',
   'uncertaintyScore', 'uncertainty_score',
@@ -1219,6 +1350,19 @@ function validateInputData(data: RawInputData, specFolderArg: string | null = nu
   }
   if (data.key_decisions !== undefined && !Array.isArray(data.key_decisions)) {
     errors.push('key_decisions must be an array');
+  }
+
+  if (data.operatorDecisions !== undefined && !Array.isArray(data.operatorDecisions)) {
+    errors.push('operatorDecisions must be an array');
+  }
+  if (data.operator_decisions !== undefined && !Array.isArray(data.operator_decisions)) {
+    errors.push('operator_decisions must be an array');
+  }
+  if (Array.isArray(data.operatorDecisions)) {
+    errors.push(...collectOperatorDecisionErrors(data.operatorDecisions, 'operatorDecisions'));
+  }
+  if (Array.isArray(data.operator_decisions)) {
+    errors.push(...collectOperatorDecisionErrors(data.operator_decisions, 'operator_decisions'));
   }
 
   if (data.filesModified !== undefined && !Array.isArray(data.filesModified)) {

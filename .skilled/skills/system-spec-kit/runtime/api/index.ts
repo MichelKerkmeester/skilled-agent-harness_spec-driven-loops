@@ -119,6 +119,10 @@ export {
 } from '../lib/continuity/thin-continuity-record.js';
 export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
 
+// The save writes operator decisions with the same public surface it uses for continuity.
+export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
+export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
+
 // The drift gate flag is read by the CLI's validation entry point through the public surface.
 export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';
 

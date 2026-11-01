@@ -36,6 +36,7 @@ const ALLOW = '{"permission":"allow"}';
 const HOOKS = [
   { id: 'classifier-injection-screen/claude', file: 'classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
   { id: 'classifier-injection-screen/devin', file: 'classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
+  { id: 'decision-capture/claude', file: 'decision-capture/claude/ask-capture-posttooluse.mjs', failOpen: '' },
   { id: 'dispatch/claude preflight', file: 'dispatch/claude/dispatch-preflight-lint.mjs', failOpen: '' },
   { id: 'dispatch/codex preflight', file: 'dispatch/codex/dispatch-preflight-lint.mjs', failOpen: '' },
   { id: 'dispatch/cursor preflight', file: 'dispatch/cursor/dispatch-preflight-lint.mjs', failOpen: ALLOW },

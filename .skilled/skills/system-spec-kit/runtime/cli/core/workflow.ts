@@ -19,6 +19,7 @@ import {
   enhanceFilesWithSemanticDescriptions,
 } from '../extractors/index.js';
 import { detectSpecFolder, ensureSpecFolderExists } from '../spec-folder/index.js';
+import { isPhaseParent } from '../spec/is-phase-parent.js';
 import { generateContentSlug } from '../utils/slug-utils.js';
 import { toCanonicalRelativePath } from '../utils/file-helpers.js';
 import { pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment.js';
@@ -63,7 +64,8 @@ import type { FileChange, SessionData } from '../types/session-types.js';
 import type { ThinFileInput } from './tree-thinning.js';
 import { getSourceCapabilities } from '../utils/source-capabilities.js';
 import { normalizeInputData } from '../utils/input-normalizer.js';
-import { readThinContinuityRecord, upsertThinContinuityInMarkdown } from '@spec-kit/runtime/api';
+import type { OperatorDecisionPayload } from '../utils/input-normalizer.js';
+import { readThinContinuityRecord, upsertThinContinuityInMarkdown, writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError } from '@spec-kit/runtime/api';
 import type { ThinContinuityValidationError } from '@spec-kit/runtime/api';
 import type { RawInputData } from '../utils/input-normalizer.js';
 import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
@@ -619,6 +621,150 @@ async function writePlannedContinuity(params: {
   }
 }
 
+/** Operator decisions that share one decision-record.md, in first-seen order. */
+interface OperatorDecisionGroup {
+  folder: string;
+  entries: OperatorDecisionPayload[];
+}
+
+/**
+ * Decide which decision record each operator decision lands in, before the save
+ * writes anything. A cross-phase decision belongs to the phase parent; a local one
+ * follows the same leaf resolution the continuity write uses, because both describe
+ * work done inside one child. Returns null when there is nothing to write.
+ */
+async function planOperatorDecisions(params: {
+  targetPath: string;
+  collectedData: CollectedDataFull;
+  plannerMode: WorkflowOptions['plannerMode'];
+  log: (message?: string) => void;
+  warn: (message?: string) => void;
+}): Promise<OperatorDecisionGroup[] | null> {
+  const { targetPath, collectedData, plannerMode, log, warn } = params;
+  const declared = Array.isArray(collectedData._operatorDecisions) ? collectedData._operatorDecisions : [];
+  const entries = declared as unknown as OperatorDecisionPayload[];
+  if (entries.length === 0) {
+    return null;
+  }
+
+  if (plannerMode !== 'full-auto') {
+    log('   Operator decisions proposed (written only by a --full-auto save):');
+    for (const entry of entries) {
+      log(`   - ${entry.sourceKey}: ${entry.decided}`);
+    }
+    return null;
+  }
+
+  const { canonicalPath, resolveContinuityLeaf } = await import('../continuity/generate-context.js');
+  const keyFiles = collectedData._continuity?.key_files;
+  const continuityKeyFiles = Array.isArray(keyFiles)
+    ? keyFiles.filter((entry): entry is string => typeof entry === 'string')
+    : [];
+  const payloadPaths = [
+    ...(collectedData.FILES ?? []).map((file) => file.FILE_PATH ?? ''),
+    ...continuityKeyFiles,
+  ];
+  const loggedHints = new Set<string>();
+  const groups: OperatorDecisionGroup[] = [];
+  const groupIndex = new Map<string, number>();
+
+  for (const entry of entries) {
+    let folder: string;
+    if (entry.scope === 'cross-phase') {
+      folder = isPhaseParent(targetPath)
+        ? targetPath
+        : isPhaseParent(path.dirname(targetPath))
+          ? path.dirname(targetPath)
+          : targetPath;
+    } else if (!isPhaseParent(targetPath)) {
+      folder = targetPath;
+    } else {
+      const hints: string[] = [];
+      const resolution = resolveContinuityLeaf(targetPath, payloadPaths, hints);
+      for (const hint of hints) {
+        if (loggedHints.has(hint)) {
+          continue;
+        }
+        loggedHints.add(hint);
+        log(`   ${hint}`);
+      }
+      if (resolution.kind === 'unresolved') {
+        warn(`   Operator decision ${entry.sourceKey} not written: ${resolution.reason}`);
+        continue;
+      }
+      folder = resolution.leafPath;
+    }
+
+    const key = canonicalPath(folder);
+    const index = groupIndex.get(key);
+    if (index === undefined) {
+      groupIndex.set(key, groups.length);
+      groups.push({ folder, entries: [entry] });
+    } else {
+      groups[index].entries.push(entry);
+    }
+  }
+
+  return groups.length > 0 ? groups : null;
+}
+
+/**
+ * Write the planned decision records. A record outside the save target is written
+ * under that folder's own canonical-save lock and refreshed here, because the
+ * target's own refresh never reads a folder below it.
+ */
+async function writePlannedOperatorDecisions(params: {
+  plan: OperatorDecisionGroup[];
+  targetPath: string;
+  now: string;
+  log: (message?: string) => void;
+  warn: (message?: string) => void;
+}): Promise<void> {
+  const { plan, targetPath, now, log, warn } = params;
+  const { acquireCanonicalSaveLock, canonicalPath, releaseCanonicalSaveLock } = await import('../continuity/generate-context.js');
+  const projectRoot = canonicalPath(CONFIG.PROJECT_ROOT);
+  const display = (folder: string): string => path.relative(projectRoot, canonicalPath(folder)) || folder;
+  const targetKey = canonicalPath(targetPath);
+
+  for (const group of plan) {
+    const folderIsTarget = canonicalPath(group.folder) === targetKey;
+    const folderLock = folderIsTarget ? null : acquireCanonicalSaveLock(group.folder);
+    try {
+      const result = writeDecisionRecord(group.folder, group.entries.map((entry) => ({
+        sourceKey: entry.sourceKey,
+        decided: entry.decided,
+        why: entry.why,
+        supersedes: entry.supersedes,
+        carriedBy: entry.carriedBy,
+        question: entry.question,
+        options: entry.options,
+        answer: entry.answer,
+      })));
+      recordConsumedKeys(CONFIG.PROJECT_ROOT, path.relative(CONFIG.PROJECT_ROOT, group.folder), result.ids, now);
+
+      if (!folderIsTarget && result.changed) {
+        const graphApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+        if (typeof graphApiModule?.refreshGraphMetadata !== 'function') {
+          throw new Error('runtime API unavailable for the operator-decision graph-metadata refresh');
+        }
+        graphApiModule.refreshGraphMetadata(group.folder, { now, saveLineage: 'same_pass' });
+      }
+
+      log(`   Wrote ${result.ids.length} operator decision(s) to ${display(group.folder)}`);
+      if (result.levelMarkerAdded) {
+        log(`   Added the missing level marker to ${display(group.folder)}/spec.md`);
+      }
+    } catch (error: unknown) {
+      if (!(error instanceof DecisionRecordWriteError)) {
+        throw error;
+      }
+      warn(`   Operator decisions not written to ${display(group.folder)}: ${error.message}`);
+    } finally {
+      releaseCanonicalSaveLock(folderLock);
+    }
+  }
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. INTERFACES
 // ───────────────────────────────────────────────────────────────────
@@ -1062,6 +1208,7 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
         projectPhase: n.projectPhase ?? preloadedData.projectPhase,
         saveMode: n.saveMode ?? preloadedData.saveMode,
         _continuity: n._continuity ?? preloadedData._continuity,
+        _operatorDecisions: n._operatorDecisions ?? preloadedData._operatorDecisions,
       }) as CollectedDataFull;
       log('   Using pre-loaded data (normalized)');
     } else if (loadDataFn) {
@@ -1769,6 +1916,13 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
     log,
     warn: recordWarning,
   });
+  const operatorDecisionPlan = await planOperatorDecisions({
+    targetPath: validatedSpecFolderPath,
+    collectedData,
+    plannerMode: options.plannerMode,
+    log,
+    warn: recordWarning,
+  });
   if (duplicateExistingFilename) {
     log(`   Legacy duplicate detection skipped for retired artifact ${rawCtxFilename}`);
   }
@@ -1873,6 +2027,15 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   if (continuityPlan) {
     await writePlannedContinuity({
       plan: continuityPlan,
+      targetPath: validatedSpecFolderPath,
+      now: metadataSaveTimestamp,
+      log,
+      warn: recordWarning,
+    });
+  }
+  if (operatorDecisionPlan) {
+    await writePlannedOperatorDecisions({
+      plan: operatorDecisionPlan,
       targetPath: validatedSpecFolderPath,
       now: metadataSaveTimestamp,
       log,

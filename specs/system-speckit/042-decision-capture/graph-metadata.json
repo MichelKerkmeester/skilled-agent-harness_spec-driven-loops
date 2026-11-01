@@ -38,14 +38,19 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "runtime/api/index.ts",
+      ".claude/settings.json",
+      "dist/hooks/claude/session-stop.js",
+      "api/index.ts",
+      ".skilled/hooks/README.md"
     ],
     "entities": [
       {
@@ -85,7 +90,43 @@
         "source": "derived"
       },
       {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/session-stop.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,18 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Capture Claude",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -139,12 +168,6 @@
         "source": "derived"
       },
       {
-        "name": "The Level",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Pattern Local",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -152,6 +175,12 @@
       },
       {
         "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -167,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Probe Codex",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Probe Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Probe Devin",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Operator answers to AI questions are not captured in a consistent decision record",
     "created_at": "2026-11-01T07:16:09Z",
-    "last_save_at": "2026-11-01T07:33:51.704Z",
+    "last_save_at": "2026-11-01T13:02:22.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +211,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4564545642060fee118f2e8ac4581ff1fa0bc03ca6bb958577728ef1e15aaaaf",
+    "source_fingerprint": "sha256:5b61c98dc9944584ed3c5f51fef6727f14f0e324e4bf3aa5683e7d6c25277ec7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6617f8d5d843f4bb1211a451bd6b15373b6506f300fbc68fc2a0f865687f6713",
-      "plan.md": "079159a00566a7f2c5092e2f600571313149a46c7435be3dcaf3e0182db88b49",
-      "tasks.md": "437911df5d1191b7e9b55c0ad95e80f6c9f27a48cd4de070e880c2c240f0c948",
-      "decision-record.md": "0ef9461baf8ffa2f6b3b66c04dd5962d50acc91e2c19246aa9ff01e26527a256",
-      "implementation-summary.md": "c79d28d977e2b7aa0287f5c936abcbfb3363123ca039cb72333891bf3b8538e7"
+      "spec.md": "05b48351ad009aaef17999ecc74a19a764756f7270165820b08ee3c904569b52",
+      "plan.md": "bcf3f61e857db4641329092715737942e8063de02c67745e4c29f6d62cd69c10",
+      "tasks.md": "b52c8b37214b2f42731004c238572b2684f9a571f1356c23e671a843156c472b",
+      "decision-record.md": "c9126470edd8331fc1732f2694403cbc0be28fa5e90f92370cb14c137cb2adf9",
+      "implementation-summary.md": "c60a9ed280ee5fefcc2e6812c770801bb092e4ce56a60afd81d093f8ed25ff27"
     },
     "last_active_at": null
   }

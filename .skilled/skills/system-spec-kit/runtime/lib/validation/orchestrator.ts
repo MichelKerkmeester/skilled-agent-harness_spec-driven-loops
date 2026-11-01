@@ -188,7 +188,7 @@ function normalizeLevel(raw: string): SpecKitLevel {
   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
 }
 
-function detectLevel(folder: string): SpecKitLevel {
+export function detectLevel(folder: string): SpecKitLevel {
   if (isPhaseParent(folder)) return 'phase';
   const specPath = path.join(folder, 'spec.md');
   if (fs.existsSync(specPath)) {

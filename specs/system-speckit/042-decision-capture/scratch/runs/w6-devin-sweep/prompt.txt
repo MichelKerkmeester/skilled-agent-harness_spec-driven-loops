@@ -1,0 +1,55 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, copy the house style named under STYLE, keep the change small, run the CHECK, report honestly.
+
+TASK: Create a Node ESM script that sweeps a Devin CLI transcript for answered ask_user_question calls and appends them to the existing decision queue. Plus a node:test suite.
+
+ALLOWED WRITE PATHS (create these two files, nothing else):
+  .skilled/hooks/decision-capture/bin/sweep-devin.mjs
+  .skilled/hooks/decision-capture/bin/sweep-devin.test.mjs
+
+BANNED OPERATIONS: any git command that writes; npm/npx install; editing or deleting any other file; opening any .env or token file; reading anything under ~/.local/share or ~/.claude; running opencode or devin.
+
+STYLE AND API: read .skilled/hooks/decision-capture/bin/sweep-transcript.mjs and .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs first and copy their header box, numbered ALL-CAPS section dividers, isMainModule and CLI shape. Import from ../lib/capture-core.mjs: normalizeAskUserQuestion, appendRecords, pendingRecords. Comments explain WHY; never put spec, task, requirement or ADR ids in comments. Never write an em dash character.
+
+REAL TRANSCRIPT SHAPE (read the redacted real sample .skilled/hooks/decision-capture/bin/fixtures/devin-transcript.json):
+{ session_id, steps: [ { step_id, source, tool_calls: [ { tool_call_id, function_name: 'ask_user_question', arguments: { questions: [ { question, header, options: [{label, description}], multi_select? } ] } } ], observation: { results: [ { source_call_id, content } ] } } ] }
+An answered call's result content is the text 'User answered your questions:' then a newline then JSON: { '<question text>': { selected: [labels], custom_text?: string, skipped: bool } }. A rejected call's content is other text and answers nothing.
+
+export function devinAnswerRecords({ transcript, sessionId, now }):
+1. Remember every tool_call with function_name 'ask_user_question' by tool_call_id (its arguments).
+2. For each observation result whose source_call_id is remembered and whose content is a string starting with 'User answered your questions:', JSON.parse the text after the first newline; skip on parse error.
+3. answers object: for each question text, skip when skipped is true or selected is not an array; answer = selected labels with the label 'Other' replaced by custom_text when custom_text is a non-empty string, joined with ', '; skip an empty result.
+4. Call normalizeAskUserQuestion({ runtime: 'devin', sessionId, toolUseId: tool_call_id, toolInput: { questions: each question mapped to { question, header, options, multiSelect: Boolean(q.multi_select) } }, toolResponse: { answers }, source: 'transcript', now }) and collect all records.
+
+export function sweepDevinTranscript({ projectDir, transcriptPath, now }) reads and JSON.parses the file, session_id = transcript.session_id or the file name without .json, appends devinAnswerRecords via appendRecords(projectDir, session_id, records), and returns { transcript: transcriptPath, session_id, recovered: <appended count>, pending: pendingRecords(projectDir, session_id), chat_candidates: [] }.
+
+CLI (only when executed directly): `node sweep-devin.mjs [--transcript <path>]`. projectDir = process.cwd(). Without --transcript: dataDir = path.join(process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share'), 'devin', 'cli'); open path.join(dataDir, 'sessions.db') with `new DatabaseSync(file, { readOnly: true })` from 'node:sqlite'; SELECT id FROM sessions WHERE working_directory = ? ORDER BY last_activity_at DESC LIMIT 1 with projectDir; transcript = path.join(dataDir, 'transcripts', id + '.json'). Close the database. Print JSON.stringify(result, null, 2), exit 0. No session, missing file or any error: print {"error":"..."} to stdout, exit 1.
+
+TESTS in sweep-devin.test.mjs (node:test, node:assert/strict, a fresh mkdtempSync projectDir per test, cleaned up after):
+- the fixture yields exactly 2 queued records: question 'How should cache-tax be installed at both levels (repo .claude/ and ~/.claude/)?' with answer 'Marketplace in settings' and key toolSourceKey('devin', 'redacted-devin-session', 'call_REDACTED0001', 1); and the 'Which category of drift/fixes...' question with answer 'all 4, use subagents' and key toolSourceKey('devin', 'redacted-devin-session', 'call_REDACTED0002', 0). The Gate 3 'Spec folder' question and the rejected call produce no record.
+- a second sweep returns recovered 0 and the queue still holds 2 lines.
+- a copy of the fixture with skipped: true on the cache-tax answer yields only the custom_text record.
+- CLI with --transcript <fixture> run with cwd projectDir exits 0 and prints JSON whose recovered is 2.
+- CLI without --transcript: set env XDG_DATA_HOME to a tmp dir, create <tmp>/devin/cli/sessions.db with node:sqlite holding table sessions(id TEXT, working_directory TEXT, last_activity_at INTEGER) with two rows: a newer one for another directory and one for realpathSync(projectDir); copy the fixture to <tmp>/devin/cli/transcripts/<id>.json for the matching row; run with cwd projectDir; expect exit 0 and recovered 2 with session_id 'redacted-devin-session'.
+
+CHECK (run from the repository root and paste the full output):
+  node --check .skilled/hooks/decision-capture/bin/sweep-devin.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-devin.test.mjs
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <pass/fail counts copied from the node --test output>
+STATUS=OK|FAIL <one line why>

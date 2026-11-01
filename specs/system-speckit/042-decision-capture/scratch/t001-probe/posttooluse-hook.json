@@ -1,0 +1,10 @@
+{
+  "matcher": "AskUserQuestion",
+  "hooks": [
+    {
+      "type": "command",
+      "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && mkdir -p .skilled/skills/.state/decision-capture/probe && cat > .skilled/skills/.state/decision-capture/probe/claude-posttooluse.json'",
+      "timeout": 5
+    }
+  ]
+}

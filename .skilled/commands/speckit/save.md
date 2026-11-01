@@ -60,6 +60,14 @@ Procedure:
 1. Resolve and validate `target_folder`.
 2. Check topic/folder alignment and stop for confirmation on mismatch.
 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
+   On Claude, also collect operator decisions: run `node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs` from the repository root.
+   It copies any AskUserQuestion answer the hook missed into the local queue, then prints `pending` and `chat_candidates`.
+   On OpenCode run `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` instead, and on Devin `node .skilled/hooks/decision-capture/bin/sweep-devin.mjs`. Each reads the runtime's stored session and prints the same `pending` list with an empty `chat_candidates`.
+   Write one `operatorDecisions` entry for each pending answer, and for each chat candidate whose answer clearly replies to its question.
+   Leave out a candidate whose answer is null, and any question about Gate 3, spec folders, worktrees, branches or commit and push permission.
+   Each entry carries its printed `sourceKey`, a one-sentence `decided`, the `why` the session stated, `supersedes`, `carriedBy` and the exact `question`, `options` and `answer`.
+   Omit `why` when no reason was stated, so the record says `Not stated.` instead of a guess.
+   Mark an entry `scope: "cross-phase"` when it decides something for every phase of a phase parent.
 4. Choose one route category (listed under MODE ROUTING).
 5. In default mode, return the save plan without mutating.
 6. In explicit apply/full-auto mode, you run the writer and inspect the post-save quality review.
@@ -79,6 +87,8 @@ Procedure:
    When no payload path does, it writes that continuity to the child the parent's pointer names.
    When the paths span two children, it writes no continuity and lists the candidates.
    You rerun with one of them as the target.
+   The same save writes the `operatorDecisions` entries into `decision-record.md` and records their keys as consumed.
+   A default-mode save only lists them.
 7. Render the result using the presentation asset.
 
 Tool map:
@@ -86,6 +96,8 @@ Tool map:
 | Need | Script |
 | --- | --- |
 | Continuity frontmatter, description and graph-metadata refresh | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` |
+| Operator answers waiting for a decision record, on Claude | `node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs` |
+| Operator answers waiting for a decision record, on OpenCode or Devin | `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` or `sweep-devin.mjs` |
 | Trigger-index regeneration, only when `trigger_phrases` changed | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Trigger phrase correction | Edit the packet document's `trigger_phrases` frontmatter, then rerun the writer |
 

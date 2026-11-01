@@ -1,0 +1,63 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, copy the house style named under STYLE, keep the change small, run the CHECK, report honestly.
+
+TASK: Create a Node ESM script that sweeps an OpenCode session, stored in OpenCode's SQLite database, for answered `question` tool calls and appends them to the existing decision queue. Plus a node:test suite.
+
+ALLOWED WRITE PATHS (create these two files, nothing else):
+  .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+  .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+
+BANNED OPERATIONS: any git command that writes; npm/npx install; editing or deleting any other file; opening any .env or token file; reading anything under ~/.local/share or ~/.claude; running opencode or devin.
+
+STYLE AND API: read .skilled/hooks/decision-capture/bin/sweep-devin.mjs and .skilled/hooks/decision-capture/bin/sweep-devin.test.mjs first and copy their header box, numbered ALL-CAPS section dividers, isMainModule, CLI shape and test style. Import from ../lib/capture-core.mjs: normalizeAskUserQuestion, appendRecords, pendingRecords. Use `DatabaseSync` from 'node:sqlite', always opened with { readOnly: true } and closed in finally. Comments explain WHY; never put spec, task, requirement or ADR ids in comments. Never write an em dash character.
+
+REAL PART SHAPE (read the redacted real sample .skilled/hooks/decision-capture/bin/fixtures/opencode-question-parts.json, an array of four parts):
+{ type: 'tool', tool: 'question', callID, state: { status: 'completed' | 'error' | 'running', input: { questions: [ { question, header, options: [{label, description}], multiple? } ] }, metadata: { answers: [ [labels or typed text] ] } } }
+metadata.answers[i] is the answer list for input.questions[i]. Only status 'completed' with an answers array answers anything.
+
+STORAGE (SQLite, opened read-only):
+- table `part` (columns id, message_id, session_id, time_created, data): data is the JSON of one part in the shape above.
+- table `session_message` (columns id, session_id, type, seq, data), only in newer databases: for rows with type 'assistant', data is JSON { content: [ items ] }; an item { type: 'tool', id, name, state } is the same call, so convert it to { type: 'tool', tool: item.name, callID: item.id, state: item.state }.
+- tables `session` and `session_v2` (columns id, directory, time_updated): either may be missing.
+Check which tables exist with SELECT name FROM sqlite_master WHERE type = 'table'.
+
+export function openCodeAnswerRecords({ parts, sessionId, now }):
+For each part with type 'tool', tool 'question', state.status 'completed' and Array.isArray(state.metadata?.answers): answers object = for each index i whose answers[i] is a non-empty array of strings, { [questions[i].question]: answers[i].join(', ') }. Call normalizeAskUserQuestion({ runtime: 'opencode', sessionId, toolUseId: part.callID, toolInput: { questions: each question mapped to { question, header, options, multiSelect: Boolean(q.multiple) } }, toolResponse: { answers }, source: 'transcript', now }) and collect all records.
+
+export function loadOpenCodeParts({ dbPath, sessionId }): rows from `part` WHERE session_id = ? ORDER BY time_created, id (JSON.parse each data, skip bad JSON), then, when `session_message` exists, converted tool items from its assistant rows WHERE session_id = ? ORDER BY seq.
+
+export function latestOpenCodeSession({ dbPath, projectDir }): the id with the largest time_updated across whichever of `session_v2` and `session` exist, WHERE directory = projectDir; null when none.
+
+export function sweepOpenCodeSession({ projectDir, dbPath, sessionId, now }): parts = loadOpenCodeParts, records = openCodeAnswerRecords, appendRecords(projectDir, sessionId, records), return { transcript: dbPath, session_id: sessionId, recovered: <appended count>, pending: pendingRecords(projectDir, sessionId), chat_candidates: [] }.
+
+CLI (only when executed directly): `node sweep-opencode.mjs [--session <id>] [--db <path>]`. projectDir = process.cwd(). Default db = path.join(process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share'), 'opencode', 'opencode.db'). Default session = latestOpenCodeSession for projectDir. Print JSON.stringify(result, null, 2), exit 0. No database, no session or any error: print {"error":"..."} to stdout, exit 1.
+
+TESTS in sweep-opencode.test.mjs (node:test, node:assert/strict, a fresh mkdtempSync tmp dir per test, cleaned up after; build the test database with node:sqlite in that tmp dir):
+- openCodeAnswerRecords on the four fixture parts with sessionId 'ses_REDACTED0001' yields exactly 4 records: 'check the link i sent you', 'All folders within opencode', 'Create wrapper TOML files' (callID 'call_REDACTED0001', question indexes 0, 1, 2) and 'A) Missing User Guides, B) Fix Critical Bugs' (callID 'call_REDACTED0002', index 0). The error and running parts give none. Check each key with toolSourceKey('opencode', 'ses_REDACTED0001', callID, index).
+- a database with table part(id, message_id, session_id, time_created, time_updated, data) holding the four fixture parts for 'ses_REDACTED0001' plus one completed part for another session: sweepOpenCodeSession recovers 4, and a second sweep recovers 0 with the queue still at 4 lines.
+- a database with only session_message(id, session_id, type, seq, time_created, time_updated, data) holding one assistant row whose content is [ { type: 'text', text: 'x' }, { type: 'tool', id: 'call_REDACTED0002', name: 'question', state: <state of fixture part 2> } ]: sweepOpenCodeSession recovers 1 with answer 'A) Missing User Guides, B) Fix Critical Bugs'.
+- latestOpenCodeSession picks the newest session for the directory across session and session_v2, ignoring a newer session for another directory.
+- CLI without flags: env XDG_DATA_HOME = tmp, database at <tmp>/opencode/opencode.db with tables part and session_v2(id, directory, time_updated) where the session row's directory is realpathSync(projectDir); run with cwd projectDir; exit 0, recovered 4, session_id 'ses_REDACTED0001'.
+- CLI with --db pointing at a missing file exits 1 and prints JSON with an error key.
+
+CHECK (run from the repository root and paste the full output):
+  node --check .skilled/hooks/decision-capture/bin/sweep-opencode.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <pass/fail counts copied from the node --test output>
+STATUS=OK|FAIL <one line why>

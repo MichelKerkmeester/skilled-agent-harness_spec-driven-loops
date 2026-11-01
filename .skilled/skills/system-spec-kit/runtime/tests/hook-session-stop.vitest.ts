@@ -4,10 +4,10 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs, { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
-import { detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
+import { decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
 
 function loadPersistedState(sessionId: string): PersistedHookState | null {
   const result = loadState(sessionId);
@@ -724,5 +724,58 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
     } finally {
       writeSpy.mockRestore();
     }
+  });
+});
+
+describe('Claude session-stop decision capture nudge', () => {
+  const realCorePath = resolve(
+    import.meta.dirname,
+    '../../../../hooks/decision-capture/lib/capture-core.mjs',
+  );
+  const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
+  const queueRelativeDir = join('.skilled', 'skills', '.state', 'decision-capture');
+  let projectDir: string | null = null;
+
+  function makeProjectDirWithCore(): string {
+    const root = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
+    const coreTarget = join(root, coreTargetRelative);
+    mkdirSync(dirname(coreTarget), { recursive: true });
+    fs.copyFileSync(realCorePath, coreTarget);
+    return root;
+  }
+
+  afterEach(() => {
+    if (projectDir) {
+      rmSync(projectDir, { recursive: true, force: true });
+      projectDir = null;
+    }
+  });
+
+  it('reports queued answers once, then stays quiet until the pending count rises again', async () => {
+    projectDir = makeProjectDirWithCore();
+    const queueDir = join(projectDir, queueRelativeDir);
+    mkdirSync(queueDir, { recursive: true });
+    writeFileSync(
+      join(queueDir, `${Buffer.from('s1').toString('hex')}.jsonl`),
+      [
+        JSON.stringify({ key: 'claude:s1:tool-1:0', answer: 'first' }),
+        JSON.stringify({ key: 'claude:s1:tool-1:1', answer: 'second' }),
+      ].join('\n') + '\n',
+      'utf-8',
+    );
+
+    const message = await decisionCaptureNudge(projectDir, 's1');
+    expect(message).toMatch(/^2 operator answer\(s\)/);
+    expect(await decisionCaptureNudge(projectDir, 's1')).toBeNull();
+  });
+
+  it('stays quiet when the session queued no answers', async () => {
+    projectDir = makeProjectDirWithCore();
+    expect(await decisionCaptureNudge(projectDir, 's2')).toBeNull();
+  });
+
+  it('stays quiet instead of throwing when the capture core is unavailable', async () => {
+    projectDir = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
+    await expect(decisionCaptureNudge(projectDir, 's1')).resolves.toBeNull();
   });
 });

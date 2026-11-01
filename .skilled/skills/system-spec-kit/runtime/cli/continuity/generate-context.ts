@@ -176,6 +176,17 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
     parent's last_active_child_id pointer. Paths naming two children write nothing and
     list the candidates. Every ancestor's pointer then leads one level down to the leaf.
 
+  Operator decisions (optional, written only by a --full-auto save):
+  - operatorDecisions[] (or operator_decisions): one entry per confirmed operator answer with
+    sourceKey, decided, carriedBy, question and answer, plus optional why, supersedes, options[]
+    and scope ("local", the default, or "cross-phase")
+  - sourceKey comes from the decision-capture queue or transcript sweep, and maps to one stable Q id
+  - A missing why is written as "Not stated." and a missing supersedes as "None"
+  - The writer upserts decision-record.md, keeps the verbatim question, options and answer in its
+    appendix, then records the key as consumed. A plan-only save lists the entries and writes nothing
+  - A local entry aimed at a phase parent follows the continuity leaf rule; a cross-phase entry goes
+    to the phase parent. An unresolved target writes nothing and leaves the entry pending
+
   Learning Delta Calculation:
   - Knowledge Delta = postflight.knowledgeScore - preflight.knowledgeScore
   - Uncertainty Reduction = preflight.uncertaintyScore - postflight.uncertaintyScore

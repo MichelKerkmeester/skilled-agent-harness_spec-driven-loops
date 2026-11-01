@@ -11,7 +11,17 @@ contextType: "implementation"
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
 # Feature Specification: Automatic operator decision capture
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## EXECUTIVE SUMMARY
+
+Operator answers to AI questions reach a decision record only when someone retypes them, so the exact wording and the reason for a choice get lost. This packet captures each answer to a gitignored queue, recovers missed ones from the Claude transcript, and has the session model write a short decision plus the verbatim exchange into the bound packet at a full-auto save. Re-saving changes no bytes, process questions are filtered out, and the packet's validated level never moves.
+
+**Key Decisions**: rewrite at save time rather than inside a hook (ADR-001), and reuse the existing level detection and child resolver instead of new code (ADR-002).
+
+**Critical Dependencies**: the live Claude PostToolUse probe (T001) gates the hook registration; the transcript sweep works without it.
 
 ---
 
@@ -20,9 +30,9 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-01 |
 | **Branch** | main |
 <!-- /ANCHOR:metadata -->
@@ -73,25 +83,34 @@ N/A: No non-mutating command can exercise the missing capture-to-save writer. T0
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | .skilled/hooks/decision-capture/lib/capture-core.mjs | Create | Normalize events, filter process questions and append deduplicated records under a lock. |
-| .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs | Create | Capture Claude AskUserQuestion events when the live probe confirms useful payload fields. |
-| .skilled/hooks/decision-capture/bin/sweep-transcript.mjs | Create | Recover missed tool answers and identify candidate plain-chat exchanges. |
+| .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs | Create | Capture Claude AskUserQuestion events; the live probe confirmed tool_response.answers. |
+| .skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json | Create | The probe's real PostToolUse payload with paths and ids redacted. |
+| .skilled/hooks/decision-capture/bin/sweep-opencode.mjs and bin/sweep-devin.mjs, with tests and bin/fixtures/ | Create | Read answered question calls from OpenCode's SQLite store and Devin's transcripts, tested on redacted real samples. |
+| .skilled/hooks/decision-capture/bin/sweep-transcript.mjs | Create | Recover missed tool answers and identify candidate plain-chat exchanges, with its own JSONL reader. |
 | .skilled/skills/.state/decision-capture/README.md | Create | Explain the gitignored queue and retention boundary. |
-| .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts | Create | Route and upsert decision entries and their verbatim appendix by stable question id. |
+| .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts | Create | Upsert decision entries and their verbatim appendix by stable question id, guard the level and record consumed keys. |
+| .skilled/skills/system-spec-kit/runtime/api/index.ts | Modify | Re-export the writer, as it already does for the continuity writer. |
+| .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts | Modify | Export the existing detectLevel so the writer uses the validator's own rule. |
+| .skilled/skills/system-spec-kit/runtime/cli/types/session-types.ts | Modify | Declare the carried operator-decisions field beside the continuity field. |
 | .skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts | Modify | Accept the operatorDecisions save payload. |
-| .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts | Modify | Pass confirmed decisions to the writer during full-auto save. |
+| .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts | Modify | Resolve each entry's target with the existing child resolver and pass confirmed decisions to the writer during full-auto save. |
 | .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts | Modify | Document the new save payload and its target rules. |
 | .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts | Modify | Nudge when eligible queued decisions remain unconsumed. |
-| .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json | Modify | Register only runtime adapters with confirmed answer delivery. |
-| .claude/settings.json | Regenerate | Mirror the confirmed Claude hook registration. |
-| .codex/hooks.json and .devin/hooks.v1.json | Conditional regeneration | Add registrations only after each runtime probe confirms the answer surface. |
-| .opencode/plugins/decision-capture.js and .pi/extensions/decision-capture.ts | Conditional create | Add adapters only after each runtime probe confirms the answer surface. |
+| .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json | Modify | Register the Claude adapter, confirmed by the live probe. |
+| .claude/settings.json | Regenerate | Mirror the Claude hook registration through sync-hook-registrations. |
+| .skilled/hooks/README.md and .skilled/hooks/shared/hook-stdin-deadline.test.mjs | Modify | Kill-switch, coverage, tree and key-file rows, and the adapter's stdin-deadline entry. |
+| .skilled/skills/system-spec-kit/runtime/cli/tests/hook-registration-sync.vitest.ts | Modify | Move the pinned registry binding count from 99 to 100. |
+| .codex/hooks.json and .devin/hooks.v1.json | No change | No hook payload was probed; Devin answers come from the save-time sweep. |
+| .opencode/plugins/decision-capture.js and .pi/extensions/decision-capture.ts | Not created | OpenCode answers come from the save-time sweep; Pi has no observed answered call. |
 | .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl | Modify | Add the operator-decisions and operator-answers-verbatim anchors. |
-| .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts | Modify | Keep the new anchors separate from ADR sufficiency checks. |
+| .skilled/skills/system-spec-kit/runtime/lib/validation/spec-doc-structure.ts | Verify, no change | The ADR sufficiency check already reads only adr- anchors (ADR-002). |
 | .skilled/commands/speckit/save.md and .skilled/skills/system-spec-kit/references/memory/save-workflow.md | Modify | Read, filter, rewrite and consume eligible queued exchanges during save. |
 | .skilled/skills/system-spec-kit/references/structure/phase-definitions.md | Modify | Document the optional parent record for cross-phase decisions. |
 | .skilled/hooks/decision-capture/lib/capture-core.test.mjs and .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs | Create | Cover capture, filtering, transcript recovery and chat confirmation. |
 | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts | Create | Cover record writes, routing, idempotence, appendix and level guard. |
 | .skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts | Modify | Cover the full-auto save payload and queue consumption. |
+| .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts | Modify | Cover the pending-decision nudge. |
+| .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap | Regenerate | Follow the template's two new anchors. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -103,7 +122,7 @@ N/A: No non-mutating command can exercise the missing capture-to-save writer. T0
 
 | ID | Requirement |
 |----|-------------|
-| REQ-001 | Claude capture normalizes every question and answer from an AskUserQuestion result. T001 must establish whether PostToolUse tool_response carries answers. |
+| REQ-001 | Claude capture normalizes every question and answer from an AskUserQuestion result. T001 established that PostToolUse tool_response carries answers. |
 | REQ-002 | A Claude transcript sweep always runs as the backstop, regardless of the T001 result. At save time the session model includes a plain chat question only when it confirms a matching operator reply. |
 | REQ-003 | Gate 3, spec-folder, worktree or branch and commit or push permission questions produce no tracked decision entry or appendix item. |
 | REQ-004 | The session model emits operatorDecisions entries with one short decided statement, a why supported by session context, supersedes ids or None and a carried-by requirement, task or path. An unstated reason stays explicitly unstated. |
@@ -149,7 +168,7 @@ N/A: No non-mutating command can exercise the missing capture-to-save writer. T0
 ---
 
 <!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
 - **NFR-P01**: The capture hook makes no model call and completes its local append within the runtime's configured hook timeout.
@@ -167,7 +186,7 @@ N/A: No non-mutating command can exercise the missing capture-to-save writer. T0
 ---
 
 <!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
+## 8. EDGE CASES
 
 - Empty input: an event with no questions creates no queue entry and no decision-record section.
 - Maximum input: no product count limit is defined. The parser handles every question in one tool result and tests a multi-question result.
@@ -177,26 +196,58 @@ N/A: No non-mutating command can exercise the missing capture-to-save writer. T0
 ---
 
 <!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
+## 9. COMPLEXITY ASSESSMENT
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
 | Scope | 22/25 | Capture, transcript, save, writer, validation, runtime probes and their tests. |
 | Risk | 21/25 | Tracked user answers, concurrent appends, cross-phase routing and level inference. |
 | Research | 18/20 | The live Claude payload probe and four runtime answer-surface probes. |
-| **Total** | **61/70** | **Level 2** |
+| Multi-Agent | 10/15 | Workstreams: four DeepSeek workers on disjoint file sets, verified by the orchestrator. |
+| Coordination | 9/15 | Dependencies: the save wiring waits on the writer, the sweep and Stop nudge on the capture core. |
+| **Total** | **80/100** | **Level 3** |
 <!-- /ANCHOR:complexity -->
 
 ---
 
-<!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 10. RISK MATRIX
 
-- UNKNOWN: Does Claude PostToolUse tool_response include AskUserQuestion answers? T001 records the observed result. The transcript sweep stays on in either case.
-- UNKNOWN: Can Codex expose the answer to its PostToolUse hook or transcript? T016 resolves this. Keep its adapter disabled until confirmed.
-- UNKNOWN: Can OpenCode expose the answer through tool.execute.after or its transcript? T017 resolves this. Keep its adapter disabled until confirmed.
-- UNKNOWN: Can Pi expose the answer through tool_result or its transcript? T018 resolves this. Keep its adapter disabled until confirmed.
-- UNKNOWN: Can Devin expose the answer through PostToolUse or its transcript? T019 resolves this. Keep its adapter disabled until confirmed.
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | Claude PostToolUse carries no AskUserQuestion answers. | M | M | The sweep reads the transcript at save, and the adapter writes nothing when answers are absent. |
+| R-002 | A decision lands in the wrong packet. | H | L | Routing reuses the save's child resolver, and an unresolved target leaves the item pending. |
+| R-003 | Creating decision-record.md flips a markerless packet to Level 3. | H | L | The writer stamps the pre-write level marker first and a test compares levels before and after. |
+| R-004 | A process question reaches the tracked record. | M | L | The capture core filters it at capture and at sweep, and tests cover each process class. |
+| R-005 | An answer containing Markdown breaks the record structure. | M | L | The writer stores each verbatim value in a fence longer than any backtick run inside it. |
+
+---
+
+## 11. USER STORIES
+
+### US-001: Answers recorded without retyping (Priority: P0)
+
+**As an** operator, **I want** each answer I give to an AI question recorded as a short decision with my exact words beside it, **so that** I never retype an exchange and the reason survives the session.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+### US-002: A record that stays trustworthy (Priority: P1)
+
+**As a** maintainer reading a packet later, **I want** the decision record free of duplicates and process noise, with the packet's level unchanged, **so that** the record can be audited without cleanup.
+
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
+
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- ANSWERED: Claude PostToolUse tool_response carries AskUserQuestion answers. The live probe saw `tool_response.answers` map the question text to the answer (scratch/t001-probe/T001-result.md), so the adapter is registered. The transcript sweep stays on as the backstop.
+- UNKNOWN: Can Codex expose the answer to its PostToolUse hook or transcript? An offline scan of stored rollouts found the tool named only in instructions, with no answered call. T016 keeps its adapter disabled.
+- PARTLY ANSWERED: OpenCode's stored question tool part carries state.input.questions and state.metadata.answers, and `bin/sweep-opencode.mjs` reads it at save time (Q006). Its tool.execute.after payload is still unprobed, so no live plugin exists. The current SQLite store held no question call to sample, so its newest table layout is read by the same shape, which is inferred.
+- UNKNOWN: Can Pi expose the answer through tool_result or its transcript? No answered call was found in stored sessions. T018 keeps its adapter disabled.
+- PARTLY ANSWERED: Devin's stored transcript holds the answer as tool-result text that starts "User answered your questions:", and `bin/sweep-devin.mjs` reads it at save time (Q006). Its PostToolUse payload is still unprobed, so no hook is registered.
 <!-- /ANCHOR:questions -->
 
 ---

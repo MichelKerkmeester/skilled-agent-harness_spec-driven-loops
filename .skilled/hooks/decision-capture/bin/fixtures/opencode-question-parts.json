@@ -1,0 +1,215 @@
+[
+  {
+    "id": "prt_REDACTED0001",
+    "sessionID": "ses_REDACTED0001",
+    "messageID": "msg_REDACTED0001",
+    "type": "tool",
+    "callID": "call_REDACTED0001",
+    "tool": "question",
+    "state": {
+      "status": "completed",
+      "input": {
+        "questions": [
+          {
+            "question": "Is Antigravity the same as Gemini CLI, or a separate Google product with different folder requirements?",
+            "header": "Product",
+            "options": [
+              {
+                "label": "Same as Gemini CLI",
+                "description": "Antigravity uses .gemini/ folder like Gemini CLI"
+              },
+              {
+                "label": "Different product",
+                "description": "Antigravity has its own .antigravity/ folder structure"
+              },
+              {
+                "label": "Not sure",
+                "description": "Need to investigate further"
+              }
+            ]
+          },
+          {
+            "question": "What components do you need symlinked for Antigravity/Gemini?",
+            "header": "Components",
+            "multiple": true,
+            "options": [
+              {
+                "label": "Commands (Recommended)",
+                "description": "Symlink command/ to commands/"
+              },
+              {
+                "label": "Agent Instructions",
+                "description": "Symlink AGENTS.md to GEMINI.md"
+              },
+              {
+                "label": "MCP Configuration",
+                "description": "Port MCP config to settings.json"
+              },
+              {
+                "label": "Skills/Extensions",
+                "description": "May require translation (different formats)"
+              }
+            ]
+          },
+          {
+            "question": "Gemini uses TOML for commands, OpenCode uses Markdown. How should we handle this?",
+            "header": "Format",
+            "options": [
+              {
+                "label": "Symlink anyway (Recommended)",
+                "description": "Symlink and check if Gemini reads .md files"
+              },
+              {
+                "label": "Create wrapper TOML files",
+                "description": "Create .toml files that reference .md content"
+              },
+              {
+                "label": "Configure filename setting",
+                "description": "Use settings.json to change command file format"
+              }
+            ]
+          }
+        ]
+      },
+      "output": "User has answered your questions: \"Is Antigravity the same as Gemini CLI, or a separate Google product with different folder requirements?\"=\"check the link i sent you\", \"What components do you need symlinked for Antigravity/Gemini?\"=\"All folders within opencode\", \"Gemini uses TOML for commands, OpenCode uses Markdown. How should we handle this?\"=\"Create wrapper TOML files\". You can now continue with the user's answers in mind.",
+      "title": "Asked 3 questions",
+      "metadata": {
+        "answers": [
+          [
+            "check the link i sent you"
+          ],
+          [
+            "All folders within opencode"
+          ],
+          [
+            "Create wrapper TOML files"
+          ]
+        ],
+        "truncated": false
+      },
+      "time": {
+        "start": 1768463763518,
+        "end": 1768463857780
+      }
+    }
+  },
+  {
+    "id": "prt_REDACTED0002",
+    "sessionID": "ses_REDACTED0001",
+    "messageID": "msg_REDACTED0002",
+    "type": "tool",
+    "callID": "call_REDACTED0002",
+    "tool": "question",
+    "state": {
+      "status": "completed",
+      "input": {
+        "questions": [
+          {
+            "question": "Which next step would you like to continue with?",
+            "header": "Next Steps",
+            "options": [
+              {
+                "label": "A) Missing User Guides",
+                "description": "Create the 7 remaining SEO audit user guides (can parallelize with multi-agent)"
+              },
+              {
+                "label": "B) Fix Critical Bugs",
+                "description": "Address the maatwerk canonical URL bug and homepage H2 explosion"
+              },
+              {
+                "label": "C) Implement Heading Fixes",
+                "description": "Start applying the heading semantic changes in Webflow"
+              },
+              {
+                "label": "D) Review Master Guide",
+                "description": "Review the completed heading semantic guide for accuracy before moving on"
+              }
+            ],
+            "multiple": true
+          }
+        ]
+      },
+      "output": "User has answered your questions: \"Which next step would you like to continue with?\"=\"A) Missing User Guides, B) Fix Critical Bugs\". You can now continue with the user's answers in mind.",
+      "title": "Asked 1 question",
+      "metadata": {
+        "answers": [
+          [
+            "A) Missing User Guides",
+            "B) Fix Critical Bugs"
+          ]
+        ],
+        "truncated": false
+      },
+      "time": {
+        "start": 1770459361517,
+        "end": 1770459724172
+      }
+    }
+  },
+  {
+    "id": "prt_REDACTED0003",
+    "sessionID": "ses_REDACTED0001",
+    "messageID": "msg_REDACTED0003",
+    "type": "tool",
+    "callID": "call_REDACTED0003",
+    "tool": "question",
+    "state": {
+      "status": "error",
+      "input": {
+        "questions": [
+          {
+            "question": "What request would you like to route?",
+            "header": "Agent Router",
+            "options": [
+              {
+                "label": "Describe my request",
+                "description": "I'll provide a request to process through intelligent agent routing"
+              }
+            ]
+          }
+        ]
+      },
+      "error": "Error: The user dismissed this question",
+      "time": {
+        "start": 1770965526759,
+        "end": 1770965527647
+      }
+    }
+  },
+  {
+    "id": "prt_REDACTED0004",
+    "sessionID": "ses_REDACTED0001",
+    "messageID": "msg_REDACTED0004",
+    "type": "tool",
+    "callID": "call_REDACTED0004",
+    "tool": "question",
+    "state": {
+      "status": "running",
+      "input": {
+        "questions": [
+          {
+            "question": "I'm in Plan Mode (read-only) and cannot make edits. Would you like to switch to implementation mode so I can start executing the T01–T19 fixes, or would you like to review/adjust the plan first?",
+            "header": "Ready to implement?",
+            "options": [
+              {
+                "label": "Start implementation",
+                "description": "Switch to implementation mode and begin executing all 4 phases (T01–T19)"
+              },
+              {
+                "label": "Review the plan first",
+                "description": "Let me re-read and walk through the plan details before starting"
+              },
+              {
+                "label": "Adjust the plan",
+                "description": "I want to change some design decisions or task priorities before executing"
+              }
+            ]
+          }
+        ]
+      },
+      "time": {
+        "start": 1770732747764
+      }
+    }
+  }
+]

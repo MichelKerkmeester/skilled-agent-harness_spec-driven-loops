@@ -142,6 +142,8 @@ export interface CollectedDataBase {
   _manualTriggerPhrases?: string[];
   /** Continuity fields carried from the save payload to the full-auto continuity write. */
   _continuity?: Record<string, unknown>;
+  /** Operator decisions carried from the save payload to the full-auto decision-record write. */
+  _operatorDecisions?: Array<Record<string, unknown>>;
   _isSimulation?: boolean;
   preflight?: PreflightData;
   postflight?: PostflightData;

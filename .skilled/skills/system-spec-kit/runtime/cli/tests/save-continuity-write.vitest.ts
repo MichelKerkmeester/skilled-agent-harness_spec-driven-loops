@@ -209,49 +209,49 @@ function continuityBlock(markdown: string): string {
   return markdown.slice(start, markdown.indexOf('\n---', start));
 }
 
+beforeAll(() => {
+  vi.spyOn(process, 'exit').mockImplementation(((code?: string | number | null) => {
+    throw new Error(`EXIT:${code ?? 0}`);
+  }) as never);
+});
+
+beforeEach(() => {
+  buildWorkspace();
+  fs.rmSync(path.join(STORE_DIR, 'access-telemetry.json'), { force: true });
+  stderr = '';
+  vi.spyOn(process.stderr, 'write').mockImplementation(((chunk: string | Uint8Array) => {
+    stderr += typeof chunk === 'string' ? chunk : Buffer.from(chunk).toString('utf8');
+    return true;
+  }) as never);
+  vi.spyOn(console, 'error').mockImplementation((...args: unknown[]) => {
+    stderr += `${args.map(String).join(' ')}\n`;
+  });
+  vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+  vi.spyOn(console, 'log').mockImplementation(() => undefined);
+});
+
+afterEach(async () => {
+  vi.mocked(process.stderr.write).mockRestore();
+  vi.mocked(console.error).mockRestore();
+  vi.mocked(console.warn).mockRestore();
+  vi.mocked(console.log).mockRestore();
+  const { CONFIG } = await import('../core');
+  CONFIG.DATA_FILE = null;
+  CONFIG.SPEC_FOLDER_ARG = null;
+  fs.rmSync(root, { recursive: true, force: true });
+});
+
+afterAll(() => {
+  vi.restoreAllMocks();
+  fs.rmSync(STORE_DIR, { recursive: true, force: true });
+  if (ORIGINAL_DB_DIR === undefined) {
+    delete process.env.SPEC_KIT_DB_DIR;
+  } else {
+    process.env.SPEC_KIT_DB_DIR = ORIGINAL_DB_DIR;
+  }
+});
+
 describe('save writer continuity write', () => {
-  beforeAll(() => {
-    vi.spyOn(process, 'exit').mockImplementation(((code?: string | number | null) => {
-      throw new Error(`EXIT:${code ?? 0}`);
-    }) as never);
-  });
-
-  beforeEach(() => {
-    buildWorkspace();
-    fs.rmSync(path.join(STORE_DIR, 'access-telemetry.json'), { force: true });
-    stderr = '';
-    vi.spyOn(process.stderr, 'write').mockImplementation(((chunk: string | Uint8Array) => {
-      stderr += typeof chunk === 'string' ? chunk : Buffer.from(chunk).toString('utf8');
-      return true;
-    }) as never);
-    vi.spyOn(console, 'error').mockImplementation((...args: unknown[]) => {
-      stderr += `${args.map(String).join(' ')}\n`;
-    });
-    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-    vi.spyOn(console, 'log').mockImplementation(() => undefined);
-  });
-
-  afterEach(async () => {
-    vi.mocked(process.stderr.write).mockRestore();
-    vi.mocked(console.error).mockRestore();
-    vi.mocked(console.warn).mockRestore();
-    vi.mocked(console.log).mockRestore();
-    const { CONFIG } = await import('../core');
-    CONFIG.DATA_FILE = null;
-    CONFIG.SPEC_FOLDER_ARG = null;
-    fs.rmSync(root, { recursive: true, force: true });
-  });
-
-  afterAll(() => {
-    vi.restoreAllMocks();
-    fs.rmSync(STORE_DIR, { recursive: true, force: true });
-    if (ORIGINAL_DB_DIR === undefined) {
-      delete process.env.SPEC_KIT_DB_DIR;
-    } else {
-      process.env.SPEC_KIT_DB_DIR = ORIGINAL_DB_DIR;
-    }
-  });
-
   it('writes the payload fields into the leaf and keeps valid stored fields', async () => {
     await save(LEAF, {
       recent_action: 'Wired the continuity writer',
@@ -462,5 +462,89 @@ describe('save writer continuity write', () => {
     const { checkGeneratedMetadataIntegrity } = await import('../../api');
     const report = checkGeneratedMetadataIntegrity(path.join(root, LEAF));
     expect(report.violations.map((violation) => violation.code)).not.toContain('SOURCE_FINGERPRINT_MISMATCH');
+  });
+});
+
+describe('save writer operator decisions', () => {
+  // One confirmed operator answer, shaped the way the decision-capture queue hands
+  // it to the save payload.
+  const decision = {
+    sourceKey: 'claude:s1:toolu_a:0',
+    decided: 'Use the blue badge.',
+    carriedBy: 'REQ-001',
+    question: 'Which colour should the badge use?',
+    options: ['Blue', 'Green'],
+    answer: 'Blue',
+  };
+
+  function consumedKeys(): string {
+    const absolute = path.join(root, '.skilled/skills/.state/decision-capture/consumed.jsonl');
+    return fs.existsSync(absolute) ? fs.readFileSync(absolute, 'utf8') : '';
+  }
+
+  function hasRecord(relativeFolder: string): boolean {
+    return fs.existsSync(path.join(root, relativeFolder, 'decision-record.md'));
+  }
+
+  it('writes the decision into the leaf record and consumes its key', async () => {
+    await save(LEAF, { operatorDecisions: [decision] });
+
+    const record = read(`${LEAF}/decision-record.md`);
+    expect(record).toContain('| Q001 | Use the blue badge. | Not stated. | None | REQ-001 |');
+    expect(record).toContain('<!-- source: claude:s1:toolu_a:0 -->');
+    expect(consumedKeys()).toContain('claude:s1:toolu_a:0');
+  });
+
+  it('leaves the record byte-identical when the same save runs twice', async () => {
+    await save(LEAF, { operatorDecisions: [decision] });
+    const first = read(`${LEAF}/decision-record.md`);
+
+    await save(LEAF, { operatorDecisions: [decision] });
+
+    expect(read(`${LEAF}/decision-record.md`)).toBe(first);
+  });
+
+  it('lists the entries and writes nothing outside --full-auto', async () => {
+    await save(LEAF, { operatorDecisions: [decision] }, false);
+
+    expect(hasRecord(LEAF)).toBe(false);
+    expect(consumedKeys()).toBe('');
+  });
+
+  it('writes a cross-phase decision to the phase parent', async () => {
+    await save(PARENT, { operatorDecisions: [{ ...decision, scope: 'cross-phase' }] });
+
+    expect(read(`${PARENT}/decision-record.md`)).toContain('Use the blue badge.');
+    expect(hasRecord(LEAF)).toBe(false);
+  });
+
+  it('routes a local decision to the leaf the payload paths name', async () => {
+    await save(PARENT, {
+      operatorDecisions: [decision],
+      filesModified: [`${LEAF}/spec.md`],
+    });
+
+    expect(read(`${LEAF}/decision-record.md`)).toContain('Use the blue badge.');
+    expect(hasRecord(PARENT)).toBe(false);
+  });
+
+  it('writes nothing and leaves the key pending when the payload paths span two children', async () => {
+    await save(PARENT, {
+      operatorDecisions: [decision],
+      filesModified: [`${LEAF}/spec.md`, `${OTHER}/spec.md`],
+    });
+
+    expect(hasRecord(PARENT)).toBe(false);
+    expect(hasRecord(LEAF)).toBe(false);
+    expect(hasRecord(OTHER)).toBe(false);
+    expect(consumedKeys()).not.toContain('claude:s1:toolu_a:0');
+  });
+
+  it('fails the save and writes no record when a decision has no decided statement', async () => {
+    const { decided: _decided, ...incomplete } = decision;
+
+    await expect(save(LEAF, { operatorDecisions: [incomplete] })).rejects.toThrow();
+
+    expect(hasRecord(LEAF)).toBe(false);
   });
 });

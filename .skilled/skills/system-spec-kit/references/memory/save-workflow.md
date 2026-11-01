@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -247,6 +247,24 @@ A `--full-auto` save writes these into the leaf's `_memory.continuity` block. A 
 | `answered_questions` | array   | Question ids, disjoint from `open_questions` |
 
 The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself. A field the payload leaves out keeps its stored value while that value validates; a stored value that fails validation is dropped and named in the save output. A payload value that fails fails the whole save before any file is written, and an empty string counts as absent.
+
+### Operator Decisions
+
+A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing. On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode and Devin, `sweep-opencode.mjs` and `sweep-devin.mjs` in the same folder do the same from the runtime's stored session; they read tool answers only, so they offer no chat candidates.
+
+| Field        | Type   | Required | Description |
+| ------------ | ------ | -------- | ----------- |
+| `sourceKey`  | string | Yes      | The key the sweep printed; letters, digits and `:._-` only |
+| `decided`    | string | Yes      | One sentence that states the decision |
+| `carriedBy`  | string | Yes      | The requirement, task or path that carries it |
+| `question`   | string | Yes      | The exact question text |
+| `answer`     | string | Yes      | The exact answer text |
+| `why`        | string | No       | The reason the session stated; written as `Not stated.` when absent |
+| `supersedes` | string | No       | The ids it replaces; written as `None` when absent |
+| `options`    | array  | No       | The offered option labels, exactly as shown |
+| `scope`      | string | No       | `local` (default) or `cross-phase` |
+
+Each `sourceKey` maps to one stable id such as `Q004`. The writer adds a row to the `operator-decisions` anchor and an item holding the verbatim question, options and answer to the `operator-answers-verbatim` anchor. A repeated save leaves the file byte-identical, and an existing appendix item is never rewritten. A `local` entry aimed at a phase parent follows the continuity leaf rule below, a `cross-phase` entry goes to the phase parent, and an unresolved target writes nothing. When the writer has to create `decision-record.md` in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change it. Written keys are recorded in the gitignored `.skilled/skills/.state/decision-capture/consumed.jsonl`.
 
 If both the JSON payload and the CLI provide a spec folder, the explicit CLI argument wins.
 

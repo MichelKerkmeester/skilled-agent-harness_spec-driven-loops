@@ -1,0 +1,62 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/042-decision-capture
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: Act as a code agent. Read before you edit, copy the house style named under STYLE, keep the change small, run the CHECK, report honestly.
+
+TASK: Create a Node ESM script that sweeps a Claude Code transcript (JSONL) for answered AskUserQuestion calls the hook missed, appends them to the existing queue, and lists plain-chat question candidates. Plus a node:test suite.
+
+ALLOWED WRITE PATHS (create these two files, nothing else):
+  .skilled/hooks/decision-capture/bin/sweep-transcript.mjs
+  .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs
+
+BANNED OPERATIONS: any git command that writes; npm/npx install; editing or deleting any other file (capture-core.mjs is read-only for you); opening any .env or token file; reading anything under ~/.claude; running opencode.
+
+STYLE AND API: read .skilled/hooks/decision-capture/lib/capture-core.mjs first. Copy its header box and numbered ALL-CAPS section dividers. Import and use its exports: normalizeAskUserQuestion, appendRecords, pendingRecords, readConsumedKeys, chatSourceKey, isProcessQuestion. Read .skilled/hooks/decision-capture/lib/capture-core.test.mjs for test style. Comments explain WHY; never put spec, task, requirement or ADR ids in comments.
+
+TRANSCRIPT SHAPE (one JSON object per line; skip blank or unparseable lines, and skip any line with isSidechain === true):
+- assistant line: { type:'assistant', uuid, sessionId, message:{ role:'assistant', content:[ {type:'text', text} | {type:'tool_use', id, name, input} ] } }
+- user prompt line: { type:'user', uuid, sessionId, message:{ role:'user', content: '<typed text>' } }  (content may also be an array of {type:'text', text}; treat that as typed text joined with '\n')
+- tool result line: { type:'user', uuid, sessionId, message:{ role:'user', content:[ {type:'tool_result', tool_use_id, content} ] }, toolUseResult:{ questions:[...], answers:{ '<question text>':'<answer>' } } }
+- a user line is NOT a typed prompt when isMeta === true, isCompactSummary === true, or its text starts with '<'.
+
+export function sweepTranscript({ projectDir, transcriptPath, now }) returns
+  { transcript: transcriptPath, session_id, recovered, pending, chat_candidates }
+1. session_id = the first line's sessionId, else the transcript file name without .jsonl.
+2. Tool answers: remember every assistant tool_use with name 'AskUserQuestion' by id. For each tool result line whose tool_result.tool_use_id is remembered and whose toolUseResult.answers is an object, call normalizeAskUserQuestion({ runtime:'claude', sessionId: session_id, toolUseId: tool_use_id, toolInput: the remembered input, toolResponse: toolUseResult, source:'transcript', now }). Append all records with appendRecords(projectDir, session_id, records); recovered = its appended count.
+3. pending = pendingRecords(projectDir, session_id).
+4. Chat candidates: keep lastText = { uuid, text } from the most recent assistant line that has text blocks (text blocks joined with '\n'); set lastText = null on any assistant line that has a tool_use block, because a later tool call means that text did not close the turn. On a typed user prompt line: if lastText is set, take the last non-empty paragraph of lastText.text (paragraphs split on blank lines); if it contains '?', it is a candidate with question = that paragraph byte-exact, answer = the typed text byte-exact, question_turn_id = lastText.uuid, answer_turn_id = the user line uuid, key = chatSourceKey('claude', session_id, question_turn_id, answer_turn_id). Then set lastText = null. At the end of the file, a still-set lastText whose last paragraph contains '?' is a candidate with answer null, answer_turn_id null and key null.
+5. Drop a candidate when isProcessQuestion({ question, header:'', options }) is true, where options = the paragraph's lines that match /^\s*(?:[-*]\s+)?(?:\*\*)?[A-D]\)/ with leading bullet and ** markers removed. Drop a candidate whose key is in readConsumedKeys(projectDir).
+6. chat_candidates entries: { key, kind:'chat', question, answer, question_turn_id, answer_turn_id }.
+
+CLI (run only when the file is executed directly): `node sweep-transcript.mjs [--transcript <path>]`. projectDir = process.cwd(). Without --transcript, pick the most recently modified *.jsonl in path.join(os.homedir(), '.claude', 'projects', process.cwd().replace(/[^A-Za-z0-9]/g, '-')). Print JSON.stringify(result, null, 2) and exit 0. No transcript found or unreadable: print {"error":"..."} to stdout and exit 1.
+
+TESTS in sweep-transcript.test.mjs (node:test, node:assert/strict, a fresh mkdtempSync projectDir per test, fixture transcripts written into that tmp dir, never ~/.claude):
+- two AskUserQuestion rounds (three questions in total) are recovered: recovered 3, pending 3, source 'transcript'; a second sweep returns recovered 0 and the queue still has 3 lines
+- a record the hook already queued for round one (same key, source 'hook') is not appended again; only round two is recovered
+- an assistant text ending in the paragraph `Should the badge be blue or green?` followed by the typed prompt `Blue, please.` yields one candidate with that exact question, answer and key
+- a final assistant question with no reply yields a candidate with answer null and key null
+- a question paragraph followed by an assistant tool_use line before the next prompt yields no candidate
+- a chat candidate whose key is listed in consumed.jsonl is omitted
+- a chat question `Before I proceed, I need to ask about documentation:` with lines `A) Existing` and `D) Skip` yields no candidate
+- lines with isSidechain true are ignored
+- the CLI: spawnSync('node', [script, '--transcript', file], { cwd: projectDir }) exits 0 and prints JSON whose recovered is 3
+
+CHECK (run from the repository root and paste the full output):
+  node --check .skilled/hooks/decision-capture/bin/sweep-transcript.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+
+REPORT FORMAT (last lines of your answer):
+FILES: <paths written>
+CHECK: <pass/fail counts copied from the node --test output>
+STATUS=OK|FAIL <one line why>
