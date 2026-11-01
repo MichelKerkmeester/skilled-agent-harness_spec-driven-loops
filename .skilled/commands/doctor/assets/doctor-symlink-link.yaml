@@ -28,7 +28,7 @@ mutation_boundaries:
   allowed_targets:
     - "Only link paths and directories listed by the plan inside --root. This includes creating links, replacing or removing source-pointing broken links and creating directories needed for merge links."
     - "Only the ignore lines listed by the plan, in the selected file inside --root: .git/info/exclude or .gitignore. No ignore lines are written when --ignore none is selected."
-    - "The run record under <source>/.skilled/output/doctor-symlink/<first 16 hex characters of the plan digest>/manifest.json. The engine writes it before the first action and after each action."
+    - "The run record under <source>/.skilled/output/doctor-symlink/<first 16 hex characters of the plan digest>/manifest.json, or <prefix>-2, <prefix>-3 and on when an earlier run of the same digest already holds that folder. The engine writes it before the first action and after each action, and never reuses, overwrites or removes an earlier run record."
   forbidden_targets:
     - "Any path that the plan does not list, including real files and directories with local conflicts."
     - "Any path under <source> except the run record named above."

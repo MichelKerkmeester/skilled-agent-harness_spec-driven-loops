@@ -318,6 +318,51 @@ test('unlink dry-run writes nothing and yes restores the target tree and ignore 
   assert.equal(snapshotWorkspace(root), before);
 });
 
+test('relinking the same plan after unlink succeeds and keeps the earlier run record intact', () => {
+  const { source, root } = buildFixture({ git: true });
+  const firstPlan = planFor(source, root);
+  const firstApply = runRoot(source, root, 'apply', ['--plan-digest', firstPlan.digest]);
+  assertStatus(firstApply, 0, 'first apply should link the root');
+  const firstRun = runDirectoryFrom(firstApply.output);
+
+  const undone = runUnlink(source, firstRun, '--yes');
+  assertStatus(undone, 0, 'unlink --yes should remove the first links');
+  const firstRecord = fs.readFileSync(path.join(firstRun, 'manifest.json'), 'utf8');
+
+  const secondPlan = planFor(source, root);
+  assert.equal(secondPlan.digest, firstPlan.digest, 'the unlinked tree should plan the same digest');
+  const secondApply = runRoot(source, root, 'apply', ['--plan-digest', secondPlan.digest]);
+  assertStatus(secondApply, 0, 'relinking the same plan should succeed');
+  const secondRun = runDirectoryFrom(secondApply.output);
+
+  assert.notEqual(secondRun, firstRun, 'the relink should write a new run record');
+  assert.ok(path.basename(secondRun).startsWith(firstPlan.digest.slice(0, 16)), 'the new run keeps the digest prefix');
+  assert.equal(fs.readFileSync(path.join(firstRun, 'manifest.json'), 'utf8'), firstRecord);
+  assertLinkResolvesTo(path.join(root, '.skilled'), path.join(source, '.skilled'));
+
+  const secondUndo = runUnlink(source, secondRun, '--yes');
+  assertStatus(secondUndo, 0, 'the new run record should drive its own unlink');
+  assert.equal(fs.lstatSync(path.join(root, '.skilled'), { throwIfNoEntry: false }), undefined);
+});
+
+test('unlink refuses a run folder whose name does not follow the recorded digest', () => {
+  const { source, root } = buildFixture({ git: true });
+  const plan = planFor(source, root);
+  const applied = runRoot(source, root, 'apply', ['--plan-digest', plan.digest]);
+  assertStatus(applied, 0, 'apply should create a run record');
+  const runDirectory = runDirectoryFrom(applied.output);
+  const afterApply = snapshotWorkspace(root);
+
+  for (const name of [`${plan.digest.slice(0, 16)}-x`, `${plan.digest.slice(0, 16)}-0`, 'copied-run']) {
+    const misnamed = path.join(path.dirname(runDirectory), name);
+    fs.cpSync(runDirectory, misnamed, { recursive: true });
+    const refused = runUnlink(source, misnamed, '--yes');
+    assertStatus(refused, 2, `unlink should refuse the run folder ${name}`);
+    assert.match(refused.stderr, /does not match the recorded source and digest/);
+  }
+  assert.equal(snapshotWorkspace(root), afterApply);
+});
+
 test('a merge-only folder the root lacks is created, filled and removed again by unlink', () => {
   const { source, root } = buildFixture({ git: true });
   writeFile(path.join(source, '.github/dependabot.yml'), 'version: 2\n');

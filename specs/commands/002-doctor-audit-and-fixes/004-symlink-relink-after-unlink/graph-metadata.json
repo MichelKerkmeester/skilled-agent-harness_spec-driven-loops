@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink",
+  "spec_folder": "commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink",
+  "parent_id": "commands/002-doctor-audit-and-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "symlink relink after unlink",
+      "phase 4 symlink relink after unlink",
+      "doctor symlink run record eexist",
+      "symlink run folder collision",
+      "symlink relink after unlink plan",
+      "symlink relink after unlink tasks",
+      "symlink relink after unlink acceptance criteria",
+      "symlink relink after unlink implementation summary"
+    ],
+    "key_topics": [
+      "symlink",
+      "relink",
+      "unlink",
+      "phase",
+      "doctor",
+      "run",
+      "record",
+      "eexist",
+      "folder",
+      "collision",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+      ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+      ".skilled/commands/doctor/symlink.md",
+      ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+      ".skilled/commands/doctor/_routes.yaml",
+      "scratch/red-before-change.md",
+      "scratch/verification-evidence.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-symlink.md",
+      "scratch/baseline-before-change.md",
+      "scratch/run-folder-consumers.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/symlink-engine.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink-engine.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/symlink-engine.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "symlink.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink-link.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-symlink-link.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "red-before-change.md",
+        "kind": "doc",
+        "path": "scratch/red-before-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-evidence.md",
+        "kind": "doc",
+        "path": "scratch/verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-symlink.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-symlink.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-before-change.md",
+        "kind": "doc",
+        "path": "scratch/baseline-before-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-folder-consumers.md",
+        "kind": "doc",
+        "path": "scratch/run-folder-consumers.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Exclusive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`createRunRecord()` in `symlink-engine.cjs` named the run folder `path.join(RUNSPATH, digest.slice(0, 16))` and wrote `manifest.json` there with the `wx` flag",
+    "created_at": "2026-11-01T08:41:04Z",
+    "last_save_at": "2026-11-01T08:47:45.078Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bbe8cee9a88c15070fa2c97fb000c74eb01e9b29e738fe7e7ccaeac31ec8ce3a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b259cf6294c659fd9fd408c9850d405990dcd83b231d71acfcba10f8ae724440",
+      "plan.md": "ce8fe3d6dcfda5c8f7198217e60794076a91aa2bf57c59d41114f64fff6a9ac1",
+      "tasks.md": "f128c3091ae9cf93f9c22f893db42d961854745f70498278c349a15b114ef191",
+      "implementation-summary.md": "60e9385bc1afa4b771e3f43c8f14d8cb52c1dd06b6bdc4668a8b2a5a6c865a4b"
+    },
+    "last_active_at": null
+  }
+}

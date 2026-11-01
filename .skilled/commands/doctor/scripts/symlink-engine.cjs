@@ -20,6 +20,8 @@ const path = require('node:path');
 const SCRIPT_ROOT = path.resolve(__dirname, '../../../..');
 const MANIFEST_PATH = path.resolve(__dirname, '../assets/symlink-manifest.json');
 const RUNS_PATH = path.join('.skilled', 'output', 'doctor-symlink');
+const RUN_PREFIX_CHARS = 16;
+const MAX_RUNS_PER_DIGEST = 1000;
 const ACTION_ORDER = {
   mkdir: 0,
   'replace-link': 1,
@@ -1013,16 +1015,44 @@ function ensureSourceDirectories(source, relative) {
 }
 
 /**
- * Create the first run record without replacing an existing file.
+ * Name the run folders one digest may own: the bare prefix first, then a numbered suffix.
+ * @param {string} digest
+ * @returns {RegExp}
+ */
+function runNamePattern(digest) {
+  return new RegExp('^' + digest.slice(0, RUN_PREFIX_CHARS) + '(?:-[1-9][0-9]*)?$', 'u');
+}
+
+/**
+ * Create a new run record in a folder no earlier run owns.
+ * A repeated digest is normal after unlink, because the unlinked tree plans the same
+ * actions again. Earlier records stay as the undo history, so each apply claims a fresh
+ * folder with an exclusive mkdir and never reuses, overwrites or removes an existing one.
  * @param {string} source
  * @param {string} digest
  * @param {string} root
  * @returns {{runDir: string, manifestPath: string, record: object}}
  */
 function createRunRecord(source, digest, root) {
-  const runRelative = path.join(RUNS_PATH, digest.slice(0, 16));
-  const runDir = resolveInside(source, runRelative);
-  ensureSourceDirectories(source, runRelative);
+  ensureSourceDirectories(source, RUNS_PATH);
+  const prefix = digest.slice(0, RUN_PREFIX_CHARS);
+  let runDir = null;
+  for (let attempt = 1; attempt <= MAX_RUNS_PER_DIGEST && runDir === null; attempt += 1) {
+    const name = attempt === 1 ? prefix : prefix + '-' + attempt;
+    const candidate = resolveInside(source, path.join(RUNS_PATH, name));
+    try {
+      fs.mkdirSync(candidate);
+      runDir = candidate;
+    } catch (error) {
+      if (error.code !== 'EEXIST') {
+        throw new PreconditionError('cannot create run directory at ' + candidate + ': ' + error.message);
+      }
+    }
+  }
+  if (runDir === null) {
+    throw new PreconditionError('no free run directory for digest ' + prefix + ' after '
+      + MAX_RUNS_PER_DIGEST + ' runs under ' + path.join(source, RUNS_PATH));
+  }
   const manifestPath = path.join(runDir, 'manifest.json');
   const record = {
     schema_version: 1,
@@ -1565,8 +1595,9 @@ function runUnlink(options) {
   }
   const record = readRunRecord(runDir);
   const roots = recordRoots(record);
-  const expectedRunDir = resolveInside(roots.source, path.join(RUNS_PATH, record.digest.slice(0, 16)));
-  if (fs.realpathSync(runDir) !== expectedRunDir) {
+  const realRunDir = fs.realpathSync(runDir);
+  const runsRoot = resolveInside(roots.source, RUNS_PATH);
+  if (path.dirname(realRunDir) !== runsRoot || !runNamePattern(record.digest).test(path.basename(realRunDir))) {
     throw new PreconditionError('run directory does not match the recorded source and digest');
   }
   if (options.sourceSpecified) {
