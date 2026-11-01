@@ -1,5 +1,5 @@
 {
-  "manifestHash": "791c24ca9d260e4a03944e23b63ce08db65e60cdfa7831fbc7cf69e69c55a289",
+  "manifestHash": "e0d08b1058584e3d7bef225701800938726d8cd3113b94f0b96b77e702148879",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28168,6 +28168,9 @@
     "consume locked withdraw tasks": [
       "consume locked withdraw tasks"
     ],
+    "consumed decision keys": [
+      "consumed decision keys"
+    ],
     "consumer access role normalization": [
       "consumer access role normalization"
     ],
@@ -32436,6 +32439,9 @@
     ],
     "decision capture plan": [
       "decision capture plan"
+    ],
+    "decision capture runtime state": [
+      "decision capture runtime state"
     ],
     "decision capture tasks": [
       "decision capture tasks"
@@ -72369,6 +72375,9 @@
     ],
     "operator agent directory": [
       "operator agent directory"
+    ],
+    "operator answer queue": [
+      "operator answer queue"
     ],
     "operator approval grammar": [
       "operator approval grammar"

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16410,
+    "ok": 16411,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27211,
+  "documentsScanned": 27212,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "791c24ca9d260e4a03944e23b63ce08db65e60cdfa7831fbc7cf69e69c55a289",
+  "manifestHash": "e0d08b1058584e3d7bef225701800938726d8cd3113b94f0b96b77e702148879",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40055,
+      "ok": 40058,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -68444,6 +68444,14 @@
     {
       "path": ".skilled/hooks/completion/pi/completion-evidence.ts",
       "reason": "symlink not followed"
+    },
+    {
+      "path": ".skilled/hooks/decision-capture/bin/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/decision-capture/claude/fixtures",
+      "reason": "excluded directory"
     },
     {
       "path": ".skilled/hooks/directive-lifecycle/claude/directive-lifecycle-boundary.ts",
