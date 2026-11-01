@@ -22,8 +22,9 @@
 //
 // Usage: skill-graph-freshness.cjs [--strict]
 // Environment overrides, so the panel can be pointed at a fixture tree:
-//   SKILL_GRAPH_FRESHNESS_ROOT   repository root to read (default: the nearest
-//                                ancestor of this script holding .git)
+//   SKILL_GRAPH_FRESHNESS_ROOT   repository root to read (default: the root
+//                                resolved from this script's own tree by the
+//                                shared workspace sentinel resolver)
 //   SYSTEM_SKILL_ADVISOR_DB_DIR  directory holding skill-graph.sqlite (default:
 //                                the advisor runtime's database/ directory)
 
@@ -33,6 +34,12 @@
 
 const fs = require('fs');
 const path = require('path');
+// The framework copy is the one holding the authored sentinel under `.skilled` or
+// `.opencode`; a vendored copy below another repository's git root must read its
+// own graph, not the enclosing repository's.
+const { findRepoRoot } = require(
+  '../../../skills/system-spec-kit/shared/workspace/repo-root.mjs',
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS AND ROOT RESOLUTION
@@ -42,15 +49,6 @@ const SKILL_GRAPH_JSON = '.skilled/skills/system-skill-advisor/runtime/scripts/s
 const DB_DEFAULT = '.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite';
 const SKILLS_DIR = '.skilled/skills';
 const FOOTER = '  (report-only — the canonical reindex is operator-gated; nothing was written)';
-
-function findRepoRoot(start) {
-  let dir = start;
-  while (dir !== path.dirname(dir)) {
-    if (fs.existsSync(path.join(dir, '.git'))) return dir;
-    dir = path.dirname(dir);
-  }
-  return start;
-}
 
 const REPO = process.env.SKILL_GRAPH_FRESHNESS_ROOT
   ? path.resolve(process.env.SKILL_GRAPH_FRESHNESS_ROOT)

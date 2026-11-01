@@ -12,6 +12,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 const { createRequire } = require('node:module');
+// The framework copy a script belongs to is the one holding the authored sentinel
+// under `.skilled` or `.opencode`, which is what the runtime resolver walks for.
+// A vendored copy one folder below another repository's git root therefore reads
+// its own skills tree instead of the enclosing repository's.
+const { findRepoRoot: resolveRepoRoot } = require(
+  '../../../../skills/system-spec-kit/shared/workspace/repo-root.mjs',
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -81,24 +88,10 @@ function pathsFor(repoRoot) {
   };
 }
 
+// Kept as the exported name so the two commands and two test modules that call it
+// stay put; the walk itself belongs to the shared resolver.
 function findRepoRoot(start = __dirname) {
-  let current = path.resolve(start);
-  while (current !== path.dirname(current)) {
-    if (fs.existsSync(path.join(current, '.git'))) return current;
-    current = path.dirname(current);
-  }
-  const result = spawnSync(
-    'git',
-    ['-c', 'core.fsmonitor=false', 'rev-parse', '--show-toplevel'],
-    {
-      cwd: start,
-      encoding: 'utf8',
-      timeout: DEFAULT_TIMEOUT_MS,
-      env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
-    },
-  );
-  if (result.status === 0 && result.stdout.trim()) return path.resolve(result.stdout.trim());
-  return path.resolve(start);
+  return resolveRepoRoot(start);
 }
 
 function createContext(options = {}) {

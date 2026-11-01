@@ -1,0 +1,18 @@
+{
+  "specFolder": "commands/002-doctor-audit-and-fixes/003-nested-skilled-root",
+  "description": "Phase 3: nested-skilled-root",
+  "keywords": [
+    "phase",
+    "nested-skilled-root"
+  ],
+  "lastUpdated": "2026-11-01T05:57:12.807Z",
+  "specId": "003",
+  "folderSlug": "nested-skilled-root",
+  "parentChain": [
+    "commands",
+    "002-doctor-audit-and-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

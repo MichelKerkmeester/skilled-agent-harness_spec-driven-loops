@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/002-doctor-audit-and-fixes/003-nested-skilled-root",
+  "spec_folder": "commands/002-doctor-audit-and-fixes/003-nested-skilled-root",
+  "parent_id": "commands/002-doctor-audit-and-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nested skilled root",
+      "phase 3 nested skilled root",
+      "doctor scripts repository root",
+      "vendored skilled below git root",
+      "nested skilled root plan",
+      "nested skilled root tasks",
+      "nested skilled root acceptance criteria",
+      "nested skilled root decision",
+      "doctor root finding decision",
+      "nested skilled root implementation summary"
+    ],
+    "key_topics": [
+      "nested",
+      "skilled",
+      "root",
+      "phase",
+      "doctor",
+      "scripts",
+      "repository",
+      "vendored",
+      "git",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+      ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+      ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/doctor-root-resolution.test.cjs",
+      ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
+      "shared/workspace/repo-root.mjs",
+      ".skilled/skills/system-spec-kit/shared/workspace/repo-root.mjs",
+      "scratch/baseline-before-change.md",
+      "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch/baseline-before-change.md",
+      "scratch/T001.md",
+      "scratch/T002.md",
+      "scratch/T003.md",
+      "scratch/root-consumers.md",
+      "scratch/T005.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-surface.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-freshness.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-root-resolution.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/doctor-root-resolution.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-graph-freshness.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "repo-root.mjs",
+        "kind": "file",
+        "path": "shared/workspace/repo-root.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-before-change.md",
+        "kind": "doc",
+        "path": "scratch/baseline-before-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "T001.md",
+        "kind": "doc",
+        "path": "scratch/T001.md",
+        "source": "derived"
+      },
+      {
+        "name": "T002.md",
+        "kind": "doc",
+        "path": "scratch/T002.md",
+        "source": "derived"
+      },
+      {
+        "name": "T003.md",
+        "kind": "doc",
+        "path": "scratch/T003.md",
+        "source": "derived"
+      },
+      {
+        "name": "root-consumers.md",
+        "kind": "doc",
+        "path": "scratch/root-consumers.md",
+        "source": "derived"
+      },
+      {
+        "name": "T005.md",
+        "kind": "doc",
+        "path": "scratch/T005.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three doctor scripts choose the repository root themselves instead of using the resolver Skilled already ships",
+    "created_at": "2026-11-01T05:57:12Z",
+    "last_save_at": "2026-11-01T06:44:24.043Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:60380d38d65863ef2502a0cf2a74a6ebf97ff2faf69af1fd85448288afeb1934",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "49e4fdc1f9a972fa2042755d0f7378e8666f7b62d89f43c7fa9cb01ecbbb9f41",
+      "plan.md": "b3c632366167e43ac998eb734d059439d21378679300c349abd9dcaf94ec1678",
+      "tasks.md": "a1806d970d4ef7baa4f8c0961266717de7ec297f48a878f47110d292e0c4c00c",
+      "decision-record.md": "361763f417772356f71d26e7b13749d90568be50d5801fd74a6ca872bfe9f247",
+      "implementation-summary.md": "66b799ca79d36d4634ab040978878eff197756f2b5b0e68183ce68462623f48e"
+    },
+    "last_active_at": null
+  }
+}

@@ -59,6 +59,12 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
+// The framework copy is the one holding the authored sentinel under `.skilled` or
+// `.opencode`. Resolving from the script's own directory therefore follows the
+// copy it was launched from, even when another repository's git root sits above it.
+const { findRepoRoot } = require(
+  '../../../skills/system-spec-kit/shared/workspace/repo-root.mjs',
+);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -69,16 +75,8 @@ const EXIT_INVARIANT_FAILED = 1;
 const EXIT_CHECKER_ERROR = 2;
 
 // Targets and helper paths are repo-root-relative. Resolving them against the
-// directory holding .opencode, not process.cwd(), keeps a non-root working
-// directory from false-failing 4a or missing the hub entirely.
-function findRepoRoot(start) {
-  let dir = start;
-  while (dir !== path.dirname(dir)) {
-    if (fs.existsSync(path.join(dir, '.opencode'))) return dir;
-    dir = path.dirname(dir);
-  }
-  return path.resolve(start, '../../../..');
-}
+// framework copy that holds the authored sentinel, not process.cwd(), keeps a
+// non-root working directory from false-failing 4a or missing the hub entirely.
 const REPO_ROOT = findRepoRoot(__dirname);
 
 // Families the skill-graph compiler accepts for a discoverable identity.
