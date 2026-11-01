@@ -19,7 +19,8 @@
     "system-speckit/038-research-folder-continuity",
     "system-speckit/039-ci-workflow-efficiency",
     "system-speckit/040-weak-model-spec-authoring",
-    "system-speckit/041-orphan-sweep-temp-processes"
+    "system-speckit/041-orphan-sweep-temp-processes",
+    "system-speckit/042-decision-capture"
   ],
   "manual": {
     "depends_on": [],
