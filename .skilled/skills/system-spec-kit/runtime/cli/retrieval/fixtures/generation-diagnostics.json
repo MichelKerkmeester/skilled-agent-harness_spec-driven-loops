@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16393,
+    "ok": 16400,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27194,
+  "documentsScanned": 27201,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "9bca67b81fabacaf864938d415713741b912440633bb7a5dffa53f7b6daf9065",
+  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40027,
+      "ok": 40039,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -76087,6 +76087,10 @@
     },
     {
       "path": "specs/system-speckit/041-orphan-sweep-temp-processes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/042-decision-capture/scratch",
       "reason": "excluded directory"
     },
     {

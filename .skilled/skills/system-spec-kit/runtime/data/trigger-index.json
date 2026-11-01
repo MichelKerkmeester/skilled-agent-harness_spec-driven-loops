@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9bca67b81fabacaf864938d415713741b912440633bb7a5dffa53f7b6daf9065",
+  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -16450,7 +16450,14 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/implementation-summary.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/plan.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/spec.md",
-    "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md"
+    "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md",
+    "specs/system-speckit/042-decision-capture/acceptance-criteria.md",
+    "specs/system-speckit/042-decision-capture/decision-record.md",
+    "specs/system-speckit/042-decision-capture/implementation-summary.md",
+    "specs/system-speckit/042-decision-capture/plan.md",
+    "specs/system-speckit/042-decision-capture/spec.md",
+    "specs/system-speckit/042-decision-capture/tasks.md",
+    "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "phrases": {
     "0 05 ambiguity window": [
@@ -30401,6 +30408,9 @@
     "automated writers source kind tagged": [
       13722
     ],
+    "automatic decision record": [
+      16445
+    ],
     "automatic drift self healing": [
       14025,
       14027,
@@ -33245,6 +33255,9 @@
     ],
     "capture and judgment tasks": [
       7100
+    ],
+    "capture askuserquestion answers": [
+      16445
     ],
     "capture baseline before edit": [
       1681
@@ -50752,6 +50765,24 @@
     ],
     "decision breakdown": [
       1412
+    ],
+    "decision capture acceptance criteria": [
+      16441
+    ],
+    "decision capture design decision": [
+      16442
+    ],
+    "decision capture implementation summary": [
+      16443
+    ],
+    "decision capture plan": [
+      16444
+    ],
+    "decision capture tasks": [
+      16446
+    ],
+    "decision capture timeline": [
+      16447
     ],
     "decision diamond exits": [
       1393
@@ -93815,6 +93846,18 @@
     ],
     "operator copy of goal": [
       15424
+    ],
+    "operator decision capture": [
+      16445
+    ],
+    "operator decision capture tests": [
+      16446
+    ],
+    "operator decision verification": [
+      16441
+    ],
+    "operator decisions appendix": [
+      16442
     ],
     "operator decisions taken at defaults": [
       6492

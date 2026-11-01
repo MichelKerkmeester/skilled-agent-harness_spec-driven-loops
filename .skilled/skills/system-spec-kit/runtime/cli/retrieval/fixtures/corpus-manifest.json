@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8bffe1ca38935609e084d96fd6315990c4d480e10b0b4191fdcaca9f8ccf5013",
+  "corpusHash": "34580a1bddf7633f458cada0471b9ceafe6b99a21094fe6b4c755924f1d9ed4d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27194,
+  "includedPathCount": 27201,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -27222,10 +27222,17 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/implementation-summary.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/plan.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/spec.md",
-    "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md"
+    "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md",
+    "specs/system-speckit/042-decision-capture/acceptance-criteria.md",
+    "specs/system-speckit/042-decision-capture/decision-record.md",
+    "specs/system-speckit/042-decision-capture/implementation-summary.md",
+    "specs/system-speckit/042-decision-capture/plan.md",
+    "specs/system-speckit/042-decision-capture/spec.md",
+    "specs/system-speckit/042-decision-capture/tasks.md",
+    "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9bca67b81fabacaf864938d415713741b912440633bb7a5dffa53f7b6daf9065",
+  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34913,6 +34920,10 @@
     },
     {
       "path": "specs/system-speckit/041-orphan-sweep-temp-processes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/042-decision-capture/scratch",
       "reason": "excluded directory"
     },
     {

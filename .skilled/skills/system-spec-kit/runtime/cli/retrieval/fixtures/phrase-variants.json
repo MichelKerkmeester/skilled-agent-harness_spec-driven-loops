@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9bca67b81fabacaf864938d415713741b912440633bb7a5dffa53f7b6daf9065",
+  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13323,6 +13323,9 @@
     "automated writers source kind tagged": [
       "automated writers source kind tagged"
     ],
+    "automatic decision record": [
+      "automatic decision record"
+    ],
     "automatic drift self healing": [
       "automatic drift self-healing"
     ],
@@ -16050,6 +16053,9 @@
     ],
     "capture and judgment tasks": [
       "capture and judgment tasks"
+    ],
+    "capture askuserquestion answers": [
+      "capture AskUserQuestion answers"
     ],
     "capture baseline before edit": [
       "capture baseline before edit"
@@ -32397,6 +32403,24 @@
     ],
     "decision breakdown": [
       "decision breakdown"
+    ],
+    "decision capture acceptance criteria": [
+      "decision capture acceptance criteria"
+    ],
+    "decision capture design decision": [
+      "decision capture design decision"
+    ],
+    "decision capture implementation summary": [
+      "decision capture implementation summary"
+    ],
+    "decision capture plan": [
+      "decision capture plan"
+    ],
+    "decision capture tasks": [
+      "decision capture tasks"
+    ],
+    "decision capture timeline": [
+      "decision capture timeline"
     ],
     "decision diamond exits": [
       "decision diamond exits"
@@ -72330,6 +72354,18 @@
     ],
     "operator copy of goal": [
       "operator copy of goal"
+    ],
+    "operator decision capture": [
+      "operator decision capture"
+    ],
+    "operator decision capture tests": [
+      "operator decision capture tests"
+    ],
+    "operator decision verification": [
+      "operator decision verification"
+    ],
+    "operator decisions appendix": [
+      "operator decisions appendix"
     ],
     "operator decisions taken at defaults": [
       "operator decisions taken at defaults"
