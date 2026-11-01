@@ -1,5 +1,5 @@
 {
-  "corpusHash": "34580a1bddf7633f458cada0471b9ceafe6b99a21094fe6b4c755924f1d9ed4d",
+  "corpusHash": "29840a7e77e592425b890e3fda8a270d26e1609dfa4eadfca8172e5d9750d5f8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27201,
+  "includedPathCount": 27206,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10430,6 +10430,11 @@
     "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/plan.md",
     "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/tasks.md",
+    "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/acceptance-criteria.md",
+    "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/implementation-summary.md",
+    "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/plan.md",
+    "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/timeline.md",
     "specs/commands/003-local-command-support/goal.md",
@@ -27232,7 +27237,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
+  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29148,6 +29153,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/scratch",
       "reason": "excluded directory"
     },
     {

@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16400,
+    "ok": 16405,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27201,
+  "documentsScanned": 27206,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
+  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40039,
+      "ok": 40047,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -70315,6 +70315,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e2cfb13890fbc578138b477f90d87ba1eb3360fdab93c61dc1c49c8163e92a91",
+  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41069,6 +41069,9 @@
     "doctor symlink install phase parent spec": [
       "doctor symlink install phase parent spec"
     ],
+    "doctor symlink run record eexist": [
+      "doctor symlink run record eexist"
+    ],
     "doctor test environment research": [
       "doctor test environment research"
     ],
@@ -76731,6 +76734,9 @@
     "phase 4 setup caching provisioning tasks": [
       "phase 4 setup caching provisioning tasks"
     ],
+    "phase 4 symlink relink after unlink": [
+      "phase 4 symlink relink after unlink"
+    ],
     "phase 4 template section fill guidance": [
       "phase 4 template section fill guidance"
     ],
@@ -110766,6 +110772,21 @@
     "symlink refusal scope": [
       "symlink refusal scope"
     ],
+    "symlink relink after unlink": [
+      "symlink relink after unlink"
+    ],
+    "symlink relink after unlink acceptance criteria": [
+      "symlink relink after unlink acceptance criteria"
+    ],
+    "symlink relink after unlink implementation summary": [
+      "symlink relink after unlink implementation summary"
+    ],
+    "symlink relink after unlink plan": [
+      "symlink relink after unlink plan"
+    ],
+    "symlink relink after unlink tasks": [
+      "symlink relink after unlink tasks"
+    ],
     "symlink retirement": [
       "symlink retirement"
     ],
@@ -110774,6 +110795,9 @@
     ],
     "symlink retirement tasks": [
       "symlink retirement tasks"
+    ],
+    "symlink run folder collision": [
+      "symlink run folder collision"
     ],
     "symlink traversal disabled at open": [
       "symlink traversal disabled at open"
