@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6b24f9509f1850a240e226dc7118e693998c67040b160b3550980fb08d32d2c5",
+  "corpusHash": "29498c99b565b104c6410d9b4697b552e8132482f502bfd53ac180cdd9c2d384",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27212,
+  "includedPathCount": 27217,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8291,6 +8291,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.25.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.26.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.27.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.28.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
@@ -8396,6 +8397,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/versioned-placeholder-gate.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/directive-lifecycle-dedup.md",
     ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/authored-continuity-snapshot.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/completion-freshness-validator.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/filter-config-contract.md",
@@ -8409,6 +8411,9 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
@@ -27243,7 +27248,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e0d08b1058584e3d7bef225701800938726d8cd3113b94f0b96b77e702148879",
+  "manifestHash": "5ca554a147e97cafc1126be074f1bd8c831cf3b36484c4f0f9548ce3f2921e0c",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

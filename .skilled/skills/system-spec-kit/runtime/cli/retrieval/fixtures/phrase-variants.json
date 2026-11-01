@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e0d08b1058584e3d7bef225701800938726d8cd3113b94f0b96b77e702148879",
+  "manifestHash": "5ca554a147e97cafc1126be074f1bd8c831cf3b36484c4f0f9548ce3f2921e0c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12642,6 +12642,9 @@
     "ask question tool": [
       "ask question tool"
     ],
+    "askuserquestion capture": [
+      "askuserquestion capture"
+    ],
     "aspirational threshold audit": [
       "aspirational threshold audit"
     ],
@@ -16076,7 +16079,8 @@
       "capture and judgment tasks"
     ],
     "capture askuserquestion answers": [
-      "capture AskUserQuestion answers"
+      "capture AskUserQuestion answers",
+      "capture askuserquestion answers"
     ],
     "capture baseline before edit": [
       "capture baseline before edit"
@@ -32428,11 +32432,17 @@
     "decision breakdown": [
       "decision breakdown"
     ],
+    "decision capture": [
+      "decision capture"
+    ],
     "decision capture acceptance criteria": [
       "decision capture acceptance criteria"
     ],
     "decision capture design decision": [
       "decision capture design decision"
+    ],
+    "decision capture hook": [
+      "decision capture hook"
     ],
     "decision capture implementation summary": [
       "decision capture implementation summary"
@@ -32442,6 +32452,9 @@
     ],
     "decision capture runtime state": [
       "decision capture runtime state"
+    ],
+    "decision capture sweep": [
+      "decision capture sweep"
     ],
     "decision capture tasks": [
       "decision capture tasks"
@@ -32511,6 +32524,9 @@
     ],
     "decision record statuses": [
       "decision-record statuses"
+    ],
+    "decision record writer": [
+      "decision record writer"
     ],
     "decision tests evidence": [
       "decision tests evidence"
@@ -38546,6 +38562,9 @@
     ],
     "devin tool surface": [
       "devin tool surface"
+    ],
+    "devin transcript sweep": [
+      "devin transcript sweep"
     ],
     "devin userpromptsubmit goal inject": [
       "devin userpromptsubmit goal inject"
@@ -72109,6 +72128,9 @@
     "opencode session relaunch": [
       "OpenCode session relaunch"
     ],
+    "opencode session sweep": [
+      "opencode session sweep"
+    ],
     "opencode share flag discontinued": [
       "opencode share flag discontinued"
     ],
@@ -72391,14 +72413,23 @@
     "operator decision capture": [
       "operator decision capture"
     ],
+    "operator decision capture release": [
+      "operator decision capture release"
+    ],
     "operator decision capture tests": [
       "operator decision capture tests"
     ],
     "operator decision verification": [
       "operator decision verification"
     ],
+    "operator decisions": [
+      "operator decisions"
+    ],
     "operator decisions appendix": [
       "operator decisions appendix"
+    ],
+    "operator decisions save": [
+      "operator decisions save"
     ],
     "operator decisions taken at defaults": [
       "operator decisions taken at defaults"
@@ -112113,6 +112144,9 @@
     "system spec kit 2 12 27 0": [
       "system-spec-kit 2.12.27.0"
     ],
+    "system spec kit 2 12 28 0": [
+      "system-spec-kit 2.12.28.0"
+    ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
     ],
@@ -112640,6 +112674,9 @@
     ],
     "system spec kit v2 12 27 0": [
       "system-spec-kit v2.12.27.0"
+    ],
+    "system spec kit v2 12 28 0": [
+      "system-spec-kit v2.12.28.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
@@ -118471,6 +118508,9 @@
     ],
     "verbatim command output in spec": [
       "verbatim command output in spec"
+    ],
+    "verbatim operator answers": [
+      "verbatim operator answers"
     ],
     "verbatim replay immutable receipt": [
       "verbatim replay immutable receipt"
