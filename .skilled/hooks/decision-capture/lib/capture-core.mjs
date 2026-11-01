@@ -361,6 +361,9 @@ export function takeNudge(projectDir, sessionId) {
     writeNudge(filePath, count);
     return count;
   }
+  // A save that consumed only part of the queue leaves a smaller count. Keeping
+  // the old peak would hide every answer captured until the count passed it.
+  if (count < previous) writeNudge(filePath, count);
   return 0;
 }
 

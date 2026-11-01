@@ -17,6 +17,7 @@ export {
 } from '../lib/config/spec-doc-paths.js';
 export type { SpecFolderIdentity } from '../lib/config/spec-doc-paths.js';
 export {
+  detectLevel,
   validateFolder,
   type ValidateOpts,
   type ValidationEntry,

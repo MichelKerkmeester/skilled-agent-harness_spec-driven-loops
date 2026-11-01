@@ -73,6 +73,19 @@ On Claude, a PostToolUse hook queues each AskUserQuestion answer the moment you 
 | runtime/hooks/claude/session-stop.ts, runtime/tests/hook-session-stop.vitest.ts | Modified | Stop-hook nudge and its three tests. |
 | templates/addons/decision-record.md.tmpl, cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap | Modified | The two operator anchors and the regenerated golden snapshot. |
 | .skilled/commands/speckit/save.md, references/memory/save-workflow.md, references/structure/phase-definitions.md | Modified | The save step, the field table and the parent-record rule. |
+### Follow-up fixes
+
+The alignment run and the playbook runs found four defects and a set of stale docs after the build, and each was fixed here.
+
+| File | Action | Purpose |
+|------|--------|---------|
+| runtime/cli/tests/decision-record-writer.vitest.ts, runtime/api/index.ts | Modified | The test reaches the writer and `detectLevel` through the runtime API, so the CLI `check` gate passes; three new cases. |
+| .skilled/hooks/decision-capture/lib/capture-core.mjs, capture-core.test.mjs | Modified | A partial save lowers the Stop-hook cursor, so the next new answer is reported. |
+| runtime/lib/continuity/decision-record-writer.ts | Modified | A key already in consumed.jsonl is not appended again, and a hand-written item without a source comment is matched by its question and answer. |
+| decision-record.md, .skilled/skills/.state/decision-capture/README.md | Modified | Q001 carries its source key; the README states the matching rule. |
+| SKILL.md, README.md, references (decision-format, template-guide, folder-structure), save.md, both hooks READMEs | Modified | Docs describe the decision record a save writes, the new anchors, the printed `key` and the current counts. |
+| feature-catalog/ux-hooks/operator-decision-capture.md, feature-catalog.md, changelog/v2.12.28.0.md | Created or modified | Catalog entry, release entry and the skill version 2.12.28.0. |
+| manual-testing-playbook: the three decision-capture scenarios, 240, 153, 155 and the index | Modified | Setup without `rm -rf`, the cli project flags, the SKIPPED review signal and the retired scenario 153. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -125,6 +138,12 @@ After the main session ran the live probe, the orchestrator registered the Claud
 | Comment hygiene on the changed code files | exit 0; a file citing ids exits 1 |
 | `sync-hook-registrations.cjs --check` | PASS, 4 files match the 32-hook registry |
 | `validate.sh --strict` on this packet | RESULT: PASSED, Errors 0, Warnings 1 (AI_PROTOCOLS, the Level 3 template does not scaffold that section) |
+| Follow-up: `npm --prefix runtime/cli run check` | exit 1 before at the import-policy step; exit 0 after, all eight steps passing |
+| Follow-up: `node --test` capture-core, sweep-transcript, sweep-opencode and sweep-devin | PASS, 35 of 35; 34 of 34 before the new nudge test |
+| Follow-up: CLI vitest writer, save and registration-sync files | PASS, 45 of 45; 42 before the three new writer cases |
+| Follow-up: runtime vitest hook-session-stop | PASS, 19 of 19 |
+| Follow-up: `tsc --noEmit` runtime and CLI, `sync-hook-registrations.cjs --check` | exit 0, exit 0, PASS for 4 files and 32 hooks |
+| Follow-up: full CLI vitest project | 194 files passed and 3 skipped, 2276 tests passed and 20 skipped, exit 0, the three new writer cases being the difference; the baseline before the first edit was 194 files passed and 3 skipped, 2273 tests passed and 20 skipped, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---

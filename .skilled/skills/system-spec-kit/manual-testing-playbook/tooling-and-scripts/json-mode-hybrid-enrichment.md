@@ -1,7 +1,7 @@
 ---
 title: "153 -- JSON mode structured summary hardening"
 description: "This scenario validates the structured JSON summary contract for generate-context.js, including toolCalls/exchanges fields, file-backed JSON authority, and Wave 2 hardening."
-version: 1.6.0.25
+version: 1.6.1.0
 id: tooling-and-scripts-json-mode-hybrid-enrichment
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -12,6 +12,8 @@ expected_leaf_resources: []
 ## 1. OVERVIEW
 
 This scenario validates the phase 016 structured JSON summary contract for `generate-context.js`. It covers acceptance of `toolCalls` and `exchanges` fields, file-backed JSON authority preservation, snake_case field compatibility, and Wave 2 hardening for decision confidence, truncated titles, `git_changed_file_count` stability, and template count preservation.
+
+This is a retired scenario, kept so its id stays reserved. A save no longer renders a memory file: it writes the continuity fields into the packet and refreshes `description.json` and `graph-metadata.json`, and its POST-SAVE QUALITY REVIEW reports `SKIPPED` because the save target is the packet folder. None of the rendered fields below can be observed, so an operator records this scenario as RETIRED and does not run it. The surviving review behavior is scenario 155, and the save payload rules are in `references/memory/save-workflow.md`.
 
 ---
 

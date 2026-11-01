@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.21.0
+version: 2.7.22.0
 ---
 
 # System Spec Kit
@@ -206,7 +206,7 @@ specs/<track>/<###-feature-name>/
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
 ├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
-├── decision-record.md           # Architecture decisions (Level 3+)
+├── decision-record.md           # Architecture and operator decisions (any level)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
 ├── handover.md                  # Operator-facing session handoff for /speckit:resume
 └── scratch/                     # Temporary workspace files (gitignored)
@@ -224,7 +224,7 @@ Not every change needs the same amount of paperwork. A one-line bug fix does not
 |---|---|---|---|
 | **1** | under 100 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | small features, bug fixes, single-file changes |
 | **2** | 100 to 499 | Level 1 plus `acceptance-criteria.md`, which is optional and warns when absent | features needing QA verification, multi-file changes |
-| **3** | 500 and up | Level 2 plus `decision-record.md`, which is optional and created on request | architecture changes, complex refactors |
+| **3** | 500 and up | Level 2 plus `decision-record.md`, which is optional and created on request or by a full-auto save at any level | architecture changes, complex refactors |
 | **3+** | complexity 80 and up | Level 3 plus approval workflow, compliance and stakeholders | high-complexity work needing review tracking |
 | **Phase Parent** | control files only | `spec.md`, `description.json`, `graph-metadata.json` | folder contains phase children with their own spec docs |
 
@@ -287,7 +287,7 @@ Templates live under `templates/` in three groups, `core/`, `addons/` and `packe
 ```text
 Level 1:  spec.md, plan.md, tasks.md, implementation-summary.md
 Level 2:  Level 1 + acceptance-criteria.md (optional, warns if absent)
-Level 3:  Level 2 + decision-record.md (optional, on request)
+Level 3:  Level 2 + decision-record.md (optional; on request, or by a full-auto save at any level)
 Level 3+: Level 3 + extended governance sections
 Phase:    lean parent trio plus child phase folders
 ```

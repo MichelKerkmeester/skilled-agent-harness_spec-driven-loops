@@ -600,6 +600,32 @@ export function readVerbatimAppendix(
 // 5. RECORD WRITE
 // ───────────────────────────────────────────────────────────────────
 
+/** Case and spacing are dropped, since a hand-copied exchange rarely keeps either exactly. */
+function exchangeKey(question: string, answer: string): string {
+  const normalize = (value: string): string => value.replace(/\s+/gu, ' ').trim().toLowerCase();
+  return `${normalize(question)}\n${normalize(answer)}`;
+}
+
+/**
+ * Ids of appendix items written by hand, keyed by their question and answer. A
+ * hand-written item has no source comment, so a later capture of the same
+ * exchange arrives with a key the record has never seen, and its text is the only
+ * thing left to match it on.
+ */
+function readUnkeyedExchangeIds(lines: string[]): Map<string, string> {
+  const ids = new Map<string, string>();
+  for (const [id, item] of readVerbatimAppendix(lines.join('\n'))) {
+    if (item.sourceKey !== null || item.question.trim() === '' || item.answer.trim() === '') {
+      continue;
+    }
+    const key = exchangeKey(item.question, item.answer);
+    if (!ids.has(key)) {
+      ids.set(key, id);
+    }
+  }
+  return ids;
+}
+
 /**
  * Write operator decisions and their verbatim answers into a packet's
  * decision-record.md, creating the record when it does not exist.
@@ -661,11 +687,12 @@ export function writeDecisionRecord(
   lines = appendSectionIfMissing(lines, APPENDIX_OPEN, APPENDIX_CLOSE, APPENDIX_BLOCK);
 
   const existing = readExistingIds(lines);
+  const unkeyed = readUnkeyedExchangeIds(lines);
   let nextNumber = highestIdNumber(existing.ids);
   const ids: Array<{ sourceKey: string; id: string }> = [];
 
   for (const entry of accepted) {
-    let id = existing.keyToId.get(entry.sourceKey);
+    let id = existing.keyToId.get(entry.sourceKey) ?? unkeyed.get(exchangeKey(entry.question, entry.answer));
     if (!id) {
       nextNumber += 1;
       id = formatId(nextNumber);
@@ -688,7 +715,40 @@ export function writeDecisionRecord(
 // 6. CONSUMED KEYS
 // ───────────────────────────────────────────────────────────────────
 
-/** Append the consumed source keys so a later save does not offer them again. */
+/**
+ * Keys already in the consumed log. A torn or hand-edited line is skipped, the
+ * same way the capture core reads this file, so one bad line cannot block a save.
+ */
+function readConsumedKeySet(filePath: string): Set<string> {
+  const keys = new Set<string>();
+  let raw: string;
+  try {
+    raw = fs.readFileSync(filePath, 'utf8');
+  } catch {
+    return keys;
+  }
+  for (const line of raw.split('\n')) {
+    if (line.trim() === '') {
+      continue;
+    }
+    try {
+      const row: unknown = JSON.parse(line);
+      const key = row && typeof row === 'object' ? (row as { key?: unknown }).key : undefined;
+      if (typeof key === 'string' && key.length > 0) {
+        keys.add(key);
+      }
+    } catch {
+      // Unparseable line: it records nothing, so it cannot hide a key.
+    }
+  }
+  return keys;
+}
+
+/**
+ * Append the consumed source keys so a later save does not offer them again.
+ * Every save passes back the ids of every entry it wrote, including ones it had
+ * already recorded, so a key that is already in the log is not appended again.
+ */
 export function recordConsumedKeys(
   projectRoot: string,
   packet: string,
@@ -700,10 +760,22 @@ export function recordConsumedKeys(
   }
 
   const stateDir = path.join(projectRoot, ...STATE_DIR_SEGMENTS);
-  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });
+  const consumedPath = path.join(stateDir, 'consumed.jsonl');
+  const recorded = readConsumedKeySet(consumedPath);
+  const fresh = ids.filter(({ sourceKey }) => {
+    if (recorded.has(sourceKey)) {
+      return false;
+    }
+    recorded.add(sourceKey);
+    return true;
+  });
+  if (fresh.length === 0) {
+    return;
+  }
 
-  const lines = ids
+  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });
+  const lines = fresh
     .map(({ sourceKey, id }) => JSON.stringify({ key: sourceKey, packet, id, at: now }))
     .join('\n');
-  fs.appendFileSync(path.join(stateDir, 'consumed.jsonl'), `${lines}\n`, 'utf8');
+  fs.appendFileSync(consumedPath, `${lines}\n`, 'utf8');
 }

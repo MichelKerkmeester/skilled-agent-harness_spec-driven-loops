@@ -17,11 +17,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import {
   DecisionRecordWriteError,
+  detectLevel,
   readVerbatimAppendix,
+  recordConsumedKeys,
   writeDecisionRecord,
   type OperatorDecisionEntry,
-} from '../../lib/continuity/decision-record-writer.js';
-import { detectLevel } from '../../lib/validation/orchestrator.js';
+} from '@spec-kit/runtime/api';
 
 const APPENDIX_CLOSE = '<!-- /ANCHOR:operator-answers-verbatim -->';
 
@@ -324,5 +325,55 @@ describe('writeDecisionRecord', () => {
     expect(lines[separator + 1]).toBe(
       '| Q001 | First real row | The packet stays portable. | None | plan.md |',
     );
+  });
+});
+
+// A row an author wrote by hand carries no source comment, so a later sweep of
+// the same exchange arrives with a key the record has never seen.
+describe('writeDecisionRecord with hand-written rows', () => {
+  it('reuses the id of a hand-written item whose question and answer match', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writePacketFile('decision-record.md', HAND_WRITTEN_RECORD);
+
+    const result = writeDecisionRecord(PACKET, [
+      entry({
+        sourceKey: 'claude:session:toolu_second:0',
+        decided: 'Second choice',
+        question: '  second   QUESTION? ',
+        options: ['First', 'Second'],
+        answer: 'Second',
+      }),
+    ]);
+
+    const after = readRecord();
+    expect(result.ids).toEqual([{ sourceKey: 'claude:session:toolu_second:0', id: 'Q002' }]);
+    expect(after.split('\n').filter((line) => line.startsWith('| Q00'))).toHaveLength(3);
+    expect(after.split('\n').filter((line) => line.trim() === '### Q002')).toHaveLength(1);
+  });
+
+  it('gives a new id when only the question of a hand-written item matches', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writePacketFile('decision-record.md', HAND_WRITTEN_RECORD);
+
+    const result = writeDecisionRecord(PACKET, [
+      entry({ sourceKey: 'claude:session:toolu_other:0', question: 'Second question?', answer: 'First' }),
+    ]);
+
+    expect(result.ids).toEqual([{ sourceKey: 'claude:session:toolu_other:0', id: 'Q004' }]);
+  });
+});
+
+describe('recordConsumedKeys', () => {
+  it('records each source key once across repeated saves', () => {
+    const consumedPath = path.join(PACKET, '.skilled/skills/.state/decision-capture/consumed.jsonl');
+
+    recordConsumedKeys(PACKET, 'specs/demo', [{ sourceKey: 'claude:s:t1:0', id: 'Q001' }], '2026-11-01T12:00:00.000Z');
+    recordConsumedKeys(PACKET, 'specs/demo', [
+      { sourceKey: 'claude:s:t1:0', id: 'Q001' },
+      { sourceKey: 'claude:s:t2:0', id: 'Q002' },
+    ], '2026-11-01T12:05:00.000Z');
+
+    const keys = fs.readFileSync(consumedPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line).key);
+    expect(keys).toEqual(['claude:s:t1:0', 'claude:s:t2:0']);
   });
 });

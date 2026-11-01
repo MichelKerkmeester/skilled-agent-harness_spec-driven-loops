@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-30"
-version: 2.1.12.0
+version: 2.1.13.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -206,7 +206,7 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | 469 | Heal spec-docs anchor repair dry run | [469](tooling-and-scripts/heal-spec-docs-anchor-repair-dry-run.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
 | 470 | Heal spec-docs anchor repair apply | [470](tooling-and-scripts/heal-spec-docs-anchor-repair-apply.md) | [heal-spec-docs-anchor-repair](../feature-catalog/tooling-and-scripts/heal-spec-docs-anchor-repair.md) |
 | 471 | Heal spec-docs lane modes | [471](tooling-and-scripts/heal-spec-docs-lane-modes.md) | [heal-spec-docs-lane-modes](../feature-catalog/tooling-and-scripts/heal-spec-docs-lane-modes.md) |
-| 153 | JSON mode structured summary hardening | [153](tooling-and-scripts/json-mode-hybrid-enrichment.md) | [json-mode-hybrid-enrichment](../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) |
+| 153 | JSON mode structured summary hardening (retired: a save renders no memory file) | [153](tooling-and-scripts/json-mode-hybrid-enrichment.md) | [json-mode-hybrid-enrichment](../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md) |
 | 154 | JSON-primary deprecation posture | [154](tooling-and-scripts/json-primary-deprecation-posture.md) | [json-primary-deprecation-posture](../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md) |
 | M-004 | Main-agent review and verdict handoff | [M-004](tooling-and-scripts/main-agent-review-and-verdict-handoff.md) | — |
 | 420 | Markdown link integrity guard | [420](tooling-and-scripts/markdown-link-integrity-guard.md) | [markdown-link-integrity-guard](../feature-catalog/tooling-and-scripts/markdown-link-integrity-guard.md) |
@@ -279,6 +279,9 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | Playbook ID | Scenario | Scenario File | Catalog Entry |
 |---|---|---|---|
 | completion-evidence-sentinel | Completion evidence sentinel | [completion-evidence-sentinel](plugins-and-hooks/completion-evidence-sentinel.md) | — |
+| decision-capture-claude-hook | Decision capture Claude hook: one queued record per answered AskUserQuestion, registry and mirror wiring, kill switch | [decision-capture-claude-hook](plugins-and-hooks/decision-capture-claude-hook.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
+| decision-capture-transcript-sweeps | Decision capture transcript sweeps for Claude, OpenCode and Devin, each answer queued once | [decision-capture-transcript-sweeps](plugins-and-hooks/decision-capture-transcript-sweeps.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
+| decision-capture-save-writer | Decision capture save writer: plan-only writes nothing, full-auto writes one row and its verbatim answer, a repeat save changes no byte | [decision-capture-save-writer](plugins-and-hooks/decision-capture-save-writer.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | dist-freshness-guard | Dist freshness guard | [dist-freshness-guard](plugins-and-hooks/dist-freshness-guard.md) | [dist-freshness-enforcement](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
 | session-cleanup-plugin | Session cleanup plugin | [session-cleanup-plugin](plugins-and-hooks/session-cleanup-plugin.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
 | spec-mutation-gate-enforce | Spec mutation gate enforce | [spec-mutation-gate-enforce](plugins-and-hooks/spec-mutation-gate-enforce.md) | — |

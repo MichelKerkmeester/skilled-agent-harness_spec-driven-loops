@@ -313,6 +313,35 @@ test('takeNudge reports a rising count once and then stays quiet', () => {
   });
 });
 
+// A save can consume only some answers, for example when the others target an
+// unresolved packet. The next answer captured after that is still news.
+test('takeNudge reports a new answer after a save consumed only part of the queue', () => {
+  withProject((projectDir) => {
+    const questions = ['Which badge colour?', 'Which badge size?', 'Which badge shape?'];
+    const records = capture({
+      toolInput: {
+        questions: questions.map((question) => ({ question, header: 'Badge', options: [], multiSelect: false })),
+      },
+      toolResponse: { answers: Object.fromEntries(questions.map((question) => [question, 'yes'])) },
+    });
+    appendRecords(projectDir, 's1', records);
+    assert.equal(takeNudge(projectDir, 's1'), 3);
+
+    writeFileSync(
+      join(queueDir(projectDir), 'consumed.jsonl'),
+      `${JSON.stringify({ key: records[0].key, packet: 'demo-packet', id: 'Q001', at: NOW })}\n`,
+    );
+    assert.equal(takeNudge(projectDir, 's1'), 0);
+
+    appendRecords(projectDir, 's1', capture({
+      toolUseId: 't2',
+      toolInput: { questions: [{ question: 'Which badge border?', header: 'Badge', options: [], multiSelect: false }] },
+      toolResponse: { answers: { 'Which badge border?': 'thin' } },
+    }));
+    assert.equal(takeNudge(projectDir, 's1'), 3);
+  });
+});
+
 test('takeNudge leaves no state behind for a session with nothing captured', () => {
   withProject((projectDir) => {
     assert.equal(takeNudge(projectDir, 'quiet'), 0);

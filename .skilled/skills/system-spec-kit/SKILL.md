@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.12.27.0
+version: 2.12.28.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -135,7 +135,7 @@ The trailing positional path scopes them by track and packet. The recipes are pr
 Recovery follows the continuity ladder rather than inferring a session: `handover.md`, then the `_memory.continuity` frontmatter block, packet-first spec docs, then the bounded context recipe.
 `/speckit:resume` owns the ladder.
 Saves go through `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked by `/speckit:save`.
-The writer updates the packet's continuity surfaces in place. No indexing hand-off follows.
+The writer updates the packet's continuity surfaces in place. A `--full-auto` save also writes the payload's `operatorDecisions` into the target packet's `decision-record.md`, creating it when absent and first stamping a missing level marker into `spec.md` so the packet's level does not move. No indexing hand-off follows.
 
 Regenerate the index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
 

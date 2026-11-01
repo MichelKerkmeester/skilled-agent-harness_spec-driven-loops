@@ -1,7 +1,7 @@
 ---
 title: "240 -- Core Workflow Infrastructure"
 description: "This scenario validates core workflow infrastructure for `240`. It focuses on confirming the shared post-save review, scoring, and workflow helper modules through targeted regression suites."
-version: 1.6.1.0
+version: 1.6.2.0
 id: tooling-and-scripts-core-workflow-infrastructure
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -19,8 +19,8 @@ This scenario validates core workflow infrastructure for `240`. It focuses on co
 
 
 - Objective: Confirm the shared workflow layer remains stable across review, scoring, and CLI authority tests.
-- Real user request: `Please validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; scoring and trigger-index freshness regressions do not fail.`
-- Prompt: `Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.`
+- Real user request: `Please validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and tell me whether the expected signals are present: all targeted Vitest suites pass; post-save review assertions stay intact; scoring and trigger-index freshness regressions do not fail.`
+- Prompt: `Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: all targeted Vitest suites pass; post-save review assertions stay intact; scoring and trigger-index freshness regressions do not fail
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,12 +33,12 @@ This scenario validates core workflow infrastructure for `240`. It focuses on co
 ### Prompt
 
 ```
-Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
+Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
 ```
 
 ### Commands
 
-1. `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts`
+1. `cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts`
 
 ### Expected
 
@@ -68,7 +68,7 @@ Inspect `post-save-review.ts`, `quality-scorer.ts`, `config.ts`, and workflow en
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/core-workflow-infrastructure.md](../../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md)
 
-Provenance: manual only - run the scenario prompt: Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
+Provenance: manual only - run the scenario prompt: Validate Core Workflow Infrastructure against cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts and report cited pass/fail evidence.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Folder Structure Reference
@@ -140,7 +140,7 @@ specs/NNN-name/
 `acceptance-criteria.md` is required through the `AC_CLOSURE` rule, not through the level contract's core doc list: the contract files it as an add-on that `create.sh` scaffolds at this level, and `AC_CLOSURE` fails a packet created after 2026-08-30 that lacks it. For an older packet its absence is advisory.
 
 **Optional:**
-- `decision-record.md` - architecture decisions; created on request, skipped silently when absent
+- `decision-record.md` - architecture and operator decisions; created on request, or by a full-auto save that records an operator decision at any level, and skipped silently when absent
 - `scratch/`
 - `memory/` - Retired compatibility folder for older packets only; current save workflows skip new `[spec]/memory/*.md` writes
 - `research/` / `review/` local-owner folders — see §4 `research/` and `review/` (local owner folders). Root specs keep them at the root packet; child phases and sub-phases keep them under the owning phase folder.

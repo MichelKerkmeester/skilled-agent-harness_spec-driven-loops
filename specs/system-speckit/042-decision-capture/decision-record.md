@@ -266,6 +266,7 @@ Scores are qualitative fit against the stated constraints, not measured results.
 Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
 
 ### Q001
+<!-- source: claude:fe0c9990-06d3-454e-a8e7-7c7bc649bc49:toolu_01S9EcfgV7RoarGT5294G5sK:0 -->
 
 Question: Where should the verbatim answers live?
 Options: Tracked appendix (rec.); Gitignored queue only

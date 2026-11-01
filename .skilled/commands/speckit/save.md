@@ -20,6 +20,7 @@ Outputs:
   That script is the whole write.
   The JSON can carry the packet's continuity (`recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions`, `answered_questions`), which only a `--full-auto` run writes.
   The field rules are in `save-workflow.md` under Continuity Fields.
+  The JSON can also carry `operatorDecisions`, which a `--full-auto` run writes into the target packet's `decision-record.md`, creating that file when it is absent. The field rules are in `save-workflow.md` under Operator Decisions.
   Every mode refreshes `description.json`, `graph-metadata.json` and the phase-parent pointers, and `hybrid` behaves like the default `plan-only`.
 - Retrieval freshness is a separate, optional step: regenerate the trigger index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` when the packet's `trigger_phrases` changed. There is no indexing handoff, no daemon to wait for and no launcher file to check.
 
@@ -65,7 +66,8 @@ Procedure:
    On OpenCode run `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` instead, and on Devin `node .skilled/hooks/decision-capture/bin/sweep-devin.mjs`. Each reads the runtime's stored session and prints the same `pending` list with an empty `chat_candidates`.
    Write one `operatorDecisions` entry for each pending answer, and for each chat candidate whose answer clearly replies to its question.
    Leave out a candidate whose answer is null, and any question about Gate 3, spec folders, worktrees, branches or commit and push permission.
-   Each entry carries its printed `sourceKey`, a one-sentence `decided`, the `why` the session stated, `supersedes`, `carriedBy` and the exact `question`, `options` and `answer`.
+   Each entry carries the record's printed `key` as its `sourceKey`, a one-sentence `decided`, the `why` the session stated, `supersedes`, `carriedBy` and the exact `question`, `options` and `answer`.
+   Fill `carriedBy` with what in the target packet carries the decision: requirement or task ids, files or anchors, such as `REQ-003, plan.md`.
    Omit `why` when no reason was stated, so the record says `Not stated.` instead of a guess.
    Mark an entry `scope: "cross-phase"` when it decides something for every phase of a phase parent.
 4. Choose one route category (listed under MODE ROUTING).
@@ -119,7 +121,7 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto).
+The router resolves and validates the target spec folder, extracts the session context, chooses a route category, and either returns a non-mutating save plan (default) or runs the metadata/description/graph-metadata refresh via `generate-context.js` (explicit apply/full-auto). A full-auto run also writes the continuity fields and any operator decisions.
 That writer is the whole write: it needs no daemon, and there is no indexing handoff after it.
 Canonical spec-doc content is authored in the packet documents themselves.
 Every user-facing string renders through the presentation asset.

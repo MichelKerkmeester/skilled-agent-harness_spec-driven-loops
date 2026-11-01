@@ -81,6 +81,23 @@ Task variables: P is the bound packet path. Q is a stable question id. Tool sour
 
 ---
 
+<!-- ANCHOR:phase-4 -->
+## Phase 4: Follow-up Fixes
+
+The alignment run over the build commit and the four-runtime playbook runs confirmed these defects after the build. Each code fix got a test that failed first.
+
+- [x] T026 Import the writer and `detectLevel` in the writer test through `@spec-kit/runtime/api`, and re-export `detectLevel` there (decision-record-writer.vitest.ts, runtime/api/index.ts). Verify: `npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check` exits 0. Evidence: before, it exited 1 at the import-policy step on `tests/decision-record-writer.vitest.ts:24`, so the six later steps never ran; after the runtime rebuild all eight steps pass and it exits 0. The writer file passes 11 of 11 through the API.
+- [x] T027 Lower the Stop-hook cursor when a save consumes only part of the queue (capture-core.mjs). Verify: three answers report 3, a save that consumes one reports 0, a new answer reports 3. Evidence: the new capture-core test failed first at its last assertion, 0 where 3 was expected, and passes after; capture-core 14 of 14.
+- [x] T028 Append a key to consumed.jsonl only when the log does not hold it yet (decision-record-writer.ts). Verify: two saves of one key leave one line. Evidence: the new writer test failed first with three lines for two keys and passes after; the save-writer playbook steps leave one consumed line after two full-auto saves.
+- [x] T029 Match a captured answer to a hand-written appendix item that has no source comment by its question and answer text, ignoring case and spacing, and give this packet's Q001 the source comment its shortened question needs (decision-record-writer.ts, decision-record.md, .skilled/skills/.state/decision-capture/README.md). Verify: a re-sweep of the main transcript adds no row. Evidence: the new test failed first, Q004 where Q002 was expected, and passes after, while a question-only match still gets a new id. A re-sweep of the main transcript into a scratch queue reproduced Q001, Q005 and Q006 of the hand-written rows; written into a scratch copy of this packet they got Q001, Q005 and Q006, and the record kept 7 rows with its appendix unchanged.
+- [x] T030 Bring the docs in line with the shipped behavior and catalog the feature (SKILL.md, README.md, decision-format.md, template-guide.md, folder-structure.md, save.md, both hooks READMEs, feature-catalog/ux-hooks/operator-decision-capture.md, changelog v2.12.28.0). Verify: the document, catalog, skill-package, frontmatter-version and README count and reference checks pass. Evidence: validate_document reports 0 issues on each changed doc; the catalog package, skill package, root-metadata and freshness checks pass; frontmatter-version verifies 235 of 235; the README count check passes 3 of 3, where `.claude/hooks/README.md` failed 2 claims before.
+- [x] T031 Repair the decision-capture and stale playbook scenarios (the three decision-capture scenarios, scenarios 240, 153 and 155, the playbook index). Verify: the playbook package validates and each rewritten command gives the signal it states. Evidence: validate-playbook-package passes with 0 violations and the 1 warning it had before; the save-writer steps pass end to end with rsync setup; scenario 240's command passes 3 files and 24 tests; scenario 155's save prints the SKIPPED block with the directory reason and its suite passes 3 of 3; scenario 153 is marked retired in the index.
+- [x] T032 Rerun the whole CLI suite against the baseline taken before the first edit. Verify: no test that passed before fails. Evidence: before, 194 files passed and 3 skipped, 2273 tests passed and 20 skipped, exit 0; after, 194 files passed and 3 skipped, 2276 tests passed and 20 skipped, exit 0, the three new writer cases being the difference.
+
+<!-- /ANCHOR:phase-4 -->
+
+---
+
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 

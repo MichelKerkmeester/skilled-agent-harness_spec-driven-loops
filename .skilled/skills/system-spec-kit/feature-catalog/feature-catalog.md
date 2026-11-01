@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-10-30"
-version: 2.1.17.0
+last_updated: "2026-11-01"
+version: 2.1.18.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1062,3 +1062,19 @@ The packet `goal.md` is the directive; the plugin keeps a per-session record wit
 #### Source Files
 
 See [`ux-hooks/goal-opencode-plugin.md`](ux-hooks/goal-opencode-plugin.md) for full implementation and test file listings.
+
+---
+
+### Operator decision capture
+
+#### Description
+
+Queues each operator answer to an AI question and lets a full-auto `/speckit:save` write it into the bound packet's `decision-record.md` as a short decision with the exact question, options and answer kept beside it.
+
+#### Current Reality
+
+Claude answers are queued live by a PostToolUse hook on `AskUserQuestion`. At save time a sweep recovers missed answers from the Claude or Devin transcript or the OpenCode store. The writer keeps one `Q` id per exchange across saves, matching a hand-written row by its question and answer text, and stamps a missing level marker before it creates a record.
+
+#### Source Files
+
+See [`ux-hooks/operator-decision-capture.md`](ux-hooks/operator-decision-capture.md) for full implementation and test file listings.

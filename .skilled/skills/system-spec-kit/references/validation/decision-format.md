@@ -9,7 +9,7 @@ trigger_phrases:
   - "adr decision records"
 importance_tier: important
 contextType: general
-version: 1.6.0.16
+version: 1.6.1.0
 ---
 
 # Structured Gate Decision Format
@@ -267,7 +267,9 @@ ALTERNATIVE: N/A - P0 items cannot be skipped
 
 ## 5. SESSION DECISION LOG (LEVEL 3+)
 
-For Level 3+ spec folders, you may optionally maintain a decision log table in decision-record.md. This is an authoring convention only — the live `decision-record.md.tmpl` does not scaffold a Session Decision Log section, and the validator does not require it:
+For Level 3+ spec folders, you may optionally maintain a decision log table in decision-record.md. This is an authoring convention only. The live `decision-record.md.tmpl` does not scaffold a Session Decision Log section, and the validator does not require it.
+
+The template does scaffold two other tables, which a `--full-auto` save fills from captured operator answers. The `operator-decisions` anchor holds one row per answer, with the columns ID, Decided, Why, Supersedes and Carried by. The `operator-answers-verbatim` anchor holds one `### Q###` item per row, with the exact question, options and answer and a `<!-- source: KEY -->` line. The ADR checks read only `adr-` anchors, so neither table is required. `references/memory/save-workflow.md` under Operator Decisions owns the payload and the write rules.
 
 ### Format
 

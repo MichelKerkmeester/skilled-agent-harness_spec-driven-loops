@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.8.0
+version: 1.6.9.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -516,6 +516,8 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
 - Decision made
 - Rationale
 - Consequences and trade-offs
+
+**Sections a save fills:** the `operator-decisions` anchor holds the Operator Decisions table and the `operator-answers-verbatim` anchor holds the verbatim appendix. Leave both empty: a `--full-auto` save writes one row and one appendix item per captured operator answer. Hand-write a row only for an answer the capture missed, quote its question and answer exactly, and use the next free `Q` id.
 
 **Adaptation tips:**
 - Present 2-4 viable options (not every possible choice)

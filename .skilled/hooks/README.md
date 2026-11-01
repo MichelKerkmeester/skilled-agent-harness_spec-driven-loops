@@ -190,7 +190,7 @@ Pi's portable adapters live here too, in per-concern `pi/` subfolders (`dispatch
 | `injection-screen` | claude, devin, pi (symlinked from `.pi/extensions/`) | `classifier-injection-screen.js` |
 | `task-dispatch` | claude, cursor, devin, pi (symlinked) | `system-deep-loop-guard.js` |
 | `goal` | cursor, devin, pi (symlinked), plus `lib/` core and slice module + `bin/` manage CLI | `opencode-goal.js` |
-| `decision-capture` | claude (PostToolUse), plus save-time sweeps in `bin/` that read Claude, OpenCode and Devin transcripts | none |
+| `decision-capture` | claude (PostToolUse), plus save-time sweeps in `bin/` that read the Claude and Devin transcripts and OpenCode's SQLite store | none |
 | session-relaunch | Claude: context-nudge on PostToolUse / UserPromptSubmit, stop-arm on Stop and compact-pointer on SessionStart after a compaction. Pi: `message_end` / `before_agent_start` / `agent_end`. Codex: `prompt-seed.mjs` on UserPromptSubmit, `context-nudge.mjs` on PostToolUse, `stop-arm.mjs` on Stop. Hermes: `context-nudge.mjs` and `session-end-arm.mjs`, bridged by the repo-guards plugin on `pre_llm_call`, `post_api_request` and `on_session_end`. Cursor and Devin run the `/speckit:handoff` command trigger only | `session-relaunch.js` (real OpenCode adapter) |
 
 `sk-git-preflight-advisory.js` and `cli-dispatch-audit.js` (OpenCode plugins owned by `sk-git`/`cli-opencode` respectively) both also import `dispatch/lib/dispatch-rule-checks.mjs` and `dispatch/lib/dispatch-audit.mjs` from here.

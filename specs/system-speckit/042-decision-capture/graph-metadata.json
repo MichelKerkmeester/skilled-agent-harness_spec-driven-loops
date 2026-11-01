@@ -49,6 +49,7 @@
       "runtime/api/index.ts",
       ".claude/settings.json",
       "dist/hooks/claude/session-stop.js",
+      ".claude/hooks/README.md",
       "api/index.ts",
       ".skilled/hooks/README.md"
     ],
@@ -110,7 +111,7 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/hooks/README.md",
+        "path": ".claude/hooks/README.md",
         "source": "derived"
       },
       {
@@ -200,7 +201,7 @@
     ],
     "causal_summary": "Operator answers to AI questions are not captured in a consistent decision record",
     "created_at": "2026-11-01T07:16:09Z",
-    "last_save_at": "2026-11-01T13:02:22.226Z",
+    "last_save_at": "2026-11-01T15:05:09.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b61c98dc9944584ed3c5f51fef6727f14f0e324e4bf3aa5683e7d6c25277ec7",
+    "source_fingerprint": "sha256:07a4634ff25f460d39071b46edb6aef633315938566117b0cce495316f36d18c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05b48351ad009aaef17999ecc74a19a764756f7270165820b08ee3c904569b52",
       "plan.md": "bcf3f61e857db4641329092715737942e8063de02c67745e4c29f6d62cd69c10",
-      "tasks.md": "b52c8b37214b2f42731004c238572b2684f9a571f1356c23e671a843156c472b",
-      "decision-record.md": "c9126470edd8331fc1732f2694403cbc0be28fa5e90f92370cb14c137cb2adf9",
-      "implementation-summary.md": "c60a9ed280ee5fefcc2e6812c770801bb092e4ce56a60afd81d093f8ed25ff27"
+      "tasks.md": "28a9447c5ec5e28ce7afd2c6b419f4020017bd8c61ef108a2f395cf0afee049a",
+      "decision-record.md": "03623f9e446848a05850fe076786e0360ba8cd9cf1cd5bf579e1e7d58139174f",
+      "implementation-summary.md": "3e20f23b718e7d94c46920faa38f9cdd57dc1775332c4080fce5543b291989af"
     },
     "last_active_at": null
   }

@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture runtime state"
   - "operator answer queue"
   - "consumed decision keys"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Decision Capture Runtime State
@@ -40,4 +40,4 @@ Raw data is git-ignored. Only this `README.md` is tracked, so the folder and its
 
 ## 3. CLEANUP
 
-Deleting a session's `.jsonl` file discards answers that no save has consumed yet, so run a full-auto `/speckit:save` first. `consumed.jsonl` can be deleted at any time. The decision records keep each source key, so a later save still maps a known answer to its existing Q id.
+Deleting a session's `.jsonl` file discards answers that no save has consumed yet, so run a full-auto `/speckit:save` first. `consumed.jsonl` can be deleted at any time. The writer stores each source key in the record's appendix, so a later save still maps a known answer to its existing Q id. A row written by hand carries no key, so the writer matches it by its question and answer text instead, ignoring case and spacing. A hand-written row that shortens the question gets no match. Give it the `<!-- source: KEY -->` line the sweep printed, directly under its `### Q` heading, or a later sweep adds the answer again.
