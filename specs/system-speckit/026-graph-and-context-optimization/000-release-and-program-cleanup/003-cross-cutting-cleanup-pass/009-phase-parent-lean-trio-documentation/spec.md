@@ -103,6 +103,7 @@ Make the parent of a phased spec folder a manifest, not a state-bearing document
 | 2 | `002-phase-parent-generator-pointer-polish/` | Generator pointer-write + bubble-up, `create.sh --phase` lean-template swap, `templates/context-index.md`, `resource-map.md` polish, resume pointer-redirect, hook brief redirect, content-discipline validator (P2), end-to-end test | complete |
 | 3 | `003-phase-parent-reference-readme-sync/` | Doc-only sync of 13 reference docs, READMEs, command docs, and assets to align with the lean-trio policy: `phase_definitions.md`, `save_workflow.md`, `validation_rules.md`, top-level `README.md`, `templates/README.md`, plus 6 medium-severity files and 2 minor clarifications | complete |
 | 4 | `004-legacy-phase-parent-migration/` | Retroactive lean-trio retrofit across 31 legacy NNN-prefixed phase parents (22 active + 9 archived) via 3 parallel cli-codex/gpt-5.4-medium-fast workers. Tolerant policy preserved (heavy docs stay in place); manual blocks byte-equal pre/post; narrative carried forward; 026 regression baseline unchanged. | complete |
+| 5 | `005-optional-parent-decision-record/` | Allow an optional parent `decision-record.md` for decisions that span its phases | Complete |
 
 ### Phase Transition Rules
 
@@ -117,6 +118,7 @@ Make the parent of a phased spec folder a manifest, not a state-bearing document
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | `001-phase-parent-validator-docs` | `002-phase-parent-generator-pointer-polish` | Validator phase-parent branches live; detection helpers shipped and verified at 6/6 cross-impl parity; templates and docs sync landed; 026 regression preserved | `validate.sh --strict` against 026 shows ZERO new parent errors and 6 baseline errors REMOVED |
+| 004-legacy-phase-parent-migration | 005-optional-parent-decision-record | 004-legacy-phase-parent-migration validates on its own | `validate.sh --strict` on 004-legacy-phase-parent-migration |
 <!-- /ANCHOR:phase-map -->
 
 ---

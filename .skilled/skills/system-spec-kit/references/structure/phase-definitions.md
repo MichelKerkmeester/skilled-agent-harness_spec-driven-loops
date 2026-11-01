@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Phase Definitions
@@ -139,7 +139,7 @@ Phase child folders use the standard 3-digit numbered naming convention:
 
 ### Parent Folder Structure (lean trio policy)
 
-A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the phase children where they stay accurate to that phase's actual work. The parent's `spec.md` carries the Phase Documentation Map; the parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
+A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children where they stay accurate to that phase's actual work. One exception is optional: a parent may carry a `decision-record.md` for decisions that span its phases, such as a log of the operator's answers, because no single child owns those. The parent's `spec.md` carries the Phase Documentation Map; the parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
 
 ```
 specs/###-parent-feature/
