@@ -37,7 +37,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,6 +45,7 @@
       "acceptance-criteria.md",
       "decision-record.md",
       "implementation-summary.md",
+      "scratch/T037.md",
       ".skilled/commands/doctor/scripts/lib/sk-skill-surface.cjs",
       ".skilled/commands/doctor/scripts/skill-graph-freshness.cjs",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
@@ -57,8 +58,7 @@
       "scratch/T001.md",
       "scratch/T002.md",
       "scratch/T003.md",
-      "scratch/root-consumers.md",
-      "scratch/T005.md"
+      "scratch/root-consumers.md"
     ],
     "entities": [
       {
@@ -95,6 +95,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "T037.md",
+        "kind": "doc",
+        "path": "scratch/T037.md",
         "source": "derived"
       },
       {
@@ -164,19 +170,7 @@
         "source": "derived"
       },
       {
-        "name": "T005.md",
-        "kind": "doc",
-        "path": "scratch/T005.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -204,11 +198,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three doctor scripts choose the repository root themselves instead of using the resolver Skilled already ships",
     "created_at": "2026-11-01T05:57:12Z",
-    "last_save_at": "2026-11-01T06:44:24.043Z",
+    "last_save_at": "2026-11-01T06:54:55.046Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:60380d38d65863ef2502a0cf2a74a6ebf97ff2faf69af1fd85448288afeb1934",
+    "source_fingerprint": "sha256:3e94953bd317785e7ae598c796fe6aaa17cf03298438e1a7c45d14e6e3c7b594",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49e4fdc1f9a972fa2042755d0f7378e8666f7b62d89f43c7fa9cb01ecbbb9f41",
+      "spec.md": "3529d3cac2cd59372282cb6aca795a5b07f1942f0c03f1d61ef7aa7e91a113dc",
       "plan.md": "b3c632366167e43ac998eb734d059439d21378679300c349abd9dcaf94ec1678",
-      "tasks.md": "a1806d970d4ef7baa4f8c0961266717de7ec297f48a878f47110d292e0c4c00c",
-      "decision-record.md": "361763f417772356f71d26e7b13749d90568be50d5801fd74a6ca872bfe9f247",
-      "implementation-summary.md": "66b799ca79d36d4634ab040978878eff197756f2b5b0e68183ce68462623f48e"
+      "tasks.md": "349d4805236fc36e37614815f0a39df923bfccee34effcda551e77b369a0c893",
+      "decision-record.md": "95456e065a9beff9e71f3982b867dd711538418580ab32c4e8ef9c74dae59a42",
+      "implementation-summary.md": "7cedfa5a29dba6bd723fefdbd9b65d1db35b75af00799903c21124aa52186053"
     },
     "last_active_at": null
   }

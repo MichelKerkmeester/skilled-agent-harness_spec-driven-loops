@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-11-01 |
-| **Deciders** | Operator, in five structured questions recorded below |
+| **Deciders** | Operator, in six questions recorded below |
 
 ---
 
@@ -64,6 +64,7 @@ there, `sk-skill-check.cjs` exits 2 with `HUB_NOT_FOUND` and `skill-graph-freshn
 | 2026-11-01 | Workspace | Which git workspace should the Skilled fix use? Skilled main is at 82e726664d, 9 commits past the pin coder uses, and another session has untracked files under specs/system-speckit/040-*. | A) Create a git worktree; B) Work on current branch | B) Work on current branch |
 | 2026-11-01 | Spec folder | I checked specs/commands for existing doctor specs. Where should the root-finding fix go? It makes the doctor and maintenance scripts find the folder holding .skilled even when that folder sits below another repo's git root, as in Barter's coder/. All three candidate parents are Complete phase parents, and either option adds a new child. | 005-symlink-install child 007 (rec.); 002-audit-and-fixes child 003 | 002-audit-and-fixes child 003 |
 | 2026-11-01 | Commit | The Skilled changes are verified and ready to commit on main, with no push. Commit 1, fix(doctor): the 3 scripts, the freshness asset, the new doctor-root-resolution test (8/8; fails 5/8 on the old code) and spec packet 002/003. Commit 2, docs(system-spec-kit): the two policy lines allowing an optional parent decision-record.md, with the 009 parent spec and child 005. Undo before a push: git reset --soft HEAD~2; after a push: git revert both. May I commit? | Commit both, no push (rec.); Commit and push; One combined commit; Don't commit yet | Commit and push |
+| 2026-11-01 | Closeout commit | (Chat question.) Can I commit and push the 7 closeout files to Skilled main? Undo before a push is git reset --soft HEAD~1; after a push it is git revert. | yes / no (chat) | Yes push to skilled main |
 
 The complete log of every question in the conversion is the Barter packet's root decision record,
 `barter/ai-speckit/specs/barter-framework/001-coder-skilled-v4-conversion/decision-record.md`.

@@ -74,7 +74,7 @@ contextType: "general"
 - [x] T034 Run the aggregate runner (`tests/run-all.sh`). Verify: `bash .skilled/commands/doctor/scripts/tests/run-all.sh` exits 0 and prints `0 failed`. Evidence: `scratch/T034.md`.
 - [x] T035 Validate the packet (`specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root --strict` prints `RESULT: PASSED`. Evidence: `implementation-summary.md`. Reason: strict validation returned `RESULT: FAILED` with only `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT`, which are outside the writable scope. Evidence: `scratch/T035.md` (`RESULT: PASSED`).
 - [x] T036 Remove the evidence files' temporary fixtures and confirm no copied tree remains (`scratch/`). Verify: `find specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch -name '.skilled' -type d` prints no line. Evidence: `implementation-summary.md`.
-- [ ] T037 Verify the live nested hub and freshness proof in the re-pinned Barter copy (`barter/ai-speckit/coder/.skilled`). Verify: the hub report names `.skilled/skills/sk-code` without `HUB_NOT_FOUND`, and freshness prints no `panel error`. Reason: waits for the commit and re-pin.
+- [x] T037 Verify the live nested hub and freshness proof in the re-pinned Barter copy (`barter/ai-speckit/coder/.skilled`). Verify: the hub report names `.skilled/skills/sk-code` without `HUB_NOT_FOUND`, and freshness prints no `panel error`. Evidence: `scratch/T037.md` (hubPath `.skilled/skills/sk-code`, panel error count 0, parent-skill-check 0 warnings; the one hub finding, H11 mirror drift, is outside this fix).
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,7 +82,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All local tasks are evidenced; only T037, the live proof in the re-pinned Barter copy, remains open
+- [x] All tasks are evidenced, including T037, the live proof in the re-pinned Barter copy
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed (evidence: `scratch/T014.md`, `scratch/T031.md`)
 - [x] `run-all.sh` prints `0 failed` and the Skilled and linked baselines match their recorded values (evidence: `scratch/T031.md`, `scratch/T034.md`)

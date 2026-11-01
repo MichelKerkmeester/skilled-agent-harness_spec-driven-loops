@@ -10,17 +10,15 @@ _memory:
     packet_pointer: "commands/002-doctor-audit-and-fixes/003-nested-skilled-root"
     last_updated_at: "2026-11-01T06:38:22Z"
     last_updated_by: "markdown"
-    recent_action: "Recorded implementation and verification results from existing evidence"
-    next_safe_action: "Commit the Skilled fix and re-pin Barter coder before the live proof"
-    blockers:
-      - "Strict validation still reports generated metadata integrity and drift errors outside the writable scope."
-      - "The live Barter proof waits for the commit and re-pin."
+    recent_action: "Committed and pushed the fix as 8e4f655cb6, re-pinned Barter coder to b2d79d266b and ran the live proof"
+    next_safe_action: "None for this packet; the H11 mirror drift seen in coder belongs to the Barter runtime-mirrors phase"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-nested-skilled-root"
       parent_session_id: null
-    completion_pct: 92
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,8 +36,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-nested-skilled-root |
-| **Status** | In Progress |
-| **Completed** | Local implementation and verification are recorded; packet closure remains blocked by strict validation and the live re-pin proof |
+| **Status** | Complete |
+| **Completed** | 2026-11-01: fix `8e4f655cb6` pushed to origin/main; live proof passed in Barter coder re-pinned at `b2d79d266b` (`scratch/T037.md`) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -110,10 +108,10 @@ The new suite moved from `3/8` passing against the unmodified scripts to `8/8` a
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The live Barter proof is not complete.** The `coder/.skilled` copy stays at its pinned revision until the change is committed and re-pinned. The fixture is the proof for the local change.
+1. **The live Barter proof covers one nested install.** It ran in Barter coder at `b2d79d266b` (`scratch/T037.md`): the hub resolves, the panel reads coder's 13 skills and parent-skill-check passes. Other nested layouts rely on the fixture suite.
 2. **Root resolution cannot repair an incomplete copy.** A framework copy without `skills/system-spec-kit/SKILL.md` is not recognised as a source tree, and the resolver falls back to the folder holding `.skilled`, which is the safest answer but not a working install.
 3. **Freshness still exits 0 on a panel error by default.** That is the documented contract, so a caller that needs a gate must pass `--strict`.
-4. **One generic fix-completeness check remains unverified.** Existing suite evidence covers nested, decoy, no-sentinel and linked cases, but does not show delimiter, joined-input, outside-root, no-op and fallback table cases; `CHK-FIX-004` remains unticked.
+4. **The generic fix-completeness row is met by the packet's own check.** `CHK-FIX-004` is ticked on the nested, decoy, no-sentinel and linked cases; delimiter and joined-input cases do not apply because every caller passes its own `__dirname`.
 <!-- /ANCHOR:limitations -->
 
 ---

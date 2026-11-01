@@ -106,7 +106,7 @@ Summary of the child phase folders and their changes.
 |-------|--------|-------|--------|
 | 1 | `001-doctor-command-audit/` | Audit doctor commands and guide environment switch setup | Complete |
 | 2 | `002-doctor-audit-followups/` | Fix recorded retrieval, update-engine, and doctor-gate defects | Complete |
-| 3 | `003-nested-skilled-root/` | Find the folder holding `.skilled` when it sits below another repository's git root | In Progress |
+| 3 | `003-nested-skilled-root/` | Find the folder holding `.skilled` when it sits below another repository's git root | Complete |
 
 ### Phase Transition Rules
 
