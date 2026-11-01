@@ -562,6 +562,11 @@ function nudgeDecision({
 } = {}) {
   const knownLevel = Number.isInteger(level) && level >= 0 ? level : undefined;
   const quiet = (reason) => ({ nudge: false, level: knownLevel ?? 0, reason });
+  // A dispatched child inherits its parent's environment but owns no hand-over: a
+  // nudge there asks a worker to save continuity into the parent's packet, which is
+  // exactly the write its brief forbids. The claim path skips children the same way.
+  const { relaunchSessionIsChild } = require('../../goal/lib/goal-core.cjs');
+  if (relaunchSessionIsChild(env)) return quiet('child-session');
   if (!(Number(ratio) >= Number(threshold))) return quiet('below-threshold');
   const inLoop = insideLoop(env);
   if (inLoop && handoffPending({ sessionId, env })) return quiet('handoff-pending');

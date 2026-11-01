@@ -50,6 +50,7 @@
       ".claude/settings.json",
       "dist/hooks/claude/session-stop.js",
       ".claude/hooks/README.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       "api/index.ts",
       ".skilled/hooks/README.md"
     ],
@@ -112,6 +113,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".claude/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Operator answers to AI questions are not captured in a consistent decision record",
     "created_at": "2026-11-01T07:16:09Z",
-    "last_save_at": "2026-11-01T15:05:09.185Z",
+    "last_save_at": "2026-11-01T15:12:05.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +213,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07a4634ff25f460d39071b46edb6aef633315938566117b0cce495316f36d18c",
+    "source_fingerprint": "sha256:9c96b0137c1b24d78bb79d7efc9373f43eff152cf8f2fdb96f57be1adf88b7ef",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "05b48351ad009aaef17999ecc74a19a764756f7270165820b08ee3c904569b52",
       "plan.md": "bcf3f61e857db4641329092715737942e8063de02c67745e4c29f6d62cd69c10",
-      "tasks.md": "28a9447c5ec5e28ce7afd2c6b419f4020017bd8c61ef108a2f395cf0afee049a",
+      "tasks.md": "73e95869ff949b9a37cc6111e5de04a78f63f2488d69fcb8d710fdf7b3d70497",
       "decision-record.md": "03623f9e446848a05850fe076786e0360ba8cd9cf1cd5bf579e1e7d58139174f",
-      "implementation-summary.md": "3e20f23b718e7d94c46920faa38f9cdd57dc1775332c4080fce5543b291989af"
+      "implementation-summary.md": "959d28088910a2c5d5068384193cbfc3170d7e9ea627c838388e59c8adcecbd2"
     },
     "last_active_at": null
   }

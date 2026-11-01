@@ -86,6 +86,7 @@ The alignment run and the playbook runs found four defects and a set of stale do
 | SKILL.md, README.md, references (decision-format, template-guide, folder-structure), save.md, both hooks READMEs | Modified | Docs describe the decision record a save writes, the new anchors, the printed `key` and the current counts. |
 | feature-catalog/ux-hooks/operator-decision-capture.md, feature-catalog.md, changelog/v2.12.28.0.md | Created or modified | Catalog entry, release entry and the skill version 2.12.28.0. |
 | manual-testing-playbook: the three decision-capture scenarios, 240, 153, 155 and the index | Modified | Setup without `rm -rf`, the cli project flags, the SKIPPED review signal and the retired scenario 153. |
+| .skilled/hooks/session-relaunch/lib/nudge.cjs, tests/nudge.test.cjs, README.md | Modified | A dispatched child (`AI_SESSION_CHILD=1`) gets no context nudge on any adapter. A Pi playbook worker had been nudged at 85% fill and saved into this packet. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -142,6 +143,7 @@ After the main session ran the live probe, the orchestrator registered the Claud
 | Follow-up: `node --test` capture-core, sweep-transcript, sweep-opencode and sweep-devin | PASS, 35 of 35; 34 of 34 before the new nudge test |
 | Follow-up: CLI vitest writer, save and registration-sync files | PASS, 45 of 45; 42 before the three new writer cases |
 | Follow-up: runtime vitest hook-session-stop | PASS, 19 of 19 |
+| Follow-up: session-relaunch child guard | the new nudge case fails without the guard (70 pass, 1 fail) and passes with it (71 of 71); all 15 session-relaunch suites and goal-core (98 of 98) pass |
 | Follow-up: `tsc --noEmit` runtime and CLI, `sync-hook-registrations.cjs --check` | exit 0, exit 0, PASS for 4 files and 32 hooks |
 | Follow-up: full CLI vitest project | 194 files passed and 3 skipped, 2276 tests passed and 20 skipped, exit 0, the three new writer cases being the difference; the baseline before the first edit was 194 files passed and 3 skipped, 2273 tests passed and 20 skipped, exit 0 |
 <!-- /ANCHOR:verification -->

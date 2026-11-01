@@ -213,6 +213,8 @@ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs keep --handoff <no
 
 An OpenCode `task` sub-agent is a child session with its own id. The plugin records every session whose `session.created` or `session.updated` event carries `info.parentID` and skips it everywhere, so a child never gets a nudge, a seed or an arm. Pi has no built-in sub-agent.
 
+A worker an orchestrator dispatches through a CLI is marked with `AI_SESSION_CHILD=1`. On every adapter, the nudge decision returns `child-session` for it at any fill, so a worker never gets told to save continuity or write a handoff into its parent's packet. The claim path skips such a child the same way.
+
 A runtime started from inside a looped session, such as `claude -p` or `pi -p` run from a tool shell, inherits `SKILLED_LOOP_ID` without being the loop's runtime. The Claude, Pi and OpenCode adapters and the `prepare`, `keep` and `cancel` commands check the process tree first (the Codex and Hermes adapters do not): when two or more processes sit between the host runtime and the loop pid, the run is nested, so it logs `loop-nested-run` and drops every `SKILLED_LOOP_` variable from its own environment. That includes `SKILLED_LOOP_MANUAL_TEMPLATE` and the carried model, name and provider values, which would otherwise make the nested run print the outer loop's command. A nested run then behaves as a session outside the loop, and `prepare` there exits 3 instead of arming the outer loop. `cancel` drops the inherited loop id the same way, so it never cancels the outer hand-over unless you pass `--loop-id`. The check fails open, so a process table it cannot read leaves the variables in place.
 
 ---

@@ -1127,6 +1127,22 @@ test('nudgeDecision folds the threshold, the wrapper, a live handoff, the hop ca
     }),
     { nudge: true, level: 1, reason: 'outside-loop' },
   );
+  // A dispatched child never gets the nudge, inside the wrapper or out, at any fill.
+  for (const childEnv of [{ ...outsideLoop, AI_SESSION_CHILD: '1' }, { ...env, AI_SESSION_CHILD: '1' }]) {
+    assert.deepEqual(
+      nudgeDecision({ ratio: 0.95, threshold: 0.8, sessionId: SESSION_ID, env: childEnv }),
+      { nudge: false, level: 0, reason: 'child-session' },
+    );
+  }
+  assert.deepEqual(
+    nudgeDecision({
+      ratio: 0.81,
+      threshold: 0.8,
+      sessionId: SESSION_ID,
+      env: { ...outsideLoop, AI_SESSION_CHILD: '0' },
+    }),
+    { nudge: true, level: 1, reason: 'outside-loop' },
+  );
   // An open note this session already wrote silences the nudge outside the loop.
   const noteRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'nudge-note-open-'));
   t.after(() => fs.rmSync(noteRoot, { recursive: true, force: true }));
