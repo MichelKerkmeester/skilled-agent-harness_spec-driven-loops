@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace",
+  "spec_folder": "commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace",
+  "parent_id": "commands/002-doctor-audit-and-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor linked project workspace",
+      "phase 5 advisor linked project workspace",
+      "advisor workspaceroot must resolve under",
+      "advisor exit 64 linked project",
+      "advisor linked project workspace plan",
+      "advisor linked project workspace tasks",
+      "advisor linked project workspace acceptance criteria",
+      "advisor linked project workspace implementation summary"
+    ],
+    "key_topics": [
+      "advisor",
+      "linked",
+      "project",
+      "workspace",
+      "phase",
+      "workspaceroot",
+      "must",
+      "resolve",
+      "exit",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      "scratch/red-before-change.md",
+      "scratch/verification-evidence.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-tool-schemas.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "red-before-change.md",
+        "kind": "doc",
+        "path": "scratch/red-before-change.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-evidence.md",
+        "kind": "doc",
+        "path": "scratch/verification-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Identity",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/bin/system-skill-advisor-launcher.cjs` spawns the daemon with `cwd: root`, the realpath source tree, and `advisor-tool-schemas.ts` builds `ALLOWEDWORKSPACEPREFIXES` from `detectRepoRoot(process.cwd())` at module load",
+    "created_at": "2026-11-01T11:03:49Z",
+    "last_save_at": "2026-11-01T11:15:37.305Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1ec2db9790e8fcf5136bda84b73e1d243f4fe9078cb337dc42193391afc9bdfe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd9e00002185496e2a4c29f54eaded3461595a9f9794c27075d4f146687d7a19",
+      "plan.md": "d61a25ab9a909bd759afdc77f05c8016184732d95af526fa090bae84386b8c57",
+      "tasks.md": "78636d1f4d7f6c1eee15bb2bcf2f599aaab9a1633f665cccc46349891be68851",
+      "implementation-summary.md": "59086fcf9d43a9be97d40b9ddec4aa501a5279c0072dcc28d5019b9839179eae"
+    },
+    "last_active_at": null
+  }
+}

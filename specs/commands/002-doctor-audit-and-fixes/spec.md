@@ -108,6 +108,7 @@ Summary of the child phase folders and their changes.
 | 2 | `002-doctor-audit-followups/` | Fix recorded retrieval, update-engine, and doctor-gate defects | Complete |
 | 3 | `003-nested-skilled-root/` | Find the folder holding `.skilled` when it sits below another repository's git root | Complete |
 | 4 | `004-symlink-relink-after-unlink/` | Let `/doctor:symlink` relink a project after an unlink by giving each apply its own run folder | Complete |
+| 5 | `005-advisor-linked-project-workspace/` | Let the skill advisor serve a project linked with `/doctor:symlink` by admitting a workspace wired to its source tree | Complete |
 
 ### Phase Transition Rules
 
@@ -123,6 +124,7 @@ Summary of the child phase folders and their changes.
 | 001-doctor-command-audit | 002-doctor-audit-followups | 001-doctor-command-audit validates on its own | `validate.sh --strict` on 001-doctor-command-audit |
 | 002-doctor-audit-followups | 003-nested-skilled-root | 002-doctor-audit-followups validates on its own | `validate.sh --strict` on 002-doctor-audit-followups |
 | 003-nested-skilled-root | 004-symlink-relink-after-unlink | 003-nested-skilled-root validates on its own | `validate.sh --strict` on 003-nested-skilled-root |
+| 004-symlink-relink-after-unlink | 005-advisor-linked-project-workspace | 004-symlink-relink-after-unlink validates on its own | `validate.sh --strict` on 004-symlink-relink-after-unlink |
 <!-- /ANCHOR:phase-map -->
 
 ---

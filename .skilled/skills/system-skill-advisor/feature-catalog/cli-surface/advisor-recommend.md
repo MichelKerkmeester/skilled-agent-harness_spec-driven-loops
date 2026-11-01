@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.0.0
+version: 0.9.1.0
 ---
 
 # advisor_recommend Command
@@ -24,7 +24,7 @@ Expose the native scoring pipeline as a command that any runtime can call throug
 
 Shadow comparison is response-visible but durable recording is default-off. The handler calls the shadow-delta sink only when `SPECKIT_ADVISOR_SHADOW_DELTA_PATH` is set or `SPECKIT_ADVISOR_SHADOW_DELTA_ENABLED=1` / `true`; otherwise `advisor_recommend` writes no shadow delta file.
 
-The caller-supplied `workspaceRoot` is bounded by `schemas/advisor-tool-schemas.ts`, which canonicalizes the path and accepts it only when it resolves under the repo root, `os.tmpdir()` or the `/tmp` symlink form. The `SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST` env var extends that set with extra colon-separated prefixes for CI or test runners, each canonicalized before it is trusted. The flag is unset by default, so the bounding logic stays repo-and-tmpdir-only unless an operator opts in.
+The caller-supplied `workspaceRoot` is bounded by `schemas/advisor-tool-schemas.ts`, which canonicalizes the path and accepts it only when it resolves under the repo root, `os.tmpdir()` or the `/tmp` symlink form, or sits in a project whose `.skilled` (or `.opencode`) links to this source tree, the way `/doctor:symlink` links one, meaning its realpath equals this source tree's own entry. The `SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST` env var extends that set with extra colon-separated prefixes for CI or test runners, each canonicalized before it is trusted. The flag is unset by default, so the bounding logic stays repo-and-tmpdir-only unless an operator opts in.
 
 ### Compiled-Routing Enrichment (`compiledRoute`)
 

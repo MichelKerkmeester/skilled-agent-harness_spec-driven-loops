@@ -125,9 +125,11 @@ function canonicalize(input: string): string {
   }
 }
 
+const SOURCE_REPO_ROOT = canonicalize(detectRepoRoot());
+
 const ALLOWED_WORKSPACE_PREFIXES: readonly string[] = (() => {
   const prefixes: string[] = [];
-  prefixes.push(canonicalize(detectRepoRoot()));
+  prefixes.push(SOURCE_REPO_ROOT);
   prefixes.push(canonicalize(tmpdir()));
   // Include the canonicalized /tmp prefix as well. On macOS
   // os.tmpdir() returns the per-user temp dir under /var/folders/...; the
@@ -158,7 +160,44 @@ export function isAllowedWorkspaceRoot(input: string): boolean {
   const canonical = canonicalize(input);
   return ALLOWED_WORKSPACE_PREFIXES.some(
     (prefix) => canonical === prefix || canonical.startsWith(`${prefix}/`),
-  );
+  ) || isWiredToSourceTree(canonical);
+}
+
+function realpathOrNull(path: string): string | null {
+  try {
+    return realpathSync.native(path);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * True when the input, or a directory above it, holds a source-root entry
+ * (`.skilled` or `.opencode`) whose realpath is the source tree's own entry.
+ *
+ * A project linked to a shared checkout holds `.skilled -> <source>/.skilled`
+ * while the daemon runs from the source tree, so the prefix allowlist alone
+ * refuses every linked project. Matching realpaths admits only a workspace that
+ * is actually wired to this source; a copied tree or a link to another source
+ * resolves elsewhere and stays refused.
+ */
+export function isWiredToSourceTree(input: string, sourceRoot: string = SOURCE_REPO_ROOT): boolean {
+  if (!input || typeof input !== 'string') return false;
+  const sourceEntries = SOURCE_ROOT_NAMES
+    .map((name) => realpathOrNull(resolve(sourceRoot, name)))
+    .filter((entry): entry is string => entry !== null);
+  if (sourceEntries.length === 0) return false;
+  let current = canonicalize(input);
+  for (let depth = 0; depth < 64; depth += 1) {
+    for (const name of SOURCE_ROOT_NAMES) {
+      const entry = realpathOrNull(resolve(current, name));
+      if (entry !== null && sourceEntries.includes(entry)) return true;
+    }
+    const parent = resolve(current, '..');
+    if (parent === current) break;
+    current = parent;
+  }
+  return false;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -170,7 +209,7 @@ const BoundedWorkspaceRootSchema = z
   .min(1)
   .refine(isAllowedWorkspaceRoot, {
     message:
-      'workspaceRoot must resolve under the repo root, os.tmpdir(), or an explicit SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST entry',
+      'workspaceRoot must resolve under the repo root, os.tmpdir(), an explicit SPECKIT_ADVISOR_WORKSPACE_ALLOWLIST entry, or a project whose .skilled links to this source tree',
   });
 
 const laneBreakdownSchema = z.object({

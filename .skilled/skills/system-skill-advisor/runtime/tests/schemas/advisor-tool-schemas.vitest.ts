@@ -18,6 +18,7 @@ import {
   AdvisorRebuildInputSchema,
   detectRepoRoot,
   isAllowedWorkspaceRoot,
+  isWiredToSourceTree,
 } from '../../schemas/advisor-tool-schemas.js';
 
 describe('AdvisorRecommendInputSchema workspaceRoot bounding (F-005-A5-01)', () => {
@@ -176,6 +177,54 @@ describe('isAllowedWorkspaceRoot (F-005-A5-01)', () => {
       expect(isAllowedWorkspaceRoot(join(tmpDir, 'nested'))).toBe(true);
     } finally {
       rmSync(tmpDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('isWiredToSourceTree admits a project linked to this source tree', () => {
+  // A project linked by /doctor:symlink holds `.skilled -> <source>/.skilled`, while the
+  // daemon runs from the source tree, so the prefix allowlist alone refuses it. Every
+  // fixture sits under tmpdir, which the prefix allowlist admits, so the helper is
+  // called with an explicit source root to keep the assertion discriminating.
+  function makeSource(base: string, name: string): string {
+    const source = join(base, name);
+    mkdirSync(join(source, '.skilled', 'skills', 'system-spec-kit'), { recursive: true });
+    writeFileSync(join(source, '.skilled', 'skills', 'system-spec-kit', 'SKILL.md'), '# sentinel\n');
+    return source;
+  }
+
+  it('accepts a project whose .skilled links to the source, and its subdirectories', () => {
+    const base = mkdtempSync(join(tmpdir(), 'speckit-wired-'));
+    try {
+      const source = makeSource(base, 'source');
+      const project = join(base, 'project');
+      mkdirSync(join(project, 'src'), { recursive: true });
+      symlinkSync(join(source, '.skilled'), join(project, '.skilled'));
+      expect(isWiredToSourceTree(project, source)).toBe(true);
+      expect(isWiredToSourceTree(join(project, 'src'), source)).toBe(true);
+      expect(isWiredToSourceTree(source, source)).toBe(true);
+    } finally {
+      rmSync(base, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses an unlinked directory, a link to another source and a copied tree', () => {
+    const base = mkdtempSync(join(tmpdir(), 'speckit-unwired-'));
+    try {
+      const source = makeSource(base, 'source');
+      const otherSource = makeSource(base, 'other-source');
+      const plain = join(base, 'plain');
+      mkdirSync(plain, { recursive: true });
+      const elsewhere = join(base, 'elsewhere');
+      mkdirSync(elsewhere, { recursive: true });
+      symlinkSync(join(otherSource, '.skilled'), join(elsewhere, '.skilled'));
+      const copied = makeSource(base, 'copied');
+      expect(isWiredToSourceTree(plain, source)).toBe(false);
+      expect(isWiredToSourceTree(elsewhere, source)).toBe(false);
+      expect(isWiredToSourceTree(copied, source)).toBe(false);
+      expect(isWiredToSourceTree('', source)).toBe(false);
+    } finally {
+      rmSync(base, { recursive: true, force: true });
     }
   });
 });
