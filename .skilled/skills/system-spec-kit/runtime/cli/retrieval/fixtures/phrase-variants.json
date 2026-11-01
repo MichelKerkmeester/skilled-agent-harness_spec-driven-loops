@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
+  "manifestHash": "791c24ca9d260e4a03944e23b63ce08db65e60cdfa7831fbc7cf69e69c55a289",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8761,6 +8761,9 @@
     "advisor error envelope": [
       "advisor error envelope"
     ],
+    "advisor exit 64 linked project": [
+      "advisor exit 64 linked project"
+    ],
     "advisor exit codes": [
       "advisor exit codes"
     ],
@@ -8997,6 +9000,21 @@
     ],
     "advisor lifecycle": [
       "advisor lifecycle"
+    ],
+    "advisor linked project workspace": [
+      "advisor linked project workspace"
+    ],
+    "advisor linked project workspace acceptance criteria": [
+      "advisor linked project workspace acceptance criteria"
+    ],
+    "advisor linked project workspace implementation summary": [
+      "advisor linked project workspace implementation summary"
+    ],
+    "advisor linked project workspace plan": [
+      "advisor linked project workspace plan"
+    ],
+    "advisor linked project workspace tasks": [
+      "advisor linked project workspace tasks"
     ],
     "advisor local sqlite declaration": [
       "advisor local sqlite declaration"
@@ -9688,6 +9706,9 @@
     ],
     "advisor workspace root resolver false sentinel": [
       "advisor workspace root resolver false sentinel"
+    ],
+    "advisor workspaceroot must resolve under": [
+      "advisor workspaceroot must resolve under"
     ],
     "advisorhookresult renderer": [
       "AdvisorHookResult renderer"
@@ -76775,6 +76796,9 @@
     ],
     "phase 49 review rows reconciliation": [
       "phase 49 review rows reconciliation"
+    ],
+    "phase 5 advisor linked project workspace": [
+      "phase 5 advisor linked project workspace"
     ],
     "phase 5 central doctor playbook": [
       "phase 5 central doctor playbook"

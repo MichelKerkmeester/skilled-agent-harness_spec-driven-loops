@@ -1,5 +1,5 @@
 {
-  "corpusHash": "29840a7e77e592425b890e3fda8a270d26e1609dfa4eadfca8172e5d9750d5f8",
+  "corpusHash": "64731635861fe7ec188a0164c54ebe65893ac06aa371dd54c632b84257048810",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27206,
+  "includedPathCount": 27211,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10435,6 +10435,11 @@
     "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/plan.md",
     "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/tasks.md",
+    "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/acceptance-criteria.md",
+    "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/implementation-summary.md",
+    "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/plan.md",
+    "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/timeline.md",
     "specs/commands/003-local-command-support/goal.md",
@@ -27237,7 +27242,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
+  "manifestHash": "791c24ca9d260e4a03944e23b63ce08db65e60cdfa7831fbc7cf69e69c55a289",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29157,6 +29162,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/scratch",
       "reason": "excluded directory"
     },
     {
