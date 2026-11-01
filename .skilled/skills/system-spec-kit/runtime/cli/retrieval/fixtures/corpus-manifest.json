@@ -1,5 +1,5 @@
 {
-  "corpusHash": "154b031f0088553fb3eb019fbf6366620c24cfd1ca00b7b5d06987ee1dbe7b9d",
+  "corpusHash": "e7c279627357f8e8c830b2e066156e5fd61a46ac90d4eeb1ba2058b50c056139",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27184,
+  "includedPathCount": 27194,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10424,6 +10424,12 @@
     "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/acceptance-criteria.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/decision-record.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/implementation-summary.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/plan.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/timeline.md",
     "specs/commands/003-local-command-support/goal.md",
@@ -17611,6 +17617,10 @@
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/plan.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/tasks.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/implementation-summary.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/plan.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/spec.md",
+    "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/tasks.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/resource-map.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/spec.md",
     "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment/implementation-summary.md",
@@ -27215,7 +27225,7 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
+  "manifestHash": "fec137a3f770238415cf14dd6342222ace918ef21a4c3743cb290cdb47b4ccb5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29127,6 +29137,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/033-orphan-check-unsupervised-model-server/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32399,6 +32413,10 @@
     },
     {
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/scratch",
       "reason": "excluded directory"
     },
     {

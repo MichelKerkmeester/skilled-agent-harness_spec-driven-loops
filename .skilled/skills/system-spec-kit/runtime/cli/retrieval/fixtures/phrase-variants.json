@@ -1,5 +1,5 @@
 {
-  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
+  "manifestHash": "fec137a3f770238415cf14dd6342222ace918ef21a4c3743cb290cdb47b4ccb5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40709,6 +40709,9 @@
     "doctor retrieval signals tasks": [
       "doctor retrieval signals tasks"
     ],
+    "doctor root finding decision": [
+      "doctor root finding decision"
+    ],
     "doctor route command owner": [
       "doctor route command owner"
     ],
@@ -40846,6 +40849,9 @@
     ],
     "doctor scripts refactor plan": [
       "doctor scripts refactor plan"
+    ],
+    "doctor scripts repository root": [
+      "doctor scripts repository root"
     ],
     "doctor scripts tasks": [
       "doctor scripts tasks"
@@ -69397,6 +69403,24 @@
     "nested session worktree isolation": [
       "nested session worktree isolation"
     ],
+    "nested skilled root": [
+      "nested skilled root"
+    ],
+    "nested skilled root acceptance criteria": [
+      "nested skilled root acceptance criteria"
+    ],
+    "nested skilled root decision": [
+      "nested skilled root decision"
+    ],
+    "nested skilled root implementation summary": [
+      "nested skilled root implementation summary"
+    ],
+    "nested skilled root plan": [
+      "nested skilled root plan"
+    ],
+    "nested skilled root tasks": [
+      "nested skilled root tasks"
+    ],
     "nested spec folder paths": [
       "nested spec folder paths"
     ],
@@ -72550,6 +72574,18 @@
     "optional local extra": [
       "optional local extra"
     ],
+    "optional parent decision record": [
+      "optional parent decision record"
+    ],
+    "optional parent decision record implementation summary": [
+      "optional parent decision record implementation summary"
+    ],
+    "optional parent decision record plan": [
+      "optional parent decision record plan"
+    ],
+    "optional parent decision record tasks": [
+      "optional parent decision record tasks"
+    ],
     "opus 4 8 workflow deep review 011": [
       "opus-4.8 workflow deep review 011"
     ],
@@ -74077,6 +74113,9 @@
     ],
     "parent completion criteria proofs": [
       "parent completion criteria proofs"
+    ],
+    "parent decision record": [
+      "parent decision record"
     ],
     "parent died after snapshot control": [
       "parent died after snapshot control"
@@ -76461,6 +76500,9 @@
     "phase 3 markdown reference sweep": [
       "phase 3 markdown reference sweep"
     ],
+    "phase 3 nested skilled root": [
+      "phase 3 nested skilled root"
+    ],
     "phase 3 playbook catalog truth": [
       "phase 3 playbook catalog truth"
     ],
@@ -76742,6 +76784,9 @@
     ],
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
+    ],
+    "phase 5 optional parent decision record": [
+      "phase 5 optional parent decision record"
     ],
     "phase 5 packet and standalone migration": [
       "phase 5 packet and standalone migration"
@@ -118315,6 +118360,9 @@
     ],
     "vendored reference charting library": [
       "vendored reference charting library"
+    ],
+    "vendored skilled below git root": [
+      "vendored skilled below git root"
     ],
     "vendored source research": [
       "vendored source research"

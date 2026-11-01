@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7253,
-    "ok": 16383,
+    "ok": 16393,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27184,
+  "documentsScanned": 27194,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "36ea011533ed9f3c7f6a75ed003de6524a1d2b3da6d7a3f405e5f574076e52b9",
+  "manifestHash": "fec137a3f770238415cf14dd6342222ace918ef21a4c3743cb290cdb47b4ccb5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40011,
+      "ok": 40027,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -70314,6 +70314,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/commands/002-doctor-audit-and-fixes/003-nested-skilled-root/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/commands/003-local-command-support/scratch",
       "reason": "excluded directory"
     },
@@ -73583,6 +73587,10 @@
     },
     {
       "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/005-optional-parent-decision-record/scratch",
       "reason": "excluded directory"
     },
     {
