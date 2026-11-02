@@ -12,7 +12,7 @@ operating_mode:
   approvals: rollback_approval_plus_separate_stale_lock_approval
   tracking: action_by_action
   validation: engine_rollback_preview
-  state_dir: ".skilled/release/runs"
+  state_dir: ".skilled/skills/.state/doctor-update/runs"
 
 rollback_orchestrator_invariant: |
   The engine validates every path in rollback.json and owns the apply lock.
@@ -24,12 +24,12 @@ upstream_assets:
   presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
   pass_policy:
     approval_required_before_restore: true
-    run_directory_must_be_below: ".skilled/release/runs"
+    run_directory_must_be_below: ".skilled/skills/.state/doctor-update/runs"
     engine_owns_lock: true
 
 user_inputs:
   action: "rollback"
-  run: "[RUN] optional run directory below .skilled/release/runs"
+  run: "[RUN] optional run directory below .skilled/skills/.state/doctor-update/runs"
   dry_run: "[DRY_RUN] boolean"
 
 field_handling:
@@ -49,7 +49,7 @@ field_handling:
 mutation_boundaries:
   allowed_targets:
     - "Paths listed in rollback.json and validated by the engine"
-    - ".skilled/release/.apply.lock through the engine only after stale-lock approval"
+    - ".skilled/skills/.state/doctor-update/.apply.lock through the engine only after stale-lock approval"
     - "<runDir>/.doctor-update-rollback.last-run.json"
   forbidden_targets:
     - "every path outside those engine-validated targets and the selected run directory"
@@ -57,7 +57,7 @@ mutation_boundaries:
     - "git restore or any path the engine reports as skipped"
   validator:
     name: canonical_path_validator
-    rule: "Resolve the selected run to a real directory below .skilled/release/runs. Reject symlinked runs. Let the engine validate every rollback path."
+    rule: "Resolve the selected run to a real directory below .skilled/skills/.state/doctor-update/runs. Reject symlinked runs. Let the engine validate every rollback path."
 
 state_log_schema:
   command: "/doctor:update rollback"
@@ -77,7 +77,7 @@ workflow:
     approval: none
     checks:
       - "Confirm the current directory is inside the repository and the engine exists."
-      - "When run is supplied, resolve it to a canonical real directory below .skilled/release/runs."
+      - "When run is supplied, resolve it to a canonical real directory below .skilled/skills/.state/doctor-update/runs."
       - "Confirm the selected run and state log pass the canonical path validator."
     on_failure: "Show the presentation error template and stop before writing."
 
@@ -92,7 +92,7 @@ workflow:
 
   phase_3_run_selection:
     approval: "Ask the operator to choose a run when no run is bound and no stale lock names one."
-    candidates: "List run directories below .skilled/release/runs that contain rollback.json, newest first."
+    candidates: "List run directories below .skilled/skills/.state/doctor-update/runs that contain rollback.json, newest first."
     after_unlock: "When the chosen run has no rollback.json after a stale lock was cleared, report that the interrupted run wrote nothing and stop with STATUS=UNLOCKED."
 
   phase_4_preview:

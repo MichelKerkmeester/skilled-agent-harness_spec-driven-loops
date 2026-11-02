@@ -1,3 +1,0 @@
-# Run directories and the apply lock are local state.
-runs/
-.apply.lock

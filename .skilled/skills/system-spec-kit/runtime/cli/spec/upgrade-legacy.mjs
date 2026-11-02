@@ -135,7 +135,7 @@ const BEFORE_IMAGES_DIR = 'upgrade-legacy.before-images';
 // The release apply holds this lock while it writes release files, and a layout move or
 // repair that ran beside it would race those writes. A lock that cannot be inspected also
 // refuses, so an unreadable path never lets a run through.
-const RELEASE_APPLY_LOCK = path.join(REPO, '.skilled', 'release', '.apply.lock');
+const RELEASE_APPLY_LOCK = path.join(REPO, '.skilled', 'skills', '.state', 'doctor-update', '.apply.lock');
 function releaseApplyLockPresent() {
   try {
     fs.lstatSync(RELEASE_APPLY_LOCK);

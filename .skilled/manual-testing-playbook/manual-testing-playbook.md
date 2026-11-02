@@ -201,7 +201,7 @@ The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` d
 
 - **Always** pass `--offline` and a `--scope` naming fixture units. The copied updater forms one `command:commands/doctor` unit that no scenario asserts.
 - **Every file needs an explicit answer.** The engine ignores the prefilled decisions in `decisions.json`, so record each one with `decide`.
-- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/release/runs/`. Never apply the same run twice.
+- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/skills/.state/doctor-update/runs/`. Never apply the same run twice.
 - **Commits in the fixture:** the v4.0.0.0 hooks need dependencies the fixture does not have, so fixture commits set `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1`, the two bypasses those hooks name. Never use `--no-verify`.
 - **Recreate:** DOC-379 lists every build step.
 

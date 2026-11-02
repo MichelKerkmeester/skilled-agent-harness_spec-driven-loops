@@ -51,6 +51,10 @@ function git(repo, args) {
 function configureGit(repo) {
   git(repo, ['config', 'user.name', 'Release Update Fixture']);
   git(repo, ['config', 'user.email', 'release-update@example.invalid']);
+  fs.appendFileSync(
+    path.join(repo, '.git', 'info', 'exclude'),
+    '\n.skilled/skills/.state/*/*\n',
+  );
 }
 
 function writeFile(repo, relative, content) {
@@ -253,11 +257,11 @@ function makePair(baseFiles, releaseFiles) {
   return { root, upstream, operator };
 }
 
-// Run directories are gitignored in a real checkout; mirror that so later
-// commits in a test never capture them.
+// Doctor updater state is gitignored in a real checkout; mirror that so test
+// commits never capture its local records or run artifacts.
 function ignoreRuns(repo) {
-  writeFile(repo, '.gitignore', '.skilled/release/runs/\n');
-  commitAll(repo, 'ignore release runs');
+  writeFile(repo, '.gitignore', '.skilled/skills/.state/*/*\n');
+  commitAll(repo, 'ignore doctor update state');
 }
 
 const FAMILY_UNIT_KEYS = [
@@ -284,8 +288,7 @@ function makeHooksPair() {
 
 function writeBase(repo, units) {
   const record = JSON.stringify({ schemaVersion: 1, units }, null, 2);
-  writeFile(repo, '.skilled/release/base.json', record);
-  commitAll(repo, 'base record');
+  writeFile(repo, '.skilled/skills/.state/doctor-update/base.json', record);
 }
 
 function readJson(filePath) {
@@ -376,6 +379,9 @@ test('latest-tag resolution excludes prereleases by default and orders numerical
 test('unit enumeration separates hubs, child skills, command families, and root files', () => {
   const units = enumerateUnits([
     '.skilled/root.md',
+    '.skilled/skills/.state/doctor-update/base.json',
+    '.skilled/skills/.state/doctor-update/runs/run/plan.json',
+    '.skilled/release/base.json',
     '.skilled/skills/hub-a/SKILL.md',
     '.skilled/skills/hub-b/SKILL.md',
     '.skilled/skills/hub-b/child-c/SKILL.md',
@@ -471,7 +477,8 @@ test('mergeable edits get a clean proposal and align writes only under its run d
   assert.match(proposal, /last: operator/);
 
   const status = git(fixture.operator, ['status', '--short', '--untracked-files=all']);
-  assert.ok(status.split(/\r?\n/).every((line) => line.includes('.skilled/release/runs/')));
+  assert.equal(status, '');
+  assert.ok(fs.existsSync(path.join(aligned.document.runDir, 'proposals')));
 });
 
 test('conflicting proposals reject merge and accept use-proposal after marker removal', () => {
@@ -626,7 +633,7 @@ test('a copied tree reports a recorded base after record-base', () => {
   const recorded = runCli(vendor, ...recordArgs);
   assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
   assert.deepEqual(recorded.document.units, FAMILY_UNIT_KEYS);
-  const base = JSON.parse(fs.readFileSync(path.join(vendor, '.skilled/release/base.json'), 'utf8'));
+  const base = JSON.parse(fs.readFileSync(path.join(vendor, '.skilled/skills/.state/doctor-update/base.json'), 'utf8'));
   assert.equal(base.units['skill:hub-a'].release, 'v1.0.0.0');
   assert.match(base.units['skill:hub-a'].tree, /^[0-9a-f]{64}$/);
 
@@ -640,8 +647,64 @@ test('a copied tree reports a recorded base after record-base', () => {
   assert.equal(after.document.baseRecording.needed, false);
 
   const again = runCli(vendor, ...recordArgs);
-  assert.equal(again.exitCode, 1);
-  assert.match(again.document.error, /commit or discard it/);
+  assert.equal(again.exitCode, 0, JSON.stringify(again.document));
+});
+
+test('a legacy base record is read and record-base writes the new local path', () => {
+  const fixture = makeFixture();
+  const legacyPath = '.skilled/release/base.json';
+  const currentPath = '.skilled/skills/.state/doctor-update/base.json';
+  const legacyBytes = JSON.stringify({
+    schemaVersion: 1,
+    units: { 'skill:hub-a': { release: 'v1.0.0.0' } },
+  }, null, 2) + '\n';
+  writeFile(fixture.operator, legacyPath, legacyBytes);
+  commitAll(fixture.operator, 'fixture legacy base record');
+
+  const checked = runCli(fixture.operator, 'check');
+  assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
+  assert.equal(unit(checked.document, 'skill:hub-a').baseSource, 'recorded-unverified');
+  assert.match(checked.stderr, /\.skilled\/release\/base\.json/);
+  assert.match(checked.stderr, /\.skilled\/skills\/\.state\/doctor-update\/base\.json/);
+  assert.match(checked.stderr, /git rm -r \.skilled\/release/);
+  assert.equal(fs.existsSync(path.join(fixture.operator, currentPath)), false);
+
+  const recorded = runCli(
+    fixture.operator,
+    'record-base',
+    '--release',
+    'v1.0.0.0',
+    '--remote',
+    fixture.upstream,
+  );
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  assert.equal(fs.readFileSync(path.join(fixture.operator, legacyPath), 'utf8'), legacyBytes);
+  assert.equal(readJson(path.join(fixture.operator, currentPath)).units['skill:hub-a'].release,
+    'v1.0.0.0');
+  assert.match(recorded.stderr, /reading legacy state/);
+});
+
+test('record-base rewrites a base record that differs from HEAD', () => {
+  const fixture = makeFixture();
+  const basePath = '.skilled/skills/.state/doctor-update/base.json';
+  writeBase(fixture.operator, { 'skill:hub-a': { release: 'v1.0.0.0' } });
+  git(fixture.operator, ['add', '-f', basePath]);
+  git(fixture.operator, ['commit', '-q', '-m', 'fixture tracked base record']);
+  writeFile(fixture.operator, basePath, JSON.stringify({
+    schemaVersion: 1,
+    units: { 'skill:hub-a': { release: 'v1.0.0.0', stale: true } },
+  }, null, 2) + '\n');
+
+  const recorded = runCli(
+    fixture.operator,
+    'record-base',
+    '--release',
+    'v1.0.0.0',
+    '--remote',
+    fixture.upstream,
+  );
+  assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
+  assert.equal(readJson(path.join(fixture.operator, basePath)).units['skill:hub-a'].stale, undefined);
 });
 
 test('latest-upstream resolution takes stable tags unless prereleases are opted in', () => {
@@ -676,11 +739,10 @@ test('a recorded base for an unresolvable release never hides a directory unit',
     { '.skilled/skills/hub-a/SKILL.md': '# hub-a\n', '.skilled/hooks/pre-commit': '#!/bin/sh\n' },
     { '.skilled/skills/hub-a/SKILL.md': '# hub-a\nRelease\n' },
   );
-  writeFile(fixture.operator, '.skilled/release/base.json', JSON.stringify({
+  writeFile(fixture.operator, '.skilled/skills/.state/doctor-update/base.json', JSON.stringify({
     schemaVersion: 1,
     units: { hooks: { release: 'v9.0.0.0' } },
   }));
-  commitAll(fixture.operator, 'base record for a release this clone never saw');
   const result = runCli(fixture.operator, 'check', '--offline');
   assert.equal(result.exitCode, 0, JSON.stringify(result.document));
   const hooks = result.document.units.filter((entry) => entry.name === 'hooks');
@@ -690,7 +752,7 @@ test('a recorded base for an unresolvable release never hides a directory unit',
 test('a directory and a skill hub sharing a name stay separate through apply and rollback', () => {
   const fixture = makeHooksPair();
   ignoreRuns(fixture.operator);
-  const basePath = path.join(fixture.operator, '.skilled/release/base.json');
+  const basePath = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json');
   const recorded = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0');
   assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
   assert.ok(recorded.document.units.includes('directory:hooks'));
@@ -700,8 +762,6 @@ test('a directory and a skill hub sharing a name stay separate through apply and
   assert.equal(base.units['skill:hooks'].release, 'v1.0.0.0');
   assert.notEqual(base.units['directory:hooks'].tree, base.units['skill:hooks'].tree);
   assert.equal(base.units.hooks, undefined);
-  commitAll(fixture.operator, 'record the installed release');
-
   const report = runCli(fixture.operator, 'check').document;
   for (const key of ['directory:hooks', 'skill:hooks']) {
     assert.equal(unit(report, key).status, 'update', key);
@@ -761,7 +821,7 @@ test('a name-only base.json record reads as the one unit with that name and is r
   assert.ok(report.document.baseRecording.units.includes('skill:hub-a'));
   const applied = runCli(fixture.operator, 'apply');
   assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
-  const base = readJson(path.join(fixture.operator, '.skilled/release/base.json'));
+  const base = readJson(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json'));
   assert.equal(base.units['skill:hub-a'].release, 'v1.1.0.0');
   assert.deepEqual(Object.keys(base.units).filter((key) => !key.includes(':')), []);
 });
@@ -775,11 +835,10 @@ test('a name-only base.json record two units share is refused until record-base'
   assert.match(refused.document.error, /record-base/);
   const rewritten = runCli(fixture.operator, 'record-base', '--release', 'v1.0.0.0');
   assert.equal(rewritten.exitCode, 0, JSON.stringify(rewritten.document));
-  const basePath = path.join(fixture.operator, '.skilled/release/base.json');
+  const basePath = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json');
   const keys = Object.keys(readJson(basePath).units);
   assert.ok(keys.includes('directory:hooks') && keys.includes('skill:hooks'));
   assert.ok(!keys.includes('hooks'));
-  commitAll(fixture.operator, 'rewrite the base record');
   assert.equal(runCli(fixture.operator, 'check').exitCode, 0);
 });
 
@@ -873,8 +932,8 @@ test('apply dry-run writes nothing and apply updates only uncustomized units by 
   const beforeA = readText(fixture.operator, HUB_A_FILE);
   const dry = runCli(fixture.operator, 'apply', '--dry-run');
   assert.equal(dry.exitCode, 0);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/base.json')), false);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock')), false);
   assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), false);
   assert.equal(readText(fixture.operator, HUB_A_FILE), beforeA);
   assert.equal(git(fixture.operator, ['status', '--short', '--untracked-files=all']), beforeStatus);
@@ -885,7 +944,7 @@ test('apply dry-run writes nothing and apply updates only uncustomized units by 
   assert.equal(fs.existsSync(path.join(fixture.operator, HUB_D_FILE)), true);
   assert.match(readText(fixture.operator, HUB_B_FILE), /Operator-only/);
   assert.match(readText(fixture.operator, CHILD_FILE), /first: operator/);
-  const base = readJson(path.join(fixture.operator, '.skilled/release/base.json'));
+  const base = readJson(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json'));
   assert.equal(base.units['skill:hub-a'].release, 'v1.1.0.0');
   assert.equal(base.units['skill:hub-d'].release, 'v1.1.0.0');
   assert.equal(base.units['skill:hub-b'], undefined);
@@ -933,7 +992,7 @@ test('apply binds to the dry-run release and refuses a plan that changed', () =>
   assert.equal(malformed.exitCode, 2);
 });
 
-test('a second apply names the uncommitted release record and the commit remedy', () => {
+test('a second apply does not refuse local release records', () => {
   const fixture = makeFixture({ withHubBRelease: true });
   ignoreRuns(fixture.operator);
   const firstApply = runCli(fixture.operator, 'apply');
@@ -962,9 +1021,9 @@ test('a second apply names the uncommitted release record and the commit remedy'
     '--decisions',
     path.join(aligned.document.runDir, 'decisions.json'),
   );
-  assert.equal(secondApply.exitCode, 1);
-  assert.match(secondApply.document.error, /\.skilled\/release\/base\.json/);
-  assert.match(secondApply.document.error, /Commit it/);
+  assert.equal(secondApply.exitCode, 0, JSON.stringify(secondApply.document));
+  assert.ok(secondApply.document.written.includes('.skilled/skills/.state/doctor-update/base.json'));
+  assert.ok(!secondApply.document.written.includes('.skilled/release/base.json'));
 });
 
 test('a bare apply refuses an alignment run that holds operator decisions', () => {
@@ -1130,10 +1189,9 @@ test('apply skips a unit whose changing files are only partly decided and keeps 
     { unit: 'skill:hub-a', reason: 'undecided files', paths: [bFile] },
   ]);
   assert.equal(readText(fixture.operator, bFile), 'base b\n');
-  assert.equal(readJson(path.join(fixture.operator, '.skilled/release/base.json')).units['skill:hub-a'], undefined);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/divergence.json')), false);
+  assert.equal(readJson(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json')).units['skill:hub-a'], undefined);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/divergence.json')), false);
 
-  commitAll(fixture.operator, 'record partial decision result');
   const checked = runCli(fixture.operator, 'check');
   assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
   const hub = unit(checked.document, 'skill:hub-a');
@@ -1164,14 +1222,14 @@ test('apply skips a unit whose changing files are only partly decided and keeps 
 
 test('apply without a run plans update and new units and refuses decisions without a run', () => {
   const fixture = makeFixture();
-  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runsDir = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/runs');
   const dry = runCli(fixture.operator, 'apply', '--dry-run');
   assert.equal(dry.exitCode, 0, JSON.stringify(dry.document));
   assert.equal(dry.document.withoutRun, true);
   const written = dry.document.writes.map((write) => write.path);
   assert.ok(written.includes(HUB_A_FILE));
   assert.ok(written.includes(HUB_D_FILE));
-  assert.ok(written.includes('.skilled/release/base.json'));
+  assert.ok(written.includes('.skilled/skills/.state/doctor-update/base.json'));
   assert.ok(!written.includes(CHILD_FILE));
   assert.ok(dry.document.skippedUnits.some((entry) => (
     entry.unit === 'skill:hub-b/child-c' && entry.reason === 'no decisions'
@@ -1228,7 +1286,7 @@ test('rollback restores prior bytes and removes files added by apply', () => {
   assert.equal(rolledBack.exitCode, 0);
   assert.deepEqual(fs.readFileSync(path.join(fixture.operator, HUB_A_FILE)), beforeA);
   assert.equal(fs.existsSync(path.join(fixture.operator, HUB_D_FILE)), false);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/base.json')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json')), false);
 });
 
 test('rollback --dry-run previews restored and skipped paths and writes nothing', () => {
@@ -1236,21 +1294,27 @@ test('rollback --dry-run previews restored and skipped paths and writes nothing'
   const applied = runCli(fixture.operator, 'apply');
   assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
   const runDir = applied.document.runDir;
+  const legacyRecordPath = '.skilled/release/base.json';
+  const rollbackPath = path.join(runDir, 'rollback.json');
+  const rollbackRecord = readJson(rollbackPath);
+  rollbackRecord.paths.push({ path: legacyRecordPath, before: null, after: null });
+  fs.writeFileSync(rollbackPath, JSON.stringify(rollbackRecord, null, 2) + '\n');
 
   const preview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
   assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
   assert.equal(preview.document.dryRun, true);
   assert.ok(preview.document.restored.includes(HUB_A_FILE));
   assert.ok(preview.document.restored.includes(HUB_D_FILE));
+  assert.ok(preview.document.restored.includes(legacyRecordPath));
   assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock')), false);
 
   writeFile(fixture.operator, HUB_A_FILE, 'edited after apply\n');
   const secondPreview = runCli(fixture.operator, 'rollback', '--run', runDir, '--dry-run');
   assert.equal(secondPreview.exitCode, 0, JSON.stringify(secondPreview.document));
   assert.ok(secondPreview.document.skipped.includes(HUB_A_FILE));
   assert.equal(readText(fixture.operator, HUB_A_FILE), 'edited after apply\n');
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock')), false);
 });
 
 test('apply and rollback preserve executable mode and symlink targets', () => {
@@ -1315,10 +1379,10 @@ test('apply honours decided files and deferred units, and kept-local reaches the
   assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
   assert.equal(readText(fixture.operator, HUB_B_RELEASE_FILE), 'release-managed\n');
   assert.match(readText(fixture.operator, CHILD_FILE), /first: operator/);
-  const ledger = readJson(path.join(fixture.operator, '.skilled/release/divergence.json'));
+  const ledger = readJson(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/divergence.json'));
   const ledgerRows = ledger.entries.map((entry) => [entry.path, entry.decision]);
   assert.deepEqual(ledgerRows, [[CHILD_FILE, 'keep-local']]);
-  const base = readJson(path.join(fixture.operator, '.skilled/release/base.json'));
+  const base = readJson(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json'));
   assert.equal(base.units['skill:hub-a'], undefined);
   assert.equal(base.units['skill:hub-b'].release, 'v1.1.0.0');
 
@@ -1395,8 +1459,8 @@ test('apply refuses a --release mismatch, a held lock and an already applied run
   assert.equal(mismatch.exitCode, 1);
   assert.match(mismatch.document.error, /--release does not match the alignment plan/);
 
-  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
-  writeFile(fixture.operator, '.skilled/release/.apply.lock', '{}\n');
+  const lock = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock');
+  writeFile(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock', '{}\n');
   const locked = runCli(fixture.operator, 'apply', '--decisions', decisions);
   assert.equal(locked.exitCode, 1);
   assert.match(locked.document.error, /apply lock already exists/);
@@ -1435,13 +1499,13 @@ test('a signal while the apply lock is held cannot strand the lock', () => {
     fixture.operator,
     '--json',
   ], { encoding: 'utf8' });
-  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  const lock = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock');
   assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
     JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
   assert.equal(fs.existsSync(lock), false);
   assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
 
-  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runsDir = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/runs');
   const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
   assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
   const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
@@ -1472,12 +1536,12 @@ test('a signal deferred during apply still ends the process after the lock is re
     fixture.operator,
     '--json',
   ], { encoding: 'utf8' });
-  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  const lock = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock');
   assert.equal(fs.existsSync(lock), false);
   assert.ok(applied.signal === 'SIGTERM' || applied.status === 143,
     JSON.stringify({ status: applied.status, signal: applied.signal, stderr: applied.stderr }));
 
-  const runsDir = path.join(fixture.operator, '.skilled/release/runs');
+  const runsDir = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/runs');
   const runDir = path.join(runsDir, fs.readdirSync(runsDir)[0]);
   assert.equal(fs.existsSync(path.join(runDir, 'rollback.json')), true);
   const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
@@ -1491,9 +1555,9 @@ test('a stale apply lock is reported with its recovery and only unlock clears it
   const applied = runCli(fixture.operator, 'apply');
   assert.equal(applied.exitCode, 0, JSON.stringify(applied.document));
   const runDir = applied.document.runDir;
-  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  const lock = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock');
   const deadPid = spawnSync(process.execPath, ['-e', '']).pid;
-  writeFile(fixture.operator, '.skilled/release/.apply.lock', JSON.stringify({
+  writeFile(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock', JSON.stringify({
     pid: deadPid,
     startedAt: '2026-01-01T00:00:00.000Z',
     command: 'apply',
@@ -1527,7 +1591,7 @@ test('a stale apply lock is reported with its recovery and only unlock clears it
   assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
   assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
 
-  writeFile(fixture.operator, '.skilled/release/.apply.lock', JSON.stringify({
+  writeFile(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock', JSON.stringify({
     pid: process.pid,
     startedAt: new Date().toISOString(),
     command: 'apply',
@@ -1538,7 +1602,7 @@ test('a stale apply lock is reported with its recovery and only unlock clears it
   assert.match(live.document.error, /held by running process/);
   assert.equal(fs.existsSync(lock), true);
 
-  writeFile(fixture.operator, '.skilled/release/.apply.lock', '{}\n');
+  writeFile(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock', '{}\n');
   const unknown = runCli(fixture.operator, 'unlock');
   assert.equal(unknown.exitCode, 1);
   assert.match(unknown.document.error, /no readable owner/);
@@ -1567,7 +1631,7 @@ test('a write failure partway through apply names the rollback command for its r
   assert.match(failed.document.error, /release-update\.cjs rollback --repo \S+ --run /);
   assert.ok(failed.document.error.includes(runDir), failed.document.error);
   assert.match(readText(fixture.operator, HUB_A_FILE), /Release line/);
-  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/release/.apply.lock')), false);
+  assert.equal(fs.existsSync(path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock')), false);
   const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
   assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
   assert.match(readText(fixture.operator, HUB_A_FILE), /Base line/);
@@ -1578,7 +1642,7 @@ test('rollback refuses to run while an apply lock exists', () => {
   const aligned = runCli(fixture.operator, 'align');
   const runDir = aligned.document.runDir;
   assert.equal(runCli(fixture.operator, 'apply').exitCode, 0);
-  const lock = path.join(fixture.operator, '.skilled/release/.apply.lock');
+  const lock = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/.apply.lock');
   fs.writeFileSync(lock, '{}\n');
   const refused = runCli(fixture.operator, 'rollback', '--run', runDir);
   assert.equal(refused.exitCode, 1);
@@ -1725,10 +1789,8 @@ test('a copied tree names its framework remote once and later checks use it', ()
   const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
     '--remote', fixture.upstream);
   assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
-  const basePath = path.join(vendor, '.skilled/release/base.json');
+  const basePath = path.join(vendor, '.skilled/skills/.state/doctor-update/base.json');
   assert.equal(readJson(basePath).remote, fixture.upstream);
-  commitAll(vendor, 'record the framework remote');
-
   const after = runCli(vendor, 'check');
   assert.equal(after.exitCode, 0, JSON.stringify(after.document));
   assert.equal(after.document.upstream.latest, 'v1.1.0.0');
@@ -1746,39 +1808,34 @@ test('a copied tree names its framework remote once and later checks use it', ()
   assert.match(rejectedRecord.document.error, /base\.json remote/);
 });
 
-test('the shipped release ignore rule covers runs and the apply lock but not base records', () => {
+test('the repository ignore rule covers doctor update runs, lock and records', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'release-update-ignore-'));
   fixtureRoots.add(root);
   git(root, ['init', '-q']);
-  const ignoreSource = path.join(__dirname, '..', '..', '..', '..', 'release', '.gitignore');
-  const ignoreTarget = path.join(root, '.skilled/release/.gitignore');
-  fs.mkdirSync(path.dirname(ignoreTarget), { recursive: true });
+  const ignoreSource = path.join(__dirname, '..', '..', '..', '..', '..', '.gitignore');
+  const ignoreTarget = path.join(root, '.gitignore');
   fs.copyFileSync(ignoreSource, ignoreTarget);
 
-  for (const filePath of ['.skilled/release/runs/x', '.skilled/release/.apply.lock']) {
+  for (const filePath of [
+    '.skilled/skills/.state/doctor-update/runs/x',
+    '.skilled/skills/.state/doctor-update/.apply.lock',
+    '.skilled/skills/.state/doctor-update/base.json',
+    '.skilled/skills/.state/doctor-update/divergence.json',
+  ]) {
     const result = spawnSync('git', ['check-ignore', '-q', filePath], {
       cwd: root,
       encoding: 'utf8',
     });
     assert.equal(result.status, 0, filePath);
   }
-  for (const filePath of ['.skilled/release/base.json', '.skilled/release/divergence.json']) {
-    const result = spawnSync('git', ['check-ignore', '-q', filePath], {
-      cwd: root,
-      encoding: 'utf8',
-    });
-    assert.equal(result.status, 1, filePath);
-  }
 });
 
-test('a copied tree needs no further base recording after record-base and a commit', () => {
+test('a copied tree needs no further base recording after record-base', () => {
   const fixture = makeFixture();
   const vendor = makeVendor(fixture, 'vendor-base-recorded');
   const recorded = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
     '--remote', fixture.upstream);
   assert.equal(recorded.exitCode, 0, JSON.stringify(recorded.document));
-  commitAll(vendor, 'record the installed framework base');
-
   const checked = runCli(vendor, 'check', '--remote', fixture.upstream);
   assert.equal(checked.exitCode, 0, JSON.stringify(checked.document));
   assert.equal(checked.document.baseRecording.needed, false);
@@ -1795,7 +1852,7 @@ test('record-base refuses a release that is not the nearest to the local tree', 
   assert.match(refused.document.error, /not the nearest/);
   assert.match(refused.document.error, /skill:hub-a/);
   assert.match(refused.document.error, /v1\.0\.0\.0/);
-  assert.equal(fs.existsSync(path.join(vendor, '.skilled/release/base.json')), false);
+  assert.equal(fs.existsSync(path.join(vendor, '.skilled/skills/.state/doctor-update/base.json')), false);
 
   const dryRun = runCli(vendor, 'record-base', '--release', 'v1.0.0.0',
     '--remote', fixture.upstream, '--dry-run');
@@ -1824,7 +1881,7 @@ test('record-base --dry-run names the units it would record and writes nothing',
   assert.equal(result.exitCode, 0, JSON.stringify(result.document));
   assert.equal(result.document.dryRun, true);
   assert.deepEqual(result.document.units, FAMILY_UNIT_KEYS);
-  assert.equal(fs.existsSync(path.join(vendor, '.skilled/release/base.json')), false);
+  assert.equal(fs.existsSync(path.join(vendor, '.skilled/skills/.state/doctor-update/base.json')), false);
   assert.equal(git(vendor, ['status', '--short', '--untracked-files=all']), '');
 });
 
@@ -1843,9 +1900,9 @@ test('help names every subcommand with its parser options and exits 0', () => {
   assert.match(result.stdout, /--decisions/);
   assert.match(result.stdout, /--include-prerelease/);
   assert.match(result.stdout, /Exit codes/);
-  assert.match(result.stdout, /\.skilled\/release\/runs\//);
-  assert.match(result.stdout, /\.skilled\/release\/base\.json/);
-  assert.match(result.stdout, /\.skilled\/release\/divergence\.json/);
+  assert.match(result.stdout, /\.skilled\/skills\/\.state\/doctor-update\/runs\//);
+  assert.match(result.stdout, /\.skilled\/skills\/\.state\/doctor-update\/base\.json/);
+  assert.match(result.stdout, /\.skilled\/skills\/\.state\/doctor-update\/divergence\.json/);
 
   const subcommand = runRaw('apply', '--help');
   assert.equal(subcommand.exitCode, 0);

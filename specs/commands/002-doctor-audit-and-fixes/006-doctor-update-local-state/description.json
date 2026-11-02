@@ -1,0 +1,27 @@
+{
+  "specFolder": "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state",
+  "description": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included",
+  "keywords": [
+    "skilled",
+    "ships",
+    "release",
+    "holding",
+    "only",
+    "gitignore",
+    "every",
+    "installed",
+    "copy",
+    "barter",
+    "included"
+  ],
+  "lastUpdated": "2026-11-02T09:53:12.027Z",
+  "specId": "006",
+  "folderSlug": "doctor-update-local-state",
+  "parentChain": [
+    "commands",
+    "002-doctor-audit-and-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

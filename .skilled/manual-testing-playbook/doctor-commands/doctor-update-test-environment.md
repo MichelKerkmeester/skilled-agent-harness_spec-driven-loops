@@ -16,10 +16,10 @@ This scenario validates the shared fixture that DOC-357 to DOC-361 run against. 
 When the fixture is missing, rebuild it from the main checkout before running this scenario:
 
 1. `bash .skilled/skills/sk-git/scripts/worktree-naming.sh create doctor-update-test-environment v4.0.0.0 --no-provision`, then `ln -s <numbered directory> .worktrees/.doctor-update-test-environment`.
-2. Copy the current `.skilled/commands/doctor/update.md`, `.skilled/commands/doctor/_routes.yaml`, `.skilled/commands/doctor/scripts/release-update.cjs`, `.skilled/commands/doctor/assets/doctor-update-presentation.txt` and the six `.skilled/commands/doctor/assets/doctor-update-*.yaml` files from the checkout into the fixture at the same paths, plus `.skilled/release/.gitignore`, and commit.
+2. Copy the current `.skilled/commands/doctor/update.md`, `.skilled/commands/doctor/_routes.yaml`, `.skilled/commands/doctor/scripts/release-update.cjs`, `.skilled/commands/doctor/assets/doctor-update-presentation.txt` and the six `.skilled/commands/doctor/assets/doctor-update-*.yaml` files from the checkout into the fixture at the same paths, plus the repository-root `.gitignore` from the current checkout, and commit.
 3. Add a line to `.skilled/skills/sk-code/sk-code-webflow/SKILL.md`, create a `SKILL.md` in a new `.skilled/skills/sk-code/sk-code-web-dev/` folder, and commit.
 4. Replace `.skilled/skills/sk-git/` with the 10 files of the Barter sk-git snapshot from the main checkout's `barter/ai-speckit/coder-backup/ai-speckit-main/coder/.opencode/skills/sk-git/`, and commit.
-5. Run `node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --release v4.0.0.0 --offline --trust-release --json` and commit `.skilled/release/base.json`.
+5. Run `node .skilled/commands/doctor/scripts/release-update.cjs record-base --repo . --release v4.0.0.0 --offline --trust-release --json` and leave the resulting base record as ignored local state; no commit is needed.
 6. Cut the local tag: read `v4.0.0.2` into a temporary index with `GIT_INDEX_FILE`, remove `.skilled/skills/sk-code/sk-code-obsidian` with `git rm -r -f --cached`, write the tree, commit it with `git commit-tree` on `v4.0.0.2`, and tag that commit `v4.0.0.3-fixture`.
 
 Every fixture commit sets `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1`, because the v4.0.0.0 hooks need dependencies the fixture does not have. The system-spec-kit doctor-commands README describes both test environments.
@@ -32,9 +32,9 @@ Every fixture commit sets `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMIN
 - Playbook ID: DOC-379.
 - Real user request: `Check that the doctor update test fixture still gives one unit of each status and resets cleanly.`
 - Prompt: `Check that the doctor update test fixture still gives one unit of each status and resets cleanly.`
-- Preconditions: The fixture worktree at `.worktrees/.doctor-update-test-environment` with its fixture commits, the local tag `v4.0.0.3-fixture`, an empty `git status --porcelain`, and no run directory under `.skilled/release/runs/`. Node and git available.
+- Preconditions: The fixture worktree at `.worktrees/.doctor-update-test-environment` with its fixture commits, the local tag `v4.0.0.3-fixture`, an empty `git status --porcelain`, and no run directory under `.skilled/skills/.state/doctor-update/runs/`. Node and git available.
 - Expected execution process: Confirm the fixture state, run the two scoped checks, run align, decide and apply on the Webflow unit, roll back, then compare the worktree with its committed state.
-- Expected signals: `git ls-remote --tags origin v4.0.0.3-fixture` prints nothing. The `v4.0.0.2` check returns `ok: true`, overall `status: unknown` because it runs offline, and the units `skill:sk-code/sk-code-webflow` as `customized`, `skill:sk-code/sk-code-web-dev` as `local` and `skill:sk-git` as `conflict`. The `v4.0.0.3-fixture` check returns `skill:sk-code/sk-code-obsidian` as `removed`. Align writes a run directory below the ignored `.skilled/release/runs/`. After `decide` records `keep-local` for the Webflow `SKILL.md` and `adopt-release` for its two changelogs, the apply dry run lists the two changelogs, `base.json` and `divergence.json` and skips no unit. The real apply changes those paths. Rollback returns every written path under `restored` with `skipped` empty. Afterwards `git status --porcelain` prints nothing and the checksums of the two changelogs and `base.json` match their values before apply.
+- Expected signals: `git ls-remote --tags origin v4.0.0.3-fixture` prints nothing. The `v4.0.0.2` check returns `ok: true`, overall `status: unknown` because it runs offline, and the units `skill:sk-code/sk-code-webflow` as `customized`, `skill:sk-code/sk-code-web-dev` as `local` and `skill:sk-git` as `conflict`. The `v4.0.0.3-fixture` check returns `skill:sk-code/sk-code-obsidian` as `removed`. Align writes a run directory below the ignored `.skilled/skills/.state/doctor-update/runs/`. After `decide` records `keep-local` for the Webflow `SKILL.md` and `adopt-release` for its two changelogs, the apply dry run lists the two changelogs, `base.json` and `divergence.json` and skips no unit. The real apply changes those paths. Rollback returns every written path under `restored` with `skipped` empty. Afterwards `git status --porcelain` prints nothing and the checksums of the two changelogs and `base.json` match their values before apply.
 - Desired user-visible outcome: One unit of each status, and a fixture that is byte-identical to its committed state after the round trip.
 - Pass/fail: PASS if the four units report their designed status, the apply writes only the decided paths, rollback restores them with nothing skipped, and the worktree matches its committed state.
 - Classification: Manual scenario. Valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable. A scenario that cannot be run for any other reason is a `FAIL`.
@@ -54,7 +54,7 @@ Check that the doctor update test fixture still gives one unit of each status an
 1. `cd .worktrees/.doctor-update-test-environment`, then confirm `git status --porcelain` prints nothing, `git tag -l v4.0.0.3-fixture` prints the tag and `git ls-remote --tags origin v4.0.0.3-fixture` prints nothing.
 2. Run `node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --release v4.0.0.2 --offline --json --scope skill:sk-code/sk-code-webflow,skill:sk-code/sk-code-web-dev,skill:sk-git` and record each unit's status.
 3. Run `node .skilled/commands/doctor/scripts/release-update.cjs check --repo . --release v4.0.0.3-fixture --include-prerelease --offline --json --scope skill:sk-code/sk-code-obsidian` and record the unit's status.
-4. Record the baseline: `git status --porcelain` and `shasum -a 256` of the two `sk-code-webflow/changelog/v1.*.md` files and `.skilled/release/base.json`.
+4. Record the baseline: `git status --porcelain` and `shasum -a 256` of the two `sk-code-webflow/changelog/v1.*.md` files and `.skilled/skills/.state/doctor-update/base.json`.
 5. Run `node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --release v4.0.0.2 --offline --scope skill:sk-code/sk-code-webflow --json` and note the `runDir`.
 6. Run `decide --repo . --run <runDir> --path <path> --decision <answer> --json` three times: `keep-local` for `.skilled/skills/sk-code/sk-code-webflow/SKILL.md`, and `adopt-release` for `.skilled/skills/sk-code/sk-code-webflow/changelog/v1.0.0.0.md` and `.skilled/skills/sk-code/sk-code-webflow/changelog/v1.1.0.0.md` in the same packet.
 7. Run `apply --repo . --release v4.0.0.2 --offline --scope skill:sk-code/sk-code-webflow --decisions <runDir>/decisions.json --dry-run --json`, then the same command without `--dry-run`.
@@ -63,7 +63,7 @@ Check that the doctor update test fixture still gives one unit of each status an
 
 ### Expected
 
-The checks report one unit of each status. Align writes only inside its run directory. The engine ignores the prefilled decisions, so the apply plan lists the Webflow files only after all three explicit `decide` answers. Apply writes the two changelogs and the release records, and rollback restores all of them and removes `divergence.json`. The worktree ends identical to its committed state.
+The checks report one unit of each status. Align writes only inside its run directory. The engine ignores the prefilled decisions, so the apply plan lists the Webflow files only after all three explicit `decide` answers. Apply writes the two changelogs and local updater records, and rollback restores the prior records and removes `divergence.json`. The worktree ends identical to its committed state.
 
 ### Evidence
 
@@ -75,7 +75,7 @@ The checks report one unit of each status. Align writes only inside its run dire
 
 ### Pass / Fail
 
-- **Pass**: The four units report `customized`, `local`, `conflict` and `removed`, the apply writes only the decided paths and the release records, rollback restores every path with nothing skipped, and the worktree matches its committed state.
+- **Pass**: The four units report `customized`, `local`, `conflict` and `removed`, the apply writes only the decided paths and local updater records, rollback restores every path with nothing skipped, and the worktree matches its committed state.
 - **Fail**: A unit reports another status, the fixture tag is on the remote, apply writes an undecided path, rollback skips a path, or the worktree differs from its committed state afterwards.
 
 ### Failure Triage

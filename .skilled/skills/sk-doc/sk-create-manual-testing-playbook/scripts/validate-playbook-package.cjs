@@ -375,10 +375,10 @@ function pathChecks(text, absPath, repoRoot, relPath) {
 const BACKTICK_SPAN_RE = /`([^`\s]+)`/g;
 const BACKTICK_PATH_EXT_RE = /\.(?:md|mdx|ts|tsx|js|cjs|mjs|py|sh|json|jsonl|jsonc|ya?ml|toml|txt|css|html|svg)$/i;
 const RUNTIME_OUTPUT_SEGMENT_RE = /(?:^|\/)(?:scratch|research|review|iterations|tmp|out|dist|node_modules)\//;
-// /doctor:update records its release state under .skilled/release/ in an installed tree. The
-// source repository never holds base.json, divergence.json or a run record there, so a scenario
-// that drives the command against its fixture names files that cannot resolve here.
-const INSTALLED_RELEASE_STATE_RE = /^\.skilled\/release\//;
+// /doctor:update keeps local records under .skilled/skills/.state/doctor-update/ and can read
+// legacy records under .skilled/release/ in an installed tree, so scenarios naming those files
+// cannot resolve them in the source repository.
+const INSTALLED_RELEASE_STATE_RE = /^\.skilled\/(?:skills\/\.state\/doctor-update|release)\//;
 
 function isExpectedUnresolved(token) {
   return /[<>{}*?$[\]|]/.test(token)

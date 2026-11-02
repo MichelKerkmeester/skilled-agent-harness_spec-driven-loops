@@ -2272,7 +2272,7 @@ describe('upgrade-legacy release apply lock', () => {
   afterEach(resetSandbox);
 
   function holdReleaseApplyLock(): string {
-    const lock = path.join(sandbox, '.skilled/release/.apply.lock');
+    const lock = path.join(sandbox, '.skilled/skills/.state/doctor-update/.apply.lock');
     fs.mkdirSync(path.dirname(lock), { recursive: true });
     fs.writeFileSync(lock, '{"command":"apply"}\n');
     return lock;

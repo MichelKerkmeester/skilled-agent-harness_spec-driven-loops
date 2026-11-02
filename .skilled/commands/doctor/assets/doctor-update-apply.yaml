@@ -12,8 +12,8 @@ operating_mode:
   approvals: one_startup_approval_plus_repair_approvals
   tracking: action_by_action
   validation: post_apply_battery
-  state_dir: ".skilled/release/runs"
-  state_log: ".skilled/release/runs/.doctor-update.last-run.json"
+  state_dir: ".skilled/skills/.state/doctor-update/runs"
+  state_log: ".skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json"
 
 apply_orchestrator_invariant: |
   Show the engine's complete apply dry-run plan before requesting the one startup
@@ -31,7 +31,7 @@ upstream_assets:
   pass_policy:
     startup_approval_required: true
     dry_run_writes: none
-    engine_lock: ".skilled/release/.apply.lock"
+    engine_lock: ".skilled/skills/.state/doctor-update/.apply.lock"
     rollback_record: "<runDir>/rollback.json"
 
 user_inputs:
@@ -67,11 +67,11 @@ field_handling:
 mutation_boundaries:
   allowed_targets:
     - "Only release-managed paths listed in the engine's approved apply plan"
-    - ".skilled/release/base.json"
-    - ".skilled/release/divergence.json"
-    - ".skilled/release/.apply.lock"
+    - ".skilled/skills/.state/doctor-update/base.json"
+    - ".skilled/skills/.state/doctor-update/divergence.json"
+    - ".skilled/skills/.state/doctor-update/.apply.lock"
     - "<runDir>/rollback.json"
-    - ".skilled/release/runs/.doctor-update.last-run.json"
+    - ".skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json"
     - "Exact documented write counterparts in the post-apply battery, only after separate approval"
     - "Exact planned paths reported skipped by engine rollback, only for the approved git restore recovery step"
   forbidden_targets:
@@ -80,7 +80,7 @@ mutation_boundaries:
     - "all unrelated user changes and any pre-existing lock owned by another process"
   validator:
     name: canonical_path_validator
-    rule: "Resolve every engine plan, run, state-log, battery and restore path to a canonical repository path; allow release writes only when the exact path appears in the engine plan; require run artifacts below .skilled/release/runs and gitignored; pass git restore only exact engine-reported skipped paths."
+    rule: "Resolve every engine plan, run, state-log, battery and restore path to a canonical repository path; allow release writes only when the exact path appears in the engine plan; require run artifacts below .skilled/skills/.state/doctor-update/runs and gitignored; pass git restore only exact engine-reported skipped paths."
 
 state_log_schema:
   command: "/doctor:update apply"
@@ -133,13 +133,13 @@ workflow:
     command: "node .skilled/commands/doctor/scripts/release-update.cjs apply --repo . --json [--decisions <path>] [--scope <value>] [--remote <value>] [--offline] [--include-prerelease] [--release <dry-run release, omitted when unknown>] --plan-digest <dry-run planDigest>"
     execution_rule: "Run engine apply in one call with no tool timeout shorter than the run needs. Use the longest available runtime timeout, or run it in the background and wait for its exit. A killed apply leaves a stale lock that /doctor:update rollback recovers."
     engine_guarantees:
-      - "Acquire .skilled/release/.apply.lock and refuse if it already exists."
+      - "Acquire .skilled/skills/.state/doctor-update/.apply.lock and refuse if it already exists."
       - "Write <runDir>/rollback.json before the first target file write."
       - "Apply only engine-planned writes, then update base.json and divergence.json."
       - "Release the lock in the engine finally path on every exit after acquisition. SIGINT, SIGTERM and SIGHUP are deferred while the lock is held, so only SIGKILL or power loss can strand it, and the engine then reports the lock as stale."
     postconditions:
       - "Read the full JSON and record written, added, deleted, skippedUnits, appliedUnits and followUps."
-      - "Confirm .skilled/release/.apply.lock is absent after the engine exits; never remove a lock that was not acquired by this invocation."
+      - "Confirm .skilled/skills/.state/doctor-update/.apply.lock is absent after the engine exits; never remove a lock that was not acquired by this invocation."
       - "Confirm rollback.json exists in the selected run directory before proceeding to the battery."
     on_failure: "Record the engine result and confirm the engine-owned lock is absent. A failure after the first target write names the engine rollback command for its run in the error. If rollback.json exists, offer engine rollback. If no rollback record exists, report that rollback is unavailable and stop. Never remove a lock not owned by this invocation."
 
@@ -199,7 +199,7 @@ workflow:
     failure_recovery:
       rollback_command: "node .skilled/commands/doctor/scripts/release-update.cjs rollback --repo . --run <runDir> --json"
       rollback_order: "Run engine rollback first. Engine rollback exits 1 with ok false when it skipped any path. That is the partial path, not a failed rollback, so read restored and skipped before judging the exit code. For any skipped path, explain that git restore will discard its current contents and request approval, then run git restore -- <exact-skipped-paths> only for approved paths."
-      rollback_validation: "Verify the engine rollback output, report every restored and skipped path, and confirm .skilled/release/.apply.lock is absent. Do not claim complete rollback when any path remains skipped or failed."
+      rollback_validation: "Verify the engine rollback output, report every restored and skipped path, and confirm .skilled/skills/.state/doctor-update/.apply.lock is absent. Do not claim complete rollback when any path remains skipped or failed."
 
   phase_6_rebuild_prompt:
     approval: "Prompt to run /doctor:skill-advisor rebuild after the battery, so the advisor routes off the applied skill metadata."
@@ -211,7 +211,7 @@ workflow:
 
   phase_7_state_log:
     approval: none
-    write: ".skilled/release/runs/.doctor-update.last-run.json"
+    write: ".skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json"
     fields: [command, start, end, duration_seconds, run_dir, release, dry_run, startup_approved, writes, battery, reindex, rollback, final_status]
     terminal_rule: "Write the state log on every terminal path except dry-run, including preflight failure, declined approval, engine failure, battery failure, rollback, rebuild skipped or failed, and success. Confirm any engine-acquired lock was released before ending. A dry run writes no state log."
 

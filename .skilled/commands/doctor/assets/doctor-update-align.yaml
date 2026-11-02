@@ -12,11 +12,11 @@ operating_mode:
   approvals: per_unit_decision_batch
   tracking: unit_by_unit
   validation: engine_decision_validation
-  state_dir: ".skilled/release/runs"
+  state_dir: ".skilled/skills/.state/doctor-update/runs"
 
 align_orchestrator_invariant: |
   Alignment writes only inside one canonical, gitignored run directory below
-  .skilled/release/runs. The engine creates run artifacts and records choices in
+  .skilled/skills/.state/doctor-update/runs. The engine creates run artifacts and records choices in
   decisions.json. Proposal resolution may replace only the matching proposals
   file in that run directory. Never write skills, command files, checkout units
   or any path outside the run directory. Every accepted answer is recorded by
@@ -27,7 +27,7 @@ upstream_assets:
   presentation: ".skilled/commands/doctor/assets/doctor-update-presentation.txt"
   pass_policy:
     gitignore_match_required: true
-    engine_run_dir_must_be_under: ".skilled/release/runs"
+    engine_run_dir_must_be_under: ".skilled/skills/.state/doctor-update/runs"
     only_customized_conflict_removed_units_need_decisions: true
     dry_run_writes: none
 
@@ -63,15 +63,15 @@ field_handling:
 
 mutation_boundaries:
   allowed_targets:
-    - ".skilled/release/runs/<release>-<utc-stamp>/**"
+    - ".skilled/skills/.state/doctor-update/runs/<release>-<utc-stamp>/**"
     - "The matching proposals/<unit-relative-path> file inside that run directory when resolving proposal markers"
   forbidden_targets:
     - "all skill files, command files, prompts, runtime mirrors and release-managed checkout files"
-    - "all paths outside the selected .skilled/release/runs/<release>-<utc-stamp>/ directory"
+    - "all paths outside the selected .skilled/skills/.state/doctor-update/runs/<release>-<utc-stamp>/ directory"
     - "any symlinked run directory, parent directory or proposal file"
   validator:
     name: canonical_path_validator
-    rule: "Resolve real paths and require the run directory to be a new, non-symlink child of .skilled/release/runs; require git check-ignore to match it; before any proposal write, require the canonical proposal path to be an existing regular file under that run directory's proposals/ subtree."
+    rule: "Resolve real paths and require the run directory to be a new, non-symlink child of .skilled/skills/.state/doctor-update/runs; require git check-ignore to match it; before any proposal write, require the canonical proposal path to be an existing regular file under that run directory's proposals/ subtree."
 
 state_log_schema:
   command: "/doctor:update align"
@@ -90,14 +90,14 @@ workflow:
     approval: none
     checks:
       - "Confirm the current directory is inside a git repository and the engine exists."
-      - "Confirm .skilled/release/runs is the intended ignored run root with git check-ignore."
+      - "Confirm .skilled/skills/.state/doctor-update/runs is the intended ignored run root with git check-ignore."
       - "Bind action flags and confirm no cross-action flag reached the workflow."
     on_failure: "When git check-ignore does not match the run root, show the presentation's run-root template and stop. Otherwise do not load or run engine align. Show the error template and stop without writing outside a run directory."
 
   phase_2_engine_align:
     approval: none
     command: "node .skilled/commands/doctor/scripts/release-update.cjs align --repo . --json [--release <tag>] [--scope <value>] [--remote <value>] [--offline] [--dry-run] [--include-prerelease]"
-    flag_rule: "Include only bound optional flags. Pass [--remote <value>] when supplied. Otherwise use the remote recorded in base.json, then origin. Do not pass --out; use the engine's default unique run path below .skilled/release/runs."
+    flag_rule: "Include only bound optional flags. Pass [--remote <value>] when supplied. Otherwise use the remote recorded in base.json, then origin. Do not pass --out; use the engine's default unique run path below .skilled/skills/.state/doctor-update/runs."
     parse_json_fields: [command, repo, release, releaseCommit, head, upstream, checkout, status, units, files, evidenceFiles, proposalFiles, runDir, externalRunDir, dryRun]
     dry_run_rule: "When dryRun is true, show the plan only. It creates no run directory, evidence, proposals or decisions, so do not ask for decisions or offer an apply handoff."
     run_dir_rule: "For a non-dry run, validate runDir is canonical, new, non-symlinked and gitignored before reading or writing run artifacts."
@@ -134,7 +134,7 @@ workflow:
     approval: none
     summarize: "Report decisions by unit, every deferred unit and each unresolved file. An unresolved file is a take-release or conflict file in a customized, conflict or removed unit that is not deferred and has no operator decide record. A prefilled record counts as unresolved. Never imply deferred files are ready to apply."
     handoff: "Offer /doctor:update apply --decisions=<runDir>/decisions.json only when no file is unresolved. Otherwise explain that apply skips each unit with an unresolved file."
-    commit_reminder: "If an earlier apply's files and release records are not committed, say to commit them before applying this decision set."
+    commit_reminder: "Before applying this decision set, ask the operator to commit or restore any changed framework files. Updater records remain local and ignored."
     apply_when_no_decisions: "When the plan has no customized, conflict or removed units, offer /doctor:update apply without a decisions path."
     dry_run_handoff: "Do not offer apply from a dry-run preview because no decisions.json exists."
 

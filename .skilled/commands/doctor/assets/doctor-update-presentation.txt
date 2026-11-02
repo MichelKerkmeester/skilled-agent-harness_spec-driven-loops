@@ -92,11 +92,11 @@ When the report's `baseRecording.needed` is true, add:
 [count] unit(s) have no verified recorded base, so their status rests on an inferred or unverified base. This is normal right after copying or installing .skilled/.
 Record-base refuses a release that is farther from this tree than another release, and names the nearest one. Record the release this tree was installed from, with your approval, by running:
 /doctor:update record-base --release=<installed-release> [--remote=<framework-remote>]
-It writes .skilled/release/base.json. Commit that file, then run /doctor:update again.
+It writes the ignored local record at .skilled/skills/.state/doctor-update/base.json. No commit is needed; run /doctor:update again.
 ```
 
 ```text
-This checkout's remote lists no framework release tags. If .skilled/ was copied from the framework, name the framework repository with --remote=<name-or-url>. When the base is recorded with --remote, .skilled/release/base.json keeps that remote, and later commands use it without the flag.
+This checkout's remote lists no framework release tags. If .skilled/ was copied from the framework, name the framework repository with --remote=<name-or-url>. When the base is recorded with --remote, .skilled/skills/.state/doctor-update/base.json keeps that remote, and later commands use it without the flag.
 ```
 
 If the report is unknown, end with:
@@ -137,14 +137,8 @@ Compatibility: UNKNOWN. [stderr tail]
 When `git check-ignore` does not match the run root, show:
 
 ```text
-The release run root is not ignored by git in this checkout.
-Add these two lines to .skilled/release/.gitignore:
-  runs/
-  .apply.lock
-Or add these two lines to the repository .gitignore:
-  .skilled/release/runs/
-  .skilled/release/.apply.lock
-Commit the ignore file, then run /doctor:update again.
+The doctor update state is not ignored by git in this checkout.
+The repository ignore rule .skilled/skills/.state/*/* must apply to the updater state. Restore the repository's ignore configuration, then run /doctor:update again.
 ```
 
 Present one consolidated batch per `customized`, `conflict` or `removed` unit. Show each non-same file's complete evidence card before asking for the batch response.
@@ -224,7 +218,7 @@ Decisions: [count]
 Deferred units: [list or none]
 Unresolved files: [list or none]
 State log: [runDir]/.doctor-update.last-run.json, or none for dry-run or preflight failure
-Commit the applied files and the changed release records under .skilled/release/ before applying this decision set.
+Before applying this decision set, commit or restore any changed framework files. Updater records remain local and ignored.
 
 Apply a completed decision set:
   /doctor:update apply --decisions=[runDir]/decisions.json
@@ -244,14 +238,8 @@ No run directory or decisions file was written. No apply handoff is available ye
 When `git check-ignore` does not match the run root, show:
 
 ```text
-The release run root is not ignored by git in this checkout.
-Add these two lines to .skilled/release/.gitignore:
-  runs/
-  .apply.lock
-Or add these two lines to the repository .gitignore:
-  .skilled/release/runs/
-  .skilled/release/.apply.lock
-Commit the ignore file, then run /doctor:update again.
+The doctor update state is not ignored by git in this checkout.
+The repository ignore rule .skilled/skills/.state/*/* must apply to the updater state. Restore the repository's ignore configuration, then run /doctor:update again.
 ```
 
 Show the engine dry-run plan before asking for approval:
@@ -259,7 +247,7 @@ Show the engine dry-run plan before asking for approval:
 ```text
 Release Apply Plan
 Release: [release]
-Run directory: [runDir, or a new run under .skilled/release/runs when apply plans without a run]
+Run directory: [runDir, or a new run under .skilled/skills/.state/doctor-update/runs when apply plans without a run]
 
 | Operation | Path | Unit |
 |-----------|------|------|
@@ -343,10 +331,10 @@ Owner: process [pid] ([command]), started [startedAt]
 State: [running, stale or unreadable]
 Running: another /doctor:update apply, rollback or record-base is still working. Wait for it to finish, then try again.
 Stale: that process is no longer running. Run /doctor:update rollback to clear the lock with your approval and, when the interrupted run recorded a rollback, to restore its partial changes.
-Unreadable: the lock names no owner. Confirm that no /doctor:update apply, rollback or record-base is running, then remove .skilled/release/.apply.lock by hand.
+Unreadable: the lock names no owner. Confirm that no /doctor:update apply, rollback or record-base is running, then remove .skilled/skills/.state/doctor-update/.apply.lock by hand.
 ```
 
-If the supplied run differs from the run named by a stale lock, show both paths and ask which one to restore. When no run is supplied and the stale lock names none, list runs with `rollback.json` under `.skilled/release/runs`, newest first, and ask the operator to choose. If a stale lock was cleared but its run has no rollback record, report that the interrupted run wrote nothing and stop with `STATUS=UNLOCKED`.
+If the supplied run differs from the run named by a stale lock, show both paths and ask which one to restore. When no run is supplied and the stale lock names none, list runs with `rollback.json` under `.skilled/skills/.state/doctor-update/runs`, newest first, and ask the operator to choose. If a stale lock was cleared but its run has no rollback record, report that the interrupted run wrote nothing and stop with `STATUS=UNLOCKED`.
 
 Show the preview before asking for rollback approval:
 
@@ -401,13 +389,7 @@ After the nearest-release check passes or an approved trust retry succeeds, ask 
 
 ```text
 Record release [release] as the base for these units?
-Reply yes to write .skilled/release/base.json, or no to leave it unchanged.
-```
-
-When .skilled/release/base.json has uncommitted changes, show:
-
-```text
-Commit the existing .skilled/release/base.json changes, then run /doctor:update record-base again.
+Reply yes to write .skilled/skills/.state/doctor-update/base.json, or no to leave it unchanged.
 ```
 
 When the engine reports a lock, use the release apply lock template above and stop. A dry run stops after the preview without writing a state log.
@@ -420,9 +402,9 @@ Release: [release]
 Remote: [remote or none]
 Units recorded: [unit keys or none]
 Nearest-release check: [verified|not verified]
-State log: .skilled/release/runs/.doctor-update-record-base.last-run.json, or not persisted
+State log: .skilled/skills/.state/doctor-update/runs/.doctor-update-record-base.last-run.json, or not persisted
 STATUS=[RECORDED|DRY_RUN|DECLINED|CANCELLED|FAILED]
-After STATUS=RECORDED: Commit .skilled/release/base.json, then run /doctor:update again.
+After STATUS=RECORDED: Run /doctor:update again. The local record needs no commit.
 ```
 
 ## 8. Advisor Rebuild Prompt
@@ -481,8 +463,8 @@ Skipped units: [list or none]
 Post-apply checks: [pass count] passed, [fail count] failed
 Database reindex: [rebuilt|skipped|failed|not applicable]
 Rollback: [not needed|completed|partial|failed]
-State log: .skilled/release/runs/.doctor-update.last-run.json, or none for a dry run
-Commit the applied files and the changed release records under .skilled/release/ before the next /doctor:update apply.
+State log: .skilled/skills/.state/doctor-update/runs/.doctor-update.last-run.json, or none for a dry run
+Before the next /doctor:update apply, commit or restore changed framework files. Updater records remain local and ignored.
 STATUS=[APPLIED|PARTIAL|ROLLED_BACK|DECLINED|CANCELLED|DRY_RUN|FAILED]
 ```
 

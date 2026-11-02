@@ -195,8 +195,8 @@ test('every generator the engine names has a post-apply battery step', () => {
   for (const script of scripts) assert.ok(battery.includes(script));
 });
 
-test('the apply result tells the operator to commit the release records', () => {
-  assert.ok(PRESENTATION.includes('Commit the applied files'));
+test('the apply result keeps updater records local and asks to resolve framework changes', () => {
+  assert.ok(PRESENTATION.includes('Updater records remain local and ignored'));
 });
 
 test('the lock template routes stale locks to rollback', () => {

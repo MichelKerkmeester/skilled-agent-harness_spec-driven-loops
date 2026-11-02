@@ -20,11 +20,24 @@ const path = require('node:path');
 
 const RELEASE_TAG_RE = /^v\d+\.\d+\.\d+\.\d+$/;
 const VERSION_RE = /^v(\d+)\.(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?(?:\+([0-9A-Za-z.-]+))?$/;
-const RELEASE_DIR = '.skilled/release';
-const RUNS_DIR = path.join(RELEASE_DIR, 'runs');
-const BASE_FILE = path.join(RELEASE_DIR, 'base.json');
-const DIVERGENCE_FILE = path.join(RELEASE_DIR, 'divergence.json');
-const LOCK_FILE = path.join(RELEASE_DIR, '.apply.lock');
+const STATE_DIR = '.skilled/skills/.state/doctor-update';
+const STATE_ROOT = '.skilled/skills/.state';
+const LEGACY_DIR = '.skilled/release';
+const RUNS_DIR = path.join(STATE_DIR, 'runs');
+const BASE_FILE = path.join(STATE_DIR, 'base.json');
+const DIVERGENCE_FILE = path.join(STATE_DIR, 'divergence.json');
+const LOCK_FILE = path.join(STATE_DIR, '.apply.lock');
+const LEGACY_BASE_FILE = path.join(LEGACY_DIR, 'base.json');
+const LEGACY_DIVERGENCE_FILE = path.join(LEGACY_DIR, 'divergence.json');
+const RECORD_FILES = new Set([BASE_FILE, DIVERGENCE_FILE]);
+const ROLLBACK_RECORD_PATHS = new Set([
+  BASE_FILE, DIVERGENCE_FILE, LEGACY_BASE_FILE, LEGACY_DIVERGENCE_FILE,
+]);
+const LEGACY_RECORD_PATHS = new Map([
+  [BASE_FILE, LEGACY_BASE_FILE],
+  [DIVERGENCE_FILE, LEGACY_DIVERGENCE_FILE],
+]);
+let legacyRecordNoticePrinted = false;
 const CONFLICT_MARKER_RE = /^(?:<<<<<<<|=======|>>>>>>>)(?: |$)/m;
 const DECISIONS = new Set(['adopt-release', 'keep-local', 'merge', 'use-proposal']);
 const UNIT_KINDS = ['root', 'skill', 'command', 'directory'];
@@ -519,10 +532,11 @@ function matchUnitRef(ref, units, remedy, usage = false) {
 
 function enumerateUnits(inputPaths) {
   const rawPaths = inputPaths.map((entry) => (typeof entry === 'string' ? entry : entry.path));
-  // The release directory holds engine records and run state, never framework content.
+  // Local state and the legacy directory hold updater data, never framework content.
   const paths = [...new Set(rawPaths)]
     .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/')
-      && !filePath.startsWith(RELEASE_DIR + '/'));
+      && !filePath.startsWith(LEGACY_DIR + '/')
+      && !filePath.startsWith(STATE_ROOT + '/'));
   // Keyed by kind and name: a skill hub may share its name with a top-level
   // directory such as hooks, and neither may hide the other.
   const units = new Map();
@@ -773,10 +787,35 @@ function loadJson(filePath, fallback) {
   }
 }
 
-// base.json is a shared tracked file, and git reads a value that starts with a dash
+function loadRecordJson(repo, filePath, fallback) {
+  const currentPath = safeResolve(repo, filePath);
+  try {
+    return { value: JSON.parse(fs.readFileSync(currentPath, 'utf8')), sourcePath: filePath };
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw new Error('cannot read ' + currentPath + ': ' + error.message);
+    }
+  }
+  const legacyFile = LEGACY_RECORD_PATHS.get(filePath);
+  if (!legacyFile) return { value: fallback, sourcePath: null };
+  const legacyPath = safeResolve(repo, legacyFile);
+  try {
+    const value = JSON.parse(fs.readFileSync(legacyPath, 'utf8'));
+    if (!legacyRecordNoticePrinted) {
+      legacyRecordNoticePrinted = true;
+      process.stderr.write(`${LOG_PREFIX} reading legacy state from ${legacyFile} because ${filePath} is missing; future writes use ${filePath}. Old tracked copies can be removed with git rm -r ${LEGACY_DIR}.\n`);
+    }
+    return { value, sourcePath: legacyFile };
+  } catch (error) {
+    if (error.code === 'ENOENT') return { value: fallback, sourcePath: null };
+    throw new Error('cannot read ' + legacyPath + ': ' + error.message);
+  }
+}
+
+// base.json is local state, and git reads a value that starts with a dash
 // as an option.
 function persistedRemote(repo) {
-  const base = loadJson(safeResolve(repo, BASE_FILE), {});
+  const base = loadRecordJson(repo, BASE_FILE, {}).value;
   const remote = base && base.remote;
   if (typeof remote !== 'string' || !remote) return null;
   if (remote.startsWith('-')) {
@@ -905,7 +944,7 @@ function releasePosition(repo, head, releaseCommit) {
 }
 
 function ledgerEntries(repo) {
-  const record = loadJson(path.join(repo, DIVERGENCE_FILE), { entries: [] });
+  const record = loadRecordJson(repo, DIVERGENCE_FILE, { entries: [] }).value;
   return Array.isArray(record.entries) ? record.entries : [];
 }
 
@@ -1041,7 +1080,7 @@ function releaseRenames(repo, baseCommit, releaseCommit, pathspec) {
 
 function buildReport(repo, options) {
   const context = releaseContext(repo, options);
-  const recordedRaw = loadJson(path.join(repo, BASE_FILE), { units: {} }).units || {};
+  const recordedRaw = loadRecordJson(repo, BASE_FILE, { units: {} }).value.units || {};
   const treePaths = [
     ...context.headMap.keys(),
     ...context.ancestryMap.keys(),
@@ -1602,7 +1641,9 @@ function deferUnit(run, ref) {
 function currentState(repo, filePath) {
   const entry = worktreeEntry(repo, filePath);
   if (!entry || entry.directory || entry.unsupported) return null;
-  return { mode: entry.mode, blob: entry.blob };
+  return RECORD_FILES.has(filePath)
+    ? { mode: entry.mode, blob: entry.blob, content: entry.content }
+    : { mode: entry.mode, blob: entry.blob };
 }
 
 function pathDirtyAgainstHead(repo, filePath, headFiles) {
@@ -1807,11 +1848,7 @@ function isOperatorDecision(record) {
 }
 
 function dirtyTargetError(filePath) {
-  const message = 'target has staged or unstaged changes against HEAD: ' + filePath;
-  if (![BASE_FILE, DIVERGENCE_FILE].includes(filePath)) return new Error(message);
-  return new Error(message
-    + ', a release record that an earlier apply or record-base wrote. '
-    + 'Commit it together with the files that apply changed, then run apply again');
+  return new Error('target has staged or unstaged changes against HEAD: ' + filePath);
 }
 
 function prepareWrites(repo, run, scope) {
@@ -1884,8 +1921,7 @@ function prepareWrites(repo, run, scope) {
     appliedUnits.add(key);
   }
   for (const write of writes) assertPlannedPath(run.plan.units, write.file);
-  const oldBasePath = safeResolve(repo, BASE_FILE);
-  const oldBase = loadJson(oldBasePath, { schemaVersion: 1, units: {} });
+  const oldBase = loadRecordJson(repo, BASE_FILE, { schemaVersion: 1, units: {} }).value;
   // Legacy name-only records resolve against every unit the checkout or the
   // plan knows, so a record for a unit outside this plan keeps its own kind.
   const knownUnits = [...enumerateUnits([...headFiles.keys()]), ...run.plan.units];
@@ -1903,9 +1939,11 @@ function prepareWrites(repo, run, scope) {
     after: { mode: '100644', blob: gitBlobId(repo, baseContent), content: baseContent },
     metadata: true,
   });
-  const ledgerPath = safeResolve(repo, DIVERGENCE_FILE);
-  const existingLedger = loadJson(ledgerPath, { schemaVersion: 1, entries: [] });
-  if (ledgerAdditions.length || fs.existsSync(ledgerPath)) {
+  const existingLedgerRecord = loadRecordJson(
+    repo, DIVERGENCE_FILE, { schemaVersion: 1, entries: [] },
+  );
+  const existingLedger = existingLedgerRecord.value;
+  if (ledgerAdditions.length || existingLedgerRecord.sourcePath) {
     const newLedger = {
       schemaVersion: 1,
       entries: [
@@ -1922,11 +1960,15 @@ function prepareWrites(repo, run, scope) {
   }
   const headChangedPaths = [...new Set([...writes.map((entry) => entry.path)])];
   for (const filePath of headChangedPaths) {
-    if (pathDirtyAgainstHead(repo, filePath, headFiles)) {
+    if (!RECORD_FILES.has(filePath) && pathDirtyAgainstHead(repo, filePath, headFiles)) {
       throw dirtyTargetError(filePath);
     }
   }
-  for (const write of writes) write.before = headFiles.get(write.path) || null;
+  for (const write of writes) {
+    write.before = RECORD_FILES.has(write.path)
+      ? currentState(repo, write.path)
+      : headFiles.get(write.path) || null;
+  }
   const freshnessPaths = new Set([
     ...writes.filter((write) => write.file).map((write) => write.path),
     ...ledgerAdditions.map((entry) => entry.path),
@@ -2131,7 +2173,16 @@ function applyPlan(repo, options) {
     createdAt: new Date().toISOString(),
     paths: prepared.writes.map((write) => ({
       path: write.path,
-      before: write.before,
+      // Local records are outside Git's object store, so rollback saves their before-images.
+      before: write.before
+        ? {
+          mode: write.before.mode,
+          blob: write.before.blob,
+          ...(RECORD_FILES.has(write.path) && Buffer.isBuffer(write.before.content)
+            ? { contentBase64: write.before.content.toString('base64') }
+            : {}),
+        }
+        : null,
       after: write.after ? { mode: write.after.mode, blob: write.after.blob } : null,
     })),
   };
@@ -2171,11 +2222,12 @@ function applyPlan(repo, options) {
   try {
     assertPlanFresh(repo, run, prepared.freshnessPaths);
     for (const write of prepared.writes) {
-      if (pathDirtyAgainstHead(repo, write.path, prepared.headFiles)) {
+      if (!RECORD_FILES.has(write.path)
+        && pathDirtyAgainstHead(repo, write.path, prepared.headFiles)) {
         throw dirtyTargetError(write.path);
       }
     }
-    fs.mkdirSync(path.join(repo, RELEASE_DIR), { recursive: true });
+    fs.mkdirSync(path.join(repo, STATE_DIR), { recursive: true });
     if (run.withoutRun) {
       // The plan lives beside its rollback record so rollback works the same way.
       assertRunDirectory(run.runDir);
@@ -2322,11 +2374,7 @@ function recordBase(repo, options) {
     }
   }
   const headFiles = commitFiles(repo, 'HEAD');
-  if (pathDirtyAgainstHead(repo, BASE_FILE, headFiles)) {
-    throw new Error('base manifest has staged or unstaged changes against HEAD: ' + BASE_FILE
-      + '; commit or discard it before recording again');
-  }
-  const existing = loadJson(safeResolve(repo, BASE_FILE), { schemaVersion: 1, units: {} });
+  const existing = loadRecordJson(repo, BASE_FILE, { schemaVersion: 1, units: {} }).value;
   const recording = new Set(units.map(unitKey));
   const knownUnits = uniqueUnits([
     ...enumerateUnits([...releaseFiles.keys()]),
@@ -2389,7 +2437,7 @@ function rollbackPlan(repo, runPath, options = {}) {
   // SEC: rollback.json is as editable as the plan, so it may restore only the
   // release records and paths inside the plan's units.
   for (const entry of rollback.paths) {
-    const allowed = [BASE_FILE, DIVERGENCE_FILE].includes(entry.path)
+    const allowed = ROLLBACK_RECORD_PATHS.has(entry.path)
       || (typeof entry.path === 'string' && owningUnit(run.plan.units, entry.path));
     if (!allowed) {
       throw new Error('rollback path is outside the plan\'s units: ' + entry.path
@@ -2434,7 +2482,17 @@ function rollbackPlan(repo, runPath, options = {}) {
         continue;
       }
       if (entry.before) {
-        writeAtomic(repo, entry.path, entry.before, blobBytes(repo, entry.before));
+        let content;
+        if (typeof entry.before.contentBase64 === 'string') {
+          content = Buffer.from(entry.before.contentBase64, 'base64');
+          if (content.toString('base64') !== entry.before.contentBase64
+            || gitBlobId(repo, content) !== entry.before.blob) {
+            throw new Error('rollback before-image is invalid: ' + entry.path);
+          }
+        } else {
+          content = blobBytes(repo, entry.before);
+        }
+        writeAtomic(repo, entry.path, entry.before, content);
       } else {
         writeAtomic(repo, entry.path, null, null);
         removeEmptyParents(repo, path.dirname(safeResolve(repo, entry.path)));
