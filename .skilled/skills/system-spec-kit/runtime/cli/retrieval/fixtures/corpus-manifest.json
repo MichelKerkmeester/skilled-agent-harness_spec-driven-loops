@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b2d428d5012932c44baa86811d3fb0a64928fcbdcb022b8c3c55c6c0f0e35adf",
+  "corpusHash": "19488b452882c367b1ad7103e1d344ba8c76978887d3fc5ed41deb528571d9a8",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27228,
+  "includedPathCount": 27229,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10449,6 +10449,7 @@
     "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/acceptance-criteria.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/decision-record.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/implementation-summary.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/plan.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/spec.md",
@@ -27259,7 +27260,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d464f468b26afa0e65b1358e0bf0632b87f950f64f787f0e31fb3584f5cc9eb6",
+  "manifestHash": "9e4041963fa33e17527dee34580b0c77845e273c35bcad77900e55caedab5c35",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

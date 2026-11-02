@@ -1,5 +1,5 @@
 {
-  "manifestHash": "d464f468b26afa0e65b1358e0bf0632b87f950f64f787f0e31fb3584f5cc9eb6",
+  "manifestHash": "9e4041963fa33e17527dee34580b0c77845e273c35bcad77900e55caedab5c35",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1527,6 +1527,9 @@
     ],
     "006 deep research review": [
       "006 deep-research review"
+    ],
+    "006 doctor update local state operator decisions": [
+      "006-doctor-update-local-state operator decisions"
     ],
     "006 extraction and isolation changelog index": [
       "006-extraction-and-isolation changelog index"
