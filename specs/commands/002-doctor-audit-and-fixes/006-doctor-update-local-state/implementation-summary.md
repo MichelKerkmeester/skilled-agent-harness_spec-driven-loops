@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state"
     last_updated_at: "2026-11-02T10:05:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Implemented and verified the move; all four suites pass"
-    next_safe_action: "Commit on worktrees/308-doctor-update-local-state, then re-pin Barter's skilled/ to that commit"
+    recent_action: "Committed 96b456e0a3 and re-pinned Barter skilled/ to it"
+    next_safe_action: "Operator: merge worktrees/308-doctor-update-local-state into main when ready"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/release-update.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "fe0c9990-06d3-454e-a8e7-7c7bc649bc49"
       parent_session_id: null
-    completion_pct: 80
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Layout: all state local and uncommitted (operator, 2026-11-02)"
@@ -104,6 +104,7 @@ Built in worktree `worktrees/308-doctor-update-local-state` by one `gpt-6-luna` 
 | `validate-playbook-package.test.cjs` | PASS: exit 0 (run with `NODE_PATH` at spec-kit's `node_modules`, which the unprovisioned worktree lacks) |
 | Root playbook validation, main vs worktree | Same 0 errors and same 12 warnings, none about this change |
 | `node --check`, `git diff --check` | PASS |
+| Barter re-pin to `96b456e0a3` | PASS: `replay.cjs --check` 49/49 `miss=0`; `sync.cjs --status` in-sync=269, no drift; `skilled/.skilled/release` gone |
 <!-- /ANCHOR:verification -->
 
 ---

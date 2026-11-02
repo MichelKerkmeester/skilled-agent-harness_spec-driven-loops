@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -129,12 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -154,6 +148,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Skilled",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included, carries an empty-looking folder in `.skilled/`",
     "created_at": "2026-11-02T09:16:48Z",
-    "last_save_at": "2026-11-02T09:53:33.480Z",
+    "last_save_at": "2026-11-02T10:01:01.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8e8081b19909c5d129e39a4c99341132eba57a3d1cc377ecebbeb91e611b595",
+    "source_fingerprint": "sha256:e7dba65618b4ae79dbc02aa13b099ecd9b0631fa421900c23945ade5929b5bed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "644a66eaee192848bd3f1cbc4192cd2c18ba8d1941c33355a3de8771ac4345db",
+      "spec.md": "1da310e450ce38c4e45f5ac2582391ca277424ce45471bffba6e1e23b0417bec",
       "plan.md": "c436a790cf1e3f5a773bd1fdff0e29cb2bf6d64d90b5f97564b3917aadd2a886",
-      "tasks.md": "3dae3770f50c847e1e1043f0b590cce10b1e55cc1a53066646751e3a1a7c4ab5",
-      "implementation-summary.md": "cf7a21c83c0ddd270ead207692440dacc1b360a72db24ee88b4aa5fc3ad7c6e0"
+      "tasks.md": "454d79f12c4030c143e923b74cb8a41db7c1a56c167fa844d4f3ab223b4c662b",
+      "implementation-summary.md": "84bd59befaf74f0ed9ed00d8c619fd4bf6e2b97a4da76918f877cc3aff5148bc"
     },
     "last_active_at": null
   }

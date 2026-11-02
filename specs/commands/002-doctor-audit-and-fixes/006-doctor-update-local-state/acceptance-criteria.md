@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** commands/002-doctor-audit-and-fixes/006-doctor-update-local-state
 **Level:** 2
-**Status:** In Progress
+**Status:** Complete
 **Date:** 2026-11-02
 <!-- /ANCHOR:metadata -->
 
@@ -53,13 +53,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the changed tree, When `release-update.cjs --help` runs and the commit lands, Then the three state paths name `.skilled/skills/.state/doctor-update/` and `git ls-files .skilled/release` prints nothing | `--help` output read 2026-11-02; `git ls-files` after the commit | Unmet | - |
+| AC-001 | REQ-001 | Given the changed tree, When `release-update.cjs --help` runs and the commit lands, Then the three state paths name `.skilled/skills/.state/doctor-update/` and `git ls-files .skilled/release` prints nothing | `--help` output read 2026-11-02; `git ls-files .skilled/release` prints nothing at `96b456e0a3` | Met | - |
 | AC-002 | REQ-002 | Given the suite, When `node .skilled/commands/doctor/scripts/tests/release-update.test.cjs` runs, Then it prints `tests 75`, `pass 75`, `fail 0`, including the legacy-read test | Run by the main session 2026-11-02: `pass 75`, `fail 0`, exit 0; test at `release-update.test.cjs:653` | Met | - |
 | AC-003 | REQ-003 | Given a base.json that differs from HEAD, When record-base and a second apply run, Then neither refuses, and a dirty framework file still refuses apply | `release-update.test.cjs:687` and `:995` pass; `:1265` still passes | Met | - |
 | AC-004 | REQ-004 | Given the new lock path, When `upgrade-legacy.vitest.ts` runs, Then the lock-refusal tests pass | Run by the main session 2026-11-02: `Tests  67 passed (67)`, exit 0 | Met | - |
 | AC-005 | REQ-005 | Given the tree, When `rg -n "\.skilled/release" .skilled -g '!**/changelog/**'` runs, Then every hit is a legacy-fallback reference, and no asset or page asks the operator to commit the records | Hits: `release-update.cjs` legacy constant, the validator's legacy prefix, and legacy tests; `doctor-update-contract.test.cjs` passes 12/12 | Met | - |
 | AC-006 | REQ-006 | Given the root playbook, When the validator runs in main and in the worktree, Then both print 0 errors and the same 12 warnings, and `validate-playbook-package.test.cjs` exits 0 | Compared 2026-11-02: identical warning lists; test exit 0 | Met | - |
-| AC-007 | REQ-001 | Given Barter's `skilled/` re-pinned to the commit, When `replay.cjs --check --root skilled` runs, Then it ends `miss=0` and `skilled/.skilled/release` does not exist | Barter re-pin evidence | Unmet | - |
+| AC-007 | REQ-001 | Given Barter's `skilled/` re-pinned to the commit, When `replay.cjs --check --root skilled` runs, Then it ends `miss=0` and `skilled/.skilled/release` does not exist | Barter re-pinned 2026-11-02: `checked=49 ok=49 miss=0`, `RESULT: PASSED`; `ls skilled/.skilled/release` fails | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001, AC-004 and AC-007 wait on the vitest run, the commit and the Barter re-pin.
+Every criterion is Met with observed evidence.
 <!-- /ANCHOR:closure -->

@@ -54,8 +54,8 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T009 Run the suites (`release-update.test.cjs`, `doctor-update-contract.test.cjs`, `validate-playbook-package.test.cjs`). Verify: `pass 75 fail 0`, `pass 12 fail 0`, validator exit 0.
-- [ ] T010 Commit on `worktrees/308-doctor-update-local-state` by explicit path. Verify: `git show --stat HEAD` lists only this change.
-- [ ] T011 Re-pin Barter's `skilled/` to that commit. Verify: `replay.cjs --check` ends `miss=0` and `ls skilled/.skilled/release` fails.
+- [x] T010 Commit on `worktrees/308-doctor-update-local-state` by explicit path. Verify: `git show --stat HEAD` lists only this change. Done: `96b456e0a3`, 32 files.
+- [x] T011 Re-pin Barter's `skilled/` to that commit. Verify: `replay.cjs --check` ends `miss=0` and `ls skilled/.skilled/release` fails. Done: `checked=49 ok=49 miss=0`, `RESULT: PASSED`; the folder is gone.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -63,9 +63,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
 <!-- /ANCHOR:completion -->
 
 ---
@@ -117,8 +117,8 @@ contextType: "general"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete (Barter re-pin)
+- [x] CHK-020 [P0] All acceptance criteria met
+- [x] CHK-021 [P0] Manual testing complete (Barter re-pin)
 - [x] CHK-022 [P1] Edge cases tested: legacy only (`release-update.test.cjs:653`), neither present (the existing suites). Both present is not tested separately: the new record wins because `loadRecordJson` reads it first
 - [x] CHK-023 [P1] Error scenarios validated: a dirty framework file still refuses apply
 <!-- /ANCHOR:testing -->
@@ -134,7 +134,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] Path tests: legacy fallback (`:653`), a record that differs from HEAD (`:687`), a second apply with local records (`:995`), rollback accepting a legacy record path.
 - [x] CHK-FIX-005 [P1] Matrix axes: record location (new, legacy, both, none) by command (record-base, apply, rollback).
 - [x] CHK-FIX-006 [P1] N/A: no environment variable or process-wide state is read.
-- [ ] CHK-FIX-007 [P1] Evidence pinned to the commit SHA once committed.
+- [x] CHK-FIX-007 [P1] Evidence pinned to commit `96b456e0a3`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -173,8 +173,8 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 10/12 |
-| P1 Items | 13 | 12/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-02
