@@ -109,7 +109,7 @@ Summary of the child phase folders and their changes.
 | 3 | `003-nested-skilled-root/` | Find the folder holding `.skilled` when it sits below another repository's git root | Complete |
 | 4 | `004-symlink-relink-after-unlink/` | Let `/doctor:symlink` relink a project after an unlink by giving each apply its own run folder | Complete |
 | 5 | `005-advisor-linked-project-workspace/` | Let the skill advisor serve a project linked with `/doctor:symlink` by admitting a workspace wired to its source tree | Complete |
-| 6 | 006-doctor-update-local-state/ | [Phase 6 scope] | Pending |
+| 6 | `006-doctor-update-local-state/` | Keep `/doctor:update` state in the ignored `.skilled/skills/.state/doctor-update/` so `.skilled/release/` stops shipping | Complete |
 
 ### Phase Transition Rules
 
@@ -126,7 +126,7 @@ Summary of the child phase folders and their changes.
 | 002-doctor-audit-followups | 003-nested-skilled-root | 002-doctor-audit-followups validates on its own | `validate.sh --strict` on 002-doctor-audit-followups |
 | 003-nested-skilled-root | 004-symlink-relink-after-unlink | 003-nested-skilled-root validates on its own | `validate.sh --strict` on 003-nested-skilled-root |
 | 004-symlink-relink-after-unlink | 005-advisor-linked-project-workspace | 004-symlink-relink-after-unlink validates on its own | `validate.sh --strict` on 004-symlink-relink-after-unlink |
-| 005-advisor-linked-project-workspace | 006-doctor-update-local-state | [Criteria TBD] | [Verification TBD] |
+| 005-advisor-linked-project-workspace | 006-doctor-update-local-state | 005-advisor-linked-project-workspace validates on its own | `validate.sh --strict` on 005-advisor-linked-project-workspace |
 <!-- /ANCHOR:phase-map -->
 
 ---

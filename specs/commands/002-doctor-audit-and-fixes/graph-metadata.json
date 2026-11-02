@@ -39,7 +39,7 @@
       "updater"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -89,16 +89,16 @@
     ],
     "causal_summary": "Doctor commands were written against earlier paths and retired subsystems, leaving their current checks uncertain; the audit also recorded subsystem defects for follow-up",
     "created_at": "2026-10-31T13:41:30.403Z",
-    "last_save_at": "2026-11-02T09:53:16.228Z",
+    "last_save_at": "2026-11-02T10:01:40.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:4d5eb0e4a81b5ebc6317f304db95bf1b073a7c5447e51294ca77092528cd3e95",
+    "source_fingerprint": "sha256:cf621694b181e2c69392f62ef4eefc70d53b47acb9ca65915358f578fd61398f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b86e0e1f49ecbe65b282ba8f96a8e273034b5934d0281b91eea6f524f73cdd42"
+      "spec.md": "4dff1686f7f459d62dc614f4cfa29af250e557c038305bc9f02d1cbc47acba2a"
     },
     "last_active_child_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
     "last_active_at": null
