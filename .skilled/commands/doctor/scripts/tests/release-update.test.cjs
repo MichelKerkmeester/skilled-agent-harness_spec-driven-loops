@@ -382,6 +382,7 @@ test('unit enumeration separates hubs, child skills, command families, and root 
     '.skilled/skills/.state/doctor-update/base.json',
     '.skilled/skills/.state/doctor-update/runs/run/plan.json',
     '.skilled/release/base.json',
+    '.skilled/skills/.state/advisor/README.md',
     '.skilled/skills/hub-a/SKILL.md',
     '.skilled/skills/hub-b/SKILL.md',
     '.skilled/skills/hub-b/child-c/SKILL.md',
@@ -390,7 +391,7 @@ test('unit enumeration separates hubs, child skills, command families, and root 
     '.skilled/hooks/pre-commit',
   ]);
   assert.deepEqual(units.map((entry) => entry.name), [
-    '(root)', 'commands/fam', 'hooks', 'hub-a', 'hub-b', 'hub-b/child-c',
+    '.state', '(root)', 'commands/fam', 'hooks', 'hub-a', 'hub-b', 'hub-b/child-c',
   ]);
 });
 
@@ -1014,6 +1015,19 @@ test('a second apply does not refuse local release records', () => {
     'keep-local',
   );
   assert.equal(keepLocal.exitCode, 0, JSON.stringify(keepLocal.document));
+
+  const preview = runCli(
+    fixture.operator,
+    'apply',
+    '--decisions',
+    path.join(aligned.document.runDir, 'decisions.json'),
+    '--dry-run',
+  );
+  assert.equal(preview.exitCode, 0, JSON.stringify(preview.document));
+  const baseWrite = preview.document.writes
+    .find((write) => write.path === '.skilled/skills/.state/doctor-update/base.json');
+  assert.ok(baseWrite && baseWrite.before, JSON.stringify(preview.document.writes));
+  assert.deepEqual(Object.keys(baseWrite.before).sort(), ['blob', 'mode']);
 
   const secondApply = runCli(
     fixture.operator,

@@ -154,7 +154,7 @@ function run() {
   const backtick = expectClean('backtick-path-report-only', (root) => writeScenario(root, `${readScenario(root)}\nRead \`.skilled/commands/create/diagram.md\` and \`.skilled/skills/sk-doc/SKILL.md:1\`, then \`./clean-scenario.md\` and \`scenarios/clean-scenario.md\`; skip \`<skill>/references/x.md\`, \`/tmp/out.json\` and \`scripts/*.sh\`.\n`));
   const backtickWarnings = backtick.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED');
   assert.deepStrictEqual(backtickWarnings.map((item) => item.message.split(': ').pop()), ['.skilled/commands/create/diagram.md']);
-  const installed = expectClean('backtick-installed-release-state', (root) => writeScenario(root, `${readScenario(root)}\nRecord \`.skilled/release/base.json\` and \`.skilled/release/runs/.doctor-update.last-run.json\`, but not \`.skilled/releases/base.json\`.\n`));
+  const installed = expectClean('backtick-installed-release-state', (root) => writeScenario(root, `${readScenario(root)}\nRecord \`.skilled/release/base.json\`, \`.skilled/release/runs/.doctor-update.last-run.json\` and \`.skilled/skills/.state/doctor-update/base.json\`, but not \`.skilled/releases/base.json\`.\n`));
   assert.deepStrictEqual(installed.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => item.message.split(': ').pop()), ['.skilled/releases/base.json']);
   const linked = expectClean('backtick-dangling-symlink', (root) => {
     fs.symlinkSync(path.join(root, 'missing-build-output.js'), path.join(root, 'scenarios', 'linked-plugin.js'));

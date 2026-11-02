@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included, carries an empty-looking folder in `.skilled/`",
     "created_at": "2026-11-02T09:16:48Z",
-    "last_save_at": "2026-11-02T10:01:01.096Z",
+    "last_save_at": "2026-11-02T11:09:48.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e7dba65618b4ae79dbc02aa13b099ecd9b0631fa421900c23945ade5929b5bed",
+    "source_fingerprint": "sha256:556250f3a3de3f80294f689687c0cb3839f7421ee7719503232137925a44191a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1da310e450ce38c4e45f5ac2582391ca277424ce45471bffba6e1e23b0417bec",
       "plan.md": "c436a790cf1e3f5a773bd1fdff0e29cb2bf6d64d90b5f97564b3917aadd2a886",
-      "tasks.md": "454d79f12c4030c143e923b74cb8a41db7c1a56c167fa844d4f3ab223b4c662b",
-      "implementation-summary.md": "84bd59befaf74f0ed9ed00d8c619fd4bf6e2b97a4da76918f877cc3aff5148bc"
+      "tasks.md": "a6e48f5b36fe82aca4bc840a8c103d19b7720210eeca412fb19707a715157aa3",
+      "implementation-summary.md": "27d908fd0ba9c085d4973c9261a2a609ec2309e1221f4426fad9d3ab98625ef3"
     },
     "last_active_at": null
   }

@@ -56,6 +56,8 @@ _memory:
 
 The base record, the divergence log, the run folders and the apply lock all moved. The two records are no longer tracked files, so the updater stops refusing when one differs from HEAD and stops telling you to commit it. Each clone records its own base. A repository that committed `.skilled/release/base.json` under the old layout keeps working: the updater reads the old record when the new one is missing, writes the new path from then on, and prints one notice with the `git rm -r .skilled/release` command to drop the old copy.
 
+An independent review after the first commit found two faults, now fixed. The update-unit filter had excluded all of `.skilled/skills/.state/`, which also holds eight tracked READMEs that releases ship, so a changed README would never have been delivered. The filter now excludes only `.skilled/skills/.state/doctor-update/`. The `apply --dry-run` preview had also printed the whole record file as a byte array; it now shows only mode and blob.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -98,10 +100,10 @@ Built in worktree `worktrees/308-doctor-update-local-state` by one `gpt-6-luna` 
 
 | Check | Result |
 |-------|--------|
-| `release-update.test.cjs` | PASS: `tests 75`, `pass 75`, `fail 0` (baseline 73/73) |
+| `release-update.test.cjs` | PASS: `tests 75`, `pass 75`, `fail 0` (baseline 73/73). The unit-enumeration and second-apply tests fail on the first commit's engine and pass after the review fixes |
 | `doctor-update-contract.test.cjs` | PASS: `pass 12`, `fail 0` |
 | `upgrade-legacy.vitest.ts` | PASS: `Tests 67 passed (67)` |
-| `validate-playbook-package.test.cjs` | PASS: exit 0 (run with `NODE_PATH` at spec-kit's `node_modules`, which the unprovisioned worktree lacks) |
+| `validate-playbook-package.test.cjs` | PASS: exit 0 (run with `NODE_PATH` at spec-kit's `node_modules`, which the unprovisioned worktree lacks); exit 1 when the regex drops the new state prefix |
 | Root playbook validation, main vs worktree | Same 0 errors and same 12 warnings, none about this change |
 | `node --check`, `git diff --check` | PASS |
 | Barter re-pin to `96b456e0a3` | PASS: `replay.cjs --check` 49/49 `miss=0`; `sync.cjs --status` in-sync=269, no drift; `skilled/.skilled/release` gone |
@@ -115,6 +117,8 @@ Built in worktree `worktrees/308-doctor-update-local-state` by one `gpt-6-luna` 
 1. **Teammates don't share a base.** Each clone runs `record-base` once.
 2. **Both-present case is not tested separately.** The new record wins because it is read first.
 3. **Consumers keep their committed `.skilled/release/` until they remove it.** The updater prints the command once.
+4. **A `record-base` that runs during an `apply` can be overwritten.** `apply` reads the base record before it takes the lock, and the records are no longer checked against HEAD. The window is short and both commands are run by hand.
+5. **Restoring a record's earlier bytes on rollback has no test of its own.** The code path was reviewed; no test feeds it a tampered before-image.
 <!-- /ANCHOR:limitations -->
 
 ---

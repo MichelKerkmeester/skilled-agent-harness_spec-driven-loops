@@ -21,7 +21,6 @@ const path = require('node:path');
 const RELEASE_TAG_RE = /^v\d+\.\d+\.\d+\.\d+$/;
 const VERSION_RE = /^v(\d+)\.(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?(?:\+([0-9A-Za-z.-]+))?$/;
 const STATE_DIR = '.skilled/skills/.state/doctor-update';
-const STATE_ROOT = '.skilled/skills/.state';
 const LEGACY_DIR = '.skilled/release';
 const RUNS_DIR = path.join(STATE_DIR, 'runs');
 const BASE_FILE = path.join(STATE_DIR, 'base.json');
@@ -532,11 +531,12 @@ function matchUnitRef(ref, units, remedy, usage = false) {
 
 function enumerateUnits(inputPaths) {
   const rawPaths = inputPaths.map((entry) => (typeof entry === 'string' ? entry : entry.path));
-  // Local state and the legacy directory hold updater data, never framework content.
+  // The updater's own state and the legacy directory hold updater data, never
+  // framework content. Other .state folders ship tracked READMEs and stay units.
   const paths = [...new Set(rawPaths)]
     .filter((filePath) => typeof filePath === 'string' && filePath.startsWith('.skilled/')
       && !filePath.startsWith(LEGACY_DIR + '/')
-      && !filePath.startsWith(STATE_ROOT + '/'));
+      && !filePath.startsWith(STATE_DIR + '/'));
   // Keyed by kind and name: a skill hub may share its name with a top-level
   // directory such as hooks, and neither may hide the other.
   const units = new Map();
@@ -2204,7 +2204,8 @@ function applyPlan(repo, options) {
       writes: prepared.writes.map((write) => ({
         path: write.path,
         mode: write.after && write.after.mode,
-        before: write.before,
+        // Record bytes are kept only for rollback; the preview shows mode and blob.
+        before: write.before && { mode: write.before.mode, blob: write.before.blob },
       })),
       skippedUnits: prepared.skippedUnits,
       appliedUnits: prepared.appliedUnits,
