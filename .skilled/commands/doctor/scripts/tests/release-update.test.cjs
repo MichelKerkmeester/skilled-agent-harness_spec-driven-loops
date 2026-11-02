@@ -1040,6 +1040,46 @@ test('a second apply does not refuse local release records', () => {
   assert.ok(!secondApply.document.written.includes('.skilled/release/base.json'));
 });
 
+function applyTwiceWithLocalBase() {
+  const fixture = makeFixture({ withHubBRelease: true });
+  ignoreRuns(fixture.operator);
+  const firstApply = runCli(fixture.operator, 'apply');
+  assert.equal(firstApply.exitCode, 0, JSON.stringify(firstApply.document));
+  const basePath = path.join(fixture.operator, '.skilled/skills/.state/doctor-update/base.json');
+  const baseAfterFirst = fs.readFileSync(basePath);
+  const aligned = runCli(fixture.operator, 'align');
+  assert.equal(aligned.exitCode, 0, JSON.stringify(aligned.document));
+  const runDir = aligned.document.runDir;
+  assert.equal(decideFile(fixture.operator, runDir, HUB_B_RELEASE_FILE, 'adopt-release').exitCode, 0);
+  assert.equal(decideFile(fixture.operator, runDir, CHILD_FILE, 'keep-local').exitCode, 0);
+  const secondApply = runCli(fixture.operator, 'apply', '--decisions', path.join(runDir, 'decisions.json'));
+  assert.equal(secondApply.exitCode, 0, JSON.stringify(secondApply.document));
+  assert.notDeepEqual(fs.readFileSync(basePath), baseAfterFirst);
+  return { fixture, runDir, basePath, baseAfterFirst };
+}
+
+test('rollback restores the earlier bytes of a local base record', () => {
+  const { fixture, runDir, basePath, baseAfterFirst } = applyTwiceWithLocalBase();
+  const rolledBack = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.equal(rolledBack.exitCode, 0, JSON.stringify(rolledBack.document));
+  assert.deepEqual(fs.readFileSync(basePath), baseAfterFirst);
+});
+
+test('rollback refuses a base record before-image that was tampered with', () => {
+  const { fixture, runDir, basePath } = applyTwiceWithLocalBase();
+  const rollbackPath = path.join(runDir, 'rollback.json');
+  const record = JSON.parse(fs.readFileSync(rollbackPath, 'utf8'));
+  const entry = record.paths.find((item) => item.path === '.skilled/skills/.state/doctor-update/base.json');
+  assert.ok(entry && entry.before && typeof entry.before.contentBase64 === 'string', JSON.stringify(record.paths));
+  entry.before.contentBase64 = Buffer.from('{"tampered":true}\n').toString('base64');
+  fs.writeFileSync(rollbackPath, JSON.stringify(record, null, 2));
+  const baseBefore = fs.readFileSync(basePath);
+  const refused = runCli(fixture.operator, 'rollback', '--run', runDir);
+  assert.notEqual(refused.exitCode, 0);
+  assert.match(JSON.stringify(refused.document), /before-image is invalid|rollback record/);
+  assert.deepEqual(fs.readFileSync(basePath), baseBefore);
+});
+
 test('a bare apply refuses an alignment run that holds operator decisions', () => {
   const fixture = makeFixture({ withHubBRelease: true });
   const aligned = runCli(fixture.operator, 'align');

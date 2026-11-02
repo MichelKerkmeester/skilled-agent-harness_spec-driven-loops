@@ -100,7 +100,7 @@ Built in worktree `worktrees/308-doctor-update-local-state` by one `gpt-6-luna` 
 
 | Check | Result |
 |-------|--------|
-| `release-update.test.cjs` | PASS: `tests 75`, `pass 75`, `fail 0` (baseline 73/73). The unit-enumeration and second-apply tests fail on the first commit's engine and pass after the review fixes |
+| `release-update.test.cjs` | PASS: `tests 77`, `pass 77`, `fail 0` (baseline 73/73). The unit-enumeration and second-apply tests fail on the first commit's engine and pass after the review fixes; the two rollback tests each fail when their restore branch is disabled |
 | `doctor-update-contract.test.cjs` | PASS: `pass 12`, `fail 0` |
 | `upgrade-legacy.vitest.ts` | PASS: `Tests 67 passed (67)` |
 | `validate-playbook-package.test.cjs` | PASS: exit 0 (run with `NODE_PATH` at spec-kit's `node_modules`, which the unprovisioned worktree lacks); exit 1 when the regex drops the new state prefix |
@@ -118,7 +118,6 @@ Built in worktree `worktrees/308-doctor-update-local-state` by one `gpt-6-luna` 
 2. **Both-present case is not tested separately.** The new record wins because it is read first.
 3. **Consumers keep their committed `.skilled/release/` until they remove it.** The updater prints the command once.
 4. **A `record-base` that runs during an `apply` can be overwritten.** `apply` reads the base record before it takes the lock, and the records are no longer checked against HEAD. The window is short and both commands are run by hand.
-5. **Restoring a record's earlier bytes on rollback has no test of its own.** The code path was reviewed; no test feeds it a tampered before-image.
 <!-- /ANCHOR:limitations -->
 
 ---

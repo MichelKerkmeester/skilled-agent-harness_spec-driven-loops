@@ -10,7 +10,7 @@ Every attempt that did not produce the final verdict is listed here with its cau
 
 | Field | Value |
 |---|---|
-| Record | [`SCG-005-attempt-1.md`](../../../../../../specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005-attempt-1.md) |
+| Record | [`SCG-005-attempt-1.md`](../../../../../../specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005-attempt-1.md) |
 | Signal missed | No chat slice while the finding stands |
 | What happened | The checker failed the seeded placeholder, and the agent printed the chat slice anyway and ended `STATUS=OK` |
 | Cause | The workflow's handoff step carried no precondition, and `SKILL.md` listed printing the slice before the checker gate |
@@ -22,7 +22,7 @@ Every attempt that did not produce the final verdict is listed here with its cau
 
 | Field | Value |
 |---|---|
-| Record | [`SCG-005-attempt-2.md`](../../../../../../specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005-attempt-2.md) |
+| Record | [`SCG-005-attempt-2.md`](../../../../../../specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-005-attempt-2.md) |
 | Signals | All met. The agent answered `STATUS=FAIL` with no chat slice after 7.5 minutes |
 | What happened | A Pi extension message restarted the finished run, the restarted agent ran a repository-wide search for 17 minutes and the run script timed out at 1,800 s before capturing stdout |
 | Cause | The completion-evidence extension sent its advisory at the end of a turn with no delivery option, and Pi treats that as steering the running agent |

@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 762,
+  "derived_count": 765,
   "directories": [
     ".",
     ".claude/hooks",
@@ -36,6 +36,7 @@
     ".skilled/hooks/classifier-injection-screen",
     ".skilled/hooks/codex-watchdog",
     ".skilled/hooks/completion",
+    ".skilled/hooks/decision-capture/bin",
     ".skilled/hooks/directive-lifecycle",
     ".skilled/hooks/dispatch",
     ".skilled/hooks/dispatch/lib",
@@ -66,6 +67,7 @@
     ".skilled/hooks/spec-gate",
     ".skilled/hooks/task-dispatch",
     ".skilled/logs",
+    ".skilled/manual-testing-playbook/doctor-commands",
     ".skilled/scripts",
     ".skilled/scripts/git-hooks",
     ".skilled/scripts/git-hooks/lib",
@@ -74,6 +76,7 @@
     ".skilled/skills/.state/advisor",
     ".skilled/skills/.state/authority",
     ".skilled/skills/.state/completion-sentinel",
+    ".skilled/skills/.state/decision-capture",
     ".skilled/skills/.state/goal",
     ".skilled/skills/.state/loop-guard",
     ".skilled/skills/.state/smart-router-telemetry",

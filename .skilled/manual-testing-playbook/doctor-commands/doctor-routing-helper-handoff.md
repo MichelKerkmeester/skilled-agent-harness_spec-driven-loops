@@ -26,7 +26,8 @@ The scenario runs three prompts:
 - Objective: Prove that a reworded doctor problem reaches `/doctor:helper`, as the top line when no skill matches and as the second line beside a passing skill, and that an ordinary deep-loop request gets no doctor line.
 - Playbook ID: DOC-406.
 - Real user request: `my AGENTS.md is out of date with the template`
-- Prompts: `my AGENTS.md is out of date with the template`, `my deep research run never converges` and `Use the deep-research workflow, not a manual loop, to investigate routing drift.`
+- Prompt: `my AGENTS.md is out of date with the template`
+- All three prompts: `my AGENTS.md is out of date with the template`, `my deep research run never converges` and `Use the deep-research workflow, not a manual loop, to investigate routing drift.`
 - Preconditions: The advisor runtime is built (`npm --prefix .skilled/skills/system-skill-advisor/runtime run build` exits 0) and the bridge projection is fresh (`node .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs --check` prints `"status": "fresh"`).
 - Expected execution process: Run the hook command once per prompt from the repository root and read the first two lines of each brief.
 - Expected signals:

@@ -439,7 +439,7 @@ Feature catalogs stay in the skill that owns the feature. The catalog entry the 
 
 ### Numbering
 
-- DOC numbers run in one shared series across every doctor scenario and every skill playbook that still links one. The next free number is DOC-406.
+- DOC numbers run in one shared series across every doctor scenario and every skill playbook that still links one. The next free number is DOC-407.
 - The two `/doctor:helper` scenarios were renumbered: DOC-393 is now DOC-400 and DOC-394 is now DOC-401. `/doctor:ci scaffold` and `/doctor:ci toggle` already held those two numbers in the same series, and those rows keep them. No other ID moved.
 - `/doctor:ci scaffold` and `/doctor:ci toggle` were listed as unscripted in the older skill READMEs; they now have DOC-393 and DOC-394.
 

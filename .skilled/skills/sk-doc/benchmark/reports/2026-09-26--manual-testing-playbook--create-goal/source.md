@@ -35,14 +35,14 @@ This packet ships no `feature-catalog/`, so no catalog cross-reference exists fo
 
 Raw per-scenario transcripts stay in the spec packet that produced them:
 
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-001.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-002.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-003.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-004.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-005.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-006.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-007.md`
-- `specs/sk-doc/060-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-008.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-001.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-002.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-003.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-004.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-005.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-006.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-007.md`
+- `specs/sk-doc/056-create-goal-mode/009-verification-and-closeout/scratch/playbook-run/SCG-008.md`
 
 Each record carries the exact prompt, every command with its output and exit status, the expected
 signals marked observed or not observed, the agent replies verbatim and the scenario verdict. The

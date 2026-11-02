@@ -44,7 +44,7 @@ Root document: [`manual-testing-playbook.md`](../../../../../../.skilled/skills/
 
 | Path | Holds |
 |---|---|
-| `specs/sk-doc/060-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-00N.md` | The graded record for each scenario, SCG-005 from attempt 3 |
+| `specs/sk-doc/056-create-goal-mode/012-goal-send-and-dedupe/scratch/playbook-run/SCG-00N.md` | The graded record for each scenario, SCG-005 from attempt 3 |
 | `.../playbook-run/SCG-005-attempt-1.md`, `SCG-005-attempt-2.md` | The two earlier SCG-005 attempts |
 | `.../playbook-run/SCG-00N/record.json` | Every step's text, exit status and elapsed time |
 | `.../playbook-run/SCG-00N/scratch-snapshot/` | The scratch workspace as the last step found it |

@@ -9,7 +9,8 @@
     "commands/002-doctor-audit-and-fixes/003-nested-skilled-root",
     "commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink",
     "commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace",
-    "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state"
+    "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state",
+    "commands/002-doctor-audit-and-fixes/007-main-ci-repairs"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "updater"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -89,16 +90,16 @@
     ],
     "causal_summary": "Doctor commands were written against earlier paths and retired subsystems, leaving their current checks uncertain; the audit also recorded subsystem defects for follow-up",
     "created_at": "2026-10-31T13:41:30.403Z",
-    "last_save_at": "2026-11-02T10:01:40.327Z",
+    "last_save_at": "2026-11-02T12:30:32.527Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:cf621694b181e2c69392f62ef4eefc70d53b47acb9ca65915358f578fd61398f",
+    "source_fingerprint": "sha256:9239855769b51a591b0c3692e3a197787338dc958bb1509988c752d2b56568cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4dff1686f7f459d62dc614f4cfa29af250e557c038305bc9f02d1cbc47acba2a"
+      "spec.md": "9bcc7c963889bb39a4b3cd2721d36624a8bf050dcc0b09d7365e47a6aa437426"
     },
     "last_active_child_id": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups",
     "last_active_at": null
