@@ -1,5 +1,5 @@
 {
-  "manifestHash": "020e2ec5ed3c0f33451e30164f99ac86523589df336fa0b774005c59c6e038bf",
+  "manifestHash": "e505762589e418f7090283a9a2d08d82d42786cabc1932b5cbfcf01e281d9631",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40505,6 +40505,9 @@
     "doctor helper command routing": [
       "doctor helper command routing"
     ],
+    "doctor helper hand off": [
+      "doctor helper hand-off"
+    ],
     "doctor helper handoff": [
       "doctor helper handoff"
     ],
@@ -60707,6 +60710,9 @@
     "link tasks": [
       "link tasks"
     ],
+    "linked project workspace accepted": [
+      "linked project workspace accepted"
+    ],
     "links and generated state implementation summary": [
       "links and generated state implementation summary"
     ],
@@ -72416,6 +72422,9 @@
     "operator answer queue": [
       "operator answer queue"
     ],
+    "operator answers in decision record": [
+      "operator answers in decision record"
+    ],
     "operator approval grammar": [
       "operator approval grammar"
     ],
@@ -81339,6 +81348,9 @@
     ],
     "project readme template": [
       "project readme template"
+    ],
+    "project root from working directory": [
+      "project root from working directory"
     ],
     "project root resolves to code environment": [
       "project root resolves to code environment"
@@ -93486,6 +93498,9 @@
     ],
     "save flow trim plan": [
       "save flow trim plan"
+    ],
+    "save from a linked repository": [
+      "save from a linked repository"
     ],
     "save handler": [
       "save handler"
@@ -111571,6 +111586,9 @@
     "system skill advisor 0 17 9 0": [
       "system-skill-advisor 0.17.9.0"
     ],
+    "system skill advisor 0 18 0 0": [
+      "system-skill-advisor 0.18.0.0"
+    ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
     ],
@@ -111846,6 +111864,9 @@
     ],
     "system skill advisor v0 17 9 0": [
       "system-skill-advisor v0.17.9.0"
+    ],
+    "system skill advisor v0 18 0 0": [
+      "system-skill-advisor v0.18.0.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -112167,6 +112188,9 @@
     ],
     "system spec kit 2 12 28 0": [
       "system-spec-kit 2.12.28.0"
+    ],
+    "system spec kit 2 12 29 0": [
+      "system-spec-kit 2.12.29.0"
     ],
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
@@ -112698,6 +112722,9 @@
     ],
     "system spec kit v2 12 28 0": [
       "system-spec-kit v2.12.28.0"
+    ],
+    "system spec kit v2 12 29 0": [
+      "system-spec-kit v2.12.29.0"
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
