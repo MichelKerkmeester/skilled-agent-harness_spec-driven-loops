@@ -1,5 +1,5 @@
 {
-  "corpusHash": "29498c99b565b104c6410d9b4697b552e8132482f502bfd53ac180cdd9c2d384",
+  "corpusHash": "4a447f92041692bfcae7471481d21b7e4c8a2983718869f7877dce56fbeff336",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27217,
+  "includedPathCount": 27222,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10446,6 +10446,11 @@
     "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/plan.md",
     "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/tasks.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/acceptance-criteria.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/implementation-summary.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/plan.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/timeline.md",
     "specs/commands/003-local-command-support/goal.md",
@@ -27248,7 +27253,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5ca554a147e97cafc1126be074f1bd8c831cf3b36484c4f0f9548ce3f2921e0c",
+  "manifestHash": "020e2ec5ed3c0f33451e30164f99ac86523589df336fa0b774005c59c6e038bf",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29180,6 +29185,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/scratch",
       "reason": "excluded directory"
     },
     {

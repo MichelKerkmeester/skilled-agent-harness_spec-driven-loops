@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ca554a147e97cafc1126be074f1bd8c831cf3b36484c4f0f9548ce3f2921e0c",
+  "manifestHash": "020e2ec5ed3c0f33451e30164f99ac86523589df336fa0b774005c59c6e038bf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41211,6 +41211,21 @@
     "doctor update handover": [
       "/doctor:update handover"
     ],
+    "doctor update local state": [
+      "doctor update local state"
+    ],
+    "doctor update local state acceptance criteria": [
+      "doctor update local state acceptance criteria"
+    ],
+    "doctor update local state implementation summary": [
+      "doctor update local state implementation summary"
+    ],
+    "doctor update local state plan": [
+      "doctor update local state plan"
+    ],
+    "doctor update local state tasks": [
+      "doctor update local state tasks"
+    ],
     "doctor update manual test": [
       "doctor update manual test"
     ],
@@ -77020,6 +77035,9 @@
     "phase 6 doctor helper handoff": [
       "phase 6 doctor helper handoff"
     ],
+    "phase 6 doctor update local state": [
+      "phase 6 doctor update local state"
+    ],
     "phase 6 evidence gated provenance": [
       "phase 6 evidence gated provenance"
     ],
@@ -105155,6 +105173,9 @@
     ],
     "skilled release changelog": [
       "skilled release changelog"
+    ],
+    "skilled release folder": [
+      ".skilled/release folder"
     ],
     "skilled release line": [
       "skilled release line"
