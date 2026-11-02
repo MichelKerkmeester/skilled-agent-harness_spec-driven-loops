@@ -58,6 +58,7 @@ contextType: "general"
 - [x] T011 Re-pin Barter's `skilled/` to that commit. Verify: `replay.cjs --check` ends `miss=0` and `ls skilled/.skilled/release` fails. Done: `checked=49 ok=49 miss=0`, `RESULT: PASSED`; the folder is gone.
 - [x] T012 Fix the independent review's findings: exclude only `.skilled/skills/.state/doctor-update/` from update units, and keep record bytes out of the `apply --dry-run` preview (`release-update.cjs`, its tests, the validator test). Verify: the two changed tests fail on the first commit's engine and pass after; full suite `pass 75 fail 0`.
 - [x] T013 Add the rollback tests the review asked for: a second apply rewrites an existing local base record and rollback restores its earlier bytes, and a tampered before-image is refused (`release-update.test.cjs`). Verify: each test fails when its branch in the restore code is disabled and passes on the real code.
+- [x] T014 Close the documentation gaps a later sweep found: give the state folder its own `README.md` like its eight siblings, correct the playbook's fixture-commit line that still placed `base.json` only in the release folder, and note in `communication-handoff.md` that this repository turns on Codex's Default-mode question tool. Verify: `validate_document.py` passes on the README, and the playbook validator and link checker report no new violations.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -156,7 +157,7 @@ contextType: "general"
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] Code comments adequate
-- [x] CHK-042 [P2] N/A: no README names the folder
+- [x] CHK-042 [P2] The state folder ships `.skilled/skills/.state/doctor-update/README.md`, matching the other `.state` folders
 <!-- /ANCHOR:docs -->
 
 ---

@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state"
-    last_updated_at: "2026-11-02T12:33:06Z"
+    last_updated_at: "2026-11-02T14:48:34Z"
     last_updated_by: "generate-context"
-    recent_action: "Added rollback tests and recorded the release decisions"
-    next_safe_action: "Verify the three CI workflows pass on main at fe06b07640"
+    recent_action: "Added the state folder README and fixed two stale doc lines"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
-      - ".skilled/commands/doctor/scripts/release-update.cjs"
-      - ".skilled/commands/doctor/scripts/tests/release-update.test.cjs"
-      - ".skilled/changelog/skilled/v4.0.1.0.md"
+      - ".skilled/skills/.state/doctor-update/README.md"
+      - ".skilled/manual-testing-playbook/manual-testing-playbook.md"
+      - ".skilled/repo-rules/communication-handoff.md"
     session_dedup:
-      fingerprint: "sha256:a07de709205d224bd8182af481ee47fed56918fba77c157ffa1ab78da976f1f2"
+      fingerprint: "sha256:2387350b30cbfbe8698f427418c1ffb06f43dc1a486d0c0eb6d4badc5b36af9b"
       session_id: "fe0c9990-06d3-454e-a8e7-7c7bc649bc49"
       parent_session_id: null
     completion_pct: 100
@@ -56,6 +56,8 @@ The base record, the divergence log, the run folders and the apply lock all move
 
 An independent review after the first commit found two faults, now fixed. The update-unit filter had excluded all of `.skilled/skills/.state/`, which also holds eight tracked READMEs that releases ship, so a changed README would never have been delivered. The filter now excludes only `.skilled/skills/.state/doctor-update/`. The `apply --dry-run` preview had also printed the whole record file as a byte array; it now shows only mode and blob.
 
+A later documentation sweep found three gaps. The state folder was the only one under `.skilled/skills/.state/` without a README, so it now has one describing each record and how to clean it up. The root playbook's fixture list now says the existing fixture commits its base record at the legacy path and a rebuilt one keeps it as ignored local state. The Codex row of `communication-handoff.md` now says this repository turns on the Default-mode question tool.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -69,6 +71,8 @@ An independent review after the first commit found two faults, now fixed. The up
 | `.skilled/manual-testing-playbook/doctor-commands/doctor-update-*.md` (6), `manual-testing-playbook.md` | Modified | Paths and steps |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modified | The doctor update write paths |
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | Modified | Installed-state exception accepts the new folder |
+| `.skilled/skills/.state/doctor-update/README.md` | Created | Explains the state folder, like its siblings |
+| `.skilled/repo-rules/communication-handoff.md` | Modified | Codex row names the repository's question-tool flag |
 <!-- /ANCHOR:what-built -->
 
 ---

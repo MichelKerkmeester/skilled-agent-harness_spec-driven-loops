@@ -49,7 +49,9 @@
       ".skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-legacy.mjs",
       "runtime/cli/tests/upgrade-legacy.vitest.ts",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".skilled/skills/.state/doctor-update/README.md",
+      ".skilled/repo-rules/communication-handoff.md"
     ],
     "entities": [
       {
@@ -131,6 +133,18 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/.state/doctor-update/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "communication-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/communication-handoff.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -183,23 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included, carries an empty-looking folder in `.skilled/`",
     "created_at": "2026-11-02T09:16:48Z",
-    "last_save_at": "2026-11-02T12:33:31.507Z",
+    "last_save_at": "2026-11-02T14:48:34.856Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +212,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ad97129d4834f5cb650ca1693faaae0d75eef741bbeaeb3d24aa9bd4c1cea28",
+    "source_fingerprint": "sha256:0eb4267c6c5d59602fa4b816ef10fa975cc5e626f096666529d547db89d2f9ec",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1da310e450ce38c4e45f5ac2582391ca277424ce45471bffba6e1e23b0417bec",
       "plan.md": "c436a790cf1e3f5a773bd1fdff0e29cb2bf6d64d90b5f97564b3917aadd2a886",
-      "tasks.md": "1dec6b63f5a5ef25e7e8e973070c96d82a307fb2b0f4059c6130b574b5e0c287",
+      "tasks.md": "30340e84b3182a7f93bb0bc709a763ec80345f51c4ef391392aa43ddbcd8b245",
       "decision-record.md": "bf6a136d3477526524d8c4997585bf3d1cb27d5b2b0fd34e452ac89e1ba7a757",
-      "implementation-summary.md": "95a158171fd01c9234bd212f10d34a43d0dd12502e1884f51e4a0368a4de9d6d"
+      "implementation-summary.md": "01a8638603cf014ccfeae9a6fa95197e38a6c85195021bd9e110e27c3f9eda20"
     },
     "last_active_at": null
   }

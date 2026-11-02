@@ -90,7 +90,7 @@
     ],
     "causal_summary": "Doctor commands were written against earlier paths and retired subsystems, leaving their current checks uncertain; the audit also recorded subsystem defects for follow-up",
     "created_at": "2026-10-31T13:41:30.403Z",
-    "last_save_at": "2026-11-02T12:46:40.726Z",
+    "last_save_at": "2026-11-02T14:48:34.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -101,7 +101,7 @@
     "source_doc_hashes": {
       "spec.md": "ff0f8d63372dee4946a198e2e3081543321dccb4ea476b911f555d49e6b2be17"
     },
-    "last_active_child_id": "commands/002-doctor-audit-and-fixes/007-main-ci-repairs",
-    "last_active_at": "2026-11-02T12:46:40.726Z"
+    "last_active_child_id": "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state",
+    "last_active_at": "2026-11-02T14:48:34.892Z"
   }
 }
