@@ -1,5 +1,5 @@
 {
-  "corpusHash": "75a9fe2c5cdd5a168e44eb8ba2654219dacd63cbae466873f3778bfb07de94be",
+  "corpusHash": "b2d428d5012932c44baa86811d3fb0a64928fcbdcb022b8c3c55c6c0f0e35adf",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27224,
+  "includedPathCount": 27228,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10453,6 +10453,10 @@
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/plan.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/tasks.md",
+    "specs/commands/002-doctor-audit-and-fixes/007-main-ci-repairs/implementation-summary.md",
+    "specs/commands/002-doctor-audit-and-fixes/007-main-ci-repairs/plan.md",
+    "specs/commands/002-doctor-audit-and-fixes/007-main-ci-repairs/spec.md",
+    "specs/commands/002-doctor-audit-and-fixes/007-main-ci-repairs/tasks.md",
     "specs/commands/002-doctor-audit-and-fixes/spec.md",
     "specs/commands/002-doctor-audit-and-fixes/timeline.md",
     "specs/commands/003-local-command-support/goal.md",
@@ -27255,7 +27259,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e505762589e418f7090283a9a2d08d82d42786cabc1932b5cbfcf01e281d9631",
+  "manifestHash": "d464f468b26afa0e65b1358e0bf0632b87f950f64f787f0e31fb3584f5cc9eb6",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29191,6 +29195,10 @@
     },
     {
       "path": "specs/commands/002-doctor-audit-and-fixes/006-doctor-update-local-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/commands/002-doctor-audit-and-fixes/007-main-ci-repairs/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e505762589e418f7090283a9a2d08d82d42786cabc1932b5cbfcf01e281d9631",
+  "manifestHash": "d464f468b26afa0e65b1358e0bf0632b87f950f64f787f0e31fb3584f5cc9eb6",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -61760,6 +61760,18 @@
     "main ci regenerations tasks": [
       "main ci regenerations tasks"
     ],
+    "main ci repairs": [
+      "main ci repairs"
+    ],
+    "main ci repairs implementation summary": [
+      "main ci repairs implementation summary"
+    ],
+    "main ci repairs plan": [
+      "main ci repairs plan"
+    ],
+    "main ci repairs tasks": [
+      "main ci repairs tasks"
+    ],
     "main fast forward to new tree": [
       "main fast-forward to new tree"
     ],
@@ -62392,6 +62404,9 @@
     ],
     "markdown link integrity": [
       "markdown link integrity"
+    ],
+    "markdown link integrity create goal": [
+      "markdown link integrity create goal"
     ],
     "markdown prompt output mode": [
       "markdown prompt output mode"
@@ -77188,6 +77203,9 @@
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
     ],
+    "phase 7 main ci repairs": [
+      "phase 7 main ci repairs"
+    ],
     "phase 7 playbook catalog readme alignment": [
       "phase 7 playbook catalog readme alignment"
     ],
@@ -83570,6 +83588,9 @@
     ],
     "readme key statistics table": [
       "readme key statistics table"
+    ],
+    "readme manifest refresh": [
+      "readme manifest refresh"
     ],
     "readme marketing voice rewrite": [
       "readme marketing voice rewrite"
