@@ -1,4 +1,5 @@
 [features]
+default_mode_request_user_input = true
 hooks = true
 
 # This server cannot run on just any Node: it bundles
