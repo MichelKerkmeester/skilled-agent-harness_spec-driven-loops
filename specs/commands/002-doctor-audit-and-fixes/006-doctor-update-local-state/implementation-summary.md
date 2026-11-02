@@ -8,24 +8,22 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state"
-    last_updated_at: "2026-11-02T10:05:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Committed 96b456e0a3 and re-pinned Barter skilled/ to it"
-    next_safe_action: "Operator: merge worktrees/308-doctor-update-local-state into main when ready"
+    last_updated_at: "2026-11-02T12:33:06Z"
+    last_updated_by: "generate-context"
+    recent_action: "Added rollback tests and recorded the release decisions"
+    next_safe_action: "Verify the three CI workflows pass on main at fe06b07640"
     blockers: []
     key_files:
       - ".skilled/commands/doctor/scripts/release-update.cjs"
       - ".skilled/commands/doctor/scripts/tests/release-update.test.cjs"
+      - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a07de709205d224bd8182af481ee47fed56918fba77c157ffa1ab78da976f1f2"
       session_id: "fe0c9990-06d3-454e-a8e7-7c7bc649bc49"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
-    answered_questions:
-      - "Layout: all state local and uncommitted (operator, 2026-11-02)"
-      - "Workspace: new git worktree (operator, 2026-11-02)"
-      - "Barter: commit in Skilled, then re-pin (operator, 2026-11-02)"
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary

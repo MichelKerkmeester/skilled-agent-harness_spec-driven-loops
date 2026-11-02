@@ -17,6 +17,7 @@
       "doctor update local state plan",
       "doctor update local state tasks",
       "doctor update local state acceptance criteria",
+      "006-doctor-update-local-state operator decisions",
       "doctor update local state implementation summary"
     ],
     "key_topics": [
@@ -31,7 +32,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation"
+      "006-doctor-update-local-state"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,6 +41,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/commands/doctor/scripts/release-update.cjs",
       ".skilled/commands/doctor/scripts/tests/release-update.test.cjs",
@@ -72,6 +74,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -187,33 +195,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included, carries an empty-looking folder in `.skilled/`",
     "created_at": "2026-11-02T09:16:48Z",
-    "last_save_at": "2026-11-02T12:30:32.737Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-02T12:33:31.507Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cac93f4fcce372d7781d1b3e900770fcb308cc621f61f7cf1eaffc6c26e67de5",
+    "source_fingerprint": "sha256:8ad97129d4834f5cb650ca1693faaae0d75eef741bbeaeb3d24aa9bd4c1cea28",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1da310e450ce38c4e45f5ac2582391ca277424ce45471bffba6e1e23b0417bec",
       "plan.md": "c436a790cf1e3f5a773bd1fdff0e29cb2bf6d64d90b5f97564b3917aadd2a886",
       "tasks.md": "1dec6b63f5a5ef25e7e8e973070c96d82a307fb2b0f4059c6130b574b5e0c287",
-      "implementation-summary.md": "b5cf828e9f45cfa58007e8e41618304d49b56965d57d731267db4b95d06fc6ae"
+      "decision-record.md": "bf6a136d3477526524d8c4997585bf3d1cb27d5b2b0fd34e452ac89e1ba7a757",
+      "implementation-summary.md": "95a158171fd01c9234bd212f10d34a43d0dd12502e1884f51e4a0368a4de9d6d"
     },
     "last_active_at": null
   }

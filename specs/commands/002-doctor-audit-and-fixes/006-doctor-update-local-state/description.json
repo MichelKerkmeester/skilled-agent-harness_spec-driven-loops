@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/006-doctor-update-local-state",
   "description": "Skilled ships `.skilled/release/` holding only a `.gitignore`, so every installed copy, Barter's `skilled/` included",
   "keywords": [
@@ -14,14 +15,16 @@
     "barter",
     "included"
   ],
-  "lastUpdated": "2026-11-02T09:53:12.027Z",
+  "lastUpdated": "2026-11-02T12:33:06.254Z",
   "specId": "006",
   "folderSlug": "doctor-update-local-state",
   "parentChain": [
     "commands",
     "002-doctor-audit-and-fixes"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-11-26_13-32__independent-review-of-the-doctor-update-local.md",
+    "02-11-26_13-33__independent-review-of-the-doctor-update-local.md"
+  ]
 }
