@@ -8,23 +8,21 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "commands/002-doctor-audit-and-fixes/007-main-ci-repairs"
-    last_updated_at: "2026-11-02T12:40:00Z"
-    last_updated_by: "claude-opus-5-5"
-    recent_action: "Fixed the three causes and passed each workflow's command locally"
-    next_safe_action: "Push to origin/main and read the three workflows on the pushed commit"
+    last_updated_at: "2026-11-02T12:46:40Z"
+    last_updated_by: "generate-context"
+    recent_action: "All 16 workflows passed on main at fe06b07640"
+    next_safe_action: "Verify main stays green on the next push"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json"
       - ".skilled/manual-testing-playbook/doctor-commands/doctor-routing-helper-handoff.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a1f431b7a95b0a03711fe2d5b966276ff9fead9953224e5a3591e61dde76d93d"
       session_id: "fe0c9990-06d3-454e-a8e7-7c7bc649bc49"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
-    answered_questions:
-      - "Spec folder: new child 007 under the doctor fixes parent (operator, 2026-11-02)"
-      - "Workspace: reuse worktree 308, then push to origin/main (operator, 2026-11-02)"
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -94,6 +92,7 @@ Each workflow's log was read, then its command was rerun locally to reproduce th
 | `check-markdown-links.cjs` | PASS: `14038 links checked, 0 broken`, exit 0 (18 broken before) |
 | `run-script-tests.sh` (sk-doc) | PASS: 48 PASS, `all sk-doc script tests passed`, exit 0 |
 | `validate-playbook-package.cjs --strict` | PASS: root playbook `violations=0 warnings=12` (1 violation before), exit 0 |
+| CI on main at `fe06b07640` | PASS: all 16 workflows `success`, including Markdown Link Integrity, sk-doc Script Tests and Playbook Operator Contract |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -34,7 +34,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,8 +192,8 @@
     ],
     "causal_summary": "Three workflows failed on every push to main since 2026-11-01, so a real regression in any of them would have gone unnoticed",
     "created_at": "2026-11-02T12:20:00Z",
-    "last_save_at": "2026-11-02T12:30:32.579Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-02T12:46:40.707Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a870f700b8b8942edcf110cc3a0194603d568ad62859f505b4dd9ddc930aa4e4",
+    "source_fingerprint": "sha256:ee5628df7a22b8292063212635eca4436af11fc73e1641054e16d888ac6ecd3c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "3a3cb289a503803808d10f29d5a2f5642ad9d06a380ab511469c21b501edcce9",
       "plan.md": "5d15471743a632deee46d7f1c831a19095267b6b298f1979a7c60bc344b3bbd3",
-      "tasks.md": "6e6e697f195319d6f22e6eef0627f74576a20e3d5ebe22a0d2595a1bcd8c6965",
-      "implementation-summary.md": "37538b8a083e2ee431c60bce8c258c13d43260e624a3ad4705cbae3bb17ec5ca"
+      "tasks.md": "d7dfe07cfce867219825e7074774a2bbe0b2be58cfe9d5012835da8d58961d6d",
+      "implementation-summary.md": "7fcb228d265decb5c63b8658e33012b12d0ac4e9c2a0fdab69b08a8a3dcd005c"
     },
     "last_active_at": null
   }

@@ -51,7 +51,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T006 Run the three workflow commands. Verify: `0 broken`, `all sk-doc script tests passed` (48 PASS), and `PASS package=.skilled/manual-testing-playbook ... violations=0 warnings=12`.
-- [ ] T007 Read the three workflows on main after the push. Verify: each concludes `success`.
+- [x] T007 Read the three workflows on main after the push. Verify: each concludes `success`. Done: all 16 workflows on `fe06b07640` concluded `success`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -59,7 +59,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 <!-- /ANCHOR:completion -->

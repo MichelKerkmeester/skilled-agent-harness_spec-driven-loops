@@ -1,18 +1,20 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/007-main-ci-repairs",
   "description": "Phase 7: main-ci-repairs",
   "keywords": [
     "phase",
     "main-ci-repairs"
   ],
-  "lastUpdated": "2026-11-02T12:20:01.100Z",
+  "lastUpdated": "2026-11-02T12:46:40.707Z",
   "specId": "007",
   "folderSlug": "main-ci-repairs",
   "parentChain": [
     "commands",
     "002-doctor-audit-and-fixes"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-11-26_13-46__repaired-the-three-ci-workflows-red-on-main-and.md"
+  ]
 }
