@@ -1,5 +1,5 @@
 {
-  "manifestHash": "9e4041963fa33e17527dee34580b0c77845e273c35bcad77900e55caedab5c35",
+  "manifestHash": "22aa638aa402a7141ac90f102c01673862c4495a37a981fca5e01ae7f457a8ea",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41199,6 +41199,9 @@
     "doctor update decisions": [
       "doctor update decisions"
     ],
+    "doctor update divergence log": [
+      "doctor update divergence log"
+    ],
     "doctor update fix plan": [
       "doctor update fix plan"
     ],
@@ -41288,6 +41291,9 @@
     ],
     "doctor update restart required": [
       "doctor update restart required"
+    ],
+    "doctor update runtime state": [
+      "doctor update runtime state"
     ],
     "doctor update scaffold": [
       "doctor update scaffold"
@@ -86002,6 +86008,9 @@
     ],
     "release aware doctor update": [
       "release-aware doctor update"
+    ],
+    "release base record": [
+      "release base record"
     ],
     "release blocker remediation": [
       "release blocker remediation"

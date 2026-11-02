@@ -1,5 +1,5 @@
 {
-  "corpusHash": "19488b452882c367b1ad7103e1d344ba8c76978887d3fc5ed41deb528571d9a8",
+  "corpusHash": "fd80c0efa9e4694d59b59cf93dd723085dab2c588dc97d680d4e304634ba7aa2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27229,
+  "includedPathCount": 27230,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -120,6 +120,7 @@
     ".skilled/skills/.state/authority/README.md",
     ".skilled/skills/.state/completion-sentinel/README.md",
     ".skilled/skills/.state/decision-capture/README.md",
+    ".skilled/skills/.state/doctor-update/README.md",
     ".skilled/skills/.state/goal/README.md",
     ".skilled/skills/.state/loop-guard/README.md",
     ".skilled/skills/.state/smart-router-telemetry/README.md",
@@ -27260,7 +27261,7 @@
     "specs/system-speckit/042-decision-capture/timeline.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "9e4041963fa33e17527dee34580b0c77845e273c35bcad77900e55caedab5c35",
+  "manifestHash": "22aa638aa402a7141ac90f102c01673862c4495a37a981fca5e01ae7f457a8ea",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
