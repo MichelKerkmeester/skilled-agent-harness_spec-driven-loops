@@ -2125,6 +2125,9 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   log(`  - ${conversations.MESSAGES.length} messages captured`);
   log(`  - ${effectiveDecisionCount} key decisions documented`);
   log(`  - ${diagrams.DIAGRAMS.length} diagrams preserved`);
+  if (options.plannerMode !== 'full-auto') {
+    log('  - Continuity fields not written: plan-only save; pass --full-auto to write them');
+  }
   log(`  - Session duration: ${sessionData.DURATION}\n`);
 
   // Step 11: Semantic memory indexing

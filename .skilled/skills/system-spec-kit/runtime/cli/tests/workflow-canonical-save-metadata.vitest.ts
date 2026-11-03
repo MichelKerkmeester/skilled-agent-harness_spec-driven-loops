@@ -28,7 +28,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   loadPerFolderDescription,
@@ -338,6 +338,7 @@ async function runCanonicalSave(
   specFolderPath: string,
   specRelativePath: string,
   plannerMode: 'plan-only' | 'full-auto',
+  options: { silent?: boolean } = {},
 ) {
   const coreModule = await import('../core');
   coreModule.CONFIG.PROJECT_ROOT = fixtureRoot;
@@ -361,7 +362,7 @@ async function runCanonicalSave(
       HAS_FILES: true,
     }),
     plannerMode,
-    silent: true,
+    silent: options.silent ?? true,
   });
 }
 
@@ -408,5 +409,51 @@ describe('full runWorkflow canonical-save metadata integration', () => {
       expect(Number.isNaN(Date.parse(lastSaveAt as string))).toBe(false);
     },
     30_000,
+  );
+
+  it(
+    'prints the plan-only continuity-field notice in the summary and omits it for full-auto',
+    async () => {
+      const continuityNotice =
+        'Continuity fields not written: plan-only save; pass --full-auto to write them';
+      const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+      const loggedOutput = (): string =>
+        stderrSpy.mock.calls.map((call) => String(call[0])).join('');
+
+      try {
+        const planOnly = createCanonicalSaveWorkflowFixture('plan-only-summary');
+        fixtureRoots.add(planOnly.root);
+        process.chdir(planOnly.root);
+        await runCanonicalSave(
+          planOnly.root,
+          planOnly.specFolderPath,
+          planOnly.specRelativePath,
+          'plan-only',
+          { silent: false },
+        );
+        const planOnlyOutput = loggedOutput();
+        expect(planOnlyOutput).toContain('Summary:');
+        expect(planOnlyOutput).toContain(continuityNotice);
+
+        stderrSpy.mockClear();
+
+        const fullAuto = createCanonicalSaveWorkflowFixture('full-auto-summary');
+        fixtureRoots.add(fullAuto.root);
+        process.chdir(fullAuto.root);
+        await runCanonicalSave(
+          fullAuto.root,
+          fullAuto.specFolderPath,
+          fullAuto.specRelativePath,
+          'full-auto',
+          { silent: false },
+        );
+        const fullAutoOutput = loggedOutput();
+        expect(fullAutoOutput).toContain('Summary:');
+        expect(fullAutoOutput).not.toContain(continuityNotice);
+      } finally {
+        stderrSpy.mockRestore();
+      }
+    },
+    60_000,
   );
 });

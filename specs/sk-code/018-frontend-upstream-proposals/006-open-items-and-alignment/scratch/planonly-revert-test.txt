@@ -1,0 +1,6 @@
+## fix reverted, test kept
+     × prints the plan-only continuity-field notice in the summary and omits it for full-auto 58ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+      Tests  1 failed | 7 passed (8)
+## fix restored
+      Tests  8 passed (8)
