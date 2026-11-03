@@ -1,0 +1,50 @@
+   New session                   ? Question with multiple answer +
+                                                                                                                   █
+  ┃                                                                                                                █    Question with multiple answers
+  ┃  Use your question tool to ask me one question with three options, allowing several answers, then stop.        █
+  ┃                                                                                                                █    Context
+                                                                                                                   █    $0.00 spent
+     ┃ Thought: 398ms                                                                                              █
+                                                                                                                   █
+     ┃ The user wants me to use the question tool with one question, three options, multiple answers allowed, then █
+     ┃ stop.                                                                                                       █
+                                                                                                                   █
+     → Asked 1 question                                                                                            █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+
+  ┃
+  ┃  Questions
+  ┃
+  ┃  Focus area  Submit
+  ┃
+  ┃  Focus area: Code review, Tests
+  ┃
+  ┃  ⇆ tab  enter submit  esc dismiss
+  ┃                                                                                                                     /…/probe-opencode:main
+

@@ -1,0 +1,50 @@
+
+ ▐▛███▛█   Claude Code v2.1.316
+▝▜██████▀  Opus 5.5 with high effort · Claude Ultra
+ ▝▝   ▝▝   /tmp/conv-probe · /rc
+
+
+❯ Use your question tool to ask me one question with three options, allowing several answers, then stop.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+←  ☐ Focus areas  ✔ Submit  →
+
+Which areas would you like me to focus on in this repository?
+
+❯ 1. [ ] Documentation
+         Review or improve READMEs, guides and inline docs.
+  2. [ ] Tests
+         Add, fix or extend test coverage.
+  3. [ ] Code quality
+         Look for bugs, simplifications and cleanup opportunities.
+  4. [ ] Type something
+     Submit
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+
+Enter to select · ↑/↓ to navigate · Esc to cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 ---
 title: "sk-create-goal: Manual Testing Playbook"
-description: "Operator directory, review protocol and orchestration guide for validating the sk-create-goal mode through nine deterministic goal-authoring scenarios in one category."
-version: 1.0.0.0
+description: "Operator directory, review protocol and orchestration guide for validating the sk-create-goal mode through ten deterministic goal-authoring scenarios in one category."
+version: 1.0.1.0
 ---
 
 # sk-create-goal: Manual Testing Playbook
@@ -159,7 +159,7 @@ This section records wave planning and capacity guidance for a full manual run o
 
 ---
 
-## 7. GOAL AUTHORING (`SCG-001..SCG-009`)
+## 7. GOAL AUTHORING (`SCG-001..SCG-010`)
 
 ### SCG-001 | Top-level goal
 
@@ -323,11 +323,29 @@ Desired user-visible outcome: the author learns which two criteria to rewrite an
 
 ---
 
+### SCG-010 | Resolve a leftover placeholder after a decision
+
+#### Description
+Verify that a top-level goal with an undecided counter rule fails on the placeholder check, then passes after the operator supplies the append-only decision on a later turn.
+
+#### Scenario Contract
+Prompt: `Author the goal for the scratch demo packet at specs/demo-packet with /create:goal top-level :auto. I have not decided the counter update rule yet, so leave that decision as the template placeholder.`
+
+The first turn must report the placeholder finding and stop without a chat slice. The next turn supplies the exact counter rule, amends the goal and passes all five checks before printing the chat slice.
+
+Desired user-visible outcome: the operator receives a passing goal check and its chat slice after supplying the decision that was missing on the first turn.
+
+#### Test Execution
+> **Feature file:** linked from the cross-reference index in section 9.
+> **Catalog:** no feature-catalog entry exists for this packet.
+
+---
+
 ## 8. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `sk-create-goal/scripts/tests/check-goal.test.cjs` | Unit fixtures for the five named checks and their per-check exports | SCG-005 and SCG-006 exercise the same checks through the operator path |
+| `sk-create-goal/scripts/tests/check-goal.test.cjs` | Unit fixtures for the five named checks and their per-check exports | SCG-005, SCG-006 and SCG-010 exercise the same checks through the operator path |
 | `sk-create-goal/scripts/tests/lint-goal-criteria.test.cjs` | Unit fixtures for both lint rules, the line classes, the walker and the exit-0 command line | SCG-009 runs the same lint through the operator path |
 | `sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs` | This playbook package's own operator-scenario contract | None directly. It gates the playbook rather than the mode the playbook tests |
 
@@ -350,3 +368,4 @@ This packet ships no `feature-catalog/`, so the catalog column is absent and eve
 | SCG-007 | Route a session goal away | GOAL AUTHORING | [SCG-007](goal-authoring/route-session-goal-away.md) |
 | SCG-008 | Resend the parent after a child change | GOAL AUTHORING | [SCG-008](goal-authoring/resend-parent-after-child-change.md) |
 | SCG-009 | Lint goal criteria for rules 4 and 5 | GOAL AUTHORING | [SCG-009](goal-authoring/lint-goal-criteria.md) |
+| SCG-010 | Resolve a leftover placeholder after a decision | GOAL AUTHORING | [SCG-010](goal-authoring/refuse-leftover-placeholder-conversation.md) |

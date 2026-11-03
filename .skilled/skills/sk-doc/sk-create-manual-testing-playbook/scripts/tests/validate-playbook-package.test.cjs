@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Playbook Package Validator Tests
+// ───────────────────────────────────────────────────────────────────
 'use strict';
 
 const assert = require('assert');
@@ -6,17 +9,22 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
-const { validatePackage } = require('../validate-playbook-package.cjs');
+const {
+  validatePackage,
+  parseConversationScript,
+  CONVERSATION_FENCE_INFO,
+} = require('../validate-playbook-package.cjs');
 
 const validatorPath = path.resolve(__dirname, '..', 'validate-playbook-package.cjs');
 const fixtureSource = path.join(__dirname, 'fixtures', 'clean-package');
+const conversationFixtureSource = path.join(__dirname, 'fixtures', 'conversation-package');
 const repoRoot = path.resolve(__dirname, '../../../../../..');
 const manifestPath = path.resolve(__dirname, '..', '..', 'playbook-corpus-manifest.json');
 
-function copyFixture(label, mutate) {
+function copyFixture(label, mutate, source = fixtureSource) {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), `playbook-${label}-`));
   const packageRoot = path.join(tempRoot, 'package');
-  fs.cpSync(fixtureSource, packageRoot, { recursive: true });
+  fs.cpSync(source, packageRoot, { recursive: true });
   if (mutate) mutate(packageRoot);
   return packageRoot;
 }
@@ -35,6 +43,74 @@ function readScenario(packageRoot) {
 
 function writeScenario(packageRoot, text) {
   fs.writeFileSync(scenarioPath(packageRoot), text);
+}
+
+function conversationScenarioPath(packageRoot) {
+  return path.join(packageRoot, 'scenarios', 'conversation-scenario.md');
+}
+
+function readConversationScenario(packageRoot) {
+  return fs.readFileSync(conversationScenarioPath(packageRoot), 'utf8');
+}
+
+function writeConversationScenario(packageRoot, text) {
+  fs.writeFileSync(conversationScenarioPath(packageRoot), text);
+}
+
+/**
+ * Find the JSON body bounds while leaving the surrounding markdown fences intact.
+ *
+ * @param {string} text - Scenario markdown that contains one conversation block.
+ * @returns {{bodyStart: number, contentEnd: number}} Body offsets in the source.
+ */
+function conversationBlockBounds(text) {
+  const fence = '\x60'.repeat(3);
+  const opening = `${fence}${CONVERSATION_FENCE_INFO}\n`;
+  const openingStart = text.indexOf(opening);
+  if (openingStart < 0) throw new Error('conversation fixture block is missing');
+  const bodyStart = openingStart + opening.length;
+  const contentEnd = text.indexOf(`\n${fence}`, bodyStart);
+  if (contentEnd < 0) throw new Error('conversation fixture block is missing');
+  return { bodyStart, contentEnd };
+}
+
+/**
+ * Parse the JSON payload from a conversation fixture.
+ *
+ * @param {string} packageRoot - Fixture package root.
+ * @returns {Object} Parsed conversation script.
+ */
+function readConversationScript(packageRoot) {
+  const text = readConversationScenario(packageRoot);
+  const { bodyStart, contentEnd } = conversationBlockBounds(text);
+  return JSON.parse(text.slice(bodyStart, contentEnd));
+}
+
+/**
+ * Replace the JSON body while preserving its markdown fences.
+ *
+ * @param {string} packageRoot - Fixture package root.
+ * @param {string} content - Replacement JSON source.
+ * @returns {void}
+ */
+function writeConversationBlock(packageRoot, content) {
+  const text = readConversationScenario(packageRoot);
+  const { bodyStart, contentEnd } = conversationBlockBounds(text);
+  writeConversationScenario(packageRoot, text.slice(0, bodyStart) + content + text.slice(contentEnd));
+}
+
+/**
+ * Return a fixture mutator that edits and rewrites its parsed conversation script.
+ *
+ * @param {(script: Object) => void} mutate - Change the parsed fixture script.
+ * @returns {(packageRoot: string) => void} Fixture mutator.
+ */
+function mutateConversationScript(mutate) {
+  return (packageRoot) => {
+    const script = readConversationScript(packageRoot);
+    mutate(script);
+    writeConversationBlock(packageRoot, JSON.stringify(script, null, 2));
+  };
 }
 
 function runCli(packageRoot, extra = []) {
@@ -67,6 +143,40 @@ function expectClean(label, mutate) {
   const outcome = codes(packageRoot);
   assert.strictEqual(outcome.result.status, 0, `${label} should exit 0\n${outcome.result.stdout}\n${outcome.result.stderr}`);
   return outcome;
+}
+
+function conversationOutcome(label, mutate) {
+  const packageRoot = copyFixture(label, mutate, conversationFixtureSource);
+  return codes(packageRoot);
+}
+
+/**
+ * Assert that one invalid script reports the requested field path.
+ *
+ * @param {string} label - Temporary fixture label.
+ * @param {(packageRoot: string) => void} mutate - Invalidating fixture mutation.
+ * @param {string} pathFragment - Expected diagnostic path prefix.
+ * @returns {number} Number of assertions performed.
+ */
+function expectConversationPath(label, mutate, pathFragment) {
+  const outcome = conversationOutcome(label, mutate);
+  let assertions = 0;
+  assertions += 1;
+  assert.strictEqual(
+    outcome.result.status,
+    1,
+    label + ' should exit 1\n' + outcome.result.stdout + '\n' + outcome.result.stderr,
+  );
+  assertions += 1;
+  assert(outcome.codes.includes('CONVERSATION_SCRIPT_INVALID'), label + ' should report CONVERSATION_SCRIPT_INVALID');
+  const findings = outcome.report.packages.flatMap((pkg) => pkg.violations)
+    .filter((item) => item.code === 'CONVERSATION_SCRIPT_INVALID');
+  assertions += 1;
+  assert(
+    findings.some((item) => item.message.startsWith(pathFragment + ':')),
+    label + ' should name ' + pathFragment + '; got ' + findings.map((item) => item.message).join(' | '),
+  );
+  return assertions;
 }
 
 /**
@@ -154,7 +264,7 @@ function run() {
   const backtick = expectClean('backtick-path-report-only', (root) => writeScenario(root, `${readScenario(root)}\nRead \`.skilled/commands/create/diagram.md\` and \`.skilled/skills/sk-doc/SKILL.md:1\`, then \`./clean-scenario.md\` and \`scenarios/clean-scenario.md\`; skip \`<skill>/references/x.md\`, \`/tmp/out.json\` and \`scripts/*.sh\`.\n`));
   const backtickWarnings = backtick.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED');
   assert.deepStrictEqual(backtickWarnings.map((item) => item.message.split(': ').pop()), ['.skilled/commands/create/diagram.md']);
-  const installed = expectClean('backtick-installed-release-state', (root) => writeScenario(root, `${readScenario(root)}\nRecord \`.skilled/release/base.json\`, \`.skilled/release/runs/.doctor-update.last-run.json\` and \`.skilled/skills/.state/doctor-update/base.json\`, but not \`.skilled/releases/base.json\`.\n`));
+  const installed = expectClean('backtick-installed-release-state', (root) => writeScenario(root, `${readScenario(root)}\nRecord \`.skilled/release/base.json\` and \`.skilled/release/runs/.doctor-update.last-run.json\`, but not \`.skilled/releases/base.json\`.\n`));
   assert.deepStrictEqual(installed.report.packages.flatMap((pkg) => pkg.warnings).filter((item) => item.code === 'BACKTICK_PATH_UNRESOLVED').map((item) => item.message.split(': ').pop()), ['.skilled/releases/base.json']);
   const linked = expectClean('backtick-dangling-symlink', (root) => {
     fs.symlinkSync(path.join(root, 'missing-build-output.js'), path.join(root, 'scenarios', 'linked-plugin.js'));
@@ -332,6 +442,220 @@ function runPromptSyncRegressions() {
   console.log('prompt sync regressions: PASS (8 assertions)');
 }
 
+/**
+ * Exercise malformed, valid and edge-case conversation scripts through the CLI.
+ *
+ * @returns {void}
+ */
+function runConversationRegressions() {
+  let assertions = 0;
+
+  function assertStatus(outcome, expected, label) {
+    assertions += 1;
+    assert.strictEqual(
+      outcome.result.status,
+      expected,
+      label + ' should exit ' + expected + '\n' + outcome.result.stdout + '\n' + outcome.result.stderr,
+    );
+  }
+
+  function assertHasCode(outcome, code, label) {
+    assertions += 1;
+    assert(outcome.codes.includes(code), label + ' should report ' + code + '; got ' + outcome.codes.join(', '));
+  }
+
+  function assertLacksCode(outcome, code, label) {
+    assertions += 1;
+    assert(!outcome.codes.includes(code), label + ' should not report ' + code + '; got ' + outcome.codes.join(', '));
+  }
+
+  function assertWarningCount(outcome, expected, label) {
+    assertions += 1;
+    const warnings = unsyncedWarnings(outcome);
+    assert.strictEqual(warnings.length, expected, label + ' should raise ' + expected + ' PROMPT_UNSYNCED warning(s); got ' + JSON.stringify(warnings));
+  }
+
+  function assertWarningMessageIncludes(outcome, fragment, label) {
+    assertions += 1;
+    const warnings = unsyncedWarnings(outcome);
+    assert(warnings.some((warning) => warning.message.includes(fragment)), label + ' should mention ' + fragment);
+  }
+
+  function assertDeepEqual(actual, expected, label) {
+    assertions += 1;
+    assert.deepStrictEqual(actual, expected, label);
+  }
+
+  const contractPrompt = 'Run the fixture contract and report the observed result.';
+  const invalidShapes = [
+    ['invalid JSON block', (root) => writeConversationBlock(root, '{not json'), '(block)'],
+    ['second conversation block', (root) => fs.appendFileSync(
+      conversationScenarioPath(root),
+      '\n' + '\x60'.repeat(3) + CONVERSATION_FENCE_INFO + '\n{}\n' + '\x60'.repeat(3) + '\n',
+    ), '(block)'],
+    ['empty root object', (root) => writeConversationBlock(root, '{}'), 'turns'],
+    ['empty turns', mutateConversationScript((script) => { script.turns = []; }), 'turns'],
+    ['unknown root key', mutateConversationScript((script) => { script.extra = true; }), 'extra'],
+    ['non-boolean trust_hooks', mutateConversationScript((script) => { script.trust_hooks = 'yes'; }), 'trust_hooks'],
+    ['unknown turn key', mutateConversationScript((script) => { script.turns[0].extra = true; }), 'turns[0].extra'],
+    ['unknown question key', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { reply: 'Continue.' }, extra: true }];
+    }), 'turns[0].questions[0].extra'],
+    ['unknown answer key', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { reply: 'Continue.', extra: true } }];
+    }), 'turns[0].questions[0].answer.extra'],
+    ['send and action together', mutateConversationScript((script) => {
+      script.turns[0].action = 'restart';
+    }), 'turns[0]'],
+    ['unsupported action', mutateConversationScript((script) => {
+      script.turns.push({ id: 'bad-action', action: 'pause', check: 'test -f out.txt' });
+    }), 'turns[1].action'],
+    ['send with newline', mutateConversationScript((script) => {
+      script.turns[0].send = contractPrompt + '\nAgain.';
+    }), 'turns[0].send'],
+    ['first behavior is an action', mutateConversationScript((script) => {
+      script.turns[0] = { id: 'first-action', action: 'compact', check: 'test -f out.txt' };
+    }), 'turns[0].action'],
+    ['negative delay', mutateConversationScript((script) => { script.turns[0].delay_ms = -1; }), 'turns[0].delay_ms'],
+    ['descending delay range', mutateConversationScript((script) => {
+      script.turns[0].delay_ms = [5, 2];
+    }), 'turns[0].delay_ms'],
+    ['zero timeout', mutateConversationScript((script) => { script.turns[0].timeout_ms = 0; }), 'turns[0].timeout_ms'],
+    ['invalid retry', mutateConversationScript((script) => { script.turns[0].retry = 2; }), 'turns[0].retry'],
+    ['duplicate turn id', mutateConversationScript((script) => {
+      script.turns[0].id = 'same-id';
+      script.turns.push({ id: 'same-id', check: 'test -f out.txt' });
+    }), 'turns[1].id'],
+    ['question missing match', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ answer: { reply: 'Continue.' } }];
+    }), 'turns[0].questions[0].match'],
+    ['invalid question pattern', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: '(', answer: { reply: 'Continue.' } }];
+    }), 'turns[0].questions[0].match'],
+    ['answer has select and reply', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { select: ['Continue'], reply: 'Continue.' } }];
+    }), 'turns[0].questions[0].answer'],
+    ['empty selection', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { select: [] } }];
+    }), 'turns[0].questions[0].answer.select'],
+    ['multiple labels without multi', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { select: ['Yes', 'No'] } }];
+    }), 'turns[0].questions[0].answer.select'],
+    ['multi beside reply', mutateConversationScript((script) => {
+      script.turns[0].questions = [{ match: 'continue', answer: { reply: 'Continue.', multi: true } }];
+    }), 'turns[0].questions[0].answer.multi'],
+    ['turn missing check', mutateConversationScript((script) => { delete script.turns[0].check; }), 'turns[0].check'],
+    ['unsupported runtime', mutateConversationScript((script) => { script.runtimes = ['cursor']; }), 'runtimes[0]'],
+  ];
+
+  for (const [label, mutate, pathFragment] of invalidShapes) {
+    assertions += expectConversationPath(label, mutate, pathFragment);
+  }
+
+  const emptyQuestionMatch = conversationOutcome('empty question match', mutateConversationScript((script) => {
+    script.turns[0].questions = [{ match: '', answer: { reply: 'Continue.' } }];
+  }));
+  assertStatus(emptyQuestionMatch, 1, 'empty question match');
+  assertHasCode(emptyQuestionMatch, 'CONVERSATION_SCRIPT_INVALID', 'empty question match');
+  const emptyMatchFindings = emptyQuestionMatch.report.packages.flatMap((pkg) => pkg.violations)
+    .filter((item) => item.code === 'CONVERSATION_SCRIPT_INVALID');
+  assertions += 1;
+  assert(
+    emptyMatchFindings.some((item) => item.message === 'turns[0].questions[0].match: must be a non-empty string'),
+    'empty question match should use the non-empty string finding',
+  );
+
+  const unclosedConversation = conversationOutcome('unclosed conversation fence', (root) => {
+    const text = readConversationScenario(root);
+    const closing = `\n${'\x60'.repeat(3)}\n`;
+    const closingIndex = text.lastIndexOf(closing);
+    if (closingIndex < 0) throw new Error('conversation fixture closing fence is missing');
+    writeConversationScenario(root, `${text.slice(0, closingIndex)}\n`);
+  });
+  assertStatus(unclosedConversation, 1, 'unclosed conversation fence');
+  assertHasCode(unclosedConversation, 'CONVERSATION_SCRIPT_INVALID', 'unclosed conversation fence');
+  const unclosedFindings = unclosedConversation.report.packages.flatMap((pkg) => pkg.violations)
+    .filter((item) => item.code === 'CONVERSATION_SCRIPT_INVALID');
+  assertions += 1;
+  assert(
+    unclosedFindings.some((item) => item.message.includes('block has no closing fence')),
+    'an unclosed conversation block should report its missing fence',
+  );
+
+  const clean = conversationOutcome('conversation-package-clean');
+  assertStatus(clean, 0, 'conversation package as-is');
+  assertLacksCode(clean, 'CONVERSATION_SCRIPT_INVALID', 'conversation package as-is');
+  assertWarningCount(clean, 0, 'conversation package as-is');
+
+  const trustHooksTrue = conversationOutcome('conversation-trust-hooks-true', mutateConversationScript((script) => {
+    script.trust_hooks = true;
+  }));
+  assertStatus(trustHooksTrue, 0, 'boolean trust_hooks');
+  assertLacksCode(trustHooksTrue, 'CONVERSATION_SCRIPT_INVALID', 'boolean trust_hooks');
+
+  const validEdges = [
+    ['check-only first turn followed by send', mutateConversationScript((script) => {
+      script.turns = [
+        { id: 'baseline', check: 'test -f out.txt' },
+        { id: 'send', send: contractPrompt, check: 'test -s out.txt' },
+      ];
+    })],
+    ['ascending delay range', mutateConversationScript((script) => { script.turns[0].delay_ms = [3000, 8000]; })],
+    ['multi-select answer', mutateConversationScript((script) => {
+      script.turns[0].questions = [{
+        match: 'continue',
+        answer: { select: ['Yes', 'No'], multi: true },
+      }];
+    })],
+    ['retry once', mutateConversationScript((script) => { script.turns[0].retry = 1; })],
+    ['plain JSON fence is ignored', (root) => fs.appendFileSync(
+      conversationScenarioPath(root),
+      '\n' + '\x60'.repeat(3) + 'json\nnot a conversation script\n' + '\x60'.repeat(3) + '\n',
+    )],
+  ];
+
+  for (const [label, mutate] of validEdges) {
+    assertStatus(conversationOutcome(label, mutate), 0, label);
+  }
+
+  const masked = conversationOutcome('conversation-block-masking', mutateConversationScript((script) => {
+    script.turns[0].check = 'grep -q BLOCKED out.txt || echo SKIP; ls /Users/x';
+  }));
+  assertStatus(masked, 0, 'conversation check text is masked');
+  assertLacksCode(masked, 'FORBIDDEN_VERDICT', 'conversation check text is masked');
+  assertLacksCode(masked, 'SKIP_BLOCKER_MISSING', 'conversation check text is masked');
+  assertLacksCode(masked, 'DEVELOPER_ABSOLUTE_PATH', 'conversation check text is masked');
+
+  const proseVerdict = conversationOutcome('conversation-prose-verdict', (root) => {
+    fs.appendFileSync(conversationScenarioPath(root), '\nThe observed status is BLOCKED.\n');
+  });
+  assertStatus(proseVerdict, 1, 'BLOCKED outside a conversation block');
+  assertHasCode(proseVerdict, 'FORBIDDEN_VERDICT', 'BLOCKED outside a conversation block');
+
+  const promptMatches = conversationOutcome('conversation-prompt-sync-equal');
+  assertStatus(promptMatches, 0, 'conversation first send matches contract prompt');
+  assertWarningCount(promptMatches, 0, 'conversation first send matches contract prompt');
+
+  const promptDiffers = conversationOutcome('conversation-prompt-sync-different', mutateConversationScript((script) => {
+    script.turns[0].send = 'Run a different contract.';
+  }));
+  assertStatus(promptDiffers, 0, 'conversation first send differs from contract prompt');
+  assertWarningCount(promptDiffers, 1, 'conversation first send differs from contract prompt');
+  assertWarningMessageIncludes(
+    promptDiffers,
+    "the conversation script's first send",
+    'conversation prompt sync warning',
+  );
+
+  assertDeepEqual(
+    parseConversationScript('Ordinary scenario text without a conversation block.'),
+    { script: null, findings: [], block: null },
+    'parseConversationScript should return the empty result when no block exists',
+  );
+
+  console.log('conversation script regressions: PASS (' + assertions + ' assertions)');
+}
+
 // A report larger than one pipe buffer must still arrive whole. The live corpus no longer prints
 // that much, so a seeded package carries enough unresolved paths to exceed the buffer.
 function runPipedReportRegression() {
@@ -347,3 +671,4 @@ runContractRegressions();
 runCentralPackageDiscoveryRegression();
 runPromptSyncRegressions();
 runPipedReportRegression();
+runConversationRegressions();

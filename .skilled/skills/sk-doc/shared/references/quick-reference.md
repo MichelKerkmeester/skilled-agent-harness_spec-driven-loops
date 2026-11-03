@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gates at a glance"
 importance_tier: normal
 contextType: general
-version: 2.1.0.47
+version: 2.1.1.0
 ---
 
 # Markdown Optimizer - Quick Reference
@@ -302,7 +302,8 @@ Validation note: the current validator checks the root playbook and does not rec
 - [feature-catalog-template.md](../../sk-create-feature-catalog/assets/feature-catalog-template.md) - Feature catalog template
 - [feature-catalog-snippet-template.md](../../sk-create-feature-catalog/assets/feature-catalog-snippet-template.md) - Per-feature catalog template
 - [manual-testing-playbook-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md) - Playbook creation template
-- [manual-testing-playbook-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md) - Per-feature snippet template
+- [manual-testing-playbook-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md) - Per-feature single-prompt snippet template
+- [manual-testing-playbook-conversation-snippet-template.md](../../sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md) - Per-feature conversation scenario template
 
 ### Related Skills
 - `sk-git` - Worktrees, conventional commits, PRs and merge/finish workflows

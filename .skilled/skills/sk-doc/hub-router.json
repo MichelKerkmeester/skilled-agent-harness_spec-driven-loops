@@ -1,6 +1,6 @@
 {
   "skill": "sk-doc",
-  "version": "2.3.34.0",
+  "version": "2.3.35.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -299,6 +299,10 @@
         "operator validation",
         "multi-agent execution",
         "release readiness",
+        "playbook conversation",
+        "multi-turn conversation script",
+        "playbook scenario",
+        "manual test scenario",
         "/create:manual-testing-playbook"
       ]
     },

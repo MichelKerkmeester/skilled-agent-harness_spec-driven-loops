@@ -8,7 +8,7 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
-version: 1.0.0.22
+version: 1.1.0.0
 ---
 
 # Manual Testing Playbook Snippet Template
@@ -47,7 +47,7 @@ Each feature file is the canonical home for full scenario execution detail. The 
 
 Copy this into `manual-testing-playbook/{CATEGORY_DIR}/{FEATURE_SLUG}.md`. Both placeholder values must be kebab-case:
 
-```markdown
+````markdown
 ---
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
@@ -108,6 +108,8 @@ Operators run the exact prompt and command sequence for `{FEATURE_ID}` and confi
 
 - Prompt: `{PROMPT, natural-human voice by default (e.g., "Review this auth diff for security issues"). Use RCAF "As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}." only when the actor is an AI orchestrator. See references/prompt-voice.md.}`
 
+> Conversation scenario? Use `assets/manual-testing-playbook-conversation-snippet-template.md` instead of this template. Pick the style with `SKILL.md` section 6, Choosing the Scenario Style.
+
 ### Commands
 
 1. `{COMMAND_1}`
@@ -160,7 +162,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
 - Playbook ID: {FEATURE_ID}
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `{CATEGORY_DIR}/{FEATURE_SLUG}.md`
-```
+````
 
 ### Authoring Notes
 

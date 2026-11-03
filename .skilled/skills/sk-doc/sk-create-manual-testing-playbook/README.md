@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-manual-testing-playbook
@@ -22,7 +22,7 @@ version: 1.0.1.0
 | **Use it for** | Authoring `manual-testing-playbook/` packages: deterministic operator scenarios, evidence capture, pass/fail criteria |
 | **Invoke with** | `/create:manual-testing-playbook`, "manual testing playbook", "testing playbook", "release readiness" |
 | **Works on** | Skills and systems that need operator-facing manual validation ahead of a release |
-| **Produces** | One root `manual-testing-playbook.md` index plus one per-feature scenario file per feature ID |
+| **Produces** | One root `manual-testing-playbook.md` index plus one scenario file per feature ID; `scripts/run-conversation-scenario.cjs` plays conversation scenarios into live runtimes |
 
 ---
 
@@ -83,7 +83,7 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
 
 ## 4. HOW IT WORKS
 
-Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID from `assets/manual-testing-playbook-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order and feature ID counts before delivery. The operator validator warns when a prompt copy disagrees.
+Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order and feature ID counts before delivery. The operator validator warns when a prompt copy disagrees.
 
 ### Key Concept: Prompt Synchronization
 
@@ -162,8 +162,10 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 | [`references/prompt-voice.md`](./references/prompt-voice.md) | Natural-human vs RCAF voice decision table |
 | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring package defects and correct fixes |
 | [`references/examples.md`](./references/examples.md) | Shipped reference playbooks and scaffold templates |
+| [`references/conversation-scenarios.md`](./references/conversation-scenarios.md) | The `json conversation` script format and the shared conversation runner |
 | [`assets/manual-testing-playbook-template.md`](./assets/manual-testing-playbook-template.md) | Root playbook scaffold |
-| [`assets/manual-testing-playbook-snippet-template.md`](./assets/manual-testing-playbook-snippet-template.md) | Per-feature file scaffold |
+| [`assets/manual-testing-playbook-snippet-template.md`](./assets/manual-testing-playbook-snippet-template.md) | Per-feature single-prompt scenario scaffold |
+| [`assets/manual-testing-playbook-conversation-snippet-template.md`](./assets/manual-testing-playbook-conversation-snippet-template.md) | Per-feature conversation scenario scaffold |
 
 <!-- readme-check
 allow-ref checklist.md | the checklist a spec packet can carry at its root, which only a legacy packet still has, so no fixed checkout path holds one

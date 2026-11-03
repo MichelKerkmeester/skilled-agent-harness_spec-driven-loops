@@ -1,0 +1,50 @@
+╭─────────────────────────────────────────────────╮
+│ ✨ Update available! 0.164.0 -> 0.166.0         │
+│ Run brew upgrade --cask codex to update.        │
+│                                                 │
+│ See full release notes:                         │
+│ https://github.com/openai/codex/releases/latest │
+╰─────────────────────────────────────────────────╯
+
+
+  >_ OpenAI Codex (v0.164.0)
+     /tmp/probe-codex
+  permissions: YOLO mode
+
+  Tip: Use /rename to rename your threads for easier thread resuming.
+
+⚠ Heads up, you have less than 25% of your weekly limit left. Run /status for a breakdown.
+
+
+› Use your question tool to ask me one question with three options, allowing several answers, then stop.
+
+
+
+  Question 1/1 (1 unanswered)
+  Which areas should I focus on? Select any that apply, or type several answers.
+
+    1. Writing            Drafting, editing, or summarizing.
+    2. Research           Finding and evaluating information.
+    3. Coding             Building, debugging, or reviewing software.
+  › 4. None of the above  Optionally, add details in notes (tab)
+
+  › teal
+
+  tab or esc to clear notes | enter to submit answer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

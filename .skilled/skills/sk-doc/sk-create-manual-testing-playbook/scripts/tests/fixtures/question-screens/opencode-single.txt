@@ -1,0 +1,50 @@
+   New session                   ? Question with multiple answer +
+                                                                                                                   █
+  ┃                                                                                                                █    Question with multiple answers
+  ┃  Use your question tool to ask me one question with three options, allowing several answers, then stop.        █
+  ┃                                                                                                                █    Context
+                                                                                                                   █    8,136 tokens
+     ┃ Thought: 398ms                                                                                              █    1% used
+                                                                                                                   █    $0.00 spent
+     ┃ The user wants me to use the question tool with one question, three options, multiple answers allowed, then █
+     ┃ stop.                                                                                                       █
+                                                                                                                   █
+  ┃                                                                                                                █
+  ┃  # Questions                                                                                                   █
+  ┃                                                                                                                █
+  ┃  Which of these areas would you like me to focus on? (Select all that apply)                                   █
+  ┃  Code review, Tests                                                                                            █
+  ┃                                                                                                                █
+                                                                                                                   █
+     You selected Code review and Tests.                                                                           █
+                                                                                                                   █
+     As requested, I've asked my one question and will stop here.                                                  █
+                                                                                                                   █
+     Build · DeepSeek V4.1 Flash 1017 · 2m 38s · 76.9 tok/s                                                        █
+                                                                                                                   █
+  ┃                                                                                                                █
+  ┃  Use your question tool to ask me one single-choice colour question with options red, green and blue.          █
+  ┃                                                                                                                █
+                                                                                                                   █
+     → Asked 1 question                                                                                            █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+
+  ┃
+  ┃  Questions
+  ┃
+  ┃  Which colour do you prefer?
+  ┃
+  ┃  1. Red
+  ┃     The colour red.
+  ┃  2. Green
+  ┃     The colour green.
+  ┃  3. Blue
+  ┃     The colour blue.
+  ┃  4. Type your own answer
+  ┃
+  ┃  ↑↓ select  enter submit  esc dismiss
+  ┃                                                                                                                     /…/probe-opencode:main
+

@@ -310,7 +310,13 @@
     "repo-local rule",
     "we should always",
     "stop doing",
-    "add a rule"
+    "add a rule",
+    "playbook scenario",
+    "playbook conversation",
+    "multi-turn conversation script",
+    "manual test scenario",
+    "json conversation",
+    "conversation runner"
   ],
   "derived": {
     "trigger_phrases": [

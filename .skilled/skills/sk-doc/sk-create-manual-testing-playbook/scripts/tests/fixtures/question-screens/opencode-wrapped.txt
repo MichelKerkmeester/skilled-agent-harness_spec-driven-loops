@@ -1,0 +1,12 @@
+  ┃  Questions
+  ┃
+  ┃  What's the URL of the site I should onboard the diagram skin from? If you'd like, include 1–2 extra pages (landing + docs/blog) and I'll merge the
+  ┃  palette and font signals across them.
+  ┃
+  ┃  1. One URL — I'll paste it
+  ┃     I'll sample the landing page only and extract its palette and type stack.
+  ┃  2. Two or three URLs
+  ┃     I'll fetch each and merge the dominant colors and font families before mapping roles.
+  ┃  3. Type your own answer
+  ┃
+  ┃  ↑↓ select  enter submit  esc dismiss

@@ -1,0 +1,50 @@
+   New session                     Question with multiple answer +
+     Requirements
+                                                                                                                        Question with multiple answers
+     - First request: use the question tool for exactly one question with three options, allowing several answers,
+       then stop.                                                                                                       Context
+     - Second request: use the question tool for one single-choice colour question with options red, green and          $0.00 spent
+       blue.
+
+     Decisions
+
+     - (none)
+
+     Work State
+
+     Completed
+
+     - Asked one multi-select question ("Which of these areas would you like me to focus on?") with options Code
+       review, New feature, Tests; user selected Code review and Tests.
+     - Asked one single-choice colour question ("Which colour do you prefer?") with options Red, Green, Blue.
+
+     Active
+
+     - (none)
+
+     Blocked
+
+     - (none)
+
+     Next Move
+
+     1. (none)
+
+     Relevant Files
+
+     - (none)
+
+     Important Context
+
+     - For the colour question the user answered "teal", a custom answer outside the three offered options; this
+       was acknowledged.
+     - The user's earlier selections (Code review, Tests) were only survey answers; no work on them was started or
+       requested.                                                                                                  ▄
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  /…/probe-opencode:main  $0.00  ctrl+p commands    /…/probe-opencode:main
+

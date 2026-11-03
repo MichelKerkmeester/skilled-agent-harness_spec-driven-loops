@@ -1,0 +1,50 @@
+
+ ● ◉ ask_user_question
+   ◉ question
+
+ ✻ Turn took 0s (Total time 28s · 2 turns)
+
+ ❯ Call the tool named question (not ask_user_question) once: ask which sizes I want, with small, medium and large as multi-select options. Then stop.
+
+● Question ask user
+  └ 1 line returned (ctrl+o to toggle)
+
+ You chose not to answer the question(s). Awaiting your instructions.
+
+ ❯ Call ask_user_question once with multiSelect set to true and the options small, medium and large, asking which sizes I want. Then stop.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question
+   └ 1 line returned (ctrl+o to toggle)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● You selected: Small and Large.
+
+ ✻ Turn took 12s (Total time 1m 2s · 4 turns)
+
+ ❯ Call ask_user_question once, single choice, options red, green and blue, asking for a colour. Then stop.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ · Waiting for your answer… (↓ 106 tokens · 2s)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Colour
+
+ Which colour would you like?
+
+❯ 1. Red
+     Red.
+  2. Green
+     Green.
+  3. Blue
+     Blue.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 99% left | used: 10.8k tok | $0.00

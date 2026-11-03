@@ -1,0 +1,50 @@
+  btw
+
+[Prompts]
+  /create-agent, /create-benchmark, /create-changelog, /create-command, /create-diff, /create-feature-catalog, /create-goal, /create-manual-testing-playbook,
+/create-readme, /create-repo-rule, /create-skill, /create-skill-parent, /create-with-human-voice, /deep-ai-council, /deep-research, /deep-review, /design-chart,
+/design-diagram, /design-extract, /doctor-agents-md, /doctor-ci, /doctor-deep-loop, /doctor-env, /doctor-git, /doctor-helper, /doctor-install, /doctor-mcp,
+/doctor-runtime-mirrors, /doctor-setup, /doctor-sk-code, /doctor-sk-skill, /doctor-skill-advisor, /doctor-speckit, /doctor-symlink, /doctor-update, /goal-pi,
+/local-skilled-alignment, /prompt-improve, /speckit-complete, /speckit-handoff, /speckit-implement, /speckit-plan, /speckit-resume, /speckit-save,
+/speckit-search
+
+[Extensions]
+  .pi/extensions/pi-cache-optimizer, .pi/extensions/pi-fast-mode-w-subagent-support/src, @juicesharp/rpiv-ask-user-question, @juicesharp/rpiv-todo,
+agent/extensions/pi-cache-optimizer, agent/extensions/pi-fast-mode-w-subagent-support/src, dbachelder/pi-btw:btw.ts, janvitos/pi-plan-build,
+orca-agent-status.ts, orca-prefill.ts, orca-titlebar-spinner.ts, pi-blackhole:dist, pi-claude-code-ui, pi-claude-code-ui:spinner.ts, pi-statusline:src,
+pi-web-access:dist
+
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.
+
+ Warning: MCP servers need attention:
+   code_mode: failed: MCP connection closed
+ Run /mcp to fix.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available
+ Package updates are available. Run pi update --extensions
+ Packages:
+ - pi-web-access
+ - pi-claude-code-ui
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ❯ Use your question tool to ask me one question with three options, allowing several answers, then stop.
+
+● Question ask user
+
+ ✳ Waiting for your answer… (↓ 143 tokens · 2m 33s)
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Next focus: Which of these should I focus on next?
+
+ → Add: Explore the codebase
+   Add: Review recent changes
+   Add: Run the test suite
+   Add a custom answer
+
+ ↑↓ navigate  enter select  escape/ctrl+c cancel
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+main | DeepSeek V4.1 Flash 1017 | ctx: 100% left

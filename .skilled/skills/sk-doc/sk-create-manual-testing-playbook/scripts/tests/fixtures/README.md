@@ -10,3 +10,6 @@ frontmatter, each unconditional field, all three conditional rules, verdicts, fi
 orphans and phantoms, census warnings, local paths, evergreen truth, placeholders, strict exit behavior, and both
 the explicit whole-tree and per-file routing-gold exclusions. The per-file fixture carries the same non-empty
 `expected_workflow_mode` plus typed `expected_leaf_resources` signature consumed by the topology gate.
+
+The `conversation-package` fixture copies the clean package and adds one scenario with a valid conversation block
+whose first `send` matches its contract prompt.

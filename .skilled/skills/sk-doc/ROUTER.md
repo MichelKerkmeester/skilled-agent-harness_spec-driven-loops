@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.3.14.0
+version: 2.4.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -86,7 +86,16 @@ emits leaf paths, and this router never re-decides the mode.
   touch comes before deciding what to change.
 - **playbook leaves** — the manual-testing-playbook README a request to author a
   manual testing playbook loads. Fired by "playbook system / manual testing
-  playbook / testing playbook" requests.
+  playbook / testing playbook / playbook scenario / manual test
+  scenario" requests.
+- **playbook-conversation leaves** — the conversation-scenario reference and the
+  conversation snippet template a request to write a multi-turn json conversation script for
+  a playbook scenario loads. Fired by "playbook conversation / multi-turn
+  conversation script / json conversation / conversation runner" requests. This
+  intent scores double. "manual testing playbook" also matches "testing
+  playbook", so that one phrase scores the playbook intent twice, and at equal
+  weight a request naming both a playbook and a conversation would load only the
+  playbook README. At double weight the two tie and both leaf sets load.
 - **feature-catalog leaves** — the feature-catalog README a request to inventory a
   project's features / capabilities loads. Fired by "feature catalog / feature
   inventory / capabilities" requests.
@@ -154,7 +163,8 @@ INTENT_SIGNALS = {
     "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "opencode command", "$arguments", "/create:command"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
     "HVR": {"weight": 4, "keywords": ["hvr", "human voice rules", "apply human voice", "rewrite in human voice", "make this sound human", "sounds ai-generated", "reads like ai wrote it", "reads like a machine wrote it", "remove ai tells", "ai writing tells", "voice pass", "de-ai the writing", "banned word check", "human voice"]},
-    "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness", "/create:manual-testing-playbook"]},
+    "PLAYBOOK": {"weight": 4, "keywords": ["playbook system", "manual testing playbook", "testing playbook", "deterministic scenario", "evidence collection", "operator validation", "multi-agent execution", "release readiness", "playbook scenario", "manual test scenario", "/create:manual-testing-playbook"]},
+    "PLAYBOOK_CONVERSATION": {"weight": 8, "keywords": ["playbook conversation", "multi-turn conversation script", "json conversation", "conversation runner", "run-conversation-scenario"]},
     "FEATURE_CATALOG": {"weight": 4, "keywords": ["feature catalog", "feature inventory", "catalog of features", "features overview", "capabilities", "catalog package", "per-feature files", "source anchors", "root catalog", "capability inventory", "/create:feature-catalog"]},
     "README_CREATION": {"weight": 4, "keywords": ["create a readme", "readme for", "a readme", "front-page overview", "project overview", "getting started doc", "intro doc", "overview doc", "landing doc", "create readme", "readme", "folder readme", "write readme", "readme.md", "code folder readme", "/create:readme"]},
     "CHANGELOG": {"weight": 4, "keywords": ["changelog", "release notes", "version notes", "release summary", "what shipped", "since the last version", "changelog entry", "nested changelog", "packet changelog", "packet-local changelog", "create changelog", "global changelog", "--bump", "--release", "vx.y.z.b", "/create:changelog"]},
@@ -213,6 +223,10 @@ RESOURCE_MAP = {
     ],
     "PLAYBOOK": [
         "sk-create-manual-testing-playbook/references/README.md"
+    ],
+    "PLAYBOOK_CONVERSATION": [
+        "sk-create-manual-testing-playbook/references/conversation-scenarios.md",
+        "sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md"
     ],
     "FEATURE_CATALOG": [
         "sk-create-feature-catalog/references/README.md"
@@ -315,10 +329,12 @@ RESOURCE_MAP = {
         "sk-create-feature-catalog/references/README.md",
         "sk-create-feature-catalog/references/common-pitfalls.md",
         "sk-create-feature-catalog/references/examples.md",
+        "sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
         "sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
         "sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
         "sk-create-manual-testing-playbook/references/README.md",
         "sk-create-manual-testing-playbook/references/common-pitfalls.md",
+        "sk-create-manual-testing-playbook/references/conversation-scenarios.md",
         "sk-create-manual-testing-playbook/references/examples.md",
         "sk-create-manual-testing-playbook/references/prompt-voice.md",
         "shared/assets/llmstxt-templates.md",
