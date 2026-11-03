@@ -248,7 +248,7 @@ function canonicalRoot(dir) {
     const env = { ...process.env };
     delete env.GIT_DIR;
     delete env.GIT_WORK_TREE;
-    root = realpathSync(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+    root = realpathSync(execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', '--show-toplevel'], {
       cwd: input,
       env,
       encoding: 'utf8',

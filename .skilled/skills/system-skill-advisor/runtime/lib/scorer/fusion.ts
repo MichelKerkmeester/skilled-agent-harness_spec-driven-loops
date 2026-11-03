@@ -700,6 +700,14 @@ export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection
   if (skillId === 'system-spec-kit' && /\b(packet|spec folder|save memory|phase|continuation prompts|resume handling)\b/.test(promptLower)) {
     return true;
   }
+  // Captured operator answers wait in a queue that spec-kit's save step owns, so a show or list
+  // question about that queue, its chat candidates or the decision record is answered there.
+  // Only a read-only question is lifted: a lift applies to any prompt, and a request to research,
+  // dispatch or build something about decisions belongs to another skill.
+  if (skillId === 'system-spec-kit' && isReadOnlyExplainer(promptLower)
+    && /\b(decision capture|decision record|chat candidates?|operator decisions?|recorded as decisions?)\b/.test(promptLower)) {
+    return true;
+  }
   if (skillId === 'system-deep-loop' && /\b(ai council|planning council|council deliberation|council artifacts|multi-seat planning)\b/.test(promptLower)) {
     return true;
   }

@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -55,7 +55,7 @@ loads before an intent selects it.
 - **AUTO_MODE** — ":auto", "auto mode", "autopilot", "unattended" and "setup resolution" requests load `references/workflows/auto-mode-contract.md`.
 - **CLI_TRANSPORT** — "daemon cli", "cli shim", "memory handback", "smart router", "cli-*" and "warm-only" requests load `references/cli/daemon-cli-reference.md`, `references/cli/memory-handback.md` and `references/cli/shared-smart-router.md`.
 - **TEMPLATE_AUTHORING** — "template style", "author a template", "template convention", "tmpl" and "template anchors" requests load `references/templates/template-style-guide.md` and `references/workflows/spec-authoring-card.md`.
-- **DECISION** — "as a decision", "decision record", "operator decision" and "record my answer" requests load `references/memory/save-workflow.md` and `references/validation/decision-format.md`.
+- **DECISION** — "as a decision", "decision record", "operator decision", "record my answer", "decision capture queue", "decision capture folder", "decision capture state" and "this chat candidate" requests load `references/memory/save-workflow.md` and `references/validation/decision-format.md`.
 
 ---
 
@@ -179,7 +179,7 @@ INTENT_SIGNALS = {
     "AUTO_MODE": {"weight": 3, "keywords": [":auto", "auto mode", "autopilot", "unattended", "setup resolution"]},
     "CLI_TRANSPORT": {"weight": 3, "keywords": ["daemon cli", "cli shim", "memory handback", "smart router", "cli-*", "warm-only"]},
     "TEMPLATE_AUTHORING": {"weight": 3, "keywords": ["template style", "author a template", "template convention", "tmpl", "template anchors"]},
-    "DECISION": {"weight": 4, "keywords": ["as a decision", "decision record", "operator decision", "record my answer"]},
+    "DECISION": {"weight": 4, "keywords": ["as a decision", "decision record", "operator decision", "record my answer", "decision capture queue", "decision capture folder", "decision capture state", "this chat candidate"]},
 }
 
 RESOURCE_MAP = {

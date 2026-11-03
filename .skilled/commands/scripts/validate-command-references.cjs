@@ -126,6 +126,9 @@ function extractViolations(file, rootDir = REPO_ROOT) {
       const token = normalizeSkillToken(m[0]);
       if (!token) continue;
       if (/^\.doctor-[a-z0-9-]+\./.test(path.basename(token))) continue;
+      // A path under the gitignored runtime state root is written while a command runs, so a clean
+      // checkout never holds it. The tracked README under it stays checked.
+      if (/^\.skilled\/skills\/\.state\//.test(token) && path.basename(token) !== 'README.md') continue;
       if (!fs.existsSync(path.join(rootDir, token))) {
         add(lineNo, 'skill-asset', token, 'path does not exist on disk');
       }
