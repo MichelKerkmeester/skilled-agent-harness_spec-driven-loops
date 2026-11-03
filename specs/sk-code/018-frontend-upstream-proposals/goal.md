@@ -44,12 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Phases run in the proposals' adoption order: 001 surface, 002 tooling, 003 hand-offs, 004 scenarios, 005 inferred ranks. |
+| D1 | Phases run in the proposals' adoption order: 001 surface, 002 tooling, 003 hand-offs, 004 scenarios, 005 inferred ranks, then 006 closes the open items and aligns the touched skills. |
 | D2 | The frontend surface is a dedicated sk-code surface, never part of `sk-code-quality`. |
 | D3 | Routing vocabulary ships only once router reach proves it; an outrank is fixed by renaming the phrase, never by an allowlist entry or a scorer change. |
 | D4 | No Barter-only content lands: no Barter tokens, profile, repository modes, aliases or browser targets. |
 | D5 | Work stays on `worktrees/314-frontend-upstream-proposals` and follows the sk-git-skilled commit flow. |
-| D6 | Research and verification run on DeepSeek V4.1 Flash 1017 via opencode-go; builds run on cli-codex gpt-6-luna, xhigh, fast, never through a gateway. |
+| D6 | Research, verification and builds run on DeepSeek V4.1 Flash via opencode-go (`opencode-go/deepseek-v4.1-flash`), never through a gateway. |
 | D7 | An INFERRED rank changes code only after its confirming run is saved. |
 
 <!-- /ANCHOR:directive -->

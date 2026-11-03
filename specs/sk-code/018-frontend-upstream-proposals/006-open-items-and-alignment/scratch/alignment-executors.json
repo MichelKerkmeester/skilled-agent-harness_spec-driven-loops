@@ -1,0 +1,126 @@
+{
+  "defaultPreset": "deepseek",
+  "presets": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "binary": "pi",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "thinking": "max",
+      "mode": "text",
+      "flags": [
+        "--offline"
+      ],
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "PI_BLACKHOLE_PASSIVE": "true",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "tools": "read,grep,find,ls,bash",
+      "stdin": "/dev/null",
+      "timeoutSeconds": 1800,
+      "stallSeconds": 600,
+      "testRunnerPatterns": [
+        "\\bnpx vitest\\b",
+        "\\bvitest run\\b",
+        "\\bnode --test\\b",
+        "\\bpytest\\b",
+        "run-script-tests\\.sh"
+      ],
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "terra": {
+      "kind": "cli-pi",
+      "binary": "pi",
+      "model": "openai/gpt-6.1-terra",
+      "thinking": "high",
+      "mode": "text",
+      "flags": [
+        "--offline"
+      ],
+      "env": {
+        "SYSTEM_SPEC_GATE_ENFORCE": "0",
+        "AI_SESSION_CHILD": "1",
+        "PI_BLACKHOLE_PASSIVE": "true",
+        "GIT_CONFIG_COUNT": "1",
+        "GIT_CONFIG_KEY_0": "core.fsmonitor",
+        "GIT_CONFIG_VALUE_0": "false"
+      },
+      "tools": "read,grep,find,ls,bash",
+      "stdin": "/dev/null",
+      "timeoutSeconds": 1800,
+      "stallSeconds": 600,
+      "testRunnerPatterns": [
+        "\\bnpx vitest\\b",
+        "\\bvitest run\\b",
+        "\\bnode --test\\b",
+        "\\bpytest\\b",
+        "run-script-tests\\.sh"
+      ],
+      "persona": ".claude/agents/review.md",
+      "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+    },
+    "opus-high": {
+      "kind": "native",
+      "agent": "review",
+      "model": "opus",
+      "effort": "high"
+    }
+  },
+  "lanes": {
+    "kind": "cli-pi",
+    "binary": "pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "thinking": "max",
+    "mode": "text",
+    "flags": [
+      "--offline"
+    ],
+    "env": {
+      "SYSTEM_SPEC_GATE_ENFORCE": "0",
+      "AI_SESSION_CHILD": "1",
+      "PI_BLACKHOLE_PASSIVE": "true",
+      "GIT_CONFIG_COUNT": "1",
+      "GIT_CONFIG_KEY_0": "core.fsmonitor",
+      "GIT_CONFIG_VALUE_0": "false"
+    },
+    "tools": "read,grep,find,ls,bash",
+    "stdin": "/dev/null",
+    "timeoutSeconds": 1800,
+    "stallSeconds": 600,
+    "testRunnerPatterns": [
+      "\\bnpx vitest\\b",
+      "\\bvitest run\\b",
+      "\\bnode --test\\b",
+      "\\bpytest\\b",
+      "run-script-tests\\.sh"
+    ],
+    "persona": ".claude/agents/review.md",
+    "preamble": ".skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md"
+  },
+  "critic": {
+    "kind": "cli-pi",
+    "binary": "pi",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "thinking": "max",
+    "mode": "text",
+    "flags": [
+      "--offline"
+    ],
+    "env": {
+      "SYSTEM_SPEC_GATE_ENFORCE": "0",
+      "AI_SESSION_CHILD": "1",
+      "PI_BLACKHOLE_PASSIVE": "true",
+      "GIT_CONFIG_COUNT": "1",
+      "GIT_CONFIG_KEY_0": "core.fsmonitor",
+      "GIT_CONFIG_VALUE_0": "false"
+    },
+    "tools": "read,grep,find,ls,bash",
+    "stdin": "/dev/null",
+    "timeoutSeconds": 1800,
+    "stallSeconds": 600
+  }
+}

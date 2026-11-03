@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment",
+  "spec_folder": "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment",
+  "parent_id": "sk-code/018-frontend-upstream-proposals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "open items and alignment",
+      "phase 6 open items and alignment",
+      "same mode tie compare text",
+      "gold corpus pin",
+      "open items and alignment plan",
+      "open items and alignment tasks",
+      "open items and alignment acceptance criteria",
+      "open items and alignment implementation summary"
+    ],
+    "key_topics": [
+      "open",
+      "items",
+      "alignment",
+      "phase",
+      "same",
+      "mode",
+      "tie",
+      "compare",
+      "text",
+      "gold",
+      "corpus",
+      "pin"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      "core/workflow.ts",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs",
+      "scratch/alignment-executors.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-admission.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canary-router.cjs",
+        "kind": "file",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-executors.json",
+        "kind": "config",
+        "path": "scratch/alignment-executors.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Targeted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Alignment",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`compiled-route-admission.test.cjs` pins 96 gold scenarios, but the live corpus holds 84, because the doctor scenarios moved to the central playbook in `28b388e81b` without a re-pin",
+    "created_at": "2026-11-03T14:26:31Z",
+    "last_save_at": "2026-11-03T15:22:25.511Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e436a4ec5313da6b8ca5f9acb386fe5e268ad10505055a1feea1e656688e3a79",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "19c2caedda69e305bc556838394c866dd4793836d8ff52d2ac04b1c8b963cd75",
+      "plan.md": "b1cd37aee4298f894dfeb8785454ef64d5b0048cf52b983a72e14e8829b60fb5",
+      "tasks.md": "7e0f54c67de8db60cc474a90b95d91fef4cfd5544b035f8a230cd1f5ac601495",
+      "implementation-summary.md": "c3f4e38063514b718c1c83ccc3ab430ffade275e39d099b33059bb858428bc8e"
+    },
+    "last_active_at": null
+  }
+}

@@ -111,6 +111,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 3 | 003-design-handoffs/ | Ranks 5 to 7: open values to `sk-design-fundamentals`, reduced motion, the profile slot | Complete |
 | 4 | 004-playbook-scenarios/ | Rank 8: generic mcp-figma and fundamentals playbook scenarios | Complete |
 | 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Complete |
+| 6 | 006-open-items-and-alignment/ | [Phase 6 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -127,6 +128,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 002-tooling-fixes | 003-design-handoffs | `--check` reports orphan phrases and reach defaults to the safer setting | Both scripts' test suites exit 0 |
 | 003-design-handoffs | 004-playbook-scenarios | The hand-off line, the reduced-motion section and the profile slot exist | `rg -n "sk-design-fundamentals"` hits the three hand-off files |
 | 004-playbook-scenarios | 005-inferred-confirmations | The five scenarios exist and both playbook validators pass | The playbook validator exits 0 for mcp-figma and for sk-design-fundamentals |
+| 005-inferred-confirmations | 006-open-items-and-alignment | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
