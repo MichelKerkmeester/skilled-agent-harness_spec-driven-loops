@@ -569,6 +569,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 **How search works**
 
 - Gate 1 matches a prompt against author-declared trigger phrases through the committed trigger index at `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json`
+- The trigger-index generator names the checkout it indexes. Run from a project that links the Skilled source, it indexes the source checkout unless `--repo-root` names another, and it now prints one stderr line naming both roots and the `--repo-root` and `--out` flags. The default root, stdout and exit codes are unchanged
 - Free-text retrieval uses the ripgrep recipes in [retrieval-conventions.md](.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md)
 - Both lanes read committed files, so neither needs a running daemon
 - Retrieval is lexical only: semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup are unsupported. A miss is a clean no-hit rather than a degraded guess
@@ -576,6 +577,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 **The moving parts**
 
 - `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`
+- A save that is not `--full-auto` ends its summary with `Continuity fields not written: plan-only save; pass --full-auto to write them`, so a plan-only save no longer looks like a full one
 - Recovery is the continuity ladder that `/speckit:resume` owns, not a session lookup
 - `/speckit:search` runs the two lexical lanes
 - `/doctor:speckit` checks that the index and the recipes are still healthy
@@ -897,7 +899,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 - **`mcp-obsidian`:** manage Obsidian notes through `notesmd-cli`, the official `obsidian` CLI or an Obsidian MCP server
 - **`mcp-aside-devtools`:** drive the Aside AI browser through its CLI or its MCP
 - **`mcp-notion`:** work in a Notion workspace through the official Notion MCP, with direct API calls where the MCP falls short
-- **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated
+- **`mcp-figma` _(transport)_:** read, author and export Figma designs through Figma Desktop and the `figma-ds-cli`. Reads and exports run freely, while authoring and destructive commands are gated. A read that feeds code ends at the five-pass check in `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`, and when the frame leaves a visual value open, or a value sits off every token and scale, that value goes to `sk-design-fundamentals`
 - **`mcp-refero` and `mcp-mobbin` _(transports)_:** read-only search of UI references and app screens and flows
 
 &nbsp;
@@ -906,7 +908,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 **`sk-design`** - parent hub for design work over four modes
 
 - The hub carries no procedure of its own. It decides which mode owns the question in front of you and hands over
-- **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen
+- **`sk-design-fundamentals`**, the default and the only mode without a command. Designs, builds and reviews any laid-out surface from fixed value scales: spacing, type, colour, contrast and hierarchy. Covers screen UI, slide decks, printed pages and document layouts, and adds interaction guidelines, motion principles and a WCAG review pass where the surface is a screen. Decides a visual value that `sk-code` or `mcp-figma` leaves open, or one that sits off every token and scale, in a fixed order: the repository's mode, the tokens the app installs, the design scales, then an optional `references/<project>-profile.md` that loads only when a request names that project's UI. Motion honours `prefers-reduced-motion: reduce` on web and the platform setting on native, and nothing auto-plays
 - **`sk-design-md-generator`** behind `/design:extract`. Crawls a live URL across five viewports and writes a Style Reference `DESIGN.md` of named tokens, type scale, components and surfaces. Every value is copied from the running page and checked by script
 - **`sk-design-chart`** behind `/design:chart`. Turns the comparison a reader needs into one of 29 chart forms and ships it as a standalone HTML file with no build step and no remote dependency
 - **`sk-design-diagram`** behind `/design:diagram`. Self-contained HTML/SVG diagrams across 27 types with a skinnable editorial design system, plus ASCII and Markdown flowcharts and draw.io or Mermaid redraws
