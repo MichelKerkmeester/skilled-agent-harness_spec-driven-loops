@@ -9,7 +9,7 @@ trigger_phrases:
   - "stagger and overshoot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Motion Principles
@@ -167,6 +167,10 @@ When a gesture ends, pass the input velocity into the spring so the release pres
 - Keyboard navigation. Focus movement is instant; use `:focus-visible` styling, not a motion component.
 - Context menu entrances.
 - Theme switches, which must suppress transitions entirely for the duration of the swap.
+
+### Reduced motion
+
+Honour the user's reduced-motion setting on every animation that moves content. On the web that is the `prefers-reduced-motion: reduce` media query. On native it is the platform setting, iOS Reduce Motion or Android Remove animations, read through the platform accessibility API. Under reduced motion, replace movement with an instant change or a short opacity fade, keep essential feedback such as progress and a state change, and never auto-play motion.
 
 ---
 

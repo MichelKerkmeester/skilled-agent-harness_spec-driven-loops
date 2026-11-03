@@ -64,6 +64,7 @@ The acting agent applies that doctrine.
 - Git workflow, branch, commit, PR, merge, or release work - use `sk-git`.
 - Pure browser inspection or external MCP transport work - use the relevant MCP skill.
 - For a measured Style Reference (design tokens extracted from a live source), use `sk-design-md-generator` first.
+- When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there.
 - Backend support primitives in `shared/` - they are consumed by the modes, not invoked as a user workflow.
 
 ---

@@ -217,6 +217,15 @@ Correct values do not make a screen behave correctly. Six references carry the b
 - [`ux-laws.md`](references/ux-laws.md) Sections 2 to 5
 - [`review-checklist.md`](references/review-checklist.md) Sections 2 to 6
 
+### Project Profile Slot
+
+A project may add an optional `references/<project>-profile.md` holding its own values. A profile loads only when the request names that project's UI. An unknown or unnamed project loads none, and the slot adds no routing phrase, since naming the project is what reaches it. When sources disagree, the order is:
+
+1. The repository's mode.
+2. The tokens the app installs.
+3. The design scales in this file.
+4. The profile.
+
 ---
 
 ## 4. RULES

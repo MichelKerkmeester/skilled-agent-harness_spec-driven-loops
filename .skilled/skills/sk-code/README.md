@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.37.0
+version: 2.2.38.0
 ---
 
 # sk-code
@@ -101,6 +101,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 | Skill | Relationship |
 |---|---|
 | `sk-design-md-generator` | Extracts a measured Style Reference (design tokens from a live source) that sk-code may implement |
+| `sk-design-fundamentals` | When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there. |
 | `sk-doc` | Owns markdown and documentation quality |
 | `sk-git` | Owns branches, commits, PRs and the finish workflow |
 | `system-spec-kit` | Owns spec folders, memory, continuity and packet validation |

@@ -163,11 +163,11 @@ No live hub is pruned in this phase. A task that would run `--write` against a l
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 6 | 0/6 |
-| P1 Items | 10 | 0/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 6 | 6/6 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Not yet verified
+**Verification Date**: 2026-11-03
 <!-- /ANCHOR:summary -->
 
 ---

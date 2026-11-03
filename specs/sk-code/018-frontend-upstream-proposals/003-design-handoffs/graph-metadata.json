@@ -37,7 +37,7 @@
       "profile"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,10 +46,15 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/SKILL.md",
-      ".skilled/skills/sk-code/README.md",
       ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
       ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
-      ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md"
+      "scratch/verify-003.md",
+      ".skilled/skills/sk-code/README.md",
+      "scratch/reach-baseline.txt",
+      "scratch/extractor-lines.txt",
+      "scratch/placement.md",
+      "scratch/reach-final.txt"
     ],
     "entities": [
       {
@@ -95,15 +100,45 @@
         "source": "derived"
       },
       {
+        "name": "motion-principles.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-003.md",
+        "kind": "doc",
+        "path": "scratch/verify-003.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/README.md",
         "source": "derived"
       },
       {
-        "name": "motion-principles.md",
+        "name": "reach-baseline.txt",
+        "kind": "file",
+        "path": "scratch/reach-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "extractor-lines.txt",
+        "kind": "file",
+        "path": "scratch/extractor-lines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "placement.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+        "path": "scratch/placement.md",
+        "source": "derived"
+      },
+      {
+        "name": "reach-final.txt",
+        "kind": "file",
+        "path": "scratch/reach-final.txt",
         "source": "derived"
       },
       {
@@ -165,41 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow An",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-code names only `sk-design-md-generator` for design input (`sk-code/SKILL.md:64`, `sk-code/README.md:102`), and mcp-figma pairs only with that extractor, so neither tells an implementer where an open spacing, type or colour value is decided",
     "created_at": "2026-11-03T08:33:54Z",
-    "last_save_at": "2026-11-03T08:46:40.628Z",
+    "last_save_at": "2026-11-03T12:06:52.814Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e97764be8978178aee396ddf19fb95ffa2ac5fc8ab8f82a66d6efd65c7a3cfb",
+    "source_fingerprint": "sha256:f68ddb687d334db501245278f4b03e02754927a75ad8f9145f631753e7df663e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d292b478a213f135ee67a07bb1b304c3b8dbdd58262f1128c3e33596065e40d",
+      "spec.md": "8ef93f5762efb17201df49b9dbc59cbb231b5dc9f0690b59e8fc0c127cae2cee",
       "plan.md": "f84684f7a18bc049808018fe228fd2100fd03a09def45cf52b231a0dffe0de6a",
-      "tasks.md": "8a00963545b26356c9b42881cf14a3fe5ded896bc9ebc546d1e545ad70e902c5",
-      "implementation-summary.md": "3edc2d38fbc3392b839b3058534a4bb24861c5a9f416f8048bff12d5def31c44"
+      "tasks.md": "5327ce265320dd801993d43ec6d2e56dff937b3b983a4a76f884dc495294c5c8",
+      "implementation-summary.md": "7e4dcbe55b969f19ffc95d30c88eef602ffab376e14bfad10f129c7009e582f0"
     },
     "last_active_at": null
   }

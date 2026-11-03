@@ -174,11 +174,11 @@ A task blocked on the operator's React Native ruling is marked `[B]` with the da
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 10 | 0/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
-**Verification Date**: Not yet verified
+**Verification Date**: 2026-11-03
 <!-- /ANCHOR:summary -->
 
 ---

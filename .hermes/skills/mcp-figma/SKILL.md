@@ -235,7 +235,7 @@ Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-on
 
 Examples: [`examples/README.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
-Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies. When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there.
 
 A Figma read that feeds code ends at the five-pass check in `sk-code/sk-code-frontend/references/figma-to-code.md`.
 

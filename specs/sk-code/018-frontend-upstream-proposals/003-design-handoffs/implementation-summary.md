@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planning only so far: nothing in 003-design-handoffs is built. This summary is filled when the phase is implemented."
+description: "sk-code and mcp-figma hand open visual values to sk-design-fundamentals, its motion reference honours reduced motion, and it gains an optional project-profile slot."
 trigger_phrases:
   - "design handoffs implementation summary"
 importance_tier: "normal"
@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "sk-code/018-frontend-upstream-proposals/003-design-handoffs"
     last_updated_at: "2026-11-03T08:33:55Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the phase plan; nothing built"
-    next_safe_action: "Phase 003 opens with the reach baseline on sk-design and sk-code (T001)."
+    recent_action: "Built and verified the hand-offs, reduced motion and the profile slot"
+    next_safe_action: "Commit and push phase 003, then build phase 004."
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-design-handoffs |
-| **Completed** | Not completed |
+| **Completed** | 2026-11-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,61 +44,65 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase plans Proposal ranks 5 to 7, the design hand-offs, and its spec, plan, tasks and acceptance criteria are written.
+An open spacing, type, color, radius, shadow or motion value now has a written route to `sk-design-fundamentals` from sk-code and from mcp-figma. The fundamentals motion reference honours the user's reduced-motion setting on web and native, and fundamentals documents an optional project profile that ranks last.
 
 ### Phase 3: design-handoffs
 
-The phase has not started. Phase 003 opens with the reach baseline on sk-design and sk-code (T001).
+One sentence, worded once, sits beside each existing `sk-design-md-generator` mention. The reduced-motion section closes section 4 of `motion-principles.md`. The profile slot follows "Beyond The Visual System" in fundamentals `SKILL.md`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | - | No file outside this spec folder has changed |
+| `.skilled/skills/sk-code/SKILL.md`, `README.md` | Modified | Hand-off bullet and related-skills row |
+| `.skilled/skills/mcp-tooling/mcp-figma/SKILL.md` | Modified | Hand-off sentence in Related skills |
+| `.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md` | Modified | Project Profile Slot and its four-step order |
+| `.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md` | Modified | Reduced motion, web and native |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. The planned verification is in `tasks.md` Phase 3 and `acceptance-criteria.md`.
+The setup steps came first: the reach baseline, the list of extractor-only lines and the slot placement note. DeepSeek V4.1 Flash max made the five edits. This session reviewed the diff, reran reach, diffed the routing files, ran the fundamentals playbook validator and three hub checks, and an independent DeepSeek pass verified every criterion.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| None yet | Decisions are recorded as the phase runs |
+| One sentence, word for word, in all three files | A reader meeting it in any of them gets the same rule |
+| Profile slot after "Beyond The Visual System" | Fundamentals had no Inputs section, and that is where values and their sources are discussed |
+| No routing phrase | A profile is reached by the project naming it, so a generic phrase would only over-trigger |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Spec docs | `validate.sh --strict` on the planning docs; no implementation check has run |
+| Hand-off grep | One line in each of the three files |
+| Reduced motion | `prefers-reduced-motion` at line 173; library grep empty; 204 lines |
+| Routing files | None in the diff, no untracked file outside `specs/` |
+| Reach, concurrency 2 | sk-design and sk-code identical to the baseline |
+| Fundamentals playbook | PASS, 12 scenarios, 0 violations |
+| `parent-skill-check.cjs` | sk-design, sk-code and mcp-tooling pass |
+| Independent verification | `scratch/verify-003.md`, 7 of 7 met |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not implemented.** Every requirement in `spec.md` is still open.
+1. **The hand-off is prose.** No routing phrase was added, so it works only when the model reads the bullet, row or sentence. That is the frozen choice D1.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-
