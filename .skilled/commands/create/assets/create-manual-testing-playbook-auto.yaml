@@ -68,7 +68,7 @@ request_analysis_framework:
   solution_flow:
     - "Parse command arguments and normalize execution mode"
     - "Verify create/update semantics against the real target path"
-    - "Load the creation reference and both templates before writing"
+    - "Load the creation reference, the root template and the style-appropriate per-feature templates before writing"
     - "Derive category and scenario inventory from the selected source strategy"
     - "Generate the rooted playbook package using realistic operator-style scenarios"
     - "Validate root structure, linked files, and count consistency"
@@ -142,16 +142,20 @@ operation_router:
 
 reference_sources:
   specific_creation: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
+  style_choice: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md
+  conversation_format: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
   core_standards: .skilled/skills/sk-doc/shared/references/core-standards.md
   validation: .skilled/skills/sk-doc/shared/references/validation.md
 
 template_sources:
   root_playbook: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
   feature_file: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
+  conversation_feature_file: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
 
 validation_scripts:
   validate_document: .skilled/skills/sk-doc/scripts/validate_document.py
   extract_structure: .skilled/skills/sk-doc/scripts/extract_structure.py
+  validate_playbook_package: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs
 
 quality_standards:
   template_first: required
@@ -175,6 +179,7 @@ quality_standards:
   validation_pipeline:
     - "python3 .skilled/skills/sk-doc/scripts/validate_document.py [playbook_root]/manual-testing-playbook.md"
     - "python3 .skilled/skills/sk-doc/scripts/extract_structure.py [playbook_root]/manual-testing-playbook.md"
+    - "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package [playbook_root]"
 
 gate_logic:
   hard:
@@ -207,7 +212,7 @@ workflow_overview:
     - id: step_2_source_discovery
       purpose: "Resolve scenario inventory and category taxonomy"
     - id: step_3_template_loading
-      purpose: "Load references and both root/per-feature templates"
+      purpose: "Load references and the root and style-appropriate per-feature templates"
     - id: step_4_package_generation
       purpose: "Create or update rooted playbook artifacts"
     - id: step_5_validation
@@ -282,16 +287,21 @@ workflow:
       - Otherwise inspect current README/docs and operator-provided scenario list
       - Build provisional category list and scenario entry list
       - Preserve stable IDs and file paths if update mode
+      - Read the SKILL.md section Choosing the Scenario Style before classifying any scenario
+      - "Classify every scenario entry as single_prompt or conversation by applying the four ordered questions in SKILL.md section Choosing the Scenario Style, stopping at the first yes; record the deciding question number and, for each conversation, its runtime IDs"
     outputs:
       - category_plan
       - scenario_entry_plan
+      - scenario_style_plan
 
   step_3_template_loading:
-    purpose: Load standards and templates before generation
+    purpose: Load standards and style-appropriate templates before generation
     activities:
       - Read references/README.md
       - Read manual-testing-playbook-template.md
-      - Read manual-testing-playbook-snippet-template.md
+      - "If scenario_style_plan contains any single_prompt, read manual-testing-playbook-snippet-template.md"
+      - "If scenario_style_plan contains any conversation, read manual-testing-playbook-conversation-snippet-template.md"
+      - "If scenario_style_plan contains any conversation, read references/conversation-scenarios.md"
       - Extract the canonical root and feature-file section contracts
     outputs:
       - template_contract_loaded
@@ -303,6 +313,9 @@ workflow:
       - Create or update manual-testing-playbook.md
       - Create or update scenario category folders (bare descriptive kebab-case slug, no numeric prefix)
       - Create or update one kebab-case scenario file per scenario entry
+      - "Use feature_file for each single_prompt scenario and conversation_feature_file for each conversation scenario. Choose each style with the four ordered questions in SKILL.md section 6, Choosing the Scenario Style. Conversation scenarios include multi-turn exchanges, scripted answers, restart or compact actions and state checks across turns."
+      - "For each conversation scenario in scenario_style_plan, keep the conversation_feature_file's `### Conversation Script` subsection with one `json conversation` block whose first `send` equals the Exact Prompt, and set Exact Command Sequence to `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario <file> --runtime <ids> --scratch <dir outside the repository> --out <evidence dir>`"
+      - "For each single_prompt scenario in scenario_style_plan, do not add a `### Conversation Script` subsection"
       - Keep review and orchestration guidance only in the root playbook
       - Keep execution truth in per-feature files
       - Confirm no forbidden sidecar docs are produced
@@ -320,9 +333,11 @@ workflow:
       - Check per-feature files contain required section headers and divider lines
       - Check root scenario count matches per-feature file count
       - Check forbidden sidecar files and snippets/ subtree are absent
+      - "Run node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package [playbook_root] and require its PASS line"
     outputs:
       - root_validation_passed
       - consistency_checks_passed
+      - package_validation_passed
 
   step_5b_save_context:
     purpose: Preserve spec-folder documentation and index the implementation summary for this playbook work
@@ -398,6 +413,7 @@ completion_report_template: |
   Source strategy: [source_strategy]
   Mode: :auto
   Target: [playbook_root]
+  Scenario styles: [N] single prompt, [M] conversation
 
   Spec Folder: [spec_path] ([created|existing|skipped])
   Context saved: [yes/no]
@@ -407,6 +423,7 @@ completion_report_template: |
   - Root/per-feature link checks: [passed/failed]
   - Root/per-feature count checks: [passed/failed]
   - Forbidden sidecar check: [passed/failed]
+  - Package validator: [passed/failed]
 
   STATUS=[OK|FAIL] PATH=[playbook_root]
 
@@ -417,7 +434,8 @@ termination:
 
 rules:
   must:
-    - "Load the creation reference and both templates before writing"
+    - "Load the creation reference, the root template and the style-appropriate per-feature templates before writing"
+    - "Pick every scenario's style with SKILL.md Choosing the Scenario Style before writing it"
     - "Keep shared review and orchestration guidance in the root playbook"
     - "Use root-level category folders with bare descriptive-slug names (root playbook owns display order)"
   must_not:

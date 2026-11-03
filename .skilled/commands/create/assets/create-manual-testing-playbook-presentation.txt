@@ -136,10 +136,12 @@ Mode: [:auto|:confirm]
 Target: [playbook_root]
 
 Validation:
+- Scenario styles: [N] single prompt, [M] conversation
 - Root validation: [PASSED|FAILED]
 - Root/per-feature link checks: [PASSED|FAILED]
 - Root/per-feature count checks: [PASSED|FAILED]
 - Forbidden sidecar check: [PASSED|FAILED]
+- Package validator: [PASSED|FAILED]
 
 Context:
 - Spec path: [spec_path or none]

@@ -1,7 +1,7 @@
 ---
 title: "cli-codex: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-codex skill."
-version: 1.9.5.0
+version: 1.9.6.0
 ---
 
 # cli-codex: Manual Testing Playbook
@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 42 deterministic scenarios across 11 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID (or `cli-codex-EC-NNN` for the hermetic stress-matrix category) and links to a dedicated feature file with the full execution contract.
+This playbook provides 43 deterministic scenarios across 11 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID (or `cli-codex-EC-NNN` for the hermetic stress-matrix category) and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.5` + `medium` reasoning + `service_tier="fast"`), every documented sandbox mode, every reasoning_effort level, every agent profile (`review`, `context`, `research`, `write`, `debug`, `ai-council`), session continuity surfaces (`--full-auto`, native hooks, resume, fork), unique built-in capabilities (`/review`, `--search`, `--image`, `codex mcp`), prompt-template usage with the CLEAR quality card and cross-AI delegation patterns. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
@@ -496,9 +496,9 @@ Desired user-visible outcome: A citation-backed comparison brief the operator ca
 
 ---
 
-## 11. SESSION CONTINUITY (`CX-016..CX-017`)
+## 11. SESSION CONTINUITY (`CX-016..CX-017, CX-030`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### CX-016 | --full-auto + native hook integration
 
@@ -535,6 +535,24 @@ Desired user-visible outcome: A working multi-turn task plus a forked session ID
 #### Test Execution
 
 > **Feature File:** [CX-017](../manual-testing-playbook/session-continuity/session-resume-fork.md)
+
+### CX-030 | session resume memory after restart
+
+#### Description
+
+Verify a fact supplied in a Codex session remains available after restarting the same session and is returned in a scratch-project file.
+
+#### Scenario Contract
+
+Prompt: `Remember this exact marker for my next message: COPPER-ORCHID-731. Do not write it to the project or any other file. Reply briefly to confirm.`
+
+Expected signals: The marker is absent from the scratch project after the first turn; after restart, Codex writes that exact marker to `resume-answer.txt`.
+
+Desired user-visible outcome: Codex resumes with the earlier fact and returns it correctly after restart.
+
+#### Test Execution
+
+> **Feature File:** [CX-030](../manual-testing-playbook/session-continuity/session-resume-fork-conversation.md)
 
 ---
 
@@ -775,6 +793,7 @@ There is no automated coverage for default-invocation, sandbox-mode, reasoning_e
 
 - CX-016: [--full-auto + native hook integration](../manual-testing-playbook/session-continuity/full-auto-hooks.md)
 - CX-017: [session resume / fork](../manual-testing-playbook/session-continuity/session-resume-fork.md)
+- CX-030: [session resume memory after restart](../manual-testing-playbook/session-continuity/session-resume-fork-conversation.md)
 
 ### INTEGRATION PATTERNS
 

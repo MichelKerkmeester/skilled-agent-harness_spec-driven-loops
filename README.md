@@ -913,6 +913,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to fifteen workflow modes across fourteen packets.** Markdown specialist with DQI quality scoring (Structure 40, Content 30, Style 30) plus HVR compliance checking
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
+- **Authors manual testing playbooks** through `sk-create-manual-testing-playbook`. A scenario is a single prompt when a person must judge the result, or a `json conversation` script when the behavior spans turns, question tools, a restart or a compaction. The shared runner plays a script into five runtimes, under a macOS write sandbox, and writes a per-runtime PASS, FAIL or SKIP matrix with evidence
 - **Authors spec packet goals** through `sk-create-goal`: a top-level, phase-parent or phase-child `goal.md` built from a checked template, with top-level and parent goals held to 4,000 characters
 
 &nbsp;
@@ -1217,8 +1218,9 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 **`/create:manual-testing-playbook`** - manual testing scenarios
 
 - Creates or updates manual testing playbook packages
+- Picks each scenario's style with one rule: a single prompt an operator runs and judges, or a scripted conversation the shared runner plays into Claude Code, OpenCode, Codex, Pi or Devin with a shell check after every turn. `:confirm` shows each style before generation
 - Generates scenario files with test steps, expected results and verification evidence fields
-- Validates against the established playbook format
+- Validates against the established playbook format, including every conversation script
 
 **`/create:goal`** - spec packet goals
 

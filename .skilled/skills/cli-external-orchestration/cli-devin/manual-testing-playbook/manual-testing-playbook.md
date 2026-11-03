@@ -1,7 +1,7 @@
 ---
 title: "cli-devin: Manual Testing Playbook"
 description: "Operator-facing split-document playbook for the Devin CLI surface: invocation, permissions, hooks, subagents, skills, rules, MCP, continuity, and cloud handoff."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-devin: Manual Testing Playbook
@@ -82,7 +82,7 @@ Two results corrected assumptions carried in the authored scenarios:
 
 ## 1. OVERVIEW
 
-This playbook contains 36 deterministic scenarios across 12 categories. The original 20 `DV-NNN` scenarios are deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. `DV-021` adds the shared sk-git preflight advisory, and the `cli-devin-EC-NNN` stress-matrix category adds 14 hermetic fan-out/lineage cells. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
+This playbook contains 38 deterministic scenarios across 12 categories. The original 20 `DV-NNN` scenarios are deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. `DV-021` adds the shared sk-git preflight advisory, and the `cli-devin-EC-NNN` stress-matrix category adds 14 hermetic fan-out/lineage cells. `DV-023` adds restart-based session continuity, and `DV-024` checks that a bound goal guides a later task. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
 
 Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with `devin` installed and authenticated during the live contract work. They cover the default `devin -p` dispatch, availability and hallucination probes, the `smart` help/runtime mismatch, `normal`/`auto`, `accept-edits`, `dangerous`/`bypass`, and `autonomous`/`--sandbox` permission behavior, six live hook events, the PermissionRequest difference, PreToolUse under bypass, built-in and mirrored subagents, all 13 mirrored agents, the 36 slash-command roster, the unquoted-colon parser defect, Cursor/Claude/Standard rule inheritance, the `devin mcp` surface, session continuation, and document-only `/handoff` coverage. No live result is asserted beyond the verified facts supplied with this phase.
 
@@ -123,7 +123,7 @@ Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with 
 
 Each scenario passes only when its preconditions, exact command, expected signal, and evidence are present. PASS means the expected behavior was observed. FAIL means the command or behavior contradicted the contract. SKIP means a named blocker prevented execution; authentication, cloud side effects, and an unavailable binary are valid blockers when recorded.
 
-Release is READY only when all 20 scenario files are represented in this index, no required scenario is FAIL, every SKIP has a still-valid blocker, and the critical baseline scenarios DV-001, DV-002, DV-005, DV-007, and DV-009 are PASS or explicitly blocked by the global authentication precondition.
+Release is READY only when all 38 scenario files are represented in this index, no required scenario is FAIL, every SKIP has a still-valid blocker, and the critical baseline scenarios DV-001, DV-002, DV-005, DV-007, and DV-009 are PASS or explicitly blocked by the global authentication precondition.
 
 ---
 
@@ -192,9 +192,10 @@ Devin's `skills` subcommand is the slash-command surface. These scenarios verify
 
 ---
 
-## 14. SESSION CONTINUITY (`DV-019`)
+## 14. SESSION CONTINUITY (`DV-019`, `DV-023`)
 
 - [DV-019 -- Continue and resume](session-continuity/resume-continue.md)
+- [DV-023 -- Continue a Devin conversation after restart](session-continuity/resume-continue-conversation.md)
 
 ---
 
@@ -265,7 +266,7 @@ external Devin process; there is no operator-facing prompt beyond the run-this-t
 
 ---
 
-## 20. GOAL HOOK (`DV-022`)
+## 20. GOAL HOOK (`DV-022`, `DV-024`)
 
 This category validates Devin's injection-only goal path: the bound packet's `goal.md` rendered as
 `additionalContext` on `SessionStart` and `UserPromptSubmit`, the resend reminder that tracks the
@@ -273,3 +274,4 @@ durable slice, no frontmatter on any path, and `{}` on missing identity, malform
 disabled switch.
 
 - `DV-022`: [Session-bound Devin goal injection](goal-hook/goal-hook.md)
+- DV-024: [A bound Devin goal guides a later task](goal-hook/goal-hook-conversation.md)

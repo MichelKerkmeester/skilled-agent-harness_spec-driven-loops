@@ -20,6 +20,7 @@
         "manual-testing-playbook/multi-tool-workflows/promise-all-parallel.md",
         "manual-testing-playbook/multi-tool-workflows/sequential-chain.md",
         "manual-testing-playbook/multi-tool-workflows/try-catch-error-path.md",
+        "manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md",
         "manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
         "manual-testing-playbook/recovery-and-config/deregister-reregister-cycle.md",
         "manual-testing-playbook/recovery-and-config/disabled-server-omitted.md",

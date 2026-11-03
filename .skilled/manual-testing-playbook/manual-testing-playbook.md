@@ -187,7 +187,7 @@ The fixture's commits, in order:
 1. The current updater copied over the v4.0.0.0 tree, because the old tags ship only the legacy `doctor-update.yaml`.
 2. A local edit to the `sk-code-webflow` skill, and a new local packet `sk-code/sk-code-web-dev`.
 3. sk-git replaced by the 10-file Barter skill.
-4. The release base record recorded for `v4.0.0.0` with `--offline --trust-release`, so it reports `verified: false`. The existing fixture commits it at the legacy `.skilled/release/base.json`, which the updater still reads when `.skilled/skills/.state/doctor-update/` has none. A rebuilt fixture keeps it there as ignored local state instead, so this commit is absent.
+4. The release base record (`base.json` in the release folder) recorded for `v4.0.0.0` with `--offline --trust-release`, so it reports `verified: false`.
 5. The updater that reports a release path below a local symlink as a `symlink-parent` conflict, copied over the first one. An unscoped check therefore finishes, and `directory:changelog` reports `conflict` because v4.0.0.0 keeps `.skilled/changelog/sk-design` as a symlink.
 
 The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` deleted.
@@ -201,7 +201,7 @@ The local tag `v4.0.0.3-fixture` is `v4.0.0.2` with `sk-code/sk-code-obsidian` d
 
 - **Always** pass `--offline` and a `--scope` naming fixture units. The copied updater forms one `command:commands/doctor` unit that no scenario asserts.
 - **Every file needs an explicit answer.** The engine ignores the prefilled decisions in `decisions.json`, so record each one with `decide`.
-- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/skills/.state/doctor-update/runs/`. Never apply the same run twice.
+- **Reset after apply:** run `rollback --run=<runDir>`, require every written path under `restored` and `skipped` empty, confirm `git status --porcelain` prints nothing, then delete the run directory under `.skilled/release/runs/`. Never apply the same run twice.
 - **Commits in the fixture:** the v4.0.0.0 hooks need dependencies the fixture does not have, so fixture commits set `SPECKIT_SKIP_MIRROR_PARITY=1 SPECKIT_SKIP_ROUTE_REMINT=1`, the two bypasses those hooks name. Never use `--no-verify`.
 - **Recreate:** DOC-379 lists every build step.
 
@@ -235,13 +235,14 @@ Checks, embeds or restores the shipped AGENTS.md sections, plan first. Two rows 
 
 ### 8.2 `/doctor:ci`
 
-Lists GitHub Actions workflows with their switch state, scaffolds a new workflow, or toggles one CI switch. The three rows are the read-only report, the scaffold refusals that write nothing, and the toggle round trip.
+Lists GitHub Actions workflows with their switch state, scaffolds a new workflow, or toggles one CI switch. Four rows cover the report, scaffold refusals, the toggle round trip and a conversation that proves a declined toggle leaves local and remote state unchanged.
 
 | ID | Scenario | Scenario File |
 |---|---|---|
 | DOC-392 | Doctor CI report | [DOC-392](doctor-commands/doctor-ci-report.md) |
 | DOC-393 | Doctor CI scaffold | [DOC-393](doctor-commands/doctor-ci-scaffold.md) |
 | DOC-394 | Doctor CI toggle | [DOC-394](doctor-commands/doctor-ci-toggle.md) |
+| DOC-410 | Doctor CI toggle conversation | [DOC-410](doctor-commands/doctor-ci-toggle-conversation.md) |
 
 ### 8.3 `/doctor:deep-loop`
 
@@ -272,8 +273,10 @@ Switches sk-git hook gates, edits the commit, PR and branch rules in `.sk-git/` 
 |---|---|---|
 | DOC-369 | Doctor git hooks list | [DOC-369](doctor-commands/doctor-git-hooks-list.md) |
 | DOC-370 | Doctor git hooks switch gate | [DOC-370](doctor-commands/doctor-git-hooks-switch-gate.md) |
+| DOC-407 | Doctor git hooks switch gate conversation | [DOC-407](doctor-commands/doctor-git-hooks-switch-gate-conversation.md) |
 | DOC-371 | Doctor git standards copy once | [DOC-371](doctor-commands/doctor-git-standards-copy-once.md) |
 | DOC-372 | Doctor git standards change rule | [DOC-372](doctor-commands/doctor-git-standards-change-rule.md) |
+| DOC-408 | Doctor git standards change rule conversation | [DOC-408](doctor-commands/doctor-git-standards-change-rule-conversation.md) |
 | DOC-373 | Doctor git standards refuse invalid | [DOC-373](doctor-commands/doctor-git-standards-refuse-invalid.md) |
 | DOC-374 | Doctor git target menu | [DOC-374](doctor-commands/doctor-git-target-menu.md) |
 | DOC-384 | Doctor git setup check | [DOC-384](doctor-commands/doctor-git-setup-check.md) |
@@ -345,7 +348,7 @@ Checks a skill against the Skilled format, or converts one to it, plan first. Th
 
 ### 8.13 `/doctor:skill-advisor`
 
-Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs. The seven routing probes also live here, because each runs the advisor hook and reads the doctor line it prints.
+Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, budgets and parent hubs. The seven routing probes also live here, because each runs the advisor hook and reads the doctor line it prints. DOC-367 now replays the target menu's cancel, invalid, help and numeric-answer path.
 
 | ID | Scenario | Scenario File |
 |---|---|---|
@@ -355,7 +358,7 @@ Tunes and rebuilds the skill advisor, and audits graph freshness, router reach, 
 | DOC-364 | Doctor skill-advisor router reach | [DOC-364](doctor-commands/doctor-skill-advisor-router-reach.md) |
 | DOC-365 | Doctor skill-advisor skill budget | [DOC-365](doctor-commands/doctor-skill-advisor-skill-budget.md) |
 | DOC-366 | Doctor skill-advisor parent skill | [DOC-366](doctor-commands/doctor-skill-advisor-parent-skill.md) |
-| DOC-367 | Doctor skill-advisor target menu | [DOC-367](doctor-commands/doctor-skill-advisor-target-menu.md) |
+| DOC-367 | Doctor skill-advisor target menu conversation | [DOC-367](doctor-commands/doctor-skill-advisor-target-menu.md) |
 | DOC-385 | Doctor routing setup onboarding prompt | [DOC-385](doctor-commands/doctor-routing-setup-onboarding.md) |
 | DOC-386 | Doctor routing environment variables prompt | [DOC-386](doctor-commands/doctor-routing-env-prompt.md) |
 | DOC-387 | Doctor routing contested prompt second line | [DOC-387](doctor-commands/doctor-routing-contested-second-line.md) |
@@ -384,13 +387,14 @@ Checks, links or unlinks the Skilled checkout in a project repo, plan first. The
 
 ### 8.16 `/doctor:update`
 
-Routes `check`, `align`, `apply`, `rollback`, `record-base` and `compat` for a spec-kit release. Six rows run against the update fixture in section 7.2; one builds and resets that fixture.
+Routes `check`, `align`, `apply`, `rollback`, `record-base` and `compat` for a spec-kit release. Seven rows run against the update fixture in section 7.2; one builds and resets that fixture. DOC-409 replays the declined and approved apply path and restores its scratch clone.
 
 | ID | Scenario | Scenario File |
 |---|---|---|
 | DOC-357 | Doctor update check | [DOC-357](doctor-commands/doctor-update-check.md) |
 | DOC-358 | Doctor update align | [DOC-358](doctor-commands/doctor-update-align.md) |
 | DOC-359 | Doctor update apply | [DOC-359](doctor-commands/doctor-update-apply.md) |
+| DOC-409 | Doctor update apply conversation | [DOC-409](doctor-commands/doctor-update-apply-conversation.md) |
 | DOC-360 | Doctor update rollback | [DOC-360](doctor-commands/doctor-update-rollback.md) |
 | DOC-361 | Doctor update record base | [DOC-361](doctor-commands/doctor-update-record-base.md) |
 | DOC-379 | Doctor update test environment | [DOC-379](doctor-commands/doctor-update-test-environment.md) |
@@ -439,7 +443,7 @@ Feature catalogs stay in the skill that owns the feature. The catalog entry the 
 
 ### Numbering
 
-- DOC numbers run in one shared series across every doctor scenario and every skill playbook that still links one. The next free number is DOC-407.
+- DOC numbers run in one shared series across every doctor scenario and every skill playbook that still links one. DOC-407 to DOC-410 are conversation companions, and the next free number is DOC-411.
 - The two `/doctor:helper` scenarios were renumbered: DOC-393 is now DOC-400 and DOC-394 is now DOC-401. `/doctor:ci scaffold` and `/doctor:ci toggle` already held those two numbers in the same series, and those rows keep them. No other ID moved.
 - `/doctor:ci scaffold` and `/doctor:ci toggle` were listed as unscripted in the older skill READMEs; they now have DOC-393 and DOC-394.
 
