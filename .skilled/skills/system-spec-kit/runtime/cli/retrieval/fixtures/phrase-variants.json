@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0047dd9cd07b4948e49610d2021e26d10e99404d42bf9dfe6ec94de7e11ea137",
+  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -17943,8 +17943,35 @@
     "charts dataview excalidraw git outliner minimal": [
       "charts dataview excalidraw git outliner minimal"
     ],
+    "chat answer evidence": [
+      "chat answer evidence"
+    ],
+    "chat answer evidence acceptance criteria": [
+      "chat answer evidence acceptance criteria"
+    ],
+    "chat answer evidence goal": [
+      "chat answer evidence goal"
+    ],
+    "chat answer evidence implementation summary": [
+      "chat answer evidence implementation summary"
+    ],
+    "chat answer evidence plan": [
+      "chat answer evidence plan"
+    ],
+    "chat answer evidence tasks": [
+      "chat answer evidence tasks"
+    ],
+    "chat answer judgment decision capture": [
+      "chat answer judgment decision capture"
+    ],
+    "chat candidate evidence": [
+      "chat candidate evidence"
+    ],
     "chat channels": [
       "chat channels"
+    ],
+    "chat evidence lexicon": [
+      "chat evidence lexicon"
     ],
     "chat label confirmation": [
       "chat label confirmation"
@@ -32498,6 +32525,9 @@
     "decision capture acceptance criteria": [
       "decision capture acceptance criteria"
     ],
+    "decision capture chat evidence": [
+      "decision capture chat evidence"
+    ],
     "decision capture conversation stages": [
       "decision capture conversation stages"
     ],
@@ -32546,6 +32576,9 @@
     "decision capture mid message chat question live test": [
       "decision capture mid-message chat question live test"
     ],
+    "decision capture open gaps research": [
+      "decision capture open gaps research"
+    ],
     "decision capture open questions": [
       "decision capture open questions"
     ],
@@ -32557,6 +32590,9 @@
     ],
     "decision capture plan": [
       "decision capture plan"
+    ],
+    "decision capture project token": [
+      "decision capture project token"
     ],
     "decision capture runtime matrix": [
       "decision capture runtime matrix"
@@ -32578,6 +32614,9 @@
     ],
     "decision capture sweep": [
       "decision capture sweep"
+    ],
+    "decision capture synthesis review": [
+      "decision capture synthesis review"
     ],
     "decision capture table match live test": [
       "decision capture table match live test"
@@ -32656,6 +32695,24 @@
     ],
     "decision record writer": [
       "decision record writer"
+    ],
+    "decision routing vocabulary": [
+      "decision routing vocabulary"
+    ],
+    "decision routing vocabulary acceptance criteria": [
+      "decision routing vocabulary acceptance criteria"
+    ],
+    "decision routing vocabulary goal": [
+      "decision routing vocabulary goal"
+    ],
+    "decision routing vocabulary implementation summary": [
+      "decision routing vocabulary implementation summary"
+    ],
+    "decision routing vocabulary plan": [
+      "decision routing vocabulary plan"
+    ],
+    "decision routing vocabulary tasks": [
+      "decision routing vocabulary tasks"
     ],
     "decision tests evidence": [
       "decision tests evidence"
@@ -60875,6 +60932,9 @@
     "linked project workspace accepted": [
       "linked project workspace accepted"
     ],
+    "linked projects share decision capture state": [
+      "linked projects share decision capture state"
+    ],
     "links and generated state implementation summary": [
       "links and generated state implementation summary"
     ],
@@ -76108,6 +76168,9 @@
     "phase 10 config row projection refusal": [
       "phase 10 config row projection refusal"
     ],
+    "phase 10 decision routing vocabulary": [
+      "phase 10 decision routing vocabulary"
+    ],
     "phase 10 deep review finding fixes": [
       "phase 10 deep review finding fixes"
     ],
@@ -77521,6 +77584,9 @@
     "phase 8 playbook run in worktree": [
       "phase 8 playbook run in worktree"
     ],
+    "phase 8 project scoped state": [
+      "phase 8 project scoped state"
+    ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
@@ -77547,6 +77613,9 @@
     ],
     "phase 9 authoring benchmark and closeout": [
       "phase 9 authoring benchmark and closeout"
+    ],
+    "phase 9 chat answer evidence": [
+      "phase 9 chat answer evidence"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -81598,6 +81667,24 @@
     "project root resolves to code environment": [
       "project root resolves to code environment"
     ],
+    "project scoped state": [
+      "project scoped state"
+    ],
+    "project scoped state acceptance criteria": [
+      "project scoped state acceptance criteria"
+    ],
+    "project scoped state goal": [
+      "project scoped state goal"
+    ],
+    "project scoped state implementation summary": [
+      "project scoped state implementation summary"
+    ],
+    "project scoped state plan": [
+      "project scoped state plan"
+    ],
+    "project scoped state tasks": [
+      "project scoped state tasks"
+    ],
     "projection contract build": [
       "projection contract build"
     ],
@@ -84507,6 +84594,9 @@
     "record": [
       "record"
     ],
+    "record my chat reply as a decision routing": [
+      "record my chat reply as a decision routing"
+    ],
     "record replay cassette harness": [
       "record-replay cassette harness"
     ],
@@ -84515,6 +84605,9 @@
     ],
     "record the advisor runtime dist build": [
       "record the advisor runtime dist build"
+    ],
+    "record this as a decision routing": [
+      "record this as a decision routing"
     ],
     "recorded adjacent defects": [
       "recorded adjacent defects"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "0b35f2ff97066b8c34f1127f5a41820b9588dc074f9e9f52892fc551d78ce6c4",
+  "corpusHash": "d880093fe572f6fdd01fed2bafdd0f187e2e0baac46fa5e5e8b7b8d77197a641",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27298,
+  "includedPathCount": 27319,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -27307,13 +27307,31 @@
     "specs/system-speckit/043-decision-capture/007-gap-closure/spec.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/tasks.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/timeline.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/goal.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/plan.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/spec.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/tasks.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/goal.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/plan.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/spec.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/tasks.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/goal.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/plan.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/spec.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/tasks.md",
     "specs/system-speckit/043-decision-capture/decision-record.md",
     "specs/system-speckit/043-decision-capture/goal.md",
     "specs/system-speckit/043-decision-capture/handover.md",
     "specs/system-speckit/043-decision-capture/open-questions.md",
     "specs/system-speckit/043-decision-capture/research/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/research/research.md",
-    "specs/system-speckit/043-decision-capture/research/resource-map.md",
+    "specs/system-speckit/043-decision-capture/research/synthesis-review.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-strategy.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
@@ -27324,12 +27342,15 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/fanout-attribution.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
     "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/review/review-report.md",
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "0047dd9cd07b4948e49610d2021e26d10e99404d42bf9dfe6ec94de7e11ea137",
+  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -35076,7 +35097,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/043-decision-capture/008-project-scoped-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/043-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/lineages",
       "reason": "excluded directory"
     },
     {

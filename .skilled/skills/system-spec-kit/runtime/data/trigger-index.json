@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0047dd9cd07b4948e49610d2021e26d10e99404d42bf9dfe6ec94de7e11ea137",
+  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -16533,13 +16533,33 @@
     "specs/system-speckit/043-decision-capture/007-gap-closure/spec.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/tasks.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/timeline.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/goal.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/plan.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/spec.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/tasks.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/goal.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/plan.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/spec.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/tasks.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/goal.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/plan.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/spec.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/tasks.md",
     "specs/system-speckit/043-decision-capture/decision-record.md",
     "specs/system-speckit/043-decision-capture/goal.md",
     "specs/system-speckit/043-decision-capture/handover.md",
     "specs/system-speckit/043-decision-capture/open-questions.md",
     "specs/system-speckit/043-decision-capture/research/research.md",
+    "specs/system-speckit/043-decision-capture/research/synthesis-review.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-strategy.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "phrases": {
@@ -23725,10 +23745,10 @@
       8886
     ],
     "043 decision capture operator decisions": [
-      16523
+      16541
     ],
     "043 handover": [
-      16525
+      16543
     ],
     "043 implementation plan": [
       11039
@@ -35308,8 +35328,35 @@
     "charts dataview excalidraw git outliner minimal": [
       887
     ],
+    "chat answer evidence": [
+      16533
+    ],
+    "chat answer evidence acceptance criteria": [
+      16529
+    ],
+    "chat answer evidence goal": [
+      16530
+    ],
+    "chat answer evidence implementation summary": [
+      16531
+    ],
+    "chat answer evidence plan": [
+      16532
+    ],
+    "chat answer evidence tasks": [
+      16534
+    ],
+    "chat answer judgment decision capture": [
+      16545
+    ],
+    "chat candidate evidence": [
+      16533
+    ],
     "chat channels": [
       734
+    ],
+    "chat evidence lexicon": [
+      16532
     ],
     "chat label confirmation": [
       3555
@@ -50944,6 +50991,9 @@
     "decision capture acceptance criteria": [
       16473
     ],
+    "decision capture chat evidence": [
+      16533
+    ],
     "decision capture conversation stages": [
       16512
     ],
@@ -50954,22 +51004,22 @@
       2849
     ],
     "decision capture follow up": [
-      16530
+      16550
     ],
     "decision capture follow up review": [
-      16529
+      16548
     ],
     "decision capture gap closure": [
       16520
     ],
     "decision capture gaps": [
-      16527
+      16549
     ],
     "decision capture goal": [
-      16524
+      16542
     ],
     "decision capture handover": [
-      16525
+      16543
     ],
     "decision capture hook": [
       2848
@@ -50987,22 +51037,28 @@
       16513
     ],
     "decision capture maintainability": [
-      16527
+      16549
     ],
     "decision capture mid message chat question live test": [
       2852
     ],
+    "decision capture open gaps research": [
+      16545
+    ],
     "decision capture open questions": [
-      16526
+      16544
     ],
     "decision capture orphaned answers": [
       16520
     ],
     "decision capture phase parent spec": [
-      16530
+      16550
     ],
     "decision capture plan": [
       16477
+    ],
+    "decision capture project token": [
+      16527
     ],
     "decision capture runtime matrix": [
       2850,
@@ -51012,19 +51068,22 @@
       90
     ],
     "decision capture series": [
-      16530
+      16550
     ],
     "decision capture series research": [
-      16529
+      16548
     ],
     "decision capture series research strategy": [
-      16528
+      16547
     ],
     "decision capture sibling re proof conversation": [
       2852
     ],
     "decision capture sweep": [
       2853
+    ],
+    "decision capture synthesis review": [
+      16546
     ],
     "decision capture table match live test": [
       2852
@@ -51126,10 +51185,28 @@
       2700
     ],
     "decision record upgrade continuation": [
-      16525
+      16543
     ],
     "decision record writer": [
       2851
+    ],
+    "decision routing vocabulary": [
+      16539
+    ],
+    "decision routing vocabulary acceptance criteria": [
+      16535
+    ],
+    "decision routing vocabulary goal": [
+      16536
+    ],
+    "decision routing vocabulary implementation summary": [
+      16537
+    ],
+    "decision routing vocabulary plan": [
+      16538
+    ],
+    "decision routing vocabulary tasks": [
+      16540
     ],
     "decision tests evidence": [
       3041
@@ -81809,6 +81886,10 @@
     "linked project workspace accepted": [
       2474
     ],
+    "linked projects share decision capture state": [
+      16527,
+      16545
+    ],
     "links and generated state implementation summary": [
       15864
     ],
@@ -98336,6 +98417,9 @@
     "phase 10 config row projection refusal": [
       9547
     ],
+    "phase 10 decision routing vocabulary": [
+      16539
+    ],
     "phase 10 deep review finding fixes": [
       16333
     ],
@@ -99753,6 +99837,9 @@
     "phase 8 playbook run in worktree": [
       16321
     ],
+    "phase 8 project scoped state": [
+      16527
+    ],
     "phase 8 remediation deep review": [
       7789
     ],
@@ -99779,6 +99866,9 @@
     ],
     "phase 9 authoring benchmark and closeout": [
       16327
+    ],
+    "phase 9 chat answer evidence": [
+      16533
     ],
     "phase 9 doctor ci review wiring": [
       16239
@@ -104133,6 +104223,24 @@
     "project root resolves to code environment": [
       16170
     ],
+    "project scoped state": [
+      16527
+    ],
+    "project scoped state acceptance criteria": [
+      16523
+    ],
+    "project scoped state goal": [
+      16524
+    ],
+    "project scoped state implementation summary": [
+      16525
+    ],
+    "project scoped state plan": [
+      16526
+    ],
+    "project scoped state tasks": [
+      16528
+    ],
     "projection contract build": [
       9161
     ],
@@ -107176,6 +107284,9 @@
       10766,
       13199
     ],
+    "record my chat reply as a decision routing": [
+      16545
+    ],
     "record replay cassette harness": [
       2378
     ],
@@ -107184,6 +107295,9 @@
     ],
     "record the advisor runtime dist build": [
       9983
+    ],
+    "record this as a decision routing": [
+      16539
     ],
     "recorded adjacent defects": [
       8825

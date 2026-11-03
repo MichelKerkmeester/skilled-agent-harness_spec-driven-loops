@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7267,
-    "ok": 16483,
+    "missing-frontmatter": 7268,
+    "ok": 16503,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27298,
+  "documentsScanned": 27319,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0047dd9cd07b4948e49610d2021e26d10e99404d42bf9dfe6ec94de7e11ea137",
+  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40176,
+      "ok": 40207,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -68428,12 +68428,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": "specs/system-speckit/043-decision-capture/research/resource-map.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -68477,6 +68471,18 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -76230,7 +76236,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/043-decision-capture/008-project-scoped-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/043-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/lineages",
       "reason": "excluded directory"
     },
     {
