@@ -613,6 +613,40 @@ function parseArgs(argv) {
 }
 
 /**
+ * Finds the nearest directory at or above `start` holding a `.git` entry.
+ *
+ * @param {string} start Directory to walk up from.
+ * @returns {string|null} Absolute path of the caller's repository root, or null.
+ */
+function findGitRoot(start) {
+  let directory = path.resolve(start);
+  for (;;) {
+    if (fs.existsSync(path.join(directory, '.git'))) return directory;
+    const parent = path.dirname(directory);
+    if (parent === directory) return null;
+    directory = parent;
+  }
+}
+
+/**
+ * Warns when the corpus was resolved to another checkout than the caller's.
+ *
+ * @param {Record<string, string | boolean>} flags Parsed flags.
+ * @returns {void}
+ */
+function warnWhenIndexingAnotherRepository(flags) {
+  if (typeof flags['repo-root'] === 'string') return;
+  const callerRoot = findGitRoot(process.cwd());
+  if (callerRoot === null) return;
+  if (fs.realpathSync(callerRoot) === fs.realpathSync(DEFAULT_REPO_ROOT)) return;
+  // A linked source tree resolves to its own checkout, so silence would hide the wrong corpus.
+  process.stderr.write(
+    `generate-trigger-index: indexing ${DEFAULT_REPO_ROOT}, not the current repository ${callerRoot};`
+    + ` pass --repo-root ${callerRoot}, and --out <path> to leave the shared index untouched\n`,
+  );
+}
+
+/**
  * @returns {number} Process exit code.
  */
 function main() {
@@ -623,6 +657,8 @@ function main() {
     process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
     return 2;
   }
+
+  warnWhenIndexingAnotherRepository(flags);
 
   if (flags.check) return runCheck(flags);
 

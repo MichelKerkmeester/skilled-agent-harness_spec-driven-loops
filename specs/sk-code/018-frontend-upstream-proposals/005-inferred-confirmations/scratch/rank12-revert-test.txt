@@ -1,0 +1,9 @@
+## fix reverted (git checkout of generate-trigger-index.mjs), test kept
+     × names both roots when the working directory is another git repository 36ms
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  |cli| tests/trigger-index-root-mismatch.vitest.ts > generate-trigger-index root mismatch warning > names both roots when the working directory is another git repository
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+## fix restored
+ Test Files  1 passed (1)
+      Tests  3 passed (3)

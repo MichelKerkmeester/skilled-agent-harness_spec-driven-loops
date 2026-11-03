@@ -1,0 +1,9 @@
+## temp project with .skilled linked; plain --check run
+$ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --out /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.nZClkfhRxz/idx.json
+generate-trigger-index: indexing /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals, not the current repository /private<tmp>; pass --repo-root /private<tmp>, and --out <path> to leave the shared index untouched
+ENOENT: no such file or directory, open '<tmp>/idx.json'
+exit=0
+## same with --repo-root .
+0
+temp removed: yes
+note: exit=0 above is the sed filter's status; check mode exits 2 when the --out index is missing, as here. The test asserts on stderr only.
