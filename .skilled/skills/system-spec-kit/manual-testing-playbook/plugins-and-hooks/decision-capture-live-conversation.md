@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture live conversation"
   - "decision capture runtime matrix"
   - "live decision capture scenario"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # decision-capture-live-conversation -- Decision capture live conversation
@@ -419,7 +419,7 @@ Keep the runner's screen.txt, question screens, check output and exit code for e
 | .skilled/hooks/decision-capture/lib/capture-core.mjs | Queue layout, session token, consumed keys and pendingRecords |
 | .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts | Decision rows, verbatim appendix and consumed keys |
 
-Provenance: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md
+Provenance: manual only - a live multi-turn conversation that the shared conversation runner drives in a scratch project
 
 ---
 

@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sibling re-proof conversation"
   - "decision capture table match live test"
   - "decision capture mid-message chat question live test"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # decision-capture-sibling-reproof-conversation -- Decision capture sibling re-proof conversation
@@ -231,6 +231,8 @@ Each check copies the queue, consumed log and nudge files into CONVERSATION_TURN
 | .skilled/hooks/decision-capture/bin/sweep-transcript.mjs | Offers chat candidates from every asking paragraph |
 | .skilled/commands/speckit/save.md | Tells the save step to match hand-written rows and to write chat entries |
 | .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md | JSON conversation schema and exit outcomes |
+
+Provenance: manual only - a live multi-turn conversation that the shared conversation runner drives in a scratch project
 
 ---
 
