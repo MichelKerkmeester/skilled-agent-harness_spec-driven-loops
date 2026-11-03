@@ -49,7 +49,7 @@ A router phrase the generator carried into a hub's advisor vocabulary, and that 
 
 ### Phase 2: tooling-fixes
 
-The generator records each phrase it adds in `intent_signals_generated`. An orphan is an entry there that no router declares any more and that `intent_signals_keep` does not list. Hand-curated signals are never in the provenance list, so they are never orphans.
+The generator records each phrase it adds in `intent_signals_generated`. An orphan is an entry there that no router declares any more and that `intent_signals_keep` does not list. A signal no router declares is hand-curated and never enters the provenance list, so it is never an orphan. A phrase a router does declare is recorded on the hub's first `--write`, so a later router rename prunes it unless `intent_signals_keep` pins it.
 
 ### Files Changed
 

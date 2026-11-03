@@ -37,7 +37,7 @@ This packet writes nothing. The paired workflow mode applies the guidance it loa
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for this surface live in [`manual-testing-playbook/manual-testing-playbook.md`](../../../.skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md), the root index, plus one file per intent under `manual-testing-playbook/frontend-surface/<scenario>.md`. The category folder and each scenario file use bare descriptive slugs, with no numeric prefix.
+Manual testing scenarios for this surface live in [`manual-testing-playbook/manual-testing-playbook.md`](../../../.skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md), the root index, plus one file per intent family under `manual-testing-playbook/frontend-surface/<scenario>.md`. The category folder and each scenario file use bare descriptive slugs, with no numeric prefix.
 Each scenario declares the `expected_intent` and `expected_resources` the packet router emits for its exact prompt, so the hub's router-sync guard replays all three.
 
 Validate the package with the operator-scenario contract:

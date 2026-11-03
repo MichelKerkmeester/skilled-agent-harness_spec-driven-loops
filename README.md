@@ -827,7 +827,7 @@ For details, see the [Skill Advisor README](.skilled/skills/system-skill-advisor
 **`sk-code`** - write code that fits the stack you're in
 
 - Loads surface-aware patterns, checklists and verification recipes per surface, and detects the active stack from paths and library markers
-- Unsupported stacks (Go, React/Next.js, generic Node.js, React Native, Swift) trigger a quick disambiguation question
+- Unsupported stacks (Go, React/Next.js server code, generic Node.js, Swift) trigger a quick disambiguation question
 - Three surfaces. The native Skilled surface covers this framework's own code: scripts, MCP servers, agents, commands and skills. The CI surface holds GitHub Actions workflow standards for triggers, filters, permissions, timeouts, concurrency and caching, with scaffold templates. The Frontend surface holds stack-agnostic web and React Native frontend practice (markup, CSS, accessibility, i18n, performance, native layout, and the five-pass Figma check). A declared specific surface, including an operator-private surface skill, ranks ahead of Skilled
 - Verifies before it claims done: three mandatory phases run implementation, then testing and debugging, then verification
 - A quality runner, `.skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`, gives one verdict for a change in any repository. A committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` runs its commands only after `git config --local skilled.trustRepoChecks true`. Without it each configured check reads `SKIPPED_UNTRUSTED`

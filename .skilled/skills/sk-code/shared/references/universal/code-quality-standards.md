@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # Universal Code Quality Standards
@@ -151,8 +151,9 @@ Each surface adds its own rules to these universal tiers and gives each rule a t
 | ------- | ---------------- | ----- |
 | SKILLED | `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/` | The fallback. The SKILLED house checklist, `universal-checklist.md`, plus one per touched language (JavaScript, TypeScript, Python, Shell, Rust, JSON/JSONC), the JavaScript and CSS house style under `js-css-style/` and authoring checklists for agents, commands, skills and MCP servers. It carries the doc-comment, typing and naming detail this floor leaves to the surface |
 | CI | `.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md` | Rule index for GitHub Actions workflows |
+| Frontend | None. `sk-code-frontend` ships no checklist | Web, React Native and Figma-to-code practice as read-only references. A file it covers gets this universal floor through `sk-code-quality`, plus the SKILLED or declared surface its path resolves to |
 | Declared specific surface | The standards its skill ships | Declared through `surface_detection` in that skill's `graph-metadata.json`. Outranks SKILLED |
-| UNKNOWN | The universal floor in sections 3 to 5, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied | sk-code does not own Go, React/Next.js, generic Node.js, React Native or Swift. Apply those, then ask for the surface and its commands. The spec-folder authoring checklist applies only where the SKILLED surface resolves, and no discovered command applies |
+| UNKNOWN | The universal floor in sections 3 to 5, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied | sk-code does not own Go, React/Next.js server code, generic Node.js or Swift. Apply those, then ask for the surface and its commands. The spec-folder authoring checklist applies only where the SKILLED surface resolves, and no discovered command applies |
 
 ---
 

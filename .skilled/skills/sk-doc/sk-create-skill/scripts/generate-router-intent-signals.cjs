@@ -21,9 +21,11 @@
  * the router renamed or dropped a phrase the advisor still advertises. `--check`
  * names and counts orphans and fails, and `--write` removes them from both
  * lists. `intent_signals_keep` pins a generated phrase that should outlive its
- * router entry. An `intent_signals` entry the generator never added is
- * hand-curated, so it is never treated as an orphan. Single words are left
- * behind deliberately, since they are the ones that would over-trigger.
+ * router entry. An `intent_signals` entry no router declares is hand-curated,
+ * so it is never treated as an orphan. A phrase a router does declare is
+ * recorded on the hub's first `--write`, so a later router rename prunes it
+ * unless `intent_signals_keep` pins it. Single words are left behind
+ * deliberately, since they are the ones that would over-trigger.
  */
 
 'use strict';
@@ -67,8 +69,10 @@ function declaredPhrases(hub) {
  * `missing` is a phrase the router declares that `intent_signals` lacks.
  * `orphans` is the reverse defect that provenance makes visible: a phrase an
  * earlier `--write` recorded in `intent_signals_generated` that the router no
- * longer declares, unless `intent_signals_keep` pins it. Hand-curated entries
- * never appear in `intent_signals_generated`, so they can never be orphans.
+ * longer declares, unless `intent_signals_keep` pins it. An entry no router
+ * declares is hand-curated: it never appears in `intent_signals_generated`, so
+ * it can never be an orphan. A phrase a router does declare is recorded on the
+ * hub's first `--write`, so a later router rename prunes it unless kept.
  */
 function plan(hub) {
   const metaPath = path.join(SKILLS, hub, 'graph-metadata.json');

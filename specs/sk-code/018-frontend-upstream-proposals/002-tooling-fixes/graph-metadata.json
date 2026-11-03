@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`plan()` computes only the phrases missing from `intentsignals`, and `write()` appends them, so a phrase a router no longer declares stays in the advisor vocabulary",
     "created_at": "2026-11-03T08:33:53Z",
-    "last_save_at": "2026-11-03T12:06:51.140Z",
+    "last_save_at": "2026-11-03T16:59:37.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8c47242ad13337a2e571ec93b637691eb5d6cb81ec1c9e794542146a0df931e",
+    "source_fingerprint": "sha256:e6a53d50bd233b2af70156a4adf675f549d046f32008c39776f5e8e77c0d74c7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "49d8cecdd884abc8d2093d63fb89ab04dcff175505252e4686f2da46a1f6a24c",
       "plan.md": "ba8ce0e3b94acfb883609072eb9cff05777e9c6c8d093f605788f8bdbe2f707f",
       "tasks.md": "a999ccadd182fc106ac2a46e75eec1e9e581c762590d01b178498bdbb1784d60",
-      "decision-record.md": "030d505d8ce3b23d5764d1cad028cc0e7efcbe11e7c39afb8138f2e940e19ad6",
-      "implementation-summary.md": "6262b54fc1dd7bdeb75027961de8871e992741e75c3ba3619677d72087b07bf7"
+      "decision-record.md": "fd32791817bcc2b65bd4c5435d6fdfb75fb627d720ae4ec23a20a200bec2f1fb",
+      "implementation-summary.md": "28e17694bcc192b4b6d6b6344e3f82f26c281c330ba21ab5ec15557e89f203c4"
     },
     "last_active_at": null
   }

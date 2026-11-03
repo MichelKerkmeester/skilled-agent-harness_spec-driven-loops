@@ -62,7 +62,7 @@ The spec defined an orphan as any `intent_signals` entry that no router declares
 
 **We chose**: record provenance. `--write` adds each phrase it carries up to a sibling `intent_signals_generated` array. An orphan is an entry of `intent_signals_generated` that no router declares any more and that `intent_signals_keep` does not list.
 
-**How it works**: `--check` names and counts orphans and exits 1 on them. `--write` removes each orphan from both `intent_signals` and `intent_signals_generated`, keeping the order of what stays. A hand-curated signal is never in `intent_signals_generated`, so it is never an orphan. `intent_signals_keep` is the keep marker for a generated phrase that should outlive its router entry. Comparison is lower-cased, as for missing phrases.
+**How it works**: `--check` names and counts orphans and exits 1 on them. `--write` removes each orphan from both `intent_signals` and `intent_signals_generated`, keeping the order of what stays. A signal no router declares is hand-curated and never enters `intent_signals_generated`, so it is never an orphan. A phrase a router does declare is recorded on the hub's first `--write`, so a later rename prunes it unless it is kept. `intent_signals_keep` is the keep marker for a generated phrase that should outlive its router entry. Comparison is lower-cased, as for missing phrases.
 <!-- /ANCHOR:adr-001-decision -->
 
 ---

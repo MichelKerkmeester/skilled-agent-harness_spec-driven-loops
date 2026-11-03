@@ -5,7 +5,7 @@ trigger_phrases:
   - "create-skill scripts"
   - "leaf manifest generator"
   - "skill package validation"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Create-skill scripts
@@ -28,7 +28,7 @@ version: 1.0.3.0
 | `ci-skill-derived-freshness.cjs` | Checks generated skill-derived files for freshness. |
 | `ci-skill-root-metadata.cjs` | Enforces skill-root metadata class rules. |
 | `generate-leaf-manifest.cjs` | Generates or checks a hub leaf manifest. A starting root or declared scope that resolves outside the skill fails with `LEAF_SYMLINK_OUT_OF_ROOT`, and so does a leaf link that escapes the skill. A link that stays inside the skill is listed under its own path. `--write` and `--check` refuse a `leaf-manifest.json` that is a link, live or dangling, with `symbolic link, not followed` in the error and a non-zero exit. `--write` otherwise writes the manifest through a temporary sibling renamed over it. |
-| `generate-router-intent-signals.cjs` | Carries every multi-word phrase a router declares up into the hub's `graph-metadata.json` `intent_signals`, so a capability the router advertises can be asked for by name. `--check` reports drift, `--write` applies it. |
+| `generate-router-intent-signals.cjs` | Carries every multi-word phrase a router declares up into the hub's `graph-metadata.json` `intent_signals`, so a capability the router advertises can be asked for by name. `--check` reports drift and names and counts orphaned signals, a phrase an earlier `--write` recorded in `intent_signals_generated` that no router declares any more, and fails on either. `--write` applies the drift and prunes the orphans; `intent_signals_keep` pins a phrase that should outlive its router entry. |
 | `init_skill.py` | Scaffolds a skill directory. |
 | `package_skill.py` | Validates and packages a skill directory. |
 | `regenerate-skill-derived.cjs` | Regenerates derived skill data. |
