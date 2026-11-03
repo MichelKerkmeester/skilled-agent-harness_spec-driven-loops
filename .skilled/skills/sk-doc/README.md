@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.8.0
+version: 2.3.9.0
 ---
 
 # sk-doc
@@ -172,7 +172,7 @@ A: Run `validate_document.py` as the fast delivery gate for README files. It exi
 
 **Q: What is the difference between a feature catalog and a manual testing playbook?**
 
-A: A feature catalog documents current behavior. It inventories what a skill or system can do, organized by numbered categories, with source-file anchors and stable slugs. A testing playbook defines how to test that behavior manually, with deterministic prompts, expected signals, evidence requirements and a cross-reference back to the catalog. The catalog is the stable capability reference. The playbook links back to it through a cross-reference index. Build the catalog first.
+A: A feature catalog documents current behavior. It inventories what a skill or system can do, organized by numbered categories, with source-file anchors and stable slugs. A testing playbook defines how to test that behavior manually, with deterministic prompts, expected signals, evidence requirements and a cross-reference back to the catalog. The catalog is the stable capability reference. The playbook links back to it through a cross-reference index. A playbook scenario is either a single prompt an operator runs and judges, or a scripted conversation the shared runner plays into live runtimes when the result depends on a later answer, turn or restart. Build the catalog first.
 
 **Q: Which `/create:*` command do I use?**
 

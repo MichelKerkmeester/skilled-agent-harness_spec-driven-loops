@@ -22,7 +22,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- **13 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 &nbsp;
 
@@ -1444,7 +1444,7 @@ The Skill Advisor is deliberately not one. It runs as a resident daemon behind `
 
 #### External Integrations (via `.utcp_config.json`)
 
-14 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
+13 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
 
 Code Mode reads each key under its manual's name: the manual name with every underscore doubled, an underscore, then the variable the config references. `.env.example` lists every key in that form, and `get_required_keys_for_tool` names the keys a tool expects.
 
@@ -1731,7 +1731,7 @@ Everything is a file in your own repository.
 **Q: How many MCP tools are there and where are they defined?**
 
 - The `code_mode` server registers seven tools, listed under [Code Mode MCP](#13--code-mode-mcp)
-- External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 14 entries
+- External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 13 entries
 
 &nbsp;
 
