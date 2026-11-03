@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d8324e69190c12c778c2488bb2093d43e9f81ec77b10b8416634ff865bf5c28d",
+  "corpusHash": "128c7d434fb10118a1b02a04817c607cd9eb289f698f4cb54f242072cf8fa269",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27521,
+  "includedPathCount": 27527,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2946,6 +2946,7 @@
     ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.1.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
@@ -13430,6 +13431,11 @@
     "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/plan.md",
     "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/spec.md",
     "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/tasks.md",
     "specs/sk-code/018-frontend-upstream-proposals/goal.md",
     "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -27552,7 +27558,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f5aab9c07029f59bb218d4dc3e70093f7c97f8eb76798eb4b9c6f565431b8f47",
+  "manifestHash": "df45f516ed5605389e39676a24d59eca93dbf01684dac4ffb73e1d74b6f592d2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30844,6 +30850,10 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f5aab9c07029f59bb218d4dc3e70093f7c97f8eb76798eb4b9c6f565431b8f47",
+  "manifestHash": "df45f516ed5605389e39676a24d59eca93dbf01684dac4ffb73e1d74b6f592d2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -49714,6 +49714,12 @@
     "frontend practice": [
       "frontend practice"
     ],
+    "frontend reference layout": [
+      "frontend reference layout"
+    ],
+    "frontend reference restructure": [
+      "frontend reference restructure"
+    ],
     "frontend stack overrides": [
       "frontend stack overrides"
     ],
@@ -78190,6 +78196,9 @@
     "phase 9 reducer config message": [
       "phase 9 reducer config message"
     ],
+    "phase 9 reference restructure": [
+      "phase 9 reference restructure"
+    ],
     "phase 9 research fixes": [
       "phase 9 research fixes"
     ],
@@ -85518,6 +85527,21 @@
     ],
     "reference levels headline claims": [
       "reference levels headline claims"
+    ],
+    "reference restructure": [
+      "reference restructure"
+    ],
+    "reference restructure acceptance criteria": [
+      "reference restructure acceptance criteria"
+    ],
+    "reference restructure implementation summary": [
+      "reference restructure implementation summary"
+    ],
+    "reference restructure plan": [
+      "reference restructure plan"
+    ],
+    "reference restructure tasks": [
+      "reference restructure tasks"
     ],
     "reference rewrite acceptance criteria": [
       "reference rewrite acceptance criteria"
@@ -99359,6 +99383,9 @@
     "sk code frontend 1 0 1 0": [
       "sk-code-frontend 1.0.1.0"
     ],
+    "sk code frontend 1 0 2 0": [
+      "sk-code-frontend 1.0.2.0"
+    ],
     "sk code frontend build plan": [
       "sk-code-frontend build plan"
     ],
@@ -99373,6 +99400,9 @@
     ],
     "sk code frontend v1 0 1 0": [
       "sk-code-frontend v1.0.1.0"
+    ],
+    "sk code frontend v1 0 2 0": [
+      "sk-code-frontend v1.0.2.0"
     ],
     "sk code frontmatter alignment": [
       "sk-code frontmatter alignment"
