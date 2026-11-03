@@ -239,7 +239,7 @@ test('a frontend review prompt bundles the frontend surface', () => {
 });
 
 // A stylesheet path, a React hook, or a workflow file also names non-frontend
-// code, so the surface keys on its own web, native and Figma phrases and these
+// code, so the surface keys on its own web and Figma phrases and these
 // prompts must stay off it.
 test('non-frontend prompts that share frontend words do not select the frontend surface', () => {
   for (const prompt of [

@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.15.0
+version: 2.3.16.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -260,7 +260,7 @@ INTENT_SIGNALS = {
     "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
     "WEB_CASCADE":         {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
     "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "aria live region"]},
+    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region"]},
     "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
     "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},

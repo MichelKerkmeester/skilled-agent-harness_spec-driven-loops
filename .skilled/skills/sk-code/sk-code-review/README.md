@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.12.0
+version: 1.7.13.0
 ---
 
 # sk-code-review mode
@@ -200,7 +200,7 @@ A: The `sk-code-review` mode is the single-pass baseline. One report, one status
 
 **Q: How does this differ from sibling sk-code modes?**
 
-A: The surface packets (`sk-code-skilled`, `sk-code-frontend`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
+A: The surface packets (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`) carry the implement → debug → verify workflow doctrine the acting agent applies to fix accepted findings. `sk-code-quality` owns author-side gates. The `sk-code-review` mode consumes surface evidence as the review layer. It owns the review workflow and the output contract, with severity classification at the core.
 
 **Q: Can a repository switch off a review rule?**
 

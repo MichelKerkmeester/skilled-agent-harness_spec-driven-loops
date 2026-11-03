@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code workflow and surface axis"
   - "mode-registry mode and packet list"
   - "sk-code smart routing"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
@@ -23,7 +23,7 @@ Every registry entry carries a discriminator of `workflowMode` (the public mode 
 
 ### Workflow Vs Surface Axis
 
-The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` (each `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only when the hub bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. A prompt such as "review my typescript module for jank" resolves to the ordered bundle `[sk-code-review, sk-code-skilled]`.
+The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` (each `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only through the hub, which bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first, when a workflow mode scores, and routes a surface alone as the `single` outcome when none does. A prompt such as "review my typescript module for jank" resolves to the ordered bundle `[sk-code-review, sk-code-skilled]`.
 
 ### Declared Surface Detection Order
 

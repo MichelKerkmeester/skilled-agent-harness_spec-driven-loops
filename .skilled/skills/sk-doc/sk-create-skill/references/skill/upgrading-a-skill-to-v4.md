@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -72,7 +72,7 @@ Do not invent a third class. A root is a hub when both `mode-registry.json` and 
 
 ### `sk-code`: convert to parent, or keep your own single skill
 
-The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. The surface packets `sk-code-skilled` and `sk-code-ci` are read-only evidence. `graph-metadata.json` lives only at `.skilled/skills/sk-code/`. Nested packets have none.
+The repo now ships `sk-code` as a parent hub. Workflow packets `sk-code-quality` and `sk-code-review` act. The surface packets `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` are read-only evidence. `graph-metadata.json` lives only at `.skilled/skills/sk-code/`. Nested packets have none.
 
 You have two legal outcomes:
 

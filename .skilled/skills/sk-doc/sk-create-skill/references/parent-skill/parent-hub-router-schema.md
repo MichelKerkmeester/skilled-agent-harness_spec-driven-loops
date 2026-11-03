@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Parent Hub Router Schema
@@ -66,7 +66,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-ci", "sk-code-skilled"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-frontend", "sk-code-ci", "sk-code-skilled"],
     "outcomes": {
       "single": "one dominant intent routes to one mode",
       "orderedBundle": "multiple workflow intents route to an ordered mode list",
@@ -97,7 +97,7 @@ Workflow modes always sort before surface packets. For `sk-code`, the workflow o
 | 1 | `sk-code-quality` | Workflow |
 | 2 | `sk-code-review` | Workflow |
 
-The surface packets `sk-code-ci` and `sk-code-skilled` sort after every workflow mode, in that order. This keeps process selection primary and surface evidence secondary.
+The surface packets `sk-code-frontend`, `sk-code-ci` and `sk-code-skilled` sort after every workflow mode, in that order. This keeps process selection primary and surface evidence secondary.
 
 ### Outcomes
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma to code routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -38,7 +38,7 @@ This surface holds the core in `references/frontend-practice.md`, the web layer 
 - **`WEB_ELEMENTS`** fires on `html form autocomplete`, `dialog element`, or `popover attribute`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-elements-and-attributes.md`.
 - **`WEB_CASCADE`** fires on `css cascade layers` or `css specificity conflict`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-cascade-and-selectors.md`.
 - **`WEB_LAYOUT`** fires on `container query layout` or `css stacking context`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-layout-and-sizing.md`.
-- **`WEB_A11Y`** fires on `web accessibility pattern`, `focus visible styling`, `keyboard focus`, or `aria live region`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_A11Y`** fires on `web accessibility pattern`, `focus visible styling`, `keyboard focus`, `broken tab order`, `accessible name`, or `aria live region`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
 - **`WEB_PERF`** fires on `web font loading` or `largest contentful paint`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-performance-and-loading.md`.
 - **`WEB_I18N`** fires on `right to left layout` or `bidirectional text`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-internationalization.md`.
 - **`FIGMA_TO_CODE`** fires on `figma to code`, `check built screen against figma`, `compare build with figma frame`, `figma frame`, `figma frame check`, or `implement a figma design`. It loads `references/figma-to-code.md` and `references/frontend-practice.md`.
@@ -55,7 +55,7 @@ INTENT_SIGNALS = {
     "WEB_ELEMENTS": {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
     "WEB_CASCADE": {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
     "WEB_LAYOUT": {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "aria live region"]},
+    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region"]},
     "WEB_PERF": {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N": {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
     "FIGMA_TO_CODE": {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},

@@ -21,9 +21,9 @@ Read-only frontend evidence for web work across project stacks.
 
 ## 1. WHEN THE HUB BUNDLES THIS
 
-The sk-code hub bundles this surface beside `sk-code-quality` for authoring and `sk-code-review` for review when a request needs shared web frontend practice, or a Figma-to-code check.
+The sk-code hub bundles this surface beside `sk-code-quality` for authoring or `sk-code-review` for review when a request needs shared web frontend practice, or a Figma-to-code check, and it routes this surface alone when no workflow mode scores.
 
-This packet writes nothing. The paired workflow mode applies the guidance it loads.
+This packet writes nothing. When the hub bundles it beside a workflow mode, that mode applies the guidance it loads. When no workflow mode scores, the hub routes this packet alone, and the acting agent applies the guidance and hands the author gates to `sk-code-quality` before it claims completion.
 
 ---
 

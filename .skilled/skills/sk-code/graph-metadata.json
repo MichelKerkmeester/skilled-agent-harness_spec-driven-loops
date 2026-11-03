@@ -195,7 +195,9 @@
     "largest contentful paint",
     "bidirectional text",
     "keyboard focus",
-    "figma frame"
+    "figma frame",
+    "broken tab order",
+    "accessible name"
   ],
   "derived": {
     "trigger_phrases": [
@@ -380,6 +382,8 @@
     "largest contentful paint",
     "bidirectional text",
     "keyboard focus",
-    "figma frame"
+    "figma frame",
+    "broken tab order",
+    "accessible name"
   ]
 }

@@ -4,7 +4,7 @@ description: "Stack-agnostic web frontend practice with a five-pass Figma check,
 trigger_phrases:
   - "web frontend practice"
   - "figma to code check"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # sk-code-frontend
@@ -20,9 +20,9 @@ version: 1.0.3.0
 | **Packet kind** | `surface`, backend `evidence-base`, read-only |
 | **Tools** | `Read, Bash, Grep, Glob` |
 | **Use it for** | Web markup and CSS, web accessibility, and Figma-to-code checks |
-| **Invoke with** | No direct invocation. The sk-code hub bundles it beside a workflow mode when frontend evidence applies |
+| **Invoke with** | No direct invocation. The sk-code hub bundles it beside a workflow mode when frontend evidence applies, or routes it alone when no workflow mode scores |
 | **Advisor** | Invisible (`routingClass: metadata`) |
-| **Bundled with** | `sk-code-quality` for authoring and `sk-code-review` for review |
+| **Bundled with** | `sk-code-quality` for authoring and `sk-code-review` for review, or routed alone |
 | **Produces** | Shared principles, web guidance, topic references, and the five-pass Figma check; the packet edits nothing |
 
 ---

@@ -9,7 +9,7 @@ trigger_phrases:
   - "sk-code quality gate"
   - "sk-code doctor commands"
 last_updated: "2026-10-28"
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # sk-code: Feature Catalog
@@ -34,7 +34,7 @@ Use this catalog as the current-state inventory for the `sk-code` hub. The hub d
 
 #### Current Reality
 
-`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act. `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` are advisor-invisible SURFACE packets bundled alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. The hub carries no root `references/<key>/` resource router. Resource slicing lives inside the nested packets. Stack detection reads its order from declared `surfaceDetection` blocks: every specific surface first, including skills outside the hub that declare `surface_detection`, then the single SKILLED fallback, then UNKNOWN. The registry compiler rejects a hub whose fallback is not ranked last.
+`sk-code-quality` and `sk-code-review` are WORKFLOW modes that act. `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` are advisor-invisible SURFACE packets reached only through the hub, which bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first, when a workflow mode scores, and routes a surface alone as the `single` outcome when none does. The hub carries no root `references/<key>/` resource router. Resource slicing lives inside the nested packets. Stack detection reads its order from declared `surfaceDetection` blocks: every specific surface first, including skills outside the hub that declare `surface_detection`, then the single SKILLED fallback, then UNKNOWN. The registry compiler rejects a hub whose fallback is not ranked last.
 
 #### Source Files
 
