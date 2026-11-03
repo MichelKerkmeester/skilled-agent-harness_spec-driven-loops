@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.9.1.0
 ---
 
-<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
-
 # Create Skill
 
 `create-skill` is the skill-authoring workflow packet of the `sk-doc` parent hub. It owns standalone OpenCode skill scaffolding and parent-hub scaffolding through two workflow modes: `create-skill` and `create-skill-parent`.

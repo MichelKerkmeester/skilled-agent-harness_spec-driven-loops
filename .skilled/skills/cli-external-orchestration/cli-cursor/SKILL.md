@@ -5,8 +5,6 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.5.9.0
 ---
 
-<!-- Keywords: cursor, cursor-agent, cursor-cli, composer, cross-ai, agent-delegation, worktree, cloud-worker, plugin-marketplace, shared-editor-config, plan-mode, ask-mode -->
-
 # Cursor CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

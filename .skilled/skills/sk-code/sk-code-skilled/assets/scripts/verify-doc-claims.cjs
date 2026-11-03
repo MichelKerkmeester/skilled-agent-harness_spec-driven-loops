@@ -58,12 +58,6 @@ const ALLOWED = [
     reason: 'the envelope schema id read by workflow-verify.md step 2, and the run verdict schema code-quality-run/v1 that the @code Quality Gate field reads',
   },
   {
-    check: 'names',
-    file: 'sk-code-quality/SKILL.md',
-    line: '<!-- Keywords:',
-    reason: 'search vocabulary that keeps the old names findable',
-  },
-  {
     check: 'surfaces',
     file: 'sk-code-skilled/assets/checklists/agent-authoring.md',
     line: 'mirror it across all three surfaces',

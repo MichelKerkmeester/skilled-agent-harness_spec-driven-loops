@@ -10,8 +10,6 @@ version: 1.0.10.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-feature-catalog, feature catalog, feature inventory, catalog package, per-feature files, source anchors, root catalog, capability inventory, /create:feature-catalog -->
-
 # Create Feature Catalog
 
 `create-feature-catalog` is the feature-inventory workflow packet of the `sk-doc` parent hub. It authors canonical current-state catalogs rooted at `feature-catalog/feature-catalog.md`, with category folders and one per-feature reference file per root catalog entry.

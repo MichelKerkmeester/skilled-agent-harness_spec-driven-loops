@@ -10,8 +10,6 @@ version: 1.8.9.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
-
 # AI Council
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.

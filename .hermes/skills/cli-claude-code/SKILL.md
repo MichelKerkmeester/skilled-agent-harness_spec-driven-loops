@@ -10,8 +10,6 @@ version: 1.5.8.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: claude-code, claude-cli, anthropic, cross-ai, deep-reasoning, extended-thinking, code-editing, structured-output, agent-delegation, opus, sonnet, haiku -->
-
 # Claude Code CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

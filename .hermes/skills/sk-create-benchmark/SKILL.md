@@ -10,8 +10,6 @@ version: 1.6.4.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, benchmark/README.md, run-label folder -->
-
 # create-benchmark
 
 `create-benchmark` is the `sk-doc` benchmark-authoring packet. It covers:

@@ -9,7 +9,6 @@ version: 1.1.9.0
 > Canonical source: `.skilled/skills/sk-doc/sk-create-diff/`. This is a generated markdown-only copy so Hermes can load the
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
-<!-- Keywords: create-diff, document diff, before after review, before/after document, local html diff report, document snapshot, ai edit review, docx diff, pdf diff, markdown diff, multi-file diff, aggregate file boundaries -->
 
 # Create Diff
 

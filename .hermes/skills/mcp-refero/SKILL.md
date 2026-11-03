@@ -12,8 +12,6 @@ user-invocable: true
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: refero, refero-mcp, design-reference, ui-reference-search, refero-search-styles, refero-screens, refero-flows, mcp-remote, code-mode, sk-design-md-generator, design-reference-transport -->
-
 # Refero (mcp-refero)
 
 Search **Refero's library of real shipped UI**. The official repo reports 150,000+ app screens and 6,000+ user flows.

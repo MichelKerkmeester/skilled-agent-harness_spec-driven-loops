@@ -10,8 +10,6 @@ version: 1.0.11.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: hermes cli, hermes agent, nous hermes, delegate to hermes, hermes chat, hermes oneshot, hermes query-file, cross-ai, headless dispatch, llm gateway, project skills, hermes plugins -->
-
 # Hermes Agent CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

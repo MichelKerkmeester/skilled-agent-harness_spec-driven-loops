@@ -10,8 +10,6 @@ version: 1.4.6.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-goal, /create:goal, packet goal, goal.md authoring, phase parent goal, nested phase child goal -->
-
 # Create Packet Goals
 
 `sk-create-goal` authors `goal.md` content for an existing spec packet. It fills per-kind templates that are checked copies of the system-spec-kit goal template and keeps runtime goal state with its existing owners.

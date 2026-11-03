@@ -5,8 +5,6 @@ allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, W
 version: 1.0.19.0
 ---
 
-<!-- Keywords: chrome-devtools, cdp, browser-debugger-cli, bdg, browser-automation, terminal-debugging, screenshot-capture, network-monitoring, mcp-code-mode, orchestrator -->
-
 # Chrome DevTools Orchestrator - CLI + MCP Integration
 
 Browser debugging and automation through two complementary approaches: CLI (bdg) for speed and token efficiency, MCP for multi-tool integration.

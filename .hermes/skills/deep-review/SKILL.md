@@ -12,8 +12,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 > from the canonical path above.
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
 
-<!-- Keywords: deep-review, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
-
 # Autonomous Deep Review Loop
 
 Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).

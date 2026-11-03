@@ -5,8 +5,6 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 0.1.9.0
 ---
 
-<!-- Keywords: cli-usage, cli-jev, jev cli, typesafe jev, jev judgment, noul, choice judgment, score judgment, jev run, jev-mcp, typed judgment, classification instead of prose, probability, yes-no judgment, ordered score, batched questions -->
-
 # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch
 
 > **Transport, not executor.** `cli-jev` is the packet of the hub's `cli-jev` transport mode: it bridges

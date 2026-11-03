@@ -42,7 +42,7 @@ const ROUTER = [
 ].join('\n');
 
 // A clean hub: every check passes. The changelog and the benchmark report carry retired wording on
-// purpose, which proves the walk leaves both folders out, and the quality keyword comment proves an
+// purpose, which proves the walk leaves both folders out, and the quality schema line proves an
 // allowlisted line is not reported.
 function buildHub(t) {
   const hub = fs.mkdtempSync(path.join(os.tmpdir(), 'doc-claims-'));
@@ -58,7 +58,7 @@ function buildHub(t) {
     'and `references/local.md`. The `sk-code-review` mode stays valid.',
     '',
   ].join('\n'));
-  write(path.join(hub, 'sk-code-quality', 'SKILL.md'), '<!-- Keywords: code-quality, code-webflow -->\n');
+  write(path.join(hub, 'sk-code-quality', 'SKILL.md'), 'schema_version: code-quality/v1, formerly code-webflow\n');
   write(path.join(hub, 'sk-code-demo', 'changelog', 'v1.0.0.0.md'), 'Renamed code-webflow, which had two surfaces.\n');
   write(path.join(hub, 'sk-code-demo', 'benchmark', 'reports', 'run.md'), 'Routed to code-skilled.\n');
   return hub;

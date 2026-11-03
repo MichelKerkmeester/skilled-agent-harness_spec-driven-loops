@@ -10,8 +10,6 @@ version: 1.0.8.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: manual testing playbook, testing playbook, deterministic scenario, evidence collection, operator validation, multi-agent execution, release readiness, create:manual-testing-playbook -->
-
 # Manual Testing Playbook Creation
 
 `create-manual-testing-playbook` is the manual-validation package workflow for the `sk-doc` family. It authors `manual-testing-playbook/` packages for skills and systems that need reproducible operator-facing scenarios, evidence capture, release-readiness review, and realistic orchestration or multi-agent execution planning.

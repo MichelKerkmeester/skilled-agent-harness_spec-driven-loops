@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.1.10.0
 ---
 
-<!-- Keywords: design system, design tokens, css extraction, design.md, website design extraction, design reference, tokens.json, playwright, design-to-markdown, design-system generator, css tokens, color extraction, typography extraction, hex extraction, shadow extraction, spacing extraction, design fidelity, anti-hallucination -->
-
 # Design System Extractor (md-generator)
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**.

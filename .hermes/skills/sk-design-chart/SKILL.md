@@ -12,8 +12,6 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-chart, chart, data visualization, plot the data, treemap, waterfall chart, heatmap, box plot, histogram, chart catalog, colour system, standalone html chart -->
-
 # Create Chart
 
 `sk-design-chart` is the chart-authoring workflow packet of the `sk-design` parent hub. It produces a standalone HTML chart from a corpus of chart forms that lives inside this packet.

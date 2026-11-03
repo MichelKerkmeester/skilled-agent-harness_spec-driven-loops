@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, mcp__code_mode__call_tool_c
 version: 1.1.6.0
 ---
 
-<!-- Keywords: aside, ai-browser, browser-agent, aside-cli, aside-repl, aside-mcp, playwright-repl, browser-automation, mcp-code-mode, orchestrator -->
-
 # Aside Browser Orchestrator - CLI + MCP Integration
 
 AI-browser automation through the Aside CLI: natural-language agent tasks and a deterministic Playwright-compatible JavaScript REPL, with the Aside MCP server via Code Mode as the composition fallback.

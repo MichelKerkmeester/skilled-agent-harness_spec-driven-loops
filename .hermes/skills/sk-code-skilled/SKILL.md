@@ -13,8 +13,6 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: opencode, system-code, typescript, python, shell, rust, jsonc, config, mcp, skill-authoring, agent-authoring, command-authoring, hooks, alignment-verifier, surface-evidence, sk-code -->
-
 # opencode Surface — System-Code Evidence
 
 **Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.

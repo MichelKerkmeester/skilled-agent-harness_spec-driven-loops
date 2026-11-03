@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.2.4.0
 ---
 
-<!-- Keywords: create-with-human-voice, /create:with-human-voice, human voice rules, apply human voice, rewrite in human voice, make this sound human, sounds ai-generated, reads like ai wrote it, remove ai tells, ai writing tells, voice pass, hvr_scan -->
-
 # create-with-human-voice
 
 `create-with-human-voice` is the voice-application workflow packet of the `sk-doc` family.

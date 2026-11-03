@@ -12,8 +12,6 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: code-review, review, findings-first, pull-request, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
-
 # sk-code-review Mode - Stack-Agnostic Findings-First Review
 
 Universal findings-first review baseline paired with `sk-code` surface standards evidence for the detected code surface.

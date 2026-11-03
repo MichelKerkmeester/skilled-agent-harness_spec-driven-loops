@@ -7,8 +7,6 @@ version: 1.1.6.0
 user-invocable: true
 ---
 
-<!-- Keywords: mobbin, mobbin-mcp, app-design-research, screen-examples, ux-flow-references, search-screens, mcp-remote, code-mode, sk-design-md-generator, design-research-transport -->
-
 # Mobbin (mcp-mobbin)
 
 Search **Mobbin's library of real app UI screenshots**. The official repo calls it "the world's largest library of real app UI screenshots". An agent can query it through the **Mobbin MCP via Code Mode**. Its documented tool is `search_screens`, which answers app, screen, flow and element research as query intents.

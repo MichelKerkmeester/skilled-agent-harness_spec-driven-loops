@@ -5,8 +5,6 @@ allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, W
 version: 1.2.8.0
 ---
 
-<!-- Keywords: clickup, click up, cupt, clickup tasks, my clickup tasks, mark task done, complete a clickup task, log time in clickup, start timer, stop timer, add note to task, tag task, process work queue, task queue, create clickup task, clickup document, clickup doc page, search clickup, clickup mcp, install cupt -->
-
 # mcp-click-up Skill
 
 ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP** (secondary). Operation-based routing: cupt handles daily task ops, and the MCP handles task creation, documents, search, lists and folders, task relations, chat and reminders. Goals, bulk create, webhooks and checklist edits have no route on either surface.

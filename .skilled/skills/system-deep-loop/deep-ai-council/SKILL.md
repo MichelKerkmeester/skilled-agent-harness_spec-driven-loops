@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.8.9.0
 ---
 
-<!-- Keywords: deep-ai-council, ai council, council deliberation, multi-seat planning, ai-council artifacts, council convergence, planning council, council artifact persistence -->
-
 # AI Council
 
 Planning-only council deliberation with diverse seats, convergence checks, and packet-local `ai-council/**` artifact persistence.

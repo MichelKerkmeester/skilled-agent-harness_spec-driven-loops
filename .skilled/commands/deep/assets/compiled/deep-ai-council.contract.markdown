@@ -42,7 +42,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "sha256": "e62635af0ddc616fa5d48ad37c954b58af702d9ab546eb1b5f3159d47b9a0f50",
+      "sha256": "e77e6b958670668e955d6730c50c448ed42eae22e5fba5b6b5ddb4cff1063dc6",
       "section": "full"
     },
     {

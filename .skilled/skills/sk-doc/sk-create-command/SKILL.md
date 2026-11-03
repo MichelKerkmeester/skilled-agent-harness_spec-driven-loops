@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.10.0
 ---
 
-<!-- Keywords: create-command, slash command, opencode command, argument-hint, allowed-tools, command router, presentation contract, thin router, command scaffold -->
-
 # Create Command
 
 `create-command` is the command-authoring workflow packet of the `sk-doc` parent hub. It creates and improves OpenCode slash commands under `.skilled/commands/` with executable workflows, precise frontmatter, required input gates, least-privilege tools, and router/presentation separation when needed.

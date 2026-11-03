@@ -10,8 +10,6 @@ version: 1.3.11.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-readme, folder readme, code folder readme, project readme, skill readme, /create:readme, audit_readmes -->
-
 # Create README (workflow)
 
 `create-readme` is the README authoring packet in the `sk-doc` family. It writes current-state folder READMEs from local evidence, using packet-local templates under `assets/` and shared create-quality-control validators under `../shared`.
