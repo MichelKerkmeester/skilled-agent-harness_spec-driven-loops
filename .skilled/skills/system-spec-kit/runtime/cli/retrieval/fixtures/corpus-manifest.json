@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2b68be583499e2a6b4fe21059b6fb5ee3fa0e01cb238b8ba961f1ff416650f7c",
+  "corpusHash": "c206219bb150115b8f8c7f21b377f8bc5ae2198943c8f173a75df17c5c3dc86b",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27439,
+  "includedPathCount": 27441,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7878,6 +7878,7 @@
     ".skilled/skills/system-skill-advisor/changelog/v0.17.8.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.17.9.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.18.0.0.md",
+    ".skilled/skills/system-skill-advisor/changelog/v0.18.1.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.2.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md",
     ".skilled/skills/system-skill-advisor/changelog/v0.4.0.0.md",
@@ -8323,6 +8324,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.29.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.30.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.30.1.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -27470,7 +27472,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f14caa01db319bdc37f7c388058d5541dec59a032088de3313def318bad73dc1",
+  "manifestHash": "ff5a7c74ebdd915cb1794adaa98d653c192f4bd910026e14120c0df8094e6af3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
