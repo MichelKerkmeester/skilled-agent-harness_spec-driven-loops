@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.19.0
+version: 1.5.20.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -356,4 +356,4 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md` | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | none | No |
 
-**Operator scenarios**: 18, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 8 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 26 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.
+**Operator scenarios**: 18, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 27 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.

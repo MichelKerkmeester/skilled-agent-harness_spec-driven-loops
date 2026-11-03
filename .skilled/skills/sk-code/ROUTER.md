@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.13.0
+version: 2.3.14.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -520,7 +520,7 @@ Surface packets are advisor-invisible (`routingClass: metadata`, read-only `tool
 The advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle`.
 The workflow mode comes first, followed by surfaces.
 "review my typescript module for jank" → `[sk-code-review, sk-code-skilled]`.
-Bundled surfaces follow the `routerPolicy.tieBreak` order. It ranks `sk-code-ci` ahead of `sk-code-frontend`, then `sk-code-skilled`, so the surface that wins a keyword tie comes first.
+Bundled surfaces follow the `routerPolicy.tieBreak` order. It ranks `sk-code-frontend` ahead of `sk-code-ci`, then `sk-code-skilled` last, because a new surface goes ahead of the existing ones and the SKILLED fallback stays last.
 
 ### Surface detection
 

@@ -28,8 +28,9 @@ const CLI_PATH = path.join(__dirname, '..', 'compiled-route-admission.cjs');
 const ACTIVATION_ROOT = path.join(__dirname, '..', 'lib', 'compiled-routing', '013-live-activation', 'activation');
 const TEMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'compiled-route-admission-'));
 // The live gold corpus at the admitted hubs' playbook roots. A change here means
-// scenarios were added or removed, so the baseline report needs a rerun.
-const LIVE_CORPUS_SIZE = 84;
+// scenarios were added or removed, so the baseline report needs a rerun. The
+// frontend surface scenario is the 85th.
+const LIVE_CORPUS_SIZE = 85;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS

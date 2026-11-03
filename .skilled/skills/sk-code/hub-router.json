@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-ci", "sk-code-frontend", "sk-code-skilled"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-frontend", "sk-code-ci", "sk-code-skilled"],
     "outcomes": {
       "single": "routes to one packet: a workflow mode, or a surface alone when no workflow mode scores",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
