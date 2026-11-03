@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7308,
+    "missing-frontmatter": 7307,
     "ok": 16661,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27517,
+  "documentsScanned": 27516,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
+  "manifestHash": "d749d63eff7484b74f848be1b5e82f11b8c97de86f401d1153a743a8b77ffe8e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40517,
+      "ok": 40506,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -10951,12 +10951,6 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-native.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -72013,6 +72007,10 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/scratch",
       "reason": "excluded directory"
     },
     {

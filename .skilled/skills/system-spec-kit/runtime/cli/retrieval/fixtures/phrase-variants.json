@@ -1,5 +1,5 @@
 {
-  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
+  "manifestHash": "d749d63eff7484b74f848be1b5e82f11b8c97de86f401d1153a743a8b77ffe8e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11530,17 +11530,11 @@
     "and or filter stacking": [
       "and or filter stacking"
     ],
-    "android edge to edge": [
-      "android edge to edge"
-    ],
     "android emulator orca": [
       "android emulator orca"
     ],
     "android health data files": [
       "android health data files"
-    ],
-    "android text metrics": [
-      "android text metrics"
     ],
     "angle driven review": [
       "angle driven review"
@@ -48680,9 +48674,6 @@
     "flash variant max pin": [
       "flash variant max pin"
     ],
-    "flashlist v2 hooks": [
-      "flashlist v2 hooks"
-    ],
     "flat level 3 packet": [
       "flat Level 3 packet"
     ],
@@ -49713,9 +49704,6 @@
     ],
     "frontend disconnect logging": [
       "frontend disconnect logging"
-    ],
-    "frontend native surface routing": [
-      "frontend native surface routing"
     ],
     "frontend overrides contract": [
       "frontend overrides contract"
@@ -58021,9 +58009,6 @@
     "invocation pattern column": [
       "invocation pattern column"
     ],
-    "ios android safe areas": [
-      "ios android safe areas"
-    ],
     "ios simulator orca": [
       "ios simulator orca"
     ],
@@ -59151,9 +59136,6 @@
     ],
     "key questions generated projection": [
       "key-questions generated projection"
-    ],
-    "keyboard focus chaining": [
-      "keyboard focus chaining"
     ],
     "keyed runtime discovery": [
       "keyed runtime discovery"
@@ -69869,12 +69851,6 @@
     "native": [
       "native"
     ],
-    "native accessibility actions": [
-      "native accessibility actions"
-    ],
-    "native accessibility aliases": [
-      "native accessibility aliases"
-    ],
     "native advisor delivery per runtime": [
       "native advisor delivery per runtime"
     ],
@@ -69926,9 +69902,6 @@
     "native host advisor evidence": [
       "native host advisor evidence"
     ],
-    "native list recycling": [
-      "native list recycling"
-    ],
     "native module checks": [
       "native module checks"
     ],
@@ -69958,12 +69931,6 @@
     ],
     "native surface last in tiebreak": [
       "native surface last in tiebreak"
-    ],
-    "native text input props": [
-      "native text input props"
-    ],
-    "native text scaling": [
-      "native text scaling"
     ],
     "native trial log 13 rows": [
       "native trial log 13 rows"
@@ -78073,6 +78040,9 @@
     "phase 7 spec kit hook deadlines": [
       "phase 7 spec kit hook deadlines"
     ],
+    "phase 7 web only frontend": [
+      "phase 7 web only frontend"
+    ],
     "phase 7 workflow hygiene on off control": [
       "phase 7 workflow hygiene on off control"
     ],
@@ -84006,32 +83976,8 @@
     "react memory context strategy tasks": [
       "react memory_context strategy tasks"
     ],
-    "react native accessibility": [
-      "react native accessibility"
-    ],
-    "react native accessibility props": [
-      "react native accessibility props"
-    ],
-    "react native flex basis": [
-      "react native flex basis"
-    ],
-    "react native font scaling": [
-      "react native font scaling"
-    ],
-    "react native frontend practice": [
-      "react native frontend practice"
-    ],
     "react native in canonical sk code": [
       "react native in canonical sk-code"
-    ],
-    "react native keyboard avoidance": [
-      "react native keyboard avoidance"
-    ],
-    "react native layout practice": [
-      "react native layout practice"
-    ],
-    "react native platform differences": [
-      "react native platform differences"
     ],
     "reactive eof idle kill": [
       "reactive-EOF idle kill"
@@ -84842,9 +84788,6 @@
     ],
     "realpath production directory match": [
       "realpath production directory match"
-    ],
-    "reanimated reduced motion": [
-      "reanimated reduced motion"
     ],
     "reap before respawn dead socket": [
       "reap before respawn dead socket"
@@ -87788,6 +87731,12 @@
     ],
     "remove project cancel index": [
       "remove project cancel index"
+    ],
+    "remove react native decision": [
+      "remove react native decision"
+    ],
+    "remove react native from sk code": [
+      "remove react native from sk-code"
     ],
     "remove repo parent skill": [
       "remove repo parent skill"
@@ -121012,6 +120961,24 @@
     ],
     "web interface guidelines": [
       "web interface guidelines"
+    ],
+    "web only frontend": [
+      "web only frontend"
+    ],
+    "web only frontend acceptance criteria": [
+      "web only frontend acceptance criteria"
+    ],
+    "web only frontend decision record": [
+      "web only frontend decision record"
+    ],
+    "web only frontend implementation summary": [
+      "web only frontend implementation summary"
+    ],
+    "web only frontend plan": [
+      "web only frontend plan"
+    ],
+    "web only frontend tasks": [
+      "web only frontend tasks"
     ],
     "web search": [
       "web search"

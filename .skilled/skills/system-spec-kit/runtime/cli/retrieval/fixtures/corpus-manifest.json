@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ed8138f081c9dd30e6c4728671a77530321e04e745fbdcca7a67f04bf3bdb9a2",
+  "corpusHash": "8ab75a7759d46e934fdd2c5cb0c6f3599907ecb69efb064042d0118f5df80fa7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27517,
+  "includedPathCount": 27516,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2947,17 +2947,10 @@
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
-    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-native.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/native-accessibility.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/native-inputs-and-keyboard.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/native-layout-and-text.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/native-lists-and-motion.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/native-platform-differences.md",
-    ".skilled/skills/sk-code/sk-code-frontend/references/react-native-layout-and-a11y.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md",
@@ -13426,6 +13419,12 @@
     "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/plan.md",
     "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/spec.md",
     "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/decision-record.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/tasks.md",
     "specs/sk-code/018-frontend-upstream-proposals/goal.md",
     "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -27548,7 +27547,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
+  "manifestHash": "d749d63eff7484b74f848be1b5e82f11b8c97de86f401d1153a743a8b77ffe8e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30832,6 +30831,10 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/scratch",
       "reason": "excluded directory"
     },
     {
