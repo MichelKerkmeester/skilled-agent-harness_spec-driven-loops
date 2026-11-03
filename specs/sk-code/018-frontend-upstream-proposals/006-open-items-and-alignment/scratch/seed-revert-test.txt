@@ -1,0 +1,9 @@
+## seed reverted, tests kept
+✖ --write seeds an absent provenance list from the declared phrases already present (26.931167ms)
+✖ a router rename after the seed is reported as an orphan by --check (52.842708ms)
+ℹ fail 2
+✖ failing tests:
+ℹ pass 6
+## seed restored
+ℹ fail 0
+ℹ pass 8

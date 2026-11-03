@@ -94,16 +94,22 @@ function plan(hub) {
 }
 
 function write(p) {
-  if (!p.missing.length && !p.orphans.length) return false;
+  const generated = Array.isArray(p.meta.intent_signals_generated) ? p.meta.intent_signals_generated : [];
+  // Seeding from the declared phrases already present lets a later router rename read as an orphan.
+  const declaredSet = new Set(p.declared.map((s) => String(s).toLowerCase()));
+  const seed = Array.isArray(p.meta.intent_signals_generated)
+    ? []
+    : p.existing.filter((s) => declaredSet.has(String(s).toLowerCase()));
+  if (!p.missing.length && !p.orphans.length && !seed.length) return false;
   const orphanSet = new Set(p.orphans.map((s) => String(s).toLowerCase()));
   // Appended rather than merged and re-sorted: the authored order carries intent
   // a rewrite would flatten, and a stable tail keeps the diff readable. The prune
   // keeps every surviving entry where it was, for the same reason.
   p.meta.intent_signals = [...p.remaining, ...p.missing];
-  const generated = Array.isArray(p.meta.intent_signals_generated) ? p.meta.intent_signals_generated : [];
   const generatedHave = new Set(generated.map((s) => String(s).toLowerCase()));
   p.meta.intent_signals_generated = [
     ...generated.filter((s) => !orphanSet.has(String(s).toLowerCase())),
+    ...seed.filter((s) => !generatedHave.has(String(s).toLowerCase())),
     // A declared phrase this list already records is not added a second time.
     ...p.missing.filter((s) => !generatedHave.has(s.toLowerCase())),
   ];

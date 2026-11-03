@@ -166,6 +166,52 @@ test('a hand-curated undeclared phrase is neither reported nor removed', () => {
   }
 });
 
+test('--write seeds an absent provenance list from the declared phrases already present', () => {
+  const repo = makeRepo();
+  try {
+    addHub(repo, 'alpha-hub', {
+      declared: ['zeta declared', 'alpha declared'],
+      metadata: {
+        skill_id: 'alpha-hub',
+        intent_signals: ['alpha declared', 'hand curated phrase', 'zeta declared'],
+      },
+    });
+    const result = run(repo, '--write');
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+    const meta = metadataOf(repo, 'alpha-hub');
+    assert.deepEqual(meta.intent_signals, ['alpha declared', 'hand curated phrase', 'zeta declared']);
+    assert.deepEqual(meta.intent_signals_generated, ['alpha declared', 'zeta declared']);
+  } finally {
+    repo.remove();
+  }
+});
+
+test('a router rename after the seed is reported as an orphan by --check', () => {
+  const repo = makeRepo();
+  try {
+    addHub(repo, 'alpha-hub', {
+      declared: ['alpha declared', 'zeta declared'],
+      metadata: {
+        skill_id: 'alpha-hub',
+        intent_signals: ['alpha declared', 'zeta declared'],
+      },
+    });
+    const write = run(repo, '--write');
+    assert.equal(write.status, 0, write.stdout + write.stderr);
+
+    const routerPath = path.join(repo.skills, 'alpha-hub', 'ROUTER.md');
+    fs.writeFileSync(routerPath, fs.readFileSync(routerPath, 'utf8').replace('zeta declared', 'zeta renamed'));
+
+    const check = run(repo, '--check');
+    assert.equal(check.status, 1, check.stdout + check.stderr);
+    assert.match(check.stdout, /^ {7}- zeta declared$/m);
+    assert.match(check.stdout, /orphans= {2}1/);
+    assert.match(check.stdout, /RESULT: FAILED/);
+  } finally {
+    repo.remove();
+  }
+});
+
 test('--write records a newly declared phrase in both lists', () => {
   const repo = makeRepo();
   try {
