@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-frontend-upstream-proposals",
+  "spec_folder": "sk-code/018-frontend-upstream-proposals",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode",
+    "sk-code/018-frontend-upstream-proposals/002-tooling-fixes",
+    "sk-code/018-frontend-upstream-proposals/003-design-handoffs",
+    "sk-code/018-frontend-upstream-proposals/004-playbook-scenarios",
+    "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontend upstream proposals phase parent spec",
+      "sk-code-frontend surface plan",
+      "barter frontend proposals for skilled",
+      "five-pass figma check plan",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "frontend",
+      "upstream",
+      "proposals",
+      "phase",
+      "parent",
+      "spec",
+      "sk-code-frontend",
+      "surface",
+      "plan",
+      "barter",
+      "skilled",
+      "five-pass"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
+      "001-frontend-surface-mode/goal.md",
+      "002-tooling-fixes/goal.md",
+      "003-design-handoffs/goal.md",
+      "004-playbook-scenarios/goal.md",
+      "005-inferred-confirmations/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-router-intent-signals.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "React Native",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Barter",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no Barter-only",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-go",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Skilled's sk-code hub has no frontend guidance",
+    "created_at": "2026-11-03T08:33:52Z",
+    "last_save_at": "2026-11-03T08:48:15.179Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:cdeb04bff74f08d3deac9fa696769f986be5a3b6d9fda3c3efc0cc9a93e9d906",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "089d7760172d953df9a84286d4ceef4cfb804ccb7d37b4654008ec7232ce4ae7"
+    },
+    "last_active_at": null
+  }
+}

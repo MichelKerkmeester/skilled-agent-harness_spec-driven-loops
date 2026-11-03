@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-frontend-upstream-proposals/003-design-handoffs",
+  "spec_folder": "sk-code/018-frontend-upstream-proposals/003-design-handoffs",
+  "parent_id": "sk-code/018-frontend-upstream-proposals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "design handoffs",
+      "phase 3 design handoffs",
+      "open visual decision handoff",
+      "reduced motion section",
+      "project profile slot",
+      "design handoffs plan",
+      "design handoffs tasks",
+      "design handoffs acceptance criteria",
+      "design handoffs goal",
+      "design handoffs implementation summary"
+    ],
+    "key_topics": [
+      "design",
+      "handoffs",
+      "phase",
+      "open",
+      "visual",
+      "decision",
+      "handoff",
+      "reduced",
+      "motion",
+      "section",
+      "project",
+      "profile"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-principles.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Style Reference",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-code names only `sk-design-md-generator` for design input (`sk-code/SKILL.md:64`, `sk-code/README.md:102`), and mcp-figma pairs only with that extractor, so neither tells an implementer where an open spacing, type or colour value is decided",
+    "created_at": "2026-11-03T08:33:54Z",
+    "last_save_at": "2026-11-03T08:46:40.628Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1e97764be8978178aee396ddf19fb95ffa2ac5fc8ab8f82a66d6efd65c7a3cfb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1d292b478a213f135ee67a07bb1b304c3b8dbdd58262f1128c3e33596065e40d",
+      "plan.md": "f84684f7a18bc049808018fe228fd2100fd03a09def45cf52b231a0dffe0de6a",
+      "tasks.md": "8a00963545b26356c9b42881cf14a3fe5ded896bc9ebc546d1e545ad70e902c5",
+      "implementation-summary.md": "3edc2d38fbc3392b839b3058534a4bb24861c5a9f416f8048bff12d5def31c44"
+    },
+    "last_active_at": null
+  }
+}

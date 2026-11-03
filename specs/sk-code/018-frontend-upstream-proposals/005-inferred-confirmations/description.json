@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
+  "description": "Phase 5: inferred-confirmations",
+  "keywords": [
+    "phase",
+    "inferred-confirmations"
+  ],
+  "lastUpdated": "2026-11-03T08:33:57.196Z",
+  "specId": "005",
+  "folderSlug": "inferred-confirmations",
+  "parentChain": [
+    "sk-code",
+    "018-frontend-upstream-proposals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

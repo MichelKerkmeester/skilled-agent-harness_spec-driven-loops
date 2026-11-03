@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
+  "spec_folder": "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
+  "parent_id": "sk-code/018-frontend-upstream-proposals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "inferred confirmations",
+      "phase 5 inferred confirmations",
+      "leaf route replay tuple keywords",
+      "hyphen alias normalization",
+      "trigger index repo root",
+      "phase parent save score",
+      "inferred confirmations plan",
+      "inferred confirmations tasks",
+      "inferred confirmations acceptance criteria",
+      "inferred confirmations goal",
+      "inferred confirmations implementation summary"
+    ],
+    "key_topics": [
+      "inferred",
+      "confirmations",
+      "phase",
+      "leaf",
+      "route",
+      "replay",
+      "tuple",
+      "keywords",
+      "hyphen",
+      "alias",
+      "normalization",
+      "trigger"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+      ".skilled/bin/lib/compiled-route-manifest.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-route-replay.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "aliases.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/lib/compiled-route-manifest.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-trigger-index.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Four Barter",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Confirm",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Barter observed four symptoms whose cause in Skilled was not traced",
+    "created_at": "2026-11-03T08:33:56Z",
+    "last_save_at": "2026-11-03T08:48:30.732Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7294499de2bb3b4efb083c04054c59f68871b691885396b4af9c44911aa0ed3a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7de70003b998d4232460132626f8aecd9151420f742e122cbae2f2fc331aecf6",
+      "plan.md": "37093cb4fd4915b3a360750b26a36bfd91b7bdbb347e3b75110dc4bc7aae7ec7",
+      "tasks.md": "3b0748e2d5bfd6c50a2f99db9dc2c0ec734e62a4c50d6844c50c8b4bbba84145",
+      "implementation-summary.md": "9925deb18820c526fc69860d8488a16e61c937e89f4b86a311e48201ced34d85"
+    },
+    "last_active_at": null
+  }
+}

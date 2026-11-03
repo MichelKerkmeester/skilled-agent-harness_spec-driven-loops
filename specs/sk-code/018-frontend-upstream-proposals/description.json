@@ -1,0 +1,21 @@
+{
+  "specFolder": "sk-code/018-frontend-upstream-proposals",
+  "description": "Frontend upstream proposals from Barter's frontend practice program",
+  "keywords": [
+    "frontend",
+    "upstream",
+    "proposals",
+    "barter",
+    "practice",
+    "program"
+  ],
+  "lastUpdated": "2026-11-03T08:33:52.772Z",
+  "specId": "018",
+  "folderSlug": "frontend-upstream-proposals",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
