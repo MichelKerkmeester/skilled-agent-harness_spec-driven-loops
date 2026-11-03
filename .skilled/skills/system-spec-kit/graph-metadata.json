@@ -81,8 +81,10 @@
     "decision record",
     "operator decision",
     "record my answer",
-    "decision capture",
-    "chat candidate"
+    "decision capture queue",
+    "decision capture folder",
+    "decision capture state",
+    "this chat candidate"
   ],
   "derived": {
     "trigger_phrases": [

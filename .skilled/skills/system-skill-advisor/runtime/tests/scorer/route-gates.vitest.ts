@@ -72,6 +72,24 @@ describe('read-only prompt that names a cli tool', () => {
   });
 });
 
+describe('read-only prompt about captured decisions', () => {
+  it('lets spec-kit answer a show prompt about its decision-capture queue', () => {
+    expect(readOnlyRouteAllowed('show the decision capture queue for this project.', skill('system-spec-kit'))).toBe(true);
+  });
+
+  it('keeps another skill gated on the same prompt', () => {
+    expect(readOnlyRouteAllowed('show the decision capture queue for this project.', skill('sk-code'))).toBe(false);
+  });
+
+  it('does not lift spec-kit for a research request that names the feature', () => {
+    expect(readOnlyRouteAllowed('research how other tools handle decision capture in transcripts.', skill('system-spec-kit'))).toBe(false);
+  });
+
+  it('keeps spec-kit gated on a show prompt with no decision noun', () => {
+    expect(readOnlyRouteAllowed('show the queue for this project.', skill('system-spec-kit'))).toBe(false);
+  });
+});
+
 describe('review-loop verb', () => {
   const projection = createFixtureProjection([skill('system-deep-loop'), skill('sk-code')]);
 

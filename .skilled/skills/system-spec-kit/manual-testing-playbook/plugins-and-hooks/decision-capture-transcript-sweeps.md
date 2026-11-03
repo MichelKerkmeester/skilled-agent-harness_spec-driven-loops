@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sweep"
   - "devin transcript sweep"
   - "opencode session sweep"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # decision-capture-transcript-sweeps -- Decision capture transcript sweeps
@@ -30,13 +30,13 @@ The live hooks on Claude, OpenCode and Devin only see answers while they are reg
 
 Operators run the exact prompt and command sequence for `decision-capture-transcript-sweeps` and confirm the expected signals without contradictory evidence.
 
-- Objective: Prove the three sweeps recover answered product questions from redacted real samples, drop process questions and rejected calls, and append nothing on a second run.
+- Objective: Prove the three sweeps recover answered product questions from redacted real samples, drop process questions and rejected calls, and append nothing on a second run, and that the Claude sweep attaches an evidence object to each chat candidate.
 - Real user request: `Before I save, can you make sure the sweeps pick up the questions I answered in Devin and OpenCode, and don't double up if I run them twice?`
 - Prompt: `Run the decision-capture sweeps on their sample sessions and tell me whether each answered question is queued once and the Gate 3 question is left out.`
 - Expected execution process: Run the commands in section 3 from the repository root. The CLI step runs from a scratch folder, so its queue lands there and not in the repository.
-- Expected signals: the three sweep suites report `fail 0`; the first Devin CLI run prints `"recovered": 2` and the second prints `"recovered": 0`; the scratch queue holds 2 lines, one answered `Marketplace in settings` and one answered `all 4, use subagents`; no queued line mentions `Spec folder`.
-- Desired user-visible outcome: A PASS or FAIL verdict with the recovered counts and the two queued answers.
-- Pass/fail: PASS if every expected signal is observed, FAIL if a count differs, a Gate 3 question is queued, or a queue appears inside the repository.
+- Expected signals: the three sweep suites report `fail 0`; the first Devin CLI run prints `"recovered": 2` and the second prints `"recovered": 0`; the scratch queue holds 2 lines, one answered `Marketplace in settings` and one answered `all 4, use subagents`; no queued line mentions `Spec folder`; the chat-candidate evidence step prints the four rows section 3 lists, in that order.
+- Desired user-visible outcome: A PASS or FAIL verdict with the recovered counts, the two queued answers and the four evidence rows.
+- Pass/fail: PASS if every expected signal is observed, FAIL if a count differs, a Gate 3 question is queued, an evidence row is missing or differs, or a queue appears inside the repository.
 
 ---
 

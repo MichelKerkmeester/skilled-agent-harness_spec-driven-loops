@@ -44,6 +44,7 @@ Your architecture, decisions and session history are written into the spec folde
 - `/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped
 - A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path
 - A phrase nobody wrote is a clean no-hit, never a nearest guess
+- Your answers to the AI's questions are captured as you give them and saved into the packet's decision record, with the exact exchange beside each one
 
 ### 🔄 Deep Loop
 
@@ -238,6 +239,11 @@ It checks that the Spec Kit and Skill Advisor builds exist, and asks four things
 2. **Runtimes:** any of `claude`, `opencode`, `codex`, `cursor`, `devin`, `pi` and `hermes`, or the ones already in the repo
 3. **Link shape:** `auto`, `whole` or `merge` (see below). `auto` is the one to pick
 4. **Instruction file:** `embed` keeps your repo's own `AGENTS.md` and adds the shipped sections to it, and `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at this checkout's copies
+
+<!-- readme-check
+allow-ref /Users/me/code/my-app | a sample target path the operator replaces with their own project
+allow-ref CLAUDE.md | the instruction file in the operator's target repo, which this checkout does not ship
+-->
 
 You can pass the first two up front with `/doctor:install --root <dir> --runtimes <list>`. The guide then runs a read-only check of the target repo, shows what is already linked, and prints the steps. It changes nothing itself.
 
@@ -1047,6 +1053,18 @@ source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled
 - **Hermes** also needs `repo-guards` listed under `plugins.enabled` in `~/.hermes/config.yaml`
 
 The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
+
+&nbsp;
+#### Decision Capture
+
+Saves the answers you give to the AI's questions, so the reason behind a choice is not lost when the session ends.
+
+Each answer is queued as you give it, and a full-auto `/speckit:save` writes it into the bound packet's `decision-record.md` as a short decision, with the question, the offered options and your answer kept word for word. Questions about process, such as which spec folder to use or whether to push, are left out. A repeat save changes nothing, and decisions you wrote by hand stay as they are.
+
+- **Runtimes:** Claude Code queues through a hook, Pi through an extension, and OpenCode and Devin during the session. Each of those and Codex also read the stored conversation at save for anything the live path missed, so nothing is added twice
+- **Chat answers:** a question you answered in plain chat is offered at save with evidence about the reply, and is added only after you confirm it
+- **Linked projects:** each project keeps its answers in its own folder under `.skilled/skills/.state/decision-capture/`, so projects linked to one checkout never see each other's answers
+- **Off:** `SYSTEM_DECISION_CAPTURE_DISABLED=1`. The [hooks README](.skilled/hooks/README.md) lists the adapters
 
 &nbsp;
 #### OpenCode Plugins

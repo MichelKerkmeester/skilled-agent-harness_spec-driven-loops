@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.22.0
+version: 2.7.23.0
 ---
 
 # System Spec Kit
@@ -73,6 +73,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
 | **Session relaunch** | Ships off until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime. `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi, OpenCode and Hermes and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer. Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction. Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under it, also in a repository that links `.skilled`. Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show. Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)) |
+| **Decision capture** | answers you give to the AI's questions are queued per project under `.skilled/skills/.state/decision-capture/` by the Claude Code, Pi, OpenCode and Devin adapters, and the save-time sweeps add Codex and anything a live path missed. A full-auto `/speckit:save` writes each one into the bound packet's `decision-record.md`, offers a plain-chat answer only with its evidence and after you confirm it, and leaves process questions out. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns it off ([hooks README](../../hooks/README.md), [save workflow](references/memory/save-workflow.md)) |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
 
 The retrieval contract is `references/retrieval/retrieval-conventions.md`, and the corpus convention those recipes depend on is `references/structure/grep-convention.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.

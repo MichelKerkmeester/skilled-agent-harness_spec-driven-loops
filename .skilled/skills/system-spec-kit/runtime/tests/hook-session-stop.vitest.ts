@@ -760,6 +760,8 @@ describe('Claude session-stop decision capture nudge', () => {
       queueDir(projectRoot: string): string;
     };
     const queuePath = captureCore.queueDir(projectDir);
+    // A temp folder inside a git checkout would resolve to that checkout's live queue.
+    expect(queuePath.startsWith(fs.realpathSync(projectDir))).toBe(true);
     mkdirSync(queuePath, { recursive: true });
     writeFileSync(
       join(queuePath, `${Buffer.from('s1').toString('hex')}.jsonl`),
@@ -773,6 +775,19 @@ describe('Claude session-stop decision capture nudge', () => {
     const message = await decisionCaptureNudge(projectDir, 's1');
     expect(message).toMatch(/^2 operator answer\(s\)/);
     expect(await decisionCaptureNudge(projectDir, 's1')).toBeNull();
+  });
+
+  it('counts answers a save left in the shared root folder before queues were per project', async () => {
+    projectDir = makeProjectDirWithCore();
+    const legacyDir = join(projectDir, '.skilled', 'skills', '.state', 'decision-capture');
+    mkdirSync(legacyDir, { recursive: true });
+    writeFileSync(
+      join(legacyDir, `${Buffer.from('s3').toString('hex')}.jsonl`),
+      JSON.stringify({ key: 'claude:s3:tool-1:0', answer: 'only' }) + '\n',
+      'utf-8',
+    );
+
+    expect(await decisionCaptureNudge(projectDir, 's3')).toMatch(/^1 operator answer\(s\)/);
   });
 
   it('stays quiet when the session queued no answers', async () => {

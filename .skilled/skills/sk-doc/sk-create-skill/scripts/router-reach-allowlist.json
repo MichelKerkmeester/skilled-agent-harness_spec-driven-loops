@@ -109,6 +109,12 @@
       "declaredBy": "sk-design",
       "wonBy": "sk-git",
       "reason": "A decision branch in a diagram is sk-design's; the word 'branch' pulls the bare phrase to sk-git. Not resolvable by vocabulary; belongs to the lexical-lane work, like 'design review'."
+    },
+    {
+      "phrase": "operator validation",
+      "declaredBy": "sk-doc",
+      "wonBy": "system-spec-kit",
+      "reason": "Authoring an operator validation playbook is sk-doc's; validating a spec folder is system-spec-kit's. The winner declares no matching phrase and wins by 0.004 on its 'operator decision' signal and 'validation' topic, so the bare phrase reads as either, like 'release readiness'."
     }
   ]
 }

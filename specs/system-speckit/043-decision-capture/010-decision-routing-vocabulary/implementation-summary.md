@@ -55,6 +55,10 @@ _memory:
 
 system-spec-kit's `intent_signals` grew from 31 to 35 with "as a decision", "decision record", "operator decision" and "record my answer". No bare "decision" was added, because sk-design already owns that word. `ROUTER.md` gained a DECISION intent in three places: the §2 bullet at line 58, `INTENT_SIGNALS` at line 182 with weight 4 as MEMORY uses, and `RESOURCE_MAP` at line 289. The intent loads `references/memory/save-workflow.md` and `references/validation/decision-format.md`. The Hermes copy of the router, the exported graph and the SQLite index were then regenerated from those two sources.
 
+### Follow-up after the alignment rerun (2026-11-03)
+
+A later commit added "decision capture" and "chat candidate" as two more signals. The alignment rerun showed they pulled other skills' requests into system-spec-kit: "Research how other tools handle decision capture in transcripts" and "Dispatch this decision capture work to the Claude Code CLI" both routed there. Both phrases were replaced with four that name the feature's own objects: "decision capture queue", "decision capture folder", "decision capture state" and "this chat candidate", 39 signals in all. Show and list questions about the queue were still held below the advisor's read-only floor, so `readOnlyRouteAllowed` in `system-skill-advisor/runtime/lib/scorer/fusion.ts` now lifts system-spec-kit for a read-only question that names a decision-capture noun, and only for a read-only question.
+
 ### Files Changed
 
 | File | Action | Purpose |
@@ -64,6 +68,8 @@ system-spec-kit's `intent_signals` grew from 31 to 35 with "as a decision", "dec
 | `.hermes/skills/system-spec-kit/ROUTER.md` | Regenerated | `sync-skills-hermes.cjs` output, six added lines |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Regenerated | `skill_graph_compiler.py --export-json` output; also carries another session's six sk-doc signals, see Known Limitations |
 | `.skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite` | Rebuilt | `advisor_rebuild` output, gitignored |
+| `.skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts` | Modified (follow-up) | Read-only lift for decision-capture nouns, gated on a read-only question |
+| `.skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts` | Modified (follow-up) | Four gate cases: the lift, another skill, no decision noun, a research request |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -84,6 +90,8 @@ The two source edits went to `llmgateway/deepseek-v4.1-flash-1017` at max effort
 | Four phrases of two or more words, no bare "decision" | A single word would pull every design or git prompt that mentions a decision; the four collision probes stayed identical |
 | No trigger-index entry in this child | Once the advisor routes, the DECISION intent loads both docs. An index rebuild would pull unrelated uncommitted frontmatter into this child's diff |
 | The Hermes router copy is in scope | It is generated from `ROUTER.md`, and the C9 mirror row fails without it |
+| Feature-object phrases, not the feature's name | The bare name "decision capture" won research, dispatch and component requests; the four object phrases appear only in requests about the queue, its folder, its state or one candidate |
+| The read-only lift needs a read-only question | A lift applies to any prompt, and the first version sent "Research how other tools handle decision capture" to system-spec-kit |
 | The ADR edge case now routing to system-spec-kit first is accepted | ADRs live in a packet's `decision-record.md`, a spec-kit file, so "write an architecture decision record" belongs there |
 <!-- /ANCHOR:decisions -->
 
@@ -116,6 +124,8 @@ Probe lines are `jq` projections of `advisor_recommend`, all at `"freshness":"li
 | `generate-leaf-manifest.cjs --check` | PASS: `leaf-manifest.json OK (1fbc955023a8...)`, exit 0 |
 | Reach check, filtered to the four phrases | PASS: no row names any of them, probe-error 0 |
 | Reach check, whole skill | FAILED: declared 43, wrong-hub 10, outranked 1, no-reach 24, probe-error 0; every failing row is an older phrase |
+| Follow-up: the alignment probes, 14 prompts | 11 pass; P08, P09 and P13 fail identically with the decision words removed, so they are general advisor reach, not this vocabulary |
+| Follow-up: `route-gates.vitest.ts` | PASS: 15 of 15 |
 | `validate.sh --strict` on this folder | PASS: `RESULT: PASSED`, Errors 0, Warnings 0, after `repair-derived.cjs --apply` re-derived this folder's graph metadata (the first run failed GENERATED_METADATA_INTEGRITY and GENERATED_METADATA_DRIFT only) |
 <!-- /ANCHOR:verification -->
 
