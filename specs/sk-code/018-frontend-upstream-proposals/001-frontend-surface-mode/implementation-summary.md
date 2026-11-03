@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planning only so far: nothing in 001-frontend-surface-mode is built. This summary is filled when the phase is implemented."
+description: "The sk-code hub gains a read-only sk-code-frontend surface: a core practice page, web and React Native layers, eleven routed topic files and the five-pass Figma check."
 trigger_phrases:
   - "frontend surface mode implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode"
-    last_updated_at: "2026-11-03T08:33:53Z"
+    last_updated_at: "2026-11-03T11:40:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the phase plan; nothing built"
-    next_safe_action: "Phase 001 opens with the reach baseline (T001) and the operator's React Native ruling (T002)."
+    recent_action: "Built and verified the sk-code-frontend surface"
+    next_safe_action: "Commit and push phase 001, then open phase 002 with its baseline run."
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-frontend-surface-mode |
-| **Completed** | Not completed |
+| **Completed** | 2026-11-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,61 +44,76 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase plans Proposal ranks 1 to 3, the sk-code-frontend surface, and its spec, plan, tasks and acceptance criteria are written.
+A frontend prompt on the sk-code hub now bundles `sk-code-frontend`, a read-only surface with stack-agnostic web and React Native practice and a five-pass check of a built screen against its Figma frame. "review my css cascade layers change" routes to `sk-code-review` plus `sk-code-frontend`, and the packet loads the core page, the web layer and the cascade topic file.
 
 ### Phase 1: frontend-surface-mode
 
-The phase has not started. Phase 001 opens with the reach baseline (T001) and the operator's React Native ruling (T002).
+The packet holds the core page with the Frontend overrides contract, a web layer with live-verified `bdg` recipes, a native layer, six web and five native topic files, and `figma-to-code.md`. Each topic file has its own router intent. The hub registry, router, docs, changelogs, canary case, activation manifests and Hermes mirror carry the new surface.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | - | No file outside this spec folder has changed |
+| `.skilled/skills/sk-code/sk-code-frontend/` | Created | The surface packet: SKILL, README, ROUTER, changelog, 15 references, 3 workflow symlinks |
+| `.skilled/skills/sk-code/{mode-registry,hub-router,description,graph-metadata,leaf-manifest}.json` | Modified | Register and route the surface, add its intent signals, hub version 3.10.0.0 |
+| `.skilled/skills/sk-code/{ROUTER,SKILL,README}.md`, `changelog/v3.10.0.0.md` | Modified, created | Hub routing maps and surface listings |
+| `.skilled/skills/sk-code/shared/`, `feature-catalog/` | Modified | Name the third surface |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` | Modified | Add the surface to the guard's list |
+| `.skilled/skills/mcp-tooling/mcp-figma/SKILL.md` | Modified | One pointer to the five-pass check |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/` canary and two manifests, promoted into `.skilled/bin/lib/compiled-routing/` | Modified | Frontend canary case; sk-code and mcp-tooling activation hashes |
+| `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Modified | A bundling test and a stay-off test |
+| `.hermes/skills/` | Regenerated | Mirrors for sk-code, sk-code-frontend and mcp-figma |
+| `.skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json` | Modified | List the new packet folder |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. The planned verification is in `tasks.md` Phase 3 and `acceptance-criteria.md`.
+Builds ran on cli-codex gpt-6-luna until its quota ran out mid-dispatch, then on DeepSeek V4.1 Flash max through opencode-go by operator ruling. Each dispatch was checked in this session. Then came the final reach on three hubs, the two-stage replay, the parent-skill checker, the router-sync guard, the compiled-route tests and an independent DeepSeek verification pass (`scratch/verify-001.md`).
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| None yet | Decisions are recorded as the phase runs |
+| Web and native layers (ADR-001) | The operator ruled both in; the hub's section 6 sentence now names the stack-agnostic surface |
+| One router intent per topic file | The core page loads one topic file, and the router-sync guard needs every topic file routed |
+| "react native scroll performance" over "react native list performance" | Any prompt with the word "list" reached no hub; a rename, not an allowlist entry |
+| Canary and test use a review prompt | With no workflow-mode word the surface routes alone, exactly as `sk-code-ci` does on main |
+| Native files cite a React Native version, not Baseline | Baseline covers web features only; REQ-006 amended by operator ruling |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Spec docs | `validate.sh --strict` on the planning docs; no implementation check has run |
+| Reach, concurrency 2 | sk-code 97, sk-design 120 (1 allowed), mcp-tooling 115: outranked 0, wrong-hub 0, no-reach 0, each `RESULT: PASSED` |
+| `parent-skill-check.cjs .skilled/skills/sk-code` | All hard invariants passed, 0 warnings |
+| `verify-router-sync.cjs` | 5/5 checks passed |
+| `compiled-route-surface-hint.test.cjs` | 15/15 pass |
+| Compiled-route suite | 96/97; the one failure (gold corpus pinned at 96) also fails on main |
+| sk-code-quality tests | 154/154 |
+| Barter grep on the packet | No line, exit 1 |
+| Hermes mirror `--check` | 66 copies in sync |
+| Independent verification | 15 rows; AC-006 met under the amended wording |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not implemented.** Every requirement in `spec.md` is still open.
+1. **The intent-signal generator never prunes.** The renamed phrase stayed in `graph-metadata.json` until it was removed by hand. Phase 002 adds the orphan check and prune.
+2. **Two suites fail for reasons outside this phase.** The compiled-route gold-corpus pin and the durable-directory manifest (two decision-capture benchmark folders) fail on main too.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

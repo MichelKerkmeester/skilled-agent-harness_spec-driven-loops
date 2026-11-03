@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.10.0
+version: 2.3.11.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -148,6 +148,30 @@ When the request names a GitHub Actions workflow, the hub bundles `sk-code-ci` f
 
 The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so the two stay equal.
 
+### Frontend Map
+
+When a request asks about web or native frontend practice, or a Figma-to-code check, the hub bundles `sk-code-frontend` from request vocabulary alone:
+
+| Resource | Carries |
+| --- | --- |
+| `sk-code-frontend/references/frontend-practice.md` | The cross-stack core, token precedence, Figma boundary, and Frontend overrides contract |
+| `sk-code-frontend/references/web-markup-and-css.md` | The web stack layer for markup, forms, layout, responsive behavior, media, and CSS architecture |
+| `sk-code-frontend/references/web-elements-and-attributes.md` | Form autocomplete, dialog, and popover behavior |
+| `sk-code-frontend/references/web-cascade-and-selectors.md` | Cascade layers and specificity conflicts |
+| `sk-code-frontend/references/web-layout-and-sizing.md` | Container queries and stacking contexts |
+| `sk-code-frontend/references/web-accessibility-patterns.md` | Accessibility patterns, visible focus, and live regions |
+| `sk-code-frontend/references/web-performance-and-loading.md` | Web font loading and largest contentful paint |
+| `sk-code-frontend/references/web-internationalization.md` | Right-to-left layout and bidirectional text |
+| `sk-code-frontend/references/react-native-layout-and-a11y.md` | The React Native and Yoga stack layer for layout, accessibility, text scaling, inputs, images, and lists |
+| `sk-code-frontend/references/native-accessibility.md` | React Native accessibility behavior |
+| `sk-code-frontend/references/native-layout-and-text.md` | React Native text scaling and layout |
+| `sk-code-frontend/references/native-inputs-and-keyboard.md` | React Native inputs and keyboard avoidance |
+| `sk-code-frontend/references/native-lists-and-motion.md` | React Native list performance and reduced motion |
+| `sk-code-frontend/references/native-platform-differences.md` | iOS and Android behavior differences |
+| `sk-code-frontend/references/figma-to-code.md` | The five-pass check for comparing a built screen with its Figma frame |
+
+The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-frontend/`, so the two stay equal.
+
 ---
 
 ## 5. VERIFICATION COMMANDS
@@ -168,7 +192,7 @@ If no supported surface matches, ask:
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork (`barter/.opencode/skills/sk-code/references/`). Canonical sk-code owns the SKILLED surface plus the `sk-code-ci` GitHub Actions surface.
+Canonical sk-code owns the SKILLED surface, the `sk-code-ci` GitHub Actions surface and the stack-agnostic `sk-code-frontend` surface for web and React Native practice. Project-specific Go, Next.js or React Native surfaces live in a project fork.
 
 ### UNKNOWN fallback checklist
 
@@ -238,6 +262,20 @@ INTENT_SIGNALS = {
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
     "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow"]},
+    "FRONTEND_WEB":        {"weight": 4, "keywords": ["semantic html markup"]},
+    "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
+    "WEB_CASCADE":         {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
+    "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
+    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "aria live region"]},
+    "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
+    "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
+    "FRONTEND_NATIVE":     {"weight": 4, "keywords": ["react native layout"]},
+    "NATIVE_A11Y":         {"weight": 4, "keywords": ["react native accessibility"]},
+    "NATIVE_LAYOUT_TEXT":  {"weight": 4, "keywords": ["react native text scaling"]},
+    "NATIVE_INPUTS":       {"weight": 4, "keywords": ["react native keyboard avoidance"]},
+    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native reduced motion"]},
+    "NATIVE_PLATFORM":     {"weight": 4, "keywords": ["ios android platform difference"]},
+    "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame check", "implement a figma design"]},
 }
 
 RESOURCE_MAP = {
@@ -345,6 +383,73 @@ RESOURCE_MAP = {
         "sk-code-ci/references/job-shape-rules.md",
         "sk-code-ci/references/protected-set.md",
     ],
+    "FRONTEND_WEB": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+    ],
+    "WEB_ELEMENTS": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-elements-and-attributes.md",
+    ],
+    "WEB_CASCADE": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-cascade-and-selectors.md",
+    ],
+    "WEB_LAYOUT": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-layout-and-sizing.md",
+    ],
+    "WEB_A11Y": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-accessibility-patterns.md",
+    ],
+    "WEB_PERF": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-performance-and-loading.md",
+    ],
+    "WEB_I18N": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-markup-and-css.md",
+        "sk-code-frontend/references/web-internationalization.md",
+    ],
+    "FRONTEND_NATIVE": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+    ],
+    "NATIVE_A11Y": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+        "sk-code-frontend/references/native-accessibility.md",
+    ],
+    "NATIVE_LAYOUT_TEXT": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+        "sk-code-frontend/references/native-layout-and-text.md",
+    ],
+    "NATIVE_INPUTS": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+        "sk-code-frontend/references/native-inputs-and-keyboard.md",
+    ],
+    "NATIVE_LISTS_MOTION": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+        "sk-code-frontend/references/native-lists-and-motion.md",
+    ],
+    "NATIVE_PLATFORM": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/react-native-layout-and-a11y.md",
+        "sk-code-frontend/references/native-platform-differences.md",
+    ],
+    "FIGMA_TO_CODE": [
+        "sk-code-frontend/references/figma-to-code.md",
+        "sk-code-frontend/references/frontend-practice.md",
+    ],
 }
 
 # Hub-level shared controls, declared once here. This list holds every
@@ -407,7 +512,7 @@ The hub-level shared controls are declared once, in `ROUTER.md` §9: the `SHARED
 The hub router keeps stage-one mode selection and its `shared/README.md` fallback.
 
 ### The discriminator
-- **`workflowMode`** - the public mode/packet key: `sk-code-quality`, `sk-code-review` (workflow) or `sk-code-ci`, `sk-code-skilled` (surface).
+- **`workflowMode`** - the public mode/packet key: `sk-code-quality`, `sk-code-review` (workflow) or `sk-code-ci`, `sk-code-frontend`, `sk-code-skilled` (surface).
 - **`packetKind`** - the axis: `workflow` (a mode that acts) or `surface` (read-only evidence bundled alongside a mode).
 - **`backendKind`** - which backend runs the packet: `surface-router` or `review-cache` for workflow modes, `evidence-base` for surface packets.
 
@@ -415,7 +520,7 @@ Surface packets are advisor-invisible (`routingClass: metadata`, read-only `tool
 The advisor still routes the single identity `sk-code`, and the hub bundles zero-or-more surfaces as evidence via `routerPolicy.outcomes.surfaceBundle`.
 The workflow mode comes first, followed by surfaces.
 "review my typescript module for jank" → `[sk-code-review, sk-code-skilled]`.
-Bundled surfaces follow the `routerPolicy.tieBreak` order. It ranks `sk-code-ci` ahead of `sk-code-skilled`, so the surface that wins a keyword tie comes first.
+Bundled surfaces follow the `routerPolicy.tieBreak` order. It ranks `sk-code-ci` ahead of `sk-code-frontend`, then `sk-code-skilled`, so the surface that wins a keyword tie comes first.
 
 ### Surface detection
 
@@ -424,7 +529,7 @@ It tries every declared specific surface first, then the `SKILLED` fallback, the
 When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence.
 Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub.
 Modes own workflow contracts, not surface identity.
-`sk-code-ci` is the one surface that stack detection does not select. The hub bundles it from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
+`sk-code-ci` and `sk-code-frontend` are the surfaces that stack detection does not select. The hub bundles both from request vocabulary alone: CI through `code-ci-aliases` and `code-ci-runtime`, and Frontend through `code-frontend-aliases` in `hub-router.json`.
 
 ### Fallback route
 
@@ -438,7 +543,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is sk-code-quality, sk-code-review, sk-code-ci or sk-code-skilled work",
+    "Confirm whether this is sk-code-quality, sk-code-review, sk-code-ci, sk-code-frontend or sk-code-skilled work",
     "Confirm the target files or runtime surface",
     "Confirm the expected action: implement, debug, verify, quality gate, or review",
     "Confirm the verification command set before completion",

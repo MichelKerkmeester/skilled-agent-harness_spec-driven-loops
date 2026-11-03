@@ -21,7 +21,8 @@
       "frontend surface mode tasks",
       "frontend surface mode acceptance criteria",
       "frontend surface mode goal",
-      "frontend surface mode implementation summary"
+      "frontend surface decision record",
+      "react native in canonical sk-code"
     ],
     "key_topics": [
       "frontend",
@@ -38,19 +39,28 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+      ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      "scratch/verify-001.md",
+      ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/leaf-manifest.json",
       ".skilled/skills/sk-code/ROUTER.md",
-      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md"
+      "scratch/recipe-runs.txt",
+      "scratch/reach-baseline.txt",
+      "scratch/source-inventory.md"
     ],
     "entities": [
       {
@@ -84,9 +94,45 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-surface-hint.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-surface-hint.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-001.md",
+        "kind": "doc",
+        "path": "scratch/verify-001.md",
         "source": "derived"
       },
       {
@@ -114,9 +160,21 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "recipe-runs.txt",
+        "kind": "file",
+        "path": "scratch/recipe-runs.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-baseline.txt",
+        "kind": "file",
+        "path": "scratch/reach-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "source-inventory.md",
         "kind": "doc",
-        "path": ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+        "path": "scratch/source-inventory.md",
         "source": "derived"
       },
       {
@@ -148,59 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "The Barter",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "React Native",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code surface axis lists only `sk-code-ci` and `sk-code-skilled`, and `shared/references/` holds no frontend folder, so a request about HTML forms, the CSS cascade or checking a built screen against Figma gets no frontend practice",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T08:48:18.743Z",
+    "last_save_at": "2026-11-03T11:24:52.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,15 +219,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:258043ae4bc7099b946ac6a757cff6ab684eaa73d76693dc1abac8c1b6eab94e",
+    "source_fingerprint": "sha256:4870a90d71576b09bc5e438ed3f2088c2dacde0debb55d2f1de5f1e77587daae",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c423ba6bd4e5c8f1362875ba79d4a5bfc34f31e874316f019c7e0a343bde29ca",
+      "spec.md": "8c574b4c489a1d8396f1a5ebebeb3bef9f323f9b6c2ce3c255c8a979ad873f2a",
       "plan.md": "f72194e611c6090f02c53593e73142eceff4e0b8dad25bac586f88e3d31696c4",
-      "tasks.md": "8b6e457fe28f96d88b8dd99316c75ec177bfb4545f883a03c3ebbf01abd6d239",
-      "implementation-summary.md": "f1b9aeb19bbb706d023d64aa9f81396aec96c94f402599852121337260c9ed1b"
+      "tasks.md": "38dc9d2056e0e00d4f0617ec035a58276a82eb2ccfa2cad5cd6578e4786fdff8",
+      "decision-record.md": "fb0b58009197ea82d581db649817c06788ef4a437a0656e75a66af0fee874f21",
+      "implementation-summary.md": "a2254905c3dc28f6295da7679e96096b40e161fb70f3bbd4a26931068c975c2d"
     },
     "last_active_at": null
   }

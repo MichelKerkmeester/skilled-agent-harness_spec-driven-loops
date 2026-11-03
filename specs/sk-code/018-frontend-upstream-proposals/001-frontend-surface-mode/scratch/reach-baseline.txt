@@ -1,0 +1,30 @@
+== sk-code 09:52:17
+OK   sk-code                      declared= 70 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, operator-local=0
+advisor generation: 1
+RESULT: PASSED
+real 4.89
+user 3.82
+sys 1.00
+exit=0
+== sk-design 09:52:22
+OK   sk-design                    declared=120 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  1 probe-error=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=1, probe-error=0, operator-local=0
+advisor generation: 1
+RESULT: PASSED
+real 9.38
+user 6.92
+sys 1.94
+exit=0
+== mcp-tooling 09:52:31
+OK   mcp-tooling                  declared=115 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, operator-local=0
+advisor generation: 1
+RESULT: PASSED
+real 9.79
+user 6.89
+sys 2.03
+exit=0

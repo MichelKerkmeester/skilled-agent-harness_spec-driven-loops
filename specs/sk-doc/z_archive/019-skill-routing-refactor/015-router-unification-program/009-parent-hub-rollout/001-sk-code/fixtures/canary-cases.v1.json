@@ -185,6 +185,25 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "surface-bundle-frontend",
+      "prompt": "review my css cascade layers change",
+      "riskSlice": "actor:mutating:composite",
+      "certificateFixture": "valid-composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "certificateCases": [

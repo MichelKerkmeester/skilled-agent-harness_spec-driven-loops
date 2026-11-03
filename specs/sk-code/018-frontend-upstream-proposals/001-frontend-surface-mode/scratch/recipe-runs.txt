@@ -1,0 +1,395 @@
+# Live bdg recipe runs (bdg 0.6.10, headless Chrome, local page, 2026-11-03)
+
+Verdicts, one per source recipe:
+- bdg cdp --help (call form): PASS
+- Emulation.setDeviceMetricsOverride (width W): PASS
+- bdg dom screenshot: PASS (captures confirmed to show forced focus)
+- bdg dom eval + getComputedStyle: FAIL. Exits 83 "Session target not found" on every call, with and without -p. Replacement that PASSES: bdg cdp Runtime.evaluate --params '{"expression":"<js>","returnByValue":true}'
+- DOM.enable, CSS.enable, DOM.getDocument, DOM.querySelector: PASS
+- CSS.forcePseudoState hover/active/focus and clear: PASS. Caveat: a state read right after forcing returns a mid-transition value (rgb(97, 38, 111) instead of rgb(208, 0, 42)); emulate prefers-reduced-motion first and the read is exact.
+- bdg cdp --describe CSS.forcePseudoState: PASS
+- Emulation.setEmulatedMedia dark / reduced motion / reset: PASS (matchMedia true/false, transitionDuration 0s). Caveat: headless Chrome follows the system colour scheme, so set prefers-color-scheme explicitly before a light capture.
+- Emulation.clearDeviceMetricsOverride: PASS
+- Emulation.setPageScaleFactor 2: PASS (visualViewport.scale 2, reset to 1)
+- Accessibility.getFullAXTree: PASS (button name "Continue" present, 17 roles)
+
+Raw runs follow.
+
+$ bdg cdp --help
+Usage: bdg cdp [options] [method]
+
+CDP protocol introspection and execution (53 domains, 300+ methods)
+  Discovery: --list, --search, --describe
+  Execution: case-insensitive (network.getcookies works)
+
+Arguments:
+  method            CDP method name (e.g., Network.getCookies,
+                    network.getcookies)
+
+Options:
+  --params <json>   Method parameters as JSON
+  --list            List all domains or methods in a domain
+  --describe        Show method signature and parameters
+  --search <query>  Search methods by keyword
+  -h, --help        display help for command
+
+exit=0
+
+$ bdg cdp Emulation.setDeviceMetricsOverride --params {"width":375,"height":812,"deviceScaleFactor":1,"mobile":true}
+{
+  "method": "Emulation.setDeviceMetricsOverride",
+  "result": {}
+}
+
+exit=0
+
+$ bdg dom screenshot /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/w375.png
+Screenshot captured
+
+Path:       /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/w375.png
+Format:     PNG
+Dimensions: 981x2123
+Size:       16.5 KB
+Full page:  yes
+
+exit=0
+
+$ bdg dom eval getComputedStyle(document.querySelector('#cta')).backgroundColor
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+
+exit=83
+
+$ bdg cdp DOM.enable
+{
+  "method": "DOM.enable",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp CSS.enable
+{
+  "method": "CSS.enable",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp DOM.getDocument
+{
+  "method": "DOM.getDocument",
+  "result": {
+    "root": {
+      "nodeId": 1,
+      "backendNodeId": 2,
+      "nodeType": 9,
+      "nodeName": "#document",
+      "localName": "",
+      "nodeValue": "",
+      "childNodeCount": 2,
+      "children": [
+        {
+          "nodeId": 2,
+          "parentId": 1,
+          "backendNodeId": 11,
+          "nodeType": 10,
+          "nodeName": "html",
+          "localName": "",
+          "nodeValue": "",
+          "publicId": "",
+          "systemId": ""
+        },
+        {
+          "nodeId": 3,
+          "parentId": 1,
+          "backendNodeId": 9,
+          "nodeType": 1,
+          "nodeName": "HTML",
+          "localName": "html",
+          "nodeValue": "",
+          "childNodeCount": 2,
+          "children": [
+            {
+              "nodeId": 4,
+              "parentId": 3,
+              "backendNodeId": 12,
+              "nodeType": 1
+exit=0
+
+$ bdg dom eval -p 9333 getComputedStyle(document.querySelector('#cta')).backgroundColor
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+
+exit=83
+
+$ bdg cdp DOM.querySelector --params {"nodeId":1,"selector":"#cta"}
+{
+  "method": "DOM.querySelector",
+  "result": {
+    "nodeId": 8
+  }
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":["hover"]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg dom eval -p 9333 getComputedStyle(document.querySelector('#cta')).backgroundColor + ' ' + getComputedStyle(document.querySelector('#cta')).outlineColor
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+
+exit=83
+
+$ bdg dom screenshot /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-hover.png
+Screenshot captured
+
+Path:       /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-hover.png
+Format:     PNG
+Dimensions: 981x2123
+Size:       16.5 KB
+Full page:  yes
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":[]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":["active"]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg dom eval -p 9333 getComputedStyle(document.querySelector('#cta')).backgroundColor + ' ' + getComputedStyle(document.querySelector('#cta')).outlineColor
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+
+exit=83
+
+$ bdg dom screenshot /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-active.png
+Screenshot captured
+
+Path:       /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-active.png
+Format:     PNG
+Dimensions: 981x2123
+Size:       16.5 KB
+Full page:  yes
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":[]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":["focus"]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg dom eval -p 9333 getComputedStyle(document.querySelector('#cta')).backgroundColor + ' ' + getComputedStyle(document.querySelector('#cta')).outlineColor
+Error: Session target not found (tab may have been closed)
+Start a new session with: bdg <url>
+
+exit=83
+
+$ bdg dom screenshot /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-focus.png
+Screenshot captured
+
+Path:       /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch/recipe/state-focus.png
+Format:     PNG
+Dimensions: 981x2123
+Size:       16.5 KB
+Full page:  yes
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":[]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp --describe CSS.forcePseudoState
+{
+  "type": "method",
+  "name": "CSS.forcePseudoState",
+  "domain": "CSS",
+  "method": "forcePseudoState",
+  "description": "Ensures that the given node will have specified pseudo-classes whenever its style is computed by\nthe browser.",
+  "parameters": [
+    {
+      "name": "nodeId",
+      "type": "DOM.NodeId",
+      "required": true,
+      "description": "The element id for which to force the pseudo state."
+    },
+    {
+      "name": "forcedPseudoClasses",
+      "type": "array",
+      "required": true,
+      "description": "Element pseudo classes to force when computing the element's style.",
+      "items": "string"
+    }
+  ],
+  "returns": [],
+  "example": {
+    "command": "bdg cdp CSS.for
+exit=0
+
+$ bdg cdp Runtime.evaluate --params {"expression":"getComputedStyle(document.querySelector('#cta')).backgroundColor","returnByValue":true}
+{
+  "method": "Runtime.evaluate",
+  "result": {
+    "result": {
+      "type": "string",
+      "value": "rgb(0, 71, 171)"
+    }
+  }
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":["hover"]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Runtime.evaluate --params {"expression":"getComputedStyle(document.querySelector('#cta')).backgroundColor","returnByValue":true}
+
+Hint: Consider using 'bdg dom query <selector>' instead of Runtime.evaluate
+
+{
+  "method": "Runtime.evaluate",
+  "result": {
+    "result": {
+      "type": "string",
+      "value": "rgb(97, 38, 111)"
+    }
+  }
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":[]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.setEmulatedMedia --params {"features":[{"name":"prefers-color-scheme","value":"light"}]}
+{
+  "method": "Emulation.setEmulatedMedia",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.setEmulatedMedia --params {"features":[{"name":"prefers-color-scheme","value":"dark"}]}
+{
+  "method": "Emulation.setEmulatedMedia",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.setEmulatedMedia --params {"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}
+{
+  "method": "Emulation.setEmulatedMedia",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":["hover"]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp CSS.forcePseudoState --params {"nodeId":8,"forcedPseudoClasses":[]}
+{
+  "method": "CSS.forcePseudoState",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.setEmulatedMedia --params {"features":[]}
+{
+  "method": "Emulation.setEmulatedMedia",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.clearDeviceMetricsOverride
+{
+  "method": "Emulation.clearDeviceMetricsOverride",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Emulation.setPageScaleFactor --params {"pageScaleFactor":2}
+{
+  "method": "Emulation.setPageScaleFactor",
+  "result": {}
+}
+
+exit=0
+
+$ bdg cdp Accessibility.getFullAXTree
+{
+  "method": "Accessibility.getFullAXTree",
+  "result": {
+    "nodes": [
+      {
+        "nodeId": "2",
+        "ignored": false,
+        "role": {
+          "type": "internalRole",
+          "value": "RootWebArea"
+        },
+        "chromeRole": {
+          "type": "internalRole",
+          "value": 144
+        },
+        "name": {
+          "type": "computedString",
+          "value": "Recipe check",
+          "sources": [
+            {
+              "type": "relatedElement",
+              "
+exit=0
+

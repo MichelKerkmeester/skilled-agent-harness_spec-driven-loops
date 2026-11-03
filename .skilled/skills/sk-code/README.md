@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.36.0
+version: 2.2.37.0
 ---
 
 # sk-code
@@ -20,7 +20,7 @@ version: 2.2.36.0
 |---|---|
 | **Use it for** | Code-family work: implementation, quality gating, debugging, verification and findings-first review |
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
-| **Works on** | The shared surface-detection router for the two surfaces the hub `SKILL.md` lists: the native SKILLED surface and the `sk-code-ci` CI standards surface |
+| **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface, the `sk-code-ci` CI standards surface and the stack-agnostic `sk-code-frontend` surface |
 | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface. The quality and review modes work in any repository and read that repository's own rule overrides |
 
 ---
@@ -53,6 +53,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 | Surface | Carries | Pointer |
 |---|---|---|
 | `sk-code-ci` | GitHub Actions workflow standards: trigger and filter rules, job shape, the protected set and the scaffold templates | [`README.md`](./sk-code-ci/README.md) |
+| `sk-code-frontend` | Stack-agnostic web and React Native practice, topic references, and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
 | `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists | [`README.md`](./sk-code-skilled/README.md) |
 
 ---
@@ -109,7 +110,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships one native surface and one CI standards surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
+sk-code ships three surfaces: the native SKILLED surface, the CI standards surface and a stack-agnostic frontend surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Frontend surface, at `.skilled/skills/sk-code/sk-code-frontend/`, holds web and React Native practice, topic references and Figma-to-code checks. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 
@@ -138,7 +139,7 @@ Repeat these steps for each surface you drop. `<mode>` is the folder name of the
 
 1. Run `/create:skill-parent update --surfaces <name>` in your AI runtime. Its steps live in `.skilled/commands/create/assets/create-skill-parent-auto.yaml`. It scaffolds the packet, registers it and places it ahead of `sk-code-skilled` in `tieBreak`, so your surface wins a keyword tie. If you edit `tieBreak` by hand instead, keep your surface ahead of `sk-code-skilled`, because the doctor's check 5l warns about a surface placed after it, and the registry compiler rejects a hub whose single fallback is not ranked last in `routerPolicy.tieBreak` (`SURFACE_FALLBACK_INVALID`).
 2. Link the three shared workflow docs into the new packet the way `sk-code-skilled/references/` does: in `.skilled/skills/sk-code/<name>/references/`, symlink `workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md` to the files of the same name in `.skilled/skills/sk-code/shared/references/` (link target `../../shared/references/<file>`).
-3. Add the packet's paths to the `ROUTER.md` maps and section 9, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks, such as "two surfaces", in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
+3. Add the packet's paths to the `ROUTER.md` maps and section 9, and its `surfaceDetection` block to its `mode-registry.json` entry (`stack-detection.md` section 2 reads it). Update any surface-count wording that `verify-doc-claims.cjs` checks in the hub's `README.md` and `SKILL.md`. `phase-detection.md` names the surfaces without a count. A packet copied from an existing surface has the same leaf set as that surface, so `generate-leaf-manifest.cjs --write` stops with `MODE_LEAF_SET_COLLISION`. Give each of the two modes its own `leafScopes` in a new `leaf-scopes.json` at the hub root, in the array format `.skilled/skills/sk-doc/leaf-scopes.json` uses, or change the copy until its files differ.
 4. Add a canary case that routes to the new surface in the canary fixture above, and copy the fixture over its authored twin. The completion report of the update command names both follow-ups.
 5. Refresh the Hermes skill copies the same way, then commit with the hooks installed, or refresh and copy the manifest by hand.
 
@@ -210,4 +211,5 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`sk-code-quality/SKILL.md`](./sk-code-quality/SKILL.md) | Quality mode packet |
 | [`sk-code-review/SKILL.md`](./sk-code-review/SKILL.md) | Review mode packet |
 | [`sk-code-ci/SKILL.md`](./sk-code-ci/SKILL.md) | CI standards surface packet |
+| [`sk-code-frontend/SKILL.md`](./sk-code-frontend/SKILL.md) | Stack-agnostic frontend surface packet |
 | [`sk-code-skilled/SKILL.md`](./sk-code-skilled/SKILL.md) | Skilled surface packet |

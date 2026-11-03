@@ -18,6 +18,30 @@
     },
     {
       "leaves": [
+        "references/figma-to-code.md",
+        "references/frontend-practice.md",
+        "references/native-accessibility.md",
+        "references/native-inputs-and-keyboard.md",
+        "references/native-layout-and-text.md",
+        "references/native-lists-and-motion.md",
+        "references/native-platform-differences.md",
+        "references/react-native-layout-and-a11y.md",
+        "references/web-accessibility-patterns.md",
+        "references/web-cascade-and-selectors.md",
+        "references/web-elements-and-attributes.md",
+        "references/web-internationalization.md",
+        "references/web-layout-and-sizing.md",
+        "references/web-markup-and-css.md",
+        "references/web-performance-and-loading.md",
+        "references/workflow-debug.md",
+        "references/workflow-implement.md",
+        "references/workflow-verify.md"
+      ],
+      "packet": "sk-code-frontend",
+      "workflowMode": "sk-code-frontend"
+    },
+    {
+      "leaves": [
         "assets/comment-syntax.json",
         "assets/quality-config.template.json",
         "assets/quality-defaults.json",

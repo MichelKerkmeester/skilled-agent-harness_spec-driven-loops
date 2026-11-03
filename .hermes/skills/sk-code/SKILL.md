@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.9.24.0
+version: 3.10.0.0
 metadata:
   family: sk-code
 ---
@@ -12,13 +12,13 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, typescript, python, shell, json, jsonc, github-actions, ci-workflow, sk-code-quality, sk-code-review, sk-code-ci, quality, code-review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet -->
+<!-- Keywords: sk-code, code, surface-aware, two-axis, opencode, typescript, python, shell, json, jsonc, github-actions, ci-workflow, sk-code-quality, sk-code-review, sk-code-ci, sk-code-frontend, quality, code-review, verification, debug, implement, workflow-doctrine, mode-registry, workflowmode, packetkind, backendkind, surface-router, evidence-base, surface-packet -->
 
 # Code Family Hub (sk-code)
 
 One skill has two axes, one shared surface-detection router and one advisor identity.
 The **workflow axis** has two code modes that act: sk-code-quality and sk-code-review.
-The **surface axis** has two read-only evidence packets the hub bundles alongside a workflow mode: sk-code-ci and sk-code-skilled.
+The **surface axis** has three read-only evidence packets the hub bundles alongside a workflow mode: sk-code-ci, sk-code-frontend and sk-code-skilled.
 Each packet carries the shared **implement → debug → verify** workflow doctrine (`shared/references/workflow-*.md`, symlinked in) plus its own domain knowledge.
 This hub holds NO per-mode logic. It routes by `workflowMode` through `mode-registry.json`, and each mode or surface keeps its own contract in its packet.
 
@@ -46,11 +46,13 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | Surface | Carries | Packet |
 |---------|---------|--------|
 | **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates, with the repository-specific values read from a CI profile. Read-only. | `sk-code/sk-code-ci/` |
+| **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, React Native layout and accessibility, and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
 | **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 
-**Surface list.** The hub has exactly two surfaces:
+**Surface list.** The hub has exactly three surfaces:
 - SKILLED (`sk-code-skilled`): the native surface for this framework's own code.
 - CI (`sk-code-ci`): the GitHub Actions workflow standards surface.
+- Frontend (`sk-code-frontend`): the stack-agnostic web and React Native practice and Figma-to-code surface, bundled from request vocabulary alone.
 
 The hub also has two workflow modes: quality (`sk-code-quality`) and review (`sk-code-review`).
 Any other sk-code doc that counts surfaces points to this sentence.
@@ -121,6 +123,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-ci/            # GitHub Actions workflow standards packet (read-only evidence; rules, protected set and scaffold templates)
+  sk-code-frontend/      # stack-agnostic web, React Native and Figma-to-code evidence packet (read-only)
   sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
 ```
@@ -132,7 +135,7 @@ The `surface-router` backend is the shared surface-detection router under `share
 It centralizes the detection order over the declared surfaces, the SKILLED fallback and UNKNOWN.
 It carries the shared implement → debug → verify workflow doctrine consumed by each surface.
 The `review-cache` backend supports the sk-code-review mode's non-mutating review output cache.
-The `evidence-base` backend serves the surface packets as read-only domain evidence (`sk-code-ci/`, `sk-code-skilled/`). The hub bundles them alongside the primary mode.
+The `evidence-base` backend serves the surface packets as read-only domain evidence (`sk-code-ci/`, `sk-code-frontend/`, `sk-code-skilled/`). The hub bundles them alongside the primary mode.
 The packet mutates nothing and never carries process. The acting agent applies the doctrine it bundles.
 Shared backend material provides surface identity, the workflow doctrine and cross-mode helpers.
 It must never gain per-mode workflow contracts.
@@ -165,7 +168,7 @@ It must never gain per-mode workflow contracts.
 ## 5. REFERENCES
 
 - Workflow mode packets: `sk-code-quality/SKILL.md`, `sk-code-review/SKILL.md`.
-- Surface evidence packets: `sk-code-ci/SKILL.md`, `sk-code-skilled/SKILL.md`.
+- Surface evidence packets: `sk-code-ci/SKILL.md`, `sk-code-frontend/SKILL.md`, `sk-code-skilled/SKILL.md`.
 - Shared workflow doctrine: `shared/references/workflow-implement.md`, `shared/references/workflow-debug.md`, `shared/references/workflow-verify.md` (symlinked into each surface).
 - Registry: `mode-registry.json` (two-axis: `packetKind` discriminates workflow vs surface).
 - Hub router signals + surface bundling: `hub-router.json`.

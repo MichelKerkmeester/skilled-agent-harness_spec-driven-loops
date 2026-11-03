@@ -8,7 +8,7 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Phase Detection and Lifecycle
@@ -36,8 +36,8 @@ A phase ends on evidence, not on effort. The next phase starts only when the cur
 
 ### Key Sources
 
-- [stack-detection.md](./stack-detection.md) selects the surface. It returns SKILLED or UNKNOWN and never `sk-code-ci`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`).
-- `mode-registry.json` declares the workflow modes (`sk-code-quality`, `sk-code-review`) and the surfaces (`sk-code-ci`, `sk-code-skilled`).
+- [stack-detection.md](./stack-detection.md) selects the surface. It returns SKILLED or UNKNOWN and never `sk-code-ci` or `sk-code-frontend`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime`, and `code-frontend-aliases`, in `hub-router.json`).
+- `mode-registry.json` declares the workflow modes (`sk-code-quality`, `sk-code-review`) and the surfaces (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`).
 
 ---
 
@@ -98,6 +98,18 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 
 The CI surface writes nothing. The acting agent applies its rules, and a rule the index marks honour-system has no check behind it, so only a careful read catches a lapse.
 
+### Frontend (`sk-code-frontend`)
+
+| Phase | Resources and evidence |
+| --- | --- |
+| 0 Research | `sk-code-frontend/references/frontend-practice.md`, then the markup, style or component files the change touches and the design it must match |
+| 1 Implementation | The same core, then `sk-code-frontend/references/web-markup-and-css.md` or `sk-code-frontend/references/react-native-layout-and-a11y.md`, then the one `web-*.md` or `native-*.md` topic file whose condition in the surface router applies |
+| 1.5 Code Quality | The surface carries no checklist, so the gate stays with `sk-code-quality` and its universal floor |
+| 2 Debugging | Root-cause analysis, the failing command's output and the stack layer or topic file that owns the behavior |
+| 3 Verification | `sk-code-frontend/references/figma-to-code.md` where a built screen is compared with its Figma frame, plus the repository's own commands for that stack |
+
+The Frontend surface writes nothing either. The acting mode applies its guidance, and a Figma pass that cannot run is marked `NOT RUN` with its reason, so the overall verdict is `INCOMPLETE`.
+
 ---
 
 ## 4. IRON LAWS
@@ -132,3 +144,4 @@ These hold on every surface and in every mode. No phase transition relaxes them.
 - [stack-detection.md](./stack-detection.md) covers surface detection and SKILLED language sub-detection.
 - [`../../sk-code-quality/SKILL.md`](../../sk-code-quality/SKILL.md) runs the Phase 1.5 gate.
 - [`../../sk-code-ci/SKILL.md`](../../sk-code-ci/SKILL.md) holds the CI rule evidence and the protected set.
+- [`../../sk-code-frontend/SKILL.md`](../../sk-code-frontend/SKILL.md) holds the frontend core, the web and native stack layers and the Figma-to-code check.

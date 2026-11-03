@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-03 |
 | **Branch** | `worktrees/314-frontend-upstream-proposals` |
 | **Parent Spec** | ../spec.md |
@@ -128,14 +128,14 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | `mode-registry.json` lists `sk-code-frontend` in `modes[]` and in the `surfaces` array, and the registry compiler accepts the hub. |
 | REQ-002 | `ci-router-vocabulary-reach.cjs --concurrency 2` prints `outranked=  0` and `wrong-hub=  0` for each of `--hub sk-code`, `--hub sk-design` and `--hub mcp-tooling`. An outrank is fixed by renaming the phrase, never by an allowlist entry or a scorer change. |
 | REQ-003 | The surface's vocabulary holds multi-word frontend phrases only. No alias or intent signal is a bare stack word such as `css`, `html` or `react`. |
-| REQ-004 | `rg -n -i "barter|@barter-bv|ngx-translate|safari 18|firefox esr" .skilled/skills/sk-code/sk-code-frontend/` prints no line. |
+| REQ-004 | `rg -n -i "barter|@barter-bv|ngx-translate|declared browser floor|firefox esr" .skilled/skills/sk-code/sk-code-frontend/` prints no line. |
 | REQ-005 | `figma-to-code.md` defines five passes, an `INCOMPLETE` verdict when any pass did not run, and the per-transport table with its `UNKNOWN` cells kept. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement |
 |----|-------------|
-| REQ-006 | Every topic file's Support line cites a web-features Baseline status, not a declared browser list. |
+| REQ-006 | Every web topic file's Support line cites a web-features Baseline status, not a declared browser list. Every native topic file's Support line names the React Native version it was checked against. |
 | REQ-007 | The core page states the Frontend overrides contract: one heading, section plus action plus reason, and an explicit "no overrides" line when nothing differs. |
 | REQ-008 | Each `bdg cdp` recipe in the web stack layer ran once in a live browser, with its command and output saved in `scratch/recipe-runs.txt`. |
 | REQ-009 | `mcp-figma/SKILL.md` carries one line saying a Figma read that feeds code ends at the frontend check, and mcp-figma keeps its out-of-scope ruling on the official Figma MCP. |

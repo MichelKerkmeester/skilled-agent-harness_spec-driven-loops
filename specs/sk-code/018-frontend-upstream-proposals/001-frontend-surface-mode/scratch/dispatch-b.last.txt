@@ -1,0 +1,47 @@
+Created the six native reference files. Structural checks confirmed their headings, anchors, frontmatter keys and trigger phrases match the sources.
+
+**Line counts**
+
+- `react-native-layout-and-a11y.md`: 127
+- `native-accessibility.md`: 105
+- `native-layout-and-text.md`: 92
+- `native-inputs-and-keyboard.md`: 92
+- `native-lists-and-motion.md`: 88
+- `native-platform-differences.md`: 92
+
+**Support lines with retained caveats**
+
+- Inputs, N-K4: Expo soft-input mode is unconfirmed.
+- Lists and motion, N-M3 and N-M4: FlashList 2.0.2 is cited; installation is unconfirmed. FlatList remains the baseline.
+- Lists and motion, N-M5: Reanimated 4.4.1 and 4.5.3 are cited; availability is unconfirmed. Reanimated 3 is inferred.
+- Lists and motion, N-M6: Reanimated 4.4.1 and 4.5.3 are cited. Reanimated 3 documentation describes these APIs, but installed-version support is unconfirmed. This entry is not Reanimated 4 content.
+- Platform, N-P1: The New Architecture setting is unconfirmed; `shadow*` or `elevation` remains the legacy-architecture fallback.
+- Platform, N-P4: The target SDK is unconfirmed, so API 35 enforcement cannot be determined.
+
+**Verification**
+
+The requested `rg` command produced no output; exit status 1 indicates no matches.
+
+The requested `wc -l` output:
+
+```text
+     118 .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md
+     105 .skilled/skills/sk-code/sk-code-frontend/references/native-accessibility.md
+      92 .skilled/skills/sk-code/sk-code-frontend/references/native-inputs-and-keyboard.md
+      92 .skilled/skills/sk-code/sk-code-frontend/references/native-layout-and-text.md
+      88 .skilled/skills/sk-code/sk-code-frontend/references/native-lists-and-motion.md
+      92 .skilled/skills/sk-code/sk-code-frontend/references/native-platform-differences.md
+     127 .skilled/skills/sk-code/sk-code-frontend/references/react-native-layout-and-a11y.md
+     215 .skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md
+     124 .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md
+     151 .skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md
+     116 .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md
+     157 .skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md
+     191 .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+     149 .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md
+    1817 total
+```
+
+The working tree remains dirty with existing packet changes; this task added only the six requested native references.
+
+STATUS=OK FILES=6

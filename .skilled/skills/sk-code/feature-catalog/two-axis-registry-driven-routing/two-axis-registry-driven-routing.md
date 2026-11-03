@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code workflow and surface axis"
   - "mode-registry mode and packet list"
   - "sk-code smart routing"
-version: 1.0.4.2
+version: 1.0.5.0
 ---
 
 # Two-Axis Registry-Driven Routing (sk-code)
@@ -23,13 +23,13 @@ Every registry entry carries a discriminator of `workflowMode` (the public mode 
 
 ### Workflow Vs Surface Axis
 
-The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-ci` and `sk-code-skilled` (each `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only when the hub bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. A prompt such as "review my typescript module for jank" resolves to the ordered bundle `[sk-code-review, sk-code-skilled]`.
+The WORKFLOW axis is process: `sk-code-quality` (`backendKind: surface-router`) and `sk-code-review` (`backendKind: review-cache`) are modes that act. The SURFACE axis is read-only domain evidence: `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` (each `backendKind: evidence-base`) never act on their own — they are advisor-invisible (`routingClass: metadata`) and reached only when the hub bundles them alongside a workflow mode via `routerPolicy.outcomes.surfaceBundle`, workflow mode ordered first. A prompt such as "review my typescript module for jank" resolves to the ordered bundle `[sk-code-review, sk-code-skilled]`.
 
 ### Declared Surface Detection Order
 
 Stack detection reads its order from data. A surface entry in `mode-registry.json` may carry a `surfaceDetection` block with a `label`, a `role` of `specific` or `fallback`, and path, file and content markers. A skill outside the hub that names `"family": "sk-code"` in its `graph-metadata.json` declares the same block as `surface_detection`, and it is always specific. Detection tries every specific surface first, then the one fallback, `sk-code-skilled` (SKILLED), then UNKNOWN. When a specific surface and SKILLED both match, the specific surface leads and SKILLED comes along as second evidence.
 
-The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in `routerPolicy.tieBreak`. The compiled router carries the fallback in `routingModel.surfaceDetection`, so a `SKILLED` session hint never moves SKILLED ahead of another surface. `sk-code-ci` declares no block, because the hub bundles it from request vocabulary alone.
+The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in `routerPolicy.tieBreak`. The compiled router carries the fallback in `routingModel.surfaceDetection`, so a `SKILLED` session hint never moves SKILLED ahead of another surface. `sk-code-ci` and `sk-code-frontend` declare no block, because the hub bundles each from request vocabulary alone.
 
 ### Registry-Driven, Not Keyed-Resource
 

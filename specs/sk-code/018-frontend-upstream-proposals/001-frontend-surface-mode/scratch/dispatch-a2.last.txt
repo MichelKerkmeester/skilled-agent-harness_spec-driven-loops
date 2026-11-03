@@ -1,0 +1,21 @@
+Restored the `Figma Check on the Web` section in [web-markup-and-css.md](/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md). At 201 lines, the file needs no Angular or React shortening.
+
+Requested verification output:
+
+```text
+rg -c "bdg cdp" .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+11
+(exit 0)
+
+rg -n "bdg dom eval" .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+165:- Read resolved styles for Pass 3a with `bdg cdp Runtime.evaluate --params '{"expression":"getComputedStyle(document.querySelector(\"<css>\")).<property>","returnByValue":true}'`. `bdg dom eval` failed with "Session target not found" in the same session, so use `Runtime.evaluate`.
+(exit 0)
+
+wc -l .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+     201 .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+(exit 0)
+```
+
+The bound packet’s strict validator returned `RESULT: FAILED` (exit 2), reporting a graph metadata source fingerprint mismatch and generated description drift. I left packet metadata untouched because it is outside the requested one-file scope. The worktree also contains other modified and untracked packet files observed before this edit; nothing was committed or pushed. A separate packet metadata repair is needed before its strict gate passes.
+
+STATUS=FAIL ERROR=strict packet validation failed with 2 metadata errors

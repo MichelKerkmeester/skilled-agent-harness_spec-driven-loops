@@ -1,8 +1,8 @@
 {
   "skill": "sk-code",
-  "version": "3.9.24.0",
+  "version": "3.10.0.0",
   "resourceContractVersion": 1,
-  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into the surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence. Its aliases are checked against the hub-router.json mode vocabulary, and SKILL.md §2 SMART ROUTING names the routing authority.",
+  "description": "Declarative two-axis mode registry for the sk-code parent hub. Every packet is a modes[] entry carrying the discriminator (workflowMode/packetKind/backendKind) plus its advisorRouting contract. The WORKFLOW axis (sk-code-quality/sk-code-review) is process; the SURFACE axis (sk-code-ci/sk-code-frontend/sk-code-skilled) is read-only domain evidence. Implement/debug/verify phase doctrine is consolidated in shared/references/workflow-*.md, symlinked into the surface. The advisor routes the single identity sk-code; the hub resolves the workflow mode and bundles surface packets as evidence. Its aliases are checked against the hub-router.json mode vocabulary, and SKILL.md §2 SMART ROUTING names the routing authority.",
   "discriminator": {
     "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
     "packetKind": "The axis discriminator: 'workflow' for process modes that act, 'surface' for read-only domain-evidence packets bundled alongside a workflow mode.",
@@ -16,7 +16,7 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
-      "surfaces": ["sk-code-ci", "sk-code-skilled"],
+      "surfaces": ["sk-code-ci", "sk-code-frontend", "sk-code-skilled"],
       "surfaceDetection": "A surface entry may carry a surfaceDetection block: label (the detected surface name), role ('specific' or 'fallback'), and pathMarkers, fileMarkers and contentMarkers. A skill outside the hub whose graph-metadata.json names family 'sk-code' can declare the same block as surface_detection, and it is always specific. Detection tries every specific surface first, hub entries in modes[] order and then outside skills by skill_id, then the single fallback, then UNKNOWN. When a specific surface and the fallback both match, the specific surface leads and the fallback comes along as second evidence. The fallback is the hub's own code, so its path markers count only when the resolved real path lands inside the hub's own .skilled/ folder, or inside the folder its plugins link resolves to when that folder is not an ancestor of the hub. A surface reached from request vocabulary alone, such as sk-code-ci, declares no block. The registry compiler rejects a hub that does not declare exactly one fallback or that does not rank it last in routerPolicy.tieBreak."
     }
   },
@@ -124,6 +124,24 @@
         "checklists": [
           {"paths": [".github/workflows/**"], "file": "sk-code-ci/references/ci-workflow-standards.md"}
         ]
+      }
+    },
+    {
+      "workflowMode": "sk-code-frontend",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "sk-code-frontend",
+      "packetSkillName": "sk-code-frontend",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "react native layout", "react native accessibility", "react native text scaling", "react native keyboard avoidance", "react native scroll performance", "react native reduced motion", "ios android platform difference", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame check", "implement a figma design"],
+      "advisorRouting": {
+        "routingClass": "metadata"
       }
     }
   ]

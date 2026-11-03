@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,7 +58,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `.skilled/skills/sk-code/mode-registry.json` lists `sk-code-frontend` in `modes[]` and in its `surfaces` array
 - [ ] Router reach at concurrency 2, run after the last edit, prints `outranked=  0` and `wrong-hub=  0` for sk-code, sk-design and mcp-tooling
-- [ ] `rg -n -i "barter|@barter-bv|ngx-translate|safari 18|firefox esr" .skilled/skills/sk-code/sk-code-frontend/` prints no line
+- [ ] `rg -n -i "barter|@barter-bv|ngx-translate|declared browser floor|firefox esr" .skilled/skills/sk-code/sk-code-frontend/` prints no line
 - [ ] `sk-code-frontend/references/figma-to-code.md` defines five passes and an `INCOMPLETE` verdict for any pass not run
 - [ ] A frontend prompt replays through both routing stages to `sk-code-frontend`, saved in this phase's `scratch/replay.txt`
 <!-- /ANCHOR:completion -->
@@ -77,11 +77,22 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | Planning docs authored 2026-11-03; nothing built |
+| Phase planned | Done | Planning docs authored 2026-11-03 |
+| T001 reach baseline | Done | `scratch/reach-baseline.txt`: sk-code 70, sk-design 120 (1 allowed), mcp-tooling 115, each outranked=0 wrong-hub=0 probe-error=0 |
+| T002 ADR-001 | Done | `decision-record.md`: web and native, operator 2026-11-03 |
+| Dispatch (a) web layer | Done | 8 files, all at 215 lines or fewer; Barter grep exit 1 (no match) |
+| Dispatch (f) topic intents | Done | 13 topic intents plus FIGMA_TO_CODE, 27 aliases; router-sync 5/5; intent-signals `--check` PASSED |
+| Interim reach | Done | `scratch/reach-interim.txt`: outranked=0 on all three hubs; `react native list performance` no-reach, renamed to `react native scroll performance` in brief (h) |
+| Dispatches (g) and (h) | Done | DeepSeek V4.1 Flash max: changelogs, shared docs, canary case, surface-hint tests, activation hashes; the test prompt was corrected to a review prompt |
+| Final verification | Done | `scratch/reach-final.txt` outranked 0 on three hubs; `scratch/replay.txt`; parent-skill check passes; `scratch/verify-001.md` 15 rows |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Executor switch | Codex hit its usage limit mid-dispatch (f). The operator moved builds to `opencode-go/deepseek-v4.1-flash#max` (Q005). The commit gate refused the recovery-baseline commit while two parent-skill checks fail, so the baseline is HEAD `47016cc3ae` plus a 61-file tarball in the session scratchpad. |
+| REQ-006 amendment | Native topic files name the React Native version, not a Baseline status (Q006). |
+| mcp-tooling hash | The mcp-figma pointer changed the mcp-tooling policy hash, so its activation manifest was refreshed too. |
+| Per-topic intents | The plan named one intent per stack layer; router-sync 1b needs every topic file routed, and the core page loads one topic file, so each topic file has its own intent. |
+| Over-broad grep | The `safari 18` term also matched a real Safari 18.2 support version; dispatch (a) hid it with a non-breaking space. The character was removed and the grep narrowed to `declared browser floor` in spec, tasks, criteria and this goal. |
 <!-- /ANCHOR:log -->

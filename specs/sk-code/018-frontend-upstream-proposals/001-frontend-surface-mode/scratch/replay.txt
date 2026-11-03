@@ -1,0 +1,14 @@
+PROMPT: review my css cascade layers change
+{"stage1":[{"skill":"sk-code","confidence":0.9317},{"skill":"sk-design","confidence":0.82}]}
+{"stage2":{"action":"route","kind":"surfaceBundle","modes":["sk-code-review","sk-code-frontend"],"resources":[]}}
+PROMPT: check built screen against figma
+{"stage1":[{"skill":"sk-code","confidence":0.9139}]}
+{"stage2":{"action":"route","kind":"single","modes":["sk-code-frontend"],"resources":[]}}
+PROMPT: fix the react native keyboard avoidance bug
+{"stage1":[{"skill":"sk-code","confidence":0.875}]}
+{"stage2":{"action":"route","kind":"orderedBundle","modes":["sk-code-frontend","sk-code-skilled"],"resources":[]}}
+
+Stage two names packets, not files. Inside sk-code-frontend the packet ROUTER RESOURCE_MAP loads per intent:
+"WEB_CASCADE":["references/frontend-practice.md","references/web-markup-and-css.md","references/web-cascade-and-selectors.md",],
+"FIGMA_TO_CODE":["references/figma-to-code.md","references/frontend-practice.md",],
+"NATIVE_INPUTS":["references/frontend-practice.md","references/react-native-layout-and-a11y.md","references/native-inputs-and-keyboard.md",],

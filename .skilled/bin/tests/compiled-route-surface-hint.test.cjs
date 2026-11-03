@@ -231,6 +231,28 @@ test('non-CI prompts that share CI words do not select the CI surface', () => {
   }
 });
 
+test('a frontend review prompt bundles the frontend surface', () => {
+  const route = resolveRoute('sk-code', 'review my css cascade layers change');
+  assert.equal(route.action, 'route');
+  assert.equal(route.selectionKind, 'surfaceBundle');
+  assert.deepEqual(modes(route), ['sk-code-review', 'sk-code-frontend']);
+});
+
+// A stylesheet path, a React hook, or a workflow file also names non-frontend
+// code, so the surface keys on its own web, native and Figma phrases and these
+// prompts must stay off it.
+test('non-frontend prompts that share frontend words do not select the frontend surface', () => {
+  for (const prompt of [
+    'fix the css in the advisor dashboard script',
+    'write a react hook test',
+    'review the github actions workflow yaml',
+  ]) {
+    const route = resolveRoute('sk-code', prompt);
+    assert.ok(route, prompt);
+    assert.ok(!modes(route).includes('sk-code-frontend'), prompt);
+  }
+});
+
 test('a hub without surface packets ignores the hint', () => {
   for (const hubId of ['sk-doc', 'mcp-tooling']) {
     for (const prompt of ['create a new skill and validate the docs', 'use the figma mcp transport']) {

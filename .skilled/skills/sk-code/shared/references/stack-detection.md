@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.12.0
+version: 2.2.13.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -31,7 +31,7 @@ Detect **where the work is happening** before deciding which standards apply. Th
 | SKILLED | The hub's own code under `.skilled/`: skills, agents, commands, MCP servers, plugins, scripts, tests and JSON or YAML config. It is the one fallback surface | A stack a specific surface declares |
 | UNKNOWN | The result when no declared surface matches | Any standard beyond the universal floor, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied, until the operator names the surface and its commands. The spec-folder authoring checklist needs the SKILLED surface |
 
-`sk-code-ci` is a surface packet with no detection block. The hub bundles it from request vocabulary alone, so detection never returns it.
+`sk-code-ci` and `sk-code-frontend` are surface packets with no detection block. The hub bundles each from request vocabulary alone, so detection never returns either.
 
 ---
 
@@ -53,7 +53,7 @@ When a specific surface and SKILLED both match, the specific surface leads and S
 
 A specific surface names one stack exactly. SKILLED is the hub's own code and the broadest surface, and one task can touch hub files beside another stack. If the broad surface came first, it would hide the narrow one. Keeping SKILLED as second evidence still loads its standards for the hub files the task touches.
 
-The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between two surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
+The registry compiler enforces the order on every compile. It fails with `SURFACE_FALLBACK_INVALID` unless the hub declares exactly one fallback and ranks it last in `routerPolicy.tieBreak` in `hub-router.json`, so a keyword tie between specific surfaces also ranks SKILLED last. The compiled router ignores `--surface-hint SKILLED` for the same reason. A hinted specific surface takes the first surface slot only when the prompt matched it.
 
 ### Declaring a Hub Surface
 

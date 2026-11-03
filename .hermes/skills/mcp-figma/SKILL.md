@@ -237,6 +237,8 @@ Examples: [`examples/README.md`](../../../.skilled/skills/mcp-tooling/mcp-figma/
 
 Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies.
 
+A Figma read that feeds code ends at the five-pass check in `sk-code/sk-code-frontend/references/figma-to-code.md`.
+
 Install guide: [INSTALL-GUIDE.md](../../../.skilled/skills/mcp-tooling/mcp-figma/INSTALL-GUIDE.md).
 
 Upstream: figma-cli is [silships/figma-cli](https://github.com/silships/figma-cli) (npm `figma-ds-cli`, MIT). The optional MCP is the community Framelink `figma-developer-mcp`. This skill documents driving the installed tool from the terminal, and it does not vendor or redistribute it.

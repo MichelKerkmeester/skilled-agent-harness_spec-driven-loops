@@ -1,0 +1,50 @@
+Created the three requested Markdown files and three workflow symlinks. The SKILL and README validators passed, and the strict packet validator returned `RESULT: PASSED` (exit 0). The ROUTER validator still flags the requested unnumbered heading; I preserved it as specified. Hub registration was outside this scoped write.
+
+**Requested verification output**
+
+```text
+.skilled/skills/sk-code/sk-code-frontend:
+total 40
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Nov  3 10:45 .
+drwxr-xr-x@ 20 michelkerkmeester  staff   640 Nov  3 10:13 ..
+-rw-r--r--@  1 michelkerkmeester  staff  4296 Nov  3 10:45 README.md
+-rw-r--r--@  1 michelkerkmeester  staff  5213 Nov  3 10:47 ROUTER.md
+-rw-r--r--@  1 michelkerkmeester  staff  3097 Nov  3 10:47 SKILL.md
+drwxr-xr-x@ 20 michelkerkmeester  staff   640 Nov  3 10:45 references
+
+.skilled/skills/sk-code/sk-code-frontend/references:
+total 352
+drwxr-xr-x@ 20 michelkerkmeester  staff    640 Nov  3 10:45 .
+drwxr-xr-x@  6 michelkerkmeester  staff    192 Nov  3 10:45 ..
+-rw-r--r--@  1 michelkerkmeester  staff  12868 Nov  3 10:34 figma-to-code.md
+-rw-r--r--@  1 michelkerkmeester  staff   9717 Nov  3 10:20 frontend-practice.md
+-rw-r--r--@  1 michelkerkmeester  staff   6904 Nov  3 10:29 native-accessibility.md
+-rw-r--r--@  1 michelkerkmeester  staff   6353 Nov  3 10:29 native-inputs-and-keyboard.md
+-rw-r--r--@  1 michelkerkmeester  staff   6686 Nov  3 10:29 native-layout-and-text.md
+-rw-r--r--@  1 michelkerkmeester  staff   7163 Nov  3 10:29 native-lists-and-motion.md
+-rw-r--r--@  1 michelkerkmeester  staff   6324 Nov  3 10:30 native-platform-differences.md
+-rw-r--r--@  1 michelkerkmeester  staff   9773 Nov  3 10:34 react-native-layout-and-a11y.md
+-rw-r--r--@  1 michelkerkmeester  staff  14838 Nov  3 10:20 web-accessibility-patterns.md
+-rw-r--r--@  1 michelkerkmeester  staff   8252 Nov  3 10:20 web-cascade-and-selectors.md
+-rw-r--r--@  1 michelkerkmeester  staff  12534 Nov  3 10:20 web-elements-and-attributes.md
+-rw-r--r--@  1 michelkerkmeester  staff   7392 Nov  3 10:20 web-internationalization.md
+-rw-r--r--@  1 michelkerkmeester  staff  11490 Nov  3 10:20 web-layout-and-sizing.md
+-rw-r--r--@  1 michelkerkmeester  staff  17647 Nov  3 10:39 web-markup-and-css.md
+-rw-r--r--@  1 michelkerkmeester  staff  10501 Nov  3 10:20 web-performance-and-loading.md
+lrwxr-xr-x@  1 michelkerkmeester  staff     41 Nov  3 10:45 workflow-debug.md -> ../../shared/references/workflow-debug.md
+lrwxr-xr-x@  1 michelkerkmeester  staff     45 Nov  3 10:45 workflow-implement.md -> ../../shared/references/workflow-implement.md
+lrwxr-xr-x@  1 michelkerkmeester  staff     42 Nov  3 10:45 workflow-verify.md -> ../../shared/references/workflow-verify.md
+```
+
+```text
+52:## MACHINE ROUTER
+55:DEFAULT_RESOURCE = ["references/frontend-practice.md"]
+57:INTENT_SIGNALS = {
+63:RESOURCE_MAP = {
+```
+
+The requested negative search printed nothing (exit 1, no matches).
+
+`validate_document.py` passes for [SKILL.md](/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-code/sk-code-frontend/SKILL.md) and [README.md](/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-code/sk-code-frontend/README.md). It rejects [ROUTER.md](/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-code/sk-code-frontend/ROUTER.md) because its section detector requires a numbered heading to recognize `machine_router`; the requested `## MACHINE ROUTER` heading remains intact.
+
+STATUS=FAIL ERROR=ROUTER validator requires numbered machine-router heading; requested heading preserved

@@ -1,0 +1,9 @@
+Created [figma-to-code.md](/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md). The source comparison showed only the requested edits.
+
+- `rg -n -i "barter|validate:design-system-vars|app ui profile" …` printed nothing (exit 1, no matches).
+- `rg -c "UNKNOWN" …` printed `5` (exit 0), matching the source count of `5`.
+- `rg -n "INCOMPLETE" …` printed the verdict rule at line 107 (exit 0).
+
+Strict packet validation printed `RESULT: PASSED` after auto-repair. I restored its out-of-scope `graph-metadata.json` change to its pre-run contents. An additional untracked `scratch/brief-a2-recipes.md` appeared after the pre-write status snapshot; I left it untouched.
+
+STATUS=OK FILES=1

@@ -1,0 +1,9 @@
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=1, allowed=0, probe-error=0, operator-local=0
+advisor generation: 14
+RESULT: PASSED
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=1, probe-error=0, operator-local=0
+advisor generation: 14
+RESULT: PASSED
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=0, probe-error=0, operator-local=0
+advisor generation: 14
+RESULT: PASSED

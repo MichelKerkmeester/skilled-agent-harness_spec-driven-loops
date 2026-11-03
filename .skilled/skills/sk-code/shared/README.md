@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # sk-code shared
@@ -19,7 +19,7 @@ version: 1.2.4.0
 
 ## 1. OVERVIEW
 
-`shared/` holds the material that belongs to the `sk-code` parent hub and to no single nested mode. The workflow modes `sk-code-quality` and `sk-code-review` act. The surface packets `sk-code-ci` and `sk-code-skilled` supply read-only evidence. All of them read the files below, so each file lives once here instead of being copied into every packet.
+`shared/` holds the material that belongs to the `sk-code` parent hub and to no single nested mode. The workflow modes `sk-code-quality` and `sk-code-review` act. The surface packets `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled` supply read-only evidence. All of them read the files below, so each file lives once here instead of being copied into every packet.
 
 This README is also the hub's zero-signal fallback. [`../hub-router.json`](../hub-router.json) names this file as `routerPolicy.defaultResource`, and the router offers it with the disambiguation checklist when a prompt scores no mode. A scored route never loads it.
 
@@ -73,6 +73,9 @@ Implement, debug and verify are phases, not modes. Their doctrine is surface-agn
 ../sk-code-ci/references/workflow-implement.md       -> ./references/workflow-implement.md
 ../sk-code-ci/references/workflow-debug.md           -> ./references/workflow-debug.md
 ../sk-code-ci/references/workflow-verify.md          -> ./references/workflow-verify.md
+../sk-code-frontend/references/workflow-implement.md -> ./references/workflow-implement.md
+../sk-code-frontend/references/workflow-debug.md     -> ./references/workflow-debug.md
+../sk-code-frontend/references/workflow-verify.md    -> ./references/workflow-verify.md
 ../sk-code-skilled/references/workflow-implement.md  -> ./references/workflow-implement.md
 ../sk-code-skilled/references/workflow-debug.md      -> ./references/workflow-debug.md
 ../sk-code-skilled/references/workflow-verify.md     -> ./references/workflow-verify.md
@@ -82,9 +85,9 @@ Paths are relative to this folder. On disk each link is the relative target `../
 
 | File | Purpose | Read by |
 |---|---|---|
-| [`references/workflow-implement.md`](./references/workflow-implement.md) | Research and mutating build work after the router resolves the active surface | Both surface packets through their symlinks, `../SKILL.md` |
-| [`references/workflow-debug.md`](./references/workflow-debug.md) | Root-cause diagnosis and scoped repair after a symptom, failing command, runtime error or failed gate, plus the command-failure recovery order | Both surfaces, `../ROUTER.md` with the DEBUGGING intent, hand-offs from `sk-code-quality` and `sk-code-review` |
-| [`references/workflow-verify.md`](./references/workflow-verify.md) | The non-mutating evidence phase that runs last, compares against a baseline and gates any done, works, fixed or passing claim | Both surfaces, `../ROUTER.md` with the VERIFICATION intent, hand-offs from both workflow modes, the `sk-code-review` rule-copy check |
+| [`references/workflow-implement.md`](./references/workflow-implement.md) | Research and mutating build work after the router resolves the active surface | All three surface packets through their symlinks, `../SKILL.md` |
+| [`references/workflow-debug.md`](./references/workflow-debug.md) | Root-cause diagnosis and scoped repair after a symptom, failing command, runtime error or failed gate, plus the command-failure recovery order | All three surfaces, `../ROUTER.md` with the DEBUGGING intent, hand-offs from `sk-code-quality` and `sk-code-review` |
+| [`references/workflow-verify.md`](./references/workflow-verify.md) | The non-mutating evidence phase that runs last, compares against a baseline and gates any done, works, fixed or passing claim | All three surfaces, `../ROUTER.md` with the VERIFICATION intent, hand-offs from both workflow modes, the `sk-code-review` rule-copy check |
 
 Edit the file under [`./references/`](./references/). A symlink resolves to it, so a change here reaches every surface at once.
 
