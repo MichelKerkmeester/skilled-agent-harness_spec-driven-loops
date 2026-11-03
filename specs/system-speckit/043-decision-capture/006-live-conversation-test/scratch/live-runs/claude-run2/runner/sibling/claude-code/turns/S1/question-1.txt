@@ -1,0 +1,51 @@
+
+ ▐▛███▛█   Claude Code v2.1.316
+▝▜██████▀  Opus 5.5 with medium effort · Claude Ultra
+ ▝▝   ▝▝   /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/claude-code-sibling/claude-code · /rc            
+
+
+❯ Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.     
+
+  Ran 2 shell commands                                           
+
+⏺ Found the packet. I'll read its core docs so I can say what they hold.                                                              
+
+  Ran 3 shell commands                                     
+
+⏺ The demo widget is documented in the spec packet specs/demo/001-demo-widget/, a Level 3 packet created 2026-11-02. It holds spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md,
+  implementation-summary.md, timeline.md, description.json and graph-metadata.json.
+
+  Two things about what's there:
+
+  - The packet hasn't been filled in. spec.md is still the template: the problem, scope, requirements and "Files to Change" sections are all [YOUR_VALUE_HERE] placeholders. The only real values are
+    the title "demo widget", Status Draft and the branch scaffold/001-demo-widget. None of the docs mention a badge; every "status" hit is template text.
+  - I found no widget code. Outside node_modules and .pi, the only files that mention "widget" are the nine files in that packet. That search included gitignored files. There's nothing to add a badge
+    to yet, so the packet's scope and target files will need to be decided first.
+
+  I've stopped here, written nothing and asked no product questions. When you lift the hold, the first thing I'll ask is where the documentation should go. The project's rules require that before any
+  write, and the obvious answer is the existing specs/demo/001-demo-widget/.
+
+  Next step is yours: tell me when I can start writing, and when I can ask product questions.
+
+✻ Cogitated for 47s · done 7:26 PM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

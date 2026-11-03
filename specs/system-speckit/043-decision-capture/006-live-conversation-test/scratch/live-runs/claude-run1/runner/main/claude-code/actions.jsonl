@@ -1,0 +1,22 @@
+{"runtime":"claude-code","time":"2026-11-02T10:52:23.425Z","turn":"S1","kind":"send","steps":[{"text":"Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:05.478Z","turn":"S1","kind":"question","steps":[{"text":"A) Existing, specs/demo/001-demo"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:22.181Z","turn":"S2","kind":"send","steps":[{"text":"Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:31.007Z","turn":"S2","kind":"question","steps":[{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:50.763Z","turn":"S3","kind":"send","steps":[{"text":"Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:57.903Z","turn":"S3","kind":"question","steps":[{"key":"Enter"},{"key":"Down"},{"key":"Enter"},{"key":"Down"},{"key":"Enter"},{"key":"Down"},{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:53:58.437Z","turn":"S3","kind":"confirm","steps":[{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:54:14.747Z","turn":"S4","kind":"send","steps":[{"text":"Ask me with your question tool for the badge label, with a few options. I will type my own."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:54:24.716Z","turn":"S4","kind":"question","steps":[{"key":"Down"},{"key":"Down"},{"key":"Down"},{"text":"Needs review"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:54:42.109Z","turn":"S5","kind":"send","steps":[{"text":"Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:54:53.529Z","turn":"S5","kind":"question","steps":[{"text":"No, keep it static."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:55:06.855Z","turn":"S6","kind":"send","steps":[{"text":"/speckit:save specs/demo/001-demo --full-auto"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:56:30.371Z","turn":"S7","kind":"send","steps":[{"text":"Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:56:39.054Z","turn":"S7","kind":"question","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:56:55.227Z","turn":"S8-compact","kind":"compact","steps":[{"text":"/compact"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:57:29.992Z","turn":"S8-ask","kind":"send","steps":[{"text":"Ask me with the tool which size the badge uses, offering exactly Small, Medium and Large."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:57:42.132Z","turn":"S8-ask","kind":"question","steps":[{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:57:59.388Z","turn":"S9-restart","kind":"exit","steps":[{"text":"/exit"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:58:10.541Z","turn":"S9-ask","kind":"send","steps":[{"text":"Ask me with the tool whether the badge has a tooltip, offering exactly Yes and No."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:58:18.886Z","turn":"S9-ask","kind":"question","steps":[{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:58:31.197Z","turn":"S10","kind":"send","steps":[{"text":"/speckit:save specs/demo/001-demo --full-auto"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T10:59:24.239Z","turn":"S11","kind":"send","steps":[{"text":"/speckit:save specs/demo/001-demo --full-auto"},{"key":"Enter"}]}

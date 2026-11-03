@@ -1,0 +1,50 @@
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Animation │ Static, no blinking  │ Yes                        │                                                                                                                                     
+  ├───────────┼──────────────────────┼────────────────────────────┤                    
+  │ Position  │ Right of the title   │ Not yet                    │
+  ├───────────┼──────────────────────┼────────────────────────────┤                                                                                                                                     
+  │ Size      │ Small                │ Not yet                    │                                                                                                                                     
+  └───────────┴──────────────────────┴────────────────────────────┘
+                                                          
+  The position and size answers will go into the decision record the next time you run /speckit:save. I haven't written anything this turn. The spec and the badge code still wait for you to tell me to
+  start.
+
+✻ Baked for 8s · done 7:41 AM                                                                                                                                                                           
+                                 
+❯ Ask me with the tool whether the badge has a tooltip, offering exactly Yes and No. Open the tool itself, not a chat message, and mark no option as recommended.                                       
+
+⏺ User answered Claude's questions:                                
+  ⎿  · Does the demo widget's status badge have a tooltip? → Yes
+                                                                   
+⏺ The badge will have a tooltip. You haven't said what the tooltip says yet, so its text is still open.
+                                                                   
+  That makes seven badge decisions:                                
+                                                                   
+  ┌───────────┬──────────────────────┬────────────────────────────┐
+  │ Decision  │        Answer        │           Saved?           │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Colour    │ Amber                │ Yes, in decision-record.md │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Platforms │ Web, iOS and Android │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Label     │ "Needs review"       │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤                                                                                                                                     
+  │ Animation │ Static, no blinking  │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Position  │ Right of the title   │ Not yet                    │                                                                                                                                     
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Size      │ Small                │ Not yet                    │
+  ├───────────┼──────────────────────┼────────────────────────────┤                                                                                                                                     
+  │ Tooltip   │ Yes                  │ Not yet                    │
+  └───────────┴──────────────────────┴────────────────────────────┘                                                                                                                                     
+
+  The position, size and tooltip answers will go into the decision record the next time you run /speckit:save. I haven't written anything this turn, and the spec and badge code still wait for you to  
+  tell me to start.                                                                                                                                                                                     
+                               
+✻ Baked for 6s · done 7:42 AM                                              
+                                                                                                                                                                                    ◐ medium · /effort
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               

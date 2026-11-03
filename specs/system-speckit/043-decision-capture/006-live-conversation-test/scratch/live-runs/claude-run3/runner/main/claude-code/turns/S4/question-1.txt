@@ -1,0 +1,51 @@
+                                                                                                                                                                                        
+                                                                                                                                                                                                      
+✻ Baked for 28s · done 7:36 AM                                                                                                                                                                        
+                                                                                                                                         
+❯ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                                                                                                
+                                                                                                                                                                                        
+⏺ Noted: this session's spec folder is specs/demo/001-demo-widget (option A). I'm still waiting and haven't written anything.                                                                         
+                                                                                                                                                                   
+✻ Crunched for 2s · done 7:36 AM                                                                                                                                                                        
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no      
+  option as recommended.                                                                                                                                                                                
+                                                                                                                                                                                                      
+⏺ User answered Claude's questions:                                                                                          
+  ⎿  · Which colour should the demo widget's status badge use? → Amber
+
+⏺ You chose Amber for the badge. I've written nothing yet, because you haven't told me to start. Say go when you want me to begin in specs/demo/001-demo-widget.
+
+✻ Worked for 9s · done 7:37 AM                                                                                                                                                                          
+
+❯ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type   
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.                                                                                                      
+
+⏺ User answered Claude's questions:                                                                                                                                                                     
+  ⎿  · Which platforms must the demo widget's status badge support? Select all that apply. → Web, iOS, Android
+
+⏺ The badge must support Web, iOS and Android. The question tool allows several picks, so you didn't need a note.
+
+  Your answers so far are Amber for the colour and all three platforms. A session reminder says one of them isn't in a decision record yet and suggests running /speckit:save. That save writes files,  
+  and you've told me to write nothing, so I haven't run it. Both answers will go into the packet once you tell me to start.
+
+✻ Cogitated for 7s · done 7:37 AM                                                                             
+
+❯ Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Badge label                                                                                                                                                                                        
+                                                                                                                           
+│ What text should the demo widget's status badge show? Pick one or type your own under Other.
+
+❯ 1. Live                                                                                                                                                                                               
+     Badge reads "Live".                                                                                                                                                                                
+  2. Beta                                                                                                                  
+     Badge reads "Beta".                                
+  3. New                                                                                                                                                                                
+     Badge reads "New".                                                                                                                                                                               
+  4. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel
+

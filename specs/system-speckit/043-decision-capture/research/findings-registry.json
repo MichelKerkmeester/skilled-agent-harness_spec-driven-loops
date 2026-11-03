@@ -1,0 +1,1156 @@
+{
+  "mergedFrom": [
+    "deepseek",
+    "luna"
+  ],
+  "lineageExecutors": {
+    "deepseek": {
+      "kind": "cli-pi",
+      "model": "deepseek-v4.1-flash-1017",
+      "reasoningEffort": "max"
+    },
+    "luna": {
+      "kind": "cli-codex",
+      "model": "gpt-6-luna",
+      "reasoningEffort": "xhigh"
+    }
+  },
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-capture-and-save-time-paths-currently-exist-for-each-runtime-and-where-doe",
+      "inboxId": null,
+      "text": "Which capture and save-time paths currently exist for each runtime, and where does each listed gap sit?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-1-which-of-the-eight-known-gaps-are-worth-closing-and-what-is-the-smallest-change-",
+      "inboxId": null,
+      "text": "Which of the eight known gaps are worth closing, and what is the smallest change that closes each one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "question-2-how-many-independent-storage-format-parsers-exist-across-the-five-live-adapters-",
+      "inboxId": null,
+      "text": "How many independent storage-format parsers exist across the five live adapters and five save-time readers, and which can be deleted or merged rather than fixed?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "question-2-which-gaps-are-confirmed-by-executable-code-or-live-run-evidence-and-which-are-s",
+      "inboxId": null,
+      "text": "Which gaps are confirmed by executable code or live-run evidence, and which are stale or unverified claims?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-3-what-is-the-smallest-justified-change-for-each-confirmed-gap-and-what-code-can-b",
+      "inboxId": null,
+      "text": "What is the smallest justified change for each confirmed gap, and what code can be merged or deleted?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-3-which-gaps-close-by-removing-a-surface-an-adapter-a-sweep-a-runtime-matrix-row-i",
+      "inboxId": null,
+      "text": "Which gaps close by removing a surface (an adapter, a sweep, a runtime-matrix row) instead of adding code?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "question-4-what-does-each-runtime-actually-expose-for-live-capture-and-are-the-cursor-unver",
+      "inboxId": null,
+      "text": "What does each runtime actually expose for live capture, and are the Cursor \"unverified\" and Hermes \"absent\" rows worth filling or deleting?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "question-4-which-decisions-can-be-paired-or-filtered-deterministically-without-adding-a-new",
+      "inboxId": null,
+      "text": "Which decisions can be paired or filtered deterministically without adding a new layer?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "question-5-what-test-coverage-guards-the-capture-path-today-and-which-single-refactor-colla",
+      "inboxId": null,
+      "text": "What test coverage guards the capture path today, and which single refactor collapses the most duplicated tests?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "question-5-which-storage-readers-can-be-consolidated-without-moving-format-ownership-or-los",
+      "inboxId": null,
+      "text": "Which storage readers can be consolidated without moving format ownership or losing failure reporting?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "_lineages": [
+        "luna"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-the-decision-record-is-intentionally-save-bound-adapters-and-sweeps-append-norma",
+      "text": "The decision record is intentionally save-bound: adapters and sweeps append normalized answers to the shared queue, while the save command selects the target packet and the full-auto writer upserts its record. This is not a missing capture adapter; bypassing save would write before packet choice is confirmed. Do not add live record writers. Improve how pending answers reach the operator and keep the queue plus central writer. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/commands/speckit/save.md:64] [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:39]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-live-capture-surface-is-four-producers-not-five-a-claude-posttooluse-adapter",
+      "text": "The live capture surface is **four** producers, not five: a Claude PostToolUse adapter, a Devin PostToolUse adapter, a Pi `tool_result` extension, and the OpenCode `tool.execute.after` plugin. There is no Cursor and no Hermes adapter folder in the tree. [SOURCE: .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs:51] [SOURCE: .skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs:1] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:46] [SOURCE: .opencode/plugins/decision-capture.js:70]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-10-pi-already-demonstrates-the-merge-that-opencode-has-not-taken-the-pi-extension-i",
+      "text": "Pi already demonstrates the merge that OpenCode has not taken: the Pi extension imports `recoveredRecords` from its own sweep so live and swept records share one mapping, while the OpenCode plugin re-implements that mapping locally in `answerMap`. [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:6] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:85] [SOURCE: .opencode/plugins/decision-capture.js:41]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-2-all-four-producers-funnel-into-one-queue-core-that-owns-identity-the-process-que",
+      "text": "All four producers funnel into one queue core that owns identity, the process-question filter, locking, dedup and the nudge cursor; the only per-runtime code is payload mapping. That is what makes the nudge gap cheap to close and hard to justify leaving open. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-pending-nudge-is-delivered-by-claude-stop-and-the-opencode-plugin-while-devi",
+      "text": "The pending nudge is delivered by Claude Stop and the OpenCode plugin, while Devin and Pi have capture adapters without that nudge surface. The 006 record also confirms that Claude's async Stop message can be dropped when a session restarts before the next prompt, although the answer remains queued and a later Stop recounts it. Closing this is worthwhile. Reuse the existing pending-count helper at the next user-visible lifecycle point instead of adding another queue. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:101] [SOURCE: .opencode/plugins/decision-capture.js:105] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md:148]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-codex-s-save-time-rollout-reader-is-an-intentional-trust-boundary-and-the-006-re",
+      "text": "Codex's save-time rollout reader is an intentional trust boundary, and the 006 results prove it captured and saved answers without a live project hook. Cursor remains explicitly unverified, and the six-runtime coverage table has no Hermes column. Do not add another Codex capture path. Add a Hermes status row and probe Cursor or Hermes only when an answered question-tool event can be observed; do not register an adapter on a guessed surface. [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-pending-answer-nudge-exists-on-two-of-six-runtimes-claude-emits-it-from-the-",
+      "text": "The pending-answer nudge exists on **two of six** runtimes. Claude emits it from the Stop hook, OpenCode from `experimental.chat.system.transform`; Devin and Pi capture answers but never report a pending count, Codex has no live producer at all, and Cursor/Hermes have no column or no adapter. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:96] [SOURCE: .opencode/plugins/decision-capture.js:104]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-4-chat-candidates-already-pair-ordered-assistant-and-user-turns-and-carry-both-tur",
+      "text": "Chat candidates already pair ordered assistant and user turns and carry both turn IDs, but save.md still asks the saving model to decide whether a candidate clearly replies, and several candidates may share one reply. The process filter also reads option labels and question context, so “keyword-only” overstates the implementation. Inference: use existing turn IDs for a unique candidate and leave a shared or ambiguous reply pending; keep the current filter and do not add a second classifier. A multi-question live case would confirm the remaining edge. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:158] [SOURCE: .skilled/commands/speckit/save.md:70] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:99] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:103]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-4-gap-7-is-a-consumer-problem-not-a-producer-problem-the-claude-nudge-is-written-a",
+      "text": "Gap 7 is a consumer problem, not a producer problem: the Claude nudge is written as a bare `{\"systemMessage\": ...}` to stdout **after** the Stop hook's own work resolves, and a Stop hook's output is read by the turn that just ended, so at a real session exit the line has no reader. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:651]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-5-codex-and-pi-treat-an-unreadable-transcript-like-an-empty-result-each-catches-a-",
+      "text": "Codex and Pi treat an unreadable transcript like an empty result: each catches a read error as null and then exits 0 without output. Claude and Devin emit an error and exit nonzero. This is worth fixing because a save can look successful while missing answers. Reuse the existing error-result convention in the two sweeps and keep empty, readable sessions quiet. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:276] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:323] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:198] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:265] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.mjs:284] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-devin.mjs:285]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-nudge-cursor-is-session-scoped-on-disk-hex-session-nudge-beside-hex-session-",
+      "text": "The nudge cursor is session-scoped on disk (`<hex-session>.nudge` beside `<hex-session>.jsonl`), so a next-session reader cannot see a prior session's pending count without scanning the queue directory. Any \"nudge at session start instead of exit\" fix must therefore add either a bounded scan or a project-level pointer file; the smallest version replaces the exit write with a project-level pending marker. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:246] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:238]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-coverage-matrix-has-six-runtime-columns-claude-codex-cursor-devin-opencode-p",
+      "text": "The coverage matrix has six runtime columns (Claude, Codex, Cursor, Devin, OpenCode, Pi): Hermes is absent, and the Cursor cell reads \"unverified: no answered question tool call was found to probe\" — an absence of evidence, recorded as a permanent state. [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/hooks/README.md:275]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-handover-says-the-codex-pi-opencode-devin-chat-detection-and-live-run-work-h",
+      "text": "The handover says the Codex/Pi, OpenCode/Devin, chat-detection, and live-run work had not started, while the 006 implementation summary and current results record all five runtime runs as passing. This is a documentation conflict, not a missing implementation. Use the current run artifacts as evidence and refresh the stale handover through its normal owner later; do not repeat completed runtime work. [SOURCE: specs/system-speckit/043-decision-capture/handover.md:22] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:43] [SOURCE: .skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv:7]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts",
+        ".opencode/plugins/decision-capture.js",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+        "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+        ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/results.csv",
+        "specs/system-speckit/043-decision-capture/handover.md"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-matrix-s-own-documentation-contract-is-unmet-for-this-row-the-readme-points-",
+      "text": "The matrix's own documentation contract is unmet for this row: the README points to `.skilled/hooks/coverage-rationale.md` for the reason behind each non-covered cell, and that file carries no `decision-capture` section at all. The Codex \"by-design\" and Cursor \"unverified\" cells are therefore the only two cells in the matrix with no recorded justification. [SOURCE: .skilled/hooks/README.md:269] [SOURCE: .skilled/hooks/coverage-rationale.md:44]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-8-gap-3-is-a-tooling-policy-constraint-not-an-information-constraint-the-codex-rol",
+      "text": "Gap 3 is a tooling-policy constraint, not an information constraint: the Codex rollout the save-time sweep reads contains the same answered tool calls a hook would see, so the Codex cell describes where the data is read from, not whether the data exists. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:284] [SOURCE: .skilled/hooks/README.md:275]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-1-9-gap-8-is-a-two-shape-main-split-not-five-independent-behaviours-sweep-transcript",
+      "text": "Gap 8 is a two-shape `main()` split, not five independent behaviours: `sweep-transcript`, `sweep-opencode` and `sweep-devin` wrap the sweep in try/catch and return 1 with an `{error}` row, while `sweep-codex` and `sweep-pi` return `null` from an unreadable transcript, which prints nothing and leaves the process at exit 0. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.mjs:284] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-devin.mjs:285] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:283] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:200]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs`",
+        "`.skilled/hooks/decision-capture/pi/decision-capture.ts`",
+        "`.opencode/plugins/decision-capture.js`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`",
+        "`.skilled/hooks/README.md`",
+        "`.skilled/hooks/coverage-rationale.md`",
+        "`.skilled/hooks/decision-capture/bin/sweep-{transcript,opencode,devin,codex,pi}.mjs`",
+        "`.skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md`",
+        "`.claude/settings.json` (Stop and PostToolUse wiring)"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-1-no-live-adapter-and-no-sweep-ever-writes-a-decision-record-the-only-writer-is-a-",
+      "text": "No live adapter and no sweep ever writes a decision record. The only writer is a `--full-auto` save whose JSON carries `operatorDecisions`, validated by the normalizer and routed per packet by the save pipeline; this is gap 1 exactly. [SOURCE: .skilled/commands/speckit/save.md:19] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:288] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:644]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-decision-record-should-remain-save-bound-because-only-save-has-selected-and-",
+      "text": "The decision record should remain save-bound because only save has selected and validated the destination packet. Closing this as an automatic live write is not worthwhile. Pending-answer delivery is worthwhile: Claude can reuse takeNudge at the next visible lifecycle point, while runtimes without a trusted notification hook can use the existing save-time pending output. Merge with the shared counter; do not add a record writer, queue, or nudge cursor. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:361] [SOURCE: .skilled/commands/speckit/save.md:64] [SOURCE: .skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:43]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-10-sweep-selection-is-prose-not-detection-the-save-instruction-branches-on-runtime-",
+      "text": "Sweep selection is prose, not detection: the save instruction branches on runtime name and names five scripts, so a sixth runtime adds a sixth prose branch and a sixth reader. No shared entry point resolves \"the reader for this session\". [SOURCE: .skilled/commands/speckit/save.md:64] [SOURCE: .skilled/commands/speckit/save.md:107]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-11-gap-8-has-a-save-time-consequence-that-makes-it-more-than-cosmetic-the-instructi",
+      "text": "Gap 8 has a save-time consequence that makes it more than cosmetic: the instruction tells the model the Codex and Pi sweeps \"print nothing at all when both are empty\", and an unreadable transcript now produces the same silence, so the model cannot tell a clean run from a failed read. [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:283]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-2-a-codex-live-adapter-is-not-worth-adding-while-hook-trust-is-a-precondition-its-",
+      "text": "A Codex live adapter is not worth adding while hook trust is a precondition; its save-time rollout sweep is the smallest safe path. Closing matrix coverage is worthwhile as documentation: add Hermes to the existing matrix with an explicit unknown/unverified status, and keep Cursor unverified until an answered question-tool event is observed. Do not add adapters or a second runtime inventory. [SOURCE: .skilled/hooks/README.md:267] [SOURCE: .skilled/hooks/README.md:271] [SOURCE: .skilled/commands/speckit/save.md:67] [SOURCE: specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md:106]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-claude-stop-hook-already-spawns-a-context-autosave-through-generate-context-",
+      "text": "The Claude Stop hook already spawns a context autosave through `generate-context.js` (`autosaveMode` defaults to enabled, outcome recorded as ran/skipped/failed), and that payload carries no `operatorDecisions`. On Claude, gap 1's smallest change is therefore to attach the session's pending queue records to an autosave that already runs, not to build a new writer. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:148] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:603] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts:107]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-3-gap-5-is-a-prose-contract-not-a-detection-gap-the-detector-already-emits-candida",
+      "text": "Gap 5 is a prose contract, not a detection gap: the detector already emits candidates carrying a stable `key`, and the save instruction then asks the model to decide, per candidate, whether the reply \"clearly replies\" to the question. The data needed is complete; only the decision is delegated. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/commands/speckit/save.md:70]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-3-reducing-chat-pairing-judgment-is-worthwhile-because-a-wrong-pair-pollutes-the-d",
+      "text": "Reducing chat-pairing judgment is worthwhile because a wrong pair pollutes the decision record. The smallest candidate rule is to use the detector's existing ordered-turn IDs only for a unique direct reply and leave shared or ambiguous replies pending; a multi-question live case should confirm it before the save instructions change. The process-question concern is overstated: isProcessQuestion evaluates header, option shape, direct permission wording, and the question text. Keep that filter; add only a narrow rule after a demonstrated false positive or negative, and do not add a second classifier. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:158] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:87] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:109] [SOURCE: .skilled/commands/speckit/save.md:70]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-4-fixing-the-silent-unreadable-transcript-path-is-worthwhile-codex-and-pi-should-r",
+      "text": "Fixing the silent unreadable-transcript path is worthwhile. Codex and Pi should reuse the visible error and nonzero-exit convention in Claude and Devin, while readable empty transcripts remain quiet. Remove only the current null-to-success behavior; two aligned branches do not justify a new generic error framework. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:276] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:323] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:198] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:265] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.mjs:284] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-devin.mjs:285]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-4-gap-6-is-one-executable-filter-plus-one-prose-restatement-of-it-isprocessquestio",
+      "text": "Gap 6 is one executable filter plus one prose restatement of it: `isProcessQuestion` runs at capture and again on chat candidates, while the save instruction re-states the same exclusion in prose for the model. The two copies live in different languages and only one of them is testable. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:161] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:97] [SOURCE: .skilled/commands/speckit/save.md:72]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-5-consolidating-runtime-storage-readers-is-not-worthwhile-opencode-sqlite-codex-ro",
+      "text": "Consolidating runtime storage readers is not worthwhile: OpenCode SQLite, Codex rollouts, Devin sessions, Pi sessions, and Claude transcripts have distinct host-owned formats. The shared normalization, append queue, and chat detector already form the common boundary, and Pi live capture already imports the save reader's recoveredRecords. Keep the decision writer as the sole record upsert, the matcher library as the sole table parser/scorer, and the CLI as queue and consumed-key orchestration. Merge only duplicated policy/error behavior; add no cross-runtime parser or parallel writer/matcher. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:129] [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:305] [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:5] [SOURCE: .skilled/hooks/decision-capture/pi/decision-capture.ts:85] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:667] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:78] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:283] [SOURCE: .skilled/skills/system-spec-kit/runtime/api/index.ts:124]",
+      "addedAtIteration": 2,
+      "sources": [
+        "specs/system-speckit/043-decision-capture/research/lineages/luna/steer.md (checked; absent)",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/commands/speckit/save.md",
+        ".skilled/hooks/README.md",
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts",
+        ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        ".skilled/skills/system-deep-loop/runtime/scripts/synthesis-closeout.cjs"
+      ],
+      "_lineages": [
+        "luna"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-parse-surface-is-five-store-readers-each-owning-a-store-specific-sessionidof",
+      "text": "The parse surface is five store readers, each owning a store-specific `sessionIdOf` and `chatTurnsOf` plus its own record mapping: `sweep-transcript`, `sweep-opencode`, `sweep-devin`, `sweep-codex`, `sweep-pi`. Codex and Pi hold four identically named functions (`parseTranscriptLines`, `sessionIdOf`, `recoveredRecords`, `chatTurnsOf`) with different bodies, which is the clearest merge candidate. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:60] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-pi.mjs:39]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-shared-detector-seam-already-exists-and-works-every-sweep-calls-chatcandidat",
+      "text": "The shared-detector seam already exists and works: every sweep calls `chatCandidatesFromTurns` from `chat-questions.mjs`, so pairing logic is written once and only *turn extraction* is duplicated across the five stores. [SOURCE: .skilled/hooks/decision-capture/lib/chat-questions.mjs:81] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:293]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-7-the-queue-row-schema-is-declared-twice-in-two-languages-an-object-literal-in-the",
+      "text": "The queue row schema is declared twice in two languages — an object literal in the capture core and a TypeScript `DecisionQueueRecord` interface in the matcher CLI — so a field added to a captured record is invisible to its only save-time consumer until both are edited. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:163] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:17]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-consumed-log-has-three-implementations-the-capture-core-reads-it-consumed-fi",
+      "text": "The consumed log has three implementations: the capture core reads it (`CONSUMED_FILE`, `readConsumedKeys`), the writer reads and appends it (`readConsumedKeySet`, `recordConsumedKeys`), and the matcher CLI declares its own `CONSUMED_FILENAME`, `consumedPath` and `readConsumedLines` while reusing only the writer's append. Three readers of one file, in two languages. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:40] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:782] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:38]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-2-9-there-is-a-second-silent-adjudicator-between-capture-and-the-record-the-table-ma",
+      "text": "There is a second silent adjudicator between capture and the record: the table matcher's answer gate plus weighted score (threshold 0.4, tie margin) decides that an answer is already recorded. The save instruction tells the model to run it, but nothing enforces that it ran, and a match consumes the key without the model seeing the pairing rationale. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:65] [SOURCE: .skilled/commands/speckit/save.md:68]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/commands/speckit/save.md`",
+        "`.skilled/hooks/decision-capture/lib/chat-questions.mjs`",
+        "`.skilled/hooks/decision-capture/lib/capture-core.mjs`",
+        "`.skilled/hooks/decision-capture/bin/sweep-*.mjs` (five)",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts`",
+        "`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-probe-folder-holds-four-probes-codex-devin-opencode-pi-and-no-claude-and-no-",
+      "text": "The probe folder holds four probes — codex, devin, opencode, pi — and no Claude and no Cursor probe. The value of \"unverified\" for Cursor is therefore literal: the documented probe method was run for four runtimes and simply not run for Cursor, so the cell records an unscheduled experiment rather than an observed absence. [SOURCE: .skilled/skills/.state/decision-capture/probe/codex.json:4] [SOURCE: .skilled/skills/.state/decision-capture/probe/pi.json:4] [SOURCE: .skilled/hooks/README.md:275]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-10-every-sweep-resolves-its-own-store-location-as-well-as-its-own-shape-so-the-five",
+      "text": "Every sweep resolves its own store location as well as its own shape, so the \"five readers\" are five store locators + five turn extractors + five record mappers, not five parsers of one format; the shared seams (`capture-core` for identity/append, `chat-questions` for pairing) already exist and are used by all five. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.mjs:122] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs:288]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-codex-probe-contradicts-the-matrix-s-reason-for-the-codex-cell-it-records-st",
+      "text": "The Codex probe contradicts the matrix's reason for the Codex cell: it records `status: \"observed: hook and rollout both tie the answer to its call\"` and then attributes the missing hook to per-user trust, so the capability was demonstrated and not shipped. [SOURCE: .skilled/skills/.state/decision-capture/probe/codex.json:8] [SOURCE: .skilled/skills/.state/decision-capture/probe/codex.json:9]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-trust-objection-does-not-separate-decision-capture-from-hooks-the-repo-alrea",
+      "text": "The trust objection does not separate decision capture from hooks the repo already ships: `.codex/hooks.json` registers three `PostToolUse` commands and four `Stop` commands today, so a Codex user already trusts this repository's hooks before any decision-capture entry could be added. [SOURCE: .codex/hooks.json:1] (event inventory: SessionStart 6, UserPromptSubmit 3, PreToolUse 5, PostToolUse 3, Stop 4, PreCompact 1)",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-probe-already-carries-the-exact-codex-payload-shape-the-hook-would-see-reque",
+      "text": "The probe already carries the exact Codex payload shape the hook would see (`request_user_input` with `tool_response` as a JSON string whose `answers` are keyed by question id), so a Codex live adapter needs no new schema discovery — only the mapping the sweep already performs. [SOURCE: .skilled/skills/.state/decision-capture/probe/codex.json:6]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-matrix-is-test-pinned-to-exactly-six-runtimes-runtime-refusal-test-mjs-hard-",
+      "text": "The matrix is test-pinned to exactly six runtimes: `runtime-refusal.test.mjs` hard-codes `RUNTIMES = ['Claude','Codex','Cursor','Devin','OpenCode','Pi']` and asserts the row has six cells, so adding a Hermes column is a test edit, not a documentation edit. [SOURCE: .skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs:10]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-6-that-test-also-accepts-unverified-as-a-valid-reason-bearing-terminal-state-which",
+      "text": "That test also accepts `unverified:` as a valid, reason-bearing terminal state, which is why an unverified cell can persist indefinitely: the guard checks form, never resolution. [SOURCE: .skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs:14]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-7-the-documented-state-contract-already-names-the-probe-folder-as-part-of-the-queu",
+      "text": "The documented state contract already names the probe folder as part of the queue's shape, so recording a Cursor probe result needs no new file kind and no new documentation page. [SOURCE: .skilled/skills/.state/decision-capture/README.md:36]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-test-surface-is-now-larger-than-the-implementation-it-guards-4-868-test-line",
+      "text": "The test surface is now larger than the implementation it guards: 4,868 test lines over roughly 3,000 implementation lines, with 64 tests spread across the five sweep suites (23 transcript, 12 codex, 11 pi, 10 opencode, 8 devin), each suite re-asserting `chat_candidates` and queue behaviour for its own store. [SOURCE: .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs:1] [SOURCE: .skilled/hooks/decision-capture/bin/sweep-codex.test.mjs:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "finding-3-9-the-process-question-rule-now-exists-in-three-places-the-executable-filter-the-s",
+      "text": "The process-question rule now exists in three places: the executable filter, the save instruction's prose, and the runtime-state README's prose description. Only the first can be tested, and the other two are the copies that drift. [SOURCE: .skilled/hooks/decision-capture/lib/capture-core.mjs:99] [SOURCE: .skilled/commands/speckit/save.md:72] [SOURCE: .skilled/skills/.state/decision-capture/README.md:23]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/.state/decision-capture/probe/{codex,devin,opencode,pi}.json`",
+        "`.skilled/skills/.state/decision-capture/README.md`",
+        "`.codex/hooks.json`",
+        "`.skilled/hooks/decision-capture/bin/runtime-refusal.test.mjs`",
+        "`.skilled/hooks/decision-capture/bin/*.test.mjs` (sizes and test counts)",
+        "`.skilled/hooks/README.md` (coverage matrix)",
+        "`.skilled/commands/speckit/save.md`"
+      ],
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-525a5202d008",
+      "text": "**Treating gap 3 as a missing adapter.** Codex already receives the answers; what is missing is a live read, and the README attributes that to hook trust. Building a Codex hook would either require per-user trust or duplicate the rollout read inside the runtime, so the sweep is the correct shape and the \"gap\" is a documentation claim, not missing behavior.",
+      "contentHash": "525a5202d008",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-54887a1fbb4b",
+      "text": "Reading `.skilled/hooks/coverage-rationale.md` for the Codex and Cursor rationale: the file has no `decision-capture` section, so the matrix's stated documentation contract cannot answer why those two cells are empty. Recorded as finding 7 instead of pursued.",
+      "contentHash": "54887a1fbb4b",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-becc25c1c916",
+      "text": "**Counting the pause/gate hooks as capture adapters.** They share the tree but write no queue rows.",
+      "contentHash": "becc25c1c916",
+      "addedAtIteration": 1,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-3478f5b83d11",
+      "text": "**Making the live adapter write a decision record directly.** A capture hook runs before the session has a bound packet and before the operator has agreed the wording of a `decided` sentence; writing the record at capture time would either guess the packet or write an unbound row. The autosave path (finding 2) is the smaller change that keeps the packet binding.",
+      "contentHash": "3478f5b83d11",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-4f6b88cd6f63",
+      "text": "Looking for a code-level process filter on the writer side: none exists. The only executable filter is capture-side, so gap 6's save-half enforcement is prose alone.",
+      "contentHash": "4f6b88cd6f63",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-f30515971a8d",
+      "text": "**Replacing the matcher's scoring with exact text equality.** The scorer exists because hand-written rows phrase the same decision differently; exact equality would regress the one case the matcher was built for.",
+      "contentHash": "f30515971a8d",
+      "addedAtIteration": 2,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-058e6ea49b56",
+      "text": "**Adding a Hermes runtime column.** The matrix is pinned by a test constant, Hermes has no adapter and no probe, and adding the column would document an absence the repo has no plan to fill.",
+      "contentHash": "058e6ea49b56",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-1b7578daea5c",
+      "text": "Searching for a Cursor probe result: none exists, and no code path probes a runtime's question surface — the folder is populated by hand.",
+      "contentHash": "1b7578daea5c",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    },
+    {
+      "id": "ruled-out-4f5410b35fa0",
+      "text": "**A model-free decision-record writer.** The record's `decided` sentence is the feature's product value; generating it from a template would fill `decision-record.md` with prose no reader can act on.",
+      "contentHash": "4f5410b35fa0",
+      "addedAtIteration": 3,
+      "_lineages": [
+        "deepseek"
+      ]
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 10,
+    "keyFindings": 42,
+    "sourceFindings": 42,
+    "reconstructionGaps": 0,
+    "convergenceScore": 0.59,
+    "coverageBySources": {}
+  }
+}

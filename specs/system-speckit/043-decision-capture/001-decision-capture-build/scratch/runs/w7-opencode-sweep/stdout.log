@@ -1,0 +1,305 @@
+[0m
+> build · deepseek-v4.1-flash-1017
+I'll start by reading the reference files and fixture, then write the two files.
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/sweep-devin.mjs 
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/fixtures/opencode-question-parts.json 
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/sweep-devin.test.mjs 
+> build · deepseek-v4.1-flash-1017
+Now let me read the capture core library and check the existing directory structure.
+[0m→ [0mRead .skilled/hooks/decision-capture/lib/capture-core.mjs 
+[0m✱ [0mGlob ".skilled/hooks/decision-capture/**/*" [90m0 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --version; ls -la .skilled/hooks/decision-capture/bin .skilled/hooks/decision-capture/bin/fixtures .skilled/hooks/decision-capture/lib
+v26.8.2
+.skilled/hooks/decision-capture/bin:
+total 96
+drwxr-xr-x@ 7 michelkerkmeester  staff    224 Nov  1 13:43 .
+drwxr-xr-x@ 5 michelkerkmeester  staff    160 Nov  1 12:37 ..
+drwxr-xr-x@ 4 michelkerkmeester  staff    128 Nov  1 13:41 fixtures
+-rw-r--r--@ 1 michelkerkmeester  staff  11785 Nov  1 13:44 sweep-devin.mjs
+-rw-r--r--@ 1 michelkerkmeester  staff   7103 Nov  1 13:45 sweep-devin.test.mjs
+-rw-r--r--@ 1 michelkerkmeester  staff  14772 Nov  1 12:38 sweep-transcript.mjs
+-rw-r--r--@ 1 michelkerkmeester  staff  10833 Nov  1 12:37 sweep-transcript.test.mjs
+
+.skilled/hooks/decision-capture/bin/fixtures:
+total 32
+drwxr-xr-x@ 4 michelkerkmeester  staff   128 Nov  1 13:41 .
+drwxr-xr-x@ 7 michelkerkmeester  staff   224 Nov  1 13:43 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  6447 Nov  1 13:41 devin-transcript.json
+-rw-r--r--@ 1 michelkerkmeester  staff  7165 Nov  1 13:41 opencode-question-parts.json
+
+.skilled/hooks/decision-capture/lib:
+total 72
+drwxr-xr-x@ 4 michelkerkmeester  staff    128 Nov  1 13:45 .
+drwxr-xr-x@ 5 michelkerkmeester  staff    160 Nov  1 12:37 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  17900 Nov  1 13:45 capture-core.mjs
+-rw-r--r--@ 1 michelkerkmeester  staff  15924 Nov  1 13:44 capture-core.test.mjs
+> build · deepseek-v4.1-flash-1017
+[0m✗ [0mRead  failed
+[91m[1mError: [0mInvalid arguments for tool "read":
+- path: Missing key
+
+Arguments provided:
+{}
+
+Update the arguments and call the tool again.
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/sweep-transcript.mjs [90m[limit=120][0m
+[0m$ [0mcat package.json 2>/dev/null | head -60; echo "---"; ls .skilled/hooks/decision-capture
+---
+bin
+claude
+lib
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/sweep-transcript.mjs [90m[offset=121, limit=130][0m
+[0m✱ [0mGrep "session_message|opencode.db|DatabaseSync" [90min .skilled · 40 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode -e "
+const fs=require('fs');
+const text=fs.readFileSync('.skilled/hooks/decision-capture/bin/sweep-devin.mjs','utf8').split('\n');
+for (let i=1;i<6;i++) console.log(i+1, JSON.stringify(text[i]).length, text[i].length);
+const inner = text[2].length - '// ║ '.length - ' ║'.length;
+console.log('inner', inner);
+for (const t of ['COMPONENT: OpenCode SQLite Decision Sweep','PURPOSE: Recover OpenCode answered questions into the queue.']) {
+  const pad = inner - 2 - t.length;
+  console.log('// ║ ' + t + ' '.repeat(pad) + ' ║');
+}
+"
+2 81 79
+3 81 79
+4 81 79
+5 81 79
+6 81 79
+inner 72
+// ║ COMPONENT: OpenCode SQLite Decision Sweep                              ║
+// ║ PURPOSE: Recover OpenCode answered questions into the queue.           ║
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+Created file successfully: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+Created file successfully: .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+Index: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+===================================================================
+--- .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
++++ .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+@@ -21,13 +21,13 @@
+ // ─────────────────────────────────────────────────────────────────────────────
+ // 1. IMPORTS
+ // ─────────────────────────────────────────────────────────────────────────────
+ 
++import { realpathSync } from 'node:fs';
+ import { homedir } from 'node:os';
+ import { join } from 'node:path';
+ import process from 'node:process';
+ import { DatabaseSync } from 'node:sqlite';
+-import { realpathSync } from 'node:fs';
+ import { fileURLToPath } from 'node:url';
+ 
+ import {
+   appendRecords,
+
+[0m$ [0mgrep -n $'\u2014' .skilled/hooks/decision-capture/bin/sweep-opencode.mjs .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs; echo "em-dash-exit:$?"
+em-dash-exit:1
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/bin/sweep-opencode.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+✔ the fixture yields its four answered decisions and nothing else (1.355458ms)
+✖ a part database recovers its answered decisions once (0.870958ms)
+✔ the message layout recovers a question stored as a content item (3.179ms)
+✔ the newest session for the directory wins across both session tables (2.470666ms)
+✔ the CLI resolves the newest session under the XDG data home (31.745084ms)
+✔ the CLI reports a missing database as JSON and fails (27.372875ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.899166
+
+✖ failing tests:
+
+test at .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:115:1
+✖ a part database recovers its answered decisions once (0.870958ms)
+  Error: unable to open database file
+      at writePartDatabase (file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:59:20)
+      at file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:125:5
+      at withTemp (file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:48:12)
+      at TestContext.<anonymous> (file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:116:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'ERR_SQLITE_ERROR',
+    errcode: 14,
+    errstr: 'unable to open database file'
+  }
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+Index: .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+===================================================================
+--- .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
++++ .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+@@ -55,8 +55,9 @@
+   return JSON.parse(readFileSync(FIXTURE, 'utf8'));
+ }
+ 
+ function writePartDatabase(dbPath, parts) {
++  mkdirSync(dirname(dbPath), { recursive: true });
+   const database = new DatabaseSync(dbPath);
+   try {
+     database.exec(
+       'CREATE TABLE part (id TEXT, message_id TEXT, session_id TEXT, time_created INTEGER, time_updated INTEGER, data TEXT)',
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/bin/sweep-opencode.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+✔ the fixture yields its four answered decisions and nothing else (1.214042ms)
+✔ a part database recovers its answered decisions once (5.02225ms)
+✔ the message layout recovers a question stored as a content item (2.643583ms)
+✔ the newest session for the directory wins across both session tables (2.391792ms)
+✔ the CLI resolves the newest session under the XDG data home (31.197833ms)
+✔ the CLI reports a missing database as JSON and fails (25.981167ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.400667
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgit status --porcelain; echo "---"; node -e "
+const fs=require('fs');
+for (const f of ['.skilled/hooks/decision-capture/bin/sweep-opencode.mjs']) {
+  const lines=fs.readFileSync(f,'utf8').split('\n').slice(0,6);
+  for (const [i,l] of lines.entries()) console.log(i+1, l.length);
+}
+"
+M .claude/settings.json
+ M .skilled/commands/speckit/save.md
+ M .skilled/hooks/README.md
+ M .skilled/hooks/shared/hook-stdin-deadline.test.mjs
+ M .skilled/skills/system-spec-kit/references/memory/save-workflow.md
+ M .skilled/skills/system-spec-kit/references/structure/phase-definitions.md
+ M .skilled/skills/system-spec-kit/runtime/api/index.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+ M .skilled/skills/system-spec-kit/runtime/cli/types/session-types.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts
+ M .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+ M .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+ M .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+ M .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+ M specs/system-speckit/042-decision-capture/acceptance-criteria.md
+ M specs/system-speckit/042-decision-capture/decision-record.md
+ M specs/system-speckit/042-decision-capture/description.json
+ M specs/system-speckit/042-decision-capture/graph-metadata.json
+ M specs/system-speckit/042-decision-capture/implementation-summary.md
+ M specs/system-speckit/042-decision-capture/plan.md
+ M specs/system-speckit/042-decision-capture/spec.md
+ M specs/system-speckit/042-decision-capture/tasks.md
+ M specs/system-speckit/042-decision-capture/timeline.md
+?? .skilled/hooks/decision-capture/
+?? .skilled/skills/.state/decision-capture/
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts
+?? specs/system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/test/examples/level-2/acceptance-criteria.md
+?? specs/system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/test/tree-v2/.skilled/commands/speckit/assets/speckit-implement.yaml
+?? specs/system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/test/tree/.skilled/commands/speckit/assets/speckit-implement.yaml
+?? specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/test/map-positive/build.cjs
+?? specs/system-speckit/042-decision-capture/scratch/runs/
+?? specs/system-speckit/042-decision-capture/scratch/t001-probe/
+---
+1 19
+2 79
+3 79
+4 79
+5 79
+6 79
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls -la .skilled/skills/.state/decision-capture 2>/dev/null; echo "---"; ls -la .skilled/hooks/decision-capture/bin/sweep-opencode*.mjs; echo "---"; git diff --stat -- .skilled/hooks/decision-capture 2>/dev/null
+total 8
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Nov  1 12:08 .
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Nov  1 11:59 ..
+drwxr-xr-x@  7 michelkerkmeester  staff   224 Nov  1 13:34 probe
+-rw-r--r--@  1 michelkerkmeester  staff  2560 Nov  1 12:08 README.md
+---
+-rw-r--r--@ 1 michelkerkmeester  staff  13185 Nov  1 13:46 .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+-rw-r--r--@ 1 michelkerkmeester  staff   9147 Nov  1 13:46 .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+---
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+Index: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+===================================================================
+--- .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
++++ .skilled/hooks/decision-capture/bin/sweep-opencode.mjs
+@@ -71,13 +71,11 @@
+       const question = questions[index]?.question;
+       if (typeof question !== 'string' || question === '') continue;
+ 
+       const selected = answerLists[index];
+-      if (!Array.isArray(selected)) continue;
+-
+-      const labels = selected.filter((label) => typeof label === 'string' && label !== '');
+-      if (labels.length === 0) continue;
+-      answers[question] = labels.join(', ');
++      if (!Array.isArray(selected) || selected.length === 0) continue;
++      if (!selected.every((label) => typeof label === 'string')) continue;
++      answers[question] = selected.join(', ');
+     }
+ 
+     // The core reads camel-case multiSelect, while OpenCode spells the flag
+     // `multiple`, so the questions are remapped here rather than teaching the
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/bin/sweep-opencode.mjs && node --test .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+✔ the fixture yields its four answered decisions and nothing else (1.221084ms)
+✔ a part database recovers its answered decisions once (4.847334ms)
+✔ the message layout recovers a question stored as a content item (2.635208ms)
+✔ the newest session for the directory wins across both session tables (2.45625ms)
+✔ the CLI resolves the newest session under the XDG data home (31.295833ms)
+✔ the CLI reports a missing database as JSON and fails (25.326583ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.808458
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/decision-capture/bin/sweep-opencode.mjs [90m[limit=50, offset=50][0m
+> build · deepseek-v4.1-flash-1017
+Both files are written and the check passes.
+
+```
+✔ the fixture yields its four answered decisions and nothing else (1.221084ms)
+✔ a part database recovers its answered decisions once (4.847334ms)
+✔ the message layout recovers a question stored as a content item (2.635208ms)
+✔ the newest session for the directory wins across both session tables (2.45625ms)
+✔ the CLI resolves the newest session under the XDG data home (31.295833ms)
+✔ the CLI reports a missing database as JSON and fails (25.326583ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.808458
+```
+
+`node --check` passed silently before the test run. Implementation notes: reads only the `part` table when present, merges `session_message` assistant-row tool items when present, opens every database with `{ readOnly: true }` and closes it in `finally`. No em dash characters were written, and no other file was touched.
+
+FILES: .skilled/hooks/decision-capture/bin/sweep-opencode.mjs, .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs
+CHECK: pass 6, fail 0
+STATUS=OK both files exist, node --check passes, and all six node:test cases pass.
+RUN_DONE_EXIT=0

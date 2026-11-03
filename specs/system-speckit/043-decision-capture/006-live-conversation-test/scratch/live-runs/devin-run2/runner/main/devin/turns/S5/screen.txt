@@ -1,0 +1,51 @@
+   • There is no widget code in this workspace. No  src/ , no package manifest, nothing matching "widget" outside  specs/ . The only non-hidden content is the spec packet,  AGENTS.md , and tooling
+     config. So a status badge has no implementation target here yet — unless the code lives elsewhere.
+
+ Stopped as instructed. Nothing written; I'll hold for your direction.
+
+❭ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+ Locked to  specs/demo/001-demo-widget  for the session. Holding — nothing written.
+
+❭ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no 
+  option as recommended.
+
+ ⏺ Asked user Which colour should the status badge use?
+ └ Amber
+
+ Amber, noted. Still holding — nothing written until you say so.
+
+❭ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type 
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.
+
+ ⏺ Asked user Which platforms must the badge support? (select all that apply, or type the rest via Other)
+ └ Web, iOS, Android
+
+ Web, iOS and Android — all three noted. Still holding, nothing written.
+
+❭ Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.
+
+ ⏺ Asked user What label should the badge show? (pick one, or type your own via Other)
+ └ Needs review
+
+ "Needs review" noted as the label. Still holding — nothing written.
+
+ ✱ Did you know
+   Press opt+m to switch between available models
+
+❭ Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink.
+
+ Decisions so far: Amber badge, "Needs review" label, Web + iOS + Android.
+
+ Should the badge blink?
+
+❭ No, keep it static.
+
+ Static, no blink — noted. Holding for your go-ahead to write.
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/devin-main/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Locate Documentation for Adding a Demo … ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                     Context: 31k / 262k tokens (11%)
+

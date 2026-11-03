@@ -1,0 +1,1009 @@
+[0m
+> build · deepseek-v4.1-flash-1017
+I'll start by reading the files named under STYLE and the files I need to modify.
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts 
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/cli/tests/draft-auto-repair.vitest.ts 
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts [90m[offset=550, limit=100][0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/api/index.ts [90m[limit=60, offset=95][0m
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts [90m[limit=80, offset=160][0m
+[0m$ [0mls .skilled/skills/system-spec-kit/runtime/lib/continuity/ && ls .skilled/skills/system-spec-kit/runtime/cli/tests/ | head -50
+authored-continuity-snapshot.ts
+README.md
+thin-continuity-record.ts
+alignment-drift-fixture-preservation.vitest.ts
+anchor-contract.vitest.ts
+anchor-nesting-severity.vitest.ts
+anchor-repair-sample.vitest.ts
+architecture-boundary-enforcement.vitest.ts
+archive-track.vitest.ts
+ascii-boxes.vitest.ts
+auto-detection-fixes.vitest.ts
+backfill-frontmatter.vitest.ts
+backfill-prune-report-gate.vitest.ts
+backfill-research-metadata.vitest.ts
+calculate-completeness-script.vitest.ts
+canonical-save-validation.vitest.ts
+canonical-sources-auto-discovery.vitest.ts
+card-sync.vitest.ts
+check-ac-closure.sh
+check-ac-coverage.sh
+check-frontmatter-values.vitest.ts
+check-graph-metadata-child-drift.sh
+check-graph-metadata-shape-last-active-child.sh
+check-source-dist-alignment-orphans.vitest.ts
+check-source-tags.vitest.ts
+ci-rule-set-comparison.vitest.ts
+claude-code-native-dispatch-docs.vitest.ts
+collect-session-data.vitest.ts
+contamination-filter.vitest.ts
+content-filter-parity.vitest.ts
+continuity-freshness.vitest.ts
+create-path-containment.vitest.ts
+create-root-numbering.vitest.ts
+create-track-containment.vitest.ts
+create-track-refresh.vitest.ts
+create-unknown-options.vitest.ts
+create-without-build.vitest.ts
+daemon-detect.vitest.ts
+decision-confidence.vitest.ts
+deep-research-contract-parity.vitest.ts
+deep-research-reducer.vitest.ts
+deep-review-auto-restart-contract.vitest.ts
+deep-review-contract-parity.vitest.ts
+deep-review-reducer-schema.vitest.ts
+description-enrichment.vitest.ts
+dist-freshness-walker.vitest.ts
+distinguishing-evidence-dedup.vitest.ts
+draft-auto-repair.vitest.ts
+evidence-marker-audit.vitest.ts
+example-drift.vitest.ts
+fact-coercion.vitest.ts
+file-capture-structured-mode.vitest.ts
+fingerprint-docset-generation.sh
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcat .skilled/skills/system-spec-kit/runtime/vitest.config.ts; echo "---"; ls specs/system-speckit/042-decision-capture
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Vitest Config
+// ───────────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
+import { defineConfig } from 'vitest/config';
+
+const TEST_TIMEOUT_MS = 30_000; // 30s default, increase for CI if needed
+const TEARDOWN_TIMEOUT_MS = 1_000;
+const _INCLUDE_BENCHES = process.env.SPECKIT_RUN_BENCHES === 'true';
+
+export default defineConfig({
+  root: path.resolve(import.meta.dirname, '..'),
+  test: {
+    include: [
+      'runtime/tests/**/*.{vitest,test}.ts',
+      '../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts',
+    ],
+    exclude: [
+      'runtime/cli/**',
+    ],
+    setupFiles: [
+      path.resolve(import.meta.dirname, 'tests', '_support', 'vitest-setup.ts'),
+      path.resolve(
+        import.meta.dirname,
+        '..',
+        '..',
+        'system-deep-loop',
+        'runtime',
+        'tests',
+        '_support',
+        'hermetic-opencode-path.ts',
+      ),
+    ],
+    // Several script suites mutate shared process-level state and temp project roots.
+    // Run files serially so the combined config remains deterministic.
+    fileParallelism: false,
+    globals: true,
+    environment: 'node',
+    reporters: ['default', 'hanging-process'],
+    testTimeout: TEST_TIMEOUT_MS,
+    teardownTimeout: TEARDOWN_TIMEOUT_MS,
+    alias: [
+      { find: '@lib', replacement: path.resolve(import.meta.dirname, 'lib') },
+      { find: '@spec-kit/shared', replacement: path.resolve(import.meta.dirname, '..', 'shared') },
+      // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+      // their relative imports are written against the link's base; this alias
+      // resolves those same specifiers from the real tree, mirroring the
+      // hooks config.
+      {
+        find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+        replacement: `${path.resolve(import.meta.dirname, '..', '..', '..')}/`,
+      },
+    ],
+  },
+});
+---
+acceptance-criteria.md
+decision-record.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+scratch
+spec.md
+tasks.md
+timeline.md
+[0m$ [0mfind . -name "decision-record*" -not -path "*/node_modules/*" | head -30
+./specs/sk-prompt/007-sk-prompt-parent/002-architecture-decision/decision-record.md
+./specs/sk-prompt/z_archive/001-sk-prompt-initial-creation/decision-record.md
+./specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/005-model-profiles-and-fallback/decision-record.md
+./specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/003-structured-permissions-matrix/decision-record.md
+./specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/008-sk-prompt-small-model-rename/decision-record.md
+./specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/001-smallcode-deep-research/decision-record.md
+./specs/sk-prompt/z_archive/004-sk-prompt-small-model-optimization/004-budget-and-output-verification/decision-record.md
+./specs/cli-orca/001-mcp-orca-cli/decision-record.md
+./specs/cli-orca/002-consolidate-official-orca-skills/decision-record.md
+./specs/cli-classifier/003-cli-jev-workflow-integration/045-deem-live-runs/decision-record.md
+./specs/cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan/decision-record.md
+./specs/cli-classifier/003-cli-jev-workflow-integration/042-label-drafting-and-confirmation/decision-record.md
+./specs/mcp-tooling/z_archive/017-mcp-magicpath/006-design-authority/decision-record.md
+./specs/mcp-tooling/z_archive/007-mcp-tooling-parent/002-architecture-decision/decision-record.md
+./specs/mcp-tooling/z_archive/002-mcp-testing-playbooks/decision-record.md
+./specs/mcp-tooling/z_archive/011-routing-remediation/decision-record.md
+./specs/mcp-tooling/z_archive/004-mcp-click-up-task-management/decision-record.md
+./specs/mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent/decision-record.md
+./specs/mcp-tooling/z_archive/003-mcp-figma-transfer/002-public-figma-agent/decision-record.md
+./specs/mcp-tooling/z_archive/003-mcp-figma-transfer/003-mcp-figma-skill-removal/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/004-remove-sk-vision-skill/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/003-remove-mcp-magicpath-mode/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/002-capture-removal-baseline-and-snapshot/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/005-scrub-shared-references/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/001-removal-surface-deep-research/decision-record.md
+./specs/other/001-retire-magicpath-and-sk-vision/006-regenerate-and-verify-zero-references/decision-record.md
+./specs/system-deep-loop/036-deep-loop-innovation/011-cli-pi-fanout-execution/decision-record.md
+./specs/system-deep-loop/036-deep-loop-innovation/013-runtime-agent-gateway-alignment/decision-record.md
+./specs/system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/decision-record.md
+./specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/decision-record.md
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls .skilled/skills/system-spec-kit/runtime/ | head -30; echo "---"; find .skilled/skills/system-spec-kit/runtime -maxdepth 2 -name "vitest*.ts" -o -maxdepth 2 -name "vitest*.mts" | head
+api
+cli
+core
+data
+database
+dist
+ENV-REFERENCE.md
+eslint.config.mjs
+handlers
+hooks
+lib
+LICENSE
+node_modules
+package.json
+README.md
+relative-repo
+scripts
+shared
+stress-test
+tests
+tsconfig.json
+tsconfig.tests.json
+vitest.config.ts
+vitest.stress.config.ts
+---
+.skilled/skills/system-spec-kit/runtime/vitest.stress.config.ts
+.skilled/skills/system-spec-kit/runtime/vitest.config.ts
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls .skilled/skills/system-spec-kit/*.ts .skilled/skills/system-spec-kit/*.mts 2>/dev/null; echo "---"; cat .skilled/skills/system-spec-kit/vitest.config.ts 2>/dev/null | head -80
+zsh:1: no matches found: .skilled/skills/system-spec-kit/*.mts
+---
+// ───────────────────────────────────────────────────────────────
+// MODULE: Root Vitest configuration
+// ───────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
+const TEST_TIMEOUT_MS = 30_000;
+const TEARDOWN_TIMEOUT_MS = 1_000;
+
+// The CLI workspace nests inside runtime/ and carries its own tsconfig and
+// package root; its cross-skill '.js'-suffixed imports only resolve when the
+// files run from that root. A single shared root/include set here collected
+// CLI test files from the skill root and broke those imports, so the CLI suite
+// gets its own project rooted at runtime/cli instead. Both projects
+// carry the same timeout/parallelism settings as runtime/vitest.config.ts so a
+// project picked up through this config never silently falls back to vitest's
+// bare 5s default.
+export default {
+  test: {
+    // Snapshots live in a plain `snapshots/` folder beside each test, because
+    // the folder rule forbids double-underscore names such as vitest's default
+    // `__snapshots__`.
+    resolveSnapshotPath: (testPath: string, snapExtension: string) =>
+      path.join(path.dirname(testPath), 'snapshots', `${path.basename(testPath)}${snapExtension}`),
+    projects: [
+      {
+        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+        // their relative imports are written against the link's base; this alias
+        // resolves those same specifiers from the real tree, mirroring the
+        // hooks config.
+        resolve: {
+          alias: [
+            {
+              find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+              replacement: `${path.resolve(__dirname, '..', '..')}/`,
+            },
+          ],
+        },
+        test: {
+          root: path.resolve(__dirname),
+          include: [
+            'tests/**/*.vitest.ts',
+            'runtime/tests/**/*.vitest.ts',
+          ],
+          setupFiles: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
+          ],
+          globals: true,
+          environment: 'node',
+          fileParallelism: false,
+          testTimeout: TEST_TIMEOUT_MS,
+          teardownTimeout: TEARDOWN_TIMEOUT_MS,
+          name: 'root',
+        },
+      },
+      {
+        test: {
+          root: path.resolve(__dirname, 'runtime', 'cli'),
+          include: [
+            'tests/**/*.vitest.ts',
+          ],
+          setupFiles: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
+          ],
+          globals: true,
+          environment: 'node',
+          fileParallelism: false,
+          testTimeout: TEST_TIMEOUT_MS,
+          teardownTimeout: TEARDOWN_TIMEOUT_MS,
+          name: 'cli',
+        },
+      },
+    ],
+  },
+};
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead specs/system-speckit/042-decision-capture/decision-record.md 
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mhead -40 specs/system-speckit/042-decision-capture/spec.md; echo "=== scratch"; ls specs/system-speckit/042-decision-capture/scratch
+---
+title: "Feature Specification: Automatic operator decision capture"
+description: "Capture operator questions and answers, turn confirmed product decisions into short entries at save time and retain their exact wording in the bound packet."
+trigger_phrases:
+  - "operator decision capture"
+  - "automatic decision record"
+  - "capture AskUserQuestion answers"
+importance_tier: "important"
+contextType: "implementation"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
+# Feature Specification: Automatic operator decision capture
+
+<!-- SPECKIT_LEVEL: 3 -->
+
+---
+
+## EXECUTIVE SUMMARY
+
+Operator answers to AI questions reach a decision record only when someone retypes them, so the exact wording and the reason for a choice get lost. This packet captures each answer to a gitignored queue, recovers missed ones from the Claude transcript, and has the session model write a short decision plus the verbatim exchange into the bound packet at a full-auto save. Re-saving changes no bytes, process questions are filtered out, and the packet's validated level never moves.
+
+**Key Decisions**: rewrite at save time rather than inside a hook (ADR-001), and reuse the existing level detection and child resolver instead of new code (ADR-002).
+
+**Critical Dependencies**: the live Claude PostToolUse probe (T001) gates the hook registration; the transcript sweep works without it.
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 3 |
+| **Priority** | P1 |
+| **Status** | Draft |
+| **Created** | 2026-11-01 |
+| **Branch** | main |
+<!-- /ANCHOR:metadata -->
+
+---
+=== scratch
+analysis-opus.md
+facts-orchestrator.md
+runs
+[0m$ [0mcat .skilled/skills/system-spec-kit/runtime/tsconfig.json; echo "=== grep SpecKitLevel"; grep -n "SpecKitLevel" .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts | head -20
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "../node_modules/@types",
+      "node_modules/@types"
+    ],
+    "paths": {
+      "vitest": [
+        "node_modules/vitest/dist/index.d.ts"
+      ],
+      "vitest/config": [
+        "node_modules/vitest/config.d.ts"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ],
+  "include": [
+    "api/**/*.ts",
+    "configs/**/*.ts",
+    "core/**/*.ts",
+    "formatters/**/*.ts",
+    "handlers/**/*.ts",
+    "hooks/**/*.ts",
+    "lib/**/*.ts",
+    "schemas/**/*.ts",
+    "utils/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "../shared",
+    "../shared/**",
+    "cli/**",
+    "hooks/pi/**",
+    "tests/fixtures/**/*.ts",
+    "tests/**",
+    "tests/**/*.vitest.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.vitest.js",
+    "stress-test/**",
+    "stress-test/**/*.vitest.ts",
+    "stress-test/**/*.test.ts",
+    "tests/chunk-thinning.vitest.ts",
+    "tests/layer-definitions.vitest.ts",
+    "tests/dead-code-regression.vitest.ts"
+  ]
+}
+=== grep SpecKitLevel
+17:import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
+60:  level: SpecKitLevel;
+182:function normalizeLevel(raw: string): SpecKitLevel {
+191:function detectLevel(folder: string): SpecKitLevel {
+364:  level: SpecKitLevel,
+404:  level: SpecKitLevel,
+477:function docsForLevel(level: SpecKitLevel): string[] {
+482:function lifecycleRequiredDocsForLevel(level: SpecKitLevel): string[] {
+496:function requiredDocsForLevel(folder: string, level: SpecKitLevel): string[] {
+506:function validationDocsForLevel(folder: string, level: SpecKitLevel): string[] {
+576:function renderInlineGates(template: string, level: SpecKitLevel): string {
+608:function templateNameForDoc(level: SpecKitLevel, docName: string): string {
+625:function renderedTemplate(level: SpecKitLevel, docName: string): string | null {
+635:function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
+663:function requiredTemplateSections(level: SpecKitLevel, docName: string): Array<{ id: string; heading: string }> {
+700:function requiredTemplateAnchors(level: SpecKitLevel, docName: string): string[] {
+708:function validateFileExists(folder: string, level: SpecKitLevel): ValidationEntry {
+806:function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
+875:function validateTemplateSource(folder: string, level: SpecKitLevel): ValidationEntry {
+944:function validateAnchorIntegrity(folder: string, level: SpecKitLevel): ValidationEntry {
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcat .skilled/skills/system-spec-kit/tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./shared" },
+    { "path": "./runtime" },
+    { "path": "./runtime/cli" }
+  ],
+  "exclude": ["node_modules"]
+}
+[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" --include=*.ts --include=*.md .skilled/ specs/system-speckit/042-decision-capture/ | head -30
+zsh:1: no matches found: --include=*.ts
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" .skilled/ specs/system-speckit/042-decision-capture/ 2>/dev/null | grep -v node_modules | head -30
+specs/system-speckit/042-decision-capture/tasks.md:54:- [ ] T009 Upsert by stable question id and consumed source key (decision-record-writer.ts). Verify: saving the same id twice leaves decision-record.md byte-identical and creates no duplicate row.
+specs/system-speckit/042-decision-capture/tasks.md:55:- [ ] T010 Write the verbatim appendix beside each decision entry (decision-record-writer.ts). Verify: question, options and answer values compare exactly after rendering, including Markdown fences and newlines.
+specs/system-speckit/042-decision-capture/tasks.md:56:- [ ] T011 Preserve the detected packet level before creating decision-record.md, using the exported detectLevel (decision-record-writer.ts, orchestrator.ts). Verify: a markerless Level 2 fixture gets a Level 2 marker before file creation and detected level is 2 before and after; an unresolved level refuses the write.
+specs/system-speckit/042-decision-capture/scratch/analysis-opus.md:94:5. `SSK/runtime/lib/continuity/decision-record-writer.ts` (new): upserts the `operator-decisions` and `operator-answers-verbatim` anchors by Q id. It refuses to create the file in a non-phase-parent packet whose `spec.md` has no level marker.
+specs/system-speckit/042-decision-capture/scratch/analysis-opus.md:113:- **`decision-record-writer.vitest.ts`:**
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:21:  .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts   (create)
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:22:  .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts  (create)
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:30:EXPORTS of decision-record-writer.ts:
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:34:  export function writeDecisionRecord(folder: string, entries: OperatorDecisionEntry[]): DecisionRecordWriteResult
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:35:  export function readVerbatimAppendix(markdown: string): Map<string, { sourceKey: string | null; question: string; options: string[]; answer: string }>
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:38:RULES for writeDecisionRecord(folder, entries):
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:62:readVerbatimAppendix parses section B items back into exact values (the inverse of rule 5). recordConsumedKeys appends one JSON line {"key","packet","id","at"} per id to path.join(projectRoot, '.skilled/skills/.state/decision-capture/consumed.jsonl'), creating the folder with mode 0o700.
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:66:export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:67:export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:69:TESTS in decision-record-writer.vitest.ts (import from '../../lib/continuity/decision-record-writer.js' and detectLevel from '../../lib/validation/orchestrator.js'; each test builds its own tmp packet folder with a spec.md):
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:72:- the guard: in the same markerless shape writeDecisionRecord adds `<!-- SPECKIT_LEVEL: 2 -->` to spec.md, levelMarkerAdded is true, detectLevel is '2' before and after
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:77:- verbatim: a question containing a ```js fenced block and a newline, an option containing `|`, a multi-line answer: readVerbatimAppendix returns them exactly
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/stdout.log:429:[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" --include=*.ts --include=*.md .skilled/ specs/system-speckit/042-decision-capture/ | head -30
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:18:TASK: Carry an `operatorDecisions` array from the save payload to the existing decision-record writer during a --full-auto save. The writer already exists: `writeDecisionRecord`, `recordConsumedKeys` and `DecisionRecordWriteError` are exported from '@spec-kit/runtime/api' (source: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts). Read that file first. Do not change it.
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:39:- add `writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError` to the existing '@spec-kit/runtime/api' import (line 66), and `isPhaseParent` from '../spec/is-phase-parent.js'.
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:41:- add `async function writePlannedOperatorDecisions(params: { plan; targetPath; now; log; warn })`. For each group: when the folder is not the target (compare canonicalPath), hold acquireCanonicalSaveLock(folder) as writePlannedContinuity does. Call writeDecisionRecord(folder, entries mapped to { sourceKey, decided, why, supersedes, carriedBy, question, options, answer }). Then recordConsumedKeys(CONFIG.PROJECT_ROOT, the folder relative to CONFIG.PROJECT_ROOT, result.ids, now). When the folder is not the target and result.changed, refresh its graph metadata exactly as writePlannedContinuity does (refreshGraphMetadata with saveLineage 'same_pass'). Log `   Wrote <n> operator decision(s) to <relative folder>` and, when levelMarkerAdded, `   Added the missing level marker to <relative folder>/spec.md`. A DecisionRecordWriteError warns `   Operator decisions not written to <relative folder>: <message>` and leaves those keys unconsumed; any other error is rethrown.
+specs/system-speckit/042-decision-capture/plan.md:116:| Writer idempotence | Re-saving one question id leaves decision-record.md byte-identical. | The same id cannot create a duplicate row or appendix entry. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:117:| Verbatim appendix | The original question, options and answer are stored exactly. | Markdown fences and line breaks survive without changing the text value. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:118:| Level guard | A missing level marker is added before record creation and the detected level stays the same. | An unresolvable level blocks record creation. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:174:decision-record-writer.ts ──► input-normalizer.ts + workflow.ts ──► save docs
+specs/system-speckit/042-decision-capture/plan.md:182:| decision-record-writer.ts | detectLevel export | Upserted decision-record.md and consumed keys | Save wiring |
+specs/system-speckit/042-decision-capture/spec.md:89:| .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts | Create | Upsert decision entries and their verbatim appendix by stable question id, guard the level and record consumed keys. |
+specs/system-speckit/042-decision-capture/spec.md:106:| .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts | Create | Cover record writes, routing, idempotence, appendix and level guard. |
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls -la .skilled/skills/system-spec-kit/runtime/lib/continuity/ .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts 2>&1 | tail -10; echo "=== runs"; ls specs/system-speckit/042-decision-capture/scratch/runs/
+ls: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts: No such file or directory
+.skilled/skills/system-spec-kit/runtime/lib/continuity/:
+total 144
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Sep 30 23:53 .
+drwxr-xr-x@ 19 michelkerkmeester  staff    608 Oct 31 18:51 ..
+-rw-r--r--@  1 michelkerkmeester  staff  10656 Sep 30 23:53 authored-continuity-snapshot.ts
+-rw-r--r--@  1 michelkerkmeester  staff  12837 Sep 17 21:58 README.md
+-rw-r--r--@  1 michelkerkmeester  staff  41448 Sep 30 23:53 thin-continuity-record.ts
+=== runs
+w1-capture-core
+w2-writer
+w3-save-wiring
+w4-sweep
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mtail -60 specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/stdout.log
+"declarationMap": true,
+    "sourceMap": true,
+    "composite": true
+  },
+  "files": [],
+  "references": [
+    { "path": "./shared" },
+    { "path": "./runtime" },
+    { "path": "./runtime/cli" }
+  ],
+  "exclude": ["node_modules"]
+}
+[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" --include=*.ts --include=*.md .skilled/ specs/system-speckit/042-decision-capture/ | head -30
+zsh:1: no matches found: --include=*.ts
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" .skilled/ specs/system-speckit/042-decision-capture/ 2>/dev/null | grep -v node_modules | head -30
+specs/system-speckit/042-decision-capture/tasks.md:54:- [ ] T009 Upsert by stable question id and consumed source key (decision-record-writer.ts). Verify: saving the same id twice leaves decision-record.md byte-identical and creates no duplicate row.
+specs/system-speckit/042-decision-capture/tasks.md:55:- [ ] T010 Write the verbatim appendix beside each decision entry (decision-record-writer.ts). Verify: question, options and answer values compare exactly after rendering, including Markdown fences and newlines.
+specs/system-speckit/042-decision-capture/tasks.md:56:- [ ] T011 Preserve the detected packet level before creating decision-record.md, using the exported detectLevel (decision-record-writer.ts, orchestrator.ts). Verify: a markerless Level 2 fixture gets a Level 2 marker before file creation and detected level is 2 before and after; an unresolved level refuses the write.
+specs/system-speckit/042-decision-capture/scratch/analysis-opus.md:94:5. `SSK/runtime/lib/continuity/decision-record-writer.ts` (new): upserts the `operator-decisions` and `operator-answers-verbatim` anchors by Q id. It refuses to create the file in a non-phase-parent packet whose `spec.md` has no level marker.
+specs/system-speckit/042-decision-capture/scratch/analysis-opus.md:113:- **`decision-record-writer.vitest.ts`:**
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:21:  .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts   (create)
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:22:  .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts  (create)
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:30:EXPORTS of decision-record-writer.ts:
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:34:  export function writeDecisionRecord(folder: string, entries: OperatorDecisionEntry[]): DecisionRecordWriteResult
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:35:  export function readVerbatimAppendix(markdown: string): Map<string, { sourceKey: string | null; question: string; options: string[]; answer: string }>
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:38:RULES for writeDecisionRecord(folder, entries):
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:62:readVerbatimAppendix parses section B items back into exact values (the inverse of rule 5). recordConsumedKeys appends one JSON line {"key","packet","id","at"} per id to path.join(projectRoot, '.skilled/skills/.state/decision-capture/consumed.jsonl'), creating the folder with mode 0o700.
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:66:export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:67:export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:69:TESTS in decision-record-writer.vitest.ts (import from '../../lib/continuity/decision-record-writer.js' and detectLevel from '../../lib/validation/orchestrator.js'; each test builds its own tmp packet folder with a spec.md):
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:72:- the guard: in the same markerless shape writeDecisionRecord adds `<!-- SPECKIT_LEVEL: 2 -->` to spec.md, levelMarkerAdded is true, detectLevel is '2' before and after
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/prompt.txt:77:- verbatim: a question containing a ```js fenced block and a newline, an option containing `|`, a multi-line answer: readVerbatimAppendix returns them exactly
+specs/system-speckit/042-decision-capture/scratch/runs/w2-writer/stdout.log:429:[0m$ [0mgrep -rn "writeDecisionRecord\|decision-record-writer\|readVerbatimAppendix" --include=*.ts --include=*.md .skilled/ specs/system-speckit/042-decision-capture/ | head -30
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:18:TASK: Carry an `operatorDecisions` array from the save payload to the existing decision-record writer during a --full-auto save. The writer already exists: `writeDecisionRecord`, `recordConsumedKeys` and `DecisionRecordWriteError` are exported from '@spec-kit/runtime/api' (source: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts). Read that file first. Do not change it.
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:39:- add `writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError` to the existing '@spec-kit/runtime/api' import (line 66), and `isPhaseParent` from '../spec/is-phase-parent.js'.
+specs/system-speckit/042-decision-capture/scratch/runs/w3-save-wiring/prompt.txt:41:- add `async function writePlannedOperatorDecisions(params: { plan; targetPath; now; log; warn })`. For each group: when the folder is not the target (compare canonicalPath), hold acquireCanonicalSaveLock(folder) as writePlannedContinuity does. Call writeDecisionRecord(folder, entries mapped to { sourceKey, decided, why, supersedes, carriedBy, question, options, answer }). Then recordConsumedKeys(CONFIG.PROJECT_ROOT, the folder relative to CONFIG.PROJECT_ROOT, result.ids, now). When the folder is not the target and result.changed, refresh its graph metadata exactly as writePlannedContinuity does (refreshGraphMetadata with saveLineage 'same_pass'). Log `   Wrote <n> operator decision(s) to <relative folder>` and, when levelMarkerAdded, `   Added the missing level marker to <relative folder>/spec.md`. A DecisionRecordWriteError warns `   Operator decisions not written to <relative folder>: <message>` and leaves those keys unconsumed; any other error is rethrown.
+specs/system-speckit/042-decision-capture/plan.md:116:| Writer idempotence | Re-saving one question id leaves decision-record.md byte-identical. | The same id cannot create a duplicate row or appendix entry. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:117:| Verbatim appendix | The original question, options and answer are stored exactly. | Markdown fences and line breaks survive without changing the text value. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:118:| Level guard | A missing level marker is added before record creation and the detected level stays the same. | An unresolvable level blocks record creation. | .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts |
+specs/system-speckit/042-decision-capture/plan.md:174:decision-record-writer.ts ──► input-normalizer.ts + workflow.ts ──► save docs
+specs/system-speckit/042-decision-capture/plan.md:182:| decision-record-writer.ts | detectLevel export | Upserted decision-record.md and consumed keys | Save wiring |
+specs/system-speckit/042-decision-capture/spec.md:89:| .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts | Create | Upsert decision entries and their verbatim appendix by stable question id, guard the level and record consumed keys. |
+specs/system-speckit/042-decision-capture/spec.md:106:| .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts | Create | Cover record writes, routing, idempotence, appendix and level guard. |
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls -la .skilled/skills/system-spec-kit/runtime/lib/continuity/ .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts 2>&1 | tail -10; echo "=== runs"; ls specs/system-speckit/042-decision-capture/scratch/runs/
+ls: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts: No such file or directory
+.skilled/skills/system-spec-kit/runtime/lib/continuity/:
+total 144
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Sep 30 23:53 .
+drwxr-xr-x@ 19 michelkerkmeester  staff    608 Oct 31 18:51 ..
+-rw-r--r--@  1 michelkerkmeester  staff  10656 Sep 30 23:53 authored-continuity-snapshot.ts
+-rw-r--r--@  1 michelkerkmeester  staff  12837 Sep 17 21:58 README.md
+-rw-r--r--@  1 michelkerkmeester  staff  41448 Sep 30 23:53 thin-continuity-record.ts
+=== runs
+w1-capture-core
+w2-writer
+w3-save-wiring
+w4-sweep
+> build · deepseek-v4.1-flash-1017
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -n "^import\|^} from\|from '" .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts | head -30; echo "=== isPhaseParent"; grep -n "function isPhaseParent" -A 25 .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+9:import fs from 'node:fs';
+10:import path from 'node:path';
+11:import { spawnSync } from 'node:child_process';
+12:import { createHash } from 'node:crypto';
+13:import { fileURLToPath } from 'node:url';
+15:import { parseFrontmatter } from '@spec-kit/shared/frontmatter/parse-frontmatter';
+17:import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
+18:import { isPhaseParent } from '../spec/is-phase-parent.js';
+19:import { CANONICAL_CONTINUITY_DOC, OPTIONAL_CONTINUITY_DOCS, runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
+20:import {
+23:} from './generated-metadata-integrity.js';
+24:import {
+27:} from '../graph/generated-metadata-drift.js';
+28:import {
+32:} from '../config/capability-flags.js';
+33:import { isMainModule } from '../esm-entry.js';
+=== isPhaseParent
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/lib/spec/is-phase-parent.ts 
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mhead -30 .skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts; echo "=== lib sample"; head -25 .skilled/skills/system-spec-kit/runtime/lib/graph/access-telemetry.ts
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Workflow
+// ───────────────────────────────────────────────────────────────────
+
+// ───────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ───────────────────────────────────────────────────────────────────
+// Main workflow orchestrator -- coordinates data loading, extraction, rendering, and file output
+// Node stdlib
+import * as path from 'node:path';
+import * as fsSync from 'node:fs';
+// Internal modules
+import { CONFIG, findActiveSpecsDir, getSpecsDirectories } from './config.js';
+import { resolveSpecFolderCanonical } from './spec-root-canonical-resolver.js';
+import {
+  extractConversations,
+  extractDecisions,
+  extractDiagrams,
+  enhanceFilesWithSemanticDescriptions,
+} from '../extractors/index.js';
+import { detectSpecFolder, ensureSpecFolderExists } from '../spec-folder/index.js';
+import { generateContentSlug } from '../utils/slug-utils.js';
+import { toCanonicalRelativePath } from '../utils/file-helpers.js';
+import { pickPreferredMemoryTask, shouldEnrichTaskFromSpecTitle } from '../utils/task-enrichment.js';
+import {
+  buildSpecAffinityTargets,
+  evaluateCollectedDataSpecAffinity,
+} from '../utils/spec-affinity.js';
+import { deriveMemoryDescription } from '../lib/memory-frontmatter.js';
+import {
+=== lib sample
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Access and Freshness Telemetry Store
+// ───────────────────────────────────────────────────────────────────
+// Index-layer record for the access and freshness signals that used to live inside
+// graph-metadata.json: last_accessed_at plus the phase-parent last_active_child_id and
+// last_active_at pointers. Keeping them here means a read event or a resume updates the
+// signal without rewriting the generated file, so the generated JSON changes only on a
+// source or structural change. Every write is best-effort and fails closed: an unwritable
+// store leaves the generated file byte-identical rather than dirtying it.
+
+import fs from 'node:fs';
+import path from 'node:path';
+
+import { TELEMETRY_STORE_DIR } from '@spec-kit/shared/config.js';
+
+/** The access and freshness signals recorded for one spec folder. */
+// ───────────────────────────────────────────────────────────────────
+// 1. TYPES
+// ───────────────────────────────────────────────────────────────────
+
+export interface AccessTelemetryRecord {
+  last_accessed_at?: string;
+  last_active_child_id?: string;
+  last_active_at?: string;
+}
+> build · deepseek-v4.1-flash-1017
+Now I'll write the writer module.
+[0m✗ [0mWrite  failed
+[91m[1mError: [0mInvalid arguments for tool "write":
+- path: Missing key
+
+Arguments provided:
+{
+  "content": "// ───────────────────────────────────────────────────────────────────\n// MODULE: Decision Record Writer\n// ───────────────────────────────────────────────────────────────────\n// Records operator decisions in a packet's decision-record.md. Two anchored\n// sections carry them: a table a reader can scan, and an appendix that keeps the\n// original wording byte for byte, because the exact options an operator was\n// offered are part of the evidence for the choice.\n//\n// Every write is an upsert by id and never a document rewrite. A decision record\n// also holds hand-authored ADRs, and a save must not disturb a byte of them.\n\nimport fs from 'node:fs';\nimport path from 'node:path';\n\nimport { detectLevel } from '../validation/orchestrator.js';\n\n// ───────────────────────────────────────────────────────────────────\n// 1. TYPE DEFINITIONS\n// ───────────────────────────────────────────────────────────────────\n\n/** One operator decision to record, together with the exchange that produced it. */\nexport interface OperatorDecisionEntry {\n  /** Stable key for the question, used to keep the same id across saves. */\n  sourceKey: string;\n  /** What was decided, in the operator's or the model's short phrasing. */\n  decided: string;\n  /** Why the choice was made. Omitted when the exchange states no reason. */\n  why?: string;\n  /** An earlier decision this one replaces. */\n  supersedes?: string;\n  /** What carries the decision: requirements, files or anchors. */\n  carriedBy: string;\n  /** The question exactly as it was asked. */\n  question: string;\n  /** The options exactly as they were offered. */\n  options: string[];\n  /** The answer exactly as it was given. */\n  answer: string;\n}\n\n/** A refused decision write, with the reason a caller can branch on. */\nexport class DecisionRecordWriteError extends Error {\n  constructor(\n    public code: 'NO_SPEC' | 'LEVEL_UNRESOLVED' | 'BAD_SOURCE_KEY',\n    message: string,\n  ) {\n    super(message);\n    this.name = 'DecisionRecordWriteError';\n  }\n}\n\n/** What a decision write changed, and which id each source key now has. */\nexport interface DecisionRecordWriteResult {\n  recordPath: string;\n  created: boolean;\n  changed: boolean;\n  levelMarkerAdded: boolean;\n  ids: Array<{ sourceKey: string; id: string }>;\n}\n\ntype FieldName = 'question' | 'options' | 'answer';\n\ninterface FieldValue {\n  text: string;\n  fenced: boolean;\n}\n\n/** The appendix value read back for one id. */\ninterface VerbatimAppendixItem {\n  sourceKey: string | null;\n  question: string;\n  options: string[];\n  answer: string;\n}\n\n// ───────────────────────────────────────────────────────────────────\n// 2. CONSTANTS\n// ───────────────────────────────────────────────────────────────────\n\nconst SOURCE_KEY_RE = /^[A-Za-z0-9:._-]+$/u;\nconst DECISION_ROW_RE = /^\\|\\s*(Q\\d+)\\s*\\|/u;\nconst APPENDIX_HEADING_RE = /^###\\s+(Q\\d+)\\s*$/u;\nconst SOURCE_COMMENT_RE = /^<!--\\s*source:\\s*(\\S+)\\s*-->$/u;\nconst FENCE_OPEN_RE = /^(`{3,})text$/u;\nconst FIELD_LABEL_RE = /^(Question|Options|Answer):[ \\t]?(.*)$/u;\n\n// The level shapes detectLevel accepts. A marker already present means the\n// level survives the new decision-record.md, so no marker is added.\nconst LEVEL_MARKER_RE = /SPECKIT_LEVEL:\\s*(1|2|3\\+?|phase|review|research)/u;\nconst LEVEL_YAML_RE = /^level:\\s*(1|2|3\\+?|phase|review|research)\\s*$/mu;\nconst LEVEL_TABLE_RE = /\\|\\s*\\*\\*Level\\*\\*\\s*\\|\\s*(1|2|3\\+?|phase|review|research)\\s*\\|/u;\n\nconst DECISIONS_OPEN = '<!-- ANCHOR:operator-decisions -->';\nconst DECISIONS_CLOSE = '<!-- /ANCHOR:operator-decisions -->';\nconst APPENDIX_OPEN = '<!-- ANCHOR:operator-answers-verbatim -->';\nconst APPENDIX_CLOSE = '<!-- /ANCHOR:operator-answers-verbatim -->';\n\nconst TABLE_HEADER = '| ID | Decided | Why | Supersedes | Carried by |';\nconst TABLE_SEPARATOR = '|----|---------|-----|------------|------------|';\n\nconst DECISIONS_BLOCK: readonly string[] = [\n  DECISIONS_OPEN,\n  '## Operator Decisions',\n  '',\n  TABLE_HEADER,\n  TABLE_SEPARATOR,\n  DECISIONS_CLOSE,\n];\n\nconst APPENDIX_BLOCK: readonly string[] = [\n  APPENDIX_OPEN,\n  '## Appendix: Verbatim Operator Answers',\n  '',\n  'Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.',\n  '',\n  APPENDIX_CLOSE,\n];\n\nconst TEMPLATE_SOURCE_LINE = '<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->';\nconst HVR_REFERENCE_LINE = '<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->';\nconst STATE_DIR_SEGMENTS = ['.skilled', 'skills', '.state', 'decision-capture'];\n\n// ───────────────────────────────────────────────────────────────────\n// 3. HELPERS\n// ───────────────────────────────────────────────────────────────────\n\nfunction formatId(value: number): string {\n  return `Q${String(value).padStart(3, '0')}`;\n}\n\n/** Collapse a value onto one table cell and keep its pipe from splitting the row. */\nfunction escapeCell(value: string): string {\n  return value.replace(/[\\r\\n]+/gu, ' ').trim().replace(/\\|/gu, '\\\\|');\n}\n\nfunction formatDecisionRow(id: string, entry: OperatorDecisionEntry): string {\n  const why = escapeCell(entry.why ?? '') || 'Not stated.';\n  const supersedes = escapeCell(entry.supersedes ?? '') || 'None';\n  return `| ${id} | ${escapeCell(entry.decided)} | ${why} | ${supersedes} | ${escapeCell(entry.carriedBy)} |`;\n}\n\n/**\n * A fence one backtick longer than the longest run in the value. A shorter fence\n * would end early on a value that itself contains a Markdown code block.\n */\nfunction fenceFor(value: string): string {\n  const runs = value.match(/`+/gu) ?? [];\n  const longest = runs.reduce((length, run) => Math.max(length, run.length), 0);\n  return '`'.repeat(Math.max(3, longest + 1));\n}\n\nfunction fencedLines(value: string): string[] {\n  const fence = fenceFor(value);\n  return [`${fence}text`, ...value.split('\\n'), fence];\n}\n\nfunction formatAppendixItem(id: string, entry: OperatorDecisionEntry): string[] {\n  const lines = [\n    `### ${id}`,\n    `<!-- source: ${entry.sourceKey} -->`,\n    '',\n    'Question:',\n    ...fencedLines(entry.question),\n    '',\n  ];\n\n  if (entry.options.length === 0) {\n    lines.push('Options: none');\n  } else {\n    lines.push('Options:', ...fencedLines(entry.options.join('\\n')));\n  }\n\n  lines.push('', 'Answer:', ...fencedLines(entry.answer));\n  return lines;\n}\n\nfunction sectionBounds(lines: string[], open: string, close: string): { start: number; end: number } | null {\n  const start = lines.findIndex((line) => line.trim() === open);\n  if (start === -1) {\n    return null;\n  }\n  const end = lines.findIndex((line, index) => index > start && line.trim() === close);\n  if (end === -1) {\n    return null;\n  }\n  return { start, end };\n}\n\n/**\n * Append a missing section at the end of the document. A record written before\n * this writer existed carries ADRs but no operator sections, and those anchors\n * have to be added without moving anything already in the file.\n */\nfunction appendSectionIfMissing(lines: string[], open: string, close: string, block: readonly string[]): string[] {\n  if (sectionBounds(lines, open, close)) {\n    return lines;\n  }\n  const trimmed = [...lines];\n  while (trimmed.length > 0 && trimmed[trimmed.length - 1].trim() === '') {\n    trimmed.pop();\n  }\n  return [...trimmed, '', '---', '', ...block, ''];\n}\n\nfunction insertDecisionRow(lines: string[], id: string, row: string): string[] {\n  const bounds = sectionBounds(lines, DECISIONS_OPEN, DECISIONS_CLOSE);\n  if (!bounds) {\n    return lines;\n  }\n\n  for (let index = bounds.start + 1; index < bounds.end; index += 1) {\n    if (DECISION_ROW_RE.exec(lines[index].trim())?.[1] === id) {\n      const next = [...lines];\n      next[index] = row;\n      return next;\n    }\n  }\n\n  let lastTableLine = -1;\n  for (let index = bounds.start + 1; index < bounds.end; index += 1) {\n    if (lines[index].trim().startsWith('|')) {\n      lastTableLine = index;\n    }\n  }\n  if (lastTableLine >= 0) {\n    return [...lines.slice(0, lastTableLine + 1), row, ...lines.slice(lastTableLine + 1)];\n  }\n  return [...lines.slice(0, bounds.end), '', row, '', ...lines.slice(bounds.end)];\n}\n\nfunction insertAppendixItem(lines: string[], id: string, item: string[]): string[] {\n  const bounds = sectionBounds(lines, APPENDIX_OPEN, APPENDIX_CLOSE);\n  if (!bounds) {\n    return lines;\n  }\n\n  for (let index = bounds.start + 1; index < bounds.end; index += 1) {\n    if (APPENDIX_HEADING_RE.exec(lines[index].trim())?.[1] === id) {\n      return lines;\n    }\n  }\n\n  const next = [...lines];\n  const before = next[bounds.end - 1];\n  const lead = before !== undefined && before.trim() === '' ? [] : [''];\n  next.splice(bounds.end, 0, ...lead, ...item, '');\n  return next;\n}\n\n/** Anchor ids in the document, plus the key-to-id map the appendix comments carry. */\nfunction readExistingIds(lines: string[]): { ids: Set<string>; keyToId: Map<string, string> } {\n  const ids = new Set<string>();\n  const keyToId = new Map<string, string>();\n\n  const decisions = sectionBounds(lines, DECISIONS_OPEN, DECISIONS_CLOSE);\n  if (decisions) {\n    for (let index = decisions.start + 1; index < decisions.end; index += 1) {\n      const id = DECISION_ROW_RE.exec(lines[index].trim())?.[1];\n      if (id) {\n        ids.add(id);\n      }\n    }\n  }\n\n  const appendix = sectionBounds(lines, APPENDIX_OPEN, APPENDIX_CLOSE);\n  if (appendix) {\n    for (let index = appendix.start + 1; index < appendix.end; index += 1) {\n      const id = APPENDIX_HEADING_RE.exec(lines[index].trim())?.[1];\n      if (!id) {\n        continue;\n      }\n      ids.add(id);\n      let cursor = index + 1;\n      while (cursor < appendix.end && lines[cursor].trim() === '') {\n        cursor += 1;\n      }\n      const source = cursor < appendix.end ? SOURCE_COMMENT_RE.exec(lines[cursor].trim()) : null;\n      if (source) {\n        keyToId.set(source[1], id);\n      }\n    }\n  }\n\n  return { ids, keyToId };\n}\n\nfunction highestIdNumber(ids: Set<string>): number {\n  let highest = 0;\n  for (const id of ids) {\n    highest = Math.max(highest, Number.parseInt(id.slice(1), 10));\n  }\n  return highest;\n}\n\nfunction hasExplicitLevel(specText: string): boolean {\n  const head = specText.slice(0, 4096);\n  return LEVEL_MARKER_RE.test(head) || LEVEL_YAML_RE.test(head) || LEVEL_TABLE_RE.test(head);\n}\n\n/**\n * Add the level marker without moving any existing line. detectLevel prefers a\n * decision-record.md over the tasks.md protocol anchor, so a packet whose level\n * was only implied would be read one level higher the moment the record exists.\n */\nfunction addLevelMarker(specText: string, level: string): string {\n  const eol = specText.includes('\\r\\n') ? '\\r\\n' : '\\n';\n  const lines = specText.split(/\\r?\\n/u);\n  const marker = `<!-- SPECKIT_LEVEL: ${level} -->`;\n\n  const h1Index = lines.findIndex((line) => /^#\\s+/u.test(line));\n  if (h1Index >= 0) {\n    const next = [...lines];\n    next.splice(h1Index + 1, 0, '', marker);\n    return next.join(eol);\n  }\n\n  const frontmatterEnd = lines[0].replace(/^\\uFEFF/u, '') === '---'\n    ? lines.findIndex((line, index) => index > 0 && line.trim() === '---')\n    : -1;\n  if (frontmatterEnd >= 0) {\n    const next = [...lines];\n    next.splice(frontmatterEnd + 1, 0, '', marker);\n    return next.join(eol);\n  }\n\n  return [marker, '', ...lines].join(eol);\n}\n\nfunction readRecordTitle(specText: string, folder: string): string {\n  const basename = path.basename(folder);\n  const heading = /^#\\s+(.+)$/mu.exec(specText)?.[1]?.trim();\n  if (!heading) {\n    return basename;\n  }\n  const stripped = heading.replace(/^Feature Specification:\\s*/u, '').trim();\n  return stripped.length > 0 ? stripped : basename;\n}\n\nfunction buildRecordDocument(title: string, basename: string): string {\n  const quotedTitle = title.replace(/\"/gu, '\\\\\"');\n  const quotedBasename = basename.replace(/\"/gu, '\\\\\"');\n  return [\n    '---',\n    `title: \"Decision Record: ${quotedTitle}\"`,\n    'description: \"Operator decisions and their verbatim answers for this packet.\"',\n    'trigger_phrases:',\n    `  - \"${quotedBasename} operator decisions\"`,\n    'importance_tier: \"normal\"',\n    'contextType: \"implementation\"',\n    '---',\n    `# Decision Record: ${title}`,\n    '',\n    TEMPLATE_SOURCE_LINE,\n    HVR_REFERENCE_LINE,\n    '',\n    '---',\n    '',\n    ...DECISIONS_BLOCK,\n    '',\n    '---',\n    '',\n    ...APPENDIX_BLOCK,\n    '',\n  ].join('\\n');\n}\n\n/** Temp file in the same folder, then rename, so a reader never sees a half-written record. */\nfunction writeTextFile(filePath: string, text: string): void {\n  const tempPath = path.join(\n    path.dirname(filePath),\n    `.${path.basename(filePath)}.${process.pid}.${Date.now()}.tmp`,\n  );\n  fs.writeFileSync(tempPath, text, 'utf8');\n  fs.renameSync(tempPath, filePath);\n}\n\nfunction assertSourceKeys(entries: OperatorDecisionEntry[]): OperatorDecisionEntry[] {\n  const seen = new Set<string>();\n  const accepted: OperatorDecisionEntry[] = [];\n  for (const entry of entries) {\n    if (!SOURCE_KEY_RE.test(entry.sourceKey)) {\n      throw new DecisionRecordWriteError(\n        'BAD_SOURCE_KEY',\n        `Invalid decision source key: ${JSON.stringify(entry.sourceKey)}`,\n      );\n    }\n    if (seen.has(entry.sourceKey)) {\n      continue;\n    }\n    seen.add(entry.sourceKey);\n    accepted.push(entry);\n  }\n  return accepted;\n}\n\n// ───────────────────────────────────────────────────────────────────\n// 4. VERBATIM APPENDIX PARSING\n// ───────────────────────────────────────────────────────────────────\n\n/**\n * Read one appendix item. Fenced values are taken exactly, and an unfenced\n * value is read from the rest of its label line plus the lines before the next\n * blank one, which is how hand-written records in this repo state the same\n * fields.\n */\nfunction parseAppendixBlock(lines: string[]): VerbatimAppendixItem {\n  const values: Record<FieldName, FieldValue> = {\n    question: { text: '', fenced: false },\n    options: { text: '', fenced: false },\n    answer: { text: '', fenced: false },\n  };\n\n  let sourceKey: string | null = null;\n  let index = 0;\n  while (index < lines.length) {\n    const trimmed = lines[index].trim();\n    if (trimmed === '') {\n      index += 1;\n      continue;\n    }\n    const source = SOURCE_COMMENT_RE.exec(trimmed);\n    if (!source) {\n      break;\n    }\n    if (sourceKey === null) {\n      sourceKey = source[1];\n    }\n    index += 1;\n  }\n\n  let field: FieldName | null = null;\n  let buffer: string[] = [];\n  let fenced = false;\n  let fence: string | null = null;\n\n  const commit = (): void => {\n    if (!field) {\n      return;\n    }\n    values[field] = { text: buffer.join('\\n'), fenced };\n    buffer = [];\n    fenced = false;\n  };\n\n  for (; index < lines.length; index += 1) {\n    const line = lines[index];\n\n    if (fence) {\n      if (line.trim() === fence) {\n        commit();\n        field = null;\n        fence = null;\n      } else {\n        buffer.push(line);\n      }\n      continue;\n    }\n\n    if (line.trim() === '') {\n      if (buffer.length > 0) {\n        commit();\n        field = null;\n      }\n      continue;\n    }\n\n    const opening = FENCE_OPEN_RE.exec(line.trim());\n    if (opening && field) {\n      fence = opening[1];\n      fenced = true;\n      buffer = [];\n      continue;\n    }\n\n    const label = FIELD_LABEL_RE.exec(line);\n    if (label) {\n      commit();\n      field = label[1].toLowerCase() as FieldName;\n      buffer = label[2].length > 0 ? [label[2]] : [];\n      continue;\n    }\n\n    if (field) {\n      buffer.push(line);\n    }\n  }\n\n  commit();\n\n  // `Options: none` is how the writer records an empty choice set. A fenced\n  // single option spelled the same way stays an option.\n  let options: string[];\n  if (!values.options.fenced && values.options.text.trim().toLowerCase() === 'none') {\n    options = [];\n  } else if (values.options.text.trim() === '') {\n    options = [];\n  } else if (values.options.fenced) {\n    options = values.options.text.split('\\n');\n  } else {\n    options = values.options.text\n      .split(';')\n      .map((option) => option.trim())\n      .filter((option) => option.length > 0);\n  }\n\n  return {\n    sourceKey,\n    question: values.question.text,\n    options,\n    answer: values.answer.text,\n  };\n}\n\n/** Parse the appendix section back into the exact question, options and answer per id. */\nexport function readVerbatimAppendix(\n  markdown: string,\n): Map<string, { sourceKey: string | null; question: string; options: string[]; answer: string }> {\n  const lines = markdown.split('\\n');\n  const bounds = sectionBounds(lines, APPENDIX_OPEN, APPENDIX_CLOSE);\n  const result = new Map<string, VerbatimAppendixItem>();\n  if (!bounds) {\n    return result;\n  }\n\n  let current: { id: string; body: string[] } | null = null;\n  for (let index = bounds.start + 1; index < bounds.end; index += 1) {\n    const id = APPENDIX_HEADING_RE.exec(lines[index].trim())?.[1];\n    if (id) {\n      if (current) {\n        result.set(current.id, parseAppendixBlock(current.body));\n      }\n      current = { id, body: [] };\n      continue;\n    }\n    current?.body.push(lines[index]);\n  }\n  if (current) {\n    result.set(current.id, parseAppendixBlock(current.body));\n  }\n\n  return result;\n}\n\n// ───────────────────────────────────────────────────────────────────\n// 5. RECORD WRITE\n// ───────────────────────────────────────────────────────────────────\n\n/**\n * Write operator decisions and their verbatim answers into a packet's\n * decision-record.md, creating the record when it does not exist.\n *\n * @param folder - The packet folder that owns the record\n * @param entries - Decisions to upsert by source key\n * @returns What the write changed and the id each source key now carries\n */\nexport function writeDecisionRecord(\n  folder: string,\n  entries: OperatorDecisionEntry[],\n): DecisionRecordWriteResult {\n  const accepted = assertSourceKeys(entries);\n  const recordPath = path.join(folder, 'decision-record.md');\n  const specPath = path.join(folder, 'spec.md');\n  const recordExists = fs.existsSync(recordPath);\n\n  // Nothing to record means nothing to create. A packet with no decisions keeps\n  // whatever record it already has, and a folder without one stays that way.\n  if (accepted.length === 0) {\n    return { recordPath, created: false, changed: false, levelMarkerAdded: false, ids: [] };\n  }\n\n  let levelMarkerAdded = false;\n  let specText = '';\n  if (!recordExists) {\n    if (!fs.existsSync(specPath)) {\n      throw new DecisionRecordWriteError('NO_SPEC', `No spec.md in ${folder}`);\n    }\n    specText = fs.readFileSync(specPath, 'utf8');\n\n    let before: string;\n    try {\n      before = detectLevel(folder);\n    } catch (error) {\n      throw new DecisionRecordWriteError(\n        'LEVEL_UNRESOLVED',\n        error instanceof Error ? error.message : `Could not resolve the level of ${folder}`,\n      );\n    }\n\n    if (before !== 'phase' && !hasExplicitLevel(specText)) {\n      writeTextFile(specPath, addLevelMarker(specText, before));\n      levelMarkerAdded = true;\n    }\n  }\n\n  const existingText = recordExists ? fs.readFileSync(recordPath, 'utf8') : '';\n  let lines = recordExists\n    ? existingText.split('\\n')\n    : buildRecordDocument(readRecordTitle(specText, folder), path.basename(folder)).split('\\n');\n\n  lines = appendSectionIfMissing(lines, DECISIONS_OPEN, DECISIONS_CLOSE, DECISIONS_BLOCK);\n  lines = appendSectionIfMissing(lines, APPENDIX_OPEN, APPENDIX_CLOSE, APPENDIX_BLOCK);\n\n  const existing = readExistingIds(lines);\n  let nextNumber = highestIdNumber(existing.ids);\n  const ids: Array<{ sourceKey: string; id: string }> = [];\n\n  for (const entry of accepted) {\n    let id = existing.keyToId.get(entry.sourceKey);\n    if (!id) {\n      nextNumber += 1;\n      id = formatId(nextNumber);\n    }\n    ids.push({ sourceKey: entry.sourceKey, id });\n    lines = insertDecisionRow(lines, id, formatDecisionRow(id, entry));\n    lines = insertAppendixItem(lines, id, formatAppendixItem(id, entry));\n  }\n\n  const nextText = lines.join('\\n');\n  const changed = !recordExists || nextText !== existingText;\n  if (!recordExists || changed) {\n    writeTextFile(recordPath, nextText);\n  }\n\n  return { recordPath, created: !recordExists, changed, levelMarkerAdded, ids };\n}\n\n// ───────────────────────────────────────────────────────────────────\n// 6. CONSUMED KEYS\n// ───────────────────────────────────────────────────────────────────\n\n/** Append the consumed source keys so a later save does not offer them again. */\nexport function recordConsumedKeys(\n  projectRoot: string,\n  packet: string,\n  ids: Array<{ sourceKey: string; id: string }>,\n  now: string,\n): void {\n  if (ids.length === 0) {\n    return;\n  }\n\n  const stateDir = path.join(projectRoot, ...STATE_DIR_SEGMENTS);\n  fs.mkdirSync(stateDir, { recursive: true, mode: 0o700 });\n\n  const lines = ids\n    .map(({ sourceKey, id }) => JSON.stringify({ key: sourceKey, packet, id, at: now }))\n    .join('\\n');\n  fs.appendFileSync(path.join(stateDir, 'consumed.jsonl'), `${lines}\\n`, 'utf8');\n}\n"
+}
+
+Update the arguments and call the tool again.
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts
+Created file successfully: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/api/index.ts
+Index: .skilled/skills/system-spec-kit/runtime/api/index.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/api/index.ts
++++ .skilled/skills/system-spec-kit/runtime/api/index.ts
+@@ -118,8 +118,12 @@
+   upsertThinContinuityInMarkdown,
+ } from '../lib/continuity/thin-continuity-record.js';
+ export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
+ 
++// The save writes operator decisions with the same public surface it uses for continuity.
++export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
++export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
++
+ // The drift gate flag is read by the CLI's validation entry point through the public surface.
+ export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';
+ 
+ // Validation entry points in the CLI reach these through the public surface.
+
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+Index: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
++++ .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+@@ -187,9 +187,9 @@
+   if (raw === '1' || raw === '2' || raw === '3') return raw;
+   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
+ }
+ 
+-function detectLevel(folder: string): SpecKitLevel {
++export function detectLevel(folder: string): SpecKitLevel {
+   if (isPhaseParent(folder)) return 'phase';
+   const specPath = path.join(folder, 'spec.md');
+   if (fs.existsSync(specPath)) {
+     const head = fs.readFileSync(specPath, 'utf8').slice(0, 4096);
+
+> build · deepseek-v4.1-flash-1017
+Now the vitest suite.
+[0m← [0mWrite .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+Created file successfully: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | tail -60
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  12:20:36
+   Duration  189ms (transform 64%, import 25%, tests 7%, setup 2%, worker 2%)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json; echo "TSC_EXIT=$?"
+TSC_EXIT=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgit --no-pager diff --stat; echo "=== diff"; git --no-pager diff -- .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/system-spec-kit/runtime/api/index.ts; echo "=== status"; git status --porcelain | head -20
+.skilled/commands/speckit/save.md                  |  10 ++
+ .../cli-surface/advisor-recommend.md               |   2 +-
+ .../runtime/schemas/advisor-tool-schemas.ts        |  45 +++++++-
+ .../tests/schemas/advisor-tool-schemas.vitest.ts   |  49 +++++++++
+ .../references/memory/save-workflow.md             |  18 +++
+ .../references/structure/phase-definitions.md      |   2 +-
+ .../system-spec-kit/runtime/ENV-REFERENCE.md       |   2 +-
+ .../skills/system-spec-kit/runtime/api/index.ts    |   4 +
+ .../scaffold-golden-snapshots.vitest.ts.snap       |  18 +++
+ .../runtime/lib/validation/orchestrator.ts         |   2 +-
+ .../templates/addons/decision-record.md.tmpl       |  18 +++
+ .../002-doctor-audit-and-fixes/graph-metadata.json |   9 +-
+ specs/commands/002-doctor-audit-and-fixes/spec.md  |   2 +
+ .../042-decision-capture/acceptance-criteria.md    |   4 +-
+ .../042-decision-capture/decision-record.md        | 121 ++++++++++++++++++++-
+ .../042-decision-capture/description.json          |   4 +-
+ .../042-decision-capture/graph-metadata.json       |  85 ++++++++-------
+ .../042-decision-capture/implementation-summary.md |   4 +-
+ specs/system-speckit/042-decision-capture/plan.md  | 119 ++++++++++++++++++--
+ specs/system-speckit/042-decision-capture/spec.md  |  79 +++++++++++---
+ specs/system-speckit/042-decision-capture/tasks.md |  73 ++++++++++---
+ .../042-decision-capture/timeline.md               |   2 +
+ 22 files changed, 575 insertions(+), 97 deletions(-)
+=== diff
+diff --git a/.skilled/skills/system-spec-kit/runtime/api/index.ts b/.skilled/skills/system-spec-kit/runtime/api/index.ts
+index 9e93735f9f4..51b79e9d1a4 100644
+--- a/.skilled/skills/system-spec-kit/runtime/api/index.ts
++++ b/.skilled/skills/system-spec-kit/runtime/api/index.ts
+@@ -119,6 +119,10 @@ export {
+ } from '../lib/continuity/thin-continuity-record.js';
+ export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
+ 
++// The save writes operator decisions with the same public surface it uses for continuity.
++export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
++export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
++
+ // The drift gate flag is read by the CLI's validation entry point through the public surface.
+ export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';
+ 
+diff --git a/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts b/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+index 2ce71c45ce8..6f387fca1fb 100644
+--- a/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
++++ b/.skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+@@ -188,7 +188,7 @@ function normalizeLevel(raw: string): SpecKitLevel {
+   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
+ }
+ 
+-function detectLevel(folder: string): SpecKitLevel {
++export function detectLevel(folder: string): SpecKitLevel {
+   if (isPhaseParent(folder)) return 'phase';
+   const specPath = path.join(folder, 'spec.md');
+   if (fs.existsSync(specPath)) {
+=== status
+ M .skilled/commands/speckit/save.md
+ M .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+ M .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts
+ M .skilled/skills/system-spec-kit/references/memory/save-workflow.md
+ M .skilled/skills/system-spec-kit/references/structure/phase-definitions.md
+ M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+ M .skilled/skills/system-spec-kit/runtime/api/index.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+ M .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+ M .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+ M specs/commands/002-doctor-audit-and-fixes/graph-metadata.json
+ M specs/commands/002-doctor-audit-and-fixes/spec.md
+ M specs/system-speckit/042-decision-capture/acceptance-criteria.md
+ M specs/system-speckit/042-decision-capture/decision-record.md
+ M specs/system-speckit/042-decision-capture/description.json
+ M specs/system-speckit/042-decision-capture/graph-metadata.json
+ M specs/system-speckit/042-decision-capture/implementation-summary.md
+ M specs/system-speckit/042-decision-capture/plan.md
+ M specs/system-speckit/042-decision-capture/spec.md
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgit status --porcelain -- .skilled/skills/system-spec-kit/runtime/lib/continuity .skilled/skills/system-spec-kit/runtime/cli/tests; echo "=== tsx?"; ls node_modules/.bin 2>/dev/null | grep -E '^(tsx|ts-node)$'
+M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts
+=== tsx?
+> build · deepseek-v4.1-flash-1017
+I'll do a one-off inspection of the generated document, then revert the temporary log.
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+Index: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
++++ .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+@@ -177,8 +177,9 @@
+     expect(record).toContain('<!-- /ANCHOR:operator-answers-verbatim -->');
+     expect(record).toMatch(/^\| Q001 \|/mu);
+     expect(record).toContain('<!-- source: decision:scope -->');
+     expect(detectLevel(PACKET)).toBe('2');
++    console.log(`<<<RECORD>>>\n${record}<<<END>>>`);
+   });
+ 
+   it('reads a bare decision record in a markerless packet as level 3', () => {
+     writePacketFile('spec.md', MARKERLESS_SPEC);
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | sed -n '/<<<RECORD>>>/,/<<<END>>>/p'
+(no output)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | tail -80
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  12:21:33
+   Duration  179ms (transform 63%, import 25%, tests 8%, setup 3%, worker 2%)
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+Index: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
++++ .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+@@ -177,9 +177,9 @@
+     expect(record).toContain('<!-- /ANCHOR:operator-answers-verbatim -->');
+     expect(record).toMatch(/^\| Q001 \|/mu);
+     expect(record).toContain('<!-- source: decision:scope -->');
+     expect(detectLevel(PACKET)).toBe('2');
+-    console.log(`<<<RECORD>>>\n${record}<<<END>>>`);
++    expect(record).toBe('INSPECT');
+   });
+ 
+   it('reads a bare decision record in a markerless packet as level 3', () => {
+     writePacketFile('spec.md', MARKERLESS_SPEC);
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | sed -n '/AssertionError\|INSPECT\|Received/,$p' | head -120
+(no output)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | tail -60
++ # Decision Record: Capture probe
++
++ <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
++ <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
++
++ ---
++
++ <!-- ANCHOR:operator-decisions -->
++ ## Operator Decisions
++
++ | ID | Decided | Why | Supersedes | Carried by |
++ |----|---------|-----|------------|------------|
++ | Q001 | Keep the record inside the bound packet. | The packet stays portable. | None | plan.md |
++ <!-- /ANCHOR:operator-decisions -->
++
++ ---
++
++ <!-- ANCHOR:operator-answers-verbatim -->
++ ## Appendix: Verbatim Operator Answers
++
++ Each appendix item uses the same id as its operator decision. The options are included so the record preserves the full offered choice set.
++
++ ### Q001
++ <!-- source: decision:scope -->
++
++ Question:
++ ```text
++ Where should the decision record live?
++ ```
++
++ Options:
++ ```text
++ Inside the packet
++ A shared log
++ ```
++
++ Answer:
++ ```text
++ Inside the packet
++ ```
++
++ <!-- /ANCHOR:operator-answers-verbatim -->
++
+
+ ❯ tests/decision-record-writer.vitest.ts:181:20
+    179|     expect(record).toContain('<!-- source: decision:scope -->');
+    180|     expect(detectLevel(PACKET)).toBe('2');
+    181|     expect(record).toBe('INSPECT');
+       |                    ^
+    182|   });
+    183|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  12:21:46
+   Duration  201ms (transform 65%, import 24%, tests 8%, setup 2%, worker 1%)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | sed -n '/FRONTMATTER_START\|^- Expected/,$p' | head -30; echo "---(no marker, show diff head)---"; ../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | grep -n "Decision Record: Capture probe" | head -5
+---(no marker, show diff head)---
+27:+ title: "Decision Record: Capture probe"
+34:+ # Decision Record: Capture probe
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | sed -n '18,40p'
+FAIL  |cli| tests/decision-record-writer.vitest.ts > writeDecisionRecord > creates the record beside a level-marked spec and keeps the detected level
+AssertionError: expected '---\ntitle: "Decision Record: Capture…' to be 'INSPECT' // Object.is equality
+
+- Expected
++ Received
+
+- INSPECT
++ ---
++ title: "Decision Record: Capture probe"
++ description: "Operator decisions and their verbatim answers for this packet."
++ trigger_phrases:
++   - "decision-record-writer-bodhwC operator decisions"
++ importance_tier: "normal"
++ contextType: "implementation"
++ ---
++ # Decision Record: Capture probe
++
++ <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
++ <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
++
++ ---
++
+> build · deepseek-v4.1-flash-1017
+The generated document matches the specified shape. Reverting the inspection assertion now.
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+Index: .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
++++ .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+@@ -177,9 +177,8 @@
+     expect(record).toContain('<!-- /ANCHOR:operator-answers-verbatim -->');
+     expect(record).toMatch(/^\| Q001 \|/mu);
+     expect(record).toContain('<!-- source: decision:scope -->');
+     expect(detectLevel(PACKET)).toBe('2');
+-    expect(record).toBe('INSPECT');
+   });
+ 
+   it('reads a bare decision record in a markerless packet as level 3', () => {
+     writePacketFile('spec.md', MARKERLESS_SPEC);
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -n "INSPECT\|console\.log" .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts; echo "grep_exit=$?"; sed -n '172,184p' .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+grep_exit=1
+
+    const record = readRecord();
+    expect(record).toContain('<!-- ANCHOR:operator-decisions -->');
+    expect(record).toContain('<!-- /ANCHOR:operator-decisions -->');
+    expect(record).toContain('<!-- ANCHOR:operator-answers-verbatim -->');
+    expect(record).toContain('<!-- /ANCHOR:operator-answers-verbatim -->');
+    expect(record).toMatch(/^\| Q001 \|/mu);
+    expect(record).toContain('<!-- source: decision:scope -->');
+    expect(detectLevel(PACKET)).toBe('2');
+  });
+
+  it('reads a bare decision record in a markerless packet as level 3', () => {
+    writePacketFile('spec.md', MARKERLESS_SPEC);
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/decision-record-writer.vitest.ts 2>&1 | tail -8
+RUN  v5.0.3 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  12:22:07
+   Duration  176ms (transform 64%, import 24%, tests 8%, setup 2%, worker 2%)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0m../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json; echo "TSC_EXIT=$?"
+TSC_EXIT=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -nE "ADR-[0-9]|REQ-[0-9]|T0[0-9][0-9]|CHK-|specs/" .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts; echo "hygiene_grep_exit=$?"; echo "=== stray files"; find .skilled/skills/system-spec-kit/runtime/lib/continuity .skilled/skills/system-spec-kit/runtime/cli/tests -maxdepth 1 -name "*.tmp" -o -maxdepth 1 -name ".decision-record*"; echo "=== final status"; git status --porcelain -- .skilled/skills/system-spec-kit/runtime/lib/continuity .skilled/skills/system-spec-kit/runtime/cli/tests .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts .skilled/skills/system-spec-kit/runtime/api/index.ts
+.skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts:83:## ADR-001: Keep the hand-written record
+hygiene_grep_exit=0
+=== stray files
+=== final status
+ M .skilled/skills/system-spec-kit/runtime/api/index.ts
+ M .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+ M .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts
+?? .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+?? .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls -lT .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+-rw-r--r--@ 1 michelkerkmeester  staff   10590 Nov  1 12:21:59 2026 .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts
+-rw-r--r--@ 1 michelkerkmeester  staff  139604 Nov  1 12:11:35 2026 .skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap
+> build · deepseek-v4.1-flash-1017
+Both gates pass. Final report:
+
+**What I changed**
+
+- New `decision-record-writer.ts`: validates and de-duplicates source keys up front, then upserts by id into the two anchored sections of `decision-record.md`. It creates the record only for a packet with a `spec.md`, resolving the level through the validator's own `detectLevel` and inserting an explicit `<!-- SPECKIT_LEVEL: … -->` into `spec.md` first, because `detectLevel` prefers a `decision-record.md` over the `tasks.md` protocol anchor. Rows are replaced or inserted after the last table line; appendix items use fences one backtick longer than the longest run in their value and are never rewritten once their id exists. Writes are byte-compared, then temp-file plus `renameSync`.
+- New vitest suite: 10 cases covering creation, the level control and guard, `NO_SPEC`, byte-level idempotence, a hand-written record with ADRs, row replacement by key, verbatim round-trip, defaults/pipe escaping, and the empty template table.
+- `orchestrator.ts`: line 191 exported (`export function detectLevel`).
+- `api/index.ts`: one export block plus its comment after the thin-continuity block.
+
+**Deviations worth naming**
+
+- `readVerbatimAppendix` also reads unfenced hand-written items (`Question: …` on the label line, `Options:` split on `;`). Records like `specs/system-speckit/042-decision-capture/decision-record.md` use that shape, and the writer must not be the only reader of its own format.
+- Empty `entries` is a no-op (no record created, no level guard) and `recordConsumedKeys` returns without creating the state folder when there is nothing to append.
+- The level marker in `spec.md` goes through the same temp-then-rename write as the record; rule 7 only named the record.
+
+Unrelated working-tree modifications were already present (including `templates/addons/decision-record.md.tmpl` and `scaffold-golden-snapshots.vitest.ts.snap`, last touched at 12:11, before this worker wrote anything). I did not touch them.
+
+FILES: .skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts, .skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts, .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts (one word), .skilled/skills/system-spec-kit/runtime/api/index.ts (one block)
+CHECK: vitest `Test Files 1 passed (1)`, `Tests 10 passed (10)`; tsc `TSC_EXIT=0`
+STATUS=OK — writer, suite and both one-line exports are on disk and the two verification commands ran green.
+EXIT=0

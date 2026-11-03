@@ -1,0 +1,51 @@
+                                                                                                                                                                                                      
+  STATUS=OK TARGETS=3 ANCHORS=2                                                                                                                                                                         
+                                                                                                                                                                             
+  The save worked on the second try. decision-record.md now has all seven decisions. The three new ones are Q005 (right of the title), Q006 (Small) and Q007 (tooltip shown).                           
+                                                                                                                                                                                                   
+  - First attempt failed: the writer rejected my next step as too long (MEMORY_007) and wrote nothing. I shortened it to "Verify widget code location per platform and tooltip text", and the rerun     
+    exited 0.                                                                                                                                                                                    
+  - No quality review: the writer skipped its post-save quality review because it was given the folder rather than a single file, so there's nothing to report from it.                                 
+  - Search index is out of date: the search index used to find this packet by "demo" or "demo widget" is stale. I didn't rebuild it, because you didn't ask for that. The saved files are fine either
+    way.                                            
+                                                                                                                                                                                                        
+  The save wrote nothing outside the packet, and there's still no widget code. When you're ready, tell me to start. My first questions will be where the widget code lives on each platform and what the
+  tooltip should say.                                                                                                                                                                            
+
+✻ Cooked for 46s · done 11:59 AM                                                                                                                                                                       
+
+❯ /speckit:save specs/demo/001-demo --full-auto                                                                                                                                                         
+                             
+  Ran 2 shell commands                              
+
+⏺ SPECKIT:SAVE                                                                  
+  --------------------------------------------------                            
+  Folder      specs/demo/001-demo                                                                                                                                            
+  Targets     implementation-summary.md, graph-metadata.json                                                                                                                                            
+                                                                                                                                                                                                   
+  Anchors                                                                                                                                                                    
+  - continuity                                                                                                                                                                                     
+                                                                                                                                                                                                        
+  Triggers                                                                                                                                                             
+  demo | demo widget                                                                                                                                                                                   
+                                                                                                                                                                                                        
+  STATUS=OK TARGETS=2 ANCHORS=1                                                                                                                                                                         
+                                                                                                                                                                                                        
+  The save worked, but it only refreshed the session's continuity notes. No new answers had come in since the last save, so decision-record.md didn't change and still lists the seven decisions, Q001  
+  to Q007.                                                                                                                                                                                              
+                                                                                                                                                                                                        
+  - What changed: the continuity notes now read "Refreshed continuity; seven badge decisions recorded". The next step still says to find out where the widget code lives on each platform and what the
+    tooltip should say.                                                                                                                                                                                 
+  - No quality review: the writer skipped its post-save quality review again, because it was given the folder rather than a single file.                                                                
+  - Search index is still out of date: the index for finding this packet by "demo" or "demo widget" is still stale. I haven't rebuilt it, and the saved files are fine without it.                      
+                                                                                                                                                                                                        
+  There's still no widget code and no other files have changed. When you're ready, tell me to start.                                                                                                    
+
+✻ Cooked for 24s · done 11:59 AM                                                
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

@@ -1,0 +1,339 @@
+[0m
+> build · deepseek-v4.1-flash-1017
+I'll start by reading the style reference files and the gate requirements.
+[0m→ [0mRead .skilled/hooks/goal/lib/goal-core.cjs [90m[offset=660, limit=100][0m
+[0m→ [0mRead .skilled/hooks/dispatch/claude/dispatch-audit-posttooluse.mjs 
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "LOCK_(TIMEOUT_MS|STALE_MS|RETRY_MS|WAIT_BUFFER|SUBDIR)\s*=" [90min .skilled/hooks/goal/lib/goal-core.cjs · 5 matches[0m
+[0m✱ [0mGrep "decision-capture" [90min . · 0 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/shared/hook-flags.mjs 
+[0m→ [0mRead .skilled/hooks/shared/hook-adapter-shared.cjs 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/shared/hook-flags.cjs 
+[0m$ [0mnode .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "create decision capture queue module with claude hook adapter and node test suite" 2>&1 | head -40
+{
+  "candidatePhraseCount": 2297,
+  "discardedTokens": [
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "adapter"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "and"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "node"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "test"
+    },
+    {
+      "reason": "beyond-max-query-tokens",
+      "token": "suite"
+    }
+  ],
+  "indexHash": "34386024c291dba72e421691888186e2e72defc0ae2365e4e7e9c5f229ea68fe",
+  "manifestHash": "a18d854401c8e24d2a3487fb500d5b07bb92a00c6885185c90b12804e6b83477",
+  "normalizedQuery": "create decision capture queue module with claude hook adapter and node test suite",
+  "results": [
+    {
+      "matchClass": "query-containment",
+      "path": ".skilled/skills/system-skill-advisor/feature-catalog/hooks-and-plugin/claude-hook.md",
+      "phrases": [
+        "claude advisor hook",
+        "claude hook",
+        "claude user prompt submit",
+        "hookspecificoutput claude"
+      ],
+      "score": 0.88
+    }
+  ],
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls .skilled/hooks/ 2>&1; echo "---"; ls .skilled/hooks/decision-capture 2>&1; echo "---"; ls "specs/system-speckit/042-decision-capture" 2>&1 | head -20
+classifier-injection-screen
+codex-watchdog
+completion
+coverage-rationale.md
+directive-lifecycle
+dispatch
+dist-freshness
+git
+git-hooks-check
+git-live-follow
+git-message-gate
+git-preflight
+git-primary-reconcile
+git-worktree-guard
+goal
+hook-flags.env
+hook-flags.env.example
+hook-install
+injection-contract.md
+mcp-route-guard
+permission-policy
+post-edit-quality
+README.md
+session-cleanup
+session-lifecycle
+session-relaunch
+shared
+skill-advisor
+spec-gate
+task-dispatch
+vitest.config.ts
+---
+ls: .skilled/hooks/decision-capture: No such file or directory
+---
+acceptance-criteria.md
+decision-record.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+scratch
+spec.md
+tasks.md
+timeline.md
+[0m$ [0mls "REPO RULES.md" 2>&1; echo "---"; find .skilled/hooks -name "*.test.mjs" -not -path "*/node_modules/*" | head -20
+REPO RULES.md
+---
+.skilled/hooks/classifier-injection-screen/devin/classifier-injection-screen-posttooluse.test.mjs
+.skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.test.mjs
+.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.test.mjs
+.skilled/hooks/classifier-injection-screen/lib/classifier-screen-fetched-text.test.mjs
+.skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs
+.skilled/hooks/dispatch/codex/codex-shell-tool.test.mjs
+.skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs
+.skilled/hooks/dispatch/lib/dispatch-audit.test.mjs
+.skilled/hooks/shared/hook-stdin-deadline.test.mjs
+.skilled/hooks/goal/devin/goal-devin.test.mjs
+.skilled/hooks/goal/cursor/goal-cursor.test.mjs
+.skilled/hooks/goal/pi/goal-pi.test.mjs
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead REPO RULES.md 
+[0m→ [0mRead .skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.test.mjs [90m[limit=60][0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/repo-rules/prevent-overengineering.md [90m[limit=80][0m
+[0m→ [0mRead specs/system-speckit/042-decision-capture/spec.md [90m[limit=120][0m
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "consumed|nudge|chatSourceKey|takeNudge|pendingRecords" [90min specs/system-speckit/042-decision-capture · 28 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead specs/system-speckit/042-decision-capture/decision-record.md [90m[offset=150, limit=45][0m
+[0m→ [0mRead specs/system-speckit/042-decision-capture/plan.md [90m[offset=55, limit=70][0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/dispatch/devin/devin-dispatch-audit.test.mjs [90m[limit=80][0m
+[0m$ [0mls -la specs/system-speckit/042-decision-capture/scratch/runs/w1-capture-core/ 2>&1; echo "---"; ls .skilled/hooks/dispatch/lib/
+total 32
+drwxr-xr-x@ 4 michelkerkmeester  staff   128 Nov  1 12:07 .
+drwxr-xr-x@ 3 michelkerkmeester  staff    96 Nov  1 12:07 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  7305 Nov  1 12:07 prompt.txt
+-rw-r--r--@ 1 michelkerkmeester  staff  4848 Nov  1 12:08 stdout.log
+---
+dispatch-audit.mjs
+dispatch-audit.test.mjs
+dispatch-rule-checks.mjs
+dispatch-rule-checks.test.mjs
+node_modules
+opencode-version-corpus.json
+opencode-version.mjs
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead specs/system-speckit/042-decision-capture/scratch/runs/w1-capture-core/stdout.log 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/hook-flags.env 
+[0m$ [0mnode --version; echo "---"; ls .skilled/skills/.state 2>&1 | head; echo "---"; cat .gitignore 2>/dev/null | grep -n "decision-capture\|skills/.state" | head
+v26.8.2
+---
+advisor
+authority
+completion-sentinel
+decision-capture
+goal
+loop-guard
+session-relaunch
+smart-router-telemetry
+spec-gate
+---
+131:.opencode/skills/.state/*/*
+132:.skilled/skills/.state/*/*
+133:!.opencode/skills/.state/*/README.md
+134:!.skilled/skills/.state/*/README.md
+269:/*/**/.opencode/skills/.state/
+270:/*/**/.skilled/skills/.state/
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mls -la .skilled/skills/.state/decision-capture/ 2>&1; echo "---"; find .skilled/skills/.state/decision-capture -type f -maxdepth 1 2>/dev/null | head -5 | while read f; do echo "== $f"; head -3 "$f"; done
+total 8
+drwxr-xr-x@  4 michelkerkmeester  staff   128 Nov  1 12:08 .
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Nov  1 11:59 ..
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Nov  1 11:59 probe
+-rw-r--r--@  1 michelkerkmeester  staff  2560 Nov  1 12:08 README.md
+---
+== .skilled/skills/.state/decision-capture/README.md
+---
+title: Decision Capture Runtime State
+description: Holds the local queue of captured operator answers, the consumed-key log and the Stop-hook nudge counters.
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/.state/decision-capture/README.md 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/hooks/classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs 
+> build · deepseek-v4.1-flash-1017
+Now I'll write the capture core module.
+[0m← [0mWrite .skilled/hooks/decision-capture/lib/capture-core.mjs
+Created file successfully: .skilled/hooks/decision-capture/lib/capture-core.mjs
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node -e "const fs=require('fs');for(const l of fs.readFileSync('.skilled/hooks/decision-capture/lib/capture-core.mjs','utf8').split('\n').slice(1,5))console.log(l.length, JSON.stringify(l))"
+79 "// ║ COMPONENT: Operator Decision Capture Queue                               ║"
+79 "// ╠══════════════════════════════════════════════════════════════════════════╣"
+79 "// ║ PURPOSE: Normalize answers into deduplicated, lock-appended queue rows.  ║"
+79 "// ╚══════════════════════════════════════════════════════════════════════════╝"
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+Created file successfully: .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+Created file successfully: .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node --check .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+✔ a two-question payload becomes two records with exact keys and text (2.297042ms)
+✔ appending the same records twice appends them once (2.107166ms)
+✔ a malformed payload returns no records and writes no file (0.293917ms)
+✔ process questions are dropped and a product question is kept (1.6505ms)
+✔ pendingRecords leaves out a key recorded as consumed (2.014583ms)
+✔ takeNudge reports a rising count once and then stays quiet (1.669125ms)
+✔ the Claude adapter records one line and fails open on bad stdin (60.482833ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.666875
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node --check .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs; echo "--- status"; git status --porcelain; echo "--- state dir"; ls .skilled/skills/.state/decision-capture/
+✔ a two-question payload becomes two records with exact keys and text (2.183375ms)
+✔ appending the same records twice appends them once (1.440333ms)
+✔ a malformed payload returns no records and writes no file (0.235458ms)
+✔ process questions are dropped and a product question is kept (1.117208ms)
+✔ pendingRecords leaves out a key recorded as consumed (1.551125ms)
+✔ takeNudge reports a rising count once and then stays quiet (1.527208ms)
+✔ the Claude adapter records one line and fails open on bad stdin (57.478125ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.654792
+--- status
+ M .skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md
+ M .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts
+ M .skilled/skills/system-skill-advisor/runtime/tests/schemas/advisor-tool-schemas.vitest.ts
+ M .skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md
+ M .skilled/skills/system-spec-kit/templates/addons/decision-record.md.tmpl
+ M specs/commands/002-doctor-audit-and-fixes/graph-metadata.json
+ M specs/commands/002-doctor-audit-and-fixes/spec.md
+ M specs/system-speckit/042-decision-capture/acceptance-criteria.md
+ M specs/system-speckit/042-decision-capture/decision-record.md
+ M specs/system-speckit/042-decision-capture/description.json
+ M specs/system-speckit/042-decision-capture/graph-metadata.json
+ M specs/system-speckit/042-decision-capture/implementation-summary.md
+ M specs/system-speckit/042-decision-capture/plan.md
+ M specs/system-speckit/042-decision-capture/spec.md
+ M specs/system-speckit/042-decision-capture/tasks.md
+ M specs/system-speckit/042-decision-capture/timeline.md
+?? .skilled/hooks/decision-capture/
+?? .skilled/skills/.state/decision-capture/
+?? specs/commands/002-doctor-audit-and-fixes/005-advisor-linked-project-workspace/
+?? specs/system-speckit/040-weak-model-spec-authoring/004-template-section-fill-guidance/scratch/test/examples/level-2/acceptance-criteria.md
+?? specs/system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/test/tree-v2/.skilled/commands/speckit/assets/speckit-implement.yaml
+?? specs/system-speckit/040-weak-model-spec-authoring/006-speckit-command-and-agent-alignment/scratch/test/tree/.skilled/commands/speckit/assets/speckit-implement.yaml
+?? specs/system-speckit/040-weak-model-spec-authoring/008-playbook-run-in-worktree/scratch/test/map-positive/build.cjs
+?? specs/system-speckit/042-decision-capture/scratch/runs/
+--- state dir
+probe
+README.md
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mfind .skilled/hooks/decision-capture -type f | sort; echo "--- line counts"; wc -l .skilled/hooks/decision-capture/lib/capture-core.mjs .skilled/hooks/decision-capture/lib/capture-core.test.mjs .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+.skilled/hooks/decision-capture/lib/capture-core.mjs
+.skilled/hooks/decision-capture/lib/capture-core.test.mjs
+--- line counts
+     370 .skilled/hooks/decision-capture/lib/capture-core.mjs
+     315 .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+      75 .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+     760 total
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mgrep -nE 'REQ-[0-9]|ADR-[0-9]|CHK-[0-9]|T0[0-9][0-9]|specs/' .skilled/hooks/decision-capture/lib/capture-core.mjs .skilled/hooks/decision-capture/lib/capture-core.test.mjs .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"; echo "--- trailing ws"; grep -nE ' +$' .skilled/hooks/decision-capture/lib/capture-core.mjs .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs | head
+.skilled/hooks/decision-capture/lib/capture-core.test.mjs:241:      `${JSON.stringify({ key: records[0].key, packet: 'specs/track/001-demo', id: 'Q001', at: NOW })}\n`,
+exit=0
+--- trailing ws
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+Index: .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+===================================================================
+--- .skilled/hooks/decision-capture/lib/capture-core.test.mjs
++++ .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+@@ -237,9 +237,9 @@
+ 
+     mkdirSync(queueDir(projectDir), { recursive: true, mode: 0o700 });
+     writeFileSync(
+       join(queueDir(projectDir), 'consumed.jsonl'),
+-      `${JSON.stringify({ key: records[0].key, packet: 'specs/track/001-demo', id: 'Q001', at: NOW })}\n`,
++      `${JSON.stringify({ key: records[0].key, packet: 'demo-packet', id: 'Q001', at: NOW })}\n`,
+     );
+ 
+     const pending = pendingRecords(projectDir, 's1');
+     assert.equal(pending.length, 1);
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mnode --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node --check .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+✔ a two-question payload becomes two records with exact keys and text (2.169ms)
+✔ appending the same records twice appends them once (1.570625ms)
+✔ a malformed payload returns no records and writes no file (0.238167ms)
+✔ process questions are dropped and a product question is kept (1.307125ms)
+✔ pendingRecords leaves out a key recorded as consumed (1.309458ms)
+✔ takeNudge reports a rising count once and then stays quiet (1.365583ms)
+✔ the Claude adapter records one line and fails open on bad stdin (56.534333ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98.430083
+> build · deepseek-v4.1-flash-1017
+Created the runtime-neutral capture core, the Claude PostToolUse adapter, and the node:test suite. The core appends under a retrying `mkdir` lock, deduplicates on the source key, filters process questions before a record is built, and keeps question and answer bytes untouched. The adapter observes only: no output, exit 0 on every path.
+
+Verification command and full output:
+
+```
+$ node --check .skilled/hooks/decision-capture/lib/capture-core.mjs && node --check .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs
+✔ a two-question payload becomes two records with exact keys and text (2.169ms)
+✔ appending the same records twice appends them once (1.570833ms)
+✔ a malformed payload returns no records and writes no file (0.238167ms)
+✔ process questions are dropped and a product question is kept (1.307125ms)
+✔ pendingRecords leaves out a key recorded as consumed (1.30925ms)
+✔ takeNudge reports a rising count once and then stays quiet (1.365583ms)
+✔ the Claude adapter records one line and fails open on bad stdin (56.534333ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98.430083
+```
+
+`git status` shows only the new `.skilled/hooks/decision-capture/` tree from this task; the other listed modifications and untracked paths predate it. No test wrote into the repository's `.skilled/skills/.state/decision-capture/`; every queue went to a `mkdtempSync` directory and was removed.
+
+FILES: .skilled/hooks/decision-capture/lib/capture-core.mjs, .skilled/hooks/decision-capture/lib/capture-core.test.mjs, .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+CHECK: pass 7, fail 0
+STATUS=OK All three files exist and both `node --check` runs plus the 7-test suite pass from the repository root.
+EXIT=0

@@ -1,0 +1,50 @@
+
+ ▐▛███▛█   Claude Code v2.1.317
+▝▜██████▀  Opus 5.5 with medium effort · Claude Ultra
+ ▝▝   ▝▝   /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/claude-code-main-current/claude-code · /rc            
+
+
+❯ Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.     
+
+  Ran 2 shell commands                                        
+
+⏺ I found the docs and I'm stopping here. I haven't written anything.                                            
+
+  Where the demo widget is documented: specs/demo/001-demo-widget/. Git tracks nothing else in the repo: the spec folder is all there is.
+
+  - It's a Level 3 packet with spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md, timeline.md, description.json and graph-metadata.json.
+  - spec.md is still the empty template. Problem, scope, requirements and the files to change are all [YOUR_VALUE_HERE] placeholders. Its status is Draft, created 2026-11-03, and the recorded branch
+    is scaffold/001-demo-widget.
+  - Searching every packet file for "badge" or "status" found no badge requirement. "Status" only appears as template metadata fields.
+  - There is no widget source code in the repo. Adding a badge means writing the widget's spec and the code for it.
+
+  Checks: the trigger-index lookup for "status badge demo widget" found nothing (exit 1, which means no match). I found the packet by listing the files git tracks.
+
+  While I was reading, a hook asked the spec-folder question, but those commands only read files. That question applies once I start writing, so I'll ask it then, along with any product questions once
+  you say I can.
+
+  Nothing to do on your side until you're ready: tell me to go ahead.
+
+✻ Baked for 28s · done 7:36 AM
+
+❯ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                                                                                                
+
+⏺ Noted: this session's spec folder is specs/demo/001-demo-widget (option A). I'm still waiting and haven't written anything.
+
+✻ Crunched for 2s · done 7:36 AM
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               

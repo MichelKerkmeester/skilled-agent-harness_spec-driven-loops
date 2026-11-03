@@ -1,0 +1,51 @@
+
+ ✓ Trust /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/devin-kill-switch/devin?
+
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.11.234
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+ Pro · 75% remaining (resets in 18h 28m)
+
+❭ Ask me with the tool which colour the badge uses, offering exactly Amber, Teal and Slate.
+
+── Badge colour ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Which colour should the badge use?                                                                                                                                                                    
+  ❭ 1 Amber                                                                                                                                                                                             
+      Warm yellow-orange badge colour.                                                                                                                                                                  
+    2 Teal                                                                                                                                                                                              
+      Blue-green badge colour.
+    3 Slate
+      Neutral grey-blue badge colour.
+      Other (type your own)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+↑↓ select · ↵ confirm · ? help me out · esc cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

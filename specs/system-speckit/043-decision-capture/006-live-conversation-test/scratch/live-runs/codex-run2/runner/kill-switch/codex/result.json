@@ -1,0 +1,44 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 880055219,
+  "socket": "conv-43405-codex",
+  "session_id": "f63c0ca0-8f43-4505-b3bc-052c5a083a4e",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/codex-kill-switch/codex",
+  "started_at": "2026-11-02T19:07:54.548Z",
+  "finished_at": "2026-11-02T19:08:36.663Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "codex-workspace-write",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S12",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=codex queue_jsonl=0 nudge_lines=0 color_question=1 amber_visible=1",
+      "evidence": "turns/S12"
+    }
+  ]
+}

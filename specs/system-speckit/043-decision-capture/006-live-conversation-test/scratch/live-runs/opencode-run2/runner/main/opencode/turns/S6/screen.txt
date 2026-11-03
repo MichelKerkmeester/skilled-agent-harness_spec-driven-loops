@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     ┃ Also should mention no goal log because no goal.md? Not needed.                                                                    ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ Targets count 4. Anchors 2. Triggers: maybe list all six? Asset shows 3. I'll show all six separated by pipes; it's a code line, fi┃                                                          ┃  
+     ┃ cap? It's a code display, not a list. Still, keep 3 and "..."? Better show all six because triggers line is meant to be complete. H┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃ presentation template: <phrase_1> | <phrase_2> | <phrase_3>, not "all phrases". I'll show three key ones: "demo widget | demo widge┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃ record | demo widget implementation summary". That's representative and avoids a long line. But then it's not all triggers. This di┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     ┃ informational; fine. Or show all 6 across one line. I'll show all six; it's one line. The five-item cap is for groups in prose, and┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃ asset format. Hmm, risk of rule violation. Use three.                                                                              ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃                                                                                                                                    ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Final answer must not claim implementation. Good.                                                                                  ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     ┃                                                                                                                                    ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     ┃ Also "Nothing was written until you asked for the save" maybe not necessary.                                                       ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃                                                                                                                                    ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Let's produce.                                                                                                                     ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+                                                                                                                                          ┃  plugins/system-skill-advisor.js                         ┃  
+     Save completed: the four badge decisions now sit in the packet's decision record, and continuity is refreshed.                       ┃  Run /plugins to view details.                           ┃  
+                                                                                                                                          ┃                                                          ┃  
+     SPECKIT:SAVE                                                                                                                                                                                       
+     --------------------------------------------------                                                                                                                                                 
+     Folder      specs/demo/001-demo-widget                                                                                                                                                             
+     Targets     decision-record.md, description.json, graph-metadata.json, implementation-summary.md                                                                                                   
+                                                                                                                                                                                                        
+     Anchors                                                                                                                                                                                            
+     - operator-decisions                                                                                                                                                                               
+     - operator-answers-verbatim                                                                                                                                                                        
+                                                                                                                                                                                                        
+     Triggers                                                                                                                                                                                           
+     demo widget | demo widget plan | demo widget decision record                                                                                                                                       
+                                                                                                                                                                                                        
+     STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                      
+                                                                                                                                                                                                        
+     Q001 to Q004 record colour, platforms, label and static behaviour with the exact questions and answers. A repeat sweep shows zero pending answers,                                                 
+     and the orphan scan reports no session queues. Strict validation returned RESULT: PASSED with 0 errors and 3 warnings: 94 unfilled placeholders, an                                                
+     incomplete AI protocol section, and an empty measured-behavior block.                                                                                                                              
+                                                                                                                                                                                                        
+     I left the optional trigger-index regeneration undone. The writer reports spec.md stale until that index is regenerated, and the saved documents are                                               
+     durable regardless.                                                                                                                                                                                
+                                                                                                                                                                                                        
+     Your move: say when implementation should start.                                                                                                                                                   
+                                                                                                                                                           ▄                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1m 45s · 128.1 tok/s                                                                                               █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-D…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  86.5K (8%) · $0.04  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

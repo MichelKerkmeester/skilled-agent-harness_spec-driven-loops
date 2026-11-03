@@ -1,0 +1,51 @@
+ Found the packet. It's a scaffold — let me quickly confirm the other docs are placeholders too, and load the reply rules before I respond.
+
+ ✓ cat specs/demo/001-demo-widget/description.json 2>/dev/null; echo "---plan head---"; head -30 specs/demo/001-demo-widget/plan.md; echo "---placeholder count---"; rg -c "YOUR_VALUE_HERE" specs/demo…
+ ✓ cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-handoff.md 2>/dev/null | head -120
+
+ The demo widget is documented at  specs/demo/001-demo-widget/  — a Level-3 spec packet with the usual set:  spec.md ,  plan.md ,  tasks.md ,  acceptance-criteria.md ,  decision-record.md ,  implement
+ ation-summary.md ,  timeline.md .
+
+ Two things worth knowing before you direct the next step:
+
+   • The packet is an empty scaffold. Every doc still holds  [YOUR_VALUE_HERE]  placeholders (38 in  spec.md  alone), status is Draft, and its scope, requirements, and Files to Change table are
+     unfilled. The trigger phrase "demo widget" is registered in  description.json  but wasn't yet in the committed trigger index.
+   • There is no widget code in this workspace. No  src/ , no package manifest, nothing matching "widget" outside  specs/ . The only non-hidden content is the spec packet,  AGENTS.md , and tooling
+     config. So a status badge has no implementation target here yet — unless the code lives elsewhere.
+
+ Stopped as instructed. Nothing written; I'll hold for your direction.
+
+❭ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+ Locked to  specs/demo/001-demo-widget  for the session. Holding — nothing written.
+
+❭ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no 
+  option as recommended.
+
+ ⏺ Asked user Which colour should the status badge use?
+ └ Amber
+
+ Amber, noted. Still holding — nothing written until you say so.
+
+❭ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type 
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.
+
+ ⏺ Asked user Which platforms must the badge support? (select all that apply, or type the rest via Other)
+ └ Web, iOS, Android
+
+ Web, iOS and Android — all three noted. Still holding, nothing written.
+
+❭ Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.
+
+── Badge label ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  What label should the badge show? (pick one, or type your own via Other)                                                                                                                              
+  ❭ 1 Beta                                                                                                                                                                                              
+      Marks the widget as in beta                                                                                                                                                                       
+    2 New                                                                                                                                                                                               
+      Marks the widget as newly added
+    3 Experimental
+      Marks the widget as experimental
+      Other (type your own)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+↑↓ select · ↵ confirm · ? help me out · esc cancel
+

@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   Careful: descriptions shouldn't bias toward one. Keep them parallel in structure and length. E.g. "Amber: warm yellow-orange." Hmm, but this is a badge status colour — the description could say    
+   what the rendered colour is. Since there are no defined semantics yet (packet is empty scaffolding), I shouldn't invent semantics that bias. Keep it to the colour itself, plus the neutral note that
+   semantics aren't specified yet.                                                                                                                                                                      
+                                                                                                                                                                                                        
+   Let me write parallel descriptions:                                                                                                                                                                  
+   - Amber — "Amber in the badge's fill and text."                                                                                                                                                      
+   - Teal — "Teal in the badge's fill and text."                                                                                                                                                        
+   - Slate — "Slate in the badge's fill and text."                                                                                                                                                      
+                                                                                                                                                                                                        
+   That's a bit thin but neutral and parallel — deliberately no steering. Maybe add one neutral clause each about a practical consequence that is factual and equal: nothing unequal to say. I think    
+   short, parallel, colour-only descriptions is the honest approach — inventing "audience expectation" claims would be fabricating.                                                                     
+                                                                                                                                                                                                        
+   Actually, one useful neutral note that doesn't bias: they're all three options for the badge's colour, and no other styling is decided yet. I can put that in the question text rather than          
+   per-option. Good.                                                                                                                                                                                    
+                                                                                                                                                                                                        
+   Question text: "Which colour should the demo widget's status badge use?" That's clear.                                                                                                               
+                                                                                                                                                                                                        
+   Do not add a preview (previews switch to side-by-side; not needed, and user asked simple one choice).                                                                                                
+                                                                                                                                                                                                        
+   Then after the tool returns, I report the answer and stop (since the user said ask before writing anything — after they answer, do I write? They said "Before you write anything, ask me..." — that  
+   implies writing may follow after the answer. But the standing instruction was "keep waiting: write nothing until I tell you." The new message grants asking but doesn't explicitly say "then write." 
+   So: ask, then wait for explicit go. I'll report the answer and remain blocked on the write instruction.                                                                                              
+                                                                                                                                                                                                        
+   Let me call the tool.                                                                                                                                                                                
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ · Waiting for your answer… (thought for 4s · ↓ 770 tokens · 6s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge colour                                                                                                                                                                                          
+
+ Which colour should the demo widget's status badge use?                                                                                                                                                
+
+❯ 1. Amber
+     The badge uses amber, in both its fill and its text.
+  2. Teal
+     The badge uses teal, in both its fill and its text.
+  3. Slate
+     The badge uses slate, in both its fill and its text.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 36.4k tok | $0.01
+

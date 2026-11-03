@@ -1,0 +1,51 @@
+  Folder      specs/demo/001-demo-widget                                                                                                                                                         
+  Targets     decision-record.md, implementation-summary.md, description.json, graph-metadata.json                                                                                                      
+
+  Anchors                                                                                                                                                                                               
+  - operator-decisions                                                                                                                                                                           
+  - operator-answers-verbatim                       
+                                                                                                                                                                                                 
+  Triggers                                                                                                                                                                                          
+  demo widget                                                                                                                                                                                       
+                                                                                                                                                                                  
+  STATUS=OK TARGETS=4 ANCHORS=2         
+                                                                                                                                                                                                 
+  - Decisions:                                                                                                                                                                                   
+    - Q001: Amber                                                                                                                                                                                       
+    - Q002: Web, iOS and Android                                                                                                                                                                 
+    - Q003: "Needs review", which you typed in yourself                                                                                                                                                 
+    - Q004: static, no blinking                                                                                                                                                                  
+                                                                                                                                                                                                 
+    None of them has a stated reason, so each "Why" cell says "Not stated." The appendix keeps each question, its options and your answer word for word.                                         
+  - Continuity: the session's progress notes (continuity) are in implementation-summary.md. Next step: "Await operator go, then write the badge requirement into spec.md". Completion is 5%, with your
+    hold on writes listed as the blocker.                                                                                                                                                        
+  - Checked: the writer exited 0. After the save, git diff --stat shows only those four packet files changed. A follow-up check found no unrecorded answers in any session. I deleted my temporary
+    payload file from the scratchpad.                                                                                                                                                                   
+                                                                                                                                                                                                 
+  There are three things to know about the save:                                                                                                                                                 
+                                                                                                                                                                                                      
+  1. Not reviewed: the writer skipped its own quality check because it was given the whole folder rather than a single file. That means no tool has checked the saved files' quality.                   
+  2. Possibly misleading warning: the writer also flagged that "foreign spec ids dominate rendered content". The diff doesn't show where that would come from, so I'm treating it as unconfirmed. 
+  3. Search index out of date: the writer says the trigger index (the lookup table used to find packets by phrase) is stale for spec.md. It's missing the phrase "demo widget". This save didn't change
+     any trigger phrases, so the index was already behind. I didn't rebuild it because you asked me to hold other writes. The packet's files are saved either way; only phrase lookup is behind.      
+                                                                                                                                                                                                        
+  spec.md and the rest of the packet still contain the template placeholders, and there's still no widget code. I'm waiting for you to say go before writing the badge requirement.               
+                                                                                                                                                                                                        
+✻ Cooked for 1m 4s · done 7:21 PM                                                                                                                                                                
+                                                                                                                                                                                                       
+❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message, and mark no option as recommended.                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Badge side                                                                                                                                                                                    
+                                                                                                                                                                                                       
+Does the demo widget's status badge sit left or right of the title?                                                                                                                             
+                                                                                                                                                                                                 
+❯ 1. Left                                                                                                                                                                                               
+     The badge sits to the left of the title.                                                                                                                                                    
+  2. Right                                                                                                                                                                                             
+     The badge sits to the right of the title.                                                                                                                                                        
+  3. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel                            
+

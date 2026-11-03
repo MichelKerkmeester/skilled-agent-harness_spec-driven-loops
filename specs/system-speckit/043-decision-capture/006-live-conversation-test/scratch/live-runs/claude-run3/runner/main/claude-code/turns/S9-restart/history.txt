@@ -1,0 +1,50 @@
+
+  That makes five badge decisions: Amber, Web/iOS/Android, "Needs review", static, and right of the title. The first four are saved in decision-record.md. The position answer isn't saved yet, and the
+  next /speckit:save will record it.
+
+  I haven't written anything else. The spec and the badge code are still waiting for you to tell me to start.
+
+✻ Cogitated for 8s · done 7:40 AM
+
+❯ /compact                                                                                                                                                                                              
+  ⎿  Compacted (ctrl+o to see full summary)
+     PreCompact [command hook] completed successfully
+     PostCompact [command hook] completed successfully: {}
+  ⎿  Referenced file .skilled/skills/system-spec-kit/references/memory/save-workflow.md
+  ⎿  Skills restored (speckit:save)
+
+❯ Ask me with the tool which size the badge uses, offering exactly Small, Medium and Large. Open the tool itself, not a chat message, and mark no option as recommended.                                
+
+⏺ User answered Claude's questions:
+  ⎿  · Which size should the demo widget's status badge use? → Small
+
+⏺ The badge will be Small.
+
+  That makes six badge decisions:
+
+  ┌───────────┬──────────────────────┬────────────────────────────┐
+  │ Decision  │        Answer        │           Saved?           │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Colour    │ Amber                │ Yes, in decision-record.md │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Platforms │ Web, iOS and Android │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Label     │ "Needs review"       │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Animation │ Static, no blinking  │ Yes                        │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Position  │ Right of the title   │ Not yet                    │
+  ├───────────┼──────────────────────┼────────────────────────────┤
+  │ Size      │ Small                │ Not yet                    │
+  └───────────┴──────────────────────┴────────────────────────────┘
+
+  The position and size answers will go into the decision record the next time you run /speckit:save. I haven't written anything this turn. The spec and the badge code still wait for you to tell me to
+  start.
+
+✻ Baked for 8s · done 7:41 AM
+                                                                                                                                                                                    ◐ medium · /effort
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle) · ← for agents

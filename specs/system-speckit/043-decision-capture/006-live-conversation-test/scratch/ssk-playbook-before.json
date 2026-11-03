@@ -1,0 +1,36 @@
+{
+  "contract": "operator-scenario",
+  "routingGoldContract": "routing-gold",
+  "manifest": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+  "strict": true,
+  "warnPackages": [],
+  "packages": [
+    {
+      "package": "system-spec-kit",
+      "contract": "operator-scenario",
+      "playbookRoot": ".skilled/skills/system-spec-kit/manual-testing-playbook",
+      "status": "PASS",
+      "tier": "FAIL_CLOSED",
+      "derivedCensus": {
+        "scenarioFiles": 101,
+        "categoryDirs": 9,
+        "operatorScenarioFiles": 87,
+        "routingGoldFilesExcluded": 14
+      },
+      "indexedFiles": 101,
+      "featureIds": 87,
+      "violations": [],
+      "warnings": [
+        {
+          "code": "PROMPT_UNSYNCED",
+          "severity": "warning",
+          "file": "ux-hooks/comment-hygiene-checker-baseline.md",
+          "line": 52,
+          "message": "ux-hooks/comment-hygiene-checker-baseline.md:32 scenario contract prompt differs from the execution table's Exact Prompt"
+        }
+      ]
+    }
+  ],
+  "exitCode": 0,
+  "warnedViolationCount": 0
+}

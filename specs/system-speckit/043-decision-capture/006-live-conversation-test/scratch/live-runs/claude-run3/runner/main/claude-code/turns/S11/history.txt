@@ -1,0 +1,50 @@
+      11    "folderSlug": "demo-widget",                                                                                                                                                                
+      12    "parentChain": [                                                                                                                                                                     
+      13      "demo"                                                                                                                                                                             
+      14    ],                                                                                                                                                                                   
+      15 -  "memorySequence": 3,                                                                                                                                                                 
+      15 +  "memorySequence": 4,                                                                                                                                                                 
+      16    "memoryNameHistory": [                                                                                                                                                               
+      17      "03-11-26_07-39__gathered-product-decisions-for-a-status-badge-on.md",                                                                                                             
+      18      "03-11-26_07-43__captured-three-more-status-badge-product.md",                      
+      19 -    "03-11-26_07-43__captured-three-more-status-badge-product.md"                                                                                                                      
+      19 +    "03-11-26_07-43__captured-three-more-status-badge-product.md",                                                                                                                     
+      20 +    "03-11-26_07-44__captured-three-more-status-badge-product.md"                                                                                                                      
+      21    ]                                                                                                                                                                                    
+      22  }                                                                                                                                                                                             
+  ⎿  Updated specs/demo/001-demo-widget/graph-metadata.json (+2 -2)                                                                                                                              
+      190      ],                                                                                                                                                                                      
+      191      "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",                                                  
+      192      "created_at": "2026-11-03T06:35:30Z",                                                                                                                                                   
+      193 -    "last_save_at": "2026-11-03T06:43:56.518Z",                                                                                                                                       
+      193 +    "last_save_at": "2026-11-03T06:44:05.149Z",                                                                                                                                             
+      194      "save_lineage": "same_pass",                                                                                                                                                      
+      195      "last_accessed_at": null,                                                                                                                                                               
+      196      "source_docs": [                                                                                                                                                                  
+     ...                                                                                                                                                                                               
+      208        "plan.md": "a31ba364f4fadb2b8a99dba00adf15f788925822258fc034d866d8b7985920ad",                                                                                                        
+      209        "tasks.md": "47b84918c0193b0995cc35801d41f6c4c6bcf911beb3ac31d1e0413626f5865e",                                                                                                       
+      210        "decision-record.md": "22596e7b7d9f19b3def536baa414829573d12a4d28b19a0f26ba643a43cb0db8",                                                                                             
+      211 -      "implementation-summary.md": "d690f914a3d490e28e3bbf7f86b2fbe6ce3e6fb1a459669f76004021584a42fc"                                                                                       
+      211 +      "implementation-summary.md": "93769abbd189ed31723fb9e06f980667fada999bf042ad94481033d41b28e57c"                                                                                       
+      212      },                                                                                                                                                                                       
+      213      "last_active_at": null                                                                                                                                                                   
+      214    }                                                                                                                                                                                          
+  ⎿  Updated specs/demo/001-demo-widget/implementation-summary.md (+1 -1)                                                                                                                        
+       8  _memory:                                                                                                                                                                               
+       9    continuity:                                                                                                                                                                          
+      10      packet_pointer: "demo/001-demo-widget"                                                
+      11 -    last_updated_at: "2026-11-03T06:43:56Z"                                                                                                                                            
+      11 +    last_updated_at: "2026-11-03T06:44:05Z"                                                                                                                                            
+      12      last_updated_by: "generate-context"                                                                                                                       
+      13      recent_action: "Captured badge position, size and tooltip decisions from the operator"                                                                                                    
+      14      next_safe_action: "Await operator go-ahead, then write badge requirements into spec.md"                                                                                                   
+                                                                                                                                                                                                        
+✻ Bloviating… (24s · ↓ 1.9k tokens)                                                                           
+  ⎿  Tip: Run /install-github-app to tag @claude right from your Github issues and PRs
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               

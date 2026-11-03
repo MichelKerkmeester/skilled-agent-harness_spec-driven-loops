@@ -1,0 +1,42 @@
+{
+  "runtime": "claude-code",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1804068926,
+  "socket": "conv-99146-claude-code",
+  "session_id": "ac3c3716-a545-4e2c-a501-6f7d0ce19791",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/claude-code-kill-switch/claude-code",
+  "started_at": "2026-11-02T11:02:08.512Z",
+  "finished_at": "2026-11-02T11:03:56.246Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "turns": [
+    {
+      "id": "S12",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=claude-code queue_jsonl=0 nudge_lines=0 color_question=1 amber_visible=1",
+      "evidence": "turns/S12"
+    }
+  ]
+}

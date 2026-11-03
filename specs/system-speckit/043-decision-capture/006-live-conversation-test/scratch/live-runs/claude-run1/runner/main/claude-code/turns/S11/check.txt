@@ -1,0 +1,3 @@
+$ Q=.skilled/skills/.state/decision-capture;cp $Q/* "$CONVERSATION_TURN_DIR" 2>/dev/null;g=$(rg -c '^\| Q' specs/demo/001-demo/decision-record.md);cmp -s .s10 specs/demo/001-demo/decision-record.md&&[ "$g" = 7 ]&&echo "record_rows=$g repeat=identical"||{ echo "DEVIATION: record_rows=$g or the copy no longer matches";exit 1;}
+record_rows=7 repeat=identical
+[exit 0]

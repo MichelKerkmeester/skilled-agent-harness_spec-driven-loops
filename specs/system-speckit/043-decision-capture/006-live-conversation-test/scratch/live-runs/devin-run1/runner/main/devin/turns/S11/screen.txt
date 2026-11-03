@@ -1,0 +1,51 @@
+ 
+   Triggers
+   demo widget | demo widget decision record | demo widget implementation summary
+ 
+   STATUS=OK TARGETS=4 ANCHORS=3
+ 
+
+ Recorded decisions: Right of title, Small size, tooltip present. Continuity holds the blocker — awaiting your go-ahead — and next safe action: draft the badge requirement into spec.md. Completion now
+ 15%. Trigger index regenerated; post-save review skipped for the directory-level target, no issues.
+
+ Note: the first attempt aborted on  INSUFFICIENT_CONTEXT_ABORT  — the payload needed session evidence (observations/prompts), which I added on retry.
+
+ Still holding all writes until you tell me.
+
+❭ /speckit:save specs/demo/001-demo-widget --full-auto
+
+ Running the decision sweep first to see what, if anything, is pending since the last save.
+
+ ✓ node .skilled/hooks/decision-capture/bin/sweep-devin.mjs 2>&1 | tail -20
+
+ Zero pending — all decisions were recorded in the last save. Re-running the writer with the same session evidence; a repeated save is idempotent for consumed decision keys.
+
+ ✓ cat > /tmp/speckit-save-003.json << 'EOF' (+37 lines)
+ ✓ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs 2>&1 | grep -v "phrase quality\|editor-fallback\|folder-token\|generic-workflow\|numeric-only\|ok \|prose-sent…
+
+ 
+   SPECKIT:SAVE
+   --------------------------------------------------
+   Folder      specs/demo/001-demo-widget
+   Targets     implementation-summary.md, description.json, graph-metadata.json
+ 
+   Anchors
+   - _memory.continuity (refreshed, unchanged values)
+ 
+   Triggers
+   demo widget | demo widget decision record | demo widget implementation summary
+ 
+   STATUS=OK TARGETS=3 ANCHORS=1
+ 
+
+ Nothing new to record — the sweep showed 0 pending answers, so no decision rows were added; Q001–Q007 stand. Continuity re-asserted: blocker unchanged (awaiting your go-ahead), next safe action still
+ "Draft the badge requirement into spec.md", completion 15%. Trigger index regenerated and published. Post-save review skipped for the directory-level target, no issues.
+
+ Still holding all writes until you tell me.
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/devin-main/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Locate Demo Widget Documentation for Ad… ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                     Context: 71k / 262k tokens (27%)
+

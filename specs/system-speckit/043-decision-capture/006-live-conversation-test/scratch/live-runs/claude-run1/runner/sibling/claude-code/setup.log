@@ -1,0 +1,59 @@
+$ git init -q
+[exit 0]
+$ mkdir -p specs/demo .claude .opencode .codex .pi .devin .skilled/skills/.state
+[exit 0]
+$ for d in .claude .opencode .codex .pi .devin; do cp -R "$CONVERSATION_REPO_ROOT/$d/." "$d/"; done
+[exit 0]
+$ python3 -c 'from pathlib import Path; p=Path(".codex/config.toml"); s=p.read_text(); k="default_mode_request_user_input"; marker="[features]\n"; s=s if k in s else (s.replace(marker, marker+k+" = true\n", 1) if marker in s else k+" = true\n"+s); p.write_text(s)'
+[exit 0]
+$ cp "$CONVERSATION_REPO_ROOT/AGENTS.md" AGENTS.md && ln -s AGENTS.md CLAUDE.md
+[exit 0]
+$ ln -s "$CONVERSATION_REPO_ROOT/.skilled/hooks" .skilled/hooks && ln -s "$CONVERSATION_REPO_ROOT/.skilled/bin" .skilled/bin && ln -s "$CONVERSATION_REPO_ROOT/.skilled/skills/system-spec-kit" .skilled/skills/system-spec-kit
+[exit 0]
+$ ln -s "$CONVERSATION_REPO_ROOT/.skilled/commands" .skilled/commands && ln -s "$CONVERSATION_REPO_ROOT/.skilled/repo-rules" .skilled/repo-rules
+[exit 0]
+$ ln -s "$CONVERSATION_REPO_ROOT/.skilled/hooks/decision-capture/lib/capture-core.mjs" .dc.mjs
+[exit 0]
+$ bash "$CONVERSATION_REPO_ROOT/.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh" --path specs/demo/001-demo-widget --name "demo widget" --level 3 --with-lazy-addons
+description.json created in /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/claude-code-sibling/claude-code/specs/demo/001-demo-widget
+
+───────────────────────────────────────────────────────────────────
+  SpecKit: Spec Folder Created Successfully
+───────────────────────────────────────────────────────────────────
+
+  BRANCH_NAME:  001-demo-widget
+  FEATURE_NUM:  001
+  DOC_LEVEL:    Level 3
+  SPEC_FOLDER:  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/claude-code-sibling/claude-code/specs/demo/001-demo-widget
+
+  Created Structure:
+  └── 001-demo-widget/
+      ├── spec.md
+      ├── plan.md
+      ├── tasks.md
+      ├── implementation-summary.md
+      ├── acceptance-criteria.md
+      ├── timeline.md
+      ├── decision-record.md
+      ├── description.json
+      ├── description.json   (per-folder identity)
+      └── scratch/          (working files; NOT git-ignored)
+          └── .gitkeep
+
+  Level 3 Documentation (manifest-backed Level contract):
+    ✓ Core: spec.md + plan.md + tasks.md
+    ✓ Lifecycle: implementation-summary.md (scaffolded; required after implementation starts)
+    ✓ +Verify: merged verification/testing in tasks.md, NFRs, edge cases
+    ✓ +Arch: executive summary, risk matrix, decision guidance
+      (Architecture decisions - adds ~150 LOC)
+
+  Next steps:
+    1. Fill out spec.md with requirements
+    2. Create implementation plan in plan.md
+    3. Break down tasks in tasks.md
+    4. Add verification items to tasks.md
+    5. Lazy add-ons: timeline.md, decision-record.md
+    6. Add goal.md with --with-goal or /create:goal when an operator will set this packet as a session objective
+
+───────────────────────────────────────────────────────────────────
+[exit 0]

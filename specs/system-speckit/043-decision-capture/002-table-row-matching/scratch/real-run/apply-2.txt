@@ -1,0 +1,3 @@
+12 pending no row
+31 pending no row
+consumed 0, refused 0, pending 2

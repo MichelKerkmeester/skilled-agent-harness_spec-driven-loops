@@ -1,0 +1,8 @@
+turn	status	attempts	evidence	observed
+S0	PASS	1	turns/S0	rows=0 base=base.sha
+S1	PASS	1	turns/S1	rows=0 gate3=visible
+S2	PASS	1	turns/S2	rows=1
+S13	PASS	1	turns/S13	hand_row=Q050 answer=Amber
+S5b	PASS	1	turns/S5b	count_candidates=1 mid_message=1 max_per_message=1
+S6	PASS	1	turns/S6	hand_id=Q050 amber_rows=1 chat_rows=1 pending=0 process_rows=0
+S14	PASS	1	turns/S14	nudge=0

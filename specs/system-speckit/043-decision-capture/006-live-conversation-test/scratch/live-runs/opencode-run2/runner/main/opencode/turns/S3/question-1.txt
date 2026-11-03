@@ -1,0 +1,51 @@
+ ? Demo widget status badge      +                                                                                                                                                                      
+  ┃  Which colour should the status badge use?                                                                                            ┃                                                          ┃  
+  ┃  Amber                                                                                                                                ┃  3 plugins failed                        › Open plugins  ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃ Thought: 854ms                                                                                                                     ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+                                                                                                                                          ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     ┃ The user answered Amber. They said "Before you write anything, ask me..." — now they have answered. But the standing instruction fr┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃ turn was "Keep waiting: write nothing until I tell you." They told me to ask the question before writing anything, not that answeri┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ writing. So I should still not write; just record the answer and wait.                                                             ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃                                                                                                                                    ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     ┃ Per harness note: 1 operator answer captured this session not in decision record yet; /speckit:save. But don't act.                ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     ┃                                                                                                                                    ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ Reply: concise, amber recorded, nothing written, waiting.                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     Recorded: the status badge uses Amber.                                                                                               ┃  plugins/system-skill-advisor.js                         ┃  
+                                                                                                                                          ┃  Run /plugins to view details.                           ┃  
+     Still nothing written. I am waiting for your instruction to start.                                                                   ┃                                                          ┃  
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 10.4s · 78.0 tok/s                                                                                                                                              
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool                                                
+  ┃  takes one choice, use it anyway and I will type the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.                                                   
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 576ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ The user wants multiple: true, offering exactly Web, iOS, Android. No recommended.                                                                  ▄                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Badge platforms  Submit                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  Which platforms must the status badge support?                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  1. [ ] Web                                                                                                                                                                                         
+  ┃         Support the badge on Web.                                                                                                                                                                   
+  ┃  2. [ ] iOS                                                                                                                                                                                         
+  ┃         Support the badge on iOS.                                                                                                                                                                   
+  ┃  3. [ ] Android                                                                                                                                                                                     
+  ┃         Support the badge on Android.                                                                                                                                                               
+  ┃  4. [ ] Type your own answer                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  ⇆ tab  ↑↓ select  enter toggle  esc dismiss                                                                                                                                                        
+  ┃                                                                                                                                                             /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

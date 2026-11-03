@@ -1,0 +1,51 @@
+      15      blockers:                                                                                                                                                                            
+      16        - "Operator asked to hold all writes until told"                                                                                                                                        
+      17 +      - "Tooltip text not yet specified"                                                                                                                                                      
+      18      key_files:                                                                                                                                                                                
+      19        - "specs/demo/001-demo-widget/spec.md"                                                                                                                                                  
+      20        - "specs/demo/001-demo-widget/decision-record.md"                                                                                                                                       
+  ⎿  (files that changed while this command ran, by the command or by another process; a convenience view, not a review or audit of the command)                                                 
+                                                                                                                                                                                                        
+  Ran 1 shell command                                                                                                                                                                            
+
+⏺ I saved the context. The three decisions waiting in the queue are now in the decision record, and the queue reports no answers left pending.                                                   
+                                                                                                                                                                                                 
+  SPECKIT:SAVE                                                                                  
+  --------------------------------------------------                                                                                                                                             
+  Folder      specs/demo/001-demo-widget                                                                                                                                                                
+  Targets     decision-record.md, implementation-summary.md, description.json, graph-metadata.json                                                                                               
+                                                                                                                                                                                                     
+  Anchors                                                                                                                                                                                            
+  - operator-decisions (Q005–Q007 added)                                                                                                                                                             
+  - operator-answers-verbatim (Q005–Q007 added)                                                                                                                                                         
+  - _memory.continuity
+                                                                                                                                                                                                        
+  Triggers                                                               
+  demo widget | status badge                        
+                                                                                                                                                                                                 
+  STATUS=OK TARGETS=4 ANCHORS=3                                                                                                                                                                  
+                                                                                                                                                                                                        
+  - New decisions:                                                                                                                                                                               
+    - Q005: the badge sits right of the title.                                                                                                                                                   
+    - Q006: it is Small.                                                                                                                                                                         
+    - Q007: it has a tooltip, but its text isn't specified yet.                                                                                                                                  
+                                                                                                                                                                                                        
+    None of them has a stated reason, so the record says "Not stated." for each. Q001–Q004 are unchanged.                                                                                        
+  - Continuity: the save updated recent_action and kept next_safe_action ("Await operator go…"). I added "Tooltip text not yet specified" as a second blocker.                                          
+  - Things to check:                                                                                                                                                                                  
+    - The writer warned that the session summary matched the folder 0% and printed ALIGNMENT_HARD_BLOCK, but it still wrote. I checked the rows and they are correct. The folder is the one you named.
+    - The post-save quality review was skipped again because the writer treated the target as a directory.                                                                                              
+    - The trigger index is still stale for spec.md, which is missing "demo widget". I didn't regenerate it because you're holding writes.
+  - Clean-up: I deleted the temporary payload. The only changes are the four packet files above.
+                                                                                                                                                                                                        
+  Nothing else is written: there's no spec requirement and no code. Your next step is to say go when you want the badge requirement written into spec.md, and to tell me the tooltip text if you want it
+  in the spec.                                                                                                                                                                                          
+
+✻ Cogitated for 53s · done 7:24 PM                                                   
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

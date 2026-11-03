@@ -1,0 +1,51 @@
+
+ ▐▛███▛█   Claude Code v2.1.316
+▝▜██████▀  Opus 5.5 with medium effort · Claude Ultra
+ ▝▝   ▝▝   /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/claude-code-main/claude-code · /rc            
+
+
+❯ Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.     
+
+  Ran 3 shell commands                                                
+
+⏺ I found where the demo widget is documented, and I've stopped there. Nothing has been written.
+
+  Where it's documented: specs/demo/001-demo/. This is a Level 3 spec packet titled "demo widget", with status Draft, created 2026-11-02, on branch scaffold/001-demo. It holds spec.md, plan.md,
+  tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md, timeline.md, description.json and graph-metadata.json.
+
+  The docs are still an empty template:
+  - Unfilled fields: problem, scope, requirements, the "Files to Change" table and acceptance criteria all still read [YOUR_VALUE_HERE…].
+  - No status badge: none of the packet docs mention a badge or status display.
+  - No widget code: nothing outside the packet mentions the widget, so there's no file to add the badge to yet. The repo holds only tooling folders (.claude, .codex, .skilled and similar) plus
+    AGENTS.md/CLAUDE.md. Git tracks no files and has no commits.
+
+  Before any write: I'll need to ask which spec folder the change belongs in. Gate 3 in CLAUDE.md says it fires "when the turn will write a file". specs/demo/001-demo looks like the obvious answer. I
+  haven't asked yet because you said to write nothing.
+
+  I'm waiting for you to tell me to go ahead, and for permission to ask product questions. Those will need to cover what the widget is, where its code lives or should live, and what states the badge
+  shows.
+
+✻ Sautéed for 35s · done 11:52 AM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

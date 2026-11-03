@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/043-decision-capture",
+  "spec_folder": "system-speckit/043-decision-capture",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/043-decision-capture/001-decision-capture-build",
+    "system-speckit/043-decision-capture/002-table-row-matching",
+    "system-speckit/043-decision-capture/003-codex-and-pi-capture",
+    "system-speckit/043-decision-capture/004-opencode-devin-live-capture",
+    "system-speckit/043-decision-capture/005-chat-question-detection",
+    "system-speckit/043-decision-capture/006-live-conversation-test",
+    "system-speckit/043-decision-capture/007-gap-closure"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "decision capture phase parent spec",
+      "decision capture series",
+      "decision capture follow-up",
+      "decision capture goal",
+      "043-decision-capture operator decisions",
+      "decision capture gaps",
+      "decision capture maintainability",
+      "decision capture handover",
+      "043 handover",
+      "decision record upgrade continuation"
+    ],
+    "key_topics": [
+      "decision",
+      "capture",
+      "phase",
+      "parent",
+      "spec",
+      "series",
+      "follow-up",
+      "goal",
+      "043-decision-capture",
+      "operator",
+      "decisions",
+      "gaps"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+      ".skilled/hooks/README.md",
+      ".skilled/skills/.state/decision-capture/README.md",
+      "specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md",
+      "001-decision-capture-build/goal.md",
+      "002-table-row-matching/goal.md",
+      "003-codex-and-pi-capture/goal.md",
+      "004-opencode-devin-live-capture/goal.md",
+      "005-chat-question-detection/goal.md",
+      "006-live-conversation-test/goal.md",
+      "007-gap-closure/goal.md",
+      "specs/system-speckit/043-decision-capture/spec.md",
+      ".skilled/hooks/coverage-rationale.md",
+      ".skilled/skills/.state/decision-capture/probe/codex.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/043-decision-capture/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record-writer.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex.json",
+        "kind": "config",
+        "path": ".skilled/skills/.state/decision-capture/probe/codex.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "When Luna",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
+    "created_at": "2026-11-01T20:52:24Z",
+    "last_save_at": "2026-11-03T06:48:41.614Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md",
+      "decision-record.md",
+      "research/research.md",
+      "handover.md"
+    ],
+    "source_fingerprint": "sha256:0021f320ae842cdbce0e029a59fabb841ccc6190f9ae3029fcf2072f375e472c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b2641ca5aa837ac682d6981d8f69eb2b7ce907b01f1403c0940d49d9d68eb9bb",
+      "decision-record.md": "327e803927a1984bd870226297ea0fe2315ac2b0120659f5867c1ff45588da71",
+      "research/research.md": "d80f8cc06fc42ede06213d845af219c85d2ddbd784a630865191064f645102fa",
+      "handover.md": "4c8c344f769a26750c900ce168e6c4a61436fea17d760b63e55cdfb8ec5e92c2"
+    },
+    "last_active_child_id": "system-speckit/043-decision-capture/006-live-conversation-test",
+    "last_active_at": "2026-11-03T06:48:41.614Z"
+  }
+}

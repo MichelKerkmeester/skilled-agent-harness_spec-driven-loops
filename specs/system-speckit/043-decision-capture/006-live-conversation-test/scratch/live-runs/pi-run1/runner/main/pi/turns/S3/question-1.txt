@@ -1,0 +1,51 @@
+   Should I read communication-decisions.md first? Gate 6 loads it "before a recommendation". I'm not recommending. This is a question, not a reply. But this turn has a reply too (the ask itself). Let
+   me be practical: the question tool call is the deliverable. I'll keep any accompanying text minimal or none.                                                                                         
+                                                                                                                                                                                                        
+   Actually — do I need to say anything around it? The tool renders the question. Keep it to nothing or one line. The framework says answer first, no filler. I'll add no prose beyond the tool call... 
+   but a bare tool call with no text is fine in this harness.                                                                                                                                           
+                                                                                                                                                                                                        
+   Let me call the question tool.                                                                                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+   └ 1 line returned (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Amber recorded as the badge colour. Still waiting — no writes until you say go.                                                                                                                      
+
+ ✻ Turn took 8s (Total time 1m 53s · 3 turns)                                                                                                                                                           
+
+ ❯ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several.                                                               
+
+ ∴ Thinking: The user wants a question with exactly Web, iOS, Android, multiSelect: true.                                                                                                               
+                                                                                                                                                                                                        
+   One question, header ≤16 chars. "Platforms" is 9 chars. Good.                                                                                                                                        
+                                                                                                                                                                                                        
+   Three options only, multiSelect true.                                                                                                                                                                
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ · Waiting for your answer… (thought for 1s · ↓ 190 tokens · 4s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Platforms                                                                                                                                                                                             
+
+ Which platforms must the status badge support? Pick any number.                                                                                                                                        
+
+❯ 1. [ ] Web
+  Browser-rendered surface. Badge lands in the web build's markup and styles.
+  2. [ ] iOS
+  Native iOS surface. Badge needs an iOS-native rendering path.
+  3. [ ] Android
+  Native Android surface. Badge needs an Android-native rendering path.
+  4. [ ] Type something.
+  Submit
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · Space to toggle · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 33.1k tok | $0.01
+

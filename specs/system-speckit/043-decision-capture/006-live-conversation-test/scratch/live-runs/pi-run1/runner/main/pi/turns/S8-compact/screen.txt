@@ -1,0 +1,51 @@
+ ✻ Turn took 12s (Total time 5m 35s · 9 turns)                                                                                                                                                          
+
+[Previous output — display only]                                                                                                                                                                        
+Save landed: four files in specs/demo/001-demo-widget/ now carry the session, and validation returns RESULT: PASSED with three warnings, all pre-existing placeholder text in spec.md.                  
+                                                                                                                                                                                                        
+```text                                                                                                                                                                                                 
+  SPECKIT:SAVE                                                                                                                                                                                          
+  --------------------------------------------------                                                                                                                                                    
+  Folder      specs/demo/001-demo-widget                                                                                                                                                                
+  Targets     decision-record.md, implementation-summary.md,                                                                                                                                            
+              description.json, graph-metadata.json                                                                                                                                                     
+                                                                                                                                                                                                        
+  Anchors                                                                                                                                                                                               
+  - operator-decisions        (Q001-Q004)                                                                                                                                                               
+  - operator-answers-verbatim (Q001-Q004, full question, options, answer)                                                                                                                               
+                                                                                                                                                                                                        
+  Triggers                                                                                                                                                                                              
+  demo widget                                                                                                                                                                                           
+                                                                                                                                                                                                        
+  STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                         
+```                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+What the save recorded: amber, static, label "Needs review", Web plus iOS plus Android. Continuity now reads completion_pct: 0, three blockers (no widget source, packet unfilled, operator hold), and  
+next_safe_action: "Confirm a real widget host exists before authoring badge code." Three of four decisions carry Not stated. for the reason, because you picked without giving one; only the no-blink   
+decision carries one.                                                                                                                                                                                   
+                                                                                                                                                                                                        
+Two things I did not do unilaterally, plus the rollback:                                                                                                                                                
+                                                                                                                                                                                                        
+1. The writer reports the trigger index STALE for spec.md, added phrase demo widget — that is why my first lookup missed the packet despite its frontmatter declaring the phrase. Fixing it is node     
+   .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs, a separate write to a committed index; say the word and I run it.                                                  
+2. session_dedup.session_id still reads scaffold-001-demo-widget with an all-zero fingerprint even though I passed --session-id, so the writer did not update that block. Left as written rather than   
+   hand-edited, since the writer owns it.                                                                                                                                                               
+3. Rollback, if you want the pre-save state back: rm -rf specs/demo/001-demo-widget && cp -R /tmp/badge-save-snapshot-001-demo-widget specs/demo/001-demo-widget. The repo has no commits, so that copy 
+   is the only undo. My temp payload file is already deleted.                                                                                                                                           
+
+                                                                                                                                                                                                        
+ [compaction]                                                                                                                                                                                           
+                                                                                                                                                                                                        
+ Compacted from 65,739 tokens (ctrl+o to expand)                                                                                                                                                        
+                                                                                                                                                                                                        
+
+ blackhole: 89 source entries processed; tail kept 1/9 user turns (~157 tok).                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | used: 48.1k tok | $0.03
+

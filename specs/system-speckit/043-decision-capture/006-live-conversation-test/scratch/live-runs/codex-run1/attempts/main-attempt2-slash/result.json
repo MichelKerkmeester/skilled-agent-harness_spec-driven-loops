@@ -1,0 +1,160 @@
+{
+  "runtime": "codex",
+  "verdict": "FAIL",
+  "blocker": "MISSING_QUESTION",
+  "seed": 1579411914,
+  "socket": "conv-32063-codex",
+  "session_id": "2dc665d5-0596-4fe8-904f-1f0ce64457d7",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/codex-main/codex",
+  "started_at": "2026-11-02T14:44:53.896Z",
+  "finished_at": "2026-11-02T14:58:02.433Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 base=base.sha",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 gate3=not-asked",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S3",
+      "status": "SKIP",
+      "attempts": 2,
+      "reason": null,
+      "blocker": "jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S3"
+    },
+    {
+      "id": "S4",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S4"
+    },
+    {
+      "id": "S5",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S5"
+    },
+    {
+      "id": "S6",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "pending=0",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S7",
+      "status": "FAIL",
+      "attempts": 2,
+      "reason": "MISSING_QUESTION",
+      "blocker": "([Ll]eft|[Rr]ight|[Pp]osition|[Ss]ide|[Pp]lace|[Ww]here|[Rr]elative|[Tt]itle|\\bsits?\\b)",
+      "observed": "",
+      "evidence": "turns/S7"
+    },
+    {
+      "id": "S8-compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-compact"
+    },
+    {
+      "id": "S8-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-ask"
+    },
+    {
+      "id": "S9-restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-restart"
+    },
+    {
+      "id": "S9-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-ask"
+    },
+    {
+      "id": "S10",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S10"
+    },
+    {
+      "id": "S11",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S11"
+    }
+  ]
+}

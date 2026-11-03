@@ -1,0 +1,8 @@
+014733c5def50b32921bd11cb14b2b248478dc7cc17dbd17f7274091b686f1e3  specs/system-speckit/043-decision-capture/001-decision-capture-build/acceptance-criteria.md
+8fa5989495cd66bd9a2ff02f3ffbbbf6a5843931e3bffdedb362628013d06bc5  specs/system-speckit/043-decision-capture/001-decision-capture-build/decision-record.md
+a8fb872e869bce726c966e2829a271b3a93e724e877a2a6894c6f67ad8325075  specs/system-speckit/043-decision-capture/001-decision-capture-build/goal.md
+17615c49bea1e6ee77adb3cc8685dd5c40dcf49fc4e44d9112d02924914fdb99  specs/system-speckit/043-decision-capture/001-decision-capture-build/implementation-summary.md
+bcf3f61e857db4641329092715737942e8063de02c67745e4c29f6d62cd69c10  specs/system-speckit/043-decision-capture/001-decision-capture-build/plan.md
+05b48351ad009aaef17999ecc74a19a764756f7270165820b08ee3c904569b52  specs/system-speckit/043-decision-capture/001-decision-capture-build/spec.md
+c43c4181100f2d637f71f31dd4005a3a0c1a6d7c80ebc8c6876f70280320bf56  specs/system-speckit/043-decision-capture/001-decision-capture-build/tasks.md
+1665cbd4f979912975a46868edf4a70b7690ebe4c240d384c36b6617ce568641  specs/system-speckit/043-decision-capture/001-decision-capture-build/timeline.md

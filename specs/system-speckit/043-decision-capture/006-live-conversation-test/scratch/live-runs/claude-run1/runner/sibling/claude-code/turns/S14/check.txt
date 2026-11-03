@@ -1,0 +1,3 @@
+$ Q=.skilled/skills/.state/decision-capture;T="$CONVERSATION_TURN_DIR";cp $Q/* "$T" 2>/dev/null;v=$(cat $Q/*.nudge 2>/dev/null);[ "$v" = 0 ]&&echo "nudge=0"||{ echo "DEVIATION: nudge=$v";exit 1;}
+nudge=0
+[exit 0]

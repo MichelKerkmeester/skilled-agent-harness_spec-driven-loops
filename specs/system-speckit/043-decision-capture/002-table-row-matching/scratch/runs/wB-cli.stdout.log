@@ -1,0 +1,11 @@
+Done. Files on disk:
+
+- `runtime/cli/continuity/match-decision-table.ts` — dry run prints `<n> <Q id|pending|refused> <score|reason>` plus the matcher summary; `--apply` appends through `recordConsumedKeys` with packet = record folder, id = row id; `--scan-orphans`; `--release` rewrites via temp+rename and prints the removed rows. Read-only otherwise; exit 0/2/1.
+- `runtime/api/index.ts` — matcher functions and types re-exported beside the writer.
+- `runtime/hooks/claude/session-stop.ts:107` — new nudge text, keeping the prefix line 006 greps for.
+- `save.md`, `save-workflow.md` — matcher step, dry run then `--apply`, ASCII only.
+- `cli/tests/match-decision-table.vitest.ts` — 5 cases over a temp project.
+
+Verified: `vitest run` on both matcher suites 18 passed, exit 0; `tsc --noEmit -p tsconfig.json` exit 0. Also rebuilt runtime + cli dist, and passed api-boundary, import-policy, source-dist-alignment and both session-stop suites.
+
+Operator's next: review the diff; the parent packet's T010 build is already satisfied.

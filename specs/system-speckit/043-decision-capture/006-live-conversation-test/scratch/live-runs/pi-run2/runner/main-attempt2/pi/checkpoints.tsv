@@ -1,0 +1,16 @@
+turn	status	attempts	evidence	observed
+S0	PASS	1	turns/S0	rows=0 base=base.sha
+S1	PASS	1	turns/S1	rows=0 gate3=visible
+S2	FAIL	1	turns/S2	CHECK_FAILED
+S2	FAIL	2	turns/S2/attempt-2	TIMEOUT
+S3	NOT_RUN	0	turns/S3	TIMEOUT
+S4	NOT_RUN	0	turns/S4	TIMEOUT
+S5	NOT_RUN	0	turns/S5	TIMEOUT
+S6	NOT_RUN	0	turns/S6	TIMEOUT
+S7	NOT_RUN	0	turns/S7	TIMEOUT
+S8-compact	NOT_RUN	0	turns/S8-compact	TIMEOUT
+S8-ask	NOT_RUN	0	turns/S8-ask	TIMEOUT
+S9-restart	NOT_RUN	0	turns/S9-restart	TIMEOUT
+S9-ask	NOT_RUN	0	turns/S9-ask	TIMEOUT
+S10	NOT_RUN	0	turns/S10	TIMEOUT
+S11	NOT_RUN	0	turns/S11	TIMEOUT

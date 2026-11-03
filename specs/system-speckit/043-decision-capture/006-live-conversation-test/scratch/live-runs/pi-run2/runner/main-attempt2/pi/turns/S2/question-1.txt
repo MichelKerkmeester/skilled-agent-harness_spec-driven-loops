@@ -1,0 +1,51 @@
+   appends "Type something." row, which conflicts with "offering exactly Amber, Teal and Slate" — though that appended row is system-added, not authored by me, and the rules say reserved labels are   
+   rejected at runtime, implying it's expected and fine.                                                                                                                                                
+                                                                                                                                                                                                        
+   The stricter requirement is "exactly Amber, Teal and Slate". I'd rather satisfy it literally. question with custom: false gives exactly three.                                                       
+                                                                                                                                                                                                        
+   Hmm, but there's a risk: if question is the runtime's and behaves fine, great. I'll go with question and custom: false.                                                                              
+                                                                                                                                                                                                        
+   Wait, let me reconsider. The user said "your question tool" — singular, definite. Given ambiguity, the safest is to pick one and do it, not ask a meta-question (that would be ridiculous here). The 
+   question tool literally is named "question". The user said "ask me with your question tool". I'll use question.                                                                                      
+                                                                                                                                                                                                        
+   Parameters:                                                                                                                                                                                          
+   - questions: one question                                                                                                                                                                            
+       - question: "Which colour should the status badge use?"                                                                                                                                          
+       - header: "Badge colour" — prefer 12 chars or fewer. "Badge colour" is 12 chars. Good.                                                                                                           
+       - options: three, labels: "Amber", "Teal", "Slate"; descriptions explaining each.                                                                                                                
+       - multiple: false (single choice)                                                                                                                                                                
+       - custom: false                                                                                                                                                                                  
+                                                                                                                                                                                                        
+   No description recommending anything.                                                                                                                                                                
+                                                                                                                                                                                                        
+   Descriptions must not imply recommendation. Keep neutral: "Amber" — "Warm yellow-orange tone." etc. Keep them factual without implying preference.                                                   
+                                                                                                                                                                                                        
+   Let me write it.                                                                                                                                                                                     
+                                                                                                                                                                                                        
+   I should not add any preamble chat message beyond minimal. The user said open the tool itself, not a chat message. So I should just call the tool with minimal or no surrounding text. I'll call it  
+   with no commentary.                                                                                                                                                                                  
+                                                                                                                                                                                                        
+   After the tool returns, I'll report the answer and keep waiting (no writes). But the tool call is the turn's action; the result comes back and then I need a brief reply. Since the user said "write 
+   nothing until I tell you" — reporting the answer isn't a file write. I should keep it minimal: record the choice, keep waiting.                                                                      
+                                                                                                                                                                                                        
+   Let me make the tool call.                                                                                                                                                                           
+
+● Question ask user                                                                                                                                                                                     
+
+ Observational memory: dropper running (~42,821 tokens accumulated, ~17,200-token input)                                                                                                                
+
+ · Waiting for your answer… (thought for 6s · ↓ 1,250 tokens · 8s)                                                                                                                                      
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Badge colour: Which colour should the status badge use?                                                                                                                                                
+
+ → Amber — Warm yellow-orange hue.                                                                                                                                                                      
+   Teal — Blue-green hue.                                                                                                                                                                               
+   Slate — Muted blue-grey hue.                                                                                                                                                                         
+
+ ↑↓ navigate  enter select  escape/ctrl+c cancel                                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+main | DeepSeek V4.1 Flash 1017 | ctx: 96% left | used: 42.6k tok | $0.01
+

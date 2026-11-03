@@ -1,0 +1,51 @@
+                                                                                                                                                                                                       
+  I haven't written anything yet, because you haven't told me to start or to ask my product questions. Once you do, I'll ask them all in one message: what the widget is, where its code lives or should
+  live, and which states the badge shows. The repo has no widget code yet, so I need those answers before I can write any.
+                                                                                                                                                                                                      
+✻ Baked for 4s · done 11:53 AM                                                                                                                                                                          
+                                                                                                                                                                                                        
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.                                                            
+
+⏺ User answered Claude's questions:                                                                                                                                                                     
+  ⎿  · Which colour should the demo widget's status badge use? → Amber                                                                                                                                  
+
+⏺ The badge will be Amber.                                                
+                                                                                                                                                                                                        
+  I still haven't written anything. Your message said to ask before writing, but it didn't tell me to start, and your first instruction was to write nothing until you did. Two things are still open:  
+                                                                                                                          
+  - Go-ahead: I need you to tell me to start.
+  - Widget location: the repo has no widget code, so I don't know where the badge goes. I'll ask about that, and about which states the badge should show, once you let me ask product questions.
+
+✻ Worked for 11s · done 11:53 AM                                                                                                                                                                        
+
+❯ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several.                                                                
+
+⏺ User answered Claude's questions:          
+  ⎿  · Which platforms must the demo widget's status badge support? → Web, iOS, Android                                                                                                          
+                                                                                                                                                                                                      
+⏺ The badge must support all three platforms: Web, iOS and Android. So far you've chosen an Amber badge on Web, iOS and Android.                                                                      
+                                                                                                                                                                                                        
+  I still haven't written anything. A session notice suggested running /speckit:save to put your answers in the packet's decision record. That save writes files, so I haven't run it.                  
+                                                                                                                                                                                                 
+  I'm waiting for you to tell me to start. Before I can write code, I'll also need to ask where the widget's code lives on each platform, since the repo has none yet.
+
+✻ Sautéed for 9s · done 11:54 AM
+
+❯ Ask me with your question tool for the badge label, with a few options. I will type my own.                                                                                                           
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Badge label 
+                                                                                                                                                                      
+│ What text should the demo widget's status badge show? Pick one or type your own under Other.
+
+❯ 1. Beta                                                                                                                                                                             
+     Marks the widget as a beta feature.                                                                                                                                                                
+  2. New                                                                                                                                                                                         
+     Marks the widget as newly released.                
+  3. Demo                                                                                                              
+     Marks the widget as a demo.                                                                                                                                                                      
+  4. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel
+

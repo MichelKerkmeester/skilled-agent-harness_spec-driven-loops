@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ Hmm, "Nothing is blocked on you" then "Say the word" contradicts slightly. Better: "Nothing is blocked on you. The badge work still┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ go-ahead, and the index refresh can wait with it."                                                                                 ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃ Also avoid em dash: I used commas. Fine. No semicolons. Check serial comma: "amber, Web plus iOS plus Android, "Needs review", and ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃ a serial comma before "and static". Rule says no serial comma. Rephrase: "The recorded decisions: amber; Web, iOS and Android; "Nee┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+     ┃ static." Semicolons are also banned. Use separate sentences.                                                                       ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃                                                                                                                                    ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ "The recorded decisions are amber for the colour, all three platforms, "Needs review" as the label, and no blink." Serial comma iss┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ "The record now says amber, all three platforms, the label "Needs review" and a static badge with no blink." Good.                 ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     ┃                                                                                                                                    ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     ┃ Numbers: don't overload. Fine.                                                                                                     ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃                                                                                                                                    ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Also mention identity: save_lineage changed etc. Not needed.                                                                       ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     ┃                                                                                                                                    ┃  plugins/system-skill-advisor.js                         ┃  
+     ┃ Keep it tight.                                                                                                                     ┃  Run /plugins to view details.                           ┃  
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ One more check: did the save update spec.md status? No. Good.                                                                                                                                    
+     ┃                                                                                                                                                                                                  
+     ┃ I'll write the final answer now.                                                                                                                                                                 
+                                                                                                                                                                                                        
+     Save ran clean. /speckit:save specs/demo/001-demo-widget --full-auto exited 0, and validate.sh --strict printed RESULT: PASSED with 0 errors and 3                                                 
+     warnings.                                                                                                                                                                                          
+                                                                                                                                                                                                        
+     Four files changed, all inside the packet. decision-record.md gained Q001 through Q004 with the verbatim question, options and answer for each.                                                    
+     implementation-summary.md gained the continuity block, which records completion at 0 percent with two blockers. description.json and graph-metadata.                                               
+     json were refreshed by the writer, as the command contract requires. No lock file was left behind.                                                                                                 
+                                                                                                                                                                                                        
+     The record now says amber, all three platforms, the label "Needs review" and a static badge with no blink. The continuity line reads "Recorded four                                                
+     badge decisions and wrote no widget code", which is accurate.                                                                                                                                      
+                                                                                                                                                                                                        
+     The three warnings are 94 unfilled placeholders, an incomplete AI protocol section, and an empty measured-behavior block. All three are expected                                                   
+     while the packet stays Draft, and none blocks the save.                                                                                                                                            
+                                                                                                                                                                                                        
+     Rollback is available: the pre-save packet sits byte for byte at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/spec-backup/001-                                                
+     demo-widget-before-save. Two residual gaps: the trigger index is still stale for spec.md, so Gate 1 will not find "demo widget", and the save's git                                                
+     context extractor degraded with ENOBUFS, which affects captured session context only.                                                                                                              
+                                                                                                                                                                                                        
+     Nothing is blocked on you. The badge work still waits for your go-ahead, and the index refresh can wait with it.                                                                                   
+                                                                                                                                                           ▄                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1m 58s · 141.8 tok/s                                                                                               █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  95.6K (9%) · $0.04  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ Keep it reasonably concise. Also mention nothing committed.                                                                        ┃  3 plugins failed                        › Open plugins  ┃  
+                                                                                                                                          ┃                                                          ┃  
+     SPECKIT:SAVE                                                                                                                         ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     --------------------------------------------------                                                                                   ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     Folder      specs/demo/001-demo-widget                                                                                               ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+     Route       metadata_only                                                                                                            ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     Targets     description.json, graph-metadata.json                                                                                    ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Anchors                                                                                                                              ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     - none (no packet document changed)                                                                                                  ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     Triggers                                                                                                                             ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     unchanged: demo widget | demo widget plan | demo widget tasks |                                                                      ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     demo widget decision record | demo widget implementation summary |                                                                   ┃  plugins/system-skill-advisor.js                         ┃  
+     demo widget acceptance criteria                                                                                                      ┃  Run /plugins to view details.                           ┃  
+                                                                                                                                          ┃                                                          ┃  
+     STATUS=OK TARGETS=2 ANCHORS=0                                                                                                                                                                      
+                                                                                                                                                                                                        
+     There was nothing new to record: the sweep returned zero pending operator answers, and match-decision-table found zero unmatched.                                                                  
+                                                                                                                                                                                                        
+     What the run actually did:                                                                                                                                                                         
+                                                                                                                                                                                                        
+     - decision-record.md is byte-identical to before (md5 a344fb3d…), so no duplicate Q005–Q007 rows.                                                                                                  
+     - implementation-summary.md is untouched — continuity was left out of the payload, so the stored block was retained rather than rewritten (                                                        
+       last_updated_at still 13:25:51Z).                                                                                                                                                                
+     - description.json advanced to memorySequence: 3 and gained a third memoryNameHistory entry, named from this save's summary.                                                                       
+     - graph-metadata.json was reported refreshed but its bytes and mtime are unchanged.                                                                                                                
+                                                                                                                                                                                                        
+     Validation: RESULT: PASSED, 0 errors, 3 warnings — the same three placeholder/protocol warnings as before.                                                                                         
+                                                                                                                                                                                                        
+     Two things to name plainly:                                                                                                                                                                        
+                                                                                                                                                                                                        
+     - A repeat save still consumes a memorySequence slot. This one recorded an entry for a session that added no new decisions, so the history now                                                     
+       carries a "repeated save" line with no content behind it.                                                                                                                                        
+     - The trigger index is still stale for spec.md and was again not regenerated; no trigger_phrases changed.                                                                                          
+                                                                                                                                                                                                        
+     Nothing committed or staged. Next action: tell me whether to start the badge or fill the packet docs first — repeating this save again will only add                                               
+     another empty memory entry.                                                                                                                                                                        
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 29.5s · 110.4 tok/s                                                                                                █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  54.3K (5%) · $0.08  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

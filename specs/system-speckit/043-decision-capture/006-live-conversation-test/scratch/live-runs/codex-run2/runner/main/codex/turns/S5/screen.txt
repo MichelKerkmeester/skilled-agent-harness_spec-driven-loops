@@ -1,0 +1,51 @@
+
+  Worked for 19s • 20:21
+
+
+› Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.
+
+
+• Questions 1/1 answered
+  • Which platform should I record first? You can add other platforms in a note.
+    answer: None of the above
+    note: Web, iOS, Android
+
+• Recorded: Web, iOS and Android. I’ll keep waiting for your instruction to write.
+
+  Worked for 15s • 20:22
+
+
+› Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.
+
+
+• Questions 1/1 answered
+  • What label should the badge show? These are examples; type your own if you prefer.
+    answer: None of the above
+    note: Needs review
+
+• “Needs review” recorded as the badge label. I’ll keep waiting for your go-ahead before writing files.
+
+  Worked for 13s • 20:22
+
+
+› Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink.
+
+
+• Should the badge blink?
+
+  Worked for 2s • 20:23
+
+
+› No, keep it static.
+
+
+• Static noted. I’ll keep waiting for your go-ahead before writing files.
+
+  Worked for 2s • 20:23
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 14% used · 5h 62% left · weekly 78% left
+

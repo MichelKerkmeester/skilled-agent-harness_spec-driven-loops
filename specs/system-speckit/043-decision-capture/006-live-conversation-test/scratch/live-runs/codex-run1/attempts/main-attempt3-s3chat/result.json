@@ -1,0 +1,160 @@
+{
+  "runtime": "codex",
+  "verdict": "FAIL",
+  "blocker": "MISSING_QUESTION",
+  "seed": 1907654687,
+  "socket": "conv-79740-codex",
+  "session_id": "e71892eb-99cc-4abb-bc17-ff87c0b987f5",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/codex-main/codex",
+  "started_at": "2026-11-02T15:31:58.805Z",
+  "finished_at": "2026-11-02T15:39:09.572Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 base=base.sha",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 gate3=visible",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S3",
+      "status": "FAIL",
+      "attempts": 2,
+      "reason": "MISSING_QUESTION",
+      "blocker": "([Pp]latform|Web|iOS|Android|[Tt]arget|[Dd]evice|[Aa]ppear|[Ss]hip|[Ss]upport)",
+      "observed": "",
+      "evidence": "turns/S3"
+    },
+    {
+      "id": "S4",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S4"
+    },
+    {
+      "id": "S5",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S5"
+    },
+    {
+      "id": "S6",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S7",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S7"
+    },
+    {
+      "id": "S8-compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-compact"
+    },
+    {
+      "id": "S8-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-ask"
+    },
+    {
+      "id": "S9-restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-restart"
+    },
+    {
+      "id": "S9-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-ask"
+    },
+    {
+      "id": "S10",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S10"
+    },
+    {
+      "id": "S11",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S11"
+    }
+  ]
+}

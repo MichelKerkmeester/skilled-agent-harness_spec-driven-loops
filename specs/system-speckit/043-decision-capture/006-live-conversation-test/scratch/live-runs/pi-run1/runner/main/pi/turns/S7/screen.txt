@@ -1,0 +1,51 @@
+   no-blink decision carries one.                                                                                                                                                                       
+                                                                                                                                                                                                        
+   Two things I did not do unilaterally, plus the rollback:                                                                                                                                             
+                                                                                                                                                                                                        
+   1. The writer reports the trigger index STALE for spec.md, added phrase demo widget — that is why my first lookup missed the packet despite its frontmatter declaring the phrase. Fixing it is node  
+      .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs, a separate write to a committed index; say the word and I run it.                                               
+   2. session_dedup.session_id still reads scaffold-001-demo-widget with an all-zero fingerprint even though I passed --session-id, so the writer did not update that block. Left as written rather than
+      hand-edited, since the writer owns it.                                                                                                                                                            
+   3. Rollback, if you want the pre-save state back: rm -rf specs/demo/001-demo-widget && cp -R /tmp/badge-save-snapshot-001-demo-widget specs/demo/001-demo-widget. The repo has no commits, so that   
+      copy is the only undo. My temp payload file is already deleted.                                                                                                                                   
+
+ ✻ Turn took 1m 53s (Total time 5m 15s · 8 turns)                                                                                                                                                       
+
+ ❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                             
+
+ ∴ Thinking: The user asks a question with the tool: Left or Right. Exactly two options.                                                                                                                
+                                                                                                                                                                                                        
+   Single select. Header ≤16 chars: "Badge side" (10).                                                                                                                                                  
+                                                                                                                                                                                                        
+   Note: earlier there were already 4 decisions recorded. This is a fifth decision that will need a save. Not my problem now.                                                                           
+                                                                                                                                                                                                        
+   Just ask.                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   Also worth a one-line note: neither placement exists yet (no title, no widget) — but keep it brief. Maybe after the tool result. The tool call ends the turn though. Let me add a minimal preamble?  
+   Better to just call the tool. But I could add a short note before. Keep it minimal — the harness shows the question. I'll add nothing before, and after the answer I'll report and note the hold.    
+                                                                                                                                                                                                        
+   Actually the instruction is just to ask. Let me call the tool.                                                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+   └ 1 line returned (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Recorded: badge sits right of the title.                                                                                                                                                             
+                                                                                                                                                                                                        
+   That is a fifth decision, and it is not in the packet yet — the last save recorded Q001–Q004 and exited clean. It lands on the next /speckit:save specs/demo/001-demo-widget --full-auto, which will 
+   append it as Q005.                                                                                                                                                                                   
+                                                                                                                                                                                                        
+   Still holding on everything else; no code written, no widget exists to place it against.                                                                                                             
+
+ ✻ Turn took 12s (Total time 5m 35s · 9 turns)                                                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 94% left | used: 65.7k tok | $0.03
+
+

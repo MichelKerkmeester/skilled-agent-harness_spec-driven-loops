@@ -1,0 +1,51 @@
+  Targets     decision-record.md, description.json, graph-metadata.json, implementation-summary.md                                                                                                      
+                                                                                                                                                                                                        
+  Anchors                                                                                                                                                                                               
+  - operator-decisions                                                                                                                                                                                  
+  - operator-answers-verbatim                                                                                                                                                                           
+                                                                                                                                                                                                        
+  Triggers                                                                                                                                                                                              
+  demo widget (index not regenerated)                                                                                                                                                                   
+                                                                                                                                                                                                        
+  STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                         
+```                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+What was written. Four operator decisions became Q001–Q004 in decision-record.md, each with its verbatim question, options and answer in the appendix: Amber, Web/iOS/Android, "Needs review", and      
+static (no blinking). The writer recorded all four source keys in the gitignored consumed list. implementation-summary.md now carries the continuity block: recent action, next safe action, two        
+blockers, three key files, completion_pct: 5. description.json bumped memorySequence to 1 and graph-metadata.json was refreshed in the same save.                                                       
+                                                                                                                                                                                                        
+One failure worth naming. My first attempt died with MEMORY_007 next_safe_action must begin with an imperative or status verb. I had written "Fill the packet scope…", and fill is not in the writer's  
+verb set — the error came from .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:141. I changed it to "Document the packet scope…" and reran. The failed run wrote       
+nothing: git status --short specs/ was empty afterwards and no .canonical-save.lock remained, so there is no half-saved state.                                                                          
+                                                                                                                                                                                                        
+Validation. validate.sh specs/demo/001-demo-widget --strict printed RESULT: PASSED, 0 errors, 3 warnings: 94 unfilled placeholders, AI protocols 0/4, empty measured-behavior block. All three are the  
+scaffold's own gaps, not save damage. One pre-existing warning did clear: packet identity is now normalized across continuity, description and graph surfaces, where before the save it carried the     
+scaffold/001-demo-widget drift.                                                                                                                                                                         
+                                                                                                                                                                                                        
+Two things I did not do, both your call. No post-save quality review appeared, because this build of generate-context.js contains no reference to it, so there were no HIGH issues for me to patch and I
+am not claiming a review passed. And I did not regenerate the trigger index: no trigger phrase changed this session, and the committed index has no entry for this packet at all — a JSON scan of       
+runtime/data/trigger-index.json finds neither the folder path nor the phrase. So Gate 1 retrieval for "demo widget" stays a clean no-hit until that index is rebuilt, which is a separate run of        
+generate-trigger-index.mjs.                                                                                                                                                                             
+                                                                                                                                                                                                        
+State. Branch main, HEAD f0dd79d, four modified files under specs/, nothing staged or committed. The tooling directories are still untracked and untouched. I deleted the temporary payload file. No    
+residual risk beyond the stale index, whose only cost is that this packet cannot be found by trigger lookup.                                                                                            
+                                                                                                                                                                                                        
+Your move: say whether to rebuild the trigger index, and whether to start the packet proper. The blockers I just wrote into continuity stand — no widget source on any of the three platforms, and      
+spec.md still has empty scope and requirements.                                                                                                                                                         
+
+                                                                                                                                                                                                        
+ [compaction]                                                                                                                                                                                           
+                                                                                                                                                                                                        
+ Compacted from 91,615 tokens (ctrl+o to expand)                                                                                                                                                        
+                                                                                                                                                                                                        
+
+ blackhole: 116 source entries processed; tail kept 1/9 user turns (~251 tok).                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | used: 71.9k tok | $0.04
+

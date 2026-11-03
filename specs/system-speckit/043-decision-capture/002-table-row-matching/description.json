@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/043-decision-capture/002-table-row-matching",
+  "description": "Phase 2: table-row-matching",
+  "keywords": [
+    "phase",
+    "table-row-matching"
+  ],
+  "lastUpdated": "2026-11-02T20:58:44.140Z",
+  "specId": "002",
+  "folderSlug": "table-row-matching",
+  "parentChain": [
+    "system-speckit",
+    "043-decision-capture"
+  ],
+  "memorySequence": 4,
+  "memoryNameHistory": [
+    "02-11-26_15-13__re-proved-table-row-matching-in-the-006-claude.md",
+    "02-11-26_15-35__recorded-the-operator-answers-that-closed-table.md",
+    "02-11-26_15-35__refreshed-generated-metadata-after-002-closed-on.md",
+    "02-11-26_21-58__deep-review-of-the-series-luna-five-iterations.md"
+  ]
+}

@@ -1,0 +1,3 @@
+{"runtime":"claude-code","time":"2026-11-02T11:02:46.458Z","turn":"startup","kind":"startup","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T11:03:02.623Z","turn":"S12","kind":"send","steps":[{"text":"Ask me with the tool which colour the badge uses, offering exactly Amber, Teal and Slate."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T11:03:13.887Z","turn":"S12","kind":"question","steps":[{"key":"Enter"}]}

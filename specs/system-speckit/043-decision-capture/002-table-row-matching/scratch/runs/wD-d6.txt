@@ -1,0 +1,40 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/043-decision-capture/002-table-row-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code TypeScript standards: strict types, small named functions, JSDoc on
+exports, no new dependency. Comments say WHY and never contain spec paths, packet/phase numbers
+or task/requirement ids. Tests: happy path plus one edge case per public surface.
+Never open any .env or token file. Never write anything under barter/ or under
+.skilled/skills/.state/. RT = .skilled/skills/system-spec-kit/runtime
+NOTE: your sandbox may block vitest (listen EPERM). If so, run `npx tsc --noEmit -p $RT/tsconfig.json`
+from $RT instead and say the tests were not run; the orchestrator runs them.
+
+
+TASK, one bounded writer fix:
+In $RT/lib/continuity/decision-record-writer.ts, `insertAppendixItem` adds an appendix item only
+when the id has none, so a re-save that carries the SAME source key with a CHANGED answer
+replaces the table row (insertDecisionRow) but leaves the old `### Q<id>` appendix item, and the
+row and the verbatim record disagree. Change it so that when an item for that id already exists
+and its question, options or answer differ from the entry being written, the existing item's
+lines (from its `### Q<id>` heading up to the next `### Q` heading or the section close) are
+replaced by the freshly formatted item. When nothing differs, leave the bytes unchanged so a
+repeat save stays byte-identical. Read writeDecisionRecord first to see how ids, rows and items
+are produced. Keep everything else as is.
+Add cases to $RT/cli/tests/decision-record-writer.vitest.ts: (1) write key K with answer "Amber",
+re-write K with answer "Red": one row and one `### Q` item, both show Red, Amber gone from the
+appendix; (2) repeat the Red write: file byte-identical; (3) a different key's item is untouched.
+VERIFY: cd $RT/cli && npx vitest run tests/decision-record-writer.vitest.ts --config ../vitest.config.ts --root .
+(your sandbox may block it with listen EPERM; then run `cd $RT && npx tsc --noEmit -p tsconfig.json`
+and say so). Final message under 100 words.

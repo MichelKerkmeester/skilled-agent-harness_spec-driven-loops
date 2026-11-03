@@ -1,0 +1,51 @@
+ ? Demo widget status badge      +                                                                                                                                                                      
+     ┃ only-ish action (asking a question), no file writes. Let me just call the question tool.                                           ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ I need to use the question tool. In this harness, the question tool is available directly. But wait — the system says Code Mode: us┃                                                          ┃  
+     ┃ to call tools listed. However, the question tool is listed in the available tools directly (not under tools catalog for code mode).┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃ lists opencode tools, opencode_goal, etc. question isn't in the code-mode catalog. So I should call the question tool directly.    ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃                                                                                                                                    ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     ┃ Just do it.                                                                                                                        ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃                                                                                                                                    ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ Gate considerations: no file writes yet. Gate 6 reply rules... I should probably keep it minimal. The prior pattern shows just call┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Let me call it.                                                                                                                    ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+  ┃                                                                                                                                       ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+  ┃  # Questions                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+  ┃                                                                                                                                       ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+  ┃  Which size should the badge use?                                                                                                     ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃  Small                                                                                                                                ┃  Run /plugins to view details.                           ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+                                                                                                                                                                                                        
+     Recorded: the badge uses the small size.                                                                                                                                                           
+                                                                                                                                                                                                        
+     Both the position (Right) and size (Small) answers are still unsaved in the packet.                                                                                                                
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 11.5s · 75.5 tok/s                                                                                                                                              
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge has a tooltip, offering exactly Yes and No. Open the tool itself, not a chat message, and mark no option as                                                 
+  ┃  recommended.                                                                                                                                                                                       
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 447ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Just ask the question with the tool.                                                                                                                ▄                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge have a tooltip?                                                                                                                                                                   
+  ┃                                                                                                                                                                                                     
+  ┃  1. Yes                                                                                                                                                                                             
+  ┃     Show a tooltip when the badge is hovered or focused.                                                                                                                                            
+  ┃  2. No                                                                                                                                                                                              
+  ┃     Do not show a tooltip for the badge.                                                                                                                                                            
+  ┃  3. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

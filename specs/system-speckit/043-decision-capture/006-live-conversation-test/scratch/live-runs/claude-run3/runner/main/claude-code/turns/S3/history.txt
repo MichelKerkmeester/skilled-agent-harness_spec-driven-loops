@@ -1,0 +1,50 @@
+                                                                                                                                                                                        
+  - It's a Level 3 packet with spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md, timeline.md, description.json and graph-metadata.json.              
+  - spec.md is still the empty template. Problem, scope, requirements and the files to change are all [YOUR_VALUE_HERE] placeholders. Its status is Draft, created 2026-11-03, and the recorded branch
+    is scaffold/001-demo-widget.                                                                                                         
+  - Searching every packet file for "badge" or "status" found no badge requirement. "Status" only appears as template metadata fields.
+  - There is no widget source code in the repo. Adding a badge means writing the widget's spec and the code for it.                                                                     
+                                                                                                                                                                                                      
+  Checks: the trigger-index lookup for "status badge demo widget" found nothing (exit 1, which means no match). I found the packet by listing the files git tracks.
+                                                                                                                                                                                                        
+  While I was reading, a hook asked the spec-folder question, but those commands only read files. That question applies once I start writing, so I'll ask it then, along with any product questions once
+  you say I can.                
+                                                                                                                                                                                        
+  Nothing to do on your side until you're ready: tell me to go ahead.                                                                                                                                 
+
+✻ Baked for 28s · done 7:36 AM                                                                                                                                                                        
+
+❯ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                                                                                                
+
+⏺ Noted: this session's spec folder is specs/demo/001-demo-widget (option A). I'm still waiting and haven't written anything.
+
+✻ Crunched for 2s · done 7:36 AM
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no      
+  option as recommended.                                                                                                                                                                                
+
+⏺ User answered Claude's questions:                                   
+  ⎿  · Which colour should the demo widget's status badge use? → Amber
+
+⏺ You chose Amber for the badge. I've written nothing yet, because you haven't told me to start. Say go when you want me to begin in specs/demo/001-demo-widget.
+
+✻ Worked for 9s · done 7:37 AM
+
+❯ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type   
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.                                                                                                      
+
+⏺ User answered Claude's questions:                                                                           
+  ⎿  · Which platforms must the demo widget's status badge support? Select all that apply. → Web, iOS, Android
+
+⏺ The badge must support Web, iOS and Android. The question tool allows several picks, so you didn't need a note.
+                                                                                                                                                                                                        
+  Your answers so far are Amber for the colour and all three platforms. A session reminder says one of them isn't in a decision record yet and suggests running /speckit:save. That save writes files,  
+  and you've told me to write nothing, so I haven't run it. Both answers will go into the packet once you tell me to start.
+
+✻ Cogitated for 7s · done 7:37 AM                                             
+                                                                                                                                                                                    ◐ medium · /effort
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯ 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)

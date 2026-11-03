@@ -1,0 +1,777 @@
+{
+  "sessionId": "fanout-luna-1793649602423-v8rh6g",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "LUNA-R1-P1-001",
+      "severity": "P1",
+      "title": "Claude and Pi can select a transcript from a different project when project paths collide",
+      "file": ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+      "line": 244,
+      "description": "",
+      "findingClass": "cross_project_transcript_contamination",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R3-P1-004",
+      "severity": "P1",
+      "title": "The series phase map includes phase 007 while its binding and closure contract stop at 006",
+      "file": "specs/system-speckit/043-decision-capture/goal.md",
+      "line": 61,
+      "description": "",
+      "findingClass": "phase_closure_contract_drift",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R1-P2-002",
+      "severity": "P2",
+      "title": "A closing code or quotation paragraph can be emitted as a chat question",
+      "file": ".skilled/hooks/decision-capture/lib/chat-questions.mjs",
+      "line": 90,
+      "description": "",
+      "findingClass": "false_positive_chat_candidate",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R2-P2-003",
+      "severity": "P2",
+      "title": "The shared decision queue follows a symlink outside the project root",
+      "file": ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+      "line": 238,
+      "description": "",
+      "findingClass": "symlinked_queue_path_escape",
+      "deltaStatus": null,
+      "scopeProof": "All live adapters hand their runtime project directory to the shared core; the writer and matcher use the same relative state directory without a real-path containment check.",
+      "affectedSurfaceHints": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-R3-P2-005",
+      "severity": "P2",
+      "title": "The transcript-sweeps playbook incorrectly says OpenCode and Devin have no live hook",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
+      "line": 25,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 3
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.96,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "graphSignals": {
+    "dimensionCoverage": 1,
+    "evidenceDensity": 1,
+    "findingStability": 0.8,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.96
+  },
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_closure_alignment",
+      "false_positive_question_detection",
+      "feature_catalog_path_alignment",
+      "matcher_cli_separation",
+      "overengineered_abstraction",
+      "parent_goal_phase_alignment",
+      "project_path_identity",
+      "queue_path_containment",
+      "runtime_adapter_duplication",
+      "runtime_capability_documentation",
+      "save_target_resolution",
+      "shared_core_boundary",
+      "source_key_path_injection",
+      "test_coverage_maintainability"
+    ],
+    "ruledOut": [
+      "feature_catalog_path_alignment",
+      "matcher_cli_separation",
+      "overengineered_abstraction",
+      "runtime_adapter_capability_alignment",
+      "runtime_adapter_duplication",
+      "save_target_resolution",
+      "shared_core_boundary",
+      "source_key_path_injection",
+      "test_coverage_maintainability"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "project_path_identity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          5
+        ]
+      },
+      "false_positive_question_detection": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "queue_path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "save_target_resolution": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "source_key_path_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "parent_goal_phase_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_closure_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_capability_documentation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "feature_catalog_path_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_adapter_capability_alignment": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "maintainability_and_test_coverage": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "shared_core_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "runtime_adapter_duplication": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "matcher_cli_separation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "test_coverage_maintainability": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "overengineered_abstraction": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts"
+      ],
+      "bugClass": "save_target_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The ordinary save flow derives its destination from the validated packet target and phase resolution.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:658",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:671",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:222"
+      ],
+      "reason": "Decision payload values are not passed as destination paths."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts"
+      ],
+      "bugClass": "source_key_path_injection",
+      "disposition": "ruled_out",
+      "rationale": "Source keys cannot contain path separators and are not treated as paths.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:222",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:80"
+      ],
+      "reason": "The accepted key alphabet excludes slash and backslash."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/coverage-rationale.md"
+      ],
+      "bugClass": "feature_catalog_path_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The runtime matrix is consistent across the catalog and coverage documents.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:29-47",
+        ".skilled/hooks/README.md:271-275",
+        ".skilled/hooks/coverage-rationale.md:90-92"
+      ],
+      "reason": "Direct comparison shows the catalog and coverage table match current adapter behavior."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs"
+      ],
+      "bugClass": "runtime_adapter_capability_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The live conversation scenario preserves the per-runtime distinction and valid Codex skips.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md:351-384",
+        ".opencode/plugins/decision-capture.js:51-79",
+        ".devin/hooks.v1.json:161-166",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts:48-117"
+      ],
+      "reason": "The runtime matrix and capability summaries align; only transcript-sweeps prose is stale."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs"
+      ],
+      "bugClass": "shared_core_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The shared core owns common behavior while transcript parsers keep their runtime-specific input boundary.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:129-165",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:254-329",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs:81-158"
+      ],
+      "reason": "Direct read shows a clear shared-core and parser split."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs"
+      ],
+      "bugClass": "runtime_adapter_duplication",
+      "disposition": "ruled_out",
+      "rationale": "The separate sweep modules correspond to distinct runtime stores and keep duplicated behavior at small CLI boundaries.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:138-212",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:255-279",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:234-261",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:311-349"
+      ],
+      "reason": "No current behavioral drift was found that a common sweep wrapper would safely remove."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts"
+      ],
+      "bugClass": "matcher_cli_separation",
+      "disposition": "ruled_out",
+      "rationale": "Matching rules are not duplicated between the reusable library and command.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:78-213",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:22-33",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:255-277"
+      ],
+      "reason": "The CLI delegates match decisions to the runtime matcher API."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-table-matcher.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/match-decision-table.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts"
+      ],
+      "bugClass": "test_coverage_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "The test layout keeps runtime-specific regressions close to their format adapter and separately tests shared behavior.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.test.mjs:592-889",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:77-410",
+        ".opencode/plugins/tests/decision-capture.test.cjs:76-181",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-table-matcher.vitest.ts:36-210",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts:162-462"
+      ],
+      "reason": "Source inspection found focused suites for both shared behavior and each runtime-specific boundary."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts"
+      ],
+      "bugClass": "overengineered_abstraction",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed abstractions prevent duplicate queue writes, ambiguous row consumption and cross-packet decision writes.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:254-329",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:143-209",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:636-708",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:716-765"
+      ],
+      "reason": "Direct source and test inspection found no abstraction without a current correctness role."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts"
+      ],
+      "bugClass": "save_target_resolution",
+      "disposition": "ruled_out",
+      "rationale": "The ordinary save flow derives its destination from the validated packet target and phase resolution.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:658",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:671",
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:222"
+      ],
+      "proof": "Decision payload values are not passed as destination paths."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts"
+      ],
+      "bugClass": "source_key_path_injection",
+      "disposition": "ruled_out",
+      "rationale": "Source keys cannot contain path separators and are not treated as paths.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/cli/utils/input-normalizer.ts:222",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts:80"
+      ],
+      "proof": "The accepted key alphabet excludes slash and backslash."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md",
+        ".skilled/hooks/README.md",
+        ".skilled/hooks/coverage-rationale.md"
+      ],
+      "bugClass": "feature_catalog_path_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The runtime matrix is consistent across the catalog and coverage documents.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:29-47",
+        ".skilled/hooks/README.md:271-275",
+        ".skilled/hooks/coverage-rationale.md:90-92"
+      ],
+      "proof": "Direct comparison shows the catalog and coverage table match current adapter behavior."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
+        ".skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts",
+        ".opencode/plugins/decision-capture.js",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs"
+      ],
+      "bugClass": "runtime_adapter_capability_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The live conversation scenario preserves the per-runtime distinction and valid Codex skips.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md:351-384",
+        ".opencode/plugins/decision-capture.js:51-79",
+        ".devin/hooks.v1.json:161-166",
+        ".skilled/hooks/decision-capture/pi/decision-capture.ts:48-117"
+      ],
+      "proof": "The runtime matrix and capability summaries align; only transcript-sweeps prose is stale."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-011",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs"
+      ],
+      "bugClass": "shared_core_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The shared core owns common behavior while transcript parsers keep their runtime-specific input boundary.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:129-165",
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:254-329",
+        ".skilled/hooks/decision-capture/lib/chat-questions.mjs:81-158"
+      ],
+      "proof": "Direct read shows a clear shared-core and parser split."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs"
+      ],
+      "bugClass": "runtime_adapter_duplication",
+      "disposition": "ruled_out",
+      "rationale": "The separate sweep modules correspond to distinct runtime stores and keep duplicated behavior at small CLI boundaries.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:138-212",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:255-279",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:234-261",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:311-349"
+      ],
+      "proof": "No current behavioral drift was found that a common sweep wrapper would safely remove."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts"
+      ],
+      "bugClass": "matcher_cli_separation",
+      "disposition": "ruled_out",
+      "rationale": "Matching rules are not duplicated between the reusable library and command.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:78-213",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:22-33",
+        ".skilled/skills/system-spec-kit/runtime/cli/continuity/match-decision-table.ts:255-277"
+      ],
+      "proof": "The CLI delegates match decisions to the runtime matcher API."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-table-matcher.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/match-decision-table.vitest.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts"
+      ],
+      "bugClass": "test_coverage_maintainability",
+      "disposition": "ruled_out",
+      "rationale": "The test layout keeps runtime-specific regressions close to their format adapter and separately tests shared behavior.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.test.mjs:592-889",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:77-410",
+        ".opencode/plugins/tests/decision-capture.test.cjs:76-181",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-table-matcher.vitest.ts:36-210",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/decision-record-writer.vitest.ts:162-462"
+      ],
+      "proof": "Source inspection found focused suites for both shared behavior and each runtime-specific boundary."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts"
+      ],
+      "bugClass": "overengineered_abstraction",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed abstractions prevent duplicate queue writes, ambiguous row consumption and cross-packet decision writes.",
+      "evidenceRefs": [
+        ".skilled/hooks/decision-capture/lib/capture-core.mjs:254-329",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/decision-table-matcher.ts:143-209",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:636-708",
+        ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts:716-765"
+      ],
+      "proof": "Direct source and test inspection found no abstraction without a current correctness role."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "project_path_identity"
+    ],
+    "covered": [
+      "project_path_identity"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

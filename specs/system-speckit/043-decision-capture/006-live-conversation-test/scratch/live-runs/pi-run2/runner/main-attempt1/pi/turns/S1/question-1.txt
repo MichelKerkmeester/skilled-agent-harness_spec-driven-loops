@@ -1,0 +1,51 @@
+     widget", level 3.                                                                                                                                                                                  
+   - The packet is a filled-in scaffold only: spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md are template bodies with [YOUR_VALUE_HERE: ...] placeholders (spec 38, plan 
+     40, tasks 6, AC 5, impl-summary 6). decision-record.md and timeline.md are also templates with unfilled [Decision Title]/[EVENT OR CHANGE] markers — 0 YOUR_VALUE_HERE but still placeholders.     
+     Actually decision-record uses [Decision Title] style brackets — let me be accurate: 0 YOUR_VALUE_HERE but still bracketed placeholders.                                                            
+   - No widget source: nothing named demo/widget outside the packet; find shows only the packet dir plus a node_modules example widget-placement.ts (pi SDK example, unrelated). Grep for "status       
+     badge"/badge finds nothing in project code (only btw extension).                                                                                                                                   
+   - Git: single commit "demo packet", current branch main, packet's branch field says scaffold/001-demo-widget.                                                                                        
+   - Trigger index lookup for the phrase returned zero rows.                                                                                                                                            
+   - So: no implementation target exists. When told to proceed, the first thing needed is where the widget source lives / whether it exists at all.                                                     
+   - But I must not ask product questions. I can note the gap factually without asking.                                                                                                                 
+                                                                                                                                                                                                        
+   I'll state I'm stopping and waiting.                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Also note Gate 3 doesn't fire yet because no write. I should mention that when the write happens, Gate 3 will need an answer — but the user said write nothing and ask nothing, so I just note it?   
+   The framework says Gate 3 asked first before any write. I'm not writing, so no. I'll just hold.                                                                                                      
+                                                                                                                                                                                                        
+   Keep it tight.                                                                                                                                                                                       
+
+ ● Stopping here as instructed — nothing written, no product questions asked.                                                                                                                           
+                                                                                                                                                                                                        
+   Where the demo widget is documented: specs/demo/001-demo-widget/                                                                                                                                     
+                                                                                                                                                                                                        
+   That's the only place it exists. It's a Level 3 spec packet on the demo track, registered in description.json as demo/001-demo-widget with trigger phrase demo widget, and it was committed once as  
+   e778459 demo packet.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   What the packet actually contains:                                                                                                                                                                   
+                                                                                                                                                                                                        
+   ◉ spec.md (38 [YOUR_VALUE_HERE] placeholders), plan.md (40), tasks.md (6), acceptance-criteria.md (5), implementation-summary.md (6) — all unfilled template bodies. spec.md still says              
+     [YOUR_VALUE_HERE: What is broken, missing, or inefficient?] for its problem statement, so there is no stated scope for a badge to attach to.                                                       
+   ◉ decision-record.md and timeline.md are templates too, with [Decision Title], [EVENT OR CHANGE] and [SUBJECT] markers. They contain zero YOUR_VALUE_HERE tokens but zero real content either.       
+   ◉ graph-metadata.json and description.json are real and populated; they index only those six docs.                                                                                                   
+                                                                                                                                                                                                        
+   No widget code exists in this project. Searching for anything named *widget* returns the packet directory plus one unrelated widget-placement.ts inside the pi SDK's examples/extensions/ under two  
+   node_modules trees. Searching for badge, status badge or statusBadge across source, docs and JSON finds nothing anywhere in the project. The trigger-index lookup for "Add a status badge to the demo
+   widget" returned "results": [].                                                                                                                                                                      
+                                                                                                                                                                                                        
+   Two facts worth having before any implementation begins: the working tree is on branch main with untracked runtime directories, while the packet's own metadata names scaffold/001-demo-widget; and  
+   the packet's files-to-change table in spec.md §3 is still a placeholder row, so there is no recorded target file for the badge.                                                                      
+                                                                                                                                                                                                        
+   Waiting for your instruction.                                                                                                                                                                        
+
+ ✻ Turn took 50s (Total time 1m 15s · 1 turn)                                                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 29.9k tok | $0.01
+

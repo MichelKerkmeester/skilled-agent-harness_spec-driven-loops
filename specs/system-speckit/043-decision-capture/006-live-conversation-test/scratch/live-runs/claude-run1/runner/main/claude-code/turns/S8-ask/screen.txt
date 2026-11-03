@@ -1,0 +1,51 @@
+  - Search index out of date: I didn't regenerate it. The writer reports it as stale for this packet's existing demo and demo widget phrases; this save didn't change them. The saved docs are complete,
+    but a search on those phrases may miss this packet until someone runs generate-trigger-index.mjs.                                                                                               
+                                                                                                                                                                                                        
+  No widget or badge code has been written. The next step is yours: tell me to start, and let me ask where the widget's code lives on each platform.                                                    
+                                                                                                                                                                                                       
+✻ Worked for 1m 16s · done 11:56 AM                                                                                                                                                              
+                                                                                                                                                                                                    
+❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                              
+                                                                                                     
+⏺ User answered Claude's questions:                                                                                                                                                                     
+  ⎿  · Should the demo widget's "Needs review" status badge sit left or right of the title? → Right                                                                                                     
+                                                                                                                                                                                                       
+⏺ The badge will sit to the right of the title.
+                                                                                                                                                                                              
+  That answer exists only in this chat for now. The four earlier decisions are saved in decision-record.md, but this one isn't, because rerunning /speckit:save writes files and you haven't asked for  
+  another save.
+
+  I still haven't written any widget or badge code. The next step is yours: tell me to start, and let me ask where the widget's code lives on each platform.                                            
+                                                                         
+✻ Crunched for 6s · done 11:56 AM                                                                                                                                                                       
+
+❯ /compact                                                                                                                                                                                              
+  ⎿  Compacted (ctrl+o to see full summary)    
+     PreCompact [bash -c 'cd "${CLAUDE_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js || { printf "%s\n" "mk-hook-drift host=claude 
+     event=PreCompact adapter=compact-inject.js" >&2; printf %s "{"hookSpecificOutput":{"hookEventName":"PreCompact","additionalContext":"mk claude hook could not resolve; rebuild the spec-kit runtime
+     or restore the missing adapter","mkHookDrift":true}}"; }'] completed successfully                                                                                                       
+     PostCompact [if [ -n "${HOME-}" ] && [ -f "${HOME-}/.orca/agent-hooks/claude-hook.sh" ] && [ -r "${HOME-}/.orca/agent-hooks/claude-hook.sh" ] && [ -x "${HOME-}/.orca/agent-hooks/claude-hook.sh"  
+     ]; then ORCA_HOOK_AGENT_PID="${PPID:-}"; export ORCA_HOOK_AGENT_PID; /bin/sh "${HOME-}/.orca/agent-hooks/claude-hook.sh"; else { command -p cat 2>/dev/null || cat; } >/dev/null 2>&1 || :; fi] 
+     completed successfully: {}                                                                                                                                                                         
+  ⎿  Skills restored (speckit:save)                                                                                                                                                                  
+                                                                                                                                                                                             
+❯ Ask me with the tool which size the badge uses, offering exactly Small, Medium and Large.                                                                                                             
+                                                                                      
+⏺ User answered Claude's questions:                                                                                                                                                                     
+  ⎿  · Which size should the demo widget's "Needs review" status badge be? → Small                                                                                                                      
+                                                                                                                                                                                                        
+⏺ The badge will be Small.                                                                                                                                                                             
+                                                                                                                                                                                                        
+  Two answers are now only in this chat: placement (right of the title) and size (Small). The first four (Amber, Web/iOS/Android, "Needs review", static) are saved in decision-record.md. A new        
+  /speckit:save --full-auto would add the last two. I haven't run one, because you asked me to write nothing until you say so.
+
+  There's still no widget or badge code, and I haven't changed any files. When you tell me to start, my first question will be where the widget's code lives on Web, iOS and Android.                   
+                                                                                                           
+✻ Cooked for 15s · done 11:57 AM                                                                                                                                     
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                              
+

@@ -1,0 +1,51 @@
+  └ Search codex:01a19d07-8263-73e2-89e5-360ab476fbd5 in consumed.jsonl
+
+• Ran git status --short --untracked-files=all -- specs/demo/001-demo-widget && git diff -- specs/demo/001-demo-widget/decision-record.md specs/demo/001-demo-widget/implementation-summary.md specs/
+  │ demo/001-demo-widget/description.json specs/demo/001-demo-widget/graph-metadata.json
+  └  M specs/demo/001-demo-widget/decision-record.md
+     M specs/demo/001-demo-widget/description.json
+     M specs/demo/001-demo-widget/graph-metadata.json
+    +192 lines (⌃t to view transcript)
+
+• Ran sed -n '/<!-- ANCHOR:operator-decisions -->/,/<!-- \/ANCHOR:operator-decisions -->/p' specs/demo/001-demo-widget/decision-record.md && sed -n '/<!-- ANCHOR:operator-answers-verbatim -->/,$p'
+  │ specs/demo/001-demo-widget/decision-record.md
+  └ <!-- ANCHOR:operator-decisions -->
+    ## Operator Decisions
+    <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep
+    +92 lines (⌃t to view transcript)
+
+• The decision record assigns Q001–Q004, but continuity still lists no answered questions. I’ll sync those IDs through the same writer.
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin specs/demo/001-demo-widget --full-auto --session-id 01a19d07-8263-73e2-89e5-360ab476fbd5 <<'JSON'
+  │ {
+  │   "specFolder": "specs/demo/001-demo-widget",
+  │ … +16 lines
+  └ Starting memory skill...
+
+    {"timestamp":"2026-11-02T16:18:52.374Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
+    +43 lines (⌃t to view transcript)
+
+• The continuity-only refresh aborted before writing because it lacked session evidence. I’ll retry with the original session summary and recorded decisions, adding Q001–Q004 to continuity.
+
+
+› Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message, and mark no option as recommended.
+
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Ask me with the tool whether the badge sits left or right of the title, offering
+  │ exactly Left and Right. Open the tool itself, not a chat message, and mark no option as recommended."
+  └ {
+      "candidatePhraseCount": 4620,
+      "discardedTokens": [
+    +95 lines (⌃t to view transcript)
+ 
+ 
+  Question 1/1 (1 unanswered)
+  Should the badge sit left or right of the title?
+ 
+  › 1. Left               Place the badge to the left of the title.                                                                                                                                   
+    2. Right              Place the badge to the right of the title.
+    3. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

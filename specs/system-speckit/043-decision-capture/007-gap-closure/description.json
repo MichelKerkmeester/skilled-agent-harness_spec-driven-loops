@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/043-decision-capture/007-gap-closure",
+  "description": "Phase 7: gap-closure",
+  "keywords": [
+    "phase",
+    "gap-closure"
+  ],
+  "lastUpdated": "2026-11-03T06:30:44.058Z",
+  "specId": "007",
+  "folderSlug": "gap-closure",
+  "parentChain": [
+    "system-speckit",
+    "043-decision-capture"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "02-11-26_19-13__closed-the-decision-capture-gaps-the-2026-11-02.md",
+    "02-11-26_19-14__recorded-the-recursive-validation-result-as.md",
+    "02-11-26_20-53__second-live-pass-on-all-five-runtimes-passed.md",
+    "02-11-26_21-58__deep-review-of-the-series-luna-five-iterations.md",
+    "03-11-26_07-30__alignment-check-on-the-decision-capture-hooks-the.md"
+  ]
+}

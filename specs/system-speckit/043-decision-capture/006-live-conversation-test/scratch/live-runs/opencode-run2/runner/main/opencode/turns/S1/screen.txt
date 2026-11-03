@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ Keep it short, no em dashes, no semicolons, no table. First line carries payload.                                                  ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ Also: nothing changed. git status showed pre-existing untracked scaffolding; I made no writes. I can say no files were written.    ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃                                                                                                                                    ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃ Let me write the response.                                                                                                         ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+                                                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     The demo widget is documented only in the spec packet at specs/demo/001-demo-widget/. Its main document is spec.md, with plan.md, tas┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     acceptance-criteria.md, decision-record.md, implementation-summary.md and timeline.md alongside it under the demo track.             ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     That packet is a Level 3 scaffold: every section still holds [YOUR_VALUE_HERE: ...] placeholders, and the repository contains no widg┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     only the specs/ tree. So "demo widget" currently names the documentation, not an implementation.                                     ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     I have written nothing. I will wait for your instruction before editing any file or asking product questions.                        ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+                                                                                                                                          ┃  plugins/system-skill-advisor.js                         ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 34.0s · 107.2 tok/s                                                                               ┃  Run /plugins to view details.                           ┃  
+                                                                                                                                          ┃                                                          ┃  
+  ┃                                                                                                                                                                                                     
+  ┃  A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                                                                                             
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.2s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ The user answered Gate 3 A) Existing → specs/demo/001-demo-widget, and says keep waiting, write nothing until told.                                                                              
+     ┃                                                                                                                                                                                                  
+     ┃ I should acknowledge briefly, note the spec folder is locked in, and wait. No writes, no product questions. Keep it short.                                                                       
+     ┃                                                                                                                                                                                                  
+     ┃ Per communication rules: first line carries the payload (acknowledged, bound to folder), no table, no em dash/semicolon/serial comma, end with                                                   
+     ┃ handback. No question.                                                                                                                                                                           
+     ┃                                                                                                                                                                                                  
+     ┃ I should not call the question tool. Just reply.                                                                                                                                                 
+     ┃                                                                                                                                                                                                  
+     ┃ Also note this is a read-only turn; no gates fire beyond reply rules which are loaded.                                                                                                           
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it concise: bound to specs/demo/001-demo-widget for the session, no files touched, waiting.                                                                                                 
+                                                                                                                                                                                                        
+     Bound to specs/demo/001-demo-widget for this session. Nothing written, and no product questions asked.                                                                                             
+                                                                                                                                                                                                        
+     I am waiting on your go-ahead before touching any file or asking about the badge.                                                                                                                  
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 3.3s · 63.5 tok/s                                                                                                  ▄                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-D…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  50.5K (5%) · $0.01  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

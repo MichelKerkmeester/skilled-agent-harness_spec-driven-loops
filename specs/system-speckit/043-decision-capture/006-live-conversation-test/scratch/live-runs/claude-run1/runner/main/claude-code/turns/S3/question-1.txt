@@ -1,0 +1,51 @@
+                                                                                                                                                                                                 
+  Before any write: I'll need to ask which spec folder the change belongs in. Gate 3 in CLAUDE.md says it fires "when the turn will write a file". specs/demo/001-demo looks like the obvious answer. I
+  haven't asked yet because you said to write nothing.
+                                                                                                
+  I'm waiting for you to tell me to go ahead, and for permission to ask product questions. Those will need to cover what the widget is, where its code lives or should live, and what states the badge
+  shows.                                                                                                                                                                                                
+                                                                                                                                                                                                
+✻ Sautéed for 35s · done 11:52 AM                                                                                                                                                                
+                                                                                                                                         
+❯ A) Existing, specs/demo/001-demo                                                                                                                                                                      
+                                                                                                                                                                                                
+⏺ I've noted that the spec folder for this session is specs/demo/001-demo.                                                                                                                       
+                                                                                                                                                                                                      
+  I haven't written anything yet, because you haven't told me to start or to ask my product questions. Once you do, I'll ask them all in one message: what the widget is, where its code lives or should
+  live, and which states the badge shows. The repo has no widget code yet, so I need those answers before I can write any.                                                                             
+
+✻ Baked for 4s · done 11:53 AM                                                                                                                                                                         
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.                                                            
+
+⏺ User answered Claude's questions:
+  ⎿  · Which colour should the demo widget's status badge use? → Amber                                                                                                                                  
+                                                                                                                                                                                                        
+⏺ The badge will be Amber.
+
+  I still haven't written anything. Your message said to ask before writing, but it didn't tell me to start, and your first instruction was to write nothing until you did. Two things are still open:  
+
+  - Go-ahead: I need you to tell me to start.                                                                             
+  - Widget location: the repo has no widget code, so I don't know where the badge goes. I'll ask about that, and about which states the badge should show, once you let me ask product questions.
+
+✻ Worked for 11s · done 11:53 AM
+
+❯ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several.                                                                
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+←  ☐ Platforms  ✔ Submit  →
+                                             
+Which platforms must the demo widget's status badge support?                                                                                                                                     
+                                                                                                                                                                                                        
+❯ 1. [ ] Web                                                                                                                                                                                          
+         Browser-based widget.               
+  2. [ ] iOS                                                                                                                                                                                            
+         Apple mobile app.                                                                                                                                                                       
+  3. [ ] Android                                         
+         Android mobile app.                                                                                           
+  4. [ ] Type something                                                                                                                                                                               
+     Submit                                                                                                                                                                                             
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel             
+

@@ -1,0 +1,51 @@
+• Ran git diff -- specs/demo/001-demo-widget/implementation-summary.md specs/demo/001-demo-widget/decision-record.md specs/demo/001-demo-widget/description.json specs/demo/001-demo-widget/
+  │ graph-metadata.json
+  └ diff --git a/specs/demo/001-demo-widget/decision-record.md b/specs/demo/001-demo-widget/decision-record.md
+    index b36866a..f694553 100644
+    --- a/specs/demo/001-demo-widget/decision-record.md
+    +186 lines (⌃t to view transcript)
+
+• Ran git diff --stat -- specs/demo/001-demo-widget && git status --short --branch
+  └  specs/demo/001-demo-widget/decision-record.md      | 80 ++++++++++++++++++++++
+     specs/demo/001-demo-widget/description.json        | 10 +--
+     specs/demo/001-demo-widget/graph-metadata.json     | 10 +--
+    +16 lines (⌃t to view transcript)
+
+• Ran git diff --check -- specs/demo/001-demo-widget
+  └ (no output)
+
+• Ran git diff --name-only -- specs/demo/001-demo-widget && git diff --check -- specs/demo/001-demo-widget
+  └ specs/demo/001-demo-widget/decision-record.md
+    specs/demo/001-demo-widget/description.json
+    specs/demo/001-demo-widget/graph-metadata.json
+    +1 line (⌃t to view transcript)
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans
+  └ no session queues with pending records
+
+• Saved through /speckit:save --full-auto to specs/demo/001-demo-widget. The decision record now contains the badge choices: Amber; Web, iOS and Android; “Needs review”; static, with no blinking.
+  Continuity records that implementation is still awaiting your authorization.
+
+  The save changed decision-record.md (specs/demo/001-demo-widget/decision-record.md), implementation-summary.md (specs/demo/001-demo-widget/implementation-summary.md), description.json and graph-
+  metadata.json. Strict validation passed with 3 scaffold-related warnings; git diff --check passed, and no decision queues remain.
+
+  The writer logged a git ENOBUFS during context extraction and skipped its post-save review because it treated the target as a directory. It also reported the existing “demo widget” trigger phrase is
+  missing from the trigger index; I left it unchanged because this save did not change trigger phrases. The branch is main; badge implementation remains paused until you authorize it.
+
+  Worked for 4m 40s • 20:28
+
+
+› Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message, and mark no option as recommended.
+
+ 
+ 
+  Question 1/1 (1 unanswered)
+  Should the badge sit left or right of the title?
+ 
+  › 1. Left               Place the badge left of the title.                                                                                                                                          
+    2. Right              Place the badge right of the title.
+    3. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

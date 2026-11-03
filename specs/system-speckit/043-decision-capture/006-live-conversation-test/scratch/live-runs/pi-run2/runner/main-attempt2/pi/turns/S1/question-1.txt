@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   Status: read-only, nothing written, nothing edited, working tree clean apart from the untracked runtime directories."                                                                                
+                                                                                                                                                                                                        
+   Wait — "working tree clean apart from untracked runtime dirs" — git status showed ?? .claude/ .codex/ .conversation-scratch .dc.mjs .devin/ .pi/ .skilled/ AGENTS.md CLAUDE.md untracked. So the     
+   specs folder is tracked and clean. Accurate.                                                                                                                                                         
+                                                                                                                                                                                                        
+   Also: is .opencode untracked? git status --short | head showed first 10ish. It was piped to head so might be truncated. Let me not claim precisely. I'll say "no files written or edited this turn"  
+   and note specs/ is committed and unmodified. Actually I should be careful: I only saw head of git status. Let me just say I wrote nothing and that's verifiable. Keep it honest: "nothing written or 
+   modified by me".                                                                                                                                                                                     
+                                                                                                                                                                                                        
+   Should I mention SKILL ROUTING? Gate 2 requires the output line for non-trivial tasks. This turn is read-only discovery. I'll add one compact line since it's a real finding: only system-spec-kit is
+   installed, so sk-code/sk-doc routing targets the artifact trigger names are absent here. That's useful and honest.                                                                                   
+                                                                                                                                                                                                        
+   Hmm, but no tables, cap 5 items. Fine.                                                                                                                                                               
+                                                                                                                                                                                                        
+   Also should I offer a checkpoint on "where the widget lives"? That's a factual blocker, not a product question. The user said "ask me product questions only when I tell you to" — asking where the  
+   code is isn't a product question, but they said "write nothing until I tell you, and ask me product questions only when I tell you to." The safest read: they want silence from me now. I'll state   
+   the gap and not ask. I already planned that.                                                                                                                                                         
+                                                                                                                                                                                                        
+   Let me trim. Also avoid em dashes and semicolons. Check my draft: I used a colon and commas. No em dashes. Good. "One more observation:" fine.                                                       
+                                                                                                                                                                                                        
+   Let me tighten to be less bloaty. Target ~15 lines.                                                                                                                                                  
+
+ ● Documented at specs/demo/001-demo-widget/, and it is an empty scaffold: no demo widget code exists anywhere in this repository to attach a badge to.                                                 
+                                                                                                                                                                                                        
+   That folder is the repo's only packet (specs/demo/ is the track), committed as 1264477 demo packet, and it names the widget in titles and trigger phrases only. All six content docs are unfilled    
+   template, so the spec carries 38 YOUR_VALUE_HERE placeholders and the plan carries 40. Between them there are no requirements, no acceptance criteria, no files-to-change rows and no implementation 
+   tasks. I read each doc to confirm this rather than inferring it from the titles.                                                                                                                     
+                                                                                                                                                                                                        
+   The widget itself is absent. Outside specs/ and the runtime directories (node_modules, .pi/extensions), the repository holds AGENTS.md, CLAUDE.md, opencode.json, .dc.mjs and .conversation-scratch. 
+   A repo-wide search for widget and badge returns hits only inside node_modules, none in project source.                                                                                               
+                                                                                                                                                                                                        
+   Two side facts you may want later. The trigger index gives a clean no-hit for "demo widget" even though graph-metadata.json lists it as a derived trigger phrase, so search will slide past this     
+   packet and it can only be found by path. And .skilled/skills contains system-spec-kit alone, so the artifact-trigger targets sk-code and sk-doc are not installed here, which affects what the first 
+   code write would route through.                                                                                                                                                                      
+                                                                                                                                                                                                        
+   I am stopping here on your instruction, so nothing is blocked on you. Two things will need answers before the first write and I am not asking either yet: Gate 3 (which spec folder the badge work   
+   continues in) and where the widget code actually lives.                                                                                                                                              
+                                                                                                                                                                                                        
+   Status: read-only turn, no files written or modified, specs/ unmodified.                                                                                                                             
+
+ ✻ Turn took 1m 10s (Total time 1m 35s · 1 turn)                                                                                                                                                        
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 96% left | used: 42.1k tok | $0.01
+

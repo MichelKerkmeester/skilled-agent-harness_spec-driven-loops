@@ -1,0 +1,51 @@
+Two things I did not do unilaterally, plus the rollback:                                                                                                                                                
+                                                                                                                                                                                                        
+1. The writer reports the trigger index STALE for spec.md, added phrase demo widget — that is why my first lookup missed the packet despite its frontmatter declaring the phrase. Fixing it is node     
+   .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs, a separate write to a committed index; say the word and I run it.                                                  
+2. session_dedup.session_id still reads scaffold-001-demo-widget with an all-zero fingerprint even though I passed --session-id, so the writer did not update that block. Left as written rather than   
+   hand-edited, since the writer owns it.                                                                                                                                                               
+3. Rollback, if you want the pre-save state back: rm -rf specs/demo/001-demo-widget && cp -R /tmp/badge-save-snapshot-001-demo-widget specs/demo/001-demo-widget. The repo has no commits, so that copy 
+   is the only undo. My temp payload file is already deleted.                                                                                                                                           
+
+                                                                                                                                                                                                        
+ [compaction]                                                                                                                                                                                           
+                                                                                                                                                                                                        
+ Compacted from 65,739 tokens (ctrl+o to expand)                                                                                                                                                        
+                                                                                                                                                                                                        
+
+ blackhole: 89 source entries processed; tail kept 1/9 user turns (~157 tok).                                                                                                                           
+
+ ❯ Ask me with the tool which size the badge uses, offering exactly Small, Medium and Large.                                                                                                            
+
+ ∴ Thinking: User asks: ask with the tool which size the badge uses, offering exactly Small, Medium and Large. Single choice presumably — not specified as multi. Colour was "one choice", platforms    
+   were "let me pick several". Size: not specified, so single select makes sense. Three options.                                                                                                        
+                                                                                                                                                                                                        
+   Header ≤16 chars: "Badge size" (10).                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Just call the tool.                                                                                                                                                                                  
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✽ Waiting for your answer… (thought for 1s · ↓ 200 tokens · 3s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge size                                                                                                                                                                                            
+
+ Which size does the badge use?                                                                                                                                                                         
+
+❯ 1. Small
+     Smallest pill. Roughly caption text on a tight inline box — sits flush alongside the title without changing the row height.
+  2. Medium
+     Body text in a standard inline pill. Balances alongside the title but gains a little row height.
+  3. Large
+     Largest pill. Prominent, closer to a callout than an inline marker — it will drive the row's height rather than follow it.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | used: 48.1k tok | $0.03
+

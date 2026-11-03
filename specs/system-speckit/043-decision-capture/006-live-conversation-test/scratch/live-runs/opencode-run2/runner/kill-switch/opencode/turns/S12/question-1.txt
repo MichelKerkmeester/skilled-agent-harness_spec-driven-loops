@@ -1,0 +1,51 @@
+ ? Badge colour selection        +                                                                                                                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    Badge colour selection                  
+  ┃  Ask me with the tool which colour the badge uses, offering exactly Amber, Teal and Slate.                                                             █                                            
+  ┃                                                                                                                                                        █    Context                                 
+                                                                                                                                                           █    $0.00 spent                             
+     ┃ Thought: 11ms                                                                                                                                       █                                            
+                                                                                                                                                           █                                            
+     ┃ The user wants me to ask them a question using the question tool with exactly three options: Amber, Teal, and Slate.                                █                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ This is a trivial query — no file writes, no gate issues. Gate 1/2 skip for trivial queries. Just call the question tool.                           █                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Which colour should the badge use?                                                                                                                                                                 
+  ┃                                                                                                                                                                                                     
+  ┃  1. Amber                                                                                                                                                                                           
+  ┃     Use amber for the badge.                                                                                                                                                                        
+  ┃  2. Teal                                                                                                                                                                                            
+  ┃     Use teal for the badge.                                                                                                                                                                         
+  ┃  3. Slate                                                                                                                                                                                           
+  ┃     Use slate for the badge.                                                                                                                                                                        
+  ┃  4. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/opencode-kill-switch/opencode:main   
+                                                                                                                                                                                                        
+

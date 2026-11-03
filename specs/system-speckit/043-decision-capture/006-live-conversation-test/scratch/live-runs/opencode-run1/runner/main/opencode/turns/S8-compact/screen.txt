@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+                                                                                                                                                                                                        
+     Active                                                                                                                                                     Demo widget status badge                
+                                                                                                                                                                                                        
+     - Holding for the user's go-ahead to write the badge itself.                                                                                               Context                                 
+                                                                                                                                                                $0.06 spent                             
+     Blocked                                                                                                                                                                                            
+                                                                                                                                                                                                        
+     - Badge implementation blocked by the user's standing hold.                                                                                                                                        
+     - Badge position answer is not yet saved into decision-record.md (would be Q005).                                                                                                                  
+                                                                                                                                                                                                        
+     Next Move                                                                                                                                                                                          
+                                                                                                                                                                                                        
+     1. Wait for the user to explicitly tell you to proceed.                                                                                                                                            
+     2. Save the position answer (right of title) as an operator decision, or fold it into the packet when spec authoring starts.                                                                       
+     3. Fill the packet docs before implementing, since all 95 [YOUR_VALUE_HERE:] placeholders remain (94 unfilled value tokens per validation).                                                        
+     4. Optionally regenerate the trigger index, which is stale for spec.md and does not surface "demo widget".                                                                                         
+                                                                                                                                                                                                        
+     Relevant Files                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     - specs/demo/001-demo-widget/decision-record.md: holds Q001 to Q004 in the operator-decisions table and verbatim appendix.                                                                         
+     - specs/demo/001-demo-widget/spec.md: unfilled scaffold, 38 placeholders, no requirements or file paths.                                                                                           
+     - specs/demo/001-demo-widget/implementation-summary.md: carries _memory.continuity, completion 0 percent, two blockers.                                                                            
+     - specs/demo/001-demo-widget/plan.md: unfilled scaffold, 40 placeholders.                                                                                                                          
+     - specs/demo/001-demo-widget/description.json: refreshed by the save, memorySequence: 1.                                                                                                           
+     - specs/demo/001-demo-widget/graph-metadata.json: refreshed, save_lineage: same_pass.                                                                                                              
+     - /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/spec-backup/001-demo-widget-before-save: pre-save copy of the whole packet for                                                 
+       rollback.                                                                                                                                                                                        
+                                                                                                                                                                                                        
+     Important Context                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     - The repository root contains no application source; only .skilled, .opencode, .pi, other agent dirs and specs/. The only widget code hits are                                                    
+       unrelated, in .pi/extensions/pi-fast-mode-w-subagent-support/src/status.ts.                                                                                                                      
+     - specs is ignored by the global gitignore, so git offers no rollback for packet edits.                                                                                                            
+     - The packet has 0 requirements and 0 tasks, so no REQ or task id currently carries any decision; each operator decision uses carriedBy: decision-                                                 
+       record.md.                                                                                                                                                                                       
+     - Save output recorded 4 operator decisions as Q001 to Q004 and logged their keys in .skilled/skills/.state/decision-capture/consumed.jsonl, so a                                                  
+       repeat save will not duplicate them.                                                                                                                                                             
+     - Validation warnings: PLACEHOLDER_FILLED: 94 unfilled value token(s) in a Draft packet, AI_PROTOCOLS: AI protocol incomplete (0/4 components),                                                    
+       MEASURED_BEHAVIOR: Measured behavior block holds no command output and no N/A: line with a reason.                                                                                               
+     - The save logged [git-context-extractor] degraded: spawnSync git ENOBUFS, affecting captured session context only.                                   ▄                                            
+     - Nothing has been committed, staged or pushed.                                                                                                       █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-Development-Ski…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  $0.06  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

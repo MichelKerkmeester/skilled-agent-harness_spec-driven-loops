@@ -1,0 +1,51 @@
+• Ran node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Add a status badge to the demo widget in this project; first locate where it is documented and stop without writing
+  │ files."}' --format json
+  └ {
+      "status": "ok",
+      "degraded": true,
+    +10 lines (⌃t to view transcript)
+
+• The trigger index returned no matches, and the skill advisor found no recommendation. I’m checking the project’s files and references to the demo widget now.
+
+• Explored
+  └ Search demo widget|demo-widget|widget demo|status badge|badge in . (exit 1)
+    List rg --files -g '*.md' -g '*demo*' -g '*widget*'
+    List ls -la
+    List rg --files --hidden -g '!.git/**'
+    List specs
+    Search demo|widget|status badge in specs
+    Search demo|widget|status badge in extensions
+    Read spec.md, acceptance-criteria.md, tasks.md, communication-prose.md
+
+• The demo widget has a documentation packet at specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md), with related acceptance criteria and tasks in the same folder.
+
+  Those documents are still scaffolds with placeholders, and they don’t specify a status badge. I made no file changes. I’ll wait for your instruction.
+
+  Worked for 49s • 17:12
+
+
+› A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+
+• Recorded: A) Existing, specs/demo/001-demo-widget. I’ll wait for your instruction.
+
+  Worked for 2s • 17:12
+
+
+› Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no
+  option as recommended.
+
+
+• Questions 1/1 answered
+  • Which colour should the badge use?
+    answer: Amber
+
+• Amber recorded. I’ll keep waiting for your instruction to proceed.
+
+  Worked for 44s • 17:13
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 18% used · 5h 61% left · weekly 94% left
+

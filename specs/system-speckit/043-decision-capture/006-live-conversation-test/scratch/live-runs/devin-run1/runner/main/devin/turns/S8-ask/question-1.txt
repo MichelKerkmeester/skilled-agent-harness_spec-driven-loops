@@ -1,0 +1,51 @@
+
+ 
+   SPECKIT:SAVE
+   --------------------------------------------------
+   Folder      specs/demo/001-demo-widget
+   Targets     implementation-summary.md, decision-record.md, description.json, graph-metadata.json
+ 
+   Anchors
+   - _memory.continuity
+   - operator-decisions (Q001–Q004)
+   - operator-answers-verbatim
+ 
+   Triggers
+   demo widget | demo widget decision record | demo widget implementation summary
+ 
+   STATUS=OK TARGETS=4 ANCHORS=3
+ 
+
+ Recorded decisions: Amber colour, Web/iOS/Android platforms, "Needs review" label, static (no blink). Continuity notes the blocker — awaiting your go-ahead — and the next safe action: draft the badge
+ requirement into spec.md. Trigger index regenerated; post-save quality review returned no issues.
+
+ Still holding all writes until you tell me.
+
+❭ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.
+
+ ⏺ Asked user Should the badge sit left or right of the title?
+ └ Right
+
+ Right of the title — noted. Still holding writes.
+
+ ✱ Did you know
+   Use /bug to report a bug to the Devin CLI developers
+
+❭ /compact
+
+ ✱ Context compacted
+
+❭ Ask me with the tool which size the badge uses, offering exactly Small, Medium and Large.
+
+── Badge size ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Which size should the badge use?                                                                                                                                                                      
+  ❭ 1 Small                                                                                                                                                                                             
+      Compact badge footprint.                                                                                                                                                                          
+    2 Medium                                                                                                                                                                                            
+      Default-sized badge.
+    3 Large
+      Prominent badge footprint.
+      Other (type your own)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+↑↓ select · ↵ confirm · ? help me out · esc cancel
+

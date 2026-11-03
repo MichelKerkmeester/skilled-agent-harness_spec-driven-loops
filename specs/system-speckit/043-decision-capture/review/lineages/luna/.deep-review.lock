@@ -1,0 +1,12 @@
+{
+  "owner_pid": 37119,
+  "started_at_iso": "2026-11-02T20:05:20.455Z",
+  "ttl_ms": 1800000,
+  "last_heartbeat_iso": "2026-11-02T20:05:20.455Z",
+  "packet_id": "specs/system-speckit/043-decision-capture",
+  "runtime_kind": "main",
+  "phase": "running",
+  "last_activity_iso": "2026-11-02T20:05:20.455Z",
+  "acquire_nonce": "37119-1793649920455-bd2e89f9-da26-4b44-8aef-4293851c9931",
+  "owner_kind": "transient"
+}

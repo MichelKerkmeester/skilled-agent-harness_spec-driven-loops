@@ -1,0 +1,51 @@
+    index b41d8b5..4e41b85 100644
+    --- a/specs/demo/001-demo-widget/decision-record.md
+    +266 lines (⌃t to view transcript)
+
+• Ran git diff --check
+  └ (no output)
+
+• Ran bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/demo/001-demo-widget --strict
+  └
+    Spec Folder Validation v3.0.0
+
+    +151 lines (⌃t to view transcript)
+
+• Ran git status --short && git diff --name-only && sed -n '1,24p' specs/demo/001-demo-widget/spec.md && rg -n 'Q00[67]|Which size should the badge use|Should the badge have a tooltip|recent_action:|
+  │ next_safe_action:|answered_questions:' specs/demo/001-demo-widget/decision-record.md specs/demo/001-demo-widget/implementation-summary.md
+  └  M specs/demo/001-demo-widget/decision-record.md
+     M specs/demo/001-demo-widget/description.json
+     M specs/demo/001-demo-widget/graph-metadata.json
+    +50 lines (⌃t to view transcript)
+
+• Ran git branch --show-current
+  └ main
+
+• Saved the badge size and tooltip decisions to specs/demo/001-demo-widget.
+
+  SPECKIT:SAVE
+  --------------------------------------------------
+  Folder      specs/demo/001-demo-widget
+  Targets     decision-record.md, implementation-summary.md, description.json, graph-metadata.json
+
+  Anchors
+  - operator-decisions
+  - operator-answers-verbatim
+
+  Triggers
+  demo widget
+
+  STATUS=OK TARGETS=4 ANCHORS=2
+
+  Strict validation returned RESULT: PASSED with three existing Draft-packet warnings; git diff --check passed. The writer reported the trigger index is stale and skipped its quality review because
+  the target resolved as a directory. The four packet files are modified and uncommitted on main; no implementation code changed, and the pre-existing untracked files were unchanged.
+
+  Implementation remains paused until you explicitly tell me to start.
+
+  Worked for 1m 44s • 17:25
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 24% used · 5h 57% left · weekly 93% left
+

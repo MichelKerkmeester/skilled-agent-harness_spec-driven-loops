@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   Where the demo widget is documented: specs/demo/001-demo-widget/                                                                                                                                     
+                                                                                                                                                                                                        
+   That's the only place it exists. It's a Level 3 spec packet on the demo track, registered in description.json as demo/001-demo-widget with trigger phrase demo widget, and it was committed once as  
+   e778459 demo packet.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   What the packet actually contains:                                                                                                                                                                   
+                                                                                                                                                                                                        
+   ◉ spec.md (38 [YOUR_VALUE_HERE] placeholders), plan.md (40), tasks.md (6), acceptance-criteria.md (5), implementation-summary.md (6) — all unfilled template bodies. spec.md still says              
+     [YOUR_VALUE_HERE: What is broken, missing, or inefficient?] for its problem statement, so there is no stated scope for a badge to attach to.                                                       
+   ◉ decision-record.md and timeline.md are templates too, with [Decision Title], [EVENT OR CHANGE] and [SUBJECT] markers. They contain zero YOUR_VALUE_HERE tokens but zero real content either.       
+   ◉ graph-metadata.json and description.json are real and populated; they index only those six docs.                                                                                                   
+                                                                                                                                                                                                        
+   No widget code exists in this project. Searching for anything named *widget* returns the packet directory plus one unrelated widget-placement.ts inside the pi SDK's examples/extensions/ under two  
+   node_modules trees. Searching for badge, status badge or statusBadge across source, docs and JSON finds nothing anywhere in the project. The trigger-index lookup for "Add a status badge to the demo
+   widget" returned "results": [].                                                                                                                                                                      
+                                                                                                                                                                                                        
+   Two facts worth having before any implementation begins: the working tree is on branch main with untracked runtime directories, while the packet's own metadata names scaffold/001-demo-widget; and  
+   the packet's files-to-change table in spec.md §3 is still a placeholder row, so there is no recorded target file for the badge.                                                                      
+                                                                                                                                                                                                        
+   Waiting for your instruction.                                                                                                                                                                        
+
+ ✻ Turn took 50s (Total time 1m 15s · 1 turn)                                                                                                                                                           
+
+ ❯ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                                                                                               
+
+ ∴ Thinking: The user answered Gate 3 with A) Existing → specs/demo/001-demo-widget. And said keep waiting, write nothing.                                                                              
+                                                                                                                                                                                                        
+   So I acknowledge the Gate 3 answer, note it's recorded for the session, and continue waiting. No tools needed. No writes.                                                                            
+                                                                                                                                                                                                        
+   I should be brief. Per communication rules: no tables in reply, plain prose, length matched to the question.                                                                                         
+                                                                                                                                                                                                        
+   I should confirm: Gate 3 = A, folder specs/demo/001-demo-widget, holds for the session. And note nothing written, still waiting. Maybe note one relevant implication: since the packet is on the demo
+   track and existing, work will be documented there. But careful not to do work.                                                                                                                       
+                                                                                                                                                                                                        
+   Keep it short.                                                                                                                                                                                       
+
+ ● Gate 3 recorded: A) Existing — specs/demo/001-demo-widget. That answer holds for the rest of this session unless you name a new task, a different folder, or ask me to re-ask.                       
+                                                                                                                                                                                                        
+   Nothing written, no product questions asked. Still waiting.                                                                                                                                          
+
+ ✻ Turn took 2s (Total time 1m 27s · 2 turns)                                                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 30.4k tok | $0.01
+

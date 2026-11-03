@@ -1,0 +1,3 @@
+$ Q=.skilled/skills/.state/decision-capture;cp $Q/* "$CONVERSATION_TURN_DIR" 2>/dev/null;m=$(rg -c '"session_id"' $Q/*.jsonl 2>/dev/null);[ -z "$m" ]&&rg -q -i 'gate 3|spec folder' "$CONVERSATION_TURN_DIR/screen.txt"&&echo "rows=0 gate3=visible"||{ echo "DEVIATION: queue rows or no Gate 3 question";exit 1;}
+rows=0 gate3=visible
+[exit 0]

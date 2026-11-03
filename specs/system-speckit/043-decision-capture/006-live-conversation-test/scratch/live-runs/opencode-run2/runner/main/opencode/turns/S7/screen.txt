@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     Anchors                                                                                                                              ┃                                                          ┃  
+     - operator-decisions                                                                                                                 ┃  3 plugins failed                        › Open plugins  ┃  
+     - operator-answers-verbatim                                                                                                          ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     Triggers                                                                                                                             ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     demo widget | demo widget plan | demo widget decision record                                                                         ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+                                                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     STATUS=OK TARGETS=4 ANCHORS=2                                                                                                        ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Q001 to Q004 record colour, platforms, label and static behaviour with the exact questions and answers. A repeat sweep shows zero pen┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     and the orphan scan reports no session queues. Strict validation returned RESULT: PASSED with 0 errors and 3 warnings: 94 unfilled pl┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     incomplete AI protocol section, and an empty measured-behavior block.                                                                ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     I left the optional trigger-index regeneration undone. The writer reports spec.md stale until that index is regenerated, and the save┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     durable regardless.                                                                                                                  ┃  plugins/system-skill-advisor.js                         ┃  
+                                                                                                                                          ┃  Run /plugins to view details.                           ┃  
+     Your move: say when implementation should start.                                                                                     ┃                                                          ┃  
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 1m 45s · 128.1 tok/s                                                                                                                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message,                                                 
+  ┃  and mark no option as recommended.                                                                                                                                                                 
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 394ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Use question tool, single choice, options exactly Left and Right, no recommended.                                                                                                                
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge sit left or right of the title?                                                                                                                                                   
+  ┃  Right                                                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     Recorded: the badge sits to the right of the title.                                                                                                                                                
+                                                                                                                                                                                                        
+     That answer is not yet saved to the packet.                                                                                                                                                        
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 12.8s · 33.1 tok/s                                                                                                 █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-D…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  86.2K (8%) · $0.05  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

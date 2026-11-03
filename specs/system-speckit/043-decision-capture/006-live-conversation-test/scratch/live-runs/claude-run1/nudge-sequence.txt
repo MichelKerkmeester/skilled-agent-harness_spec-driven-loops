@@ -1,0 +1,42 @@
+# Claude Stop-hook nudges in the subject transcript (session 4d2f574b, scratch project). The Stop hook runs async, so Claude Code delivers each message as an async_hook_response attachment with the NEXT user prompt; the pane never draws it.
+# time	event	detail
+2026-11-02T10:52:23.437Z	prompt	Add a status badge to the demo widget in this project. Once 
+2026-11-02T10:52:59.360Z	stop	no message
+2026-11-02T10:53:05.484Z	prompt	A) Existing, specs/demo/001-demo
+2026-11-02T10:53:05.484Z	stop	no message
+2026-11-02T10:53:10.333Z	stop	no message
+2026-11-02T10:53:22.186Z	prompt	Before you write anything, ask me with your question tool wh
+2026-11-02T10:53:22.186Z	stop	no message
+2026-11-02T10:53:39.388Z	stop	no message
+2026-11-02T10:53:50.768Z	prompt	Now ask me with your question tool which platforms the badge
+2026-11-02T10:53:50.768Z	stop	1 pending (nudge shown)
+2026-11-02T10:54:04.584Z	stop	no message
+2026-11-02T10:54:14.752Z	prompt	Ask me with your question tool for the badge label, with a f
+2026-11-02T10:54:14.752Z	stop	2 pending (nudge shown)
+2026-11-02T10:54:28.119Z	stop	no message
+2026-11-02T10:54:42.116Z	prompt	Do not use the tool this time. End your reply with one plain
+2026-11-02T10:54:42.116Z	stop	3 pending (nudge shown)
+2026-11-02T10:54:45.988Z	stop	no message
+2026-11-02T10:54:53.535Z	prompt	No, keep it static.
+2026-11-02T10:54:53.535Z	stop	no message
+2026-11-02T10:54:57.523Z	stop	no message
+2026-11-02T10:55:07.106Z	prompt	<command-message>speckit:save</command-message> <command-nam
+2026-11-02T10:55:07.106Z	stop	no message
+2026-11-02T10:56:22.520Z	stop	no message
+2026-11-02T10:56:30.379Z	prompt	Ask me with the tool whether the badge sits left or right of
+2026-11-02T10:56:30.379Z	stop	no message
+2026-11-02T10:56:41.929Z	stop	no message
+2026-11-02T10:56:55.242Z	prompt	/compact
+2026-11-02T10:57:21.469Z	prompt	This session is being continued from a previous conversation
+2026-11-02T10:56:55.245Z	prompt	<command-name>/compact</command-name> <command-m
+2026-11-02T10:57:29.998Z	prompt	Ask me with the tool which size the badge uses, offering exa
+2026-11-02T10:57:29.998Z	stop	1 pending (nudge shown)
+2026-11-02T10:57:51.681Z	stop	no message
+2026-11-02T10:58:10.556Z	prompt	Ask me with the tool whether the badge has a tooltip, offeri
+2026-11-02T10:58:22.630Z	stop	no message
+2026-11-02T10:58:31.484Z	prompt	<command-message>speckit:save</command-message> <command-nam
+2026-11-02T10:58:31.484Z	stop	3 pending (nudge shown)
+2026-11-02T10:59:18.078Z	stop	no message
+2026-11-02T10:59:24.461Z	prompt	<command-message>speckit:save</command-message> <command-nam
+2026-11-02T10:59:24.461Z	stop	no message
+2026-11-02T10:59:48.433Z	stop	no message

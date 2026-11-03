@@ -1,0 +1,17 @@
+Preconditions for the 006 live conversation runs, recorded 2026-11-02.
+
+CLI versions:
+- claude 2.1.316 (Claude Code); `claude auth status` reports loggedIn true, authMethod claude.ai, exit 0
+- opencode v2.1.4
+- codex-cli 0.164.0
+- pi 1.4.0
+- devin 3000.11.234 (92c83011d113)
+
+Operator consent for live sessions:
+- Parent decision-record.md Q003: prove decision capture in a live, timed, multi-turn conversation that an orchestrator drives against a test-subject session in each runtime.
+- Parent decision-record.md Q010: after every acceptance row is met and the five-runtime live runs pass, finish with the review, alignment and second live pass.
+- Parent decision-record.md Q012: run Claude Code, OpenCode, Pi and Devin now, one at a time while no other runner is live, and Codex once the hook-trust rule lands.
+
+Cost note: each runtime run is one interactive subject session of about 14 turns on that runtime's configured model, plus the kill-switch and sibling re-proof runs on Claude Code. No paid API key is used beyond each CLI's own login.
+
+Run discipline: each run writes its evidence to a scratch folder outside the repository, the repository status is captured before and after, and the evidence is copied here only after the after-status is taken.

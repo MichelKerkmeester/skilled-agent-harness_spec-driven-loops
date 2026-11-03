@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   Format: prose, no tables. Short bullets for parallel facts allowed.                                                                                                                                  
+                                                                                                                                                                                                        
+   Include:                                                                                                                                                                                             
+   - SKILL ROUTING line (Gate 2 output requirement).                                                                                                                                                    
+   - Where: specs/demo/001-demo-widget/ with the file list.                                                                                                                                             
+   - State of those docs: Level 3 template scaffolding, placeholder counts; no requirements, no scope, no files-to-change.                                                                              
+   - No widget code in the repo at all — searched whole tree; only specs/, AGENTS.md, opencode.json plus tooling trees.                                                                                 
+   - validate.sh --strict → PASSED, 3 warnings; that only proves the scaffold is well-formed, not that a widget exists.                                                                                 
+   - Inferred vs observed: observed = file contents/greps/validator output. Inferred = "the demo widget is a not-yet-built feature whose packet was scaffolded" (that's the reading that best fits, and 
+     what would confirm it: a source path from you).                                                                                                                                                    
+   - State: nothing written; branch main; 9 untracked paths (tooling dirs), committed packet f0dd79d.                                                                                                   
+   - Handback: waiting on you; I'll write nothing and ask nothing until you say go / say ask.                                                                                                           
+                                                                                                                                                                                                        
+   Keep it tight.                                                                                                                                                                                       
+
+ ● Stopped before writing anything. Here is what I found.                                                                                                                                               
+                                                                                                                                                                                                        
+   Where it is documented: specs/demo/001-demo-widget/ — the only place in the repo that mentions the demo widget. Nine files carry the phrase: spec.md, plan.md, tasks.md, acceptance-criteria.md,     
+   implementation-summary.md, decision-record.md, timeline.md, description.json, graph-metadata.json. It was committed in f0dd79d "demo packet", and nothing outside that folder references it.         
+                                                                                                                                                                                                        
+   The state of those docs is the part that changes the job. They are unfilled Level 3 template scaffolding, not a written specification. spec.md carries 38 [YOUR_VALUE_HERE] placeholders, plan.md 40,
+   tasks.md 6, implementation-summary.md 6, acceptance-criteria.md 5. Problem statement, in-scope list, requirements (REQ-001/REQ-002), success criteria, the "Files to Change" table and the user      
+   stories are all still placeholders.                                                                                                                                                                  
+                                                                                                                                                                                                        
+   There is no widget code in the repo to attach a badge to. I searched the whole tree for code outside the tooling directories and found only specs/, AGENTS.md and opencode.json. So a status badge   
+   has no source file, no component and no rendering surface today.                                                                                                                                     
+                                                                                                                                                                                                        
+   To be clear about what that last paragraph rests on: the greps and file reads are observed, and bash .skilled/.../validate.sh specs/demo/001-demo-widget --strict printed RESULT: PASSED with 3      
+   warnings. But that pass only proves the scaffold is well-formed — one of the warnings is literally that the measured-behavior block is empty. It says nothing about a widget existing. My reading    
+   that this is a not-yet-built feature whose packet was scaffolded ahead of the work is inference; a source path from you would confirm or kill it in one step.                                        
+                                                                                                                                                                                                        
+   SKILL ROUTING: advisor returned ambiguous — sk-code, mcp-tooling and sk-doc all tied at 0.82 confidence with no compiled route, so no skill was invoked for this read-only pass. The trigger index   
+   returned no rows. Gate 3 did not fire: no writes this turn. Gate 5 did not fire for the same reason. Gate 6 loaded communication.md, communication-prose.md and communication-handoff.md.            
+                                                                                                                                                                                                        
+   Nothing was written, edited or created. Branch is main, HEAD is f0dd79d, and the working tree holds 9 untracked paths that are all tooling directories, pre-existing and untouched by me. No residual
+   risk from this turn.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Waiting on you. I will write nothing and ask no product questions until you tell me to — when you do, the first thing I need is where the widget actually lives (or a decision that this packet is   
+   the place the widget gets defined), because the badge question has no target until that is settled.                                                                                                  
+
+ ✻ Turn took 47s (Total time 1m 18s · 1 turn)                                                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 35.1k tok | $0.01
+

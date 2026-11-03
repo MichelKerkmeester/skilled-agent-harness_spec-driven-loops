@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+  ┃                                                                                                                                       ┃                                                          ┃  
+  ┃  Which size should the badge use?                                                                                                     ┃  3 plugins failed                        › Open plugins  ┃  
+  ┃  Small                                                                                                                                ┃                                                          ┃  
+  ┃                                                                                                                                       ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+                                                                                                                                          ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     Recorded: the badge uses the Small size.                                                                                             ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+                                                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     Still nothing written. That answer, like the position one, lives in chat only — decision-record.md still holds just the first four. S┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     I can save both, or leave them until the badge work starts.                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 11.7s · 62.1 tok/s                                                                                ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+  ┃                                                                                                                                       ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+  ┃  Ask me with the tool whether the badge has a tooltip, offering exactly Yes and No.                                                   ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+  ┃                                                                                                                                       ┃  plugins/system-skill-advisor.js                         ┃  
+                                                                                                                                          ┃  Run /plugins to view details.                           ┃  
+     ┃ Thought: 513ms                                                                                                                     ┃                                                          ┃  
+                                                                                                                                                                                                        
+     ┃ Simple: ask with question tool, offering exactly Yes and No.                                                                                                                                     
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge have a tooltip?                                                                                                                                                                   
+  ┃  Yes                                                                                                                                                                                                
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 613ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Record: badge has a tooltip. Yes. Nothing written.                                                                                                                                               
+     ┃                                                                                                                                                                                                  
+     ┃ Note: the tooltip text is unsettled — worth flagging briefly. Keep it concise.                                                                                                                   
+                                                                                                                                                                                                        
+     Recorded: yes, the badge has a tooltip.                                                                                                                                                            
+                                                                                                                                                                                                        
+     Nothing written. Three answers now sit in chat only — position (right of title), size (Small), tooltip (yes) — none of them in decision-record.md                                                  
+     yet.                                                                                                                                                  ▄                                            
+                                                                                                                                                           █                                            
+     One gap worth naming: "Yes" settles that a tooltip exists, but not what it says. That can wait until the badge work starts if you prefer.             █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 8.9s · 60.3 tok/s                                                                                                  █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  17.1K (2%) · $0.06  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

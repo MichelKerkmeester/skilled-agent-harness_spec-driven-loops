@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   I'll report and let them choose — no, "don't ask permission". Hmm. The cleanest: report the state truthfully, name the two options with costs, and offer to run the repair. Since the save already   
+   completed as commanded, the follow-up is genuinely a new decision (churn vs. degraded field). I'll state my recommendation: leave it; the next real save will overwrite recent_action with substance 
+   anyway.                                                                                                                                                                                              
+                                                                                                                                                                                                        
+   Actually, that's true and decisive: recent_action will be replaced by the next save that records something. So no repair needed. Good.                                                               
+                                                                                                                                                                                                        
+   Also worth flagging: memorySequence incremented on a save with no new content, and an artifact row was appended naming a non-event. That's lineage noise — a defect-class observation about the      
+   writer, not something I can fix in scope.                                                                                                                                                            
+                                                                                                                                                                                                        
+   Report now, per presentation asset (apply result display). Keep it tight, honest, name the cost, give rollback.                                                                                      
+                                                                                                                                                                                                        
+   Format: first line answer, no tables, ≤5 items per group.                                                                                                                                            
+
+ ● The second save recorded nothing. Decision sweep was empty — zero pending, zero chat candidates — so decision-record.md came out byte-identical, which is the one part of this that went well.       
+                                                                                                                                                                                                        
+     SPECKIT:SAVE                                                                                                                                                                                       
+     --------------------------------------------------                                                                                                                                                 
+     Folder      specs/demo/001-demo-widget                                                                                                                                                             
+     Targets     implementation-summary.md, description.json, graph-metadata.json                                                                                                                       
+     Anchors                                                                                                                                                                                            
+     - none added (decision-record.md unchanged)                                                                                                                                                        
+     Triggers                                                                                                                                                                                           
+     demo widget | demo widget decision record | demo widget implementation summary                                                                                                                     
+     STATUS=OK TARGETS=3 ANCHORS=0                                                                                                                                                                      
+                                                                                                                                                                                                        
+   What actually changed:                                                                                                                                                                               
+                                                                                                                                                                                                        
+   1. last_updated_at moved 13:15:43 → 13:16:52, and description.json lastUpdated with it.                                                                                                              
+   2. memorySequence went 2 → 3, and a third artifact row appeared: 02-11-26_14-16__repeat-save-with-no-new-content-the-decision.md. That row names an event, not a finding.                            
+   3. recent_action now reads "Re-ran the save with no new decisions; decision record unchanged." I wrote that line, and it was the wrong call: the field is there to carry the last substantive action,
+      and I spent it on a note about the save itself, overwriting the Q005–Q007 summary. The next save that records anything will replace it with substance again, so it does not need repairing — but  
+      it is a worse value than the one it replaced, and it is my doing.                                                                                                                                 
+   4. Validation still RESULT: PASSED, 0 errors, 3 warnings — the same unfilled-template three.                                                                                                         
+                                                                                                                                                                                                        
+   Worth knowing, since you may have been testing it: the writer's repeat-save guarantee covers the decision record only. Everything else is unconditional churn — a sequence bump and an artifact row, 
+   whether or not the session produced anything.                                                                                                                                                        
+                                                                                                                                                                                                        
+   Rollback to before this second save: rm -rf specs/demo/001-demo-widget && cp -R /tmp/badge-save-snapshot-001-demo-widget-3 specs/demo/001-demo-widget. Snapshot 2, one save earlier, is still on disk
+   too.                                                                                                                                                                                                 
+
+ ✻ Turn took 32s (Total time 3m 34s · 5 turns)                                                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 95% left | used: 55.5k tok | $0.04
+

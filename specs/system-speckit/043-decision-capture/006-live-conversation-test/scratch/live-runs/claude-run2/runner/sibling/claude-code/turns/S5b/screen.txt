@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+  Next step is yours: tell me when I can start writing, and when I can ask product questions. Since the packet is still an empty template, I'll need to ask what the badge should show before I can fill
+  in its scope.                                                                                                                      
+
+✻ Brewed for 3s · done 7:27 PM                                                                                                                                                                          
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.                                                            
+
+⏺ User answered Claude's questions:                                                                                                                                                                     
+  ⎿  · Which colour should the demo widget's status badge use? → Amber
+
+⏺ The badge will be Amber.
+                                                                                                                                                                          
+  I haven't written anything yet. Your message said to ask this before writing, but it didn't say to start, so your original "write nothing until I tell you" still holds.
+                                                                                                                                                                                                        
+  When you say go, I'll start by filling the empty specs/demo/001-demo-widget/spec.md with the Amber badge. There's no widget code in the repo yet, so I'll need to ask where the badge lives and what
+  states it shows before I can name the files to change.                                                                                                                                                
+                                               
+  Next step is yours: tell me to start writing.                                                                                                                                                       
+
+✻ Cogitated for 5s · done 7:27 PM                                                                                                                                                                     
+
+❯ Do not use the tool this time. In the middle of your reply, ask me one plain question about whether the badge shows a count, then end your reply with a one-line status that is not a question.       
+
+⏺ The Amber choice is still only in this conversation, not in the packet. That's because of your hold on writing.                                                                                       
+                                                                                                                                                                                                        
+  Should the badge show a count, such as the number of items in a given state, or only a coloured status with no number?                                                  
+                                                                                                                                                                                                        
+  Once you answer, I'll know whether the spec needs a count requirement and an edge case for zero and large numbers. A runtime prompt also says to run /speckit:save to record the Amber answer in the
+  decision record. That's a write, so it waits for your go-ahead too.                                                   
+                                                                                                                     
+  Status: Amber is chosen, nothing has been written, and I'm waiting on your count answer and your go-ahead to write.                                                                                 
+
+✻ Baked for 3s · done 7:27 PM                                                                                                                                                                         
+
+❯ Yes, show the count.                                                                                                                                                                                  
+
+⏺ The badge will show a count. With Amber, that settles both product answers so far.                                                                                                                    
+                                                                                                                                                                                                        
+  I haven't asked what the count measures or how zero and large numbers should look. You said to ask product questions only when you tell me to, so those wait until then.
+                                                                                                                                                                                                        
+  Status: Amber badge with a count is decided, nothing is written yet, and I'm waiting for your go-ahead to write to specs/demo/001-demo-widget.                                                      
+
+✻ Cooked for 2s · done 7:28 PM                         
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

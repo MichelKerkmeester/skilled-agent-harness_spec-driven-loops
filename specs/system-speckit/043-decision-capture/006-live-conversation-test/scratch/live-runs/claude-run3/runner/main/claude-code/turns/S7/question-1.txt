@@ -1,0 +1,51 @@
+                                                                                                                                                                                                       
+⏺ SPECKIT:SAVE        
+  --------------------------------------------------                                               
+  Folder      specs/demo/001-demo-widget
+  Targets     decision-record.md, implementation-summary.md, description.json, graph-metadata.json                                                                                                     
+                       
+  Anchors     
+  - operator-decisions                                                                                                                                                                                  
+  - operator-answers-verbatim           
+                                                                                                                                                                                                        
+  Triggers
+  demo widget                                                                                                                                                                                           
+                                                    
+  STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                         
+                                                                                                  
+  The save worked: the writer exited 0, and I opened the files to confirm what it wrote.                                                                                                                
+                                        
+  - Your four decisions are in decision-record.md. Q001 is Amber, Q002 is Web, iOS and Android, Q003 is "Needs review" and Q004 is static, no blinking. Each one also has its exact question, options   
+    and answer in the appendix. You gave no reasons, so the "Why" column says "Not stated." The "Carried by" column says the badge requirements in spec.md aren't written yet.
+  - The progress notes in implementation-summary.md are updated. They show 5% complete, with your go-ahead for spec and code writes recorded as the blocker.                                            
+  - Nothing is left waiting to be recorded. The orphan scan found no other sessions with unsaved answers.
+  - Only those four files changed in the packet, according to git status.
+                                                                                                                                                                                                     
+  Two other things:                                                                                                                                                           
+  - The search index is out of date. The writer flagged it as stale for spec.md because of the phrase "demo widget". That phrase was already there; this save didn't add it. The command only rebuilds
+    the index when trigger phrases change, so I didn't run generate-trigger-index.mjs. The saved files are fine either way; until the rebuild, a search may not find this packet.
+  - The post-save quality review was skipped because the target was a folder. No issues were reported.                                                                                               
+                                                                                                                                                                                                     
+  There's no goal.md, so there was no goal log to update. The save payload is in /private/tmp/claude-501/-private-tmp-claude-501--Users-michelkerkmeester-MEGA-Development-Skilled-2cdc1c20-d541-4a71-ba
+  53-999a34105259-scratchpad-conv2-claude-code-main-current-claude-code/2b332843-34d6-4f51-8f64-255a9fbbaea8/scratchpad/save-context-data-2b332843-34d6-4f51-8f64-255a9fbbaea8.json.                  
+                                                                                                                                                                                                     
+  Only the save has written files so far. The spec and the badge code are still waiting for you to tell me to start.                                                          
+                                                                                                                                                                    
+✻ Sautéed for 1m 18s · done 7:39 AM                                                                                                                                                                     
+                                                                                                                                                                                                      
+❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message, and mark no option as recommended.                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Position                                                                                                                                                                                             
+
+Where does the demo widget's status badge sit relative to the title?                                                                                                                
+
+❯ 1. Left                                                                                                                                                                                               
+     The badge sits to the left of the title.                
+  2. Right                                                                                 
+     The badge sits to the right of the title.                                                                                                                                                        
+  3. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel                            
+

@@ -1,0 +1,51 @@
+    List skills
+    Search (^|/)sk-doc(/|$).*SKILL\.md$|(^|/)doc[^/]*/SKILL\.md$ (command exit 1)
+    List skills
+
+• The project’s trigger index has no matching entries. The skill advisor recommends sk-doc at high confidence, but that skill isn’t under the local .skilled/skills directory, so I’m checking the
+  runtime’s available skill files before searching the project docs.
+
+• Explored
+  └ Search demo.{0,30}widget|widget.{0,30}demo|status badge|badge in .
+    List rg --files --hidden -g SKILL.md -g '!**/.git/**'
+    Search (^|/)(sk-doc|doc[^/]*|system-spec-kit)(/|$) (command exit 1)
+    List rg --files --hidden -g '!**/.git/**' -g '!**/node_modules/**' -g '!**/.pi/**' -g '!**/.skilled/**'
+    Search (^|/)(docs?|specs?)/|(^|/)(readme|agents|prd|design|brief)[^/]*\.(md|mdx)$|demo|widget
+    Search demo.{0,30}widget|widget.{0,30}demo|status badge|demo widget in . (exit 1)
+    List ls -la
+    Search widget|badge|demo in specs
+    List specs
+    Read communication.md, communication-handoff.md, communication-prose.md
+
+• The demo widget is documented in specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md), with related plan, tasks, and acceptance criteria in the same folder. The text search found
+  no existing mention of a badge.
+
+  I made no edits. I’ve stopped here and will wait for your instruction.
+
+  Worked for 1m 9s • 20:00
+
+
+› A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+
+• Understood. I’ll wait without making changes.
+
+  Worked for 3s • 20:01
+
+
+› Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no
+  option as recommended.
+
+ 
+ 
+  Question 1/1 (1 unanswered)
+  Which colour should the badge use?
+ 
+  › 1. Amber              Use amber for the badge.                                                                                                                                                    
+    2. Teal               Use teal for the badge.
+    3. Slate              Use slate for the badge.
+    4. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

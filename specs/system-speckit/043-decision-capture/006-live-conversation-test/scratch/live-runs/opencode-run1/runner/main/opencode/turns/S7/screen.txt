@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+     warnings.                                                                                                                            ┃                                                          ┃  
+                                                                                                                                          ┃  3 plugins failed                        › Open plugins  ┃  
+     Four files changed, all inside the packet. decision-record.md gained Q001 through Q004 with the verbatim question, options and answer┃                                                          ┃  
+     implementation-summary.md gained the continuity block, which records completion at 0 percent with two blockers. description.json and ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     json were refreshed by the writer, as the command contract requires. No lock file was left behind.                                   ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+                                                                                                                                          ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+     The record now says amber, all three platforms, the label "Needs review" and a static badge with no blink. The continuity line reads ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     badge decisions and wrote no widget code", which is accurate.                                                                        ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     The three warnings are 94 unfilled placeholders, an incomplete AI protocol section, and an empty measured-behavior block. All three a┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     while the packet stays Draft, and none blocks the save.                                                                              ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     Rollback is available: the pre-save packet sits byte for byte at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/sp┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     demo-widget-before-save. Two residual gaps: the trigger index is still stale for spec.md, so Gate 1 will not find "demo widget", and ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     context extractor degraded with ENOBUFS, which affects captured session context only.                                                ┃  plugins/system-skill-advisor.js                         ┃  
+                                                                                                                                          ┃  Run /plugins to view details.                           ┃  
+     Nothing is blocked on you. The badge work still waits for your go-ahead, and the index refresh can wait with it.                     ┃                                                          ┃  
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 1m 58s · 141.8 tok/s                                                                                                                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                           
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 482ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Simple: one question, single choice, exactly Left and Right. No writing.                                                                                                                         
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge sit to the left or right of the title?                                                                                                                                            
+  ┃  Right                                                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     Recorded: the badge sits to the right of the title.                                                                                                                                                
+                                                                                                                                                                                                        
+     Nothing was written. That answer lives in chat only, so the saved decision record still holds just the first four. Say the word and I can save this                                                
+     one, or leave it until the badge work starts.                                                                                                                                                      
+                                                                                                                                                           ▄                                            
+     Build · DeepSeek V4.1 Flash 1017 · 12.6s · 33.4 tok/s                                                                                                 █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  94.8K (9%) · $0.05  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

@@ -1,0 +1,16 @@
+Lineage `deepseek` is complete: 3 iterations at the cap, all state written through the append gateway, reducer run after each iteration.
+
+**Artifacts** (all under `specs/system-speckit/043-decision-capture/research/lineages/deepseek/`): `deep-research-config.json` (status complete), `deep-research-state.jsonl` (config + 3 iterations + terminal `maxIterationsReached`), `deep-research-strategy.md`, `findings-registry.json` (31 findings, 5/5 questions resolved), `deep-research-dashboard.md` (reducer-stamped, COMPLETE), `research.md`, `resource-map.md`, `iterations/iteration-00{1,2,3}.md`, `deltas/iter-00{1,2,3}.jsonl`.
+
+**What the research found**
+
+- The live surface is **four** producers (Claude, Devin, Pi, OpenCode plugin), not five, all funnelling one queue core; the nudge fires on two of six runtimes.
+- **Gap 3 is not a capability gap**: `probe/codex.json` records the Codex hook as observed working and blames per-user trust, while `.codex/hooks.json` already registers three PostToolUse and four Stop commands — the trust ask is already made for other concerns.
+- **Gap 4**: four runtimes have probe records, Cursor has none, and the matrix is test-pinned to exactly six runtimes with `unverified:` as an accepted terminal state — so nothing forces resolution.
+- **Gap 8** is a two-shape `main()` split (three sweeps return `{error}` + exit 1, two return `null` + exit 0), and it makes a clean Codex/Pi run indistinguishable from a failed read at save time.
+- **Gap 6** exists in three copies (code filter, `save.md` prose, state README prose); only the code copy is testable.
+- **Maintainability**: the duplication is five store locators plus five turn extractors (pairing is already shared), a queue schema declared in two languages, a consumed log read by three implementations, and 4,868 test lines over ~3,000 implementation lines. One turn contract collapses the most; delete the OpenCode `answerMap` and the TS queue-schema duplicate; do not add a Hermes column or a model-free record writer.
+
+**Out-of-scope observation:** `.skilled/hooks/decision-capture/lib/capture-core.mjs` shows an uncommitted 27/10-line diff with an mtime (17:47) later than my read (17:22). I never wrote to it — my only writes are the files listed above — so I can't attribute it; it is not a repair I can make, since reverting it would be a write outside this lineage.
+
+FANOUT_LINEAGE_COMPLETE:deepseek

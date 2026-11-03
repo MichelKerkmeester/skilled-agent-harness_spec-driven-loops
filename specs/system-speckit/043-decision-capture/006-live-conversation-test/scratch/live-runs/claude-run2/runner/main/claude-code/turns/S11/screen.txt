@@ -1,0 +1,51 @@
+      210        "decision-record.md": "40036d0f52caf04583cdf81268cf577d445b52961a4ac3dc2b812ec85cd254cc",                                                                                         
+      211 -      "implementation-summary.md": "14a92877c0a7f11ed527469c9f90506033947781d2ac19baebe774403ac446e5"                                                                                        
+      211 +      "implementation-summary.md": "6ff24f2bf9e2e5363d4269c7d9230f4a7481722b363796dc07872ad9f52bdddc"                                                                                        
+      212      },                                                                                                                                                                                       
+      213      "last_active_at": null                                                             
+      214    }                                                                                                                                                                                          
+  ⎿  Updated specs/demo/001-demo-widget/implementation-summary.md (+1 -1)                                                                                                                        
+       8  _memory:                                                                                                                                                                                      
+       9    continuity:                                                                                                                                                                          
+      10      packet_pointer: "demo/001-demo-widget"                                              
+      11 -    last_updated_at: "2026-11-02T18:23:57Z"                                                                                                                                            
+      11 +    last_updated_at: "2026-11-02T18:24:35Z"                                                                                                                                            
+      12      last_updated_by: "generate-context"                                                                                                                                                
+      13      recent_action: "Recorded badge position, size and tooltip decisions; no spec or code written"                                                                                      
+      14      next_safe_action: "Await operator go, then write the badge requirement into spec.md"                                                                                                      
+
+⏺ The save ran, but nothing new needed recording. The sweep found no pending answers and no chat candidates. The match dry run and the orphan scan also came back empty, and decision-record.md is   
+  byte-identical to before. The writer still exited 0. It rewrote continuity with the same values and refreshed graph-metadata.json.                                                                 
+                                                                                                                                                                                                     
+  SPECKIT:SAVE                                                                                                                                                                                          
+  --------------------------------------------------                                                                                                                                             
+  Folder      specs/demo/001-demo-widget                                                                                                                                                                
+  Targets     implementation-summary.md, graph-metadata.json, description.json                                                                                                                        
+                                                                                                          
+  Anchors                                                                                                                                                                                               
+  - _memory.continuity (values unchanged)                                                                                                                                                        
+                                                                                                                                                                                                        
+  Triggers                                                                                                                                                                                              
+  demo widget | status badge                                                                                                                                                                          
+                                                                                                                                                                                                        
+  STATUS=OK TARGETS=3 ANCHORS=1
+                                                                                                                                                                                                        
+  - Decision record: it still holds Q001–Q007, with no new rows.                                                                                                                                        
+  - Continuity: unchanged. next_safe_action is still "Await operator go, then write the badge requirement into spec.md", and the two blockers are still the hold on writes and the unspecified tooltip  
+    text.                                                                                                                                                                                               
+  - Still open from last time:
+    - The post-save quality review was skipped because the writer saw the target as a directory.                                                        
+    - The trigger index is still stale for spec.md and missing "demo widget". I didn't regenerate it because you're holding writes.                                                              
+    - The 0% alignment warning didn't come up this time.                                                                                                                                         
+  - Clean-up: I deleted the temporary payload and backup. The only changes are in the same four packet files.                                                                                           
+                                                                                                           
+  Nothing else needs doing right now. When you're ready, say go and give me the tooltip text, and I'll write the badge requirement into spec.md.                                                        
+
+✻ Baked for 20s · done 7:24 PM                                                       
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

@@ -1,0 +1,51 @@
+
+• Ran cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-handoff.md
+  └ ---
+    title: "Rule: Communication"
+    description: "Write so the reader can act after one pass: no table in a reply, nothing that does not carry information."
+    +590 lines (⌃t to view transcript)
+
+• The demo widget is documented in specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md). I made no file changes and have stopped here. Tell me when to continue.
+
+  Worked for 58s • 20:21
+
+
+› A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+
+• Understood. I’ll wait.
+
+  Worked for 4s • 20:21
+
+
+› Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no
+  option as recommended.
+
+
+• Questions 1/1 answered
+  • Which colour should the status badge use?
+    answer: Amber
+
+• Amber noted. I’ll keep waiting for your go-ahead before writing files.
+
+  Worked for 19s • 20:21
+
+
+› Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.
+
+
+• Questions 1/1 answered
+  • Which platform should I record first? You can add other platforms in a note.
+    answer: None of the above
+    note: Web, iOS, Android
+
+• Recorded: Web, iOS and Android. I’ll keep waiting for your instruction to write.
+
+  Worked for 15s • 20:22
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 14% used · 5h 63% left · weekly 79% left
+

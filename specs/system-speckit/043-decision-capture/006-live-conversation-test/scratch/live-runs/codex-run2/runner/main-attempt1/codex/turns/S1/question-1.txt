@@ -1,0 +1,51 @@
+
+• I’ll only locate the project documentation relevant to the demo widget and status badge, then pause. I won’t edit files or ask product questions.
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Add a status badge to the demo widget in this project. Locate where this is
+  │ documented; do not write anything yet."
+  └ {
+      "candidatePhraseCount": 1195,
+      "discardedTokens": [
+    +67 lines (⌃t to view transcript)
+
+• Ran node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Add a status badge to the demo widget in this project. First locate the documentation that defines the widget or its
+  │ intended changes. Stop once the documentation location is known; do not edit files or ask product questions."}' --format json
+  └ {
+      "status": "ok",
+      "degraded": true,
+    +17 lines (⌃t to view transcript)
+
+• Explored
+  └ List skills
+    Search (^|/)sk-doc(/|$).*SKILL\.md$ (command exit 1)
+    List skills
+    Search (^|/)sk-doc(/|$).*SKILL\.md$|(^|/)doc[^/]*/SKILL\.md$ (command exit 1)
+    List skills
+
+• The project’s trigger index has no matching entries. The skill advisor recommends sk-doc at high confidence, but that skill isn’t under the local .skilled/skills directory, so I’m checking the
+  runtime’s available skill files before searching the project docs.
+
+• Explored
+  └ Search demo.{0,30}widget|widget.{0,30}demo|status badge|badge in .
+    List rg --files --hidden -g SKILL.md -g '!**/.git/**'
+    Search (^|/)(sk-doc|doc[^/]*|system-spec-kit)(/|$) (command exit 1)
+    List rg --files --hidden -g '!**/.git/**' -g '!**/node_modules/**' -g '!**/.pi/**' -g '!**/.skilled/**'
+    Search (^|/)(docs?|specs?)/|(^|/)(readme|agents|prd|design|brief)[^/]*\.(md|mdx)$|demo|widget
+    Search demo.{0,30}widget|widget.{0,30}demo|status badge|demo widget in . (exit 1)
+    List ls -la
+    Search widget|badge|demo in specs
+    List specs
+    Read communication.md, communication-handoff.md, communication-prose.md
+
+• The demo widget is documented in specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md), with related plan, tasks, and acceptance criteria in the same folder. The text search found
+  no existing mention of a badge.
+
+  I made no edits. I’ve stopped here and will wait for your instruction.
+
+  Worked for 1m 9s • 20:00
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 14% used · 5h 77% left · weekly 81% left
+

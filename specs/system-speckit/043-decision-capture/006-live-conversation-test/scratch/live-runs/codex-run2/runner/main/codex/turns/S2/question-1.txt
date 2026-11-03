@@ -1,0 +1,51 @@
+
+• SKILL ROUTING: sk-doc (advisor confidence 0.95). I’m checking its read-only discovery guidance and the project references now.
+
+• Explored
+  └ Search demo widget|demo-widget|status badge|badge in . (exit 1)
+    List skills
+    Search (^|/)sk-doc(/|$)|(^|/)skilled-doc (command exit 1)
+    List rg --files -g 'REPO RULES.md' -g 'README*' -g 'docs/**' -g 'specs/**' -g '*.md'
+    List ls -la
+    List rg --files --hidden -g '!**/.git/**' -g '!**/node_modules/**'
+    List .skilled
+    List specs
+    Search demo|widget|badge in .
+    List specs
+    List skills
+
+• Ran cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-handoff.md
+  └ ---
+    title: "Rule: Communication"
+    description: "Write so the reader can act after one pass: no table in a reply, nothing that does not carry information."
+    +590 lines (⌃t to view transcript)
+
+• The demo widget is documented in specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md). I made no file changes and have stopped here. Tell me when to continue.
+
+  Worked for 58s • 20:21
+
+
+› A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+
+• Understood. I’ll wait.
+
+  Worked for 4s • 20:21
+
+
+› Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no
+  option as recommended.
+
+ 
+ 
+  Question 1/1 (1 unanswered)
+  Which colour should the status badge use?
+ 
+  › 1. Amber              Use Amber for the badge.                                                                                                                                                    
+    2. Teal               Use Teal for the badge.
+    3. Slate              Use Slate for the badge.
+    4. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

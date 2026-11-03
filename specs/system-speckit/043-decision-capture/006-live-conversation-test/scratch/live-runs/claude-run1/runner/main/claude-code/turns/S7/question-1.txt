@@ -1,0 +1,51 @@
+                                                                                                                                                                                                 
+                                                                                                                                                                                                    
+⏺ The save worked: your four badge decisions are now in specs/demo/001-demo/decision-record.md.                                                                                                         
+                                                                                                                                                                                                        
+  SPECKIT:SAVE                                                                                                                                                                                   
+  --------------------------------------------------                                                                                                                                             
+  Folder      specs/demo/001-demo                                                                                                                                                                
+  Targets     decision-record.md, implementation-summary.md, graph-metadata.json                                                                                                                 
+
+  Anchors                               
+  - operator-decisions                                                                                                                                                                                  
+  - operator-answers-verbatim                                                                                                                                                                       
+                                                                                                                                                                                                        
+  Triggers                                                                                                                  
+  demo | demo widget                                                                                                                                                                                
+                                                    
+  STATUS=OK TARGETS=3 ANCHORS=2                                                                                                                                                                         
+                                                                                
+  The writer exited 0, and I read back both files to check what it wrote:
+                                                                                                                                                                                                        
+  - Decision record: the table has four rows, Q001–Q004: Amber, Web/iOS/Android, "Needs review" and static. Each row's "Why" says "Not stated." because you gave no reasons. The appendix holds each    
+    question, its options and your answer word for word.
+  - Continuity block in implementation-summary.md:
+    - Next step: "Verify with the operator where widget code lives per platform before implementing".
+    - Blockers: there is no widget source code yet, and spec.md is still an unfilled template.                                                                                                      
+  - First attempt rejected: the writer turned down my first payload because "Ask" isn't one of the verbs next_safe_action may open with. I changed it to "Verify" and reran; nothing was written by the
+    failed attempt.                                                                                                                                                                                 
+  - Quality review skipped: the writer skipped its post-save quality review because the target was a folder rather than a single file. That means no automatic quality check ran on this save.
+  - Search index out of date: I didn't regenerate it. The writer reports it as stale for this packet's existing demo and demo widget phrases; this save didn't change them. The saved docs are complete,
+    but a search on those phrases may miss this packet until someone runs generate-trigger-index.mjs.
+                                                                                                                                                                                                    
+  No widget or badge code has been written. The next step is yours: tell me to start, and let me ask where the widget's code lives on each platform.                                                   
+                                                                                                                                                                                                    
+✻ Worked for 1m 16s · done 11:56 AM                                                                                                                                                                     
+                                                                                                                                                                                                        
+❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                              
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Placement                                                                                                                                                                                            
+                                                                                                                                                                                                        
+│ Should the demo widget's "Needs review" status badge sit left or right of the title?               
+
+❯ 1. Left                                                                                                                                                                                               
+     Badge appears before the title.   
+  2. Right                                                                                                             
+     Badge appears after the title.                                                                                                                                                                   
+  3. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel                            
+

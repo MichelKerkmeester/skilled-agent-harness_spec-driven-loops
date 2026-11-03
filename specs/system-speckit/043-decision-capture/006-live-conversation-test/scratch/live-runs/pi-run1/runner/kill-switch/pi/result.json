@@ -1,0 +1,43 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1507700685,
+  "socket": "conv-31284-pi",
+  "session_id": "3df5157b-0170-4202-8af5-0f35ed11b68d",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/pi-kill-switch/pi",
+  "started_at": "2026-11-02T13:29:50.803Z",
+  "finished_at": "2026-11-02T13:30:28.409Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S12",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=pi queue_jsonl=0 nudge_lines=0 color_question=1 amber_visible=1",
+      "evidence": "turns/S12"
+    }
+  ]
+}

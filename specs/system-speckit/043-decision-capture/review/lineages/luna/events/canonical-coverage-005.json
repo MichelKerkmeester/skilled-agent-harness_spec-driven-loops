@@ -1,0 +1,362 @@
+[
+  {
+    "type": "node",
+    "id": "dimension:correctness",
+    "kind": "DIMENSION",
+    "name": "Correctness",
+    "iteration": 1,
+    "metadata": {}
+  },
+  {
+    "type": "node",
+    "id": "luna:fanout-luna-1793649602423-v8rh6g:dimension:security",
+    "kind": "DIMENSION",
+    "name": "Security",
+    "iteration": 2,
+    "metadata": {
+      "dimension": "security"
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-dimension-traceability",
+    "kind": "DIMENSION",
+    "name": "Traceability",
+    "iteration": 3,
+    "metadata": {
+      "canonicalReviewDimension": true
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-r4-dimension-maintainability",
+    "kind": "DIMENSION",
+    "name": "Maintainability",
+    "iteration": 4,
+    "metadata": {}
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-5e852eaded00c13b",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:194",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:229-309",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:236-286",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:239"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-d2bb7aefeeb74eeb",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-5e852eaded00c13b",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:236-286"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-e4d4ab338a2035c0",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:128-175,234-327",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:234",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-303"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-410f4fb8c7f8140d",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-e4d4ab338a2035c0",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-303"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-45292d90a0eda31e",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:100-137,311-321",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:98-137,311-349"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-74ad41dad7bbde0a",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-45292d90a0eda31e",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:100-137,311-321"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-a76df278ca37540f",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:234-310",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:241-280"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-02ba112304e77eaf",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-a76df278ca37540f",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:241-280"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-53208cde8a87930a",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:113-225,255-345",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:220-249,292-312"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-3158a020ebfac04c",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-53208cde8a87930a",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:220-249,292-312"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-8a370e88f30ccb45",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs:131-510",
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs:55-90,581-602"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-8c2e0b0c0f41015f",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-8a370e88f30ccb45",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs:55-90,581-602"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-53f671dc3c71ddf4",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs:66-68,275-297",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs:71-318"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-2ab41af7bcaaf7c3",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-53f671dc3c71ddf4",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs:66-68,275-297"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-146e6c7f2f0cf9c2",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs:119-340",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs:251-284"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-dc6d19a68e9bb3f9",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-146e6c7f2f0cf9c2",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs:251-284"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-dce9f4f8ba0c4807",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs:156-190",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs:58-248"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-1fa5059dfa1279aa",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-dce9f4f8ba0c4807",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs:156-190"
+      ]
+    }
+  },
+  {
+    "type": "node",
+    "id": "luna-canonical-file-71fa6aa66cf3d5b4",
+    "kind": "FILE",
+    "name": ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs",
+    "iteration": 5,
+    "metadata": {
+      "canonicalReviewCoverage": true,
+      "dimensions": [
+        "correctness",
+        "maintainability"
+      ],
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:242-290",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:77-410"
+      ]
+    }
+  },
+  {
+    "type": "edge",
+    "id": "luna-canonical-iter-5-covers-bdb9eb1d736ab9e2",
+    "source": "dimension:correctness",
+    "target": "luna-canonical-file-71fa6aa66cf3d5b4",
+    "relation": "COVERS",
+    "metadata": {
+      "dimension": "correctness",
+      "iteration": 5,
+      "reviewedRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:242-290"
+      ]
+    }
+  }
+]

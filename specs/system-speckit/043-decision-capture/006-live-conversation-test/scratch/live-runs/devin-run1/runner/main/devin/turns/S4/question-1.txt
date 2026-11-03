@@ -1,0 +1,51 @@
+
+ Trigger index: clean no-hit. There's a  specs/demo  packet — let me look inside.
+
+ ✓ find specs -type f | head -50
+ ✗ rg -il "widget|badge" . --glob '!node_modules' --glob '!.git' | head -30 Exited with code 1
+ ✓ Read lines 1-80 in ./specs/demo/001-demo-widget/description.json, ./specs/demo/001-demo-widget/spec.md
+
+ Found it. Loading the reply rules before I report back.
+
+ ✓ cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md 2>/dev/null | head -120
+
+ The demo widget is documented in  specs/demo/001-demo-widget/  — a Level 3 spec packet containing  spec.md ,  plan.md ,  tasks.md ,  acceptance-criteria.md ,  decision-record.md ,  implementation-sum
+ mary.md ,  timeline.md , and  description.json .
+
+ One caveat: the packet is scaffolded but unfilled —  spec.md  still carries the template placeholders ( [YOUR_VALUE_HERE]  in Problem, Scope, and elsewhere), so it names the feature without yet
+ describing it. Branch recorded in metadata:  scaffold/001-demo-widget .
+
+ Stopping here as requested — no writes made. Tell me when to proceed.
+
+❭ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+ Bound to  specs/demo/001-demo-widget  for this session. Waiting — no writes until you say so.
+
+❭ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.
+
+ ⏺ Asked user Which colour should the status badge use?
+ └ Amber
+
+ Amber it is. Still waiting — no writes until you say so.
+
+❭ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several.
+
+ ⏺ Asked user Which platforms must the badge support?
+ └ Web, iOS, Android
+
+ All three: Web, iOS, Android. Still holding — no writes until you tell me.
+
+❭ Ask me with your question tool for the badge label, with a few options. I will type my own.
+
+── Badge label ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  What label should the status badge show?                                                                                                                                                              
+  ❭ 1 Beta                                                                                                                                                                                              
+      Marks the widget as a beta feature.                                                                                                                                                               
+    2 Live                                                                                                                                                                                              
+      Marks the widget as live/active.
+    3 New
+      Marks the widget as newly added.
+      Other (type your own)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+↑↓ select · ↵ confirm · ? help me out · esc cancel
+

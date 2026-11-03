@@ -1,0 +1,3 @@
+$ Q=.skilled/skills/.state/decision-capture;T=$CONVERSATION_TURN_DIR;R=$CONVERSATION_REPO_ROOT;cp $Q/* "$T" 2>/dev/null;(rg --files "$R/specs";cat "$R/.skilled/skills/.state/decision-capture/"* 2>/dev/null)|shasum>"$T/base.sha";rg -q '"session_id"' $Q/*.jsonl 2>/dev/null&&{ echo "DEVIATION: queue rows";exit 1;};echo "rows=0 base=base.sha"
+rows=0 base=base.sha
+[exit 0]

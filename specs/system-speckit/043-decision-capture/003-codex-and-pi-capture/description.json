@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/043-decision-capture/003-codex-and-pi-capture",
+  "description": "Phase 3: codex-and-pi-capture",
+  "keywords": [
+    "phase",
+    "codex-and-pi-capture"
+  ],
+  "lastUpdated": "2026-11-02T18:14:05.725Z",
+  "specId": "003",
+  "folderSlug": "codex-and-pi-capture",
+  "parentChain": [
+    "system-speckit",
+    "043-decision-capture"
+  ],
+  "memorySequence": 5,
+  "memoryNameHistory": [
+    "02-11-26_10-25__closed-codex-and-pi-capture-on-evidence-ac-001.md",
+    "02-11-26_15-14__refreshed-generated-metadata-after-the-decision.md",
+    "02-11-26_17-33__closed-the-codex-and-pi-capture-phase-after-the.md",
+    "02-11-26_17-33__refreshed-generated-metadata-after-the-codex-run.md",
+    "02-11-26_19-14__amended-003-nfr-r02-so-the-codex-and-pi-sweeps.md"
+  ]
+}

@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+     ┃ Ask a multi-select question with exactly Web, iOS, Android, multiple: true.                                                        ┃                                                          ┃  
+                                                                                                                                          ┃  3 plugins failed                        › Open plugins  ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+  ┃  # Questions                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+  ┃                                                                                                                                       ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+  ┃  Which platforms must the badge support? Select all that apply.                                                                       ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+  ┃  Web, iOS, Android                                                                                                                    ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+  ┃                                                                                                                                       ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Recorded: Web, iOS and Android, all three.                                                                                           ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     Still holding. Nothing written. Two choices are captured in chat only: Amber, and all three platforms.                               ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 9.9s · 38.4 tok/s                                                                                 ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃                                                                                                                                       ┃  Run /plugins to view details.                           ┃  
+  ┃  Ask me with your question tool for the badge label, with a few options. I will type my own.                                          ┃                                                          ┃  
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.3s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ The question tool always adds a "Type your own answer" option automatically. I need to offer a few options. Let me pick sensible ones: "Active",                                                 
+     ┃ "Live", "Demo"? Given it's a demo widget status badge, plausible labels: "Live", "Active", "Demo". The user says "I will type my own" — so options                                               
+     ┃ are just scaffolding. I'll offer three or four.                                                                                                                                                  
+     ┃                                                                                                                                                                                                  
+     ┃ I should not include a separate free-form option (the tool adds it). Keep to e.g. Live, Active, Preview.                                                                                         
+     ┃                                                                                                                                                                                                  
+     ┃ Let me use: Live, Active, Preview. Descriptions minimal. multiple: false (single label presumably).                                                                                              
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Questions                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  What label should the status badge show?                                                                                                                                                           
+  ┃  Needs review                                                                                                                                                                                       
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     Recorded: the label reads "Needs review".                                                                                                                                                          
+                                                                                                                                                           █                                            
+     Still holding. Nothing written. Three answers now live only in this conversation: Amber, Web plus iOS plus Android, and that label.                   █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 10.7s · 53.6 tok/s                                                                                                 █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  45.1K (4%) · $0.02  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

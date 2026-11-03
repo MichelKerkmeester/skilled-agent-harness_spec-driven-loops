@@ -1,0 +1,46 @@
+NEXT=Q009
+--- step 2
+exit=0
+1
+UNCHANGED
+step2 rc=0
+--- step 3
+exit=0
+1
+258a259
+> | Q009 | Use amber for the status badge. | Amber reads as a warning without implying failure. | None | spec.md REQ-001 |
+331a333,346
+> ```
+> 
+> ### Q009
+> <!-- source: claude:fixture-session:toolu_fixture:0 -->
+> 
+> Question:
+> ```text
+> Which colour should the status badge use?
+> ```
+> 
+> Options:
+> ```text
+> Amber
+> Red
+333a349,353
+> Answer:
+> ```text
+> Amber
+> ```
+> 
+CONSUMED_LINES=1
+step3 rc=0
+--- step 4
+exit=0
+BYTE_IDENTICAL
+NEXT_ROWS=1
+CONSUMED_LINES=1
+step4 rc=0
+--- step 5
+CONSUMED_KEY_ID=claude:fixture-session:toolu_fixture:0:Q009
+REPO_STATUS_UNCHANGED
+step5 rc=0
+258:| Q008 | Keep the session-relaunch t
+259:| Q009 | Use amber for the status ba

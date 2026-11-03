@@ -1,0 +1,51 @@
+  The packet is still a blank template. spec.md is marked Status "Draft" (line 35) and every content field is still [YOUR_VALUE_HERE: …]. Nothing in it describes what the widget is, which files it
+  lives in, or how it shows status. "Badge" appears nowhere in the packet. A search of the whole repository for demo-widget, demoWidget and similar names also turned up no widget code.
+                                                                                                                                                                                             
+  I haven't written anything. One thing to know: a hook announced "a file mutation is about to run" during my searches. That was a false positive, since every command I ran only read files.           
+                                                                                                                                                                                        
+  I've stopped here and won't ask the product questions until you say so.                                                                                                                           
+
+✻ Churned for 40s · done 12:37 PM                                                                                                                                                       
+
+❯ A) Existing, specs/demo/001-demo-widget                                                                                                                                                               
+
+⏺ Got it. This session's spec folder is now specs/demo/001-demo-widget, and I won't ask the documentation question again.                                                                    
+                                                                                                                                                                                                        
+  Choosing the folder doesn't lift your earlier hold, so I'm still not writing anything or asking product questions. Tell me when to start.
+
+✻ Sautéed for 3s · done 12:37 PM
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.                                                            
+
+⏺ User answered Claude's questions:                                                                                                        
+  ⎿  · Which colour should the demo widget's status badge use? → Amber
+
+⏺ You picked Amber for the badge.
+                                                                                                                                                                 
+  I still haven't written anything. Your message said to ask this question before writing, but it didn't lift the earlier hold, so I'm waiting for you to say go.
+                                                                                                                                                                                                        
+  Two things you should know before then:                                                               
+  - There's no widget code. I searched the whole repository and found nothing the badge could attach to.                                                         
+  - The spec is empty. specs/demo/001-demo-widget/spec.md is still the blank template, so I'd be filling in the spec as well as building the badge.
+
+✻ Crunched for 6s · done 12:37 PM                                                                                                                                                                       
+
+❯ Do not use the tool this time. In the middle of your reply, ask me one plain question about whether the badge shows a count, then end your reply with a one-line status that is not a question.       
+
+⏺ The badge will be Amber, and the packet is specs/demo/001-demo-widget.                                                                           
+                                                                                                                                                                                                        
+  Should the badge show a count, such as a number of items or alerts, or just a coloured status with no number?
+                                                                                                                                                                                                        
+  Your answer settles what the badge displays, so it shapes the spec's scope and acceptance criteria once I'm allowed to write. A hook also flagged that your Amber choice isn't in a decision record
+  yet. Recording it means running /speckit:save, which writes files, so I'll leave that until you lift the hold.
+                                                                                                     
+  Status: no files written, Amber recorded in this conversation only, still holding until you say go.                                                                                                
+
+✻ Baked for 3s · done 12:37 PM                                                                                                                                                                       
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

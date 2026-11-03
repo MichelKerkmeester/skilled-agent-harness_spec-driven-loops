@@ -1,0 +1,3 @@
+$ [ $CONVERSATION_RUNTIME = codex ]&&echo "no live queue on codex"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* "$CONVERSATION_TURN_DIR" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o="rows=$n nudge=$v";case $CONVERSATION_RUNTIME in claude-code|opencode|devin) w=2;; *) w=;; esac;[ "$n" = 5 ]&&[ "$v" = "$w" ]&&echo "$o"||{ echo "DEVIATION: $o";exit 1;}
+rows=5 nudge=2
+[exit 0]

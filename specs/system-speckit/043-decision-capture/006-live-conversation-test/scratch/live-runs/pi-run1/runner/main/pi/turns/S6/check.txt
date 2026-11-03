@@ -1,0 +1,3 @@
+$ Q=.skilled/skills/.state/decision-capture;cp $Q/* "$CONVERSATION_TURN_DIR" 2>/dev/null;cp specs/demo/001-demo-widget/decision-record.md "$CONVERSATION_TURN_DIR/" 2>/dev/null;s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);node --input-type=module -e 'import{pendingRecords as p}from"./.dc.mjs";const n=p(".",process.argv[1]).length;console.log("pending="+n);process.exitCode=n' "$s"
+pending=0
+[exit 0]

@@ -1,0 +1,2 @@
+wA-matcher exit=1
+wC-writer exit=1

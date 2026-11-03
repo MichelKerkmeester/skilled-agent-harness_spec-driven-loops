@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge      ? Demo widget status badge      +                                                                                                      
+     ┃ Ask a multi-select question with exactly Web, iOS, Android, multiple: true.                                                        ┃                                                          ┃  
+                                                                                                                                          ┃  3 plugins failed                        › Open plugins  ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+  ┃  # Questions                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+  ┃                                                                                                                                       ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+  ┃  Which platforms must the badge support? Select all that apply.                                                                       ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+  ┃  Web, iOS, Android                                                                                                                    ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+  ┃                                                                                                                                       ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Recorded: Web, iOS and Android, all three.                                                                                           ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     Still holding. Nothing written. Two choices are captured in chat only: Amber, and all three platforms.                               ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 9.9s · 38.4 tok/s                                                                                 ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃                                                                                                                                       ┃  Run /plugins to view details.                           ┃  
+  ┃  Ask me with your question tool for the badge label, with a few options. I will type my own.                                          ┃                                                          ┃  
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.3s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ The question tool always adds a "Type your own answer" option automatically. I need to offer a few options. Let me pick sensible ones: "Active",                                                 
+     ┃ "Live", "Demo"? Given it's a demo widget status badge, plausible labels: "Live", "Active", "Demo". The user says "I will type my own" — so options                                               
+     ┃ are just scaffolding. I'll offer three or four.                                                                                                                                                  
+     ┃                                                                                                                                                                                                  
+     ┃ I should not include a separate free-form option (the tool adds it). Keep to e.g. Live, Active, Preview.                                                                                         
+     ┃                                                                                                                                                                                                  
+     ┃ Let me use: Live, Active, Preview. Descriptions minimal. multiple: false (single label presumably).                                                                                              
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  What label should the status badge show?                                                                                                                                                           
+  ┃                                                                                                                                                                                                     
+  ┃  1. Live                                                                                                                                                                                            
+  ┃     Label the badge with the word Live.                                                                                                                                                             
+  ┃  2. Active                                                                                                                                                                                          
+  ┃     Label the badge with the word Active.                                                                                                                                                           
+  ┃  3. Preview                                                                                                                                                                                         
+  ┃     Label the badge with the word Preview.                                                                                                                                                          
+  ┃  4. Demo                                                                                                                                                                                            
+  ┃     Label the badge with the word Demo.                                                                                                                                                             
+  ┃  5. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

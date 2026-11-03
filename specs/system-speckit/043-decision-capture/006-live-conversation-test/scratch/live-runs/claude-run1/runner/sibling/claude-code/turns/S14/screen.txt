@@ -1,0 +1,51 @@
+                                                                                                                                                                                                    
+  Ran 2 shell commands 
+
+⏺ Everything needed is ready, so I'm consuming item Q050 next. After that I'll run the full-auto writer, whose payload includes the count answer as the one new operator decision.
+                                                                                         
+  Ran 1 shell command                                                                                           
+
+⏺ The writer exited 0. Before I report, I want to confirm what actually landed on disk.
+                                                                                                                                                                                                        
+  Ran 1 shell command 
+
+⏺ The save finished and the files check out. Your write hold is still on for everything except this save.
+                                                                                                                                                                                                  
+  SPECKIT:SAVE                                      
+  --------------------------------------------------                                                     
+  Folder      specs/demo/001-demo-widget                                                                                                                                                          
+  Targets     implementation-summary.md, decision-record.md, description.json, graph-metadata.json
+                                                                                                                                                                                                       
+  Anchors                                                                                                                                                                                            
+  - operator-decisions                                                                            
+  - operator-answers-verbatim                                                                                                                                                                          
+                                                                                                                                                                                                  
+  Triggers                                                                                                                                                                                          
+  demo widget                                                                                                                                                                                           
+                               
+  STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                     
+                                                                                                                                                                                                       
+  What I confirmed by reading the files back:                                                                                                                        
+  - Count decision: recorded as Q001 in decision-record.md, with your exact question and answer. The record says "why: Not stated." because you didn't give a reason.                               
+  - Amber decision: I didn't write a new entry for it. The record already had a row, Q050, with the same question, options and answer, so the save marked that row as covering it. I didn't add that
+    row, and the file changed at 12:37:42, right after you answered. If you didn't add it yourself, something else is writing to the record.                                                      
+  - Continuity: saved in implementation-summary.md. It shows 0% complete, one blocker ("Operator hold on writes until go-ahead"), and the next step is to ask what the badge count measures.        
+  - Nothing left over: a fresh check finds no answers still waiting to be recorded. spec.md, plan.md, tasks.md and the other packet docs are untouched.                                             
+                                                                                                                                                                                                        
+  Some things the save didn't do:                                                                                                                                                                 
+  - Trigger index not regenerated. The writer reports it's stale because spec.md's "demo widget" phrase isn't in it, so lookups won't find this packet. Regenerating it is an optional extra write
+    outside the save, so I left it.                                                                                                                                                                   
+  - Quality review skipped. The writer skipped its own post-save review and scored the summary it generated at 0/100. That summary is a side output; the continuity fields and decision rows above are
+    the parts I checked.                                                                                                                                                                              
+  - One content flag and one git warning. The writer flagged "foreign spec ids" in that generated summary and couldn't read git context (ENOBUFS). Neither stopped the save.                           
+                                                                                                                                                                                                        
+  Status: save finished, and nothing else gets written until you say go. Your call: whether I regenerate the trigger index.                                                                          
+
+✻ Crunched for 1m 2s · done 12:39 PM                   
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

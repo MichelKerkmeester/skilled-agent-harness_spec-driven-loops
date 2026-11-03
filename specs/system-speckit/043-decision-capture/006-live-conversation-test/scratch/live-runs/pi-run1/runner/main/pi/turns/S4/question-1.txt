@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+   One thing to keep in view when you green-light: none of the three surfaces exists in this project. There is no web build, no iOS target, no Android target — no source tree, no package manifest. So 
+   each of those picks is currently unverifiable, and the badge would have no host to attach to on any of them.                                                                                         
+                                                                                                                                                                                                        
+   Still holding, nothing written.                                                                                                                                                                      
+
+ ✻ Turn took 10s (Total time 2m 17s · 4 turns)                                                                                                                                                          
+
+ ❯ Ask me with your question tool for the badge label, with a few options. I will type my own.                                                                                                          
+
+ ∴ Thinking: The user wants a question with a few options for the badge label, and they will type their own. So I should provide options (2-4) and NOT author an "Other" / "Type something." label — the
+   runtime appends it automatically.                                                                                                                                                                    
+                                                                                                                                                                                                        
+   What options make sense for a status badge label? Something plausible: "Live", "Beta", "Coming soon", "Deprecated"... Let me offer a few sensible status labels. The user picks or types their own.  
+                                                                                                                                                                                                        
+   Keep options 2-4. I'll go with 4? Let's do 3-4. Status badge labels: "New", "Beta", "Live", "Soon". Hmm, better: "New", "Beta", "Live", "Deprecated" — but these are different intent categories.    
+   Since the demo widget has no requirements, any label is arbitrary. I'll offer four plausible ones covering different intents.                                                                        
+                                                                                                                                                                                                        
+   Header ≤16 chars: "Badge label" (11).                                                                                                                                                                
+                                                                                                                                                                                                        
+   Options max 60 chars labels. Fine.                                                                                                                                                                   
+                                                                                                                                                                                                        
+   Single-select (a label is one). The user said "a few options. I will type my own." — single choice.                                                                                                  
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✳ Waiting for your answer… (thought for 2s · ↓ 405 tokens · 5s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge label                                                                                                                                                                                           
+
+ What text should the badge display?                                                                                                                                                                    
+
+❯ 1. Live
+     Short, present-state word. Implies the widget is generally available and running.
+  2. Beta
+     Present-state but hedged. Implies usable with caveats or under change.
+  3. Coming soon
+     Forward-looking. Implies the widget is not yet available to its audience.
+  4. Deprecated
+     Retirement signal. Implies the widget still works but should not be adopted.
+  5. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 33.4k tok | $0.01
+

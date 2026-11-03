@@ -1,0 +1,66 @@
+NEXT=Q009
+--- step 2
+exit=0
+1
+UNCHANGED
+step2 rc=0
+--- step 3
+exit=0
+1
+258a259
+> | Q009 | Use amber for the status badge. | Amber reads as a warning without implying failure. | None | spec.md REQ-001 |
+331a333,346
+> ```
+> 
+> ### Q009
+> <!-- source: claude:fixture-session:toolu_fixture:0 -->
+> 
+> Question:
+> ```text
+> Which colour should the status badge use?
+> ```
+> 
+> Options:
+> ```text
+> Amber
+> Red
+333a349,353
+> Answer:
+> ```text
+> Amber
+> ```
+> 
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/sw/steps.sh: line 16: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h1jJZOFyrp/.skilled/skills/.state/decision-capture/consumed.jsonl: No such file or directory
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/sw/steps.sh: line 16: test: : integer expression expected
+expected 1 consumed line, got 
+step3 rc=1
+--- step 4
+exit=0
+BYTE_IDENTICAL
+NEXT_ROWS=1
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/sw/steps.sh: line 18: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h1jJZOFyrp/.skilled/skills/.state/decision-capture/consumed.jsonl: No such file or directory
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/sw/steps.sh: line 18: test: : integer expression expected
+expected 1 consumed line, got 
+step4 rc=1
+--- step 5
+node:fs:621
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h1jJZOFyrp/.skilled/skills/.state/decision-capture/consumed.jsonl'
+    at readFileSync (node:fs:621:20)
+    at file://~/MEGA/Development/Skilled/[eval1]:1:115
+    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)
+    at async node:internal/modules/esm/loader:226:26
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:223:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.h1jJZOFyrp/.skilled/skills/.state/decision-capture/consumed.jsonl'
+}
+
+Node.js v26.8.2
+step5 rc=1
+258:| Q008 | Keep the session-relaunch t
+259:| Q009 | Use amber for the status ba

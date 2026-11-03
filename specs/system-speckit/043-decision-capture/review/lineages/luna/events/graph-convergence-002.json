@@ -1,0 +1,48 @@
+{
+  "stem": "deep_review.graph_convergence_evaluated",
+  "scope": {
+    "runId": "fanout-luna-1793649602423-v8rh6g",
+    "sessionId": "fanout-luna-1793649602423-v8rh6g",
+    "generation": 1,
+    "iterationId": "iteration-2"
+  },
+  "data": {
+    "rawSignals": {
+      "noveltyRatio": 0,
+      "coverageRatio": 1,
+      "findingStabilityRatio": 1,
+      "evidenceDensityRatio": 0.6666666666666666,
+      "hotspotSaturationRatio": 1,
+      "observationDigest": "1571010c3b4e8c5072bdddeb05416403d369a5e9bf78360938e6b170e8573d46"
+    },
+    "weightedSignals": {
+      "noveltyRatio": 0,
+      "coverageRatio": 1,
+      "findingStabilityRatio": 1,
+      "evidenceDensityRatio": 0.6666666666666666,
+      "hotspotSaturationRatio": 1,
+      "observationDigest": "1571010c3b4e8c5072bdddeb05416403d369a5e9bf78360938e6b170e8573d46"
+    },
+    "dimensionCoverageDigest": "cfcb6b84cbc54a519284cfcd0502f0fd5fa76802d2f2bf508ba743503b0cc5ad",
+    "protocolCoverageDigest": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "findingStability": "stable",
+    "p0p1ResolutionState": "blocked",
+    "evidenceDensity": 0.6666666666666666,
+    "hotspotSaturation": 1,
+    "decision": "continue",
+    "policyFingerprint": "1523f8e0177ba7ea450050ea52506270e207d30eee1cf01374609e635b5dca57",
+    "blockerIds": [],
+    "stopCandidate": false,
+    "graphDecision": "continue",
+    "graphDigest": "1571010c3b4e8c5072bdddeb05416403d369a5e9bf78360938e6b170e8573d46",
+    "signals": {
+      "dimensionCoverage": 1,
+      "findingStability": 1,
+      "p0ResolutionRate": 1,
+      "evidenceDensity": 0.6666666666666666,
+      "hotspotSaturation": 1,
+      "score": 0.95
+    },
+    "blockers": []
+  }
+}

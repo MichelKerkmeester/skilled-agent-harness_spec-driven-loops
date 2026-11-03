@@ -1,0 +1,66 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract
+  specs/system-speckit/043-decision-capture/006-live-conversation-test
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: markdown agent. Never use an em dash or en dash. Do NOT run any session, tmux, claude or
+save command; you only write one file. Never write a literal absolute home path.
+
+TASK: REWRITE this one file from scratch (overwrite it completely):
+  .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md
+The previous attempt broke: its JSON block was cut mid-string and its sections repeat. A copy of
+it is at specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/runs/live-conversation.broken.md;
+you may reuse its prose for sections 1, 2, 4 and 5 and its stage table, but write ONE copy of each section.
+
+Sources of truth: specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md section 3,
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md, and the
+finished sibling .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md
+(copy its style, its setup approach and its check style).
+
+Rules for the file:
+- Five sections like the sibling. Section 3 holds: Prompt, a Stage Table with exactly 12 rows
+  starting `| S0 |` to `| S11 |`, a `### Conversation Script` heading with ONE ```json conversation
+  block, then Runtime Matrix, Checkpoint Derivation (S8-compact plus S8-ask join into one S8 row;
+  with the kill-switch run's S12 that makes 13 rows), Stage Marks and Siblings (deviation is FAIL
+  printing `DEVIATION: ...`; not-applicable is a check exit 77 with the blocker on its first line;
+  siblings 002-table-row-matching, 003-codex-and-pi-capture, 004-opencode-devin-live-capture and
+  005-chat-question-detection add S13 and up or variants like S5b, never renumber, and append a
+  matrix row with the commit), Commands, Expected, Evidence, Pass / Fail, Failure Triage.
+- The Prompt line equals turn S1's send text exactly.
+- Block keys allowed ONLY: runtimes, setup, env, turns; turn: id, send, action, delay_ms,
+  timeout_ms, retry, questions, check; question: match, answer, delay_ms, optional; answer:
+  select, other, reply, multi. A select of two or more labels needs "multi": true.
+- runtimes: all five. Turn ids in order: S0 (check-only: no send, no action), S1, S2, S3, S4, S5,
+  S6, S7, S8-compact ("action":"compact"), S8-ask, S9-restart ("action":"restart"), S9-ask, S10, S11.
+  Sends and answers exactly as plan.md's stage table. Every turn "delay_ms":[5000,15000], every
+  question "delay_ms":[3000,8000], "retry":1 on S2, S3, S4, S5, S7, S8-ask and S9-ask.
+- EVERY check is ONE short bash line under 350 characters using only wc, jq, rg, cmp, cp, test,
+  cat, shasum. No python, no heredoc, no node except in S6 and S10. Each check copies the state
+  it reads into "$CONVERSATION_TURN_DIR", prints the observed value as its LAST line, and exits
+  non-zero on a mismatch. Use Q=.skilled/skills/.state/decision-capture relative to the project.
+  Nudge checks: if [ "$CONVERSATION_RUNTIME" != claude-code ], print
+  "no Stop nudge outside claude-code" first and exit 77 for the nudge-only part.
+- S6 and S10 checks may use one `node --input-type=module -e` call that imports pendingRecords
+  from "$CONVERSATION_REPO_ROOT/.skilled/hooks/decision-capture/lib/capture-core.mjs" (read it for
+  the signature) and prints the pending count, which must be 0.
+- Validate JSON yourself: extract the block and run it through `node -e "JSON.parse(...)"`.
+
+VERIFY (run and paste):
+  node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-spec-kit
+    -> 0 violations, no PROMPT_UNSYNCED for this file
+  rg -c '^\| S([0-9]|1[01]) \|' <the file>   -> 12
+  rg -c '^## ' <the file>   -> 5
+  rg -n "—|–|/Users/|python" <the file>   -> nothing
+Final message under 150 words.

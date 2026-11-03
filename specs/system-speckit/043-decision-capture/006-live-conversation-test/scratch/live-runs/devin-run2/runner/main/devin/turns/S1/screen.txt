@@ -1,0 +1,51 @@
+
+ ✓ Trust /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/devin-main/devin?
+
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.11.234
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+ Pro · 55% remaining (resets in 13h 11m)
+
+❭ Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.
+
+ I'll locate the demo widget and its documentation first — read-only, per your instruction. Starting with the context lookup and a survey of the workspace.
+
+ ✗ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Add a status badge to the demo widget" Exited with code 1
+ ✓ ls -la && echo "---" && ls specs/ 2>/dev/null | head -50
+
+ No spec hits on the trigger index — clean no-hit. There's a  specs/demo  folder though. Let me look inside it and find the widget itself.
+
+ ✗ find specs -type f | head -50 && echo "===WIDGET SEARCH===" && rg -il "widget" --glob '!specs/**' -l . 2>/dev/null | head -30 Exited with code 1
+ ✓ Read ./specs/demo/001-demo-widget/spec.md 215 lines
+ ✓ ls specs/demo/ && find . -maxdepth 3 -type d \( -name src -o -name lib -o -name app -o -name components \) -not -path './.git/*' -not -path './.skilled/*' -not -path './.claude/*' -not -path './.c…
+
+ Found the packet. It's a scaffold — let me quickly confirm the other docs are placeholders too, and load the reply rules before I respond.
+
+ ✓ cat specs/demo/001-demo-widget/description.json 2>/dev/null; echo "---plan head---"; head -30 specs/demo/001-demo-widget/plan.md; echo "---placeholder count---"; rg -c "YOUR_VALUE_HERE" specs/demo…
+ ✓ cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-handoff.md 2>/dev/null | head -120
+
+ The demo widget is documented at  specs/demo/001-demo-widget/  — a Level-3 spec packet with the usual set:  spec.md ,  plan.md ,  tasks.md ,  acceptance-criteria.md ,  decision-record.md ,  implement
+ ation-summary.md ,  timeline.md .
+
+ Two things worth knowing before you direct the next step:
+
+   • The packet is an empty scaffold. Every doc still holds  [YOUR_VALUE_HERE]  placeholders (38 in  spec.md  alone), status is Draft, and its scope, requirements, and Files to Change table are
+     unfilled. The trigger phrase "demo widget" is registered in  description.json  but wasn't yet in the committed trigger index.
+   • There is no widget code in this workspace. No  src/ , no package manifest, nothing matching "widget" outside  specs/ . The only non-hidden content is the spec packet,  AGENTS.md , and tooling
+     config. So a status badge has no implementation target here yet — unless the code lives elsewhere.
+
+ Stopped as instructed. Nothing written; I'll hold for your direction.
+
+❭ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+ Locked to  specs/demo/001-demo-widget  for the session. Holding — nothing written.
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/devin-main/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Locate Documentation for Adding a Demo … ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                     Context: 29k / 262k tokens (11%)
+
+

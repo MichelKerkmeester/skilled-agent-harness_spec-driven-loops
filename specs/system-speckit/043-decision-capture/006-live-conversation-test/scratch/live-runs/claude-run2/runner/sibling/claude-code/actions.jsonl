@@ -1,0 +1,8 @@
+{"runtime":"claude-code","time":"2026-11-02T18:25:51.085Z","turn":"startup","kind":"startup","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:26:11.102Z","turn":"S1","kind":"send","steps":[{"text":"Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:27:07.653Z","turn":"S1","kind":"question","steps":[{"text":"A) Existing, specs/demo/001-demo-widget"},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:27:18.888Z","turn":"S2","kind":"send","steps":[{"text":"Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:27:26.547Z","turn":"S2","kind":"question","steps":[{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:27:50.486Z","turn":"S5b","kind":"send","steps":[{"text":"Do not use the tool this time. In the middle of your reply, ask me one plain question about whether the badge shows a count, then end your reply with a one-line status that is not a question."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:27:59.786Z","turn":"S5b","kind":"question","steps":[{"text":"Yes, show the count."},{"key":"Enter"}]}
+{"runtime":"claude-code","time":"2026-11-02T18:28:11.107Z","turn":"S6","kind":"send","steps":[{"text":"/speckit:save specs/demo/001-demo-widget --full-auto"},{"key":"Enter"}]}

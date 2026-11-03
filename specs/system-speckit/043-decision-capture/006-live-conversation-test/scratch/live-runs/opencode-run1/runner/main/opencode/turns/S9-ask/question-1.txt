@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge      ? Demo widget status badge      +                                                                                                      
+     ┃ Note the standing hold: write nothing until told. Asking a question via the tool is not a write. So just ask.                      ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ The AGENTS.md framework has gates, but the conversation has been going with a simple "ask with the tool" pattern. The prior turns d┃                                                          ┃  
+     ┃ without running gates (the checkpoint shows direct question tool calls). I should just do the same — a read-only question. Let me u┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃ tool.                                                                                                                              ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃                                                                                                                                    ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+     ┃ Note: I'm in Code Mode; the question tool is available directly (it's listed as a tool, and also usable in execute?). The question ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃ function list; I can call it directly.                                                                                             ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃                                                                                                                                    ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Let me ask.                                                                                                                        ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+  ┃                                                                                                                                       ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+  ┃  # Questions                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+  ┃                                                                                                                                       ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+  ┃  Which size should the badge use?                                                                                                     ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃  Small                                                                                                                                ┃  Run /plugins to view details.                           ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+                                                                                                                                                                                                        
+     Recorded: the badge uses the Small size.                                                                                                                                                           
+                                                                                                                                                                                                        
+     Still nothing written. That answer, like the position one, lives in chat only — decision-record.md still holds just the first four. Say the word and                                               
+     I can save both, or leave them until the badge work starts.                                                                                                                                        
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 11.7s · 62.1 tok/s                                                                                                                                              
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge has a tooltip, offering exactly Yes and No.                                                                                                                 
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 513ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Simple: ask with question tool, offering exactly Yes and No.                                                                                        █                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge have a tooltip?                                                                                                                                                                   
+  ┃                                                                                                                                                                                                     
+  ┃  1. Yes                                                                                                                                                                                             
+  ┃     Show a tooltip when hovering or focusing the badge.                                                                                                                                             
+  ┃  2. No                                                                                                                                                                                              
+  ┃     No tooltip; the badge shows only its label.                                                                                                                                                     
+  ┃  3. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     - Confirmed the packet is an unfilled Level 3 scaffold and no widget source exists in the repository.                                                                                              
+     - Captured colour, platform, label and static-motion decisions.                                                                                            Demo widget status badge                
+     - Ran /speckit:save in --full-auto mode; wrote Q001-Q004 into decision-record.md and refreshed continuity metadata.                                                                                
+     - Confirmed decision queue is empty, no orphaned pending answers remain, and strict validation returned RESULT: PASSED with 0 errors and 3 warnings.       Context                                 
+                                                                                                                                                                $0.06 spent                             
+     Active                                                                                                                                                                                             
+                                                                                                                                                                                                        
+     - Captured the badge position decision (Right); it is not yet saved to the packet.                                                                                                                 
+                                                                                                                                                                                                        
+     Blocked                                                                                                                                                                                            
+                                                                                                                                                                                                        
+     - Implementation is blocked pending the user's explicit go-ahead to start writing.                                                                                                                 
+                                                                                                                                                                                                        
+     Next Move                                                                                                                                                                                          
+                                                                                                                                                                                                        
+     1. Save the position answer (Right) to decision-record.md, either by another /speckit:save or when the next save runs.                                                                             
+     2. Wait for the user's instruction to begin implementation.                                                                                                                                        
+     3. Author the packet documents and implement the badge once authorized.                                                                                                                            
+                                                                                                                                                                                                        
+     Relevant Files                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     - specs/demo/001-demo-widget/spec.md: Level 3 feature spec, still placeholder-filled.                                                                                                              
+     - specs/demo/001-demo-widget/decision-record.md: holds Q001-Q004 operator decisions and verbatim answers.                                                                                          
+     - specs/demo/001-demo-widget/implementation-summary.md: carries the _memory.continuity block.                                                                                                      
+     - specs/demo/001-demo-widget/plan.md: implementation plan scaffold.                                                                                                                                
+     - specs/demo/001-demo-widget/tasks.md: task breakdown scaffold.                                                                                                                                    
+     - specs/demo/001-demo-widget/acceptance-criteria.md: closure gate scaffold.                                                                                                                        
+     - specs/demo/001-demo-widget/description.json: generated metadata, refreshed by save.                                                                                                              
+     - specs/demo/001-demo-widget/graph-metadata.json: generated metadata, refreshed by save.                                                                                                           
+     - .skilled/commands/speckit/save.md: /speckit:save router contract.                                                                                                                                
+                                                                                                                                                                                                        
+     Important Context                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     - The repository contains only specs/ as product content; no widget implementation exists.                                                                                                         
+     - Q001-Q004 in decision-record.md currently cover colour, platforms, label and motion only.                                                                                                        
+     - Continuity says recent_action: "Recorded badge colour, platforms, label and static behaviour" and next_safe_action: "Await operator go-ahead before                                              
+       writing the badge", with blocker "Operator has not authorised implementation" and completion_pct: 10.                                                                                            
+     - Strict validation warnings are pre-existing scaffold gaps: 94 unfilled placeholders, incomplete AI protocol section and empty measured-behavior                                                  
+       block.                                                                                                                                                                                           
+     - Trigger index was not regenerated; writer reports spec.md stale, and regeneration is optional because trigger phrases did not change.               ▄                                            
+     - Changes are uncommitted in the working tree.                                                                                                        █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-Development-Sk…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  $0.06  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

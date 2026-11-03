@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     ┃ them to comply.                                                                                                                    ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ Actually these are likely elaborate. Read them.                                                                                    ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     → Explored: 3 reads                                                                                                                  ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+                                                                                                                                          ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     ◈ Instructions: 1 file                                                                                                               ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ Thought: 2.6s                                                                                                                      ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     ┃ Now I have all I need. The only documentation of the demo widget is the spec packet at specs/demo/001-demo-widget/, with spec.md as┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     ┃ plus plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md, timeline.md. It's a Level 3 scaffold┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃ placeholders (no actual demo widget code exists in the repo — only specs/ is present).                                             ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃                                                                                                                                    ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     ┃ The user asked: "Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions ┃  plugins/system-skill-advisor.js                         ┃  
+     ┃ you to."                                                                                                                           ┃  Run /plugins to view details.                           ┃  
+     ┃                                                                                                                                    ┃                                                          ┃  
+     ┃ So I should report the location and stop. No questions. No writes. Also note the documentation is scaffold placeholders and there's no widget                                                    
+     ┃ implementation in the repo — that's a factual finding worth one line, but should I mention it? It's relevant to "where it is documented". Yes,                                                   
+     ┃ briefly: the only trace is the spec packet; no source implementation.                                                                                                                            
+     ┃                                                                                                                                                                                                  
+     ┃ Should I ask Gate 3? No — read-only, no write. And the user explicitly says stop before writing. Asking Gate 3 would be a question, and they said                                                
+     ┃ product questions only when told. Gate 3 would fire only if I were about to write; I'm not.                                                                                                      
+     ┃                                                                                                                                                                                                  
+     ┃ Handback: the operator's next action is to tell me to proceed. That's the one thing. But they told me to wait, so I state I'm holding.                                                           
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it short, no em dashes, no semicolons, no table. First line carries payload.                                                                                                                
+     ┃                                                                                                                                                                                                  
+     ┃ Also: nothing changed. git status showed pre-existing untracked scaffolding; I made no writes. I can say no files were written.                                                                  
+     ┃                                                                                                                                                                                                  
+     ┃ Let me write the response.                                                                                                                                                                       
+                                                                                                                                                                                                        
+     The demo widget is documented only in the spec packet at specs/demo/001-demo-widget/. Its main document is spec.md, with plan.md, tasks.md,                                                        
+     acceptance-criteria.md, decision-record.md, implementation-summary.md and timeline.md alongside it under the demo track.                                                                           
+                                                                                                                                                                                                        
+     That packet is a Level 3 scaffold: every section still holds [YOUR_VALUE_HERE: ...] placeholders, and the repository contains no widget source code,                                               
+     only the specs/ tree. So "demo widget" currently names the documentation, not an implementation.                                                                                                   
+                                                                                                                                                                                                        
+     I have written nothing. I will wait for your instruction before editing any file or asking product questions.                                                                                      
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 34.0s · 107.2 tok/s                                                                                                ▄                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-D…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  50.6K (5%) · $0.01  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

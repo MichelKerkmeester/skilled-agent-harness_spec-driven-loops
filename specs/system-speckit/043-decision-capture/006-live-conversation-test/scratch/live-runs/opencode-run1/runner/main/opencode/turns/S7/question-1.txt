@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge      ? Demo widget status badge      +                                                                                                      
+     ┃ One more check: did the save update spec.md status? No. Good.                                                                      ┃                                                          ┃  
+     ┃                                                                                                                                    ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ I'll write the final answer now.                                                                                                   ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     Save ran clean. /speckit:save specs/demo/001-demo-widget --full-auto exited 0, and validate.sh --strict printed RESULT: PASSED with 0┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     warnings.                                                                                                                            ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+                                                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     Four files changed, all inside the packet. decision-record.md gained Q001 through Q004 with the verbatim question, options and answer┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     implementation-summary.md gained the continuity block, which records completion at 0 percent with two blockers. description.json and ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     json were refreshed by the writer, as the command contract requires. No lock file was left behind.                                   ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     The record now says amber, all three platforms, the label "Needs review" and a static badge with no blink. The continuity line reads ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     badge decisions and wrote no widget code", which is accurate.                                                                        ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+     The three warnings are 94 unfilled placeholders, an incomplete AI protocol section, and an empty measured-behavior block. All three a┃  plugins/system-skill-advisor.js                         ┃  
+     while the packet stays Draft, and none blocks the save.                                                                              ┃  Run /plugins to view details.                           ┃  
+                                                                                                                                          ┃                                                          ┃  
+     Rollback is available: the pre-save packet sits byte for byte at /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/spec-backup/001-                                                
+     demo-widget-before-save. Two residual gaps: the trigger index is still stale for spec.md, so Gate 1 will not find "demo widget", and the save's git                                                
+     context extractor degraded with ENOBUFS, which affects captured session context only.                                                                                                              
+                                                                                                                                                                                                        
+     Nothing is blocked on you. The badge work still waits for your go-ahead, and the index refresh can wait with it.                                                                                   
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 1m 58s · 141.8 tok/s                                                                                                                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                           
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 482ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Simple: one question, single choice, exactly Left and Right. No writing.                                                                                                                         
+                                                                                                                                                                                                        
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge sit to the left or right of the title?                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  1. Left                                                                                                                                                                                            
+  ┃     Place the badge to the left of the title.                                                                                                                                                       
+  ┃  2. Right                                                                                                                                                                                           
+  ┃     Place the badge to the right of the title.                                                                                                                                                      
+  ┃  3. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

@@ -1,0 +1,51 @@
+   type the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.                                                                                                
+
+ ∴ Thinking: The user wants a multi-select question with exactly three platform options: Web, iOS, Android. They said "Let me pick several; if your tool takes one choice, use it anyway and I will type
+   the rest as a note."                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   My ask_user_question tool supports multiSelect: true. So I should use multiSelect: true — that lets them pick several, which is what they want. That satisfies "let me pick several" directly.       
+                                                                                                                                                                                                        
+   Options: Web, iOS, Android — exactly three, no recommended marker, no "Other"/"Type something" authored by me (auto-appended).                                                                       
+                                                                                                                                                                                                        
+   Neutral, parallel descriptions:                                                                                                                                                                      
+   - Web — "The badge renders in the web build of the demo widget."                                                                                                                                     
+   - iOS — "The badge renders in the iOS build of the demo widget."                                                                                                                                     
+   - Android — "The badge renders in the Android build of the demo widget."                                                                                                                             
+                                                                                                                                                                                                        
+   Careful: I shouldn't assert that these builds exist (I know no source code exists). The wording "the web build of the demo widget" presupposes a build. Better to keep it about the platform target  
+   rather than claiming a build exists: "The badge is required to work on web." Factually neutral.                                                                                                      
+                                                                                                                                                                                                        
+   Question text: "Which platforms must the status badge support?" with multiSelect true.                                                                                                               
+                                                                                                                                                                                                        
+   Header ≤16 chars: "Platforms" (9).                                                                                                                                                                   
+                                                                                                                                                                                                        
+   Use ask_user_question with multiSelect: true. No previews.                                                                                                                                           
+                                                                                                                                                                                                        
+   Then report result, no writes.                                                                                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✽ Waiting for your answer… (thought for 2s · ↓ 376 tokens · 3s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Platforms                                                                                                                                                                                             
+
+ Which platforms must the status badge support?                                                                                                                                                         
+
+❯ 1. [ ] Web
+  The badge must work on web.
+  2. [ ] iOS
+  The badge must work on iOS.
+  3. [ ] Android
+  The badge must work on Android.
+  4. [ ] Type something.
+  Submit
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · Space to toggle · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 96% left | used: 37.4k tok | $0.01
+

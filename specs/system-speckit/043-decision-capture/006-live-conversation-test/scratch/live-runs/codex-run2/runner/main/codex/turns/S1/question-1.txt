@@ -1,0 +1,51 @@
+
+
+› Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.
+
+
+• I’ll locate the demo widget and its documentation, then stop without changing files.
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Add a status badge to the demo widget in this project; locate where it is
+  │ documented, then stop before writing."
+  └ {
+      "candidatePhraseCount": 1195,
+      "discardedTokens": [
+    +67 lines (⌃t to view transcript)
+
+• Ran node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"Add a status badge to the demo widget; locate the documentation for the widget and stop before any file writes."}'
+  │ --format json
+  └ {
+      "status": "ok",
+      "degraded": true,
+    +17 lines (⌃t to view transcript)
+
+• SKILL ROUTING: sk-doc (advisor confidence 0.95). I’m checking its read-only discovery guidance and the project references now.
+
+• Explored
+  └ Search demo widget|demo-widget|status badge|badge in . (exit 1)
+    List skills
+    Search (^|/)sk-doc(/|$)|(^|/)skilled-doc (command exit 1)
+    List rg --files -g 'REPO RULES.md' -g 'README*' -g 'docs/**' -g 'specs/**' -g '*.md'
+    List ls -la
+    List rg --files --hidden -g '!**/.git/**' -g '!**/node_modules/**'
+    List .skilled
+    List specs
+    Search demo|widget|badge in .
+    List specs
+    List skills
+
+• Ran cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md .skilled/repo-rules/communication-handoff.md
+  └ ---
+    title: "Rule: Communication"
+    description: "Write so the reader can act after one pass: no table in a reply, nothing that does not carry information."
+    +590 lines (⌃t to view transcript)
+
+• The demo widget is documented in specs/demo/001-demo-widget/spec.md (specs/demo/001-demo-widget/spec.md). I made no file changes and have stopped here. Tell me when to continue.
+
+  Worked for 58s • 20:21
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 13% used · 5h 64% left · weekly 79% left
+

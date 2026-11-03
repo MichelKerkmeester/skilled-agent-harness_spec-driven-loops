@@ -1,0 +1,51 @@
+⏺ User answered Claude's questions:                                                                                                                                                                    
+  ⎿  · Which platforms must the demo widget's status badge support? → Web, iOS, Android
+
+⏺ The badge must support all three platforms: Web, iOS and Android. So far you've chosen an Amber badge on Web, iOS and Android.
+                                                                                                                                                                                      
+  I still haven't written anything. A session notice suggested running /speckit:save to put your answers in the packet's decision record. That save writes files, so I haven't run it.
+                                                                                                                                                                                                        
+  I'm waiting for you to tell me to start. Before I can write code, I'll also need to ask where the widget's code lives on each platform, since the repo has none yet.
+
+✻ Sautéed for 9s · done 11:54 AM
+
+❯ Ask me with your question tool for the badge label, with a few options. I will type my own.                                                                                                           
+
+⏺ User answered Claude's questions:                                                                                                                                                   
+  ⎿  · What text should the demo widget's status badge show? Pick one or type your own under Other. → Needs review
+
+⏺ The badge label will be "Needs review". Here's what you've decided so far:
+                                                                                                                                                                                                      
+  ┌─────────────┬─────────────────────┐
+  │  Decision   │       Answer        │                                                                                                                                                                 
+  ├─────────────┼─────────────────────┤
+  │ Spec folder │ specs/demo/001-demo │                                                                           
+  ├─────────────┼─────────────────────┤                                                                           
+  │ Colour      │ Amber               │
+  ├─────────────┼─────────────────────┤                                     
+  │ Platforms   │ Web, iOS, Android   │
+  ├─────────────┼─────────────────────┤                                                                                                                                                                 
+  │ Label       │ "Needs review"      │                                                                                                                                                                 
+  └─────────────┴─────────────────────┘                                                                                                                                                          
+                                                                                                                                                                      
+  I still haven't written anything. That includes the /speckit:save the session notice keeps suggesting for recording these answers, because it writes files.
+                                                                                                                                                                                                    
+  When you tell me to start, I'll first need to ask where the widget's code lives on each platform, since the repo has none. I'll also ask whether the badge always shows "Needs review" or switches
+  between states.                                                                                                                                                                                   
+
+✻ Baked for 8s · done 11:54 AM                                                                                                                                                                      
+
+❯ Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink.                                                                                     
+
+⏺ I still haven't written anything, and that includes the /speckit:save the session notice suggests.                                                                                                
+                                                                                                                                                                                                        
+  Should the "Needs review" badge blink?                                                                                                                                                         
+
+✻ Cogitated for 3s · done 11:54 AM                                                                                     
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                              
+

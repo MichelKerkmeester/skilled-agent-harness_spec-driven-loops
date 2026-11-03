@@ -1,0 +1,51 @@
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd "$(git rev-parse --show-toplevel)"; sed -n '14,22p' specs/demo/001-demo-widget/description.json; echo; stat -f '%...ecord.md specs/demo/001-demo-widget/implementation-summary.md        <1s 
+   └ Done (10 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Save landed on the second attempt.                                                                                                                                                                   
+                                                                                                                                                                                                        
+     SPECKIT:SAVE                                                                                                                                                                                       
+     --------------------------------------------------                                                                                                                                                 
+     Folder      demo/001-demo-widget                                                                                                                                                                   
+     Targets     implementation-summary.md, description.json, graph-metadata.json                                                                                                                       
+                                                                                                                                                                                                        
+     Anchors                                                                                                                                                                                            
+     - operator-decisions                                                                                                                                                                               
+     - operator-answers-verbatim                                                                                                                                                                        
+                                                                                                                                                                                                        
+     Triggers                                                                                                                                                                                           
+     demo widget (index not regenerated)                                                                                                                                                                
+                                                                                                                                                                                                        
+     STATUS=OK TARGETS=3 ANCHORS=2                                                                                                                                                                      
+                                                                                                                                                                                                        
+   First attempt failed and wrote nothing. The sweep printed nothing and the decision dry run reported pending 0, which is correct — everything from the last save was already consumed. With no        
+   operator decisions to carry, the writer had no primary evidence and aborted: INSUFFICIENT_CONTEXT_ABORT ... primary=0, support=5. That is the gate in shared/parsing/memory-sufficiency.ts:407. Both 
+   earlier saves passed only because their operatorDecisions entries counted as primary evidence, so a decision-free save has to say something itself.                                                  
+                                                                                                                                                                                                        
+   Second attempt supplied it. I added two observations and one user prompt to the payload, and it went through at exit 0. Nothing was half-written by the failure: last_updated_at stayed at 19:47:14Z,
+   memorySequence stayed 2, and no lock remained.                                                                                                                                                       
+                                                                                                                                                                                                        
+   What changed this time. Continuity moved to recent_action: "Confirmed all badge decisions saved and no new operator answers pending", memorySequence went 2 → 3, and description.json gained a third 
+   history name. decision-record.md was not touched — still seven rows, timestamp still 20:47. The post-save quality review again reported SKIPPED because the target is a folder. The trigger index is 
+   still stale for spec.md and I again did not regenerate it, since no trigger_phrases changed.                                                                                                         
+                                                                                                                                                                                                        
+   Validation. validate.sh --strict → RESULT: PASSED, exit 0, same three warnings: 94 placeholders, AI protocols 0/4, empty measured-behavior block. git status shows the same four packet files,       
+   nothing new.                                                                                                                                                                                         
+                                                                                                                                                                                                        
+   Worth knowing for next time: a save with no new decisions needs observations in the payload, or it aborts. Next action is yours — the packet still has empty scope and requirements and no widget    
+   source, so those are the real gaps.                                                                                                                                                                  
+
+ ✻ Turn took 1m 3s (Total time 4m 17s · 5 turns)                                                                                                                                                        
+
+ Observational memory: observer running on ~16,229-token chunk (of 15,422 accumulated)                                                                                                                  
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 94% left | used: 64.5k tok | $0.06
+

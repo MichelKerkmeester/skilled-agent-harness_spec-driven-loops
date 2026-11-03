@@ -1,0 +1,51 @@
+    answer: Amber
+
+• Amber recorded. I’ll keep waiting for your instruction to proceed.
+
+  Worked for 44s • 17:13
+
+
+› Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type
+  the rest as a note. Open the tool itself, not a chat message, and mark no option as recommended.
+
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Now ask me with your question tool which platforms the badge must support, offering
+  │ exactly Web, iOS and Android. Let me pick several; if your tool takes one choice, use it anyway and I will type the rest as a note. Open the tool itself, not a chat message, and mark no option
+  │ as recommended."
+  └ {
+      "candidatePhraseCount": 4338,
+      "discardedTokens": [
+    +167 lines (⌃t to view transcript)
+
+• Questions 1/1 answered
+  • Which platforms must the badge support? Select one here, then add any others in your note.
+    answer: None of the above
+    note: Web, iOS, Android
+
+• Recorded: Web, iOS and Android. I’ll keep waiting for your instruction to proceed.
+
+  Worked for 19s • 17:14
+
+
+› Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.
+
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "Ask me with your question tool for the badge label, with a few options. I will type
+  │ my own. Open the tool itself, not a chat message."
+  └ {
+      "candidatePhraseCount": 5406,
+      "discardedTokens": [
+    +79 lines (⌃t to view transcript)
+ 
+ 
+  Question 1/1 (1 unanswered)
+  Which text should the badge display? Pick a suggestion or type your own.
+ 
+  › 1. Beta               Display “Beta” on the badge.                                                                                                                                                
+    2. New                Display “New” on the badge.
+    3. Live               Display “Live” on the badge.
+    4. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

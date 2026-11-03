@@ -1,0 +1,15 @@
+turn	status	attempts	evidence	observed
+S0	PASS	1	turns/S0	rows=0 base=base.sha
+S1	PASS	1	turns/S1	rows=0 gate3=visible
+S2	PASS	1	turns/S2	rows=1 nudge=1
+S3	PASS	1	turns/S3	rows=2 nudge=2
+S4	PASS	1	turns/S4	rows=3 nudge=3
+S5	PASS	1	turns/S5	rows=3 nudge=3
+S6	PASS	1	turns/S6	pending=0
+S7	PASS	1	turns/S7	rows=4 digest=saved
+S8-compact	PASS	1	turns/S8-compact	rows=4 digest=unchanged
+S8-ask	PASS	1	turns/S8-ask	rows=5 nudge=2
+S9-restart	PASS	1	turns/S9-restart	rows=5 sessions=1
+S9-ask	PASS	1	turns/S9-ask	rows=6 sessions=1
+S10	PASS	1	turns/S10	pending=0
+S11	PASS	1	turns/S11	record_rows=7 repeat=identical

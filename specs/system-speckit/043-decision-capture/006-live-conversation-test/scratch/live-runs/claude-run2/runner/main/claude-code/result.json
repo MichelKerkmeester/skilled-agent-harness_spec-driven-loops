@@ -1,0 +1,161 @@
+{
+  "runtime": "claude-code",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 357480352,
+  "socket": "conv-36874-claude-code",
+  "session_id": "7ae54dd8-6728-4e61-919c-5c6fc8351f74",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/claude-code-main/claude-code",
+  "started_at": "2026-11-02T18:17:37.682Z",
+  "finished_at": "2026-11-02T18:24:43.925Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 base=base.sha",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 gate3=visible",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=1 nudge=1",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S3",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=2 nudge=2",
+      "evidence": "turns/S3"
+    },
+    {
+      "id": "S4",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=3 nudge=3",
+      "evidence": "turns/S4"
+    },
+    {
+      "id": "S5",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=3 nudge=3",
+      "evidence": "turns/S5"
+    },
+    {
+      "id": "S6",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "pending=0 rows=4",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S7",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=4 digest=saved",
+      "evidence": "turns/S7"
+    },
+    {
+      "id": "S8-compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=4 digest=unchanged",
+      "evidence": "turns/S8-compact"
+    },
+    {
+      "id": "S8-ask",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=5 nudge=2",
+      "evidence": "turns/S8-ask"
+    },
+    {
+      "id": "S9-restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=5 sessions=1",
+      "evidence": "turns/S9-restart"
+    },
+    {
+      "id": "S9-ask",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=6 sessions=1",
+      "evidence": "turns/S9-ask"
+    },
+    {
+      "id": "S10",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "pending=0 rows=7",
+      "evidence": "turns/S10"
+    },
+    {
+      "id": "S11",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "record_rows=7 repeat=identical",
+      "evidence": "turns/S11"
+    }
+  ]
+}

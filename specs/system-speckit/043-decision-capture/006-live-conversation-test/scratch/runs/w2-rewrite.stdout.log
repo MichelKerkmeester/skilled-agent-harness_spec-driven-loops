@@ -1,0 +1,12 @@
+Rewrote the file from scratch, one copy of each section.
+
+**Verify**
+- `validate-playbook-package.cjs --package system-spec-kit` → `PASS ... violations=0 warnings=1`, exit 0; the single WARN is the pre-existing `ux-hooks/comment-hygiene-checker-baseline.md`, no PROMPT_UNSYNCED for this file
+- `rg -c '^\| S([0-9]|1[01]) \|'` → `12`
+- `rg -c '^## '` → `5`
+- `rg -n "—|–|/Users/|python"` → nothing (exit 1)
+
+**Built**
+- One `json conversation` block, 14 turns S0→S11 (S0 check-only, S8-compact/ask, S9-restart/ask, retry 1 on the seven listed), all five runtimes, delays per rule; Prompt equals S1's send
+- Every check is one line, max 348 chars, copying state into `CONVERSATION_TURN_DIR`, observed line last; S2/S3/S4/S5/S8-ask carry the `no Stop nudge outside claude-code` + exit 77 guard; S6/S10 call `pendingRecords`
+- Checks executed against a fake scratch project: pass paths, the 77 skip, and both deviation paths behave, with non-zero exits

@@ -1,0 +1,51 @@
+   Demo widget status badge      +                                                                                                                                                                      
+     ┃ Present:                                                                                                                           ┃                                                          ┃  
+     ┃ SPECKIT:SAVE                                                                                                                       ┃  3 plugins failed                        › Open plugins  ┃  
+     ┃ Folder specs/demo/001-demo-widget                                                                                                  ┃                                                          ┃  
+     ┃ Targets description.json (refreshed); continuity + decision record unchanged                                                       ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     ┃                                                                                                                                    ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     ┃ STATUS=OK TARGETS=1 ANCHORS=0                                                                                                      ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     ┃                                                                                                                                    ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     ┃ Then notes.                                                                                                                        ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     ┃                                                                                                                                    ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     ┃ Also next action: awaits go-ahead. Operator's to do: authorize implementation.                                                     ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     SPECKIT:SAVE                                                                                                                         ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     --------------------------------------------------                                                                                   ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Folder      specs/demo/001-demo-widget                                                                                               ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     Targets     description.json (refreshed); decision-record.md and continuity unchanged                                                ┃  plugins/system-skill-advisor.js                         ┃  
+                                                                                                                                          ┃  Run /plugins to view details.                           ┃  
+     Anchors                                                                                                                              ┃                                                          ┃  
+     - none added                                                                                                                                                                                       
+                                                                                                                                                                                                        
+     Triggers                                                                                                                                                                                           
+     "demo widget"                                                                                                                                                                                      
+                                                                                                                                                                                                        
+     STATUS=OK TARGETS=1 ANCHORS=0                                                                                                                                                                      
+                                                                                                                                                                                                        
+     Pre-save checks: sweep reported no pending answers and no chat candidates; orphan scan reported no session queues. Nothing new to record, so                                                       
+     Q001–Q007 remain the full set (7 table rows, 7 appendix items — no duplicates).                                                                                                                    
+                                                                                                                                                                                                        
+     Two notes on the run itself:                                                                                                                                                                       
+                                                                                                                                                                                                        
+     - The first attempt used a minimal payload and aborted with INSUFFICIENT_CONTEXT_ABORT (exit 1) before writing anything. I rebuilt the payload with a                                              
+       verification observation and reran; that run exited 0.                                                                                                                                           
+     - Only description.json changed on this pass (lastUpdated and memorySequence 2 → 3). The continuity block, decision-record.md and graph-metadata.json                                              
+       kept their 18:36:53 state because this save carried no new state to write.                                                                                                                       
+                                                                                                                                                                                                        
+     Validation: RESULT: PASSED, 0 errors, 3 warnings — the same pre-existing scaffold gaps as before.                                                                                                  
+                                                                                                                                                                                                        
+     Trigger index still not regenerated (stale for "demo widget"); no trigger phrases changed in this save.                                                                                            
+                                                                                                                                                                                                        
+     Next: nothing pending in the packet. Tell me when to start implementing the badge.                                                                    ▄                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1m 6s · 107.9 tok/s                                                                                                █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-D…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/opencode-main/opencode:main  64.4K (6%) · $0.08  ctrl+p commands    /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

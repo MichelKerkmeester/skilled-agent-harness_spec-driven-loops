@@ -1,0 +1,65 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/043-decision-capture/002-table-row-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code TypeScript standards: strict types, small named functions, JSDoc on
+exports, no new dependency. Comments say WHY and never contain spec paths, packet/phase numbers
+or task/requirement ids. Tests: happy path plus one edge case per public surface.
+Never open any .env or token file. Never write anything under barter/ or under
+.skilled/skills/.state/. RT = .skilled/skills/system-spec-kit/runtime
+NOTE: your sandbox may block vitest (listen EPERM). If so, run `npx tsc --noEmit -p $RT/tsconfig.json`
+from $RT instead and say the tests were not run; the orchestrator runs them.
+
+
+READ FIRST: $RT/lib/continuity/decision-table-matcher.ts (already built and tested; use its
+exports, do not change its behavior), $RT/lib/continuity/decision-record-writer.ts
+(recordConsumedKeys), .skilled/hooks/decision-capture/lib/capture-core.mjs (how the queue file
+name is derived from the session id, readQueue), $RT/cli/continuity/backfill-research-metadata.ts
+(house style for a CLI with isMainModule), and specs/system-speckit/043-decision-capture/002-table-row-matching/spec.md
+REQ-003, REQ-008, REQ-012, REQ-014.
+
+TASK:
+1. Create $RT/cli/continuity/match-decision-table.ts. Flags: --project-root <dir> (default cwd),
+   --session <id>, --record <path to a hand-written decision-record.md>, --apply, --scan-orphans,
+   --release <key>. All file paths resolve against --project-root.
+   - Default (no --apply): reads the session queue and consumed.jsonl under
+     <root>/.skilled/skills/.state/decision-capture/, skips consumed keys, calls the matcher, and
+     prints one line per record: `<queue number> <Q id or pending or refused> <score or reason>`,
+     then the matcher's summary line `consumed N, refused M, pending K`. Writes nothing.
+   - --apply: same output, then appends accepted matches through recordConsumedKeys with
+     packet = the record's folder relative to --project-root, id = the row's Q id. A second
+     --apply adds no line. Never writes the record file.
+   - --scan-orphans: lists every `<hex>.jsonl` session queue in the state folder that still has
+     pending records, with its count and decoded session id. Writes nothing.
+   - --release <key>: removes every consumed.jsonl row with that key by writing a temp file and
+     renaming it over the original, then prints each removed row as JSON so it can be restored.
+   - Exit 0 on success, 2 on bad arguments with a usage line.
+2. $RT/api/index.ts: re-export the matcher's public functions beside the writer export.
+3. $RT/hooks/claude/session-stop.ts line 107: change the nudge text to
+   `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them; the save's transcript sweep offers chat answers, and an answer already in a hand-written table is matched with match-decision-table.`
+4. Add one short step to .skilled/commands/speckit/save.md and to
+   .skilled/skills/system-spec-kit/references/memory/save-workflow.md: when a captured answer
+   already sits as a row in a hand-written decision table, run
+   `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>`
+   (dry run first, then --apply) instead of a save. No em or en dashes.
+5. Add $RT/cli/tests/match-decision-table.vitest.ts that builds a temp project (mkdtemp) with a
+   state folder, two session queues (one fully consumed) and a copy of
+   $RT/cli/test-fixtures/decision-table/hand-written-record.md, then calls the CLI's exported
+   main function: dry run writes nothing; --apply appends rows with packet and id; a second
+   --apply adds none; the record's sha256 is unchanged; --scan-orphans lists only the
+   non-consumed queue; --release removes and prints the row. Export a `main(argv)` function so
+   tests need no subprocess.
+VERIFY: cd $RT/cli && npx vitest run tests/match-decision-table.vitest.ts tests/decision-table-matcher.vitest.ts --config ../vitest.config.ts --root .
+        cd $RT && npx tsc --noEmit -p tsconfig.json
+Final message under 150 words.

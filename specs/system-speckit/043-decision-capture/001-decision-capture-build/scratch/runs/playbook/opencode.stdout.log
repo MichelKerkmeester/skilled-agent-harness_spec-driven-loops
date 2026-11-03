@@ -1,0 +1,1210 @@
+[0m
+> build · deepseek-v4.1-flash-1017
+I'll start by reading the six scenario files and the Gate 6 reply rules, since I need to run these exactly as written.
+[0m⚙ [0mexecute {"code":"const base = \"/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/manual-testing-playbook\";\nconst files = [\n  \"plugins-and-hooks/decision-capture-claude-hook.md\",\n  \"plugins-and-hooks/decision-capture-transcript-sweeps.md\",\n  \"plugins-and-hooks/decision-capture-save-writer.md\",\n  \"tooling-and-scripts/json-mode-hybrid-enrichment.md\",\n  \"memory-quality-and-indexing/post-save-quality-review.md\",\n  \"tooling-and-scripts/core-workflow-infrastructure.md\",\n];\nconst out = await Promise.allSettled(files.map(f => tools.read({ path: base + \"/\" + f })));\nfor (let i = 0; i < files.length; i++) {\n  const r = out[i];\n  console.log(\"=== \" + files[i] + \" ===\");\n  console.log(r.status === \"fulfilled\" ? r.value : String(r.reason));\n}"} 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md 
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md 
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md 
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md 
+[0m→ [0mRead .skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead REPO RULES.md 
+[0m→ [0mRead .skilled/repo-rules/communication-prose.md 
+[0m→ [0mRead .skilled/repo-rules/communication.md 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/repo-rules/communication-handoff.md 
+[0m→ [0mRead .skilled/repo-rules/evidence-and-proof.md 
+[0m$ [0mls -d specs/system-speckit/042-decision-capture 2>&1; ls -1 specs/system-speckit/042-decision-capture | head -30; node --version
+specs/system-speckit/042-decision-capture
+acceptance-criteria.md
+decision-record.md
+description.json
+graph-metadata.json
+implementation-summary.md
+plan.md
+scratch
+spec.md
+tasks.md
+timeline.md
+v26.8.2
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mmkdir -p "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs" && node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs 2>&1 | tail -25; echo "exit=${PIPESTATUS[0]}"
+✔ a two-question payload becomes two records with exact keys and text (2.435125ms)
+✔ appending the same records twice appends them once (1.797625ms)
+✔ a malformed payload returns no records and writes no file (0.48575ms)
+✔ process questions are dropped and a product question is kept (1.546583ms)
+✔ the offered choices decide a process question, not the words it mentions (0.091459ms)
+✔ a commit or push option marks a process question only when the question is about shipping (0.044708ms)
+✔ an unlettered offer of a new packet marks the documentation question (0.264792ms)
+✔ pendingRecords leaves out a key recorded as consumed (1.488375ms)
+✔ takeNudge reports a rising count once and then stays quiet (1.677584ms)
+✔ takeNudge leaves no state behind for a session with nothing captured (0.498667ms)
+✔ the Claude adapter records one line and fails open on bad stdin (58.758458ms)
+✔ the adapter queues one record from a real Claude PostToolUse payload (29.001458ms)
+✔ concurrent appends of the same keys from separate processes write each key once (122.084167ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 255.345875
+exit=
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mL="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s1-1.log"; node --test .skilled/hooks/decision-capture/lib/capture-core.test.mjs > "$L" 2>&1; echo "exit=$?"; tail -9 "$L"
+exit=0
+✔ concurrent appends of the same keys from separate processes write each key once (124.006166ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 261.594666
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+echo "--- step2"
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check; echo "exit=$?"
+echo "--- step3"
+node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check; echo "exit=$?"
+echo "--- step4"
+grep -n -B4 "ask-capture-posttooluse" .claude/settings.json && ls -l .claude/hooks/ask-capture-posttooluse.mjs; echo "exit=$?"
+--- step2
+[hook-registration-sync] PASS: 4 registration files match the 32-hook registry; 18 Pi extensions resolve.
+exit=0
+--- step3
+[runtime-mirror-sync] PASS: 214 mirrors across 9 trees are in sync.
+exit=0
+--- step4
+263-        "matcher": "AskUserQuestion",
+264-        "hooks": [
+265-          {
+266-            "type": "command",
+267:            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs || { printf \"%s\\n\" \"mk-hook-drift host=claude event=PostToolUse adapter=ask-capture-posttooluse.mjs\" >&2; printf %s \"{\\\"hookSpecificOutput\\\":{\\\"hookEventName\\\":\\\"PostToolUse\\\",\\\"additionalContext\\\":\\\"mk claude hook could not resolve; rebuild the spec-kit runtime or restore the missing adapter\\\",\\\"mkHookDrift\\\":true}}\"; }'",
+lrwxr-xr-x@ 1 michelkerkmeester  staff  72 Nov  1 14:04 .claude/hooks/ask-capture-posttooluse.mjs -> ../../.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs
+exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+P="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "P=$P"
+node -e 'const f=require(process.argv[1]); f.cwd=process.argv[2]; process.stdout.write(JSON.stringify(f))' \
+  "$PWD/.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json" "$P" \
+  | env -u SYSTEM_HOOKS_DISABLED -u SYSTEM_DECISION_CAPTURE_DISABLED CLAUDE_PROJECT_DIR="$P" \
+    node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"
+cat "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+wc -l "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+echo "$P" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s1-P.txt"
+P=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/uNY4VJ
+exit=0
+{"key":"claude:00000000-0000-4000-8000-000000000001:toolu_REDACTED0001:0","kind":"tool","runtime":"claude","session_id":"00000000-0000-4000-8000-000000000001","tool_use_id":"toolu_REDACTED0001","question_index":0,"question":"Probe test question for 042 T001 (harmless, the answer is not used): which option do you pick?","header":"Probe test","options":["Probe answer A","Probe answer B"],"multi_select":false,"answer":"Probe answer A","source":"hook","captured_at":"2026-11-01T13:32:46.549Z"}
+       1 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/uNY4VJ/.skilled/skills/.state/decision-capture/30303030303030302d303030302d343030302d383030302d303030303030303030303031.jsonl
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+Q="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "Q=$Q"
+node -e 'const f=require(process.argv[1]); f.cwd=process.argv[2]; process.stdout.write(JSON.stringify(f))' \
+  "$PWD/.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json" "$Q" \
+  | SYSTEM_DECISION_CAPTURE_DISABLED=1 CLAUDE_PROJECT_DIR="$Q" \
+    node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"
+ls -A "$Q"
+echo "ls-exit=$?"
+echo "$Q" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s1-Q.txt"
+Q=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/0SP9qy
+exit=0
+ls-exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s2-1.log"
+node --test .skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs .skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs .skilled/hooks/decision-capture/bin/sweep-devin.test.mjs > "$L" 2>&1; echo "exit=$?"; tail -12 "$L"; grep -E "^(✖|not ok|ℹ (tests|pass|fail))" "$L"
+exit=0
+✔ a documentation-scope question is not a chat candidate (0.803458ms)
+✔ sidechain lines are ignored (0.494375ms)
+✔ the CLI prints the sweep result for the given transcript (33.868791ms)
+✔ the CLI reports an unreadable transcript and exits 1 (29.910208ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 127.384333
+ℹ tests 21
+ℹ pass 21
+ℹ fail 0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; P="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "P=$P"
+echo "--- run1"
+(cd "$P" && node "$R/.skilled/hooks/decision-capture/bin/sweep-devin.mjs" --transcript "$R/.skilled/hooks/decision-capture/bin/fixtures/devin-transcript.json" | grep '"recovered"'); echo "run1-exit=$?"
+echo "--- run2"
+(cd "$P" && node "$R/.skilled/hooks/decision-capture/bin/sweep-devin.mjs" --transcript "$R/.skilled/hooks/decision-capture/bin/fixtures/devin-transcript.json" | grep '"recovered"'); echo "run2-exit=$?"
+echo "--- wc"
+wc -l "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+echo "--- answers"
+grep -o '"answer":"[^"]*"' "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+echo "--- spec folder count"
+grep -c 'Spec folder' "$P"/.skilled/skills/.state/decision-capture/*.jsonl; echo "grep-exit=$?"
+echo "$P" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s2-P.txt"
+P=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/oXGsAq
+--- run1
+  "recovered": 2,
+run1-exit=0
+--- run2
+  "recovered": 0,
+run2-exit=0
+--- wc
+       2 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/oXGsAq/.skilled/skills/.state/decision-capture/72656461637465642d646576696e2d73657373696f6e.jsonl
+--- answers
+"answer":"Marketplace in settings"
+"answer":"all 4, use subagents"
+--- spec folder count
+0
+grep-exit=1
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "F=$F"
+mkdir -p "$F/specs/demo" "$F/.skilled/skills" "$F/.opencode"
+cp -R specs/system-speckit/042-decision-capture "$F/specs/demo/001-demo"
+rm -rf "$F/specs/demo/001-demo/scratch"
+ln -s "$R/.skilled/skills/system-spec-kit" "$F/.skilled/skills/system-spec-kit"
+git -C "$F" init -q
+cp "$F/specs/demo/001-demo/decision-record.md" "$F/before.md"
+J='{"sessionSummary":"Record the badge colour decision","triggerPhrases":["badge colour decision"],"operatorDecisions":[{"sourceKey":"claude:fixture-session:toolu_fixture:0","decided":"Use amber for the status badge.","why":"Amber reads as a warning without implying failure.","carriedBy":"spec.md REQ-001","question":"Which colour should the status badge use?","options":["Amber","Red"],"answer":"Amber"}]}'
+echo "setup-exit=$?"
+ls -la "$F"; echo "$F" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s3-F.txt"
+F=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/hf2YsI
+setup-exit=0
+total 32
+drwx------@ 7 michelkerkmeester  wheel    224 Nov  1 14:32 .
+drwxr-xr-x@ 7 michelkerkmeester  wheel    224 Nov  1 14:32 ..
+drwxr-xr-x@ 9 michelkerkmeester  wheel    288 Nov  1 14:32 .git
+drwxr-xr-x@ 2 michelkerkmeester  wheel     64 Nov  1 14:32 .opencode
+drwxr-xr-x@ 3 michelkerkmeester  wheel     96 Nov  1 14:32 .skilled
+-rw-------@ 1 michelkerkmeester  wheel  16050 Nov  1 14:32 before.md
+drwxr-xr-x@ 3 michelkerkmeester  wheel     96 Nov  1 14:32 specs
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s3-F.txt)"
+J='{"sessionSummary":"Record the badge colour decision","triggerPhrases":["badge colour decision"],"operatorDecisions":[{"sourceKey":"claude:fixture-session:toolu_fixture:0","decided":"Use amber for the status badge.","why":"Amber reads as a warning without implying failure.","carriedBy":"spec.md REQ-001","question":"Which colour should the status badge use?","options":["Amber","Red"],"answer":"Amber"}]}'
+SAVE() { (cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" "$@" --json "$J" specs/demo/001-demo); }
+SAVE > "$F/plan.log" 2>&1; echo "exit=$?"; grep -c "Operator decisions proposed" "$F/plan.log"; cmp "$F/before.md" "$F/specs/demo/001-demo/decision-record.md" && echo UNCHANGED
+echo "--- plan.log tail"
+tail -30 "$F/plan.log"
+exit=0
+1
+UNCHANGED
+--- plan.log tail
+{"timestamp":"2026-11-01T13:33:01.388Z","level":"info","message":"   Found 0 diagrams","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.390Z","level":"info","message":"   Session data collected","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.390Z","level":"info","message":"\n   All extraction complete (parallel execution)\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.390Z","level":"info","message":"Step 7.5: Generating semantic summary...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.390Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-11-01T13:33:01.391Z","level":"info","message":"   Content quality: 30/100 (0 noise, 0 duplicates filtered from 1 items)","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.391Z","level":"info","message":"   Generated summary: 0 created, 0 modified, 0 decisions\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.391Z","level":"info","message":"Step 7.6: Applying tree thinning...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.392Z","level":"info","message":"   Tree thinning: 3 files, 0 content-as-summary, 3 merged-into-parent, ~60 tokens saved, 1 rendered rows reduced\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.392Z","level":"info","message":"Step 8: Populating template...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.398Z","level":"info","message":"   Template populated (quality: 30/100)\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.400Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-11-01T13:33:01.400Z","level":"info","message":"Step 9: Writing files...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.400Z","level":"info","message":"   Operator decisions proposed (written only by a --full-auto save):","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.400Z","level":"info","message":"   - claude:fixture-session:toolu_fixture:0: Use amber for the status badge.","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.400Z","level":"info","message":"   Skipping legacy [spec]/memory/*.md writes","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"   Refreshed graph-metadata.json","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"workflow event","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"Legacy memory artifact write skipped.\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"Validated spec folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/hf2YsI/specs/demo/001-demo\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"Summary:","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"  - 2 messages captured","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"  - 1 key decisions documented","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"  - 0 diagrams preserved","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"  - Session duration: 0m\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"Step 11: Indexing semantic memory...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.420Z","level":"info","message":"   Skipping retired legacy memory indexing","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.454Z","level":"warn","message":"   Trigger index: STALE for spec.md (added: automatic decision record, capture askuserquestion answers, operator decision capture; removed: none); run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:01.455Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/hf2YsI/specs/demo/001-demo"}
+{"timestamp":"2026-11-01T13:33:01.455Z","level":"info","message":"workflow event","component":"workflow"}
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s3-F.txt)"
+J='{"sessionSummary":"Record the badge colour decision","triggerPhrases":["badge colour decision"],"operatorDecisions":[{"sourceKey":"claude:fixture-session:toolu_fixture:0","decided":"Use amber for the status badge.","why":"Amber reads as a warning without implying failure.","carriedBy":"spec.md REQ-001","question":"Which colour should the status badge use?","options":["Amber","Red"],"answer":"Amber"}]}'
+SAVE() { (cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" "$@" --json "$J" specs/demo/001-demo); }
+SAVE --full-auto > "$F/save1.log" 2>&1; echo "exit=$?"; grep -c "Wrote 1 operator decision" "$F/save1.log"; diff "$F/before.md" "$F/specs/demo/001-demo/decision-record.md"; cp "$F/specs/demo/001-demo/decision-record.md" "$F/after1.md"
+exit=0
+1
+257a258
+> | Q008 | Use amber for the status badge. | Amber reads as a warning without implying failure. | None | spec.md REQ-001 |
+310a312,325
+> 
+> ### Q008
+> <!-- source: claude:fixture-session:toolu_fixture:0 -->
+> 
+> Question:
+> ```text
+> Which colour should the status badge use?
+> ```
+> 
+> Options:
+> ```text
+> Amber
+> Red
+> ```
+311a327,331
+> Answer:
+> ```text
+> Amber
+> ```
+>
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s3-F.txt)"
+J='{"sessionSummary":"Record the badge colour decision","triggerPhrases":["badge colour decision"],"operatorDecisions":[{"sourceKey":"claude:fixture-session:toolu_fixture:0","decided":"Use amber for the status badge.","why":"Amber reads as a warning without implying failure.","carriedBy":"spec.md REQ-001","question":"Which colour should the status badge use?","options":["Amber","Red"],"answer":"Amber"}]}'
+SAVE() { (cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" "$@" --json "$J" specs/demo/001-demo); }
+SAVE --full-auto > "$F/save2.log" 2>&1; echo "exit=$?"; cmp "$F/after1.md" "$F/specs/demo/001-demo/decision-record.md" && echo BYTE_IDENTICAL; grep -c "| Q008 |" "$F/specs/demo/001-demo/decision-record.md"
+echo "--- step5"
+ls "$F/.skilled/skills/.state/decision-capture/consumed.jsonl" && git -C "$R" status --short specs/system-speckit/042-decision-capture; echo "step5-exit=$?"
+exit=0
+BYTE_IDENTICAL
+1
+--- step5
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/hf2YsI/.skilled/skills/.state/decision-capture/consumed.jsonl
+?? specs/system-speckit/042-decision-capture/scratch/playbook-runs/
+?? specs/system-speckit/042-decision-capture/scratch/runs/playbook/
+step5-exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+echo "--- dir listing"
+ls -laT specs/system-speckit/042-decision-capture/scratch/ 2>&1
+echo "--- playbook-runs"
+ls -laT specs/system-speckit/042-decision-capture/scratch/playbook-runs/ 2>&1 | head
+echo "--- runs/playbook"
+ls -laT specs/system-speckit/042-decision-capture/scratch/runs/playbook/ 2>&1 | head
+echo "--- tracked-only status"
+git status --short --untracked-files=no specs/system-speckit/042-decision-capture; echo "exit=$?"
+echo "--- diff stat"
+git diff --stat specs/system-speckit/042-decision-capture; echo "exit=$?"
+--- dir listing
+total 40
+drwxr-xr-x@  8 michelkerkmeester  staff    256 Nov  1 14:22:13 2026 .
+drwxr-xr-x@ 12 michelkerkmeester  staff    384 Nov  1 14:02:22 2026 ..
+-rw-r--r--@  1 michelkerkmeester  staff      0 Nov  1 08:16:09 2026 .gitkeep
+-rw-r--r--@  1 michelkerkmeester  staff  12974 Nov  1 08:17:54 2026 analysis-opus.md
+-rw-r--r--@  1 michelkerkmeester  staff   2539 Nov  1 08:17:54 2026 facts-orchestrator.md
+drwxr-xr-x@  8 michelkerkmeester  staff    256 Nov  1 14:24:02 2026 playbook-runs
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Nov  1 14:24:56 2026 runs
+drwxr-xr-x@  5 michelkerkmeester  staff    160 Nov  1 14:03:32 2026 t001-probe
+--- playbook-runs
+total 48
+drwxr-xr-x@ 8 michelkerkmeester  staff   256 Nov  1 14:24:02 2026 .
+drwxr-xr-x@ 8 michelkerkmeester  staff   256 Nov  1 14:22:13 2026 ..
+-rw-r--r--@ 1 michelkerkmeester  staff  1622 Nov  1 14:24:02 2026 core-workflow-infrastructure-claude-code.md
+-rw-r--r--@ 1 michelkerkmeester  staff  1811 Nov  1 14:24:02 2026 decision-capture-claude-hook-claude-code.md
+-rw-r--r--@ 1 michelkerkmeester  staff  1479 Nov  1 14:24:02 2026 decision-capture-save-writer-claude-code.md
+-rw-r--r--@ 1 michelkerkmeester  staff   930 Nov  1 14:24:02 2026 decision-capture-transcript-sweeps-claude-code.md
+-rw-r--r--@ 1 michelkerkmeester  staff  1283 Nov  1 14:24:02 2026 json-mode-hybrid-enrichment-claude-code.md
+-rw-r--r--@ 1 michelkerkmeester  staff  1162 Nov  1 14:24:02 2026 post-save-quality-review-claude-code.md
+--- runs/playbook
+total 112
+drwxr-xr-x@  7 michelkerkmeester  staff    224 Nov  1 14:32:23 2026 .
+drwxr-xr-x@ 10 michelkerkmeester  staff    320 Nov  1 14:24:56 2026 ..
+-rw-r--r--@  1 michelkerkmeester  staff   4260 Nov  1 14:24:56 2026 brief.template.txt
+-rw-r--r--@  1 michelkerkmeester  staff   4880 Nov  1 14:28:50 2026 codex.prompt.txt
+-rw-r--r--@  1 michelkerkmeester  staff   4879 Nov  1 14:28:50 2026 opencode.prompt.txt
+-rw-r--r--@  1 michelkerkmeester  staff  24017 Nov  1 14:33:09 2026 opencode.stdout.log
+-rw-r--r--@  1 michelkerkmeester  staff   4829 Nov  1 14:28:50 2026 pi.prompt.txt
+--- tracked-only status
+exit=0
+--- diff stat
+exit=0
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "--json|jsonFile|json-file" [90min .skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts · 17 matches[0m
+[0m✱ [0mGrep "exchanges" [90min .skilled/skills/system-spec-kit/runtime/cli · 40 matches[0m
+[0m✱ [0mGrep "git_changed_file_count|gitChangedFileCount" [90min .skilled/skills/system-spec-kit/runtime/cli · 9 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+sed -n '1225,1295p' utils/input-normalizer.ts
+echo "=== confidence"
+grep -n "confidence" utils/input-normalizer.ts | head -20
+echo "=== post-save skip"
+grep -n "is a directory\|skipReason\|statSync" core/post-save-review.ts | head -20
+const KNOWN_RAW_INPUT_FIELDS: Set<string> = new Set([
+  'title', 'description',
+  'specFolder', 'spec_folder', 'SPEC_FOLDER',
+  'filesModified', 'files_modified', 'filesChanged', 'files_changed',
+  'sessionSummary', 'session_summary',
+  'keyDecisions', 'key_decisions',
+  'nextSteps', 'next_steps',
+  'technicalContext',
+  'triggerPhrases', 'trigger_phrases',
+  'importanceTier', 'importance_tier',
+  'contextType', 'context_type',
+  'projectPhase', 'project_phase', 'phase',
+  'status', 'sessionStatus', 'session_status',
+  'completionPercent', 'completion_percent', 'completionPercentage', 'percentComplete',
+  'toolCalls', 'exchanges',
+  'FILES', 'observations',
+  'userPrompts', 'user_prompts',
+  'recentContext', 'recent_context',
+  'causalLinks', 'causal_links',
+  'saveMode', 'save_mode',
+  // Continuity fields the full-auto save writes into the leaf's continuity block.
+  'recent_action', 'recentAction',
+  'next_safe_action', 'nextSafeAction',
+  'blockers',
+  'key_files', 'keyFiles',
+  'completion_pct', 'completionPct',
+  'open_questions', 'openQuestions',
+  'answered_questions', 'answeredQuestions',
+  // Operator decisions the full-auto save writes into a decision record.
+  'operatorDecisions', 'operator_decisions',
+  // Preflight/postflight epistemic tracking fields.
+  'knowledgeScore', 'knowledge_score',
+  'uncertaintyScore', 'uncertainty_score',
+  'contextScore', 'context_score',
+  'knowledgeGaps', 'knowledge_gaps',
+  'gapsClosed', 'gaps_closed',
+  'newGapsDiscovered', 'new_gaps_discovered',
+]);
+
+// A save payload's contextType classifies the session, so it is checked
+// against the session list, not the document list.
+const VALID_CONTEXT_TYPES: readonly string[] = [...SESSION_CONTEXT_TYPES];
+
+function validateInputData(data: RawInputData, specFolderArg: string | null = null): void {
+  const errors: string[] = [];
+
+  if (typeof data !== 'object' || data === null) {
+    throw new Error('Input validation failed: data must be a non-null object');
+  }
+
+  // Warn on unknown fields for typo detection.
+  for (const key of Object.keys(data)) {
+    if (!KNOWN_RAW_INPUT_FIELDS.has(key)) {
+      console.warn(`[WARN] Unknown field in input data: "${key}" — this field will be ignored`);
+    }
+  }
+
+  if (specFolderArg === null && !data.specFolder && !data.spec_folder && !data.SPEC_FOLDER) {
+    if (!data.userPrompts && !data.user_prompts && !data.observations && !data.recentContext && !data.recent_context) {
+      errors.push('Missing required field: specFolder (or use CLI argument)');
+    }
+  }
+
+  // contextType enum validation.
+  if (data.contextType !== undefined && typeof data.contextType === 'string' && !VALID_CONTEXT_TYPES.includes(data.contextType)) {
+    errors.push(`Invalid contextType: "${data.contextType}". Valid values: ${VALID_CONTEXT_TYPES.join(', ')}`);
+  }
+  if (data.context_type !== undefined && typeof data.context_type === 'string' && !VALID_CONTEXT_TYPES.includes(data.context_type)) {
+    errors.push(`Invalid context_type: "${data.context_type}". Valid values: ${VALID_CONTEXT_TYPES.join(', ')}`);
+  }
+
+=== confidence
+466: * @returns An Observation of type 'decision' with extracted facts and confidence, or null if the input is invalid.
+506:  const confidence: number = chosenApproach
+528:      confidence
+=== post-save skip
+73:  skipReason?: string;
+586:    return { status: 'SKIPPED', issues: [], skipReason: 'No collected data to compare against', ...scoreSummary };
+597:    return { status: 'SKIPPED', issues: [], skipReason: `SaveMode is ${saveMode}, not json`, ...scoreSummary };
+610:        savedStat = fs.statSync(savedFilePath);
+615:          skipReason: `savedFilePath does not exist: ${savedFilePath}`,
+623:          skipReason: `savedFilePath is a directory (phase-parent or unspecified target): ${savedFilePath}`,
+1113:      skipReason: result.skipReason,
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-claude-code.md 
+[0m→ [0mRead specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-claude-code.md 
+[0m→ [0mRead specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-claude-code.md 
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+grep -n "Skipping retired legacy memory\|memory/\*.md\|savedFilePath" core/workflow.ts | head -20
+echo "=== template fields"
+grep -rn "GIT_CHANGED_FILE_COUNT\|DECISION_COUNT\|decision_count" templates/*.md 2>/dev/null | head -10
+ls templates 2>/dev/null | head
+1811:  // Path A retired the legacy [spec]/memory/*.md output, so workflow no longer
+1930:  log('   Skipping legacy [spec]/memory/*.md writes');
+1935:  // Post-v3.4.1.0 the legacy [spec]/memory/*.md artifact is intentionally not
+2123:  log('   Skipping retired legacy memory indexing');
+2155:        savedFilePath: validatedSpecFolderPath,
+=== template fields
+inline-gate-renderer.sh
+inline-gate-renderer.ts
+README.md
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+sed -n '1800,1835p' core/workflow.ts
+echo "=== 1920-1945"
+sed -n '1920,1945p' core/workflow.ts
+echo "=== 2140-2165"
+sed -n '2140,2165p' core/workflow.ts
+};
+      collectedData.causal_links = nextCausalLinks;
+      collectedData.causalLinks = nextCausalLinks;
+    }
+  }
+  collectedData.causal_links = {
+    ...((currentSnakeCaseCausalLinks ?? currentCamelCaseCausalLinks ?? {}) as Record<string, unknown>),
+  };
+  collectedData.causalLinks = collectedData.causal_links;
+  const effectiveDecisionCount = Math.max(sessionData.DECISION_COUNT, decisions.DECISIONS.length);
+
+  // Path A retired the legacy [spec]/memory/*.md output, so workflow no longer
+  // renders a compatibility document in-memory before skipping the write.
+  const duplicateExistingFilename: string | null = null;
+
+  const isSimulation: boolean = !collectedData || !!collectedData._isSimulation || simFactory.requiresSimulation(collectedData);
+  log(`   Template populated (quality: ${filterStats.qualityScore}/100)\n`);
+
+  // Content cleaning — strip leaked HTML tags from rendered content
+  // Preserves HTML inside fenced code blocks (```...```) which is legitimate code.
+  // Earlier steps here validated, scored, and gated a rendered memory artifact that
+  // no longer exists. Quality, sufficiency and template-contract checks for
+  // canonical-doc saves now run in the post-save review and in validate.sh.
+
+  const sessionObservations = Array.isArray(sessionData.OBSERVATIONS) ? sessionData.OBSERVATIONS : [];
+  const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];
+  const sessionOutcomes = Array.isArray(sessionData.OUTCOMES) ? sessionData.OUTCOMES : [];
+  const sessionDecisions = Array.isArray(decisions.DECISIONS) ? decisions.DECISIONS : [];
+  const canonicalQualityContent = [
+    `# ${sessionData.TITLE}`,
+    sessionData.QUICK_SUMMARY,
+    sessionData.SUMMARY,
+    ...sessionObservations.map((observation) => [
+      observation.TITLE,
+      observation.NARRATIVE,
+      observation.FACTS_LIST,
+=== 1920-1945
+    targetPath: validatedSpecFolderPath,
+    collectedData,
+    plannerMode: options.plannerMode,
+    log,
+    warn: recordWarning,
+  });
+  if (duplicateExistingFilename) {
+    log(`   Legacy duplicate detection skipped for retired artifact ${rawCtxFilename}`);
+  }
+  const writtenFiles: string[] = [];
+  log('   Skipping legacy [spec]/memory/*.md writes');
+
+  // The legacy memory-file stub hard-coded
+  // ctxFileWritten = false, which silently disabled the description.json
+  // memorySequence + lastUpdated update block on every canonical save.
+  // Post-v3.4.1.0 the legacy [spec]/memory/*.md artifact is intentionally not
+  // written (see duplicateExistingFilename above), so there is no duplicate
+  // condition to guard against — the description.json tracking must run on
+  // every canonical save to keep lastUpdated / memorySequence fresh.
+  const ctxFileWritten = true;
+  const metadataSaveTimestamp = new Date().toISOString();
+  // Update per-folder description.json memory tracking (runs on every canonical save)
+  if (ctxFileWritten) {
+    try {
+      const descApiModule = await tryImportRuntimeApi('@spec-kit/runtime/api');
+      if (!descApiModule) throw new Error('runtime API unavailable for description update');
+=== 2140-2165
+      log('   Trigger index: packet declares no trigger_phrases; nothing to compare');
+    } else {
+      log(triggerIndexRegenerateHint);
+    }
+  } catch {
+    log(triggerIndexRegenerateHint);
+  }
+
+  // Step 11.75: Post-save quality review, run here in the production pipeline.
+  // Runs the post-save reviewer against the canonical spec-doc save artifacts.
+  // Non-blocking: review failures are logged but do not abort the workflow.
+  if (shouldRunExplicitSaveFollowUps) {
+    try {
+      const { reviewPostSaveQuality, printPostSaveReview } = await import('./post-save-review.js');
+      const reviewResult = reviewPostSaveQuality({
+        savedFilePath: validatedSpecFolderPath,
+        collectedData: collectedData as Parameters<typeof reviewPostSaveQuality>[0]['collectedData'],
+        inputMode: options.plannerMode,
+      });
+      printPostSaveReview(reviewResult);
+    } catch (reviewErr: unknown) {
+      const reviewErrMsg = reviewErr instanceof Error ? reviewErr.message : String(reviewErr);
+      warn(`   Warning: Post-save review skipped: ${reviewErrMsg}`);
+    }
+  }
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+sed -n '440,535p' utils/input-normalizer.ts
+echo "=== CaptureExchange"
+grep -n "interface CaptureExchange" -A 12 utils/input-normalizer.ts
+_capturedAt?: string;
+  _toolCallCount?: number;
+  _sourceTranscriptPath?: string;
+  _sourceSessionId?: string;
+  _sourceSessionCreated?: number;
+  _sourceSessionUpdated?: number;
+  _relevanceFallback?: boolean;
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 3. DECISION TRANSFORMATION
+// ───────────────────────────────────────────────────────────────────
+function extractAlternativeLabel(alt: unknown): string {
+  if (typeof alt === 'string') return alt;
+  if (typeof alt === 'object' && alt !== null) {
+    const obj = alt as Record<string, unknown>;
+    if (typeof obj.label === 'string') return obj.label;
+    if (typeof obj.title === 'string') return obj.title;
+    if (typeof obj.name === 'string') return obj.name;
+  }
+  return JSON.stringify(alt);
+}
+
+/**
+ * Transforms a key decision item (string or object) into a structured decision observation.
+ * @param decisionItem - The decision as a plain string, a DecisionItemObject, or null.
+ * @returns An Observation of type 'decision' with extracted facts and confidence, or null if the input is invalid.
+ */
+function transformKeyDecision(decisionItem: string | DecisionItemObject | null): Observation | null {
+  let decisionText: string;
+  let chosenApproach: string | null;
+  let rationale: string;
+  let alternatives: string[];
+
+  if (typeof decisionItem === 'string') {
+    decisionText = decisionItem;
+    const choiceMatch = decisionText.match(/(?:chose|selected|decided on|using|went with|opted for|implemented)\s+([^.,]+)/i);
+    chosenApproach = choiceMatch ? choiceMatch[1].trim() : null;
+    rationale = decisionText;
+    alternatives = [];
+  } else if (typeof decisionItem === 'object' && decisionItem !== null) {
+    decisionText = decisionItem.decision || decisionItem.title || 'Unknown decision';
+    chosenApproach = decisionItem.chosenOption || decisionItem.chosen || decisionItem.decision || null;
+    rationale = decisionItem.rationale || decisionItem.reason || decisionText;
+    alternatives = Array.isArray(decisionItem.alternatives)
+      ? decisionItem.alternatives.map(extractAlternativeLabel)
+      : [];
+
+    if (decisionItem.rationale) {
+      decisionText = `${decisionText} - ${decisionItem.rationale}`;
+    }
+    if (alternatives.length > 0) {
+      decisionText += ` Alternatives considered: ${alternatives.join(', ')}.`;
+    }
+  } else {
+    return null;
+  }
+
+  const titleMatch = decisionText.match(/^([^.!?]+[.!?]?)/);
+  const title: string = titleMatch
+    ? titleMatch[1].substring(0, 200).trim()
+    : decisionText.substring(0, 200).trim();
+
+  const finalChosenApproach: string = chosenApproach || title;
+  const hasMultipleAlternativesMentioned: boolean = alternatives.length > 1
+    || /alternatives?\s+considered:\s*[^.]+,\s*[^.]+/i.test(decisionText);
+  const confidence: number = chosenApproach
+    ? (hasMultipleAlternativesMentioned ? 0.70 : 0.65)
+    : 0.50;
+
+  const facts: string[] = [
+    `Option 1: ${finalChosenApproach}`,
+    `Chose: ${finalChosenApproach}`,
+    `Rationale: ${rationale}`
+  ];
+
+  alternatives.forEach((alt: string, i: number) => {
+    facts.push(`Alternative ${i + 2}: ${alt}`);
+  });
+
+  return {
+    type: 'decision',
+    title: title,
+    narrative: decisionText,
+    facts: facts,
+    _manualDecision: {
+      fullText: decisionText,
+      chosenApproach: finalChosenApproach,
+      confidence
+    }
+  };
+}
+
+// ───────────────────────────────────────────────────────────────────
+// 4. OBSERVATION BUILDERS
+// ───────────────────────────────────────────────────────────────────
+=== CaptureExchange
+400:export interface CaptureExchange {
+401-  userInput?: string;
+402-  assistantResponse?: string;
+403-  timestamp?: number | string;
+404-}
+405-
+406-/** A tool call in an OpenCode capture */
+407-export interface CaptureToolCall {
+408-  tool: string;
+409-  title?: string;
+410-  status?: 'pending' | 'completed' | 'error' | 'snapshot' | 'unknown';
+411-  timestamp?: number | string;
+412-  output?: string;
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "F=$F"
+mkdir -p "$F/specs/demo" "$F/.skilled/skills" "$F/.opencode"
+cp -R specs/system-speckit/042-decision-capture "$F/specs/demo/001-demo"
+rm -rf "$F/specs/demo/001-demo/scratch"
+ln -s "$R/.skilled/skills/system-spec-kit" "$F/.skilled/skills/system-spec-kit"
+git -C "$F" init -q
+git -C "$F" add -A >/dev/null 2>&1; git -C "$F" -c user.email=t@t -c user.name=t commit -qm base
+echo "setup-exit=$?"
+echo "$F" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-F.txt"
+F=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc
+NOTICE [gate:hook-trust]: this clone is not trusted, so the pre-commit checks were skipped.
+Enable them: git config --local skilled.trustRepoHooks true
+setup-exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-F.txt)"
+J='{"sessionSummary":"Structured JSON summary hardening probe","triggerPhrases":["json mode hardening","tool call preservation"],"keyDecisions":[{"decision":"Keep toolCalls on the structured path","chosenOption":"structured path","rationale":"Heuristics overwrite explicit fields.","alternatives":["heuristic path","structured path"]},{"decision":"Preserve explicit file counts","chosenOption":"explicit count","rationale":"Derived counts drift from the payload.","alternatives":["derived count","explicit count"]}],"toolCalls":[{"tool":"Read","title":"Read src/foo.ts","status":"completed","output":"export const foo = 1;"},{"tool":"Grep","title":"Grep needle","status":"completed","output":"src/foo.ts:1"}],"exchanges":[{"userInput":"Probe exchange one","assistantResponse":"Probe exchange two","timestamp":"2026-11-01T10:00:00Z"}],"userPrompts":[{"prompt":"Probe prompt one","timestamp":"2026-11-01T10:00:00Z"}],"filesModified":["src/foo.ts","src/bar.ts"],"importanceTier":"important","contextType":"implementation","projectPhase":"IMPLEMENTATION"}'
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-save.log"
+(cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" --json "$J" specs/demo/001-demo) > "$L" 2>&1
+echo "exit=$?"
+tail -12 "$L"
+echo "=== changed files in scratch repo"
+git -C "$F" status --short
+exit=0
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"Legacy memory artifact write skipped.\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"Validated spec folder: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"Summary:","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"  - 2 messages captured","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"  - 2 key decisions documented","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"  - 0 diagrams preserved","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"  - Session duration: 3h 33m\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"Step 11: Indexing semantic memory...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.823Z","level":"info","message":"   Skipping retired legacy memory indexing","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.858Z","level":"warn","message":"   Trigger index: STALE for spec.md (added: automatic decision record, capture askuserquestion answers, operator decision capture; removed: none); run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:35.859Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo"}
+{"timestamp":"2026-11-01T13:33:35.859Z","level":"info","message":"workflow event","component":"workflow"}
+=== changed files in scratch repo
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mF="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-F.txt)"
+echo "--- status again"
+git -C "$F" status --short; echo "status-exit=$?"
+echo "--- recent mtimes in packet"
+find "$F/specs/demo/001-demo" -type f -newermt '-10 minutes' -print 2>/dev/null
+echo "--- grep refreshed"
+grep -c "Refreshed graph-metadata.json" "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-save.log"
+echo "--- grep structured fields across packet md"
+for pat in "json mode hardening" "tool call preservation" "Probe exchange one" "Probe prompt one" "src/foo.ts" "GIT_CHANGED_FILE_COUNT" "toolCalls"; do
+  printf '%s: ' "$pat"; grep -rl "$pat" "$F/specs/demo/001-demo" --include='*.md' 2>/dev/null | wc -l
+done
+echo "--- any memory dir"
+find "$F/specs/demo/001-demo" -maxdepth 2 -type d -name memory
+echo "--- full file list"
+find "$F/specs/demo/001-demo" -maxdepth 2 -type f | sort
+--- status again
+status-exit=0
+--- recent mtimes in packet
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/graph-metadata.json
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/implementation-summary.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/acceptance-criteria.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/description.json
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/tasks.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/timeline.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/plan.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/spec.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/decision-record.md
+--- grep refreshed
+1
+--- grep structured fields across packet md
+json mode hardening:        0
+tool call preservation:        0
+Probe exchange one:        0
+Probe prompt one:        0
+src/foo.ts:        0
+GIT_CHANGED_FILE_COUNT:        0
+toolCalls:        0
+--- any memory dir
+--- full file list
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/acceptance-criteria.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/decision-record.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/description.json
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/graph-metadata.json
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/implementation-summary.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/plan.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/spec.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/tasks.md
+/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/AtwMMc/specs/demo/001-demo/timeline.md
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+grep -n "data file\|data-file\|JSON file\|Structured input\|inputMode\|plannerMode" continuity/generate-context.ts | head -30
+44:  plannerMode: 'plan-only' | 'full-auto' | 'hybrid';
+77:  <input>           A JSON data file path
+78:                    - JSON file mode: node generate-context.js data.json [spec-folder]
+938:    plannerMode: 'plan-only',
+951:  let plannerMode: 'plan-only' | 'full-auto' | 'hybrid' = 'plan-only';
+980:      plannerMode = candidate as 'plan-only' | 'full-auto' | 'hybrid';
+985:      plannerMode = 'full-auto';
+1003:    return { dataFile: null, specFolderArg: null, collectedData: null, sessionId, plannerMode };
+1008:    return { ...structured, sessionId, plannerMode };
+1024:    plannerMode,
+1137:  console.error('\nUsage: node generate-context.js [--stdin [spec-folder-name] | --json <json> [spec-folder-name] | <data-file> [spec-folder-name]]\n');
+1228:        plannerMode: parsed.plannerMode,
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-F.txt)"
+J='{"sessionSummary":"File-backed structured probe","triggerPhrases":["file backed json"],"keyDecisions":["Decision one","Decision two"],"toolCalls":[{"tool":"Read","title":"Read src/foo.ts","status":"completed","output":"x"}],"exchanges":[{"userInput":"File probe exchange","assistantResponse":"ok","timestamp":"2026-11-01T10:00:00Z"}],"filesModified":["src/foo.ts","src/bar.ts"]}'
+printf '%s' "$J" > "$F/payload.json"
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-file.log"
+(cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" payload.json specs/demo/001-demo) > "$L" 2>&1
+echo "exit=$?"
+grep -E "key decisions documented|messages captured|Template populated|POST-SAVE|Unknown field" "$L" | head
+echo "=== status"
+git -C "$F" status --short
+exit=1
+{"timestamp":"2026-11-01T13:33:45.120Z","level":"info","message":"   Template populated (quality: 40/100)\n","component":"workflow"}
+=== status
+?? payload.json
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mtail -20 "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-file.log"
+{"timestamp":"2026-11-01T13:33:45.112Z","level":"info","message":"   Extracting diagrams...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.113Z","level":"info","message":"   Found 2 messages","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.113Z","level":"info","message":"   Found 2 decisions","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.113Z","level":"info","message":"   Found 0 diagrams","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.114Z","level":"info","message":"   Session data collected","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.114Z","level":"info","message":"\n   All extraction complete (parallel execution)\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.114Z","level":"info","message":"Step 7.5: Generating semantic summary...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.115Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":["/^User message$/i","/^User prompt$/i","/^Assistant message$/i","/^Assistant response$/i","/^<command-name>.*<\\/command-name>$/s","/^<local-command-stdout>.*<\\/local-command-stdout>$/s","/^<command-message>.*<\\/command-message>$/s","/^<command-args>.*<\\/command-args>$/s","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-message>.*<\\/command-message>/is","/Command:\\s*\\/\\w+\\s*\\n\\s*<command-args>.*<\\/command-args>/is","/^<command-name>\\/?\\w*<\\/command-name>$/","/^<local-command-stdout>\\s*<\\/local-command-stdout>$/","/^<command-args>\\s*<\\/command-args>$/","/^<command-message>\\s*<\\/command-message>$/","/^Caveat:\\s*The messages below/i","/^Caveat:\\s*DO NOT respond/i","/^\\[Image #\\d+\\]$/","/^\\.{1,3}$/","/^[\\s\\u00A0]*$/","/^<system-reminder>/","/^UserPromptSubmit hook/i","/^Hook \\w+ (success|failed|running)/i","/^<[a-z_-]+>\\s*<\\/[a-z_-]+>$/","/^tool\\.execution_start/i","/^tool\\.execution_complete/i","/^reasoning$/i","/^<reasoning>.*<\\/reasoning>$/s"],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:2","kept_items:2"]}
+{"timestamp":"2026-11-01T13:33:45.115Z","level":"info","message":"   Content quality: 40/100 (0 noise, 0 duplicates filtered from 2 items)","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.116Z","level":"info","message":"   Generated summary: 0 created, 0 modified, 0 decisions\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.116Z","level":"info","message":"Step 7.6: Applying tree thinning...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.116Z","level":"info","message":"   Tree thinning: 2 files, 0 content-as-summary, 2 merged-into-parent, ~40 tokens saved, 1 rendered rows reduced\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.116Z","level":"info","message":"Step 8: Populating template...","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.120Z","level":"info","message":"   Template populated (quality: 40/100)\n","component":"workflow"}
+{"timestamp":"2026-11-01T13:33:45.122Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+Unexpected Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later. No primary evidence was captured for this memory. Evidence counts: primary=0, support=3, total=3, semanticChars=575, uniqueWords=28.
+Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later. No primary evidence was captured for this memory. Evidence counts: primary=0, support=3, total=3, semanticChars=575, uniqueWords=28.
+    at file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js:1480:19
+    at async withWorkflowRunLock (file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js:654:16)
+    at async main (file:///Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:1046:13)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-F.txt)"
+J='{"sessionSummary":"Keep structured tool calls on the file-backed JSON save path","triggerPhrases":["file backed json","tool call preservation"],"keyDecisions":["Chose the structured path for file-backed JSON saves","Chose explicit file counts over derived counts"],"toolCalls":[{"tool":"Read","title":"Read src/foo.ts","status":"completed","output":"x"}],"exchanges":[{"userInput":"Should the file-backed save keep tool calls?","assistantResponse":"Yes, it keeps the structured path.","timestamp":"2026-11-01T10:00:00Z"}],"filesModified":["src/foo.ts","src/bar.ts"]}'
+printf '%s' "$J" > "$F/payload.json"
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s4-file2.log"
+(cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" payload.json specs/demo/001-demo) > "$L" 2>&1
+echo "exit=$?"
+grep -E "key decisions documented|messages captured|INSUFFICIENT|POST-SAVE|Template populated" "$L" | tail -6
+echo "=== status"
+git -C "$F" status --short
+exit=1
+{"timestamp":"2026-11-01T13:33:50.619Z","level":"info","message":"   Template populated (quality: 40/100)\n","component":"workflow"}
+Unexpected Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later. Evidence counts: primary=5, support=4, total=9, semanticChars=1971, uniqueWords=39.
+Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later. Evidence counts: primary=5, support=4, total=9, semanticChars=1971, uniqueWords=39.
+=== status
+?? payload.json
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(mktemp -d "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/XXXXXX")"
+echo "F=$F"
+mkdir -p "$F/specs/demo" "$F/.skilled/skills" "$F/.opencode"
+cp -R specs/system-speckit/042-decision-capture "$F/specs/demo/001-demo" 2>/dev/null || cp -R specs/system-speckit/042-decision-capture "$F/specs/demo/001-demo"
+rm -rf "$F/specs/demo/001-demo/scratch"
+ln -s "$R/.skilled/skills/system-spec-kit" "$F/.skilled/skills/system-spec-kit"
+git -C "$F" init -q
+echo "setup-exit=$?"
+echo "$F" > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s5-F.txt"
+F=/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/zRIoMN
+setup-exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s5-F.txt)"
+J='{"sessionSummary":"Verify post-save quality review on the canonical save path","triggerPhrases":["post-save review","quality gate"],"keyDecisions":["Chose amber for the status badge","Chose the canonical save path"],"importanceTier":"important","contextType":"implementation"}'
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s5-plan.log"
+(cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" --json "$J" specs/demo/001-demo) > "$L" 2>&1
+echo "exit=$?"
+echo "=== REVIEW block"
+grep -n "POST-SAVE QUALITY REVIEW" "$L"
+echo "=== issues"
+grep -n '"issues"' "$L" | tail -2
+echo "=== rendered title/importance in changed files"
+git -C "$F" status --short
+exit=0
+=== REVIEW block
+55:{"timestamp":"2026-11-01T13:33:57.288Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/zRIoMN/specs/demo/001-demo"}
+=== issues
+55:{"timestamp":"2026-11-01T13:33:57.288Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/zRIoMN/specs/demo/001-demo"}
+=== rendered title/importance in changed files
+?? .skilled/
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+R="$PWD"; F="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s5-F.txt)"
+J='{"sessionSummary":"Verify post-save quality review on the canonical save path","triggerPhrases":["post-save review","quality gate"],"keyDecisions":["Chose amber for the status badge","Chose the canonical save path"],"importanceTier":"important","contextType":"implementation"}'
+L="/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s5-fullauto.log"
+(cd "$F" && SPEC_KIT_DB_DIR="$F/.db" node "$R/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js" --project-root "$F" --full-auto --json "$J" specs/demo/001-demo) > "$L" 2>&1
+echo "exit=$?"
+grep -n "POST-SAVE QUALITY REVIEW" "$L" | cut -c1-240
+echo "=== any PASSED anywhere?"
+grep -c "POST-SAVE QUALITY REVIEW -- PASSED" "$L"
+exit=0
+55:{"timestamp":"2026-11-01T13:33:59.906Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"
+=== any PASSED anywhere?
+0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+ls -l node_modules/.bin/vitest 2>&1; echo "exit=$?"
+ls -d node_modules 2>&1
+ls: node_modules/.bin/vitest: No such file or directory
+exit=1
+node_modules
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+ls -l node_modules/.bin/vitest 2>&1
+echo "--- package.json"
+node -e 'const p=require("./.skilled/skills/system-spec-kit/runtime/cli/package.json"); console.log(JSON.stringify({scripts:p.scripts,devDependencies:p.devDependencies},null,1))' 2>&1 | head -40
+echo "--- find vitest bins"
+find . -maxdepth 6 -path '*/node_modules/.bin/vitest' -not -path './.git/*' 2>/dev/null | head
+ls: node_modules/.bin/vitest: No such file or directory
+--- package.json
+{
+ "scripts": {
+  "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+  "prepare-build": "node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs prepare-build --package system-spec-kit/runtime/cli --entry is-phase-parent",
+  "build": "npm run prepare-build && tsc --build && npm run record-build",
+  "record-build": "node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry default && node lib/dist-freshness.cjs record-build --package system-spec-kit/runtime/cli --entry is-phase-parent",
+  "rebuild": "npm run clean && npm run build",
+  "typecheck": "tsc --noEmit --composite false -p tsconfig.json",
+  "lint": "tsc --noEmit",
+  "pretest": "npm run build",
+  "test": "vitest run --config ../../vitest.config.ts --project cli && npm run test:legacy && npm run test:validation",
+  "test:task-enrichment": "vitest run tests/task-enrichment.vitest.ts --config ../vitest.config.ts --root .",
+  "test:legacy": "npm run build && node tests/test-scripts-modules.js && node tests/test-extractors-loaders.js && node tests/test-phase-validation.js && node tests/test-phase-system.js",
+  "test:validation": "node tests/test-validation-system.cjs && bash tests/test-validation.sh && bash tests/test-validation-extended.sh && bash tests/check-ac-closure.sh && bash tests/check-ac-coverage.sh && bash tests/check-graph-metadata-child-drift.sh && bash tests/check-graph-metadata-shape-last-active-child.sh && bash tests/test-phase-system.sh",
+  "check:ast": "npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts",
+  "check": "npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts"
+ },
+ "devDependencies": {
+  "tsx": "4.22.4",
+  "vitest": "^4.1.12"
+ }
+}
+--- find vitest bins
+./.skilled/node_modules/.bin/vitest
+./.skilled/skills/system-spec-kit/node_modules/.bin/vitest
+./.worktrees/217-weak-model-spec-authoring/.skilled/node_modules/.bin/vitest
+./.pi/extensions/pi-fast-mode-w-subagent-support/node_modules/.bin/vitest
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli && npx vitest run tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s6.log" 2>&1; echo "exit=$?"; tail -30 "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s6.log"
+exit=1
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit
+
+No test files found, exiting with code 1
+
+filter: tests/post-save-review.vitest.ts, tests/quality-scorer-calibration.vitest.ts, tests/generate-context-cli-authority.vitest.ts
+include: runtime/tests/**/*.{vitest,test}.ts, ../system-deep-loop/runtime/tests/**/*.{vitest,test}.ts
+exclude:  runtime/cli/**
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit
+ls vitest.config.ts vitest.workspace.ts 2>&1
+sed -n '1,80p' vitest.config.ts
+ls: vitest.workspace.ts: No such file or directory
+vitest.config.ts
+// ───────────────────────────────────────────────────────────────
+// MODULE: Root Vitest configuration
+// ───────────────────────────────────────────────────────────────
+
+import path from 'node:path';
+
+const TEST_TIMEOUT_MS = 30_000;
+const TEARDOWN_TIMEOUT_MS = 1_000;
+
+// The CLI workspace nests inside runtime/ and carries its own tsconfig and
+// package root; its cross-skill '.js'-suffixed imports only resolve when the
+// files run from that root. A single shared root/include set here collected
+// CLI test files from the skill root and broke those imports, so the CLI suite
+// gets its own project rooted at runtime/cli instead. Both projects
+// carry the same timeout/parallelism settings as runtime/vitest.config.ts so a
+// project picked up through this config never silently falls back to vitest's
+// bare 5s default.
+export default {
+  test: {
+    // Snapshots live in a plain `snapshots/` folder beside each test, because
+    // the folder rule forbids double-underscore names such as vitest's default
+    // `__snapshots__`.
+    resolveSnapshotPath: (testPath: string, snapExtension: string) =>
+      path.join(path.dirname(testPath), 'snapshots', `${path.basename(testPath)}${snapExtension}`),
+    projects: [
+      {
+        // Hook sources load through runtime symlinks under `.pi`/`.opencode`, so
+        // their relative imports are written against the link's base; this alias
+        // resolves those same specifiers from the real tree, mirroring the
+        // hooks config.
+        resolve: {
+          alias: [
+            {
+              find: /^(\.\.\/)+\.(?:skilled|opencode)\//,
+              replacement: `${path.resolve(__dirname, '..', '..')}/`,
+            },
+          ],
+        },
+        test: {
+          root: path.resolve(__dirname),
+          include: [
+            'tests/**/*.vitest.ts',
+            'runtime/tests/**/*.vitest.ts',
+          ],
+          setupFiles: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
+          ],
+          globals: true,
+          environment: 'node',
+          fileParallelism: false,
+          testTimeout: TEST_TIMEOUT_MS,
+          teardownTimeout: TEARDOWN_TIMEOUT_MS,
+          name: 'root',
+        },
+      },
+      {
+        test: {
+          root: path.resolve(__dirname, 'runtime', 'cli'),
+          include: [
+            'tests/**/*.vitest.ts',
+          ],
+          setupFiles: [
+            path.resolve(__dirname, 'runtime', 'tests', '_support', 'vitest-setup.ts'),
+          ],
+          globals: true,
+          environment: 'node',
+          fileParallelism: false,
+          testTimeout: TEST_TIMEOUT_MS,
+          teardownTimeout: TEARDOWN_TIMEOUT_MS,
+          name: 'cli',
+        },
+      },
+    ],
+  },
+};
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/post-save-review.vitest.ts tests/quality-scorer-calibration.vitest.ts tests/generate-context-cli-authority.vitest.ts > "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s6-corrected.log" 2>&1; echo "exit=$?"; tail -18 "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s6-corrected.log"
+exit=0
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/skills/system-spec-kit/runtime/cli
+
+{"timestamp":"2026-11-01T13:34:16.889Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+{"timestamp":"2026-11-01T13:34:16.891Z","level":"info","message":"memory_metric","metric_name":"memory_save_overview_length_histogram","metric_value":0,"labels":{"input_mode":"file","save_mode":"json"}}
+
+ Test Files  3 passed (3)
+      Tests  24 passed (24)
+   Start at  14:34:16
+   Duration  643ms (transform 174ms, setup 24ms, import 60ms, tests 398ms, environment 0ms)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+F3="$(cat /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/logs/s3-F.txt)"
+echo "--- consumed.jsonl"
+wc -l "$F3/.skilled/skills/.state/decision-capture/consumed.jsonl"; cat "$F3/.skilled/skills/.state/decision-capture/consumed.jsonl"
+echo "--- repo decision-capture state"
+ls -la .skilled/skills/.state/decision-capture/ 2>&1 | head -20
+echo "--- repo queue any file modified in last hour"
+find .skilled/skills/.state/decision-capture -type f -newermt '-1 hour' 2>/dev/null | head
+--- consumed.jsonl
+       2 /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode/hf2YsI/.skilled/skills/.state/decision-capture/consumed.jsonl
+{"key":"claude:fixture-session:toolu_fixture:0","packet":"specs/demo/001-demo","id":"Q008","at":"2026-11-01T13:33:04.235Z"}
+{"key":"claude:fixture-session:toolu_fixture:0","packet":"specs/demo/001-demo","id":"Q008","at":"2026-11-01T13:33:07.264Z"}
+--- repo decision-capture state
+total 24
+drwxr-xr-x@  7 michelkerkmeester  staff   224 Nov  1 14:27 .
+drwxr-xr-x@ 11 michelkerkmeester  staff   352 Nov  1 11:59 ..
+drwx------@  2 michelkerkmeester  staff    64 Nov  1 14:26 .locks
+-rw-------@  1 michelkerkmeester  staff  1788 Nov  1 14:26 66653063393939302d303664332d343534652d613865372d376337626336343962633439.jsonl
+-rw-------@  1 michelkerkmeester  staff     1 Nov  1 14:27 66653063393939302d303664332d343534652d613865372d376337626336343962633439.nudge
+drwxr-xr-x@  6 michelkerkmeester  staff   192 Nov  1 14:03 probe
+-rw-r--r--@  1 michelkerkmeester  staff  2560 Nov  1 12:08 README.md
+--- repo queue any file modified in last hour
+.skilled/skills/.state/decision-capture/66653063393939302d303664332d343534652d613865372d376337626336343962633439.jsonl
+.skilled/skills/.state/decision-capture/66653063393939302d303664332d343534652d613865372d376337626336343962633439.nudge
+> build · deepseek-v4.1-flash-1017
+All six scenarios have run. Now I'll write the result files.
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+> build · deepseek-v4.1-flash-1017
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+[0m← [0mWrite specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+Created file successfully: specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+Index: specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+===================================================================
+--- specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
++++ specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+@@ -33,9 +33,9 @@
+ 
+ Supplementary full-auto save:
+ $ ... generate-context.js --project-root "$F" --full-auto --json "$J" specs/demo/001-demo
+ exit=0
+-55:{"timestamp":"2026-11-01T13:33:59.906Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[...],"skipReason":"savedFilePath is a directory ..."}
++55:{"timestamp":"2026-11-01T13:33:59.906Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory ..."}
+ $ grep -c "POST-SAVE QUALITY REVIEW -- PASSED" "$L"
+ 0
+ (grep exit 1 for zero matches)
+ ```
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+ls -1 specs/system-speckit/042-decision-capture/scratch/playbook-runs/*-opencode.md
+echo "=== verdicts"
+grep -H "^- Verdict:" specs/system-speckit/042-decision-capture/scratch/playbook-runs/*-opencode.md
+echo "=== repo status (tracked only)"
+git status --short --untracked-files=no; echo "exit=$?"
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+=== verdicts
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md:- Verdict: **FAIL**
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md:- Verdict: **PASS**
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md:- Verdict: **PASS**
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md:- Verdict: **PASS**
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md:- Verdict: **FAIL**
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md:- Verdict: **FAIL**
+=== repo status (tracked only)
+ M .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+exit=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+ls -laT .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+git diff --stat .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+git diff .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md | head -20
+-rw-r--r--@ 1 michelkerkmeester  staff  33050 Nov  1 14:21:12 2026 .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+ .../system-spec-kit/manual-testing-playbook/manual-testing-playbook.md | 3 +++
+ 1 file changed, 3 insertions(+)
+diff --git a/.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md b/.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+index 53deb275a8..24972dbdf0 100644
+--- a/.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
++++ b/.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
+@@ -279,6 +279,9 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
+ | Playbook ID | Scenario | Scenario File | Catalog Entry |
+ |---|---|---|---|
+ | completion-evidence-sentinel | Completion evidence sentinel | [completion-evidence-sentinel](plugins-and-hooks/completion-evidence-sentinel.md) | — |
++| decision-capture-claude-hook | Decision capture Claude hook: one queued record per answered AskUserQuestion, registry and mirror wiring, kill switch | [decision-capture-claude-hook](plugins-and-hooks/decision-capture-claude-hook.md) | — |
++| decision-capture-transcript-sweeps | Decision capture transcript sweeps for Claude, OpenCode and Devin, each answer queued once | [decision-capture-transcript-sweeps](plugins-and-hooks/decision-capture-transcript-sweeps.md) | — |
++| decision-capture-save-writer | Decision capture save writer: plan-only writes nothing, full-auto writes one row and its verbatim answer, a repeat save changes no byte | [decision-capture-save-writer](plugins-and-hooks/decision-capture-save-writer.md) | — |
+ | dist-freshness-guard | Dist freshness guard | [dist-freshness-guard](plugins-and-hooks/dist-freshness-guard.md) | [dist-freshness-enforcement](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
+ | session-cleanup-plugin | Session cleanup plugin | [session-cleanup-plugin](plugins-and-hooks/session-cleanup-plugin.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
+ | spec-mutation-gate-enforce | Spec mutation gate enforce | [spec-mutation-gate-enforce](plugins-and-hooks/spec-mutation-gate-enforce.md) | — |
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+Index: specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+===================================================================
+--- specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
++++ specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+@@ -8,9 +8,9 @@
+ - Verdict: **FAIL**
+ 
+ ## Result
+ 
+-The inline save exited 0 and its summary line did count `2 key decisions documented` from the 2-item `keyDecisions` array, so the input was parsed. But no rendered memory document exists to inspect: the log says `Skipping legacy [spec]/memory/*.md writes` and no `memory/` directory or new `.md` appears anywhere in the packet. The only files rewritten were `description.json`, `graph-metadata.json` and `implementation-summary.md`, and a git-tracked scratch repository came back clean, so all nine packet `.md` files still hold none of the payload. Grepping every `.md` for `json mode hardening`, `tool call preservation`, `Probe exchange one`, `Probe prompt one`, `src/foo.ts`, `GIT_CHANGED_FILE_COUNT` and `toolCalls` returned 0 files each, so structured-field preservation, decision confidence and an explicit changed-file count are all unobservable. The file-backed JSON leg also failed: both runs exited 1 with `INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later.` The scenario contract is stale against the current save path, which renders no memory file.
++The inline save exited 0 and its summary line did count `2 key decisions documented` from the 2-item `keyDecisions` array, so the input was parsed. But no rendered memory document exists to inspect: the log says `Skipping legacy [spec]/memory/*.md writes` and no `memory/` directory or new `.md` appears anywhere in the packet. The only files rewritten were `description.json`, `graph-metadata.json` and `implementation-summary.md`, and a git-tracked scratch repository came back clean, so all seven packet `.md` files still hold none of the payload. Grepping every `.md` for `json mode hardening`, `tool call preservation`, `Probe exchange one`, `Probe prompt one`, `src/foo.ts`, `GIT_CHANGED_FILE_COUNT` and `toolCalls` returned 0 files each, so structured-field preservation, decision confidence and an explicit changed-file count are all unobservable. The file-backed JSON leg also failed: both runs exited 1 with `INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. Memory title is too generic to stand alone later.` The scenario contract is stale against the current save path, which renders no memory file.
+ 
+ ## Evidence
+ 
+ ```text
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled
+echo "=== field audit"
+for f in specs/system-speckit/042-decision-capture/scratch/playbook-runs/*-opencode.md; do
+  printf '%s | ' "$(basename "$f")"
+  grep -c "^- CLI: OpenCode$\|^- Model: llmgateway/deepseek-v4.1-flash-1017#max$\|^- Date: 2026-11-01$\|^- Verdict: \*\*\|^## Result$\|^## Evidence$" "$f" | tr -d '\n'
+  printf ' of 6 markers\n'
+done
+echo "=== CHECK"
+ls -1 specs/system-speckit/042-decision-capture/scratch/playbook-runs/*-opencode.md
+=== field audit
+core-workflow-infrastructure-opencode.md | 2 of 6 markers
+decision-capture-claude-hook-opencode.md | 2 of 6 markers
+decision-capture-save-writer-opencode.md | 2 of 6 markers
+decision-capture-transcript-sweeps-opencode.md | 2 of 6 markers
+json-mode-hybrid-enrichment-opencode.md | 2 of 6 markers
+post-save-quality-review-opencode.md | 2 of 6 markers
+=== CHECK
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md [90m[limit=20][0m
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+Index: specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+===================================================================
+--- specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
++++ specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+@@ -8,9 +8,9 @@
+ - Verdict: **PASS**
+ 
+ ## Result
+ 
+-Every expected signal was observed. The three sweep suites ended `ℹ fail 0` with 21 of 21 tests passing. From a scratch folder, the first Devin sweep printed `"recovered": 2` and the second printed `"recovered": 0`, the queue held exactly 2 lines, and the recovered answers were `Marketplace in settings` and `all 4, use subagents`. The `Spec folder` count was 0, so the Gate 3 question was not queued, and the queue path resolved inside the scratch folder rather than the repository.
++Every expected signal was observed. The three sweep suites ended `ℹ fail 0` with 21 of 21 tests passing. From a scratch folder, the first Devin sweep printed `"recovered": 2` and the second printed `"recovered": 0`, the queue held exactly 2 lines, and the recovered answers were `Marketplace in settings` and `all 4, use subagents`. The `Spec folder` count was 0, so the Gate 3 question was not queued, and the queue path resolved inside the scratch folder rather than the repository. The repository's own state directory was not touched: its queue and nudge files carry mtimes 14:26 and 14:27, before this run started.
+ 
+ ## Evidence
+ 
+ ```text
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled && ls -1 specs/system-speckit/042-decision-capture/scratch/playbook-runs/*-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+> build · deepseek-v4.1-flash-1017
+Six scenarios ran on OpenCode: three PASS, three FAIL.
+
+**PASS**
+1. `decision-capture-claude-hook`: 13 tests, `fail 0`, both sync checks `PASS`, the `AskUserQuestion` registration and symlink are present, one queued line carries `"answer":"Probe answer A"`, and the kill switch wrote nothing.
+2. `decision-capture-transcript-sweeps`: 21 tests, `fail 0`, `"recovered": 2` then `"recovered": 0`, the queue holds the two expected answers, and no Gate 3 question is queued.
+3. `decision-capture-save-writer`: plan-only left the record `UNCHANGED`, full-auto added one `Q008` row and appendix item with `Amber`, the second save was `BYTE_IDENTICAL`, and the `Q008` count stayed 1.
+
+**FAIL**
+1. `json-mode-hybrid-enrichment`: the save exits 0 but renders no memory document, so no structured field, decision confidence or changed-file count is observable. The file-backed JSON run exits 1 with `INSUFFICIENT_CONTEXT_ABORT`.
+2. `post-save-quality-review`: every save prints `POST-SAVE QUALITY REVIEW -- SKIPPED` because the target is a directory, so `PASSED` with 0 issues never appears.
+3. `core-workflow-infrastructure`: the written command selects `runtime/vitest.config.ts`, reports `No test files found, exiting with code 1` and exits 1. The same three suites pass 24 of 24 with `--config ../../vitest.config.ts --project cli`.
+
+Two grading notes. Scenario 3's step 5 `git status` did print two untracked scratch paths. Both predate the run at 14:24, one is this session's own stdout log, and `git status --untracked-files=no` plus `git diff --stat` for the packet are empty, so the save itself graded PASS and the deviation is quoted in the result file. Also, `consumed.jsonl` holds two lines for the same key after the two saves, recorded as an ungraded finding. The tracked modification to `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` predates this run at 14:21 and is not mine. Scratch folders remain under `/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/pb-opencode`.
+
+CHECK output:
+
+```text
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/core-workflow-infrastructure-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-claude-hook-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-save-writer-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/decision-capture-transcript-sweeps-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/json-mode-hybrid-enrichment-opencode.md
+specs/system-speckit/042-decision-capture/scratch/playbook-runs/post-save-quality-review-opencode.md
+```
+
+FILES: core-workflow-infrastructure-opencode.md, decision-capture-claude-hook-opencode.md, decision-capture-save-writer-opencode.md, decision-capture-transcript-sweeps-opencode.md, json-mode-hybrid-enrichment-opencode.md, post-save-quality-review-opencode.md (all under specs/system-speckit/042-decision-capture/scratch/playbook-runs/)
+VERDICTS: decision-capture-claude-hook=PASS, decision-capture-transcript-sweeps=PASS, decision-capture-save-writer=PASS, json-mode-hybrid-enrichment=FAIL, post-save-quality-review=FAIL, core-workflow-infrastructure=FAIL
+STATUS=OK six result files exist and the CHECK command listed all six, with three scenarios failing on missing expected signals.
+RUN_DONE_EXIT=0

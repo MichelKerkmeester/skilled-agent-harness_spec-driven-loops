@@ -1,0 +1,51 @@
+
+ Found it. Loading the reply rules before I report back.
+
+ ✓ cat .skilled/repo-rules/communication.md .skilled/repo-rules/communication-prose.md 2>/dev/null | head -120
+
+ The demo widget is documented in  specs/demo/001-demo-widget/  — a Level 3 spec packet containing  spec.md ,  plan.md ,  tasks.md ,  acceptance-criteria.md ,  decision-record.md ,  implementation-sum
+ mary.md ,  timeline.md , and  description.json .
+
+ One caveat: the packet is scaffolded but unfilled —  spec.md  still carries the template placeholders ( [YOUR_VALUE_HERE]  in Problem, Scope, and elsewhere), so it names the feature without yet
+ describing it. Branch recorded in metadata:  scaffold/001-demo-widget .
+
+ Stopping here as requested — no writes made. Tell me when to proceed.
+
+❭ A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.
+
+ Bound to  specs/demo/001-demo-widget  for this session. Waiting — no writes until you say so.
+
+❭ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.
+
+ ⏺ Asked user Which colour should the status badge use?
+ └ Amber
+
+ Amber it is. Still waiting — no writes until you say so.
+
+❭ Now ask me with your question tool which platforms the badge must support, offering exactly Web, iOS and Android. Let me pick several.
+
+ ⏺ Asked user Which platforms must the badge support?
+ └ Web, iOS, Android
+
+ All three: Web, iOS, Android. Still holding — no writes until you tell me.
+
+❭ Ask me with your question tool for the badge label, with a few options. I will type my own.
+
+ ⏺ Asked user What label should the status badge show?
+ └ Needs review
+
+ Label: "Needs review". Still holding — no writes until you tell me.
+
+ ✱ Did you know
+   Press opt+m to switch between available models
+
+❭ Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink.
+
+ Requirements so far: Amber badge labelled "Needs review" on Web, iOS, and Android. Should the badge blink?
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/devin-main/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Locate Demo Widget Documentation for Ad… ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                     Context: 27k / 262k tokens (10%)
+

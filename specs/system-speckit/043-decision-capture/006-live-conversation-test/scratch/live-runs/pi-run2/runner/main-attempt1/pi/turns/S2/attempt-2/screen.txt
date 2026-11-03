@@ -1,0 +1,51 @@
+   Header: max 16 chars — "Badge colour" (12 chars).                                                                                                                                                    
+                                                                                                                                                                                                        
+   Labels must be ≤60 chars, concise 1-5 words: "Amber", "Teal", "Slate". Descriptions should explain what the choice means/trade-offs. Keep them factual but not prescriptive/recommending.            
+                                                                                                                                                                                                        
+   Let me ask.                                                                                                                                                                                          
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+   └ 1 line returned (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ 1 operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.                                                                        
+
+ ∴ Thinking: The user answered Amber. They told me to keep waiting — write nothing until told. So I should record the answer and wait.                                                                  
+                                                                                                                                                                                                        
+   Reply briefly.                                                                                                                                                                                       
+
+ ● Answer recorded: Amber.                                                                                                                                                                              
+                                                                                                                                                                                                        
+   Nothing written. Still waiting — no product questions asked beyond the one you ordered.                                                                                                              
+
+ ✻ Turn took 10s (Total time 1m 49s · 3 turns)                                                                                                                                                          
+
+ ❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice. Open the tool itself, not a chat message, and mark no     
+   option as recommended.                                                                                                                                                                               
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✢ Waiting for your answer… (↓ 160 tokens · 5m 0s)                                                                                                                                                      
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge colour                                                                                                                                                                                          
+
+ Which colour should the status badge use?                                                                                                                                                              
+
+❯ 1. Amber
+     Warm yellow-orange. Reads as caution or in-progress and carries strong contrast against light backgrounds.
+  2. Teal
+     Blue-green. Reads as informational or neutral-positive and sits close to typical link and accent colours.
+  3. Slate
+     Cool blue-grey. Reads as muted and low-emphasis, receding next to brighter surrounding UI.
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 30.9k tok | $0.01
+

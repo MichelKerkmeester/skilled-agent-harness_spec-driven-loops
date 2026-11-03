@@ -1,0 +1,51 @@
+   - Every doc is placeholder text: 38 [YOUR_VALUE_HERE] slots in spec.md, 40 in plan.md, 6 in tasks.md with no task rows at all.                                                                       
+   - Its own continuity block says completion_pct: 0, recent_action: "Initialized Level 3 template", next_safe_action: "Replace continuity placeholders", branch scaffold/001-demo-widget.              
+   - There is no widget to badge: no src/, no package.json, and git ls-files returns nothing — every file in this directory is untracked.                                                               
+   - The only other "widget" string in the project is a UI label in the btw extension (Dismiss the BTW modal/widget), unrelated.                                                                        
+                                                                                                                                                                                                        
+   So "add a status badge to the demo widget" has no documented target: no requirements, no files-to-change table, no code. Anything I built now would be inventing both the widget and its badge.      
+                                                                                                                                                                                                        
+   Nothing written, no product questions asked. Waiting on you; when you green-light a write, the first thing I need is the spec-folder answer (A existing specs/demo/001-demo-widget, B new, C related,
+   D skip).                                                                                                                                                                                             
+                                                                                                                                                                                                        
+   ────────────────────────────────────────────────────────────────────────────────                                                                                                                     
+                                                                                                                                                                                                        
+   That's good. Item cap: 4 bullets. Good. No tables. Ends with handback — the one thing that's the operator's to do: say what the widget actually is / where code lives. Hmm, the last line should name
+   the one thing that's theirs, or say nothing is. I'll fold it: waiting on their call.                                                                                                                 
+                                                                                                                                                                                                        
+   Let me tighten. Also should I name that the packet being a scaffold is the reason the trigger index returned nothing? Minor, could omit. Actually the trigger index gave a clean no-hit which        
+   corroborates. One clause, keep it cheap: it already has trigger_phrases "demo widget" in the frontmatter though — but index hit returned empty. Interesting: the index has 984 candidate phrases and 
+   no result for "demo widget", even though spec.md declares trigger_phrases: ["demo widget"]. That's a minor inconsistency but not the task. Could mention as a deferred tangent once at the end? It's 
+   a second issue worth one line. I'll include it as a single deferred line — actually the doc says a tangent gets offered once at the end in one line. I'll add it briefly since it's genuinely odd and
+   cheap. Hmm — restraint. It is relevant: the retrieval index missed a packet that explicitly declares that phrase, which means recall is broken for this packet. That's worth one line. But it also   
+   risks hijacking. One line at the end, flagged as deferred. Actually I already have a handback line. Let me put the tangent before the handback, as one line.                                         
+                                                                                                                                                                                                        
+   Hmm, keep total length tight. I'll do it.                                                                                                                                                            
+                                                                                                                                                                                                        
+   Let me finalize.                                                                                                                                                                                     
+
+ ● The demo widget is documented nowhere real. Its only appearance is specs/demo/001-demo-widget/, and that packet is an unfilled Level-3 template, not a description of a widget.                      
+                                                                                                                                                                                                        
+   ◉ Every doc is placeholder text: 38 [YOUR_VALUE_HERE] slots in spec.md, 40 in plan.md, 6 in tasks.md with no task rows at all.                                                                       
+   ◉ Its own continuity block reads completion_pct: 0, recent_action: "Initialized Level 3 template", next_safe_action: "Replace continuity placeholders", branch scaffold/001-demo-widget.             
+   ◉ There is no widget to badge: no src/, no package.json, and git ls-files returns nothing — every file here is untracked.                                                                            
+   ◉ The only other "widget" string in the project is a UI label in the btw extension (Dismiss the BTW modal/widget), unrelated.                                                                        
+                                                                                                                                                                                                        
+   So the request has no documented target: no requirements, no files-to-change table, no code. A status badge would mean inventing both the widget and the badge.                                      
+                                                                                                                                                                                                        
+   Nothing written, no product questions asked. Waiting on you. When you green-light a write, the first thing I'll need is the spec-folder answer (A: continue in specs/demo/001-demo-widget, B: new, C:
+   related, D: skip).                                                                                                                                                                                   
+                                                                                                                                                                                                        
+   Deferred, one line: the trigger index returned a clean no-hit for "demo widget" even though that packet declares trigger_phrases: ["demo widget"], so recall is missing a phrase the packet claims to
+   answer to.                                                                                                                                                                                           
+
+ ✻ Turn took 49s (Total time 1m 14s · 1 turn)                                                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 32.2k tok | $0.01
+

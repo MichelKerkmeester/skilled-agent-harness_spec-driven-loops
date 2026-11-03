@@ -1,0 +1,51 @@
+   New session                     Demo widget status badge        Demo widget status badge      +                                                                                                      
+                                                                                                                                          ┃                                                          ┃  
+     The packet describes nothing yet. It carries 95 [YOUR_VALUE_HERE:] placeholders, 38 in spec.md and 40 in plan.md. No requirement, fil┃  3 plugins failed                        › Open plugins  ┃  
+     verification command is filled in, so it does not say what the widget is, where it lives or what a badge would show.                 ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     There is also no demo widget code in the repository. The root holds only agent and tooling directories plus specs/. The only widget m┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     are in .pi/extensions/pi-fast-mode-w-subagent-support/src/status.ts, which implements a Pi terminal status widget and is unrelated.  ┃  999a34105259/scratchpad/conv/opencode-main/opencode/.   ┃  
+                                                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+     Status: this was a read-only turn and I wrote nothing. The trigger index returned no hits for the request, and the working tree is un┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     started, with the existing untracked scaffolding as it was. Residual risk is the gap itself: any later change would have to invent th┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     badge because the packet defines neither.                                                                                            ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     Nothing is blocked on you except the hold you set. When you want me to continue, say so, and I will ask the product questions then.  ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 41.2s · 127.0 tok/s                                                                               ┃  scratchpad/conv/opencode-main/opencode/.opencode/       ┃  
+                                                                                                                                          ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃                                                                                                                                       ┃  Run /plugins to view details.                           ┃  
+  ┃  A) Existing, specs/demo/001-demo-widget. Keep waiting: write nothing until I tell you.                                               ┃                                                          ┃  
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 1.5s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ The user answered Gate 3: A) Existing, specs/demo/001-demo-widget. And says keep waiting, write nothing until told.                                                                              
+     ┃                                                                                                                                                                                                  
+     ┃ So I should acknowledge briefly, record that the spec folder answer holds for the session, and wait. No tool calls needed, no writes. Maybe I                                                    
+     ┃ should not even run tools. Just a short reply.                                                                                                                                                   
+     ┃                                                                                                                                                                                                  
+     ┃ Per communication rules: first line carries payload, no tables, no em dashes, no semicolons, no serial comma. End with handback: nothing to do                                                   
+     ┃ except the hold.                                                                                                                                                                                 
+     ┃                                                                                                                                                                                                  
+     ┃ Should I restate the state? "Restate the state when the reader must re-orient... fires when direction of work changes, two attempts failed, or work                                              
+     ┃ resumes after a gap." Not needed here.                                                                                                                                                           
+     ┃                                                                                                                                                                                                  
+     ┃ Keep it short. Acknowledge the folder binding and that I'm holding.                                                                                                                              
+                                                                                                                                                                                                        
+     Recorded: this session's spec folder is specs/demo/001-demo-widget. I will not create or use any other packet, and I will not treat the empty                                                      
+     scaffold as approval to fill it in.                                                                                                                                                                
+                                                                                                                                                                                                        
+     Still holding. I have written nothing and will not write anything until you tell me to proceed. When you do, I will start with the product questions                                               
+     and leave the packet untouched until you answer them.                                                                                                                                              
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 3.6s · 74.8 tok/s                                                                                                  ▄                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-De…/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-main/opencode:main  44.1K (4%) · $0.01  ctrl+p commands    /…/s…/conv/opencode-main/opencode:main  
+                                                                                                                                                                                                        
+

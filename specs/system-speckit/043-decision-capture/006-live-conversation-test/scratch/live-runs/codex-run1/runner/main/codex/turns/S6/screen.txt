@@ -1,0 +1,51 @@
+  │ … +61 lines
+  └ Starting memory skill...
+
+    {"timestamp":"2026-11-02T16:17:53.779Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
+    +52 lines (⌃t to view transcript)
+
+• The writer exited 0 and saved four operator decisions. Its quality review was skipped, and it reported a stale trigger index; I’m checking the saved records and metadata now.
+
+• Explored
+  └ Read implementation-summary.md
+
+• Ran jq -e '.specFolder == "demo/001-demo-widget" and .lastUpdated != null' specs/demo/001-demo-widget/description.json && jq -e '.spec_folder == "demo/001-demo-widget" and .source_fingerprint !=
+  │ null' specs/demo/001-demo-widget/graph-metadata.json
+  └ true
+    false
+
+• Explored
+  └ Search codex:01a19d07-8263-73e2-89e5-360ab476fbd5 in consumed.jsonl
+
+• Ran git status --short --untracked-files=all -- specs/demo/001-demo-widget && git diff -- specs/demo/001-demo-widget/decision-record.md specs/demo/001-demo-widget/implementation-summary.md specs/
+  │ demo/001-demo-widget/description.json specs/demo/001-demo-widget/graph-metadata.json
+  └  M specs/demo/001-demo-widget/decision-record.md
+     M specs/demo/001-demo-widget/description.json
+     M specs/demo/001-demo-widget/graph-metadata.json
+    +192 lines (⌃t to view transcript)
+
+• Ran sed -n '/<!-- ANCHOR:operator-decisions -->/,/<!-- \/ANCHOR:operator-decisions -->/p' specs/demo/001-demo-widget/decision-record.md && sed -n '/<!-- ANCHOR:operator-answers-verbatim -->/,$p'
+  │ specs/demo/001-demo-widget/decision-record.md
+  └ <!-- ANCHOR:operator-decisions -->
+    ## Operator Decisions
+    <!-- FILL: Leave the table empty: a full-auto save fills it from captured operator answers. Hand-write a row only for an answer the capture missed, with the next free id. GOOD: Q004 decides `Keep
+    +92 lines (⌃t to view transcript)
+
+• The decision record assigns Q001–Q004, but continuity still lists no answered questions. I’ll sync those IDs through the same writer.
+
+• Ran node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin specs/demo/001-demo-widget --full-auto --session-id 01a19d07-8263-73e2-89e5-360ab476fbd5 <<'JSON'
+  │ {
+  │   "specFolder": "specs/demo/001-demo-widget",
+  │ … +16 lines
+  └ Starting memory skill...
+
+    {"timestamp":"2026-11-02T16:18:52.374Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
+    +43 lines (⌃t to view transcript)
+ 
+• The continuity-only refresh aborted before writing because it lacked session evidence. I’ll retry with the original session summary and recorded decisions, adding Q001–Q004 to continuity.
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 40% used · 5h 59% left · weekly 94% left
+

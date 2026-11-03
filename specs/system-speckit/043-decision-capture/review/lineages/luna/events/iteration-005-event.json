@@ -1,0 +1,206 @@
+{
+  "type": "iteration",
+  "iteration": 5,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-luna-1793649602423-v8rh6g",
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:236-286",
+    ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-303",
+    ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:100-137,311-321",
+    ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:241-280",
+    ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:220-249,292-312",
+    ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs:55-90,581-602",
+    ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs:66-68,275-297",
+    ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs:251-284",
+    ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs:156-190",
+    ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs:242-290"
+  ],
+  "findingsCount": 0,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingsNew": [],
+  "findingDetails": [],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 6,
+      "executed": 6,
+      "pass": 2,
+      "partial": 0,
+      "fail": 3,
+      "blocked": 0,
+      "notApplicable": 1,
+      "gatingFailures": 3
+    },
+    "results": [
+      {
+        "protocol": "spec_code",
+        "level": "core",
+        "status": "fail",
+        "evidence": [
+          "specs/system-speckit/043-decision-capture/spec.md:109-117",
+          "specs/system-speckit/043-decision-capture/goal.md:61-86",
+          "specs/system-speckit/043-decision-capture/007-gap-closure/goal.md:34-58"
+        ],
+        "notes": "Carried forward from iteration 3: the phase map and parent binding define different closure scopes."
+      },
+      {
+        "protocol": "checklist_evidence",
+        "level": "core",
+        "status": "fail",
+        "evidence": [
+          "specs/system-speckit/043-decision-capture/002-table-row-matching/acceptance-criteria.md:99-103",
+          "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/acceptance-criteria.md:89-92",
+          "specs/system-speckit/043-decision-capture/005-chat-question-detection/acceptance-criteria.md:92-95"
+        ],
+        "notes": "Carried forward from iteration 3: stale child closure statements disagree with Met evidence or completion summaries."
+      },
+      {
+        "protocol": "skill_agent",
+        "level": "overlay",
+        "status": "notApplicable",
+        "evidence": [
+          ".skilled/commands/speckit/save.md:61-77"
+        ],
+        "notes": "No separate dispatched agent contract owns decision-capture behavior."
+      },
+      {
+        "protocol": "agent_cross_runtime",
+        "level": "overlay",
+        "status": "pass",
+        "evidence": [
+          ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:29-47",
+          ".skilled/hooks/README.md:271-275",
+          ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md:351-353"
+        ],
+        "notes": "Runtime capability descriptions remain aligned with the adapters and save-time sweep paths reviewed."
+      },
+      {
+        "protocol": "feature_catalog_code",
+        "level": "overlay",
+        "status": "pass",
+        "evidence": [
+          ".skilled/skills/system-spec-kit/feature-catalog/ux-hooks/operator-decision-capture.md:29-47",
+          ".skilled/commands/speckit/save.md:64-77"
+        ],
+        "notes": "Catalog and save command continue to match the runtime boundary."
+      },
+      {
+        "protocol": "playbook_capability",
+        "level": "overlay",
+        "status": "fail",
+        "evidence": [
+          ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md:19-25",
+          ".opencode/plugins/decision-capture.js:51-79",
+          ".devin/hooks.v1.json:161-166"
+        ],
+        "notes": "Carried forward from iteration 3: the transcript-sweeps playbook still misstates OpenCode and Devin live-hook availability."
+      }
+    ]
+  },
+  "newFindingsRatio": 0,
+  "sessionId": "fanout-luna-1793649602423-v8rh6g",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-02T20:45:26Z",
+  "durationMs": 0,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "complex",
+    "enforcement": "strict",
+    "reason": "Stabilization pass after full dimension coverage; rechecked whether default transcript selectors preserve project identity across runtimes.",
+    "evidenceRefs": [
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:239-270",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-292",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:125-136"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.test.mjs",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.test.mjs"
+    ],
+    "selectionReason": "Revalidated default transcript project identity across all five runtime sweep selectors and their focused test coverage, tracing selected content into the current project queue.",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_search",
+      "producer_consumer_trace"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "available",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:236-286",
+      ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-303",
+      ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:125-136",
+      ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:244-260",
+      ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:223-245"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "project_path_identity"
+    ],
+    "covered": [
+      "project_path_identity"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graph"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-pi.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-codex.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-devin.mjs",
+        ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs"
+      ],
+      "bugClass": "project_path_identity",
+      "hypothesis": "Default transcript selection must preserve current project identity instead of relying on a lossy path key.",
+      "searchActions": [
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "Default selectors, per-runtime identity filters, sweep entrypoints, and focused test coverage.",
+          "result": "Claude replaces non-alphanumerics with hyphens and Pi flattens slashes, so /work/foo-bar and /work/foo/bar share a directory key. Neither selector checks transcript project identity after selecting the newest file, and both sweeps queue its contents under the current project directory. Codex checks session_meta.cwd; Devin and OpenCode query exact working-directory values. Existing tests cover ordinary per-project selection but not colliding paths.",
+          "evidenceRefs": [
+            ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:239-270",
+            ".skilled/hooks/decision-capture/bin/sweep-transcript.mjs:194-205",
+            ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:275-292",
+            ".skilled/hooks/decision-capture/bin/sweep-pi.mjs:234-250",
+            ".skilled/hooks/decision-capture/bin/sweep-codex.mjs:125-136",
+            ".skilled/hooks/decision-capture/bin/sweep-devin.mjs:253-260",
+            ".skilled/hooks/decision-capture/bin/sweep-opencode.mjs:223-245",
+            ".skilled/hooks/decision-capture/bin/sweep-pi.test.mjs:275-297"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "This confirms the existing active cross-project transcript contamination finding; no new issue or changed evidence warrants another delta finding.",
+      "linkedFindingId": "LUNA-R1-P1-001"
+    }
+  ],
+  "graphEvents": []
+}

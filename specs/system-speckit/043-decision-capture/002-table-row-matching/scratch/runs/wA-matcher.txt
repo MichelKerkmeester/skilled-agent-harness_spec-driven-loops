@@ -1,0 +1,72 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/043-decision-capture/002-table-row-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code TypeScript standards: strict types, small named functions, JSDoc on
+exports, no new dependency. Comments say WHY and never contain spec paths, packet/phase numbers
+or task/requirement ids. Tests: happy path plus one edge case per public surface.
+Never open any .env or token file. Never write anything under barter/ or under
+.skilled/skills/.state/. RT = .skilled/skills/system-spec-kit/runtime
+NOTE: your sandbox may block vitest (listen EPERM). If so, run `npx tsc --noEmit -p $RT/tsconfig.json`
+from $RT instead and say the tests were not run; the orchestrator runs them.
+
+READ FIRST: specs/system-speckit/043-decision-capture/002-table-row-matching/plan.md section 3
+(Scoring) and spec.md REQ-001 to REQ-005 and REQ-011 to REQ-013; $RT/lib/continuity/decision-record-writer.ts
+(recordConsumedKeys, readConsumedKeySet); .skilled/hooks/decision-capture/lib/capture-core.mjs
+(readQueue, pendingRecords) for the queue record shape.
+
+TASK: create two files only:
+1. $RT/lib/continuity/decision-table-matcher.ts, pure and read-only (fs.readFileSync only):
+   - parseDecisionTables(text): find every markdown table whose header row is followed by
+     separator and whose body rows' first cell is a Q id (/^Q\d+$/). Locate columns by header
+     name, case-insensitive: date, topic, question, options ("options offered" or "options"),
+     answer ("answer (verbatim)" or "answer"). Split cells on unescaped `|` only. Return rows
+     { id, date, topic, question, options[] (split on "; "), answer, line }.
+   - normalize(s): strip surrounding quotes, remove "(Recommended)" and "(rec.)" case-insensitive,
+     turn line breaks into " / ", collapse whitespace, trim, lowercase.
+   - matchRecords(records, rows, consumedRows, opts): for each queue record (fields question,
+     header, options[], answer, captured_at, key): hard gate normalize(answer) === normalize(row.answer).
+     Score = weighted token overlap of options, header vs topic, question, plus same date
+     (captured_at day vs row date). Export DEFAULT_WEIGHTS, DEFAULT_THRESHOLD, DEFAULT_TIE_MARGIN.
+     Two rows within the tie margin -> refused "tie". No row passing gate+threshold -> pending
+     "no row". A row whose id already appears in consumedRows (rows of consumed.jsonl, {key,packet,id})
+     for the same packet under a DIFFERENT key whose recorded answer differs -> refused
+     "row already consumed by a different answer"; to know the earlier answer, accept a
+     map key->answer from the caller. One row is never assigned to two records in one run
+     (the earlier record in queue order wins; the later is refused with that same reason).
+     Near ties break by queue order against row order, as plan.md says.
+     Return { matches:[{key,id,score}], refused:[{key,reason}], pending:[{key,reason}] }.
+   - summaryLine(result) -> "consumed N, refused M, pending K".
+   Deterministic: same inputs give the same output (rebuild after a re-clone is a rerun).
+2. $RT/cli/test-fixtures/decision-table/hand-written-record.md: a REDACTED fixture with the real
+   nine-column header `| # | Date | Round | Topic | Question | Options offered | Answer (verbatim) | Ruling | Carried by |`
+   inside an `<!-- ANCHOR:adr-001-decision -->` anchor, about 8 invented rows (do NOT copy real
+   Barter text; invent neutral topics), including: one answer with a line break shown as " / ",
+   one row with a shortened option, two rows with the same answer and near-identical topics
+   (a tie), one row no record carries. No absolute paths.
+3. $RT/cli/tests/decision-table-matcher.vitest.ts with in-test queue records: parse, answer gate,
+   line-break answer, shortened option, tie refusal, no-row stays pending, one row cannot take a
+   second different answer (consumedRows case and same-run case), determinism (two runs equal,
+   and a rebuild from an empty consumed list equals the first run), fixture sha256 unchanged
+   after all calls, summaryLine text. It must never reference barter/.
+Then calibrate on the real data, READ-ONLY: write
+specs/system-speckit/043-decision-capture/002-table-row-matching/scratch/calibration.md showing,
+for the queue file .skilled/skills/.state/decision-capture/66653063393939302d303664332d343534652d613865372d376337626336343962633439.jsonl
+against barter/ai-speckit/specs/barter-framework/001-coder-skilled-v4-conversion/decision-record.md,
+each record's chosen id or reason and score, with your default threshold and margin. Expected:
+records 1-11 map to Q67-Q77, 13-28 to Q78-Q93, 29 Q94, 30 Q95, 32-35 Q96-Q99; record 12 and 31
+pending. Tune defaults until that holds with a clear margin, and say if it cannot.
+
+VERIFY: cd $RT && npx vitest run cli/tests/decision-table-matcher.vitest.ts (or tsc as noted).
+Final message under 200 words with the calibration result table summary.

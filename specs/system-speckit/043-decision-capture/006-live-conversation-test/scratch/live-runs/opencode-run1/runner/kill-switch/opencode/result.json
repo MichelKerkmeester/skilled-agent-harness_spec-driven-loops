@@ -1,0 +1,43 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 161180087,
+  "socket": "conv-30687-opencode",
+  "session_id": "bfe316c0-0d94-43b0-b3d5-bf2df4a5862b",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/opencode-kill-switch/opencode",
+  "started_at": "2026-11-02T13:30:51.129Z",
+  "finished_at": "2026-11-02T13:31:20.406Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S12",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "observed=runtime=opencode queue_jsonl=0 nudge_lines=0 color_question=1 amber_visible=1",
+      "evidence": "turns/S12"
+    }
+  ]
+}

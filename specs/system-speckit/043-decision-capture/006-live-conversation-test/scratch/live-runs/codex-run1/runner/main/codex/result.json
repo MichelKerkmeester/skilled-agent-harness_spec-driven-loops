@@ -1,0 +1,161 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": "no live queue on codex",
+  "seed": 2029200475,
+  "socket": "conv-63030-codex",
+  "session_id": "e334761a-1407-4c8e-adce-62d38a169793",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/codex-main/codex",
+  "started_at": "2026-11-02T16:11:14.244Z",
+  "finished_at": "2026-11-02T16:27:36.120Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "codex-workspace-write",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 base=base.sha",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 gate3=not-asked",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S3",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S3"
+    },
+    {
+      "id": "S4",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S4"
+    },
+    {
+      "id": "S5",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S5"
+    },
+    {
+      "id": "S6",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "pending=0 rows=4",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S7",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S7"
+    },
+    {
+      "id": "S8-compact",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S8-compact"
+    },
+    {
+      "id": "S8-ask",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S8-ask"
+    },
+    {
+      "id": "S9-restart",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S9-restart"
+    },
+    {
+      "id": "S9-ask",
+      "status": "SKIP",
+      "attempts": 1,
+      "reason": null,
+      "blocker": "no live queue on codex",
+      "observed": "no live queue on codex",
+      "evidence": "turns/S9-ask"
+    },
+    {
+      "id": "S10",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "pending=0 rows=7",
+      "evidence": "turns/S10"
+    },
+    {
+      "id": "S11",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "record_rows=7 repeat=identical",
+      "evidence": "turns/S11"
+    }
+  ]
+}

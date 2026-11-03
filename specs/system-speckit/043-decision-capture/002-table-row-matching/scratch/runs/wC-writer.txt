@@ -1,0 +1,43 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-speckit/043-decision-capture/002-table-row-matching
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code TypeScript standards: strict types, small named functions, JSDoc on
+exports, no new dependency. Comments say WHY and never contain spec paths, packet/phase numbers
+or task/requirement ids. Tests: happy path plus one edge case per public surface.
+Never open any .env or token file. Never write anything under barter/ or under
+.skilled/skills/.state/. RT = .skilled/skills/system-spec-kit/runtime
+NOTE: your sandbox may block vitest (listen EPERM). If so, run `npx tsc --noEmit -p $RT/tsconfig.json`
+from $RT instead and say the tests were not run; the orchestrator runs them.
+
+TASK, two bounded edits:
+1. $RT/lib/continuity/decision-record-writer.ts: FIELD_LABEL_RE accepts only a column-0
+   `Question:`/`Options:`/`Answer:` label. Make appendix parsing also accept a bolded label
+   (`**Question:**`, `**Question**:`) and leading indentation, so a hand-written appendix item is
+   matched by readUnkeyedExchangeIds. Change nothing else. Add cases to
+   $RT/cli/tests/decision-record-writer.vitest.ts: a bolded-label item and an indented item are
+   reused (no new Q id, no new appendix item), and a plain item still works.
+2. .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md:
+   harden its checks so a broken recordConsumedKeys fails it: after step 3 count lines in the
+   scratch consumed.jsonl (expect 1) and after step 4 again (expect still 1); add a step that
+   calls pendingRecords from .skilled/hooks/decision-capture/lib/capture-core.mjs for the scratch
+   project via `node --input-type=module -e` (read capture-core.mjs for its signature) and expects
+   the fixture key not pending, or, if the fixture key is not in a queue file, explain in one
+   sentence and instead assert the consumed row's key and id; change step 5's repository check
+   to `git -C "$R" status --short --ignored -- specs/system-speckit/043-decision-capture/001-decision-capture-build .skilled/skills/.state/decision-capture`
+   compared before and after (save the before listing in step 1). Update Expected and the
+   Scenario Contract signals to match. Keep its five sections and style. No em or en dashes.
+VERIFY: cd $RT && npx vitest run cli/tests/decision-record-writer.vitest.ts (or tsc as noted);
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-spec-kit
+(0 violations). Final message under 200 words.

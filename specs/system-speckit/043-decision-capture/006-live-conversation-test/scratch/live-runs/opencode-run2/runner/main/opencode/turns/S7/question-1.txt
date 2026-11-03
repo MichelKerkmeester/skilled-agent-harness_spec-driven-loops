@@ -1,0 +1,51 @@
+ ? Demo widget status badge      +                                                                                                                                                                      
+     --------------------------------------------------                                                                                   ┃                                                          ┃  
+     Folder      specs/demo/001-demo-widget                                                                                               ┃  3 plugins failed                        › Open plugins  ┃  
+     Targets     decision-record.md, description.json, graph-metadata.json, implementation-summary.md                                     ┃                                                          ┃  
+                                                                                                                                          ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+     Anchors                                                                                                                              ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+     - operator-decisions                                                                                                                 ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+     - operator-answers-verbatim                                                                                                          ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     Triggers                                                                                                                             ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     demo widget | demo widget plan | demo widget decision record                                                                         ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+                                                                                                                                          ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+     STATUS=OK TARGETS=4 ANCHORS=2                                                                                                        ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+                                                                                                                                          ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+     Q001 to Q004 record colour, platforms, label and static behaviour with the exact questions and answers. A repeat sweep shows zero pen┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     and the orphan scan reports no session queues. Strict validation returned RESULT: PASSED with 0 errors and 3 warnings: 94 unfilled pl┃  plugins/system-skill-advisor.js                         ┃  
+     incomplete AI protocol section, and an empty measured-behavior block.                                                                ┃  Run /plugins to view details.                           ┃  
+                                                                                                                                          ┃                                                          ┃  
+     I left the optional trigger-index regeneration undone. The writer reports spec.md stale until that index is regenerated, and the saved documents are                                               
+     durable regardless.                                                                                                                                                                                
+                                                                                                                                                                                                        
+     Your move: say when implementation should start.                                                                                                                                                   
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 1m 45s · 128.1 tok/s                                                                                                                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right. Open the tool itself, not a chat message,                                                 
+  ┃  and mark no option as recommended.                                                                                                                                                                 
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 394ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Use question tool, single choice, options exactly Left and Right, no recommended.                                                                                                                
+                                                                                                                                                                                                        
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Should the badge sit left or right of the title?                                                                                                                                                   
+  ┃                                                                                                                                                                                                     
+  ┃  1. Left                                                                                                                                                                                            
+  ┃     Place the badge to the left of the title.                                                                                                                                                       
+  ┃  2. Right                                                                                                                                                                                           
+  ┃     Place the badge to the right of the title.                                                                                                                                                      
+  ┃  3. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

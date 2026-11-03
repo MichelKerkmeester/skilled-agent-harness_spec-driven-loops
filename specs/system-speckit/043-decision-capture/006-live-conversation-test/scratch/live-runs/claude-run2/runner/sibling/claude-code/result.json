@@ -1,0 +1,98 @@
+{
+  "runtime": "claude-code",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 231164967,
+  "socket": "conv-44924-claude-code",
+  "session_id": "9ddd5628-1553-4a8e-a205-5b5c27c271ce",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/claude-code-sibling/claude-code",
+  "started_at": "2026-11-02T18:25:48.902Z",
+  "finished_at": "2026-11-02T18:29:23.777Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 base=base.sha",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=0 gate3=visible",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "rows=1",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S13",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "hand_row=Q050 answer=Amber",
+      "evidence": "turns/S13"
+    },
+    {
+      "id": "S5b",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "count_candidates=1 mid_message=1 max_per_message=1",
+      "evidence": "turns/S5b"
+    },
+    {
+      "id": "S6",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "hand_id=Q050 amber_rows=1 chat_rows=1 pending=0 process_rows=0",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S14",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "nudge=0",
+      "evidence": "turns/S14"
+    }
+  ]
+}

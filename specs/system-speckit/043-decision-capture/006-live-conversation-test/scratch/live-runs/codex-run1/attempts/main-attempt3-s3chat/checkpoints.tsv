@@ -1,0 +1,16 @@
+turn	status	attempts	evidence	observed
+S0	PASS	1	turns/S0	rows=0 base=base.sha
+S1	PASS	1	turns/S1	rows=0 gate3=visible
+S2	SKIP	1	turns/S2	jq: error: Could not open file .skilled/skills/.state/decision-capture/*.jsonl: No such file or directory
+S3	FAIL	1	turns/S3	MISSING_QUESTION
+S3	FAIL	2	turns/S3/attempt-2	MISSING_QUESTION
+S4	NOT_RUN	0	turns/S4	MISSING_QUESTION
+S5	NOT_RUN	0	turns/S5	MISSING_QUESTION
+S6	NOT_RUN	0	turns/S6	MISSING_QUESTION
+S7	NOT_RUN	0	turns/S7	MISSING_QUESTION
+S8-compact	NOT_RUN	0	turns/S8-compact	MISSING_QUESTION
+S8-ask	NOT_RUN	0	turns/S8-ask	MISSING_QUESTION
+S9-restart	NOT_RUN	0	turns/S9-restart	MISSING_QUESTION
+S9-ask	NOT_RUN	0	turns/S9-ask	MISSING_QUESTION
+S10	NOT_RUN	0	turns/S10	MISSING_QUESTION
+S11	NOT_RUN	0	turns/S11	MISSING_QUESTION

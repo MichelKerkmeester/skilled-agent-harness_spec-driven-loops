@@ -1,0 +1,51 @@
+   "you run the writer and inspect the post-save quality review" — it was skipped; report that.                                                                                                         
+                                                                                                                                                                                                        
+   Quick verification batch.                                                                                                                                                                            
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd "$(git rev-parse --show-toplevel)"; echo "== Q006/Q007 =="; awk '/### Q006/,0' specs/demo/001-demo-widget/decisio...dev/null | head; echo "== full status =="; git status --short        <1s 
+   └ Done (49 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Save landed on the first attempt.                                                                                                                                                                    
+                                                                                                                                                                                                        
+     SPECKIT:SAVE                                                                                                                                                                                       
+     --------------------------------------------------                                                                                                                                                 
+     Folder      demo/001-demo-widget                                                                                                                                                                   
+     Targets     decision-record.md, description.json, graph-metadata.json, implementation-summary.md                                                                                                   
+                                                                                                                                                                                                        
+     Anchors                                                                                                                                                                                            
+     - operator-decisions                                                                                                                                                                               
+     - operator-answers-verbatim                                                                                                                                                                        
+                                                                                                                                                                                                        
+     Triggers                                                                                                                                                                                           
+     demo widget (index not regenerated)                                                                                                                                                                
+                                                                                                                                                                                                        
+     STATUS=OK TARGETS=4 ANCHORS=2                                                                                                                                                                      
+                                                                                                                                                                                                        
+   What was written. The sweep recovered all three answers as pending, the pre-write dry run of match-decision-table.js reported pending 3, consumed 0, and the writer turned them into Q005–Q007: badge
+   right of the title, small size, tooltip present. Each row carries its verbatim question, options and answer in the appendix, and all three source keys are now in the gitignored consumed list.      
+   implementation-summary.md moved to recent_action: "Recorded badge placement, size and tooltip for the demo widget" with next_safe_action: "Document badge requirements and files-to-change in the    
+   packet", and description.json bumped memorySequence to 2 with both history entries appended.                                                                                                         
+                                                                                                                                                                                                        
+   Two things worth naming. The trigger index came back stale for spec.md (added: demo widget), and I did not regenerate it — save.md treats that as optional and only triggered by changed             
+   trigger_phrases, which I did not touch. The post-save quality review reported SKIPPED because the target is a folder rather than a single saved file, so there is no review verdict to report this   
+   run.                                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Validation. validate.sh specs/demo/001-demo-widget --strict → RESULT: PASSED, exit 0, the same three warnings as before: 94 unfilled placeholders, AI protocols 0/4, empty measured-behavior block.  
+   No new warnings from this save, no lock file left behind, and git status shows exactly the four packet files modified.                                                                               
+                                                                                                                                                                                                        
+   Decision record now stands at seven: Amber, Web/iOS/Android, "Needs review", static, right, Small, tooltip. The packet still has no widget source behind them.                                       
+                                                                                                                                                                                                        
+   Next action: say when you want the packet's scope and requirements filled, or ask another product question.                                                                                          
+
+ ✻ Turn took 1m 28s (Total time 3m 5s · 4 turns)                                                                                                                                                        
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 95% left | used: 50.9k tok | $0.05
+

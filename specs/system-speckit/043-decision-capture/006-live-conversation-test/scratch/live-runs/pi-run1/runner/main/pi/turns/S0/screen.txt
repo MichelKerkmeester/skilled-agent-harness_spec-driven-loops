@@ -1,0 +1,51 @@
+ █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more                                                                                                                   
+ Press ctrl+o to show full startup help and loaded resources.                                                                                                                                           
+                                                                                                                                                                                                        
+ Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.                                                                                                                  
+
+
+[Context]                                                                                                                                                                                               
+  AGENTS.md                                                                                                                                                                                             
+
+[Skills]                                                                                                                                                                                                
+  btw, system-spec-kit                                                                                                                                                                                  
+
+[Prompts]                                                                                                                                                                                               
+  /create-agent, /create-benchmark, /create-changelog, /create-command, /create-diff, /create-feature-catalog, /create-goal, /create-manual-testing-playbook, /create-readme, /create-repo-rule,        
+/create-skill, /create-skill-parent, /create-with-human-voice, /deep-ai-council, /deep-research, /deep-review, /design-chart, /design-diagram, /design-extract, /doctor-agents-md, /doctor-ci,          
+/doctor-deep-loop, /doctor-env, /doctor-git, /doctor-helper, /doctor-install, /doctor-mcp, /doctor-runtime-mirrors, /doctor-setup, /doctor-sk-code, /doctor-sk-skill, /doctor-skill-advisor,            
+/doctor-speckit, /doctor-symlink, /doctor-update, /goal-pi, /local-skilled-alignment, /prompt-improve, /speckit-complete, /speckit-handoff, /speckit-implement, /speckit-plan, /speckit-resume,         
+/speckit-save, /speckit-search                                                                                                                                                                          
+
+[Extensions]                                                                                                                                                                                            
+  .pi/extensions/pi-cache-optimizer, .pi/extensions/pi-fast-mode-w-subagent-support/src, @juicesharp/rpiv-ask-user-question, @juicesharp/rpiv-todo, agent/extensions/pi-cache-optimizer,                
+agent/extensions/pi-fast-mode-w-subagent-support/src, classifier-injection-screen.ts, completion-evidence.ts, dbachelder/pi-btw:btw.ts, decision-capture.ts, dispatch-audit.ts,                         
+dispatch-preflight-lint.ts, goal-context.ts, janvitos/pi-plan-build, mcp-route-guard.ts, orca-agent-status.ts, orca-prefill.ts, orca-titlebar-spinner.ts, pi-blackhole:dist, pi-claude-code-ui,         
+pi-claude-code-ui:spinner.ts, pi-statusline:src, pi-web-access:dist, post-edit-quality.ts, session-compact-context.ts, session-relaunch.ts, session-start-advisories.ts, session-start-context.ts,      
+session-stop-context.ts, spec-gate-classify.ts, spec-gate-enforce.ts, task-dispatch-guard.ts                                                                                                            
+
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.                                                                  
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Update Available                                                                                                                                                                                       
+ New version 1.5.0 is available. Run pi update                                                                                                                                                          
+ Changelog: https://pi.dev/changelog                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available                                                                                                                                                                              
+ Package updates are available. Run pi update --extensions                                                                                                                                              
+ Packages:                                                                                                                                                                                              
+ - pi-web-access                                                                                                                                                                                        
+ - pi-claude-code-ui                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 100% left
+

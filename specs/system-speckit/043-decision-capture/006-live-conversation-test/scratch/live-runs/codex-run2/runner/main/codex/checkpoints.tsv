@@ -1,0 +1,15 @@
+turn	status	attempts	evidence	observed
+S0	PASS	1	turns/S0	rows=0 base=base.sha
+S1	PASS	1	turns/S1	rows=0 gate3=not-asked
+S2	SKIP	1	turns/S2	no live queue on codex
+S3	SKIP	1	turns/S3	no live queue on codex
+S4	SKIP	1	turns/S4	no live queue on codex
+S5	SKIP	1	turns/S5	no live queue on codex
+S6	PASS	1	turns/S6	pending=0 rows=4
+S7	SKIP	1	turns/S7	no live queue on codex
+S8-compact	SKIP	1	turns/S8-compact	no live queue on codex
+S8-ask	SKIP	1	turns/S8-ask	no live queue on codex
+S9-restart	SKIP	1	turns/S9-restart	no live queue on codex
+S9-ask	SKIP	1	turns/S9-ask	no live queue on codex
+S10	PASS	1	turns/S10	pending=0 rows=7
+S11	PASS	1	turns/S11	record_rows=7 repeat=identical

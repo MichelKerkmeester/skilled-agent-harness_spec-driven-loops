@@ -1,0 +1,83 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract
+  specs/system-speckit/043-decision-capture/006-live-conversation-test
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: markdown agent writing two manual-testing-playbook scenarios. Never use an em dash or en
+dash. Do NOT run any session, tmux, claude or save command: you only write files. Never write a
+literal absolute home path; use $CONVERSATION_REPO_ROOT.
+
+READ FIRST (sources of truth, follow them exactly):
+- specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md section 3 (stage
+  table S0 to S12, scratch project, evidence store, matrix columns, siblings rule) and spec.md
+  REQ-001 to REQ-013.
+- .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
+  (the `json conversation` block contract: keys, check exit 0/77/other, last output line is the
+  observed value, retry, check-only turns, CONVERSATION_REPO_ROOT, CONVERSATION_RUN_DIR,
+  CONVERSATION_TURN_DIR).
+- .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md
+  (house style, the five sections, the scratch build with symlinks and SAVE pattern).
+
+WRITE:
+1. .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md
+   - Same five sections as the save-writer file. Section 3 has a stage table with one row per
+     stage `| S0 |` to `| S11 |` (exactly 12 rows starting with `| S<n> |`), then a
+     `### Conversation Script` heading with ONE ```json conversation block.
+   - Block: "runtimes": ["claude-code","opencode","codex","pi","devin"]. "setup" builds the
+     scratch project in the current folder as plan.md's Scratch project bullet says (git init,
+     .claude/settings.json and hook links, AGENTS.md and CLAUDE.md copied, demo packet via the
+     spec-kit create script, .opencode folder, real .skilled/skills/.state dir, symlinks for
+     .skilled/hooks, .skilled/bin, .skilled/skills/system-spec-kit into $CONVERSATION_REPO_ROOT,
+     and copies of each runtime's project config .claude .opencode .codex .pi .devin; for Codex
+     write default_mode_request_user_input = true only into the scratch .codex/config.toml).
+   - Turns, ids exactly: S0 (check-only, no send: baselines; git status --short --ignored on
+     the repo's specs and .skilled/skills/.state saved to $CONVERSATION_TURN_DIR), S1 to S7,
+     S8-compact ("action":"compact", check saves the queue sha), S8-ask, S9-restart
+     ("action":"restart"), S9-ask, S10, S11. Every send/answer text exactly as plan.md's stage
+     table. Questions: S1 Gate 3 answer reply or select "A) Existing" style per the table, S2
+     select ["Amber"], S3 select of the offered platforms is not knowable in advance, so use
+     match ".*platform" with answer {"select":[...three plausible labels...],"multi":true} and
+     note in Failure Triage that labels must match what the subject offers; S4 {"other":"Needs review"};
+     S5 {"reply":"No, keep it static."}; S7 select ["Right"]; S8-ask ["Small"]; S9-ask ["Yes"].
+   - Every turn: "delay_ms":[5000,15000]; every question "delay_ms":[3000,8000]; turns S2, S3,
+     S4, S5, S7, S8-ask, S9-ask get "retry":1.
+   - Each check is bash that tests the stage table's Expected values, copies queue, consumed,
+     nudge and decision-record files into "$CONVERSATION_TURN_DIR", prints "DEVIATION: <what>"
+     and exits 1 when the subject did not ask as told, exits 77 with a first line naming the
+     blocker when the stage cannot apply on this runtime (for example no Stop nudge outside
+     claude-code: the runner exports the runtime id; read it from CONVERSATION_RUNTIME and say
+     so in the reference-style note), and prints the observed value as its last line.
+     S6 and S10 checks also print pendingRecords count and the consumed row growth.
+   - The scenario contract Prompt line must be exactly S1's send text.
+   - Section 3 also: matrix columns (plan.md), how 006 derives its 13-row checkpoints.tsv from
+     this run and the kill-switch run (S8-compact plus S8-ask become one S8 row), the mark
+     mapping (deviation is FAIL quoting it, not-applicable is SKIP with blocker), and the
+     siblings rule (002 to 005 add S13 and up or variants like S5b, never renumber, append a
+     matrix row with the commit). Name all four sibling folders.
+2. .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md
+   - Same style; stage table with one `| S12 |` row; its own block with
+     "env":{"SYSTEM_DECISION_CAPTURE_DISABLED":"1"}, a smaller setup, and one send turn S12 with
+     select ["Amber"] whose check asserts no queue .jsonl exists and no nudge line in the pane
+     (read $CONVERSATION_TURN_DIR/screen.txt). Contract Prompt equals that send.
+3. Add one index row for each new file in section 7.5 Plugins and Hooks of
+   .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md, right after
+   the decision-capture-save-writer row, same column shape.
+
+VERIFY (run and paste output):
+  node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package system-spec-kit
+    -> must report 0 violations (baseline: 0 violations, 1 warning) and no PROMPT_UNSYNCED or CONVERSATION_SCRIPT_INVALID
+  rg -c '^\| S([0-9]|1[01]) \|' <file 1>   -> 12
+  rg -c '^\| S12 \|' <file 2>   -> 1
+  rg -n "—|–|/Users/" <both files>   -> nothing
+Final message under 200 words.

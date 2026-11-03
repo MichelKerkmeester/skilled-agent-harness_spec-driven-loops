@@ -1,0 +1,579 @@
+[0m
+> build · deepseek-v4.1-flash-1017
+I'll start by reading the relevant files before making any changes.
+[0m→ [0mRead .skilled/hooks/decision-capture/lib/capture-core.mjs 
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts 
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts 
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "interface HookInput|cwd" [90min .skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts · 1 match[0m
+[0m✱ [0mGrep "systemMessage" [90min .skilled/skills/system-spec-kit/runtime · 8 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/hooks/claude/shared.ts [90m[offset=1, limit=80][0m
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "stdout|spawn|execFile|systemMessage" [90min .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop-replay.vitest.ts · 1 match[0m
+[0m$ [0mls .skilled/skills/system-spec-kit/runtime/tests | head -50; echo "---"; cat .skilled/skills/system-spec-kit/runtime/tsconfig.json
+_support
+adversarial
+advisor-fixtures
+api-graph-refresh.vitest.ts
+api-key-validation.vitest.ts
+api-validation.vitest.ts
+architecture-seam.vitest.ts
+budget-allocator.vitest.ts
+calibrated-overlap-bonus.vitest.ts
+chunking-semantic.vitest.ts
+compact-merger.vitest.ts
+completion-evidence-pi-extension.vitest.ts
+completion-evidence-sentinel.vitest.ts
+content-normalizer.vitest.ts
+continue-session.vitest.ts
+continuity-freshness.vitest.ts
+copilot-compact-cycle.vitest.ts
+copilot-user-prompt-submit-hook.vitest.ts
+council-helpers-smoke.vitest.ts
+council-playbook-anchor-integrity.vitest.ts
+description
+directive-lifecycle-adapter-parity.vitest.ts
+directive-lifecycle-boundary-bridge.vitest.ts
+dist-freshness.vitest.ts
+edge-cases.vitest.ts
+embedders
+entity-extractor.vitest.ts
+env-reference-drift.vitest.ts
+esm-entry-symlink.vitest.ts
+exclusion-ssot-unification.vitest.ts
+exhaustiveness.vitest.ts
+factory-auto-resolution.vitest.ts
+fixtures
+flag-ceiling.vitest.ts
+folder-discovery-idempotent.vitest.ts
+folder-discovery-integration.vitest.ts
+folder-discovery-threshold.vitest.ts
+folder-discovery.vitest.ts
+gate-d-regression-quality-gates.vitest.ts
+generated-metadata-integrity.vitest.ts
+generator-hardening.vitest.ts
+graph-metadata-lineage.vitest.ts
+graph-metadata-schema.vitest.ts
+helpers
+hook-adapter-path-parity.vitest.ts
+hook-adapter-runtime-label.vitest.ts
+hook-completion-evidence-stop.vitest.ts
+hook-precompact.vitest.ts
+hook-session-start.vitest.ts
+hook-session-stop-replay.vitest.ts
+---
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "typeRoots": [
+      "../node_modules/@types",
+      "node_modules/@types"
+    ],
+    "paths": {
+      "vitest": [
+        "node_modules/vitest/dist/index.d.ts"
+      ],
+      "vitest/config": [
+        "node_modules/vitest/config.d.ts"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ],
+  "include": [
+    "api/**/*.ts",
+    "configs/**/*.ts",
+    "core/**/*.ts",
+    "formatters/**/*.ts",
+    "handlers/**/*.ts",
+    "hooks/**/*.ts",
+    "lib/**/*.ts",
+    "schemas/**/*.ts",
+    "utils/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "../shared",
+    "../shared/**",
+    "cli/**",
+    "hooks/pi/**",
+    "tests/fixtures/**/*.ts",
+    "tests/**",
+    "tests/**/*.vitest.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.vitest.js",
+    "stress-test/**",
+    "stress-test/**/*.vitest.ts",
+    "stress-test/**/*.test.ts",
+    "tests/chunk-thinning.vitest.ts",
+    "tests/layer-definitions.vitest.ts",
+    "tests/dead-code-regression.vitest.ts"
+  ]
+}
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && grep -rn "dirname" tests/*.vitest.ts | grep -i "import.meta\|__dirname" | head -10
+tests/completion-evidence-sentinel.vitest.ts:281:      join(import.meta.dirname, '..', 'hooks', 'lib', 'completion-evidence-sentinel.cjs'),
+tests/completion-evidence-sentinel.vitest.ts:527:    const source = readFileSync(join(import.meta.dirname, '..', 'hooks', 'lib', 'completion-evidence-sentinel.cjs'));
+tests/continue-session.vitest.ts:38:  const collectSessionDataPath = path.join(__dirname, '../cli/dist/extractors/collect-session-data.js');
+tests/continuity-freshness.vitest.ts:16:const THIS_DIR = path.dirname(fileURLToPath(import.meta.url));
+tests/copilot-compact-cycle.vitest.ts:11:const copilotHooksAvailable = existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'compact-cache.js'))
+tests/copilot-compact-cycle.vitest.ts:12:  && existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'session-prime.js'));
+tests/copilot-user-prompt-submit-hook.vitest.ts:60:const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
+tests/copilot-user-prompt-submit-hook.vitest.ts:63:const copilotHooksAvailable = existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'user-prompt-submit.js'))
+tests/copilot-user-prompt-submit-hook.vitest.ts:64:  && existsSync(join(import.meta.dirname, '..', 'hooks', 'copilot', 'custom-instructions.js'));
+tests/council-helpers-smoke.vitest.ts:13:const TEST_DIR = dirname(fileURLToPath(import.meta.url));
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && node --version && grep -rl "import.meta.dirname" tests | head -5
+v26.8.2
+tests/directive-lifecycle-adapter-parity.vitest.ts
+tests/completion-evidence-sentinel.vitest.ts
+tests/copilot-compact-cycle.vitest.ts
+tests/_support/vitest-setup.ts
+tests/copilot-user-prompt-submit-hook.vitest.ts
+> build · deepseek-v4.1-flash-1017
+Now I'll make the change to `session-stop.ts`.
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+Index: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
++++ .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+@@ -8,11 +8,11 @@
+ import { spawnSync } from 'node:child_process';
+ import { createHash } from 'node:crypto';
+ import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
+ import { createRequire } from 'node:module';
+-import { dirname, resolve } from 'node:path';
++import { dirname, join, resolve } from 'node:path';
+ import { createInterface } from 'node:readline';
+-import { fileURLToPath } from 'node:url';
++import { fileURLToPath, pathToFileURL } from 'node:url';
+ import {
+   parseHookStdin, hookLog, withTimeout, HOOK_TIMEOUT_MS, getRequiredSessionId,
+   type HookInput,
+ } from './shared.js';
+
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+Index: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
++++ .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+@@ -89,8 +89,30 @@
+ 
+   return null;
+ }
+ 
++// A captured answer only becomes durable once a decision record quotes it, so the
++// session end reports what is still queued. Best-effort by design: a missing or
++// unreadable queue must never fail the Stop hook.
++export async function decisionCaptureNudge(
++  projectDir: string,
++  sessionId: string,
++): Promise<string | null> {
++  try {
++    const corePath = join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
++    const core = (await import(pathToFileURL(corePath).href)) as {
++      takeNudge?: (dir: string, session: string) => number;
++    };
++    const count = core.takeNudge?.(projectDir, sessionId) ?? 0;
++    if (count > 0) {
++      return `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.`;
++    }
++    return null;
++  } catch {
++    return null;
++  }
++}
++
+ export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed';
+ export type SessionStopRetargetReason =
+   | 'detected_different_packet'
+   | 'no_previous_packet'
+
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts [90m[offset=90, limit=28][0m
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+Index: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
++++ .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+@@ -648,8 +648,18 @@
+     hookLog('warn', 'session-stop', 'No stdin input received');
+     return;
+   }
+   await processStopHook(input);
++
++  if (typeof input.session_id === 'string' && input.session_id.length > 0) {
++    const projectDir = process.env.CLAUDE_PROJECT_DIR
++      || (typeof input.cwd === 'string' ? input.cwd : '')
++      || process.cwd();
++    const message = await decisionCaptureNudge(projectDir, input.session_id);
++    if (message) {
++      process.stdout.write(`${JSON.stringify({ systemMessage: message })}\n`);
++    }
++  }
+ }
+ 
+ // ───────────────────────────────────────────────────────────────────
+ // 5. SPEC FOLDER DETECTION
+
+> build · deepseek-v4.1-flash-1017
+[0m→ [0mRead .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts [90m[limit=24, offset=643][0m
+> build · deepseek-v4.1-flash-1017
+Now the tests:
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+Index: .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
++++ .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+@@ -3,12 +3,12 @@
+ // ───────────────────────────────────────────────────────────────────
+ 
+ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+ import fs, { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+-import { join } from 'node:path';
++import { dirname, join, resolve } from 'node:path';
+ import { tmpdir } from 'node:os';
+ import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
+-import { detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
++import { decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
+ 
+ function loadPersistedState(sessionId: string): PersistedHookState | null {
+   const result = loadState(sessionId);
+   return result.ok ? result.state : null;
+
+> build · deepseek-v4.1-flash-1017
+[0m← [0mEdit .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+Index: .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+===================================================================
+--- .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
++++ .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+@@ -725,4 +725,57 @@
+       writeSpy.mockRestore();
+     }
+   });
+ });
++
++describe('Claude session-stop decision capture nudge', () => {
++  const realCorePath = resolve(
++    import.meta.dirname,
++    '../../../../hooks/decision-capture/lib/capture-core.mjs',
++  );
++  const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
++  const queueRelativeDir = join('.skilled', 'skills', '.state', 'decision-capture');
++  let projectDir: string | null = null;
++
++  function makeProjectDirWithCore(): string {
++    const root = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
++    const coreTarget = join(root, coreTargetRelative);
++    mkdirSync(dirname(coreTarget), { recursive: true });
++    fs.copyFileSync(realCorePath, coreTarget);
++    return root;
++  }
++
++  afterEach(() => {
++    if (projectDir) {
++      rmSync(projectDir, { recursive: true, force: true });
++      projectDir = null;
++    }
++  });
++
++  it('reports queued answers once, then stays quiet until the pending count rises again', async () => {
++    projectDir = makeProjectDirWithCore();
++    const queueDir = join(projectDir, queueRelativeDir);
++    mkdirSync(queueDir, { recursive: true });
++    writeFileSync(
++      join(queueDir, `${Buffer.from('s1').toString('hex')}.jsonl`),
++      [
++        JSON.stringify({ key: 'claude:s1:tool-1:0', answer: 'first' }),
++        JSON.stringify({ key: 'claude:s1:tool-1:1', answer: 'second' }),
++      ].join('\n') + '\n',
++      'utf-8',
++    );
++
++    const message = await decisionCaptureNudge(projectDir, 's1');
++    expect(message).toMatch(/^2 operator answer\(s\)/);
++    expect(await decisionCaptureNudge(projectDir, 's1')).toBeNull();
++  });
++
++  it('stays quiet when the session queued no answers', async () => {
++    projectDir = makeProjectDirWithCore();
++    expect(await decisionCaptureNudge(projectDir, 's2')).toBeNull();
++  });
++
++  it('stays quiet instead of throwing when the capture core is unavailable', async () => {
++    projectDir = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
++    await expect(decisionCaptureNudge(projectDir, 's1')).resolves.toBeNull();
++  });
++});
+
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts 2>&1 | tail -30
+INFO [speckit-hook:session-stop] Stop hook fired for session double-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session double-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session atomic-replay-session
+INFO [speckit-hook:session-stop] Validated active spec folder from transcript: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session atomic-replay-session stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-no-summary
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+INFO [speckit-hook:session-stop] Session autosave-enabled-no-summary stop processing complete
+INFO [speckit-hook:session-stop] Stop hook fired for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Token snapshot: 300 total (claude-sonnet-4-6), est. $0.0021
+INFO [speckit-hook:session-stop] Parsed 2 messages: 200 prompt + 100 completion = 300 total tokens
+INFO [speckit-hook:session-stop] Auto-detected spec folder: specs/system-spec-kit/026-graph-and-context-optimization/002-implement-cache-warning-hooks
+ERROR [speckit-hook:state] Failed to save state: injected EIO for autosave failure test
+WARN [speckit-hook:state] State update was not persisted for session autosave-enabled-state-write-fail
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+ ✓ runtime/tests/hook-session-stop-replay.vitest.ts (5 tests) 16ms
+
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Start at  12:40:45
+   Duration  316ms (transform 64ms, setup 27ms, import 100ms, tests 83ms, environment 0ms)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts 2>&1 | grep -iE "nudge|Test Files|Tests " | head -20
+Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Duration  323ms (transform 68ms, setup 26ms, import 97ms, tests 91ms, environment 0ms)
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json; echo "TSC_EXIT=$?"
+TSC_EXIT=0
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts --reporter=verbose 2>&1 | grep -E "decision capture|queued|stays quiet|Tests " 
+✓ runtime/tests/hook-session-stop.vitest.ts > Claude session-stop decision capture nudge > reports queued answers once, then stays quiet until the pending count rises again 6ms
+ ✓ runtime/tests/hook-session-stop.vitest.ts > Claude session-stop decision capture nudge > stays quiet when the session queued no answers 4ms
+ ✓ runtime/tests/hook-session-stop.vitest.ts > Claude session-stop decision capture nudge > stays quiet instead of throwing when the capture core is unavailable 2ms
+      Tests  19 passed (19)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled && git status --porcelain -- .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts && git diff --stat
+M .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+ M .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+ .skilled/commands/speckit/save.md                  |  10 ++
+ .../references/memory/save-workflow.md             |  18 +++
+ .../references/structure/phase-definitions.md      |   2 +-
+ .../skills/system-spec-kit/runtime/api/index.ts    |   4 +
+ .../runtime/cli/continuity/generate-context.ts     |  11 ++
+ .../system-spec-kit/runtime/cli/core/workflow.ts   | 165 ++++++++++++++++++++-
+ .../cli/tests/save-continuity-write.vitest.ts      | 160 +++++++++++++++-----
+ .../scaffold-golden-snapshots.vitest.ts.snap       |  18 +++
+ .../runtime/cli/types/session-types.ts             |   2 +
+ .../runtime/cli/utils/input-normalizer.ts          | 144 ++++++++++++++++++
+ .../runtime/hooks/claude/session-stop.ts           |  36 ++++-
+ .../runtime/lib/validation/orchestrator.ts         |   2 +-
+ .../runtime/tests/hook-session-stop.vitest.ts      |  57 ++++++-
+ .../templates/addons/decision-record.md.tmpl       |  18 +++
+ .../042-decision-capture/acceptance-criteria.md    |   4 +-
+ .../042-decision-capture/decision-record.md        | 121 ++++++++++++++-
+ .../042-decision-capture/description.json          |   4 +-
+ .../042-decision-capture/graph-metadata.json       |  85 ++++++-----
+ .../042-decision-capture/implementation-summary.md |   4 +-
+ specs/system-speckit/042-decision-capture/plan.md  | 119 +++++++++++++--
+ specs/system-speckit/042-decision-capture/spec.md  |  79 +++++++---
+ specs/system-speckit/042-decision-capture/tasks.md |  73 +++++++--
+ .../042-decision-capture/timeline.md               |   2 +
+ 23 files changed, 1007 insertions(+), 131 deletions(-)
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled && git diff -- .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+diff --git a/.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts b/.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+index e22f6a4d8c8..1419c53fd14 100644
+--- a/.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
++++ b/.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts
+@@ -9,9 +9,9 @@ import { spawnSync } from 'node:child_process';
+ import { createHash } from 'node:crypto';
+ import { createReadStream, openSync, fstatSync, readSync, closeSync, type Stats } from 'node:fs';
+ import { createRequire } from 'node:module';
+-import { dirname, resolve } from 'node:path';
++import { dirname, join, resolve } from 'node:path';
+ import { createInterface } from 'node:readline';
+-import { fileURLToPath } from 'node:url';
++import { fileURLToPath, pathToFileURL } from 'node:url';
+ import {
+   parseHookStdin, hookLog, withTimeout, HOOK_TIMEOUT_MS, getRequiredSessionId,
+   type HookInput,
+@@ -90,6 +90,28 @@ function resolveGenerateContextScriptPath(): string | null {
+   return null;
+ }
+ 
++// A captured answer only becomes durable once a decision record quotes it, so the
++// session end reports what is still queued. Best-effort by design: a missing or
++// unreadable queue must never fail the Stop hook.
++export async function decisionCaptureNudge(
++  projectDir: string,
++  sessionId: string,
++): Promise<string | null> {
++  try {
++    const corePath = join(projectDir, '.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
++    const core = (await import(pathToFileURL(corePath).href)) as {
++      takeNudge?: (dir: string, session: string) => number;
++    };
++    const count = core.takeNudge?.(projectDir, sessionId) ?? 0;
++    if (count > 0) {
++      return `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.`;
++    }
++    return null;
++  } catch {
++    return null;
++  }
++}
++
+ export type SessionStopAutosaveOutcome = 'ran' | 'skipped' | 'failed';
+ export type SessionStopRetargetReason =
+   | 'detected_different_packet'
+@@ -627,6 +649,16 @@ async function main(): Promise<void> {
+     return;
+   }
+   await processStopHook(input);
++
++  if (typeof input.session_id === 'string' && input.session_id.length > 0) {
++    const projectDir = process.env.CLAUDE_PROJECT_DIR
++      || (typeof input.cwd === 'string' ? input.cwd : '')
++      || process.cwd();
++    const message = await decisionCaptureNudge(projectDir, input.session_id);
++    if (message) {
++      process.stdout.write(`${JSON.stringify({ systemMessage: message })}\n`);
++    }
++  }
+ }
+ 
+ // ───────────────────────────────────────────────────────────────────
+> build · deepseek-v4.1-flash-1017
+[0m✱ [0mGrep "process\.stdout\.write|process\.exit\(" [90min .skilled/skills/system-spec-kit/runtime/hooks/claude · 17 matches[0m
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd /Users/michelkerkmeester/MEGA/Development/Skilled && git diff -- .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+diff --git a/.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts b/.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+index 0b08aa7dd2f..ccdafdf9f7c 100644
+--- a/.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
++++ b/.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+@@ -4,10 +4,10 @@
+ 
+ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+ import fs, { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+-import { join } from 'node:path';
++import { dirname, join, resolve } from 'node:path';
+ import { tmpdir } from 'node:os';
+ import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
+-import { detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
++import { decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
+ 
+ function loadPersistedState(sessionId: string): PersistedHookState | null {
+   const result = loadState(sessionId);
+@@ -726,3 +726,56 @@ describe.sequential('Claude session-stop autosave outcomes', () => {
+     }
+   });
+ });
++
++describe('Claude session-stop decision capture nudge', () => {
++  const realCorePath = resolve(
++    import.meta.dirname,
++    '../../../../hooks/decision-capture/lib/capture-core.mjs',
++  );
++  const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
++  const queueRelativeDir = join('.skilled', 'skills', '.state', 'decision-capture');
++  let projectDir: string | null = null;
++
++  function makeProjectDirWithCore(): string {
++    const root = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
++    const coreTarget = join(root, coreTargetRelative);
++    mkdirSync(dirname(coreTarget), { recursive: true });
++    fs.copyFileSync(realCorePath, coreTarget);
++    return root;
++  }
++
++  afterEach(() => {
++    if (projectDir) {
++      rmSync(projectDir, { recursive: true, force: true });
++      projectDir = null;
++    }
++  });
++
++  it('reports queued answers once, then stays quiet until the pending count rises again', async () => {
++    projectDir = makeProjectDirWithCore();
++    const queueDir = join(projectDir, queueRelativeDir);
++    mkdirSync(queueDir, { recursive: true });
++    writeFileSync(
++      join(queueDir, `${Buffer.from('s1').toString('hex')}.jsonl`),
++      [
++        JSON.stringify({ key: 'claude:s1:tool-1:0', answer: 'first' }),
++        JSON.stringify({ key: 'claude:s1:tool-1:1', answer: 'second' }),
++      ].join('\n') + '\n',
++      'utf-8',
++    );
++
++    const message = await decisionCaptureNudge(projectDir, 's1');
++    expect(message).toMatch(/^2 operator answer\(s\)/);
++    expect(await decisionCaptureNudge(projectDir, 's1')).toBeNull();
++  });
++
++  it('stays quiet when the session queued no answers', async () => {
++    projectDir = makeProjectDirWithCore();
++    expect(await decisionCaptureNudge(projectDir, 's2')).toBeNull();
++  });
++
++  it('stays quiet instead of throwing when the capture core is unavailable', async () => {
++    projectDir = mkdtempSync(join(tmpdir(), 'speckit-stop-nudge-'));
++    await expect(decisionCaptureNudge(projectDir, 's1')).resolves.toBeNull();
++  });
++});
+> build · deepseek-v4.1-flash-1017
+Final verification run:
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts 2>&1 | tail -8; echo "VITEST_EXIT=${PIPESTATUS[0]}"
+INFO [speckit-hook:session-stop] Session autosave-enabled-state-write-fail stop processing complete
+ ✓ runtime/tests/hook-session-stop-replay.vitest.ts (5 tests) 16ms
+
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Start at  12:41:34
+   Duration  290ms (transform 65ms, setup 25ms, import 88ms, tests 77ms, environment 0ms)
+
+VITEST_EXIT=
+> build · deepseek-v4.1-flash-1017
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/vitest run tests/hook-session-stop.vitest.ts tests/hook-session-stop-replay.vitest.ts > /tmp/vitest-out.txt 2>&1; echo "VITEST_EXIT=$?"; tail -6 /tmp/vitest-out.txt
+VITEST_EXIT=0
+
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Start at  12:41:38
+   Duration  319ms (transform 69ms, setup 27ms, import 96ms, tests 86ms, environment 0ms)
+[0m$ [0mcd .skilled/skills/system-spec-kit/runtime && ../node_modules/.bin/tsc --noEmit --composite false -p tsconfig.json > /tmp/tsc-out.txt 2>&1; echo "TSC_EXIT=$?"; tail -5 /tmp/tsc-out.txt
+TSC_EXIT=0
+> build · deepseek-v4.1-flash-1017
+Done. Both files are written and the verification commands ran green.
+
+**What changed**
+
+`.skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts`
+- Added `join` to the `node:path` import and `pathToFileURL` to the `node:url` import.
+- New exported `decisionCaptureNudge(projectDir, sessionId)` in the HELPERS section: dynamic-imports `<projectDir>/.skilled/hooks/decision-capture/lib/capture-core.mjs` via `pathToFileURL(...).href`, calls `takeNudge`, returns the "N operator answer(s) … Run /speckit:save with --full-auto" message when the count is positive, and returns `null` on zero count or any thrown error (the whole body is inside `try`). Carries a WHY comment about durability and best-effort behaviour.
+- `main()`: after `await processStopHook(input)`, when `input.session_id` is a non-empty string it resolves `CLAUDE_PROJECT_DIR || input.cwd || process.cwd()` and writes `{"systemMessage": …}\n` to stdout only when a message comes back. Nothing else in `main()` or `processStopHook` was touched.
+
+`.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts`
+- New `describe('Claude session-stop decision capture nudge')` with the three requested cases: two queued records for `s1` (hex-named `.jsonl`, distinct `key`s) → message starting `2 operator answer(s)` then `null` on the second call; no queue → `null`; project dir without `capture-core.mjs` → `null`, no throw. Each test builds its own `mkdtempSync` project, copies the real core with `fs.copyFileSync` from `resolve(import.meta.dirname, '../../../../hooks/decision-capture/lib/capture-core.mjs')`, and removes the dir in `afterEach`.
+
+**Coverage boundary (honest)**: the three tests exercise `decisionCaptureNudge` against the real core; `main()`'s emission is verified by `tsc` and by reading the 6-line block, not by an executed test — no test spawns the CLI. The write-then-`process.exit(0)` shape matches the existing `user-prompt-submit.ts` pattern. The pre-existing dirty files under `specs/system-speckit/042-decision-capture/` were already modified before this task and were not touched.
+
+FILES: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-stop.ts, .skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts
+CHECK: vitest 2 files / 24 tests passed (exit 0); tsc --noEmit exit 0, no diagnostics
+STATUS=OK — nudge helper added and wired into main, 3 new tests plus 21 existing hook-session-stop tests pass, typecheck clean.
+RUN_DONE_EXIT=0

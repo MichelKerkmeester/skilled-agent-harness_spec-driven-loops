@@ -1,0 +1,51 @@
+   Keep options 2-4. I'll go with 4? Let's do 3-4. Status badge labels: "New", "Beta", "Live", "Soon". Hmm, better: "New", "Beta", "Live", "Deprecated" — but these are different intent categories.    
+   Since the demo widget has no requirements, any label is arbitrary. I'll offer four plausible ones covering different intents.                                                                        
+                                                                                                                                                                                                        
+   Header ≤16 chars: "Badge label" (11).                                                                                                                                                                
+                                                                                                                                                                                                        
+   Options max 60 chars labels. Fine.                                                                                                                                                                   
+                                                                                                                                                                                                        
+   Single-select (a label is one). The user said "a few options. I will type my own." — single choice.                                                                                                  
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+   └ 1 line returned (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: The user typed their own: "Needs review".                                                                                                                                                  
+                                                                                                                                                                                                        
+   So the answer set so far:                                                                                                                                                                            
+   - Spec folder: A) Existing → specs/demo/001-demo-widget                                                                                                                                              
+   - Colour: Amber                                                                                                                                                                                      
+   - Platforms: Web, iOS, Android                                                                                                                                                                       
+   - Label: "Needs review"                                                                                                                                                                              
+                                                                                                                                                                                                        
+   Still writing nothing. The user hasn't said go yet.                                                                                                                                                  
+                                                                                                                                                                                                        
+   I should acknowledge briefly. One observation worth noting: "Needs review" is a workflow/process state, not a product state — it signals a human review gate rather than end-user status. That's a   
+   semantic note that matters when we write acceptance criteria. But careful — don't over-editorialize; and don't ask product questions uninvited.                                                      
+                                                                                                                                                                                                        
+   I'll acknowledge concisely and note the one thing that will matter later: label length and whether it's end-user-facing vs internal. Actually that's edging into product questions. Keep it to a     
+   factual note: the label is 12 characters, wider than the other candidates, which affects badge sizing — that's a concrete engineering fact, not a product question.                                  
+                                                                                                                                                                                                        
+   Let me be brief. Answer first: recorded. Then the one fact that carries forward.                                                                                                                     
+                                                                                                                                                                                                        
+   Keep it short — user is drip-feeding, clipped register while working.                                                                                                                                
+
+ ● Label recorded: Needs review — typed, not one of the offered four.                                                                                                                                   
+                                                                                                                                                                                                        
+   So far: packet specs/demo/001-demo-widget, amber, Web + iOS + Android, label "Needs review".                                                                                                         
+                                                                                                                                                                                                        
+   Carrying forward, since it will matter at write time and is not a question: that label is 12 characters, roughly three times the width of "Live" or "Beta", so it forces a pill that wraps or        
+   truncates on narrow surfaces — and it states a review state, not a product state. Still holding, nothing written.                                                                                    
+
+ ✻ Turn took 16s (Total time 2m 41s · 5 turns)                                                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 34.0k tok | $0.01
+

@@ -1,0 +1,51 @@
+ ? Demo widget status badge      +                                                                                                                                                                      
+                                                                                                                                          ┃                                                          ┃  
+  ┃                                                                                                                                       ┃  3 plugins failed                        › Open plugins  ┃  
+  ┃  # Questions                                                                                                                          ┃                                                          ┃  
+  ┃                                                                                                                                       ┃  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-  ┃  
+  ┃  Which platforms must the status badge support?                                                                                       ┃  Development-Skilled/2cdc1c20-d541-4a71-ba53-            ┃  
+  ┃  Web, iOS, Android                                                                                                                    ┃  999a34105259/scratchpad/conv2/opencode-main/opencode/.  ┃  
+  ┃                                                                                                                                       ┃  opencode/plugins/sk-git-message-gate.js, /private/tmp/  ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     Recorded: Web, iOS and Android.                                                                                                      ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+     No files written. Waiting for your next instruction.                                                                                 ┃  plugins/sk-git-preflight-advisory.js, /private/tmp/     ┃  
+                                                                                                                                          ┃  claude-501/-Users-michelkerkmeester-MEGA-Development-   ┃  
+     Build · DeepSeek V4.1 Flash 1017 · 8.7s · 33.4 tok/s                                                                                 ┃  Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/           ┃  
+                                                                                                                                          ┃  scratchpad/conv2/opencode-main/opencode/.opencode/      ┃  
+  ┃                                                                                                                                       ┃  plugins/system-skill-advisor.js                         ┃  
+  ┃  Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.┃  Run /plugins to view details.                           ┃  
+  ┃                                                                                                                                       ┃                                                          ┃  
+                                                                                                                                                                                                        
+     ┃ Thought: 1.4s                                                                                                                                                                                    
+                                                                                                                                                                                                        
+     ┃ User wants a question with a few options for the badge label, and they'll type their own (the tool adds "Type your own answer" automatically). No                                                
+     ┃ instruction about recommended here. Hmm, previously they said mark no option as recommended for those specific questions. For this one they didn't                                               
+     ┃ say. But default behavior: don't mark recommended unless I have one. I don't. So no recommended.                                                                                                 
+     ┃                                                                                                                                                                                                  
+     ┃ Question: "What label should the badge display?" Header short "Badge label". Options: a few, e.g. "Active", "Beta", "Preview", "New". Keep to maybe                                              
+     ┃ 4 options. Single choice (multiple false) since they'll type own.                                                                                                                                
+     ┃                                                                                                                                                                                                  
+     ┃ Should the options be plausible status labels. Let's do Active, Beta, Preview, New. No recommended marks.                                           ▄                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  What label should the status badge display?                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  1. Active                                                                                                                                                                                          
+  ┃     Badge reads Active.                                                                                                                                                                             
+  ┃  2. Beta                                                                                                                                                                                            
+  ┃     Badge reads Beta.                                                                                                                                                                               
+  ┃  3. Preview                                                                                                                                                                                         
+  ┃     Badge reads Preview.                                                                                                                                                                            
+  ┃  4. New                                                                                                                                                                                             
+  ┃     Badge reads New.                                                                                                                                                                                
+  ┃  5. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/conv2/opencode-main/opencode:main    
+                                                                                                                                                                                                        
+

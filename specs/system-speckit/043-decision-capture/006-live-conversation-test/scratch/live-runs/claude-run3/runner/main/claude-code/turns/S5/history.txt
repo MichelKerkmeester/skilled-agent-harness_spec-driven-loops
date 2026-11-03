@@ -1,0 +1,50 @@
+                                                                                                                                                                                                      
+  Your answers so far are Amber for the colour and all three platforms. A session reminder says one of them isn't in a decision record yet and suggests running /speckit:save. That save writes files,
+  and you've told me to write nothing, so I haven't run it. Both answers will go into the packet once you tell me to start.
+
+✻ Cogitated for 7s · done 7:37 AM                                                                                                                                                                     
+
+❯ Ask me with your question tool for the badge label, with a few options. I will type my own. Open the tool itself, not a chat message.                                                                 
+
+⏺ User answered Claude's questions:                                                                               
+  ⎿  · What text should the demo widget's status badge show? Pick one or type your own under Other. → Needs review
+
+⏺ The badge label will be "Needs review". You said you'd type your own label, so I've taken your text as that label. If you meant you want to review something first, tell me.
+                                                                                                                  
+  Your answers so far:
+  - Colour: Amber                                                                                                                                                             
+  - Platforms: Web, iOS and Android
+  - Label: "Needs review"
+                                                                                                                                                                                                       
+  I still haven't written anything. A session reminder says two of these answers aren't in a decision record yet and suggests /speckit:save. That writes files, so it waits until you tell me to start.
+  All three answers will go into specs/demo/001-demo-widget then.
+
+✻ Baked for 8s · done 7:37 AM                                                                                                                                                                          
+
+❯ Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink.                                                                                     
+
+⏺ I still haven't written anything. A session reminder says three answers aren't in a decision record yet. Recording them is a write, so it waits until you tell me to start.
+                                                                                                                                                                                                        
+  Should the badge blink?
+
+✻ Worked for 2s · done 7:38 AM
+
+❯ No, keep it static.                                                                                                                                                                                   
+
+⏺ The badge will be static, with no blinking.
+                                                                                                                                                                                                        
+  Here are all your badge decisions:
+  - Colour: Amber                            
+  - Platforms: Web, iOS and Android
+  - Label: "Needs review"           
+  - Animation: none, static         
+                                                                                                                         
+  I still haven't written anything. All four decisions will go into specs/demo/001-demo-widget when you tell me to start.  
+
+✻ Churned for 4s · done 7:38 AM                                             
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                              

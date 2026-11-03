@@ -1,0 +1,51 @@
+   no-blink decision carries one.                                                                                                                                                                       
+                                                                                                                                                                                                        
+   Two things I did not do unilaterally, plus the rollback:                                                                                                                                             
+                                                                                                                                                                                                        
+   1. The writer reports the trigger index STALE for spec.md, added phrase demo widget — that is why my first lookup missed the packet despite its frontmatter declaring the phrase. Fixing it is node  
+      .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs, a separate write to a committed index; say the word and I run it.                                               
+   2. session_dedup.session_id still reads scaffold-001-demo-widget with an all-zero fingerprint even though I passed --session-id, so the writer did not update that block. Left as written rather than
+      hand-edited, since the writer owns it.                                                                                                                                                            
+   3. Rollback, if you want the pre-save state back: rm -rf specs/demo/001-demo-widget && cp -R /tmp/badge-save-snapshot-001-demo-widget specs/demo/001-demo-widget. The repo has no commits, so that   
+      copy is the only undo. My temp payload file is already deleted.                                                                                                                                   
+
+ ✻ Turn took 1m 53s (Total time 5m 15s · 8 turns)                                                                                                                                                       
+
+ ❯ Ask me with the tool whether the badge sits left or right of the title, offering exactly Left and Right.                                                                                             
+
+ ∴ Thinking: The user asks a question with the tool: Left or Right. Exactly two options.                                                                                                                
+                                                                                                                                                                                                        
+   Single select. Header ≤16 chars: "Badge side" (10).                                                                                                                                                  
+                                                                                                                                                                                                        
+   Note: earlier there were already 4 decisions recorded. This is a fifth decision that will need a save. Not my problem now.                                                                           
+                                                                                                                                                                                                        
+   Just ask.                                                                                                                                                                                            
+                                                                                                                                                                                                        
+   Also worth a one-line note: neither placement exists yet (no title, no widget) — but keep it brief. Maybe after the tool result. The tool call ends the turn though. Let me add a minimal preamble?  
+   Better to just call the tool. But I could add a short note before. Keep it minimal — the harness shows the question. I'll add nothing before, and after the answer I'll report and note the hold.    
+                                                                                                                                                                                                        
+   Actually the instruction is just to ask. Let me call the tool.                                                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ✳ Waiting for your answer… (thought for 2s · ↓ 297 tokens · 3s)                                                                                                                                        
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Badge side                                                                                                                                                                                            
+
+ Does the badge sit to the left or the right of the title?                                                                                                                                              
+
+❯ 1. Left
+     Badge precedes the title. Reads first, so the status frames the label before the reader sees what it names.
+  2. Right
+     Badge follows the title. Reads second, so the label lands first and the status qualifies it.
+  3. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 94% left | used: 64.8k tok | $0.03
+

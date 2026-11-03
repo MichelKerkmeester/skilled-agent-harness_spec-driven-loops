@@ -1,0 +1,51 @@
+
+ ▐▛███▛█   Claude Code v2.1.316
+▝▜██████▀  Opus 5.5 with medium effort · Claude Ultra
+ ▝▝   ▝▝   /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv2/claude-code-kill-switch/claude-code · /rc            
+
+
+❯ Ask me with the tool which colour the badge uses, offering exactly Amber, Teal and Slate.                                                                                                             
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Badge colour 
+
+Which colour should the badge use?
+
+❯ 1. Amber
+     Warm yellow-orange badge colour.
+  2. Teal
+     Blue-green badge colour.
+  3. Slate
+     Muted blue-grey badge colour.
+  4. Type something.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+
+Enter to select · ↑/↓ to navigate · Esc to cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                      
+
+
+
+
+                                                              
+

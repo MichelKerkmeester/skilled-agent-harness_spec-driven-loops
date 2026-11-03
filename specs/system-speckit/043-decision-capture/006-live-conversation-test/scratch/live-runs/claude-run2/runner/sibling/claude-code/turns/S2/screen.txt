@@ -1,0 +1,51 @@
+
+⏺ The demo widget is documented in the spec packet specs/demo/001-demo-widget/, a Level 3 packet created 2026-11-02. It holds spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md,   
+  implementation-summary.md, timeline.md, description.json and graph-metadata.json.
+                                
+  Two things about what's there:
+                                                                                                                                                                                                     
+  - The packet hasn't been filled in. spec.md is still the template: the problem, scope, requirements and "Files to Change" sections are all [YOUR_VALUE_HERE] placeholders. The only real values are   
+    the title "demo widget", Status Draft and the branch scaffold/001-demo-widget. None of the docs mention a badge; every "status" hit is template text.                                              
+  - I found no widget code. Outside node_modules and .pi, the only files that mention "widget" are the nine files in that packet. That search included gitignored files. There's nothing to add a badge
+    to yet, so the packet's scope and target files will need to be decided first.
+                                                                                                                                                                                                       
+  I've stopped here, written nothing and asked no product questions. When you lift the hold, the first thing I'll ask is where the documentation should go. The project's rules require that before any
+  write, and the obvious answer is the existing specs/demo/001-demo-widget/.                                                                                                                           
+                                                                                             
+  Next step is yours: tell me when I can start writing, and when I can ask product questions.                                                                                                        
+
+✻ Cogitated for 47s · done 7:26 PM                                                                                                                                                                     
+
+❯ A) Existing, specs/demo/001-demo-widget                                                                                                                                                               
+
+⏺ Got it. The spec folder for this session is specs/demo/001-demo-widget (option A, existing packet), and I won't ask about it again.                    
+                                                                                                                                                                                                       
+  Choosing the folder doesn't lift your hold, so I'm still waiting. I haven't written anything or asked any product questions.                                                                          
+                                                                                                                                                                                                        
+  Next step is yours: tell me when I can start writing, and when I can ask product questions. Since the packet is still an empty template, I'll need to ask what the badge should show before I can fill
+  in its scope.                                                                              
+
+✻ Brewed for 3s · done 7:27 PM
+
+❯ Before you write anything, ask me with your question tool which colour the badge uses, offering exactly Amber, Teal and Slate. One choice.                                                            
+
+⏺ User answered Claude's questions:                                   
+  ⎿  · Which colour should the demo widget's status badge use? → Amber                                                                                                                                  
+
+⏺ The badge will be Amber.
+                                                                                                                                                                                                        
+  I haven't written anything yet. Your message said to ask this before writing, but it didn't say to start, so your original "write nothing until I tell you" still holds.
+                                                                                                                                                                                                        
+  When you say go, I'll start by filling the empty specs/demo/001-demo-widget/spec.md with the Amber badge. There's no widget code in the repo yet, so I'll need to ask where the badge lives and what
+  states it shows before I can name the files to change.
+                                                                                                                                                                                                        
+  Next step is yours: tell me to start writing.
+
+✻ Cogitated for 5s · done 7:27 PM                                                  
+                                                                                                                                                                                    ◐ medium · /effort
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)               
+

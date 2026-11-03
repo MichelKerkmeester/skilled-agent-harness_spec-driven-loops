@@ -1,0 +1,169 @@
+{
+  "runtime": "codex",
+  "verdict": "FAIL",
+  "blocker": "HOOK_TRUST_OUTSIDE_PROJECT",
+  "seed": 1394226985,
+  "socket": "conv-21248-codex",
+  "session_id": "ae9d3376-b007-49d7-a1b0-f18f2faa7283",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/2cdc1c20-d541-4a71-ba53-999a34105259/scratchpad/conv/codex-main/codex",
+  "started_at": "2026-11-02T14:43:07.388Z",
+  "finished_at": "2026-11-02T14:43:14.709Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": {
+    "config": "~/.codex/config.toml",
+    "added": [],
+    "changed": [],
+    "missing": [],
+    "outside_project": [],
+    "removed": [],
+    "restored": [],
+    "ok": true
+  },
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "S0",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S0"
+    },
+    {
+      "id": "S1",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S1"
+    },
+    {
+      "id": "S2",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S2"
+    },
+    {
+      "id": "S3",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S3"
+    },
+    {
+      "id": "S4",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S4"
+    },
+    {
+      "id": "S5",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S5"
+    },
+    {
+      "id": "S6",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S6"
+    },
+    {
+      "id": "S7",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S7"
+    },
+    {
+      "id": "S8-compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-compact"
+    },
+    {
+      "id": "S8-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S8-ask"
+    },
+    {
+      "id": "S9-restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-restart"
+    },
+    {
+      "id": "S9-ask",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S9-ask"
+    },
+    {
+      "id": "S10",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S10"
+    },
+    {
+      "id": "S11",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "HOOK_TRUST_OUTSIDE_PROJECT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/S11"
+    }
+  ]
+}
