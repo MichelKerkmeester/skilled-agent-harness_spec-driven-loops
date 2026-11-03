@@ -1,7 +1,7 @@
 ---
 title: "CC-030 -- Resume specific session by ID conversation"
 description: "This scenario validates session context after Claude Code resumes a selected session by ID. It focuses on recalling a marker sent before the runner restarts the session."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CC-030 -- Resume specific session by ID conversation
@@ -67,7 +67,7 @@ Operators run the exact prompt and command sequence for `CC-030` and confirm the
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CC-030 | Resume specific session by ID conversation | Confirm a session resumed by ID retains a marker from its earlier turn | Remember this project marker for my next question: MAPLE-LANTERN-582. Say it back. | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md --runtime claude-code --scratch <scratch-dir-outside-repository> --out <evidence-dir>` | The first reply repeats the marker, the restart screen shows the resumed prompt, and the follow-up reply repeats the marker again. | `matrix.md`, `result.json` and each turn's `screen.txt` and `check.txt` under `<evidence-dir>/claude-code/` | PASS if the restart screen shows the resumed prompt and the final reply repeats `MAPLE-LANTERN-582` after its prompt. FAIL if either check fails. | Review the three turn screens and `checkpoints.tsv`. If the first check passes but either restart or final recall fails, record where session resumption stopped with the screens and check outputs. |
+| CC-030 | Resume specific session by ID conversation | Confirm a session resumed by ID retains a marker from its earlier turn | Remember this project marker for my next question: MAPLE-LANTERN-582. Say it back. | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md --runtime claude-code --scratch <scratch-dir-outside-repository> --out <evidence-dir>` | The first reply repeats the marker, the restart screen shows the resumed prompt, and the follow-up reply repeats the marker again. | `matrix.md`, `result.json` and each turn's `screen.txt` and `check.txt` under `<evidence-dir>/claude-code/` | PASS if the restart screen shows the resumed prompt and the final reply repeats `MAPLE-LANTERN-582` after its prompt. FAIL if either check fails. | Review the three turn screens and `checkpoints.tsv`. If the first check passes but either restart or final recall fails, record where session resumption stopped with the screens and check outputs. |
 
 ### Commands
 

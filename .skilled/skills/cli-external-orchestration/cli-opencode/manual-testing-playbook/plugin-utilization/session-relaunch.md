@@ -1,7 +1,7 @@
 ---
 title: "CO-046 -- session-relaunch second-turn nudge"
 description: "This scenario validates the session-relaunch plugin for `CO-046`. It focuses on the handoff nudge reaching a later request in the same OpenCode session."
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # CO-046 -- session-relaunch second-turn nudge
@@ -123,6 +123,8 @@ If the first check fails, confirm the shell tool ran and returned `relaunch-prob
 | `.opencode/plugins/session-relaunch.js` | Records context usage and injects the handoff nudge |
 | `.opencode/hooks/session-relaunch/` | Hook helpers used by the plugin |
 | `.opencode/plugins/lib/v2-bridge.js` | Maps runtime events used for context accounting |
+
+---
 
 ## 5. SOURCE METADATA
 

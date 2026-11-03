@@ -1,7 +1,7 @@
 ---
 title: "CO-059 -- Bound goal remains visible on the next turn"
 description: "This scenario validates the OpenCode goal hook for `CO-059`. It checks that a packet-bound goal is visible to the model on a later turn."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-059 -- Bound goal remains visible on the next turn
@@ -126,6 +126,8 @@ If the bind-state check fails, confirm the scratch packet has `goal.md`. Confirm
 | `.opencode/plugins/opencode-goal.js` | Stores the session goal and injects its brief into later turns |
 | `.opencode/hooks/goal/lib/goal-slice.cjs` | Projects packet goal content into the model-visible slice |
 | `.opencode/plugins/tests/opencode-goal-state.test.cjs` | Goal state persistence and binding regression coverage |
+
+---
 
 ## 5. SOURCE METADATA
 

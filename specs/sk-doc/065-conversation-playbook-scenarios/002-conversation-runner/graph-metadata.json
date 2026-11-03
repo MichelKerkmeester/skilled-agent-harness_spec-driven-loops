@@ -210,7 +210,7 @@
     ],
     "causal_summary": "A conversation script is only useful if something can play it into a real session",
     "created_at": "2026-11-01T21:03:58Z",
-    "last_save_at": "2026-11-03T11:39:56.454Z",
+    "last_save_at": "2026-11-03T12:47:11.034Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20c52f18e38ea7fb788656c99c0548ff63ab864bcab0941688f780ee7c256311",
+    "source_fingerprint": "sha256:be1fd36a8319a29bbc367abe9f671a47eed1754ac2f24535b370d8c0525b600c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "1460038673bec79860fdaddb6d09a2d85ada8dc8f919ffea259801a01b68c504",
       "plan.md": "52e03cb18c091b5a471c1b8d13c5fdc8ba808aee635fbbedccd6f349213e7718",
       "tasks.md": "31519aabc4d7885133d3f629a72c6481bf38ead0302b40030985699ee5c32c2f",
-      "implementation-summary.md": "22f40966a0e4ad20b42952efb40986e635d3da09237d8a9f92535f79f3736ebc"
+      "implementation-summary.md": "c97c33f9e663d5e021823987e91cfc7d1a8a0c3f3033003224e7c2100e9ac607"
     },
     "last_active_at": null
   }

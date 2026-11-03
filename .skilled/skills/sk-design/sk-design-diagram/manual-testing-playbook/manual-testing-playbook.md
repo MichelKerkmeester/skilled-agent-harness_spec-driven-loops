@@ -1,7 +1,7 @@
 ---
 title: "sk-design-diagram: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-design-diagram workflow packet in the sk-design hub."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # sk-design-diagram: Manual Testing Playbook
@@ -205,7 +205,7 @@ Desired user-visible outcome: a clean, readable swimlane whose every coordinate,
 Verify the default-skin gate fires, a declined URL-onboarding proposal leaves `style-guide.md` unchanged, and explicit approval changes only its semantic roles token table.
 
 #### Scenario Contract
-Prompt: `This is the first diagram in this project. The style guide is still at the shipped default accent. Run the onboarding gate, then onboard from my site https://example.com — extract the palette and fonts, map them to the semantic roles, propose the style-guide.md diff, and wait for my approval before writing.`
+Prompt: `This is the first diagram in this project. The style guide is still at the shipped default accent. Please onboard the project from my site and map its palette and fonts to the semantic roles in .skilled/skills/sk-design/sk-design-diagram/references/foundations/style-guide.md.`
 
 The gate is skipped only when the `accent` token differs from the shipped default. URL onboarding maps colors and fonts with confidence, checks contrast, previews only the semantic roles token table, preserves the guide after a decline, and changes only that table after approval.
 

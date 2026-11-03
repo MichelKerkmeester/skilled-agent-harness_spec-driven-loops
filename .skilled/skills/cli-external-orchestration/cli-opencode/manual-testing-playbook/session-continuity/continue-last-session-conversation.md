@@ -1,7 +1,7 @@
 ---
 title: "CO-058 -- Continue the current session across turns"
 description: "This scenario validates session continuity for `CO-058`. It checks that a later turn in the same OpenCode session uses an earlier fact."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-058 -- Continue the current session across turns
@@ -116,6 +116,8 @@ If the first check fails, inspect the first turn screen for the acknowledgement.
 |---|---|
 | `../../SKILL.md` | OpenCode session flag reference |
 | `../../references/cli-reference.md` | Continue flag and session behavior |
+
+---
 
 ## 5. SOURCE METADATA
 

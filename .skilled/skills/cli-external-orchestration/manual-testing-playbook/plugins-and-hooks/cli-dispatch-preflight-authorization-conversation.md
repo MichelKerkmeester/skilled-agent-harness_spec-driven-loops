@@ -6,10 +6,6 @@ trigger_phrases:
   - "Pi dispatch authorization follow-up"
   - "CE-P05"
 id: CE-P05
-stage: routing
-expected_intent: UNKNOWN
-expected_workflow_mode: UNKNOWN
-expected_leaf_resources: []
 version: 1.0.0.0
 ---
 

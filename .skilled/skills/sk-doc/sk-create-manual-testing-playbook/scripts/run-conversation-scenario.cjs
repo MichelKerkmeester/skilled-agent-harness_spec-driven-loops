@@ -125,8 +125,9 @@ function sleep(ms) {
 }
 
 /**
- * Wait while blocking. Only used from a signal handler, where the event loop is about to be
- * abandoned and the grace period must be observed before the process exits.
+ * Wait while blocking. A signal handler uses it because the event loop is about to be abandoned,
+ * and the ordinary cleanup and key-sending paths use it because their callers are synchronous
+ * and each wait is a short, bounded grace period.
  *
  * @param {number} ms - Milliseconds to wait.
  */
@@ -2150,7 +2151,7 @@ function sendSteps(ctx, turnKey, kind, steps) {
       // A runtime that reads a fast burst of typed text as a paste turns an Enter that arrives
       // inside the burst into a newline, so the key waits until the burst is over.
       if (hasAfterText && pauseMs > 0) {
-        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, pauseMs);
+        sleepSync(pauseMs);
       }
       hasAfterText = false;
       sendTmuxKeys(ctx, ['send-keys', '-t', SESSION, step.key]);
@@ -3222,10 +3223,12 @@ async function main(argv) {
     return EXIT_USAGE;
   }
 
-  const runtimeIds = opts.runtimeList
+  // A repeated id would run the same runtime twice into one evidence folder, and the second
+  // pass would overwrite the first pass's actions and checkpoints.
+  const runtimeIds = [...new Set(opts.runtimeList
     .split(',')
     .map((id) => id.trim())
-    .filter(Boolean);
+    .filter(Boolean))];
   if (runtimeIds.length === 0) {
     writeDiagnostic('usage: --runtime needs at least one runtime id');
     return EXIT_USAGE;
@@ -3253,6 +3256,17 @@ async function main(argv) {
   }
   const script = loaded.script;
   const turns = script.turns.map(normalizeTurn);
+  // Two ids can differ yet share an evidence folder name, and the later turn would then
+  // overwrite the earlier turn's evidence under a run that still reports PASS.
+  const seenKeys = new Map();
+  for (const turn of turns) {
+    if (seenKeys.has(turn.key)) {
+      const first = seenKeys.get(turn.key);
+      writeDiagnostic(`scenario: turns "${first}" and "${turn.id}" share the evidence folder ${turn.key}`);
+      return EXIT_USAGE;
+    }
+    seenKeys.set(turn.key, turn.id);
+  }
   const scriptRuntimes = Array.isArray(script.runtimes) ? script.runtimes : [];
 
   const out = path.resolve(opts.out);

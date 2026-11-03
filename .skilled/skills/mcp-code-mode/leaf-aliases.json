@@ -91,6 +91,11 @@
   },
   {
     "workflowMode": "mcp-code-mode",
+    "leafResourceId": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md",
+    "diskPath": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md"
+  },
+  {
+    "workflowMode": "mcp-code-mode",
     "leafResourceId": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
     "diskPath": "manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md"
   },

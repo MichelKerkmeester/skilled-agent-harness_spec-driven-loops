@@ -7,7 +7,7 @@ trigger_phrases:
   - "json conversation placeholder block"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Manual Testing Playbook Conversation Snippet Template
@@ -58,11 +58,12 @@ Copy this into `manual-testing-playbook/{CATEGORY_DIR}/{FEATURE_SLUG}.md`. Keep 
 title: "{FEATURE_ID} -- {FEATURE_NAME}"
 description: "This scenario validates {FEATURE_NAME} for `{FEATURE_ID}`. It focuses on {OBJECTIVE}."
 stage: routing   # routing | holdout | negative. Benchmark tier that replaces the numbered filename prefix.
-# Routing-gold fields. REQUIRED when the scenario claims a route. Any one of them
-# enrols the scenario in the topology gate (validate-playbook-topology.cjs). The
-# compiled-routing validator rejects a scenario that lacks id, expected_intent or
-# expected_resources. Omit them when a scenario exercises a script or hook and makes
-# no routing claim.
+# Routing-gold fields. REQUIRED when the scenario claims a route. Any one of them, and
+# `stage:` on its own, enrols the scenario in the topology gate
+# (validate-playbook-topology.cjs). The compiled-routing validator rejects a scenario
+# that lacks id, expected_intent or expected_resources. When a scenario exercises a
+# script or hook and makes no routing claim, omit `stage:` together with every gold
+# field: a stage without gold fails the strict topology gate.
 id: "{FEATURE_ID}"                       # Stable scenario id. Falls back to the filename when omitted.
 expected_intent: "{EXPECTED_INTENT}"     # Routing intent or mode the skill should select for this prompt.
 expected_resources:                      # Resource paths the correct route must load, one per line.

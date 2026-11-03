@@ -1,7 +1,6 @@
 ---
 title: "SD-004 -- UNKNOWN Fallback After Clarification"
 description: "This scenario validates Claude Code's answer-dependent resource loading for an unsupported Go request and its verification guidance after clarification."
-stage: negative
 version: 1.0.0.0
 ---
 

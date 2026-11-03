@@ -1,7 +1,7 @@
 ---
 title: "CO-057 -- Resume a specific session after restart"
 description: "This scenario validates session continuity for `CO-057`. It checks that OpenCode retains a session's fact after the runner restarts that session."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CO-057 -- Resume a specific session after restart
@@ -122,6 +122,8 @@ If the first check fails, inspect the first turn screen for the acknowledgement.
 |---|---|
 | `../../SKILL.md` | OpenCode session flag reference |
 | `../../references/cli-reference.md` | Session persistence and resume behavior |
+
+---
 
 ## 5. SOURCE METADATA
 

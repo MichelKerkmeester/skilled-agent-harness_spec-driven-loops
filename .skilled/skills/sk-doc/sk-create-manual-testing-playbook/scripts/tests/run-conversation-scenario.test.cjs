@@ -255,6 +255,24 @@ function refusals() {
   assert.strictEqual(missingScratch.code, 2, 'a missing --scratch is a usage error');
   assert.match(missingScratch.stderr, /--scratch is required/);
 
+  const collidingIds = writeScenario(dir, 'colliding-ids.md', {
+    runtimes: ['claude-code'],
+    turns: [
+      { id: 't 1', send: 'hello', delay_ms: 0, check: 'true' },
+      { id: 't-1', send: 'again', delay_ms: 0, check: 'true' },
+    ],
+  });
+  const collision = runCli([
+    '--scenario', collidingIds,
+    '--runtime', 'fake',
+    '--scratch', path.join(dir, 'collision-scratch'),
+    '--out', path.join(dir, 'collision-out'),
+    '--repo-root', repo,
+  ]);
+  assert.strictEqual(collision.code, 2, 'turn ids sharing an evidence folder are refused');
+  assert.match(collision.stderr, /share the evidence folder t-1/);
+  assert.ok(!fs.existsSync(path.join(dir, 'collision-out')), 'a colliding-id refusal writes no evidence');
+
   const insideRepo = runCli([...base, '--scratch', path.join(repo, 'scratch')]);
   assert.strictEqual(insideRepo.code, 2, 'a scratch inside the repository is refused');
   assert.match(insideRepo.stderr, /SCRATCH_INSIDE_REPO/);
@@ -586,6 +604,20 @@ function checkReadsTurnEvidence() {
     /ok: hello evidence/,
     'the history holds the scrollback the check ran against',
   );
+
+  const repeatedOut = path.join(dir, 'repeated-out');
+  const repeated = runCli([
+    '--scenario', scenario,
+    '--runtime', 'fake,fake',
+    '--scratch', path.join(dir, 'repeated-scratch'),
+    '--out', repeatedOut,
+    '--repo-root', repo,
+  ]);
+  assert.strictEqual(repeated.code, 0, `a repeated runtime id should still pass: ${repeated.stderr}`);
+  const matrixRows = fs.readFileSync(path.join(repeatedOut, 'matrix.md'), 'utf8')
+    .split('\n')
+    .filter((line) => /^\|\s*fake\s*\|/.test(line));
+  assert.strictEqual(matrixRows.length, 1, 'a repeated runtime id runs once');
 }
 
 /** Literal punctuation and option-looking text must arrive unchanged at the fake subject. */
