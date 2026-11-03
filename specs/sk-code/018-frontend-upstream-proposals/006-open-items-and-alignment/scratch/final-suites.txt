@@ -1,0 +1,42 @@
+## compiled-route suites
+ℹ tests 101
+ℹ pass 101
+ℹ fail 0
+exit=0
+## sk-create-skill tests
+ℹ tests 103
+ℹ pass 103
+ℹ fail 0
+## trigger-index and save vitests
+ Test Files  4 passed (4)
+      Tests  132 passed | 1 skipped (133)
+## hub status
+sk-code compiled compiled-serving fresh
+sk-doc compiled compiled-serving fresh
+sk-design compiled compiled-serving fresh
+mcp-tooling compiled compiled-serving fresh
+system-deep-loop compiled compiled-serving fresh
+cli-external-orchestration compiled compiled-serving fresh
+cli-classifier compiled compiled-serving fresh
+## sync check
+all 7 hubs resolve
+all 55 served copies match their authored files
+## admission
+Every hub passes the admission check.
+## router sync
+router-sync: 5/5 checks passed
+## signal check
+checked=7 hub(s), missing=0, orphans=0
+RESULT: PASSED
+## parent-skill-check sk-code
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+## playbooks
+PASS package=sk-code scenarios=27 routing_gold_excluded=9 violations=0
+PASS package=sk-code/sk-code-frontend scenarios=3 violations=0
+PASS package=mcp-tooling/mcp-figma scenarios=20 violations=0 warnings=2
+PASS package=sk-design/sk-design-fundamentals scenarios=14 violations=0
+## hermes mirror
+PASS: 66 Hermes skill copies in sync
+## skill graph freshness
+GHOST none, MISSING none, FAMILY MISMATCH none, SIGNAL DRIFT none; exit 0
+  (report-only — the canonical reindex is operator-gated; nothing was written)

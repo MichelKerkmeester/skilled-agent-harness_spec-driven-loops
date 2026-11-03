@@ -35,18 +35,25 @@
       "pin"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scratch/alignment-fixes.md",
       ".skilled/bin/tests/compiled-route-admission.test.cjs",
+      ".skilled/bin/tests/compiled-route-sk-design-tie.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
       "core/workflow.ts",
       "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/lib/canary-router.cjs",
-      "scratch/alignment-executors.json"
+      "scratch/alignment-executors.json",
+      "scratch/tie-revert-test.txt",
+      "scratch/planonly-revert-test.txt",
+      "scratch/alignment-runs/recheck1.md",
+      "scratch/final-suites.txt",
+      "scratch/reach-final.txt"
     ],
     "entities": [
       {
@@ -80,9 +87,21 @@
         "source": "derived"
       },
       {
+        "name": "alignment-fixes.md",
+        "kind": "doc",
+        "path": "scratch/alignment-fixes.md",
+        "source": "derived"
+      },
+      {
         "name": "compiled-route-admission.test.cjs",
         "kind": "file",
         "path": ".skilled/bin/tests/compiled-route-admission.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sk-design-tie.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-sk-design-tie.test.cjs",
         "source": "derived"
       },
       {
@@ -101,6 +120,36 @@
         "name": "alignment-executors.json",
         "kind": "config",
         "path": "scratch/alignment-executors.json",
+        "source": "derived"
+      },
+      {
+        "name": "tie-revert-test.txt",
+        "kind": "file",
+        "path": "scratch/tie-revert-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "planonly-revert-test.txt",
+        "kind": "file",
+        "path": "scratch/planonly-revert-test.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recheck1.md",
+        "kind": "doc",
+        "path": "scratch/alignment-runs/recheck1.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-suites.txt",
+        "kind": "file",
+        "path": "scratch/final-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-final.txt",
+        "kind": "file",
+        "path": "scratch/reach-final.txt",
         "source": "derived"
       },
       {
@@ -150,53 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Targeted",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Alignment",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`compiled-route-admission.test.cjs` pins 96 gold scenarios, but the live corpus holds 84, because the doctor scenarios moved to the central playbook in `28b388e81b` without a re-pin",
     "created_at": "2026-11-03T14:26:31Z",
-    "last_save_at": "2026-11-03T15:22:25.511Z",
+    "last_save_at": "2026-11-03T17:06:14.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e436a4ec5313da6b8ca5f9acb386fe5e268ad10505055a1feea1e656688e3a79",
+    "source_fingerprint": "sha256:821f05af9c2eee8a46189f984405e20657ca6398a0ac9fc5c3f1e40d489f5397",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "19c2caedda69e305bc556838394c866dd4793836d8ff52d2ac04b1c8b963cd75",
-      "plan.md": "b1cd37aee4298f894dfeb8785454ef64d5b0048cf52b983a72e14e8829b60fb5",
-      "tasks.md": "7e0f54c67de8db60cc474a90b95d91fef4cfd5544b035f8a230cd1f5ac601495",
-      "implementation-summary.md": "c3f4e38063514b718c1c83ccc3ab430ffade275e39d099b33059bb858428bc8e"
+      "spec.md": "cc491b90e847718e5c8007d3f15a644e201962d99a4a16e7aff1dcf9946b0e5a",
+      "plan.md": "804f74e8dd1c5fe87328b1f6255c32586a13620f524f634604c6d93fdcecc4b9",
+      "tasks.md": "11d0e4f516fe2f997a54984c70c3517a5278bca9bae6c6a10482636e4e062844",
+      "implementation-summary.md": "f08305c7234b5c9338d72d55f651b5ef29e39c07d776555edb1ceaa2bbaa42f6"
     },
     "last_active_at": null
   }

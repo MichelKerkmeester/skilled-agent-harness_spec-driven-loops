@@ -40,9 +40,9 @@ Four code or doc fixes close the open items, each proven by a test or a grep. Th
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/bin/tests/compiled-route-*.test.cjs` reports `fail 0`, and the alignment recheck lists no open finding on a touched skill
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test .skilled/bin/tests/compiled-route-*.test.cjs` reports `fail 0`, and the alignment recheck lists no open finding on a touched skill
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

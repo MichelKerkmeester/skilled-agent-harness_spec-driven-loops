@@ -11,9 +11,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-frontend-upstream-proposals"
-    last_updated_at: "2026-11-03T09:30:00Z"
+    last_updated_at: "2026-11-03T18:10:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Closed all five phases; ranks 1 to 12 shipped, rank 13 dropped"
+    recent_action: "Closed all six phases"
     next_safe_action: "None; the Barter re-pin is Barter's next step"
     blockers: []
     key_files:
@@ -25,9 +25,10 @@ _memory:
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
     completion_pct: 100
-    open_questions:
-      - "May canonical sk-code carry React Native guidance, given sk-code/ROUTER.md section 6 says React Native resources live in the Barter fork?"
+    open_questions: []
     answered_questions:
+      - "Canonical sk-code carries stack-agnostic React Native practice, and project React Native surfaces stay in a project fork (operator, 2026-11-03; 001 ADR-001)."
+      - "Router reach defaults to concurrency 2, decided from a measured run (002 ADR-002)."
       - "The Barter no-commit rule does not bind this packet: it follows the normal sk-git-skilled flow (operator, 2026-11-03)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
@@ -111,7 +112,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 3 | 003-design-handoffs/ | Ranks 5 to 7: open values to `sk-design-fundamentals`, reduced motion, the profile slot | Complete |
 | 4 | 004-playbook-scenarios/ | Rank 8: generic mcp-figma and fundamentals playbook scenarios | Complete |
 | 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Complete |
-| 6 | 006-open-items-and-alignment/ | [Phase 6 scope] | Pending |
+| 6 | 006-open-items-and-alignment/ | The five items phases 001 to 005 left open, then two alignment passes over the touched skills until a recheck leaves nothing open | Complete |
 
 ### Phase Transition Rules
 
@@ -128,7 +129,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 002-tooling-fixes | 003-design-handoffs | `--check` reports orphan phrases and reach defaults to the safer setting | Both scripts' test suites exit 0 |
 | 003-design-handoffs | 004-playbook-scenarios | The hand-off line, the reduced-motion section and the profile slot exist | `rg -n "sk-design-fundamentals"` hits the three hand-off files |
 | 004-playbook-scenarios | 005-inferred-confirmations | The five scenarios exist and both playbook validators pass | The playbook validator exits 0 for mcp-figma and for sk-design-fundamentals |
-| 005-inferred-confirmations | 006-open-items-and-alignment | [Criteria TBD] | [Verification TBD] |
+| 005-inferred-confirmations | 006-open-items-and-alignment | Ranks 10 to 12 shipped with revert-proven tests, rank 13 dropped, and the open items it left are listed | `005-inferred-confirmations/decision-record.md` holds four rank verdicts and its summary lists the known limitations |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -136,8 +137,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- `sk-code/ROUTER.md` section 6 says "Do not load Go/NextJS/React Native resources from canonical sk-code; those surfaces live in the Barter sk-code fork". Rank 1 brings a React Native stack layer and five native topic files into the new surface. Phase 001 cannot build the native half until the operator decides whether that sentence changes, or whether the surface ships web-only. Phase 001 records the answer as its ADR-001.
-- Rank 9 offers two fixes: a default of 2, or a retry of `probe-error` rows at concurrency 1. Phase 002 picks one from a measured run, not from preference.
+- None open. The React Native question was answered by the operator: canonical sk-code carries stack-agnostic React Native practice and the `ROUTER.md` section 6 sentence was amended (`001-frontend-surface-mode/decision-record.md` ADR-001). The rank 9 choice was decided from a measured run: reach defaults to concurrency 2 (`002-tooling-fixes/decision-record.md` ADR-002).
 <!-- /ANCHOR:questions -->
 
 ---

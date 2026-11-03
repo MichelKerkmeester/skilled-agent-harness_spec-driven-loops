@@ -42,7 +42,7 @@
       "five-pass"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -53,12 +53,14 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
       ".skilled/skills/sk-code/README.md",
       ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
+      "005-inferred-confirmations/decision-record.md",
+      "001-frontend-surface-mode/decision-record.md",
+      "002-tooling-fixes/decision-record.md",
       "001-frontend-surface-mode/goal.md",
       "002-tooling-fixes/goal.md",
       "003-design-handoffs/goal.md",
       "004-playbook-scenarios/goal.md",
-      "005-inferred-confirmations/goal.md",
-      "005-inferred-confirmations/decision-record.md"
+      "005-inferred-confirmations/goal.md"
     ],
     "entities": [
       {
@@ -178,17 +180,17 @@
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T15:22:25.512Z",
+    "last_save_at": "2026-11-03T17:07:26.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:0a0c916a8c6163afe0097e8ca578b4dd04efaa363ec95d0dea3a8ea86aea2948",
+    "source_fingerprint": "sha256:261433279ec749202a1a2e8f1feb0a3dbba6cf67a4f099342aafc40eaba1b6cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba09f997c6427b968c9e77345bcfa3b191d5f374b7ea176f965666c6d5af8e3a"
+      "spec.md": "67f9d9765227d9347a5fb2792c08f1b837be32712c134b88749e896d5c8bf5bd"
     },
     "last_active_at": null
   }

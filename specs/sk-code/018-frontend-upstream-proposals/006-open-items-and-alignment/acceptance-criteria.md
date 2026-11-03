@@ -7,18 +7,18 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-open-items-and-alignment"
-    last_updated_at: "2026-11-03T14:26:32Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    packet_pointer: "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment"
+    last_updated_at: "2026-11-03T18:10:00Z"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Met every criterion with observed evidence"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-03
 <!-- /ANCHOR:metadata -->
 
@@ -53,13 +53,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | Suite output | Unmet | - |
-| AC-002 | REQ-002 | Given two same-mode sk-design intents that tie, When `scoreIntents` sorts them, Then it returns both in intent-name order without throwing | `compiled-route-sk-design-tie.test.cjs`, and its failure with the fix reverted | Unmet | - |
-| AC-003 | REQ-003 | Given the fixes, When `/local-skilled-alignment --recheck` runs on the first run folder, Then no finding on a touched skill is open | `scratch/alignment-1/recheck.md` | Unmet | - |
-| AC-004 | REQ-004 | Given a save without `--full-auto`, When it finishes, Then its summary says the continuity fields were not written | The plan-only vitest, and its failure with the fix reverted | Unmet | - |
-| AC-005 | REQ-005 | Given `system-spec-kit/changelog/`, When the newest entry is read, Then it names the trigger-index warning and the plan-only line, and `SKILL.md` carries its version | `rg -n "repo-root\|full-auto"` on the entry | Unmet | - |
-| AC-006 | REQ-006 | Given the parent `goal.md`, When `goal.cjs packet` runs, Then D6 names DeepSeek V4.1 Flash on opencode-go for builds and prints `packet_budget=ok` | `goal.cjs` output | Unmet | - |
-| AC-007 | REQ-007 | Given the last edit, When reach runs on every hub at concurrency 2, Then each prints `outranked=  0` and `wrong-hub=  0` | `scratch/reach-final.txt` | Unmet | - |
+| AC-001 | REQ-001 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | `scratch/final-suites.txt`: 101 tests, 101 pass, 0 fail, exit 0 | Met | - |
+| AC-002 | REQ-002 | Given two same-mode sk-design intents that tie, When `scoreIntents` sorts them, Then it returns both in intent-name order without throwing | `compiled-route-sk-design-tie.test.cjs` ties three intents and passes; `scratch/tie-revert-test.txt` fails 1 with the fix reverted | Met | - |
+| AC-003 | REQ-003 | Given the fixes, When `/local-skilled-alignment --recheck` runs on the first run folder, Then no finding on a touched skill is open | `scratch/alignment-runs/recheck1.md` and `recheck3.md`, each still-open row a substring false positive, every needs-review row settled in `scratch/alignment-fixes.md` | Met | - |
+| AC-004 | REQ-004 | Given a save without `--full-auto`, When it finishes, Then its summary says the continuity fields were not written | The plan-only vitest passes 8 of 8; `scratch/planonly-revert-test.txt` fails 1 of 8 with the fix reverted | Met | - |
+| AC-005 | REQ-005 | Given `system-spec-kit/changelog/`, When the newest entry is read, Then it names the trigger-index warning and the plan-only line, and `SKILL.md` carries its version | `v2.12.31.0.md` names `--repo-root` and full-auto; `SKILL.md` reads `version: 2.12.31.0` | Met | - |
+| AC-006 | REQ-006 | Given the parent `goal.md`, When `goal.cjs packet` runs, Then D6 names DeepSeek V4.1 Flash on opencode-go for builds and prints `packet_budget=ok` | `goal.cjs packet` prints D6 naming `opencode-go/deepseek-v4.1-flash` and `packet_budget=ok` | Met | - |
+| AC-007 | REQ-007 | Given the last edit, When reach runs on every hub at concurrency 2, Then each prints `outranked=  0` and `wrong-hub=  0` | `scratch/reach-final.txt`: seven hubs, `outranked=0`, `wrong-hub=0`, `RESULT: PASSED` | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, and every criterion is unmet.
+Every criterion is met with evidence observed from the final state.
 <!-- /ANCHOR:closure -->
