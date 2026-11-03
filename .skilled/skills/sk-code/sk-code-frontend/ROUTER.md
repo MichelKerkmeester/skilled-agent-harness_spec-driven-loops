@@ -7,7 +7,7 @@ trigger_phrases:
   - "figma to code routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -49,16 +49,16 @@ This surface holds the cross-stack core in `references/frontend-practice.md`, th
 - **`WEB_ELEMENTS`** fires on `html form autocomplete`, `dialog element`, or `popover attribute`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-elements-and-attributes.md`.
 - **`WEB_CASCADE`** fires on `css cascade layers` or `css specificity conflict`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-cascade-and-selectors.md`.
 - **`WEB_LAYOUT`** fires on `container query layout` or `css stacking context`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-layout-and-sizing.md`.
-- **`WEB_A11Y`** fires on `web accessibility pattern`, `focus visible styling`, or `aria live region`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_A11Y`** fires on `web accessibility pattern`, `focus visible styling`, `keyboard focus`, or `aria live region`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
 - **`WEB_PERF`** fires on `web font loading` or `largest contentful paint`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-performance-and-loading.md`.
 - **`WEB_I18N`** fires on `right to left layout` or `bidirectional text`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-internationalization.md`.
 - **`FRONTEND_NATIVE`** fires on `react native layout`. It loads `references/frontend-practice.md` and `references/react-native-layout-and-a11y.md`.
-- **`NATIVE_A11Y`** fires on `react native accessibility`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-accessibility.md`.
+- **`NATIVE_A11Y`** fires on `react native accessibility` or `accessibility labels`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-accessibility.md`.
 - **`NATIVE_LAYOUT_TEXT`** fires on `react native text scaling`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-layout-and-text.md`.
 - **`NATIVE_INPUTS`** fires on `react native keyboard avoidance`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-inputs-and-keyboard.md`.
-- **`NATIVE_LISTS_MOTION`** fires on `react native scroll performance` or `react native reduced motion`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-lists-and-motion.md`.
+- **`NATIVE_LISTS_MOTION`** fires on `react native scroll performance`, `react native flatlist`, or `react native reduced motion`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-lists-and-motion.md`.
 - **`NATIVE_PLATFORM`** fires on `ios android platform difference`. It loads `references/frontend-practice.md`, `references/react-native-layout-and-a11y.md`, and `references/native-platform-differences.md`.
-- **`FIGMA_TO_CODE`** fires on `figma to code`, `check built screen against figma`, `compare build with figma frame`, `figma frame check`, or `implement a figma design`. It loads `references/figma-to-code.md` and `references/frontend-practice.md`.
+- **`FIGMA_TO_CODE`** fires on `figma to code`, `check built screen against figma`, `compare build with figma frame`, `figma frame`, `figma frame check`, or `implement a figma design`. It loads `references/figma-to-code.md` and `references/frontend-practice.md`.
 
 ---
 
@@ -72,16 +72,16 @@ INTENT_SIGNALS = {
     "WEB_ELEMENTS": {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
     "WEB_CASCADE": {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
     "WEB_LAYOUT": {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "aria live region"]},
+    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "aria live region"]},
     "WEB_PERF": {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N": {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
     "FRONTEND_NATIVE": {"weight": 4, "keywords": ["react native layout"]},
-    "NATIVE_A11Y": {"weight": 4, "keywords": ["react native accessibility"]},
+    "NATIVE_A11Y": {"weight": 4, "keywords": ["react native accessibility", "accessibility labels"]},
     "NATIVE_LAYOUT_TEXT": {"weight": 4, "keywords": ["react native text scaling"]},
     "NATIVE_INPUTS": {"weight": 4, "keywords": ["react native keyboard avoidance"]},
-    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native reduced motion"]},
+    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native flatlist", "react native reduced motion"]},
     "NATIVE_PLATFORM": {"weight": 4, "keywords": ["ios android platform difference"]},
-    "FIGMA_TO_CODE": {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame check", "implement a figma design"]},
+    "FIGMA_TO_CODE": {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
 }
 
 RESOURCE_MAP = {

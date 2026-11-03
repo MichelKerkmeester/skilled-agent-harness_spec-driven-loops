@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.12.0
+version: 2.3.13.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -266,16 +266,16 @@ INTENT_SIGNALS = {
     "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
     "WEB_CASCADE":         {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
     "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "aria live region"]},
+    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "aria live region"]},
     "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
     "FRONTEND_NATIVE":     {"weight": 4, "keywords": ["react native layout"]},
-    "NATIVE_A11Y":         {"weight": 4, "keywords": ["react native accessibility"]},
+    "NATIVE_A11Y":         {"weight": 4, "keywords": ["react native accessibility", "accessibility labels"]},
     "NATIVE_LAYOUT_TEXT":  {"weight": 4, "keywords": ["react native text scaling"]},
     "NATIVE_INPUTS":       {"weight": 4, "keywords": ["react native keyboard avoidance"]},
-    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native reduced motion"]},
+    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native flatlist", "react native reduced motion"]},
     "NATIVE_PLATFORM":     {"weight": 4, "keywords": ["ios android platform difference"]},
-    "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame check", "implement a figma design"]},
+    "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
 }
 
 RESOURCE_MAP = {
