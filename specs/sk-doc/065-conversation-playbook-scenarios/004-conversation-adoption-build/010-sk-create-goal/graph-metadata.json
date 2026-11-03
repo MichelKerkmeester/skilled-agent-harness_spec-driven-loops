@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create goal conversation scenarios",
+      "phase 10 sk create goal",
+      "sk create goal conversation plan",
+      "sk create goal conversation tasks"
+    ],
+    "key_topics": [
+      "goal",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "scg-005",
+      "refuses",
+      "leftover",
+      "placeholder",
+      "scenario",
+      "checks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "refuse-leftover-placeholder.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "json",
+        "kind": "technology",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "SCG-005 refuses a goal with a leftover placeholder, and no scenario checks the goal passes once the decision is supplied",
+    "created_at": "2026-11-02T18:33:53Z",
+    "last_save_at": "2026-11-02T18:37:52.438Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:29c33d859a19144d2a115779f5f893e661ccbade68d0e0b086c752cd353fec58",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "786f0daf7d27f51b5d90bd2fdf445d24c8aaa08fd9c765823613181cf1395c5f",
+      "plan.md": "7557c6600ce90ea0120f62ab1ba8d8123e2e6498076e82f866a392e4abea46b9",
+      "tasks.md": "586dd3830d5bc668f79699475ee0e4c84677f20f930029f9af58221b0cc00d00"
+    },
+    "last_active_at": null
+  }
+}

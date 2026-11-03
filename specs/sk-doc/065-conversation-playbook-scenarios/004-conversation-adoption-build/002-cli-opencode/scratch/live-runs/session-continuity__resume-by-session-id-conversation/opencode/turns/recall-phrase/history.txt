@@ -1,0 +1,50 @@
+   I'm sorry, but I cannot assis +                                                                                                                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    I'm sorry, but I cannot assist with     
+  ┃  Remember this exact phrase for the next turn: amber otter 731. Reply only with CHECKPOINT.                                                            █    that request.                           
+  ┃                                                                                                                                                        █                                            
+                                                                                                                                                           █    Context                                 
+     ┃ Thought: 56ms                                                                                                                                       █    7,982 tokens                            
+                                                                                                                                                           █    1% used                                 
+     ┃ The user asks to remember an exact phrase for the next turn and reply only with CHECKPOINT. Just reply CHECKPOINT.                                  █    $0.00 spent                             
+                                                                                                                                                           █                                            
+     CHECKPOINT                                                                                                                                            █    MCP                                     
+                                                                                                                                                           █    • code_mode                     Error   
+     Build · DeepSeek V4.1 Flash 1017 · 783ms · 40.2 tok/s                                                                                                 █                                            
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █                                            
+  ┃  What exact phrase did I ask you to remember? Reply only with the phrase.                                                                              █                                            
+  ┃                                                                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     ┃ Thought: 40ms                                                                                                                                       █                                            
+                                                                                                                                                           █                                            
+     ┃ The user asked me to remember "amber otter 731" and reply only with the phrase.                                                                     █                                            
+                                                                                                                                                           █                                            
+     amber otter 731                                                                                                                                       █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 687ms · 39.7 tok/s                                                                                                 █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/beb6e7b1-5f31-42db-8cd9-f58…/scratchpad/live/scratch/session-continuity__resume-by-session-id-conversation/opencode  8.0K (1%) · $0.00  ctrl+p commands    /…/session-continuity__resum…/opencode  
+                                                                                                                                                                                                        

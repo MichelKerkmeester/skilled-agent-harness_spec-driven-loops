@@ -115,6 +115,9 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 5 | 005-chat-question-detection/ | Detect a plain chat question anywhere in an assistant message, capped per message, in every runtime's sweep | Complete |
 | 6 | 006-live-conversation-test/ | Run the decision-capture conversation scenario in every runtime on the shared runner from sk-doc/065, and keep the results matrix | Complete |
 | 7 | 007-gap-closure/ | Close the gaps the 2026-11-02 research ranked: report unreadable Codex and Pi transcripts, offer orphaned answers at save, nudge on Pi, and drop two duplicated code paths | Complete |
+| 8 | 008-project-scoped-state/ | Give each project its own hashed state subfolder so linked projects stop sharing pending answers, the orphan list and the consumed log | Complete |
+| 9 | 009-chat-answer-evidence/ | Attach a deterministic evidence block to each chat candidate so the save model judges from structured signals, and prove the outcome on the labelled fixture | Complete |
+| 10 | 010-decision-routing-vocabulary/ | Add decision-request vocabulary to system-spec-kit's routing metadata and ROUTER tables so "record this as a decision" routes, proven on the native advisor | Complete |
 
 ### Phase Transition Rules
 
@@ -135,6 +138,9 @@ Close the four gaps and prove the whole pipeline in a live, multi-turn conversat
 | 004-opencode-devin-live-capture | 005-chat-question-detection | OpenCode and Devin answers queue during the conversation, once each | 004's acceptance criteria are Met and the 006 matrix records it |
 | 005-chat-question-detection | 006-live-conversation-test | A mid-message chat question becomes one candidate within the per-message cap | 005's acceptance criteria are Met and the 006 matrix records it |
 | 006-live-conversation-test | 007-gap-closure | Every runtime row of the 006 matrix passes and the research run has ranked the remaining gaps | `research/research.md` exists with its verification addendum, and the 006 matrix has five passing rows |
+| 007-gap-closure | 008-project-scoped-state | The gap research and its synthesis review are in `research/` | `research/research.md` and `research/synthesis-review.md` exist |
+| 008-project-scoped-state | 009-chat-answer-evidence | Queue rows live in the project subfolder and old rows still read | 008's acceptance criteria are Met |
+| 009-chat-answer-evidence | 010-decision-routing-vocabulary | The save step reads the evidence block and the fixture outcome test passes | 009's acceptance criteria are Met |
 <!-- /ANCHOR:phase-map -->
 
 ---

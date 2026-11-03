@@ -10,8 +10,6 @@ version: 1.4.12.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: devin, devin-cli, cognition, cross-ai, cloud-handoff, subagent-delegation, code-generation, code-review, second-opinion, multi-model, session-management, handoff, swe -->
-
 # Devin CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

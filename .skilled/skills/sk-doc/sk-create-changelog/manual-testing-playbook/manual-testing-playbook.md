@@ -1,7 +1,7 @@
 ---
 title: "create-changelog: Manual Testing Playbook"
 description: "Operator playbook for the create-changelog workflow across global component entries, the deprecated packet-local route, version bumps, format selection and release-note preparation."
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # create-changelog: Manual Testing Playbook
@@ -106,7 +106,7 @@ Verify compact versus expanded selection and the shared template's category voca
 
 ---
 
-## 9. RELEASE AND SOURCE BOUNDARIES (`CHG-006..CHG-007`)
+## 9. RELEASE AND SOURCE BOUNDARIES (`CHG-006..CHG-007`, `CHG-014`)
 
 ### CHG-006 | Prepare release notes without publishing
 
@@ -119,6 +119,12 @@ Verify that a run without `--release` prepares the changelog body and full-chang
 Verify that an unresolved component match stops before writing a guessed global file.
 
 > **Scenario:** [CHG-007](release-and-boundaries/pause-on-ambiguous-component.md)
+
+### CHG-014 | Choose the component after clarification
+
+Verify that the operator's answer determines the proposed global changelog directory after an ambiguous mixed-change request.
+
+> **Scenario:** [CHG-014](release-and-boundaries/pause-on-ambiguous-component-conversation.md)
 
 ---
 

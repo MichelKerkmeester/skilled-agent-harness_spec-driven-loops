@@ -1,7 +1,7 @@
 ---
 title: "create-repo-rule: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the create-repo-rule sk-doc workflow packet."
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # create-repo-rule: Manual Testing Playbook
@@ -188,7 +188,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. RULE DECISION (`RRD-001..RRD-004`)
+## 7. RULE DECISION (`RRD-001..RRD-005`)
 
 ### RRD-001 | Always-loaded refusal
 
@@ -258,6 +258,22 @@ Desired user-visible outcome: the user learns the proposal lacked a concrete fai
 
 #### Test Execution
 > **Feature File:** [RRD-004](rule-decision/no-observed-failure-refusal.md)
+> **Catalog:** no feature-catalog entry exists for this packet.
+
+### RRD-005 | Evidence reopens restraint refusal
+
+#### Description
+Verify a proposal is refused when it names no present-day failure, then authored after the user supplies a concrete failure.
+
+#### Scenario Contract
+Prompt: `Add a repo rule for working safely alongside another live session. It is best practice and I think we should have it written down.`
+
+The first turn has no failure to test and must refuse under the restraint test. The second names lost uncommitted work from two sessions sharing one checkout, then checks that the rule is authored in the scratch project.
+
+Desired user-visible outcome: the user sees the decision change because the evidence changed, while no rule is written before the failure is named.
+
+#### Test Execution
+> **Feature File:** [RRD-005](rule-decision/no-observed-failure-refusal-conversation.md)
 > **Catalog:** no feature-catalog entry exists for this packet.
 
 ---
@@ -489,6 +505,7 @@ This packet ships no `feature-catalog/`, so the Catalog column is intentionally 
 | RRD-002 | Existing-owner refusal | RULE DECISION | [RRD-002](rule-decision/existing-owner-refusal.md) |
 | RRD-003 | Routing refusal | RULE DECISION | [RRD-003](rule-decision/routing-refusal.md) |
 | RRD-004 | Restraint refusal | RULE DECISION | [RRD-004](rule-decision/no-observed-failure-refusal.md) |
+| RRD-005 | Evidence reopens restraint refusal | RULE DECISION | [RRD-005](rule-decision/no-observed-failure-refusal-conversation.md) |
 | RRA-001 | Full rule authoring | RULE AUTHORING | [RRA-001](rule-authoring/full-rule-authoring.md) |
 | RRA-002 | Standards gate rejection | RULE AUTHORING | [RRA-002](rule-authoring/standards-gate-rejection.md) |
 | RRA-003 | Trigger phrase collision | RULE AUTHORING | [RRA-003](rule-authoring/trigger-phrase-collision.md) |

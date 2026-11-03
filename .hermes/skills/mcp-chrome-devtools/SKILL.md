@@ -10,8 +10,6 @@ version: 1.0.19.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: chrome-devtools, cdp, browser-debugger-cli, bdg, browser-automation, terminal-debugging, screenshot-capture, network-monitoring, mcp-code-mode, orchestrator -->
-
 # Chrome DevTools Orchestrator - CLI + MCP Integration
 
 Browser debugging and automation through two complementary approaches: CLI (bdg) for speed and token efficiency, MCP for multi-tool integration.

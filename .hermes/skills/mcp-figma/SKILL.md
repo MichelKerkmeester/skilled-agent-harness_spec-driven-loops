@@ -12,8 +12,6 @@ user-invocable: true
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: figma, figma cli, figma-cli, figma-ds-cli, figma desktop, render in figma, figma tokens, figma variables, figma components, render jsx in figma, export from figma, extract design.md, figma design system, connect to figma, figma daemon, figma mcp, figma-developer-mcp, figma code mode -->
-
 # Figma (mcp-figma)
 
 Drive **Figma Desktop from the terminal** through the silships **figma-cli**, published as `figma-ds-cli`. A coding agent can read, author, modify and export designs, tokens and components through the CLI. It can also **optionally** pull design context out of Figma through a Figma **MCP via Code Mode**.

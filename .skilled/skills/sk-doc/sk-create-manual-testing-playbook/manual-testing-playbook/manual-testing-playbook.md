@@ -1,7 +1,7 @@
 ---
 title: "sk-create-manual-testing-playbook: Manual Testing Playbook"
 description: "Operator-facing scenarios for authoring deterministic playbook packages, keeping operator checks in scope and storing run evidence."
-version: 1.0.0.5
+version: 1.0.2.0
 ---
 
 # sk-create-manual-testing-playbook: Manual Testing Playbook
@@ -16,6 +16,7 @@ Canonical package artifacts:
 - `package-authoring/`
 - `operator-contract/`
 - `scenario-design/`
+- `conversation-runner/`
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
 A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and reason are recorded into the owning skill's benchmark report folder. Use `SKIP` only with a specific sandbox or runtime blocker.
@@ -26,7 +27,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 This package tests whether the mode creates a reusable manual-validation corpus when the work needs one. It also tests the boundaries that keep a playbook from becoming a checklist, a benchmark-only corpus or a collection of sidecar policy files.
 
-Coverage is split into six scenarios across three categories. Three scenarios cover package authoring. Two cover the operator contract and result storage. One covers scenario design rules.
+Coverage is split into eight scenarios across four categories. Three scenarios cover package authoring. Two cover the operator contract and result storage. Two cover scenario design. One covers conversation runs.
 
 ### Realistic Test Model
 
@@ -245,7 +246,7 @@ Desired user-visible outcome: the run folder contains the recorded outcome and t
 
 ---
 
-## 9. SCENARIO DESIGN (`MTP-006..MTP-006`)
+## 9. SCENARIO DESIGN (`MTP-006, MTP-008`)
 
 ### MTP-006 | Design a deterministic scenario
 
@@ -268,18 +269,62 @@ Desired user-visible outcome: a verdict with a specific reason and evidence for 
 
 ---
 
-## 10. AUTOMATED TEST CROSS-REFERENCE
+### MTP-008 | Choose a scenario style
+
+#### Description
+
+Verify that the mode picks each scenario's style from the four ordered questions and names the question that decided it.
+
+#### Scenario Contract
+
+Prompt: `Pick the scenario style for each of these three checks and name the question that decides it: the router sends a playbook request to the playbook mode; the runtime asks which colour I want, I answer, and the answer is still saved after a restart; a generated README reads clearly to a new user.`
+
+The mode should apply the questions in order and stop at the first yes. A router check becomes a single prompt under question 4, a check that asks a question back and survives a restart becomes a conversation under question 2, and a check a person must judge becomes a single prompt under question 1.
+
+Desired user-visible outcome: three styles, each with the number of the question that decided it.
+
+#### Test Execution
+
+> **Feature File:** [MTP-008](scenario-design/choose-a-scenario-style.md)
+> **Catalog:** no feature-catalog entry applies to this package.
+
+---
+
+## 10. CONVERSATION RUNNER (`MTP-007..MTP-007`)
+
+### MTP-007 | Drive a scripted conversation
+
+#### Description
+
+Verify that the runner sends scripted question answers and chat replies, then checks state after a restart and compaction.
+
+#### Scenario Contract
+
+Prompt: `Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt.`
+
+The scenario checks the conversation script across all five runtimes. Its setup copies available project configuration into each scratch project and enables the Codex question feature only in the Codex scratch config. The evidence records each runtime's model.
+
+Desired user-visible outcome: each runtime row has a verdict, turn evidence and a recorded model.
+
+#### Test Execution
+
+> **Feature File:** [MTP-007](conversation-runner/drive-a-scripted-conversation.md)
+> **Catalog:** no feature-catalog entry applies to this package.
+
+---
+
+## 11. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003, MTP-004 and MTP-006 |
+| `validate-playbook-package.cjs` | Operator-scenario structure, local links, IDs, root index membership and routing-gold exclusion | MTP-003, MTP-004, MTP-006 and MTP-007 |
 | the retired scenario-persistence wrapper | Durable manual outcome storage and evidence metadata | MTP-005 |
 
 The package validator does not execute the mode. It checks the authored scenario contract. The wrapper stores results after an operator runs a scenario.
 
 ---
 
-## 11. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 This package has no feature catalog. The root index below is the source of scenario membership.
 
@@ -291,3 +336,5 @@ This package has no feature catalog. The root index below is the source of scena
 | MTP-004 | Keep operator scenarios in scope | OPERATOR CONTRACT | [MTP-004](operator-contract/keep-operator-scenarios-in-scope.md) |
 | MTP-005 | Persist the scenario result | OPERATOR CONTRACT | [MTP-005](operator-contract/persist-scenario-result.md) |
 | MTP-006 | Design a deterministic scenario | SCENARIO DESIGN | [MTP-006](scenario-design/design-a-deterministic-scenario.md) |
+| MTP-007 | Drive a scripted conversation | CONVERSATION RUNNER | [MTP-007](conversation-runner/drive-a-scripted-conversation.md) |
+| MTP-008 | Choose a scenario style | SCENARIO DESIGN | [MTP-008](scenario-design/choose-a-scenario-style.md) |

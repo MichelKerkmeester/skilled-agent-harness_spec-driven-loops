@@ -65,6 +65,7 @@
         "manual-testing-playbook/auto-update-daemon/rebuild-from-source.md",
         "manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md",
         "manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
+        "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
         "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
         "manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md",
         "manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",

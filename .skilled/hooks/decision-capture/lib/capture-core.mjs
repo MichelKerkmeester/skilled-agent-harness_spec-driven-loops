@@ -11,25 +11,27 @@
 // byte-exact: a decision record quotes the operator's own wording, and trimming or
 // rewriting it would quietly change what they agreed to.
 //
-// PURE FILE LOCALITY -- every path resolves under the caller's project directory,
-// never the process working directory, so a test or a dispatched worker cannot
-// scatter state outside the project it was given. Appends serialize on a lock
-// directory, and a lock left behind by a killed process is reclaimed by age rather
-// than wedging every later write.
+// PROJECT ROOT LOCALITY -- state follows the real Git root, or the real path of
+// a non-Git directory, so calls from different working directories in one project
+// agree on a path without depending on the process working directory. Appends
+// serialize on a lock directory, and stale locks are reclaimed by age.
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import {
   appendFileSync,
   mkdirSync,
   readFileSync,
+  realpathSync,
   rmdirSync,
   statSync,
   writeFileSync,
 } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -235,8 +237,47 @@ function readJsonLines(filePath) {
 // 7. PATHS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const canonicalRoots = new Map();
+
+function canonicalRoot(dir) {
+  const input = String(dir);
+  if (canonicalRoots.has(input)) return canonicalRoots.get(input);
+
+  let root;
+  try {
+    const env = { ...process.env };
+    delete env.GIT_DIR;
+    delete env.GIT_WORK_TREE;
+    root = realpathSync(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+      cwd: input,
+      env,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    }).trim());
+  } catch {
+    try {
+      root = realpathSync(input);
+    } catch {
+      root = resolve(input);
+    }
+  }
+
+  canonicalRoots.set(input, root);
+  return root;
+}
+
+export function projectToken(dir) {
+  return createHash('sha256').update(canonicalRoot(dir)).digest('hex').slice(0, 12);
+}
+
 export function queueDir(projectDir) {
-  return join(projectDir, QUEUE_RELATIVE_DIR);
+  const root = canonicalRoot(projectDir);
+  return join(root, QUEUE_RELATIVE_DIR, projectToken(projectDir));
+}
+
+function legacyDir(projectDir) {
+  return join(canonicalRoot(projectDir), QUEUE_RELATIVE_DIR);
 }
 
 export function queueFile(projectDir, sessionId) {
@@ -309,7 +350,10 @@ export function appendRecords(projectDir, sessionId, records) {
   mkdirSync(queueDir(projectDir), { recursive: true, mode: 0o700 });
 
   return withQueueLock(projectDir, sessionId, () => {
-    const seen = new Set(readQueue(projectDir, sessionId).map((record) => record.key));
+    const seen = new Set([
+      ...readQueue(projectDir, sessionId).map((record) => textOf(record.key)),
+      ...readConsumedKeys(projectDir),
+    ]);
     const lines = [];
     let skipped = 0;
 
@@ -329,7 +373,19 @@ export function appendRecords(projectDir, sessionId, records) {
 }
 
 export function readQueue(projectDir, sessionId) {
-  return readJsonLines(queueFile(projectDir, sessionId));
+  const fileName = `${sessionToken(sessionId)}.jsonl`;
+  const records = [
+    ...readJsonLines(join(queueDir(projectDir), fileName)),
+    ...readJsonLines(join(legacyDir(projectDir), fileName)),
+  ];
+  const keys = new Set();
+  return records.filter((record) => {
+    const key = textOf(record.key);
+    if (!key) return true;
+    if (keys.has(key)) return false;
+    keys.add(key);
+    return true;
+  });
 }
 
 // Consumption is the save step's record that a key became a decision entry. It
@@ -337,9 +393,11 @@ export function readQueue(projectDir, sessionId) {
 // already wrote without the queue growing a second record per answer.
 export function readConsumedKeys(projectDir) {
   const keys = new Set();
-  for (const row of readJsonLines(join(queueDir(projectDir), CONSUMED_FILE))) {
-    const key = textOf(row.key);
-    if (key) keys.add(key);
+  for (const directory of [queueDir(projectDir), legacyDir(projectDir)]) {
+    for (const row of readJsonLines(join(directory, CONSUMED_FILE))) {
+      const key = textOf(row.key);
+      if (key) keys.add(key);
+    }
   }
   return keys;
 }

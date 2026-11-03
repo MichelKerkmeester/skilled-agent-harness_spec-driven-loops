@@ -12,8 +12,6 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: code-quality, quality gate, phase 1.5, comment hygiene, authoring checklist, p0, p1, p2, opencode checklist, surface standards -->
-
 # Code Quality (quality)
 
 `quality` is the author-side quality gate MODE child of the `sk-code` family.

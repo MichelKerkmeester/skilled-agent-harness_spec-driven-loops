@@ -1,0 +1,53 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1285091107,
+  "socket": "conv-22368-opencode",
+  "session_id": "6150612a-cd4f-48cb-a1fd-a04c42ceca87",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/goal-hook__goal-hook-conversation/opencode",
+  "started_at": "2026-11-03T06:49:53.849Z",
+  "finished_at": "2026-11-03T06:50:42.800Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "bind-goal",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": ".opencode/skills/.state/goal/5b1edfe2f7984b1195bafe38d5d10f8ef00dda4272ca31644552777382d1b8ae.json",
+      "evidence": "turns/bind-goal"
+    },
+    {
+      "id": "read-active-goal",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "cobalt comet 8421",
+      "evidence": "turns/read-active-goal"
+    }
+  ]
+}

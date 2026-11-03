@@ -1,0 +1,2 @@
+$ awk 'index($0, "List release-readiness checks.") { after=1; next } after && index($0, "GOAL-CONTEXT-CL008") { found=1; exit } END { exit !found }' "$CONVERSATION_TURN_DIR/screen.txt"
+[exit 0]

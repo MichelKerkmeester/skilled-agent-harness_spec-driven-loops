@@ -1,0 +1,86 @@
+{
+  "runtime": "claude-code",
+  "verdict": "FAIL",
+  "blocker": "MISSING_QUESTION",
+  "seed": 11,
+  "socket": "conv-3057-claude-code",
+  "session_id": "129527ee-bcc0-4e96-8881-36868c670b85",
+  "project": "/private/tmp/conv-mtp007/claude-code",
+  "started_at": "2026-11-02T05:15:46.584Z",
+  "finished_at": "2026-11-02T05:17:47.807Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": true,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small,large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "teal",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "MISSING_QUESTION",
+      "blocker": "[Kk]eep.*colou?rs?",
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "MISSING_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

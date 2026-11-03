@@ -5,8 +5,6 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.5.20.0
 ---
 
-<!-- Keywords: pi cli, pi agent, pi.dev cli, pi coding agent, delegate to pi, cross-ai, headless dispatch, json event stream, rpc mode, native skills, extensions, pi packages -->
-
 # Pi CLI Orchestrator - Cross-AI Task Delegation
 
 > **A Pi session MAY dispatch this skill.** Pi has no in-process delegation of its own, so the CLI

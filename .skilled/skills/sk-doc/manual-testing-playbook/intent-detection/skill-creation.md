@@ -19,7 +19,7 @@ expected_leaf_resources:
     leaf_resource_id: assets/skill/skill-readme-template.md
   - workflow_mode: sk-create-skill
     leaf_resource_id: assets/skill/skill-reference-template.md
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # SD-002: SKILL_CREATION Intent Detection
@@ -61,7 +61,7 @@ Skill creation prompts can look like generic documentation work if the router un
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for the input (pick from the 18-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FRONTMATTER, GOAL_AUTHORING, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-doc intent the router would select for the input (pick from the 19-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, HVR, PLAYBOOK, PLAYBOOK_CONVERSATION, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FRONTMATTER, GOAL_AUTHORING, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 

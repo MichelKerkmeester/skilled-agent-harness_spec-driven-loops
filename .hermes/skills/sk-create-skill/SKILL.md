@@ -10,8 +10,6 @@ version: 1.10.1.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-skill, create-skill-parent, skill scaffolding, parent hub, nested workflow packet, package-skill, init-skill, /create:skill, /create:skill-parent -->
-
 # Create Skill
 
 `create-skill` is the skill-authoring workflow packet of the `sk-doc` parent hub. It owns standalone OpenCode skill scaffolding and parent-hub scaffolding through two workflow modes: `create-skill` and `create-skill-parent`.

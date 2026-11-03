@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli codex conversation scenarios",
+      "phase 16 cli codex",
+      "cli codex conversation plan",
+      "cli codex conversation tasks",
+      "Codex conversation scenario",
+      "Codex session resume companion",
+      "CX-030 live run",
+      "cli-codex phase closeout"
+    ],
+    "key_topics": [
+      "cli",
+      "codex",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "scenario",
+      "session",
+      "resume",
+      "companion",
+      "cx-030"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork-conversation.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+      "scratch/live-runs/session-continuity__session-resume-fork-conversation/codex/result.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume-fork-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-conversation-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-resume-fork.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
+        "source": "derived"
+      },
+      {
+        "name": "result.json",
+        "kind": "config",
+        "path": "scratch/live-runs/session-continuity__session-resume-fork-conversation/codex/result.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CX-017 checks the resume and fork flags, not the resumed session's memory of its earlier turn",
+    "created_at": "2026-11-02T18:33:57Z",
+    "last_save_at": "2026-11-03T07:16:16.568Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c02436a9ec6c2c65852daaa396ea5f45d4fd74f4237f65be2c5a4ddad9b1a514",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a338ea1bb40bc1c816ff0f0ae863730532e35e5f4e11796fb37f36009aa4c625",
+      "plan.md": "3b9109b7871c6680503f141c267967d06599b4721335fe292dc8406641a92e9d",
+      "tasks.md": "79c632055d7755e3c0e36b7c62ef9dce93a924ceb5e50b754499db607319b5e4",
+      "implementation-summary.md": "9d6ef5372923ca6d0f0ea5f253881856b588eb7f0bdf537c7ab6b8d0990a8c3c"
+    },
+    "last_active_at": null
+  }
+}

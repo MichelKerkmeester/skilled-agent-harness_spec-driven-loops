@@ -1,0 +1,62 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 425927362,
+  "socket": "conv-37152-codex",
+  "session_id": "a672cb33-1e1b-4414-9510-34527dfab85c",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__session-resume-fork-conversation/codex",
+  "started_at": "2026-11-03T06:28:51.232Z",
+  "finished_at": "2026-11-03T06:29:51.384Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "codex-workspace-write",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "plant-marker",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/plant-marker"
+    },
+    {
+      "id": "restart-session",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart-session"
+    },
+    {
+      "id": "recall-marker",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/recall-marker"
+    }
+  ]
+}

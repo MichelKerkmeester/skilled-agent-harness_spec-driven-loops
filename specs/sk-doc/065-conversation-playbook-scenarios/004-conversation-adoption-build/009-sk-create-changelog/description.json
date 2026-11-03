@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog",
+  "description": "Phase 9: sk-create-changelog",
+  "keywords": [
+    "phase",
+    "sk-create-changelog"
+  ],
+  "lastUpdated": "2026-11-02T18:33:53.291Z",
+  "specId": "009",
+  "folderSlug": "sk-create-changelog",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

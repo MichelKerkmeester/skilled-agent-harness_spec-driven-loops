@@ -1,0 +1,51 @@
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available                                                                                                                                                                              
+ Package updates are available. Run pi update --extensions                                                                                                                                              
+ Packages:                                                                                                                                                                                              
+ - pi-web-access                                                                                                                                                                                        
+ - pi-claude-code-ui                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ STATUS=OK ACTION=set                                                                                                                                                                                   
+ mutation=created                                                                                                                                                                                       
+ goal_present=true                                                                                                                                                                                      
+ goal_id=goal-854e1112-534f-4913-89fb-be39d5d36fa8                                                                                                                                                      
+ status=active                                                                                                                                                                                          
+ objective="Read the checkpoint token from .goal-checkpoint and return it exactly."                                                                                                                     
+ goal_prompt="Role: Focused Pi execution agent operating under the active session goal.\nObjective: Read the checkpoint token from .goal-checkpoint and return it exactly.\nContext: Use the current    
+ conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion       
+ condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes;   
+ ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially         
+ prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop 
+ only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the  
+ next safe action."                                                                                                                                                                                     
+ token_budget=none                                                                                                                                                                                      
+ turns_used=0                                                                                                                                                                                           
+ tokens_used=0                                                                                                                                                                                          
+ usage_source=turn-count-estimate                                                                                                                                                                       
+ created_at_ms=1793688583978                                                                                                                                                                            
+ updated_at_ms=1793688583978                                                                                                                                                                            
+ runtime=pi                                                                                                                                                                                             
+ last_check=not_evaluated                                                                                                                                                                               
+ verifier_reason=""                                                                                                                                                                                     
+ injection_preview="[active_goal:goal-854e1112-534f-4913-89fb-be39d5d36fa8]\nstatus: active\nobjective: Read the checkpoint token from .goal-checkpoint and return it exactly.\ngoal_prompt:\nRole:     
+ Focused Pi execution agent operating under the active session goal.\nObjective: Read the checkpoint token from .goal-checkpoint and return it exactly.\nContext: Use the current conversation,         
+ repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from      
+ available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when    
+ blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required 
+ verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal    
+ verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe           
+ action.\nlast_check: not_evaluated ; reason: none\nusage: tokens n/a/none; time 0s; iteration 0 (source: turn-count-estimate)\ndirective: Continue toward this objective. Before ending, run the goal  
+ verifier or explain why it is blocked.\n[/active_goal]"                                                                                                                                                
+ packet_path=""                                                                                                                                                                                         
+ packet_state=unbound                                                                                                                                                                                   
+ packet_bound=false                                                                                                                                                                                     
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+| DeepSeek V4.1 Flash 1017 | ctx: 100% left
+

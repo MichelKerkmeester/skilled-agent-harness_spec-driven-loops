@@ -1,0 +1,762 @@
+{
+  "sessionId": "fanout-devin-1793643468783-m86yfa",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 6,
+    "answeredCount": 4,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-02T18:23:05.367Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-scenarios-in-the-28-unaudited-packages-meet-q2-or-q3-and-should-convert-or",
+      "inboxId": null,
+      "text": "Which scenarios in the 28 unaudited packages meet Q2 or Q3 and should convert or gain a conversation companion, and which are blocked by the runner's five runtimes and three session actions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-existing-single-prompt-scenarios-need-updating-rather-than-converting-beca",
+      "inboxId": null,
+      "text": "Which existing single-prompt scenarios need updating rather than converting because the behavior is multi-turn but the current scenario checks it only once?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-packages-have-no-conversation-candidate-at-all-so-every-scenario-stays-sin",
+      "inboxId": null,
+      "text": "Which packages have no conversation candidate at all, so every scenario stays single prompt under Q1 or Q4?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-multi-turn-answer-dependent-restart-compaction-or-cross-runtime-behaviors-",
+      "inboxId": null,
+      "text": "Which multi-turn, answer-dependent, restart, compaction or cross-runtime behaviors in these packages lack any scenario that a conversation would add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-candidates-rank-highest-by-risk-reduction-relative-to-authoring-and-run-co",
+      "inboxId": null,
+      "text": "Which candidates rank highest by risk reduction relative to authoring and run cost across the 28 packages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-5-which-candidates-rank-highest-by-risk-reduction-relative-to-authoring-and-run-co",
+      "inboxId": null,
+      "text": "Which candidates rank highest by risk reduction relative to authoring and run cost across the 28 packages?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-scenarios-in-the-28-unaudited-packages-meet-q2-or-q3-and-should-convert-or",
+      "inboxId": null,
+      "text": "Which scenarios in the 28 unaudited packages meet Q2 or Q3 and should convert or gain a conversation companion, and which are blocked by the runner's five runtimes and three session actions?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-2-which-existing-single-prompt-scenarios-need-updating-rather-than-converting-beca",
+      "inboxId": null,
+      "text": "Which existing single-prompt scenarios need updating rather than converting because the behavior is multi-turn but the current scenario checks it only once?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-3-which-packages-have-no-conversation-candidate-at-all-so-every-scenario-stays-sin",
+      "inboxId": null,
+      "text": "Which packages have no conversation candidate at all, so every scenario stays single prompt under Q1 or Q4?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-4-which-multi-turn-answer-dependent-restart-compaction-or-cross-runtime-behaviors-",
+      "inboxId": null,
+      "text": "Which multi-turn, answer-dependent, restart, compaction or cross-runtime behaviors in these packages lack any scenario that a conversation would add?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "Which candidates rank highest by risk reduction relative to authoring and run cost across the 28 packages?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-cli-classifier-has-no-conversation-candidate-its-seven-scenarios-are-one-routing",
+      "text": "cli-classifier has no conversation candidate: its seven scenarios are one routing decision or one offline scorer run whose verdict is a single advisor, front-door or exit-status result, so Q2 finds no second exchange and Q4 keeps every scenario single prompt. [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:83] [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:119] [SOURCE: .skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md:32]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-2-cli-jev-has-no-conversation-candidate-all-22-scenarios-drive-the-jev-binary-s-in",
+      "text": "cli-jev has no conversation candidate: all 22 scenarios drive the `jev` binary's invocation, exit-code, provider or MCP-handshake surface from one command, and the shared runner drives an interactive runtime session rather than a shell binary, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md:98] [SOURCE: .skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md:16]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-4-mcp-code-mode-s-26-command-scenarios-stay-single-prompt-each-is-one-call-tool-ch",
+      "text": "mcp-code-mode's 26 command scenarios stay single prompt: each is one `call_tool_chain`, script or config-recovery command whose result one shell check reads in a single pass; the steps that say \"restart Code Mode\" restart an MCP server, not the runtime session the runner can restart, so Q2 does not apply and Q4 keeps them. [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:99] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:395] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md:434]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-5-mcp-code-mode-s-mcp-route-guard-is-the-one-add-candidate-in-this-group-the-advis",
+      "text": "mcp-code-mode's mcp-route-guard is the one add candidate in this group: the advisory exists to change the model's next tool choice, and the current file records the live OpenCode adapter path as UNAUTOMATABLE, so a two-turn companion on claude-code or opencode would cover behavior no scenario checks today (Q2). Keep the existing unit and live-core commands as primary evidence. [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:24] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:29] [SOURCE: .skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md:109]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-mcp-tooling-hub-has-no-conversation-candidate-its-16-scenarios-are-routing-g",
+      "text": "The mcp-tooling hub has no conversation candidate: its 16 scenarios are routing gold where one prompt must resolve one `workflowMode`, including MT-004's `defer` outcome, so there is no answer-dependent next step for Q2 to test. [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:31] [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md:16] [SOURCE: .skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md:65]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/cli-classifier/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/cli-classifier/cli-jev/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/manual-testing-playbook/hub-routing/ambiguous-defer.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md"
+      ]
+    },
+    {
+      "id": "finding-2-1-mcp-mobbin-has-no-conversation-candidate-its-nine-scenarios-are-read-only-wiring",
+      "text": "mcp-mobbin has no conversation candidate: its nine scenarios are read-only wiring, discovery, retrieval or refusal checks, each driven by one prompt or one `doctor.sh` command; the \"fresh Code Mode session\" precondition reloads an MCP server, not a runner session, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:25] [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md:54]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-2-2-mcp-refero-has-no-conversation-candidate-its-nine-scenarios-are-read-only-wiring",
+      "text": "mcp-refero has no conversation candidate: its nine scenarios are read-only wiring, discovery, funnel, quota or refusal checks, and the three-layer funnel runs inside one prompt; the Pro-account OAuth step is operator-only, so Q2 finds no answer-dependent turn and Q4 keeps them single prompt. [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:25] [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:134] [SOURCE: .skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md:53]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-2-3-sk-code-ci-has-no-conversation-candidate-its-eight-scenarios-are-routing-recall-",
+      "text": "sk-code-ci has no conversation candidate: its eight scenarios are routing recall, routing-floor negatives, rule-reference fixtures and two doctor-script runs, each decided by a command transcript and exit status; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:37] [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:44] [SOURCE: .skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md:53]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-2-4-sk-code-quality-has-no-conversation-candidate-its-23-scenarios-each-run-the-qual",
+      "text": "sk-code-quality has no conversation candidate: its 23 scenarios each run the quality runner or a doctor script over a fixture and read a gate, exit code or check row; CQ-009's trust grant is a config key set between two runs, not a conversational answer, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:154] [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:300] [SOURCE: .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md:576]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-sk-code-hub-has-one-add-candidate-22-of-its-23-operator-scenarios-are-one-pr",
+      "text": "The sk-code hub has one add candidate: 22 of its 23 operator scenarios are one-prompt routing, load-set, restraint or hook checks (Q4), but SD-003 stops at the UNKNOWN disambiguation question and never exercises the answer-dependent turn that `ROUTER.md` section 6 requires, so a two-turn companion that answers runtime and verification commands would cover behavior no scenario checks (Q2). [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md:33] [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md:43] [SOURCE: .skilled/skills/sk-code/ROUTER.md:162] [SOURCE: .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:154]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/mcp-tooling/mcp-refero/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
+        ".skilled/skills/sk-code/ROUTER.md",
+        ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-code/sk-code-quality/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-3-1-sk-code-skilled-has-no-conversation-candidate-its-twelve-scenarios-are-routing-r",
+      "text": "sk-code-skilled has no conversation candidate: its twelve scenarios are routing-recall contracts where one prompt must emit one intent's resource set, plus the shared tier and surface-detection checks; OC-008 runs guards but reads their exit statuses in one pass, so Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:28] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:47] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md:62]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ]
+    },
+    {
+      "id": "finding-3-3-sk-design-diagram-keeps-eight-of-ten-scenarios-single-prompt-q1-for-the-judged-d",
+      "text": "sk-design-diagram keeps eight of ten scenarios single prompt (Q1 for the judged DIA-002 and CAP-001, Q4 for the rest), but DIA-003 needs updating to a conversation: its contract makes the approval halt load-bearing, says `style-guide.md` changes only after explicit approval, and instructs the agent to stop and wait, so a two-turn script that approves or declines is the only way a shell check can observe the write decision (Q2). [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:30] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:31] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md:49] [SOURCE: .skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md:202]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ]
+    },
+    {
+      "id": "finding-3-4-sk-design-fundamentals-has-no-conversation-candidate-its-twelve-scenarios-are-on",
+      "text": "sk-design-fundamentals has no conversation candidate: its twelve scenarios are one-prompt routing, value-scale, conflict and boundary checks, and SKD-022 expects the agent to choose the shadow system from how much work shadows do in the project rather than to ask the operator, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md:111] [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md:32] [SOURCE: .skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md:123]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-sk-design-hub-keeps-sd-005-sd-h05-and-sd-h10-single-prompt-as-routing-traces",
+      "text": "The sk-design hub keeps SD-005, SD-H05 and SD-H10 single prompt as routing traces (Q4), but SD-007 is an add candidate: its contract allows the router to \"explicitly ask the user to disambiguate, citing both candidate intents and their scores\", and no turn scripts the answer that would then select CHART or FLOWCHART (Q2). Add a companion conversation rather than convert the routing-gold file. [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md:27] [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:97] [SOURCE: .skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md:99]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md"
+      ]
+    },
+    {
+      "id": "finding-4-3-sk-create-agent-has-no-conversation-candidate-its-six-scenarios-are-component-ch",
+      "text": "sk-create-agent has no conversation candidate: its six scenarios are component-choice, runtime-contract and body-validation checks, each one prompt plus a validator or source read; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:138] [SOURCE: .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md:210]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-4-4-sk-create-benchmark-has-no-conversation-candidate-its-three-scenarios-are-family",
+      "text": "sk-create-benchmark has no conversation candidate: its three scenarios are family-routing and package-shape checks whose verdict is a selected family or a boundary statement from one prompt; Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:70] [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:86] [SOURCE: .skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md:58]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-4-1-sk-design-md-generator-has-no-conversation-candidate-its-eighteen-scenarios-are-",
+      "text": "sk-design-md-generator has no conversation candidate: its eighteen scenarios are pipeline-phase, selection, fallback, fidelity and provenance checks driven by one prompt or one command sequence; GUIDED-014 stops at the authoring boundary rather than asking a question, so Q2 does not apply and Q4 (or Q1 for the provenance judgments) keeps them single prompt. [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md:26] [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md:486] [SOURCE: .skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md:53]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-4-2-sk-prompt-has-one-update-candidate-sp-008-s-unknown-fallback-sets-needs-disambig",
+      "text": "sk-prompt has one update candidate: SP-008's UNKNOWN_FALLBACK sets `needs_disambiguation: true`, prints the four-item checklist, and fails if the router proceeds without prompting, so the answer to that checklist is the missing turn; update SP-008 to a conversation that sends a plain draft, answers the four items, and checks the chosen intent drives the enhancement (Q2). The other 27 scenarios stay single prompt under Q1 or Q4. [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md:307] [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md:30] [SOURCE: .skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md:60]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/guided-run/guided-run-smoke-lane.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/card-selection-proof.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/no-card-fallback.md",
+        ".skilled/skills/sk-design/sk-design-md-generator/manual-testing-playbook/procedure-card-contract/backend-preserving-direct-fallback.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-5-1-sk-create-changelog-has-one-add-candidate-chg-007-makes-the-workflow-ask-for-a-c",
+      "text": "sk-create-changelog has one add candidate: CHG-007 makes the workflow ask for a component choice when path and hint evidence do not resolve one, and no turn scripts the answer, so a companion conversation that names the component and checks the write path would cover the answer-dependent half (Q2). The other twelve scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md:27] [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md:29] [SOURCE: .skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md:117]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-5-2-sk-create-command-has-no-conversation-candidate-its-six-scenarios-inspect-an-aut",
+      "text": "sk-create-command has no conversation candidate: its six scenarios inspect an authored command's component choice, path, input gate, mode targets and router ownership; the gate and confirm-mode behavior belong to the command being authored, not to an exchange in the create-command session, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md:175] [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md:27] [SOURCE: .skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md:211]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-5-3-sk-create-diff-has-no-conversation-candidate-its-eleven-scenarios-run-create-dif",
+      "text": "sk-create-diff has no conversation candidate: its eleven scenarios run `create_diff.py` comparison, snapshot or safety commands and read the report or exit status in one pass; the \"oh, I never saved a baseline\" wording is a prompt detail, not a second exchange, so Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:161] [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:255] [SOURCE: .skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md:291]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-5-4-sk-create-feature-catalog-has-no-conversation-candidate-its-six-scenarios-are-ca",
+      "text": "sk-create-feature-catalog has no conversation candidate: its six scenarios are catalog structure, root-to-leaf parity, source-anchor, slug and validation checks, each one prompt plus a validator run; Q2 finds no second exchange and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:71] [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:103] [SOURCE: .skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md:59]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-5-5-sk-create-frontmatter-has-no-conversation-candidate-its-eleven-scenarios-resolve",
+      "text": "sk-create-frontmatter has no conversation candidate: its eleven scenarios resolve a document class, trim a description or derive a version, each from one prompt plus a check that would catch the silent failure; FMC-003's declined action is a refusal, not a question, so Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:199] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:237] [SOURCE: .skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md:135]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-command/manual-testing-playbook/input-and-modes/required-argument-gate.md",
+        ".skilled/skills/sk-doc/sk-create-diff/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-frontmatter/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-1-sk-create-goal-has-one-add-candidate-scg-005-seeds-an-undecided-decision-as-a-te",
+      "text": "sk-create-goal has one add candidate: SCG-005 seeds an undecided decision as a template placeholder, fails the goal check and stops the handoff, so a second turn that supplies the decision and checks the goal passes covers the completion path no scenario exercises (Q2). The other eight scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md:34] [SOURCE: .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md:236]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-2-sk-create-quality-control-has-no-conversation-candidate-its-six-scenarios-run-a-",
+      "text": "sk-create-quality-control has no conversation candidate: its six scenarios run a report-only audit, structure validation, batch snapshot, an authorized optimization or an evidence refusal, each one prompt plus script evidence; Q2 finds no second exchange and Q4 (or Q1 for the HVR judgment) keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:225] [SOURCE: .skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md:248]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-3-sk-create-readme-has-no-conversation-candidate-its-four-scenarios-are-readme-rou",
+      "text": "sk-create-readme has no conversation candidate: its four scenarios are README routing, a skip decision and two evidence-first authoring checks, each one prompt plus local evidence; Q2 does not apply and Q4 (or Q1 for the skip judgment) keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:137] [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:155] [SOURCE: .skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md:175]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-4-sk-create-repo-rule-has-one-add-candidate-rrd-004-s-restraint-refusal-explicitly",
+      "text": "sk-create-repo-rule has one add candidate: RRD-004's restraint refusal explicitly invites the user to name a present-day failure, and its triage says a later concrete failure makes the proposal re-testable, so a second turn that names the failure and checks the rule is authored covers the documented follow-up (Q2). The other fourteen scenarios stay single prompt under Q4. [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:33] [SOURCE: .skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md:72]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-5-sk-create-skill-has-no-conversation-candidate-its-eleven-scenarios-scaffold-a-st",
+      "text": "sk-create-skill has no conversation candidate: its eleven scenarios scaffold a standalone skill or build a parent hub and check metadata, registry/router parity, the ready boundary and the format report; each is one prompt plus generated-file evidence, so Q2 does not apply and Q4 keeps them single prompt. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:139] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:204] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md:96]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    },
+    {
+      "id": "finding-6-6-sk-create-with-human-voice-has-no-conversation-candidate-its-nine-scenarios-run-",
+      "text": "sk-create-with-human-voice has no conversation candidate: its nine scenarios run the mechanical scanner, the scope gate and a re-scan, and the judgment pass is a reader's one-prompt review; Q1 governs the judged reads and Q4 the scanner runs, so none needs a second exchange. [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:207] [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:263] [SOURCE: .skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md:337]",
+      "addedAtIteration": 6,
+      "sources": [
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
+        ".skilled/skills/sk-doc/sk-create-quality-control/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-readme/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
+        ".skilled/skills/sk-doc/sk-create-skill/manual-testing-playbook/manual-testing-playbook.md",
+        ".skilled/skills/sk-doc/sk-create-with-human-voice/manual-testing-playbook/manual-testing-playbook.md"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-234dbce9f465",
+      "text": "Converting cli-classifier's routing scenarios because they gate release. Q3's regression-gate clause still needs turns a shell check can decide; a one-send conversation would add setup cost without a new check.",
+      "contentHash": "234dbce9f465",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-58fd00a470a3",
+      "text": "Keyword scanning for \"session\", \"restart\" or \"compact\" alone. The terms appear in cli-jev and mcp-code-mode as command or server lifecycle language, not as runtime-session behavior.",
+      "contentHash": "58fd00a470a3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0fcac272332c",
+      "text": "Treating \"restart Code Mode\" in CM-021, CM-022 and CM-024 as the runner's `restart` action. The restart is an MCP-server process restart inside the task, not a runtime session restart, so a conversation turn cannot perform it.",
+      "contentHash": "0fcac272332c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-378fe4e1c7e3",
+      "text": "Converting sk-code-quality's CQ-009 trust sequence. Setting `skilled.trustRepoChecks` is an operator config action between two command runs, not a scripted answer in a conversation.",
+      "contentHash": "378fe4e1c7e3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-dacf92bed7db",
+      "text": "Package-level keyword scans for \"session\" or \"OAuth\" in the MCP transports. Both terms describe operator prerequisites, not runtime-session behavior.",
+      "contentHash": "dacf92bed7db",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-47b7745b73be",
+      "text": "Treating mcp-mobbin's or mcp-refero's \"fresh Code Mode session\" precondition as a runner `restart`. The runner restarts the subject runtime, not the Code Mode MCP server, and no check would observe the server reload.",
+      "contentHash": "47b7745b73be",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-be1048655fad",
+      "text": "Converting SD-007 itself into a conversation. It is a routing-gold file whose YAML contract and expected resources feed the typed-gold gate; a companion operator scenario keeps that gate intact while adding the answer turn.",
+      "contentHash": "be1048655fad",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3da08f0beda5",
+      "text": "Reading the sk-design hub root for scenario detail. It is only a 55-line index; the SD-007 contract lives in the category file and carries the disambiguation branch.",
+      "contentHash": "3da08f0beda5",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-449e8a8b3154",
+      "text": "Treating SKD-022 as an approval gate. The reference tells the agent to choose the shadow system from the project's needs, not to ask the operator.",
+      "contentHash": "449e8a8b3154",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-14e8995d194f",
+      "text": "Converting sk-prompt's SP-012 deliver-first scenario. Its rule explicitly forbids a clarifying question before the prompt, so a conversation would contradict the behavior it tests.",
+      "contentHash": "14e8995d194f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-87b37d645e04",
+      "text": "Searching sk-prompt for approval language. The only blocking branch is SP-008's `needs_disambiguation`; the rest of the skill is designed to deliver first and list open items.",
+      "contentHash": "87b37d645e04",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-52da6b6e0fdd",
+      "text": "Treating GUIDED-014's stop-before-validation as an approval gate. The wrapper halts because `DESIGN.md` does not exist; there is no operator answer that changes the next step.",
+      "contentHash": "52da6b6e0fdd",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-11e0b302ecba",
+      "text": "Converting sk-create-command's CMI-001 and CMI-002. Their gates and confirm modes are authored-file properties; the scenario does not run the command, so there is no live question to answer.",
+      "contentHash": "11e0b302ecba",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ae7eba26564e",
+      "text": "Reading every changelog scenario for an approval gate. CHG-007 is the only one that asks; the release scenarios either prepare text or refuse to publish.",
+      "contentHash": "ae7eba26564e",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-12adec9fd8c5",
+      "text": "Treating sk-create-diff SNAP-002's \"oh, I never saved a baseline\" as a conversational correction. The scenario deliberately runs `compare` then `compare-pair` as two commands in one operator session.",
+      "contentHash": "12adec9fd8c5",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-97df88682a33",
+      "text": "Converting RRD-001, RRD-002 or RRD-003. Their refusals name a destination or an owner; only RRD-004 explicitly invites the user to return with new evidence.",
+      "contentHash": "97df88682a33",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-ceb7293a80bb",
+      "text": "Looking for a question in the with-human-voice scanner. Its unchecked categories are for a reader, not for the runtime, so the judgment pass is Q1 and never a conversation.",
+      "contentHash": "ceb7293a80bb",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-6233aeb1c80a",
+      "text": "Treating SCG-007's session-goal redirect as a new conversation candidate. The first lineage already recommends the goal-injection companion family, and SCG-008's resend is that same shape; counting it again here would double-count the same behavior.",
+      "contentHash": "6233aeb1c80a",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 1,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 29,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "other": 48
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/devin/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [
+    {
+      "type": "event",
+      "event": "novelty_signal_inert",
+      "mode": "research",
+      "severity": "warning",
+      "metric": "newInfoRatio",
+      "run": 6,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "note": "newInfoRatio held flat at 1 across 3 iterations — the novelty signal is uninformative, so convergence and \"not exhausted\" claims derived from it are untrustworthy.",
+      "timestamp": "2026-11-02T18:21:57Z"
+    },
+    {
+      "type": "event",
+      "event": "trend_flatline",
+      "mode": "research",
+      "severity": "advisory",
+      "metric": "score",
+      "run": 6,
+      "window": 3,
+      "value": 1,
+      "sparkline": "▄▄▄",
+      "timestamp": "2026-11-02T18:21:57Z"
+    }
+  ],
+  "strategyWarnings": []
+}

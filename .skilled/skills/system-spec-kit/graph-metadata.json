@@ -76,7 +76,13 @@
     "hermes router copy",
     "sync-skills-hermes",
     "sweep temp path orphans",
-    "sweep stale mcp processes"
+    "sweep stale mcp processes",
+    "as a decision",
+    "decision record",
+    "operator decision",
+    "record my answer",
+    "decision capture",
+    "chat candidate"
   ],
   "derived": {
     "trigger_phrases": [

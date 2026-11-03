@@ -1,0 +1,3 @@
+$ grep -qix green answers.txt && echo green
+green
+[exit 0]

@@ -1,7 +1,7 @@
 ---
 title: "cli-pi: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance, and per-scenario validation files for the cli-pi skill."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # cli-pi: Manual Testing Playbook
@@ -39,7 +39,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 35 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
+This playbook provides 37 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 
@@ -170,7 +170,7 @@ This section records safe execution waves for the manual-testing package. It doe
 - Wave 2, isolated Pi startup and extension/package loading: `PI-007`, `PI-014`, `PI-015`, `PI-021`
 - Wave 3, cite-only MCP evidence: `PI-011`, `PI-012`
 - Wave 4, guarded negative and precedence checks: `PI-002`, `PI-016`
-- Wave 5, authenticated live traces (requires a provider credential and a probe fixture): `PI-020`
+- Wave 5, authenticated live traces (probe fixture for `PI-020`; isolated scratch projects for `PI-023` and `PI-024`): `PI-020`, `PI-023`, `PI-024`
 - Wave 6, paired-event advisory delivery in a disposable Pi layout: `PI-022`
 
 ### What Belongs In Scenario Files
@@ -232,14 +232,15 @@ This category uses the existing captured MCP evidence for native stdio connectio
 
 ---
 
-## 12. HOOK EXTENSION LAYER (`PI-014..PI-016`, `PI-020`)
+## 12. HOOK EXTENSION LAYER (`PI-014..PI-016`, `PI-020`, `PI-023`)
 
-This category validates project-local extension auto-discovery, registration against the real event names used by the bridges, the actual fail-open error discipline implemented by those bridges, and live firing of the session-lifecycle bridges against an authenticated provider.
+This category validates project-local extension auto-discovery, registration against the real event names used by the bridges, the actual fail-open error discipline implemented by those bridges, live firing of the session-lifecycle bridges against an authenticated provider, and session recovery after compaction.
 
 - `PI-014`: [Extension auto-discovery](hook-extension-layer/extension-auto-discovery.md)
 - `PI-015`: [Lifecycle event registration](hook-extension-layer/lifecycle-event-registration.md)
 - `PI-016`: [Fail-open guard discipline](hook-extension-layer/fail-open-guard-discipline.md)
 - `PI-020`: [Session-lifecycle bridges](hook-extension-layer/session-lifecycle-bridges.md)
+- `PI-023`: [Session-lifecycle bridges across compaction](hook-extension-layer/session-lifecycle-bridges-conversation.md)
 
 ---
 
@@ -260,11 +261,12 @@ This category applies the canonical CLEAR card before a non-trivial Pi dispatch 
 
 ---
 
-## 15. GOAL HOOK (`PI-021`)
+## 15. GOAL HOOK (`PI-021`, `PI-024`)
 
-This category validates Pi's complete session-bound goal path: native `/goal-pi` management, input/session-start/turn-end identity binding, two-session isolation, resume/new-session behavior, explicit legacy ownership, fallback safety, and `OPENCODE_GOAL_STATE_DIR` isolation.
+This category validates Pi's complete session-bound goal path: native `/goal-pi` management, input/session-start/turn-end identity binding, two-session isolation, resume/new-session behavior, explicit legacy ownership, fallback safety, `OPENCODE_GOAL_STATE_DIR` isolation, and goal recovery across a later task and restart.
 
 - `PI-021`: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)
+- `PI-024`: [Goal hook across a later turn and restart](goal-hook/goal-hook-conversation.md)
 
 ---
 
@@ -339,6 +341,7 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 - PI-015: [Lifecycle event registration](hook-extension-layer/lifecycle-event-registration.md)
 - PI-016: [Fail-open guard discipline](hook-extension-layer/fail-open-guard-discipline.md)
 - PI-020: [Session-lifecycle bridges](hook-extension-layer/session-lifecycle-bridges.md)
+- PI-023: [Session-lifecycle bridges across compaction](hook-extension-layer/session-lifecycle-bridges-conversation.md)
 
 ### GIT PREFLIGHT ADVISORY
 
@@ -356,6 +359,7 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 ### GOAL HOOK
 
 - PI-021: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)
+- PI-024: [Goal hook across a later turn and restart](goal-hook/goal-hook-conversation.md)
 
 ---
 

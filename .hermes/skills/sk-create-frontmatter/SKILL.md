@@ -10,8 +10,6 @@ version: 1.0.8.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-frontmatter, frontmatter, YAML frontmatter, frontmatter block, trigger_phrases, importance_tier, contextType, description budget, 4-part version, X.Y.Z.W, frontmatter versioning, document class, frontmatter validation -->
-
 # create-frontmatter
 
 `create-frontmatter` is the frontmatter workflow packet of the `sk-doc` family. It owns

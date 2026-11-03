@@ -1,0 +1,51 @@
+   OpenCode goal router specific   OpenCode goal router plugin   +                                                                                                                                      
+     ┃ Let me write:                                                                                                                                                                                    
+     ┃                                                                                                                                                          OpenCode goal router plugin             
+     ┃ GOAL-CONTEXT-CL008 Release-readiness checks: rebuild the six stale dist packages (@spec-kit/shared, @spec-kit/cli, @spec-kit/runtime, @utcp/code-                                                
+     ┃ mode-mcp, @spec-kit/system-skill-advisor, design-system-extractor), keep the goal packet bound with packet_budget=ok / resend_pending=false / fresh      Context                                 
+     ┃ store age, confirm the plugin is enabled and the advisor has recovered from its fail_open outage, and secure a passing verifier verdict with no          20,899 tokens                           
+     ┃ suppression or blockers.                                                                                                                                 2% used                                 
+     ┃                                                                                                                                                          $0.01 spent                             
+     ┃ That's one sentence. Maybe add "Confirmed: ...; pending: ..." — no, keep it.                                                                                                                     
+     ┃                                                                                                                                                          MCP                                     
+     ┃ Actually, "release-readiness checks" might specifically refer to the goal packet's own checks: bound, budget ok, resend cleared, verifier passing.       • code_mode                 Connected   
+     ┃ The dist rebuilds are project release readiness. Both are reasonable. I'll include both since the user asked generally and the environment provides                                              
+     ┃ both.                                                                                                                                                                                            
+     ┃                                                                                                                                                                                                  
+     ┃ I'll respond with that single sentence. Maybe add a small note that verifier is not_evaluated (evidence). Hmm, "Status output distinguishes                                                      
+     ┃ confirmed evidence from inference" from goal_prompt. I can add a terse second line: "Confirmed via tool output: bound, budget ok, resend cleared,                                                
+     ┃ store age 2 ms; pending: rebuilds and verifier." That's a second sentence but fine? The criterion says list in one concise sentence; extra status                                                
+     ┃ line is okay.                                                                                                                                                                                    
+     ┃                                                                                                                                                                                                  
+     ┃ I think a compact list is more useful to the user. Let me do:                                                                                                                                    
+     ┃                                                                                                                                                                                                  
+     ┃ GOAL-CONTEXT-CL008 Release-readiness checks: rebuild the six stale dist packages..., keep the packet bound..., confirm the plugin enabled and                                                    
+     ┃ advisor recovered..., and secure a passing verifier verdict with no suppression or blockers.                                                                                                     
+     ┃                                                                                                                                                                                                  
+     ┃ Then:                                                                                                                                                                                            
+     ┃                                                                                                                                                                                                  
+     ┃ - Confirmed: ...                                                                                                                                                                                 
+     ┃ - Pending: ...                                                                                                                                                                                   
+     ┃                                                                                                                                                                                                  
+     ┃ But that may be redundant. The user asked "List release-readiness checks." So the sentence itself is the list. I'll keep just the sentence, maybe                                                
+     ┃ with line breaks? In markdown I can format as a sentence with semicolons.                                                                                                                        
+     ┃                                                                                                                                                                                                  
+     ┃ Let me finalize with marker + sentence, then a short "Confirmed" vs "Pending" two-liner. Hmm. The instruction "one concise sentence" — I'll honor                                                
+     ┃ strictly: one sentence. Done. Keep it clean.                                                                                                                                                     
+     ┃                                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     GOAL-CONTEXT-CL008 Release-readiness checks: rebuild the six stale dist packages (@spec-kit/shared, @spec-kit/cli, @spec-kit/runtime, @utcp/code-                                                  
+     mode-mcp, @spec-kit/system-skill-advisor, design-system-extractor), keep the goal packet bound with packet_budget=ok and resend_pending=false on a                                                 
+     fresh store, confirm the goal plugin is enabled and the advisor has recovered from its fail_open outage, and obtain a passing verifier verdict with                                                
+     no continuation suppression or blockers.                                                                                                                                                           
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 11.3s · 209.1 tok/s                                                                                                ▄                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/beb6e7b1-5f31-42db-8cd9-…/scratchpad/live/scratch/cli-hooks-and-plugin__goal-opencode-plugin-conversation/opencode  20.9K (2%) · $0.01  ctrl+p commands    /…/cli-hooks-and-plugin__goa…/opencode  
+                                                                                                                                                                                                        
+

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor conversation scenarios",
+      "phase 14 system skill advisor",
+      "system skill advisor conversation plan",
+      "system skill advisor conversation tasks",
+      "system skill advisor phase implementation summary",
+      "CL-008 OpenCode later-turn goal injection",
+      "conversation scenario live-run validation"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "cl-008",
+      "opencode"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/live-runs/cli-hooks-and-plugin__goal-opencode-plugin-conversation/opencode/result.json",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "result.json",
+        "kind": "config",
+        "path": "scratch/live-runs/cli-hooks-and-plugin__goal-opencode-plugin-conversation/opencode/result.json",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-conversation-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "CL-007 checks goal injection inside one request, not that a later request carries the bound goal",
+    "created_at": "2026-11-02T18:33:56Z",
+    "last_save_at": "2026-11-03T07:08:46.420Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cd48cfa34c8f63d6c8d4ca109c86e0fa84129ce7b5256e35498429b7599276de",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7ae299109f418badd8708bad3b85379e55b55aed5443b76f66aafdf8c35c1b1a",
+      "plan.md": "0b1df77c88c89af4a607f40e6bb8e98807358b274e801fab9b0abeae02c18e85",
+      "tasks.md": "2abcfe457692c7c317607b6ace41b44c5fd9ffc935abad9a11a365820f9b939a",
+      "implementation-summary.md": "a661608c56955890e24bcbc1b2097454fe9bbe560c3e23c9a86b443d18f431d1"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,3 @@
+$ test "$(awk 'END { print NR }' answers.txt)" -eq 4 && echo 4
+4
+[exit 0]

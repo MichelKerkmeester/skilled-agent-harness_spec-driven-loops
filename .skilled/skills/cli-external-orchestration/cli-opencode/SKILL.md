@@ -5,8 +5,6 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.5.7.0
 ---
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, openai, minimax, minimax-coding-plan, minimax-m3, token-plan, llmgateway, glm-5.2, zai-coding-plan, z.ai-coding-plan, glm-coding-plan, deepseek-v4-flash-latest, deepseek-v4.1-flash, gpt-6-luna -->
-
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 
 > **CRITICAL: SELF-INVOCATION PROHIBITED**

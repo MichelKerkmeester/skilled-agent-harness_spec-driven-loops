@@ -69,12 +69,15 @@ Procedure:
    The dry run lists each pending answer that already sits as a row in a hand-written decision table, and in an apply or full-auto save a second run with `--apply` records that row's id as consumed, so the answer needs no entry.
    On every save, whether or not the packet has a record, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans`. It prints one `<count> <session-id>` line per session whose answers are still pending.
    Tell the operator about every listed session other than this one, with its count: those answers came from a session that ended without a save. Write no entries for them in this save.
-   Write one `operatorDecisions` entry for each pending answer, and for each chat candidate whose answer clearly replies to its question.
-   Several candidates can share one reply, so write an entry only for a question that reply answers.
+   Write one `operatorDecisions` entry for each pending answer.
+   Each chat candidate carries an `evidence` object: `questionType`, `optionMatch`, `contentOverlap`, `imperativeOpening` and `topicShift`. Read it before judging the candidate.
+   A reply that opens with a new task or a topic shift, shares no content word with the question and names no offered option usually starts new work rather than answering. `optionMatch: not_applicable` is no evidence against an answer.
+   The evidence informs the judgment and never replaces it. Several candidates can share one reply, so write an entry only for a question that reply answers.
+   End every chat entry's `why` with `Evidence: <questionType>, option <optionMatch>, overlap <contentOverlap>, imperative <imperativeOpening>, shift <topicShift>.`, after the stated reason, or after `Not stated.` when none was given. Pending tool answers carry no evidence and stay as they are.
    Leave out a candidate whose answer is null. The sweeps already drop process questions, so every pending record and candidate they print is a product question.
    Each entry carries the record's printed `key` as its `sourceKey`, a one-sentence `decided`, the `why` the session stated, `supersedes`, `carriedBy` and the exact `question`, `options` and `answer`.
    Fill `carriedBy` with what in the target packet carries the decision: requirement or task ids, files or anchors, such as `REQ-003, plan.md`.
-   Omit `why` when no reason was stated, so the record says `Not stated.` instead of a guess.
+   For a pending answer, omit `why` when no reason was stated, so the record says `Not stated.` instead of a guess. For a chat entry with no stated reason, write `why` as `Not stated.` followed by the `Evidence:` sentence.
    Mark an entry `scope: "cross-phase"` when it decides something for every phase of a phase parent.
 4. Choose one route category (listed under MODE ROUTING).
 5. In default mode, return the save plan without mutating.

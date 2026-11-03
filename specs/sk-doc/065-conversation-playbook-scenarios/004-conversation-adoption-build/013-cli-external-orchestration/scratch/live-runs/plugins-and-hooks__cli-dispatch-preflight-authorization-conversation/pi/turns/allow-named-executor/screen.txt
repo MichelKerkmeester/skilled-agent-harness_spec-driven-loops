@@ -1,0 +1,51 @@
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Right — a chained command (pwd; git ...; codex exec --help) reads as ambiguous, so the guard blocked the whole thing. Fine; I'll report and keep it simple. I have the result already; the 
+   user asked to show it. I can separately check git repo without any codex mention.                                                                                                                    
+                                                                                                                                                                                                        
+   Let me check the git repo status alone (no codex in the command).                                                                                                                                    
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash pwd; git rev-parse --show-toplevel 2>&1 | head -2                                                                                                                                           <1s 
+   └ Done (2 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Authorization cleared this time — the hook allowed the dispatch, so codex actually launched.                                                                                                         
+                                                                                                                                                                                                        
+   1. command -v codex                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     /opt/homebrew/bin/codex                                                                                                                                                                            
+                                                                                                                                                                                                        
+   2. codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null                               
+                                                                                                                                                                                                        
+     Reading additional input from stdin...                                                                                                                                                             
+     Not inside a trusted directory and --skip-git-repo-check was not specified.                                                                                                                        
+                                                                                                                                                                                                        
+   Exit code 1 — no READY. reply, codex refused to start.                                                                                                                                               
+                                                                                                                                                                                                        
+   Why it failed (environmental, not the guard):                                                                                                                                                        
+                                                                                                                                                                                                        
+   ◉ cwd is /private/.../scratch/plugins-and-hooks__cli-dispatch-preflight-authorization-conversation/pi, and git rev-parse confirms it is not a git repository (no parent repo either). codex exec     
+     refuses to run outside a trusted/git directory unless --skip-git-repo-check is passed.                                                                                                             
+   ◉ </dev/null still makes codex print Reading additional input from stdin... — that line is harmless, just noise before the trust check.                                                              
+                                                                                                                                                                                                        
+   One side note: my follow-up probe pwd; git rev-parse …; codex exec --help was itself blocked — Pi dispatch denied: the command does not prove one direct executor… — because a chained command isn't 
+   a single direct dispatch. So pinning down the flag needs an un-chained call.                                                                                                                         
+                                                                                                                                                                                                        
+   To get READY., either run from a git worktree, or add the skip flag:                                                                                                                                 
+                                                                                                                                                                                                        
+   │ Use cli-codex.                                                                                                                                                                                     
+   │ Run: codex exec --skip-git-repo-check --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null     
+                                                                                                                                                                                                        
+   Say the word and I'll rerun it in that form (keep it as one bare codex exec … command, no pwd/git chained in front, or the preflight will read it as ambiguous).                                     
+
+ ✻ Turn took 13s (Total time 1m 23s · 2 turns)                                                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+| DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 36.1k tok | $0.02
+

@@ -1,0 +1,51 @@
+   Shell command relaunch probe    Shell command probe             Shell command probe             Shell command probe           +                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    Shell command probe                     
+  ┃  Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.                                                                 █                                            
+  ┃                                                                                                                                                        █    Context                                 
+                                                                                                                                                           █    8,957 tokens                            
+  ┃                                                                                                                                                        █    1% used                                 
+  ┃  $ echo relaunch-probe                                                                                                                                 █    $0.00 spent                             
+  ┃                                                                                                                                                        █                                            
+  ┃  relaunch-probe                                                                                                                                        █    MCP                                     
+  ┃                                                                                                                                                        █    • code_mode                     Error   
+                                                                                                                                                           █                                            
+     DONE                                                                                                                                                  █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1.4s · 33.4 tok/s                                                                                                  █                                            
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █                                            
+  ┃  Quote exactly any line in your current system context that starts with [session-relaunch], or answer NONE.                                            █                                            
+  ┃                                                                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     ┃ Thought: 525ms                                                                                                                                      █                                            
+                                                                                                                                                           █                                            
+     ┃ The user asks to quote exactly any line starting with "session-relaunch" in my current system context. Let me check: there's a section starting     █                                            
+     ┃ with "session-relaunch Context is past the configured window..." That line begins with "session-relaunch". So I should quote it exactly.            █                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ The line: "session-relaunch Context is past the configured window (over 100% full). If the remaining work fits in a few more steps, finish it       █                                            
+     ┃ instead and skip these steps. Otherwise do these steps now, before any other work, so a fresh session continues before auto-compaction has to:"     █                                            
+     ┃                                                                                                                                                     █                                            
+     ┃ That's a line in my context. Quote it.                                                                                                              █                                            
+                                                                                                                                                           █                                            
+     session-relaunch Context is past the configured window (over 100% full). If the remaining work fits in a few more steps, finish it instead and skip   █                                            
+     these steps. Otherwise do these steps now, before any other work, so a fresh session continues before auto-compaction has to:                         █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1.1s · 183.0 tok/s                                                                                                 █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-…/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/plugin-utilization__session-relaunch/opencode  9.0K (1%) · $0.00  ctrl+p commands    /…/plugin-utilization__sessi…/opencode  
+                                                                                                                                                                                                        
+

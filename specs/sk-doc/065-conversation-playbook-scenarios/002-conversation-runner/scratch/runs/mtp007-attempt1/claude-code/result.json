@@ -1,0 +1,86 @@
+{
+  "runtime": "claude-code",
+  "verdict": "FAIL",
+  "blocker": "TIMEOUT",
+  "seed": 11,
+  "socket": "conv-85881-claude-code",
+  "session_id": "521fbce2-3cd8-4c8f-b3a7-92dbea6c1e00",
+  "project": "/private/tmp/conv-mtp007/claude-code",
+  "started_at": "2026-11-02T04:56:54.774Z",
+  "finished_at": "2026-11-02T05:03:38.957Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": true,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small,large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "TIMEOUT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "TIMEOUT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "TIMEOUT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "TIMEOUT",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

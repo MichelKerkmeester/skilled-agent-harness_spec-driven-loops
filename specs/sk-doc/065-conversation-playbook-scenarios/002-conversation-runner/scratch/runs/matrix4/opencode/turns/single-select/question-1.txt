@@ -1,0 +1,51 @@
+ ? Single-choice colour question +                                                                                                                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    Single-choice colour question           
+  ┃  Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the        █                                            
+  ┃  selected colour as one line to answers.txt.                                                                                                           █    Context                                 
+  ┃                                                                                                                                                        █    $0.00 spent                             
+                                                                                                                                                           █                                            
+     I'll ask the question first.                                                                                                                          █    MCP                                     
+                                                                                                                                                           █    • code_mode                     Error   
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Which colour do you choose?                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  1. red                                                                                                                                                                                             
+  ┃     Choose red                                                                                                                                                                                      
+  ┃  2. green                                                                                                                                                                                           
+  ┃     Choose green                                                                                                                                                                                    
+  ┃  3. blue                                                                                                                                                                                            
+  ┃     Choose blue                                                                                                                                                                                     
+  ┃  4. Type your own answer                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+  ┃  ↑↓ select  enter submit  esc dismiss                                                                                                                                                               
+  ┃                                                                                                                                                             /…/scratch…/conv-matrix4/opencode:main  
+                                                                                                                                                                                                        
+

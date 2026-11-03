@@ -1,7 +1,7 @@
 ---
 title: "MCP Code Mode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the mcp-code-mode skill."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # MCP Code Mode: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 27 deterministic scenarios across 8 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 28 deterministic scenarios across 8 categories validating the `mcp-code-mode` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 
@@ -474,7 +474,7 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 
 ## 14. PLUGINS AND HOOKS
 
-This category covers 1 scenario summary while the linked feature file remains the canonical execution contract.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contracts.
 
 ### mcp-route-guard | MCP Route Guard warns on native external MCP calls, allows internal/unrouteable ones
 
@@ -488,6 +488,19 @@ Expected signals: Step 1: unit-test suite reports 16/16 assertions passed with e
 
 #### Test Execution
 > **Feature File:** [mcp-route-guard](../manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md)
+
+### CM-027 | MCP Route Guard conversation follow-up
+
+#### Description
+Verify that a live native ClickUp MCP call attempt surfaces the route guard advisory and that the next user turn uses Code Mode for the same read-only lookup.
+
+#### Scenario Contract
+Prompt summary: I need a read-only list of my ClickUp teams. First try a native ClickUp MCP call directly. If a route guard returns an advisory, pause and tell me only the Code Mode manual name it recommends; do not complete the lookup yet.
+
+Expected signals: Turn 1 captures `clickup_official` from the Claude advisory or the OpenCode guard log after a native ClickUp tool attempt; turn 2 captures the actual Code Mode `call_tool_chain` invocation. The lookup is read-only.
+
+#### Test Execution
+> **Feature File:** [CM-027](../manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md)
 
 ---
 
@@ -562,3 +575,4 @@ The `/doctor:mcp` scenarios now live in the [central manual testing playbook](..
 ### PLUGINS AND HOOKS
 
 - mcp-route-guard: [MCP Route Guard](../manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md)
+- CM-027: [MCP Route Guard conversation follow-up](../manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md)

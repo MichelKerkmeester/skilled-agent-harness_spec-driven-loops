@@ -7,8 +7,6 @@ version: 1.1.7.0
 user-invocable: true
 ---
 
-<!-- Keywords: refero, refero-mcp, design-reference, ui-reference-search, refero-search-styles, refero-screens, refero-flows, mcp-remote, code-mode, sk-design-md-generator, design-reference-transport -->
-
 # Refero (mcp-refero)
 
 Search **Refero's library of real shipped UI**. The official repo reports 150,000+ app screens and 6,000+ user flows.

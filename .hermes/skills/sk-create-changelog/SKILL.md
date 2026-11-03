@@ -10,8 +10,6 @@ version: 1.3.11.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-changelog, /create:changelog, changelog, release notes, global changelog, packet-local changelog, semantic version, nested changelog -->
-
 # create-changelog
 
 `create-changelog` is the changelog-authoring workflow packet of the `sk-doc` family. It writes a global component changelog under `.skilled/changelog/{component}/v{VERSION}.md`. Packet-local (nested) changelogs under a spec packet's `changelog/` folder are deprecated, and this workflow no longer writes them (section 4).

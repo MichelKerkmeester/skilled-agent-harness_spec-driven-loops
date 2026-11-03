@@ -1,0 +1,51 @@
+• Ran printf '%s\n' 'green' >> answers.txt
+  └ (no output)
+
+• Appended green as one line to answers.txt.
+
+  Worked for 10s • 13:36
+
+
+› Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to answers.txt, separated by commas.
+
+
+• I’ll ask which sizes you want, then append the selected labels as a comma-separated line in answers.txt.
+
+• Questions 1/1 answered
+  • Which sizes do you want? Select all that apply.
+    answer: None of the above
+    note: small, large
+
+• Ran printf '%s\n' 'small, large' >> answers.txt
+  └ (no output)
+
+• Appended small, large as one comma-separated line to answers.txt.
+
+  Worked for 11s • 13:36
+
+
+› small, large
+
+
+• That selection is already recorded as small, large in answers.txt.
+
+  Worked for 3s • 13:36
+
+
+› Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.
+
+
+• I’ll ask for the colour and use the question tool’s free-text “Other” option for a custom answer.
+ 
+ 
+  Question 1/1 (1 unanswered)
+  What custom colour do you want? Choose a listed colour or enter another colour using Other.
+ 
+  › 1. red                Use red.                                                                                                                                                                    
+    2. green              Use green.
+    3. blue               Use blue.
+    4. None of the above  Optionally, add details in notes (tab)
+ 
+  tab to add notes | enter to submit answer | esc to interrupt
+ 
+

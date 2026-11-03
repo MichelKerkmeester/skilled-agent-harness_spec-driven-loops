@@ -1,0 +1,2 @@
+$ grep -Fq 'STATUS=OK ACTION=set' "$CONVERSATION_TURN_DIR/screen.txt" && jq -e --arg objective 'Read the checkpoint token from .goal-checkpoint and return it exactly.' '.objective == $objective and .runtime == "pi" and .status == "active"' .goal-state/*.json >/dev/null
+[exit 0]

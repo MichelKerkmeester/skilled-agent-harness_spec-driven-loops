@@ -1,0 +1,3 @@
+$ after=$(awk 'index($0, "Please remember the phrase") { after=1; seen=1; next } after { print } END { if (!seen) exit 2 }' "$CONVERSATION_TURN_DIR/history.txt") || { printf '%s\n' 'the echoed plant send is missing from history.txt'; exit 1; }; printf '%s\n' "$after" | grep -Fq 'silver fern 731' || { printf '%s\n' 'the reply never printed the phrase after the echoed send'; exit 1; }; printf '%s\n' 'the reply printed the planted phrase after the echoed send'
+the reply printed the planted phrase after the echoed send
+[exit 0]

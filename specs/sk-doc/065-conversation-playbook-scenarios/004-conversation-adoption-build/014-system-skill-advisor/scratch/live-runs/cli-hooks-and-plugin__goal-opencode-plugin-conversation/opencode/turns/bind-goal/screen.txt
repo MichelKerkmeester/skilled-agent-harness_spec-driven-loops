@@ -1,0 +1,51 @@
+   OpenCode goal router specific   OpenCode goal router plugin   +                                                                                                                                      
+     injection_preview="[active_goal:goal-d06e83d4-d521-4161-8120-935bef1ea939]\nstatus: active\nobjective: Execute specs/conversation-goal-probe/goal.md.                                              
+     \ncriteria:\n- Begin the next response with the exact marker GOAL-CONTEXT-CL008 and list release-readiness checks in one concise sentence.\                OpenCode goal router plugin             
+     ngoal_prompt:\nRole: Focused OpenCode execution agent operating under the active session goal.\nObjective: Execute specs/conversation-goal-probe/                                                  
+     goal.md.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree      Context                                 
+     changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the              19,315 tokens                           
+     concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when         2% used                                 
+     blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not        $0.01 spent                             
+     merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status                                                  
+     output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user         MCP                                     
+     changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe             • code_mode                 Connected   
+     action.\nlast_check: not_evaluated ; reason: none\nusage: tokens 0/none; time 0s; iteration 0\ndirective: Continue toward this objective. Before                                                   
+     ending, run the goal verifier or explain why it is blocked.\n[/active_goal]"                                                                                                                       
+     packet_budget=ok                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     Packet chat slice                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     # Goal                                                                                                                                                                                             
+     Provide concise release-readiness guidance.                                                                                                                                                        
+                                                                                                                                                                                                        
+     ## Completion Criteria                                                                                                                                                                             
+     - [ ] Begin the next response with the exact marker GOAL-CONTEXT-CL008 and list release-readiness checks in one concise sentence.                                                                  
+                                                                                                                                                                                                        
+     Resend confirmation (verbatim)                                                                                                                                                                     
+                                                                                                                                                                                                        
+     STATUS=OK ACTION=resent                                                                                                                                                                            
+     mutation=resent                                                                                                                                                                                    
+     goal_present=true                                                                                                                                                                                  
+     plugin_id=opencode-goal                                                                                                                                                                            
+     goal_id=goal-d06e83d4-d521-4161-8120-935bef1ea939                                                                                                                                                  
+     status=active                                                                                                                                                                                      
+     objective="Execute specs/conversation-goal-probe/goal.md. DONE WHEN: - Begin the next response with the exact marker GOAL-CONTEXT-CL008 and list                                                   
+     release-readiness checks in one concise sentence."                                                                                                                                                 
+     packet_path="specs/conversation-goal-probe"                                                                                                                                                        
+     packet_state=bound                                                                                                                                                                                 
+     packet_bound=true                                                                                                                                                                                  
+     resend_pending=false                                                                                                                                                                               
+                                                                                                                                                                                                        
+     The goal verifier is external and remains not_evaluated until the harness evaluates this response against the packet criteria; no blocker prevented                                                
+     binding or resending.                                                                                                                                                                              
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 25.4s · 187.4 tok/s                                                                                                ▄                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/beb6e7b1-5f31-42db-8cd9-…/scratchpad/live/scratch/cli-hooks-and-plugin__goal-opencode-plugin-conversation/opencode  19.3K (2%) · $0.01  ctrl+p commands    /…/cli-hooks-and-plugin__goa…/opencode  
+                                                                                                                                                                                                        
+

@@ -10,8 +10,6 @@ version: 1.2.4.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-with-human-voice, /create:with-human-voice, human voice rules, apply human voice, rewrite in human voice, make this sound human, sounds ai-generated, reads like ai wrote it, remove ai tells, ai writing tells, voice pass, hvr_scan -->
-
 # create-with-human-voice
 
 `create-with-human-voice` is the voice-application workflow packet of the `sk-doc` family.

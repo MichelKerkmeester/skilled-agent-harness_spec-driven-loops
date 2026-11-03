@@ -13,8 +13,6 @@ metadata:
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: github-actions, ci-workflow, workflow-yaml, path-filters, timeout-minutes, ci-job, concurrency, concurrency-group, sha-pinned-action, permissions, protected-workflow, required-status-check, composite-action, surface-evidence, sk-code -->
-
 # CI Surface: GitHub Actions Workflow Evidence
 
 **Domain evidence** for the repository's GitHub Actions workflows under `.github/workflows/`.

@@ -10,8 +10,6 @@ version: 1.9.13.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: codex, codex-cli, openai, cross-ai, web-search, code-generation, code-review, second-opinion, agent-delegation, gpt-5, session-management -->
-
 # Codex CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

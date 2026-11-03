@@ -1,0 +1,86 @@
+{
+  "runtime": "claude-code",
+  "verdict": "FAIL",
+  "blocker": "UNEXPECTED_QUESTION",
+  "seed": 11,
+  "socket": "conv-36333-claude-code",
+  "session_id": "afc85e8e-f7e9-4032-922f-9c3174c90c08",
+  "project": "/private/tmp/conv-mtp007/claude-code",
+  "started_at": "2026-11-02T05:05:17.473Z",
+  "finished_at": "2026-11-02T05:06:27.142Z",
+  "adapter": {
+    "bin": "claude",
+    "probed": true
+  },
+  "repo": {
+    "changed": true,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": "│ Your CLAUDE.md Gate 3 requires a spec-folder choice before writing answers.txt. Which documentation option applies?",
+      "observed": "",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "UNEXPECTED_QUESTION",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

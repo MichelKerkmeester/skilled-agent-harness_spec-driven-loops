@@ -1,0 +1,2 @@
+$ turn_output=$(awk 'index($0, "Reply only with CHECKPOINT.") { after=1; next } after { print }' "$CONVERSATION_TURN_DIR/screen.txt"); printf '%s\n' "$turn_output" | grep -Fq 'CHECKPOINT'
+[exit 0]

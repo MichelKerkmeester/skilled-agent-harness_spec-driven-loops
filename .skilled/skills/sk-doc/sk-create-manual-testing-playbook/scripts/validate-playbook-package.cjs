@@ -1,5 +1,12 @@
 #!/usr/bin/env node
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Playbook Package Validator
+// ───────────────────────────────────────────────────────────────────
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
@@ -8,6 +15,10 @@ const { exitIfValidationOff } = require('../../shared/scripts/validation-switch.
 // and CRLF rules stay identical across readers of the same documents. Field
 // parsing below stays line-level over the block it returns.
 const { parseFrontmatter } = require('@spec-kit/shared/frontmatter/parse-frontmatter.js');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const EXIT_OK = 0;
 const EXIT_VIOLATIONS = 1;
@@ -25,11 +36,46 @@ const REQUIRED_SECTIONS = [
   /^4\.\s+(?:REFERENCES|SOURCE FILES)$/i,
   /^5\.\s+SOURCE METADATA$/i,
 ];
+const CONVERSATION_RUNTIMES = ['claude-code', 'opencode', 'codex', 'pi', 'devin'];
+const CONVERSATION_ROOT_KEYS = new Set(['runtimes', 'setup', 'env', 'turns', 'trust_hooks']);
+const CONVERSATION_TURN_KEYS = new Set([
+  'id', 'send', 'action', 'delay_ms', 'timeout_ms', 'retry', 'questions', 'check',
+]);
+const CONVERSATION_QUESTION_KEYS = new Set(['match', 'answer', 'delay_ms', 'optional']);
+const CONVERSATION_ANSWER_KEYS = new Set(['select', 'other', 'reply', 'multi']);
+const CONVERSATION_FENCE_INFO = 'json conversation';
+const CONVERSATION_ACTIONS = Object.freeze(['restart', 'compact']);
+const CONVERSATION_ANSWER_CHOICES = Object.freeze(['select', 'other', 'reply']);
+
+// Backticked paths are report-only because code spans are not markdown links.
+// Placeholders, globs, absolute paths, scratch paths and runtime output are skipped.
+const BACKTICK_SPAN_RE = /`([^`\s]+)`/g;
+const BACKTICK_PATH_EXT_RE = new RegExp(
+  '\\.(?:md|mdx|ts|tsx|js|cjs|mjs|py|sh|json|jsonl|jsonc|ya?ml|'
+    + 'toml|txt|css|html|svg)$',
+  'i',
+);
+const RUNTIME_OUTPUT_SEGMENT_RE = /(?:^|\/)(?:scratch|research|review|iterations|tmp|out|dist|node_modules)\//;
+// /doctor:update keeps local records under .skilled/skills/.state/doctor-update/ and can read
+// legacy records under .skilled/release/ in an installed tree, so scenarios naming those files
+// cannot resolve them in the source repository.
+const INSTALLED_RELEASE_STATE_RE = /^\.skilled\/(?:skills\/\.state\/doctor-update|release)\//;
+// Find prompt labels in markdown with optional emphasis.
+const PROMPT_LABEL_LINE = new RegExp(
+  '^\\s*(?:[-*+]\\s+)?(?:\\*\\*|__|\\*|_)?\\s*'
+    + '(?:operator prompt|orchestrator prompt|exact prompt|prompt)\\s*'
+    + '(?:\\*\\*|__|\\*|_)?\\s*:\\s*(?:\\*\\*|__)?\\s*(.+?)\\s*$',
+  'i',
+);
 
 // Retained only so an existing import keeps resolving. It is NOT a fallback: an absent
 // warnPackages key means nothing is grandfathered, because defaulting to a populated list
 // would let deleting one manifest line silently return the whole fleet to non-blocking.
 const WARN_PACKAGE_IDS = Object.freeze([]);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. COMMAND LINE AND FILESYSTEM HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function usage() {
   return [
@@ -106,6 +152,10 @@ function isWithin(candidate, parent) {
   return relative === '' || (relative !== '..' && !relative.startsWith(`..${path.sep}`) && !path.isAbsolute(relative));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. FRONTMATTER AND SOURCE HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function extractFrontmatter(text) {
   // A scenario may carry an explanatory comment ahead of the fence; skip it so
   // the shared parser, which requires the fence on the first line, sees the block.
@@ -157,6 +207,502 @@ function lineNumberAt(text, offset) {
 function issue(code, filePath, message, severity = 'error', line = null) {
   return { code, severity, file: filePath, ...(line ? { line } : {}), message };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. CONVERSATION SCRIPT VALIDATION
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Locate conversation fences while preserving their source offsets and line numbers. */
+function conversationFenceBlocks(text) {
+  const lines = [];
+  let start = 0;
+  let lineNumber = 1;
+  while (start < text.length) {
+    const newline = text.indexOf('\n', start);
+    const rawEnd = newline < 0 ? text.length : newline;
+    const end = rawEnd > start && text[rawEnd - 1] === '\r' ? rawEnd - 1 : rawEnd;
+    lines.push({
+      value: text.slice(start, end),
+      start,
+      end,
+      nextStart: newline < 0 ? text.length : newline + 1,
+      lineNumber,
+    });
+    if (newline < 0) break;
+    start = newline + 1;
+    lineNumber += 1;
+  }
+
+  const blocks = [];
+  // Keep closed and unclosed blocks in the same diagnostic shape.
+  const addBlock = (openingLine, endLine, end, contentEnd, closed) => {
+    blocks.push({
+      block: {
+        startLine: openingLine.lineNumber,
+        endLine,
+        start: openingLine.start,
+        end,
+      },
+      content: text.slice(openingLine.nextStart, contentEnd),
+      closed,
+    });
+  };
+
+  for (let index = 0; index < lines.length;) {
+    const opening = /^ {0,3}(`{3,}|~{3,})(.*)$/.exec(lines[index].value);
+    if (!opening) {
+      index += 1;
+      continue;
+    }
+
+    const fence = opening[1];
+    const closingPattern = new RegExp(`^ {0,3}${fence[0]}{${fence.length},}[ \\t]*$`);
+    let closingIndex = index + 1;
+    while (closingIndex < lines.length && !closingPattern.test(lines[closingIndex].value)) closingIndex += 1;
+    if (closingIndex >= lines.length) {
+      if (fence[0] === '`' && opening[2].trim() === CONVERSATION_FENCE_INFO) {
+        const openingLine = lines[index];
+        addBlock(openingLine, lines[lines.length - 1].lineNumber, text.length, text.length, false);
+      }
+      break;
+    }
+
+    if (fence[0] === '`' && opening[2].trim() === CONVERSATION_FENCE_INFO) {
+      const openingLine = lines[index];
+      const closingLine = lines[closingIndex];
+      addBlock(openingLine, closingLine.lineNumber, closingLine.end, closingLine.start, true);
+    }
+    index = closingIndex + 1;
+  }
+  return blocks;
+}
+
+/** Identify JSON objects, excluding null and arrays. */
+function isConversationObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+/** Check own properties without accepting inherited keys. */
+function hasOwn(value, key) {
+  return Object.prototype.hasOwnProperty.call(value, key);
+}
+
+/** Map parsed JSON field paths to offsets so diagnostics can name source lines. */
+function conversationJsonLocations(source) {
+  const locations = new Map();
+  let cursor = 0;
+  const skipWhitespace = () => {
+    while (/\s/.test(source[cursor] || '')) cursor += 1;
+  };
+  const skipString = () => {
+    cursor += 1;
+    while (cursor < source.length) {
+      if (source[cursor] === '\\') cursor += 2;
+      else if (source[cursor++] === '"') break;
+    }
+  };
+  const readString = () => {
+    const start = cursor;
+    skipString();
+    return JSON.parse(source.slice(start, cursor));
+  };
+  const parseValue = (fieldPath) => {
+    skipWhitespace();
+    if (!locations.has(fieldPath)) locations.set(fieldPath, cursor);
+    if (source[cursor] === '{') {
+      cursor += 1;
+      skipWhitespace();
+      while (source[cursor] !== '}') {
+        const keyOffset = cursor;
+        const key = readString();
+        const childPath = fieldPath ? `${fieldPath}.${key}` : key;
+        locations.set(childPath, keyOffset);
+        skipWhitespace();
+        cursor += 1;
+        parseValue(childPath);
+        skipWhitespace();
+        if (source[cursor] !== ',') break;
+        cursor += 1;
+        skipWhitespace();
+      }
+      cursor += 1;
+      return;
+    }
+    if (source[cursor] === '[') {
+      cursor += 1;
+      skipWhitespace();
+      let itemIndex = 0;
+      while (source[cursor] !== ']') {
+        const itemPath = `${fieldPath}[${itemIndex}]`;
+        parseValue(itemPath);
+        itemIndex += 1;
+        skipWhitespace();
+        if (source[cursor] !== ',') break;
+        cursor += 1;
+        skipWhitespace();
+      }
+      cursor += 1;
+      return;
+    }
+    if (source[cursor] === '"') {
+      skipString();
+      return;
+    }
+    while (cursor < source.length && !/[\s,\]}]/.test(source[cursor])) cursor += 1;
+  };
+  parseValue('');
+  return locations;
+}
+
+/** Resolve a field path to its nearest source line, falling back to the block. */
+function conversationLineForPath(fieldPath, source, locations, block) {
+  let currentPath = fieldPath;
+  while (currentPath && !locations.has(currentPath)) {
+    const parentIndex = Math.max(currentPath.lastIndexOf('.'), currentPath.lastIndexOf('['));
+    currentPath = parentIndex < 0 ? '' : currentPath.slice(0, parentIndex);
+  }
+  const offset = locations.get(currentPath || '');
+  return block.startLine + (offset === undefined ? 1 : lineNumberAt(source, offset));
+}
+
+/** Append one normalized conversation-script diagnostic. */
+function addConversationFinding(findings, fieldPath, message, lineForPath) {
+  findings.push({ path: fieldPath, message, line: lineForPath(fieldPath) });
+}
+
+/** Report keys that are outside the schema for the current object. */
+function addUnknownConversationKeys(value, allowedKeys, parentPath, findings, lineForPath) {
+  for (const key of Object.keys(value)) {
+    if (!allowedKeys.has(key)) {
+      const fieldPath = parentPath ? `${parentPath}.${key}` : key;
+      addConversationFinding(findings, fieldPath, 'unknown key', lineForPath);
+    }
+  }
+}
+
+/** Check a delay value against the supported integer and two-value range forms. */
+function validateConversationDelay(value, fieldPath, findings, lineForPath) {
+  const isValidInteger = (number) => Number.isInteger(number) && number >= 0;
+  const isValidRange = Array.isArray(value)
+    && value.length === 2
+    && isValidInteger(value[0])
+    && isValidInteger(value[1])
+    && value[0] <= value[1];
+  if (!isValidInteger(value) && !isValidRange) {
+    addConversationFinding(
+      findings,
+      fieldPath,
+      'must be a non-negative integer or a [min, max] integer range',
+      lineForPath,
+    );
+  }
+}
+
+/** Validate answer values and enforce the single-choice answer contract. */
+function validateConversationAnswer(answer, fieldPath, findings, lineForPath) {
+  if (!isConversationObject(answer)) {
+    addConversationFinding(findings, fieldPath, 'must be an object', lineForPath);
+    return;
+  }
+  addUnknownConversationKeys(answer, CONVERSATION_ANSWER_KEYS, fieldPath, findings, lineForPath);
+  const choices = CONVERSATION_ANSWER_CHOICES.filter((key) => hasOwn(answer, key));
+  if (choices.length !== 1) {
+    addConversationFinding(findings, fieldPath, 'exactly one of select, other, or reply is required', lineForPath);
+  }
+  if (hasOwn(answer, 'multi')) {
+    if (!hasOwn(answer, 'select')) {
+      addConversationFinding(
+        findings,
+        `${fieldPath}.multi`,
+        'multi is only allowed beside select',
+        lineForPath,
+      );
+    }
+    if (typeof answer.multi !== 'boolean') {
+      addConversationFinding(findings, `${fieldPath}.multi`, 'must be a boolean', lineForPath);
+    }
+  }
+  if (hasOwn(answer, 'select')) {
+    if (!Array.isArray(answer.select) || answer.select.length === 0) {
+      addConversationFinding(
+        findings,
+        `${fieldPath}.select`,
+        'must be a non-empty array of non-empty strings',
+        lineForPath,
+      );
+    } else {
+      answer.select.forEach((label, index) => {
+        if (typeof label !== 'string' || !label.trim()) {
+          addConversationFinding(findings, `${fieldPath}.select[${index}]`, 'must be a non-empty string', lineForPath);
+        }
+      });
+      if (answer.select.length >= 2 && answer.multi !== true) {
+        addConversationFinding(findings, `${fieldPath}.select`, 'two or more labels require multi: true', lineForPath);
+      }
+    }
+  }
+  for (const key of ['other', 'reply']) {
+    if (hasOwn(answer, key) && (typeof answer[key] !== 'string' || !answer[key].trim())) {
+      addConversationFinding(findings, `${fieldPath}.${key}`, 'must be a non-empty string', lineForPath);
+    }
+  }
+}
+
+/** Validate a question match, optional timing and required answer. */
+function validateConversationQuestion(question, fieldPath, findings, lineForPath) {
+  if (!isConversationObject(question)) {
+    addConversationFinding(findings, fieldPath, 'must be an object', lineForPath);
+    return;
+  }
+  addUnknownConversationKeys(question, CONVERSATION_QUESTION_KEYS, fieldPath, findings, lineForPath);
+  if (!hasOwn(question, 'match')) {
+    addConversationFinding(findings, `${fieldPath}.match`, 'is required and must be a string', lineForPath);
+  } else if (typeof question.match !== 'string') {
+    addConversationFinding(findings, `${fieldPath}.match`, 'must be a string', lineForPath);
+  } else if (!question.match.trim()) {
+    addConversationFinding(findings, `${fieldPath}.match`, 'must be a non-empty string', lineForPath);
+  } else {
+    try { new RegExp(question.match); } catch (error) {
+      addConversationFinding(
+        findings,
+        `${fieldPath}.match`,
+        `invalid regular expression: ${error.message}`,
+        lineForPath,
+      );
+    }
+  }
+  if (hasOwn(question, 'delay_ms')) {
+    validateConversationDelay(question.delay_ms, `${fieldPath}.delay_ms`, findings, lineForPath);
+  }
+  if (hasOwn(question, 'optional') && typeof question.optional !== 'boolean') {
+    addConversationFinding(findings, `${fieldPath}.optional`, 'must be a boolean', lineForPath);
+  }
+  if (!hasOwn(question, 'answer')) {
+    addConversationFinding(findings, `${fieldPath}.answer`, 'is required and must be an object', lineForPath);
+  } else {
+    validateConversationAnswer(question.answer, `${fieldPath}.answer`, findings, lineForPath);
+  }
+}
+
+/** Validate one turn and record each field-level contract violation. */
+function validateConversationTurn(turn, index, firstBehaviorIndex, ids, findings, lineForPath) {
+  const fieldPath = `turns[${index}]`;
+  if (!isConversationObject(turn)) {
+    addConversationFinding(findings, fieldPath, 'must be an object', lineForPath);
+    return;
+  }
+  addUnknownConversationKeys(turn, CONVERSATION_TURN_KEYS, fieldPath, findings, lineForPath);
+  if (hasOwn(turn, 'id')) {
+    if (typeof turn.id !== 'string' || !turn.id.trim()) {
+      addConversationFinding(findings, `${fieldPath}.id`, 'must be a non-empty string', lineForPath);
+    } else if (ids.has(turn.id)) {
+      addConversationFinding(findings, `${fieldPath}.id`, 'must be unique across turns', lineForPath);
+    } else {
+      ids.add(turn.id);
+    }
+  }
+
+  const hasSend = hasOwn(turn, 'send');
+  const hasAction = hasOwn(turn, 'action');
+  if (hasSend && hasAction) {
+    addConversationFinding(findings, fieldPath, 'send and action must not both be present', lineForPath);
+  }
+  if (index === firstBehaviorIndex && hasAction && !hasSend) {
+    addConversationFinding(
+      findings,
+      `${fieldPath}.action`,
+      'the first turn with send or action must have send',
+      lineForPath,
+    );
+  }
+  if (hasSend && (typeof turn.send !== 'string' || /[\r\n]/.test(turn.send))) {
+    addConversationFinding(findings, `${fieldPath}.send`, 'must be a string without newlines', lineForPath);
+  }
+  if (hasAction && !CONVERSATION_ACTIONS.includes(turn.action)) {
+    addConversationFinding(findings, `${fieldPath}.action`, 'must be "restart" or "compact"', lineForPath);
+  }
+  if (hasOwn(turn, 'delay_ms')) {
+    validateConversationDelay(turn.delay_ms, `${fieldPath}.delay_ms`, findings, lineForPath);
+  }
+  if (hasOwn(turn, 'timeout_ms') && (!Number.isInteger(turn.timeout_ms) || turn.timeout_ms < 1)) {
+    addConversationFinding(
+      findings,
+      `${fieldPath}.timeout_ms`,
+      'must be an integer greater than or equal to 1',
+      lineForPath,
+    );
+  }
+  if (hasOwn(turn, 'retry') && turn.retry !== 0 && turn.retry !== 1) {
+    addConversationFinding(findings, `${fieldPath}.retry`, 'must be 0 or 1', lineForPath);
+  }
+  if (!hasOwn(turn, 'check')) {
+    addConversationFinding(findings, `${fieldPath}.check`, 'is required and must be a non-empty string', lineForPath);
+  } else if (typeof turn.check !== 'string' || !turn.check.trim()) {
+    addConversationFinding(findings, `${fieldPath}.check`, 'must be a non-empty string', lineForPath);
+  }
+  if (hasOwn(turn, 'questions')) {
+    if (!Array.isArray(turn.questions)) {
+      addConversationFinding(findings, `${fieldPath}.questions`, 'must be an array', lineForPath);
+    } else {
+      turn.questions.forEach((question, questionIndex) => {
+        validateConversationQuestion(question, `${fieldPath}.questions[${questionIndex}]`, findings, lineForPath);
+      });
+    }
+  }
+}
+
+/** Validate the parsed root object and each nested conversation field. */
+function validateConversationScriptObject(script, source, block) {
+  const findings = [];
+  if (!isConversationObject(script)) {
+    const offset = source.search(/\S/);
+    findings.push({
+      path: '(block)',
+      message: 'top level must be an object',
+      line: block.startLine + lineNumberAt(source, offset < 0 ? 0 : offset),
+    });
+    return findings;
+  }
+
+  const locations = conversationJsonLocations(source);
+  const lineForPath = (fieldPath) => conversationLineForPath(fieldPath, source, locations, block);
+  addUnknownConversationKeys(script, CONVERSATION_ROOT_KEYS, '', findings, lineForPath);
+  if (Object.keys(script).length === 0) {
+    addConversationFinding(findings, 'turns', 'must be a non-empty array', lineForPath);
+    return findings;
+  }
+
+  if (!hasOwn(script, 'runtimes')) {
+    addConversationFinding(findings, 'runtimes', 'is required', lineForPath);
+  } else if (!Array.isArray(script.runtimes) || script.runtimes.length === 0) {
+    addConversationFinding(findings, 'runtimes', 'must be a non-empty array', lineForPath);
+  } else {
+    script.runtimes.forEach((runtime, index) => {
+      if (typeof runtime !== 'string') {
+        addConversationFinding(findings, `runtimes[${index}]`, 'must be a string', lineForPath);
+      } else if (!CONVERSATION_RUNTIMES.includes(runtime)) {
+        addConversationFinding(findings, `runtimes[${index}]`, `unsupported runtime: ${runtime}`, lineForPath);
+      }
+    });
+  }
+
+  if (hasOwn(script, 'setup')) {
+    if (!Array.isArray(script.setup)) {
+      addConversationFinding(findings, 'setup', 'must be an array of strings', lineForPath);
+    } else {
+      script.setup.forEach((command, index) => {
+        if (typeof command !== 'string') {
+          addConversationFinding(findings, `setup[${index}]`, 'must be a string', lineForPath);
+        }
+      });
+    }
+  }
+  if (hasOwn(script, 'trust_hooks') && typeof script.trust_hooks !== 'boolean') {
+    addConversationFinding(findings, 'trust_hooks', 'must be a boolean', lineForPath);
+  }
+  if (hasOwn(script, 'env')) {
+    if (!isConversationObject(script.env)) {
+      addConversationFinding(findings, 'env', 'must be an object', lineForPath);
+    } else {
+      for (const [key, value] of Object.entries(script.env)) {
+        if (typeof value !== 'string') addConversationFinding(findings, `env.${key}`, 'must be a string', lineForPath);
+      }
+    }
+  }
+
+  if (!hasOwn(script, 'turns') || !Array.isArray(script.turns) || script.turns.length === 0) {
+    const message = hasOwn(script, 'turns')
+      ? 'must be a non-empty array'
+      : 'is required and must be a non-empty array';
+    addConversationFinding(findings, 'turns', message, lineForPath);
+  } else {
+    const firstBehaviorIndex = script.turns.findIndex((turn) => isConversationObject(turn)
+      && (hasOwn(turn, 'send') || hasOwn(turn, 'action')));
+    const ids = new Set();
+    script.turns.forEach((turn, index) => {
+      validateConversationTurn(turn, index, firstBehaviorIndex, ids, findings, lineForPath);
+    });
+  }
+  return findings;
+}
+
+/**
+ * Return field-level diagnostics so malformed conversation blocks are actionable.
+ *
+ * @param {string} text - Scenario markdown content.
+ * @returns {{script: (Object|Array|string|number|boolean|null),
+ * findings: Array<{path: string, message: string, line: number}>,
+ * block: ({startLine: number, endLine: number, start: number, end: number}|null)}}
+ * Parsed script, findings and source block.
+ */
+function parseConversationScript(text) {
+  if (typeof text !== 'string') throw new TypeError('conversation source must be a string');
+  const blocks = conversationFenceBlocks(text);
+  if (blocks.length === 0) return { script: null, findings: [], block: null };
+
+  const { block, content } = blocks[0];
+  const findings = [];
+  if (!blocks[0].closed) {
+    findings.push({
+      path: '(block)',
+      message: 'block has no closing fence',
+      line: block.startLine,
+    });
+    return { script: null, findings, block };
+  }
+  if (blocks.length > 1) {
+    findings.push({
+      path: '(block)',
+      message: `a second ${CONVERSATION_FENCE_INFO} block is not allowed`,
+      line: blocks[1].block.startLine,
+    });
+  }
+
+  let script;
+  try {
+    script = JSON.parse(content);
+  } catch (error) {
+    const position = /position\s+(\d+)/i.exec(error.message);
+    const offset = position ? Number(position[1]) : 0;
+    findings.push({
+      path: '(block)',
+      message: `invalid JSON: ${error.message}`,
+      line: block.startLine + lineNumberAt(content, offset),
+    });
+    return { script: null, findings, block };
+  }
+
+  findings.push(...validateConversationScriptObject(script, content, block));
+  return { script, findings, block };
+}
+
+/** Blank conversation fences while preserving offsets for prose checks. */
+function maskConversationBlocks(text) {
+  const blocks = conversationFenceBlocks(text);
+  let masked = text;
+  for (let index = blocks.length - 1; index >= 0; index -= 1) {
+    const { start, end } = blocks[index].block;
+    const replacement = masked.slice(start, end).replace(/[^\r\n]/g, ' ');
+    masked = `${masked.slice(0, start)}${replacement}${masked.slice(end)}`;
+  }
+  return masked;
+}
+
+/** Convert parser findings into the validator's standard issue shape. */
+function conversationChecks(text, relPath) {
+  const { findings } = parseConversationScript(text);
+  return findings.map((finding) => issue(
+    'CONVERSATION_SCRIPT_INVALID',
+    relPath,
+    `${finding.path}: ${finding.message}`,
+    'error',
+    finding.line,
+  ));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. SCENARIO CONTENT CHECKS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function sectionChecks(text, relPath) {
   const headings = [];
@@ -290,6 +836,10 @@ function verdictChecks(text, relPath) {
   return errors;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. PATH AND INDEX CHECKS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function filenameChecks(absPath, playbookRoot, relPath) {
   const errors = [];
   const relative = path.relative(playbookRoot, absPath).split(path.sep);
@@ -368,17 +918,6 @@ function pathChecks(text, absPath, repoRoot, relPath) {
   return errors;
 }
 
-// Backticked repo paths in a scenario or a root playbook are checked report-only. A scenario that tells the
-// operator to read a moved file fails at run time, yet the link check never sees it, because
-// it names the file in code spans rather than as a link. Placeholders, globs, absolute and
-// scratch paths and runtime output are expected not to resolve, so they are skipped.
-const BACKTICK_SPAN_RE = /`([^`\s]+)`/g;
-const BACKTICK_PATH_EXT_RE = /\.(?:md|mdx|ts|tsx|js|cjs|mjs|py|sh|json|jsonl|jsonc|ya?ml|toml|txt|css|html|svg)$/i;
-const RUNTIME_OUTPUT_SEGMENT_RE = /(?:^|\/)(?:scratch|research|review|iterations|tmp|out|dist|node_modules)\//;
-// /doctor:update keeps local records under .skilled/skills/.state/doctor-update/ and can read
-// legacy records under .skilled/release/ in an installed tree, so scenarios naming those files
-// cannot resolve them in the source repository.
-const INSTALLED_RELEASE_STATE_RE = /^\.skilled\/(?:skills\/\.state\/doctor-update|release)\//;
 
 function isExpectedUnresolved(token) {
   return /[<>{}*?$[\]|]/.test(token)
@@ -483,18 +1022,10 @@ function extractRootIndexLinks(rootText, rootPath, playbookRoot, repoRoot) {
   return { links, problems };
 }
 
-/**
- * Warn when a scenario states its prompt differently in different places.
- *
- * The Prompt Synchronization Gate names the copies that must agree: the structured
- * prompt in SCENARIO CONTRACT, the execution table's Exact Prompt cell and the root
- * summary's prompt. A conversation chain's Turn 1 input is the same prompt again, and it
- * is the copy a scenario runner actually sends, so it is held to the same text. A copy is
- * compared only when it is present, because a missing prompt is already its own
- * violation. The finding is a warning so the existing corpus can be brought into line
- * without the check first turning every package red.
- */
-const PROMPT_LABEL_LINE = /^\s*(?:[-*+]\s+)?(?:\*\*|__|\*|_)?\s*(?:operator prompt|orchestrator prompt|exact prompt|prompt)\s*(?:\*\*|__|\*|_)?\s*:\s*(?:\*\*|__)?\s*(.+?)\s*$/i;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 8. PROMPT SYNCHRONIZATION
+// ─────────────────────────────────────────────────────────────────────────────
 
 function promptValue(raw) {
   const text = raw.replace(/<br\s*\/?>/gi, ' ').replace(/\\\|/g, '|').trim();
@@ -611,13 +1142,27 @@ function rootPromptIndex(rootText, rootPath, playbookRoot) {
   return index;
 }
 
+/**
+ * Warn when present copies of a scenario's structured prompt disagree.
+ *
+ * The execution table, conversation chain, root summary and script send must
+ * match the contract prompt. Missing copies have their own violation.
+ */
 function promptSyncChecks(text, relPath, rootPrompt) {
   const contract = contractPrompt(text);
   if (!contract || isTemplateSlot(contract.value)) return [];
+  const conversation = parseConversationScript(text);
+  const firstSend = Array.isArray(conversation.script?.turns)
+    ? conversation.script.turns.find((turn) => isConversationObject(turn) && hasOwn(turn, 'send'))
+    : null;
+  const conversationPrompt = firstSend && conversation.block
+    ? { value: firstSend.send, line: conversation.block.startLine }
+    : null;
   const copies = [
     ["the execution table's Exact Prompt", tablePrompt(text), relPath],
     ["the conversation chain's Turn 1 input", chainTurnOnePrompt(text), relPath],
     ['the root summary prompt', rootPrompt || null, ROOT_FILENAME],
+    ["the conversation script's first send", conversationPrompt, relPath],
   ];
   return copies
     .filter(([, copy]) => copy && !isTemplateSlot(copy.value) && copy.value !== contract.value)
@@ -629,6 +1174,10 @@ function promptSyncChecks(text, relPath, rootPrompt) {
       copy.line,
     ));
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. PACKAGE DISCOVERY
+// ─────────────────────────────────────────────────────────────────────────────
 
 function loadManifest(manifestPath, repoRoot) {
   if (!fs.existsSync(manifestPath)) throw new Error(`manifest not found: ${manifestPath}`);
@@ -725,6 +1274,10 @@ function packageId(playbookRoot, skillsRoot, repoRoot) {
   return path.basename(playbookRoot);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. PACKAGE VALIDATION AND REPORTING
+// ─────────────────────────────────────────────────────────────────────────────
+
 function validateScenario(absPath, playbookRoot, repoRoot) {
   const relPath = path.relative(playbookRoot, absPath).split(path.sep).join('/');
   let text;
@@ -732,17 +1285,21 @@ function validateScenario(absPath, playbookRoot, repoRoot) {
   const frontmatter = extractFrontmatter(text);
   const featureId = extractFeatureId(text, frontmatter);
   const errors = [];
+  const maskedConversationText = maskConversationBlocks(text);
   if (!frontmatter) errors.push(issue('FRONTMATTER_MISSING', relPath, 'scenario frontmatter is missing'));
   else {
     if (!frontmatter.fields.title) errors.push(issue('FRONTMATTER_TITLE_MISSING', relPath, 'frontmatter title is missing'));
-    if (!frontmatter.fields.description) errors.push(issue('FRONTMATTER_DESCRIPTION_MISSING', relPath, 'frontmatter description is missing'));
+    if (!frontmatter.fields.description) {
+      errors.push(issue('FRONTMATTER_DESCRIPTION_MISSING', relPath, 'frontmatter description is missing'));
+    }
   }
   errors.push(...sectionChecks(text, relPath));
   errors.push(...requiredContentChecks(text, relPath, frontmatter, featureId));
-  errors.push(...verdictChecks(text, relPath));
+  errors.push(...conversationChecks(text, relPath));
+  errors.push(...verdictChecks(maskedConversationText, relPath));
   errors.push(...filenameChecks(absPath, playbookRoot, relPath));
   errors.push(...pathChecks(text, absPath, repoRoot, relPath));
-  errors.push(...evergreenChecks(text, relPath));
+  errors.push(...evergreenChecks(maskedConversationText, relPath));
   errors.push(...placeholderChecks(text, relPath));
   return errors;
 }
@@ -866,28 +1423,10 @@ function formatText(report) {
   return lines.join('\n');
 }
 
-module.exports = {
-  EXIT_OK,
-  EXIT_VIOLATIONS,
-  EXIT_USAGE,
-  CONTRACT,
-  RESULT_PERSISTENCE_MARKER,
-  REQUIRED_OUTCOME_VOCABULARY,
-  WARN_PACKAGE_IDS,
-  REQUIRED_SECTIONS,
-  parseArgs,
-  extractFrontmatter,
-  hasRoutingGoldSignature,
-  executionContractChecks,
-  extractFeatureId,
-  walkMarkdown,
-  loadManifest,
-  validateScenario,
-  isRoutingGoldScenario,
-  validatePackage,
-  runValidation,
-  formatText,
-};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. COMMAND LINE ENTRY POINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   try {
@@ -913,3 +1452,34 @@ if (require.main === module) {
     process.exit(EXIT_USAGE);
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 12. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+module.exports = {
+  EXIT_OK,
+  EXIT_VIOLATIONS,
+  EXIT_USAGE,
+  CONTRACT,
+  RESULT_PERSISTENCE_MARKER,
+  REQUIRED_OUTCOME_VOCABULARY,
+  CONVERSATION_RUNTIMES,
+  CONVERSATION_FENCE_INFO,
+  CONVERSATION_ACTIONS,
+  WARN_PACKAGE_IDS,
+  REQUIRED_SECTIONS,
+  parseArgs,
+  extractFrontmatter,
+  hasRoutingGoldSignature,
+  executionContractChecks,
+  parseConversationScript,
+  extractFeatureId,
+  walkMarkdown,
+  loadManifest,
+  validateScenario,
+  isRoutingGoldScenario,
+  validatePackage,
+  runValidation,
+  formatText,
+};

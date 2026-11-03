@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "doctor playbook conversation scenarios",
+      "phase 4 doctor playbook",
+      "doctor playbook conversation plan",
+      "doctor playbook conversation tasks"
+    ],
+    "key_topics": [
+      "doctor",
+      "playbook",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "menu",
+      "four",
+      "approval",
+      "flows",
+      "branch"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+      ".skilled/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-target-menu.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-hooks-switch-gate.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-standards-change-rule.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `/doctor` menu and four approval flows branch on the operator's answer, and no scenario proves that a no writes nothing while a yes applies exactly one change",
+    "created_at": "2026-11-02T18:33:49Z",
+    "last_save_at": "2026-11-02T18:37:45.436Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:a3fbf38f8f8c70c0fb2cab449398a673510046d74ade5037b7bda2cb41a2465a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cfc84a8c868f6e51031697d073976559096210e6e51bf3364b351816c2058ad0",
+      "plan.md": "735e85d74ed9ae1b61ee2043a126bee840aae77dabb7fc19267ec329f10cc12d",
+      "tasks.md": "4d27526a5539706c2e36c6bfc323e098890953582973dc0ccb4b40f5ab8c10c1"
+    },
+    "last_active_at": null
+  }
+}

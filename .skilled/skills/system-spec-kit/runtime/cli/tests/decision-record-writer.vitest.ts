@@ -9,9 +9,11 @@
 // Each case builds its own packet in a temp folder, so every write can be
 // compared against the bytes the file started from.
 
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
@@ -19,10 +21,16 @@ import {
   DecisionRecordWriteError,
   detectLevel,
   readVerbatimAppendix,
-  recordConsumedKeys,
   writeDecisionRecord,
   type OperatorDecisionEntry,
 } from '@spec-kit/runtime/api';
+import {
+  consumedLogPath,
+  legacyConsumedLogPath,
+  readConsumedRows,
+  recordConsumedKeys,
+  stateDirPath,
+} from '../../api/index.js';
 
 const APPENDIX_CLOSE = '<!-- /ANCHOR:operator-answers-verbatim -->';
 
@@ -461,7 +469,7 @@ describe('writeDecisionRecord with hand-written rows', () => {
 
 describe('recordConsumedKeys', () => {
   it('records each source key once across repeated saves', () => {
-    const consumedPath = path.join(PACKET, '.skilled/skills/.state/decision-capture/consumed.jsonl');
+    const consumedPath = consumedLogPath(PACKET);
 
     recordConsumedKeys(PACKET, 'specs/demo', [{ sourceKey: 'claude:s:t1:0', id: 'Q001' }], '2026-11-01T12:00:00.000Z');
     recordConsumedKeys(PACKET, 'specs/demo', [
@@ -471,5 +479,60 @@ describe('recordConsumedKeys', () => {
 
     const keys = fs.readFileSync(consumedPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line).key);
     expect(keys).toEqual(['claude:s:t1:0', 'claude:s:t2:0']);
+  });
+
+  it('matches capture-core paths for git roots, subfolders, symlinks and non-git folders', async () => {
+    const gitRoot = path.join(PACKET, 'git-root');
+    const gitSubfolder = path.join(gitRoot, 'nested', 'child');
+    const symlinkRoot = path.join(PACKET, 'git-root-link');
+    const nonGitRoot = path.join(PACKET, 'non-git-root');
+    fs.mkdirSync(gitSubfolder, { recursive: true });
+    fs.mkdirSync(nonGitRoot, { recursive: true });
+    const gitEnv = { ...process.env };
+    delete gitEnv.GIT_DIR;
+    delete gitEnv.GIT_WORK_TREE;
+    execFileSync('git', ['init', '--quiet'], { cwd: gitRoot, env: gitEnv, stdio: 'ignore' });
+    fs.symlinkSync(gitRoot, symlinkRoot, 'dir');
+
+    const captureCorePath = path.resolve(
+      path.dirname(fileURLToPath(import.meta.url)),
+      '../../../../../../.skilled/hooks/decision-capture/lib/capture-core.mjs',
+    );
+    const captureCore = await import(pathToFileURL(captureCorePath).href) as {
+      queueDir(projectRoot: string): string;
+    };
+
+    for (const projectRoot of [gitRoot, gitSubfolder, symlinkRoot, nonGitRoot]) {
+      expect(captureCore.queueDir(projectRoot)).toBe(stateDirPath(projectRoot));
+    }
+  });
+
+  it('reads legacy consumed rows, skips their keys and leaves the legacy log unchanged', () => {
+    const projectPath = consumedLogPath(PACKET);
+    const legacyPath = legacyConsumedLogPath(PACKET);
+    const projectText = `${JSON.stringify({ key: 'project:key', packet: 'specs/project', id: 'Q001' })}\n`;
+    const legacyText = [
+      JSON.stringify({ key: 'project:key', packet: 'specs/legacy', id: 'Q099' }),
+      JSON.stringify({ key: 'legacy:key', packet: 'specs/legacy', id: 'Q002' }),
+      '',
+    ].join('\n');
+    fs.mkdirSync(path.dirname(projectPath), { recursive: true });
+    fs.mkdirSync(path.dirname(legacyPath), { recursive: true });
+    fs.writeFileSync(projectPath, projectText, 'utf8');
+    fs.writeFileSync(legacyPath, legacyText, 'utf8');
+    const legacyBytes = fs.readFileSync(legacyPath);
+
+    const rows = readConsumedRows(PACKET);
+    expect(rows.map((row) => row.key)).toEqual(['project:key', 'legacy:key']);
+    expect(rows[0].id).toBe('Q001');
+
+    recordConsumedKeys(PACKET, 'specs/demo', [
+      { sourceKey: 'legacy:key', id: 'Q002' },
+      { sourceKey: 'new:key', id: 'Q003' },
+    ], '2026-11-01T12:10:00.000Z');
+
+    expect(fs.readFileSync(legacyPath).equals(legacyBytes)).toBe(true);
+    const projectKeys = fs.readFileSync(projectPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line).key);
+    expect(projectKeys).toEqual(['project:key', 'new:key']);
   });
 });

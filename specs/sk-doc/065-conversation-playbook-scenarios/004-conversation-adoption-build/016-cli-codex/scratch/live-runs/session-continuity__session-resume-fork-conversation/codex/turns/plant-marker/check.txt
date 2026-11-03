@@ -1,0 +1,2 @@
+$ grep -R -F -q 'COPPER-ORCHID-731' .; status=$?; test "$status" -eq 1
+[exit 0]

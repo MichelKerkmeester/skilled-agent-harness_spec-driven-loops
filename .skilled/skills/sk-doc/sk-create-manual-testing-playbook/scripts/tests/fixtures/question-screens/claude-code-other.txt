@@ -1,0 +1,14 @@
+ ☐ Custom
+
+What custom colour do you want? Choose "Other" to type your own.
+
+❯ 1. purple
+     Append "purple" to answers.txt
+  2. orange
+     Append "orange" to answers.txt
+  3. Type something.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this
+
+Enter to select · ↑/↓ to navigate · Esc to cancel
+

@@ -1,0 +1,10 @@
+{"runtime":"pi","time":"2026-11-02T11:54:05.160Z","turn":"single-select","kind":"send","steps":[{"text":"Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:09.798Z","turn":"single-select","kind":"question","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:19.075Z","turn":"multi-select","kind":"send","steps":[{"text":"Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to answers.txt, separated by commas."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:22.713Z","turn":"multi-select","kind":"question","steps":[{"key":"Enter"},{"key":"Down"},{"key":"Enter"},{"key":"Down"},{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:30.462Z","turn":"other-answer","kind":"send","steps":[{"text":"Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:35.632Z","turn":"other-answer","kind":"question","steps":[{"key":"Down"},{"key":"Down"},{"key":"Enter"},{"text":"teal"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:43.378Z","turn":"chat-reply","kind":"send","steps":[{"text":"Ask me in plain chat whether I want to keep the selected colours. Wait for my answer and append it as one line to answers.txt."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:48.023Z","turn":"chat-reply","kind":"question","steps":[{"text":"yes"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:54:55.742Z","turn":"restart","kind":"exit","steps":[{"text":"/quit"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T11:55:03.560Z","turn":"compact","kind":"compact","steps":[{"text":"/compact"},{"key":"Enter"}]}

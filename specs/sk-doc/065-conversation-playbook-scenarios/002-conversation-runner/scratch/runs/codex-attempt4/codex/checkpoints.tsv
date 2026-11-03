@@ -1,0 +1,7 @@
+turn	status	attempts	evidence	observed
+single-select	PASS	1	turns/single-select	green
+multi-select	FAIL	1	turns/multi-select	CHECK_FAILED
+other-answer	NOT_RUN	0	turns/other-answer	CHECK_FAILED
+chat-reply	NOT_RUN	0	turns/chat-reply	CHECK_FAILED
+restart	NOT_RUN	0	turns/restart	CHECK_FAILED
+compact	NOT_RUN	0	turns/compact	CHECK_FAILED

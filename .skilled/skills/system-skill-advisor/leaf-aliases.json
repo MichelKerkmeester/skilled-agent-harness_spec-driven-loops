@@ -316,6 +316,11 @@
   },
   {
     "workflowMode": "system-skill-advisor",
+    "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
+    "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md"
+  },
+  {
+    "workflowMode": "system-skill-advisor",
     "leafResourceId": "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
     "diskPath": "manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md"
   },

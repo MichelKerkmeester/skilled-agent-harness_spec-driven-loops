@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.16.0
+version: 1.5.17.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -144,14 +144,14 @@ For each executed scenario, check:
 - `PASS`: all mapped scenarios for the feature are PASS.
 - `FAIL`: any mapped scenario is FAIL.
 
-Hard rule: any critical-path scenario FAIL forces the feature verdict to FAIL. Critical-path scenarios are SD-002, SD-003, RD-002, and SA-001.
+Hard rule: any critical-path scenario FAIL forces the feature verdict to FAIL. Critical-path scenarios are SD-002, SD-003, SD-004, RD-002, and SA-001.
 
 ### Release Readiness Rule
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios (SD-002, SD-003, RD-002, SA-001) are PASS.
-3. Every operator scenario listed in §16 has a recorded outcome: 23 of 23, across the 9 operator categories. The `compiled-routing/` files are routing-gold and carry their own verdict through the topology gate, not through this protocol.
+2. All critical scenarios (SD-002, SD-003, SD-004, RD-002, SA-001) are PASS.
+3. Every operator scenario listed in §16 has a recorded outcome: 18 of 18, across the 8 operator categories. The `compiled-routing/` files are routing-gold and carry their own verdict through the topology gate, not through this protocol.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -188,12 +188,13 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ---
 
-## 7. SURFACE DETECTION (`SD-002..SD-003`)
+## 7. SURFACE DETECTION (`SD-002..SD-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `SD-002` | SKILLED Detection | Verify sk-code routes a system-code task to the SKILLED surface | `Handle empty prompts in .skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.` | advisor probe → invoke sk-code → inspect surface + loaded refs | advisor: sk-code top-1 with `passes_threshold` true at `--threshold 0.8`; surface: SKILLED; sub-language: TYPESCRIPT; refs: `sk-code-skilled/references/typescript/{style-guide,quality-standards,quick-reference}/` + `sk-code-skilled/references/shared/` | `/tmp/skc-SD002-advisor.txt`, `/tmp/skc-SD002-loaded-refs.txt` | PASS iff surface == SKILLED AND sub-language detected as TYPESCRIPT AND `sk-code-skilled/references/typescript/*` in load set AND the advisor's top-1 is sk-code with `passes_threshold` true | If SKILLED not detected, verify the SKILLED `surfaceDetection` block in `mode-registry.json` and the order in `shared/references/stack-detection.md` section 2 |
 | `SD-003` | UNKNOWN Fallback | Verify sk-code asks for disambiguation on unsupported stacks (Go) | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | advisor probe → invoke sk-code → inspect surface | advisor: no candidate clears the threshold for this prompt (the probe returns an empty array); surface: UNKNOWN; AI asks "which runtime / verification commands?" | `/tmp/skc-SD003-advisor.txt`, `/tmp/skc-SD003-response.txt` | PASS iff surface == UNKNOWN AND AI explicitly asks for runtime/verification disambiguation AND no surface-specific refs are loaded | If sk-code silently proceeds, verify the disambiguation rule in `ROUTER.md` section 6 UNKNOWN FALLBACK |
+| `SD-004` | UNKNOWN Follow-Up Resources | Verify the verification answer adds shared guidance while the Go surface stays UNKNOWN | `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.` | Claude Code → answer runtime and verification questions → request the surface, intent and resource report | surface: UNKNOWN; intent: VERIFICATION; refs: `ROUTER.md` + the shared preamble + `shared/references/workflow-verify.md`; no SKILLED-specific refs | `/tmp/skc-sd004-evidence/matrix.md`, `/tmp/skc-sd004-evidence/claude-code/result.json`, per-turn screen and check output | PASS iff both answers are accepted, surface is UNKNOWN, intent includes VERIFICATION, the exact four shared refs and `ROUTER.md` are reported, and no SKILLED-specific ref is loaded | If the resource list differs, check the UNKNOWN and VERIFICATION maps in `ROUTER.md`; if a question is missing, check the UNKNOWN fallback prompt |
 
 Per-feature files: see `surface-detection/`.
 
@@ -322,7 +323,7 @@ The sk-code skill, plus the doctor scripts its scenarios drive, ship these autom
 | `.skilled/commands/doctor/scripts/tests/ci-report.test.cjs` | `node --test` | The CI report's JSON contract and its argument handling | DOC-392 |
 
 Behavior the manual playbook alone covers:
-- Surface detection routing decisions (SD-002, SD-003): the automation proves the declared blocks against the detection order, not what a live route resolves for a given prompt.
+- Surface detection routing decisions (SD-002, SD-003, SD-004): the automation proves the declared blocks against the detection order, not what a live route resolves for a given prompt.
 - Language sub-detection within SKILLED (LS-001..LS-006): the automation proves the maps, not the load set a live route produces.
 - Advisor anti-pattern routing (RD-002) and end-to-end advisor probe accuracy (SA-001).
 - Design restraint behaviors: ladder rung selection, the anti-stall response shape and the `ceiling:` convention's live pass through the hygiene gate (DR-001, DR-002, DR-003). DR-004 wraps the deterministic `verify_stack_folders.py` check, which also has its own pytest suite.
@@ -338,6 +339,7 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 |---|---|---|---|---|
 | Surface Detection | SD-002 | [surface-detection/skilled-detection.md](surface-detection/skilled-detection.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
 | Surface Detection | SD-003 | [surface-detection/unknown-fallback.md](surface-detection/unknown-fallback.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
+| Surface Detection | SD-004 | [surface-detection/unknown-fallback-conversation.md](surface-detection/unknown-fallback-conversation.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
 | Language Sub-Detection | LS-001 | [language-sub-detection/skilled-typescript.md](language-sub-detection/skilled-typescript.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Language Sub-Detection | LS-002 | [language-sub-detection/skilled-python.md](language-sub-detection/skilled-python.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Language Sub-Detection | LS-003 | [language-sub-detection/skilled-shell.md](language-sub-detection/skilled-shell.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
@@ -354,4 +356,4 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md` | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | none | No |
 
-**Operator scenarios**: 17, across the 8 operator categories, with 4 on the critical path (SD-002, SD-003, RD-002, SA-001). The package's `compiled-routing/` folder holds 8 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 25 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.
+**Operator scenarios**: 18, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 8 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 26 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.

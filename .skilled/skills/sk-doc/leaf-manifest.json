@@ -108,10 +108,12 @@
     },
     {
       "leaves": [
+        "assets/manual-testing-playbook-conversation-snippet-template.md",
         "assets/manual-testing-playbook-snippet-template.md",
         "assets/manual-testing-playbook-template.md",
         "references/README.md",
         "references/common-pitfalls.md",
+        "references/conversation-scenarios.md",
         "references/examples.md",
         "references/prompt-voice.md"
       ],

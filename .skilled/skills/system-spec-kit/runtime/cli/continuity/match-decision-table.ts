@@ -21,11 +21,13 @@ import path from 'node:path';
 
 import {
   consumedLogPath,
+  legacyConsumedLogPath,
   matchRecords,
   parseDecisionTables,
   readConsumedRows,
   recordConsumedKeys,
   summaryLine,
+  stateDirPath,
   type ConsumedLogRow,
   type DecisionMatchResult,
   type DecisionQueueRecord,
@@ -36,7 +38,6 @@ import { isMainModule } from '../lib/esm-entry.js';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 
-const STATE_DIR_SEGMENTS = ['.skilled', 'skills', '.state', 'decision-capture'];
 // A session id can hold characters a filename should not, so the capture
 // producers name each queue file after the hex of the id. The pattern is narrow
 // on purpose: every other file in the state folder is not a queue.
@@ -100,16 +101,16 @@ function writeLine(value: string): void {
   process.stdout.write(`${value}\n`);
 }
 
-function stateDir(projectRoot: string): string {
-  return path.join(projectRoot, ...STATE_DIR_SEGMENTS);
-}
-
 function sessionToken(sessionId: string): string {
   return Buffer.from(sessionId, 'utf8').toString('hex');
 }
 
 function queuePath(projectRoot: string, sessionId: string): string {
-  return path.join(stateDir(projectRoot), `${sessionToken(sessionId)}.jsonl`);
+  return path.join(stateDirPath(projectRoot), `${sessionToken(sessionId)}.jsonl`);
+}
+
+function legacyQueuePath(projectRoot: string, sessionId: string): string {
+  return path.join(path.dirname(stateDirPath(projectRoot)), `${sessionToken(sessionId)}.jsonl`);
 }
 
 /**
@@ -190,7 +191,17 @@ function readQueueFile(filePath: string): DecisionQueueRecord[] {
 }
 
 function readQueueRecords(projectRoot: string, sessionId: string): DecisionQueueRecord[] {
-  return readQueueFile(queuePath(projectRoot, sessionId));
+  const records = [
+    ...readQueueFile(queuePath(projectRoot, sessionId)),
+    ...readQueueFile(legacyQueuePath(projectRoot, sessionId)),
+  ];
+  const byKey = new Map<string, DecisionQueueRecord>();
+  for (const record of records) {
+    if (!byKey.has(record.key)) {
+      byKey.set(record.key, record);
+    }
+  }
+  return [...byKey.values()];
 }
 
 /**
@@ -278,7 +289,7 @@ function runMatch(run: MatchRun): number {
 }
 
 function runScan(projectRoot: string): number {
-  const directory = stateDir(projectRoot);
+  const directory = stateDirPath(projectRoot);
   let entries: string[];
   try {
     entries = fs.readdirSync(directory);
@@ -311,30 +322,36 @@ function runScan(projectRoot: string): number {
 }
 
 function runRelease(projectRoot: string, key: string): number {
-  const filePath = consumedLogPath(projectRoot);
-  const text = readTextIfPresent(filePath);
-  if (text === '') {
-    return 0;
-  }
-
-  const kept: string[] = [];
   const removed: string[] = [];
-  for (const line of text.split('\n')) {
-    const row = parseJsonLine(line);
-    if (row !== null && textField(row, 'key') === key) {
-      removed.push(line);
+  const filePaths = new Set([consumedLogPath(projectRoot), legacyConsumedLogPath(projectRoot)]);
+
+  for (const filePath of filePaths) {
+    const text = readTextIfPresent(filePath);
+    if (text === '') {
       continue;
     }
-    kept.push(line);
+
+    const kept: string[] = [];
+    const fileRemoved: string[] = [];
+    for (const line of text.split('\n')) {
+      const row = parseJsonLine(line);
+      if (row !== null && textField(row, 'key') === key) {
+        fileRemoved.push(line);
+        continue;
+      }
+      kept.push(line);
+    }
+
+    // Rewriting an unchanged log only moves its mtime, which tells a later reader
+    // that something happened when nothing did.
+    if (fileRemoved.length === 0) {
+      continue;
+    }
+
+    writeTextAtomically(filePath, kept.join('\n'));
+    removed.push(...fileRemoved);
   }
 
-  // Rewriting an unchanged log only moves its mtime, which tells a later reader
-  // that something happened when nothing did.
-  if (removed.length === 0) {
-    return 0;
-  }
-
-  writeTextAtomically(filePath, kept.join('\n'));
   for (const line of removed) {
     writeLine(line);
   }

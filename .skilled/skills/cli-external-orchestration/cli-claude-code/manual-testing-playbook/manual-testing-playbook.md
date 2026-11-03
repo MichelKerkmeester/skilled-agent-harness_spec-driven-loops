@@ -1,7 +1,7 @@
 ---
 title: "Claude Code CLI Orchestrator: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-claude-code cross-AI delegation skill."
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Claude Code CLI Orchestrator: Manual Testing Playbook
@@ -38,7 +38,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 52 deterministic scenarios across 12 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference. `CC-028` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
+This playbook provides 54 deterministic scenarios across 12 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference. `CC-028` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
 
 Coverage note (2026-08-10): `CC-029` verifies the deliberate repository discovery boundary between Claude Code and the OpenCode-only goal command. The core has Pi support, Cursor injection-only support, and no Claude Code or Codex adapter. The scenario checks the filtered command mirror, source, config, and documentation; it does not claim a live Claude product version exposes native goal state.
 
@@ -491,7 +491,7 @@ Expected signals: Response names a documentation level explicitly. Lists at leas
 
 ## 11. SESSION CONTINUITY
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.
+This category covers 4 scenario summaries while the linked feature files remain the canonical execution contract.
 
 ### CC-015 | Continue previous conversation
 
@@ -524,6 +524,38 @@ Expected signals: First call's JSON output includes a non-empty `session_id`. Re
 #### Test Execution
 
 > **Feature File:** [CC-016](../manual-testing-playbook/session-continuity/resume-specific-session-by-id.md)
+
+### CC-030 | Resume specific session by ID conversation
+
+#### Description
+
+Verify a Claude Code session resumed by ID retains a marker from its earlier turn.
+
+#### Scenario Contract
+
+Prompt: Remember this project marker for my next question: MAPLE-LANTERN-582. Say it back.
+
+Expected signals: The first reply repeats the marker. After restart, the follow-up reply repeats it again.
+
+#### Test Execution
+
+> **Feature File:** [CC-030](../manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md)
+
+### CC-031 | Continue previous conversation with a follow-up
+
+#### Description
+
+Verify a later Claude Code turn retains a label from the first turn.
+
+#### Scenario Contract
+
+Prompt: Remember this review label for my next turn: COPPER-ORBIT-846. Say it back.
+
+Expected signals: The first reply repeats the label. The follow-up reply repeats it again.
+
+#### Test Execution
+
+> **Feature File:** [CC-031](../manual-testing-playbook/session-continuity/continue-previous-conversation-conversation.md)
 
 ---
 

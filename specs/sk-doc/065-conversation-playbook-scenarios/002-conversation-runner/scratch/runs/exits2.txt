@@ -1,0 +1,2 @@
+wR3-mtp007 exit=0
+wR2-claude-adapter exit=0

@@ -1,7 +1,7 @@
 ---
 title: "cli-external-orchestration: Manual Testing Playbook"
 description: "Operator-facing index for cli-external-orchestration hub-routing validation: does the advisor resolve cli-opencode vs cli-claude-code correctly through mode-registry.json and hub-router.json."
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # cli-external-orchestration: Manual Testing Playbook
@@ -67,6 +67,7 @@ Unscored, directly-run manual scenarios validating shared `cli-external-orchestr
 | --- | --- | --- |
 | cli-dispatch-audit-trail | CLI Dispatch Audit Trail | [cli-dispatch-audit-trail.md](plugins-and-hooks/cli-dispatch-audit-trail.md) |
 | cli-dispatch-preflight-authorization | CLI Dispatch Preflight Authorization | [cli-dispatch-preflight-authorization.md](plugins-and-hooks/cli-dispatch-preflight-authorization.md) |
+| CE-P05 | CLI Dispatch Preflight Authorization Conversation | [cli-dispatch-preflight-authorization-conversation.md](plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md) |
 | codex-hook-parity | Codex Hook/Plugin Parity | [codex-hook-parity.md](plugins-and-hooks/codex-hook-parity.md) |
 | goal-manage-cli | Goal Manage CLI: Session Isolation And Legacy Cutover | [goal-manage-cli.md](plugins-and-hooks/goal-manage-cli.md) |
 

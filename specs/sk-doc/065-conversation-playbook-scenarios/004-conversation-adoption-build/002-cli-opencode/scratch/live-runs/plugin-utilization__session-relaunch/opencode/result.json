@@ -1,0 +1,53 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 207529130,
+  "socket": "conv-9145-opencode",
+  "session_id": "a6c74183-6208-4c4d-a9b1-8fc747d43ee4",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/plugin-utilization__session-relaunch/opencode",
+  "started_at": "2026-11-03T06:59:18.093Z",
+  "finished_at": "2026-11-03T06:59:49.439Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "seed-context",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/seed-context"
+    },
+    {
+      "id": "read-later-nudge",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/read-later-nudge"
+    }
+  ]
+}

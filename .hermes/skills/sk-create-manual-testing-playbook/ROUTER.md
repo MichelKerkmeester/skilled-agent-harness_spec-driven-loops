@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-manual-testing-playbook routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.1.0.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,11 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when the `sk-doc` hub routes manual validation authoring here: the request names a manual testing playbook, a testing playbook, a deterministic scenario, evidence collection or operator validation, and the hub's `sk-create-manual-testing-playbook` mode signal selects this packet, which it does only when reusable manual validation needs captured evidence rather than test steps that fit a spec-folder checklist. It routes to two resource families: the scaffolds under `assets/`, where `assets/manual-testing-playbook-template.md` builds the root playbook and `assets/manual-testing-playbook-snippet-template.md` builds each per-feature scenario file, and the overflow references under `references/`, where `references/README.md` is the route map, `references/prompt-voice.md` carries the natural-human versus RCAF voice decision, `references/common-pitfalls.md` the recurring package defects and `references/examples.md` the shipped reference playbooks. `references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
+Requests reach this skill when the `sk-doc` hub routes manual validation authoring here: the request names a manual testing playbook, a testing playbook, a deterministic scenario, evidence collection, operator validation, a playbook conversation or a multi-turn conversation script, and the hub's `sk-create-manual-testing-playbook` mode signal selects this packet. It does so only when reusable manual validation needs captured evidence rather than test steps that fit a spec-folder checklist.
+
+The router selects from two resource families. The scaffolds sit under `assets/`: `assets/manual-testing-playbook-template.md` builds the root playbook, `assets/manual-testing-playbook-snippet-template.md` builds each single-prompt scenario file and `assets/manual-testing-playbook-conversation-snippet-template.md` builds each conversation scenario file. The references sit under `references/`: `references/README.md` is the route map, `references/prompt-voice.md` carries the natural-human versus RCAF voice decision, `references/conversation-scenarios.md` defines the `json conversation` script format, its evidence and the shared runner, `references/common-pitfalls.md` lists the recurring package defects and `references/examples.md` the shipped reference playbooks. `references/README.md` is the default resource and the fallback suggestion.
+
+The runner itself, `scripts/run-conversation-scenario.cjs`, is a tool the conversation reference documents, not a routable resource: only markdown under `references/` and `assets/` loads.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -30,8 +34,13 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`root_playbook`** fires on `manual testing playbook`, `/create:manual-testing-playbook`, `testing playbook` and `release readiness` at weight 4. It selects `assets/manual-testing-playbook-template.md` for the root playbook scaffold, then loads the flat markdown inventory under `references/` and `assets/`, with `references/README.md` as the fallback route map.
-- **`per_feature_scenario`** fires on `deterministic scenario`, `evidence collection`, `operator validation` and `multi-agent execution` at weight 4. It selects `assets/manual-testing-playbook-snippet-template.md` for each per-feature scenario file, then loads the same flat inventory, with `references/prompt-voice.md` carrying the natural-human versus RCAF voice decision and `references/common-pitfalls.md` the recurring package defects.
+Each intent fires at weight 4 when one of its keywords appears in the request. When several fire, their resources load together, in the order of the map, each file once. No keyword is a substring of another in the same intent, because a phrase that matched twice would outscore a second intent the request also names.
+
+- **`ROOT_PLAYBOOK`** fires on `testing playbook`, which also matches `manual testing playbook`, `/create:manual-testing-playbook`, `playbook system` and `release readiness`. It loads `assets/manual-testing-playbook-template.md` for the root playbook scaffold, `references/README.md`, `references/examples.md` and `references/common-pitfalls.md`.
+- **`PER_FEATURE_SCENARIO`** fires on `deterministic scenario`, `manual test scenario`, `evidence collection`, `operator validation` and `multi-agent execution`. It loads `assets/manual-testing-playbook-snippet-template.md` for each single-prompt scenario file, `references/prompt-voice.md` for the voice decision, `references/common-pitfalls.md` and `references/examples.md`.
+- **`CONVERSATION_SCENARIO`** fires on `playbook conversation`, `playbook scenario`, `conversation scenario`, `conversation script`, which also matches `multi-turn conversation script`, `json conversation`, `conversation runner` and `run-conversation-scenario`. It loads `references/conversation-scenarios.md` for the script format, the runner and its evidence, `assets/manual-testing-playbook-conversation-snippet-template.md`, which carries the required conversation block with placeholders and the runner command, and `references/common-pitfalls.md`.
+
+A request that fires no intent loads `references/README.md` and returns the disambiguation checklist.
 
 ---
 
@@ -48,19 +57,26 @@ Decision rule:
 
 ```text
 Need reusable manual validation with captured evidence?
-YES -> Create a playbook package
+YES -> Create a playbook package, then pick each scenario's style:
+       1. Verdict needs a person's judgment?                  -> single prompt
+       2. Needs more than one exchange, a restart or compact? -> conversation
+       3. Several runtimes or a regression gate, all turns
+          decidable by a shell check?                         -> conversation
+       4. Otherwise                                           -> single prompt
 NO  -> Keep test steps in spec/checklist docs
 ```
 
+The full rule, its runtime requirements and its costs live in `SKILL.md` §6, Choosing the Scenario Style.
+
 ### Family Boundary
 
-This packet owns manual testing playbook packages only. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
+This packet owns manual testing playbook packages and the conversation scenario format and runner they use. It consumes shared `sk-doc` standards from `../shared`, but the advisor identity lives at the `sk-doc` hub root. Do not add a packet-local `graph-metadata.json`.
 
 ### Smart Router Pseudocode
 
-For this flat-reference packet, the canonical resilient router discovers resources at call
-time, guards and loads only what exists, scores the two authoring scopes, and returns a
-disambiguation checklist rather than silently loading nothing:
+The canonical resilient router discovers resources at call time, guards and loads only what
+exists, scores the three authoring scopes, loads the union of the resources the firing scopes
+map, and returns a disambiguation checklist rather than silently loading nothing:
 
 ```python
 from pathlib import Path
@@ -69,14 +85,37 @@ SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/README.md"
 
-# Two authoring scopes; keywords come from this packet's activation triggers.
+# Three authoring scopes; keywords come from this packet's activation triggers.
 INTENT_MODEL = {
-    "root_playbook": {"weight": 4, "keywords": ["manual testing playbook", "/create:manual-testing-playbook", "testing playbook", "release readiness"]},
-    "per_feature_scenario": {"weight": 4, "keywords": ["deterministic scenario", "evidence collection", "operator validation", "multi-agent execution"]},
+    "ROOT_PLAYBOOK": {"weight": 4, "keywords": ["/create:manual-testing-playbook", "testing playbook", "playbook system", "release readiness"]},
+    "PER_FEATURE_SCENARIO": {"weight": 4, "keywords": ["deterministic scenario", "manual test scenario", "evidence collection", "operator validation", "multi-agent execution"]},
+    "CONVERSATION_SCENARIO": {"weight": 4, "keywords": ["playbook conversation", "playbook scenario", "conversation scenario", "conversation script", "json conversation", "conversation runner", "run-conversation-scenario"]},
 }
+
+RESOURCE_MAP = {
+    "ROOT_PLAYBOOK": [
+        "assets/manual-testing-playbook-template.md",
+        "references/README.md",
+        "references/examples.md",
+        "references/common-pitfalls.md",
+    ],
+    "PER_FEATURE_SCENARIO": [
+        "assets/manual-testing-playbook-snippet-template.md",
+        "references/prompt-voice.md",
+        "references/common-pitfalls.md",
+        "references/examples.md",
+    ],
+    "CONVERSATION_SCENARIO": [
+        "references/conversation-scenarios.md",
+        "assets/manual-testing-playbook-conversation-snippet-template.md",
+        "references/common-pitfalls.md",
+    ],
+}
+
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm the target skill or system and the feature set under test",
     "Confirm root playbook index scope vs per-feature scenario file scope",
+    "Confirm whether the scenario is a single prompt or a multi-turn conversation (SKILL.md section 6, Choosing the Scenario Style)",
     "Confirm the evidence and pass/fail validation expectations",
 ]
 
@@ -114,8 +153,9 @@ def route_manual_testing_playbook_request(request):
     inventory = discover_markdown_resources()
     loaded, seen = [], set()
     scores = score_intents(request)
+    fired = [intent for intent in INTENT_MODEL if scores[intent] >= 4]
 
-    if max(scores.values() or [0]) < 4:                      # Tier 1: unclear scope
+    if not fired:                                             # Tier 1: unclear scope
         load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
         return {
             "load_level": "UNKNOWN_FALLBACK",
@@ -124,10 +164,10 @@ def route_manual_testing_playbook_request(request):
             "resources": loaded,
         }
 
-    scope = max(scores, key=scores.get)                       # Tier 2: happy path
-    # Flat resource topology: no references/<key>/ subdirectories. The scope selects the
-    # authoring target documented above, not a keyed subtree; load the flat refs that exist.
-    for path in sorted(inventory):
-        load_if_available(path, inventory, loaded, seen)
-    return {"scope": scope, "resources": loaded}
+    for intent in fired:                                      # Tier 2: each firing scope
+        for path in RESOURCE_MAP[intent]:
+            load_if_available(path, inventory, loaded, seen)
+    if not loaded:                                            # Tier 3: mapped files missing
+        load_if_available(DEFAULT_RESOURCE, inventory, loaded, seen)
+    return {"scopes": fired, "resources": loaded}
 ```

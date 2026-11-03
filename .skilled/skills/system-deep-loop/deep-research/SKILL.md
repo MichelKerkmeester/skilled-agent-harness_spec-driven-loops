@@ -6,8 +6,6 @@ argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
 version: 1.15.11.0
 ---
 
-<!-- Keywords: autoresearch, deep-research, iterative-research, autonomous-loop, convergence-detection, externalized-state, fresh-context, research-agent, JSONL-state, strategy-file -->
-
 # Autonomous Deep Research Loop
 
 Note: `Task` is allowed for the command executor that manages the loop. The `@deep-research` agent itself is LEAF-only and does not dispatch sub-agents.

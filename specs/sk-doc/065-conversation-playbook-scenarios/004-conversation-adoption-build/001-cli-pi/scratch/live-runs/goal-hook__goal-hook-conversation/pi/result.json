@@ -1,0 +1,71 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1731232676,
+  "socket": "conv-11845-pi",
+  "session_id": "de5eb296-5433-4d86-baa7-019241cef8ef",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/goal-hook__goal-hook-conversation/pi",
+  "started_at": "2026-11-03T06:49:31.166Z",
+  "finished_at": "2026-11-03T06:50:42.796Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "bind-goal",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/bind-goal"
+    },
+    {
+      "id": "later-task",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/later-task"
+    },
+    {
+      "id": "restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "post-restart-task",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/post-restart-task"
+    }
+  ]
+}

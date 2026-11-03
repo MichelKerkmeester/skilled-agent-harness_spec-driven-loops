@@ -10,8 +10,6 @@ version: 1.0.6.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: create-agent, /create:agent, opencode agent, agent frontmatter, permission object, authority boundary, agent template -->
-
 # Create Agent - Runtime Persona Authoring
 
 `create-agent` is the `sk-doc` workflow packet for creating or updating one runtime agent markdown file. The executable contract lives here: decide whether an agent is the right component, place it in the active runtime directory, author current frontmatter and authority boundaries, then validate before delivery.

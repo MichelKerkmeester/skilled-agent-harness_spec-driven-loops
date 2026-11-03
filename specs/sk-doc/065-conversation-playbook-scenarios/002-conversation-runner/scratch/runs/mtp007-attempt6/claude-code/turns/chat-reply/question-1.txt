@@ -1,0 +1,51 @@
+      1  green
+      2 +small,large                                                                                                                                                                                    
+
+⏺ You picked small and large, so I added them to answers.txt as small,large, with commas and no spaces. Reading the file back shows two lines:                                                   
+                                                                                                                                                                                                 
+  green                                                                                                                                                                                                 
+  small,large                                                                                                                                                                                           
+                                                                                       
+  If you'd rather have a space after each comma (small, large), I can change that line.                                                                                                                
+
+✻ Baked for 9s · done 6:25 AM
+
+❯ Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.                                                                  
+
+⏺ User answered Claude's questions:                                                 
+  ⎿  · What custom colour do you want? Pick one or type your own under Other. → teal
+
+⏺ Bash(echo "teal" >> answers.txt; echo "exit=$?"; cat answers.txt)
+  ⎿  exit=0                                                                         
+     green      
+     small,large                                                                                                                                                                                        
+     teal                       
+  ⎿  Updated answers.txt (+1 -0)                                                    
+      1  green                                                                                                                                                                                          
+      2  small,large                                                                                                                                                                             
+      3 +teal                                                                                                                                                                                    
+
+⏺ You typed teal under Other, and I added it to answers.txt as its own line. Reading the file back shows:                                                                                               
+                                                                                                                                                                                                        
+  green                                                                                                                                                                                          
+  small,large                                                                                            
+  teal                                                                                                                                        
+                                                                                                                                                                                                 
+  The question tool won't show a question with fewer than two options, so I added "purple" and "orange" as suggestions alongside the free-text Other option.                                     
+
+✻ Crunched for 8s · done 6:25 AM
+
+❯ Ask me in plain chat whether I want to keep the selected colours. Wait for my answer and append it as one line to answers.txt.                                                                        
+
+⏺ Do you want to keep the selected colours, green and teal?
+                                                                                                                                                                                                        
+  Reply in chat and I'll add your answer to answers.txt as one line.                                                                                        
+
+✻ Brewed for 2s · done 6:25 AM                                              
+                                                                                                                                                                                                      
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+❯                                                                                                                                                                                                       
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  ⏵⏵ bypass permissions on (shift+tab to cycle)                              
+

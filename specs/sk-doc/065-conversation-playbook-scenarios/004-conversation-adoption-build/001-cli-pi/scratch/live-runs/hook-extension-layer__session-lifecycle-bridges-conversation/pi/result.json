@@ -1,0 +1,62 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1226754706,
+  "socket": "conv-46605-pi",
+  "session_id": "fb464582-4d61-4996-865b-a48438b75881",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/hook-extension-layer__session-lifecycle-bridges-conversation/pi",
+  "started_at": "2026-11-03T06:51:41.909Z",
+  "finished_at": "2026-11-03T06:52:36.026Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "marker-seed",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/marker-seed"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    },
+    {
+      "id": "marker-recall",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/marker-recall"
+    }
+  ]
+}

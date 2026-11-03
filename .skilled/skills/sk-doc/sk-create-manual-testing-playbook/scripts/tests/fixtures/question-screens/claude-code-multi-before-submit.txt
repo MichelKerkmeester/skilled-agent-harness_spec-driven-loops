@@ -1,0 +1,13 @@
+←  ☒ Focus areas  ✔ Submit  →
+Which areas would you like me to focus on in this repository?
+  1. [ ] Documentation
+         Review or improve READMEs, guides and inline docs.
+  2. [✔] Tests
+         Add, fix or extend test coverage.
+  3. [✔] Code quality
+         Look for bugs, simplifications and cleanup opportunities.
+  4. [ ] Type something
+❯    Submit
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  5. Chat about this
+Enter to select · ↑/↓ to navigate · ctrl+g to edit in VS Code · Esc to cancel

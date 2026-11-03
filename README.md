@@ -22,7 +22,7 @@ Built for Claude Code, Codex, OpenCode, Pi Agent, Devin, Cursor and Hermes CLI
 - **Skill Advisor Daemon** - dynamic prompt-time skill suggestions using 5-lane fusion and a live skill graph
 - **Autonomous Deep Loops** - research and review loops that run unattended and stop only when their own evidence says done
 - **11 Specialized Agents** - focused roles for implementation, review, research, docs, git and more
-- **14 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
+- **13 On-Demand Skills** - deep capabilities for code, design, docs and multi-CLI dispatch
 
 &nbsp;
 
@@ -913,6 +913,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to fifteen workflow modes across fourteen packets.** Markdown specialist with DQI quality scoring (Structure 40, Content 30, Style 30) plus HVR compliance checking
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
+- **Authors manual testing playbooks** through `sk-create-manual-testing-playbook`. A scenario is a single prompt when a person must judge the result, or a `json conversation` script when the behavior spans turns, question tools, a restart or a compaction. The shared runner plays a script into five runtimes, under a macOS write sandbox, and writes a per-runtime PASS, FAIL or SKIP matrix with evidence
 - **Authors spec packet goals** through `sk-create-goal`: a top-level, phase-parent or phase-child `goal.md` built from a checked template, with top-level and parent goals held to 4,000 characters
 
 &nbsp;
@@ -1217,8 +1218,9 @@ The [hooks README](.skilled/hooks/README.md) holds the coverage matrix: which ru
 **`/create:manual-testing-playbook`** - manual testing scenarios
 
 - Creates or updates manual testing playbook packages
+- Picks each scenario's style with one rule: a single prompt an operator runs and judges, or a scripted conversation the shared runner plays into Claude Code, OpenCode, Codex, Pi or Devin with a shell check after every turn. `:confirm` shows each style before generation
 - Generates scenario files with test steps, expected results and verification evidence fields
-- Validates against the established playbook format
+- Validates against the established playbook format, including every conversation script
 
 **`/create:goal`** - spec packet goals
 
@@ -1442,7 +1444,7 @@ The Skill Advisor is deliberately not one. It runs as a resident daemon behind `
 
 #### External Integrations (via `.utcp_config.json`)
 
-14 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
+13 templates are registered. Six carry a description here. The rest back a `mcp-tooling` mode of the same name or ship without a mode packet of their own.
 
 Code Mode reads each key under its manual's name: the manual name with every underscore doubled, an underscore, then the variable the config references. `.env.example` lists every key in that form, and `get_required_keys_for_tool` names the keys a tool expects.
 
@@ -1729,7 +1731,7 @@ Everything is a file in your own repository.
 **Q: How many MCP tools are there and where are they defined?**
 
 - The `code_mode` server registers seven tools, listed under [Code Mode MCP](#13--code-mode-mcp)
-- External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 14 entries
+- External providers are declared as templates in `.utcp_config.json` at the repo root, which currently holds 13 entries
 
 &nbsp;
 

@@ -1,0 +1,6 @@
+{"runtime":"opencode","time":"2026-11-02T06:17:57.944Z","turn":"single-select","kind":"send","steps":[{"text":"Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt."},{"key":"Enter"}]}
+{"runtime":"opencode","time":"2026-11-02T06:18:05.711Z","turn":"single-select","kind":"question","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"opencode","time":"2026-11-02T06:18:11.947Z","turn":"multi-select","kind":"send","steps":[{"text":"Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to answers.txt, separated by commas."},{"key":"Enter"}]}
+{"runtime":"opencode","time":"2026-11-02T06:18:14.585Z","turn":"multi-select","kind":"question","steps":[{"key":"Enter"},{"key":"Down"},{"key":"Down"},{"key":"Enter"},{"key":"Tab"},{"key":"Enter"}]}
+{"runtime":"opencode","time":"2026-11-02T06:18:19.846Z","turn":"multi-select","kind":"question","steps":[{"text":"small, large"},{"key":"Enter"}]}
+{"runtime":"opencode","time":"2026-11-02T06:18:25.079Z","turn":"other-answer","kind":"send","steps":[{"text":"Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt."},{"key":"Enter"}]}

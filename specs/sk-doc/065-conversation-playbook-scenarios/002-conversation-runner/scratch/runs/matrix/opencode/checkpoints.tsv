@@ -1,0 +1,7 @@
+turn	status	attempts	evidence	observed
+single-select	PASS	1	turns/single-select	green
+multi-select	PASS	1	turns/multi-select	small, large
+other-answer	FAIL	1	turns/other-answer	TIMEOUT
+chat-reply	NOT_RUN	0	turns/chat-reply	TIMEOUT
+restart	NOT_RUN	0	turns/restart	TIMEOUT
+compact	NOT_RUN	0	turns/compact	TIMEOUT

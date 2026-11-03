@@ -11,8 +11,6 @@ version: 1.15.11.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-<!-- Keywords: autoresearch, deep-research, iterative-research, autonomous-loop, convergence-detection, externalized-state, fresh-context, research-agent, JSONL-state, strategy-file -->
-
 # Autonomous Deep Research Loop
 
 Note: `Task` is allowed for the command executor that manages the loop. The `@deep-research` agent itself is LEAF-only and does not dispatch sub-agents.

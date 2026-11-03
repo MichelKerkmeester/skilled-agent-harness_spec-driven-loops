@@ -124,7 +124,7 @@ hooks/
 |   +-- codex/    (same pair)
 |   +-- pi/       dispatch-preflight-lint.ts, dispatch-audit.ts (real file; `.pi/extensions/` symlinks to it)
 |   `-- opencode/ cli-dispatch-audit.js (browsability symlink -> .opencode/plugins/)
-+-- decision-capture/                # operator answers queued for the next full-auto save
++-- decision-capture/                # operator answers queued per project for the next full-auto save
 |   +-- lib/capture-core.mjs, chat-questions.mjs (the chat-candidate detector every sweep shares), their tests
 |   +-- claude/   ask-capture-posttooluse.mjs (PostToolUse on AskUserQuestion), fixtures/
 |   +-- devin/    ask-capture-posttooluse.mjs (PostToolUse on ask_user_question), its test, fixtures/

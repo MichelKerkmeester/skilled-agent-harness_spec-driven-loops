@@ -1,0 +1,100 @@
+[
+  {
+    "pair": 1,
+    "question_turn": "ext-a1",
+    "reply_turn": "ext-u1",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 2,
+    "question_turn": "ext-a2",
+    "reply_turn": "ext-u2",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 3,
+    "question_turn": "ext-a3",
+    "reply_turn": "ext-u3",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 4,
+    "question_turn": "ext-a4",
+    "reply_turn": "ext-u4",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 5,
+    "question_turn": "ext-a5",
+    "reply_turn": "ext-u5",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 6,
+    "question_turn": "ext-a6",
+    "reply_turn": "ext-u6",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 7,
+    "question_turn": "ext-a7",
+    "reply_turn": "ext-u7",
+    "answers": false,
+    "synthetic": true
+  },
+  {
+    "pair": 8,
+    "question_turn": "ext-a8",
+    "reply_turn": "ext-u8",
+    "answers": false,
+    "synthetic": true
+  },
+  {
+    "pair": 9,
+    "question_turn": "ext-a9",
+    "reply_turn": "ext-u9",
+    "answers": false,
+    "synthetic": true
+  },
+  {
+    "pair": 10,
+    "question_turn": "ext-a10",
+    "reply_turn": "ext-u10",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 11,
+    "question_turn": "ext-a11",
+    "reply_turn": "ext-u11",
+    "answers": false,
+    "synthetic": true
+  },
+  {
+    "pair": 12,
+    "question_turn": "ext-a12",
+    "reply_turn": "ext-u12",
+    "answers": true,
+    "synthetic": true
+  },
+  {
+    "pair": 13,
+    "question_turn": "ext-a13",
+    "reply_turn": "ext-u13",
+    "answers": false,
+    "synthetic": true
+  },
+  {
+    "pair": 14,
+    "question_turn": "ext-a14",
+    "reply_turn": "ext-u14",
+    "answers": true,
+    "synthetic": true
+  }
+]

@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.1.6.0
 ---
 
-<!-- Keywords: create-repo-rule, /create:repo-rule, repo rule, REPO RULES.md, repo-rules, rule file, trigger table, rule router, operating discipline, always-loaded versus triggered -->
-
 # create-repo-rule
 
 `create-repo-rule` is the repo-rule authoring workflow packet of the `sk-doc` family. It

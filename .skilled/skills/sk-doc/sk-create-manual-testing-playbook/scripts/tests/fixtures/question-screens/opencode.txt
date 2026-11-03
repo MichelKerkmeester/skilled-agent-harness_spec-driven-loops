@@ -1,0 +1,50 @@
+   New session                   ? Question with multiple answer +
+                                                                                                                   █
+  ┃                                                                                                                █    Question with multiple answers
+  ┃  Use your question tool to ask me one question with three options, allowing several answers, then stop.        █
+  ┃                                                                                                                █    Context
+                                                                                                                   █    $0.00 spent
+     ┃ Thought: 398ms                                                                                              █
+                                                                                                                   █
+     ┃ The user wants me to use the question tool with one question, three options, multiple answers allowed, then █
+     ┃ stop.                                                                                                       █
+                                                                                                                   █
+     → Asked 1 question                                                                                            █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+                                                                                                                   █
+
+  ┃
+  ┃  Questions
+  ┃
+  ┃  Focus area  Submit
+  ┃
+  ┃  Which of these areas would you like me to focus on? (Select all that apply)
+  ┃
+  ┃  1. [ ] Code review
+  ┃         Review existing code for bugs, style, and improvement opportunities.
+  ┃  2. [ ] New feature
+  ┃         Design and implement a new feature in the codebase.
+  ┃  3. [ ] Tests
+  ┃         Add or improve automated tests and coverage.
+  ┃  4. [ ] Type your own answer
+  ┃
+  ┃  ⇆ tab  ↑↓ select  enter toggle  esc dismiss
+  ┃                                                                                                                     /…/probe-opencode:main
+

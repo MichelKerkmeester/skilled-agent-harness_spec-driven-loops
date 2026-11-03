@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sibling re-proof conversation"
   - "decision capture table match live test"
   - "decision capture mid-message chat question live test"
-version: 1.0.0.0
+version: 1.0.3.0
 ---
 
 # decision-capture-sibling-reproof-conversation -- Decision capture sibling re-proof conversation
@@ -82,7 +82,7 @@ Operators run this scenario in its own runner invocation and scratch project on 
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=$CONVERSATION_TURN_DIR;R=$CONVERSATION_REPO_ROOT;cp $Q/* \"$T\" 2>/dev/null;(rg --files \"$R/specs\";cat \"$R/.skilled/skills/.state/decision-capture/\"* 2>/dev/null)|shasum>\"$T/base.sha\";rg -q '\"session_id\"' $Q/*.jsonl 2>/dev/null&&{ echo \"DEVIATION: queue rows\";exit 1;};echo \"rows=0 base=base.sha\""
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=$CONVERSATION_TURN_DIR;R=$CONVERSATION_REPO_ROOT;cp $Q/* \"$T\" 2>/dev/null;(rg --files \"$R/specs\";find \"$R/.skilled/skills/.state/decision-capture\" -type f -exec cat {} + 2>/dev/null)|shasum>\"$T/base.sha\";rg -q '\"session_id\"' $Q/*.jsonl 2>/dev/null&&{ echo \"DEVIATION: queue rows\";exit 1;};echo \"rows=0 base=base.sha\""
     },
     {
       "id": "S1",
@@ -115,7 +115,7 @@ Operators run this scenario in its own runner invocation and scratch project on 
           ]
         }
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;m=$(rg -c '\"session_id\"' $Q/*.jsonl 2>/dev/null);[ -z \"$m\" ]&&rg -q -i 'gate 3|spec folder' \"$CONVERSATION_TURN_DIR/screen.txt\"&&echo \"rows=0 gate3=visible\"||{ echo \"DEVIATION: queue rows or no Gate 3 question\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;m=$(rg -c '\"session_id\"' $Q/*.jsonl 2>/dev/null);[ -z \"$m\" ]&&rg -q -i 'gate 3|spec folder' \"$CONVERSATION_TURN_DIR/screen.txt\"&&echo \"rows=0 gate3=visible\"||{ echo \"DEVIATION: queue rows or no Gate 3 question\";exit 1;}"
     },
     {
       "id": "S2",
@@ -139,11 +139,11 @@ Operators run this scenario in its own runner invocation and scratch project on 
           ]
         }
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ \"$n\" = 1 ]&&echo \"rows=$n\"||{ echo \"DEVIATION: rows=$n\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ \"$n\" = 1 ]&&echo \"rows=$n\"||{ echo \"DEVIATION: rows=$n\";exit 1;}"
     },
     {
       "id": "S13",
-      "check": "Q=.skilled/skills/.state/decision-capture;T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;node --input-type=module -e 'import{readFileSync as r,readdirSync as l,appendFileSync as a,writeFileSync as w}from\"node:fs\";const d=\".skilled/skills/.state/decision-capture\";const f=l(d).find((n)=>n.endsWith(\".jsonl\")&&n!==\"consumed.jsonl\");const rec=r(d+\"/\"+f,\"utf8\").trim().split(\"\\n\").map((x)=>JSON.parse(x)).find((x)=>x.kind===\"tool\");const c=(s)=>String(s).replace(/[|]/g,\"/\").replace(/\\n/g,\" \");const row=[\"Q050\",rec.captured_at.slice(0,10),c(rec.header),c(rec.question),rec.options.map(c).join(\"; \"),c(rec.answer)];a(\"specs/demo/001-demo-widget/decision-record.md\",\"\\n## Hand-Written Decisions\\n\\n| ID | Date | Topic | Question | Options offered | Answer (verbatim) |\\n|----|------|-------|----------|-----------------|-------------------|\\n| \"+row.join(\" | \")+\" |\\n\");w(\".hand.key\",rec.key);console.log(\"hand_row=Q050 answer=\"+rec.answer);'||{ echo \"DEVIATION: no queued tool answer to copy\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;node --input-type=module -e 'import{readFileSync as r,readdirSync as l,appendFileSync as a,writeFileSync as w}from\"node:fs\";const d=process.argv[1];const f=l(d).find((n)=>n.endsWith(\".jsonl\")&&n!==\"consumed.jsonl\");const rec=r(d+\"/\"+f,\"utf8\").trim().split(\"\\n\").map((x)=>JSON.parse(x)).find((x)=>x.kind===\"tool\");const c=(s)=>String(s).replace(/[|]/g,\"/\").replace(/\\n/g,\" \");const row=[\"Q050\",rec.captured_at.slice(0,10),c(rec.header),c(rec.question),rec.options.map(c).join(\"; \"),c(rec.answer)];a(\"specs/demo/001-demo-widget/decision-record.md\",\"\\n## Hand-Written Decisions\\n\\n| ID | Date | Topic | Question | Options offered | Answer (verbatim) |\\n|----|------|-------|----------|-----------------|-------------------|\\n| \"+row.join(\" | \")+\" |\\n\");w(\".hand.key\",rec.key);console.log(\"hand_row=Q050 answer=\"+rec.answer);' \"$Q\"||{ echo \"DEVIATION: no queued tool answer to copy\";exit 1;}"
     },
     {
       "id": "S5b",
@@ -164,7 +164,7 @@ Operators run this scenario in its own runner invocation and scratch project on 
           ]
         }
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs>\"$T/sweep.json\"||{ echo \"DEVIATION: sweep failed\";exit 1;};o=$(jq -r '[.chat_candidates[]|select(.question|test(\"count\";\"i\"))] as $c|[$c[]|select(.key|test(\":p[0-9a-f]{12}(-[0-9]+)?$\"))] as $m|((.chat_candidates|group_by(.question_turn_id)|map(length)|max)//0) as $x|\"count_candidates=\\($c|length) mid_message=\\($m|length) max_per_message=\\($x)\"' \"$T/sweep.json\");case \"$o\" in \"count_candidates=1 mid_message=1 max_per_message=\"[0-3])echo \"$o\";;*)echo \"DEVIATION: $o\";exit 1;;esac"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs>\"$T/sweep.json\"||{ echo \"DEVIATION: sweep failed\";exit 1;};o=$(jq -r '[.chat_candidates[]|select(.question|test(\"count\";\"i\"))] as $c|[$c[]|select(.key|test(\":p[0-9a-f]{12}(-[0-9]+)?$\"))] as $m|((.chat_candidates|group_by(.question_turn_id)|map(length)|max)//0) as $x|\"count_candidates=\\($c|length) mid_message=\\($m|length) max_per_message=\\($x)\"' \"$T/sweep.json\");case \"$o\" in \"count_candidates=1 mid_message=1 max_per_message=\"[0-3])echo \"$o\";;*)echo \"DEVIATION: $o\";exit 1;;esac"
     },
     {
       "id": "S6",
@@ -173,7 +173,7 @@ Operators run this scenario in its own runner invocation and scratch project on 
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;D=specs/demo/001-demo-widget/decision-record.md;cp $D \"$T/decision-record.md\";k=$(cat .hand.key);s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);id=$(jq -r --arg k \"$k\" 'select(.key==$k)|.id' $Q/consumed.jsonl 2>/dev/null|head -1);amber=$(rg -c -i '^[|] Q[0-9]+ [|].*amber' $D);chat=$(rg -c 'show the count' $D);proc=$( (rg -i '^[|] Q.*(spec folder|gate 3)' $D;rg -i 'spec folder|gate 3' $Q/*.jsonl) 2>/dev/null|wc -l|tr -d ' ');p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");o=\"hand_id=$id amber_rows=$amber chat_rows=${chat:-0} pending=$p process_rows=$proc\";[ \"$id\" = Q050 ]&&[ \"$amber\" = 1 ]&&[ \"${chat:-0}\" -ge 1 ]&&[ \"$p\" = 0 ]&&[ \"$proc\" = 0 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;D=specs/demo/001-demo-widget/decision-record.md;cp $D \"$T/decision-record.md\";k=$(cat .hand.key);s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);id=$(jq -r --arg k \"$k\" 'select(.key==$k)|.id' $Q/consumed.jsonl 2>/dev/null|head -1);amber=$(rg -c -i '^[|] Q[0-9]+ [|].*amber' $D);chat=$(rg -c 'show the count' $D);proc=$( (rg -i '^[|] Q.*(spec folder|gate 3)' $D;rg -i 'spec folder|gate 3' $Q/*.jsonl) 2>/dev/null|wc -l|tr -d ' ');p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");o=\"hand_id=$id amber_rows=$amber chat_rows=${chat:-0} pending=$p process_rows=$proc\";[ \"$id\" = Q050 ]&&[ \"$amber\" = 1 ]&&[ \"${chat:-0}\" -ge 1 ]&&[ \"$p\" = 0 ]&&[ \"$proc\" = 0 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S14",
@@ -181,7 +181,7 @@ Operators run this scenario in its own runner invocation and scratch project on 
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;v=$(cat $Q/*.nudge 2>/dev/null);[ \"$v\" = 0 ]&&echo \"nudge=0\"||{ echo \"DEVIATION: nudge=$v\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');[ -n \"$Q\" ]||{ echo \"DEVIATION: queue folder unresolved\";exit 1;};T=\"$CONVERSATION_TURN_DIR\";cp $Q/* \"$T\" 2>/dev/null;v=$(cat $Q/*.nudge 2>/dev/null);[ \"$v\" = 0 ]&&echo \"nudge=0\"||{ echo \"DEVIATION: nudge=$v\";exit 1;}"
     }
   ]
 }
@@ -231,6 +231,8 @@ Each check copies the queue, consumed log and nudge files into CONVERSATION_TURN
 | .skilled/hooks/decision-capture/bin/sweep-transcript.mjs | Offers chat candidates from every asking paragraph |
 | .skilled/commands/speckit/save.md | Tells the save step to match hand-written rows and to write chat entries |
 | .skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md | JSON conversation schema and exit outcomes |
+
+Provenance: manual only - a live multi-turn conversation that the shared conversation runner drives in a scratch project
 
 ---
 

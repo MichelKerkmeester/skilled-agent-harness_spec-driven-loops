@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub",
+  "description": "Phase 7: sk-code-hub",
+  "keywords": [
+    "phase",
+    "sk-code-hub"
+  ],
+  "lastUpdated": "2026-11-02T18:33:52.010Z",
+  "specId": "007",
+  "folderSlug": "sk-code-hub",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

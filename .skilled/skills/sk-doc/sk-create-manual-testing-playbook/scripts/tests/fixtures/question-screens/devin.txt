@@ -1,0 +1,50 @@
+
+ ✓ Trust /tmp/probe-devin?
+
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.11.234
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+ Pro · 100% remaining (resets in 2h 5m)
+
+ ✱ Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && bash .skilled/bin/worktree-guard.sh': Command exited with code 127
+
+ ✱ Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && bash .skilled/bin/check-git-hooks.sh…: Command exited with code 127
+
+ ✱ Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && bash .skilled/bin/git-live-follow.sh…: Command exited with code 127
+
+❭ Use your question tool to ask me one question with three options, allowing several answers, then stop.
+
+ ✱ Hook failed: bash -c 'cd "${DEVIN_PROJECT_DIR:-$PWD}" && node .skilled/skills/system-spec-kit…: Command exited with code 1
+
+── Next steps ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  Which should I try next to resolve the `mk devin` hook issue? (multi-select)
+  □ 1 Build runtime package
+      Run npm run build inside the spec-kit runtime package.
+  □ 2 Inspect hook config
+      Check how the mk devin hook is configured and resolved.
+  □ 3 Check npm logs
+      Review build or hook-resolution errors in npm output/logs.
+  □ 4 Other (type your own)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+↑↓ select · ␣ toggle · ↵ confirm · ? help me out · esc cancel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

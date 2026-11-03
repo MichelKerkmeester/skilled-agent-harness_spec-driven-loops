@@ -5,8 +5,6 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.0.11.0
 ---
 
-<!-- Keywords: hermes cli, hermes agent, nous hermes, delegate to hermes, hermes chat, hermes oneshot, hermes query-file, cross-ai, headless dispatch, llm gateway, project skills, hermes plugins -->
-
 # Hermes Agent CLI Orchestrator - Cross-AI Task Delegation
 
 > **CRITICAL — SELF-INVOCATION PROHIBITED**

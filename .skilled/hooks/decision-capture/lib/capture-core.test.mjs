@@ -7,10 +7,20 @@
 // entry point fails open and prints nothing, which the core cannot show.
 
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { pathToFileURL } from 'node:url';
@@ -21,8 +31,10 @@ import {
   isProcessQuestion,
   normalizeAskUserQuestion,
   pendingRecords,
+  projectToken,
   queueDir,
   queueFile,
+  readConsumedKeys,
   readQueue,
   takeNudge,
   toolSourceKey,
@@ -77,6 +89,142 @@ function hookEnv() {
   }
   return env;
 }
+
+test('queueDir uses the git root for its token across project paths', () => {
+  withProject((projectDir) => {
+    const scratch = mkdtempSync(join(tmpdir(), 'decision-capture-paths-'));
+    try {
+      const unrelatedRepo = join(scratch, 'unrelated');
+      mkdirSync(unrelatedRepo);
+      const gitEnv = { ...process.env };
+      delete gitEnv.GIT_DIR;
+      delete gitEnv.GIT_WORK_TREE;
+      for (const directory of [projectDir, unrelatedRepo]) {
+        const init = spawnSync('git', ['init', '--quiet'], {
+          cwd: directory,
+          env: gitEnv,
+          encoding: 'utf8',
+        });
+        assert.equal(init.status, 0, init.stderr);
+      }
+
+      const realRoot = realpathSync(projectDir);
+      const expectedToken = createHash('sha256').update(realRoot).digest('hex').slice(0, 12);
+      const expectedDir = queueDir(projectDir);
+      const subfolder = join(projectDir, 'nested');
+      const envSubfolder = join(projectDir, 'git-env');
+      const symlinkPath = join(scratch, 'project-link');
+      mkdirSync(subfolder);
+      mkdirSync(envSubfolder);
+      symlinkSync(projectDir, symlinkPath, 'dir');
+
+      assert.equal(basename(expectedDir), expectedToken);
+      assert.equal(projectToken(projectDir), expectedToken);
+      assert.equal(queueDir(subfolder), expectedDir);
+      assert.equal(queueDir(symlinkPath), expectedDir);
+
+      const previousGitDir = process.env.GIT_DIR;
+      process.env.GIT_DIR = join(unrelatedRepo, '.git');
+      try {
+        assert.equal(queueDir(envSubfolder), expectedDir);
+      } finally {
+        if (previousGitDir === undefined) delete process.env.GIT_DIR;
+        else process.env.GIT_DIR = previousGitDir;
+      }
+    } finally {
+      rmSync(scratch, { recursive: true, force: true });
+    }
+  });
+});
+
+test('queueDir uses the real path and token outside git', () => {
+  withProject((projectDir) => {
+    const realRoot = realpathSync(projectDir);
+    const token = createHash('sha256').update(realRoot).digest('hex').slice(0, 12);
+
+    assert.equal(queueDir(projectDir), join(realRoot, QUEUE_RELATIVE_DIR, token));
+  });
+});
+
+test('legacy queue and consumed rows remain visible without receiving new writes', () => {
+  withProject((projectDir) => {
+    const sessionId = 'legacy-session';
+    const legacyDir = join(realpathSync(projectDir), QUEUE_RELATIVE_DIR);
+    const currentQueuePath = queueFile(projectDir, sessionId);
+    const legacyQueuePath = join(
+      legacyDir,
+      `${Buffer.from(sessionId, 'utf8').toString('hex')}.jsonl`,
+    );
+    const currentRecords = [
+      { key: 'current-key', source: 'current' },
+      { key: 'shared-key', source: 'current' },
+      { key: 'current-consumed-key', source: 'current' },
+    ];
+    const legacyRecords = [
+      { key: 'legacy-key', source: 'legacy' },
+      { key: 'legacy-consumed-key', source: 'legacy' },
+      { key: 'shared-key', source: 'legacy' },
+    ];
+    const currentConsumed = ['current-consumed-key', 'current-consumed-only'];
+    const legacyConsumed = ['legacy-consumed-key', 'legacy-consumed-only'];
+    mkdirSync(legacyDir, { recursive: true, mode: 0o700 });
+    mkdirSync(queueDir(projectDir), { recursive: true, mode: 0o700 });
+    writeFileSync(currentQueuePath, currentRecords.map((row) => JSON.stringify(row)).join('\n') + '\n');
+    writeFileSync(legacyQueuePath, legacyRecords.map((row) => JSON.stringify(row)).join('\n') + '\n');
+    writeFileSync(
+      join(queueDir(projectDir), 'consumed.jsonl'),
+      currentConsumed.map((key) => JSON.stringify({ key })).join('\n') + '\n',
+    );
+    writeFileSync(
+      join(legacyDir, 'consumed.jsonl'),
+      legacyConsumed.map((key) => JSON.stringify({ key })).join('\n') + '\n',
+    );
+
+    const queue = readQueue(projectDir, sessionId);
+    assert.deepEqual(queue.map((row) => row.key), [
+      'current-key',
+      'shared-key',
+      'current-consumed-key',
+      'legacy-key',
+      'legacy-consumed-key',
+    ]);
+    assert.equal(queue.find((row) => row.key === 'shared-key').source, 'current');
+    assert.deepEqual([...readConsumedKeys(projectDir)].sort(), [
+      ...currentConsumed,
+      ...legacyConsumed,
+    ].sort());
+    assert.deepEqual(pendingRecords(projectDir, sessionId).map((row) => row.key), [
+      'current-key',
+      'shared-key',
+      'legacy-key',
+    ]);
+
+    const currentQueueBefore = readFileSync(currentQueuePath, 'utf8');
+    assert.deepEqual(appendRecords(projectDir, sessionId, [
+      ...currentRecords,
+      ...legacyRecords,
+      { key: 'current-consumed-only' },
+      { key: 'legacy-consumed-only' },
+    ]), { appended: 0, skipped: 8 });
+    assert.equal(readFileSync(currentQueuePath, 'utf8'), currentQueueBefore);
+  });
+});
+
+test('consumed keys stay isolated between projects', () => {
+  const projectA = mkdtempSync(join(tmpdir(), 'decision-capture-project-a-'));
+  const projectB = mkdtempSync(join(tmpdir(), 'decision-capture-project-b-'));
+  try {
+    const key = 'project-a-key';
+    mkdirSync(queueDir(projectA), { recursive: true, mode: 0o700 });
+    writeFileSync(join(queueDir(projectA), 'consumed.jsonl'), `${JSON.stringify({ key })}\n`);
+
+    assert.equal(readConsumedKeys(projectA).has(key), true);
+    assert.equal(readConsumedKeys(projectB).has(key), false);
+  } finally {
+    rmSync(projectA, { recursive: true, force: true });
+    rmSync(projectB, { recursive: true, force: true });
+  }
+});
 
 test('a two-question payload becomes two records with exact keys and text', () => {
   withProject((projectDir) => {

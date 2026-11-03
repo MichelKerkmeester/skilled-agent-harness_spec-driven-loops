@@ -152,6 +152,8 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // structured_data / startup / unresolved), a CLI grouping label, or incidental plain English.
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/context-preservation/session-resume.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md')) return true;
+  // Decision-capture queue records tag entries with a real "kind" field (tool or chat), so this step's `.kind` filter reads that schema field.
+  if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md')) return true;
   // The era report's `layout.kind` JSON field (values v3, v4 or both) is the real name these docs describe.
   if (rel.endsWith('.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/repo-era-report.md')) return true;
   if (rel.endsWith('.skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/repo-era-report.md')) return true;

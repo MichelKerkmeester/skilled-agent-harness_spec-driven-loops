@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4eac6a52d61864173b005f479d6a66238567fa8481e213613ae41c41592bb346",
+  "corpusHash": "cebfcd5dfb60aa4c04582ca84eb921e73c2ad4faf6803c300bb1e58fbab0b058",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27298,
+  "includedPathCount": 27439,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -346,7 +346,9 @@
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/reasoning-and-models/haiku-fast-classification.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/reasoning-and-models/opus-extended-thinking.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/reasoning-and-models/sonnet-balanced-default.md",
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/stress/budget-rejection.md",
@@ -653,6 +655,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/sandbox-modes/read-only-sandbox.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/sandbox-modes/workspace-write-sandbox.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/stress/budget-rejection.md",
@@ -1093,6 +1096,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/commands-and-skills/skills-roster.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/commands-and-skills/unquoted-colon-frontmatter-regression.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/hooks/confirmed-events-smoke-matrix.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/hooks/permission-request-auto-vs-bypass.md",
@@ -1102,6 +1106,7 @@
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/permission-modes/autonomous-sandbox-write-attempt.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/permission-modes/write-attempt-mode-matrix.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/rules/rules-list-and-paths.md",
+    ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/stress/budget-rejection.md",
@@ -1538,6 +1543,7 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/from-claude-code.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/external-dispatch/self-invocation-refusal.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/integration-patterns/memory-epilogue-handback.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/intra-routing-recall/agent-dispatch.md",
@@ -1575,8 +1581,10 @@
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/minimax-design-context-manifest.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/template-applied-to-real-dispatch.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/prompt-templates/templates-inventory.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+    ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/auth-failure.md",
     ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/stress/budget-rejection.md",
@@ -1789,10 +1797,12 @@
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/command-dispatch/argument-substitution.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/command-dispatch/flat-prompt-discovery.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/git-preflight-advisory/git-preflight-advisory.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/extension-auto-discovery.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/fail-open-guard-discipline.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/lifecycle-event-registration.md",
+    ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges-conversation.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/mcp-host-integration/project-global-mcp-precedence.md",
@@ -1853,6 +1863,7 @@
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/hub-routing/opencode-full-runtime-dispatch.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-audit-trail.md",
+    ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/codex-hook-parity.md",
     ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/goal-manage-cli.md",
@@ -1937,6 +1948,7 @@
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/multi-tool-workflows/promise-all-parallel.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/multi-tool-workflows/sequential-chain.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/multi-tool-workflows/try-catch-error-path.md",
+    ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/recovery-and-config/deregister-reregister-cycle.md",
     ".skilled/skills/mcp-code-mode/manual-testing-playbook/recovery-and-config/disabled-server-omitted.md",
@@ -2880,6 +2892,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
     ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md",
     ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback-conversation.md",
     ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback.md",
     ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/check-dist-staleness-hook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/tooling-and-hooks/comment-hygiene-hook.md",
@@ -6267,6 +6280,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.32.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.33.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.34.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.3.35.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.5.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.6.0.md",
@@ -6447,6 +6461,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.8.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.9.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/prepare-release-notes.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-line/extend-open-release.md",
@@ -6616,6 +6631,7 @@
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/detect-unbound-phase.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/lint-goal-criteria.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/phase-parent-and-nested-child-goals.md",
+    ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder-conversation.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/resend-parent-after-child-change.md",
     ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/route-session-goal-away.md",
@@ -6629,6 +6645,7 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/ROUTER.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.0.0.md",
@@ -6642,15 +6659,20 @@
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.7.0.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.8.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.0.9.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/keep-operator-scenarios-in-scope.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/operator-contract/persist-scenario-result.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/package-authoring/create-a-reusable-package.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/package-authoring/keep-policy-in-root.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/package-authoring/leave-one-off-check-alone.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/scenario-design/choose-a-scenario-style.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/scenario-design/design-a-deterministic-scenario.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md",
     ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md",
     ".skilled/skills/sk-doc/sk-create-quality-control/README.md",
@@ -6732,6 +6754,7 @@
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-authoring/trigger-phrase-collision.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/always-loaded-refusal.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md",
+    ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal-conversation.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/routing-refusal.md",
     ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-loading-experiments/card-arm-run.md",
@@ -7927,6 +7950,7 @@
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/rebuild-from-source.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/auto-update-daemon/watcher-narrow-scope.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/claude-user-prompt-submit.md",
+    ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/opencode-plugin-bridge.md",
     ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/skill-advisor-cli-fallback.md",
@@ -8298,6 +8322,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.28.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.29.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.30.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -14590,6 +14615,101 @@
     "specs/sk-doc/064-reference-template-debt/002-remaining-references/spec.md",
     "specs/sk-doc/064-reference-template-debt/002-remaining-references/tasks.md",
     "specs/sk-doc/064-reference-template-debt/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/acceptance-criteria.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/goal.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/acceptance-criteria.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/goal.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/fanout-attribution.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/resource-map.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/implementation-summary.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps/plan.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps/tasks.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/spec.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/goal.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/handover.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/open-questions.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/deep-research-dashboard.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/deep-research-strategy.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-001.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-002.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-003.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-1.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-2.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-3.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/research.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/research/resource-map.md",
+    "specs/sk-doc/065-conversation-playbook-scenarios/spec.md",
     "specs/sk-git/020-live-sync-harden-default-on/implementation-summary.md",
     "specs/sk-git/020-live-sync-harden-default-on/plan.md",
     "specs/sk-git/020-live-sync-harden-default-on/spec.md",
@@ -27307,13 +27427,31 @@
     "specs/system-speckit/043-decision-capture/007-gap-closure/spec.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/tasks.md",
     "specs/system-speckit/043-decision-capture/007-gap-closure/timeline.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/goal.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/plan.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/spec.md",
+    "specs/system-speckit/043-decision-capture/008-project-scoped-state/tasks.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/goal.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/plan.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/spec.md",
+    "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/tasks.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/goal.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/plan.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/spec.md",
+    "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/tasks.md",
     "specs/system-speckit/043-decision-capture/decision-record.md",
     "specs/system-speckit/043-decision-capture/goal.md",
     "specs/system-speckit/043-decision-capture/handover.md",
     "specs/system-speckit/043-decision-capture/open-questions.md",
     "specs/system-speckit/043-decision-capture/research/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/research/research.md",
-    "specs/system-speckit/043-decision-capture/research/resource-map.md",
+    "specs/system-speckit/043-decision-capture/research/synthesis-review.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-strategy.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
@@ -27324,12 +27462,15 @@
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
     "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/fanout-attribution.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/research.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/resource-map.md",
     "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
     "specs/system-speckit/043-decision-capture/review/review-report.md",
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "361e95366c041e6bc6b01fdb211e1e1f9206d0c54056628c90d27573f16f313e",
+  "manifestHash": "e96363eae65ae443e663c983503bda9951413fdedd1705a02f7f4694af790f89",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31496,6 +31637,102 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/z_archive",
       "reason": "excluded directory"
     },
@@ -35076,7 +35313,23 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/043-decision-capture/008-project-scoped-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/009-chat-answer-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/010-decision-routing-vocabulary/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/043-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-03-gap-closure-research/lineages",
       "reason": "excluded directory"
     },
     {

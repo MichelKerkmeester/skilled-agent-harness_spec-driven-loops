@@ -1,7 +1,7 @@
 ---
 title: "cli-opencode: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the cli-opencode CLI orchestrator skill."
-version: 1.4.24.0
+version: 1.4.25.0
 ---
 
 # cli-opencode: Manual Testing Playbook
@@ -479,9 +479,9 @@ Expected signals: Exit 0. >= 3 distinct agent slugs in sequence. Handoffs descri
 
 ---
 
-## 11. SESSION CONTINUITY (`CO-018..CO-020`)
+## 11. SESSION CONTINUITY (`CO-018..CO-020`, `CO-057..CO-058`)
 
-This category covers 3 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented session continuity surfaces, `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session). Plus the `--share` prohibition: OpenCode 2 `run` has no such flag, and on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued` ([install reference](../references/install-and-versions.md)).
+This category covers five scenario summaries while the linked feature files remain the canonical execution contract. The original scenarios exercise `-c`/`--continue` (resume last), `-s <id>`/`--session <id>` (resume by id) and `--fork` (branch a session); two conversation companions check continuity within a session and after its restart. The `--share` prohibition also remains covered: OpenCode 2 `run` has no such flag, and on OpenCode 1 it is a hidden, deprecated flag that only prints `Session sharing has been discontinued` ([install reference](../references/install-and-versions.md)).
 
 ### CO-018 | Continue last session via -c
 
@@ -530,6 +530,38 @@ Expected signals: Both exit 0. SID1 != SID2. SKILL.md NEVER rule 2 forbids `--sh
 #### Test Execution
 
 > **Feature File:** [CO-020](../manual-testing-playbook/session-continuity/fork-and-share.md)
+
+### CO-057 | Resume a specific session after restart
+
+#### Description
+
+Confirm the runner restarts the same OpenCode session and the resumed turn recalls a fact planted before the restart.
+
+#### Scenario Contract
+
+Prompt summary: Remember the exact phrase `amber otter 731`, confirm it with `CHECKPOINT`, restart the session and ask for the phrase without repeating it.
+
+Expected signals: The first response is `CHECKPOINT`; after restart, the final response contains `amber otter 731`.
+
+#### Test Execution
+
+> **Feature File:** [CO-057](../manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md)
+
+### CO-058 | Continue the current session across turns
+
+#### Description
+
+Confirm a follow-up turn in the same OpenCode session uses a phrase established in the first turn.
+
+#### Scenario Contract
+
+Prompt summary: Remember the exact phrase `silver maple 482`, confirm it with `CHECKPOINT` and repeat it in the next turn without restarting the session.
+
+Expected signals: The first response is `CHECKPOINT`; the follow-up contains `silver maple 482`.
+
+#### Test Execution
+
+> **Feature File:** [CO-058](../manual-testing-playbook/session-continuity/continue-last-session-conversation.md)
 
 ---
 
@@ -751,9 +783,9 @@ Expected signals: Layer 1 trips. `references/self-invocation-guard.md`'s `has_pa
 
 ---
 
-## 16. GOAL HOOK (`CO-039`)
+## 16. GOAL HOOK (`CO-039`, `CO-059`)
 
-This category covers 1 scenario while the linked feature file remains the canonical execution contract. It exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
+This category covers two scenario summaries while the linked feature files remain the canonical execution contract. The original exercises the OpenCode-native `opencode-goal` plugin (`.opencode/plugins/opencode-goal.js`) directly in-process: the `/goal-opencode` action set, two-session isolation, fixed SHA-256 state keys, long-session persistence, validated lazy migration from the earlier hex layout, native token accounting, and `experimental.chat.system.transform` injection. The conversation companion checks that a packet-bound goal is visible on a later model turn. `opencode-goal` remains separate from the runtime-neutral Pi/Cursor core validated as `CE-P03` in the hub playbook.
 
 ### CO-039 | Goal hook native opencode-goal validation
 
@@ -770,6 +802,22 @@ Expected signals: `set` returns `mutation=created` with a populated RICCE `goal_
 #### Test Execution
 
 > **Feature File:** [CO-039](../manual-testing-playbook/goal-hook/goal-hook.md)
+
+### CO-059 | Bound goal remains visible on the next turn
+
+#### Description
+
+Confirm the OpenCode goal hook binds a scratch packet to the session and injects its completion marker into a later model request.
+
+#### Scenario Contract
+
+Prompt summary: Bind the scratch packet at `specs/conversation-goal-probe`, then ask for its unique completion marker on a later turn.
+
+Expected signals: The first turn reports `STATUS=OK ACTION=bind` and `mutation=bound`; the later response contains `cobalt comet 8421`.
+
+#### Test Execution
+
+> **Feature File:** [CO-059](../manual-testing-playbook/goal-hook/goal-hook-conversation.md)
 
 ---
 
@@ -829,6 +877,8 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-018: [Continue last session via -c](../manual-testing-playbook/session-continuity/continue-last-session.md)
 - CO-019: [Resume specific session by id (-s)](../manual-testing-playbook/session-continuity/resume-by-session-id.md)
 - CO-020: [Fork session and share URL gate](../manual-testing-playbook/session-continuity/fork-and-share.md)
+- CO-057: [Resume a specific session after restart](../manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md)
+- CO-058: [Continue the current session across turns](../manual-testing-playbook/session-continuity/continue-last-session-conversation.md)
 
 ### INTEGRATION PATTERNS
 
@@ -857,6 +907,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 ### GOAL HOOK
 
 - CO-039: [Goal hook native opencode-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)
+- CO-059: [Bound goal remains visible on the next turn](../manual-testing-playbook/goal-hook/goal-hook-conversation.md)
 
 ### PLUGIN UTILIZATION
 
@@ -938,7 +989,7 @@ external OpenCode process. There is no operator-facing prompt beyond the run-thi
 
 ## 22. PLUGIN UTILIZATION (`CO-040..CO-056`)
 
-Each scenario drives a live session on OpenCode 2 (recommended) and OpenCode 1 (fallback) at one plugin's hook and checks for the effect in the model request, a plugin log or the event stream. The scenarios share `plugin-utilization/run-plugin-scenario.sh`, which routes the session through `plugin-utilization/capture-proxy.mjs` so the system-prompt lines plugins add are visible.
+The plugin-utilization scenarios exercise plugin effects in a live OpenCode session. The command-level scenarios use `plugin-utilization/run-plugin-scenario.sh` through `plugin-utilization/capture-proxy.mjs` to inspect captured system prompts and events; CO-046 uses the conversation runner to check that the session-relaunch nudge reaches a later turn in the same session.
 
 Run results live in the skill's `benchmark/reports/` folder; the first run is `2026-10-20--manual-testing-playbook--plugin-utilization`, and its findings name the plugins whose expected effects were missing on OpenCode 2, and why.
 
@@ -948,7 +999,7 @@ Run results live in the skill's `benchmark/reports/` folder; the first run is `2
 - `CO-043`: [MCP route guard](plugin-utilization/mcp-route-guard.md)
 - `CO-044`: [OpenCode goal](plugin-utilization/opencode-goal.md)
 - `CO-045`: [Session cleanup](plugin-utilization/session-cleanup.md)
-- `CO-046`: [Session relaunch](plugin-utilization/session-relaunch.md)
+- `CO-046`: [Session relaunch later-turn conversation](plugin-utilization/session-relaunch.md)
 - `CO-047`: [sk-code post-edit quality](plugin-utilization/sk-code-post-edit-quality.md)
 - `CO-048`: [sk-git message gate](plugin-utilization/sk-git-message-gate.md)
 - `CO-049`: [sk-git preflight advisory](plugin-utilization/sk-git-preflight-advisory.md)

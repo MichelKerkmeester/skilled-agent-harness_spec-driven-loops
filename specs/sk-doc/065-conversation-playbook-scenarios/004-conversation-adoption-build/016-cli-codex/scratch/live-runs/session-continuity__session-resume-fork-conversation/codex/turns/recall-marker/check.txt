@@ -1,0 +1,2 @@
+$ grep -F -x -q 'COPPER-ORCHID-731' resume-answer.txt
+[exit 0]

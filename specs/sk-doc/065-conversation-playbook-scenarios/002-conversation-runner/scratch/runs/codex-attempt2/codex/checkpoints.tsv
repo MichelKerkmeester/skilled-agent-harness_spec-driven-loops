@@ -1,0 +1,7 @@
+turn	status	attempts	evidence	observed
+single-select	FAIL	1	turns/single-select	SUBJECT_EXITED
+multi-select	NOT_RUN	0	turns/multi-select	SUBJECT_EXITED
+other-answer	NOT_RUN	0	turns/other-answer	SUBJECT_EXITED
+chat-reply	NOT_RUN	0	turns/chat-reply	SUBJECT_EXITED
+restart	NOT_RUN	0	turns/restart	SUBJECT_EXITED
+compact	NOT_RUN	0	turns/compact	SUBJECT_EXITED

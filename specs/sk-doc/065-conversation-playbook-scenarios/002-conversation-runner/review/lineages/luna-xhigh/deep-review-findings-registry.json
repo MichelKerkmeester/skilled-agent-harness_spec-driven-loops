@@ -1,0 +1,1727 @@
+{
+  "sessionId": "fanout-luna-xhigh-1793613625067-f04kmf",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 7,
+    "timestamp": "2026-11-02T10:38:55.862Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "LUNA-XHIGH-001",
+      "severity": "P0",
+      "title": "A runtime-project symlink bypasses the scratch boundary",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1430,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-004",
+      "severity": "P0",
+      "title": "Codex runs without a host filesystem sandbox",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1043,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-002",
+      "severity": "P1",
+      "title": "SIGINT during setup leaves the detached setup child running",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-003",
+      "severity": "P1",
+      "title": "Setup-time repository writes occur before the baseline snapshot",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-005",
+      "severity": "P1",
+      "title": "Unreadable snapshot subtrees are treated as empty",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1242,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-008",
+      "severity": "P1",
+      "title": "Cleanup reports child processes gone without verification",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1376,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-006",
+      "severity": "P2",
+      "title": "Removed pre-existing project hook trust is not restored",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 481,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-007",
+      "severity": "P2",
+      "title": "AC-005 is marked Met without evidence for its specs write case",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+      "line": 571,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "LUNA-XHIGH-001",
+      "severity": "P0",
+      "title": "A runtime-project symlink bypasses the scratch boundary",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1430,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-004",
+      "severity": "P0",
+      "title": "Codex runs without a host filesystem sandbox",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1043,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-002",
+      "severity": "P1",
+      "title": "SIGINT during setup leaves the detached setup child running",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-003",
+      "severity": "P1",
+      "title": "Setup-time repository writes occur before the baseline snapshot",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-005",
+      "severity": "P1",
+      "title": "Unreadable snapshot subtrees are treated as empty",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1242,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-008",
+      "severity": "P1",
+      "title": "Cleanup reports child processes gone without verification",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1376,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-006",
+      "severity": "P2",
+      "title": "Removed pre-existing project hook trust is not restored",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 481,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-007",
+      "severity": "P2",
+      "title": "AC-005 is marked Met without evidence for its specs write case",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+      "line": 571,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "LUNA-XHIGH-001",
+      "severity": "P0",
+      "title": "A runtime-project symlink bypasses the scratch boundary",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1430,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-004",
+      "severity": "P0",
+      "title": "Codex runs without a host filesystem sandbox",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1043,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-002",
+      "severity": "P1",
+      "title": "SIGINT during setup leaves the detached setup child running",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-003",
+      "severity": "P1",
+      "title": "Setup-time repository writes occur before the baseline snapshot",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 2749,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-005",
+      "severity": "P1",
+      "title": "Unreadable snapshot subtrees are treated as empty",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1242,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-008",
+      "severity": "P1",
+      "title": "Cleanup reports child processes gone without verification",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 1376,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-006",
+      "severity": "P2",
+      "title": "Removed pre-existing project hook trust is not restored",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "line": 481,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "LUNA-XHIGH-007",
+      "severity": "P2",
+      "title": "AC-005 is marked Met without evidence for its specs write case",
+      "file": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+      "line": 571,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 4,
+    "P2": 2
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_evidence",
+      "adapter_evidence",
+      "baseline_snapshot",
+      "cleanup_coverage",
+      "codex_hook_restore",
+      "hook_restore",
+      "hook_trust_evidence",
+      "path_containment",
+      "privilege_boundary",
+      "privileged_adapter_launch",
+      "process_group_cleanup",
+      "process_lifecycle",
+      "project_boundary",
+      "runtime_adapters",
+      "scratch_guard_coverage",
+      "setup_signal_cleanup",
+      "snapshot_completeness",
+      "snapshot_coverage",
+      "snapshot_fail_closed",
+      "spec_code_alignment"
+    ],
+    "ruledOut": [
+      "adapter_evidence",
+      "adapter_maintenance",
+      "codex_hook_trust",
+      "conversation_parser",
+      "fixture_fidelity",
+      "parser_consistency",
+      "parser_maintenance",
+      "runtime_adapters"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "path_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "process_lifecycle": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "baseline_snapshot": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "runtime_adapters": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "codex_hook_trust": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "conversation_parser": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "privilege_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "snapshot_fail_closed": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "codex_hook_restore": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "acceptance_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "spec_code_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cleanup_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "snapshot_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "scratch_guard_coverage": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "hook_trust_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "adapter_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "parser_consistency": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "process_group_cleanup": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "setup_signal_cleanup": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "snapshot_completeness": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "project_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "hook_restore": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "adapter_maintenance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "parser_maintenance": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "fixture_fidelity": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "privileged_adapter_launch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5,
+          6,
+          7
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "adapter tests"
+      ],
+      "bugClass": "runtime_adapters",
+      "disposition": "ruled_out",
+      "rationale": "Adapter behavior is covered for this correctness pass; the shared scratch-root finding affects all adapters and is separately linked.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "reason": "No distinct adapter-only correctness defect was established by static review."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "hook tests"
+      ],
+      "bugClass": "codex_hook_trust",
+      "disposition": "ruled_out",
+      "rationale": "The tested out-of-project preservation is intentional, while opt-in is explicit.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:349-540",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:609-686"
+      ],
+      "reason": "Code and regression assertions align on restoring only run-owned project hook trust and preserving external config tables."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "conversation_parser",
+      "disposition": "ruled_out",
+      "rationale": "No parser correctness gap was established in the read paths.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:189-219",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-549",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:558-565"
+      ],
+      "reason": "The parser applies JSON parsing and findings to the shared first-block result; tests cover absent block and validation outcomes."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "conversation_parser",
+      "disposition": "ruled_out",
+      "rationale": "No parser-driven filesystem escape was found in the JSON parsing path.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:189-219",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-549"
+      ],
+      "reason": "Parsing is shared and validated before runtime script execution; no security gap was found in scope."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        "plan",
+        "runtime adapters"
+      ],
+      "bugClass": "adapter_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The focus files and packet state the same five runtime set and fixture-driven adapter tests.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112",
+        "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:181",
+        "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/acceptance-criteria.md:60"
+      ],
+      "reason": "No additional adapter mapping inconsistency was visible in the declared sources."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "parser_consistency",
+      "disposition": "ruled_out",
+      "rationale": "Both consumers import the shared parser and reject invalid/duplicate blocks.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2588-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "reason": "The shared parser and consumer checks agree on JSON and structural findings."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner",
+        "adapter tests"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The table centralizes launch and screen configuration, and all five runtime names match the spec.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "reason": "No duplicated adapter branch or orphaned adapter was found in the declared table."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-029",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner",
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "No parallel parser implementation or discrepant consumer behavior was found.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2588-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "reason": "The shared parser keeps both consumers aligned."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-030",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner tests",
+        "AC"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "Fixture behavior matches its narrow stand-in role, although two guarantee branches remain uncovered.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-568",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:571-605"
+      ],
+      "reason": "No fake subject behavior mismatch exists; missing coverage is captured by separate findings."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-039",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The table and declared runtime names stay aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "reason": "No distinct mapping or orphaned-adapter defect was established."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-040",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "Shared parser behavior remains aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "reason": "No separate parser implementation or consumer discrepancy was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-041",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "No fixture behavior mismatch was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "reason": "Fixture fidelity is not itself a new defect; separate findings retain the missing assertions."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-050",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "reason": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-051",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "reason": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-052",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "reason": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-061",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "reason": "No additional defect was established during the recovery check."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-062",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "reason": "No additional defect was established during the recovery check."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-063",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "reason": "No additional defect was established during the recovery check."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "adapter tests"
+      ],
+      "bugClass": "runtime_adapters",
+      "disposition": "ruled_out",
+      "rationale": "Adapter behavior is covered for this correctness pass; the shared scratch-root finding affects all adapters and is separately linked.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "proof": "No distinct adapter-only correctness defect was established by static review."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "hook tests"
+      ],
+      "bugClass": "codex_hook_trust",
+      "disposition": "ruled_out",
+      "rationale": "The tested out-of-project preservation is intentional, while opt-in is explicit.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:349-540",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:609-686"
+      ],
+      "proof": "Code and regression assertions align on restoring only run-owned project hook trust and preserving external config tables."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "correctness",
+      "targetRefs": [
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "conversation_parser",
+      "disposition": "ruled_out",
+      "rationale": "No parser correctness gap was established in the read paths.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:189-219",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-549",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:558-565"
+      ],
+      "proof": "The parser applies JSON parsing and findings to the shared first-block result; tests cover absent block and validation outcomes."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "conversation_parser",
+      "disposition": "ruled_out",
+      "rationale": "No parser-driven filesystem escape was found in the JSON parsing path.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:189-219",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-549"
+      ],
+      "proof": "Parsing is shared and validated before runtime script execution; no security gap was found in scope."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "traceability",
+      "targetRefs": [
+        "plan",
+        "runtime adapters"
+      ],
+      "bugClass": "adapter_evidence",
+      "disposition": "ruled_out",
+      "rationale": "The focus files and packet state the same five runtime set and fixture-driven adapter tests.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112",
+        "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md:181",
+        "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/acceptance-criteria.md:60"
+      ],
+      "proof": "No additional adapter mapping inconsistency was visible in the declared sources."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-018",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "parser_consistency",
+      "disposition": "ruled_out",
+      "rationale": "Both consumers import the shared parser and reject invalid/duplicate blocks.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2588-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "proof": "The shared parser and consumer checks agree on JSON and structural findings."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-027",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner",
+        "adapter tests"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The table centralizes launch and screen configuration, and all five runtime names match the spec.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "proof": "No duplicated adapter branch or orphaned adapter was found in the declared table."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-029",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner",
+        "validator",
+        "parser tests"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "No parallel parser implementation or discrepant consumer behavior was found.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2588-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "proof": "The shared parser keeps both consumers aligned."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-030",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "runner tests",
+        "AC"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "Fixture behavior matches its narrow stand-in role, although two guarantee branches remain uncovered.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-568",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:571-605"
+      ],
+      "proof": "No fake subject behavior mismatch exists; missing coverage is captured by separate findings."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-039",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The table and declared runtime names stay aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "proof": "No distinct mapping or orphaned-adapter defect was established."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-040",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "Shared parser behavior remains aligned.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "proof": "No separate parser implementation or consumer discrepancy was found."
+    },
+    {
+      "iteration": 5,
+      "id": "SL-041",
+      "dimension": "security",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "No fixture behavior mismatch was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "proof": "Fixture fidelity is not itself a new defect; separate findings retain the missing assertions."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-050",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "proof": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-051",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "proof": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-052",
+      "dimension": "correctness",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "The shared path or fixture behavior was rechecked and no additional defect was established.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "proof": "No distinct defect beyond the already recorded findings was established."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-061",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "adapter_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:1008-1112"
+      ],
+      "proof": "No additional defect was established during the recovery check."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-062",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "parser_maintenance",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs:2578-2607",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:518-569"
+      ],
+      "proof": "No additional defect was established during the recovery check."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-063",
+      "dimension": "traceability",
+      "targetRefs": [
+        "runner",
+        "runner tests",
+        "packet"
+      ],
+      "bugClass": "fixture_fidelity",
+      "disposition": "ruled_out",
+      "rationale": "The scoped evidence did not establish a distinct finding or severity upgrade.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs:1-180",
+        ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs:541-605"
+      ],
+      "proof": "No additional defect was established during the recovery check."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "project_boundary",
+      "privileged_adapter_launch",
+      "setup_signal_cleanup",
+      "snapshot_completeness",
+      "process_group_cleanup",
+      "hook_restore",
+      "adapter_maintenance",
+      "parser_maintenance",
+      "fixture_fidelity"
+    ],
+    "covered": [
+      "project_boundary",
+      "privileged_adapter_launch",
+      "setup_signal_cleanup",
+      "snapshot_completeness",
+      "process_group_cleanup",
+      "hook_restore"
+    ],
+    "ruledOut": [
+      "adapter_maintenance",
+      "parser_maintenance",
+      "fixture_fidelity"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

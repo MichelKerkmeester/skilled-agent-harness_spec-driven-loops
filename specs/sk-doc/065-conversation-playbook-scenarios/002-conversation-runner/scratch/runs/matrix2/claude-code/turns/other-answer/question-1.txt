@@ -1,0 +1,51 @@
+                                                                                                                                                                                                 
+  ⎿  exit=0                                 
+     green                         
+     small,large                                                                                                                                                                                        
+  ⎿  Updated answers.txt (+1 -0)
+      1  green                                                                                                                                                                                          
+      2 +small,large                                                                                                                                                                             
+                                              
+⏺ You picked small and large, and I added them to answers.txt as one line, small,large, with no space after the comma. The write succeeded. The file now reads:
+
+  green                                                                                                                                                                                     
+  small,large                                                                                                                                                                                           
+                                                                                                                                                                                                 
+✻ Churned for 22s · done 8:21 AM                                                                                                                                                                 
+
+❯ small, large                                                                                                                                                                                          
+                                                                                                                                                                                                 
+⏺ Bash(sed -i '' '$s/^small,large$/small, large/' answers.txt; echo "exit=$?"; cat answers.txt)
+  ⎿  exit=0                                                                                                                                                    
+     green                                                                                                                                                                                              
+     small, large                                                                                                                                                                                       
+  ⎿  Updated answers.txt (+1 -1)
+      1  green                                                                                 
+      2 -small,large                                                                                                                                                                             
+      2 +small, large                                                                                                                                                                            
+                                                                                                                                                                                                        
+⏺ I took that as a fix to the format, so I changed the existing line to small, large with a space after the comma instead of adding a second sizes line. The edit succeeded. answers.txt now reads:
+                                                                                               
+  green                                                                                                                                                                                          
+  small, large                                                                                                                                                                                   
+                                
+  If you actually wanted small, large added as a new line, I can append it.                                                                                                                             
+                                                                                                                                                                                                 
+✻ Churned for 10s · done 8:21 AM                                                                                                                                                                 
+                                                                                                                                                                                                 
+❯ Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Custom                                                                                                                                                                                               
+
+What custom colour do you want? Pick one or choose Other to type your own.                                                                                                                       
+
+❯ 1. purple                                                                
+     Append 'purple' to answers.txt                                                        
+  2. orange                                                                        
+     Append 'orange' to answers.txt                                                                                                                                                                   
+  3. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel             
+

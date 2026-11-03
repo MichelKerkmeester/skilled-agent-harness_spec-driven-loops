@@ -49,6 +49,7 @@ expected_resources:
   - sk-create-feature-catalog/references/README.md
   - sk-create-feature-catalog/references/common-pitfalls.md
   - sk-create-feature-catalog/references/examples.md
+  - sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
   - sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
   - sk-create-manual-testing-playbook/references/README.md
@@ -228,6 +229,8 @@ expected_leaf_resources:
   - workflow_mode: sk-create-frontmatter
     leaf_resource_id: references/frontmatter-versioning.md
   - workflow_mode: sk-create-manual-testing-playbook
+    leaf_resource_id: assets/manual-testing-playbook-conversation-snippet-template.md
+  - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: assets/manual-testing-playbook-snippet-template.md
   - workflow_mode: sk-create-manual-testing-playbook
     leaf_resource_id: assets/manual-testing-playbook-template.md
@@ -367,7 +370,7 @@ expected_leaf_resources:
     leaf_resource_id: references/scope-and-exemptions.md
   - workflow_mode: sk-create-with-human-voice
     leaf_resource_id: references/scoring-and-verification.md
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # SD-015: Max-Load Token Cost (Ceiling)
@@ -409,7 +412,7 @@ The ceiling case records the upper-bound inventory an explicit full-toolkit requ
 
 ```text
 DO NOT execute the work below. INSTEAD describe (in your response):
-1. Which sk-doc intent the router would select for the input (pick from the 18-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, HVR, PLAYBOOK, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FRONTMATTER, GOAL_AUTHORING, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
+1. Which sk-doc intent the router would select for the input (pick from the 19-intent RESOURCE_MAP: DOC_QUALITY, OPTIMIZATION, SKILL_CREATION, PARENT_HUB, AGENT_CREATION, COMMAND_CREATION, AGENT_COMMAND, HVR, PLAYBOOK, PLAYBOOK_CONVERSATION, FEATURE_CATALOG, README_CREATION, CHANGELOG, BENCHMARK, DIFF, REPO_RULE, FRONTMATTER, GOAL_AUTHORING, FULL_INVENTORY; or UNKNOWN_FALLBACK if no keywords match)
 2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 3. The response shape sk-doc would return (~3-5 lines describing structure, not actual content)
 

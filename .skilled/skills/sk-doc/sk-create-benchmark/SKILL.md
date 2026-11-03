@@ -5,8 +5,6 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.6.4.0
 ---
 
-<!-- Keywords: create-benchmark, benchmark-report.md, source.md, mcp_server benchmarks, benchmark promotion, skill-local benchmark, MCP bake-off, benchmark folder, behavior benchmark, behavior-benchmark.md, behavior_benchmark, scenario contract, behavior-benchmark framework, claude-baseline, benchmark/README.md, run-label folder -->
-
 # create-benchmark
 
 `create-benchmark` is the `sk-doc` benchmark-authoring packet. It covers:

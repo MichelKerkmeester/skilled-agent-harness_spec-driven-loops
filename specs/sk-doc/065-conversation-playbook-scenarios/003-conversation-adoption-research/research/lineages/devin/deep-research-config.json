@@ -1,0 +1,76 @@
+{
+  "topic": "Continue the conversation-adoption audit for the 28 manual-testing-playbook packages the first lineage never read. Apply the four ordered questions in .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md section Choosing the Scenario Style (Q1 human judgment -> single prompt; Q2 more than one exchange, answer-dependent next step, restart or compaction -> conversation; Q3 several runtimes or a regression gate with shell-checkable turns -> conversation; Q4 otherwise single prompt). The runner supports only claude-code, opencode, codex, pi and devin, and its only session actions are send, restart and compact. For each package below give convert, update, add or keep verdicts, or an explicit no-candidate note, each with a [SOURCE: path:line] tag and its deciding question. Packages (under .skilled/skills/): cli-classifier, cli-classifier/cli-jev, mcp-code-mode, mcp-tooling (hub), mcp-tooling/mcp-mobbin, mcp-tooling/mcp-refero, sk-code (hub), sk-code/sk-code-ci, sk-code/sk-code-quality, sk-code/sk-code-skilled, sk-design (hub), sk-design/sk-design-diagram, sk-design/sk-design-fundamentals, sk-design/sk-design-md-generator, sk-prompt, and sk-doc modes sk-create-agent, sk-create-benchmark, sk-create-changelog, sk-create-command, sk-create-diff, sk-create-feature-catalog, sk-create-frontmatter, sk-create-goal, sk-create-quality-control, sk-create-readme, sk-create-repo-rule, sk-create-skill, sk-create-with-human-voice. Each package's playbook is its manual-testing-playbook/ folder. The first lineage's results for the other 28 packages are in specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md; read it for the principles and do not re-audit those packages. Read only; change no playbook, skill or runner file.",
+  "maxIterations": 6,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research",
+  "createdAt": "2026-11-02T18:18:53Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-devin",
+    "model": "deepseek-v4-1-flash-max",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-devin-1793643468783-m86yfa",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}
