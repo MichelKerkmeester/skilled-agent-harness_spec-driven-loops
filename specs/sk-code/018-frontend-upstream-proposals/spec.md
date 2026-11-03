@@ -114,6 +114,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Complete |
 | 6 | 006-open-items-and-alignment/ | The five items phases 001 to 005 left open, then two alignment passes over the touched skills until a recheck leaves nothing open | Complete |
 | 7 | 007-web-only-frontend/ | Remove the React Native layer from canonical sk-code: the frontend surface keeps web practice and the Figma check | Complete |
+| 8 | 008-release-coverage/ | Fold the packet into the root release notes and README, and add a release-coverage check to the alignment harness | Complete |
 
 ### Phase Transition Rules
 
@@ -132,6 +133,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 004-playbook-scenarios | 005-inferred-confirmations | The five scenarios exist and both playbook validators pass | The playbook validator exits 0 for mcp-figma and for sk-design-fundamentals |
 | 005-inferred-confirmations | 006-open-items-and-alignment | Ranks 10 to 12 shipped with revert-proven tests, rank 13 dropped, and the open items it left are listed | `005-inferred-confirmations/decision-record.md` holds four rank verdicts and its summary lists the known limitations |
 | 006-open-items-and-alignment | 007-web-only-frontend | Every routing gate is green and no finding is open | `006-open-items-and-alignment/scratch/final-suites.txt` and `reach-final.txt` |
+| 007-web-only-frontend | 008-release-coverage | The surface is web-only and every routing gate and the alignment recheck are clean | `007-web-only-frontend/scratch/final-suites.txt` and `alignment-fixes.md` |
 <!-- /ANCHOR:phase-map -->
 
 ---

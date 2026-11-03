@@ -10,7 +10,8 @@
     "sk-code/018-frontend-upstream-proposals/004-playbook-scenarios",
     "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
     "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment",
-    "sk-code/018-frontend-upstream-proposals/007-web-only-frontend"
+    "sk-code/018-frontend-upstream-proposals/007-web-only-frontend",
+    "sk-code/018-frontend-upstream-proposals/008-release-coverage"
   ],
   "manual": {
     "depends_on": [],
@@ -43,7 +44,7 @@
       "five-pass"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -56,6 +57,7 @@
       ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
       "005-inferred-confirmations/decision-record.md",
       "006-open-items-and-alignment/scratch/final-suites.txt",
+      "007-web-only-frontend/scratch/final-suites.txt",
       "001-frontend-surface-mode/decision-record.md",
       "007-web-only-frontend/decision-record.md",
       "002-tooling-fixes/decision-record.md",
@@ -189,17 +191,17 @@
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T19:25:29.985Z",
+    "last_save_at": "2026-11-03T20:18:38.234Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:6691aa8b78204a07fa5428bf0fd5d699abdaeb896ed7764d52b6815c1f46e7dc",
+    "source_fingerprint": "sha256:e876d01d527992a6dde2e1b7514d8a96217432aae6804e0cb0bec3540f32dd0b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "612661518d33921075e4264187b7e24d19284c9c86bc4ae1c825374ccf3f8b43"
+      "spec.md": "cd0bb3217b8c2af31f89413809b523a80ff8869047b35e4029d4fba808d4cc0b"
     },
     "last_active_at": null
   }

@@ -1,0 +1,9 @@
+# check-release-coverage before the fold: scope = this branch vs main (first-parent), README and notes from HEAD 2b0c41d61f
+MISSING release-notes mcp-figma required by .skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.0.0.md
+MISSING release-notes sk-code required by .skilled/skills/sk-code/changelog/v3.10.0.0.md
+MISSING release-notes sk-code-frontend required by .skilled/skills/sk-code/sk-code-frontend/SKILL.md
+MISSING release-notes sk-design-fundamentals required by .skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.1.0.0.md
+MISSING release-notes system-spec-kit required by .skilled/skills/system-spec-kit/changelog/v2.12.31.0.md
+MISSING readme sk-code-frontend required by .skilled/skills/sk-code/sk-code-frontend/SKILL.md
+STATUS=FINDINGS check-release-coverage: required=7 missing=6 notes=.skilled/changelog/skilled/v4.0.1.0.md
+exit=1

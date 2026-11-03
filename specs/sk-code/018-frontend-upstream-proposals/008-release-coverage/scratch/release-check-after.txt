@@ -1,0 +1,3 @@
+# check-release-coverage after the fold: scope = this branch vs main (first-parent), working tree
+STATUS=OK check-release-coverage: required=7 missing=0 notes=.skilled/changelog/skilled/v4.0.1.0.md
+exit=0
