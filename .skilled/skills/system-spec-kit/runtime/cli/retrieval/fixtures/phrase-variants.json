@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cf69079d65615b0c91aa40f7ee63ab2785d649fc4991e55013b9c55fdc782fa9",
+  "manifestHash": "f5aab9c07029f59bb218d4dc3e70093f7c97f8eb76798eb4b9c6f565431b8f47",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -38245,6 +38245,9 @@
     ],
     "design generation skill removed": [
       "design-generation skill removed"
+    ],
+    "design hand off values": [
+      "design hand-off values"
     ],
     "design handoffs": [
       "design handoffs"
@@ -78112,6 +78115,9 @@
     "phase 8 project scoped state": [
       "phase 8 project scoped state"
     ],
+    "phase 8 release coverage": [
+      "phase 8 release coverage"
+    ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
@@ -87137,6 +87143,18 @@
     "release conformance review tasks": [
       "release conformance review tasks"
     ],
+    "release coverage": [
+      "release coverage"
+    ],
+    "release coverage acceptance criteria": [
+      "release coverage acceptance criteria"
+    ],
+    "release coverage implementation summary": [
+      "release coverage implementation summary"
+    ],
+    "release coverage tasks": [
+      "release coverage tasks"
+    ],
     "release daemon on shutdown": [
       "release daemon on shutdown"
     ],
@@ -87190,6 +87208,9 @@
     ],
     "release notes corrections": [
       "release notes corrections"
+    ],
+    "release notes coverage check": [
+      "release notes coverage check"
     ],
     "release notes evidence": [
       "release notes evidence"
@@ -120958,6 +120979,9 @@
     ],
     "web frontend practice": [
       "web frontend practice"
+    ],
+    "web frontend surface": [
+      "web frontend surface"
     ],
     "web interface guidelines": [
       "web interface guidelines"

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9c823eda5a6dd733a3091d92b24afd820fc87dd15883028a2acf279b8952a631",
+  "corpusHash": "d8324e69190c12c778c2488bb2093d43e9f81ec77b10b8416634ff865bf5c28d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27516,
+  "includedPathCount": 27521,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -13425,6 +13425,11 @@
     "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/plan.md",
     "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/spec.md",
     "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/tasks.md",
     "specs/sk-code/018-frontend-upstream-proposals/goal.md",
     "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -27547,7 +27552,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cf69079d65615b0c91aa40f7ee63ab2785d649fc4991e55013b9c55fdc782fa9",
+  "manifestHash": "f5aab9c07029f59bb218d4dc3e70093f7c97f8eb76798eb4b9c6f565431b8f47",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30835,6 +30840,10 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/007-web-only-frontend/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/008-release-coverage/scratch",
       "reason": "excluded directory"
     },
     {
