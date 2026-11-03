@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal",
+  "description": "Phase 10: sk-create-goal",
+  "keywords": [
+    "phase",
+    "sk-create-goal"
+  ],
+  "lastUpdated": "2026-11-02T18:33:53.928Z",
+  "specId": "010",
+  "folderSlug": "sk-create-goal",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

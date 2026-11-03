@@ -1,0 +1,62 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 1347328338,
+  "socket": "conv-3168-devin",
+  "session_id": "41dc0b15-d907-40d8-b07a-0a7bb2dd14c2",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__resume-continue-conversation/devin",
+  "started_at": "2026-11-03T06:31:22.499Z",
+  "finished_at": "2026-11-03T06:32:13.930Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "plant-fact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "the reply printed the planted phrase after the echoed send",
+      "evidence": "turns/plant-fact"
+    },
+    {
+      "id": "restart-session",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "❭ Ask Devin to build features, fix bugs, or work on your code",
+      "evidence": "turns/restart-session"
+    },
+    {
+      "id": "recall-fact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "the reply recalled the planted phrase after the echoed send",
+      "evidence": "turns/recall-fact"
+    }
+  ]
+}

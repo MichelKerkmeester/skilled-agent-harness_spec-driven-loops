@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk design diagram conversation scenarios",
+      "phase 5 sk design diagram",
+      "sk design diagram conversation plan",
+      "sk design diagram conversation tasks"
+    ],
+    "key_topics": [
+      "design",
+      "diagram",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "dia-003",
+      "style-guide",
+      "write",
+      "wait",
+      "explicit"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+      ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "onboarding-flow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "json",
+        "kind": "technology",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "DIA-003 makes the style-guide write wait for explicit approval, and nothing scripts the approve or decline answer",
+    "created_at": "2026-11-02T18:33:50Z",
+    "last_save_at": "2026-11-02T18:37:46.590Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:5281b3b41604a8000bb051e8aa8ce16e2f62b0490126401fef3392e2ed24bed9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "536b8ca4fb6a74822ca06fc55d21cb2cf456219ea3f39e16fe9ac96078eb6e9f",
+      "plan.md": "f40e1113003d8071ae12417a80031efd06b701d8d32769320c97a221e562f610",
+      "tasks.md": "088614278c7882dae5903030acecbde321b434b74910cb236676aaf59bd62f7a"
+    },
+    "last_active_at": null
+  }
+}

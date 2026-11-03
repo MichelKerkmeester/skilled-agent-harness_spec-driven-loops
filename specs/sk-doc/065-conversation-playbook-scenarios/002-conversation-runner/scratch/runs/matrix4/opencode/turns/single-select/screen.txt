@@ -1,0 +1,51 @@
+   Single-choice colour question +                                                                                                                                                                      
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                Single-choice colour question           
+     I'll ask the question first.                                                                                                                                                                       
+                                                                                                                                                                Context                                 
+  ┃                                                                                                                                                             8,233 tokens                            
+  ┃  # Questions                                                                                                                                                1% used                                 
+  ┃                                                                                                                                                             $0.00 spent                             
+  ┃  Which colour do you choose?                                                                                                                                                                        
+  ┃  green                                                                                                                                                      MCP                                     
+  ┃                                                                                                                                                             • code_mode                     Error   
+                                                                                                                                                                                                        
+     ┃ Thought: 439ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ Now append "green" as one line to answers.txt. I should check the file existence and content to preserve it.                                                                                     
+     ┃                                                                                                                                                                                                  
+     ┃ Let me read the file first.                                                                                                                                                                      
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  $ if [ -e answers.txt ]; then tail -c 1 answers.txt | od -c | head -2; else echo "MISSING"; fi                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  MISSING                                                                                                                                                                                            
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     ┃ Thought: 300ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ File doesn't exist. Create it with "green\n".                                                                                                                                                    
+     ┃                                                                                                                                                                                                  
+     ┃ Use write tool.                                                                                                                                                                                  
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  # Wrote answers.txt                                                                                                                                                                                
+  ┃                                                                                                                                                                                                     
+  ┃   1 green                                                                                                                                                                                           
+  ┃   2                                                                                                                                                    █                                            
+  ┃                                                                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     You picked green. It's been appended as one line to answers.txt:                                                                                      █                                            
+                                                                                                                                                           █                                            
+     green                                                                                                                                                 █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 15.9s · 21.7 tok/s                                                                                                 █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-michelkerkmeester-MEGA-Developme…/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-matrix4/opencode:main  8.2K (1%) · $0.00  ctrl+p commands    /…/scratch…/conv-matrix4/opencode:main  
+                                                                                                                                                                                                        
+

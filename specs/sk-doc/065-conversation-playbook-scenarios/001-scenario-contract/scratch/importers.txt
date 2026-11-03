@@ -1,0 +1,12 @@
+.github/workflows/playbook-operator-contract.yml:51:          VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+.github/workflows/playbook-operator-contract.yml:70:          node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict
+.github/workflows/playbook-operator-contract.yml:78:          node "$PACKET/scripts/validate-playbook-package.cjs" --no-strict --format json > /tmp/fleet.json
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:36:    'Usage: node validate-playbook-package.cjs [options]',
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:899:    exitIfValidationOff('validate-playbook-package.cjs');
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs:912:    process.stderr.write(`validate-playbook-package: ${error.message}\n`);
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:9:const { validatePackage } = require('../validate-playbook-package.cjs');
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:11:const validatorPath = path.resolve(__dirname, '..', 'validate-playbook-package.cjs');
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs:141:    require('../validate-playbook-package.cjs').WARN_PACKAGE_IDS.length, 0,
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs:55:  '.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs':
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs:129:    '.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs',
+.skilled/skills/system-deep-loop/runtime/tests/stress/cli-adapter/validate-playbook-package.cjs:332:  process.stderr.write(`[validate-playbook-package] ${error.stack ?? error.message}\n`);

@@ -1,0 +1,51 @@
+   41. Tag decisions by category. Architecture, process, security, tooling, product. Tags make bulk review tractable.                                                                                   
+   42. Keep a top-level index. A flat list of decision titles plus links. The index is what makes the archive usable at scale.                                                                          
+                                                                                                                                                                                                        
+   Ownership, Review & Change (43–52)                                                                                                                                                                   
+                                                                                                                                                                                                        
+   43. Assign a review date or trigger. Decisions without a revisit condition become permanent by accident. Set an explicit expiry or review event.                                                     
+   44. Record who can reverse it. Authority matters when conditions change. Unclear authority means decisions linger past their usefulness.                                                             
+   45. Review decisions at natural checkpoints. Phase boundaries, releases, incidents. Scheduled review beats reactive archaeology.                                                                     
+   46. Mark decisions invalidated by new information. Invalidation is a decision too and needs its own entry. Silent invalidation leaves confusing ghosts.                                              
+   47. Never delete a decision record. Only supersede or mark rejected. Deletion destroys the audit trail that made the record valuable.                                                                
+   48. Record rejected decisions in place. A rejection is still a preserved answer. Moving it out of sight invites the same debate again.                                                               
+   49. Note the cost of reversal. Cheap reversals don't need ceremony; expensive ones need more evidence. This calibrates how much rigor to apply.                                                      
+   50. Keep a change log of the decision record itself. When entries are edited, say so. Untracked edits undermine trust in the whole record.                                                           
+   51. Record disagreements that were resolved informally. The informal resolution is often the real decision. Undocumented agreements evaporate with the participants.                                 
+   52. Escalate unresolved decisions rather than dropping them. An open decision left unowned will resurface as a surprise. Assign it or explicitly defer it with a date.                               
+                                                                                                                                                                                                        
+   Session & Compaction Resilience (53–60)                                                                                                                                                              
+                                                                                                                                                                                                        
+   53. Capture decisions before any compaction or handoff. Compaction is lossy and decisions are the highest-value tokens. Write them out while reasoning is still present.                             
+   54. Anchor the session with a distinctive marker. A unique token makes recovery deterministic rather than probabilistic. Record the marker alongside the decisions it labels.                        
+   55. Store the marker in a recoverable place. Not just in the conversation window. Anything that must survive must live outside the volatile store.                                                   
+   56. Summarize decisions into a resumable packet. Decisions, rationale, open questions, next actions. The packet should let a fresh session continue without re-reading everything.                   
+   57. Verify recovery by reading back. After resuming, state the recovered decisions before acting. Silent recovery of wrong decisions is worse than none.                                             
+   58. Separate what's decided from what's presumed. Presumptions masquerade as decisions after a gap. Explicit labeling keeps resumption honest.                                                       
+   59. Keep unresolved items in an explicit parking lot. Unfinished thinking needs a named container. Otherwise it gets relabeled as a decision on recovery.                                            
+   60. Recite the marker at the end of every preservation pass. It closes the loop and confirms the record's anchor is intact. Verify it once more before declaring the session preserved.              
+                                                                                                                                                                                                        
+   ────────────────────────────────────────────────────────────────────────────────                                                                                                                     
+                                                                                                                                                                                                        
+   Recovery marker: birch-signal-29                                                                                                                                                                     
+                                                                                                                                                                                                        
+   Held in session context for your follow-up. Say the word and I'll expand, reorder, trim, or convert any section into a spec/checklist file.                                                          
+
+ ✻ Turn took 12s (Total time 17s · 1 turn)                                                                                                                                                              
+
+                                                                                                                                                                                                        
+ [compaction]                                                                                                                                                                                           
+                                                                                                                                                                                                        
+ Compacted from 14,531 tokens (ctrl+o to expand)                                                                                                                                                        
+                                                                                                                                                                                                        
+
+ blackhole: 2 source entries processed; tail kept 0/1 user turns (~2.4k tok).                                                                                                                           
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+| DeepSeek V4.1 Flash 1017 | used: 74 tok | $0.00
+

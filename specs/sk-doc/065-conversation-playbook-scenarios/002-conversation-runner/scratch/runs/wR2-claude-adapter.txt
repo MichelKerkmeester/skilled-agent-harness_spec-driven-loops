@@ -1,0 +1,48 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code standards: CommonJS, Node standard library only, no new dependency,
+small named functions, JSDoc on exports. Comments say WHY and never contain spec paths, phase
+ROLE: code agent. sk-code standards: CommonJS, Node standard library only, small named functions,
+JSDoc on exports. Comments say WHY, never spec paths, phase numbers or task/requirement ids.
+HARD RULE: do NOT start tmux, claude, or any test group that starts tmux. The orchestrator runs them.
+S = .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts
+
+READ: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/scratch/probes.md
+(claude-code row), the screens in $S/tests/fixtures/question-screens/claude-code*.txt, and the
+adapter shape in $S/run-conversation-scenario.cjs (makeAdapter, the fake adapter, stubs).
+
+TASK, edit $S/run-conversation-scenario.cjs and $S/tests/run-conversation-scenario.test.cjs only:
+1. Replace the claude-code stub with a real adapter from the probe: launch/resume argv, an
+   optional `startup` step list the runner runs before waiting for ready when the trust dialog
+   is on screen (detect `Yes, I trust this folder`; keys Down, Enter), ready and busy markers,
+   parseQuestion(screen) returning {text, options[] (labels without the description lines and
+   without "Type something"/"Chat about this"), multi (true when `[ ]` boxes show)} or null,
+   answerKeys for select (single: Down presses to the label's index then Enter; multi: for each
+   label move to it and Enter, then move to Submit and Enter, then Enter on `1. Submit answers`),
+   other (move to the `Type something` row, type the text, Enter) and reply (type, Enter).
+   Mark it probed. Wire the runner to run `startup` keys once after launch when its detector
+   matches. Keep the four other stubs.
+2. Cleanup: after kill-server and the checks, delete the private socket file in the tmux socket
+   folder (`${TMUX_TMPDIR:-/tmp}/tmux-<uid>/<socket>`) when no server answers on it.
+3. Test: an `adapter screens` group (no tmux) that parses each claude-code fixture screen:
+   claude-code.txt -> multi, 3 options Documentation, Tests, Code quality, question text
+   "Which areas would you like me to focus on in this repository?"; claude-code-single.txt ->
+   single, Tests and Code quality; ready/trust/review screens -> null. Check answerKeys output for
+   a multi select of ["Tests","Code quality"] and an other answer. Print
+   `adapter screens: PASS (1 runtimes probed, 4 pending)`. Make the cleanup test also assert the
+   socket file is gone.
+VERIFY: node --check both files; run ONLY the non-tmux groups if the suite allows selecting them,
+else just node --check. Final message under 120 words.

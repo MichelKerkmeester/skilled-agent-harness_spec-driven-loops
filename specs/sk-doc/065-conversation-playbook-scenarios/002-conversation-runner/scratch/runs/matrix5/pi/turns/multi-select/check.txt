@@ -1,0 +1,2 @@
+$ awk 'NR == 2 && /small/ && /large/ { print; found = 1 } END { exit !found }' answers.txt
+[exit 1]

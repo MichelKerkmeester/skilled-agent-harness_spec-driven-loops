@@ -1,0 +1,3 @@
+$ sed -n '3p' answers.txt | grep -qix teal && echo teal
+teal
+[exit 0]

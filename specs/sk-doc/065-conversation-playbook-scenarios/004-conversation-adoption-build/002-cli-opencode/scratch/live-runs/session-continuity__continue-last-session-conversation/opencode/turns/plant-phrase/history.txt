@@ -1,0 +1,50 @@
+   Phrase checkpoint memory      +                                                                                                                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    Phrase checkpoint memory                
+  ┃  Remember this exact phrase for the next turn: silver maple 482. Reply only with CHECKPOINT.                                                           █                                            
+  ┃                                                                                                                                                        █    Context                                 
+                                                                                                                                                           █    7,933 tokens                            
+     CHECKPOINT                                                                                                                                            █    1% used                                 
+                                                                                                                                                           █    $0.00 spent                             
+     Build · DeepSeek V4.1 Flash 1017 · 824ms · 6.1 tok/s                                                                                                  █                                            
+                                                                                                                                                           █    MCP                                     
+                                                                                                                                                           █    • code_mode                     Error   
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/beb6e7b1-5f31-42db-8cd9-f5…/scratchpad/live/scratch/session-continuity__continue-last-session-conversation/opencode  7.9K (1%) · $0.00  ctrl+p commands    /…/session-continuity__conti…/opencode  
+                                                                                                                                                                                                        

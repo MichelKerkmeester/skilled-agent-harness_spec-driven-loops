@@ -1,0 +1,97 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and `node --check` has been run on each.
+
+ROLE: code agent. sk-code standards: CommonJS, Node standard library only, no new dependency,
+small named functions, JSDoc on exports. Comments say WHY and never contain spec paths, phase
+numbers or task/requirement ids. HARD RULE: do NOT start tmux, the runner, or any test that starts
+tmux. Only `node --check` your files. The orchestrator runs every tmux test.
+
+S = .skilled/skills/sk-doc/sk-create-manual-testing-playbook
+READ FIRST: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md REQ-001
+to REQ-010 and REQ-014, plan.md section 3 (Key Components), $S/references/conversation-scenarios.md,
+and $S/scripts/validate-playbook-package.cjs exports parseConversationScript and CONVERSATION_RUNTIMES.
+
+TASK, three files:
+1. $S/scripts/tests/fixtures/fake-subject.cjs: a line-mode TUI stand-in. On start prints
+   `FAKE READY>` after 300 ms. While handling a line prints `FAKE BUSY` then the reply then
+   `FAKE READY>`. Commands (one line each):
+     `ask single <question>|<opt1>,<opt2>,...` -> prints `[?] <question>` then `  1. opt1` ...
+       one per line, then `[select]`; reads one line of numbers (space separated); appends the
+       chosen labels joined by ", " to answers.txt in cwd.
+     `ask multi ...` same but `[multi]`.
+     `ask other <question>|<opts>` -> like single with an extra numbered row `Other`; the human
+       types `o: <text>` and the text is appended.
+     `chat <question>` -> prints `CHAT? <question>` then `FAKE READY>`; the next line typed is
+       appended to answers.txt as the reply.
+     `/compact` -> prints `compacted`. `/exit` -> exits 0. Any other line -> echoes `ok: <line>`.
+   Flags: `--session <id>` appends `session <id>` to session.log on start (restart test).
+2. $S/scripts/run-conversation-scenario.cjs, the runner core:
+   - CLI `--scenario <md> --runtime <id,...> --scratch <dir> --out <dir> [--seed N] [--overwrite]`.
+     Exit 0 if every runtime is PASS or SKIP, 1 if any FAIL, 2 on usage or a refusal.
+   - Reads the script ONLY through parseConversationScript; any finding -> exit 2.
+   - Adapters: an object per id in CONVERSATION_RUNTIMES (claude-code, opencode, codex, pi,
+     devin) with fields bin, launch(ctx)->argv, resume(ctx)->argv, compact (string), exitKeys,
+     ready (RegExp), busy (RegExp), parseQuestion(screen)->{text, options[], multi}|null,
+     answerKeys(question, answer)->array of tmux send-keys steps. Leave the five real
+     adapters as clearly marked stubs whose parseQuestion returns null and whose launch uses the
+     start commands in plan.md's feasibility table; the probes fill them in later. Plus a `fake`
+     adapter, enabled only when env CONVERSATION_RUNNER_FAKE=1, that launches
+     `node <fake-subject.cjs> --session <id>` and parses the fake screens above (answer keys:
+     the option numbers then Enter; other: `o: text` then Enter; reply: the text then Enter).
+   - Scratch guard (REQ-001, refusals exit 2 before any tmux): missing --scratch; scratch inside
+     the repository (`git rev-parse --show-toplevel`, resolve via realpath of nearest existing
+     ancestor); non-empty dir without `.conversation-scratch`; failing setup command; after setup,
+     `specs` or `.skilled/skills/.state` resolving outside the project. Creates
+     <scratch>/<runtime>/, writes the marker, runs each setup command with `bash -c` bounded by
+     SETUP_TIMEOUT 120 s (kill its process group on overrun -> SETUP_TIMEOUT). Setup output to setup.log.
+   - Content hash snapshot (REQ-008): list path, size, sha256 of every file under <repo>/specs and
+     <repo>/.skilled/skills/.state/<watched> (default `decision-capture`; env
+     CONVERSATION_WATCH overrides, comma list); save repo-before.txt and repo-after.txt; any
+     difference -> FAIL REPO_CHANGED. Allow `--repo-root <dir>` so tests can point at a temp repo.
+   - tmux driver: private socket `conv-<pid>-<runtime>`, `-f <out>/<runtime>/tmux.conf` written by
+     the runner (remain-on-exit on, history-limit 50000), `new-session -d -s subject -x 200 -y 50`,
+     `pipe-pane -o` to raw-pane.log, `capture-pane -p -J`, `send-keys -l` for text and plain
+     send-keys for Enter and keys. Never touch the default tmux socket.
+   - Turn loop (REQ-003 to REQ-006): delay (integer or [min,max] drawn from a seeded PRNG,
+     mulberry32, seed recorded in result.json); send / action restart (exitKeys, wait for exit,
+     relaunch with resume argv) / action compact (send adapter.compact) / check-only; poll every
+     500 ms; answer detected questions by `match` (question delay applied), UNEXPECTED_QUESTION,
+     MISSING_QUESTION; settle = ready shows, busy does not, screen unchanged 1500 ms; TIMEOUT;
+     SUBJECT_EXITED. Write turns/<id>/screen.txt BEFORE running check. check via `bash -c` in the
+     project with CONVERSATION_REPO_ROOT, CONVERSATION_RUN_DIR, CONVERSATION_TURN_DIR,
+     CONVERSATION_RUNTIME set and the script's env, bounded by CHECK_TIMEOUT 60 s; exit 0 PASS,
+     77 SKIP (first output line = blocker, run continues), other FAIL CHECK_FAILED; retry:1 reruns
+     the turn once; after a final FAIL later turns are NOT_RUN. check stdout+exit into check.txt.
+   - Evidence (REQ-009): result.json, actions.jsonl (one JSON line per keystroke group with time),
+     raw-pane.log, setup.log, repo-before/after, checkpoints.tsv (turn id, status, attempts,
+     evidence folder, observed value = last non-empty check output line), turns/<id>/screen.txt,
+     question-N.txt, check.txt, raw-pane slice per turn. matrix.md in --out: one row per runtime
+     (verdict, turns passed, first failure, evidence path). Refuse a non-empty --out/<runtime>/
+     without --overwrite (exit 2). SKIP a runtime when its bin is missing or the script's runtimes
+     omit it, naming the blocker.
+   - Cleanup (REQ-007) on every exit path incl. SIGINT/SIGTERM/uncaught: SIGTERM to the pane's
+     process group, 5 s grace, SIGKILL, kill-server, kill any setup/check child; verify
+     `tmux -L <socket> list-sessions` fails and no group process remains, else FAIL CLEANUP_INCOMPLETE.
+   - Export { main, ADAPTERS, mulberry32, snapshotRepo, guardScratch } for tests; `require.main` guard.
+3. $S/scripts/tests/run-conversation-scenario.test.cjs: plain node assert, prints one PASS line
+   per group. Groups: refusals (the five REQ-001 cases plus bad --out reuse; these need no tmux),
+   fake-subject run covering single, multi, other, chat reply, restart, compact -> PASS with
+   answers.txt holding each answer; UNEXPECTED_QUESTION; TIMEOUT; check exit 77 -> SKIP and run
+   continues; retry passes on attempt 2; CHECK_TIMEOUT with later NOT_RUN; REPO_CHANGED on an
+   append to an existing file in a temp repo's watched .state folder; cleanup leaves no session
+   and no process; SIGINT mid-turn cleans up; evidence file list. Use a temp git repo as
+   --repo-root and temp scratch/out dirs. Set CONVERSATION_RUNNER_FAKE=1. Print
+   `adapter screens: SKIPPED (no probe screens yet)` for the adapter group for now.
+VERIFY: node --check on all three files. Paste output. Final message under 150 words.

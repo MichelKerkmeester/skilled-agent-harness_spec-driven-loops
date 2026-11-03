@@ -1,0 +1,86 @@
+{
+  "runtime": "codex",
+  "verdict": "FAIL",
+  "blocker": "SUBJECT_EXITED",
+  "seed": 309645564,
+  "socket": "conv-19074-codex",
+  "session_id": "ee23ed0c-c74c-4283-bb2c-9c50191828a2",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/conv-cx-a2/codex",
+  "started_at": "2026-11-02T05:44:28.671Z",
+  "finished_at": "2026-11-02T05:45:25.976Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "SUBJECT_EXITED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

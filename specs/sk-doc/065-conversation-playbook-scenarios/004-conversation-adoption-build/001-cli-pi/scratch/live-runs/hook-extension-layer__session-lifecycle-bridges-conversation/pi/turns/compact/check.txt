@@ -1,0 +1,2 @@
+$ session_dir="${PI_CODING_AGENT_DIR:-$HOME/.pi/agent}/sessions"; test -d "$session_dir" && find "$session_dir" -type f -name '*.jsonl' -newer .pi-run-start -exec sh -c 'grep -qF "birch-signal-29" "$1" && grep -qF "session-compact-context" "$1"' sh {} \; -print | grep -q .
+[exit 0]

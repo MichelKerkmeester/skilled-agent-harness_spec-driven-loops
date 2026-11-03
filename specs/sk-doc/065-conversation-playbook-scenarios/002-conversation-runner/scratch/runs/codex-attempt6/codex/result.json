@@ -1,0 +1,86 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 416132982,
+  "socket": "conv-93441-codex",
+  "session_id": "0d4d5a9f-f156-42a7-9fa7-f46d1a0ddedf",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/conv-cx-a6/codex",
+  "started_at": "2026-11-02T06:10:06.101Z",
+  "finished_at": "2026-11-02T06:12:26.758Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small, large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "teal",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "yes",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "present",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "4",
+      "evidence": "turns/compact"
+    }
+  ]
+}

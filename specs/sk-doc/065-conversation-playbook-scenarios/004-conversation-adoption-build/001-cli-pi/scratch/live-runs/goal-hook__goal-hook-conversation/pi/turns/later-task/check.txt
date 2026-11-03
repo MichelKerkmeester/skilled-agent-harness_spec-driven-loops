@@ -1,0 +1,2 @@
+$ awk 'index($0, "I am ready for the checkpoint.") { after=1; next } after && index($0, "quartz-fern-83") { found=1; exit } END { exit !found }' "$CONVERSATION_TURN_DIR/history.txt" && jq -e '.turnsUsed >= 1 and .status == "active"' .goal-state/*.json >/dev/null
+[exit 0]

@@ -1,0 +1,2 @@
+$ grep -Eq '"runtime":"pi".*"skill":"cli-codex"' .skilled/logs/cli-dispatch-audit.log
+[exit 0]

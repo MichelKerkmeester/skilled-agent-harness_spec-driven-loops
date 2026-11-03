@@ -1,0 +1,107 @@
+OpenAI Codex v0.164.0
+--------
+workdir: /Users/michelkerkmeester/MEGA/Development/Skilled
+model: gpt-6-luna
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a19d70-1e8b-7db0-a40a-be6112d61d2e
+--------
+user
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker: AI_SESSION_CHILD=1 is set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.
+Your write authority is already bound to specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna. The dispatcher's answer to every other stop-and-ask rule (Halt Conditions, Logic-Sync, stop-for-yes): follow the workflow within this prompt's write limits, record the conflict in the current iteration, and continue. Never end a turn with a question or A/B/C/D options.
+A failed call means re-check the path and retry; halt only after three failures on the same call. The lineage is complete only when its files exist on disk and the completion line below is printed.
+
+You are orchestrating the deep-research workflow YAML as a detached fan-out lineage.
+
+EXECUTION MODE (read this first): THIS process is the executor for EVERY iteration.
+Perform each iteration yourself in THIS session — read the sources, then write the iteration
+file, its delta, and the synthesis into the lineage directory below.
+State records go through the append gateway instead: hand every one, from the run-opening
+config row (step_create_state_log) to the terminal synthesis record, to
+.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs exactly as the workflow YAML runs it.
+Never create, append to, or rewrite deep-research-state.jsonl yourself: a row written there beside the
+ledger makes the gateway refuse every later projection, and the lineage fails.
+After each iteration's gateway append, run the workflow's step_reduce_state reducer exactly as the YAML runs it:
+node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research --artifact-dir specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna
+It writes the lineage registry, dashboard, and strategy the merge reads; skipping it leaves the lineage merged with unverified provenance.
+NEVER spawn a nested CLI, agent, or subprocess to run an iteration: no 'codex exec', no
+'opencode run', no 'cursor-agent', no 'devin', no 'pi', no 'claude', no Task/agent dispatch.
+The workflow YAML's per-iteration executor-dispatch steps are ALREADY SATISFIED by this
+process: treat them as done and run the iteration inline. A nested dispatch is a failure of
+this lineage, not a way to run it.
+
+CLI OUTPUT CONTRACT (binds every iteration even though per-iteration prompt rendering is already satisfied):
+Before iteration 1, read .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl and .skilled/agents/deep-research.md; follow their OUTPUT CONTRACT for each iteration.
+- The iteration narrative has a ## Findings section with one numbered line per finding.
+- The delta contains the iteration row followed by one {"type":"finding","id":"<id>","label":"<text>","iteration":N,"sources":["<path or URL>"]} row per finding.
+- The delta's iteration row and the iteration record handed to the gateway carry findingsCount equal to the number of findings enumerated for that iteration.
+- Read the timestamp from the clock when writing and hand the iteration record to the gateway immediately after its iteration, never in a batch at the end.
+
+Read .skilled/skills/system-deep-loop/deep-research/SKILL.md and execute the research loop with these parameters:
+  spec_folder: specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research
+  config.fanout_lineage_artifact_dir: /Users/michelkerkmeester/MEGA/Development/Skilled/specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna
+  session_id: fanout-luna-1793641098433-9lyu1r
+  executor: cli-codex model=gpt-6-luna
+  loop_type: research
+  config.stopPolicy: convergence
+  research_topic: Audit every skill and every skill mode (workflow mode packet) in the repository for where manual-testing-playbook scenarios should adopt the json conversation scenario format played by the shared conversation runner in sk-create-manual-testing-playbook. For each skill and mode: which existing playbook scenarios should be converted from single prompt to conversation, which should stay single prompt, which existing scenarios need updating, and which multi-turn, question-tool, restart, compaction or cross-runtime behaviors lack any scenario that a conversation would add. Apply the four ordered questions in .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md section Choosing the Scenario Style, cite each candidate with a SOURCE tag and its deciding question, and rank candidates by value and cost.
+  config.maxIterations: 10
+  config.convergenceThreshold: 0.05
+  config.convergenceMode: default
+The step_resolve_artifact_root step will bind artifact_dir to /Users/michelkerkmeester/MEGA/Development/Skilled/specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna via the
+config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node
+command; bind artifact_dir directly to the override value.
+
+Run phase_init, phase_main_loop (to legal convergence OR config.maxIterations, whichever comes first), and phase_synthesis.
+Write EVERY file you create or modify inside specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna and nowhere else — that directory is
+your entire write surface. Its absolute path is /Users/michelkerkmeester/MEGA/Development/Skilled/specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna; the
+relative form is resolved from the repository root, so a path that drops the leading
+directories (for example one starting with review/ or research/) lands OUTSIDE the lineage and
+fails it. You may read anywhere, but do NOT modify, create, or delete any file
+outside specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna, and do NOT run any command that writes outside it: in particular do NOT
+run generate-context.js, validate.sh (especially --recursive), or any git write/checkout/commit
+command. Producing findings does not mean running the repo's tooling — a single out-of-scope
+write fails this whole lineage.
+Use the repository-relative form specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna in every tool call, copied character for character; never type the absolute home prefix or rebuild the path from the packet or track name.
+A "file not found" on a path you just wrote means the path was mistyped: re-copy specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna and retry.
+Before init, before each iteration, and before resolving any conflict, read specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages/luna/steer.md when it exists.
+It is the lead's channel: its rulings are the dispatcher's answers to questions this lineage would otherwise ask, and they bind inside the lineage directory.
+It grants no write outside the lineage. When you read it, list it among that iteration's sources.
+
+When complete, output a single line: FANOUT_LINEAGE_COMPLETE:luna
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 7:25 PM.
+ERROR: You’ve hit your usage limit. Upgrade to Pro (https://chatgpt.com/explore/pro), visit https://chatgpt.com/settings/usage to purchase more credits or try again at 7:25 PM.

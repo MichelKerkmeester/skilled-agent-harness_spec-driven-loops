@@ -1,0 +1,87 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. Implement to sk-code standards: small named functions, JSDoc on exported
+functions, no new dependency, CommonJS, Node standard library only. Code comments explain WHY
+and never contain spec paths, phase numbers, task ids or requirement ids.
+
+TASK: edit ONE file only:
+  .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs
+Do not touch tests, fixtures or docs. Another worker writes tests.
+
+Add a "conversation script": a fenced code block whose info string is exactly `json conversation`
+(opening fence ``` followed by `json conversation`). Implement:
+
+1. `CONVERSATION_RUNTIMES = ['claude-code','opencode','codex','pi','devin']`.
+
+2. `parseConversationScript(text)` returns `{ script, findings, block }`.
+   - No such block: `{ script: null, findings: [], block: null }`.
+   - `block` = `{ startLine, endLine, start, end }` (1-based lines of the fences, char offsets).
+   - Each finding = `{ path, message, line }`; `path` is a field path string like
+     `turns`, `turns[2].send`, `turns[0].questions[1].answer.select`, `runtimes[3]`, `(block)`.
+   - Rules, one finding each:
+     a. a second `json conversation` block: path `(block)`, message names it as a second block.
+     b. invalid JSON: path `(block)`, include the JSON.parse message. Stop checking further.
+     c. top level must be an object; allowed keys exactly: runtimes, setup, env, turns.
+        Unknown key at ANY level: path is that key's path, message "unknown key".
+     d. `runtimes` required, non-empty array of strings, each in CONVERSATION_RUNTIMES (path `runtimes[i]`).
+     e. `setup` optional array of strings. `env` optional object whose values are strings.
+     f. `turns` required non-empty array (empty object `{}` reports path `turns`).
+     g. turn allowed keys: id, send, action, delay_ms, timeout_ms, retry, questions, check.
+        - `id` optional non-empty string, unique across turns (duplicate reported at `turns[i].id`).
+        - `send` and `action` must not both be present (path `turns[i]`). Neither = check-only turn, valid.
+        - `send` string without any newline. `action` is "restart" or "compact".
+        - The FIRST turn that has `send` or `action` must have `send` (path `turns[i].action`).
+        - `delay_ms` optional: a non-negative integer, OR an array of exactly two non-negative
+          integers [min, max] with min <= max.
+        - `timeout_ms` optional integer >= 1. `retry` optional, 0 or 1.
+        - `check` required non-empty string.
+        - `questions` optional array of objects.
+     h. question allowed keys: match, answer, delay_ms, optional.
+        - `match` required string; compile with `new RegExp(match)` inside try/catch; a
+          failure is a finding at `...match`, never a throw.
+        - `delay_ms` same rule as the turn's. `optional` boolean.
+        - `answer` required object; allowed keys: select, other, reply, multi.
+          Exactly one of select, other, reply (finding at `...answer`).
+          `select` non-empty array of non-empty strings; `other` and `reply` non-empty strings.
+          `multi` boolean, only allowed beside `select` (finding at `...answer.multi`).
+          `select` with 2 or more labels requires `multi: true` (finding at `...answer.select`).
+   - Never execute setup or check strings. No child_process.
+
+3. `conversationChecks(text, relPath)`: for each finding return
+   `issue('CONVERSATION_SCRIPT_INVALID', relPath, `${f.path}: ${f.message}`, 'error', f.line)`.
+   Call it from `validateScenario` (push into errors).
+
+4. Masking: in `validateScenario`, pass `verdictChecks` and `evergreenChecks` a copy of the text
+   where every character of the conversation block's lines (fences included) is replaced by a
+   space except newlines, so line numbers stay stable. Every other check keeps the raw text.
+   A file without the block must produce exactly the same findings as before.
+
+5. Prompt sync: in `promptSyncChecks`, add one more copy
+   `["the conversation script's first send", <first turn with a send>, relPath]` where the copy
+   is `{ value: <send>, line: <block startLine> }`, or null when there is no parsed script or
+   no send. Compare exactly like the other copies.
+
+6. Export `parseConversationScript` and `CONVERSATION_RUNTIMES` in module.exports.
+
+VERIFY (run these and paste output in your final message):
+  node --check .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs
+  node -e "const v=require('./.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs'); console.log(typeof v.parseConversationScript, v.CONVERSATION_RUNTIMES.join(','))"
+    -> must print: function claude-code,opencode,codex,pi,devin
+  node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs
+    -> must still exit 0
+  A node -e one-liner that calls parseConversationScript on a string holding a block with `{}`
+    -> one finding with path `turns`.
+Final message: list what you changed and the verify output. Under 200 words.

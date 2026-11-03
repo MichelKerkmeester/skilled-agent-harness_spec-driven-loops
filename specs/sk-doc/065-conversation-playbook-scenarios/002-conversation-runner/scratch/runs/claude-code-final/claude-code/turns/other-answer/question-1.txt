@@ -1,0 +1,51 @@
+                                                                                                                                                                                                     
+  ⎿  green                                                                                                                                                                                              
+     small,large
+     exit=0                        
+  ⎿  Updated answers.txt (+1 -0)              
+      1  green
+      2 +small,large                                                                                                                                                                             
+  ⎿  (files that changed while this command ran, by the command or by another process; a convenience view, not a review or audit of the command)
+                                                                                                                                                                                      
+⏺ I added small,large to answers.txt as its second line, below green. I read the file back to confirm. I left out the space after the comma; I can change it to small, large if you prefer.
+
+  The hooks are still printing the same "could not resolve" error.                                                                                                                                   
+                                                                                                                                                                                                 
+✻ Sautéed for 19s · done 2:05 PM                                                                                                                
+
+❯ small, large                                                                                                                                                                                          
+                                                                                                                                                                                                 
+⏺ The user wants the spaced form. Replace line 2.                                                                                                                                                    
+
+⏺ Bash(sed -i '' '2s/^small,large$/small, large/' answers.txt && cat answers.txt; echo "exit=$?")                                                                                          
+  ⎿  green                                                                                                                                                                                       
+     small, large                                                                                                                                                                                       
+     exit=0
+  ⎿  Updated answers.txt (+1 -1)                 
+      1  green
+      2 -small,large                                                                                                                                                                                    
+      2 +small, large                                                                                                                                                                            
+                                                 
+⏺ I changed the second line of answers.txt from small,large to small, large, in place, so the file still has two lines. It now reads:
+
+  green          
+  small, large                                                                                                                                                                                   
+                                                                                                                                                                                                 
+✻ Baked for 5s · done 2:06 PM
+
+❯ Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ☐ Custom     
+
+│ What custom colour do you want? Pick a suggestion or choose Other to type your own.                                                                                                            
+                                                                                                                                                                                                        
+❯ 1. purple                                                                                                                                                                                             
+     Append "purple" to answers.txt
+  2. orange                                                                                                            
+     Append "orange" to answers.txt                                                                                                                                                                   
+  3. Type something.                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  4. Chat about this                                                                                                                                                                                    
+
+Enter to select · ↑/↓ to navigate · Esc to cancel             
+

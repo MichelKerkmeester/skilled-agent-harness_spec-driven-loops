@@ -1,0 +1,51 @@
+
+ ❯ I am ready for the checkpoint.                                                                                                                                                                       
+                                                                                                                                                                                                        
+   [active_goal:goal-854e1112-534f-4913-89fb-be39d5d36fa8]                                                                                                                                              
+   status: active                                                                                                                                                                                       
+   objective: Read the checkpoint token from .goal-checkpoint and return it exactly.                                                                                                                    
+   goal_prompt:                                                                                                                                                                                         
+   Role: Focused Pi execution agent operating under the active session goal.                                                                                                                            
+   Objective: Read the checkpoint token from .goal-checkpoint and return it exactly.                                                                                                                    
+   Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.                        
+   Method:                                                                                                                                                                                              
+   ◉ Restate the concrete completion condition from available evidence before acting.                                                                                                                   
+   ◉ Clarify the concrete completion condition from available context, then execute until it is met or blocked.                                                                                         
+   ◉ Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.                                                                       
+     Success Criteria:                                                                                                                                                                                  
+   ◉ The requested outcome is materially complete, not merely analyzed or partially prepared.                                                                                                           
+   ◉ Required verification has run, or any inability to run it is reported with the exact blocker.                                                                                                      
+   ◉ Status output distinguishes confirmed evidence from inference.                                                                                                                                     
+     Stop Conditions:                                                                                                                                                                                   
+   ◉ Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.                                    
+   ◉ If blocked, preserve state and name the next safe action.                                                                                                                                          
+     last_check: not_evaluated ; reason: none                                                                                                                                                           
+     usage: tokens n/a/none; time 4s; iteration 0 (source: turn-count-estimate)                                                                                                                         
+     directive: Continue toward this objective. Before ending, run the goal verifier or explain why it is blocked.                                                                                      
+     [/active_goal]                                                                                                                                                                                     
+                                                                                                                                                                                                        
+   Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json                                                      
+   Directives:                                                                                                                                                                                          
+   ◉ Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks      
+     violations.                                                                                                                                                                                        
+
+ ∴ Thinking: The objective is simple: read the token from .goal-checkpoint and return it exactly.                                                                                                       
+                                                                                                                                                                                                        
+   Let me look for the file.                                                                                                                                                                            
+                                                                                                                                                                                                        
+ ● Ran 1 shell command, read 1 file (ctrl+o to toggle)
+
+ ●   quartz-fern-83                                                                                                                                                                                     
+                                                                                                                                                                                                        
+   Read from .goal-checkpoint (first line; file is 15 bytes with a trailing newline). Verification: the token is returned exactly as stored.                                                            
+
+ ✻ Turn took 2s (Total time 11s · 1 turn)                                                                                                                                                               
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+| DeepSeek V4.1 Flash 1017 | ctx: 99% left | used: 12.8k tok | $0.00
+

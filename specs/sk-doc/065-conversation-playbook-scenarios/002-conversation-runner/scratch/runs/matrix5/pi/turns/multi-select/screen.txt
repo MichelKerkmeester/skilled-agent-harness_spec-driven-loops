@@ -1,0 +1,51 @@
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Update Available                                                                                                                                                                                       
+ New version 1.5.0 is available. Run pi update                                                                                                                                                          
+ Changelog: https://pi.dev/changelog                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available                                                                                                                                                                              
+ Package updates are available. Run pi update --extensions                                                                                                                                              
+ Packages:                                                                                                                                                                                              
+ - pi-web-access                                                                                                                                                                                        
+ - pi-claude-code-ui                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ❯ Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt.           
+
+● Question ask user                                                                                                                                                                                     
+  └ 1 line returned (ctrl+o to toggle)                                                                                                                                                                  
+
+ ∴ Thinking: Append green to answers.txt.                                                                                                                                                               
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash echo "green" >> answers.txt && cat answers.txt                                                                                                                                              <1s 
+   └ Done (1 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● You picked green — appended to answers.txt.                                                                                                                                                          
+
+ ✻ Turn took 6s (Total time 6s · 1 turn)                                                                                                                                                                
+
+ ❯ Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to answers.txt, separated by commas.                  
+                                                                                                                                                                                                        
+ ● Called Question, ran 1 shell command (ctrl+o to toggle)
+
+ ● Selected Small, Large — appended on one line to answers.txt.                                                                                                                                         
+
+ ✻ Turn took 6s (Total time 17s · 2 turns)                                                                                                                                                              
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+main | DeepSeek V4.1 Flash 1017 | ctx: 99% left | used: 10.6k tok | $0.00
+
+
+
+
+

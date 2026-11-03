@@ -1,0 +1,123 @@
+{
+  "topic": "Review: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner",
+  "sessionId": "fanout-luna-xhigh-1793613625067-f04kmf",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "convergence"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner",
+  "createdAt": "2026-11-02T10:05:06Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Review the shared conversation runner and its validator changes: .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs, scripts/tests/run-conversation-scenario.test.cjs, scripts/tests/fixtures/fake-subject.cjs, and the json conversation parsing in scripts/validate-playbook-package.cjs with its test. Focus on cleanup on every exit path, the repository snapshot, the scratch guard, the five runtime adapters and the opt-in Codex hook trust and its undo in the user's Codex config. Do not start tmux or run the live runner.",
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "_optimizerManaged": {
+    "description": "Fields managed by the offline loop optimizer (042.004). See optimizer-manifest.json for the canonical tunable/locked field registry.",
+    "manifestPath": ".skilled/skills/system-spec-kit/runtime/cli/optimizer/optimizer-manifest.json",
+    "tunableFields": [
+      "convergenceThreshold",
+      "stuckThreshold",
+      "maxIterations"
+    ],
+    "lockedFields": [
+      "lineageMode",
+      "reducer",
+      "fileProtection",
+      "sessionId",
+      "mode",
+      "reviewDimensions",
+      "antiConvergence.convergenceMode",
+      "antiConvergence.stopPolicy"
+    ],
+    "promotionMode": "advisory-only"
+  },
+  "stopPolicy": "convergence",
+  "reviewScopeFiles": [
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/run-conversation-scenario.test.cjs",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/fixtures/fake-subject.cjs",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+    ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/tests/validate-playbook-package.test.cjs"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  }
+}

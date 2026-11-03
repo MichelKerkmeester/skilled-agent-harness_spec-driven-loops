@@ -1,0 +1,51 @@
+ - Over MCP, the web tools take half as much of every request to the model (about 1.75k → 0.9k tokens).                                                                                                 
+ - Reading a PDF now gives you its text instead of a note saying where the file was saved.                                                                                                              
+ - A proxy you set keeps working after Pi reloads, and a rate-limited free search now says so instead of claiming no search provider is set up.                                                         
+ Changelog: https://github.com/nicobailon/pi-web-access/blob/main/CHANGELOG.md                                                                                                                          
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.                                                                  
+
+ Warning: MCP servers need attention:                                                                                                                                                                   
+   code_mode: failed: MCP connection closed                                                                                                                                                             
+ Run /mcp to fix.                                                                                                                                                                                       
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Update Available                                                                                                                                                                                       
+ New version 1.5.0 is available. Run pi update                                                                                                                                                          
+ Changelog: https://pi.dev/changelog                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ❯ Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt.           
+
+ ∴ Thinking: The user wants me to ask a single-choice colour question with exactly options red, green, blue. Then append the answer to answers.txt.                                                     
+                                                                                                                                                                                                        
+   I should use ask_user_question tool (or question tool). The user said "your question tool" — there's both ask_user_question and question. I'll use ask_user_question since it's the primary one.     
+   Exactly three options, no "Other" authored by me.                                                                                                                                                    
+                                                                                                                                                                                                        
+   Let me ask the question.                                                                                                                                                                             
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Ask User Question                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ · Waiting for your answer… (thought for 1s · ↓ 81 tokens · 2s)                                                                                                                                         
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Colour                                                                                                                                                                                                
+
+ Which colour do you pick?                                                                                                                                                                              
+
+❯ 1. Red
+     Append "red" to answers.txt
+  2. Green
+     Append "green" to answers.txt
+  3. Blue
+     Append "blue" to answers.txt
+  4. Type something.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Enter to select · ↑/↓ to navigate · n to add notes · Esc to cancel · Ctrl+] to collapse
+main | DeepSeek V4.1 Flash 1017 | ctx: 100% left
+

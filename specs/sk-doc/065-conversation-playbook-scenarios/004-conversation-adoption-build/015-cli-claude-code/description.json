@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code",
+  "description": "Phase 15: cli-claude-code",
+  "keywords": [
+    "phase",
+    "cli-claude-code"
+  ],
+  "lastUpdated": "2026-11-02T18:33:57.293Z",
+  "specId": "015",
+  "folderSlug": "cli-claude-code",
+  "parentChain": [
+    "sk-doc",
+    "065-conversation-playbook-scenarios",
+    "004-conversation-adoption-build"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,3 @@
+$ prompt_line="$(grep -E '^❭ Ask Devin to build features' "$CONVERSATION_TURN_DIR/screen.txt" | tail -n 1)"; [ -n "$prompt_line" ] || { printf '%s\n' 'the restarted screen shows no Devin idle prompt line'; exit 1; }; printf '%s\n' "$prompt_line"
+❭ Ask Devin to build features, fix bugs, or work on your code
+[exit 0]

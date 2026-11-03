@@ -1,0 +1,7 @@
+turn	status	attempts	evidence	observed
+single-select	PASS	1	turns/single-select	green
+multi-select	PASS	1	turns/multi-select	small,large
+other-answer	PASS	1	turns/other-answer	teal
+chat-reply	PASS	1	turns/chat-reply	yes
+restart	PASS	1	turns/restart	present
+compact	PASS	1	turns/compact	4

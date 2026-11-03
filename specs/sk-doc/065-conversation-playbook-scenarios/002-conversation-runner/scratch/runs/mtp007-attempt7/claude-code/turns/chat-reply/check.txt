@@ -1,0 +1,3 @@
+$ sed -n '4p' answers.txt | grep -qx yes && echo yes
+yes
+[exit 0]

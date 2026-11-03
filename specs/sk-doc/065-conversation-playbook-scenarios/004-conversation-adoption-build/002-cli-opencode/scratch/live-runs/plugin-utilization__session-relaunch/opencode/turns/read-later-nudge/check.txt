@@ -1,0 +1,2 @@
+$ grep -Eq '\[?session-relaunch\]? Context is' "$CONVERSATION_TURN_DIR/screen.txt"
+[exit 0]

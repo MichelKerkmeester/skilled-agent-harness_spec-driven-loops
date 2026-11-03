@@ -1,0 +1,89 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 2077194456,
+  "socket": "conv-98397-codex",
+  "session_id": "c40b2a89-7803-4409-9676-7d9af015b14f",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-matrix7/codex",
+  "started_at": "2026-11-02T15:59:59.572Z",
+  "finished_at": "2026-11-02T16:02:45.956Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "codex-workspace-write",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small, large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "teal",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "yes",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "present",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "4",
+      "evidence": "turns/compact"
+    }
+  ]
+}

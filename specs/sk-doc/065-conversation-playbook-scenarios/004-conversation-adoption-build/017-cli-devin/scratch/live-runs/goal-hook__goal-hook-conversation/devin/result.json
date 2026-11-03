@@ -1,0 +1,53 @@
+{
+  "runtime": "devin",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 104240176,
+  "socket": "conv-11846-devin",
+  "session_id": "38c1edb5-841d-4229-8088-47b6fa11b8be",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/goal-hook__goal-hook-conversation/devin",
+  "started_at": "2026-11-03T06:49:18.788Z",
+  "finished_at": "2026-11-03T06:50:55.675Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "read-active-goal",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/read-active-goal"
+    },
+    {
+      "id": "later-task",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/later-task"
+    }
+  ]
+}

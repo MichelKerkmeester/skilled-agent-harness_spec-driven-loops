@@ -1,0 +1,86 @@
+{
+  "runtime": "devin",
+  "verdict": "FAIL",
+  "blocker": "CHECK_FAILED",
+  "seed": 960645952,
+  "socket": "conv-75742-devin",
+  "session_id": "c18c36c4-4bb3-44a1-9152-e52b2b39ed54",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/conv-dv-a1/devin",
+  "started_at": "2026-11-02T06:05:50.900Z",
+  "finished_at": "2026-11-02T06:06:52.312Z",
+  "adapter": {
+    "bin": "devin",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "grep: answers.txt: No such file or directory",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

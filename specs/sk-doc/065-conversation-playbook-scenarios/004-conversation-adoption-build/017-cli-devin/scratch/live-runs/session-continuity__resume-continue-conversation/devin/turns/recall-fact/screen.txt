@@ -1,0 +1,51 @@
+
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.11.234
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+❭ Please remember the phrase in fact.txt for my next question, and print the phrase back to me now.
+
+ ✓ Read ./fact.txt
+
+ silver fern 731
+
+❭ What phrase did I ask you to remember?
+
+ silver fern 731
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__resume-continue-conversation/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Read and repeat the phrase from fact.txt ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                      Context: 19k / 262k tokens (7%)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

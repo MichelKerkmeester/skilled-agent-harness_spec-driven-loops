@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conversation runner gaps",
+      "phase 18 runner gaps",
+      "runner gaps plan",
+      "runner gaps tasks"
+    ],
+    "key_topics": [
+      "conversation",
+      "runner",
+      "gaps",
+      "phase",
+      "plan",
+      "tasks",
+      "six",
+      "scenarios",
+      "meet",
+      "cannot",
+      "play",
+      "them"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+      ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+      ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+      ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+      ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "continue-same-session.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/session-continuity/continue-same-session.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-captured-session-id.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-hermes/manual-testing-playbook/session-continuity/resume-captured-session-id.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-continuation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook/agent-task/session-continuation.md",
+        "source": "derived"
+      },
+      {
+        "name": "fork-and-share.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-stopped-recovery.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-orca/manual-testing-playbook/runtime/runtime-stopped-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "dead-session.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook/recovery-and-failure/dead-session.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Six",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Probe Cursor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Design",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Probe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Six scenarios meet Q2 but the runner cannot play them: its runtimes are claude-code, opencode, codex, pi and devin, and its only session actions are send, restart and compact",
+    "created_at": "2026-11-02T18:33:58Z",
+    "last_save_at": "2026-11-03T11:46:16.820Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:e7af74c2140dcbc391e1b0b71b25df1f7d4a777dd528a6c8e65621b429469295",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "557ca5135384e4802a5af6568030cf8e80d4ccdaae3d88569e9d9cdf96e433dc",
+      "plan.md": "80bb3e47ee249cb95f039c37f81b3eebff7921272eb9831bb49ea22d0caf2c92",
+      "tasks.md": "c10796b2e82f2fa9567c03fb14425147d23d3085fe06690b8ce03026ea8eb56e"
+    },
+    "last_active_at": null
+  }
+}

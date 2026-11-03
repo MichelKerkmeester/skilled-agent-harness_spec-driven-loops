@@ -1,0 +1,60 @@
+
+ ✱ Do you trust the authors of this directory?
+   For security, devin should not be run in directories with untrusted content.
+
+ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__resume-continue-conversation/devin
+
+ ❭ 1 Yes, trust
+   2 No, exit
+
+ ↑↓ select · ↵ confirm · esc cancel
+
+ ✓ Trust /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__resume-continue-conversation/devin?
+
+⠀⣴⣾⣶⡄⠀⠀⠀⠀
+⠀⠛⠿⠟⠻⣶⣾⣶⡄  Devin CLI
+⠀⣤⣶⣦⣴⠿⢿⠿⠃  v3000.11.234
+⠀⠻⢿⠿⠃⠀⠀⠀⠀
+
+ Pro · 0% remaining (resets in 1h 28m)
+
+❭ Please remember the phrase in fact.txt for my next question, and print the phrase back to me now.
+
+ ✓ Read ./fact.txt 1 lines
+
+ silver fern 731
+
+ ⏺ /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/session-continuity__resume-continue-conversation/devin
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── Read and repeat the phrase from fact.txt ─
+❭ Ask Devin to build features, fix bugs, or work on your code
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+SWE-2 High · bypass                                                                                                                                                      Context: 18k / 262k tokens (7%)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

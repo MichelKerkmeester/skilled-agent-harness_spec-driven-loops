@@ -1,0 +1,53 @@
+{
+  "runtime": "opencode",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 459361746,
+  "socket": "conv-46632-opencode",
+  "session_id": "633c026d-058c-4279-bf6a-5090dbea094f",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/cli-hooks-and-plugin__goal-opencode-plugin-conversation/opencode",
+  "started_at": "2026-11-03T06:51:29.393Z",
+  "finished_at": "2026-11-03T06:52:36.027Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "bind-goal",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/bind-goal"
+    },
+    {
+      "id": "later-task",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/later-task"
+    }
+  ]
+}

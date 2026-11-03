@@ -1,0 +1,86 @@
+{
+  "runtime": "codex",
+  "verdict": "FAIL",
+  "blocker": "REPO_CHANGED",
+  "seed": 766291021,
+  "socket": "conv-92410-codex",
+  "session_id": "d38e65d5-511b-4fa6-bf2e-c43327b2d6ed",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-matrix2/codex",
+  "started_at": "2026-11-02T07:25:57.806Z",
+  "finished_at": "2026-11-02T07:30:59.986Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": true,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small, large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "teal",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "yes",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "present",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "4",
+      "evidence": "turns/compact"
+    }
+  ]
+}

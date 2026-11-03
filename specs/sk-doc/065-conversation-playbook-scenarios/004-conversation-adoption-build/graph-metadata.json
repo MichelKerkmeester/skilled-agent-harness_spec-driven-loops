@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios",
+  "children_ids": [
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin",
+    "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conversation adoption build",
+      "phase 4 conversation adoption build",
+      "playbook conversation conversions"
+    ],
+    "key_topics": [
+      "conversation",
+      "adoption",
+      "phase",
+      "playbook",
+      "conversions",
+      "research",
+      "003-conversation-adoption-research",
+      "found",
+      "scenarios",
+      "across",
+      "skills",
+      "modes"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges-conversation.md",
+      ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session-conversation.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate-conversation.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule-conversation.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
+      ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle-conversation.md",
+      ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+      ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback-conversation.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
+      ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder-conversation.md",
+      ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal-conversation.md",
+      ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-lifecycle-bridges-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/plugin-utilization/session-relaunch.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-by-session-id-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "continue-last-session-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-dedup.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-skill-advisor-target-menu.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-skill-advisor-target-menu.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-hooks-switch-gate-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-git-hooks-switch-gate-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-git-standards-change-rule-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-git-standards-change-rule-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-update-apply-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-update-apply-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-ci-toggle-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/manual-testing-playbook/doctor-commands/doctor-ci-toggle-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "onboarding-flow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-diagram/manual-testing-playbook/diagram-generation/onboarding-flow.md",
+        "source": "derived"
+      },
+      {
+        "name": "unknown-fallback-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "unknown-fallback-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "pause-on-ambiguous-component-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "refuse-leftover-placeholder-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "no-observed-failure-refusal-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The adoption research in `../003-conversation-adoption-research/research/research.md` found 30 playbook scenarios across 17 skills and modes whose behavior shows on a later turn, depends on the user's answer or must survive a restart or compaction, yet each is checked by one prompt or not at all",
+    "created_at": "2026-11-02T18:33:34Z",
+    "last_save_at": "2026-11-03T11:46:15.341Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:29424a39096dba14df427dd3f4ae35fec5ae93e3aa0487dc0d2254ad874692d0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "862f86e1bcbf38e0fdaf14f6f4a61d8a1102f30fa0d7faa1ca06472b194fc3b0"
+    },
+    "last_active_child_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode",
+    "last_active_at": "2026-11-03T11:16:13.807Z"
+  }
+}

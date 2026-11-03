@@ -1,0 +1,2 @@
+$ turn_output=$(awk 'index($0, "and then reply with the single word DONE.") { after=1; next } after { print }' "$CONVERSATION_TURN_DIR/screen.txt"); printf '%s\n' "$turn_output" | grep -Fq 'relaunch-probe'
+[exit 0]

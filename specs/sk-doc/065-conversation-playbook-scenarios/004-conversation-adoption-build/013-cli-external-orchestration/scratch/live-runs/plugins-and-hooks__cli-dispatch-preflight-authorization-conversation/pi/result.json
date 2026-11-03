@@ -1,0 +1,53 @@
+{
+  "runtime": "pi",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 173356298,
+  "socket": "conv-77681-pi",
+  "session_id": "d94c4dc6-f7a3-4e0c-8b32-7dc7be544375",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/plugins-and-hooks__cli-dispatch-preflight-authorization-conversation/pi",
+  "started_at": "2026-11-03T06:56:39.031Z",
+  "finished_at": "2026-11-03T06:58:30.084Z",
+  "adapter": {
+    "bin": "pi",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": null,
+  "sandbox": "seatbelt",
+  "send_keys_stderr": null,
+  "turns": [
+    {
+      "id": "deny-unnamed-executor",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "preflight denied because the user request omitted cli-codex and no dispatch was recorded",
+      "evidence": "turns/deny-unnamed-executor"
+    },
+    {
+      "id": "allow-named-executor",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/allow-named-executor"
+    }
+  ]
+}

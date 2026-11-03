@@ -1,0 +1,86 @@
+{
+  "runtime": "opencode",
+  "verdict": "FAIL",
+  "blocker": "CHECK_FAILED",
+  "seed": 1709696238,
+  "socket": "conv-76183-opencode",
+  "session_id": "ac859943-cb86-4b8a-98d8-a8f7d7e7580c",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/fe0c9990-06d3-454e-a8e7-7c7bc649bc49/scratchpad/conv-oc-a1/opencode",
+  "started_at": "2026-11-02T05:33:58.545Z",
+  "finished_at": "2026-11-02T05:35:07.769Z",
+  "adapter": {
+    "bin": "opencode",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "FAIL",
+      "attempts": 1,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "grep: answers.txt: No such file or directory",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "FAIL",
+      "attempts": 0,
+      "reason": "CHECK_FAILED",
+      "blocker": null,
+      "observed": "",
+      "evidence": "turns/compact"
+    }
+  ]
+}

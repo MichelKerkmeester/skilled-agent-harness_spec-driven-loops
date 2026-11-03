@@ -1,0 +1,4 @@
+{"runtime":"pi","time":"2026-11-02T12:37:54.422Z","turn":"single-select","kind":"send","steps":[{"text":"Use your question tool to ask me one single-choice colour question with exactly these options: red, green and blue. After I answer, append the selected colour as one line to answers.txt."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T12:37:57.542Z","turn":"single-select","kind":"question","steps":[{"key":"Down"},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T12:38:04.790Z","turn":"multi-select","kind":"send","steps":[{"text":"Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to answers.txt, separated by commas."},{"key":"Enter"}]}
+{"runtime":"pi","time":"2026-11-02T12:38:08.468Z","turn":"multi-select","kind":"question","steps":[{"key":"Enter"},{"key":"Down"},{"key":"Enter"},{"key":"Down"},{"key":"Down"},{"key":"Enter"}]}

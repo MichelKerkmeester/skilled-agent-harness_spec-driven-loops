@@ -1,0 +1,143 @@
+{
+  "runtime": "codex",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 752344362,
+  "socket": "conv-84882-codex",
+  "session_id": "df9f4699-9d2c-402b-b59e-346ae9dbb0a4",
+  "project": "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex",
+  "started_at": "2026-11-02T09:28:19.293Z",
+  "finished_at": "2026-11-02T09:30:14.784Z",
+  "adapter": {
+    "bin": "codex",
+    "probed": true
+  },
+  "repo": {
+    "changed": false,
+    "watched": [
+      "decision-capture"
+    ],
+    "before": "repo-before.txt",
+    "after": "repo-after.txt"
+  },
+  "cleanup": {
+    "ok": true,
+    "sessionsGone": true,
+    "socketGone": true,
+    "groupGone": true,
+    "childrenGone": true
+  },
+  "hook_trust": {
+    "config": "/Users/michelkerkmeester/.codex/config.toml",
+    "added": [
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_compact:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:3",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:4",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:1:0"
+    ],
+    "changed": [],
+    "outside_project": [
+      "/Users/michelkerkmeester/.codex/hooks.json:session_end:0:0"
+    ],
+    "removed": [
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_tool_use:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:post_tool_use:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:pre_compact:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:3",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:0:4",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:session_start:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:1:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:user_prompt_submit:2:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:0",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:1",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:0:2",
+      "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/conv-trust/codex/.codex/hooks.json:stop:1:0"
+    ],
+    "restored": [],
+    "ok": true
+  },
+  "turns": [
+    {
+      "id": "single-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "green",
+      "evidence": "turns/single-select"
+    },
+    {
+      "id": "multi-select",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "small, large",
+      "evidence": "turns/multi-select"
+    },
+    {
+      "id": "other-answer",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "teal",
+      "evidence": "turns/other-answer"
+    },
+    {
+      "id": "chat-reply",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "yes",
+      "evidence": "turns/chat-reply"
+    },
+    {
+      "id": "restart",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "present",
+      "evidence": "turns/restart"
+    },
+    {
+      "id": "compact",
+      "status": "PASS",
+      "attempts": 1,
+      "reason": null,
+      "blocker": null,
+      "observed": "4",
+      "evidence": "turns/compact"
+    }
+  ]
+}

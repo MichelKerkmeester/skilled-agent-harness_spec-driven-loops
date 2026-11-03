@@ -1,0 +1,51 @@
+ ? Single-choice colour question +                                                                                                                                                                      
+  ┃  selected colour as one line to answers.txt.                                                                                                                                                        
+  ┃                                                                                                                                                             Single-choice colour question           
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                             Context                                 
+  ┃  # Questions                                                                                                                                                8,085 tokens                            
+  ┃                                                                                                                                                             1% used                                 
+  ┃  Which colour do you prefer?                                                                                                                                $0.00 spent                             
+  ┃  green                                                                                                                                                                                              
+  ┃                                                                                                                                                             MCP                                     
+                                                                                                                                                                • code_mode                     Error   
+     ┃ Thought: 276ms                                                                                                                                                                                   
+                                                                                                                                                                                                        
+     ┃ The user selected green. Append to answers.txt in the working directory.                                                                                                                         
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  $ echo "green" >> answers.txt && cat answers.txt                                                                                                                                                   
+  ┃                                                                                                                                                                                                     
+  ┃  green                                                                                                                                                                                              
+  ┃                                                                                                                                                                                                     
+                                                                                                                                                                                                        
+     You chose green — appended to answers.txt.                                                                                                                                                         
+                                                                                                                                                                                                        
+     Build · DeepSeek V4.1 Flash 1017 · 13.0s · 15.6 tok/s                                                                                                 ▄                                            
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █                                            
+  ┃  Use your question tool to ask which sizes I want, with small, medium and large as multi-select options. Append the selected labels on one line to     █                                            
+  ┃  answers.txt, separated by commas.                                                                                                                     █                                            
+  ┃                                                                                                                                                        █                                            
+                                                                                                                                                           █                                            
+     → Asked 1 question                                                                                                                                    █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  Questions                                                                                                                                                                                          
+  ┃                                                                                                                                                                                                     
+  ┃  Sizes  Submit                                                                                                                                                                                      
+  ┃                                                                                                                                                                                                     
+  ┃  Which sizes do you want?                                                                                                                                                                           
+  ┃                                                                                                                                                                                                     
+  ┃  1. [ ] small                                                                                                                                                                                       
+  ┃         Small size                                                                                                                                                                                  
+  ┃  2. [ ] medium                                                                                                                                                                                      
+  ┃         Medium size                                                                                                                                                                                 
+  ┃  3. [ ] large                                                                                                                                                                                       
+  ┃         Large size                                                                                                                                                                                  
+  ┃  4. [ ] Type your own answer                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃  ⇆ tab  ↑↓ select  enter toggle  esc dismiss                                                                                                                                                        
+  ┃                                                                                                                                                             /…/scratch…/conv-matrix5/opencode:main  
+                                                                                                                                                                                                        
+

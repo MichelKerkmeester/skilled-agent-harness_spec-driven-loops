@@ -1,0 +1,64 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. Implement to sk-code standards: small named functions, JSDoc on exported
+
+ROLE: code agent, test author. sk-code standards: table-driven, no new dependency, CommonJS,
+comments say WHY and never contain spec paths, phase numbers or task/requirement ids.
+
+S = .skilled/skills/sk-doc/sk-create-manual-testing-playbook
+Edit ONLY: $S/scripts/tests/validate-playbook-package.test.cjs, and create a new fixture package
+$S/scripts/tests/fixtures/conversation-package/ (copy $S/scripts/tests/fixtures/clean-package and
+add one scenario that holds a valid `json conversation` block whose first `send` equals that
+scenario's contract prompt). Update $S/scripts/tests/fixtures/README.md to name the new fixture.
+Do NOT modify anything under fixtures/clean-package. Do NOT edit validate-playbook-package.cjs.
+
+Read first: $S/scripts/validate-playbook-package.cjs (functions parseConversationScript,
+conversationChecks, maskConversationBlocks, promptSyncChecks) and the existing test file's helpers
+(copyFixture, codes, expectViolation, expectClean, readScenario, writeScenario).
+
+Add a `runConversationRegressions()` suite, called with the other suites, that prints exactly
+`conversation script regressions: PASS (<n> assertions)` at the end. It uses the new fixture package.
+1. Add a helper `expectConversationPath(label, mutate, pathFragment)` that asserts exit 1, a
+   CONVERSATION_SCRIPT_INVALID violation, AND that one such violation's message starts with
+   `${pathFragment}:`.
+2. Clean case: the fixture as-is exits 0 with no CONVERSATION_SCRIPT_INVALID and no PROMPT_UNSYNCED.
+3. One expectConversationPath case per malformed shape, each with its exact path:
+   invalid JSON `(block)`; a second block `(block)`; `{}` -> `turns`; `"turns": []` -> `turns`;
+   unknown root key `extra`; unknown turn key `turns[0].extra`; unknown question key and unknown
+   answer key; send and action both -> `turns[0]`; action "pause" -> `turns[1].action`;
+   send with a newline -> `turns[0].send`; first behaviour turn is an action ->
+   `turns[0].action`; delay_ms -1 and delay_ms [5,2] -> `turns[0].delay_ms`; timeout_ms 0 ->
+   `turns[0].timeout_ms`; retry 2 -> `turns[0].retry`; duplicate id -> `turns[1].id`; question
+   without match -> `turns[0].questions[0].match`; match "(" -> same path; answer with select and
+   reply -> `turns[0].questions[0].answer`; select [] -> `...answer.select`; select of two labels
+   without multi -> `...answer.select`; multi beside reply -> `...answer.multi`; turn without check
+   -> `turns[0].check`; runtimes ["cursor"] -> `runtimes[0]`.
+4. Valid edge cases that must exit 0: a check-only first turn followed by a send; delay_ms
+   [3000, 8000]; select of two labels with multi: true; retry 1; a plain ```json fence (not
+   conversation) holding junk is ignored.
+5. Masking: a valid block whose check is `grep -q BLOCKED out.txt || echo SKIP; ls /Users/x` exits 0
+   with no FORBIDDEN_VERDICT, SKIP_BLOCKER_MISSING or DEVELOPER_ABSOLUTE_PATH; the same
+   `BLOCKED` word written as prose outside the block still reports FORBIDDEN_VERDICT (check
+   which verdict words trigger it by reading verdictChecks first and use one that does).
+6. Prompt sync: first send equal to the contract prompt -> no PROMPT_UNSYNCED warning; different
+   -> exactly one PROMPT_UNSYNCED warning whose message contains "the conversation script's first send".
+7. A direct require() case: parseConversationScript on a text with no block returns
+   {script:null, findings:[], block:null}.
+
+VERIFY (run and paste):
+  node $S/scripts/tests/validate-playbook-package.test.cjs ; echo exit=$?
+  git diff --stat -- $S/scripts/tests/fixtures/clean-package     (must print nothing)
+Final message under 200 words.

@@ -1,0 +1,7 @@
+turn	status	attempts	evidence	observed
+single-select	FAIL	1	turns/single-select	UNEXPECTED_QUESTION
+multi-select	NOT_RUN	0	turns/multi-select	UNEXPECTED_QUESTION
+other-answer	NOT_RUN	0	turns/other-answer	UNEXPECTED_QUESTION
+chat-reply	NOT_RUN	0	turns/chat-reply	UNEXPECTED_QUESTION
+restart	NOT_RUN	0	turns/restart	UNEXPECTED_QUESTION
+compact	NOT_RUN	0	turns/compact	UNEXPECTED_QUESTION

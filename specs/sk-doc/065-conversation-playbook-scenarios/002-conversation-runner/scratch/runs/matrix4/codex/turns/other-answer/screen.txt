@@ -1,0 +1,51 @@
+
+• I’ll ask which sizes you want, allowing more than one choice, then append them comma-separated on one line.
+
+• Which sizes do you want? Select all that apply: small, medium, large.
+
+  • small
+  • medium
+  • large
+
+• I’ve asked which sizes you want. Select any of small, medium, and large; once you reply, I’ll append them to answers.txt on one comma-separated line.
+
+  Worked for 45s • 12:52
+
+
+› small, large
+
+
+• I’ll append small, large as one line to answers.txt.
+
+• Ran printf '%s\n' 'small, large' >> answers.txt
+  └ (no output)
+
+• Appended small, large as one line to answers.txt (answers.txt).
+
+  Worked for 3s • 12:52
+
+
+› Use your question tool to ask what custom colour I want, with a free-text Other option. Append my answer as one line to answers.txt.
+
+
+• I’ll ask for the colour, with red, green, and blue choices plus the tool’s free-text “Other” option.
+
+• Questions 1/1 answered
+  • What custom colour would you like?
+    answer: None of the above
+    note: teal
+
+• You entered teal under “Other”; I’ll append that as one line.
+
+• Ran printf '%s\n' 'teal' >> answers.txt
+  └ (no output)
+
+• Appended teal as one line to answers.txt (answers.txt).
+
+  Worked for 13s • 12:52
+ 
+ 
+› Ask Codex to do anything
+ 
+  GPT-6-Luna max fast · Context 4% used · 5h 69% left · weekly 3% left                                                                                                        ⚠ 2 warnings · f2 to view
+

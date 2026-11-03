@@ -1,0 +1,9 @@
+{"type":"config","topic":"Audit every skill and every skill mode (workflow mode packet) in the repository for where manual-testing-playbook scenarios should adopt the json conversation scenario format played by the shared conversation runner in sk-create-manual-testing-playbook. For each skill and mode: which existing playbook scenarios should be converted from single prompt to conversation, which should stay single prompt, which existing scenarios need updating, and which multi-turn, question-tool, restart, compaction or cross-runtime behaviors lack any scenario that a conversation would add. Apply the four ordered questions in .skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md section Choosing the Scenario Style, cite each candidate with a SOURCE tag and its deciding question, and rank candidates by value and cost.","maxIterations":10,"generation":1,"timestamp":"2026-11-02T17:45:42.602Z"}
+{"type":"iteration","iteration":1,"run":1,"status":"insight","newInfoRatio":1,"ruledOut":[],"timestamp":"2026-11-02T17:48:06Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"insight","newInfoRatio":0.84,"ruledOut":[],"timestamp":"2026-11-02T17:53:00Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"insight","newInfoRatio":0.78,"ruledOut":[],"timestamp":"2026-11-02T17:55:51Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"insight","newInfoRatio":0.65,"ruledOut":[],"timestamp":"2026-11-02T17:57:44Z"}
+{"type":"iteration","iteration":5,"run":5,"status":"insight","newInfoRatio":0.56,"ruledOut":[],"timestamp":"2026-11-02T17:59:01Z"}
+{"type":"iteration","iteration":6,"run":6,"status":"insight","newInfoRatio":0.72,"ruledOut":[],"timestamp":"2026-11-02T18:00:17Z"}
+{"type":"iteration","iteration":7,"run":7,"status":"insight","newInfoRatio":0.71,"ruledOut":[],"timestamp":"2026-11-02T18:01:35Z"}
+{"type":"iteration","iteration":8,"run":8,"status":"insight","newInfoRatio":0.63,"ruledOut":[],"timestamp":"2026-11-02T18:03:27Z"}

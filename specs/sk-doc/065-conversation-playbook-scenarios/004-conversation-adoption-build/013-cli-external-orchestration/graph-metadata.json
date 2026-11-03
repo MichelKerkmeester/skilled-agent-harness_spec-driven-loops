@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration",
+  "spec_folder": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration",
+  "parent_id": "sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli external orchestration conversation scenarios",
+      "phase 13 cli external orchestration",
+      "cli external orchestration conversation plan",
+      "cli external orchestration conversation tasks",
+      "cli external orchestration implementation summary",
+      "dispatch preflight authorization live run"
+    ],
+    "key_topics": [
+      "cli",
+      "external",
+      "orchestration",
+      "conversation",
+      "scenarios",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "dispatch",
+      "preflight"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+      "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/research.md",
+      ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+      ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
+      ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-conversation-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-conversation-scenario.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-preflight-authorization.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-preflight-authorization-conversation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization-conversation.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scripted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Dispatch authorization is tested in process, but the conversation-level repair, where a follow-up names the executor and turns a denial into an allow, is not",
+    "created_at": "2026-11-02T18:33:55Z",
+    "last_save_at": "2026-11-03T07:07:17.616Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d50ae5e3a625a99acd00eacd26d37b04a67c080b2c38fcf15d8c73a0bb602435",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b096340cc596f6c9455f63e1b491888d97ab51f533b8e3271df3a24f07c9abe8",
+      "plan.md": "9f9e1e024090f7c2cec1fc8ac1f7142739058d25b186d88ca903de07a6cadd87",
+      "tasks.md": "8f03eab28dfc09ec437271bae90894c0729ffe061dd79404daa789d12e3261f0",
+      "implementation-summary.md": "6834b4aba21f851303be3ad27e5b3124f66ac679cb037c8aa920ec1ebbf86074"
+    },
+    "last_active_at": null
+  }
+}

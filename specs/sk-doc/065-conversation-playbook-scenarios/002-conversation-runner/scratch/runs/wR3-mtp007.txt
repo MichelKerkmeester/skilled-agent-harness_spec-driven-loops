@@ -1,0 +1,55 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: code agent. sk-code standards: CommonJS, Node standard library only, no new dependency,
+small named functions, JSDoc on exports. Comments say WHY and never contain spec paths, phase
+ROLE: markdown agent. sk-doc conventions, no em or en dashes, no absolute home paths.
+Do NOT run tmux, claude or the runner.
+M = .skilled/skills/sk-doc/sk-create-manual-testing-playbook
+READ: specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/spec.md (REQ-009 to
+REQ-015), plan.md section 3, $M/references/conversation-scenarios.md, $M/manual-testing-playbook/
+(root file and an existing scenario for style), $M/SKILL.md, $M/README.md, $M/changelog/v1.0.9.0.md.
+TASK:
+1. Create $M/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md (MTP-007),
+   matching the existing scenarios' frontmatter, five sections and ID style. Its `json conversation`
+   block: runtimes all five; setup creates a tiny project (git init, a README.md) and copies each
+   runtime's project config from "$CONVERSATION_REPO_ROOT" (.claude .opencode .codex .pi .devin,
+   ignoring missing ones) and, for Codex only, writes default_mode_request_user_input = true into
+   the scratch .codex/config.toml; turns: (1) send asking the subject to use its question tool for
+   one single-choice colour question offering red, green and blue and then write the answer to
+   answers.txt -> select ["green"], check `grep -qx green answers.txt && echo green`; (2) a
+   multi-select of sizes small, medium, large -> select ["small","large"], multi true, check that
+   answers.txt has a second line containing small and large; (3) a question whose answer is typed
+   through Other -> other "teal"; (4) a plain chat question the subject must ask in chat ->
+   reply "yes"; (5) action restart, check answers.txt still exists; (6) action compact, check
+   answers.txt has 4 lines. Pick sends whose wording makes the subject append each answer as one
+   line. Codex chat-only: its tool turns may exit 77 with blocker "no question tool in default
+   mode" when CONVERSATION_RUNTIME is codex and the screen shows no dialog.
+   Contract prompt equals turn 1's send. Commands section: the runner command
+   `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs --scenario <this file> --runtime claude-code --scratch /tmp/conv-mtp007 --out <out>`.
+2. Index it in $M/manual-testing-playbook/manual-testing-playbook.md like the others.
+3. Add to $M/references/conversation-scenarios.md three H2 sections: Running a Script (CLI, exit
+   codes, evidence files incl. checkpoints.tsv and matrix.md, CONVERSATION_RUNTIME, CHECK_TIMEOUT
+   and SETUP_TIMEOUT, --seed, --overwrite, content-hash REPO_CHANGED), Per-Runtime Notes (claude-code
+   from specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/scratch/probes.md,
+   others "not probed yet"), Multi-Runtime Live Tests (plan.md's guidance table, kill switch as its
+   own scenario file, setup must copy each runtime's project config).
+4. Add a note to $M/assets/manual-testing-playbook-snippet-template.md that a conversation
+   scenario's command sequence is the runner command. List the runner in $M/README.md, set
+   $M/SKILL.md version to 1.1.0.0, and create $M/changelog/v1.1.0.0.md.
+VERIFY: node $M/scripts/validate-playbook-package.cjs --package $M/manual-testing-playbook (exit 0);
+python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py $M/references/conversation-scenarios.md --type reference;
+node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc | tail -1.
+Final message under 120 words.

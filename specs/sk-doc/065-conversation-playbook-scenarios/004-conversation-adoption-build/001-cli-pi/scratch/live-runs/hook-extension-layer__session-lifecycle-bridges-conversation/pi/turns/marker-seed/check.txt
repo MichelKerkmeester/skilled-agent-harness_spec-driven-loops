@@ -1,0 +1,2 @@
+$ awk 'index($0, "Remember this exact session marker") && index($0, "60-item checklist") { after=1; next } after && index($0, "birch-signal-29") { found=1; exit } END { exit !found }' "$CONVERSATION_TURN_DIR/history.txt"
+[exit 0]

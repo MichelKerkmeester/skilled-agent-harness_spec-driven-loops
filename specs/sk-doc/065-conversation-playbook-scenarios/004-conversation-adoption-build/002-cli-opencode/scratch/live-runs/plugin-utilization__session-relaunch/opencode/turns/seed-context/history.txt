@@ -1,0 +1,50 @@
+   Shell command relaunch probe    Shell command probe             Shell command probe             Shell command probe           +                                                                      
+                                                                                                                                                           █                                            
+  ┃                                                                                                                                                        █    Shell command probe                     
+  ┃  Run the shell command 'echo relaunch-probe' and then reply with the single word DONE.                                                                 █                                            
+  ┃                                                                                                                                                        █    Context                                 
+                                                                                                                                                           █    7,983 tokens                            
+  ┃                                                                                                                                                        █    1% used                                 
+  ┃  $ echo relaunch-probe                                                                                                                                 █    $0.00 spent                             
+  ┃                                                                                                                                                        █                                            
+  ┃  relaunch-probe                                                                                                                                        █    MCP                                     
+  ┃                                                                                                                                                        █    • code_mode                     Error   
+                                                                                                                                                           █                                            
+     DONE                                                                                                                                                  █                                            
+                                                                                                                                                           █                                            
+     Build · DeepSeek V4.1 Flash 1017 · 1.4s · 33.4 tok/s                                                                                                  █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                           █                                            
+                                                                                                                                                                                                        
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃                                                                                                                                                                                                     
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max                                                                                                                                  
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀                                            
+  /…/-Users-…/beb6e7b1-5f31-42db-8cd9-f58f27216e79/scratchpad/live/scratch/plugin-utilization__session-relaunch/opencode  8.0K (1%) · $0.00  ctrl+p commands    /…/plugin-utilization__sessi…/opencode  
+                                                                                                                                                                                                        

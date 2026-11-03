@@ -1,0 +1,57 @@
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: markdown agent. Follow sk-doc conventions: read an existing sibling file of the same kind
+first and match its frontmatter, numbered H2 sections and anchors. Plain direct prose. Never use an
+em dash or en dash character anywhere. Do not touch any .cjs file.
+
+S = .skilled/skills/sk-doc/sk-create-manual-testing-playbook
+
+SOURCE OF TRUTH: read the "The Block Schema", "Roles", "Evidence Each Turn Leaves" and "Example"
+parts of specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/plan.md, and
+ADR-002 in specs/sk-doc/065-conversation-playbook-scenarios/decision-record.md. Every key and rule
+you document must match those exactly. Do not invent keys.
+
+TASK, docs only:
+1. Create $S/references/conversation-scenarios.md, modelled on $S/references/prompt-voice.md
+   (frontmatter and section style). Sections: overview and when to write a conversation scenario
+   versus one prompt; roles (orchestrator, subject); the `json conversation` block with a table of
+   every key; turn outcomes (check exit 0 PASS, exit 77 skips that turn with the first output line
+   as its blocker, other exits FAIL, last non-empty output line is the observed value, retry, a
+   failure ends the run and later turns are NOT_RUN, a check-only turn); the evidence each turn
+   leaves including checkpoints.tsv; one complete example (use the plan's example); authoring
+   rules (one block per file, it lives under a `### Conversation Script` heading in section 3, the
+   first send equals the scenario contract prompt, a second scratch project or different `env` is
+   a separate scenario file, compaction followed by a send is two turns, the validator never runs
+   setup or check). Say the runner itself is documented when it ships.
+2. In $S/assets/manual-testing-playbook-snippet-template.md add a `### Conversation Script`
+   subsection inside section 3 TEST EXECUTION of the scenario scaffold, with a filled example
+   block (```json conversation) whose first `send` equals the scaffold's prompt placeholder text
+   style, plus two authoring notes. Keep every existing line.
+3. $S/SKILL.md: section 6 gets a short "Conversation scenarios" rule (when to write one, when one
+   prompt is enough, see the reference); section 7 lists the new check code
+   CONVERSATION_SCRIPT_INVALID; section 10 lists references/conversation-scenarios.md; set the
+   frontmatter `version: 1.0.9.0`.
+4. Create $S/changelog/v1.0.9.0.md modelled on $S/changelog/v1.0.8.0.md.
+5. Name references/conversation-scenarios.md in $S/ROUTER.md (the overview resource list next to
+   references/prompt-voice.md) and add a route-map row in $S/references/README.md.
+
+VERIFY (run and paste output):
+  rg -c "json conversation|delay_ms|timeout_ms|optional|reply|restart|compact" $S/references/conversation-scenarios.md   (7 or more)
+  python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py $S/references/conversation-scenarios.md --type reference
+  rg -n "^version: 1.0.9.0$" $S/SKILL.md
+  rg -n "conversation-scenarios.md" $S/ROUTER.md $S/references/README.md
+  rg -n "—|–" $S/references/conversation-scenarios.md $S/changelog/v1.0.9.0.md   (must print nothing)
+Final message: files changed and verify output, under 200 words.

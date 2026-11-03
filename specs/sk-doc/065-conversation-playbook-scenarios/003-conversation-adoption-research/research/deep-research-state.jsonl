@@ -1,0 +1,2 @@
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":3,"stopReason":"manualStop","totalIterations":8,"totalQuestions":5,"timestamp":"2026-11-02T18:11:51.292Z"}
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":5,"stopReason":"maxIterationsReached","totalIterations":14,"totalQuestions":5,"timestamp":"2026-11-02T18:25:25.736Z"}

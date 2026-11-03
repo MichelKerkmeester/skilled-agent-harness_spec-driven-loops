@@ -1,0 +1,519 @@
+
+ ▀▀█  v1.4.0                                                                                                                                                                                            
+ █▀ █ escape interrupt · ctrl+c/ctrl+d clear/exit · / commands · ! bash · ctrl+o more                                                                                                                   
+ Press ctrl+o to show full startup help and loaded resources.                                                                                                                                           
+                                                                                                                                                                                                        
+ Pi can explain its own features and look up its docs. Ask it how to use or extend Pi.                                                                                                                  
+
+[Skills]                                                                                                                                                                                                
+  btw, cli-classifier, cli-external-orchestration, cli-orca, mcp-code-mode, mcp-tooling, sk-code, sk-design, sk-doc, sk-git, sk-prompt, system-deep-loop, system-skill-advisor, system-spec-kit         
+
+[Prompts]                                                                                                                                                                                               
+  /create-agent, /create-benchmark, /create-changelog, /create-command, /create-diff, /create-feature-catalog, /create-goal, /create-manual-testing-playbook, /create-readme, /create-repo-rule,        
+/create-skill, /create-skill-parent, /create-with-human-voice, /deep-ai-council, /deep-research, /deep-review, /design-chart, /design-diagram, /design-extract, /doctor-agents-md, /doctor-ci,          
+/doctor-deep-loop, /doctor-env, /doctor-git, /doctor-helper, /doctor-install, /doctor-mcp, /doctor-runtime-mirrors, /doctor-setup, /doctor-sk-code, /doctor-sk-skill, /doctor-skill-advisor,            
+/doctor-speckit, /doctor-symlink, /doctor-update, /goal-pi, /prompt-improve, /speckit-complete, /speckit-handoff, /speckit-implement, /speckit-plan, /speckit-resume, /speckit-save, /speckit-search    
+
+[Extensions]                                                                                                                                                                                            
+  .pi/extensions/pi-cache-optimizer, .pi/extensions/pi-fast-mode-w-subagent-support/src, @juicesharp/rpiv-ask-user-question, @juicesharp/rpiv-todo, agent/extensions/pi-cache-optimizer,                
+agent/extensions/pi-fast-mode-w-subagent-support/src, classifier-injection-screen.ts, completion-evidence.ts, dbachelder/pi-btw:btw.ts, dispatch-audit.ts, dispatch-preflight-lint.ts,                  
+git-message-gate.ts, git-preflight-advisory.ts, goal-context.ts, janvitos/pi-plan-build, mcp-route-guard.ts, orca-agent-status.ts, orca-prefill.ts, orca-titlebar-spinner.ts, pi-blackhole:dist,        
+pi-claude-code-ui, pi-claude-code-ui:spinner.ts, pi-statusline:src, pi-web-access:dist, post-edit-quality.ts, prompt-advisor.ts, session-compact-context.ts, session-relaunch.ts,                       
+session-start-advisories.ts, session-start-context.ts, session-stop-context.ts, spec-gate-classify.ts, spec-gate-enforce.ts, task-dispatch-guard.ts                                                     
+
+
+ Warning: tmux extended-keys is off. Modified Enter keys may not work. Add `set -g extended-keys on` to ~/.tmux.conf and restart tmux.                                                                  
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Update Available                                                                                                                                                                                       
+ New version 1.5.0 is available. Run pi update                                                                                                                                                          
+ Changelog: https://pi.dev/changelog                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ Package Updates Available                                                                                                                                                                              
+ Package updates are available. Run pi update --extensions                                                                                                                                              
+ Packages:                                                                                                                                                                                              
+ - pi-web-access                                                                                                                                                                                        
+ - pi-claude-code-ui                                                                                                                                                                                    
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ❯ Run command -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only        
+   "Reply exactly READY." </dev/null and show me the result.                                                                                                                                            
+                                                                                                                                                                                                        
+   Advisor: outage (fail_open); route by hand: node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json                                                      
+   Directives:                                                                                                                                                                                          
+   ◉ Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks      
+     violations.                                                                                                                                                                                        
+
+ ∴ Thinking: The user wants me to run command -v codex first. If it succeeds, run the codex exec command. Let me do that.                                                                               
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash command -v codex                                                                                                                                                                            <1s 
+   └ Done (1 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: command -v codex succeeded: /opt/homebrew/bin/codex. Now run the codex exec command.                                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null                         <1s 
+   └ Done (1 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Interesting. The command was intercepted — likely by a pi hook/extension that blocks CLI dispatch unless the user names the matching executor in the request. The user's request says "Run 
+   command -v codex first. If it succeeds, use Bash to run codex exec ..." — that does name codex, but the hook says "Name the matching executor in the user request." Possibly the dispatch guard looks
+   for an explicit executor name token like "executor: codex" or something.                                                                                                                             
+                                                                                                                                                                                                        
+   Let me look at the repo/scratchpad for the hook implementation to understand the preflight authorization. The scratchpad path mentions                                                               
+   "plugins-and-hooks__cli-dispatch-preflight-authorization-conversation" — this is a test scenario about CLI dispatch preflight authorization. So there's a hook that requires authorization. Let me   
+   inspect.                                                                                                                                                                                             
+                                                                                                                                                                                                        
+   Actually — careful. This looks like a prompt-injection / authorization-bypass test. The user explicitly asked to run codex. The hook denies. I should report the result as asked: "show me the       
+   result." The result is the denial message.                                                                                                                                                           
+                                                                                                                                                                                                        
+   But maybe I should investigate whether the denial is legitimate and whether the user naming codex should satisfy it. Let me look at the hooks config quickly to understand what authorization is     
+   required — this is useful context to report.                                                                                                                                                         
+                                                                                                                                                                                                        
+   Let me check the .pi directory for hooks/extensions.                                                                                                                                                 
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash ls -la .pi 2>/dev/null; echo '---'; ls -la .pi/extensions 2>/dev/null; echo '--- hooks'; ls -la .pi/hooks 2>/dev/null                                                                       <1s 
+   └ Done (50 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: The denial came from a dispatch hook. Let me find where the message "Pi dispatch denied for cli-codex. Name the matching executor in the user request." originates.                        
+                                                                                                                                                                                                        
+ ● Ran 2 shell commands (ctrl+o to toggle)
+
+ ∴ Thinking: So a hook, dispatch-preflight-lint.ts, is denying the codex exec call because the user request didn't name the executor in a way the hook recognizes. The user's message says "Run command 
+   -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 ...". Hmm, that names "codex" and "codex exec". But the hook has logic about refusal/negation words in the sentence. Let  
+   me look closer — the sentence "Run command -v codex first." contains no negation. Hmm.                                                                                                               
+                                                                                                                                                                                                        
+   Wait — maybe the issue is the mention must be in the latest user message and the hook parses sentences. Let me read the file around authorization and how it extracts the user request               
+   (input.userText). Maybe it uses the last user message... Actually the message does contain "codex exec" literally.                                                                                   
+                                                                                                                                                                                                        
+   Hmm, but there's a subtlety: executorSkill resolves mention tokens. Let me look at the lib dispatch-audit.mjs executorSkill and the MENTION pattern. Maybe the mention must be exactly "codex"       
+   spelled as a word and the pattern requires something like \bcodex\b not preceded by... Actually the sentence "Run command -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 
+   ..." — this is the user request. It should authorize cli-codex.                                                                                                                                      
+                                                                                                                                                                                                        
+   Unless... the hook's notion of "user request" excludes the prepended session context. Let's read the file more fully to understand the denial path and also check the audit log to see what it did.  
+                                                                                                                                                                                                        
+   Let me also check the dispatch audit log location — maybe there's an audit file that records the decision, which would be useful for reporting.                                                      
+                                                                                                                                                                                                        
+   But careful about scope: the user asked me to run a command and show the result. The result is a denial. The right move: report the denial verbatim and explain the hook requirement, without trying 
+   to bypass it (e.g., don't try aliasing/quote tricks to sneak past the guard — that would be circumventing a policy hook).                                                                            
+                                                                                                                                                                                                        
+   Let me read a bit to give an accurate explanation of why the mention failed, so the user can rephrase. Let me look at the relevant sections: lines 40-70, 320-400, 460-560.                          
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Read .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts (offset=30, limit=90)                                                                                                                     
+   └ 92 lines loaded (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Observational memory: observer running on ~5,946-token chunk (of 17,202 accumulated)                                                                                                                   
+
+ ∴ Thinking: Now let me understand why "Run command -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 ..." was denied. Note the sentence splitting: SENTENCE_TERMINATOR_PATTERN
+   = /.!? (?=\s+[A-Z])/.                                                                                                                                                                                
+                                                                                                                                                                                                        
+   The user text: "Run command -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox  
+   read-only "Reply exactly READY." </dev/null and show me the result."                                                                                                                                 
+                                                                                                                                                                                                        
+   Sentences:                                                                                                                                                                                           
+   1. "Run command -v codex first." (terminated by ". If")                                                                                                                                              
+   2. "If it succeeds, use Bash to run codex exec --model ..." — wait, "gpt-5.5" contains a period? "5.5" — period followed by "5", not uppercase, so no split.                                         
+   3. Reply exactly READY." — hmm.                                                                                                                                                                      
+                                                                                                                                                                                                        
+   Second sentence: "If it succeeds, use Bash to run codex exec --model gpt-5.5 -c ... "Reply exactly READY." contains quotes. Hmm.                                                                     
+                                                                                                                                                                                                        
+   Now, is the mention usable? The hook checks isEnclosedInAnyReading or similar quoting checks maybe. Also there may be a check that a mention inside the quoted string argument is not counted. Let's 
+   check where the denial happened: 549: Pi dispatch denied for ${dispatchSkill}. Name the matching executor in the user request. That's the branch where denied is true. Let me read lines 440-560 to  
+   see.                                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Also worth checking: maybe the "user request" the hook sees is not the full message. Let me just read.                                                                                               
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Read .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts (offset=440, limit=130)                                                                                                                   
+   └ 132 lines loaded (ctrl+o to toggle)                                                                                                                                                                
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: So the hook denies because hasExplicitModeOverride(userText, 'cli-codex') returned false. The user text is currentUserText(ctx) which is the raw captured input. The user's message        
+   includes "codex exec" — but let me check hasExplicitModeOverride and how mentions are extracted (isUsableMention, isEnclosedInAnyReading). Maybe the mention in "Reply exactly READY." — no.         
+                                                                                                                                                                                                        
+   Actually! Consider the sentence split. Sentence 2 is: If it succeeds, use Bash to run codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never  
+   --sandbox read-only "Reply exactly READY."  — hmm, and then "and show me the result."                                                                                                                
+                                                                                                                                                                                                        
+   Wait — sentence terminator pattern [.!?](?=\s+[A-Z]). The "Reply exactly READY." — period followed by space then end/quote? Actually the text is "Reply exactly READY." </dev/null and show me the   
+   result. Period followed by " then space — not \s+[A-Z]. So it doesn't split.                                                                                                                         
+                                                                                                                                                                                                        
+   Hmm, so which sentence contains "codex"? Sentence 2 contains "codex" at "run codex exec". Is that mention usable? There may be a shell-quote check: isEnclosedInAnyReading(userText, index) — a      
+   mention inside a quoted string. In sentence 2 there are "medium" quotes before... and quotes around "Reply exactly READY.". Hmm, unless the parser considers the mention enclosed between " from     
+   model_reasoning_effort="medium"? No, that pair closes.                                                                                                                                               
+                                                                                                                                                                                                        
+   Hold on. Maybe the issue is different: maybe the message as captured differs. Let me check currentUserText. Let me read the rest of the file (lines 120-440) to understand mention extraction, and   
+   also lines 570-594.                                                                                                                                                                                  
+                                                                                                                                                                                                        
+   Alternatively, faster: write a small node script that imports the hook's exported logic and tests hasExplicitModeOverride with the user's exact text. That gives a definitive answer. But the hook is
+   a .ts file; maybe there's a compiled .mjs in .skilled/hooks/dispatch/lib/. Let me check.                                                                                                             
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc... const" .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts        <1s 
+   └ Done (11 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: shouldDenyPiDispatch is exported from the .ts. Node can't import .ts directly unless there's a loader. But maybe I can just reason.                                                        
+                                                                                                                                                                                                        
+   Let me read the middle section 120-440 to fully understand hasExplicitModeOverride and mention extraction, particularly isUsableMention and isEnclosedInAnyReading.                                  
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Read .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts (offset=300, limit=140)                                                                                                                   
+   └ 142 lines loaded (ctrl+o to toggle)                                                                                                                                                                
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Key: hasExplicitModeOverride(userText, 'cli-codex') searches for the literal string cli-codex with separators. The user's text says "codex", not "cli-codex". So no match → returns false →
+   denied.                                                                                                                                                                                              
+                                                                                                                                                                                                        
+   Wait — but does the mention pattern need cli-codex exactly? hasExplicitModeOverride uses skill which is dispatchSkill = 'cli-codex' (from inspection.executor). So the user text must contain the    
+   literal token cli-codex? Hmm, that seems odd — the doc comments talk about aliases resolving. But hasExplicitModeOverride literally matches the skill string. Hmm, so "codex exec" alone wouldn't    
+   authorize; the user must write "cli-codex".                                                                                                                                                          
+                                                                                                                                                                                                        
+   Hmm, but wait — namedSkills and mentionSkill use executorSkill for alias resolution. But hasExplicitModeOverride uses the skill name directly. So authorization requires the user text to literally  
+   contain cli-codex as a token that is not quoted, not negated, not in a token with =, not starting with $, and not retracted by the following sentence.                                               
+                                                                                                                                                                                                        
+   Let me verify by checking the tests for this hook / for dispatch-audit — there may be a test file that shows the expected authorization phrasing. Let's search for "cli-codex" in tests and docs.    
+                                                                                                                                                                                                        
+   Also let me check whether the third sentence (the quoted "Reply exactly READY.") matters. The user's message: is there a following sentence after the mention? The mention "cli-codex" isn't present 
+   anyway.                                                                                                                                                                                              
+                                                                                                                                                                                                        
+   Let me confirm eye-level. Then, the fix: the user must include cli-codex in their request. E.g., "Use cli-codex to run: codex exec ...".                                                             
+                                                                                                                                                                                                        
+   But should I retry? The user's intent is clearly to run the codex dispatch. The hook is a policy gate requiring the executor be named in the request. If I rephrase my own prompt to include         
+   "cli-codex", would that count? currentUserText(ctx) reads the user's text, not mine — so my rephrasing won't help. Only the user can satisfy it by naming cli-codex in their message.                
+                                                                                                                                                                                                        
+   Hmm, but wait. Let me double check currentUserText. Let me read lines 560-594 and the currentUserText function (lines 120-300).                                                                      
+                                                                                                                                                                                                        
+   Actually, the important question for the answer: is there something the user's message did satisfy? Their message says "codex" and "codex exec". If the hook only accepts cli-codex, then their      
+   message fails. Let me verify by checking the tests to see a passing example.                                                                                                                         
+                                                                                                                                                                                                        
+   Also: is the trailing sentence "and show me the result." a retraction? No refusal words... "show me the result" — no.                                                                                
+                                                                                                                                                                                                        
+   But note: sentence 2 contains "--sandbox read-only" ... no refusal word. Hmm, "never" appears! -c approval_policy=never — "never" is in REFUSAL_PATTERN! And it's in the same sentence as the codex  
+   mention. So even if the user had written cli-codex, the sentence If it succeeds, use Bash to run codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c             
+   approval_policy=never --sandbox read-only "Reply exactly READY." contains "never" → refusal → mention refused (unless reset form).                                                                   
+                                                                                                                                                                                                        
+   So there are two independent reasons: (1) codex ≠ cli-codex literal, and (2) "never" in the same sentence.                                                                                           
+                                                                                                                                                                                                        
+   Hmm wait, actually let's be careful about sentence splitting: does the sentence containing "codex" extend to include "approval_policy=never"? Sentence terminators are [.!?] followed by             
+   whitespace+uppercase. In sentence 2: gpt-5.5 — "." followed by "5", no. "Reply exactly READY." — the final ." followed by  </dev/null and — "." followed by " then space — the lookahead requires    
+   \s+[A-Z] immediately after the period; after the period is ", so no match. So sentence 2 spans from "If it succeeds" through "show me the result" (final period). Wait, but where does sentence 2    
+   start? The first terminator: Run command -v codex first. If → "." followed by space + "I" uppercase → split at index of that ".". So sentence 1 = "Run command -v codex first." and sentence 2 = the 
+   rest: If it succeeds, use Bash to run codex exec ... and show me the result.                                                                                                                         
+                                                                                                                                                                                                        
+   So the mention "codex" in sentence 2: REFUSAL_PATTERN matches "never" (from approval_policy=never)... also "read-only"? no. "no" — hmm, \bno\b: "no" as a standalone word. Not present. "none"? no.  
+   So yes, "never" triggers.                                                                                                                                                                            
+                                                                                                                                                                                                        
+   Hmm, but also "quoting": is codex enclosed in quotes in any reading? The isEnclosedInAnyReading uses shell quote pairing. Sentence 2 has quotes: "medium", "fast", "Reply exactly READY.". Order:    
+   model_reasoning_effort="medium" — open at ", close at ". Fine. The mention "codex" comes before those quotes though. Quote pairing scan: does it treat = ... Let me look at isEnclosedOrUnresolved.  
+   If a quote is unbalanced anywhere, index may be "unresolved" → refused. Let's count quotes in sentence 2: "medium" (2), "fast" (2), "Reply exactly READY." (2) = 6, balanced. But the scan operates  
+   on the whole userText, not per-sentence, and the index is a position. Let me check by simulation.                                                                                                    
+                                                                                                                                                                                                        
+   Better: run the actual TS through a TS loader. Node 22+ can strip types with --experimental-strip-types. Let me check node version. The file imports from                                            
+   '../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs' — a relative path from the .ts file dir: .skilled/hooks/dispatch/pi/../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs →                    
+   .skilled/hooks/.skilled/hooks/dispatch/lib/... which is wrong, hence the try/catch fallback to ../lib/.... OK.                                                                                       
+                                                                                                                                                                                                        
+   I could try: node --experimental-strip-types importing the .ts. The .ts has readonly fields, interfaces, generics — strip-types handles those? --experimental-strip-types handles type annotations   
+   but not all TS features; enums/namespaces need transform. Let's just try. Also the import of isHookEnabled from somewhere in PI runtime may fail. The hook file imports pi's ExtensionAPI types      
+   (type-only?) and isHookEnabled — probably a runtime import from a lib. Let me check imports.                                                                                                         
+                                                                                                                                                                                                        
+   Actually simpler and more reliable: replicate the two decisive checks with a tiny JS script that copies the regexes — but that risks divergence.                                                     
+                                                                                                                                                                                                        
+   Alternative: check the hook's own test file for codex authorization cases. Let me grep tests.                                                                                                        
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc...ead -20 .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts        <1s 
+   └ Done (20 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Node v26 supports type stripping natively. Let me write a small script that imports the .ts and tests shouldDenyPiDispatch with the actual user text and dispatchSkill 'cli-codex'. But the
+   import path inside the .ts resolves to .skilled/hooks/.skilled/... which doesn't exist → the module-level import would throw. So importing the .ts directly fails.                                   
+                                                                                                                                                                                                        
+   Alternative: I can use the existing test file's approach. Let me check how dispatch-preflight-lint.test.ts imports it — maybe it uses a symlink or a loader. Let me check.                           
+                                                                                                                                                                                                        
+   Actually simpler: copy the file to a temp location and rewrite the import path? That's creating a temp harness — heavier than needed.                                                                
+                                                                                                                                                                                                        
+   Cheaper and accurate enough: grep the test file for cases involving cli-codex to see expected phrasing. Let's look.                                                                                  
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc.../hooks/dispatch/pi/dispatch-preflight-lint.test.ts | head -40        <1s 
+   └ Done (3 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Line 408: command codex exec "task" with user text not codex, use cli-codex → expects true (i.e., denied?). Need to see the test's boolean meaning. Let me look at the test around line    
+   380-440 and 130-150.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Also let me grep for a case where a bare "codex" authorizes.                                                                                                                                         
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc...p' .skilled/hooks/dispatch/pi/dispatch-preflight-lint.test.ts        <1s 
+   └ Done (54 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: So: denied('codex exec "task"', 'codex exec "task"') — is bare "codex" enough? hasExplicitModeOverride(userText, 'cli-codex') requires literal cli-codex. But wait, maybe dispatchSkill is 
+   'codex'? No — inspection.executor/resolved[0].skill. Let me check inspectDispatch in dispatch-audit.mjs to see what executor string it returns. Maybe it returns 'cli-codex'. And the test at line   
+   429 ['codex exec "task"', 'Use cli-codex. Avoid codex.', true] implies "Use cli-codex" alone would authorize (false denied). So cli-codex is the required literal.                                   
+                                                                                                                                                                                                        
+   Let me confirm there's a test showing bare "codex" does NOT authorize. Search test for 'codex' positive cases.                                                                                       
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc.../dispatch/pi/dispatch-preflight-lint.test.ts | sed -n '1,60p'        <1s 
+   └ Done (21 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Line 408: denied('codex exec "task"', 'not codex, use cli-codex') → true (denied). Interesting! So "not codex, use cli-codex" is DENIED. Why? The reset form: not <other>, use <executor>  
+   where the two names resolve to different executors. Here "codex" and "cli-codex" — do they resolve to the same skill? Comment at 402-404: "Every spelling of one executor (claude, claude-code,      
+   cli-claude-code) resolves to one skill". But line 408 expects true (denied) for not codex, use cli-codex, while line 418 expects false (allowed) for not codex, use cli-claude-code.                 
+                                                                                                                                                                                                        
+   Hmm! That means executorSkill('codex') and executorSkill('cli-codex') resolve to the SAME skill here?? No wait — if same skill, isResetForm returns otherSkill !== mentionedSkill = false → not a    
+   reset form → sentence has refusal → mention refused → denied = true. Yes! That matches: "not codex, use cli-codex" is denied because the reset form requires different executors, and codex/cli-codex
+   are the same executor.                                                                                                                                                                               
+                                                                                                                                                                                                        
+   So executorSkill resolves both 'codex' and 'cli-codex' to the same skill. So mentions of bare "codex" DO resolve. But hasExplicitModeOverride searches for the literal cli-codex string, not the     
+   alias! Hmm, so would "Use codex." authorize? By the code: no, because pattern is literal cli-codex.                                                                                                  
+                                                                                                                                                                                                        
+   Hmm wait, that seems inconsistent. Unless inspection.executor is spelled 'codex' rather than 'cli-codex'. Then the denial message would be "Pi dispatch denied for codex." But the actual message was
+   "Pi dispatch denied for cli-codex." So dispatchSkill = 'cli-codex'. And hasExplicitModeOverride(userText, 'cli-codex') searched for literal 'cli-codex' in the user's text — absent → denied.        
+                                                                                                                                                                                                        
+   Hmm, but that means the guard demands the literal cli- spelling while executorSkill treats aliases... Let me double-check by reading the test at line 500 area, and also look for a test with bare   
+   'codex' as the only mention where expected is false (allowed).                                                                                                                                       
+                                                                                                                                                                                                        
+   Actually line 432: ['devin -p "task"', 'Use cli-devin. Never use codex.', false] — allowed. That's devin.                                                                                            
+                                                                                                                                                                                                        
+   Let me look at more of the test file for the main "authorization" describe block, to see e.g. ['codex exec task', 'codex']. Let me grep for 'Use codex or ^.*'codex',.                               
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc...ex" .skilled/hooks/dispatch/lib/dispatch-audit.mjs | head -30        <1s 
+   └ Done (20 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: EXECUTOR_SKILLS maps 'codex' → 'cli-codex'. So executorSkill('codex') = 'cli-codex' and executorSkill('cli-codex') = 'cli-codex' (presumably cli- names map to themselves).                
+                                                                                                                                                                                                        
+   Then hasExplicitModeOverride(userText, 'cli-codex') requires the literal substring cli-codex. So a user request that merely says "codex exec" does NOT authorize. That's a deliberate strictness:    
+   "Name the matching executor" — the exact cli-* id.                                                                                                                                                   
+                                                                                                                                                                                                        
+   Hmm, but is that right? Let me check whether hasExplicitModeOverride might be called with a different skill... In the hook: shouldDenyPiDispatch gets dispatchSkill = inspection.executor (=         
+   'cli-codex' per line 524/529) → hasExplicitModeOverride(userText, 'cli-codex'). Yes literal.                                                                                                         
+                                                                                                                                                                                                        
+   So to authorize, the user must include cli-codex in the same sentence-free-of-refusals, unquoted, not negated, not retracted.                                                                        
+                                                                                                                                                                                                        
+   Now, an important second consideration: even if they write "Use cli-codex." as its own sentence, the following sentence is read: if it carries a refusal and names no executor, the mention is       
+   retracted. In the user's message structure, if they wrote "Use cli-codex to run the command." then the following sentence would be... whatever comes next. Fine.                                     
+                                                                                                                                                                                                        
+   Also: the user's actual command text has approval_policy=never. If the user's authorizing mention sentence contains it, "never" refuses.                                                             
+                                                                                                                                                                                                        
+   Now: what should I do? The user asked: run command -v codex, and if it succeeds, run codex exec ... and show the result. I did. The result is a block from the dispatch preflight guard. I should    
+   report:                                                                                                                                                                                              
+                                                                                                                                                                                                        
+   1. command -v codex → /opt/homebrew/bin/codex (succeeded).                                                                                                                                           
+   2. The codex exec ... call never ran; the pi dispatch preflight hook (dispatch-preflight-lint.ts) blocked it with: "Pi dispatch denied for cli-codex. Name the matching executor in the user         
+      request."                                                                                                                                                                                         
+                                                                                                                                                                                                        
+   And explain why: authorization requires the literal executor id cli-codex in the user's own message (sentence without refusal words; unquoted; not a X= token; not $). Their message had codex exec  
+   (alias) and, within the same sentence, approval_policy=never (a refusal word).                                                                                                                       
+                                                                                                                                                                                                        
+   Then offer: if they want it run, they must say something like: "Use cli-codex. Run: codex exec --model gpt-5.5 ..." — where the authorizing mention stands alone.                                    
+                                                                                                                                                                                                        
+   Should I verify my reasoning more strongly by actually executing the guard function? Let's try a lightweight approach: create a temp copy with import paths fixed, run node                          
+   --experimental-strip-types, and evaluate. That's a bit of work but gives definitive answer, and it's read-only-ish (writes to /tmp). Risk: low. But is it worth it? The user asked to show the result
+   — I have it. Explaining why with high confidence matters for the fix. I could do a quick, contained harness.                                                                                         
+                                                                                                                                                                                                        
+   Actually there's a simpler check: the test file imports the module somehow. Let me see the top of the test file — maybe it imports './dispatch-preflight-lint.ts' directly, in which case that import
+   path also fails unless the file's internal imports resolve. Let me check.                                                                                                                            
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash cd /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/beb6e7b1-5f31-42db-8cd9-f58f27216e79/sc... 2>&1 | head -3; ls .skilled/hooks/shared/hook-flags.mjs 2>&1        <1s 
+   └ Done (35 lines) (ctrl+o to toggle)                                                                                                                                                                 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: The test imports use extensionless paths ('./dispatch-preflight-lint') which vitest resolves, and the .ts file's own import '../../.skilled/hooks/dispatch/lib/dispatch-audit.mjs' fails at
+   module load... but vitest may resolve via alias? Hmm, ../../.skilled/... from .skilled/hooks/dispatch/pi/ → .skilled/hooks/.skilled/... which doesn't exist. So there must be a vitest alias config  
+   mapping. That suggests the .ts is a synced copy — maybe the real source is elsewhere in the repo (e.g., hooks/dispatch/pi/dispatch-preflight-lint.ts at repo root), and .skilled is a deployed       
+   mirror. Let me check for a root-level hooks dir.                                                                                                                                                     
+                                                                                                                                                                                                        
+   Regardless — for the answer I don't need to run it. But a definitive check is cheap if I can run vitest on a specific test name... that's heavy.                                                     
+                                                                                                                                                                                                        
+   Let me instead do a targeted reproduction: write a tiny .mjs that copies the three functions (mention parsing is only needed for hasExplicitModeOverride) — no, divergence risk.                     
+                                                                                                                                                                                                        
+   Alternative definitive approach: run the existing test file with vitest but add my own case? Modifying tests in the user's tree is intrusive.                                                        
+                                                                                                                                                                                                        
+   Honest approach: state what the code says plainly and label the cause as read from the guard's own logic. I'm confident enough: the regex requires the literal skill id cli-codex, and the user's    
+   message contains codex exec but not cli-codex.                                                                                                                                                       
+                                                                                                                                                                                                        
+   Let me double check executorSkill for 'cli-codex' maps to 'cli-codex' (so the denial message spelling matches), and confirm there's no alias expansion in hasExplicitModeOverride. Already read      
+   hasExplicitModeOverride lines 408-428: pattern built from skill escaped, literal. Yes.                                                                                                               
+                                                                                                                                                                                                        
+   Also note: even naming cli-codex, a refusal word in the same sentence kills it. Their command line contains approval_policy=never ("never"). And "no" ... Also note --sandbox read-only fine.        
+                                                                                                                                                                                                        
+   Also the mention must not be in a token containing = nor start with $.                                                                                                                               
+                                                                                                                                                                                                        
+   One more: is the mention in their text possibly "enclosed" by quotes? Not needed since literal absent.                                                                                               
+                                                                                                                                                                                                        
+   I'll report:                                                                                                                                                                                         
+   - Result of command -v codex: /opt/homebrew/bin/codex.                                                                                                                                               
+   - Result of the exec: blocked, with exact text.                                                                                                                                                      
+   - Why: guard dispatch-preflight-lint.ts (dispatch-guard hook) requires the user request itself to name the executor as cli-codex, in a sentence free of refusal words. The message names the binary  
+     alias codex exec and the same sentence contains approval_policy=never.                                                                                                                             
+   - I won't work around it (no aliasing/quoting tricks) since that would defeat an authorization gate; the fix is a user-side phrasing.                                                                
+   - Offer: re-issue with e.g. Use cli-codex. as its own sentence and keep the command text separate.                                                                                                   
+                                                                                                                                                                                                        
+   Should I offer to retry if they rephrase? Yes, and maybe suggest exact wording.                                                                                                                      
+                                                                                                                                                                                                        
+   Also should I mention "Advisor: outage (fail_open)" directive / skill advisor? Not needed.                                                                                                           
+                                                                                                                                                                                                        
+   I'll keep it concise. Maybe also mention that codex binary exists and is on PATH, so the only blocker is the guard.                                                                                  
+                                                                                                                                                                                                        
+   Let me confirm the refusal-word claim once more by checking whether "never" is matched as \bnever\b — yes, in the list. And the mention sentence = from previous terminator to next terminator. In   
+   their message the sentence containing codex exec starts at "If it succeeds," and ends at the final "." of "result." — includes approval_policy=never. So even a cli-codex literal there would be     
+   refused. Good, both facts support "put the authorization token in its own short sentence".                                                                                                           
+                                                                                                                                                                                                        
+   Write the response.                                                                                                                                                                                  
+
+ ● command -v codex succeeded, but the dispatch never ran — a pi hook blocked it.                                                                                                                       
+                                                                                                                                                                                                        
+   1. command -v codex                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     /opt/homebrew/bin/codex                                                                                                                                                                            
+                                                                                                                                                                                                        
+   2. codex exec --model gpt-5.5 ... --sandbox read-only "Reply exactly READY."                                                                                                                         
+                                                                                                                                                                                                        
+     Pi dispatch denied for cli-codex. Name the matching executor in the user request.                                                                                                                  
+                                                                                                                                                                                                        
+   Exit before codex was invoked — the model never produced output.                                                                                                                                     
+                                                                                                                                                                                                        
+   Why it was denied (from .skilled/hooks/dispatch/pi/dispatch-preflight-lint.ts, the dispatch-guard preflight hook):                                                                                   
+                                                                                                                                                                                                        
+   ◉ The guard resolves codex exec to skill cli-codex, then requires that id to appear literally in your request (hasExplicitModeOverride builds a regex from the skill name — codex alone does not     
+     authorize, only cli-codex does).                                                                                                                                                                   
+   ◉ The mention must also sit in a sentence with no refusal word (never, not, without, no, skip, …). The only sentence naming codex here is If it succeeds, use Bash to run codex exec … -c            
+     approval_policy=never --sandbox read-only …, which contains never.                                                                                                                                 
+   ◉ Token conditions: not quoted, not NAME=value, not $-prefixed, and not retracted by the next sentence.                                                                                              
+                                                                                                                                                                                                        
+   So the binary, flags, and sandbox are fine — only the authorization phrase is missing. I'm not going to route around it with an alias, wrapper, or quote trick, since that's exactly the gate this   
+   hook enforces.                                                                                                                                                                                       
+                                                                                                                                                                                                        
+   To get it to run, re-issue the request with the executor named on its own line, e.g.:                                                                                                                
+                                                                                                                                                                                                        
+   │ Use cli-codex.                                                                                                                                                                                     
+   │ Run: codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null                           
+                                                                                                                                                                                                        
+   Want me to retry once you've sent it in that form?                                                                                                                                                   
+
+ ✻ Turn took 1m 1s (Total time 1m 5s · 1 turn)                                                                                                                                                          
+
+ ❯ Use cli-codex for the previous request. Run command -v codex first. If it succeeds, use Bash to run codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c          
+   approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null and show me the result.                                                                                                  
+
+ ∴ Thinking: Now the user has named cli-codex in a sentence: "Use cli-codex for the previous request." — that sentence has no refusal words. Following sentence: "Run command -v codex first." — no     
+   refusal words. So authorization should pass.                                                                                                                                                         
+                                                                                                                                                                                                        
+   Let me run the two commands. First command -v codex (already succeeded, but user asked to run first — re-run it to be faithful), then codex exec.                                                    
+                                                                                                                                                                                                        
+   Note: command -v codex alone is not a dispatch, so it's fine.                                                                                                                                        
+                                                                                                                                                                                                        
+   Let me run both in one bash call? The user asked to run command -v codex first, and if it succeeds, run codex exec. A single chained command command -v codex && codex exec ... would work, but the  
+   guard inspects the command: inspection of a chained command — inspectDispatch reads the command word; with && it might resolve both. It may read as ambiguous? The resolver's resolveDispatchPackets 
+   unwraps. Risk of "ambiguous" → denied. Safer: two separate bash calls, sequential.                                                                                                                   
+                                                                                                                                                                                                        
+   Let me do them separately.                                                                                                                                                                           
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash command -v codex                                                                                                                                                                            <1s 
+   └ Done (1 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Now run the codex exec.                                                                                                                                                                    
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null                         <1s 
+   └ Done (3 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Now the guard authorized (no denial), and codex actually ran but exited 1 with:                                                                                                            
+                                                                                                                                                                                                        
+     Reading additional input from stdin...                                                                                                                                                             
+     Not inside a trusted directory and --skip-git-repo-check was not specified.                                                                                                                        
+                                                                                                                                                                                                        
+   Two issues:                                                                                                                                                                                          
+   1. </dev/null — codex says "Reading additional input from stdin..." then fails on trust check.                                                                                                       
+   2. cwd isn't a trusted git repo directory.                                                                                                                                                           
+                                                                                                                                                                                                        
+   Let me report accurately. Should I retry with --skip-git-repo-check? The user asked to run that exact command and show the result. I did. But the useful next step: the failure is environmental. I  
+   could check whether cwd is a git repo: the scratchpad dir .../scratch/plugins-and-hooks__cli-dispatch-preflight-authorization-conversation/pi — likely not a git repo.                               
+                                                                                                                                                                                                        
+   I should show the result and offer the fix: add --skip-git-repo-check (or run from a trusted git checkout). Let me quickly verify git status of cwd to be informative, and check codex's trust       
+   config. That's read-only and cheap.                                                                                                                                                                  
+                                                                                                                                                                                                        
+   Note: running git rev-parse is fine.                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Also whether codex has a --skip-git-repo-check flag in this version. Let me check codex exec --help | head -40 — that's read-only and not a dispatch (it's codex with --help, not exec... actually   
+   codex exec --help contains "codex exec" which the guard matches as a dispatch; but authorization is now satisfied by the user's current message which contains cli-codex... wait, does               
+   currentUserText apply to the same turn? The hook reads current user text per session — the latest user message, which includes "Use cli-codex". So it would be authorized. Still, safer to just check
+   codex --help? Hmm, codex --help doesn't contain "codex exec". Let me just do codex exec --help — should pass now.                                                                                    
+                                                                                                                                                                                                        
+   Actually the risk: if the guard's sentence analysis sees "Use cli-codex for the previous request. Run command -v codex first. If it succeeds, use Bash to run codex exec ... -c approval_policy=never
+   ..." → the mention "cli-codex" is in sentence 1 ("Use cli-codex for the previous request.") which has no refusal. Following sentence = "Run command -v codex first." — no refusal → usable. Good, it 
+   already passed once.                                                                                                                                                                                 
+                                                                                                                                                                                                        
+   Let me check git repo status and codex help for the flag. I'll batch these into one call.                                                                                                            
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash pwd; git rev-parse --show-toplevel 2>&1 | head -2; echo '--- flag check'; codex exec --help 2>&1 | grep -i "skip-git-repo-check" | head -3                                                  <1s 
+   └ Done (1 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ∴ Thinking: Right — a chained command (pwd; git ...; codex exec --help) reads as ambiguous, so the guard blocked the whole thing. Fine; I'll report and keep it simple. I have the result already; the 
+   user asked to show it. I can separately check git repo without any codex mention.                                                                                                                    
+                                                                                                                                                                                                        
+   Let me check the git repo status alone (no codex in the command).                                                                                                                                    
+                                                                                                                                                                                                        
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ ● Bash pwd; git rev-parse --show-toplevel 2>&1 | head -2                                                                                                                                           <1s 
+   └ Done (2 lines) (ctrl+o to toggle)                                                                                                                                                                  
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ ● Authorization cleared this time — the hook allowed the dispatch, so codex actually launched.                                                                                                         
+                                                                                                                                                                                                        
+   1. command -v codex                                                                                                                                                                                  
+                                                                                                                                                                                                        
+     /opt/homebrew/bin/codex                                                                                                                                                                            
+                                                                                                                                                                                                        
+   2. codex exec --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null                               
+                                                                                                                                                                                                        
+     Reading additional input from stdin...                                                                                                                                                             
+     Not inside a trusted directory and --skip-git-repo-check was not specified.                                                                                                                        
+                                                                                                                                                                                                        
+   Exit code 1 — no READY. reply, codex refused to start.                                                                                                                                               
+                                                                                                                                                                                                        
+   Why it failed (environmental, not the guard):                                                                                                                                                        
+                                                                                                                                                                                                        
+   ◉ cwd is /private/.../scratch/plugins-and-hooks__cli-dispatch-preflight-authorization-conversation/pi, and git rev-parse confirms it is not a git repository (no parent repo either). codex exec     
+     refuses to run outside a trusted/git directory unless --skip-git-repo-check is passed.                                                                                                             
+   ◉ </dev/null still makes codex print Reading additional input from stdin... — that line is harmless, just noise before the trust check.                                                              
+                                                                                                                                                                                                        
+   One side note: my follow-up probe pwd; git rev-parse …; codex exec --help was itself blocked — Pi dispatch denied: the command does not prove one direct executor… — because a chained command isn't 
+   a single direct dispatch. So pinning down the flag needs an un-chained call.                                                                                                                         
+                                                                                                                                                                                                        
+   To get READY., either run from a git worktree, or add the skip flag:                                                                                                                                 
+                                                                                                                                                                                                        
+   │ Use cli-codex.                                                                                                                                                                                     
+   │ Run: codex exec --skip-git-repo-check --model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast" -c approval_policy=never --sandbox read-only "Reply exactly READY." </dev/null     
+                                                                                                                                                                                                        
+   Say the word and I'll rerun it in that form (keep it as one bare codex exec … command, no pwd/git chained in front, or the preflight will read it as ambiguous).                                     
+
+ ✻ Turn took 13s (Total time 1m 23s · 2 turns)                                                                                                                                                          
+
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+│                                                                                                                                                                                                      │
+╰ build · deepseek-v4.1-flash-1017 [llmgateway] · max ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+| DeepSeek V4.1 Flash 1017 | ctx: 97% left | used: 36.1k tok | $0.02
