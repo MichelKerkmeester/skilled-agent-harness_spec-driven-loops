@@ -5,7 +5,7 @@ trigger_phrases:
   - "web frontend practice"
   - "react native frontend practice"
   - "figma to code check"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-code-frontend
@@ -52,6 +52,7 @@ The packet is read-only. The paired workflow mode applies its evidence to the re
 | Six web topic files | Elements and attributes, cascade and selectors, layout and sizing, accessibility patterns, performance and loading, and internationalization |
 | `references/native-*.md` | Five focused topics: accessibility, inputs and keyboard, layout and text, lists and motion, and platform differences |
 | `references/figma-to-code.md` | Read-only inputs, five passes, the verdict and report, and the Figma-side tool ladder |
+| `manual-testing-playbook/` | The routing scenarios the hub's router-sync guard replays: one web, one native and one Figma check |
 | `references/workflow-*.md` | Shared implement, debug, and verify workflow doctrine |
 
 The packet router lists each topic file and the condition that calls for it.
@@ -64,8 +65,9 @@ The packet router lists each topic file and the condition that calls for it.
 |---|---|
 | Packet contents | `ls -la .skilled/skills/sk-code/sk-code-frontend/references` |
 | Router declarations | `rg -n "## 3\. MACHINE ROUTER|^INTENT_SIGNALS|^RESOURCE_MAP|^DEFAULT_RESOURCE" .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook` |
 
-The listing shows the stack and topic references plus the three shared workflow links. The router check prints the machine-router heading and its resource declarations.
+The listing shows the stack and topic references plus the three shared workflow links. The router check prints the machine-router heading and its resource declarations. The playbook check reports the three scenarios and exits 0.
 
 ---
 
@@ -78,3 +80,4 @@ The listing shows the stack and topic references plus the three shared workflow 
 | [../SKILL.md](../SKILL.md) | The sk-code hub that bundles this surface beside a workflow mode |
 | [references/frontend-practice.md](references/frontend-practice.md) | Cross-stack principles and the Frontend overrides contract |
 | [references/figma-to-code.md](references/figma-to-code.md) | The five-pass check for a built screen and its Figma frame |
+| [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate the web, native and Figma-check routing |

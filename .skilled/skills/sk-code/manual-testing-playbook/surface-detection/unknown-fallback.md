@@ -1,14 +1,14 @@
 ---
 title: "SD-003: UNKNOWN Surface Fallback"
-description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, React Native, generic Node.js)."
-version: 1.5.4.0
+description: "Verify sk-code asks for runtime/verification disambiguation when the prompt targets an unsupported stack (Go, Swift, generic Node.js)."
+version: 1.5.5.0
 ---
 
 # SD-003: UNKNOWN Surface Fallback
 
 ## 1. OVERVIEW
 
-This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Supported stacks are SKILLED, the framework's own system code. Everything else — Go, Swift, React Native, generic React/Next.js, generic Node.js — is UNKNOWN and MUST trigger a disambiguation question.
+This scenario verifies that sk-code DOES NOT silently proceed when the prompt targets an unsupported stack. Supported stacks are SKILLED, the framework's own system code, and the stack-agnostic web and React Native frontend practice that `sk-code-frontend` carries. Everything else (Go, Swift, Next.js server code, generic Node.js) is UNKNOWN and MUST trigger a disambiguation question.
 
 The disambiguation question MUST ask for:
 1. The explicit runtime surface (which stack are you on?).

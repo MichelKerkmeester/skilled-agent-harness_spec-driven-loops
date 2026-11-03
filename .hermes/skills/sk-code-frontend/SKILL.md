@@ -2,7 +2,7 @@
 name: sk-code-frontend
 description: Read-only frontend evidence for stack-agnostic web and native practice, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+version: 1.0.1.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -34,6 +34,14 @@ This packet writes nothing. The paired workflow mode applies the guidance it loa
 - The six web topic files and five native topic files cover focused implementation details for each stack.
 - [`references/figma-to-code.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md) holds the five-pass check for comparing a built screen with its Figma frame.
 - [`references/workflow-implement.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md), [`references/workflow-debug.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md), and [`references/workflow-verify.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md) provide the shared workflow doctrine.
+
+### Manual Testing Playbook
+
+Manual testing scenarios for this surface live in [`manual-testing-playbook/manual-testing-playbook.md`](../../../.skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md), the root index, plus one file per intent under `manual-testing-playbook/frontend-surface/<scenario>.md`. The category folder and each scenario file use bare descriptive slugs, with no numeric prefix.
+Each scenario declares the `expected_intent` and `expected_resources` the packet router emits for its exact prompt, so the hub's router-sync guard replays all three.
+
+Validate the package with the operator-scenario contract:
+`node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook`
 
 ---
 

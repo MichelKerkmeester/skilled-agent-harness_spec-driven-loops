@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.18.0
+version: 1.5.19.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -37,7 +37,7 @@ This playbook provides deterministic operator scenarios validating the `sk-code`
 
 Coverage note (2026-05-04, with the CI and `/doctor:ci` bullets added 2026-10-25): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at ROUTER.md head-of-main. It exercises:
 - SKILLED surface detection (CWD or target path under `.skilled/`).
-- UNKNOWN fallback (Go / Swift / React Native markers — disambiguation expected).
+- UNKNOWN fallback (Go / Swift markers: disambiguation expected).
 - SKILLED language sub-detection (JavaScript, TypeScript, Python, Shell, Rust, Config) with correct sub-language reference loading, LS-005 and LS-006 covering the JavaScript and Rust rows.
 - Routing disambiguation and the sk-code vs sk-doc anti-pattern.
 - Skill advisor integration: a top-1 win that passes the probe's own threshold for positive controls, no false positives on doc-edit prompts.
