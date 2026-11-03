@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e96363eae65ae443e663c983503bda9951413fdedd1705a02f7f4694af790f89",
+  "manifestHash": "f14caa01db319bdc37f7c388058d5541dec59a032088de3313def318bad73dc1",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -47664,6 +47664,7 @@
       7879
     ],
     "conversation playbook scenarios": [
+      60,
       7959
     ],
     "conversation runner": [
