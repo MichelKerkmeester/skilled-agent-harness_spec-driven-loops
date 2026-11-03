@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4eac6a52d61864173b005f479d6a66238567fa8481e213613ae41c41592bb346",
+  "corpusHash": "0b35f2ff97066b8c34f1127f5a41820b9588dc074f9e9f52892fc551d78ce6c4",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27329,7 +27329,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "361e95366c041e6bc6b01fdb211e1e1f9206d0c54056628c90d27573f16f313e",
+  "manifestHash": "0047dd9cd07b4948e49610d2021e26d10e99404d42bf9dfe6ec94de7e11ea137",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
