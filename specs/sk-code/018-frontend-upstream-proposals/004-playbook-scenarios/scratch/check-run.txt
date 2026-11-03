@@ -1,0 +1,394 @@
+F2C-003 — BUILT SCREEN CHECKED AGAINST ITS FRAME — CHECK RUN
+
+FRAME READ USED A LOCAL STAND-IN: this machine has no Figma Desktop, so no live Figma read ran.
+`frame.json` stood in for the frame read with file key `STANDIN`, node id `0:1`, authored width W=360,
+states default/hover/focus/disabled and variables space/4=16, radius/2=8, color/primary=#2f5bd3.
+No Figma tool or MCP call was made at any point; Figma was never written to.
+
+Date: 2026-11-03
+Run by: @review (LEAF verifier), scenario run once.
+Tooling: bdg 0.6.10 (headless Chrome over CDP), python3 http.server, ripgrep/python for the source scan.
+Repo references read before the run:
+- .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/check-built-screen.md
+- .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md
+- .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md (Figma Check on the Web)
+
+Exit-status note: statuses below are as observed. For piped commands the recorded status is the
+pipeline's; success was additionally confirmed from the command's own output, since bdg prints an
+`Error:` line on failure and a screenshot prints `Path:`/`Dimensions:` on success.
+
+---
+
+## 1. FIXTURE AND SETUP
+
+Fixture, one card at its authored width with a heading, a paragraph and a button, all values read
+from CSS custom properties:
+
+```
+$ D=$(mktemp -d .../T/opencode/f2c003.XXXXXX); echo "$D"
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/opencode/f2c003.bi0czv
+
+$ python3 -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1",0)); print(s.getsockname()[1]); s.close()'
+58964
+
+$ python3 -m http.server 58964 --bind 127.0.0.1 &        # background, PID 92322
+$ curl -s -o /dev/null -w "HTTP=%{http_code}\n" http://127.0.0.1:58964/index.html
+HTTP=200
+exit 0
+
+$ bdg --headless -q http://127.0.0.1:58964/index.html
+Session started: http://127.0.0.1:58964/index.html
+exit 0
+```
+
+Token block in `index.html` (`:root`, lines 9-22):
+--space-4: 16px; --radius-2: 8px; --color-primary: #2f5bd3; --color-primary-hover: #2549a8;
+--color-on-primary: #ffffff; --color-text: #1b1d21; --color-surface: #ffffff; --color-border: #d5d8de;
+--size-card: 360px; --border-width: 1px; --focus-ring-width: 2px; --focus-ring-offset: 2px;
+--type-heading: 1.25rem; --type-body: 1rem.
+
+Fixture corrections made before the recorded run, because the first build failed the check it was
+meant to exercise: `body` padding squeezed the card to 328 px at W, and a literal `width: 360px`
+copied the frame width, which `figma-to-code.md` lists as a Pass 1 fail condition. The recorded
+fixture uses `width: 100%` with `max-width: var(--size-card)`, and body padding 0.
+
+---
+
+## 2. STEP 1 — READ THE FRAME'S KEY, NODE ID, W, STATES AND VARIABLES
+
+```
+$ cat frame.json          # stand-in read; no Figma tool, no MCP call
+file_key=STANDIN  node_id=0:1  authored_width_W=360  authored_height_H=900
+states=default, hover, focus, disabled
+variants=0:1 default, 0:2 hover, 0:3 focus, 0:4 disabled
+variables=space/4=16, radius/2=8, color/primary=#2f5bd3
+node_bindings=padding->space/4, itemSpacing->space/4, cornerRadius->radius/2, fills->color/primary
+elements=[1 h1 "Release checklist", 2 p "...", 3 button "Publish notes"]
+exit 0
+```
+
+W=360 and the four-state list are recorded. Document unchanged: the read is a local file.
+
+---
+
+## 3. STEP 2 — LOAD THE CHECK AND WEB RECIPES
+
+The three documents listed in the header were read in full. Cited mechanics used below: the five
+passes and the verdict rule from `figma-to-code.md` §5, and the runnable recipes from
+`web-markup-and-css.md` §8 "Figma Check on the Web" (`Emulation.setDeviceMetricsOverride`,
+`Emulation.setEmulatedMedia`, `DOM.enable`/`CSS.enable`/`DOM.getDocument`/`DOM.querySelector`,
+`CSS.forcePseudoState`, `dom screenshot`, `Runtime.evaluate` for computed styles,
+`Emulation.setPageScaleFactor`, `Accessibility.getFullAXTree`).
+
+---
+
+## 4. STEP 3 — PASS 1, SAME-WIDTH COMPARISON
+
+```
+$ bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":360,"height":900,"deviceScaleFactor":1,"mobile":false}'
+{"method":"Emulation.setDeviceMetricsOverride","result":{}}
+exit 0
+
+$ bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-color-scheme","value":"light"}]}'
+{"method":"Emulation.setEmulatedMedia","result":{}}
+exit 0
+
+$ bdg dom screenshot captures/pass1-w360.png
+Path: .../captures/pass1-w360.png   Dimensions: 360x900   Full page: yes
+exit 0
+
+$ bdg cdp Runtime.evaluate --params '{"expression":"...geometry + overflow...","returnByValue":true}'
+viewport {"w":360,"h":900}
+items[1] {"tag":"h1","text":"Release checklist","box":{"x":17,"y":17,"w":326,"h":25}}
+items[2] {"tag":"p","text":"Confirm the build, then publish the notes to the","box":{"x":17,"y":58,"w":326,"h":48}}
+items[3] {"tag":"button","text":"Publish notes","box":{"x":17,"y":122,"w":132,"h":58}}
+card {"x":0,"y":0,"w":360,"h":197}
+docScrollWidth=360  docClientWidth=360  docOverflowX=false  h1Count=1
+exit 0
+```
+
+Comparison against the stand-in frame:
+
+| Check | Observed | Verdict |
+|---|---|---|
+| Presence | h1, p, button all present, matching the frame's three elements | PASS |
+| Order | heading, paragraph, button, same as frame order 1-3 | PASS |
+| Wrapping | paragraph wraps to 2 lines inside 326 px; the stand-in frame carries no line-box geometry, so only "no unexpected wrap" can be asserted | PASS (limited by stand-in) |
+| Alignment | all three share x=17 inside the 16 px card padding; card at x=0 | PASS |
+| Overflow | document 360/360, no horizontal overflow at W | PASS |
+| Fixed width copied | `width:100%` + `max-width: var(--size-card)`; no literal frame width on the box | PASS |
+
+Capture: `captures/pass1-w360.png` (360x900, 14.3 KB), viewed and confirmed to show the card.
+The capture is full-page, so the 900 px height is page height, not content height.
+
+PASS 1 VERDICT: PASS.
+
+---
+
+## 5. STEP 4 — PASS 2, STATE BY STATE
+
+```
+$ bdg cdp DOM.enable / CSS.enable
+{"method":"DOM.enable","result":{}} / {"method":"CSS.enable","result":{}}   exit 0
+
+$ bdg cdp DOM.getDocument                      -> root.nodeId = 1
+$ bdg cdp DOM.querySelector --params '{"nodeId":1,"selector":".button"}'
+{"method":"DOM.querySelector","result":{"nodeId":12}}                        exit 0
+
+$ bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}'
+{"method":"Emulation.setEmulatedMedia","result":{}}                          exit 0
+```
+
+Forced-state mechanism: `CSS.forcePseudoState` with `{"nodeId":12,"forcedPseudoClasses":[...]}`,
+cleared with `[]` before the next state. `bdg cdp --describe CSS.forcePseudoState` documents the
+parameters but names no supported pseudo-class enum, so `focus-visible` was NOT forced through CDP;
+it was produced with real Tab key presses via `Input.dispatchKeyEvent`, as the recipe prescribes when
+the CDP path does not cover a state.
+
+| Design state | Method | Capture | Deciding computed evidence | Verdict |
+|---|---|---|---|---|
+| default | no override | pass1-w360.png | bg rgb(47,91,211), radius 8px, 1px border | PASS |
+| hover | force `["hover"]` | pass2-hover.png | bg rgb(37,73,168) = #2549a8, border same | PASS |
+| focus | force `["focus"]` | pass2-focus-pseudo.png | `matches(':focus')` true; outline-style none, because the ring is authored on `:focus-visible` | PASS |
+| focus-visible (keyboard) | real Tab (rawKeyDown+keyUp, keyCode 9) | pass2-focus-visible-keyboard.png | active=button, `:focus-visible` true, outline 2px solid rgb(47,91,211), offset 2px | PASS |
+| disabled | native `disabled` attribute | pass2-disabled.png | bg rgb(213,216,222), text rgb(27,29,33), cursor not-allowed | PASS |
+| active (pressed) | force `["active"]` | pass2-active.png | identical to default; no `:active` style authored | NOT IN DESIGN |
+
+Computed-style evidence for the forced states, from `Runtime.evaluate` on `.button`:
+hover -> `"backgroundColor":"rgb(37, 73, 168)"`; active -> `"backgroundColor":"rgb(47, 91, 211)"`;
+focus -> `"matchesFocus":true,"outlineStyle":"none"`;
+keyboard focus -> `"outlineStyle":"solid","outlineWidth":"2px","outlineColor":"rgb(47, 91, 211)","outlineOffset":"2px","matchesFocusVisible":true`;
+disabled -> `"backgroundColor":"rgb(213, 216, 222)","color":"rgb(27, 29, 33)","disabledAttr":true`.
+
+All five captures were viewed: hover shows the darker fill, the keyboard capture shows the ring,
+disabled shows the grey fill. One `<button>` with pseudo-classes covers every state; there is no
+one-component-per-variant duplication. Dark mode was not checked because the stand-in frame defines
+no dark variant and the fixture supports none.
+
+PASS 2 VERDICT: PASS.
+
+---
+
+## 6. STEP 5 — PASSES 3a AND 3b, TOKEN CHECKS
+
+### 3a, resolved styles
+
+```
+$ bdg cdp Runtime.evaluate --params '{"expression":"getComputedStyle(...) ...","returnByValue":true}'
+card.padding ["16px","16px","16px","16px"]  card.gap "16px"  card.borderRadius "8px"  card.width "360px"
+button.padding ["16px","16px","16px","16px"]  button.borderRadius "8px"
+button.backgroundColor "rgb(47, 91, 211)"  button.color "rgb(255, 255, 255)"  button.borderWidth "1px"
+heading.fontSize "20px"  heading.lineHeight "25px"  rootFontSize "16px"
+exit 0
+```
+
+| Resolved value | Installed token | Token value | Verdict |
+|---|---|---|---|
+| card padding 16px (all sides) | --space-4 | 16px | PASS |
+| card flex gap 16px | --space-4 | 16px | PASS |
+| card radius 8px | --radius-2 | 8px | PASS |
+| button radius 8px | --radius-2 | 8px | PASS |
+| button background rgb(47,91,211) | --color-primary | #2f5bd3 | PASS |
+| button text rgb(255,255,255) | --color-on-primary | #ffffff | PASS |
+| border 1px | --border-width | 1px | PASS |
+| heading font-size 20px (1.25rem) | --type-heading | 1.25rem | PASS |
+
+Installed token set for this fixture: the `:root` custom properties in `index.html`. There is no
+installed package and no version to cite for a standalone stand-in; that is a stand-in limitation,
+stated rather than papered over. Every resolved color, spacing, radius and type value maps to a
+declared token, so no lag arises on this pass.
+
+### 3b, source literals
+
+```
+$ grep -nE '#[0-9a-fA-F]{3,8}\b|rgba?\(|[0-9]+px|[0-9.]+rem' index.html
+  9: --space-4: 16px;        10: --radius-2: 8px;         11: --color-primary: #2f5bd3;
+ 12: --color-primary-hover: #2549a8;  13: --color-on-primary: #ffffff;
+ 14: --color-text: #1b1d21;  15: --color-surface: #ffffff; 16: --color-border: #d5d8de;
+ 17: --size-card: 360px;     18: --border-width: 1px;     19: --focus-ring-width: 2px;
+ 20: --focus-ring-offset: 2px; 21: --type-heading: 1.25rem; 22: --type-body: 1rem;
+
+$ python3 (scan for the same pattern outside the :root block, lines 8-23)
+token block lines 8-23
+hits outside token block: NONE
+exit 0
+```
+
+Every literal sits in the token definition block, where the values are defined; no raw hex, rgb() or
+pixel value appears at a usage site. No repository token checker exists for a standalone fixture, so
+none could run; the pass condition only requires one "when one is available".
+
+PASS 3a VERDICT: PASS.  PASS 3b VERDICT: PASS.
+
+---
+
+## 7. STEP 6 — PASS 4, VARIABLE TO TOKEN
+
+| Figma variable | Figma value | Installed token | Installed value | Verdict |
+|---|---|---|---|---|
+| space/4 | 16 | --space-4 | 16px | PASS |
+| radius/2 | 8 | --radius-2 | 8px | PASS |
+| color/primary | #2f5bd3 | --color-primary | #2f5bd3 (rgb(47,91,211)) | PASS |
+
+Node bindings: `0:1 padding -> space/4`, `0:1 itemSpacing -> space/4`, `0:5 cornerRadius -> radius/2`,
+`0:6 fills -> color/primary`. All four resolve to the tokens above; none is treated as resolved
+without a token. No Figma variable name or raw Figma value appears in code.
+
+Lag list: empty for the three variables the stand-in frame defines. The app carries five tokens the
+frame defines no variable for (--color-on-primary, --color-primary-hover, --border-width,
+--type-heading, --size-card); those are app-level decisions, not unresolved Figma variables, and the
+stand-in frame cannot say whether the real design defines them.
+
+PASS 4 VERDICT: PASS.
+
+---
+
+## 8. STEP 7 — PASS 5, RANGE AND ACCESS
+
+### Widths below and above W
+
+```
+$ bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":<W>,"height":900,"deviceScaleFactor":1,...}'
+$ bdg cdp Runtime.evaluate --params '{"expression":"...card/button geometry + overflow...","returnByValue":true}'
+
+W=320  {"cardW":320,"cardRight":320,"buttonRight":149,"docScrollWidth":320,"docClientWidth":320,"overflowX":false,"cardOverflow":false}
+W=390  {"cardW":360,"cardRight":360,"buttonRight":149,"docScrollWidth":390,"docClientWidth":390,"overflowX":false,"cardOverflow":false}
+W=768  {"cardW":360,"cardRight":360,"buttonRight":149,"docScrollWidth":768,"docClientWidth":768,"overflowX":false,"cardOverflow":false}
+W=1280 {"cardW":360,"cardRight":360,"buttonRight":149,"docScrollWidth":1280,"docClientWidth":1280,"overflowX":false,"cardOverflow":false}
+```
+
+The card shrinks below W and caps at 360 above it; nothing clips or overlaps at any tested width.
+Captures: `captures/pass5-w320.png` (320x900), `captures/pass5-w1280.png` (1280x900).
+
+### 200 percent zoom
+
+```
+$ bdg cdp Emulation.setPageScaleFactor --params '{"pageScaleFactor":2}'
+{"method":"Emulation.setPageScaleFactor","result":{}}
+$ ... visualViewport
+{"visualScale":2,"visualW":180,"layoutW":360}
+capture captures/pass5-zoom200.png (360x900)
+$ bdg cdp Emulation.setPageScaleFactor --params '{"pageScaleFactor":1}'    -> reset, exit 0
+```
+
+Note on method: `setPageScaleFactor` emulates pinch zoom, so it magnifies without reflowing. The
+nearer browser-zoom equivalent, a 180 CSS px layout viewport (360 / 2), was also checked:
+
+```
+W=180 (200% of W in CSS px) {"cardW":180,"buttonW":132,"buttonRight":149,"overflowX":false,"cardOverflow":false}
+capture captures/pass5-zoom200-layout180.png (180x900)
+```
+
+No horizontal overflow and no clipped control at either zoom reading.
+
+### Keyboard traversal
+
+```
+$ bdg cdp Input.dispatchKeyEvent --params '{"type":"rawKeyDown","key":"Tab","code":"Tab","windowsVirtualKeyCode":9,...}' (then keyUp)
+TAB_1 active="BUTTON.button"
+TAB_2 active="BODY"
+TAB_3 active="BUTTON.button"
+SHIFT_TAB active="BUTTON.button"
+exit 0
+```
+
+One tab stop, the button; focus is reachable, leaves the document after it, and returns. No keyboard
+trap and no unreachable control.
+
+### Accessibility tree
+
+```
+$ bdg cdp Accessibility.getFullAXTree
+RootWebArea "Stand-in card"
+main
+heading "Release checklist" level=1
+paragraph
+button "Publish notes" focusable=true
+StaticText "Release checklist" / "Confirm the build, then publish..." / "Publish notes"
+exit 0
+
+$ (disabled attribute set, tree re-read)
+button name="Publish notes" props={'disabled': True, 'invalid': 'false'}
+```
+
+Names, roles and the disabled state are all exposed.
+
+### Contrast, each control against the background it actually sits on
+
+| Pair | Ratio | Target | Verdict |
+|---|---|---|---|
+| body text #1b1d21 on surface #ffffff | 16.88:1 | 4.5:1 | PASS |
+| button text #ffffff on primary #2f5bd3 | 5.90:1 | 4.5:1 | PASS |
+| button text #ffffff on hover #2549a8 | 8.09:1 | 4.5:1 | PASS |
+| disabled text #1b1d21 on #d5d8de | 11.82:1 | 4.5:1 | PASS |
+| focus ring #2f5bd3 on surface #ffffff | 5.90:1 | 3:1 (non-text) | PASS |
+
+Targets: WCAG 2.2 AA 1.4.3 (4.5:1 text) and 1.4.11 (3:1 for UI components), the fallback
+`figma-to-code.md` names when no project target exists.
+
+### Manual screen-reader pass
+
+```
+$ ps -ax | grep -i -E "voiceover|nvda|orca"     -> no screen-reader process running
+$ command -v voiceover                          -> not found (exit 1)
+$ ls -d /System/Library/CoreServices/VoiceOver.app -> present, but not running
+```
+
+No screen reader is available to this session: none is running, and VoiceOver cannot be driven from
+a non-interactive, audio-less agent session. The manual screen-reader pass therefore did not run.
+The `Accessibility.getFullAXTree` result covers names, roles and states, but it is not a
+screen-reader pass and was not counted as one.
+
+PASS 5 VERDICT: NOT RUN — reason: no screen reader available, so the manual screen-reader pass
+required by Pass 5 and by the pre-completion checklist could not be performed. Width, zoom, keyboard,
+accessibility-tree and contrast sub-checks did run and are recorded above; none failed.
+
+---
+
+## 9. STEP 8 — VERDICTS
+
+| Pass | Verdict | Evidence |
+|---|---|---|
+| 1. Same-width comparison | PASS | captures/pass1-w360.png; 360/360 no overflow; elements present and in order |
+| 2. State by state | PASS | pass2-hover/active/focus-pseudo/focus-visible-keyboard/disabled.png; one component with pseudo-classes |
+| 3a. Render token check | PASS | computed styles table; every value maps to a declared token |
+| 3b. Source token check | PASS | literal scan; all hits inside the :root token block |
+| 4. Variable to token | PASS | three variables and four node bindings all resolve to installed tokens |
+| 5. Range and access | NOT RUN | widths, 200% zoom, keyboard, AX tree and contrast ran and pass; manual screen-reader pass could not run (no screen reader) |
+
+OVERALL VERDICT: INCOMPLETE.
+
+Deciding rule, `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md` §5
+"Verdict and Report":
+
+    The overall result is `PASS` only when every pass passes. Record a pass that cannot run as
+    `NOT RUN` with its reason, and the overall verdict is then `INCOMPLETE`, never `PASS`.
+
+The `NOT RUN` pass is reported as `NOT RUN`, never as a pass, and the overall result is therefore
+`INCOMPLETE`.
+
+---
+
+## 10. CLEANUP AND SCOPE
+
+```
+$ bdg stop
+Session stopped. Output saved to: /Users/michelkerkmeester/.bdg/session.json
+exit 0
+
+$ kill 92322                    # the http server started for this run
+exit 0
+$ ps -p 92322 -> no such process
+
+$ rm -rf .../T/opencode/f2c003.bi0czv
+exit 0
+$ ls -d .../f2c003.bi0czv -> No such file or directory
+$ bdg status -> No active session found
+```
+
+Capture paths recorded above lived in that temp directory and were removed with it; the captures were
+viewed during the run and this record is the durable evidence.
+
+Scope: no Figma tool or MCP call ran, so Figma was never written to. No repository file was created or
+modified except this `check-run.txt`. No git command other than `git status --short` ran. No network
+call left localhost.

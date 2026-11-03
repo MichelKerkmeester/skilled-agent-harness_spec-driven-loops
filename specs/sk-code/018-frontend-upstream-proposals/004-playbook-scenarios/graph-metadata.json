@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,7 +45,15 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/manual-testing-playbook.md",
-      ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md"
+      ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/value-names-its-source.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/profile-load/unknown-project.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+      "scratch/verify-004.md",
+      "scratch/skd-010-overlap.md",
+      "scratch/validator-baseline.txt",
+      "scratch/scenario-shape.md",
+      "scratch/validator-final.txt",
+      "scratch/check-run.txt"
     ],
     "entities": [
       {
@@ -88,6 +96,54 @@
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "value-names-its-source.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/value-names-its-source.md",
+        "source": "derived"
+      },
+      {
+        "name": "unknown-project.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/profile-load/unknown-project.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-004.md",
+        "kind": "doc",
+        "path": "scratch/verify-004.md",
+        "source": "derived"
+      },
+      {
+        "name": "skd-010-overlap.md",
+        "kind": "doc",
+        "path": "scratch/skd-010-overlap.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-baseline.txt",
+        "kind": "file",
+        "path": "scratch/validator-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scenario-shape.md",
+        "kind": "doc",
+        "path": "scratch/scenario-shape.md",
+        "source": "derived"
+      },
+      {
+        "name": "validator-final.txt",
+        "kind": "file",
+        "path": "scratch/validator-final.txt",
+        "source": "derived"
+      },
+      {
+        "name": "check-run.txt",
+        "kind": "file",
+        "path": "scratch/check-run.txt",
         "source": "derived"
       },
       {
@@ -143,59 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Contract",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow An",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-figma playbook's six categories are daemon-health, detection-setup, intra-routing-recall, optional-mcp, read-only and safety-gate, so nothing tests a Figma read that feeds code or a check that cannot finish",
     "created_at": "2026-11-03T08:33:55Z",
-    "last_save_at": "2026-11-03T08:48:27.171Z",
+    "last_save_at": "2026-11-03T12:26:42.174Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc5e4ee9e55511c16be529a530b85bd47fca1480883c0b5b01c8c622c4d1a77a",
+    "source_fingerprint": "sha256:018faa4efa6776cd17d2b2b6068eedd4fa85f9b2a4f79f180b7e19ea652eb601",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fd6533aad2dc2ab6312ee68aef858755c885e074f4d8329e7f9fc7e988cce3d7",
+      "spec.md": "09a97e53e2353a6d390816dbca9f83d272b9685ed59ff4007d08a0cc6e6ad8c9",
       "plan.md": "b4a246c075c08819298b86b21799f5c0ed59d5a15b5dec8f369aa7800365147d",
-      "tasks.md": "546d0581e5f39e850d90093108f8d9fffc94fe0aad962563859c1d71f0922621",
-      "implementation-summary.md": "86977c19ef67b75af54588e0b1ed83944d05b64bf31bd390be6218b09cb7c265"
+      "tasks.md": "2f9208a295d9ed3402e554fd5dbc0a57fa4f7208d70e141a14c0f5ee257efa23",
+      "implementation-summary.md": "3cafcf5eef6865bfda524b00d65b8ac6b6f9a47a587a0d899e35d8c08c3ccb72"
     },
     "last_active_at": null
   }

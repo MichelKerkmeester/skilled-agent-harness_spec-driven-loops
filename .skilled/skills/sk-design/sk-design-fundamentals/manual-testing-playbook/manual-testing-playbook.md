@@ -1,13 +1,13 @@
 ---
 title: "sk-design Manual Testing Playbook"
-description: "Deterministic operator scenarios for sk-design, covering routing entry, value discipline, conflict handling and boundary deference, and the corpus its benchmark runs score against."
+description: "Deterministic operator scenarios for sk-design, covering routing entry, value discipline and provenance, conflict handling, boundary deference and profile loading, and the corpus its benchmark runs score against."
 trigger_phrases:
   - "sk-design manual testing"
   - "sk-design playbook"
   - "design skill operator scenarios"
 importance_tier: "important"
 contextType: "general"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-design Manual Testing Playbook
@@ -27,12 +27,13 @@ Operator scenarios for the design skill. This corpus is an input: a run reads it
 
 `sk-design` is a knowledge skill. It ships no scripts, so there is nothing to unit-test: every behavior worth checking is what an agent *does* when a prompt reaches it. That makes the operator-facing scenario the only meaningful test, and this package the only place those behaviors are validated.
 
-Four categories divide the surface:
+Five categories divide the surface:
 
 - **routing** proves the right reference loads for a realistic prompt, since a correct answer reached without loading the reference is luck.
-- **value-discipline** proves the returned values come from a scale rather than from plausibility.
+- **value-discipline** proves the returned values come from a named source, a token or a scale, rather than from plausibility.
 - **conflict-handling** proves the skill defers where it should and escalates where the decision is not its own.
 - **boundary** proves it routes away from work that belongs to a neighbouring skill.
+- **profile-load** proves a project profile loads only when that project has one, and an unknown project answers from the installed tokens and the scales.
 
 ### What This Package Deliberately Leaves Out
 
@@ -124,6 +125,7 @@ Do the returned values come from a scale, or from plausibility?
 - [SKD-010](value-discipline/on-scale-values.md) — Every value comes from a scale. The returned value must appear verbatim in the scale, with the scale named.
 - [SKD-011](value-discipline/no-runtime-shades.md) — Runtime shade generation is refused. A derived hover shade must come from a defined ramp step.
 - [SKD-012](value-discipline/unit-discipline.md) — Type scale unit discipline. An `em` type size must be flagged and converted without breaking the measure exception.
+- [SKD-013](value-discipline/value-names-its-source.md) — Every value names its source. Spacing, radius and shadow must each name a token or a scale step, and none may appear bare.
 
 ### conflict-handling
 
@@ -139,6 +141,12 @@ Does it route away from work that belongs to a neighbour?
 
 - [SKD-030](boundary/extraction-defers-to-md-generator.md) — Extraction routes to the measuring skill. Measuring a live site belongs to `sk-design-md-generator`.
 - [SKD-031](boundary/implementation-defers-to-sk-code.md) — Implementation routes to the code skill. Application logic with no visual surface belongs to `sk-code`.
+
+### profile-load
+
+Does a project profile load only when that project has one?
+
+- [SKD-040](profile-load/unknown-project.md) — An unknown project loads no profile. With no `references/<project>-profile.md`, the reply answers from the installed tokens and the scales and says so.
 
 ---
 

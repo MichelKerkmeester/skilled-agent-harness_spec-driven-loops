@@ -1,7 +1,7 @@
 ---
 title: "mcp-figma: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review and orchestration guidance, execution expectations, and per-scenario validation for the mcp-figma skill. Covers binary detection, the Figma Desktop requirement, safe connect, daemon health, read-only inspect and export, the destructive-verb refusal gate, and optional Framelink MCP discovery via Code Mode."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # mcp-figma: Manual Testing Playbook
@@ -28,11 +28,12 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 | Safety Gate | 1 | REFUSE-001 |
 | Optional MCP | 1 | MCP-001 |
 | Intra-Routing Recall | 9 | FG-R01, FG-R02, FG-R03, FG-R04, FG-R05, FG-R06, FG-H01, FG-H02, FG-N01 |
-| **TOTAL** | **17** | **17 scenarios** |
+| Figma To Code | 3 | F2C-001, F2C-002, F2C-003 |
+| **TOTAL** | **20** | **20 scenarios** |
 
-This playbook defines 17 deterministic scenarios across 6 categories validating the safe surface and the smart-router intent classification of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-12, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 13.
+This playbook defines 20 deterministic scenarios across 7 categories validating the safe surface, the smart-router intent classification and the Figma-to-code handoff of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-13, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 14.
 
-> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 13 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
+> **Per-scenario files:** This package adopts the Feature Catalog split-document pattern. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 14 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
 
 ### Realistic Test Model
 
@@ -132,7 +133,7 @@ Release is READY only when no scenario verdict is FAIL, all critical-path scenar
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 13).
+Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 14).
 
 ---
 
@@ -387,7 +388,80 @@ Each per-scenario file carries the full frontmatter contract, the exact command 
 
 ---
 
-## 13. SCENARIO CROSS-REFERENCE INDEX
+## 13. FIGMA TO CODE (`F2C-001`..`F2C-003`)
+
+This category validates the translation step that follows a read-only Figma read: the frame is a reference for markup, never the markup itself. Each scenario names `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md` in its Playbook Sources, runs no Figma write, and grades the reply against the tokens the app installs or the design scales.
+
+### F2C-001 | Figma Node Read Becomes Token Markup
+
+#### Description
+Verify a read of one Figma node becomes the simplest semantic markup, and that every value in it is a token the app installs. A raw frame value where a token exists, or a layer tree copied into nested containers, is a failure.
+
+#### Scenario Contract
+Prompt: `"Build the summary card from this Figma frame using the tokens our app installs."`
+
+- Objective: confirm a node read produces semantic markup and maps every value to an installed token
+- Expected execution process: read the selected node without changing it and record the authored width W; load `figma-to-code.md` and the stack markup reference; check the installed token package; propose semantic markup and record the five-pass evidence
+- Expected signals: every value in the markup is an installed token name; no hex, pixel or font literal appears where a token exists; a value with no token is reported as a gap; any pass that cannot run is `NOT RUN` with a reason and the verdict is `INCOMPLETE`
+- Desired user-visible outcome: the agent shows semantic markup with installed token names and the five-pass evidence, and names any value that has no token instead of writing it
+
+#### Test Execution
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| F2C-001 | Figma node to token markup | Confirm a node read produces semantic markup whose every value is an installed token | `Build the summary card from this Figma frame using the tokens our app installs.` | 1. Read the selected frame and record W -> 2. `bash: rg -n '"design-tokens"' package.json` -> 3. load `figma-to-code.md` and the stack markup reference -> 4. propose semantic markup and record the five-pass evidence -> 5. search changed files for literals | W and the state matrix are recorded. Pass 3a records resolved values and Pass 3b records the source search. Pass 4 has one row per variable. Pass 5 records range and access verdicts. Every markup value is an installed token name or a reported gap. Any `NOT RUN` pass gives an `INCOMPLETE` verdict. | Read-only transcript, W and captures, state matrix, render and source checks, variable-to-token table and range and access results | PASS if the markup is semantic, every value maps to an installed token or a reported gap, and all available passes pass. Mark unavailable passes `NOT RUN` with a reason and set the verdict to `INCOMPLETE`. FAIL if a pass fails or is omitted, a raw value replaces an installed token, or a Figma write runs. | Confirm W came from the authored frame. Read each token name against the installed package exports. Treat an unreported pass as a failure, and require `INCOMPLETE` when any pass is `NOT RUN`. |
+
+> **Feature File:** [figma-to-code/node-to-token-markup.md](figma-to-code/node-to-token-markup.md)
+> **Catalog:** [inspect/inspect.md](../feature-catalog/inspect/inspect.md)
+
+---
+
+### F2C-002 | Off-Token Frame Values Are Reported As Drift
+
+#### Description
+Verify a frame value that matches no installed token and no scale step is reported as drift, with its nearest installed token and nearest scale step, and the decision is handed to `sk-design-fundamentals`. Rounding the value or pasting it into code is a failure.
+
+#### Scenario Contract
+Prompt: `"This frame uses 18px padding and a 44px gap, which match nothing in our tokens. Implement it in the app."`
+
+- Objective: confirm an off-token frame value is reported as drift and handed to `sk-design-fundamentals`
+- Expected execution process: read the node without changing it and record W; compare each value against the installed tokens first and the design scales second; report every unmatched value as drift; hand the decision to `sk-design-fundamentals`; record the five-pass evidence
+- Expected signals: the `18px` padding and `44px` gap are listed as drift with their nearest token and scale step; the reply names `sk-design-fundamentals` as the owner of the decision; nothing is rounded into code; any pass that cannot run is `NOT RUN` with a reason and the verdict is `INCOMPLETE`
+- Desired user-visible outcome: the agent reports each drift value with its nearest installed equivalent and explains that the value decision is handed to `sk-design-fundamentals`
+
+#### Test Execution
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| F2C-002 | Off-token frame values are reported as drift | Confirm a frame value with no installed token and no scale step is reported as drift, not rounded into code | `This frame uses 18px padding and a 44px gap, which match nothing in our tokens. Implement it in the app.` | 1. Read the frame and record W -> 2. `bash: rg -n '"design-tokens"' package.json` -> 3. `bash: rg -n "^4  8  12  16  24  32  48" .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md` -> 4. compare each value with tokens then the scales -> 5. hand each drift value to `sk-design-fundamentals` and record the five-pass evidence | W and the state matrix are recorded. Pass 3a records resolved values and Pass 3b records the source search. Pass 4 lists each Figma variable and its installed-token result. Pass 5 records range and access verdicts. The `18px` padding and `44px` gap are listed as drift with a nearest token and scale step. Any `NOT RUN` pass gives an `INCOMPLETE` verdict. | Read-only transcript, W and captures, state matrix, render and source checks, variable-to-token table, range and access results, and the drift list with nearest values | PASS if every unmatched value is reported as drift with a nearest token and scale step, and the decision is handed to `sk-design-fundamentals`. The verdict is `PASS` when all passes pass and `INCOMPLETE` when any pass is `NOT RUN` with a reason. FAIL if a value is rounded or written into code without being reported, or if `PASS` is reported despite a `NOT RUN` pass. | Confirm the drift list names each frame value, its nearest installed token and its nearest scale step. Check that no rounded value appears in code. Require `INCOMPLETE` if any pass is `NOT RUN`. |
+
+> **Feature File:** [figma-to-code/token-drift.md](figma-to-code/token-drift.md)
+> **Catalog:** [inspect/inspect.md](../feature-catalog/inspect/inspect.md)
+
+---
+
+### F2C-003 | Built Screen Checked Against Its Frame
+
+#### Description
+Verify the built web screen is compared with its authored frame through all five passes, and that a pass which cannot run is recorded as `NOT RUN` with the overall verdict `INCOMPLETE`. Reporting `PASS` when a pass never ran is a failure.
+
+#### Scenario Contract
+Prompt: `"Check the screen we just built against its Figma frame."`
+
+- Objective: confirm every pass has a verdict and an unavailable pass makes the overall verdict `INCOMPLETE`
+- Expected execution process: read the frame without changing it; load `figma-to-code.md` and the web check recipes; run Passes 1 through 4; run the Pass 5 width, zoom, keyboard and contrast checks and attempt the manual screen-reader pass; record Pass 5 `NOT RUN` because no screen reader is available; set the overall verdict to `INCOMPLETE`
+- Expected signals: Passes 1 through 4 have evidence and verdicts; Pass 5 records `NOT RUN` with the screen-reader reason; the overall verdict is `INCOMPLETE`; no Figma write occurs
+- Desired user-visible outcome: the agent reports the frame comparison and token findings, states which checks ran, and explains that the overall verdict is `INCOMPLETE` because Pass 5 could not run
+
+#### Test Execution
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| F2C-003 | Built screen comparison | Confirm the built screen is compared with its authored frame through all five passes and an unavailable pass is `NOT RUN` | `Check the screen we just built against its Figma frame.` | 1. Read the frame and record W, states and variables -> 2. load `figma-to-code.md` and the web check recipes -> 3. set the authored width with `bdg cdp Emulation.setDeviceMetricsOverride --params '<json>'` and capture -> 4. force states with `bdg cdp CSS.forcePseudoState --params '<json>'` and capture -> 5. check rendered and source tokens -> 6. map variables to installed tokens -> 7. run width, zoom, keyboard and access checks -> 8. record Pass 5 `NOT RUN` and the overall `INCOMPLETE` verdict | Passes 1 through 4 have evidence and verdicts. Pass 5 is `NOT RUN` because no screen reader is available. The overall verdict is `INCOMPLETE` and Figma remains unchanged. | Read-only transcript, frame and build captures, state matrix, resolved styles, source-token search, variable-to-token table, range checks and the Pass 5 reason | PASS if every pass has a verdict and the overall verdict is `INCOMPLETE` because of the `NOT RUN` pass. FAIL if a `NOT RUN` pass is reported as `PASS`, a pass is omitted, or a Figma write runs. | Confirm Passes 1 through 4 each have a capture or check and a verdict. Confirm Pass 5 has the screen-reader reason. Confirm the overall verdict is `INCOMPLETE` and no Figma write ran. |
+
+> **Feature File:** [figma-to-code/check-built-screen.md](figma-to-code/check-built-screen.md)
+> **Catalog:** [inspect/inspect.md](../feature-catalog/inspect/inspect.md)
+
+---
+
+## 14. SCENARIO CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a category folder at the playbook root, and to the matching feature-catalog area. Keep the per-scenario filenames stable once published.
 
@@ -410,5 +484,8 @@ Each scenario maps to exactly one per-scenario file in a category folder at the 
 | FG-H01 | Blind holdout: build a screen | Intra-Routing Recall | [intra-routing-recall/holdout-create.md](../manual-testing-playbook/intra-routing-recall/holdout-create.md) | n/a (routing-recall corpus) |
 | FG-H02 | Blind holdout: measurements | Intra-Routing Recall | [intra-routing-recall/holdout-inspect.md](../manual-testing-playbook/intra-routing-recall/holdout-inspect.md) | n/a (routing-recall corpus) |
 | FG-N01 | Negative: out of domain | Intra-Routing Recall | [intra-routing-recall/negative.md](../manual-testing-playbook/intra-routing-recall/negative.md) | n/a (routing-recall corpus) |
+| F2C-001 | Figma node read becomes token markup | Figma To Code | [figma-to-code/node-to-token-markup.md](figma-to-code/node-to-token-markup.md) | `../feature-catalog/inspect/inspect.md` |
+| F2C-002 | Off-token frame values reported as drift | Figma To Code | [figma-to-code/token-drift.md](figma-to-code/token-drift.md) | `../feature-catalog/inspect/inspect.md` |
+| F2C-003 | Built screen checked against its frame | Figma To Code | [figma-to-code/check-built-screen.md](figma-to-code/check-built-screen.md) | `../feature-catalog/inspect/inspect.md` |
 
-This index lists 17 scenario IDs and ships 17 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (17), so keep them in sync as scenarios are added or revised.
+This index lists 20 scenario IDs and ships 20 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (20), so keep them in sync as scenarios are added or revised.

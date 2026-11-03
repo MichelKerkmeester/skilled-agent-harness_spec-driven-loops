@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,13 +53,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the final mcp-figma playbook, When the validator runs with `--package`, Then it exits 0 and reports 20 scenarios across 7 categories | `scratch/validator-final.txt` | Unmet | - |
-| AC-002 | REQ-002 | Given the final fundamentals playbook, When the validator runs with `--package`, Then it prints `PASS` with 13 or 14 scenarios and `violations=0` | `scratch/validator-final.txt` | Unmet | - |
-| AC-003 | REQ-003 | Given the check-a-built-screen scenario, When one pass cannot run, Then the observed verdict is `INCOMPLETE` | `scratch/check-run.txt` | Unmet | - |
-| AC-004 | REQ-004 | Given every new scenario file, When it is grepped case-insensitively for `barter`, Then nothing prints | The grep output, empty | Unmet | - |
-| AC-005 | REQ-005 | Given the token-or-scale proposal, When it is compared with SKD-010, Then the add-or-drop decision and its reason are recorded and match what exists on disk | `scratch/skd-010-overlap.md` and `ls` of the fundamentals playbook | Unmet | - |
-| AC-006 | REQ-006 | Given the mcp-figma root index, When the validator runs, Then the hand-typed and derived census counts are equal | The `HAND_TYPED_CENSUS` line | Unmet | - |
-| AC-007 | REQ-007 | Given each new scenario, When it is read, Then it names the file it exercises | `rg -n "figma-to-code.md\|profile"` on the new files | Unmet | - |
+| AC-001 | REQ-001 | Given the final mcp-figma playbook, When the validator runs with `--package`, Then it exits 0 and reports 20 scenarios across 7 categories | `scratch/validator-final.txt`. Evidence: `scratch/validator-final.txt`: exit 0, scenarios=20 categories=7 | Met | - |
+| AC-002 | REQ-002 | Given the final fundamentals playbook, When the validator runs with `--package`, Then it prints `PASS` with 13 or 14 scenarios and `violations=0` | `scratch/validator-final.txt`. Evidence: PASS, scenarios=14, violations=0 | Met | - |
+| AC-003 | REQ-003 | Given the check-a-built-screen scenario, When one pass cannot run, Then the observed verdict is `INCOMPLETE` | `scratch/check-run.txt`. Evidence: `check-built-screen.md` expects `INCOMPLETE`; `scratch/check-run.txt` observed Pass 5 `NOT RUN` and overall `INCOMPLETE` | Met | - |
+| AC-004 | REQ-004 | Given every new scenario file, When it is grepped case-insensitively for `barter`, Then nothing prints | The grep output, empty. Evidence: the grep prints nothing, exit 1 | Met | - |
+| AC-005 | REQ-005 | Given the token-or-scale proposal, When it is compared with SKD-010, Then the add-or-drop decision and its reason are recorded and match what exists on disk | `scratch/skd-010-overlap.md` and `ls` of the fundamentals playbook. Evidence: `scratch/skd-010-overlap.md`: added as SKD-013, with the reason | Met | - |
+| AC-006 | REQ-006 | Given the mcp-figma root index, When the validator runs, Then the hand-typed and derived census counts are equal | The `HAND_TYPED_CENSUS` line. Evidence: HAND_TYPED_CENSUS reports 20 scenarios, 7 categories on both sides | Met | - |
+| AC-007 | REQ-007 | Given each new scenario, When it is read, Then it names the file it exercises | `rg -n -i "figma-to-code.md\|profile"` on the new files (case-insensitive: the slot is titled "Project Profile Slot"). Evidence: every new file hits (2 to 20 lines each) | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, and every criterion is unmet.
+Every criterion is met with its evidence recorded in the table, and an independent pass in `scratch/verify-004.md` agreed once the case of the AC-007 grep was corrected.
 <!-- /ANCHOR:closure -->

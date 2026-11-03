@@ -1,0 +1,15 @@
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=mcp-tooling/mcp-figma tier=FAIL_CLOSED scenarios=17 categories=6 operator=17 routing_gold_excluded=0 violations=0 warnings=2
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (17 scenarios, 6 categories); derived census is 17 scenarios across 6 categories
+exit=0
+exit=0
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=sk-design/sk-design-fundamentals tier=FAIL_CLOSED scenarios=12 categories=4 operator=12 routing_gold_excluded=0 violations=0 warnings=0
+exit=0
+exit=0

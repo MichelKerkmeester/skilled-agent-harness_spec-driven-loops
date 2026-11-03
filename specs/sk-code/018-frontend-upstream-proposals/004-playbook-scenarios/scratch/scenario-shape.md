@@ -1,0 +1,5 @@
+# Scenario shape (from the live packages, not the Barter copies)
+
+Frontmatter keys: fundamentals uses `title` ("<ID> -- <name>"), `description`, `stage`, `id` (quoted), `version`; mcp-figma uses `title`, `description`, `version` only.
+Sections: `# <ID> -- <name>`, a one-line intro, `## 1. OVERVIEW` with `### Why This Matters`, `## 2. SCENARIO CONTRACT` (Objective, Real user request, Prompt, Expected execution process, Expected signals, Desired user-visible outcome, Pass/fail), `## 3. TEST EXECUTION` (Recommended Orchestration Process, Exact Command Sequence, Expected Signals, Evidence, Pass / Fail Criteria, Failure Triage, then the one-row summary table), `## 4. SOURCE FILES` (`### Playbook Sources`, and in mcp-figma `### Implementation And Test Anchors`), then `## 5. SOURCE METADATA` (Group, Playbook ID, Canonical root source, Feature file path).
+Model files: `.skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/on-scale-values.md` and any file under `.skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/read-only/`.

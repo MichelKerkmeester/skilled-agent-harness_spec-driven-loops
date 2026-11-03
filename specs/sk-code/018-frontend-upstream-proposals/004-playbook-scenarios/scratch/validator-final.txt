@@ -1,0 +1,9 @@
+# Each block: the command, its exit status (captured right after the run), then the PASS/FAIL and WARN lines grepped from its saved output.
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook
+exit=0
+PASS package=mcp-tooling/mcp-figma tier=FAIL_CLOSED scenarios=20 categories=7 operator=20 routing_gold_excluded=0 violations=0 warnings=2
+  WARN RESULT_PERSISTENCE_MARKER_MISSING manual-testing-playbook.md root playbook is missing the advisory MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT completion marker
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (20 scenarios, 7 categories); derived census is 20 scenarios across 7 categories
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook
+exit=0
+PASS package=sk-design/sk-design-fundamentals tier=FAIL_CLOSED scenarios=14 categories=5 operator=14 routing_gold_excluded=0 violations=0 warnings=0

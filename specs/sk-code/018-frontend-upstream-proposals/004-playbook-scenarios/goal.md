@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,11 +76,17 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | Planning docs authored 2026-11-03; nothing built |
+| Phase planned | Done | Planning docs authored 2026-11-03 |
+| T001 to T003 setup | Done | `scratch/validator-baseline.txt`, `scratch/skd-010-overlap.md`, `scratch/scenario-shape.md` |
+| Build | Done | DeepSeek V4.1 Flash max, 7 files |
+| Check run | Done | `scratch/check-run.txt`: overall `INCOMPLETE` |
+| Verification | Done | `scratch/verify-004.md` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Stand-in frame | No Figma Desktop was available, so `F2C-003` ran with a local frame record; the run file says so on its first lines. |
+| AC-007 grep | Made case-insensitive; the requirement is unchanged. |
+| Executor | Builds run on DeepSeek V4.1 Flash max via opencode-go, per the operator's switch in phase 001. |
 <!-- /ANCHOR:log -->
