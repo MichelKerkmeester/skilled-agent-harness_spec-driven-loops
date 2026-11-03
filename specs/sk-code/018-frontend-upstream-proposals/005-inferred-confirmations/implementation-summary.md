@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planning only so far: nothing in 005-inferred-confirmations is built. This summary is filled when the phase is implemented."
+description: "Ranks 10 to 12 were confirmed and fixed, each in its own commit with a test that fails without it; rank 13 was refuted and dropped."
 trigger_phrases:
   - "inferred confirmations implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations"
-    last_updated_at: "2026-11-03T08:33:57Z"
+    last_updated_at: "2026-11-03T13:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the phase plan; nothing built"
-    next_safe_action: "Phase 005 opens with the four confirming runs (T001 to T004)."
+    recent_action: "Shipped ranks 10 to 12 and dropped rank 13"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-inferred-confirmations |
-| **Completed** | Not completed |
+| **Completed** | 2026-11-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,61 +44,69 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase plans Proposal ranks 10 to 13, each opened by a confirming run, and its spec, plan, tasks and acceptance criteria are written.
+The stage-two leaf replay now reads `INTENT_MODEL` routers and tuple weights, so the fundamentals control prompt resolves `DIAGNOSE` where it resolved nothing. Every hub matcher treats a hyphen and a space alike. The trigger-index generator warns when it is about to index another checkout than the caller's.
 
 ### Phase 5: inferred-confirmations
 
-The phase has not started. Phase 005 opens with the four confirming runs (T001 to T004).
+Each rank opened with a saved run. Ranks 10 and 11 were confirmed, rank 12 half confirmed and rank 13 refuted, as `decision-record.md` records. Rank 13 changed no file.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | - | No file outside this spec folder has changed |
+| `sk-create-skill/scripts/leaf-route-replay.cjs` | Modified | Reads `INTENT_MODEL` and tuple weights; folds hyphens in `keywordHits` |
+| `sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | Modified | Three tests for those fixes |
+| Five hub routers, two policy cards, the compiler's `evaluator.cjs` and `projections.cjs` (authored and served copies) | Modified | Fold hyphen runs to one space on both sides |
+| `.skilled/bin/tests/compiled-route-hyphen-parity.test.cjs` | Created | Spaced and hyphenated keywords route alike on every default-on hub |
+| `system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` | Modified | Warns on a root mismatch |
+| `system-spec-kit/runtime/cli/tests/trigger-index-root-mismatch.vitest.ts` | Created | Warning and no-warning cases |
+| `sk-create-skill/changelog/v1.10.1.0.md`, `SKILL.md` | Created, modified | Records ranks 10 and 11 |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. The planned verification is in `tasks.md` Phase 3 and `acceptance-criteria.md`.
+The four confirming runs were saved first. DeepSeek V4.1 Flash max built each fix from its own brief, and each was checked in this session and committed alone: `a71daa9605`, `8babc9421a` and `2823435107`. Each fix was then reverted with its tests kept, and the tests failed until it was restored. Rank 11 also ran reach on every hub and a sync publication that was finalized after the gates passed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| None yet | Decisions are recorded as the phase runs |
+| Normalise hyphens in every matcher | The operator wanted every hub to treat hyphen and space alike, not sk-code only |
+| Warn rather than change the trigger-index default | Every existing caller keeps today's root |
+| Drop rank 13 | No save scores a payload 0; the metadata-only write is documented plan-only behaviour |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Spec docs | `validate.sh --strict` on the planning docs; no implementation check has run |
+| Revert tests | Rank 10: 2 fail reverted, 24/24 restored. Rank 11: 3 fail, 27/27. Rank 12: 1 fail, 3/3 |
+| Reach, every hub, concurrency 2 | `outranked=0`, `wrong-hub=0`, `RESULT: PASSED`, same counts as before |
+| sk-create-skill tests | 100/100 |
+| Trigger-index vitest | 70/70 across three files |
+| Compiled-route tests | Every file exits 0 except the admission gold-corpus pin, `84 !== 96`, which fails the same at merge-base `a5105fb512` |
+| Hub status | All seven `compiled-serving` and `fresh`; 55 served copies match |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not implemented.** Every requirement in `spec.md` is still open.
+1. **The rank 12 warning does not change the default.** A linked project still indexes the source checkout unless it passes `--repo-root`, which the warning names.
+2. **A tie in sk-design's canary router throws.** `compareText is not defined` at `009-sk-design/lib/canary-router.cjs:257` when two intents of one mode tie; routing falls back to legacy. It predates this phase and is not fixed here.
+3. **The system-spec-kit changelog entry for rank 12 is deferred** until merge, because main already holds the next version numbers.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -1,0 +1,6 @@
+# Rank 10 after the fix (74b5bdd717): the shipped fundamentals ROUTER.md through the exported parser
+state: "active"
+intentOrder.length: 10
+scores for "the settings modal looks off and feels cheap, can you improve it": [{"intent":"DIAGNOSE","score":10}]
+selectIntents -> ["DIAGNOSE"]
+exit=0

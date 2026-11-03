@@ -1,0 +1,25 @@
+# Final-state suites of every touched script, 74b5bdd717 docs(sk-create-skill): record the leaf replay grammar fixes in v1.10.1.0
+## compiled-route tests, per file
+compiled-route-admission.test.cjs exit=1 ℹ pass 28 ℹ fail 1 
+compiled-route-finished-run.test.cjs exit=0 ℹ pass 4 ℹ fail 0 
+compiled-route-front-door.test.cjs exit=0 ℹ pass 1 ℹ fail 0 
+compiled-route-hyphen-parity.test.cjs exit=0 ℹ pass 2 ℹ fail 0 
+compiled-route-manifest.test.cjs exit=0 ℹ pass 48 ℹ fail 0 
+compiled-route-surface-hint.test.cjs exit=0 ℹ pass 15 ℹ fail 0 
+compiled-route-admission: the one failure is 'the live corpus holds the pinned number of gold scenarios' (84 !== 96); the same assertion fails with 84 !== 96 at merge-base a5105fb512, before this branch. It counts gold-scenario files and imports none of the changed matchers.
+## sk-create-skill tests
+ℹ pass 100 ℹ fail 0 exit=0
+## trigger-index vitest
+ Test Files  3 passed (3)
+      Tests  70 passed (70)
+exit=0
+## sync check and hub status
+all 7 hubs resolve
+all 55 served copies match their authored files
+sk-code "causeCode":"compiled-serving" "causeCode":"fresh" 
+sk-doc "causeCode":"compiled-serving" "causeCode":"fresh" 
+sk-design "causeCode":"compiled-serving" "causeCode":"fresh" 
+mcp-tooling "causeCode":"compiled-serving" "causeCode":"fresh" 
+system-deep-loop "causeCode":"compiled-serving" "causeCode":"fresh" 
+cli-external-orchestration "causeCode":"compiled-serving" "causeCode":"fresh" 
+cli-classifier "causeCode":"compiled-serving" "causeCode":"fresh" 

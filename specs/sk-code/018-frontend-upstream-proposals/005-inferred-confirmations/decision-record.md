@@ -12,14 +12,14 @@ _memory:
     last_updated_at: "2026-11-03T12:45:00Z"
     last_updated_by: "claude-opus-5-5"
     recent_action: "Recorded four rank verdicts from saved runs"
-    next_safe_action: "Build the rank 10 fix"
+    next_safe_action: "None; ranks 10 to 12 shipped and rank 13 is dropped"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Rank 11: normalise hyphens in every matcher (operator, 2026-11-03)."

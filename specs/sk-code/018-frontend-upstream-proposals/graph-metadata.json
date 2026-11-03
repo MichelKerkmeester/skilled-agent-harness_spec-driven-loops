@@ -41,7 +41,7 @@
       "five-pass"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -56,7 +56,8 @@
       "002-tooling-fixes/goal.md",
       "003-design-handoffs/goal.md",
       "004-playbook-scenarios/goal.md",
-      "005-inferred-confirmations/goal.md"
+      "005-inferred-confirmations/goal.md",
+      "005-inferred-confirmations/decision-record.md"
     ],
     "entities": [
       {
@@ -176,17 +177,17 @@
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T08:48:15.179Z",
+    "last_save_at": "2026-11-03T13:16:23.933Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:cdeb04bff74f08d3deac9fa696769f986be5a3b6d9fda3c3efc0cc9a93e9d906",
+    "source_fingerprint": "sha256:b1a06b37a428c4ed584de2ae5ef12c30b296993a4e362077060cbeb6b61ff04e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "089d7760172d953df9a84286d4ceef4cfb804ccb7d37b4654008ec7232ce4ae7"
+      "spec.md": "7906e4ad9d4330b5bc24b317fbd2e1a1639870b2a79add22719ab4106948ce29"
     },
     "last_active_at": null
   }

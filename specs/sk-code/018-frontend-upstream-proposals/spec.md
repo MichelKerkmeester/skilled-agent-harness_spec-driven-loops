@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/018-frontend-upstream-proposals"
     last_updated_at: "2026-11-03T09:30:00Z"
     last_updated_by: "claude-opus-5-5"
-    recent_action: "Authored the phase parent, five child plans and the nested goals"
-    next_safe_action: "Operator sets the parent goal, then phase 001 opens with its reach baseline"
+    recent_action: "Closed all five phases; ranks 1 to 12 shipped, rank 13 dropped"
+    next_safe_action: "None; the Barter re-pin is Barter's next step"
     blockers: []
     key_files:
       - ".skilled/skills/sk-code/mode-registry.json"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "May canonical sk-code carry React Native guidance, given sk-code/ROUTER.md section 6 says React Native resources live in the Barter fork?"
     answered_questions:
@@ -43,7 +43,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-03 |
 | **Branch** | `worktrees/314-frontend-upstream-proposals` |
 | **Parent Spec** | None |
@@ -106,11 +106,11 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-frontend-surface-mode/ | Ranks 1 to 3: the `sk-code-frontend` surface, the five-pass Figma check, the overrides contract and its own router-reach run | Pending |
-| 2 | 002-tooling-fixes/ | Ranks 4 and 9: orphan-phrase pruning and reach default concurrency | Pending |
-| 3 | 003-design-handoffs/ | Ranks 5 to 7: open values to `sk-design-fundamentals`, reduced motion, the profile slot | Pending |
-| 4 | 004-playbook-scenarios/ | Rank 8: generic mcp-figma and fundamentals playbook scenarios | Pending |
-| 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Pending |
+| 1 | 001-frontend-surface-mode/ | Ranks 1 to 3: the `sk-code-frontend` surface, the five-pass Figma check, the overrides contract and its own router-reach run | Complete |
+| 2 | 002-tooling-fixes/ | Ranks 4 and 9: orphan-phrase pruning and reach default concurrency | Complete |
+| 3 | 003-design-handoffs/ | Ranks 5 to 7: open values to `sk-design-fundamentals`, reduced motion, the profile slot | Complete |
+| 4 | 004-playbook-scenarios/ | Rank 8: generic mcp-figma and fundamentals playbook scenarios | Complete |
+| 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Complete |
 
 ### Phase Transition Rules
 

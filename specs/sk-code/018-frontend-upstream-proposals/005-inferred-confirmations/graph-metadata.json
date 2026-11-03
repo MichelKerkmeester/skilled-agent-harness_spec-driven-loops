@@ -39,7 +39,7 @@
       "trigger"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,6 +48,7 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".skilled/bin/tests/compiled-route-hyphen-parity.test.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
       ".skilled/bin/lib/compiled-route-manifest.cjs",
@@ -56,7 +57,10 @@
       "scratch/rank10-replay.txt",
       "scratch/rank12-index.txt",
       "scratch/rank13-save.txt",
-      "scratch/rank11-trace.txt"
+      "scratch/rank11-trace.txt",
+      "scratch/rank10-after.txt",
+      "scratch/rank12-after.txt",
+      "scratch/rank11-reach.txt"
     ],
     "entities": [
       {
@@ -99,6 +103,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-hyphen-parity.test.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/tests/compiled-route-hyphen-parity.test.cjs",
         "source": "derived"
       },
       {
@@ -156,6 +166,24 @@
         "source": "derived"
       },
       {
+        "name": "rank10-after.txt",
+        "kind": "file",
+        "path": "scratch/rank10-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rank12-after.txt",
+        "kind": "file",
+        "path": "scratch/rank12-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rank11-reach.txt",
+        "kind": "file",
+        "path": "scratch/rank11-reach.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -178,35 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Barter observed four symptoms whose cause in Skilled was not traced",
     "created_at": "2026-11-03T08:33:56Z",
-    "last_save_at": "2026-11-03T12:43:43.273Z",
+    "last_save_at": "2026-11-03T13:15:04.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +222,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c71c795035bf004dd01445d293c014d23fca033960dab188ecd0481fefe819fa",
+    "source_fingerprint": "sha256:b120a1f22870c8c3bbeb22b92b49bf83ab756388372478911e10e9f0e5bc53d9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7de70003b998d4232460132626f8aecd9151420f742e122cbae2f2fc331aecf6",
+      "spec.md": "f0529cfdb8eff7d7fb06621ce6f9da16743e35e1ccb0523b93b6c6dbf6765ed7",
       "plan.md": "37093cb4fd4915b3a360750b26a36bfd91b7bdbb347e3b75110dc4bc7aae7ec7",
-      "tasks.md": "3b0748e2d5bfd6c50a2f99db9dc2c0ec734e62a4c50d6844c50c8b4bbba84145",
-      "decision-record.md": "92053ad2167da888774e2c8b7747107088b4dd168cf32c460fefe12b6a67b690",
-      "implementation-summary.md": "9925deb18820c526fc69860d8488a16e61c937e89f4b86a311e48201ced34d85"
+      "tasks.md": "6dd4ed20ab50633b0d421e7548fa09c7ae18798ca1484dc080a00f21355164e5",
+      "decision-record.md": "604a7fb1479e15d0dfbda87eed5cdb3400e125fb3b1b8b22003e9b90a0661821",
+      "implementation-summary.md": "a742a9ba996640882e0d8e52fb3bca03232346634f9e16e86433814225045275"
     },
     "last_active_at": null
   }
