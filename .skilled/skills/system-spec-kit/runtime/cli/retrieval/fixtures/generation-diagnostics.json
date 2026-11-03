@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7297,
-    "ok": 16596,
+    "missing-frontmatter": 7308,
+    "ok": 16661,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27441,
+  "documentsScanned": 27517,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6f50448b93dfe81c9a18c882a95c814fdafcc0779a504ca533384697ec5122c1",
+  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40375,
+      "ok": 40517,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -9552,6 +9552,24 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/check-built-screen.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/node-to-token-markup.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/token-drift.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/connect-daemon.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10722,6 +10740,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-frontend-compiled-routing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10915,6 +10939,36 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-ci/manual-testing-playbook/manual-testing-playbook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-native.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -12361,6 +12415,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/profile-load/unknown-project.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/diagnose-entry.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -12398,6 +12458,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/unit-discipline.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/value-names-its-source.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69150,6 +69216,18 @@
       "reason": "duplicate of an already-indexed document"
     },
     {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
       "path": ".skilled/skills/sk-code/sk-code-review/scripts/tests/fixtures",
       "reason": "excluded directory"
     },
@@ -71911,6 +71989,30 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/016-repository-config-in-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
       "reason": "excluded directory"
     },
     {

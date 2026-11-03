@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5daff7ae762e45710386673f9937383782f6596baad57261dd20d8108d1d8018",
+  "corpusHash": "ed8138f081c9dd30e6c4728671a77530321e04e745fbdcca7a67f04bf3bdb9a2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27441,
+  "includedPathCount": 27517,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2401,6 +2401,7 @@
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.7.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.8.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.1.9.0.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/changelog/v1.2.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/README.md",
     ".skilled/skills/mcp-tooling/mcp-figma/examples/optional-mcp-context.md",
     ".skilled/skills/mcp-tooling/mcp-figma/feature-catalog/a11y-and-analysis/a11y-and-analysis.md",
@@ -2416,6 +2417,9 @@
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/detection-setup/binary-detection.md",
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/detection-setup/figma-desktop-required.md",
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/detection-setup/safe-connect.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/check-built-screen.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/node-to-token-markup.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/token-drift.md",
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/connect-daemon.md",
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/create-render.md",
     ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/intra-routing-recall/design-tokens.md",
@@ -2826,6 +2830,7 @@
     ".skilled/skills/sk-code/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.10.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -2872,6 +2877,7 @@
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/quality-ci-surface-evidence-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-bug-fix-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-ci-compiled-routing.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-frontend-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-alone-skilled-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/surface-bundle-compiled-routing.md",
     ".skilled/skills/sk-code/manual-testing-playbook/compiled-routing/workflow-alone-quality-agent-compiled-routing.md",
@@ -2935,6 +2941,30 @@
     ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
     ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md",
     ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
+    ".skilled/skills/sk-code/sk-code-frontend/README.md",
+    ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+    ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.0.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.1.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-native.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/native-accessibility.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/native-inputs-and-keyboard.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/native-layout-and-text.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/native-lists-and-motion.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/native-platform-differences.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/react-native-layout-and-a11y.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
     ".skilled/skills/sk-code/sk-code-quality/README.md",
     ".skilled/skills/sk-code/sk-code-quality/ROUTER.md",
     ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
@@ -3497,12 +3527,14 @@
     ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.2.0.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.0.4.0.md",
+    ".skilled/skills/sk-design/sk-design-fundamentals/changelog/v1.1.0.0.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/boundary/implementation-defers-to-sk-code.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/project-system-precedence.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/profile-load/unknown-project.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/diagnose-entry.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/motion-entry.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/routing/procedure-entry.md",
@@ -3510,6 +3542,7 @@
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/no-runtime-shades.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/on-scale-values.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/unit-discipline.md",
+    ".skilled/skills/sk-design/sk-design-fundamentals/manual-testing-playbook/value-discipline/value-names-its-source.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md",
     ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md",
@@ -6793,6 +6826,8 @@
     ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.1.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md",
@@ -8325,6 +8360,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.3.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.30.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.30.1.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.12.31.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.4.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.5.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.6.0.md",
@@ -13352,6 +13388,46 @@
     "specs/sk-code/017-portable-code-modes/016-repository-config-in-skill/spec.md",
     "specs/sk-code/017-portable-code-modes/016-repository-config-in-skill/tasks.md",
     "specs/sk-code/017-portable-code-modes/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/decision-record.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/decision-record.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/decision-record.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/goal.md",
+    "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/decision-record.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/implementation-summary.md",
@@ -27472,7 +27548,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6f50448b93dfe81c9a18c882a95c814fdafcc0779a504ca533384697ec5122c1",
+  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27956,6 +28032,18 @@
     },
     {
       "path": ".skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md",
+      "reason": "duplicate of an already-indexed document"
+    },
+    {
+      "path": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md",
       "reason": "duplicate of an already-indexed document"
     },
     {
@@ -30720,6 +30808,30 @@
     },
     {
       "path": "specs/sk-code/017-portable-code-modes/016-repository-config-in-skill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/001-frontend-surface-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/002-tooling-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/003-design-handoffs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/004-playbook-scenarios/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/005-inferred-confirmations/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment/scratch",
       "reason": "excluded directory"
     },
     {

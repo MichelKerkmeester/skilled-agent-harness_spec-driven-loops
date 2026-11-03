@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6f50448b93dfe81c9a18c882a95c814fdafcc0779a504ca533384697ec5122c1",
+  "manifestHash": "134914382d2e132630b5b6ab4ad65761b61543bb0ccb71e73466ad7549e667dc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11530,11 +11530,17 @@
     "and or filter stacking": [
       "and or filter stacking"
     ],
+    "android edge to edge": [
+      "android edge to edge"
+    ],
     "android emulator orca": [
       "android emulator orca"
     ],
     "android health data files": [
       "android health data files"
+    ],
+    "android text metrics": [
+      "android text metrics"
     ],
     "angle driven review": [
       "angle driven review"
@@ -12356,6 +12362,9 @@
     ],
     "argv positional subsystem route": [
       "argv-positional subsystem route"
+    ],
+    "aria widget keyboard behavior": [
+      "aria widget keyboard behavior"
     ],
     "arm withdrawal on new turn": [
       "arm withdrawal on new turn"
@@ -13673,6 +13682,9 @@
     ],
     "bare worktree dist warning": [
       "bare worktree dist warning"
+    ],
+    "barter frontend proposals for skilled": [
+      "barter frontend proposals for skilled"
     ],
     "barter symlinks readme": [
       "barter symlinks readme"
@@ -15110,6 +15122,9 @@
     ],
     "browse only reference files": [
       "browse only reference files"
+    ],
+    "browser accessibility preferences": [
+      "browser accessibility preferences"
     ],
     "browser agent task": [
       "browser agent task"
@@ -28403,6 +28418,9 @@
     "container node backfill outcome": [
       "container node backfill outcome"
     ],
+    "container query layout": [
+      "container query layout"
+    ],
     "containment alignment state records": [
       "containment alignment state records"
     ],
@@ -31241,11 +31259,20 @@
     "cross validate": [
       "cross-validate"
     ],
+    "css cascade layer order": [
+      "css cascade layer order"
+    ],
+    "css containing block behavior": [
+      "css containing block behavior"
+    ],
     "css html quality guidance": [
       "css html quality guidance"
     ],
     "css pass criteria": [
       "css pass criteria"
+    ],
+    "css selector specificity": [
+      "css selector specificity"
     ],
     "css snippet customization": [
       "css snippet customization"
@@ -38224,6 +38251,24 @@
     ],
     "design generation skill removed": [
       "design-generation skill removed"
+    ],
+    "design handoffs": [
+      "design handoffs"
+    ],
+    "design handoffs acceptance criteria": [
+      "design handoffs acceptance criteria"
+    ],
+    "design handoffs goal": [
+      "design handoffs goal"
+    ],
+    "design handoffs implementation summary": [
+      "design handoffs implementation summary"
+    ],
+    "design handoffs plan": [
+      "design handoffs plan"
+    ],
+    "design handoffs tasks": [
+      "design handoffs tasks"
     ],
     "design hub compiled router": [
       "design hub compiled router"
@@ -47335,6 +47380,9 @@
     "figma authoring": [
       "figma authoring"
     ],
+    "figma auto layout to flexbox": [
+      "figma auto layout to flexbox"
+    ],
     "figma cli": [
       "figma cli"
     ],
@@ -47524,6 +47572,24 @@
     ],
     "figma safe connect example": [
       "figma safe connect example"
+    ],
+    "figma to code check": [
+      "figma to code check"
+    ],
+    "figma to code playbook category": [
+      "figma to code playbook category"
+    ],
+    "figma to code review": [
+      "figma to code review"
+    ],
+    "figma to code routing": [
+      "figma to code routing"
+    ],
+    "figma to code scenarios": [
+      "figma to code scenarios"
+    ],
+    "figma to code translation": [
+      "figma to code translation"
     ],
     "figma tokens": [
       "figma tokens"
@@ -48146,6 +48212,12 @@
     "five part card register": [
       "five-part card register"
     ],
+    "five pass figma check": [
+      "five-pass figma check"
+    ],
+    "five pass figma check plan": [
+      "five-pass figma check plan"
+    ],
     "five phase closeout summary": [
       "five phase closeout summary"
     ],
@@ -48608,6 +48680,9 @@
     "flash variant max pin": [
       "flash variant max pin"
     ],
+    "flashlist v2 hooks": [
+      "flashlist v2 hooks"
+    ],
     "flat level 3 packet": [
       "flat Level 3 packet"
     ],
@@ -48979,6 +49054,9 @@
     "followups tasks": [
       "followups tasks"
     ],
+    "font metrics and layout shift": [
+      "font metrics and layout shift"
+    ],
     "footer auth lines": [
       "footer auth lines"
     ],
@@ -49143,6 +49221,9 @@
     ],
     "forkable prompt framework engine": [
       "forkable prompt-framework engine"
+    ],
+    "form submission attributes": [
+      "form submission attributes"
     ],
     "format decision acceptance criteria": [
       "format decision acceptance criteria"
@@ -49632,6 +49713,51 @@
     ],
     "frontend disconnect logging": [
       "frontend disconnect logging"
+    ],
+    "frontend native surface routing": [
+      "frontend native surface routing"
+    ],
+    "frontend overrides contract": [
+      "frontend overrides contract"
+    ],
+    "frontend practice": [
+      "frontend practice"
+    ],
+    "frontend stack overrides": [
+      "frontend stack overrides"
+    ],
+    "frontend surface decision record": [
+      "frontend surface decision record"
+    ],
+    "frontend surface established": [
+      "frontend surface established"
+    ],
+    "frontend surface mode": [
+      "frontend surface mode"
+    ],
+    "frontend surface mode acceptance criteria": [
+      "frontend surface mode acceptance criteria"
+    ],
+    "frontend surface mode goal": [
+      "frontend surface mode goal"
+    ],
+    "frontend surface mode implementation summary": [
+      "frontend surface mode implementation summary"
+    ],
+    "frontend surface mode plan": [
+      "frontend surface mode plan"
+    ],
+    "frontend surface mode tasks": [
+      "frontend surface mode tasks"
+    ],
+    "frontend surface playbook": [
+      "frontend surface playbook"
+    ],
+    "frontend upstream proposals phase parent spec": [
+      "frontend upstream proposals phase parent spec"
+    ],
+    "frontend web surface routing": [
+      "frontend web surface routing"
     ],
     "frontmatter audit": [
       "frontmatter audit"
@@ -51558,6 +51684,9 @@
     "global hooks relink criteria": [
       "global hooks relink criteria"
     ],
+    "global interface principles": [
+      "global interface principles"
+    ],
     "global security audit complete": [
       "global security audit complete"
     ],
@@ -52755,6 +52884,9 @@
     "gold battery verifier code graph": [
       "gold battery verifier code graph"
     ],
+    "gold corpus pin": [
+      "gold corpus pin"
+    ],
     "golden prompt suite green": [
       "golden prompt suite green"
     ],
@@ -53575,6 +53707,9 @@
     ],
     "greppable spec docs": [
       "greppable spec docs"
+    ],
+    "grid intrinsic sizing": [
+      "grid intrinsic sizing"
     ],
     "grok 4 6 allowlist": [
       "grok 4.6 allowlist"
@@ -55756,6 +55891,15 @@
     "hsl shade ramp": [
       "hsl shade ramp"
     ],
+    "html dialog and popover behavior": [
+      "html dialog and popover behavior"
+    ],
+    "html direction and bidi text": [
+      "html direction and bidi text"
+    ],
+    "html resource loading attributes": [
+      "html resource loading attributes"
+    ],
     "httpsidecarrerankeradapter": [
       "HttpSidecarRerankerAdapter"
     ],
@@ -56323,6 +56467,9 @@
     "hyde gate fix": [
       "hyde gate fix"
     ],
+    "hyphen alias normalization": [
+      "hyphen alias normalization"
+    ],
     "hyphen naming canon": [
       "hyphen naming canon"
     ],
@@ -56646,6 +56793,9 @@
     ],
     "implement 033 research recommendations": [
       "implement 033 research recommendations"
+    ],
+    "implement a figma design in code": [
+      "implement a figma design in code"
     ],
     "implement code skilled backlog plan": [
       "implement code-skilled backlog plan"
@@ -57135,6 +57285,27 @@
     ],
     "inferlevel returns two": [
       "inferLevel returns two"
+    ],
+    "inferred confirmations": [
+      "inferred confirmations"
+    ],
+    "inferred confirmations acceptance criteria": [
+      "inferred confirmations acceptance criteria"
+    ],
+    "inferred confirmations decision record": [
+      "inferred confirmations decision record"
+    ],
+    "inferred confirmations goal": [
+      "inferred confirmations goal"
+    ],
+    "inferred confirmations implementation summary": [
+      "inferred confirmations implementation summary"
+    ],
+    "inferred confirmations plan": [
+      "inferred confirmations plan"
+    ],
+    "inferred confirmations tasks": [
+      "inferred confirmations tasks"
     ],
     "information density": [
       "information density"
@@ -57709,6 +57880,12 @@
     "intent prompt sweep real": [
       "intent prompt sweep real"
     ],
+    "intent signal orphan definition": [
+      "intent signal orphan definition"
+    ],
+    "intent signal orphan pruning": [
+      "intent signal orphan pruning"
+    ],
     "intent signals dictionary": [
       "intent signals dictionary"
     ],
@@ -57843,6 +58020,9 @@
     ],
     "invocation pattern column": [
       "invocation pattern column"
+    ],
+    "ios android safe areas": [
+      "ios android safe areas"
     ],
     "ios simulator orca": [
       "ios simulator orca"
@@ -58167,6 +58347,9 @@
     ],
     "javascript formatting checks": [
       "javascript formatting checks"
+    ],
+    "javascript locale formatting": [
+      "javascript locale formatting"
     ],
     "javascript module organization": [
       "javascript module organization"
@@ -58968,6 +59151,9 @@
     ],
     "key questions generated projection": [
       "key-questions generated projection"
+    ],
+    "keyboard focus chaining": [
+      "keyboard focus chaining"
     ],
     "keyed runtime discovery": [
       "keyed runtime discovery"
@@ -59917,6 +60103,9 @@
     "lc 005": [
       "lc-005"
     ],
+    "lcp image priority": [
+      "lcp image priority"
+    ],
     "leaf agent direct append": [
       "leaf agent direct append"
     ],
@@ -60001,6 +60190,9 @@
     "leaf removals wave": [
       "leaf removals wave"
     ],
+    "leaf replay intent model": [
+      "leaf replay intent model"
+    ],
     "leaf resource contract": [
       "leaf-resource contract"
     ],
@@ -60043,6 +60235,9 @@
     ],
     "leaf route replay tasks": [
       "leaf route replay tasks"
+    ],
+    "leaf route replay tuple keywords": [
+      "leaf route replay tuple keywords"
     ],
     "leaf router rationale": [
       "leaf router rationale"
@@ -63769,6 +63964,9 @@
     "mcp figma 1 1 9 0": [
       "mcp-figma 1.1.9.0"
     ],
+    "mcp figma 1 2 0 0": [
+      "mcp-figma 1.2.0.0"
+    ],
     "mcp figma router": [
       "mcp-figma router"
     ],
@@ -63816,6 +64014,9 @@
     ],
     "mcp figma v1 1 9 0": [
       "mcp-figma v1.1.9.0"
+    ],
+    "mcp figma v1 2 0 0": [
+      "mcp-figma v1.2.0.0"
     ],
     "mcp front proxy": [
       "mcp front proxy"
@@ -69668,6 +69869,12 @@
     "native": [
       "native"
     ],
+    "native accessibility actions": [
+      "native accessibility actions"
+    ],
+    "native accessibility aliases": [
+      "native accessibility aliases"
+    ],
     "native advisor delivery per runtime": [
       "native advisor delivery per runtime"
     ],
@@ -69704,6 +69911,9 @@
     "native cli opencode dispatch": [
       "native cli-opencode dispatch"
     ],
+    "native css nesting": [
+      "native css nesting"
+    ],
     "native extension event count": [
       "native extension event count"
     ],
@@ -69715,6 +69925,9 @@
     ],
     "native host advisor evidence": [
       "native host advisor evidence"
+    ],
+    "native list recycling": [
+      "native list recycling"
     ],
     "native module checks": [
       "native module checks"
@@ -69745,6 +69958,12 @@
     ],
     "native surface last in tiebreak": [
       "native surface last in tiebreak"
+    ],
+    "native text input props": [
+      "native text input props"
+    ],
+    "native text scaling": [
+      "native text scaling"
     ],
     "native trial log 13 rows": [
       "native trial log 13 rows"
@@ -72064,6 +72283,21 @@
     "open horizons check": [
       "open horizons check"
     ],
+    "open items and alignment": [
+      "open items and alignment"
+    ],
+    "open items and alignment acceptance criteria": [
+      "open items and alignment acceptance criteria"
+    ],
+    "open items and alignment implementation summary": [
+      "open items and alignment implementation summary"
+    ],
+    "open items and alignment plan": [
+      "open items and alignment plan"
+    ],
+    "open items and alignment tasks": [
+      "open items and alignment tasks"
+    ],
     "open items ledger": [
       "open items ledger"
     ],
@@ -72102,6 +72336,9 @@
     ],
     "open url in browser cli": [
       "open url in browser cli"
+    ],
+    "open visual decision handoff": [
+      "open visual decision handoff"
     ],
     "open with a hook default": [
       "open with a hook default"
@@ -76324,6 +76561,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 frontend surface mode": [
+      "phase 1 frontend surface mode"
+    ],
     "phase 1 honest checker": [
       "phase 1 honest checker"
     ],
@@ -76933,6 +77173,9 @@
     "phase 2 template and example defect repair": [
       "phase 2 template and example defect repair"
     ],
+    "phase 2 tooling fixes": [
+      "phase 2 tooling fixes"
+    ],
     "phase 2 webflow labels and playbook": [
       "phase 2 webflow labels and playbook"
     ],
@@ -77151,6 +77394,9 @@
     ],
     "phase 3 deep review case rule": [
       "phase 3 deep review case rule"
+    ],
+    "phase 3 design handoffs": [
+      "phase 3 design handoffs"
     ],
     "phase 3 doc and catalog truth": [
       "phase 3 doc and catalog truth"
@@ -77371,6 +77617,9 @@
     "phase 4 pi ambiguous denial": [
       "phase 4 pi ambiguous denial"
     ],
+    "phase 4 playbook scenarios": [
+      "phase 4 playbook scenarios"
+    ],
     "phase 4 private local skills": [
       "phase 4 private local skills"
     ],
@@ -77490,6 +77739,9 @@
     ],
     "phase 5 implementation review": [
       "phase 5 implementation review"
+    ],
+    "phase 5 inferred confirmations": [
+      "phase 5 inferred confirmations"
     ],
     "phase 5 integration": [
       "phase 5 integration"
@@ -77664,6 +77916,9 @@
     ],
     "phase 6 numbered worktree cleanup": [
       "phase 6 numbered worktree cleanup"
+    ],
+    "phase 6 open items and alignment": [
+      "phase 6 open items and alignment"
     ],
     "phase 6 plan": [
       "phase 6 plan"
@@ -78353,6 +78608,9 @@
     ],
     "phase parent save routing": [
       "phase parent save routing"
+    ],
+    "phase parent save score": [
+      "phase parent save score"
     ],
     "phase parent stale pointer fix": [
       "phase parent stale pointer fix"
@@ -79699,6 +79957,9 @@
     "plan digest apply restore": [
       "plan digest apply restore"
     ],
+    "plan only save continuity notice": [
+      "plan-only save continuity notice"
+    ],
     "plan phase checkbox reduction": [
       "plan phase checkbox reduction"
     ],
@@ -80170,8 +80431,26 @@
     "playbook scenario reclassification": [
       "playbook scenario reclassification"
     ],
+    "playbook scenarios": [
+      "playbook scenarios"
+    ],
+    "playbook scenarios acceptance criteria": [
+      "playbook scenarios acceptance criteria"
+    ],
     "playbook scenarios continuation": [
       "playbook scenarios continuation"
+    ],
+    "playbook scenarios goal": [
+      "playbook scenarios goal"
+    ],
+    "playbook scenarios implementation summary": [
+      "playbook scenarios implementation summary"
+    ],
+    "playbook scenarios plan": [
+      "playbook scenarios plan"
+    ],
+    "playbook scenarios tasks": [
+      "playbook scenarios tasks"
     ],
     "playbook shell python daemon waves": [
       "playbook shell python daemon waves"
@@ -81988,6 +82267,9 @@
     "project plan roadmap": [
       "project plan roadmap"
     ],
+    "project profile slot": [
+      "project profile slot"
+    ],
     "project readme template": [
       "project readme template"
     ],
@@ -83604,6 +83886,9 @@
     "rank parity fixture": [
       "rank parity fixture"
     ],
+    "rank verdicts": [
+      "rank verdicts"
+    ],
     "ranked candidates": [
       "ranked candidates"
     ],
@@ -83720,6 +84005,33 @@
     ],
     "react memory context strategy tasks": [
       "react memory_context strategy tasks"
+    ],
+    "react native accessibility": [
+      "react native accessibility"
+    ],
+    "react native accessibility props": [
+      "react native accessibility props"
+    ],
+    "react native flex basis": [
+      "react native flex basis"
+    ],
+    "react native font scaling": [
+      "react native font scaling"
+    ],
+    "react native frontend practice": [
+      "react native frontend practice"
+    ],
+    "react native in canonical sk code": [
+      "react native in canonical sk-code"
+    ],
+    "react native keyboard avoidance": [
+      "react native keyboard avoidance"
+    ],
+    "react native layout practice": [
+      "react native layout practice"
+    ],
+    "react native platform differences": [
+      "react native platform differences"
     ],
     "reactive eof idle kill": [
       "reactive-EOF idle kill"
@@ -84531,6 +84843,9 @@
     "realpath production directory match": [
       "realpath production directory match"
     ],
+    "reanimated reduced motion": [
+      "reanimated reduced motion"
+    ],
     "reap before respawn dead socket": [
       "reap before respawn dead socket"
     ],
@@ -85124,6 +85439,9 @@
     ],
     "reduce spec kit doc templates": [
       "reduce spec-kit doc templates"
+    ],
+    "reduced motion section": [
+      "reduced motion section"
     ],
     "reducer config message": [
       "reducer config message"
@@ -89642,6 +89960,9 @@
     "responsibility map": [
       "responsibility map"
     ],
+    "responsive css practice": [
+      "responsive css practice"
+    ],
     "responsive design validation cli": [
       "responsive design validation cli"
     ],
@@ -92211,6 +92532,9 @@
     "router reach check scores the shipped fleet": [
       "router reach check scores the shipped fleet"
     ],
+    "router reach default concurrency": [
+      "router reach default concurrency"
+    ],
     "router reach implementation summary": [
       "router reach implementation summary"
     ],
@@ -94080,6 +94404,9 @@
     ],
     "same message system transform dedup": [
       "same message system transform dedup"
+    ],
+    "same mode tie compare text": [
+      "same mode tie compare text"
     ],
     "same path duplicate row": [
       "same-path duplicate row"
@@ -96117,6 +96444,9 @@
     ],
     "semantic union fallback": [
       "semantic union fallback"
+    ],
+    "semantic web markup": [
+      "semantic web markup"
     ],
     "semanticlanehealth": [
       "semanticLaneHealth"
@@ -98518,6 +98848,9 @@
     "sk code 3 1 0 0": [
       "sk-code 3.1.0.0"
     ],
+    "sk code 3 10 0 0": [
+      "sk-code 3.10.0.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -99049,6 +99382,27 @@
     ],
     "sk code four subskills tasks": [
       "sk-code four subskills tasks"
+    ],
+    "sk code frontend 1 0 0 0": [
+      "sk-code-frontend 1.0.0.0"
+    ],
+    "sk code frontend 1 0 1 0": [
+      "sk-code-frontend 1.0.1.0"
+    ],
+    "sk code frontend build plan": [
+      "sk-code-frontend build plan"
+    ],
+    "sk code frontend surface packet": [
+      "sk-code-frontend surface packet"
+    ],
+    "sk code frontend surface plan": [
+      "sk-code-frontend surface plan"
+    ],
+    "sk code frontend v1 0 0 0": [
+      "sk-code-frontend v1.0.0.0"
+    ],
+    "sk code frontend v1 0 1 0": [
+      "sk-code-frontend v1.0.1.0"
     ],
     "sk code frontmatter alignment": [
       "sk-code frontmatter alignment"
@@ -100390,6 +100744,9 @@
     "sk code v3 1 0 0": [
       "sk-code v3.1.0.0"
     ],
+    "sk code v3 10 0 0": [
+      "sk-code v3.10.0.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -101641,6 +101998,12 @@
     "sk create skill 1 1 1 0": [
       "sk-create-skill 1.1.1.0"
     ],
+    "sk create skill 1 10 0 0": [
+      "sk-create-skill 1.10.0.0"
+    ],
+    "sk create skill 1 10 1 0": [
+      "sk-create-skill 1.10.1.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -101739,6 +102102,12 @@
     ],
     "sk create skill v1 1 1 0": [
       "sk-create-skill v1.1.1.0"
+    ],
+    "sk create skill v1 10 0 0": [
+      "sk-create-skill v1.10.0.0"
+    ],
+    "sk create skill v1 10 1 0": [
+      "sk-create-skill v1.10.1.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -102280,6 +102649,9 @@
     "sk design fundamentals 1 0 4 0": [
       "sk-design-fundamentals 1.0.4.0"
     ],
+    "sk design fundamentals 1 1 0 0": [
+      "sk-design-fundamentals 1.1.0.0"
+    ],
     "sk design fundamentals reads as a ui skill": [
       "sk design fundamentals reads as a ui skill"
     ],
@@ -102303,6 +102675,9 @@
     ],
     "sk design fundamentals v1 0 4 0": [
       "sk-design-fundamentals v1.0.4.0"
+    ],
+    "sk design fundamentals v1 1 0 0": [
+      "sk-design-fundamentals v1.1.0.0"
     ],
     "sk design hub conversation plan": [
       "sk design hub conversation plan"
@@ -113011,6 +113386,9 @@
     "system spec kit 2 12 30 1": [
       "system-spec-kit 2.12.30.1"
     ],
+    "system spec kit 2 12 31 0": [
+      "system-spec-kit 2.12.31.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -113559,6 +113937,9 @@
     ],
     "system spec kit v2 12 30 1": [
       "system-spec-kit v2.12.30.1"
+    ],
+    "system spec kit v2 12 31 0": [
+      "system-spec-kit v2.12.31.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
@@ -115236,6 +115617,9 @@
     "third research lineage advisor": [
       "third research lineage advisor"
     ],
+    "third surface on the surface axis": [
+      "third surface on the surface axis"
+    ],
     "thirteen packets research review": [
       "thirteen packets research review"
     ],
@@ -115800,6 +116184,27 @@
     "tooling and pilot acceptance criteria": [
       "tooling and pilot acceptance criteria"
     ],
+    "tooling fixes": [
+      "tooling fixes"
+    ],
+    "tooling fixes acceptance criteria": [
+      "tooling fixes acceptance criteria"
+    ],
+    "tooling fixes decision record": [
+      "tooling fixes decision record"
+    ],
+    "tooling fixes goal": [
+      "tooling fixes goal"
+    ],
+    "tooling fixes implementation summary": [
+      "tooling fixes implementation summary"
+    ],
+    "tooling fixes plan": [
+      "tooling fixes plan"
+    ],
+    "tooling fixes tasks": [
+      "tooling fixes tasks"
+    ],
     "tools per mcp server": [
       "tools per mcp server"
     ],
@@ -116210,6 +116615,9 @@
     "translation log": [
       "translation log"
     ],
+    "translation tolerant layout": [
+      "translation tolerant layout"
+    ],
     "transparent mcp reconnect rss recycle": [
       "transparent mcp reconnect rss recycle"
     ],
@@ -116536,6 +116944,9 @@
     ],
     "trigger index repo root tasks": [
       "trigger index repo root tasks"
+    ],
+    "trigger index repo root warning": [
+      "trigger index repo root warning"
     ],
     "trigger index research": [
       "trigger index research"
@@ -117541,6 +117952,9 @@
     ],
     "unknown override rule id": [
       "unknown override rule id"
+    ],
+    "unknown project loads no profile": [
+      "unknown project loads no profile"
     ],
     "unknown surface fallback": [
       "unknown surface fallback"
@@ -120587,11 +121001,23 @@
     "weak retrieval refusal contract": [
       "weak retrieval refusal contract"
     ],
+    "web accessibility patterns": [
+      "web accessibility patterns"
+    ],
+    "web forms and layout": [
+      "web forms and layout"
+    ],
+    "web frontend practice": [
+      "web frontend practice"
+    ],
     "web interface guidelines": [
       "web interface guidelines"
     ],
     "web search": [
       "web search"
+    ],
+    "web vitals loading strategy": [
+      "web vitals loading strategy"
     ],
     "webfetch injection classifier": [
       "webfetch injection classifier"
