@@ -26,7 +26,7 @@ This packet writes nothing. The paired workflow mode applies the guidance it loa
 
 - [`references/frontend-practice.md`](references/frontend-practice.md) holds the cross-stack core and the Frontend overrides contract.
 - [`references/web-markup-and-css.md`](references/web-markup-and-css.md) and [`references/react-native-layout-and-a11y.md`](references/react-native-layout-and-a11y.md) are the web and native stack layers.
-- The six `web-*.md` and five `native-*.md` topic files cover focused implementation details for each stack.
+- The six web topic files and five native topic files cover focused implementation details for each stack.
 - [`references/figma-to-code.md`](references/figma-to-code.md) holds the five-pass check for comparing a built screen with its Figma frame.
 - [`references/workflow-implement.md`](references/workflow-implement.md), [`references/workflow-debug.md`](references/workflow-debug.md), and [`references/workflow-verify.md`](references/workflow-verify.md) provide the shared workflow doctrine.
 

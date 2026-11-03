@@ -7,7 +7,7 @@ trigger_phrases:
   - "native accessibility actions"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Native Accessibility
@@ -18,7 +18,7 @@ The native layer keeps layout, text scaling and baseline accessibility guidance 
 
 ---
 
-## 1. ROLE AND STATE ALIASES
+## 1. OVERVIEW AND ROLE AND STATE ALIASES
 
 ### N-A1. Role and ARIA aliases
 

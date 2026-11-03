@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.17.0
+version: 1.5.18.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -78,7 +78,7 @@ Record which path ran in the evidence. A run on the fallback path is still grade
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is project root and has `.git/`.
-2. The sk-code skill is present at `.skilled/skills/sk-code/` with the `sk-code-quality/`, `sk-code-review/`, `sk-code-ci/` and `sk-code-skilled/` packets intact.
+2. The sk-code skill is present at `.skilled/skills/sk-code/` with the `sk-code-quality/`, `sk-code-review/`, `sk-code-ci/`, `sk-code-frontend/` and `sk-code-skilled/` packets intact.
 3. The skill advisor at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py` is callable and `skill-graph.json` includes the `sk-code` entry with its `signals` list intact.
 4. The orchestrator runtime has a Skill Advisor Hook OR can invoke `skill_advisor.py` via Bash.
 5. **Concurrency cap**: When running multi-scenario waves, cap at 5 parallel scenarios. Scenarios that invoke `skill_advisor.py` are CPU-light and can run concurrently; scenarios that dispatch `@code` (write work) MUST run serially to avoid scope-collision on the working tree.

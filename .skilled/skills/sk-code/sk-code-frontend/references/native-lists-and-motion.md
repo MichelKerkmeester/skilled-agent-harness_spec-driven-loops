@@ -7,7 +7,7 @@ trigger_phrases:
   - "reanimated reduced motion"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Native Lists and Motion
@@ -18,7 +18,7 @@ The stack layer keeps the baseline list and accessibility rules in [`react-nativ
 
 ---
 
-## 1. VIRTUALIZED LISTS
+## 1. OVERVIEW AND VIRTUALIZED LISTS
 
 ### N-M1. FlatList window and batches
 

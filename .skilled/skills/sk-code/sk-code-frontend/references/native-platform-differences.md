@@ -7,7 +7,7 @@ trigger_phrases:
   - "ios android safe areas"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Native Platform Differences
@@ -18,7 +18,7 @@ The stack layer keeps the shared layout and safe-area baseline in [`react-native
 
 ---
 
-## 1. SHADOWS AND PRESS FEEDBACK
+## 1. OVERVIEW AND SHADOWS AND PRESS FEEDBACK
 
 ### N-P1. Platform shadows
 

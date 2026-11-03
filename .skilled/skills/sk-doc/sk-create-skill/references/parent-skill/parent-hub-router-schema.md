@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Parent Hub Router Schema
@@ -24,7 +24,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 
 **Core Principle**: One hub identity, one registry mode set, one router file that explains how requests become workflow modes plus optional surface evidence.
 
-**Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json`, `sk-code-quality` and `sk-code-review`, plus two surface packets, `sk-code-ci` and `sk-code-skilled`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry. The surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow. When no workflow mode scores, the hub routes the surface alone. A request with no signal at all defers rather than assuming a process.
+**Worked example**: `sk-code` publishes two workflow modes in `mode-registry.json`, `sk-code-quality` and `sk-code-review`, plus three surface packets, `sk-code-ci`, `sk-code-frontend` and `sk-code-skilled`. Every mode, workflow or surface, is an ordinary registry mode with an ordinary router signal entry. The surface packets carry `packetKind: surface`. `sk-code` is *surface-primary*: it declares no default workflow. When no workflow mode scores, the hub routes the surface alone. A request with no signal at all defers rather than assuming a process.
 
 **Consumer inventory**:
 - `.skilled/bin/compiled-route.cjs --hub <hub> --prompt <text>` replays a parent-hub routing decision against the compiled router (`servingAuthority: legacy` means the hub still routes through `hub-router.json`).
@@ -138,7 +138,7 @@ Use `bundleRules[]` when a hub has a durable prose rule such as "if the request 
 
 ## 4. ROUTER SIGNALS
 
-`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes and resources. The `sk-code-review` entry below reflects the `sk-code` workflow packet. The `sk-code-ci` entry shows the same shape for a surface packet. These are illustrative shapes, not live snapshots: the live hub gives all four packets weight 4, so consult the hub's own `hub-router.json` for current weights and vocabulary classes.
+`routerSignals` is keyed by mode. Every key maps to a scoring weight, vocabulary classes and resources. The `sk-code-review` entry below reflects the `sk-code` workflow packet. The `sk-code-ci` entry shows the same shape for a surface packet. These are illustrative shapes, not live snapshots: the live hub gives all five packets weight 4, so consult the hub's own `hub-router.json` for current weights and vocabulary classes.
 
 ```json
 {

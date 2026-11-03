@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.11.0
+version: 2.3.12.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -216,7 +216,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 ### DON'T
 
 - Load all of `sk-code-skilled/` indiscriminately ("just in case")
-- Load Go/NextJS/React Native resources (those live in the Barter fork)
+- Load Go or NextJS resources, or a project fork's own React Native surfaces, from canonical sk-code
 - Drop directory placeholders in playbook result YAML
 
 ---

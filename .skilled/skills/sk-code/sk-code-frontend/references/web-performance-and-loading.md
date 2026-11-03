@@ -7,7 +7,7 @@ trigger_phrases:
   - "font metrics and layout shift"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Performance and Loading
@@ -16,7 +16,7 @@ This file keeps browser loading and rendering performance mechanics. The baselin
 
 ---
 
-## 1. FIELD METRICS AND LCP
+## 1. OVERVIEW AND FIELD METRICS AND LCP
 
 ### P1. Largest contentful paint resource
 

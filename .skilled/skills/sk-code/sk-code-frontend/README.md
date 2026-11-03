@@ -5,7 +5,7 @@ trigger_phrases:
   - "web frontend practice"
   - "react native frontend practice"
   - "figma to code check"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # sk-code-frontend
@@ -49,7 +49,7 @@ The packet is read-only. The paired workflow mode applies its evidence to the re
 | `references/frontend-practice.md` | Cross-stack principles, token precedence, the Figma boundary, and the Frontend overrides contract |
 | `references/web-markup-and-css.md` | Semantic web markup, forms, layout, responsive behavior, media, CSS architecture, and framework examples |
 | `references/react-native-layout-and-a11y.md` | React Native and Yoga layout, accessibility, text scaling, inputs, images, lists, and Figma-check limits |
-| `references/web-*.md` | Six focused topics: elements and attributes, cascade and selectors, layout and sizing, accessibility patterns, performance and loading, and internationalization |
+| Six web topic files | Elements and attributes, cascade and selectors, layout and sizing, accessibility patterns, performance and loading, and internationalization |
 | `references/native-*.md` | Five focused topics: accessibility, inputs and keyboard, layout and text, lists and motion, and platform differences |
 | `references/figma-to-code.md` | Read-only inputs, five passes, the verdict and report, and the Figma-side tool ladder |
 | `references/workflow-*.md` | Shared implement, debug, and verify workflow doctrine |
@@ -63,7 +63,7 @@ The packet router lists each topic file and the condition that calls for it.
 | Check | How to run it |
 |---|---|
 | Packet contents | `ls -la .skilled/skills/sk-code/sk-code-frontend/references` |
-| Router declarations | `rg -n "## MACHINE ROUTER|^INTENT_SIGNALS|^RESOURCE_MAP|^DEFAULT_RESOURCE" .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` |
+| Router declarations | `rg -n "## 3\. MACHINE ROUTER|^INTENT_SIGNALS|^RESOURCE_MAP|^DEFAULT_RESOURCE" .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` |
 
 The listing shows the stack and topic references plus the three shared workflow links. The router check prints the machine-router heading and its resource declarations.
 

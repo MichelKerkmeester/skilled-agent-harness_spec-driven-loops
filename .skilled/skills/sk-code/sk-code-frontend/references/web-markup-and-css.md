@@ -7,7 +7,7 @@ trigger_phrases:
   - "web forms and layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Markup and CSS Practice
@@ -184,6 +184,8 @@ Open the rendered build in a `bdg` session.
 See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md), [accessibility patterns](web-accessibility-patterns.md), [performance and loading](web-performance-and-loading.md) and [internationalization](web-internationalization.md).
+
+---
 
 ## 9. PRE-COMPLETION CHECKLIST
 

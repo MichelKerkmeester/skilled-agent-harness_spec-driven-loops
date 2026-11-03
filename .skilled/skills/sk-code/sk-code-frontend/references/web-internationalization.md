@@ -7,7 +7,7 @@ trigger_phrases:
   - "translation tolerant layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Internationalization
@@ -16,7 +16,7 @@ This file keeps browser language, direction and locale formatting mechanics. The
 
 ---
 
-## 1. LANGUAGE AND DIRECTION
+## 1. OVERVIEW AND LANGUAGE AND DIRECTION
 
 Support summaries use the web-features Baseline classifications and browser-version data.
 
@@ -103,6 +103,8 @@ Support summaries use the web-features Baseline classifications and browser-vers
 **Pitfall.** A date-picker locale setting may not change the locale used by other date, number or currency formatters.
 **Support.** Judgment, no version gate.
 **See also.** https://angular.dev/guide/i18n/format-data-locale
+
+---
 
 ## 5. TRANSLATION-TOLERANT TEXT
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "android text metrics"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Native Layout and Text
@@ -18,7 +18,7 @@ Yoga defaults and baseline text-scaling rules stay in [`react-native-layout-and-
 
 ---
 
-## 1. FLEX AND GEOMETRY
+## 1. OVERVIEW AND FLEX AND GEOMETRY
 
 ### N-L1. Flex basis and width
 
@@ -41,7 +41,7 @@ Yoga defaults and baseline text-scaling rules stay in [`react-native-layout-and-
 ### N-L3. Absolute layers and stacking
 
 **Rule.** Use absolute positioning only for an overlay with a clear anchor, then set stacking and shadow behavior for each platform.
-**Why.** An absolute child leaves normal flex flow. The `zIndex` prop controls stacking, while Android `elevation` adds a native shadow and affects z-order. For cross-platform shadow behavior, see [native platform differences](native-platform-differences.md#1-shadows-and-press-feedback).
+**Why.** An absolute child leaves normal flex flow. The `zIndex` prop controls stacking, while Android `elevation` adds a native shadow and affects z-order. For cross-platform shadow behavior, see [native platform differences](native-platform-differences.md#1-overview-and-shadows-and-press-feedback).
 **When not to.** Keep content in the flex flow when its size should move or resize sibling content.
 **Pitfall.** Raising `zIndex` alone can place an Android view above a sibling without giving it the expected native shadow.
 **Support.** Checked against React Native 0.83 documentation and source. React Native 0.76 is inferred, not verified.

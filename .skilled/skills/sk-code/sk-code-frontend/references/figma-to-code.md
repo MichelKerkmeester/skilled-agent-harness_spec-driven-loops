@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Figma to Code Translation
@@ -16,7 +16,7 @@ How to read a Figma design as a reference and build the simplest correct structu
 
 ---
 
-## 1. THE RULE
+## 1. OVERVIEW AND THE RULE
 
 Figma is a reference for code, never its markup. Never copy the layer tree, absolute coordinates, fixed frame sizes or component property sets 1:1 into code.
 
@@ -97,7 +97,7 @@ Gather these inputs before comparing the frame with the rendered build:
 |---|---|---|---|
 | 1. Same-width comparison | Web: render at the frame's authored width W at device scale 1 beside the frame image. Compare presence, order, wrapping, alignment and overflow. Native: human comparison on a device or simulator at W points. | Every frame element is present in order, there is no overflow at W, and no fixed width was copied. | An element is missing or extra, wrapping differs, overflow occurs, or a mismatch changes meaning. Pixel difference alone never fails. |
 | 2. State by state | Every variant plus the empty, loading, error and disabled states named at workflow step 2. Dark mode only where the mode supports it. Motion is not in design unless the frame specifies it. | Each state has a capture and a verdict, and one component with props covers them. A state absent from the design is recorded as not in design. | A state is unrendered, there is one component per variant, or a state contradicts its frame. |
-| 3a. Render token check | Web: resolved styles from bdg dom eval and getComputedStyle. Native: resolved style props in component tests or the app's token constants. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
+| 3a. Render token check | Web: resolved styles from bdg cdp Runtime.evaluate and getComputedStyle. Native: resolved style props in component tests or the app's token constants. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
 | 3b. Source token check | Search changed source files for literal colors, sizes and font values where a token exists. Run the repository's own token checker if it has one. | No literal appears where a token exists, and the repository checker passes when one is available. | A literal appears where a token exists, or the repository checker fails. |
 | 4. Variable to token | Read each used Figma variable and node binding, then compare with the installed token package and version. Record one row per variable: Figma variable \| Figma value \| installed token \| installed value \| verdict. | Every variable maps to an installed token, or a package lag is reported. An open value goes to sk-design-fundamentals per workflow step 4. | A Figma variable name or value appears in code, or a missing variable is treated as resolved. |
 | 5. Range and access | Web: widths below and above W across phone, tablet and desktop widths, 200 percent zoom, keyboard-only use, screen reader, and contrast for text and controls against their backgrounds. Native: the mode's width checks, largest system font scale, VoiceOver or TalkBack, and contrast. | Each check has a verdict, and none fails. | An element clips or overlaps, a keyboard trap or unreachable control appears, a name, role or state is missing, or contrast is below the target set by sk-design-fundamentals. When no project target exists, use WCAG 2.2 AA: 4.5:1 for normal text and 3:1 for large text under [success criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum), plus 3:1 for user-interface components and graphical objects under [success criterion 1.4.11](https://www.w3.org/TR/WCAG22/#non-text-contrast). |

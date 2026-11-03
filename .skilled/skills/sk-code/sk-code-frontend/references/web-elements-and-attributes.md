@@ -7,7 +7,7 @@ trigger_phrases:
   - "html resource loading attributes"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Elements and Attributes
@@ -16,7 +16,7 @@ This file keeps the detailed HTML element and attribute mechanics. The baseline 
 
 ---
 
-## 1. OVERLAYS
+## 1. OVERVIEW AND OVERLAYS
 
 ### EA1. Modal and non-modal dialog APIs
 
@@ -114,7 +114,7 @@ This file keeps the detailed HTML element and attribute mechanics. The baseline 
 ### EA9. Document language and translation hints
 
 **Rule.** Keep `lang`, `dir` and `translate` aligned with the language and direction of the content.
-**Why.** These attributes expose language and text direction to browser features and assistive technology, while `translate="no"` marks names or code that machine translation should retain. Inline language, bidirectional text and locale formatting details are in [web-internationalization.md](web-internationalization.md#1-language-and-direction).
+**Why.** These attributes expose language and text direction to browser features and assistive technology, while `translate="no"` marks names or code that machine translation should retain. Inline language, bidirectional text and locale formatting details are in [web-internationalization.md](web-internationalization.md#1-overview-and-language-and-direction).
 **When not to.** Do not set a local language or direction override when the text follows the surrounding passage.
 **Pitfall.** A missing inline language or direction override can make a short foreign phrase render or sound incorrectly inside otherwise correct page metadata.
 **Support.** Baseline widely available since 2018-01-29 (web-features `lang-attr`). Chrome 1 / Firefox 1 / Safari ≤4.

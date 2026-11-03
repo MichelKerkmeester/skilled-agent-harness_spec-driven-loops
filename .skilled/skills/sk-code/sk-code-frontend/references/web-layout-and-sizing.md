@@ -7,7 +7,7 @@ trigger_phrases:
   - "container query layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Layout and Sizing
@@ -16,7 +16,7 @@ This file keeps the deeper CSS layout mechanics. The baseline flow and responsiv
 
 ---
 
-## 1. STACKING AND CONTAINING BLOCKS
+## 1. OVERVIEW AND STACKING AND CONTAINING BLOCKS
 
 ### L1. Ancestors that capture fixed positioning
 

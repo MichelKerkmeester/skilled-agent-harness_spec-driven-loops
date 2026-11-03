@@ -7,7 +7,7 @@ trigger_phrases:
   - "browser accessibility preferences"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Accessibility Patterns
@@ -16,7 +16,7 @@ The web layer keeps native element choice and baseline semantics in [`web-markup
 
 ---
 
-## 1. MODAL DIALOG CONTRACT
+## 1. OVERVIEW AND MODAL DIALOG CONTRACT
 
 Support summaries use the web-features Baseline classifications and browser-version data.
 
@@ -43,6 +43,8 @@ Support summaries use the web-features Baseline classifications and browser-vers
 | Focus styling | Keep a visible replacement if an outline is removed. |
 
 When a component library provides widget roles, state, focus movement or announcements, use that behavior as the source of truth. For hand-written widgets, implement the complete pattern described below.
+
+---
 
 ## 3. NAMES AND FOCUS
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "keyboard focus chaining"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Native Inputs and Keyboard
@@ -18,7 +18,7 @@ Baseline input props and labels stay in [`react-native-layout-and-a11y.md`](reac
 
 ---
 
-## 1. KEYBOARD AVOIDANCE
+## 1. OVERVIEW AND KEYBOARD AVOIDANCE
 
 ### N-K1. One keyboard strategy per screen
 

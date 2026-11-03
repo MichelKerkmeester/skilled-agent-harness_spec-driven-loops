@@ -7,7 +7,7 @@ trigger_phrases:
   - "native css nesting"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Cascade and Selectors
@@ -16,7 +16,7 @@ This file keeps the deeper cascade and selector mechanics. The baseline CSS arch
 
 ---
 
-## 1. CASCADE AND SPECIFICITY
+## 1. OVERVIEW AND CASCADE AND SPECIFICITY
 
 ### CS1. Cascade decision order
 
