@@ -37,7 +37,7 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The Codex and Pi sweeps exit 0 with no output when a named transcript cannot be read, so a save cannot tell a failed read from an empty one",
     "created_at": "2026-11-02T17:46:38Z",
-    "last_save_at": "2026-11-03T06:30:44.058Z",
+    "last_save_at": "2026-11-03T08:11:03.711Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +220,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b205f0534a593cc988f8e90a0aa04217b253965421049523c044b6bf097b5ee",
+    "source_fingerprint": "sha256:8b2f3fcb547559ba711f65c3a67aa55a95d3e9046c115844d0e0cd2b3a480922",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2343f53d356b1c89bf6f8dfab0fe14a9747eb8b10d0814cc9f33750d5ca31934",
       "plan.md": "1ba3a59ab7525b35cd51d41f1248ea69531a32ecca07c48622c74d9ebc62ca64",
-      "tasks.md": "1878a9b96cf3375bec7d2c757e06563923667dc79b7d26f3cd54d744a2301512",
+      "tasks.md": "0f2697e06c0e7b136513e6bab2f4d668d916ec813e982037c0cf4e78b0639c63",
       "decision-record.md": "b8a9539163e3d65667beffbff350ba5070446c9658cab6571cd4757b510b8a58",
       "implementation-summary.md": "46f0ac6f8b7879612acb77805c202874fc1f3132627740cf79e373a0f852215d"
     },

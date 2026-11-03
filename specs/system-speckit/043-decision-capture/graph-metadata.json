@@ -216,7 +216,7 @@
     ],
     "causal_summary": "The artifact this series changes is the automatic operator decision capture pipeline: the capture core and runtime adapters under `.skilled/hooks/decision-capture/`, the save-time sweeps in its `bin/`, and the decision-record writer at `.skilled/skills/system-spec-kit/runtime/lib/continuity/decision-record-writer.ts` that a full-auto `/speckit:save` calls",
     "created_at": "2026-11-01T20:52:24Z",
-    "last_save_at": "2026-11-03T06:48:41.614Z",
+    "last_save_at": "2026-11-03T08:11:03.728Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,7 +234,7 @@
       "research/research.md": "d80f8cc06fc42ede06213d845af219c85d2ddbd784a630865191064f645102fa",
       "handover.md": "4c8c344f769a26750c900ce168e6c4a61436fea17d760b63e55cdfb8ec5e92c2"
     },
-    "last_active_child_id": "system-speckit/043-decision-capture/006-live-conversation-test",
-    "last_active_at": "2026-11-03T06:48:41.614Z"
+    "last_active_child_id": "system-speckit/043-decision-capture/007-gap-closure",
+    "last_active_at": "2026-11-03T08:11:03.728Z"
   }
 }

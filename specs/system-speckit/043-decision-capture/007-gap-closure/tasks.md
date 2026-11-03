@@ -146,7 +146,7 @@ A blocked task carries `[B]` and the command output that blocks it.
 - [x] CHK-FIX-004 [P0] N/A: no security, path or redaction parser changes. Evidence: no parser or path change.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`: named or discovered, by readable, unreadable or empty. Evidence: four rows in plan.md.
 - [x] CHK-FIX-006 [P1] Hostile env variant: the Pi nudge test runs with `SYSTEM_DECISION_CAPTURE_DISABLED=1` and shows nothing. Evidence: the kill-switch test registers no `turn_end` handler and notifies nothing.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase. Evidence: the code landed in `b0eec9e57b`, the phase docs and live-run evidence in `740f6128e7`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -186,7 +186,7 @@ A blocked task carries `[B]` and the command output that blocks it.
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 13 | 12/13 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-02
