@@ -116,6 +116,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 7 | 007-web-only-frontend/ | Remove the React Native layer from canonical sk-code: the frontend surface keeps web practice and the Figma check | Complete |
 | 8 | 008-release-coverage/ | Fold the packet into the root release notes and README, and add a release-coverage check to the alignment harness | Complete |
 | 9 | 009-reference-restructure/ | Rebuild the nine frontend references to the sk-doc reference template and remove the Angular-specific rules | Complete |
+| 10 | 010-reference-readability-research/ | [Phase 10 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -136,6 +137,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 006-open-items-and-alignment | 007-web-only-frontend | Every routing gate is green and no finding is open | `006-open-items-and-alignment/scratch/final-suites.txt` and `reach-final.txt` |
 | 007-web-only-frontend | 008-release-coverage | The surface is web-only and every routing gate and the alignment recheck are clean | `007-web-only-frontend/scratch/final-suites.txt` and `alignment-fixes.md` |
 | 008-release-coverage | 009-reference-restructure | The release notes, README and release-coverage check are on main | `008-release-coverage/scratch/release-check-after.txt` |
+| 009-reference-restructure | 010-reference-readability-research | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

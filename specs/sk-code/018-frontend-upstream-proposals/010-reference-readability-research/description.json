@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/018-frontend-upstream-proposals/010-reference-readability-research",
+  "description": "Phase 10: reference-readability-research",
+  "keywords": [
+    "phase",
+    "reference-readability-research"
+  ],
+  "lastUpdated": "2026-11-03T21:43:32.884Z",
+  "specId": "010",
+  "folderSlug": "reference-readability-research",
+  "parentChain": [
+    "sk-code",
+    "018-frontend-upstream-proposals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
