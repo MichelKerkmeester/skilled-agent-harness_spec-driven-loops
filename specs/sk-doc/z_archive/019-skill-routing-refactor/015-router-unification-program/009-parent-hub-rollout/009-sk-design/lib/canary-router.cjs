@@ -205,10 +205,13 @@ function explicitMode(routingModel, value) {
 // STAGE-ONE SCORING
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Score every mode by (count of matched keywords) x weight — identical to the
-// frozen legacy replay's scoreIntents formula. A direct command mention routes
-// past keyword scoring entirely, exactly as the legacy replay resolved
-// /design:chart, /design:diagram and /design:extract.
+// Score every mode by (count of distinct matched keyword forms) x weight.
+// Weight is constant per mode, so counting each hit once matches the frozen
+// legacy replay's scoreIntents formula. A direct command mention routes past
+// keyword scoring entirely, exactly as the legacy replay resolved /design:chart,
+// /design:diagram and /design:extract. A vocabulary that lists both spellings of
+// one phrase names it once, so the fold-deduped count keeps a single mention
+// worth one hit rather than two.
 function scoreModes(routingModel, text) {
   const direct = routingModel.modes.filter((mode) => (
     typeof mode.command === 'string' && containsSignal(text, mode.command)
@@ -216,10 +219,12 @@ function scoreModes(routingModel, text) {
   if (direct.length > 0) {
     return direct.map((mode) => ({ mode: mode.workflowMode, score: Number.MAX_SAFE_INTEGER }));
   }
-  return routingModel.modes.map((mode) => ({
-    mode: mode.workflowMode,
-    score: mode.keywords.filter((keyword) => containsSignal(text, keyword)).length * mode.weight,
-  })).filter((entry) => entry.score > 0);
+  return routingModel.modes.map((mode) => {
+    const matched = new Set(mode.keywords
+      .filter((keyword) => containsSignal(text, keyword))
+      .map((keyword) => spaced(normalize(keyword))));
+    return { mode: mode.workflowMode, score: matched.size * mode.weight };
+  }).filter((entry) => entry.score > 0);
 }
 
 // Keep every mode within ambiguityDelta of the top score — identical to the
@@ -249,11 +254,16 @@ function scoreIntents(snapshot, selectedModes, text) {
   const modeOrder = new Map(snapshot.routingModel.tieBreak.map((mode, index) => [mode, index]));
   const scores = intents
     .filter((intent) => selected.has(intent.mode))
-    .map((intent) => ({
-      intent: intent.intent,
-      mode: intent.mode,
-      score: intent.keywords.filter((keyword) => containsSignal(text, keyword)).length * intent.weight,
-    }))
+    .map((intent) => {
+      const matched = new Set(intent.keywords
+        .filter((keyword) => containsSignal(text, keyword))
+        .map((keyword) => spaced(normalize(keyword))));
+      return {
+        intent: intent.intent,
+        mode: intent.mode,
+        score: matched.size * intent.weight,
+      };
+    })
     .filter((entry) => entry.score > 0);
   scores.sort((left, right) => (
     right.score - left.score

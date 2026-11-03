@@ -155,6 +155,12 @@ function normalizeSignal(value) {
   return String(value).trim().toLowerCase();
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function documentRankEvidence(request) {
   const evidence = request.evidence.find((entry) => (
     entry.kind === 'advisor' && entry.trust === 'live'
@@ -246,7 +252,7 @@ function documentDecision(card, input) {
   const matchedKeys = new Set();
   for (const selector of card.selectors) {
     if (selector.keywords.some((keyword) => signals.some((signal) => (
-      signal.value.includes(normalizeSignal(keyword))
+      spaced(signal.value).includes(spaced(normalizeSignal(keyword)))
     )))) {
       matchedKeys.add(destinationKey(selector.destinationId));
     }

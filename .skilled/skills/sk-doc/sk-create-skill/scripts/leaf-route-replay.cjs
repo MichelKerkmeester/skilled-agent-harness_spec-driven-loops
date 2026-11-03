@@ -214,10 +214,17 @@ function keywordSignal(entry, intentWeight) {
 function scoreIntents(taskLower, intentSignals) {
   const scores = [];
   for (const [key, sig] of Object.entries(intentSignals)) {
+    const counted = new Set();
     let score = 0;
     for (const entry of sig.keywords) {
       const keyword = keywordSignal(entry, sig.weight);
-      if (keywordHits(taskLower, keyword.text)) score += keyword.weight;
+      if (!keywordHits(taskLower, keyword.text)) continue;
+      // A keyword whose folded form already counted for this intent adds
+      // nothing: both spellings of one phrase name it once.
+      const folded = spaced(keyword.text);
+      if (counted.has(folded)) continue;
+      counted.add(folded);
+      score += keyword.weight;
     }
     if (score > 0) scores.push({ intent: key, score });
   }

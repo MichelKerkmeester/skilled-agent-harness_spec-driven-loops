@@ -166,6 +166,16 @@ test('scoreIntents keeps each tuple keyword weight', () => {
   ]);
 });
 
+test('scoreIntents counts one folded mention once', () => {
+  const signals = {
+    RESEARCH: { weight: 2, keywords: ['deep research', 'deep-research'] }
+  };
+
+  assert.deepEqual(S.scoreIntents('run deep research', signals), [
+    { intent: 'RESEARCH', score: 2 }
+  ]);
+});
+
 test('keywordHits guards the four keywords', () => {
   assert.equal(S.keywordHits('preview', 'review'), false);
   assert.equal(S.keywordHits('input', 'inp'), false);

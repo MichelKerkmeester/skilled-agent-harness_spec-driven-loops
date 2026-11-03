@@ -97,18 +97,21 @@ function route(snapshot, selectionKind, modes) {
   }, snapshot.policy);
 }
 
-// Score every mode by (count of matched keywords) x weight -- identical to
-// the frozen legacy replay's scoreIntents formula (weight is constant per
-// mode in both, so summing weight-per-hit equals count-of-hits x weight).
-// Keywords come from routingModel.modes[].keywords, which is the unfiltered
-// union of hub-router.json's vocabularyClasses for that mode's routerSignals
-// classes -- the same source legacy projects, with no cross-mode ambiguity
-// filtering.
+// Score every mode by (count of distinct matched keyword forms) x weight.
+// Weight is constant per mode, so counting each hit once matches the frozen
+// legacy replay's scoreIntents formula. Keywords come from
+// routingModel.modes[].keywords, which is the unfiltered union of
+// hub-router.json's vocabularyClasses for that mode's routerSignals classes --
+// the same source legacy projects, with no cross-mode ambiguity filtering. A
+// vocabulary that lists both spellings of one phrase names it once, so the
+// fold-deduped count keeps a single mention worth one hit rather than two.
 function scoreModes(routingModel, text) {
-  return routingModel.modes.map((mode) => ({
-    mode: mode.workflowMode,
-    score: mode.keywords.filter((keyword) => containsSignal(text, keyword)).length * mode.weight,
-  })).filter((entry) => entry.score > 0);
+  return routingModel.modes.map((mode) => {
+    const matched = new Set(mode.keywords
+      .filter((keyword) => containsSignal(text, keyword))
+      .map((keyword) => spaced(normalize(keyword))));
+    return { mode: mode.workflowMode, score: matched.size * mode.weight };
+  }).filter((entry) => entry.score > 0);
 }
 
 // Keep every mode within ambiguityDelta of the top score -- identical to the

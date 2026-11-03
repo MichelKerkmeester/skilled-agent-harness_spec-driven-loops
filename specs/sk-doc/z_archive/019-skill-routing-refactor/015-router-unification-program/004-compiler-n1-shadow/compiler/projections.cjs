@@ -297,13 +297,14 @@ function replayPolicyCard(markdown, taskText) {
   if (negative) {
     return { action: 'reject', reason: 'forbidden', terminal: 'DOCUMENT_ONLY_UNATTESTED' };
   }
-  const scores = table.selectors.map((selector) => ({
-    score: selector.keywords.reduce(
-      (total, keyword) => total + (text.includes(spaced(keyword)) ? 1 : 0),
-      0,
-    ),
-    selector,
-  })).filter((entry) => entry.score > 0)
+  // A keyword whose folded form already counted for this selector adds
+  // nothing: both spellings of one phrase name it once.
+  const scores = table.selectors.map((selector) => {
+    const matched = new Set(selector.keywords
+      .filter((keyword) => text.includes(spaced(keyword)))
+      .map((keyword) => spaced(keyword)));
+    return { score: matched.size, selector };
+  }).filter((entry) => entry.score > 0)
     .sort((left, right) => (
       right.score - left.score || compareUtf16(left.selector.intent, right.selector.intent)
     ));

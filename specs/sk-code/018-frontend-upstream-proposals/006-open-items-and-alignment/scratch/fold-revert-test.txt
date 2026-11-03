@@ -1,0 +1,9 @@
+## fix reverted (9 served and leaf files at HEAD), tests kept
+ℹ fail 2
+✖ failing tests:
+✖ one folded mention scores one weight, not two (1.305ms)
+ℹ pass 25
+✖ scoreIntents counts one folded mention once (0.586834ms)
+## fix restored
+ℹ fail 0
+ℹ pass 27

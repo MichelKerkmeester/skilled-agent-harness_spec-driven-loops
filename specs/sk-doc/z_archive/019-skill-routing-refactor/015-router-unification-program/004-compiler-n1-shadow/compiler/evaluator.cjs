@@ -26,17 +26,18 @@ function policyNumber(detectors, id, fallback) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+// Score each selector by its count of distinct matched signal forms. A
+// vocabulary that lists both spellings of one phrase names it once, so two
+// detectors that fold to the same text contribute one hit, never two.
 function scoreSelectors(policy, taskText, detectors) {
   const text = spaced(taskText.toLowerCase());
   return policy.selectors.map((selector) => {
-    const signalDetectors = selector.detectorIds
+    const matched = new Set(selector.detectorIds
       .filter((id) => id.startsWith('detector:signal:'))
-      .map((id) => detectors.get(id));
-    const score = signalDetectors.reduce(
-      (total, detector) => total + (detector && text.includes(spaced(detector.value)) ? 1 : 0),
-      0,
-    );
-    return { score, selector };
+      .map((id) => detectors.get(id))
+      .filter((detector) => detector && text.includes(spaced(detector.value)))
+      .map((detector) => spaced(detector.value)));
+    return { score: matched.size, selector };
   }).filter((entry) => entry.score > 0)
     .sort((left, right) => {
       if (left.score !== right.score) return right.score - left.score;

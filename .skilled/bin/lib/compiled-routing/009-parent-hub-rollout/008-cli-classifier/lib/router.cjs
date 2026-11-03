@@ -122,21 +122,40 @@ function detectorMatches(text, detector) {
   return new RegExp(`\\b${pattern}`, 'i').test(haystack);
 }
 
+// Score every mode by its count of distinct matched detector forms. A
+// vocabulary that lists both spellings of one phrase names it once, so two
+// detectors whose values fold to the same text contribute one hit, never two.
 function scoredModes(snapshot, matchedDetectorIds) {
+  const foldedValueById = new Map(snapshot.policy.detectors.map((detector) => (
+    [detector.id, spaced(String(detector.value).toLowerCase())]
+  )));
   const explicitSelectors = new Set(snapshot.destinationGraph.modeSignals
     .filter((signal) => signal.explicit)
     .map((signal) => signal.selectorId));
   const rows = new Map(snapshot.destinationGraph.tieBreak.map((mode, index) => (
-    [mode, { explicitHits: 0, score: 0, tieBreakIndex: index, workflowMode: mode }]
+    [mode, {
+      explicitValues: new Set(),
+      scoreValues: new Set(),
+      tieBreakIndex: index,
+      workflowMode: mode,
+    }]
   )));
   for (const selector of snapshot.policy.selectors) {
-    const hits = selector.detectorIds.filter((id) => matchedDetectorIds.has(id)).length;
-    if (hits === 0) continue;
     const row = rows.get(selector.destinationId.workflowMode);
-    row.score += hits;
-    if (explicitSelectors.has(selector.id)) row.explicitHits += hits;
+    const explicit = explicitSelectors.has(selector.id);
+    for (const id of selector.detectorIds) {
+      if (!matchedDetectorIds.has(id)) continue;
+      const value = foldedValueById.get(id) ?? id;
+      row.scoreValues.add(value);
+      if (explicit) row.explicitValues.add(value);
+    }
   }
-  return [...rows.values()].filter((row) => row.score > 0);
+  return [...rows.values()].map((row) => ({
+    explicitHits: row.explicitValues.size,
+    score: row.scoreValues.size,
+    tieBreakIndex: row.tieBreakIndex,
+    workflowMode: row.workflowMode,
+  })).filter((row) => row.score > 0);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -189,6 +189,9 @@ function explicitMode(routingModel, value) {
   ));
 }
 
+// Score every mode by (count of distinct matched keyword forms) x weight, so a
+// vocabulary that lists both spellings of one phrase names it once and a single
+// mention stays worth one hit rather than two.
 function scoreModes(routingModel, text) {
   const direct = routingModel.modes.filter((mode) => (
     typeof mode.command === 'string' && containsSignal(text, mode.command)
@@ -196,10 +199,12 @@ function scoreModes(routingModel, text) {
   if (direct.length > 0) {
     return direct.map((mode) => ({ mode: mode.workflowMode, score: Number.MAX_SAFE_INTEGER }));
   }
-  return routingModel.modes.map((mode) => ({
-    mode: mode.workflowMode,
-    score: mode.keywords.filter((keyword) => containsSignal(text, keyword)).length * mode.weight,
-  })).filter((entry) => entry.score > 0);
+  return routingModel.modes.map((mode) => {
+    const matched = new Set(mode.keywords
+      .filter((keyword) => containsSignal(text, keyword))
+      .map((keyword) => spaced(normalize(keyword))));
+    return { mode: mode.workflowMode, score: matched.size * mode.weight };
+  }).filter((entry) => entry.score > 0);
 }
 
 // Mirrors router-replay.cjs's selectIntents (the legacy replay's own ambiguity
