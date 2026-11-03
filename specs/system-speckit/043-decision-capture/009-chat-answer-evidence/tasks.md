@@ -147,7 +147,7 @@ A blocked task carries `[B]` and the command output that blocks it.
 - [x] CHK-FIX-004 [P0] The parser cases cover the adversarial inputs: misspelt opening, filler before verb, anaphor after verb, list marker before verb, shift phrase past word five, inline code inside an `or` question. Evidence: the first three were already committed (misspelt opening as fixture pair 1); `chat-questions.test.mjs` now adds `1. fix the login bug` (imperative true), a shift phrase past word five (topicShift false) and a backticked `or` question answered `backoff` (optionMatch true); the hooks suites print tests 122, pass 122, fail 0.
 - [x] CHK-FIX-005 [P1] Matrix axes and rows listed in `plan.md`: four question types by seven reply shapes. Evidence: `plan.md` line 140.
 - [x] CHK-FIX-006 [P1] Hostile env variant: N/A by construction, because the evidence reads no process-wide state. Evidence: `rg -n 'process\.(env|cwd)'` on `chat-questions.mjs` prints nothing, exit 1.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase. Open: the phase is not committed yet, so no commit can be named.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase. Evidence: landed in `af931860f8` on 2026-11-03, after the hooks (122 of 122), runtime vitest (52 of 52), Pi (10 of 10) and OpenCode plugin (6 of 6) suites, typecheck and lint all passed.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

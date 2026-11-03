@@ -146,7 +146,7 @@ A blocked task carries `[B]` and the command output that blocks it.
 - [x] CHK-FIX-004 [P0] Path adversarial table tests: subfolder, symlinked path, trailing slash, relative `.`, outside git, missing folder and exported `GIT_DIR`, in both runtimes. Evidence: committed tests cover subfolder, symlinked path and outside git in both runtimes and exported `GIT_DIR` in ESM; trailing slash, relative `.` and missing folder ran in the scratch probe against both runtimes.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count listed in `plan.md`: ten parity rows and one hostile row for the token; three readers by two files by three locations for the migration. Evidence: `plan.md` lines 104 and 105.
 - [x] CHK-FIX-006 [P1] Hostile env variant: the token test runs with `GIT_DIR` and `GIT_WORK_TREE` pointing at another repository and gets the same folder. Evidence: the committed test sets `GIT_DIR` only; the scratch probe ran the whole process with both `GIT_DIR` and `GIT_WORK_TREE` on another repository and every shape matched.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase. Open: the phase is not committed yet, so no commit can be named.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this phase. Evidence: landed in `af931860f8` on 2026-11-03, after the hooks (122 of 122), runtime vitest (52 of 52), Pi (10 of 10) and OpenCode plugin (6 of 6) suites, typecheck and lint all passed.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

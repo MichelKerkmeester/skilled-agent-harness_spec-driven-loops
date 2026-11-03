@@ -145,7 +145,7 @@ A blocked task carries `[B]` and the command output that blocks it. A probe line
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction change. Evidence: N/A, routing text only.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in `plan.md`: four prompt classes by two index states. Evidence: `plan.md` FIX ADDENDUM names both axes.
 - [x] CHK-FIX-006 [P1] Hostile state variant: the probes ran once on a stale index in Measured Behavior, and only live-index lines count toward REQ-003 and REQ-004. Evidence: stale lines stay in Measured Behavior; REQ-003 and REQ-004 cite only live lines.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this child. Open: this child is not committed yet; the orchestrator pins the commit when it lands.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the commit that lands this child. Evidence: landed in `af931860f8` on 2026-11-03, after the hooks (122 of 122), runtime vitest (52 of 52), Pi (10 of 10) and OpenCode plugin (6 of 6) suites, typecheck and lint all passed.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

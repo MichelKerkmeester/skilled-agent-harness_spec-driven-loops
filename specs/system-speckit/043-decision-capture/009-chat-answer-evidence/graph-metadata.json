@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The detector turns every asking paragraph into a candidate against the next typed prompt, and the save writes an entry \"for each chat candidate whose answer clearly replies to its question\" (`save.md:72`)",
     "created_at": "2026-11-03T09:15:09Z",
-    "last_save_at": "2026-11-03T10:30:42.257Z",
+    "last_save_at": "2026-11-03T10:49:47.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +213,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:891801e94bec281e0f4130d64a9f9f87607d7d5528e39a229538a2d89a05eb55",
+    "source_fingerprint": "sha256:92b429e022d54199f2dab0a2be50a3401f74c19911ccb282250f5ef35bbd0ad5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5160b0beb2c7f8a0bed21086d7c8915d8799495c53cfd331ad320f1f9fbe69e6",
       "plan.md": "12e6d33bcc1935dfe55d32c098439260cfb0916c2af13091a7ef4d3759316977",
-      "tasks.md": "1109524e59b3c73bb51915c6eb051347fcfb6e1f8ef2d985a0863685571587b1",
+      "tasks.md": "7b6c389848cab19ae8bb49083170f224c43d32e9906f06fc2e00fd6cd0085c1b",
       "implementation-summary.md": "e8c5387743ec0b11137e3051ead7bd751890f6bd8add580232d9b22ca1ff306e"
     },
     "last_active_at": null
