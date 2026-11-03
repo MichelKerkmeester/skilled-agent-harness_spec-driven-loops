@@ -1,0 +1,40 @@
+## hermes sync
+Wrote 1 of 66 Hermes skill copies; pruned 0
+exit=0
+## leaf manifest check
+leaf-manifest.json OK (53687dded313bf0930f03ac7addc9ff4ed36f84038999faf4dd7f4fd07630a19)
+
+## playbook .skilled/skills/sk-code/manual-testing-playbook
+PASS package=sk-code tier=FAIL_CLOSED scenarios=27 categories=8 operator=18 routing_gold_excluded=9 violations=0 warnings=0
+exit=0
+exit=0
+## playbook .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook
+PASS package=sk-code/sk-code-frontend tier=FAIL_CLOSED scenarios=2 categories=1 operator=2 routing_gold_excluded=0 violations=0 warnings=0
+exit=0
+exit=0
+## playbook .skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook
+  WARN HAND_TYPED_CENSUS manual-testing-playbook.md root contains a hand-typed census (20 scenarios, 7 categories); derived census is 20 scenarios across 7 categories
+exit=0
+exit=0
+## compiled-route suites
+ℹ tests 101
+ℹ pass 101
+ℹ fail 0
+exit=0
+## leaf manifest exit
+exit=0
+## layout
+figma-to-code.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+frontend-practice.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-accessibility-patterns.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-cascade-and-selectors.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-elements-and-attributes.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-internationalization.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-layout-and-sizing.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-markup-and-css.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+web-performance-and-loading.md labels=0 setext=0 angular=0 first_h2="## 1. OVERVIEW"
+## id diff
+44d43
+< I8
+## links
+checked=103 broken=0

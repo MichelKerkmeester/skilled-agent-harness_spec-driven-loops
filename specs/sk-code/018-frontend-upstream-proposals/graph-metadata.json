@@ -11,7 +11,8 @@
     "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
     "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment",
     "sk-code/018-frontend-upstream-proposals/007-web-only-frontend",
-    "sk-code/018-frontend-upstream-proposals/008-release-coverage"
+    "sk-code/018-frontend-upstream-proposals/008-release-coverage",
+    "sk-code/018-frontend-upstream-proposals/009-reference-restructure"
   ],
   "manual": {
     "depends_on": [],
@@ -44,7 +45,7 @@
       "five-pass"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -58,14 +59,14 @@
       "005-inferred-confirmations/decision-record.md",
       "006-open-items-and-alignment/scratch/final-suites.txt",
       "007-web-only-frontend/scratch/final-suites.txt",
+      "008-release-coverage/scratch/release-check-after.txt",
       "001-frontend-surface-mode/decision-record.md",
       "007-web-only-frontend/decision-record.md",
       "002-tooling-fixes/decision-record.md",
       "001-frontend-surface-mode/goal.md",
       "002-tooling-fixes/goal.md",
       "003-design-handoffs/goal.md",
-      "004-playbook-scenarios/goal.md",
-      "005-inferred-confirmations/goal.md"
+      "004-playbook-scenarios/goal.md"
     ],
     "entities": [
       {
@@ -120,6 +121,12 @@
         "name": "final-suites.txt",
         "kind": "file",
         "path": "006-open-items-and-alignment/scratch/final-suites.txt",
+        "source": "derived"
+      },
+      {
+        "name": "release-check-after.txt",
+        "kind": "file",
+        "path": "008-release-coverage/scratch/release-check-after.txt",
         "source": "derived"
       },
       {
@@ -191,17 +198,17 @@
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T20:18:38.234Z",
+    "last_save_at": "2026-11-03T21:31:48.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e876d01d527992a6dde2e1b7514d8a96217432aae6804e0cb0bec3540f32dd0b",
+    "source_fingerprint": "sha256:ccada6f6d4a7da63763f119eaaf2a6b07953f2ba10a796ffced585985ba91d34",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cd0bb3217b8c2af31f89413809b523a80ff8869047b35e4029d4fba808d4cc0b"
+      "spec.md": "5c41afae09a891b61718be4996fd6e21037b2ff72e2ddadff034471266d6b21e"
     },
     "last_active_at": null
   }

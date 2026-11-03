@@ -7,7 +7,7 @@ trigger_phrases:
   - "web forms and layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Web Markup and CSS Practice
@@ -16,9 +16,21 @@ The web layer for the frontend practice core, with framework examples kept besid
 
 ---
 
-## 1. OVERVIEW AND BOUNDARY
+## 1. OVERVIEW
+
+### Purpose
 
 This file is the web layer of [`frontend-practice.md`](frontend-practice.md). It expresses all eleven core principles through web markup, forms, layout, responsive behavior, media and framework patterns.
+
+### When to Use
+
+- Adding or changing page structure, landmarks or headings
+- Building or changing a form and its controls
+- Changing layout, responsive behavior or media handling
+- Changing CSS architecture or a framework-specific equivalent
+- Running the pre-completion checklist on a web change
+
+### Boundaries
 
 This file owns web mechanics. It does not own:
 
@@ -44,6 +56,7 @@ This file owns web mechanics. It does not own:
 - Use a visually hidden utility class for text meant only for screen readers. Do not use `display: none` or `visibility: hidden`, which also hide the text from assistive technology.
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md) and [accessibility patterns](web-accessibility-patterns.md).
+
 ---
 
 ## 3. FORMS
@@ -70,6 +83,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 | SMS or email code | `one-time-code` |
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md).
+
 ---
 
 ## 4. LAYOUT
@@ -85,14 +99,14 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Take `z-index` from a named scale (base, dropdown, sticky, overlay, modal or toast), never a magic number such as `9999`.
 
 **Deeper:** [Layout and sizing](web-layout-and-sizing.md) and [internationalization](web-internationalization.md).
+
 ---
 
 ## 5. RESPONSIVE
 
 - Write mobile-first: base styles for a narrow screen, then `@media (min-width: ...)` steps at the breakpoints the project's tokens define. This is part of [core principle 9](frontend-practice.md#2-the-eleven-principles).
 - Use container queries when a component's layout depends on its available width. See [L6](web-layout-and-sizing.md#l6-container-queries-and-container-units).
-
-**Support.** Baseline widely available since 2025-08-14 (web-features `container-queries`). Chrome 105 / Firefox 110 / Safari 16.
+  - Support: Baseline widely available since 2025-08-14 (web-features `container-queries`). Chrome 105 / Firefox 110 / Safari 16.
 - Size type in `rem` so it scales with the root font size, and use the installed typography tokens.
 - Use `clamp()` only between two adjacent steps of the type scale for large display type. [`interaction-craft.md`](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) Section 4 explains the reasoning.
 - On mobile, use `100dvh` or `100svh` instead of `100vh`, which ignores the browser toolbar.
@@ -101,6 +115,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Respect the core reduced-motion principle: wrap non-essential animation in `@media (prefers-reduced-motion: no-preference)`, or remove it under `reduce`.
 
 **Deeper:** [Layout and sizing](web-layout-and-sizing.md) and [accessibility patterns](web-accessibility-patterns.md).
+
 ---
 
 ## 6. MEDIA
@@ -113,6 +128,7 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Give inline SVG icons `aria-hidden="true"`. Put the accessible name on the control that holds the icon. Fill icons with `currentColor`, so they follow the text color token.
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md) and [performance and loading](web-performance-and-loading.md).
+
 ---
 
 ## 7. CSS ARCHITECTURE
@@ -125,20 +141,12 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Animate `transform` and `opacity`. Animating `width`, `height`, `top` or `left` forces layout on every frame.
 
 **Deeper:** [Cascade and selectors](web-cascade-and-selectors.md) and [accessibility patterns](web-accessibility-patterns.md).
+
 ---
 
 ## 8. FRAMEWORK SECTIONS
 
 The entries below are examples of how common frameworks express shared DOM and CSS rules. Apply an example only when that framework is in use; the underlying rule remains the platform rule.
-
-### Angular
-
-- Use native elements in templates. A component that wraps a button keeps the `<button>` inside rather than putting click handling on a non-interactive host.
-- Bind ARIA state to DOM attributes. In Angular, use attribute binding such as `[attr.aria-expanded]`, `[attr.aria-controls]` and `[attr.aria-label]`.
-- Track repeated items by stable data identity. Angular's built-in control flow expresses this as `@for (item of items; track item.id)`.
-- Where Angular's optimized image directive is already used, provide `ngSrc`, `width` and `height`.
-- When a component's host renders a box, set a layout display value if its default display is inline.
-- Theme component libraries through installed token variables, not private implementation class names.
 
 ### React
 
@@ -152,36 +160,6 @@ The entries below are examples of how common frameworks express shared DOM and C
 - The React examples apply.
 - Use the framework's image optimization and internal-link components where the project already uses them. Provide intrinsic dimensions or a rendered-size description.
 - Set `lang` on `<html>` in the root layout.
-
-### Figma Check on the Web
-
-Every recipe below ran against a live page with `bdg` 0.6.10. For methods with parameters, use `bdg cdp <Domain.method> --params '<json>'`; `bdg cdp --help` confirms the form.
-
-Open the rendered build in a `bdg` session.
-
-- Set the viewport to the frame's authored width W in CSS pixels with `bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":<w>,"height":<h>,"deviceScaleFactor":1,"mobile":<bool>}'`.
-- Set the colour scheme the frame shows before capturing, because a headless browser follows the system setting: `bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-color-scheme","value":"light"}]}'`.
-- Capture with `bdg dom screenshot <path>`.
-- Read resolved styles for Pass 3a with `bdg cdp Runtime.evaluate --params '{"expression":"getComputedStyle(document.querySelector(\"<css>\")).<property>","returnByValue":true}'`. `bdg dom eval` failed with "Session target not found" in the same session, so use `Runtime.evaluate`.
-- **Pass 2, state by state:**
-  1. Enable the domains once per session: `bdg cdp DOM.enable`, then `bdg cdp CSS.enable`. `CSS.forcePseudoState` needs the CSS domain enabled.
-  2. Resolve the document with `bdg cdp DOM.getDocument` and use its `root.nodeId` as `<rootId>`. Resolve the element with `bdg cdp DOM.querySelector --params '{"nodeId":<rootId>,"selector":"<css>"}'` and use the result's `nodeId` as `<id>`.
-  3. Emulate reduced motion first, `bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}'`. A style read straight after forcing a state otherwise returns a mid-transition value.
-  4. Force each state with its own call, `bdg cdp CSS.forcePseudoState --params '{"nodeId":<id>,"forcedPseudoClasses":["hover"]}'`, then `["active"]` and `["focus"]`. Force `focus-visible` only when `bdg cdp --describe CSS.forcePseudoState` confirms support. Clear with an empty `forcedPseudoClasses` list before the next state.
-  5. The disabled state comes from the element's `disabled` attribute, not a forced class.
-  6. Capture each state with `bdg dom screenshot <path>`, and confirm the capture shows the state.
-  7. Check dark mode with the same `setEmulatedMedia` method and `{"name":"prefers-color-scheme","value":"dark"}`, only where the project supports dark mode. Reset with `--params '{"features":[]}'`.
-  8. If CDP cannot run, use real hover, click and keyboard focus. If neither path runs, record `NOT RUN` with the reason.
-- **Pass 5, range and access:**
-  1. Test narrow, medium and wide widths below and above W with `Emulation.setDeviceMetricsOverride`. Reset with `bdg cdp Emulation.clearDeviceMetricsOverride`.
-  2. Check 200 percent zoom with `bdg cdp Emulation.setPageScaleFactor --params '{"pageScaleFactor":2}'`, and reset with `1`.
-  3. Traverse the page with real Tab presses, and record the focus order and any trap.
-  4. Check names, roles and states with `bdg cdp Accessibility.getFullAXTree`, or with a manual screen-reader pass.
-  5. Read computed text and background colours with `Runtime.evaluate` as above, then check contrast against the target `sk-design-fundamentals` sets.
-  6. Record any check that cannot run as `NOT RUN` with the reason.
-- Use [mcp-aside-devtools](../../../mcp-tooling/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
-
-See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
 
 **Deeper:** [Elements and attributes](web-elements-and-attributes.md), [accessibility patterns](web-accessibility-patterns.md), [performance and loading](web-performance-and-loading.md) and [internationalization](web-internationalization.md).
 

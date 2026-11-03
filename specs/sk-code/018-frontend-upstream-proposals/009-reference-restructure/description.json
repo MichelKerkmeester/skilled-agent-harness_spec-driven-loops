@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/018-frontend-upstream-proposals/009-reference-restructure",
+  "description": "Phase 9: reference-restructure",
+  "keywords": [
+    "phase",
+    "reference-restructure"
+  ],
+  "lastUpdated": "2026-11-03T21:18:58.763Z",
+  "specId": "009",
+  "folderSlug": "reference-restructure",
+  "parentChain": [
+    "sk-code",
+    "018-frontend-upstream-proposals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

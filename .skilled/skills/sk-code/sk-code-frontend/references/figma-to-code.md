@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Figma to Code Translation
@@ -16,13 +16,30 @@ How to read a Figma design as a reference and build the simplest correct structu
 
 ---
 
-## 1. OVERVIEW AND THE RULE
+## 1. OVERVIEW
+
+### Core Principle
 
 Figma is a reference for code, never its markup. Never copy the layer tree, absolute coordinates, fixed frame sizes or component property sets 1:1 into code.
 
-A Figma read, export or MCP pull tells you what the screen should look like and which states it has. It does not tell you which elements to write. That decision belongs to [`web-markup-and-css.md`](web-markup-and-css.md), and every value comes from the tokens the app installs.
+### Purpose
 
-The shared principles are in [`frontend-practice.md`](frontend-practice.md). The web layer names the mechanics each app uses.
+A Figma read, export or MCP pull tells you what the screen should look like and which states it has. It does not tell you which elements to write.
+
+### When to Use
+
+- Reading a Figma frame before writing code
+- Translating auto layout, sizing or absolute layers into CSS
+- Mapping Figma variables and styles to installed tokens
+- Running the five-pass check against a rendered build
+- Reporting a Figma-to-code red flag
+
+### Boundaries
+
+This file does not own:
+
+- **Element choice.** That decision belongs to [`web-markup-and-css.md`](web-markup-and-css.md), and every value comes from the tokens the app installs.
+- **Shared principles.** The shared principles are in [`frontend-practice.md`](frontend-practice.md). The web layer names the mechanics each app uses.
 
 ---
 
@@ -53,7 +70,7 @@ That structure serves the canvas and the designer. Code usually needs a simpler,
 | Fixed width or height | `max-width` or a size token, only when the fixed size is intended |
 | Absolutely positioned layer | Normal flow, a positioned overlay only when the design truly overlays |
 | Hidden layer or boolean property | Conditional rendering or a prop |
-| Instance swap | Children, a slot, or content projection (`ng-content`) |
+| Instance swap | Children or a slot |
 | State variant: hover, pressed, focus, disabled | `:hover`, `:active`, `:focus-visible`, `:disabled`, ARIA state attributes |
 | Size variant | One `size` prop mapped to tokens |
 | Figma variable or style | The token the app's installed package exports |
@@ -137,7 +154,37 @@ Passes 3a and 3b are checked against the rendered application and changed source
 
 `spec --check` measures a built node inside Figma. It does not compare the application render with the frame.
 
-Capture mechanics: see [Figma Check on the Web](web-markup-and-css.md#figma-check-on-the-web).
+Capture mechanics: see [Capture Mechanics on the Web](#capture-mechanics-on-the-web).
+
+### Capture Mechanics on the Web
+
+Every recipe below ran against a live page with `bdg` 0.6.10. For methods with parameters, use `bdg cdp <Domain.method> --params '<json>'`; `bdg cdp --help` confirms the form.
+
+Open the rendered build in a `bdg` session.
+
+- Set the viewport to the frame's authored width W in CSS pixels with `bdg cdp Emulation.setDeviceMetricsOverride --params '{"width":<w>,"height":<h>,"deviceScaleFactor":1,"mobile":<bool>}'`.
+- Set the colour scheme the frame shows before capturing, because a headless browser follows the system setting: `bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-color-scheme","value":"light"}]}'`.
+- Capture with `bdg dom screenshot <path>`.
+- Read resolved styles for Pass 3a with `bdg cdp Runtime.evaluate --params '{"expression":"getComputedStyle(document.querySelector(\"<css>\")).<property>","returnByValue":true}'`. `bdg dom eval` failed with "Session target not found" in the same session, so use `Runtime.evaluate`.
+- **Pass 2, state by state:**
+  1. Enable the domains once per session: `bdg cdp DOM.enable`, then `bdg cdp CSS.enable`. `CSS.forcePseudoState` needs the CSS domain enabled.
+  2. Resolve the document with `bdg cdp DOM.getDocument` and use its `root.nodeId` as `<rootId>`. Resolve the element with `bdg cdp DOM.querySelector --params '{"nodeId":<rootId>,"selector":"<css>"}'` and use the result's `nodeId` as `<id>`.
+  3. Emulate reduced motion first, `bdg cdp Emulation.setEmulatedMedia --params '{"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}'`. A style read straight after forcing a state otherwise returns a mid-transition value.
+  4. Force each state with its own call, `bdg cdp CSS.forcePseudoState --params '{"nodeId":<id>,"forcedPseudoClasses":["hover"]}'`, then `["active"]` and `["focus"]`. Force `focus-visible` only when `bdg cdp --describe CSS.forcePseudoState` confirms support. Clear with an empty `forcedPseudoClasses` list before the next state.
+  5. The disabled state comes from the element's `disabled` attribute, not a forced class.
+  6. Capture each state with `bdg dom screenshot <path>`, and confirm the capture shows the state.
+  7. Check dark mode with the same `setEmulatedMedia` method and `{"name":"prefers-color-scheme","value":"dark"}`, only where the project supports dark mode. Reset with `--params '{"features":[]}'`.
+  8. If CDP cannot run, use real hover, click and keyboard focus. If neither path runs, record `NOT RUN` with the reason.
+- **Pass 5, range and access:**
+  1. Test narrow, medium and wide widths below and above W with `Emulation.setDeviceMetricsOverride`. Reset with `bdg cdp Emulation.clearDeviceMetricsOverride`.
+  2. Check 200 percent zoom with `bdg cdp Emulation.setPageScaleFactor --params '{"pageScaleFactor":2}'`, and reset with `1`.
+  3. Traverse the page with real Tab presses, and record the focus order and any trap.
+  4. Check names, roles and states with `bdg cdp Accessibility.getFullAXTree`, or with a manual screen-reader pass.
+  5. Read computed text and background colours with `Runtime.evaluate` as above, then check contrast against the target `sk-design-fundamentals` sets.
+  6. Record any check that cannot run as `NOT RUN` with the reason.
+- Use [mcp-aside-devtools](../../../mcp-tooling/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
+
+See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
 
 ---
 

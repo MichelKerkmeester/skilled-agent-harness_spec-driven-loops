@@ -2,7 +2,7 @@
 name: sk-code-frontend
 description: Read-only frontend evidence for stack-agnostic web practice, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.1.0
+version: 1.0.2.0
 metadata:
   family: sk-code
   packetKind: surface
