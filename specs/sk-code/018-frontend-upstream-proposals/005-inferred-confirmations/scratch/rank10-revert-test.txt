@@ -1,0 +1,13 @@
+## Fix reverted: leaf-route-replay.cjs restored to HEAD, new tests kept
+exit=1
+ℹ fail 2
+✖ parseRouter reads an INTENT_MODEL block
+ℹ pass 22
+✖ scoreIntents keeps each tuple keyword weight
+ℹ tests 24
+
+## Fix restored
+exit=0
+ℹ tests 24
+ℹ pass 24
+ℹ fail 0

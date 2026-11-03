@@ -1,0 +1,164 @@
+RANK 10 — leaf-route-replay vs the sk-design-fundamentals ROUTER.md grammar
+================================================================================
+Investigator: @deep-research (LEAF, read-only). Worktree:
+/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals
+Run at 2026-11-03T12:28:07Z, node v26.8.2, darwin. No tracked file was written.
+Temp scratch used: $TMPDIR/skl-ranks/rank10 (report dir + probe.cjs).
+
+SUSPICION UNDER TEST
+  parseIntentSignals (leaf-route-replay.cjs ~75-89) keeps only quoted strings and
+  one weight per intent; sk-design-fundamentals/ROUTER.md (~line 113) writes
+  keywords as (phrase, weight) tuples; so a fundamentals control prompt resolves
+  no intent.
+
+RESULT IN ONE LINE
+  CONFIRMED, but the no-intent result is caused by the dict NAME (`INTENT_MODEL`
+  vs the `INTENT_SIGNALS` the replay extracts), not by the tuples. The tuples are
+  a second, separate defect: with the name alone corrected in memory they parse,
+  yet every intent collapses to weight 1 and per-keyword weights 2-4 are lost.
+================================================================================
+
+COMMAND 1 — run the replay itself
+--------------------------------------------------------------------------------
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --report "$TMPDIR/skl-ranks/rank10/report"
+
+hub=sk-doc gold=25 unscored=4 unknown=3 unresolvable=0 tied=2 precision=0.8127 recall=0.8743 f1=0.8255 exact=19
+hub=mcp-tooling gold=15 unscored=1 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=15
+hub=system-deep-loop gold=5 unscored=11 unknown=0 unresolvable=0 tied=1 precision=0.9000 recall=1.000 f1=0.9333 exact=4
+hub=cli-external-orchestration gold=5 unscored=19 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=5
+hub=sk-design gold=4 unscored=0 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=4
+hub=sk-code gold=8 unscored=8 surface slice not replayed
+hub=cli-classifier gold=3 unscored=4 unknown=0 unresolvable=0 tied=0 precision=1.000 recall=1.000 f1=1.000 exact=3
+total gold=65 scored=57 tied=3 mean_f1=0.9176 exact=50
+router reads: not measured
+replay verdict: stop (prose arm covers 0 of 57 rows) N=57 P=0 keyword_f1=n/a prose_f1=n/a
+EXIT=0
+
+  Observation: the replay's HUBS list is the seven parent hubs. sk-design (the
+  parent) scores 4/4 exact because its own ROUTER.md is written in the
+  INTENT_SIGNALS grammar. The replay never opens
+  sk-design-fundamentals/ROUTER.md, so the replay run alone does not expose the
+  fundamentals defect — that needed the exported parser (command 2).
+
+COMMAND 2 — the exported parser, on the shipped file and on in-memory variants
+--------------------------------------------------------------------------------
+$ node "$TMPDIR/skl-ranks/rank10/probe.cjs"
+
+FUNDAMENTALS ROUTER: /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md
+  bytes: 13563
+  contains "INTENT_SIGNALS = {": false
+  contains "INTENT_MODEL = {": true
+  contains "RESOURCE_MAP = {": true
+
+--- A. fundamentals ROUTER.md as shipped (INTENT_MODEL, tuple weights) ---
+  state: "active"
+  intentOrder.length: 0
+  intent keys: []
+  resourceMap keys: ["DIAGNOSE","REVIEW","PALETTE","MOTION","INTERACTION","DEPTH","HIERARCHY","UX_LAWS","PROCEDURE","SCALES"]
+  weights: {}
+  keyword counts: {}
+  scores for "the settings modal looks off and feels cheap, can you improve it": []
+  selectIntents -> []   (NO INTENT / UNKNOWN)
+
+--- B. same text, INTENT_MODEL renamed to INTENT_SIGNALS in memory (tuples still there) ---
+  state: "active"
+  intentOrder.length: 10
+  intent keys: ["DIAGNOSE","REVIEW","PALETTE","MOTION","INTERACTION","HIERARCHY","DEPTH","UX_LAWS","PROCEDURE","SCALES"]
+  resourceMap keys: ["DIAGNOSE","REVIEW","PALETTE","MOTION","INTERACTION","DEPTH","HIERARCHY","UX_LAWS","PROCEDURE","SCALES"]
+  weights: {"DIAGNOSE":1,"REVIEW":1,"PALETTE":1,"MOTION":1,"INTERACTION":1,"HIERARCHY":1,"DEPTH":1,"UX_LAWS":1,"PROCEDURE":1,"SCALES":1}
+  keyword counts: {"DIAGNOSE":8,"REVIEW":8,"PALETTE":8,"MOTION":8,"INTERACTION":10,"HIERARCHY":9,"DEPTH":11,"UX_LAWS":10,"PROCEDURE":8,"SCALES":7}
+  scores for "the settings modal looks off and feels cheap, can you improve it": [{"intent":"DIAGNOSE","score":3}]
+  selectIntents -> ["DIAGNOSE"]
+
+--- C. synthetic: INTENT_SIGNALS + tuple keywords, no weight key ---
+  state: null
+  intentOrder.length: 1
+  intent keys: ["DIAGNOSE"]
+  resourceMap keys: []
+  weights: {"DIAGNOSE":1}
+  keyword counts: {"DIAGNOSE":4}
+  scores for "the settings modal looks off and feels cheap, can you improve it": [{"intent":"DIAGNOSE","score":3}]
+  selectIntents -> ["DIAGNOSE"]
+
+--- D. synthetic: INTENT_SIGNALS + weight key + flat string keywords (documented grammar) ---
+  state: null
+  intentOrder.length: 1
+  intent keys: ["DIAGNOSE"]
+  resourceMap keys: []
+  weights: {"DIAGNOSE":4}
+  keyword counts: {"DIAGNOSE":3}
+  scores for "the settings modal looks off and feels cheap, can you improve it": [{"intent":"DIAGNOSE","score":8}]
+  selectIntents -> ["DIAGNOSE"]
+
+--- E. sk-design parent hub ROUTER.md (the one runReplay reads) ---
+  state: "active"
+  intentOrder.length: 5
+  intent keys: ["VALUES","REVIEW","CHART","FLOWCHART","EXTRACT"]
+  resourceMap keys: ["VALUES","REVIEW","CHART","FLOWCHART","EXTRACT"]
+  weights: {"VALUES":4,"REVIEW":4,"CHART":4,"FLOWCHART":4,"EXTRACT":4}
+  keyword counts: {"VALUES":37,"REVIEW":12,"CHART":37,"FLOWCHART":47,"EXTRACT":16}
+  scores for "the settings modal looks off and feels cheap, can you improve it": []
+  selectIntents -> []   (NO INTENT / UNKNOWN)
+
+EXIT=0
+
+QUOTED EVIDENCE
+--------------------------------------------------------------------------------
+1. The replay extracts a dict literally named INTENT_SIGNALS
+   .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs:121
+     const intents = parseIntentSignals(rootRouter.extractDictBody(source, 'INTENT_SIGNALS'));
+
+   and extractDictBody is a literal string search:
+   .skilled/skills/sk-doc/sk-create-skill/scripts/lib/root-router-contract.cjs:202-203
+     const start = text.indexOf(`${name} = {`);
+     if (start === -1) return null;
+
+   The fundamentals file never contains that name. Its declaration is:
+   .skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md:112
+     INTENT_MODEL = {
+
+   So extractDictBody returns null, parseIntentSignals returns {} on its first
+   line (`if (!body) return signals;`, line 78), and every prompt scores [].
+   Command 2 variant A shows exactly that: intentOrder.length 0, scores [].
+
+2. The same parser handles `weight` as a per-intent key and keywords as flat
+   quoted strings:
+   leaf-route-replay.cjs:82-86
+     const weightMatch = /["']weight["']\s*:\s*(\d+(?:\.\d+)?)/.exec(m[2]);
+     const kwMatch = /["']keywords["']\s*:\s*\[([^\]]*)\]/.exec(m[2]);
+     signals[m[1]] = {
+       weight: weightMatch ? Number(weightMatch[1]) : 1,
+       keywords: kwMatch ? quotedStrings(kwMatch[1]).map((kw) => kw.toLowerCase()) : []
+     };
+   leaf-route-replay.cjs:59-61
+     const re = /"([^"]*)"|'([^']*)'/g;
+
+   The fundamentals file writes tuples instead:
+   .skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md:113-115
+     "DIAGNOSE": {"keywords": [("looks off", 4), ("looks amateur", 4), ("feels cheap", 4),
+                               ("cluttered", 3), ("feels plain", 3), ("unfinished", 3),
+                               ("make this look better", 4), ("improve", 2)]},
+
+3. Isolating the two causes:
+   - Variant A (name wrong AND tuples) -> {} intents, [] scores.
+   - Variant B (name fixed in memory only, tuples untouched) -> 10 intents and
+     87 keywords parse (8,8,8,8,10,9,11,10,8,7 per intent, as printed); the
+     phrases are recovered from the tuples by
+     quotedStrings; control prompt scores DIAGNOSE 3. So the tuple grammar alone
+     does NOT produce a no-intent result.
+   - Variant C (synthetic, tuple grammar, no weight key) -> DIAGNOSE weight 1,
+     score 3. Same as B: hits counted at 1 each.
+   - Variant D (canonical grammar, weight 4) -> same three keyword hits score 8.
+   Therefore the tuple reading silently downgrades every signal to weight 1 and
+   discards the 2/3/4 weights entirely, which changes ranking whenever intents
+   compete (the whole point of the weights), but does not zero the route.
+
+VERDICT
+  The no-intent result is caused by the dict name mismatch (INTENT_MODEL vs
+  INTENT_SIGNALS). The tuple grammar is a real second defect with a different
+  symptom: weight collapse to 1 per hit, verified by variants B and C against D.
+  Both statements are shown by the output above; neither is inferred.
+
+CLEANUP: $TMPDIR/skl-ranks/rank10 (probe.cjs, report/report.json, out1.txt) — removed
+at end of session; see rank11 file for the removal record.
+================================================================================

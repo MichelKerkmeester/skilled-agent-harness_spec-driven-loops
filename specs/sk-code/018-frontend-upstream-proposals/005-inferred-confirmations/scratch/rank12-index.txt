@@ -1,0 +1,189 @@
+RANK 12 — generate-trigger-index.mjs repo-root resolution vs a linked Skilled source
+================================================================================
+Investigator: @deep-research (LEAF, read-only in this worktree). Run at
+2026-11-03T~12:29Z, node v26.8.2, darwin.
+Temp repo: $TMPDIR/skl-ranks/rank12/repo (git init, `.skilled` symlinked to this
+worktree, one spec doc at specs/demo/001-demo/spec.md).
+
+SUSPICION UNDER TEST
+  The generator finds its repo root from its own directory, so a project that
+  links the Skilled source in gets an index with none of that project's specs/
+  paths — even with --repo-root .
+
+RESULT IN ONE LINE
+  HALF CONFIRMED. Plain run: CONFIRMED — the build indexes this worktree, 13,554
+  specs/ paths, and specs/demo is absent even though cwd is the temp repo.
+  --repo-root .: REFUTED — it indexes the temp project's specs tree; the one and
+  only specs/ path in that output is specs/demo/001-demo/spec.md.
+================================================================================
+
+SETUP (executed, verbatim)
+--------------------------------------------------------------------------------
+$ mkdir -p "$TMPDIR/skl-ranks/rank12/repo/specs/demo/001-demo"
+$ cd "$TMPDIR/skl-ranks/rank12/repo" && git init -q .
+$ ln -s /Users/.../314-frontend-upstream-proposals/.skilled .skilled
+$ cat specs/demo/001-demo/spec.md
+---
+title: "Feature Specification: Demo"
+description: "Demo project spec used to test whether the trigger-index generator indexes this repository's specs tree."
+trigger_phrases:
+  - "demo trigger phrase"
+  - "demo index probe"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
+# Feature Specification: Demo
+
+$ ls -la
+drwxr-xr-x@ 5 michelkerkmeester  staff  160 Nov  3 13:29 .
+drwxr-xr-x@ 3 michelkerkmeester  staff   96 Nov  3 13:29 ..
+drwxr-xr-x@ 9 michelkerkmeester  staff  288 Nov  3 13:29 .git
+lrwxr-xr-x@ 1 michelkerkmeester  staff   82 Nov  3 13:29 .skilled -> /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled
+drwxr-xr-x@ 3 michelkerkmeester  staff   96 Nov  3 13:29 specs
+
+================================================================================
+RUN 1 — plain invocation, cwd = temp repo, --out in the temp dir only
+================================================================================
+$ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --out "$TMPDIR/skl-ranks/rank12/idx-1.json"
+
+trigger index published
+  documents scanned : 27360
+  unique phrases    : 40562
+  phrase decls      : 49003
+  indexed paths     : 16587
+  corpus bytes      : 246129268
+  index bytes       : 4446032
+  variants bytes    : 3371526
+  index sha256      : 6a09f64d347f75c145da6aa4845e39947792a6b842e1fc63a86e90deff3e068b
+  manifest hash     : 74f8a8e826487fdcedf4b1b2712cd8a9073527e854e48ae556a0b1d00f44e69c
+  ignored malformed : 0
+  duration ms       : 5951.6
+  diagnostics:
+    duplicate-phrase         48
+    missing-frontmatter      7273
+    ok                       16539
+    valid-empty-list         3500
+  phrase quality (unique phrases / owning documents):
+    editor-fallback          1 / 1
+    folder-token-fallback    32 / 49
+    generic-workflow-word    3 / 77
+    numeric-only             28 / 40
+    ok                       40298
+    prose-sentence           19 / 10
+    single-token             161 / 364
+    stop-word-only           1 / 9
+    template-default         19 / 22
+EXIT=0
+
+================================================================================
+RUN 2 — same cwd, --repo-root .
+================================================================================
+$ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --repo-root . --out "$TMPDIR/skl-ranks/rank12/idx-2.json"
+
+trigger index published
+  documents scanned : 8674
+  unique phrases    : 10787
+  phrase decls      : 11552
+  indexed paths     : 3034
+  corpus bytes      : 56328472
+  index bytes       : 797046
+  variants bytes    : 780798
+  index sha256      : 5c2d7a32cfb8befac8aba1df8df014fe5af1caf84b72ac33365f15dd25ea5e52
+  manifest hash     : 3778fae9536d53916d92d4138b3f4c7d0625e1ad0061337b5ce170d64dace2f5
+  ignored malformed : 0
+  duration ms       : 971.7
+  diagnostics:
+    duplicate-phrase         48
+    missing-frontmatter      5640
+    ok                       2986
+  phrase quality (unique phrases / owning documents):
+    folder-token-fallback    14 / 16
+    ok                       10672
+    single-token             85 / 79
+    template-default         16 / 19
+EXIT=0
+
+================================================================================
+PATH COUNTS — read back from the two artifacts
+================================================================================
+$ node -e '... count j.paths entries beginning "specs/" ...'
+
+idx-1.json
+  top-level keys: ["manifestHash","normalization","paths","phrases","schemaVersion"]
+  paths table length: 16587
+  paths beginning specs/: 13554
+  contains specs/demo: false
+  specs/demo entries: []
+  first 3 specs/ entries: ["specs/agents-md/001-terminal-proof-discipline/decision-record.md","specs/agents-md/001-terminal-proof-discipline/implementation-summary.md","specs/agents-md/001-terminal-proof-discipline/plan.md"]
+
+idx-2.json
+  top-level keys: ["manifestHash","normalization","paths","phrases","schemaVersion"]
+  paths table length: 3034
+  paths beginning specs/: 1
+  contains specs/demo: true
+  specs/demo entries: ["specs/demo/001-demo/spec.md"]
+  first 3 specs/ entries: ["specs/demo/001-demo/spec.md"]
+
+Additional read-back on idx-2.json and its manifest:
+  phrases keys count: 10787
+  "demo trigger phrase" present: true
+  phrases["demo trigger phrase"] -> [3033]   (the last interned path, the demo spec)
+  manifest keys: ["corpusHash","corpusHashRecipe","exclusions","ignoredPaths","includedPathCount","includedPaths","indexSchemaVersion","manifestHash","parserVersion","promptSetHash","roots","skippedPaths"]
+  manifest roots: ["specs",".skilled/skills",".skilled/hooks",".skilled/changelog/skilled"]
+
+================================================================================
+WHAT THE OUTPUT SHOWS
+================================================================================
+1. Plain run resolves the root from the generator's own location, not cwd.
+   The 13,554 specs/ paths it indexed are this worktree's spec tree
+   (specs/agents-md/..., specs/sk-code/...), and specs/demo — sitting in the
+   process's cwd — is not among them. documents scanned 27,360 against run 2's
+   8,674 is the same fact at corpus scale.
+
+   Mechanism, quoted:
+   .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs:73-75
+     const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+     const SKILL_ROOT = path.resolve(SCRIPT_DIR, '..', '..', '..');
+   generate-trigger-index.mjs:101
+     export const DEFAULT_REPO_ROOT = findRepoRoot();
+   generate-trigger-index.mjs:415
+     const repoRoot = options.repoRoot ?? DEFAULT_REPO_ROOT;
+
+   findRepoRoot() is called with no argument, so it walks up from SCRIPT_DIR
+   (generate-trigger-index.mjs:96-99). Because cwd is never consulted, a project
+   that only *links* the source tree gets the source tree's own repository root.
+   Note the module header comment claims the walk "keeps that drift impossible"
+   (lines 86-95); this run shows the drift it prevents is the hop-count drift,
+   not the wrong-repository drift.
+
+2. --repo-root . overrides that default, and it works.
+   With the flag, buildIndex resolves the argument against cwd
+   (generate-trigger-index.mjs:132 `const repoRoot = path.resolve(options.repoRoot);`),
+   corpusRootsFor finds the symlinked source root through the sentinel
+   (lib/corpus.mjs:45-51), and the resulting paths table holds exactly one
+   specs/ entry: specs/demo/001-demo/spec.md. The demo phrase is in the index.
+   So the "even with --repo-root ." clause is not reproduced by this build.
+   Worth naming precisely: the flag is a *caller* obligation. Any invocation that
+   omits it — including a routine `--out` rebuild invoked from a linked project —
+   silently publishes the wrong repository's spec tree with exit 0.
+
+3. Exit status does not distinguish the two builds. Both printed
+   "trigger index published" and exited 0; only the counts and the paths table
+   differ. Nothing in the report names the resolved repository root, and the
+   manifest has no repoRoot field (keys listed above), so the wrong-root build is
+   not self-identifying in its artifacts.
+
+VERDICT
+  Claim 1 (default root comes from the generator's directory, so a linked
+  project's specs/ are omitted): CONFIRMED by idx-1.json — 13,554 worktree
+  specs/ paths, zero specs/demo, exit 0.
+  Claim 2 (the same happens even with --repo-root .): REFUTED by idx-2.json —
+  specs/demo/001-demo/spec.md is indexed and its trigger phrase resolves.
+  Both runs used --out; the committed index at
+  .skilled/skills/system-spec-kit/runtime/data/trigger-index.json was not written
+  (verified by `git status --short` in this worktree at the end of the session).
+
+CLEANUP: $TMPDIR/skl-ranks/rank12 (repo/, idx-1.json, idx-2.json, sidecars) —
+removed at end of session; see rank11 file for the removal record.
+================================================================================

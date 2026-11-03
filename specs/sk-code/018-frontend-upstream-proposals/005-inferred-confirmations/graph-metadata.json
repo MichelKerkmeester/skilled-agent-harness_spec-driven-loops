@@ -21,7 +21,8 @@
       "inferred confirmations tasks",
       "inferred confirmations acceptance criteria",
       "inferred confirmations goal",
-      "inferred confirmations implementation summary"
+      "inferred confirmations decision record",
+      "rank verdicts"
     ],
     "key_topics": [
       "inferred",
@@ -45,12 +46,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/aliases.ts",
       ".skilled/bin/lib/compiled-route-manifest.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts"
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      "scratch/rank10-replay.txt",
+      "scratch/rank12-index.txt",
+      "scratch/rank13-save.txt",
+      "scratch/rank11-trace.txt"
     ],
     "entities": [
       {
@@ -81,6 +87,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -117,6 +129,30 @@
         "name": "generate-context.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rank10-replay.txt",
+        "kind": "file",
+        "path": "scratch/rank10-replay.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rank12-index.txt",
+        "kind": "file",
+        "path": "scratch/rank12-index.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rank13-save.txt",
+        "kind": "file",
+        "path": "scratch/rank13-save.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rank11-trace.txt",
+        "kind": "file",
+        "path": "scratch/rank11-trace.txt",
         "source": "derived"
       },
       {
@@ -166,41 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Confirm",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Barter observed four symptoms whose cause in Skilled was not traced",
     "created_at": "2026-11-03T08:33:56Z",
-    "last_save_at": "2026-11-03T08:48:30.732Z",
+    "last_save_at": "2026-11-03T12:43:43.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +215,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7294499de2bb3b4efb083c04054c59f68871b691885396b4af9c44911aa0ed3a",
+    "source_fingerprint": "sha256:c71c795035bf004dd01445d293c014d23fca033960dab188ecd0481fefe819fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7de70003b998d4232460132626f8aecd9151420f742e122cbae2f2fc331aecf6",
       "plan.md": "37093cb4fd4915b3a360750b26a36bfd91b7bdbb347e3b75110dc4bc7aae7ec7",
       "tasks.md": "3b0748e2d5bfd6c50a2f99db9dc2c0ec734e62a4c50d6844c50c8b4bbba84145",
+      "decision-record.md": "92053ad2167da888774e2c8b7747107088b4dd168cf32c460fefe12b6a67b690",
       "implementation-summary.md": "9925deb18820c526fc69860d8488a16e61c937e89f4b86a311e48201ced34d85"
     },
     "last_active_at": null

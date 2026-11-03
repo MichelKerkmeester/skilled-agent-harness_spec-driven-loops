@@ -65,12 +65,36 @@ function quotedStrings(segment) {
 }
 
 /**
- * Parse an INTENT_SIGNALS dict body into intent -> {weight, keywords}. The
- * entry grammar matches the root-router validator's, so a router the validator
- * blesses is scored from the same bytes. Keywords are lowercased at parse time
- * because the keyword arm matches against lowercased task text.
+ * Every keyword in one keywords-list segment, in order and lowercased. A plain
+ * quoted phrase stays a string, so a hit adds its intent's weight; a
+ * `(phrase, weight)` tuple becomes a `[phrase, weight]` pair that keeps its own
+ * weight. The tuple arm runs first, so the phrase inside a tuple is never read
+ * again as a plain keyword, and a list with no tuples reads exactly as
+ * quotedStrings does.
  *
- * @param {string|null} body - The extracted INTENT_SIGNALS body, or null.
+ * @param {string} segment - The text inside one keywords list.
+ * @returns {Array<string|Array<string|number>>} Keyword entries, in order.
+ */
+function keywordEntries(segment) {
+  const entries = [];
+  const re = /\(\s*(?:"([^"]*)"|'([^']*)')\s*,\s*(\d+(?:\.\d+)?)\s*\)|"([^"]*)"|'([^']*)'/g;
+  let m;
+  while ((m = re.exec(segment)) !== null) {
+    if (m[3] !== undefined) entries.push([(m[1] !== undefined ? m[1] : m[2]).toLowerCase(), Number(m[3])]);
+    else entries.push((m[4] !== undefined ? m[4] : m[5]).toLowerCase());
+  }
+  return entries;
+}
+
+/**
+ * Parse an INTENT_SIGNALS or INTENT_MODEL dict body into intent ->
+ * {weight, keywords}. The outer entry grammar matches the root-router
+ * validator's, so a router the validator blesses is scored from the same bytes.
+ * Keywords are lowercased at parse time because the keyword arm matches
+ * against lowercased task text; a tuple keyword keeps its own weight, while a
+ * plain keyword falls back to the intent's `weight`.
+ *
+ * @param {string|null} body - The extracted intent-map body, or null.
  * @returns {Object} Intent signals, in declaration order.
  */
 function parseIntentSignals(body) {
@@ -83,7 +107,7 @@ function parseIntentSignals(body) {
     const kwMatch = /["']keywords["']\s*:\s*\[([^\]]*)\]/.exec(m[2]);
     signals[m[1]] = {
       weight: weightMatch ? Number(weightMatch[1]) : 1,
-      keywords: kwMatch ? quotedStrings(kwMatch[1]).map((kw) => kw.toLowerCase()) : []
+      keywords: kwMatch ? keywordEntries(kwMatch[1]) : []
     };
   }
   return signals;
@@ -118,7 +142,13 @@ function parseRouter(text) {
   const source = text || '';
   const frontmatter = rootRouter.extractFrontmatter(source);
   const stateValues = rootRouter.frontmatterValues(frontmatter, 'router_state');
-  const intents = parseIntentSignals(rootRouter.extractDictBody(source, 'INTENT_SIGNALS'));
+  // A hub always declares INTENT_SIGNALS. A standalone skill or packet may
+  // name the same map INTENT_MODEL instead, the one other name the root-router
+  // contract allows it, so read that name only when no INTENT_SIGNALS is
+  // declared. A router carrying both still scores the hub's own map.
+  const signalsBody = rootRouter.extractDictBody(source, 'INTENT_SIGNALS');
+  const modelBody = signalsBody === null ? rootRouter.extractDictBody(source, 'INTENT_MODEL') : null;
+  const intents = parseIntentSignals(signalsBody === null ? modelBody : signalsBody);
   const resourceMap = parseResourceMap(rootRouter.extractDictBody(source, 'RESOURCE_MAP'));
   return {
     state: stateValues.length > 0 ? stateValues[0] : null,
@@ -151,8 +181,23 @@ function keywordHits(taskLower, kw) {
 }
 
 /**
- * Score each intent by summing its weight for every keyword that hits the
- * lowercased task, keeping only positive-scoring intents (sorted desc).
+ * One keyword entry's text and the weight a hit adds: a tuple keeps its own
+ * weight, a plain keyword falls back to its intent's weight.
+ *
+ * @param {string|Array<string|number>} entry - One parsed keyword entry.
+ * @param {number} intentWeight - The weight its intent declares.
+ * @returns {{ text: string, weight: number }} The keyword text and its hit weight.
+ */
+function keywordSignal(entry, intentWeight) {
+  return Array.isArray(entry)
+    ? { text: entry[0], weight: entry[1] }
+    : { text: entry, weight: intentWeight };
+}
+
+/**
+ * Score each intent by summing each hit keyword's weight — its own for a
+ * tuple, its intent's for a plain keyword — keeping only positive-scoring
+ * intents (sorted desc).
  *
  * @param {string} taskLower - Lowercased task text.
  * @param {Object} intentSignals - Map of intent -> {weight, keywords}.
@@ -162,8 +207,9 @@ function scoreIntents(taskLower, intentSignals) {
   const scores = [];
   for (const [key, sig] of Object.entries(intentSignals)) {
     let score = 0;
-    for (const kw of sig.keywords) {
-      if (keywordHits(taskLower, kw)) score += sig.weight;
+    for (const entry of sig.keywords) {
+      const keyword = keywordSignal(entry, sig.weight);
+      if (keywordHits(taskLower, keyword.text)) score += keyword.weight;
     }
     if (score > 0) scores.push({ intent: key, score });
   }

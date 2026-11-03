@@ -1,0 +1,227 @@
+RANK 11 — the compiled sk-code matcher and "x-y" vs "x y"
+================================================================================
+Investigator: @deep-research (LEAF, read-only). Run 2026-11-03T~12:33Z,
+node v26.8.2, darwin. No repository file was edited: the probe compiles into
+memory and writes only its own stdout.
+
+SUSPICION UNDER TEST
+  The sk-code hub picks a mode from hub-router.json aliases with a matcher that
+  treats "x-y" and "x y" differently.
+
+RESULT IN ONE LINE
+  CONFIRMED. The matcher is a literal lowercased substring test
+  (`canary-router.cjs` `containsSignal`), so "widget panel" matches
+  "widget panel layout bug" and never "widget-panel layout bug", and the reverse
+  for a hyphenated keyword. Compiling one extra alias into the registry alone
+  changes nothing; the alias only reaches the router when it is mirrored into a
+  hub-router vocabularyClasses keyword list, which is the list the matcher reads.
+================================================================================
+
+1. WHERE THE MATCHING HAPPENS
+--------------------------------------------------------------------------------
+Call chain, file by file:
+
+  .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/resolve.cjs:107
+    function resolveRoute(hubId, taskText, options = {}) {
+  ...:112
+    const route = compiledRoute(hubId, taskText, options);
+
+  .skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs:81
+    const { snapshot } = loadSnapshot();
+  ...:104
+    const evaluated = evaluate(snapshot, { prompt: taskText });
+  (loadHubEngine picks the hub child's lib/canary-router.cjs and uses its
+   evaluateCanary, compiled-route.cjs:57-76.)
+
+  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs:277
+    function evaluateCanary(snapshot, input) {
+  ...:279
+    const text = normalize(input.prompt || '');
+  ...:294
+    scores = scoreModes(snapshot.routingModel, text);
+
+  canary-router.cjs:208-222
+    function scoreModes(routingModel, text) {
+      const direct = routingModel.modes.filter((mode) => (
+        typeof mode.command === 'string' && containsSignal(text, mode.command)
+      ));
+      if (direct.length > 0) {
+        return direct.map((mode) => ({ mode: mode.workflowMode, score: Number.MAX_SAFE_INTEGER }));
+      }
+      return routingModel.modes.map((mode) => ({
+        mode: mode.workflowMode,
+        score: mode.keywords.filter((keyword) => containsSignal(text, keyword)).length * mode.weight,
+      })).filter((entry) => entry.score > 0);
+    }
+
+  canary-router.cjs:41-52  — THE MATCHER
+    function normalize(value) {
+      return String(value).trim().toLowerCase();
+    }
+    function escapePattern(value) {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    function containsSignal(text, value) {
+      const signal = normalize(value);
+      if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
+        return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(text);
+      }
+      return text.includes(signal);
+    }
+
+  Name: `containsSignal`, in
+  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/canary-router.cjs
+  (line 48). Its only normalisation is trim + toLowerCase: no hyphen folding, no
+  whitespace folding, no tokenisation. A hyphenated keyword and a spaced keyword
+  are two different strings to `String.prototype.includes`.
+
+2. WHERE THE VOCABULARY COMES FROM
+--------------------------------------------------------------------------------
+  .skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/lib/registry-compiler.cjs:228-236
+    function modeVocabulary(hubRouter, workflowMode) {
+      const signal = hubRouter.routerSignals[workflowMode];
+      const words = new Set();
+      for (const className of signal.classes || []) {
+        const vocabulary = hubRouter.vocabularyClasses[className];
+        for (const keyword of (vocabulary && vocabulary.keywords) || []) {
+          words.add(String(keyword).toLowerCase());
+        }
+      }
+      return [...words].sort(compareText);
+    }
+
+  So the live router scores only `hub-router.json`'s vocabularyClasses keywords
+  for the mode's routerSignals classes. `mode-registry.json`'s `aliases` array
+  feeds the generic detector projection (`registry-compiler.cjs:114` inside
+  `vocabularyByMode`, and the alias detectors at :170) but not this
+  `routingModel`. sk-code duplicates its aliases into the matching
+  `*-aliases` vocabulary class, which is why the shipped router can route on
+  them at all.
+
+3. METHOD — in-memory compile, no file written
+--------------------------------------------------------------------------------
+Mirrors .skilled/bin/tests/compiled-route-surface-hint.test.cjs:81-108
+(`compileHub`): read sk-code's mode-registry.json, hub-router.json, SKILL.md and
+ROUTER.md, slice ROUTER.md from its `## N. MACHINE ROUTER` heading, call
+`compileRegistry({ activationGeneration, hubRouter, registry, routerMarkdown,
+skillMarkdown, sourceBytes })`, then `evaluateCanary(snapshot, { prompt })` and
+read `decision.action`, `decision.route.selectionKind`, the target
+workflowModes and `trace.matchedScores`. `resolveRoute` is not used here because
+it loads the committed on-disk snapshot; `evaluateCanary` is the exact function
+`compiledRoute` calls for that snapshot, so the scoring path is the live one.
+
+Probe kept at $TMPDIR/skl-ranks/rank11/probe.cjs (removed at end of session):
+
+  const PROMPTS = ['widget-panel layout bug', 'widget panel layout bug'];
+  // A: committed inputs
+  // B: registry.modes[sk-code-frontend].aliases += "widget panel"
+  // C: that alias AND hub-router.vocabularyClasses["code-frontend-aliases"].keywords += "widget panel"
+  // D: hub-router vocabulary += "widget-panel" instead, no registry alias
+
+4. OUTPUT (exit 0)
+--------------------------------------------------------------------------------
+=== A. baseline (committed registry + hub-router, no extra alias) ===
+  sk-code-frontend keyword count: 27
+  "widget panel" in sk-code-frontend keywords: false
+  "widget-panel" in sk-code-frontend keywords: false
+  prompt: "widget-panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+  prompt: "widget panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+
+=== B. "+ alias widget panel" on sk-code-frontend in mode-registry.json only ===
+  sk-code-frontend keyword count: 27
+  "widget panel" in sk-code-frontend keywords: false
+  "widget-panel" in sk-code-frontend keywords: false
+  prompt: "widget-panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+  prompt: "widget panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+
+=== C. alias in mode-registry.json AND "widget panel" appended to hub-router.json vocabularyClasses["code-frontend-aliases"].keywords ===
+  sk-code-frontend keyword count: 28
+  "widget panel" in sk-code-frontend keywords: true
+  "widget-panel" in sk-code-frontend keywords: false
+  prompt: "widget-panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+  prompt: "widget panel layout bug"
+    action: route
+    selectionKind: orderedBundle
+    targets: ["sk-code-frontend","sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-frontend","score":4},{"mode":"sk-code-skilled","score":4}]
+
+=== D. "widget-panel" (hyphen) appended to the same vocabulary class instead ===
+  sk-code-frontend keyword count: 28
+  "widget panel" in sk-code-frontend keywords: false
+  "widget-panel" in sk-code-frontend keywords: true
+  prompt: "widget-panel layout bug"
+    action: route
+    selectionKind: orderedBundle
+    targets: ["sk-code-frontend","sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-frontend","score":4},{"mode":"sk-code-skilled","score":4}]
+  prompt: "widget panel layout bug"
+    action: route
+    selectionKind: single
+    targets: ["sk-code-skilled"]
+    matchedScores: [{"mode":"sk-code-skilled","score":4}]
+
+5. ROUTES RECORDED
+--------------------------------------------------------------------------------
+  Variant                        "widget-panel layout bug"        "widget panel layout bug"
+  A baseline                     sk-code-skilled (single)         sk-code-skilled (single)
+  B registry alias only          sk-code-skilled (single)         sk-code-skilled (single)
+  C alias + spaced keyword       sk-code-skilled (single)         sk-code-frontend + sk-code-skilled (orderedBundle)
+  D hyphenated keyword           sk-code-frontend + sk-code-skilled (orderedBundle)   sk-code-skilled (single)
+
+  In C and D the two spellings of the same request take different routes: 4
+  points for sk-code-frontend in one, nothing in the other. The sk-code-skilled
+  score of 4 in every row comes from the bare keyword "bug" in
+  vocabularyClasses["code-skilled-runtime"], which both spellings do contain —
+  checked by the same substring rule.
+
+6. WHAT THE OUTPUT SHOWS, AND WHAT IT DOES NOT
+--------------------------------------------------------------------------------
+  Confirmed: the hyphen and the space are different signals to the shipped
+  matcher, verified by C and D on the live scoring path, with the exact keyword
+  lists printed before each route.
+  Confirmed: adding the alias only to mode-registry.json (variant B) leaves the
+  route identical to baseline — the alias never reaches this router's keyword
+  list. So "the hub picks a mode from hub-router.json aliases" is only true when
+  the alias is mirrored into a vocabularyClasses keyword list; the routing model
+  reads keywords, not the registry's aliases array.
+  Not tested here: whether some generator keeps those two lists in sync, and
+  whether a hyphenating normaliser was intended. The runs say nothing about
+  intent.
+
+TEMP DIRECTORIES CREATED AND REMOVED
+--------------------------------------------------------------------------------
+  $TMPDIR/skl-ranks/rank10   probe.cjs, out1.txt, report/report.json
+  $TMPDIR/skl-ranks/rank11   probe.cjs, out.txt
+  $TMPDIR/skl-ranks/rank12   idx-1.json, idx-2.json, corpus-manifest.json,
+                             generation-diagnostics.json, phrase-variants.json,
+                             repo/ (git init, .skilled symlink, specs/demo/001-demo)
+  $TMPDIR/skl-ranks/rank13   run1..run3 stdout/stderr, payload2.json,
+                             payload3.json, empty-excludes,
+                             repo/ (git init, .skilled symlink, .opencode anchor,
+                             phase parent + one child)
+
+  Verified present before removal, then `rm -rf $TMPDIR/skl-ranks`; the parent
+  path no longer exists. Nothing outside that directory and the four S files was
+  written by this investigator. `git status --short` and `git diff --stat` in the
+  worktree were taken after the removal and are reported in the session reply.
+================================================================================

@@ -1,0 +1,55 @@
+== specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs
+[canary-validator] Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs'
+    at Object.openSync (node:fs:779:18)
+    at Object.readFileSync (node:fs:625:35)
+    at fileHash (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs:128:48)
+    at /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs:133:12
+    at Array.map (<anonymous>)
+    at protectedHashes (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs:132:60)
+    at runCanary (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs:837:18)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/harness/validate-canary.cjs:883:42)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+exit=1
+== specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs
+[deep-loop-canary] Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs'
+    at Object.openSync (node:fs:779:18)
+    at Object.readFileSync (node:fs:625:35)
+    at fileHash (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs:128:48)
+    at /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs:133:12
+    at Array.map (<anonymous>)
+    at protectedHashes (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs:132:60)
+    at runCanary (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs:1185:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/harness/validate-canary.cjs:1249:42)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+exit=1
+== specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs
+[mcp-tooling-canary] Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs'
+    at Object.openSync (node:fs:779:18)
+    at Object.readFileSync (node:fs:625:35)
+    at fileHash (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs:112:48)
+    at /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs:117:12
+    at Array.map (<anonymous>)
+    at protectedHashes (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs:116:60)
+    at runCanary (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs:642:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/003-mcp-tooling/harness/validate-canary.cjs:705:42)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+exit=1
+== specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs
+[cli-external-orchestration-canary] Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs'
+    at Object.openSync (node:fs:779:18)
+    at Object.readFileSync (node:fs:625:35)
+    at fileHash (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs:127:48)
+    at /Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs:132:12
+    at Array.map (<anonymous>)
+    at protectedHashes (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs:131:60)
+    at runCanary (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs:607:27)
+    at Object.<anonymous> (/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/004-cli-external-orchestration/harness/validate-canary.cjs:650:42)
+    at Module._compile (node:internal/modules/cjs/loader:1934:14)
+    at Object..js (node:internal/modules/cjs/loader:2074:10)
+exit=1
+== specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/007-sk-doc/harness/validate-canary.cjs
+CANARY_RED ENOENT: ENOENT: no such file or directory, open '/Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs'
+exit=1

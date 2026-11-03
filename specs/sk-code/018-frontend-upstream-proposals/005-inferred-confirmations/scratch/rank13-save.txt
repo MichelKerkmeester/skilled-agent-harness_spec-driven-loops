@@ -1,0 +1,339 @@
+RANK 13 — generate-context save aimed at a phase parent
+================================================================================
+Investigator: @deep-research (LEAF). Run 2026-11-03T12:31Z, node v26.8.2, darwin.
+Temp repo: $TMPDIR/skl-ranks/rank13/repo (git init, `.skilled` symlinked to this
+worktree, `.opencode/` anchor, one phase parent + one child). Nothing in this
+worktree was saved into; --project-root always pointed at the temp repo.
+
+SUSPICION UNDER TEST
+  A save aimed at a phase parent exits 0 but scores the payload 0/100 and
+  refreshes only graph-metadata.json, silently.
+
+RESULT IN ONE LINE
+  Exit 0: CONFIRMED. Metadata-only write: CONFIRMED (description.json and
+  graph-metadata.json; no continuity or memory artifact). 0/100: REFUTED — no
+  score is produced at all; the post-save quality review is skipped with
+  renderQualityScore null and inputCompletenessScore null. "Silently": CONFIRMED
+  at INFO level with exit 0. A child-leaf control behaves identically, so the
+  metadata-only outcome is not phase-parent-specific in this build.
+================================================================================
+
+1. PHASE FORM AND SCAFFOLD
+--------------------------------------------------------------------------------
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --help    (excerpt)
+  --phase             Create phased spec (parent + child folders)
+  --phases <N>        Number of initial child phases (default: 3)
+  --phase-names <list>  Comma-separated names for child phases
+  --parent <path>     Add phases to existing parent spec folder (with --phase)
+  --phase-parent <path>  Alias for --parent in phase mode (supports nested specs/ paths)
+  --skip-branch       Create spec folder only, don't create git branch
+
+$ cd "$TMPDIR/skl-ranks/rank13/repo"
+$ git init -q .
+$ ln -s /Users/.../314-frontend-upstream-proposals/.skilled .skilled
+$ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --phases 1 \
+    --phase-names "first-child" --skip-branch --level 1 "Demo phase parent"
+[speckit] Skipping branch creation (--skip-branch)
+description.json created in .../specs/001-demo-phase-parent
+description.json created in .../specs/001-demo-phase-parent/001-first-child
+
+  SpecKit: Phase Spec Created Successfully
+  SPEC_FOLDER:  .../specs/001-demo-phase-parent
+  Created Structure:
+  └── 001-demo-phase-parent/
+      ├── spec.md
+      ├── 001-first-child/
+      │   ├── spec.md
+      │   ├── plan.md
+      │   ├── tasks.md
+      │   ├── implementation-summary.md
+      │   ├── description.json
+      │   └── scratch/
+      └── scratch/
+EXIT=0
+
+  Two setup facts that changed the run and are recorded here rather than hidden:
+  (a) This machine's global gitignore has `/specs`, which made `git status` in
+      the temp repo blind to the scaffold. The temp repo only set
+      `core.excludesFile` to an empty file so the write set is observable.
+  (b) A first attempt without a real `.opencode/` directory made run 2 die with
+      "Refusing to write graph metadata outside a configured specs root"; the
+      tool's own playbook names that as the missing-.opencode setup fault, so a
+      real `.opencode/.gitkeep` was added and the runs below are the clean ones.
+
+  Baseline committed, so every later `git status --short` line is that run's delta.
+  The always-present `?? .skilled` line is the test harness link, not a save write.
+
+2. RUN 1 — minimal payload
+--------------------------------------------------------------------------------
+$ node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+    --json '{"specFolder":"specs/001-demo-phase-parent"}' \
+    --project-root "$TMPDIR/skl-ranks/rank13/repo"
+
+--- stdout ---
+   ✓ Transformed manual format to MCP-compatible structure
+   Using spec folder from CLI argument: 001-demo-phase-parent
+   Phase 1B Alignment: 001-demo-phase-parent (0% match)
+
+   Warning: ALIGNMENT WARNING: Content may not match target folder
+   Conversation topics: manual, context, save
+   Target folder: 001-demo-phase-parent (0% match)
+
+   ALIGNMENT_HARD_BLOCK: 0% alignment is below minimum non-interactive threshold (20%)
+
+--- stderr (workflow steps; the contamination_audit patternsChecked arrays are elided for length, every other line verbatim) ---
+Starting memory skill...
+
+{"timestamp":"2026-11-03T12:31:49.600Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.600Z","level":"info","message":"Step 1: Loading collected data...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.600Z","level":"info","message":"   Using pre-loaded data (normalized)","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.600Z","level":"info","message":"workflow event","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.600Z","level":"info","message":"Step 2: Detecting spec folder...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.602Z","level":"info","message":"   Using: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.602Z","level":"info","message":"Step 3: Validating spec folder...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.602Z","level":"info","message":"   Using existing spec folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.605Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":[ELIDED],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:2"]}
+{"timestamp":"2026-11-03T12:31:49.730Z","level":"info","message":"Steps 4-7: Extracting data (parallel execution)...\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.730Z","level":"info","message":"   Collecting session data...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.771Z","level":"info","message":"   Extracting conversations...","component":"workflow"}
+   Warning: No observations found (no events documented)
+{"timestamp":"2026-11-03T12:31:49.772Z","level":"info","message":"   Extracting decisions...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.772Z","level":"info","message":"   Extracting diagrams...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.773Z","level":"info","message":"   Found 1 messages","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.773Z","level":"info","message":"   Found 0 decisions","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.773Z","level":"info","message":"   Found 0 diagrams","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.774Z","level":"info","message":"   Session data collected","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.774Z","level":"info","message":"\n   All extraction complete (parallel execution)\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.774Z","level":"info","message":"Step 7.5: Generating semantic summary...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.775Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":[ELIDED],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:1","kept_items:1"]}
+{"timestamp":"2026-11-03T12:31:49.776Z","level":"info","message":"   Content quality: 30/100 (0 noise, 0 duplicates filtered from 1 items)","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.777Z","level":"info","message":"   Generated summary: 0 created, 0 modified, 0 decisions\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.777Z","level":"info","message":"Step 7.6: Applying tree thinning...","component":"workflow"}
+[utils] Path traversal blocked: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent/specs/001-demo-phase-parent/.canonical-save.lock/owner -> /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent/specs/001-demo-phase-parent/.canonical-save.lock/owner
+{"timestamp":"2026-11-03T12:31:49.778Z","level":"info","message":"   Tree thinning: 2 files, 0 content-as-summary, 2 merged-into-parent, ~40 tokens saved, 0 rendered rows reduced\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.778Z","level":"info","message":"Step 8: Populating template...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.783Z","level":"info","message":"   Template populated (quality: 30/100)\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:49.785Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":[ELIDED],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+Unexpected Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. No primary evidence was captured for this memory. Evidence counts: primary=0, support=2, total=2, semanticChars=289, uniqueWords=27.
+Error: INSUFFICIENT_CONTEXT_ABORT: Not enough context for a proper memory. No primary evidence was captured for this memory. Evidence counts: primary=0, support=2, total=2, semanticChars=289, uniqueWords=27.
+    at file:///Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js:1490:19
+    at async withWorkflowRunLock (file:///Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/system-spec-kit/runtime/cli/dist/core/workflow.js:654:16)
+    at async main (file:///Users/michelkerkmeester/worktrees/public/314-frontend-upstream-proposals/.skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:1046:13)
+
+EXIT=1
+
+--- git status --short (after run 1) ---
+?? .skilled
+
+  Read: no file changed. The run printed "Content quality: 30/100" (a filter
+  pipeline input-completeness figure, not a payload quality score), then aborted
+  on the sufficiency gate with INSUFFICIENT_CONTEXT_ABORT at workflow.js:1490 and
+  exited 1. So the minimal payload does not reproduce "exits 0".
+
+3. RUN 2 — payload with user_prompts, observations, recent_context
+--------------------------------------------------------------------------------
+Payload written to $TMPDIR/skl-ranks/rank13/payload2.json:
+{
+  "specFolder": "specs/001-demo-phase-parent",
+  "user_prompts": [
+    "Run the phase parent save probe against specs/001-demo-phase-parent.",
+    "Confirm which files the save writes and what score it prints."
+  ],
+  "observations": [
+    "The save was aimed at specs/001-demo-phase-parent, a phase parent that holds exactly one child packet.",
+    "The only child packet is specs/001-demo-phase-parent/001-first-child, scaffolded at level 1.",
+    "The demo repository carries a symlinked .skilled source tree and one real .opencode anchor directory."
+  ],
+  "recent_context": [
+    "Working in the demo phase-parent packet to observe the save write set.",
+    "No tracked file in the source worktree was edited during this probe."
+  ]
+}
+$ node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+    --json "$(cat $TMPDIR/skl-ranks/rank13/payload2.json)" \
+    --project-root "$TMPDIR/skl-ranks/rank13/repo"
+
+--- stdout ---
+   Using spec folder from CLI argument: 001-demo-phase-parent
+   Phase 1B Alignment: 001-demo-phase-parent (100% match)
+   Content aligns with target folder
+
+--- stderr (workflow steps; patternsChecked arrays elided, every other line verbatim) ---
+Starting memory skill...
+
+{"timestamp":"2026-11-03T12:31:54.697Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.697Z","level":"info","message":"Step 1: Loading collected data...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.698Z","level":"info","message":"   Using pre-loaded data (normalized)","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.698Z","level":"info","message":"workflow event","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.698Z","level":"info","message":"Step 2: Detecting spec folder...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.700Z","level":"info","message":"   Using: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.700Z","level":"info","message":"Step 3: Validating spec folder...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.700Z","level":"info","message":"   Using existing spec folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.703Z","level":"info","message":"contamination_audit","stage":"extractor-scrub","patternsChecked":[ELIDED],"matchesFound":[],"actionsTaken":["cleaned_fields:0","removed_phrases:0"],"passedThrough":["processed_fields:10"]}
+{"timestamp":"2026-11-03T12:31:54.814Z","level":"info","message":"Steps 4-7: Extracting data (parallel execution)...\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.815Z","level":"info","message":"   Collecting session data...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.850Z","level":"info","message":"   Extracting conversations...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.854Z","level":"info","message":"   Extracting decisions...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.854Z","level":"info","message":"   Extracting diagrams...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.855Z","level":"info","message":"   Found 2 messages","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.855Z","level":"info","message":"   Found 0 decisions","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.855Z","level":"info","message":"   Found 0 diagrams","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.857Z","level":"info","message":"   Session data collected","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.857Z","level":"info","message":"\n   All extraction complete (parallel execution)\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.857Z","level":"info","message":"Step 7.5: Generating semantic summary...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.858Z","level":"info","message":"contamination_audit","stage":"content-filter","patternsChecked":[ELIDED],"matchesFound":[],"actionsTaken":["filtered_noise:0","filtered_empty:0","stripped_wrappers:0"],"passedThrough":["input_items:2","kept_items:2"]}
+{"timestamp":"2026-11-03T12:31:54.858Z","level":"info","message":"   Content quality: 30/100 (0 noise, 0 duplicates filtered from 2 items)","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.859Z","level":"info","message":"   Generated summary: 0 created, 0 modified, 0 decisions\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.859Z","level":"info","message":"Step 7.6: Applying tree thinning...","component":"workflow"}
+[utils] Path traversal blocked: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent/specs/001-demo-phase-parent/.canonical-save.lock/owner -> /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent/specs/001-demo-phase-parent/.canonical-save.lock/owner
+{"timestamp":"2026-11-03T12:31:54.860Z","level":"info","message":"   Tree thinning: 2 files, 0 content-as-summary, 2 merged-into-parent, ~40 tokens saved, 0 rendered rows reduced\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.860Z","level":"info","message":"Step 8: Populating template...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.864Z","level":"info","message":"   Template populated (quality: 30/100)\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.867Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":[ELIDED],"matchesFound":["body:foreign spec ids dominate rendered content"],"actionsTaken":["failed_rules:V8"],"passedThrough":["current_spec:unknown","trigger_phrases:0","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
+{"timestamp":"2026-11-03T12:31:54.867Z","level":"info","message":"Step 9: Writing files...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.867Z","level":"info","message":"   Skipping legacy [spec]/memory/*.md writes","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.885Z","level":"info","message":"   Refreshed graph-metadata.json","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"workflow event","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"Legacy memory artifact write skipped.\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"Validated spec folder: /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"Summary:","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"  - 2 messages captured","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"  - 0 key decisions documented","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"  - 0 diagrams preserved","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"  - Session duration: 0m\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"Step 11: Indexing semantic memory...","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.886Z","level":"info","message":"   Skipping retired legacy memory indexing","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.936Z","level":"warn","message":"   Trigger index: STALE for spec.md (added: demo phase parent phase parent spec; removed: none); run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs","component":"workflow"}
+{"timestamp":"2026-11-03T12:31:54.937Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent"}
+{"timestamp":"2026-11-03T12:31:54.937Z","level":"info","message":"workflow event","component":"workflow"}
+
+EXIT=0
+
+--- git status --short (after run 2) ---
+ M specs/001-demo-phase-parent/description.json
+ M specs/001-demo-phase-parent/graph-metadata.json
+?? .skilled
+
+--- git diff --stat ---
+ specs/001-demo-phase-parent/description.json    | 10 +--
+ specs/001-demo-phase-parent/graph-metadata.json | 92 ++++++++++++++++++++++---
+ 2 files changed, 87 insertions(+), 15 deletions(-)
+
+  Files changed: description.json and graph-metadata.json on the phase parent,
+  and nothing else. No continuity block, no implementation-summary.md write, no
+  memory artifact.
+--- git diff of the parent description.json from run 2 (captured before the commit that isolated the control) ---
+diff --git a/specs/001-demo-phase-parent/description.json b/specs/001-demo-phase-parent/description.json
+index 9e15575..6c02de7 100644
+--- a/specs/001-demo-phase-parent/description.json
++++ b/specs/001-demo-phase-parent/description.json
+@@ -1,4 +1,5 @@
+ {
++  "level": "phase",
+   "specFolder": "001-demo-phase-parent",
+   "description": "Demo phase parent",
+   "keywords": [
+@@ -6,11 +7,12 @@
+     "phase",
+     "parent"
+   ],
+-  "lastUpdated": "2026-11-03T12:30:16.925Z",
++  "lastUpdated": "2026-11-03T12:31:54.867Z",
+   "specId": "001",
+   "folderSlug": "demo-phase-parent",
+   "parentChain": [],
+-  "memorySequence": 0,
+-  "memoryNameHistory": [],
+-  "level": "phase"
++  "memorySequence": 1,
++  "memoryNameHistory": [
++    "03-11-26_13-31__the-save-was-aimed-at-specs-001-demo-phase-parent.md"
++  ]
+ }
+\ No newline at end of file
+
+4. CONTROL — identical payload aimed at the child leaf
+--------------------------------------------------------------------------------
+Purpose: show whether the metadata-only write belongs to "phase parent" or to
+every default (plan-only) save.
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js \
+    --json "$(cat $TMPDIR/skl-ranks/rank13/payload3.json)" \
+    --project-root "$TMPDIR/skl-ranks/rank13/repo"
+
+--- stdout ---
+   Using spec folder from CLI argument: 001-first-child
+   Phase 1B Alignment: 001-demo-phase-parent/001-first-child (100% match)
+   Content aligns with target folder
+--- key stderr lines ---
+{"timestamp":"2026-11-03T12:32:06.101Z","level":"info","message":"   Content quality: 30/100 (0 noise, 0 duplicates filtered from 2 items)","component":"workflow"}
+{"timestamp":"2026-11-03T12:32:06.110Z","level":"info","message":"   Template populated (quality: 30/100)\n","component":"workflow"}
+{"timestamp":"2026-11-03T12:32:06.132Z","level":"info","message":"   Refreshed graph-metadata.json","component":"workflow"}
+{"timestamp":"2026-11-03T12:32:06.191Z","level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],"renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,"component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or unspecified target): /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skl-ranks/rank13/repo/specs/001-demo-phase-parent/001-first-child"}
+
+EXIT=0
+
+--- git status --short (after the control) ---
+ M specs/001-demo-phase-parent/001-first-child/description.json
+ M specs/001-demo-phase-parent/001-first-child/graph-metadata.json
+ M specs/001-demo-phase-parent/graph-metadata.json
+?? .skilled
+
+--- git diff --stat ---
+ .../001-first-child/description.json               |  10 +-
+ .../001-first-child/graph-metadata.json            | 207 +++++++++++++++++++--
+ specs/001-demo-phase-parent/graph-metadata.json    |   5 +-
+ 3 files changed, 204 insertions(+), 18 deletions(-)
+
+  Same shape as run 2: exit 0, description.json + graph-metadata.json, no
+  continuity write, post-save review skipped with null scores. The parent's
+  graph-metadata.json also moved, which is the phase-parent pointer refresh.
+
+QUOTED LINES THAT CARRY THE CLAIM
+--------------------------------------------------------------------------------
+a) Exit 0 and metadata-only, verbatim from run 2 stderr:
+   {"level":"info","message":"   Refreshed graph-metadata.json","component":"workflow"}
+   {"level":"info","message":"Legacy memory artifact write skipped.\n","component":"workflow"}
+   {"level":"info","message":"   Skipping legacy [spec]/memory/*.md writes","component":"workflow"}
+
+b) The score is absent, not zero. Verbatim from run 2 stderr:
+   {"level":"info","message":"POST-SAVE QUALITY REVIEW -- SKIPPED","status":"SKIPPED","issues":[],
+    "renderQualityScore":null,"inputCompletenessScore":null,"scorePenalty":0,"blocking":false,
+    "component":"post-save-review","skipReason":"savedFilePath is a directory (phase-parent or
+    unspecified target): .../specs/001-demo-phase-parent"}
+
+   The only "/100" the run prints is the filter pipeline figure, identical in
+   every run including the leaf control:
+   {"level":"info","message":"   Content quality: 30/100 (0 noise, 0 duplicates filtered from 2 items)","component":"workflow"}
+   {"level":"info","message":"   Template populated (quality: 30/100)\n","component":"workflow"}
+
+c) The bookkeeping advances even though no continuity artifact is written. In the
+   run 2 diff, the parent's description.json gains:
+     -  "memorySequence": 0,
+     -  "memoryNameHistory": []
+     +  "memorySequence": 1,
+     +  "memoryNameHistory": [
+     +    "03-11-26_13-31__the-save-was-aimed-at-specs-001-demo-phase-parent.md"
+     +  ]
+   and graph-metadata.json moves last_save_at and save_lineage from "graph_only"
+   to "same_pass" while derived.causal_summary becomes the template placeholder
+   "[One-paragraph problem statement — what needs solving and why]". No file named
+   by memoryNameHistory exists on disk after the run.
+
+d) "Silently" is exact in the log-level sense: the skip is emitted at level
+   "info", no line contains "warn" for it, and the process exits 0.
+
+VERDICT
+  "Exits 0": CONFIRMED for a payload that clears the sufficiency gate.
+  "Refreshes only graph-metadata.json": CONFIRMED with one correction — it also
+  rewrites description.json; those are the only two files.
+  "Scores the payload 0/100": REFUTED. Nothing is scored; the post-save review is
+  skipped and both score fields are null. The 30/100 that does print is the input
+  completeness meter and appears identically on the leaf control.
+  "Phase-parent specific": NOT SUPPORTED by these runs — the child-leaf control
+  produced the same metadata-only, unscored, exit-0 save.
+  Untested here: --full-auto, which the help says is the only mode that writes the
+  continuity fields; these runs used the default plan-only mode.
+
+CLEANUP: $TMPDIR/skl-ranks/rank13 removed at end of session; see rank11 file.
+================================================================================

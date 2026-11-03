@@ -130,6 +130,42 @@ test('parseRouter reports a stage1-only block', () => {
   assert.deepEqual(router.intentOrder, []);
 });
 
+test('parseRouter reads an INTENT_MODEL block', () => {
+  const text = routerText('active', [
+    'INTENT_MODEL = {',
+    '    "ALPHA": {"weight": 4, "keywords": ["alpha task", "alpha"]},',
+    '    "BETA": {"weight": 2, "keywords": ["beta task"]}',
+    '}',
+    '',
+    'RESOURCE_MAP = {',
+    '    "ALPHA": ["pkt-a/references/a.md"],',
+    '    "BETA": ["pkt-b/references/b.md"]',
+    '}'
+  ].join('\n'));
+  const router = S.parseRouter(text);
+
+  assert.equal(router.state, 'active');
+  assert.deepEqual(router.intentOrder, ['ALPHA', 'BETA']);
+  assert.deepEqual(router.intents.ALPHA, { weight: 4, keywords: ['alpha task', 'alpha'] });
+});
+
+test('scoreIntents keeps each tuple keyword weight', () => {
+  const text = routerText('active', [
+    'INTENT_SIGNALS = {',
+    '    "DIAGNOSE": {"keywords": [("looks off", 4), ("improve", 2)]}',
+    '}'
+  ].join('\n'));
+  const router = S.parseRouter(text);
+
+  assert.deepEqual(router.intents.DIAGNOSE.keywords, [['looks off', 4], ['improve', 2]]);
+  assert.deepEqual(S.scoreIntents('this card looks off, can you improve it', router.intents), [
+    { intent: 'DIAGNOSE', score: 6 }
+  ]);
+  assert.deepEqual(S.scoreIntents('can you improve it', router.intents), [
+    { intent: 'DIAGNOSE', score: 2 }
+  ]);
+});
+
 test('keywordHits guards the four keywords', () => {
   assert.equal(S.keywordHits('preview', 'review'), false);
   assert.equal(S.keywordHits('input', 'inp'), false);

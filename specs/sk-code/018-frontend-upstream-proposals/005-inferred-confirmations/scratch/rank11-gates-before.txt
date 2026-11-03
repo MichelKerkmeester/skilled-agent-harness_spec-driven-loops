@@ -1,0 +1,16 @@
+# Archived validate-canary.cjs harnesses fail before any change: they read a removed .opencode/skills/system-deep-loop/deep-improvement path (see rank11-canary-before.txt). They are not used as a gate.
+## parent-skill-check per hub
+sk-code: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+sk-doc: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+sk-design: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+mcp-tooling: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+system-deep-loop: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+cli-external-orchestration: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+cli-classifier: OK: parent-skill-check — all hard invariants passed, 0 warnings 
+## compiled-route tests
+ℹ fail 1
+✖ failing tests:
+✖ live hubs
+ℹ pass 96
+ℹ tests 97
+✖ the live corpus holds the pinned number of gold scenarios
