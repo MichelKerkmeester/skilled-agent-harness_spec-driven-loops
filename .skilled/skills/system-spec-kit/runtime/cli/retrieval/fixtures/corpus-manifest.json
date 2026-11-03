@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fd80c0efa9e4694d59b59cf93dd723085dab2c588dc97d680d4e304634ba7aa2",
+  "corpusHash": "4eac6a52d61864173b005f479d6a66238567fa8481e213613ae41c41592bb346",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27230,
+  "includedPathCount": 27298,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8196,6 +8196,8 @@
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--manual-testing-playbook--weak-model-authoring/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/README.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/README.md",
+    ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/source.md",
     ".skilled/skills/system-spec-kit/benchmark/reports/README.md",
     ".skilled/skills/system-spec-kit/changelog/v0+/v0.0.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v0+/v0.0.0.1.md",
@@ -8415,7 +8417,10 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
@@ -27252,16 +27257,79 @@
     "specs/system-speckit/041-orphan-sweep-temp-processes/plan.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/spec.md",
     "specs/system-speckit/041-orphan-sweep-temp-processes/tasks.md",
-    "specs/system-speckit/042-decision-capture/acceptance-criteria.md",
-    "specs/system-speckit/042-decision-capture/decision-record.md",
-    "specs/system-speckit/042-decision-capture/implementation-summary.md",
-    "specs/system-speckit/042-decision-capture/plan.md",
-    "specs/system-speckit/042-decision-capture/spec.md",
-    "specs/system-speckit/042-decision-capture/tasks.md",
-    "specs/system-speckit/042-decision-capture/timeline.md"
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/decision-record.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/goal.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/plan.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/spec.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/tasks.md",
+    "specs/system-speckit/043-decision-capture/001-decision-capture-build/timeline.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/decision-record.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/goal.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/plan.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/spec.md",
+    "specs/system-speckit/043-decision-capture/002-table-row-matching/tasks.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/decision-record.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/goal.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/plan.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/spec.md",
+    "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/tasks.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/goal.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/plan.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/spec.md",
+    "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/tasks.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/decision-record.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/goal.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/plan.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/spec.md",
+    "specs/system-speckit/043-decision-capture/005-chat-question-detection/tasks.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/decision-record.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/goal.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/plan.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/spec.md",
+    "specs/system-speckit/043-decision-capture/006-live-conversation-test/tasks.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/acceptance-criteria.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/decision-record.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/goal.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/implementation-summary.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/plan.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/spec.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/tasks.md",
+    "specs/system-speckit/043-decision-capture/007-gap-closure/timeline.md",
+    "specs/system-speckit/043-decision-capture/decision-record.md",
+    "specs/system-speckit/043-decision-capture/goal.md",
+    "specs/system-speckit/043-decision-capture/handover.md",
+    "specs/system-speckit/043-decision-capture/open-questions.md",
+    "specs/system-speckit/043-decision-capture/research/fanout-attribution.md",
+    "specs/system-speckit/043-decision-capture/research/research.md",
+    "specs/system-speckit/043-decision-capture/research/resource-map.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-strategy.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-002.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-003.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-1.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-2.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/research.md",
+    "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+    "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
+    "specs/system-speckit/043-decision-capture/review/review-report.md",
+    "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "22aa638aa402a7141ac90f102c01673862c4495a37a981fca5e01ae7f457a8ea",
+  "manifestHash": "361e95366c041e6bc6b01fdb211e1e1f9206d0c54056628c90d27573f16f313e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27313,6 +27381,10 @@
     },
     {
       "path": ".skilled/hooks/decision-capture/claude/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/decision-capture/devin/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -34976,7 +35048,43 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-decision-capture/scratch",
+      "path": "specs/system-speckit/043-decision-capture/001-decision-capture-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/002-table-row-matching/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/005-chat-question-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/007-gap-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/scratch",
       "reason": "excluded directory"
     },
     {

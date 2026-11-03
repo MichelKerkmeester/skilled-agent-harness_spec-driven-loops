@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7253,
-    "ok": 16429,
+    "missing-frontmatter": 7267,
+    "ok": 16483,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27230,
+  "documentsScanned": 27298,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "22aa638aa402a7141ac90f102c01673862c4495a37a981fca5e01ae7f457a8ea",
+  "manifestHash": "361e95366c041e6bc6b01fdb211e1e1f9206d0c54056628c90d27573f16f313e",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40098,
+      "ok": 40176,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -33516,6 +33516,18 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-10-25--model-eval--authoring-baseline/source.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/system-spec-kit/benchmark/reports/2026-11-02--manual-testing-playbook--decision-capture-live-conversation/source.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -68406,6 +68418,78 @@
       "line": 1,
       "path": "specs/system-speckit/040-weak-model-spec-authoring/review/review-report.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/043-decision-capture/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/system-speckit/043-decision-capture/research_archive/2026-11-02-pre-gaps/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/review/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/system-speckit/043-decision-capture/review/review-report.md",
+      "reason": "no opening frontmatter delimiter"
     }
   ],
   "skippedPaths": [
@@ -68451,6 +68535,10 @@
     },
     {
       "path": ".skilled/hooks/decision-capture/claude/fixtures",
+      "reason": "excluded directory"
+    },
+    {
+      "path": ".skilled/hooks/decision-capture/devin/fixtures",
       "reason": "excluded directory"
     },
     {
@@ -76114,7 +76202,43 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/system-speckit/042-decision-capture/scratch",
+      "path": "specs/system-speckit/043-decision-capture/001-decision-capture-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/002-table-row-matching/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/003-codex-and-pi-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/004-opencode-devin-live-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/005-chat-question-detection/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/007-gap-closure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/scratch",
       "reason": "excluded directory"
     },
     {

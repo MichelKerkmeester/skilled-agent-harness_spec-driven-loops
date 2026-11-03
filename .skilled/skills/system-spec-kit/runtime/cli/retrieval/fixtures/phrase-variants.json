@@ -1,5 +1,5 @@
 {
-  "manifestHash": "22aa638aa402a7141ac90f102c01673862c4495a37a981fca5e01ae7f457a8ea",
+  "manifestHash": "361e95366c041e6bc6b01fdb211e1e1f9206d0c54056628c90d27573f16f313e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -608,6 +608,9 @@
     ],
     "002 stress test pattern documentation tasks": [
       "002-stress-test-pattern-documentation tasks"
+    ],
+    "002 table row matching operator decisions": [
+      "002-table-row-matching operator decisions"
     ],
     "002 tasks sidecar skill": [
       "002 tasks sidecar skill"
@@ -6865,6 +6868,12 @@
     ],
     "043 closeout final state": [
       "043 closeout final state"
+    ],
+    "043 decision capture operator decisions": [
+      "043-decision-capture operator decisions"
+    ],
+    "043 handover": [
+      "043 handover"
     ],
     "043 implementation plan": [
       "043 implementation plan"
@@ -16121,6 +16130,9 @@
     "capture website css": [
       "capture website css"
     ],
+    "captured answers pending nudge": [
+      "captured answers pending nudge"
+    ],
     "card pilot decision": [
       "card pilot decision"
     ],
@@ -17936,6 +17948,27 @@
     ],
     "chat label confirmation": [
       "chat label confirmation"
+    ],
+    "chat question detection": [
+      "chat question detection"
+    ],
+    "chat question detection acceptance criteria": [
+      "chat question detection acceptance criteria"
+    ],
+    "chat question detection decision record": [
+      "chat question detection decision record"
+    ],
+    "chat question detection goal": [
+      "chat question detection goal"
+    ],
+    "chat question detection implementation summary": [
+      "chat question detection implementation summary"
+    ],
+    "chat question detection plan": [
+      "chat question detection plan"
+    ],
+    "chat question detection tasks": [
+      "chat question detection tasks"
     ],
     "chat slice handoff": [
       "chat slice handoff"
@@ -25654,6 +25687,27 @@
     "codex agents mirror fill": [
       "codex agents mirror fill"
     ],
+    "codex and pi capture": [
+      "codex and pi capture"
+    ],
+    "codex and pi capture acceptance criteria": [
+      "codex and pi capture acceptance criteria"
+    ],
+    "codex and pi capture decision record": [
+      "codex and pi capture decision record"
+    ],
+    "codex and pi capture goal": [
+      "codex and pi capture goal"
+    ],
+    "codex and pi capture implementation summary": [
+      "codex and pi capture implementation summary"
+    ],
+    "codex and pi capture plan": [
+      "codex and pi capture plan"
+    ],
+    "codex and pi capture tasks": [
+      "codex and pi capture tasks"
+    ],
     "codex apply patch alignment halt": [
       "codex apply_patch alignment halt"
     ],
@@ -25911,6 +25965,9 @@
     ],
     "codex reasoning effort lever": [
       "codex reasoning effort lever"
+    ],
+    "codex request user input async capture": [
+      "codex request_user_input_async capture"
     ],
     "codex review command": [
       "codex review command"
@@ -32441,8 +32498,32 @@
     "decision capture acceptance criteria": [
       "decision capture acceptance criteria"
     ],
+    "decision capture conversation stages": [
+      "decision capture conversation stages"
+    ],
     "decision capture design decision": [
       "decision capture design decision"
+    ],
+    "decision capture disabled live test": [
+      "decision capture disabled live test"
+    ],
+    "decision capture follow up": [
+      "decision capture follow-up"
+    ],
+    "decision capture follow up review": [
+      "decision capture follow-up review"
+    ],
+    "decision capture gap closure": [
+      "decision capture gap closure"
+    ],
+    "decision capture gaps": [
+      "decision capture gaps"
+    ],
+    "decision capture goal": [
+      "decision capture goal"
+    ],
+    "decision capture handover": [
+      "decision capture handover"
     ],
     "decision capture hook": [
       "decision capture hook"
@@ -32450,14 +32531,56 @@
     "decision capture implementation summary": [
       "decision capture implementation summary"
     ],
+    "decision capture kill switch conversation": [
+      "decision capture kill switch conversation"
+    ],
+    "decision capture live conversation": [
+      "decision capture live conversation"
+    ],
+    "decision capture live conversation scenario": [
+      "decision capture live conversation scenario"
+    ],
+    "decision capture maintainability": [
+      "decision capture maintainability"
+    ],
+    "decision capture mid message chat question live test": [
+      "decision capture mid-message chat question live test"
+    ],
+    "decision capture open questions": [
+      "decision capture open questions"
+    ],
+    "decision capture orphaned answers": [
+      "decision capture orphaned answers"
+    ],
+    "decision capture phase parent spec": [
+      "decision capture phase parent spec"
+    ],
     "decision capture plan": [
       "decision capture plan"
+    ],
+    "decision capture runtime matrix": [
+      "decision capture runtime matrix"
     ],
     "decision capture runtime state": [
       "decision capture runtime state"
     ],
+    "decision capture series": [
+      "decision capture series"
+    ],
+    "decision capture series research": [
+      "decision capture series research"
+    ],
+    "decision capture series research strategy": [
+      "decision capture series research strategy"
+    ],
+    "decision capture sibling re proof conversation": [
+      "decision capture sibling re-proof conversation"
+    ],
     "decision capture sweep": [
       "decision capture sweep"
+    ],
+    "decision capture table match live test": [
+      "decision capture table match live test"
     ],
     "decision capture tasks": [
       "decision capture tasks"
@@ -32527,6 +32650,9 @@
     ],
     "decision record statuses": [
       "decision-record statuses"
+    ],
+    "decision record upgrade continuation": [
+      "decision record upgrade continuation"
     ],
     "decision record writer": [
       "decision record writer"
@@ -49937,6 +50063,30 @@
     "gap 005": [
       "GAP-005"
     ],
+    "gap closure": [
+      "gap closure"
+    ],
+    "gap closure acceptance criteria": [
+      "gap closure acceptance criteria"
+    ],
+    "gap closure decision record": [
+      "gap closure decision record"
+    ],
+    "gap closure goal": [
+      "gap closure goal"
+    ],
+    "gap closure implementation summary": [
+      "gap closure implementation summary"
+    ],
+    "gap closure plan": [
+      "gap closure plan"
+    ],
+    "gap closure tasks": [
+      "gap closure tasks"
+    ],
+    "gap closure timeline": [
+      "gap closure timeline"
+    ],
     "gap threshold calibration benchmark": [
       "gap threshold calibration benchmark"
     ],
@@ -53446,6 +53596,9 @@
     ],
     "hand written dashboard refused": [
       "hand-written dashboard refused"
+    ],
+    "hand written decision table match": [
+      "hand-written decision table match"
     ],
     "handback save gates": [
       "handback save gates"
@@ -60883,8 +61036,32 @@
     "live comment hygiene hooks": [
       "live comment hygiene hooks"
     ],
+    "live conversation test": [
+      "live conversation test"
+    ],
+    "live conversation test acceptance criteria": [
+      "live conversation test acceptance criteria"
+    ],
+    "live conversation test decision record": [
+      "live conversation test decision record"
+    ],
+    "live conversation test goal": [
+      "live conversation test goal"
+    ],
+    "live conversation test implementation summary": [
+      "live conversation test implementation summary"
+    ],
+    "live conversation test plan": [
+      "live conversation test plan"
+    ],
+    "live conversation test tasks": [
+      "live conversation test tasks"
+    ],
     "live db byte equality guard": [
       "live DB byte-equality guard"
+    ],
+    "live decision capture scenario": [
+      "live decision capture scenario"
     ],
     "live demand proof": [
       "live demand proof"
@@ -71815,6 +71992,24 @@
     "opencode destructive scope violation": [
       "opencode destructive scope violation"
     ],
+    "opencode devin live capture": [
+      "opencode devin live capture"
+    ],
+    "opencode devin live capture acceptance criteria": [
+      "opencode devin live capture acceptance criteria"
+    ],
+    "opencode devin live capture goal": [
+      "opencode devin live capture goal"
+    ],
+    "opencode devin live capture implementation summary": [
+      "opencode devin live capture implementation summary"
+    ],
+    "opencode devin live capture plan": [
+      "opencode devin live capture plan"
+    ],
+    "opencode devin live capture tasks": [
+      "opencode devin live capture tasks"
+    ],
     "opencode dispatch framework precedence": [
       "opencode dispatch framework precedence"
     ],
@@ -76390,6 +76585,9 @@
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
+    "phase 2 table row matching": [
+      "phase 2 table row matching"
+    ],
     "phase 2 template and example defect repair": [
       "phase 2 template and example defect repair"
     ],
@@ -76590,6 +76788,9 @@
     ],
     "phase 3 check and template canon closure": [
       "phase 3 check and template canon closure"
+    ],
+    "phase 3 codex and pi capture": [
+      "phase 3 codex and pi capture"
     ],
     "phase 3 codex mirror gate": [
       "phase 3 codex mirror gate"
@@ -76810,6 +77011,9 @@
     "phase 4 manual claim goal binding": [
       "phase 4 manual claim goal binding"
     ],
+    "phase 4 opencode devin live capture": [
+      "phase 4 opencode devin live capture"
+    ],
     "phase 4 pi ambiguous denial": [
       "phase 4 pi ambiguous denial"
     ],
@@ -76896,6 +77100,9 @@
     ],
     "phase 5 changelog version keys": [
       "phase 5 changelog version keys"
+    ],
+    "phase 5 chat question detection": [
+      "phase 5 chat question detection"
     ],
     "phase 5 claim corrections": [
       "phase 5 claim corrections"
@@ -77092,6 +77299,9 @@
     "phase 6 implementation summary": [
       "phase 6 implementation summary"
     ],
+    "phase 6 live conversation test": [
+      "phase 6 live conversation test"
+    ],
     "phase 6 measurement": [
       "phase 6 measurement"
     ],
@@ -77199,6 +77409,9 @@
     ],
     "phase 7 docs and changelogs": [
       "phase 7 docs and changelogs"
+    ],
+    "phase 7 gap closure": [
+      "phase 7 gap closure"
     ],
     "phase 7 handoff gate exemptions": [
       "phase 7 handoff gate exemptions"
@@ -78008,6 +78221,9 @@
     ],
     "pi arm on agent settled tasks": [
       "pi arm on agent settled tasks"
+    ],
+    "pi ask user question capture": [
+      "pi ask_user_question capture"
     ],
     "pi blackhole auto compacts": [
       "pi-blackhole auto-compacts"
@@ -112944,6 +113160,24 @@
     ],
     "table header matching": [
       "table-header matching"
+    ],
+    "table row matching": [
+      "table row matching"
+    ],
+    "table row matching acceptance criteria": [
+      "table row matching acceptance criteria"
+    ],
+    "table row matching goal": [
+      "table row matching goal"
+    ],
+    "table row matching implementation summary": [
+      "table row matching implementation summary"
+    ],
+    "table row matching plan": [
+      "table row matching plan"
+    ],
+    "table row matching tasks": [
+      "table row matching tasks"
     ],
     "table status fallback changelog": [
       "table status fallback changelog"
