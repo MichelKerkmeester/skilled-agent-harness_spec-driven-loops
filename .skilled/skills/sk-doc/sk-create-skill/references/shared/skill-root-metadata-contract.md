@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Skill Root Metadata Contract
@@ -135,6 +135,7 @@ Beyond presence and forbidden files, the gate enforces:
 - **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
 - **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
 - **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row names its checklist file in `file`, a relative `.md` path inside the skill root, and scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot. A row carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included. Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word. A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
+- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings. `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays. A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename. A hand-curated `intent_signals` entry never appears in `intent_signals_generated`, so it is never an orphan. A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
 
 ### Violation codes
 
@@ -152,6 +153,7 @@ Beyond presence and forbidden files, the gate enforces:
 | `GRAPH_METADATA_INVALID` | `graph-metadata.json` is not valid JSON or is not a JSON object |
 | `GRAPH_METADATA_UNKNOWN_KEY` | `graph-metadata.json` carries a top-level key the gate does not recognise |
 | `GRAPH_METADATA_INVALID_SURFACE_DETECTION` | A present `surface_detection` breaks one rule of the optional block described in the enforcement list |
+| `GRAPH_METADATA_INVALID_SIGNAL_LIST` | A present `intent_signals_generated` or `intent_signals_keep` is not an array of non-blank strings |
 | `GRAPH_METADATA_INVALID_QUALITY` | A present `quality` breaks one rule of the optional block described in the enforcement list |
 | `INTENT_SIGNALS_BELOW_FLOOR` | `intent_signals` holds fewer than eight entries |
 | `INTENT_SIGNALS_AND_TRIGGERS_EMPTY` | `intent_signals` and `derived.trigger_phrases` are both empty |

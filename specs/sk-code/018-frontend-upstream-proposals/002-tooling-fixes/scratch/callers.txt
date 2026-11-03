@@ -1,0 +1,54 @@
+.github/workflows/routing-registry-drift.yml:232:          node .opencode/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check
+.skilled/skills/sk-doc/sk-create-skill/SKILL.md:193:   For a hub, `node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --write --hub <hub>` carries the ROUTER.md intent vocabulary into `intent_signals`.
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:38:const DEFAULT_CONCURRENCY = 2;
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:255:    ? Math.max(1, Number(args[args.indexOf('--concurrency') + 1]) || DEFAULT_CONCURRENCY)
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:256:    : DEFAULT_CONCURRENCY;
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:362:module.exports = { DEFAULT_CONCURRENCY };
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:85:  // `generate-router-intent-signals.cjs --write` records each phrase it adds here,
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:87:  'intent_signals_generated',
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:89:  'intent_signals_keep',
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:110:// `intent_signals_generated` records the phrases that writer added, and
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:111:// `intent_signals_keep` names generated phrases it must not prune. A blank entry
+.skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs:114:const SIGNAL_LIST_KEYS = ['intent_signals_generated', 'intent_signals_keep'];
+.skilled/skills/sk-doc/sk-create-skill/scripts/README.md:31:| `generate-router-intent-signals.cjs` | Carries every multi-word phrase a router declares up into the hub's `graph-metadata.json` `intent_signals`, so a capability the router advertises can be asked for by name. `--check` reports drift, `--write` applies it. |
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach-default.test.cjs:17:const { DEFAULT_CONCURRENCY } = require('../ci-router-vocabulary-reach.cjs');
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach-default.test.cjs:20:  assert.equal(DEFAULT_CONCURRENCY, 2);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/typo-flags.test.cjs:49:const GENERATE_ROUTER_INTENT_SIGNALS = path.join(SKDOC, 'sk-create-skill', 'scripts', 'generate-router-intent-signals.cjs');
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/typo-flags.test.cjs:156:test('generate-router-intent-signals.cjs rejects the unknown --bogus-xyz flag in check mode', () => {
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/typo-flags.test.cjs:161:test('generate-router-intent-signals.cjs rejects --hub with no value and names --hub', () => {
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-reader-inventory.test.cjs:44:  '.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs': 'exclude',
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:653:      intent_signals_generated: ['generated phrase one'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:654:      intent_signals_keep: ['kept phrase one'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:667:      intent_signals_generated: ['generated phrase one', '   '],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-root-metadata-contract.test.cjs:677:  assert.match(found[0].message, /intent_signals_generated must be an array of non-blank strings/);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:3:// ║ generate-router-intent-signals-orphans.test — provenance + prune coverage ║
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:9: * in `intent_signals_generated` that its router no longer declares. The script
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:26:const SCRIPT_SOURCE = path.join(__dirname, '..', 'generate-router-intent-signals.cjs');
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:32:  const script = path.join(scriptDir, 'generate-router-intent-signals.cjs');
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:71:        intent_signals_generated: ['declared phrase here', 'old generated phrase'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:102:        intent_signals_generated: ['zeta stays', 'renamed away', 'alpha stays'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:109:    assert.deepEqual(meta.intent_signals_generated, ['zeta stays', 'alpha stays']);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:124:        intent_signals_generated: ['kept generated phrase'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:125:        intent_signals_keep: ['kept generated phrase'],
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:138:    assert.deepEqual(meta.intent_signals_generated, ['kept generated phrase']);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:163:    assert.equal(meta.intent_signals_generated, undefined);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs:180:    assert.deepEqual(meta.intent_signals_generated, ['new declared phrase']);
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs:177:    const script = path.join(scriptDir, 'generate-router-intent-signals.cjs');
+.skilled/skills/sk-doc/sk-create-skill/scripts/tests/skill-derived-regenerator.test.cjs:178:    fs.copyFileSync(path.join(__dirname, '..', 'generate-router-intent-signals.cjs'), script);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:5: * usage: generate-router-intent-signals.cjs --check|--write [--hub <id>] [--json]
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:19: * writer adds is also recorded in `intent_signals_generated`, the provenance
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:23: * lists. `intent_signals_keep` pins a generated phrase that should outlive its
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:69: * earlier `--write` recorded in `intent_signals_generated` that the router no
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:70: * longer declares, unless `intent_signals_keep` pins it. Hand-curated entries
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:71: * never appear in `intent_signals_generated`, so they can never be orphans.
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:80:  const generated = Array.isArray(meta.intent_signals_generated) ? meta.intent_signals_generated : [];
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:81:  const keep = new Set((Array.isArray(meta.intent_signals_keep) ? meta.intent_signals_keep : [])
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:103:  const generated = Array.isArray(p.meta.intent_signals_generated) ? p.meta.intent_signals_generated : [];
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:105:  p.meta.intent_signals_generated = [
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:126:        process.stderr.write('generate-router-intent-signals.cjs: --hub needs a hub id\n');
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:133:      process.stderr.write(`generate-router-intent-signals.cjs: unknown option: ${args[i]}\n`);
+.skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs:143:    process.stderr.write('usage: generate-router-intent-signals.cjs --check|--write [--hub <id>] [--json]\n');
+.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:138:- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings. `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays. A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename. A hand-curated `intent_signals` entry never appears in `intent_signals_generated`, so it is never an orphan. A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
+.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md:156:| `GRAPH_METADATA_INVALID_SIGNAL_LIST` | A present `intent_signals_generated` or `intent_signals_keep` is not an array of non-blank strings |
+.skilled/scripts/git-hooks/pre-commit:492:    SIGNALS="$SOURCE_ROOT/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs"
+.skilled/scripts/git-hooks/tests/pre-commit.test.sh:801:  write_skill_stub "$SKILL_STUB_DIR/generate-router-intent-signals.cjs" signals "$3"

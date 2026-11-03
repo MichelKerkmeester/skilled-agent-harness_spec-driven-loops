@@ -82,6 +82,11 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
   'edges',
   'domains',
   'intent_signals',
+  // `generate-router-intent-signals.cjs --write` records each phrase it adds here,
+  // which is what separates a generated phrase from a hand-curated one.
+  'intent_signals_generated',
+  // The same script reads this keep list before it prunes an orphan phrase.
+  'intent_signals_keep',
   'derived',
   'deprecated',
   'importance_tier',
@@ -100,6 +105,13 @@ const GRAPH_METADATA_TOP_LEVEL_KEYS = new Set([
 // The marker lists a surface_detection block may carry. The detectors read
 // all three and drop any entry that is not a non-empty string.
 const SURFACE_MARKER_KEYS = ['pathMarkers', 'fileMarkers', 'contentMarkers'];
+
+// The optional provenance lists the router-vocabulary writer maintains:
+// `intent_signals_generated` records the phrases that writer added, and
+// `intent_signals_keep` names generated phrases it must not prune. A blank entry
+// can never match a phrase, so the writer would either chase it as an orphan
+// forever or treat it as a keep entry protecting nothing.
+const SIGNAL_LIST_KEYS = ['intent_signals_generated', 'intent_signals_keep'];
 
 // The selector lists a quality row may carry, and the file it must name: a row
 // scopes a checklist to the files one of these selects, so a row with no
@@ -546,6 +558,24 @@ function checkGraphMetadata(skillDir) {
       file: 'graph-metadata.json',
       message: `${skillId}: graph-metadata.json has unknown top-level key(s): ${unknown.join(', ')}`,
     });
+  }
+
+  // The provenance lists are optional, but a present one must hold only
+  // non-blank phrases. A blank entry can never compare equal to a router phrase,
+  // so the writer would either report it as an orphan forever or read it as a
+  // keep marker that protects nothing.
+  for (const key of SIGNAL_LIST_KEYS) {
+    if (!Object.prototype.hasOwnProperty.call(metadata, key)) continue;
+    const value = metadata[key];
+    const isStringList = Array.isArray(value)
+      && value.every((entry) => typeof entry === 'string' && entry.trim().length > 0);
+    if (!isStringList) {
+      violations.push({
+        code: 'GRAPH_METADATA_INVALID_SIGNAL_LIST',
+        file: 'graph-metadata.json',
+        message: `${skillId}: graph-metadata.json ${key} must be an array of non-blank strings`,
+      });
+    }
   }
 
   // The key is optional, but a present value must be an object: a string or

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The sk-code surface axis lists only `sk-code-ci` and `sk-code-skilled`, and `shared/references/` holds no frontend folder, so a request about HTML forms, the CSS cascade or checking a built screen against Figma gets no frontend practice",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T11:24:52.129Z",
+    "last_save_at": "2026-11-03T11:58:45.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,7 +222,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4870a90d71576b09bc5e438ed3f2088c2dacde0debb55d2f1de5f1e77587daae",
+    "source_fingerprint": "sha256:fb689ee968f518d811db88d714645fdff0a9e5fef808d1e50f8c0682a6476f12",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8c574b4c489a1d8396f1a5ebebeb3bef9f323f9b6c2ce3c255c8a979ad873f2a",

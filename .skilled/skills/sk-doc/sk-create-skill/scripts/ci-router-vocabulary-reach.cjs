@@ -31,8 +31,11 @@ const execFileAsync = promisify(execFile);
 // entry point asks, so the process spawn is noise. Sequentially that is over forty
 // minutes for the fleet, which is long enough that the check gets sampled instead
 // of run, and a sampled inventory is how phrases stayed broken across green runs.
-// The daemon serves concurrent callers, so the wait overlaps.
-const DEFAULT_CONCURRENCY = 8;
+// The daemon serves concurrent callers, so the wait overlaps. The default is 2
+// rather than 8 because a busy advisor reported 11 to 13 probe-error rows at 8 and
+// none at 2, so concurrency was reading advisor load as unreachable phrases. The
+// measured price of the safer setting is about half a second per 48 cold probes.
+const DEFAULT_CONCURRENCY = 2;
 
 async function pool(items, limit, worker) {
   const results = new Array(items.length);
@@ -354,4 +357,6 @@ async function main() {
   process.exit(failed ? 1 : 0);
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { DEFAULT_CONCURRENCY };

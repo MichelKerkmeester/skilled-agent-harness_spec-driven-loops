@@ -1,0 +1,24 @@
+# Live orphan report, 2026-11-03T11:50:36Z, after the provenance change
+# No hub carries intent_signals_generated yet, so every orphan count is 0 until the hub's next --write.
+OK    cli-classifier               declared= 40 signals= 44 missing=  0 orphans=  0
+OK    cli-external-orchestration   declared= 89 signals= 96 missing=  0 orphans=  0
+OK    mcp-tooling                  declared=115 signals=130 missing=  0 orphans=  0
+OK    sk-code                      declared= 97 signals=135 missing=  0 orphans=  0
+OK    sk-design                    declared=120 signals=219 missing=  0 orphans=  0
+OK    sk-doc                       declared=243 signals=259 missing=  0 orphans=  0
+OK    system-deep-loop             declared= 29 signals= 34 missing=  0 orphans=  0
+
+checked=7 hub(s), missing=0, orphans=0
+RESULT: PASSED
+exit=0
+
+# Signals in intent_signals that no router declares today (hand-curated or added before provenance), per hub, for the hub owners.
+# Method: the generator's declaredPhrases() extraction, lower-cased comparison.
+cli-classifier               undeclared multi-word   3 all   4
+cli-external-orchestration   undeclared multi-word   2 all   7
+mcp-tooling                  undeclared multi-word   3 all  15
+sk-code                      undeclared multi-word  29 all  38
+sk-design                    undeclared multi-word  94 all  99
+sk-doc                       undeclared multi-word  11 all  16
+system-deep-loop             undeclared multi-word   2 all   5
+total                        undeclared multi-word 144 all 184

@@ -89,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-Nothing is built yet, so every criterion is unmet, and AC-002 decides whether the surface ships at all.
+Every criterion is met with its evidence recorded in the table, and an independent pass in `scratch/verify-001.md` agreed.
 <!-- /ANCHOR:closure -->

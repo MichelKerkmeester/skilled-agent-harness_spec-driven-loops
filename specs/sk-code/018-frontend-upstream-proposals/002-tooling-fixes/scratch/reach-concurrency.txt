@@ -1,0 +1,16 @@
+concurrency=8 wall=8s :: OK   sk-code                      declared= 97 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+concurrency=2 wall=8s :: OK   sk-code                      declared= 97 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+concurrency=8 wall=6s :: OK   sk-code                      declared= 97 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+concurrency=2 wall=6s :: OK   sk-code                      declared= 97 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  0 probe-error=  0 operator-local=  0
+concurrency=8 wall=19s :: OK   sk-doc                       declared=243 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  7 probe-error=  0 operator-local=  0
+concurrency=2 wall=17s :: OK   sk-doc                       declared=243 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  7 probe-error=  0 operator-local=  0
+concurrency=8 wall=7s :: OK   sk-design                    declared=120 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  1 probe-error=  0 operator-local=  0
+concurrency=2 wall=9s :: OK   sk-design                    declared=120 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  1 probe-error=  0 operator-local=  0
+loaded(3 parallel sweeps) concurrency=8 wall=47s :: sk-doc 0 operator-local=;sk-doc 0 operator-local=;sk-design 0 operator-local=;
+loaded(3 parallel sweeps) concurrency=2 wall=45s :: sk-doc 0 operator-local=;sk-doc 0 operator-local=;sk-design 0 operator-local=;
+loaded(3 parallel sweeps) concurrency=8 wall=49s :: sk-doc 0 operator-local=;sk-doc 0 operator-local=;sk-design 0 operator-local=;
+loaded(3 parallel sweeps) concurrency=2 wall=51s :: sk-doc 0 operator-local=;sk-doc 0 operator-local=;sk-design 0 operator-local=;
+cold concurrency=8 n=48 wall=2.8s {"live":48}
+cold concurrency=2 n=48 wall=3.4s {"live":48}
+cold concurrency=8 n=48 wall=2.9s {"live":48}
+cold concurrency=2 n=48 wall=3.3s {"live":48}

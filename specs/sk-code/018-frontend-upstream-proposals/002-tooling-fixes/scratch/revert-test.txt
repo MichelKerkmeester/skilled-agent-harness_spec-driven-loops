@@ -1,0 +1,26 @@
+## Broken: orphans forced empty in plan(), DEFAULT_CONCURRENCY set back to 8
+$ node --test tests/generate-router-intent-signals-orphans.test.cjs tests/ci-router-vocabulary-reach-default.test.cjs
+exit=1
+✖ --check reports a generated phrase no router declares as an orphan
+✔ --write records a newly declared phrase in both lists
+✖ --write removes the orphan from both lists and keeps the surviving order
+✔ a hand-curated undeclared phrase is neither reported nor removed
+✔ a keep-listed generated phrase is neither reported nor removed
+✔ an empty intent_signals with no provenance arrays reports nothing
+ℹ fail 3
+ℹ pass 4
+✖ router reach defaults to concurrency 2
+ℹ tests 7
+
+## Restored
+exit=0
+✔ router reach defaults to concurrency 2
+✔ --check reports a generated phrase no router declares as an orphan
+✔ --write removes the orphan from both lists and keeps the surviving order
+✔ a keep-listed generated phrase is neither reported nor removed
+✔ a hand-curated undeclared phrase is neither reported nor removed
+✔ --write records a newly declared phrase in both lists
+✔ an empty intent_signals with no provenance arrays reports nothing
+ℹ tests 7
+ℹ pass 7
+ℹ fail 0

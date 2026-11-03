@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -76,11 +76,19 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase planned | Pending | Planning docs authored 2026-11-03; nothing built |
+| Phase planned | Done | Planning docs authored 2026-11-03 |
+| T001 reach measurement | Done | `scratch/reach-concurrency.txt`: 0 probe errors at 8 and 2, warm, loaded and 48 cold probes; 2 costs about 0.5 s per 48 cold probes |
+| T002 keep marker | Done | `scratch/keep-marker.md`: sibling `intent_signals_keep` array; in-string prefix rejected |
+| T003 callers | Done | `scratch/callers.txt`: `routing-registry-drift.yml` and the pre-commit skill-authoring gate run `--check` |
+| Build dispatch (a) | Done | DeepSeek V4.1 Flash max, 7 files; suite 97/97 |
+| Verification | Done | `scratch/revert-test.txt`, `scratch/orphans.txt`, `scratch/verify-002.md` 7 of 7 met |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None yet | |
+| Orphan definition | The specced definition flagged 151 curated live signals; the operator chose provenance tracking (ADR-001, Q001). |
+| Wider file set | The closed graph-metadata key set means `ci-skill-root-metadata.cjs` and its contract doc change too. |
+| Count correction | The first orphan count, 151, used a looser extraction; with the generator's own it is 184 (144 multi-word). |
+| Executor | Builds run on DeepSeek V4.1 Flash max via opencode-go, per the operator's switch in phase 001 (Q005). |
 <!-- /ANCHOR:log -->

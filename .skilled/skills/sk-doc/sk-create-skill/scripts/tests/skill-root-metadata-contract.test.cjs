@@ -645,6 +645,38 @@ function testGateAcceptsIntentSignalsAtFloor() {
   assert.equal(gate.checkRoot(dir, { fix: true }).status, 'pass');
 }
 
+function testGateValidatesSignalProvenanceLists() {
+  const skillsDir = makeTmpSkillsDir();
+  const dir = makeRoot(skillsDir, 'signal-provenance-ok', {
+    'graph-metadata.json': {
+      skill_id: 'signal-provenance-ok',
+      intent_signals_generated: ['generated phrase one'],
+      intent_signals_keep: ['kept phrase one'],
+    },
+    'leaf-manifest.config.json': { workflowMode: 'signal-provenance-ok' },
+    'references/a.md': '# a\n',
+  });
+  const valid = gate.checkRoot(dir, { fix: true });
+  assert.equal(valid.status, 'pass');
+  assert.ok(!codesOf(valid).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+  assert.ok(!codesOf(valid).includes('GRAPH_METADATA_INVALID_SIGNAL_LIST'));
+
+  const brokenDir = makeRoot(skillsDir, 'signal-provenance-broken', {
+    'graph-metadata.json': {
+      skill_id: 'signal-provenance-broken',
+      intent_signals_generated: ['generated phrase one', '   '],
+    },
+    'leaf-manifest.config.json': { workflowMode: 'signal-provenance-broken' },
+    'references/a.md': '# a\n',
+  });
+  const broken = gate.checkRoot(brokenDir, { fix: true });
+  assert.equal(broken.status, 'fail');
+  assert.ok(!codesOf(broken).includes('GRAPH_METADATA_UNKNOWN_KEY'));
+  const found = broken.violations.filter((v) => v.code === 'GRAPH_METADATA_INVALID_SIGNAL_LIST');
+  assert.equal(found.length, 1);
+  assert.match(found[0].message, /intent_signals_generated must be an array of non-blank strings/);
+}
+
 function testGateDetectsStaleGeneratedManifest() {
   const skillsDir = makeTmpSkillsDir();
   const dir = makeRoot(skillsDir, 'stale-manifest', {
@@ -932,6 +964,7 @@ try {
   testGateRejectsIntentSignalsBelowFloor();
   testGateRejectsEmptyIntentSignalsAndTriggers();
   testGateAcceptsIntentSignalsAtFloor();
+  testGateValidatesSignalProvenanceLists();
   testGateDetectsStaleGeneratedManifest();
   testFixNeverWritesAuthoredFiles();
   testFixDoesNotTouchHubAliases();

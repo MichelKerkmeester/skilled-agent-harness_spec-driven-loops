@@ -19,6 +19,8 @@
       "tooling fixes tasks",
       "tooling fixes acceptance criteria",
       "tooling fixes goal",
+      "tooling fixes decision record",
+      "intent signal orphan definition",
       "tooling fixes implementation summary"
     ],
     "key_topics": [
@@ -36,16 +38,26 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+      ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.0.0.md",
+      "scratch/verify-002.md",
+      "scratch/orphans.txt",
+      "scratch/reach-concurrency.txt",
+      "scratch/keep-marker.md",
+      "scratch/callers.txt",
+      "scratch/revert-test.txt"
     ],
     "entities": [
       {
@@ -79,6 +91,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -94,6 +112,60 @@
         "name": "ci-router-vocabulary-reach.cjs",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-skill-root-metadata.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-root-metadata-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.10.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-002.md",
+        "kind": "doc",
+        "path": "scratch/verify-002.md",
+        "source": "derived"
+      },
+      {
+        "name": "orphans.txt",
+        "kind": "file",
+        "path": "scratch/orphans.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reach-concurrency.txt",
+        "kind": "file",
+        "path": "scratch/reach-concurrency.txt",
+        "source": "derived"
+      },
+      {
+        "name": "keep-marker.md",
+        "kind": "doc",
+        "path": "scratch/keep-marker.md",
+        "source": "derived"
+      },
+      {
+        "name": "callers.txt",
+        "kind": "file",
+        "path": "scratch/callers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "revert-test.txt",
+        "kind": "file",
+        "path": "scratch/revert-test.txt",
         "source": "derived"
       },
       {
@@ -131,71 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Router",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`plan()` computes only the phrases missing from `intentsignals`, and `write()` appends them, so a phrase a router no longer declares stays in the advisor vocabulary",
     "created_at": "2026-11-03T08:33:53Z",
-    "last_save_at": "2026-11-03T08:48:22.361Z",
+    "last_save_at": "2026-11-03T11:58:43.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,15 +216,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b49a1626063a56d81a19cce2d17c51140326d9dadee0c3489d2b839befec0ae7",
+    "source_fingerprint": "sha256:feb130dedbecc52ee510405a421ebcf90d75e1721e783393bb3c85ee67fba7d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a2e5c7fd2606864cb1532c616b90f7c474074e8b94814804e03c7a0bda2d128",
+      "spec.md": "49d8cecdd884abc8d2093d63fb89ab04dcff175505252e4686f2da46a1f6a24c",
       "plan.md": "ba8ce0e3b94acfb883609072eb9cff05777e9c6c8d093f605788f8bdbe2f707f",
-      "tasks.md": "3a8df6a172135be62e269a57eb08de81a451da7c3f4ad306e09a195f68510bc1",
-      "implementation-summary.md": "2a736bf64af7192fd8b40a61688906cb6c436a766ca22b37ee15f67abf67a51c"
+      "tasks.md": "847d7dd0f89930f251c45d46dcc6229524d4d71535e7c218754437d47720dffe",
+      "decision-record.md": "030d505d8ce3b23d5764d1cad028cc0e7efcbe11e7c39afb8138f2e940e19ad6",
+      "implementation-summary.md": "6262b54fc1dd7bdeb75027961de8871e992741e75c3ba3619677d72087b07bf7"
     },
     "last_active_at": null
   }
