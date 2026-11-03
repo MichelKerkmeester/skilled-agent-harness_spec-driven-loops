@@ -20,12 +20,6 @@
       "leaves": [
         "references/figma-to-code.md",
         "references/frontend-practice.md",
-        "references/native-accessibility.md",
-        "references/native-inputs-and-keyboard.md",
-        "references/native-layout-and-text.md",
-        "references/native-lists-and-motion.md",
-        "references/native-platform-differences.md",
-        "references/react-native-layout-and-a11y.md",
         "references/web-accessibility-patterns.md",
         "references/web-cascade-and-selectors.md",
         "references/web-elements-and-attributes.md",

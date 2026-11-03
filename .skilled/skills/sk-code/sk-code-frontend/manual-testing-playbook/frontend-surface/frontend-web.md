@@ -3,12 +3,12 @@ id: frontend-surface-web
 category: frontend_surface
 stage: routing
 title: 'Web markup and CSS routing'
-description: "This scenario validates FRONTEND_WEB routing. It confirms a request to review semantic HTML markup loads the cross-stack core and the web stack layer, rather than a native, Figma or generic resource set."
+description: "This scenario validates FRONTEND_WEB routing. It confirms a request to review semantic HTML markup loads the cross-stack core and the web stack layer, rather than a Figma or generic resource set."
 expected_intent: FRONTEND_WEB
 expected_resources:
   - references/frontend-practice.md
   - references/web-markup-and-css.md
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web markup and CSS routing
@@ -19,11 +19,11 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates `FRONTEND_WEB` routing. It confirms that the exact prompt below classifies as `FRONTEND_WEB` and loads the cross-stack core and the web stack layer instead of a native, Figma or generic resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2 of the same router and the reference map in [`SKILL.md`](../../SKILL.md) name the same paths in prose.
+This scenario validates `FRONTEND_WEB` routing. It confirms that the exact prompt below classifies as `FRONTEND_WEB` and loads the cross-stack core and the web stack layer instead of a Figma or generic resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2 of the same router and the reference map in [`SKILL.md`](../../SKILL.md) name the same paths in prose.
 
 ### Why This Matters
 
-A web change that reaches the hub with no frontend surface loads none of the repository's markup, form, layout or accessibility rules. The web layer carries the element choice, the form and label rules, the layout, responsive and media rules, and the CSS architecture a review applies. A request routed to the native layer instead would load React Native mechanics for a DOM change, and one routed nowhere would leave the review to memory.
+A web change that reaches the hub with no frontend surface loads none of the repository's markup, form, layout or accessibility rules. The web layer carries the element choice, the form and label rules, the layout, responsive and media rules, and the CSS architecture a review applies. A request routed nowhere would leave the review to memory.
 
 ### What This Scenario Does Not Claim
 

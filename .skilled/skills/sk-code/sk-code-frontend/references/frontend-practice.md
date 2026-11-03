@@ -1,6 +1,6 @@
 ---
 title: Frontend Practice
-description: Shared frontend principles for web and native surfaces, with stack layers, token guidance and a five-pass Figma check.
+description: Shared frontend principles for web surfaces, with a web layer, token guidance and a five-pass Figma check.
 trigger_phrases:
   - "frontend practice"
   - "global interface principles"
@@ -8,36 +8,36 @@ trigger_phrases:
   - "figma to code review"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Frontend Practice
 
-Shared rules for frontend work, expressed through web, native and project-specific layers.
+Shared rules for frontend work, expressed through the web layer and the project-specific layer.
 
 ---
 
 ## 1. OVERVIEW AND LAYERS
 
-This file owns cross-stack principles. The web layer expresses them through DOM and CSS, and the native layer through React Native and Yoga. Each project mode adds the conventions it uses.
+This file owns the shared principles. The web layer expresses them through DOM and CSS. Each project mode adds the conventions it uses.
 
-The core states what good frontend work must preserve. The stack layers name the vocabulary and mechanics that implement it.
+The core states what good frontend work must preserve. The web layer names the vocabulary and mechanics that implement it.
 
 ---
 
 ## 2. THE ELEVEN PRINCIPLES
 
-1. **Actions are buttons, and navigation is links.** People get the expected interaction and navigation behavior. See [web structure](web-markup-and-css.md#2-structure-and-semantics) and [native accessibility](react-native-layout-and-a11y.md#3-accessibility-props).
-2. **Every control has a name, a role and a state.** People need to identify a control and understand its current condition. See [web structure](web-markup-and-css.md#2-structure-and-semantics) and [native accessibility](react-native-layout-and-a11y.md#3-accessibility-props).
-3. **Every input has a visible label, and its affordance matches the data.** A visible label stays available after a person starts typing, while the input cue helps them enter the right data. See [web forms](web-markup-and-css.md#3-forms) and [native inputs](react-native-layout-and-a11y.md#5-inputs).
-4. **Layout follows content flow, siblings have consistent spacing, text containers grow with their text, overlays leave the flow, and content respects device safe areas.** This lets content adapt without clipping or hiding ordinary content. See [web layout](web-markup-and-css.md#4-layout) and [native layout](react-native-layout-and-a11y.md#2-layout).
-5. **Text survives translation and font scaling.** Longer translations and larger system text must remain readable and reachable. See [web responsive rules](web-markup-and-css.md#5-responsive) and [native text scaling](react-native-layout-and-a11y.md#4-text-and-scaling).
-6. **Every image has a text-alternative decision and reserved dimensions.** People using assistive technology need the image's meaning, and the layout needs its space before it loads. See [web media](web-markup-and-css.md#6-media) and [native images](react-native-layout-and-a11y.md#6-images-and-lists).
-7. **Values come from installed tokens, and a missing token is reported.** Installed tokens keep values consistent across the app, while a report gives the design system a clear gap to resolve. See [web CSS architecture](web-markup-and-css.md#7-css-architecture) and [native token boundaries](react-native-layout-and-a11y.md#1-overview-and-boundary).
-8. **Figma is a reference, not a code structure.** A design shows intended appearance and states, while the app's own conventions decide its structure. See the [web boundary](web-markup-and-css.md#1-overview-and-boundary), the [native boundary](react-native-layout-and-a11y.md#1-overview-and-boundary) and [Figma to code](figma-to-code.md).
-9. **Responsive behavior is checked at narrow, medium and wide widths and under zoom.** These checks expose wrapping, overflow and clipping before release. See [web responsive rules](web-markup-and-css.md#5-responsive) and [native layout](react-native-layout-and-a11y.md#2-layout).
-10. **Assistive-technology checks are part of completion, and non-essential motion respects the user's reduced-motion setting.** They confirm names, order, states and feedback when people do not use the visual layout. See the [web checklist](web-markup-and-css.md#9-pre-completion-checklist) and the [native checklist](react-native-layout-and-a11y.md#7-pre-completion-checklist).
-11. **Text and controls meet the contrast target set by sk-design-fundamentals on every theme the mode supports.** Contrast remains readable in each supported theme. See [web structure](web-markup-and-css.md#2-structure-and-semantics), [native accessibility](react-native-layout-and-a11y.md#3-accessibility-props) and [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md).
+1. **Actions are buttons, and navigation is links.** People get the expected interaction and navigation behavior. See [web structure](web-markup-and-css.md#2-structure-and-semantics).
+2. **Every control has a name, a role and a state.** People need to identify a control and understand its current condition. See [web structure](web-markup-and-css.md#2-structure-and-semantics).
+3. **Every input has a visible label, and its affordance matches the data.** A visible label stays available after a person starts typing, while the input cue helps them enter the right data. See [web forms](web-markup-and-css.md#3-forms).
+4. **Layout follows content flow, siblings have consistent spacing, text containers grow with their text, overlays leave the flow, and content respects device safe areas.** This lets content adapt without clipping or hiding ordinary content. See [web layout](web-markup-and-css.md#4-layout).
+5. **Text survives translation and font scaling.** Longer translations and larger system text must remain readable and reachable. See [web responsive rules](web-markup-and-css.md#5-responsive).
+6. **Every image has a text-alternative decision and reserved dimensions.** People using assistive technology need the image's meaning, and the layout needs its space before it loads. See [web media](web-markup-and-css.md#6-media).
+7. **Values come from installed tokens, and a missing token is reported.** Installed tokens keep values consistent across the app, while a report gives the design system a clear gap to resolve. See [web CSS architecture](web-markup-and-css.md#7-css-architecture).
+8. **Figma is a reference, not a code structure.** A design shows intended appearance and states, while the app's own conventions decide its structure. See the [web boundary](web-markup-and-css.md#1-overview-and-boundary) and [Figma to code](figma-to-code.md).
+9. **Responsive behavior is checked at narrow, medium and wide widths and under zoom.** These checks expose wrapping, overflow and clipping before release. See [web responsive rules](web-markup-and-css.md#5-responsive).
+10. **Assistive-technology checks are part of completion, and non-essential motion respects the user's reduced-motion setting.** They confirm names, order, states and feedback when people do not use the visual layout. See the [web checklist](web-markup-and-css.md#9-pre-completion-checklist).
+11. **Text and controls meet the contrast target set by sk-design-fundamentals on every theme the mode supports.** Contrast remains readable in each supported theme. See [web structure](web-markup-and-css.md#2-structure-and-semantics) and [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md).
 
 ---
 
@@ -45,7 +45,7 @@ The core states what good frontend work must preserve. The stack layers name the
 
 Values come from the project's installed tokens. Report a missing token instead of inventing a value. When the tokens or the frame leave a value open, use [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md) for guidance.
 
-Use [interaction-craft.md](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) for interaction detail. This core carries only the cross-stack interaction rules:
+Use [interaction-craft.md](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) for interaction detail. This core carries only the shared interaction rules:
 
 - Make thumb-operated targets 44 px. Keep 32 px as the dense floor.
 - Keep font weight stable across interaction states.
@@ -69,20 +69,20 @@ Check dark mode only where the mode supports it.
 
 ## 5. OVERRIDES
 
-A project or stack mode wins for its app when it declares a change to one core or stack-layer statement. A mode may replace, extend or disable that statement. It records each change under a Frontend overrides heading in its own SKILL.md, naming the section, action and reason. When nothing differs, the heading says: none: this mode follows the core and its stack layer unchanged. A project or stack mode's completion report names the overrides it applied.
+A project mode wins for its app when it declares a change to one core or web-layer statement. A mode may replace, extend or disable that statement. It records each change under a Frontend overrides heading in its own SKILL.md, naming the section, action and reason. When nothing differs, the heading says: none: this mode follows the core and its web layer unchanged. A project mode's completion report names the overrides it applied.
 
 ---
 
-## 6. STACK LAYERS AND TOPIC FILES
+## 6. LAYERS AND TOPIC FILES
 
-Load this core, the stack layer for the surface and the one topic file the change touches. Load a second topic file only when the change crosses into it.
+Load this core, the web layer and the one topic file the change touches. Load a second topic file only when the change crosses into it.
 
-**Stack layers**
+**Layers**
 
 | Layer | Applies to | Reference |
 |---|---|---|
 | Web | Any DOM and CSS app, whatever the framework | [web-markup-and-css.md](web-markup-and-css.md) |
-| Native | Any React Native app | [react-native-layout-and-a11y.md](react-native-layout-and-a11y.md) |
+| Project-specific | Each project's own conventions | The project mode's `SKILL.md` |
 
 **Web topic files**
 
@@ -94,16 +94,6 @@ Load this core, the stack layer for the surface and the one topic file the chang
 | Accessibility patterns | [web-accessibility-patterns.md](web-accessibility-patterns.md) | Changing a widget pattern, accessible name, focus behavior, live region, browser preference or form validation and error messaging |
 | Performance and loading | [web-performance-and-loading.md](web-performance-and-loading.md) | Changing vitals, resource loading, image delivery, fonts or main-thread work |
 | Internationalization | [web-internationalization.md](web-internationalization.md) | Changing locale, direction, bidirectional text, formatting or translation tolerance |
-
-**Native topic files**
-
-| Topic | File | Load when |
-|---|---|---|
-| Accessibility | [native-accessibility.md](native-accessibility.md) | Changing accessibility aliases, announcements, focus containment, hiding or touch bounds |
-| Layout and text | [native-layout-and-text.md](native-layout-and-text.md) | Changing Yoga sizing, text scaling, line limits or native layout geometry |
-| Inputs and keyboard | [native-inputs-and-keyboard.md](native-inputs-and-keyboard.md) | Changing text input props, keyboard avoidance, focus chaining or autofill |
-| Lists and motion | [native-lists-and-motion.md](native-lists-and-motion.md) | Changing virtualized rows, FlashList recycling, animation or reduced-motion behavior |
-| Platform differences | [native-platform-differences.md](native-platform-differences.md) | Changing behavior that differs between iOS and Android |
 
 ---
 

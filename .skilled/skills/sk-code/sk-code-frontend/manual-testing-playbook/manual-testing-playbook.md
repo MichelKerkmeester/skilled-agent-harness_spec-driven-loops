@@ -1,7 +1,7 @@
 ---
 title: "sk-code-frontend: Manual Testing Playbook"
-description: "Corpus for the sk-code-frontend surface: the routing-recall scenarios for its web, native and Figma-check intents, the evidence a run leaves, and the review rules a release reads."
-version: 1.0.0.0
+description: "Corpus for the sk-code-frontend surface: the routing-recall scenarios for its web and Figma-check intents, the evidence a run leaves, and the review rules a release reads."
+version: 1.0.1.0
 ---
 
 # sk-code-frontend: Manual Testing Playbook
@@ -24,7 +24,7 @@ Routing-recall corpus for the `sk-code-frontend` surface.
 
 ## 1. OVERVIEW
 
-Three scenarios live here, one per intent family the surface routes: a web request that names `semantic html markup`, a native request that names `react native layout`, and a Figma check that names `figma frame check`. Each one sends a single exact prompt through the packet router, confirms the intent it selects, and confirms the resource set `RESOURCE_MAP` declares for that intent.
+Two scenarios live here, one per intent family the surface routes: a web request that names `semantic html markup`, and a Figma check that names `figma frame check`. Each one sends a single exact prompt through the packet router, confirms the intent it selects, and confirms the resource set `RESOURCE_MAP` declares for that intent.
 
 The intents and the map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../ROUTER.md); the router's `INTENT MODEL` in section 2 and the reference map in [`SKILL.md`](../SKILL.md) carry the prose that names the same paths.
 
@@ -34,15 +34,14 @@ The hub's router-sync guard replays every scenario here that declares `expected_
 
 | # | Category | Folder | Scenario IDs |
 |---|---|---|---|
-| 1 | Frontend Surface | `frontend-surface/` | frontend-surface-web, frontend-surface-native, frontend-surface-figma-check |
+| 1 | Frontend Surface | `frontend-surface/` | frontend-surface-web, frontend-surface-figma-check |
 
 ### Scenarios
 
 | # | ID | Intent | File |
 | --- | --- | --- | --- |
 | 1 | frontend-surface-web | FRONTEND_WEB | [frontend-web.md](frontend-surface/frontend-web.md) |
-| 2 | frontend-surface-native | FRONTEND_NATIVE | [frontend-native.md](frontend-surface/frontend-native.md) |
-| 3 | frontend-surface-figma-check | FIGMA_TO_CODE | [figma-check.md](frontend-surface/figma-check.md) |
+| 2 | frontend-surface-figma-check | FIGMA_TO_CODE | [figma-check.md](frontend-surface/figma-check.md) |
 
 A **routing** scenario, meaning one that declares `expected_intent` and `expected_resources`, is `PASS` when every path in its `expected_resources` resolves under the packet root, the replayed router selects that intent, and the router emits that path set for the exact prompt. It is `FAIL` when its checks do not hold, and `SKIP` only when a specific sandbox or runtime blocker prevented the run.
 
@@ -106,7 +105,7 @@ The verdict is `FAIL` when any check is false, including a run whose behaviour w
 
 ### Release Readiness Rule
 
-The packet is release-ready only when every scenario is `PASS` or carries a justified `SKIP`. A `FAIL` on any of the three blocks the release, because each scenario proves a different intent family and the three together are the surface's only routing evidence. A web scenario that passes while the native or Figma scenario fails leaves that intent unverified, and the guard would replay the failing one on every future run.
+The packet is release-ready only when every scenario is `PASS` or carries a justified `SKIP`. A `FAIL` on either blocks the release, because each scenario proves a different intent family and the two together are the surface's only routing evidence. A web scenario that passes while the Figma scenario fails leaves that intent unverified, and the guard would replay the failing one on every future run.
 
 ### Root-vs-Feature Rule
 
@@ -118,7 +117,7 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 |---|---|---|
 | Scenario ID | Yes | The scenario's frontmatter `id`, copied as written |
 | Feature file | Yes | The scenario's path relative to this root |
-| Runtime | Yes | Native, or the skipped surface with its blocker |
+| Runtime | Yes | The surface that ran, or the skipped surface with its blocker |
 | Exact prompt | Yes | The pasted prompt that proved canonical prompt equality |
 | Evidence path | Yes | The dated folder under `sk-code/benchmark/reports/` that holds the record |
 | Verdict | Yes | `PASS`, `FAIL` or `SKIP` |
@@ -138,7 +137,7 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 
 ### Operational Rules
 
-1. The three scenarios read the same router, the same references and the same guard, so they run in one operator session. Splitting them saves no wall time and makes the family harder to read.
+1. The two scenarios read the same router, the same references and the same guard, so they run in one operator session. Splitting them saves no wall time and makes the family harder to read.
 2. Record the verdict and its evidence path before any follow-up work starts.
 3. Keep the coordinator role with the operator who ran the check. There is no second runtime to reconcile against.
 4. The Figma scenario also needs the answer itself, because its sixth acceptance check grades the verdict the answer reports. Run it last, so a routing defect is found before the answer is read.
@@ -147,7 +146,7 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 
 | Wave | Category | Scenarios | Rationale |
 |---|---|---|---|
-| 1 | Frontend Surface | `frontend-surface-web`, `frontend-surface-native`, `frontend-surface-figma-check` | All three read one router and one replay command, with no fixture to schedule. Run them serially in one session. |
+| 1 | Frontend Surface | `frontend-surface-web`, `frontend-surface-figma-check` | Both read one router and one replay command, with no fixture to schedule. Run them serially in one session. |
 
 ### What Belongs In Per-Feature Files
 
@@ -163,9 +162,9 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` (check `4`) | Replays every packet-level routing scenario against its `expected_resources` | frontend-surface-web, frontend-surface-native, frontend-surface-figma-check |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` (check `4`) | Replays every packet-level routing scenario against its `expected_resources` | frontend-surface-web, frontend-surface-figma-check |
 | `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Asserts a frontend review prompt bundles `[sk-code-review, sk-code-frontend]` and that near-miss prompts never bundle the surface | frontend-surface-web (the same web surface family, with a different prompt) |
-| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | The `12a-router-contract` and `12b-routing-shape` checks on this packet's `ROUTER.md` | frontend-surface-web, frontend-surface-native, frontend-surface-figma-check (the machine router all three read) |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | The `12a-router-contract` and `12b-routing-shape` checks on this packet's `ROUTER.md` | frontend-surface-web, frontend-surface-figma-check (the machine router both read) |
 
 ---
 
@@ -174,7 +173,6 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
 | frontend-surface-web | Web markup and CSS routing | Frontend Surface | [frontend-web](frontend-surface/frontend-web.md) |
-| frontend-surface-native | Native layout and accessibility routing | Frontend Surface | [frontend-native](frontend-surface/frontend-native.md) |
 | frontend-surface-figma-check | Figma frame check routing | Frontend Surface | [figma-check](frontend-surface/figma-check.md) |
 
-The routing rows above belong to the entry `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which records the surface axis and the advisor-invisible surfaces. The reference families behind the scenarios, which are the core, the web and native layers and the Figma check, have no separate catalog entry, and each scenario's Playbook Sources section says so.
+The routing rows above belong to the entry `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which records the surface axis and the advisor-invisible surfaces. The reference families behind the scenarios, which are the core, the web layer and the Figma check, have no separate catalog entry, and each scenario's Playbook Sources section says so.

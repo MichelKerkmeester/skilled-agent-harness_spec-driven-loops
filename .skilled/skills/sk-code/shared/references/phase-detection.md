@@ -8,7 +8,7 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Phase Detection and Lifecycle
@@ -103,7 +103,7 @@ The CI surface writes nothing. The acting agent applies its rules, and a rule th
 | Phase | Resources and evidence |
 | --- | --- |
 | 0 Research | `sk-code-frontend/references/frontend-practice.md`, then the markup, style or component files the change touches and the design it must match |
-| 1 Implementation | The same core, then `sk-code-frontend/references/web-markup-and-css.md` or `sk-code-frontend/references/react-native-layout-and-a11y.md`, then the one `web-*.md` or `native-*.md` topic file whose condition in the surface router applies |
+| 1 Implementation | The same core, then `sk-code-frontend/references/web-markup-and-css.md`, then the one `web-*.md` topic file whose condition in the surface router applies |
 | 1.5 Code Quality | The surface carries no checklist, so the gate stays with `sk-code-quality` and its universal floor |
 | 2 Debugging | Root-cause analysis, the failing command's output and the stack layer or topic file that owns the behavior |
 | 3 Verification | `sk-code-frontend/references/figma-to-code.md` where a built screen is compared with its Figma frame, plus the repository's own commands for that stack |
@@ -144,4 +144,4 @@ These hold on every surface and in every mode. No phase transition relaxes them.
 - [stack-detection.md](./stack-detection.md) covers surface detection and SKILLED language sub-detection.
 - [`../../sk-code-quality/SKILL.md`](../../sk-code-quality/SKILL.md) runs the Phase 1.5 gate.
 - [`../../sk-code-ci/SKILL.md`](../../sk-code-ci/SKILL.md) holds the CI rule evidence and the protected set.
-- [`../../sk-code-frontend/SKILL.md`](../../sk-code-frontend/SKILL.md) holds the frontend core, the web and native stack layers and the Figma-to-code check.
+- [`../../sk-code-frontend/SKILL.md`](../../sk-code-frontend/SKILL.md) holds the frontend core, the web stack layer and the Figma-to-code check.

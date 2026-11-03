@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.14.0
+version: 2.3.15.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -150,7 +150,7 @@ The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so th
 
 ### Frontend Map
 
-When a request asks about web or native frontend practice, or a Figma-to-code check, the hub bundles `sk-code-frontend` from request vocabulary alone:
+When a request asks about web frontend practice, or a Figma-to-code check, the hub bundles `sk-code-frontend` from request vocabulary alone:
 
 | Resource | Carries |
 | --- | --- |
@@ -162,15 +162,9 @@ When a request asks about web or native frontend practice, or a Figma-to-code ch
 | `sk-code-frontend/references/web-accessibility-patterns.md` | Accessibility patterns, visible focus, and live regions |
 | `sk-code-frontend/references/web-performance-and-loading.md` | Web font loading and largest contentful paint |
 | `sk-code-frontend/references/web-internationalization.md` | Right-to-left layout and bidirectional text |
-| `sk-code-frontend/references/react-native-layout-and-a11y.md` | The React Native and Yoga stack layer for layout, accessibility, text scaling, inputs, images, and lists |
-| `sk-code-frontend/references/native-accessibility.md` | React Native accessibility behavior |
-| `sk-code-frontend/references/native-layout-and-text.md` | React Native text scaling and layout |
-| `sk-code-frontend/references/native-inputs-and-keyboard.md` | React Native inputs and keyboard avoidance |
-| `sk-code-frontend/references/native-lists-and-motion.md` | React Native list performance and reduced motion |
-| `sk-code-frontend/references/native-platform-differences.md` | iOS and Android behavior differences |
 | `sk-code-frontend/references/figma-to-code.md` | The five-pass check for comparing a built screen with its Figma frame |
 
-The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-frontend/`, so the two stay equal.
+The map is the packet's own `RESOURCE_MAP` for the web and Figma-to-code intents, re-prefixed with `sk-code-frontend/`, so the two stay equal there.
 
 ---
 
@@ -192,7 +186,7 @@ If no supported surface matches, ask:
 3. Which verification command proves the claim?
 4. Should a new `sk-code` route be planned before implementation?
 
-Canonical sk-code owns the SKILLED surface, the `sk-code-ci` GitHub Actions surface and the stack-agnostic `sk-code-frontend` surface for web and React Native practice. Project-specific Go, Next.js or React Native surfaces live in a project fork.
+Canonical sk-code owns the SKILLED surface, the `sk-code-ci` GitHub Actions surface and the stack-agnostic `sk-code-frontend` surface for web practice. Go, Next.js server code and React Native surfaces live in a project fork.
 
 ### UNKNOWN fallback checklist
 
@@ -216,7 +210,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 ### DON'T
 
 - Load all of `sk-code-skilled/` indiscriminately ("just in case")
-- Load Go or NextJS resources, or a project fork's own React Native surfaces, from canonical sk-code
+- Load Go, Next.js server code or React Native resources from canonical sk-code; those live in a project fork
 - Drop directory placeholders in playbook result YAML
 
 ---
@@ -269,12 +263,6 @@ INTENT_SIGNALS = {
     "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "aria live region"]},
     "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
-    "FRONTEND_NATIVE":     {"weight": 4, "keywords": ["react native layout"]},
-    "NATIVE_A11Y":         {"weight": 4, "keywords": ["react native accessibility", "accessibility labels"]},
-    "NATIVE_LAYOUT_TEXT":  {"weight": 4, "keywords": ["react native text scaling"]},
-    "NATIVE_INPUTS":       {"weight": 4, "keywords": ["react native keyboard avoidance"]},
-    "NATIVE_LISTS_MOTION": {"weight": 4, "keywords": ["react native scroll performance", "react native flatlist", "react native reduced motion"]},
-    "NATIVE_PLATFORM":     {"weight": 4, "keywords": ["ios android platform difference"]},
     "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
 }
 
@@ -416,35 +404,6 @@ RESOURCE_MAP = {
         "sk-code-frontend/references/frontend-practice.md",
         "sk-code-frontend/references/web-markup-and-css.md",
         "sk-code-frontend/references/web-internationalization.md",
-    ],
-    "FRONTEND_NATIVE": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-    ],
-    "NATIVE_A11Y": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-        "sk-code-frontend/references/native-accessibility.md",
-    ],
-    "NATIVE_LAYOUT_TEXT": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-        "sk-code-frontend/references/native-layout-and-text.md",
-    ],
-    "NATIVE_INPUTS": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-        "sk-code-frontend/references/native-inputs-and-keyboard.md",
-    ],
-    "NATIVE_LISTS_MOTION": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-        "sk-code-frontend/references/native-lists-and-motion.md",
-    ],
-    "NATIVE_PLATFORM": [
-        "sk-code-frontend/references/frontend-practice.md",
-        "sk-code-frontend/references/react-native-layout-and-a11y.md",
-        "sk-code-frontend/references/native-platform-differences.md",
     ],
     "FIGMA_TO_CODE": [
         "sk-code-frontend/references/figma-to-code.md",

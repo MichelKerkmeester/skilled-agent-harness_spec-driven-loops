@@ -2,7 +2,7 @@
 id: CB-CR-009
 category: compiled_routing
 stage: routing
-title: "sk-code keyboard focus fix in a React Native screen routes the frontend surface alone"
+title: "sk-code keyboard focus fix in a web form routes the frontend surface alone"
 description: "This scenario validates that the compiled sk-code route for one prompt is a single route to `sk-code-frontend`."
 route_shape: single
 expected_intent: sk-code-frontend
@@ -11,8 +11,6 @@ expected_resources:
   - sk-code-frontend/references/frontend-practice.md
   - sk-code-frontend/references/web-markup-and-css.md
   - sk-code-frontend/references/web-accessibility-patterns.md
-  - sk-code-frontend/references/react-native-layout-and-a11y.md
-  - sk-code-frontend/references/native-lists-and-motion.md
 expected_workflow_mode: sk-code-frontend
 expected_leaf_resources:
   - workflow_mode: sk-code-frontend
@@ -21,10 +19,6 @@ expected_leaf_resources:
     leaf_resource_id: references/web-markup-and-css.md
   - workflow_mode: sk-code-frontend
     leaf_resource_id: references/web-accessibility-patterns.md
-  - workflow_mode: sk-code-frontend
-    leaf_resource_id: references/react-native-layout-and-a11y.md
-  - workflow_mode: sk-code-frontend
-    leaf_resource_id: references/native-lists-and-motion.md
 full_inventory_intent: false
 evidence_compiled_route: sk-code/sk-code-frontend
 evidence_serving_authority: compiled
@@ -34,18 +28,18 @@ evidence_manifest_digest: 2c0ead68dfa8f79e7b17f59c92b1dc99598351f422514b43e1f780
 evidence_model: router-replay
 evidence_reasoning_effort: n/a
 created: 2026-11-03
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
-# sk-code keyboard focus fix in a React Native screen routes the frontend surface alone
+# sk-code keyboard focus fix in a web form routes the frontend surface alone
 
 ## 1. OVERVIEW
 
-A fix request names keyboard focus and a React Native FlatList but no workflow or review verb, so no workflow mode scores. Both phrases are frontend surface vocabulary, so the hub routes the `sk-code-frontend` surface alone, and the acting agent applies the accessibility and native list references directly. The two intents tie at the same weight, so the scenario also pins the leaf set the surface loads when both fire. The scenario proves the compiled engine serves `single` with exactly `[sk-code-frontend]` for this prompt.
+A fix request names keyboard focus in a web form but no workflow or review verb, so no workflow mode scores. The phrase is frontend surface vocabulary, so the hub routes the `sk-code-frontend` surface alone, and the acting agent applies the accessibility reference directly. The scenario also pins the leaf set the surface loads for that intent. The scenario proves the compiled engine serves `single` with exactly `[sk-code-frontend]` for this prompt.
 
 ### Why This Matters
 
-The hub contract says a surface is bundled after the primary mode when a mode scores, and is routed alone when no mode scores. This replay pins the frontend side of that contract to a real prompt, so a routing change that bundles, defers or picks another surface here shows up as a failed scenario. It also pins the two-intent leaf union, so a resource-map change that drops one of those leaves fails the assertion instead of loading less evidence without a signal.
+The hub contract says a surface is bundled after the primary mode when a mode scores, and is routed alone when no mode scores. This replay pins the frontend side of that contract to a real prompt, so a routing change that bundles, defers or picks another surface here shows up as a failed scenario. It also pins the intent's leaf set, so a resource-map change that drops one of those leaves fails the assertion instead of loading less evidence without a signal.
 
 ---
 
@@ -53,7 +47,7 @@ The hub contract says a surface is bundled after the primary mode when a mode sc
 
 **Exact prompt**:
 ```text
-fix the keyboard focus order in this react native flatlist screen
+fix the keyboard focus order in this web form
 ```
 
 **Expected route**:
@@ -72,7 +66,7 @@ fix the keyboard focus order in this react native flatlist screen
    ```
 2. Capture the compiled decision:
    ```
-   node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix the keyboard focus order in this react native flatlist screen"
+   node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix the keyboard focus order in this web form"
    ```
 
 ### Pass/Fail Criteria
@@ -86,7 +80,7 @@ fix the keyboard focus order in this react native flatlist screen
 ## 4. SOURCE FILES
 
 - `manual-testing-playbook.md` - Root directory page and scenario summary.
-- `.skilled/skills/sk-code/sk-code-frontend/SKILL.md` - Frontend surface contract and its accessibility and native list references.
+- `.skilled/skills/sk-code/sk-code-frontend/SKILL.md` - Frontend surface contract and its accessibility reference.
 - `.skilled/skills/sk-code/sk-code-frontend/ROUTER.md` - Frontend intent signals and the resource map this scenario asserts.
 - `.skilled/bin/compiled-route.cjs` - Compiled route front door.
 

@@ -139,7 +139,7 @@
       "packet": "sk-code-frontend",
       "packetSkillName": "sk-code-frontend",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "react native layout", "react native accessibility", "react native text scaling", "react native keyboard avoidance", "react native scroll performance", "react native reduced motion", "react native flatlist", "ios android platform difference", "keyboard focus", "accessibility labels", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"],
+      "aliases": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "keyboard focus", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"],
       "advisorRouting": {
         "routingClass": "metadata"
       }

@@ -183,10 +183,6 @@
     "semantic html markup",
     "web font loading",
     "right to left layout",
-    "react native layout",
-    "react native accessibility",
-    "react native text scaling",
-    "react native keyboard avoidance",
     "figma to code",
     "check built screen against figma",
     "compare build with figma frame",
@@ -198,12 +194,7 @@
     "aria live region",
     "largest contentful paint",
     "bidirectional text",
-    "react native reduced motion",
-    "ios android platform difference",
-    "react native scroll performance",
     "keyboard focus",
-    "accessibility labels",
-    "react native flatlist",
     "figma frame"
   ],
   "derived": {
@@ -377,10 +368,6 @@
     "semantic html markup",
     "web font loading",
     "right to left layout",
-    "react native layout",
-    "react native accessibility",
-    "react native text scaling",
-    "react native keyboard avoidance",
     "figma to code",
     "check built screen against figma",
     "compare build with figma frame",
@@ -392,12 +379,7 @@
     "aria live region",
     "largest contentful paint",
     "bidirectional text",
-    "react native reduced motion",
-    "ios android platform difference",
-    "react native scroll performance",
     "keyboard focus",
-    "accessibility labels",
-    "react native flatlist",
     "figma frame"
   ]
 }

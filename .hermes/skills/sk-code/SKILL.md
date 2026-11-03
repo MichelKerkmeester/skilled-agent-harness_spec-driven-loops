@@ -46,13 +46,13 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | Surface | Carries | Packet |
 |---------|---------|--------|
 | **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates, with the repository-specific values read from a CI profile. Read-only. | `sk-code/sk-code-ci/` |
-| **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, React Native layout and accessibility, and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
+| **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, web layout and accessibility, and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
 | **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 
 **Surface list.** The hub has exactly three surfaces:
 - SKILLED (`sk-code-skilled`): the native surface for this framework's own code.
 - CI (`sk-code-ci`): the GitHub Actions workflow standards surface.
-- Frontend (`sk-code-frontend`): the stack-agnostic web and React Native practice and Figma-to-code surface, bundled from request vocabulary alone.
+- Frontend (`sk-code-frontend`): the stack-agnostic web practice and Figma-to-code surface, bundled from request vocabulary alone.
 
 The hub also has two workflow modes: quality (`sk-code-quality`) and review (`sk-code-review`).
 Any other sk-code doc that counts surfaces points to this sentence.
@@ -124,7 +124,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-ci/            # GitHub Actions workflow standards packet (read-only evidence; rules, protected set and scaffold templates)
-  sk-code-frontend/      # stack-agnostic web, React Native and Figma-to-code evidence packet (read-only)
+  sk-code-frontend/      # stack-agnostic web and Figma-to-code evidence packet (read-only)
   sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
 ```

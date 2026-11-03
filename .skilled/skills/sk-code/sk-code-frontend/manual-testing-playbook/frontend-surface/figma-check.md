@@ -8,7 +8,7 @@ expected_intent: FIGMA_TO_CODE
 expected_resources:
   - references/figma-to-code.md
   - references/frontend-practice.md
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Figma frame check routing
@@ -19,7 +19,7 @@ This document captures the routing-recall contract, execution process, source an
 
 ## 1. OVERVIEW
 
-This scenario validates `FIGMA_TO_CODE` routing. It confirms that the exact prompt below classifies as `FIGMA_TO_CODE` and loads the five-pass check and the cross-stack core instead of a web, native or generic resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2 of the same router and the reference map in [`SKILL.md`](../../SKILL.md) name the same paths in prose.
+This scenario validates `FIGMA_TO_CODE` routing. It confirms that the exact prompt below classifies as `FIGMA_TO_CODE` and loads the five-pass check and the cross-stack core instead of a web or generic resource set. The intent signal and the resource map are read from the `MACHINE ROUTER` section at the end of [`ROUTER.md`](../../ROUTER.md); section 2 of the same router and the reference map in [`SKILL.md`](../../SKILL.md) name the same paths in prose.
 
 ### Why This Matters
 

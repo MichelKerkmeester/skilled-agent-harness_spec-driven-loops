@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.38.0
+version: 2.2.39.0
 ---
 
 # sk-code
@@ -53,7 +53,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 | Surface | Carries | Pointer |
 |---|---|---|
 | `sk-code-ci` | GitHub Actions workflow standards: trigger and filter rules, job shape, the protected set and the scaffold templates | [`README.md`](./sk-code-ci/README.md) |
-| `sk-code-frontend` | Stack-agnostic web and React Native practice, topic references, and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
+| `sk-code-frontend` | Stack-agnostic web practice, topic references, and Figma-to-code checks | [`README.md`](./sk-code-frontend/README.md) |
 | `sk-code-skilled` | Native surface. System-code evidence: TypeScript, Python, shell and config standards, hooks, alignment verification, authoring checklists | [`README.md`](./sk-code-skilled/README.md) |
 
 ---
@@ -111,7 +111,7 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships three surfaces: the native SKILLED surface, the CI standards surface and a stack-agnostic frontend surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Frontend surface, at `.skilled/skills/sk-code/sk-code-frontend/`, holds web and React Native practice, topic references and Figma-to-code checks. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
+sk-code ships three surfaces: the native SKILLED surface, the CI standards surface and a stack-agnostic frontend surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Frontend surface, at `.skilled/skills/sk-code/sk-code-frontend/`, holds web practice, topic references and Figma-to-code checks. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 

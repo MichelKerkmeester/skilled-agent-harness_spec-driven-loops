@@ -1,13 +1,13 @@
 ---
 title: Figma to Code Translation
-description: Why Figma components carry more structure than code needs, and how each Figma construct translates into simple, semantic web or React Native code built from the tokens the app installs.
+description: Why Figma components carry more structure than code needs, and how each Figma construct translates into simple, semantic web code built from the tokens the app installs.
 trigger_phrases:
   - "figma to code translation"
   - "figma auto layout to flexbox"
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Figma to Code Translation
@@ -20,9 +20,9 @@ How to read a Figma design as a reference and build the simplest correct structu
 
 Figma is a reference for code, never its markup. Never copy the layer tree, absolute coordinates, fixed frame sizes or component property sets 1:1 into code.
 
-A Figma read, export or MCP pull tells you what the screen should look like and which states it has. It does not tell you which elements to write. That decision belongs to [`web-markup-and-css.md`](web-markup-and-css.md) or [`react-native-layout-and-a11y.md`](react-native-layout-and-a11y.md), and every value comes from the tokens the app installs.
+A Figma read, export or MCP pull tells you what the screen should look like and which states it has. It does not tell you which elements to write. That decision belongs to [`web-markup-and-css.md`](web-markup-and-css.md), and every value comes from the tokens the app installs.
 
-The cross-stack principles are in [`frontend-practice.md`](frontend-practice.md). The web and native layers name the mechanics each app uses.
+The shared principles are in [`frontend-practice.md`](frontend-practice.md). The web layer names the mechanics each app uses.
 
 ---
 
@@ -43,24 +43,24 @@ That structure serves the canvas and the designer. Code usually needs a simpler,
 
 ## 3. TRANSLATION TABLE
 
-| Figma construct | Web | React Native, where it differs |
-|-----------------|-----|--------------------------------|
-| Auto layout, direction | `display: flex` with `flex-direction`, or grid for two axes | `flexDirection` (column is the default) |
-| Auto layout spacing between items | `gap` with a spacing token | `gap` with a spacing token |
-| Auto layout padding | `padding` with spacing tokens, logical properties | `padding` with spacing tokens |
-| Hug contents | Intrinsic size: no width set, or `fit-content` | No width set |
-| Fill container | `flex: 1`, or stretch in the parent | `flex: 1` or `alignSelf: 'stretch'` |
-| Fixed width or height | `max-width` or a size token, only when the fixed size is intended | `maxWidth` or `aspectRatio` |
-| Absolutely positioned layer | Normal flow, a positioned overlay only when the design truly overlays | Flex flow, `position: 'absolute'` only for overlays |
-| Hidden layer or boolean property | Conditional rendering or a prop | Conditional rendering or a prop |
-| Instance swap | Children, a slot, or content projection (`ng-content`) | Children or a render prop |
-| State variant: hover, pressed, focus, disabled | `:hover`, `:active`, `:focus-visible`, `:disabled`, ARIA state attributes | `Pressable` pressed state, `accessibilityState` |
-| Size variant | One `size` prop mapped to tokens | One `size` prop mapped to tokens |
-| Figma variable or style | The token the app's installed package exports | The token constant the app exports |
-| Layer name | A hint for the element choice, never a class name | A hint for the component choice |
-| Frame pixel value | A token, or `rem` for type | A token, or the app's scale helper |
-| Effect: drop shadow, blur | A shadow token | The app's shadow token object |
-| Icon instance | The app's icon component, or inline SVG with `currentColor` | The app's icon component |
+| Figma construct | Web |
+|-----------------|-----|
+| Auto layout, direction | `display: flex` with `flex-direction`, or grid for two axes |
+| Auto layout spacing between items | `gap` with a spacing token |
+| Auto layout padding | `padding` with spacing tokens, logical properties |
+| Hug contents | Intrinsic size: no width set, or `fit-content` |
+| Fill container | `flex: 1`, or stretch in the parent |
+| Fixed width or height | `max-width` or a size token, only when the fixed size is intended |
+| Absolutely positioned layer | Normal flow, a positioned overlay only when the design truly overlays |
+| Hidden layer or boolean property | Conditional rendering or a prop |
+| Instance swap | Children, a slot, or content projection (`ng-content`) |
+| State variant: hover, pressed, focus, disabled | `:hover`, `:active`, `:focus-visible`, `:disabled`, ARIA state attributes |
+| Size variant | One `size` prop mapped to tokens |
+| Figma variable or style | The token the app's installed package exports |
+| Layer name | A hint for the element choice, never a class name |
+| Frame pixel value | A token, or `rem` for type |
+| Effect: drop shadow, blur | A shadow token |
+| Icon instance | The app's icon component, or inline SVG with `currentColor` |
 
 A row with no token to map to is a finding to report, not a reason to paste the Figma value.
 
@@ -95,12 +95,12 @@ Gather these inputs before comparing the frame with the rendered build:
 
 | Pass | Evidence source | Pass condition | Fail condition |
 |---|---|---|---|
-| 1. Same-width comparison | Web: render at the frame's authored width W at device scale 1 beside the frame image. Compare presence, order, wrapping, alignment and overflow. Native: human comparison on a device or simulator at W points. | Every frame element is present in order, there is no overflow at W, and no fixed width was copied. | An element is missing or extra, wrapping differs, overflow occurs, or a mismatch changes meaning. Pixel difference alone never fails. |
+| 1. Same-width comparison | Web: render at the frame's authored width W at device scale 1 beside the frame image. Compare presence, order, wrapping, alignment and overflow. | Every frame element is present in order, there is no overflow at W, and no fixed width was copied. | An element is missing or extra, wrapping differs, overflow occurs, or a mismatch changes meaning. Pixel difference alone never fails. |
 | 2. State by state | Every variant plus the empty, loading, error and disabled states named at workflow step 2. Dark mode only where the mode supports it. Motion is not in design unless the frame specifies it. | Each state has a capture and a verdict, and one component with props covers them. A state absent from the design is recorded as not in design. | A state is unrendered, there is one component per variant, or a state contradicts its frame. |
-| 3a. Render token check | Web: resolved styles from bdg cdp Runtime.evaluate and getComputedStyle. Native: resolved style props in component tests or the app's token constants. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
+| 3a. Render token check | Web: resolved styles from bdg cdp Runtime.evaluate and getComputedStyle. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
 | 3b. Source token check | Search changed source files for literal colors, sizes and font values where a token exists. Run the repository's own token checker if it has one. | No literal appears where a token exists, and the repository checker passes when one is available. | A literal appears where a token exists, or the repository checker fails. |
 | 4. Variable to token | Read each used Figma variable and node binding, then compare with the installed token package and version. Record one row per variable: Figma variable \| Figma value \| installed token \| installed value \| verdict. | Every variable maps to an installed token, or a package lag is reported. An open value goes to sk-design-fundamentals per workflow step 4. | A Figma variable name or value appears in code, or a missing variable is treated as resolved. |
-| 5. Range and access | Web: widths below and above W across phone, tablet and desktop widths, 200 percent zoom, keyboard-only use, screen reader, and contrast for text and controls against their backgrounds. Native: the mode's width checks, largest system font scale, VoiceOver or TalkBack, and contrast. | Each check has a verdict, and none fails. | An element clips or overlaps, a keyboard trap or unreachable control appears, a name, role or state is missing, or contrast is below the target set by sk-design-fundamentals. When no project target exists, use WCAG 2.2 AA: 4.5:1 for normal text and 3:1 for large text under [success criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum), plus 3:1 for user-interface components and graphical objects under [success criterion 1.4.11](https://www.w3.org/TR/WCAG22/#non-text-contrast). |
+| 5. Range and access | Web: widths below and above W across phone, tablet and desktop widths, 200 percent zoom, keyboard-only use, screen reader, and contrast for text and controls against their backgrounds. | Each check has a verdict, and none fails. | An element clips or overlaps, a keyboard trap or unreachable control appears, a name, role or state is missing, or contrast is below the target set by sk-design-fundamentals. When no project target exists, use WCAG 2.2 AA: 4.5:1 for normal text and 3:1 for large text under [success criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum), plus 3:1 for user-interface components and graphical objects under [success criterion 1.4.11](https://www.w3.org/TR/WCAG22/#non-text-contrast). |
 
 ### Verdict and Report
 
@@ -137,7 +137,7 @@ Passes 3a and 3b are checked against the rendered application and changed source
 
 `spec --check` measures a built node inside Figma. It does not compare the application render with the frame.
 
-Capture mechanics: see [Figma Check on the Web](web-markup-and-css.md#figma-check-on-the-web) and [Figma Check on Native](react-native-layout-and-a11y.md#figma-check-on-native).
+Capture mechanics: see [Figma Check on the Web](web-markup-and-css.md#figma-check-on-the-web).
 
 ---
 
