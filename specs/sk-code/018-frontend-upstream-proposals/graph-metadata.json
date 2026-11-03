@@ -9,7 +9,8 @@
     "sk-code/018-frontend-upstream-proposals/003-design-handoffs",
     "sk-code/018-frontend-upstream-proposals/004-playbook-scenarios",
     "sk-code/018-frontend-upstream-proposals/005-inferred-confirmations",
-    "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment"
+    "sk-code/018-frontend-upstream-proposals/006-open-items-and-alignment",
+    "sk-code/018-frontend-upstream-proposals/007-web-only-frontend"
   ],
   "manual": {
     "depends_on": [],
@@ -42,7 +43,7 @@
       "five-pass"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -54,6 +55,7 @@
       ".skilled/skills/sk-code/README.md",
       ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
       "005-inferred-confirmations/decision-record.md",
+      "006-open-items-and-alignment/scratch/final-suites.txt",
       "001-frontend-surface-mode/decision-record.md",
       "002-tooling-fixes/decision-record.md",
       "001-frontend-surface-mode/goal.md",
@@ -109,6 +111,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "final-suites.txt",
+        "kind": "file",
+        "path": "006-open-items-and-alignment/scratch/final-suites.txt",
         "source": "derived"
       },
       {
@@ -180,17 +188,17 @@
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T17:07:26.532Z",
+    "last_save_at": "2026-11-03T18:42:18.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:261433279ec749202a1a2e8f1feb0a3dbba6cf67a4f099342aafc40eaba1b6cd",
+    "source_fingerprint": "sha256:3206f15b02083a1720c3e0ab7317a4296ca8ee0b8319c6a73ee74ec7d26a1f7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "67f9d9765227d9347a5fb2792c08f1b837be32712c134b88749e896d5c8bf5bd"
+      "spec.md": "dca23e6db53ab344fc20f7ec314f24f17880602db2edf13103fba47d0cc22083"
     },
     "last_active_at": null
   }

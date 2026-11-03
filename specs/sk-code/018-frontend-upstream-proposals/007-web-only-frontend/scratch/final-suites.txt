@@ -1,0 +1,47 @@
+## at 1f9a9dea41
+## compiled-route suites
+exit=0
+ℹ tests 101
+ℹ pass 101
+ℹ fail 0
+## sk-create-skill tests
+ℹ tests 103
+ℹ pass 103
+ℹ fail 0
+## hub status
+sk-code compiled compiled-serving fresh
+sk-doc compiled compiled-serving fresh
+sk-design compiled compiled-serving fresh
+mcp-tooling compiled compiled-serving fresh
+system-deep-loop compiled compiled-serving fresh
+cli-external-orchestration compiled compiled-serving fresh
+cli-classifier compiled compiled-serving fresh
+## sync check
+all 7 hubs resolve
+all 55 served copies match their authored files
+## admission
+Every hub passes the admission check.
+## router sync
+router-sync: 5/5 checks passed
+## parent-skill-check
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+## signal check
+checked=7 hub(s), missing=0, orphans=0
+RESULT: PASSED
+## leaf manifest
+leaf-manifest.json OK (53687dded313bf0930f03ac7addc9ff4ed36f84038999faf4dd7f4fd07630a19)
+## gold scenarios
+pass=9 fail=0 skip=0 total=9
+## playbooks
+PASS package=sk-code tier=FAIL_CLOSED scenarios=27 categories=8 operator=18 routing_gold_excluded=9 violations=0 warnings=0
+PASS package=sk-code/sk-code-frontend tier=FAIL_CLOSED scenarios=2 categories=1 operator=2 routing_gold_excluded=0 violations=0 warnings=0
+## hermes mirror
+PASS: 66 Hermes skill copies in sync
+## routes
+fix the keyboard focus order in this web form -> route sk-code-frontend
+fix the react native flatlist scroll performance -> defer 
+review this semantic html markup and the react native screen -> route sk-code-review,sk-code-frontend
+## native scan
+.skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:1
+.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md:2
+rg exit=0

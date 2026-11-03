@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Status** | Accepted |
+| **Status** | Superseded by `007-web-only-frontend/decision-record.md` ADR-001 (operator, 2026-11-03) |
 | **Date** | 2026-11-03 |
 | **Deciders** | Operator (Michel Kerkmeester) |
 

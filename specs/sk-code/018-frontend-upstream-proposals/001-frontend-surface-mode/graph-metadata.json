@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The sk-code surface axis lists only `sk-code-ci` and `sk-code-skilled`, and `shared/references/` holds no frontend folder, so a request about HTML forms, the CSS cascade or checking a built screen against Figma gets no frontend practice",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-03T12:06:49.487Z",
+    "last_save_at": "2026-11-03T18:42:21.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bfb660b3a5f2c56b78295aaec51ff53ef9ac594c6973641c0421c233abdffe25",
+    "source_fingerprint": "sha256:478cd23f9c15ead6aa53e40540d6dae47512a80ed5582f75b4b1174b34758f7b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8c574b4c489a1d8396f1a5ebebeb3bef9f323f9b6c2ce3c255c8a979ad873f2a",
       "plan.md": "f72194e611c6090f02c53593e73142eceff4e0b8dad25bac586f88e3d31696c4",
       "tasks.md": "5d3e7ca5aed3898ac33c0889eba19175e66589c72a66dba80b32e39a7cb24e77",
-      "decision-record.md": "fb0b58009197ea82d581db649817c06788ef4a437a0656e75a66af0fee874f21",
+      "decision-record.md": "678ad1d76cd277d5c818a9e746adda900ee2e32575883614c6a82e86c2c6994c",
       "implementation-summary.md": "a2254905c3dc28f6295da7679e96096b40e161fb70f3bbd4a26931068c975c2d"
     },
     "last_active_at": null

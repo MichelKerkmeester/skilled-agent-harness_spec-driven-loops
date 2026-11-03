@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-code/018-frontend-upstream-proposals/007-web-only-frontend",
+  "description": "Phase 7: web-only-frontend",
+  "keywords": [
+    "phase",
+    "web-only-frontend"
+  ],
+  "lastUpdated": "2026-11-03T18:25:28.411Z",
+  "specId": "007",
+  "folderSlug": "web-only-frontend",
+  "parentChain": [
+    "sk-code",
+    "018-frontend-upstream-proposals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

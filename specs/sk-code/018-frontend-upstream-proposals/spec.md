@@ -113,6 +113,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 4 | 004-playbook-scenarios/ | Rank 8: generic mcp-figma and fundamentals playbook scenarios | Complete |
 | 5 | 005-inferred-confirmations/ | Ranks 10 to 13: one confirming read or run each, then a fix only where it holds | Complete |
 | 6 | 006-open-items-and-alignment/ | The five items phases 001 to 005 left open, then two alignment passes over the touched skills until a recheck leaves nothing open | Complete |
+| 7 | 007-web-only-frontend/ | Remove the React Native layer from canonical sk-code: the frontend surface keeps web practice and the Figma check | Complete |
 
 ### Phase Transition Rules
 
@@ -130,6 +131,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 | 003-design-handoffs | 004-playbook-scenarios | The hand-off line, the reduced-motion section and the profile slot exist | `rg -n "sk-design-fundamentals"` hits the three hand-off files |
 | 004-playbook-scenarios | 005-inferred-confirmations | The five scenarios exist and both playbook validators pass | The playbook validator exits 0 for mcp-figma and for sk-design-fundamentals |
 | 005-inferred-confirmations | 006-open-items-and-alignment | Ranks 10 to 12 shipped with revert-proven tests, rank 13 dropped, and the open items it left are listed | `005-inferred-confirmations/decision-record.md` holds four rank verdicts and its summary lists the known limitations |
+| 006-open-items-and-alignment | 007-web-only-frontend | Every routing gate is green and no finding is open | `006-open-items-and-alignment/scratch/final-suites.txt` and `reach-final.txt` |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -148,7 +150,7 @@ Barter pins Skilled at `4f583afbe7` (in the primary checkout's gitignored tree: 
 
 | After phase | Barter overlay that needs rework |
 |-------------|----------------------------------|
-| 001 | The 16 files in `barter-overlays/sk-code/shared/references/frontend/` become thin overlays on `sk-code-frontend`: only `barter-design-tokens.md` and the Barter deltas stay Barter-owned. |
+| 001, 007 | The web files in `barter-overlays/sk-code/shared/references/frontend/` become thin overlays on `sk-code-frontend`; `barter-design-tokens.md`, the Barter deltas and every React Native file stay Barter-owned, since phase 007 keeps React Native out of canonical sk-code. |
 | 001 | The Frontend overrides heading in the eight overlay modes that carry it (`sk-code-bartender`, `sk-code-barter-expo`, `sk-code-barter-scrooge`, `sk-code-fe-backoffice-app`, `sk-code-fe-barter-managed`, `sk-code-fe-creators-mobile`, `sk-code-fe-partners-app`, `sk-code-fe-ui-components`) re-points at the new surface's sections. |
 | 001 | The sk-code playbook overlays `design-restraint/frontend-overrides-contract.md` and `frontend-topic-file-reach.md`. |
 | 001, 003 | `barter-overlays/mcp-tooling/mcp-figma/SKILL.base.md` and `SKILL.barter.md` re-base on the new check pointer and the hand-off line. |
