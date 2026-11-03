@@ -152,5 +152,36 @@
     "created_at": "2026-06-15T00:00:00Z",
     "last_updated_at": "2026-07-14T00:00:00Z",
     "sanitizer_version": "sanitizeSkillLabel:v2"
-  }
+  },
+  "intent_signals_generated": [
+    "research loop",
+    "iterative review loop",
+    "deep-review wave",
+    "release readiness",
+    "ai council deliberation",
+    "deep research",
+    "iterative investigation",
+    "research summary",
+    "investigate why",
+    "research convergence",
+    "deep review of",
+    "before running deep review",
+    "review request",
+    "review loop",
+    "iterative review",
+    "severity findings",
+    "review convergence",
+    "audit the diff",
+    "ai council",
+    "council deliberation",
+    "planning council",
+    "council convergence",
+    "seat diversity",
+    "iterative investigation workflow",
+    "research convergence detection",
+    "deep review",
+    "severity weighted findings",
+    "convergence review",
+    "multi-seat planning council"
+  ]
 }
