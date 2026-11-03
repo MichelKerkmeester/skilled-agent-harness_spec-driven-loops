@@ -38,6 +38,10 @@ function normalize(value) {
   return String(value).trim().toLowerCase();
 }
 
+function compareText(left, right) {
+  return left < right ? -1 : left > right ? 1 : 0;
+}
+
 // A hyphenated and a spaced prompt name the same thing, so both sides fold
 // hyphen runs to one space and collapse whitespace before comparing.
 function spaced(value) {

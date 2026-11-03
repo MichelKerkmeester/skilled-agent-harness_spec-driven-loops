@@ -1,0 +1,8 @@
+## fix reverted (served copy restored to HEAD), test kept
+    actual: ReferenceError: compareText is not defined
+  Actual message: "compareText is not defined"
+ℹ fail 1
+ℹ pass 0
+## fix restored
+ℹ pass 1
+ℹ fail 0
