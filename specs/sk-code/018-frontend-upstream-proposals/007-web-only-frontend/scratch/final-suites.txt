@@ -45,3 +45,23 @@ review this semantic html markup and the react native screen -> route sk-code-re
 .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md:1
 .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md:2
 rg exit=0
+## at 6ab8aa0687, after the alignment fixes
+compiled-route exit=0 ℹ pass 101 ℹ fail 0 
+sk-create-skill ℹ pass 103 ℹ fail 0 
+sk-code compiled-serving fresh
+sk-doc compiled-serving fresh
+sk-design compiled-serving fresh
+mcp-tooling compiled-serving fresh
+system-deep-loop compiled-serving fresh
+cli-external-orchestration compiled-serving fresh
+cli-classifier compiled-serving fresh
+all 55 served copies match their authored files
+Every hub passes the admission check.
+router-sync: 5/5 checks passed
+checked=7 hub(s), missing=0, orphans=0 RESULT: PASSED 
+pass=9 fail=0 skip=0 total=9
+PASS package=sk-code tier=FAIL_CLOSED scenarios=27 categories=8 operator=18 rout
+PASS package=sk-code/sk-code-frontend tier=FAIL_CLOSED scenarios=2 categories=1 
+PASS: 66 Hermes skill copies in sync
+probes: STATUS=OK run-probes: pass=7 fail=0 cannot_run=0
+reach: see reach-final.txt, RESULT: PASSED, outranked=0 and wrong-hub=0 on all seven hubs

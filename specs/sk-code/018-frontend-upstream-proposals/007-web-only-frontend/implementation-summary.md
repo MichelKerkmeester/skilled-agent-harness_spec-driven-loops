@@ -72,7 +72,7 @@ The frontend surface keeps its core page, the web layer, the six web topic files
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Three DeepSeek V4.1 Flash max builds ran in parallel on disjoint files: the frontend packet, the hub and the repo docs. This session then regenerated the leaf manifest, pruned the nine orphaned advisor phrases with `--write`, refreshed the sk-code manifest, republished the compiled routes, recompiled the skill graph and the Hermes mirror, ran the gates and finalized. The whole change landed as `1f9a9dea41`.
+Three DeepSeek V4.1 Flash max builds ran in parallel on disjoint files: the frontend packet, the hub and the repo docs. This session then regenerated the leaf manifest, pruned the nine orphaned advisor phrases with `--write`, refreshed the sk-code manifest, republished the compiled routes, recompiled the skill graph and the Hermes mirror, ran the gates and finalized. The whole change landed as `1f9a9dea41`. An alignment pass over those commits then found 18 findings, fixed in `6ab8aa0687`, and `scratch/alignment-fixes.md` maps each one. The one routing fix lets "check this form markup for missing labels and broken tab order" reach the surface through two new `WEB_A11Y` phrases.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -100,8 +100,9 @@ Three DeepSeek V4.1 Flash max builds ran in parallel on disjoint files: the fron
 | Admission, router-sync, parent-skill-check | Every hub passes; 5/5; 0 failures |
 | Signal check, leaf manifest | 0 orphans after pruning nine; manifest OK |
 | Gold scenarios, playbooks | 9 of 9; sk-code 27 and sk-code-frontend 2 PASS |
-| Reach, every hub, concurrency 2 | `outranked=0`, `wrong-hub=0`, `RESULT: PASSED`; sk-code declares 92 phrases, down from 101 |
+| Reach, every hub, concurrency 2 | `outranked=0`, `wrong-hub=0`, `RESULT: PASSED`; sk-code declares 94 phrases: 101, less nine native, plus two web accessibility phrases |
 | Routes | Web prompt to `sk-code-frontend`; FlatList prompt defers |
+| Alignment pass | Battery 79 pass; recheck leaves no real finding open; all seven probes pass after the fix |
 <!-- /ANCHOR:verification -->
 
 ---

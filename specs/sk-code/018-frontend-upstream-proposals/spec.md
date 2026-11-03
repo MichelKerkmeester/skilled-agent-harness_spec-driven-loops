@@ -27,7 +27,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Canonical sk-code carries stack-agnostic React Native practice, and project React Native surfaces stay in a project fork (operator, 2026-11-03; 001 ADR-001)."
+      - "Canonical sk-code is web only for frontend practice; React Native surfaces live in a project fork (operator, 2026-11-03; 007 ADR-001, superseding 001 ADR-001)."
       - "Router reach defaults to concurrency 2, decided from a measured run (002 ADR-002)."
       - "The Barter no-commit rule does not bind this packet: it follows the normal sk-git-skilled flow (operator, 2026-11-03)."
 ---
@@ -74,7 +74,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 ## 3. SCOPE
 
 ### In Scope
-- A dedicated `sk-code-frontend` surface packet in sk-code: a peer of `sk-code-ci`, not part of `sk-code-quality`. It carries the core practice page, the web and native stack layers, the topic files, the five-pass Figma check and the per-mode Frontend overrides contract (ranks 1 to 3).
+- A dedicated `sk-code-frontend` surface packet in sk-code: a peer of `sk-code-ci`, not part of `sk-code-quality`. It carries the core practice page, the web layer, the six web topic files, the five-pass Figma check and the per-mode Frontend overrides contract (ranks 1 to 3). Phase 001 also shipped a React Native layer, and phase 007 removed it.
 - Two router-tooling fixes: orphan-phrase pruning in the intent-signal generator, and a safer default concurrency for router reach (ranks 4 and 9).
 - Three design hand-offs into `sk-design-fundamentals`: an open-value pointer, a reduced-motion section and an optional project-profile slot (ranks 5 to 7).
 - Generic playbook scenarios for mcp-figma and sk-design-fundamentals (rank 8).
@@ -139,7 +139,7 @@ These phases bring the stack-agnostic part of that work into Skilled as a dedica
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None open. The React Native question was answered by the operator: canonical sk-code carries stack-agnostic React Native practice and the `ROUTER.md` section 6 sentence was amended (`001-frontend-surface-mode/decision-record.md` ADR-001). The rank 9 choice was decided from a measured run: reach defaults to concurrency 2 (`002-tooling-fixes/decision-record.md` ADR-002).
+- None open. The React Native question was answered twice by the operator: phase 001 kept stack-agnostic React Native practice in canonical sk-code (`001-frontend-surface-mode/decision-record.md` ADR-001), and phase 007 reversed it, so canonical sk-code is web only and React Native surfaces live in a project fork (`007-web-only-frontend/decision-record.md` ADR-001). The rank 9 choice was decided from a measured run: reach defaults to concurrency 2 (`002-tooling-fixes/decision-record.md` ADR-002).
 <!-- /ANCHOR:questions -->
 
 ---

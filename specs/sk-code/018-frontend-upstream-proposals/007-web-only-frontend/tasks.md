@@ -53,7 +53,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T007 Run the compiled-route, sk-create-skill and playbook gates (`scratch/final-suites.txt`). Verify: every suite reports `fail 0`. Evidence: 101/101 compiled-route, 103/103 sk-create-skill, both playbooks PASS.
-- [x] T008 Run reach on every hub at concurrency 2 (`scratch/reach-final.txt`). Verify: every hub prints `outranked=  0` and `wrong-hub=  0`. Evidence: seven hubs, `RESULT: PASSED`; sk-code declared 92, down from 101.
+- [x] T008 Run reach on every hub at concurrency 2 (`scratch/reach-final.txt`). Verify: every hub prints `outranked=  0` and `wrong-hub=  0`. Evidence: seven hubs, `RESULT: PASSED`; sk-code declared 92 after the removal, then 94 once the alignment fix added two web accessibility phrases.
 <!-- /ANCHOR:phase-3 -->
 
 ---
