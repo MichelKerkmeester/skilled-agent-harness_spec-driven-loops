@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`doctor:symlink` links `.skilled` whole, so every linked project resolves `.skilled/skills/.state/decision-capture/` to one shared folder",
     "created_at": "2026-11-03T09:15:08Z",
-    "last_save_at": "2026-11-03T10:49:46.388Z",
+    "last_save_at": "2026-11-03T11:55:36.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:80a5da6b4593b9064ba1c7df80e5896f5a5eb2678ab77005050b41b25194e59e",
+    "source_fingerprint": "sha256:2e1b283a667ad3f94b811e57d4e497de10c1c2de7a3d7f87c700fcdbd137d04f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "263e9046b505c375790c4da0ee6856c98d906df51ea82a2fb64a9951d4d2b009",
       "plan.md": "e283934c13059684941c3e48d8014da53afa80a9ddf5659c21a7880d4d772631",
       "tasks.md": "1499b1e736c85b1601c12b569d6a727f7841eec0bea1ba06a0c035ee0cb8b0fc",
-      "implementation-summary.md": "bf53445bba5f1b1a694beabfb50ecabbcd5320f337f59b2ccdbbb4ade7868765"
+      "implementation-summary.md": "da3306d9255b48edbccf57f1a415d91171e0c2fd6db1f0c7dc7ad2ea707ef741"
     },
     "last_active_at": null
   }

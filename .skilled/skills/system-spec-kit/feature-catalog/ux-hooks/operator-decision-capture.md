@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Operator decision capture
@@ -96,7 +96,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/match-decision-table.vitest.ts` | Automated test | Matcher CLI modes, idempotent `--apply` and exit codes. |
 | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-stop.vitest.ts` | Automated test | Stop-hook nudge. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-claude-hook.md` | Manual playbook | Claude hook, registry and mirror wiring, kill switch. |
-| `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md` | Manual playbook | Claude, OpenCode and Devin sweeps queue each answer once. |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md` | Manual playbook | Claude, OpenCode and Devin sweeps queue each answer once, and the Claude sweep prints each chat candidate's evidence. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-save-writer.md` | Manual playbook | Plan-only, full-auto and a byte-identical repeat save. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-live-conversation.md` | Manual playbook | Live multi-turn conversation on five runtimes. |
 | `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-kill-switch-conversation.md` | Manual playbook | Disabled capture leaves no queue file or nudge. |

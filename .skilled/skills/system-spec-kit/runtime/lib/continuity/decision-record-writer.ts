@@ -142,7 +142,7 @@ function canonicalRoot(dir: string): string {
     // Ignore inherited Git overrides so the requested project path determines its root.
     delete env.GIT_DIR;
     delete env.GIT_WORK_TREE;
-    root = fs.realpathSync(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+    root = fs.realpathSync(execFileSync('git', ['-c', 'core.fsmonitor=false', 'rev-parse', '--show-toplevel'], {
       cwd: input,
       env,
       encoding: 'utf8',

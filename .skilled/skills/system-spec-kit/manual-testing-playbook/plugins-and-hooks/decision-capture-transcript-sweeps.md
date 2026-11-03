@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sweep"
   - "devin transcript sweep"
   - "opencode session sweep"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # decision-capture-transcript-sweeps -- Decision capture transcript sweeps
@@ -62,9 +62,16 @@ grep -c 'Spec folder' "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
 
 Leave `$P` in place: it is a `mktemp -d` folder under the system temp directory.
 
+3. Print the evidence the Claude sweep attaches to each chat candidate in the labelled chat fixture, from a scratch folder:
+
+```bash
+R="$PWD"; C="$(mktemp -d)"
+(cd "$C" && node "$R/.skilled/hooks/decision-capture/bin/sweep-transcript.mjs" --transcript "$R/.skilled/hooks/decision-capture/bin/fixtures/claude-chat-questions.jsonl" | jq -r '.chat_candidates[] | [.question_turn_id, .evidence.questionType, .evidence.optionMatch, .evidence.contentOverlap, .evidence.imperativeOpening, .evidence.topicShift] | @tsv')
+```
+
 ### Expected
 
-Step 1 ends with `fail 0`. In step 2 the first run prints `"recovered": 2`, the second `"recovered": 0`, the queue has 2 lines, the answers are `Marketplace in settings` and `all 4, use subagents`, and the `Spec folder` count is 0.
+Step 1 ends with `fail 0`. In step 2 the first run prints `"recovered": 2`, the second `"recovered": 0`, the queue has 2 lines, the answers are `Marketplace in settings` and `all 4, use subagents`, and the `Spec folder` count is 0. Step 3 prints four rows: `fixture-a1 yes_no false 0 true false`, `fixture-a3 alternative false 0 true false`, `fixture-a6 numbered_list not_applicable 3 false false` and `fixture-a7 numbered_list not_applicable 0 true false`. Only `fixture-a6` is a real answer; the evidence describes each reply and decides nothing.
 
 ### Evidence
 

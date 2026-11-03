@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import fs, { appendFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
+import { pathToFileURL } from 'node:url';
 import { ensureStateDir, loadState, updateState, type PersistedHookState } from '../hooks/claude/hook-state.js';
 import { decisionCaptureNudge, detectSpecFolder, processStopHook } from '../hooks/claude/session-stop.js';
 
@@ -733,7 +734,6 @@ describe('Claude session-stop decision capture nudge', () => {
     '../../../../hooks/decision-capture/lib/capture-core.mjs',
   );
   const coreTargetRelative = join('.skilled', 'hooks', 'decision-capture', 'lib', 'capture-core.mjs');
-  const queueRelativeDir = join('.skilled', 'skills', '.state', 'decision-capture');
   let projectDir: string | null = null;
 
   function makeProjectDirWithCore(): string {
@@ -753,10 +753,16 @@ describe('Claude session-stop decision capture nudge', () => {
 
   it('reports queued answers once, then stays quiet until the pending count rises again', async () => {
     projectDir = makeProjectDirWithCore();
-    const queueDir = join(projectDir, queueRelativeDir);
-    mkdirSync(queueDir, { recursive: true });
+    // The core keeps a queue per project and still reads the shared root-level one,
+    // so a seed written to the root folder would pass through the legacy path
+    // instead of proving the project folder is the one that gets read.
+    const captureCore = (await import(pathToFileURL(realCorePath).href)) as {
+      queueDir(projectRoot: string): string;
+    };
+    const queuePath = captureCore.queueDir(projectDir);
+    mkdirSync(queuePath, { recursive: true });
     writeFileSync(
-      join(queueDir, `${Buffer.from('s1').toString('hex')}.jsonl`),
+      join(queuePath, `${Buffer.from('s1').toString('hex')}.jsonl`),
       [
         JSON.stringify({ key: 'claude:s1:tool-1:0', answer: 'first' }),
         JSON.stringify({ key: 'claude:s1:tool-1:1', answer: 'second' }),

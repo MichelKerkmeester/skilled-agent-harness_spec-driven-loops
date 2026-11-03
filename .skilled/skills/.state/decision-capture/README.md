@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture runtime state"
   - "operator answer queue"
   - "consumed decision keys"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Decision Capture Runtime State
@@ -37,7 +37,7 @@ Raw data is git-ignored. Only this `README.md` is tracked, so the folder and its
 | `consumed.jsonl` | One JSON object per line | Keys a full-auto save has written into a decision record, with the packet and the Q id they received. |
 | `<session-id-hex>.nudge` | A plain integer | The pending count the Stop hook last reported, so it reports a count once rather than on every turn. |
 | `probe/` | JSON files | Results of the runtime answer-surface probes. |
-| `.locks/` | Temporary lock directories | Serialize appends to one queue file. A lock older than two minutes is reclaimed. |
+| `.locks/` | Temporary lock directories | Serialize appends to one queue file, inside the project subfolder. A lock older than two minutes is reclaimed. A `.locks/` folder in the root is left from before the split. |
 
 ---
 

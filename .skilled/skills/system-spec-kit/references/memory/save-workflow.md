@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -250,7 +250,7 @@ The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself
 
 ### Operator Decisions
 
-A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing. On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex and Pi, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs` and `sweep-pi.mjs` in the same folder do the same from the runtime's stored session. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`.
+A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing. On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex and Pi, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs` and `sweep-pi.mjs` in the same folder do the same from the runtime's stored session. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`. Each candidate carries a deterministic `evidence` object: `questionType`, `optionMatch`, `contentOverlap`, `imperativeOpening` and `topicShift`. Read it before judging whether the reply answers the question; it informs the judgment and never replaces it, and `optionMatch: not_applicable` is no evidence against an answer.
 
 | Field        | Type   | Required | Description |
 | ------------ | ------ | -------- | ----------- |
@@ -259,14 +259,14 @@ A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisio
 | `carriedBy`  | string | Yes      | The requirement, task or path that carries it |
 | `question`   | string | Yes      | The exact question text |
 | `answer`     | string | Yes      | The exact answer text |
-| `why`        | string | No       | The reason the session stated; written as `Not stated.` when absent |
+| `why`        | string | No       | The reason the session stated; written as `Not stated.` when absent. A chat entry's `why` ends with `Evidence: <questionType>, option <optionMatch>, overlap <contentOverlap>, imperative <imperativeOpening>, shift <topicShift>.`, after `Not stated.` when no reason was given |
 | `supersedes` | string | No       | The ids it replaces; written as `None` when absent |
 | `options`    | array  | No       | The offered option labels, exactly as shown |
 | `scope`      | string | No       | `local` (default) or `cross-phase` |
 
 Some packets keep a hand-written decision record whose table already holds the answer. Whenever the target packet has a `decision-record.md`, match before writing any entry, even when no hand-written table was seen in it, so the save does not append a second row for a decision the record states: run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` as a dry run, then again with `--apply`. It prints the row each queued answer belongs to, and consumes that row's id instead of writing a new one.
 
-Each `sourceKey` maps to one stable id such as `Q004`. The writer adds a row to the `operator-decisions` anchor and an item holding the verbatim question, options and answer to the `operator-answers-verbatim` anchor. A repeated save leaves the file byte-identical, and an existing appendix item is never rewritten. A `local` entry aimed at a phase parent follows the continuity leaf rule below, a `cross-phase` entry goes to the phase parent, and an unresolved target writes nothing. When the writer has to create `decision-record.md` in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change it. Written keys are recorded in the gitignored `.skilled/skills/.state/decision-capture/consumed.jsonl`.
+Each `sourceKey` maps to one stable id such as `Q004`. The writer adds a row to the `operator-decisions` anchor and an item holding the verbatim question, options and answer to the `operator-answers-verbatim` anchor. A repeated save leaves the file byte-identical, and an existing appendix item is never rewritten. A `local` entry aimed at a phase parent follows the continuity leaf rule below, a `cross-phase` entry goes to the phase parent, and an unresolved target writes nothing. When the writer has to create `decision-record.md` in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change it. Written keys are recorded in the gitignored `consumed.jsonl` inside the project's own subfolder, `.skilled/skills/.state/decision-capture/<project-token>/`. A `consumed.jsonl` left in that folder's root by an older save is still read.
 
 If both the JSON payload and the CLI provide a spec folder, the explicit CLI argument wins.
 

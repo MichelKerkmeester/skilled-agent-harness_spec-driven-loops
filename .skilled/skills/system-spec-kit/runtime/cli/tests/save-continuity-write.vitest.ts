@@ -477,8 +477,12 @@ describe('save writer operator decisions', () => {
     answer: 'Blue',
   };
 
-  function consumedKeys(): string {
-    const absolute = path.join(root, '.skilled/skills/.state/decision-capture/consumed.jsonl');
+  // The writer keeps its state per project, and still reads the root-level log
+  // left behind by earlier versions, so reading the project path is the only way
+  // this assertion can tell a fresh key from an inherited one.
+  async function consumedKeys(): Promise<string> {
+    const { consumedLogPath } = await import('../../api');
+    const absolute = consumedLogPath(root);
     return fs.existsSync(absolute) ? fs.readFileSync(absolute, 'utf8') : '';
   }
 
@@ -492,7 +496,7 @@ describe('save writer operator decisions', () => {
     const record = read(`${LEAF}/decision-record.md`);
     expect(record).toContain('| Q001 | Use the blue badge. | Not stated. | None | REQ-001 |');
     expect(record).toContain('<!-- source: claude:s1:toolu_a:0 -->');
-    expect(consumedKeys()).toContain('claude:s1:toolu_a:0');
+    expect(await consumedKeys()).toContain('claude:s1:toolu_a:0');
   });
 
   it('writes operator decisions from a save that carries little else', async () => {
@@ -547,7 +551,7 @@ describe('save writer operator decisions', () => {
     await save(LEAF, { operatorDecisions: [decision] }, false);
 
     expect(hasRecord(LEAF)).toBe(false);
-    expect(consumedKeys()).toBe('');
+    expect(await consumedKeys()).toBe('');
   });
 
   it('writes a cross-phase decision to the phase parent', async () => {
@@ -576,7 +580,7 @@ describe('save writer operator decisions', () => {
     expect(hasRecord(PARENT)).toBe(false);
     expect(hasRecord(LEAF)).toBe(false);
     expect(hasRecord(OTHER)).toBe(false);
-    expect(consumedKeys()).not.toContain('claude:s1:toolu_a:0');
+    expect(await consumedKeys()).not.toContain('claude:s1:toolu_a:0');
   });
 
   it('fails the save and writes no record when a decision has no decided statement', async () => {

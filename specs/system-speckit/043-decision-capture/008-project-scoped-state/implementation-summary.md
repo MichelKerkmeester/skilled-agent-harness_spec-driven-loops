@@ -119,6 +119,10 @@ The three code changes, core, writer and matcher, went to `gpt-6-luna` at xhigh 
 ---
 
 <!-- ANCHOR:limitations -->
+### Follow-up after the alignment run (2026-11-03)
+
+A `/local-skilled-alignment` run on the landed range found two tests this phase's gate had not run. The writer's new `git rev-parse` call lacked `-c core.fsmonitor=false`, which `validator-git-fsmonitor.vitest.ts` requires for every git call reachable from `validate.sh`, and `save-continuity-write.vitest.ts` still read the root `consumed.jsonl`. Both are fixed, `hook-session-stop.vitest.ts` now seeds the project subfolder instead of the legacy root, `save-workflow.md` names the subfolder and the evidence rule, and the whole runtime CLI vitest project now runs as part of the gate.
+
 ## Known Limitations
 
 1. **The save-writer playbook check fails.** Steps 3, 4 and 5 of `decision-capture-save-writer.md` write `"$F/.skilled/skills/.state/decision-capture/*/consumed.jsonl"` inside double quotes, so the shell never expands the `*` and `wc -l` reports no such file. Move the `*` outside the quotes, or resolve the folder through `queueDir`, then amend the T011 verify pattern to the flat-root form.
