@@ -1,5 +1,5 @@
 {
-  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
+  "manifestHash": "dfef9aef42249b9854d8c27f500cabf09a7e8bb947bd035f03bce25876eaa17d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6866,6 +6866,9 @@
     "042 tasks": [
       "042 tasks"
     ],
+    "043 006 runner fit": [
+      "043/006 runner fit"
+    ],
     "043 closeout final state": [
       "043 closeout final state"
     ],
@@ -7132,6 +7135,12 @@
     ],
     "060 create goal mode": [
       "060-create-goal-mode"
+    ],
+    "065 deep research findings": [
+      "065 deep research findings"
+    ],
+    "065 handover": [
+      "065 handover"
     ],
     "066 goal prompt": [
       "066 goal prompt"
@@ -16646,6 +16655,9 @@
     "cdp port conflict": [
       "cdp port conflict"
     ],
+    "ce p05": [
+      "CE-P05"
+    ],
     "ceiling marker report": [
       "ceiling marker report"
     ],
@@ -19357,6 +19369,9 @@
     "cl 007": [
       "cl-007"
     ],
+    "cl 008 opencode later turn goal injection": [
+      "CL-008 OpenCode later-turn goal injection"
+    ],
     "claim adjudication": [
       "claim adjudication"
     ],
@@ -20344,6 +20359,15 @@
     "cli claude code benchmark reports": [
       "cli-claude-code benchmark reports"
     ],
+    "cli claude code conversation plan": [
+      "cli claude code conversation plan"
+    ],
+    "cli claude code conversation scenarios": [
+      "cli claude code conversation scenarios"
+    ],
+    "cli claude code conversation tasks": [
+      "cli claude code conversation tasks"
+    ],
     "cli claude code executor": [
       "cli-claude-code executor"
     ],
@@ -20584,6 +20608,15 @@
     "cli codex child session marker": [
       "cli-codex child session marker"
     ],
+    "cli codex conversation plan": [
+      "cli codex conversation plan"
+    ],
+    "cli codex conversation scenarios": [
+      "cli codex conversation scenarios"
+    ],
+    "cli codex conversation tasks": [
+      "cli codex conversation tasks"
+    ],
     "cli codex deep research": [
       "cli-codex deep research"
     ],
@@ -20631,6 +20664,9 @@
     ],
     "cli codex hooks": [
       "cli-codex hooks"
+    ],
+    "cli codex phase closeout": [
+      "cli-codex phase closeout"
     ],
     "cli codex read only leaf": [
       "cli-codex read-only leaf"
@@ -21085,6 +21121,15 @@
     "cli devin cli opencode readme pipeline": [
       "cli-devin cli-opencode readme pipeline"
     ],
+    "cli devin conversation plan": [
+      "cli devin conversation plan"
+    ],
+    "cli devin conversation scenarios": [
+      "cli devin conversation scenarios"
+    ],
+    "cli devin conversation tasks": [
+      "cli devin conversation tasks"
+    ],
     "cli devin cursor dispatch rules": [
       "cli devin cursor dispatch rules"
     ],
@@ -21412,6 +21457,15 @@
     "cli external orchestration compiled routing": [
       "cli-external-orchestration compiled routing"
     ],
+    "cli external orchestration conversation plan": [
+      "cli external orchestration conversation plan"
+    ],
+    "cli external orchestration conversation scenarios": [
+      "cli external orchestration conversation scenarios"
+    ],
+    "cli external orchestration conversation tasks": [
+      "cli external orchestration conversation tasks"
+    ],
     "cli external orchestration eighth mode": [
       "cli-external-orchestration eighth mode"
     ],
@@ -21423,6 +21477,9 @@
     ],
     "cli external orchestration hub router scoring": [
       "cli-external-orchestration hub-router scoring"
+    ],
+    "cli external orchestration implementation summary": [
+      "cli external orchestration implementation summary"
     ],
     "cli external orchestration skill benchmark artifacts": [
       "cli-external-orchestration skill-benchmark artifacts"
@@ -22234,6 +22291,15 @@
     "cli opencode cli codex cli copilot playbook run": [
       "cli-opencode cli-codex cli-copilot playbook run"
     ],
+    "cli opencode conversation plan": [
+      "cli opencode conversation plan"
+    ],
+    "cli opencode conversation scenarios": [
+      "cli opencode conversation scenarios"
+    ],
+    "cli opencode conversation tasks": [
+      "cli opencode conversation tasks"
+    ],
     "cli opencode deepseek deferred dispatch": [
       "cli-opencode deepseek deferred dispatch"
     ],
@@ -22305,6 +22371,9 @@
     ],
     "cli opencode routing": [
       "cli-opencode routing"
+    ],
+    "cli opencode scenario implementation": [
+      "cli-opencode scenario implementation"
     ],
     "cli opencode subagent contract": [
       "cli-opencode subagent contract"
@@ -22710,6 +22779,15 @@
     ],
     "cli pi build brief tasks": [
       "cli-pi build brief tasks"
+    ],
+    "cli pi conversation plan": [
+      "cli pi conversation plan"
+    ],
+    "cli pi conversation scenarios": [
+      "cli pi conversation scenarios"
+    ],
+    "cli pi conversation tasks": [
+      "cli pi conversation tasks"
     ],
     "cli pi deepseek": [
       "cli-pi deepseek"
@@ -25783,6 +25861,9 @@
     "codex config toml": [
       "codex config toml"
     ],
+    "codex conversation scenario": [
+      "Codex conversation scenario"
+    ],
     "codex cross validation": [
       "codex cross validation"
     ],
@@ -26022,6 +26103,9 @@
     ],
     "codex session relaunch": [
       "Codex session relaunch"
+    ],
+    "codex session resume companion": [
+      "Codex session resume companion"
     ],
     "codex session resume fork": [
       "codex session resume fork"
@@ -29134,6 +29218,84 @@
     "convergencemode off": [
       "convergenceMode off"
     ],
+    "conversation adoption build": [
+      "conversation adoption build"
+    ],
+    "conversation adoption research": [
+      "conversation adoption research"
+    ],
+    "conversation adoption research implementation summary": [
+      "conversation adoption research implementation summary"
+    ],
+    "conversation adoption research plan": [
+      "conversation adoption research plan"
+    ],
+    "conversation adoption research tasks": [
+      "conversation adoption research tasks"
+    ],
+    "conversation block schema": [
+      "conversation block schema"
+    ],
+    "conversation playbook scenarios": [
+      "conversation playbook scenarios"
+    ],
+    "conversation runner": [
+      "conversation runner"
+    ],
+    "conversation runner acceptance criteria": [
+      "conversation runner acceptance criteria"
+    ],
+    "conversation runner gaps": [
+      "conversation runner gaps"
+    ],
+    "conversation runner handover": [
+      "conversation runner handover"
+    ],
+    "conversation runner implementation summary": [
+      "conversation runner implementation summary"
+    ],
+    "conversation runner plan": [
+      "conversation runner plan"
+    ],
+    "conversation runner research": [
+      "conversation runner research"
+    ],
+    "conversation runner tasks": [
+      "conversation runner tasks"
+    ],
+    "conversation scenario": [
+      "conversation scenario"
+    ],
+    "conversation scenario decision record": [
+      "conversation scenario decision record"
+    ],
+    "conversation scenario file": [
+      "conversation scenario file"
+    ],
+    "conversation scenario live run validation": [
+      "conversation scenario live-run validation"
+    ],
+    "conversation scenario plan review": [
+      "conversation scenario plan review"
+    ],
+    "conversation scenario runner": [
+      "conversation scenario runner"
+    ],
+    "conversation scenario validator rules": [
+      "conversation scenario validator rules"
+    ],
+    "conversation scenarios open questions": [
+      "conversation scenarios open questions"
+    ],
+    "conversation script format decision": [
+      "conversation script format decision"
+    ],
+    "conversation script schema": [
+      "conversation script schema"
+    ],
+    "conversation snippet template": [
+      "conversation snippet template"
+    ],
     "convert a skill in place": [
       "convert a skill in place"
     ],
@@ -31594,6 +31756,9 @@
     ],
     "cx 002 provider roster": [
       "cx-002 provider roster"
+    ],
+    "cx 030 live run": [
+      "CX-030 live run"
     ],
     "cycle detection decision record": [
       "cycle detection decision record"
@@ -38491,6 +38656,9 @@
     "devin config json": [
       "devin config json"
     ],
+    "devin conversation scenario phase": [
+      "Devin conversation scenario phase"
+    ],
     "devin cross validation": [
       "devin cross validation"
     ],
@@ -38577,6 +38745,9 @@
     ],
     "devin goal hook adapters": [
       "devin goal hook adapters"
+    ],
+    "devin goal hook conversation results": [
+      "Devin goal hook conversation results"
     ],
     "devin goal hooks": [
       "devin goal hooks"
@@ -39387,6 +39558,12 @@
     ],
     "dispatch preflight authorization": [
       "dispatch preflight authorization"
+    ],
+    "dispatch preflight authorization conversation": [
+      "dispatch preflight authorization conversation"
+    ],
+    "dispatch preflight authorization live run": [
+      "dispatch preflight authorization live run"
     ],
     "dispatch preflight defect table": [
       "dispatch preflight defect table"
@@ -40829,6 +41006,15 @@
     ],
     "doctor phrase reach test": [
       "doctor phrase reach test"
+    ],
+    "doctor playbook conversation plan": [
+      "doctor playbook conversation plan"
+    ],
+    "doctor playbook conversation scenarios": [
+      "doctor playbook conversation scenarios"
+    ],
+    "doctor playbook conversation tasks": [
+      "doctor playbook conversation tasks"
     ],
     "doctor playbook deep loop": [
       "doctor playbook deep-loop"
@@ -58615,6 +58801,12 @@
     "json config validation rules": [
       "json config validation rules"
     ],
+    "json conversation block": [
+      "json conversation block"
+    ],
+    "json conversation placeholder block": [
+      "json conversation placeholder block"
+    ],
     "json first save workflow": [
       "json-first save workflow"
     ],
@@ -62483,6 +62675,12 @@
     "manual testing catalog readme durability rollup": [
       "manual testing catalog readme durability rollup"
     ],
+    "manual testing conversation runner": [
+      "manual testing conversation runner"
+    ],
+    "manual testing conversation scenarios": [
+      "manual testing conversation scenarios"
+    ],
     "manual testing id format control": [
       "manual-testing id-format control"
     ],
@@ -62575,6 +62773,9 @@
     ],
     "manual testing playbook template": [
       "manual testing playbook template"
+    ],
+    "manual testing playbook validation": [
+      "manual testing playbook validation"
     ],
     "manual testing playbooks cleanup plan": [
       "manual-testing-playbooks cleanup plan"
@@ -63211,6 +63412,15 @@
     ],
     "mcp code mode changelog rewrite tasks": [
       "mcp-code-mode changelog rewrite tasks"
+    ],
+    "mcp code mode conversation plan": [
+      "mcp code mode conversation plan"
+    ],
+    "mcp code mode conversation scenarios": [
+      "mcp code mode conversation scenarios"
+    ],
+    "mcp code mode conversation tasks": [
+      "mcp code mode conversation tasks"
     ],
     "mcp code mode frontmatter alignment": [
       "mcp-code-mode frontmatter alignment"
@@ -69236,6 +69446,9 @@
     "multi topic council deliberation": [
       "multi-topic council deliberation"
     ],
+    "multi turn playbook scenario": [
+      "multi-turn playbook scenario"
+    ],
     "multi turn stream json harness plan": [
       "multi-turn stream-json harness plan"
     ],
@@ -72034,6 +72247,9 @@
     "opencode context budget": [
       "opencode context budget"
     ],
+    "opencode conversation scenarios": [
+      "OpenCode conversation scenarios"
+    ],
     "opencode cross ai handback": [
       "opencode cross-ai handback"
     ],
@@ -72214,6 +72430,9 @@
     ],
     "opencode link decision tree": [
       "opencode link decision tree"
+    ],
+    "opencode live run fixes": [
+      "OpenCode live run fixes"
     ],
     "opencode memory epilogue": [
       "opencode memory epilogue"
@@ -73348,6 +73567,12 @@
     ],
     "orchestrator status completion consistency wiring": [
       "orchestrator status completion consistency wiring"
+    ],
+    "orchestrator subject test": [
+      "orchestrator subject test"
+    ],
+    "orchestrator versus test subject": [
+      "orchestrator versus test subject"
     ],
     "order processing flow example": [
       "order processing flow example"
@@ -74793,6 +75018,9 @@
     "parse bool flag unrecognized value": [
       "parse-bool-flag unrecognized value"
     ],
+    "parse conversation script export": [
+      "parse conversation script export"
+    ],
     "parse diagnostics code graph": [
       "parse diagnostics code graph"
     ],
@@ -75399,6 +75627,9 @@
     ],
     "per profile vector shard split": [
       "per-profile vector shard split"
+    ],
+    "per project decision capture state": [
+      "per-project decision capture state"
     ],
     "per prompt directive reduction": [
       "per-prompt directive reduction"
@@ -76063,6 +76294,9 @@
     "phase 1 check engine": [
       "phase 1 check engine"
     ],
+    "phase 1 cli pi": [
+      "phase 1 cli pi"
+    ],
     "phase 1 clone path and messages": [
       "phase 1 clone path and messages"
     ],
@@ -76131,6 +76365,9 @@
     ],
     "phase 1 scaffold surface placement": [
       "phase 1 scaffold surface placement"
+    ],
+    "phase 1 scenario contract": [
+      "phase 1 scenario contract"
     ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
@@ -76201,6 +76438,9 @@
     "phase 10 review remediation": [
       "phase 10 review remediation"
     ],
+    "phase 10 sk create goal": [
+      "phase 10 sk create goal"
+    ],
     "phase 10 trigger index ci rebuild": [
       "phase 10 trigger index ci rebuild"
     ],
@@ -76249,6 +76489,9 @@
     "phase 11 remediation deep review": [
       "phase 11 remediation deep review"
     ],
+    "phase 11 sk create repo rule": [
+      "phase 11 sk create repo rule"
+    ],
     "phase 11 template phrase census and cleanup": [
       "phase 11 template phrase census and cleanup"
     ],
@@ -76272,6 +76515,9 @@
     ],
     "phase 12 legacy row migration": [
       "phase 12 legacy row migration"
+    ],
+    "phase 12 mcp code mode": [
+      "phase 12 mcp code mode"
     ],
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
@@ -76317,6 +76563,9 @@
     ],
     "phase 13 claude goal copy block": [
       "phase 13 claude goal copy block"
+    ],
+    "phase 13 cli external orchestration": [
+      "phase 13 cli external orchestration"
     ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
@@ -76369,6 +76618,9 @@
     "phase 14 spec auto healing research": [
       "phase 14 spec auto healing research"
     ],
+    "phase 14 system skill advisor": [
+      "phase 14 system skill advisor"
+    ],
     "phase 14 tasks": [
       "phase 14 tasks"
     ],
@@ -76383,6 +76635,9 @@
     ],
     "phase 15 archive current location and ignored files": [
       "phase 15 archive current location and ignored files"
+    ],
+    "phase 15 cli claude code": [
+      "phase 15 cli claude code"
     ],
     "phase 15 closure gate": [
       "phase 15 closure gate"
@@ -76420,6 +76675,9 @@
     "phase 16 align sk design": [
       "phase 16 align sk design"
     ],
+    "phase 16 cli codex": [
+      "phase 16 cli codex"
+    ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
     ],
@@ -76449,6 +76707,9 @@
     ],
     "phase 17 align sk doc": [
       "phase 17 align sk doc"
+    ],
+    "phase 17 cli devin": [
+      "phase 17 cli devin"
     ],
     "phase 17 closure gate": [
       "phase 17 closure gate"
@@ -76494,6 +76755,9 @@
     ],
     "phase 18 results": [
       "phase 18 results"
+    ],
+    "phase 18 runner gaps": [
+      "phase 18 runner gaps"
     ],
     "phase 18 tasks": [
       "phase 18 tasks"
@@ -76549,8 +76813,14 @@
     "phase 2 check plumbing": [
       "phase 2 check plumbing"
     ],
+    "phase 2 cli opencode": [
+      "phase 2 cli opencode"
+    ],
     "phase 2 consume locked withdraw": [
       "phase 2 consume locked withdraw"
+    ],
+    "phase 2 conversation runner": [
+      "phase 2 conversation runner"
     ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
@@ -76864,6 +77134,9 @@
     "phase 3 config and doctor": [
       "phase 3 config and doctor"
     ],
+    "phase 3 conversation adoption research": [
+      "phase 3 conversation adoption research"
+    ],
     "phase 3 convert legacy skilled": [
       "phase 3 convert legacy skilled"
     ],
@@ -76935,6 +77208,9 @@
     ],
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
+    ],
+    "phase 3 system spec kit": [
+      "phase 3 system spec kit"
     ],
     "phase 3 trigger and job hygiene": [
       "phase 3 trigger and job hygiene"
@@ -77026,6 +77302,9 @@
     "phase 4 commit id in every toolchain repo": [
       "phase 4 commit id in every toolchain repo"
     ],
+    "phase 4 conversation adoption build": [
+      "phase 4 conversation adoption build"
+    ],
     "phase 4 convert plain skill": [
       "phase 4 convert plain skill"
     ],
@@ -77034,6 +77313,9 @@
     ],
     "phase 4 dispatch guard and vitest": [
       "phase 4 dispatch guard and vitest"
+    ],
+    "phase 4 doctor playbook": [
+      "phase 4 doctor playbook"
     ],
     "phase 4 doctrine": [
       "phase 4 doctrine"
@@ -77239,6 +77521,9 @@
     "phase 5 silent input sweep": [
       "phase 5 silent input sweep"
     ],
+    "phase 5 sk design diagram": [
+      "phase 5 sk design diagram"
+    ],
     "phase 5 skill packet and registry": [
       "phase 5 skill packet and registry"
     ],
@@ -77410,6 +77695,9 @@
     "phase 6 sk code ci surface tasks": [
       "phase 6 sk code ci surface tasks"
     ],
+    "phase 6 sk prompt": [
+      "phase 6 sk prompt"
+    ],
     "phase 6 skill package doc findings": [
       "phase 6 skill package doc findings"
     ],
@@ -77512,6 +77800,9 @@
     "phase 7 shared references and detection order": [
       "phase 7 shared references and detection order"
     ],
+    "phase 7 sk code hub": [
+      "phase 7 sk code hub"
+    ],
     "phase 7 sk code script kebab names": [
       "phase 7 sk code script kebab names"
     ],
@@ -77602,6 +77893,9 @@
     "phase 8 session aware tie break": [
       "phase 8 session aware tie break"
     ],
+    "phase 8 sk design hub": [
+      "phase 8 sk design hub"
+    ],
     "phase 8 surface hint hub root": [
       "phase 8 surface hint hub root"
     ],
@@ -77670,6 +77964,9 @@
     ],
     "phase 9 sk code opencode alignment": [
       "phase 9 sk code opencode alignment"
+    ],
+    "phase 9 sk create changelog": [
+      "phase 9 sk create changelog"
     ],
     "phase a readme authoring": [
       "Phase A readme authoring"
@@ -78572,6 +78869,9 @@
     "pi dispatch authorization bypass": [
       "pi dispatch authorization bypass"
     ],
+    "pi dispatch authorization follow up": [
+      "Pi dispatch authorization follow-up"
+    ],
     "pi dispatch cli pi": [
       "pi dispatch cli-pi"
     ],
@@ -78720,6 +79020,9 @@
     "pi goal extension tasks": [
       "pi goal extension tasks"
     ],
+    "pi goal hook persistence": [
+      "pi goal hook persistence"
+    ],
     "pi goal hooks": [
       "pi goal hooks"
     ],
@@ -78827,6 +79130,9 @@
     ],
     "pi lineage orphan requeue": [
       "pi lineage orphan requeue"
+    ],
+    "pi live run verification": [
+      "pi live-run verification"
     ],
     "pi live smoke": [
       "pi live smoke"
@@ -78983,6 +79289,9 @@
     ],
     "pi runtime binding plan": [
       "pi runtime binding plan"
+    ],
+    "pi session compaction continuity": [
+      "pi session compaction continuity"
     ],
     "pi session goal tasks": [
       "pi session goal tasks"
@@ -79573,6 +79882,15 @@
     "playbook contract regression proof": [
       "playbook contract regression proof"
     ],
+    "playbook conversation candidates": [
+      "playbook conversation candidates"
+    ],
+    "playbook conversation conversions": [
+      "playbook conversation conversions"
+    ],
+    "playbook conversation intent": [
+      "playbook conversation intent"
+    ],
     "playbook corpus manifest": [
       "playbook corpus manifest"
     ],
@@ -79842,6 +80160,9 @@
     ],
     "playbook scenario reclassification": [
       "playbook scenario reclassification"
+    ],
+    "playbook scenarios continuation": [
+      "playbook scenarios continuation"
     ],
     "playbook shell python daemon waves": [
       "playbook shell python daemon waves"
@@ -89489,6 +89810,9 @@
     "resume containment work": [
       "resume containment work"
     ],
+    "resume continue devin live run": [
+      "resume-continue Devin live run"
+    ],
     "resume directive lifecycle phase 018": [
       "resume directive lifecycle phase 018"
     ],
@@ -92692,6 +93016,9 @@
     "run check adapter technical approach": [
       "run check adapter technical approach"
     ],
+    "run conversation scenario": [
+      "run-conversation-scenario"
+    ],
     "run design extraction": [
       "run design extraction"
     ],
@@ -92824,6 +93151,12 @@
     "runnable series parent recipe": [
       "runnable series parent recipe"
     ],
+    "runner gaps plan": [
+      "runner gaps plan"
+    ],
+    "runner gaps tasks": [
+      "runner gaps tasks"
+    ],
     "runner guard boundary": [
       "runner guard boundary"
     ],
@@ -92871,6 +93204,9 @@
     ],
     "runtime": [
       "runtime"
+    ],
+    "runtime adapter feasibility": [
+      "runtime adapter feasibility"
     ],
     "runtime adapter goal tasks": [
       "runtime adapter goal tasks"
@@ -93369,6 +93705,9 @@
     ],
     "runtime query cli hostile metadata redaction": [
       "runtime query cli hostile metadata redaction"
+    ],
+    "runtime question adapters": [
+      "runtime question adapters"
     ],
     "runtime readme coverage plan": [
       "runtime README coverage plan"
@@ -94173,6 +94512,21 @@
     ],
     "scenario 457 proof matrix": [
       "scenario 457 proof matrix"
+    ],
+    "scenario contract": [
+      "scenario contract"
+    ],
+    "scenario contract acceptance criteria": [
+      "scenario contract acceptance criteria"
+    ],
+    "scenario contract implementation summary": [
+      "scenario contract implementation summary"
+    ],
+    "scenario contract plan": [
+      "scenario contract plan"
+    ],
+    "scenario contract tasks": [
+      "scenario contract tasks"
     ],
     "scenario corpus design": [
       "scenario corpus design"
@@ -96761,6 +97115,9 @@
     "shared containment helper": [
       "shared containment helper"
     ],
+    "shared conversation runner decision": [
+      "shared conversation runner decision"
+    ],
     "shared core migration plan": [
       "shared core migration plan"
     ],
@@ -98726,6 +99083,15 @@
     "sk code hub capabilities": [
       "sk-code hub capabilities"
     ],
+    "sk code hub conversation plan": [
+      "sk code hub conversation plan"
+    ],
+    "sk code hub conversation scenarios": [
+      "sk code hub conversation scenarios"
+    ],
+    "sk code hub conversation tasks": [
+      "sk code hub conversation tasks"
+    ],
     "sk code hub rule overrides docs": [
       "sk-code hub rule overrides docs"
     ],
@@ -100336,6 +100702,15 @@
     "sk create changelog 1 3 9 0": [
       "sk-create-changelog 1.3.9.0"
     ],
+    "sk create changelog conversation plan": [
+      "sk create changelog conversation plan"
+    ],
+    "sk create changelog conversation scenarios": [
+      "sk create changelog conversation scenarios"
+    ],
+    "sk create changelog conversation tasks": [
+      "sk create changelog conversation tasks"
+    ],
     "sk create changelog playbook": [
       "sk-create-changelog playbook"
     ],
@@ -100816,6 +101191,15 @@
     "sk create goal closeout tasks": [
       "sk-create-goal closeout tasks"
     ],
+    "sk create goal conversation plan": [
+      "sk create goal conversation plan"
+    ],
+    "sk create goal conversation scenarios": [
+      "sk create goal conversation scenarios"
+    ],
+    "sk create goal conversation tasks": [
+      "sk create goal conversation tasks"
+    ],
     "sk create goal deep review report": [
       "sk-create-goal deep review report"
     ],
@@ -100930,6 +101314,12 @@
     "sk create manual testing playbook 1 0 8 0": [
       "sk-create-manual-testing-playbook 1.0.8.0"
     ],
+    "sk create manual testing playbook 1 0 9 0": [
+      "sk-create-manual-testing-playbook 1.0.9.0"
+    ],
+    "sk create manual testing playbook 1 1 0 0": [
+      "sk-create-manual-testing-playbook 1.1.0.0"
+    ],
     "sk create manual testing playbook playbook": [
       "sk-create-manual-testing-playbook playbook"
     ],
@@ -100971,6 +101361,12 @@
     ],
     "sk create manual testing playbook v1 0 8 0": [
       "sk-create-manual-testing-playbook v1.0.8.0"
+    ],
+    "sk create manual testing playbook v1 0 9 0": [
+      "sk-create-manual-testing-playbook v1.0.9.0"
+    ],
+    "sk create manual testing playbook v1 1 0 0": [
+      "sk-create-manual-testing-playbook v1.1.0.0"
     ],
     "sk create quality control 1 0 0 0": [
       "sk-create-quality-control 1.0.0.0"
@@ -101184,6 +101580,15 @@
     ],
     "sk create repo rule 1 1 6 0": [
       "sk-create-repo-rule 1.1.6.0"
+    ],
+    "sk create repo rule conversation plan": [
+      "sk create repo rule conversation plan"
+    ],
+    "sk create repo rule conversation scenarios": [
+      "sk create repo rule conversation scenarios"
+    ],
+    "sk create repo rule conversation tasks": [
+      "sk create repo rule conversation tasks"
     ],
     "sk create repo rule router": [
       "sk-create-repo-rule router"
@@ -101782,6 +102187,15 @@
     "sk design diagram 1 2 9 0": [
       "sk-design-diagram 1.2.9.0"
     ],
+    "sk design diagram conversation plan": [
+      "sk design diagram conversation plan"
+    ],
+    "sk design diagram conversation scenarios": [
+      "sk design diagram conversation scenarios"
+    ],
+    "sk design diagram conversation tasks": [
+      "sk design diagram conversation tasks"
+    ],
     "sk design diagram review verdict": [
       "sk-design-diagram review verdict"
     ],
@@ -101877,6 +102291,15 @@
     ],
     "sk design fundamentals v1 0 4 0": [
       "sk-design-fundamentals v1.0.4.0"
+    ],
+    "sk design hub conversation plan": [
+      "sk design hub conversation plan"
+    ],
+    "sk design hub conversation scenarios": [
+      "sk design hub conversation scenarios"
+    ],
+    "sk design hub conversation tasks": [
+      "sk design hub conversation tasks"
     ],
     "sk design hub routing replay": [
       "sk-design hub routing replay"
@@ -102207,6 +102630,9 @@
     ],
     "sk doc 2 3 34 0": [
       "sk-doc 2.3.34.0"
+    ],
+    "sk doc 2 3 35 0": [
+      "sk-doc 2.3.35.0"
     ],
     "sk doc 2 3 4 0": [
       "sk-doc 2.3.4.0"
@@ -102633,6 +103059,9 @@
     ],
     "sk doc v2 3 34 0": [
       "sk-doc v2.3.34.0"
+    ],
+    "sk doc v2 3 35 0": [
+      "sk-doc v2.3.35.0"
     ],
     "sk doc v2 3 4 0": [
       "sk-doc v2.3.4.0"
@@ -103236,6 +103665,15 @@
     ],
     "sk prompt compiled routing withdrawal": [
       "sk-prompt compiled-routing-withdrawal"
+    ],
+    "sk prompt conversation plan": [
+      "sk prompt conversation plan"
+    ],
+    "sk prompt conversation scenarios": [
+      "sk prompt conversation scenarios"
+    ],
+    "sk prompt conversation tasks": [
+      "sk prompt conversation tasks"
     ],
     "sk prompt cutover": [
       "sk-prompt cutover"
@@ -111982,6 +112420,15 @@
     "system skill advisor cli trusted": [
       "SYSTEM_SKILL_ADVISOR_CLI_TRUSTED"
     ],
+    "system skill advisor conversation plan": [
+      "system skill advisor conversation plan"
+    ],
+    "system skill advisor conversation scenarios": [
+      "system skill advisor conversation scenarios"
+    ],
+    "system skill advisor conversation tasks": [
+      "system skill advisor conversation tasks"
+    ],
     "system skill advisor db path": [
       "system skill advisor db path"
     ],
@@ -112002,6 +112449,9 @@
     ],
     "system skill advisor package extraction 003": [
       "system skill advisor package extraction 003"
+    ],
+    "system skill advisor phase implementation summary": [
+      "system skill advisor phase implementation summary"
     ],
     "system skill advisor plugin": [
       "system-skill-advisor plugin"
@@ -112537,6 +112987,9 @@
     "system spec kit 2 12 3 0": [
       "system-spec-kit 2.12.3.0"
     ],
+    "system spec kit 2 12 30 0": [
+      "system-spec-kit 2.12.30.0"
+    ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
     ],
@@ -112692,6 +113145,15 @@
     ],
     "system spec kit config imports": [
       "system spec kit config imports"
+    ],
+    "system spec kit conversation plan": [
+      "system spec kit conversation plan"
+    ],
+    "system spec kit conversation scenarios": [
+      "system spec kit conversation scenarios"
+    ],
+    "system spec kit conversation tasks": [
+      "system spec kit conversation tasks"
     ],
     "system spec kit feature cli matrix": [
       "system-spec-kit feature cli matrix"
@@ -113070,6 +113532,9 @@
     ],
     "system spec kit v2 12 3 0": [
       "system-spec-kit v2.12.3.0"
+    ],
+    "system spec kit v2 12 30 0": [
+      "system-spec-kit v2.12.30.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
@@ -114411,6 +114876,9 @@
     "testing playbook alignment": [
       "testing playbook alignment"
     ],
+    "testing playbook conversation scenarios": [
+      "testing playbook conversation scenarios"
+    ],
     "testing playbook gap": [
       "testing playbook gap"
     ],
@@ -114984,6 +115452,9 @@
     "time tracking script": [
       "time tracking script"
     ],
+    "timed prompt conversation test": [
+      "timed prompt conversation test"
+    ],
     "timeline diagram layout": [
       "timeline diagram layout"
     ],
@@ -115025,6 +115496,12 @@
     ],
     "tmpdir workaround removal": [
       "tmpdir workaround removal"
+    ],
+    "tmux conversation runner": [
+      "tmux conversation runner"
+    ],
+    "tmux runner design": [
+      "tmux runner design"
     ],
     "tobackendkind canonical location": [
       "toBackendKind canonical location"
@@ -120457,6 +120934,9 @@
     ],
     "which palette for a chart": [
       "which palette for a chart"
+    ],
+    "which playbook scenarios should be conversations": [
+      "which playbook scenarios should be conversations"
     ],
     "which plugins do we use": [
       "which plugins do we use"

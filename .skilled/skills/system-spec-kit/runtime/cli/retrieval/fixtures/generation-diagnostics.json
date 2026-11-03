@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7268,
-    "ok": 16503,
+    "missing-frontmatter": 7297,
+    "ok": 16594,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27319,
+  "documentsScanned": 27439,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "354665a11a41965018f85f3db2594a8e29912b8101e2c3806daffba6b073dd94",
+  "manifestHash": "dfef9aef42249b9854d8c27f500cabf09a7e8bb947bd035f03bce25876eaa17d",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40207,
+      "ok": 40367,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -674,7 +674,19 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/continue-previous-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -2229,6 +2241,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/full-auto-hooks.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/session-continuity/session-resume-fork-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -4526,6 +4544,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/goal-hook/goal-hook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -4575,6 +4599,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/rules/rules-list-and-paths.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/session-continuity/resume-continue-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -6644,6 +6674,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -6866,6 +6902,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/continue-last-session.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -6873,6 +6915,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/fork-and-share.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/session-continuity/resume-by-session-id-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -7886,6 +7934,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/goal-hook/goal-hook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -7905,6 +7959,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/lifecycle-event-registration.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/hook-extension-layer/session-lifecycle-bridges-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -8388,6 +8448,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/mcp-code-mode/manual-testing-playbook/multi-tool-workflows/try-catch-error-path.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/mcp-code-mode/manual-testing-playbook/plugins-and-hooks/mcp-route-guard-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -10765,6 +10831,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/unknown-fallback-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28819,6 +28891,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29191,6 +29269,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook/goal-authoring/refuse-leftover-placeholder.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29227,6 +29311,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/conversation-runner/drive-a-scripted-conversation.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/manual-testing-playbook.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -29258,6 +29348,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/package-authoring/leave-one-off-check-alone.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/manual-testing-playbook/scenario-design/choose-a-scenario-style.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -29421,6 +29517,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/existing-owner-refusal.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-repo-rule/manual-testing-playbook/rule-decision/no-observed-failure-refusal-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -32478,6 +32580,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-skill-advisor/hooks/lib/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/system-skill-advisor/manual-testing-playbook/cli-hooks-and-plugin/goal-opencode-plugin-conversation.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -40668,6 +40776,72 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/008-remediation-deep-review/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/fanout-attribution.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/deep-research-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/iterations/iteration-003.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -72653,6 +72827,102 @@
     },
     {
       "path": "specs/sk-doc/064-reference-template-debt/002-remaining-references/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/001-scenario-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/002-conversation-runner/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/003-conversation-adoption-research/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/002-cli-opencode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/003-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/007-sk-code-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/009-sk-create-changelog/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/010-sk-create-goal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/011-sk-create-repo-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/012-mcp-code-mode/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/017-cli-devin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/065-conversation-playbook-scenarios/004-conversation-adoption-build/scratch",
       "reason": "excluded directory"
     },
     {
