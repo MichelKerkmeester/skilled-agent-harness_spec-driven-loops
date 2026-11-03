@@ -36,6 +36,12 @@ function selectorIntent(selector) {
   return selector.id.replace(/^selector:/, '');
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function buildRoutingTable(policy) {
   const detectors = new Map(policy.detectors.map((detector) => [detector.id, detector]));
   const policyValue = (id, fallback) => detectors.get(id)?.value ?? fallback;
@@ -286,14 +292,14 @@ function replayPolicyCard(markdown, taskText) {
   const match = /## Document-only routing table\n\n```json\n([^\n]+)\n```/m.exec(markdown);
   if (!match) throw new Error('policy card routing table is missing');
   const table = JSON.parse(match[1]);
-  const text = String(taskText || '').toLowerCase();
-  const negative = table.negativeAdmissions.find((value) => text.includes(value));
+  const text = spaced(String(taskText || '').toLowerCase());
+  const negative = table.negativeAdmissions.find((value) => text.includes(spaced(value)));
   if (negative) {
     return { action: 'reject', reason: 'forbidden', terminal: 'DOCUMENT_ONLY_UNATTESTED' };
   }
   const scores = table.selectors.map((selector) => ({
     score: selector.keywords.reduce(
-      (total, keyword) => total + (text.includes(keyword) ? 1 : 0),
+      (total, keyword) => total + (text.includes(spaced(keyword)) ? 1 : 0),
       0,
     ),
     selector,

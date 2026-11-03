@@ -21,6 +21,12 @@ function target(destination) {
   };
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function documentBudgetRef(card, prompt) {
   const request = {
     schemaVersion: 'V1',
@@ -161,8 +167,9 @@ function documentDecision(card, prompt) {
     entry,
   ]));
   const matchedKeys = new Set();
+  const haystack = spaced(text);
   for (const selector of card.selectors) {
-    if (selector.keywords.some((keyword) => text.includes(keyword))) {
+    if (selector.keywords.some((keyword) => haystack.includes(spaced(keyword)))) {
       matchedKeys.add(destinationKey(selector.destinationId));
     }
   }

@@ -162,6 +162,12 @@ function parseRouter(text) {
 // 4. KEYWORD ARM
 // ─────────────────────────────────────────────────────────────────────────────
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 /**
  * Whether one keyword hits the lowercased task text. The word-boundary
  * keywords match only whole words; every other keyword keeps substring
@@ -174,10 +180,12 @@ function parseRouter(text) {
  */
 function keywordHits(taskLower, kw) {
   if (!kw) return false;
-  if (WORD_BOUNDARY_KEYWORDS.has(kw)) {
-    return new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(taskLower);
+  const haystack = spaced(taskLower);
+  const keyword = spaced(kw);
+  if (WORD_BOUNDARY_KEYWORDS.has(keyword)) {
+    return new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(haystack);
   }
-  return taskLower.includes(kw);
+  return haystack.includes(keyword);
 }
 
 /**

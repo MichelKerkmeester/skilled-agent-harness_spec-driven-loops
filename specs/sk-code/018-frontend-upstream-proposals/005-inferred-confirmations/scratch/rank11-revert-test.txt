@@ -1,0 +1,12 @@
+## fix reverted (21 source files), tests kept
+✖ a hyphenated keyword routes the same however the prompt spells its hyphens (1.545ms)
+✖ a spaced keyword routes the same however the prompt spells its spaces (2.22425ms)
+ℹ fail 3
+✖ failing tests:
+✖ keywordHits treats a hyphen and a space alike (0.324833ms)
+ℹ pass 24
+ℹ tests 27
+## fix restored
+ℹ fail 0
+ℹ pass 27
+ℹ tests 27

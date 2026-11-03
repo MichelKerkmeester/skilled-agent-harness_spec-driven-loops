@@ -68,6 +68,12 @@ function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 // A clause that reports a finished run names the loop without asking for one ("we just finished a
 // deep-research run"), so its words must not score a mode. The clause needs a completion verb, a
 // determiner and a run-like noun, which leaves "run a deep-research fan-out" and "for a deep research
@@ -75,11 +81,12 @@ function escapePattern(value) {
 const FINISHED_RUN_CLAUSE = /\b(?:(?:we|i) )?(?:just |already )?(?:finished|completed|ran) (?:a|an|the|our|my) [a-z-]+(?: [a-z-]+)? (?:run|loop|session)\b\.?/g;
 
 function containsSignal(text, value) {
-  const signal = normalize(value);
+  const signal = spaced(normalize(value));
+  const haystack = spaced(text);
   if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
-    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(text);
+    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(haystack);
   }
-  return text.includes(signal);
+  return haystack.includes(signal);
 }
 
 function advisorDisposition(advisor, projection, policy) {

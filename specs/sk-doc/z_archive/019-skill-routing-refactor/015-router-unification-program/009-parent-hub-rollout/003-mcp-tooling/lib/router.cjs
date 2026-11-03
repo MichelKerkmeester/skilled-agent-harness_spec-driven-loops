@@ -41,12 +41,19 @@ function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function containsSignal(text, value) {
-  const signal = normalize(value);
+  const signal = spaced(normalize(value));
+  const haystack = spaced(text);
   if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
-    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(text);
+    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(haystack);
   }
-  return text.includes(signal);
+  return haystack.includes(signal);
 }
 
 function requestFor(snapshot, input) {

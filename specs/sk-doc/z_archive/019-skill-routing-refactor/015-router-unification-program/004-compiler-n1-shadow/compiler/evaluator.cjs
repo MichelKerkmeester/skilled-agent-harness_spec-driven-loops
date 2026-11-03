@@ -13,6 +13,12 @@ function detectorIndex(policy) {
   return new Map(policy.detectors.map((detector) => [detector.id, detector]));
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function policyNumber(detectors, id, fallback) {
   const detector = detectors.get(id);
   if (!detector) return fallback;
@@ -21,13 +27,13 @@ function policyNumber(detectors, id, fallback) {
 }
 
 function scoreSelectors(policy, taskText, detectors) {
-  const text = taskText.toLowerCase();
+  const text = spaced(taskText.toLowerCase());
   return policy.selectors.map((selector) => {
     const signalDetectors = selector.detectorIds
       .filter((id) => id.startsWith('detector:signal:'))
       .map((id) => detectors.get(id));
     const score = signalDetectors.reduce(
-      (total, detector) => total + (detector && text.includes(detector.value) ? 1 : 0),
+      (total, detector) => total + (detector && text.includes(spaced(detector.value)) ? 1 : 0),
       0,
     );
     return { score, selector };
@@ -100,10 +106,10 @@ function deferDecision(reason) {
  */
 function evaluatePolicy(policy, request) {
   const taskText = String(request?.taskText || '');
-  const text = taskText.toLowerCase();
+  const text = spaced(taskText.toLowerCase());
   const detectors = detectorIndex(policy);
   const negative = policy.detectors.find((detector) => (
-    detector.kind === 'negative' && detector.value && text.includes(detector.value)
+    detector.kind === 'negative' && detector.value && text.includes(spaced(detector.value))
   ));
   if (negative) {
     return {

@@ -38,8 +38,14 @@ function normalize(value) {
   return String(value).trim().toLowerCase();
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace before comparing.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 function containsSignal(text, value) {
-  return text.includes(normalize(value));
+  return spaced(text).includes(spaced(normalize(value)));
 }
 
 function advisorDisposition(advisor, projection, policy) {

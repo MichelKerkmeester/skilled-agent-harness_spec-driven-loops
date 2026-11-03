@@ -172,6 +172,13 @@ test('keywordHits guards the four keywords', () => {
   assert.equal(S.keywordHits('2_javascript', 'javascript'), true);
 });
 
+// A hyphen and a space name the same thing, so either spelling of one phrase
+// must hit the other.
+test('keywordHits treats a hyphen and a space alike', () => {
+  assert.equal(S.keywordHits('widget-panel layout bug', 'widget panel'), true);
+  assert.equal(S.keywordHits('widget panel layout bug', 'widget-panel'), true);
+});
+
 test('scoreIntents weights and sorts', () => {
   const signals = {
     A: { weight: 4, keywords: ['alpha'] },

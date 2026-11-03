@@ -20,6 +20,13 @@ function escapePattern(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A hyphenated and a spaced prompt name the same thing, so both sides fold
+// hyphen runs to one space and collapse whitespace first; a slash command keeps
+// its raw token, whose hyphens belong to the command name.
+function spaced(value) {
+  return String(value).replace(/-+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 // Parity with the legacy replay's keywordHits: a bare keyword like "review" must
 // not substring-match inside "preview", and the short perf acronyms (inp/lcp/cls)
 // must not match inside longer words ("inp" in "input"), so these match on word
@@ -31,10 +38,12 @@ function containsSignal(text, value) {
   if (signal.startsWith('/')) {
     return new RegExp(`${escapePattern(signal)}(?![a-z0-9-])`, 'i').test(text);
   }
-  if (WORD_BOUNDARY_KEYWORDS.has(signal)) {
-    return new RegExp(`\\b${escapePattern(signal)}\\b`, 'i').test(text);
+  const haystack = spaced(text);
+  const keyword = spaced(signal);
+  if (WORD_BOUNDARY_KEYWORDS.has(keyword)) {
+    return new RegExp(`\\b${escapePattern(keyword)}\\b`, 'i').test(haystack);
   }
-  return text.includes(signal);
+  return haystack.includes(keyword);
 }
 
 function advisorDisposition(advisor, projection, policy) {
