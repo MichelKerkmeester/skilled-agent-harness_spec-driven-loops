@@ -4,7 +4,7 @@ description: "This scenario validates that the decision-capture kill switch leav
 trigger_phrases:
   - "decision capture kill switch conversation"
   - "decision capture disabled live test"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # decision-capture-kill-switch-conversation -- Decision capture kill-switch conversation
@@ -96,7 +96,7 @@ Operators run this scenario in its own runner invocation and scratch project bec
           ]
         }
       ],
-      "check": "set -euo pipefail; Q=\"$PWD/.skilled/skills/.state/decision-capture\"; T=\"$CONVERSATION_TURN_DIR\"; mkdir -p \"$T\"; if [ -d \"$Q\" ]; then find \"$Q\" -maxdepth 1 -type f \\( -name '*.jsonl' -o -name '*.nudge' \\) -exec cp -p {} \"$T/\" \\; 2>/dev/null || true; fi; if [ -f \"$PWD/specs/demo/001-demo-widget/decision-record.md\" ]; then cp -p \"$PWD/specs/demo/001-demo-widget/decision-record.md\" \"$T/decision-record.md\"; fi; queue_jsonl=0; if [ -d \"$Q\" ]; then queue_jsonl=$(find \"$Q\" -maxdepth 1 -type f -name '*.jsonl' | wc -l | tr -d ' '); fi; screen=\"$T/screen.txt\"; nudge_lines=0; if [ -f \"$screen\" ]; then nudge_lines=$(grep -cF 'operator answer(s) captured this session are not in a decision record yet' \"$screen\" || true); fi; color_question=0; if [ -f \"$screen\" ] && grep -Eiq 'colou?r' \"$screen\"; then color_question=1; fi; amber_visible=0; if [ -f \"$screen\" ] && grep -Fq 'Amber' \"$screen\"; then amber_visible=1; fi; if [ \"$queue_jsonl\" -ne 0 ] || [ \"$nudge_lines\" -ne 0 ] || [ \"$color_question\" -ne 1 ] || [ \"$amber_visible\" -ne 1 ]; then printf 'DEVIATION: kill-switch turn did not meet the queue, nudge, question and answer expectations\\n'; printf 'observed=runtime=%s queue_jsonl=%s nudge_lines=%s color_question=%s amber_visible=%s\\n' \"$CONVERSATION_RUNTIME\" \"$queue_jsonl\" \"$nudge_lines\" \"$color_question\" \"$amber_visible\"; exit 1; fi; printf 'observed=runtime=%s queue_jsonl=%s nudge_lines=%s color_question=%s amber_visible=%s\\n' \"$CONVERSATION_RUNTIME\" \"$queue_jsonl\" \"$nudge_lines\" \"$color_question\" \"$amber_visible\""
+      "check": "set -euo pipefail; Q=\"$PWD/.skilled/skills/.state/decision-capture\"; T=\"$CONVERSATION_TURN_DIR\"; mkdir -p \"$T\"; if [ -d \"$Q\" ]; then find \"$Q\" -type f \\( -name '*.jsonl' -o -name '*.nudge' \\) -exec cp -p {} \"$T/\" \\; 2>/dev/null || true; fi; if [ -f \"$PWD/specs/demo/001-demo-widget/decision-record.md\" ]; then cp -p \"$PWD/specs/demo/001-demo-widget/decision-record.md\" \"$T/decision-record.md\"; fi; queue_jsonl=0; if [ -d \"$Q\" ]; then queue_jsonl=$(find \"$Q\" -type f -name '*.jsonl' | wc -l | tr -d ' '); fi; screen=\"$T/screen.txt\"; nudge_lines=0; if [ -f \"$screen\" ]; then nudge_lines=$(grep -cF 'operator answer(s) captured this session are not in a decision record yet' \"$screen\" || true); fi; color_question=0; if [ -f \"$screen\" ] && grep -Eiq 'colou?r' \"$screen\"; then color_question=1; fi; amber_visible=0; if [ -f \"$screen\" ] && grep -Fq 'Amber' \"$screen\"; then amber_visible=1; fi; if [ \"$queue_jsonl\" -ne 0 ] || [ \"$nudge_lines\" -ne 0 ] || [ \"$color_question\" -ne 1 ] || [ \"$amber_visible\" -ne 1 ]; then printf 'DEVIATION: kill-switch turn did not meet the queue, nudge, question and answer expectations\\n'; printf 'observed=runtime=%s queue_jsonl=%s nudge_lines=%s color_question=%s amber_visible=%s\\n' \"$CONVERSATION_RUNTIME\" \"$queue_jsonl\" \"$nudge_lines\" \"$color_question\" \"$amber_visible\"; exit 1; fi; printf 'observed=runtime=%s queue_jsonl=%s nudge_lines=%s color_question=%s amber_visible=%s\\n' \"$CONVERSATION_RUNTIME\" \"$queue_jsonl\" \"$nudge_lines\" \"$color_question\" \"$amber_visible\""
     }
   ]
 }
@@ -109,7 +109,7 @@ Operators run this scenario in its own runner invocation and scratch project bec
 
 ### Expected
 
-The check sees no queue JSONL file in .skilled/skills/.state/decision-capture, finds no Stop nudge line in CONVERSATION_TURN_DIR/screen.txt, and finds the selected Amber answer in the same pane capture.
+The check sees no queue JSONL file anywhere under .skilled/skills/.state/decision-capture, including the project subfolder, finds no Stop nudge line in CONVERSATION_TURN_DIR/screen.txt, and finds the selected Amber answer in the same pane capture.
 
 ### Evidence
 

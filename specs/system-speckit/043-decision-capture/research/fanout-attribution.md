@@ -1,8 +1,7 @@
 # Fan-Out Attribution
 
-Loop type: **research**  |  Lineage count: **2**
+Loop type: **research**  |  Lineage count: **1**
 
 | Label | Kind | Model | Iterations | Convergence | Salvaged | Verdict |
 |-------|------|-------|-----------|-------------|----------|---------|
-| deepseek | cli-pi | deepseek-v4.1-flash-1017 | 3 | 0.6 | 0 | n/a |
-| luna | cli-codex | gpt-6-luna | 2 | 0.58 | 0 | n/a |
+| devin-deepseek | cli-devin | deepseek-v4-1-flash-max | 4 | 0.72 | 0 | n/a |

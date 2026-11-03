@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture hook"
   - "askuserquestion capture"
   - "operator answer queue"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # decision-capture-claude-hook -- Decision capture Claude hook
@@ -18,7 +18,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 This scenario validates the Claude PostToolUse decision-capture hook for `decision-capture-claude-hook`. It focuses on one queued record per answered AskUserQuestion, the registry and mirror wiring, and the kill switch.
 
-When the operator answers an AskUserQuestion in Claude Code, `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` copies the exact question, options and answer into a gitignored per-session queue under `.skilled/skills/.state/decision-capture/`. A later full-auto `/speckit:save` turns each queued answer into a decision row. The hook only observes: it prints nothing and always exits 0.
+When the operator answers an AskUserQuestion in Claude Code, `.skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs` copies the exact question, options and answer into a gitignored per-session queue in the project's own subfolder under `.skilled/skills/.state/decision-capture/`. A later full-auto `/speckit:save` turns each queued answer into a decision row. The hook only observes: it prints nothing and always exits 0.
 
 ### Why This Matters
 
@@ -60,8 +60,8 @@ node -e 'const f=require(process.argv[1]); f.cwd=process.argv[2]; process.stdout
   "$PWD/.skilled/hooks/decision-capture/claude/fixtures/claude-posttooluse-askuserquestion.json" "$P" \
   | env -u SYSTEM_HOOKS_DISABLED -u SYSTEM_DECISION_CAPTURE_DISABLED CLAUDE_PROJECT_DIR="$P" \
     node .skilled/hooks/decision-capture/claude/ask-capture-posttooluse.mjs; echo "exit=$?"
-cat "$P"/.skilled/skills/.state/decision-capture/*.jsonl
-wc -l "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+cat "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
+wc -l "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
 ```
 
 6. Repeat with the kill switch on and confirm nothing is written:

@@ -9,6 +9,9 @@
 // Every write is an upsert by id and never a document rewrite. A decision record
 // also holds hand-authored ADRs, and a save must not disturb a byte of them.
 
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -120,10 +123,47 @@ const APPENDIX_BLOCK: readonly string[] = [
 const TEMPLATE_SOURCE_LINE = '<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->';
 const HVR_REFERENCE_LINE = '<!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->';
 const STATE_DIR_SEGMENTS = ['.skilled', 'skills', '.state', 'decision-capture'];
+const canonicalRoots = new Map<string, string>();
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────────
+
+function canonicalRoot(dir: string): string {
+  const input = String(dir);
+  const cachedRoot = canonicalRoots.get(input);
+  if (cachedRoot !== undefined) {
+    return cachedRoot;
+  }
+
+  let root: string;
+  try {
+    const env = { ...process.env };
+    // Ignore inherited Git overrides so the requested project path determines its root.
+    delete env.GIT_DIR;
+    delete env.GIT_WORK_TREE;
+    root = fs.realpathSync(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+      cwd: input,
+      env,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: 5000,
+    }).trim());
+  } catch {
+    try {
+      root = fs.realpathSync(input);
+    } catch {
+      root = path.resolve(input);
+    }
+  }
+
+  canonicalRoots.set(input, root);
+  return root;
+}
+
+function projectToken(dir: string): string {
+  return createHash('sha256').update(canonicalRoot(dir)).digest('hex').slice(0, 12);
+}
 
 function formatId(value: number): string {
   return `Q${String(value).padStart(3, '0')}`;
@@ -758,7 +798,18 @@ export interface ConsumedLogRow {
  * so both resolve the path here instead of each keeping its own copy of the name.
  */
 export function consumedLogPath(projectRoot: string): string {
-  return path.join(projectRoot, ...STATE_DIR_SEGMENTS, 'consumed.jsonl');
+  return path.join(stateDirPath(projectRoot), 'consumed.jsonl');
+}
+
+/** Directory where this project's decision-capture state is stored. */
+export function stateDirPath(projectRoot: string): string {
+  const root = canonicalRoot(projectRoot);
+  return path.join(root, ...STATE_DIR_SEGMENTS, projectToken(projectRoot));
+}
+
+/** Root-level consumed log written before decision-capture state was project-scoped. */
+export function legacyConsumedLogPath(projectRoot: string): string {
+  return path.join(canonicalRoot(projectRoot), ...STATE_DIR_SEGMENTS, 'consumed.jsonl');
 }
 
 /**
@@ -767,38 +818,43 @@ export function consumedLogPath(projectRoot: string): string {
  * that names no key records nothing, so it must not fail the whole read.
  */
 export function readConsumedRows(projectRoot: string): ConsumedLogRow[] {
-  let raw: string;
-  try {
-    raw = fs.readFileSync(consumedLogPath(projectRoot), 'utf8');
-  } catch {
-    return [];
-  }
   const rows: ConsumedLogRow[] = [];
-  for (const line of raw.split('\n')) {
-    if (line.trim() === '') {
-      continue;
-    }
-    let parsed: unknown;
+  const seen = new Set<string>();
+  for (const filePath of [consumedLogPath(projectRoot), legacyConsumedLogPath(projectRoot)]) {
+    let raw: string;
     try {
-      parsed = JSON.parse(line);
+      raw = fs.readFileSync(filePath, 'utf8');
     } catch {
-      // Unparseable line: it records nothing, so it cannot hide a key.
       continue;
     }
-    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
-      continue;
+
+    for (const line of raw.split('\n')) {
+      if (line.trim() === '') {
+        continue;
+      }
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(line);
+      } catch {
+        // Unparseable line: it records nothing, so it cannot hide a key.
+        continue;
+      }
+      if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        continue;
+      }
+      const row = parsed as Record<string, unknown>;
+      const key = typeof row.key === 'string' ? row.key : '';
+      if (key === '' || seen.has(key)) {
+        continue;
+      }
+      seen.add(key);
+      rows.push({
+        raw: line,
+        key,
+        packet: typeof row.packet === 'string' ? row.packet : '',
+        id: typeof row.id === 'string' ? row.id : '',
+      });
     }
-    const row = parsed as Record<string, unknown>;
-    const key = typeof row.key === 'string' ? row.key : '';
-    if (key === '') {
-      continue;
-    }
-    rows.push({
-      raw: line,
-      key,
-      packet: typeof row.packet === 'string' ? row.packet : '',
-      id: typeof row.id === 'string' ? row.id : '',
-    });
   }
   return rows;
 }
@@ -818,7 +874,7 @@ export function recordConsumedKeys(
     return;
   }
 
-  const stateDir = path.join(projectRoot, ...STATE_DIR_SEGMENTS);
+  const stateDir = stateDirPath(projectRoot);
   const recorded = new Set(readConsumedRows(projectRoot).map((row) => row.key));
   const fresh = ids.filter(({ sourceKey }) => {
     if (recorded.has(sourceKey)) {

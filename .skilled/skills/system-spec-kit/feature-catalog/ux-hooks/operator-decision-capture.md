@@ -7,7 +7,7 @@ trigger_phrases:
   - "operator decisions"
   - "capture askuserquestion answers"
   - "verbatim operator answers"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Operator decision capture
@@ -26,7 +26,7 @@ This feature is cataloged under UX hooks because its live half is a hook. The sa
 
 ### Capture
 
-On Claude, a PostToolUse hook on `AskUserQuestion` hands each answered question to the runtime-neutral core, which appends one record per answer to a per-session queue under the gitignored `.skilled/skills/.state/decision-capture/` folder. Each record carries a source key built from the runtime, the session, the tool-use id and the question's position, and a key is queued at most once. Questions about Gate 3, spec folders, worktrees, branches and commit or push permission are dropped before they reach the queue. On Pi, an extension on the `tool_result` event does the same for `ask_user_question` and for pi-plan-build's `question` tool, using the Pi sweep's own mapping so both produce the same key. On OpenCode, the `decision-capture.js` plugin does the same on `tool.execute.after` for the `question` tool, with the key the OpenCode sweep builds. On Devin, a PostToolUse adapter on `ask_user_question` reuses the Devin sweep's mapping. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns every live capture off.
+On Claude, a PostToolUse hook on `AskUserQuestion` hands each answered question to the runtime-neutral core, which appends one record per answer to a per-session queue under the gitignored `.skilled/skills/.state/decision-capture/` folder, inside a subfolder named by a hash of the project's real root, so projects linked to one Skilled checkout keep separate queues. Each record carries a source key built from the runtime, the session, the tool-use id and the question's position, and a key is queued at most once. Questions about Gate 3, spec folders, worktrees, branches and commit or push permission are dropped before they reach the queue. On Pi, an extension on the `tool_result` event does the same for `ask_user_question` and for pi-plan-build's `question` tool, using the Pi sweep's own mapping so both produce the same key. On OpenCode, the `decision-capture.js` plugin does the same on `tool.execute.after` for the `question` tool, with the key the OpenCode sweep builds. On Devin, a PostToolUse adapter on `ask_user_question` reuses the Devin sweep's mapping. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns every live capture off.
 
 ### Sweeps
 
@@ -38,7 +38,7 @@ When the target packet already has a `decision-record.md`, the save first runs `
 
 Every save also runs `match-decision-table.js --scan-orphans`, which lists each session whose answers are still pending, so the operator hears about answers from a session that ended without a save.
 
-The session model writes one `operatorDecisions` entry per pending answer and per confirmed chat candidate, with the printed `key` as its `sourceKey`. A plan-only save lists the entries and writes nothing. A `--full-auto` save hands them to `decision-record-writer.ts`, which upserts a row in the `operator-decisions` anchor and adds the exact question, options and answer to the `operator-answers-verbatim` anchor. A known source key keeps its `Q` id. A row written by hand carries no key, so the writer matches it by its question and answer text, ignoring case and spacing. A repeated save changes no byte. A save whose answer changed for a known key rewrites that row and its appendix item.
+Each chat candidate also carries a deterministic `evidence` object: the question's type, whether the reply names an offered option, how many content words it shares with the question, whether it opens with a new task, and whether it shifts topic. No candidate is accepted or rejected by code: the session model still judges each one, reads the evidence first, and ends each chat entry's `why` with an `Evidence:` sentence so the judgment can be audited in the record. The session model writes one `operatorDecisions` entry per pending answer and per confirmed chat candidate, with the printed `key` as its `sourceKey`. A plan-only save lists the entries and writes nothing. A `--full-auto` save hands them to `decision-record-writer.ts`, which upserts a row in the `operator-decisions` anchor and adds the exact question, options and answer to the `operator-answers-verbatim` anchor. A known source key keeps its `Q` id. A row written by hand carries no key, so the writer matches it by its question and answer text, ignoring case and spacing. A repeated save changes no byte. A save whose answer changed for a known key rewrites that row and its appendix item.
 
 The writer can create `decision-record.md` at any level. When it does so in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change that level. Written keys go to `consumed.jsonl` once each, so a later save does not offer them again.
 
@@ -60,7 +60,7 @@ The Claude Stop hook counts the answers still waiting for a record and reports a
 | `.opencode/plugins/decision-capture.js` | OpenCode plugin | `tool.execute.after` capture and the pending-answer system line. |
 | `.skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs` | Devin adapter | PostToolUse entry point for `ask_user_question`. |
 | `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` | Save-time sweep | Claude transcript reader. |
-| `.skilled/hooks/decision-capture/lib/chat-questions.mjs` | Shared detector | Chat-candidate pairing from ordered turns, used by every sweep. |
+| `.skilled/hooks/decision-capture/lib/chat-questions.mjs` | Shared detector | Chat-candidate pairing from ordered turns and each candidate's evidence object, used by every sweep. |
 | `.skilled/hooks/decision-capture/bin/sweep-opencode.mjs` | Save-time sweep | OpenCode SQLite store reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-devin.mjs` | Save-time sweep | Devin transcript reader. |
 | `.skilled/hooks/decision-capture/bin/sweep-codex.mjs` | Save-time sweep | Codex rollout reader. |

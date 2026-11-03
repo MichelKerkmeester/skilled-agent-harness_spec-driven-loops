@@ -121,7 +121,16 @@ export {
 export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
 
 // The save writes operator decisions with the same public surface it uses for continuity.
-export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, consumedLogPath, readConsumedRows, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
+export {
+  writeDecisionRecord,
+  readVerbatimAppendix,
+  recordConsumedKeys,
+  consumedLogPath,
+  stateDirPath,
+  legacyConsumedLogPath,
+  readConsumedRows,
+  DecisionRecordWriteError,
+} from '../lib/continuity/decision-record-writer.js';
 export type { ConsumedLogRow, OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
 
 // A hand-written decision record already holds answers the queue captured, so the

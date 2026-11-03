@@ -23,6 +23,7 @@ import {
   queueFile,
   readQueue,
 } from '../lib/capture-core.mjs';
+import { chatCandidatesFromTurns } from '../lib/chat-questions.mjs';
 import { sweepTranscript } from './sweep-transcript.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -188,6 +189,13 @@ test('an answered chat question is offered with its exact wording', () => {
         answer: 'Blue, please.',
         question_turn_id: 'a1',
         answer_turn_id: 'u1',
+        evidence: {
+          questionType: 'alternative',
+          optionMatch: true,
+          contentOverlap: 1,
+          imperativeOpening: false,
+          topicShift: false,
+        },
       },
     ]);
   });
@@ -651,5 +659,104 @@ test('the Claude chat fixture yields four candidates outside labelled process pa
       candidate.question_turn_id === earlierPair.question_turn
       && candidate.answer_turn_id === earlierPair.reply_turn
     )));
+
+    // The evidence is the cue the save model reads before judging. The fixture pins
+    // it: the replies that open on new work share no word with their question, and
+    // the one numbered reply that answers in place shares three.
+    const evidenceByPair = Object.fromEntries(result.chat_candidates.map((candidate) => [
+      labels.find((pair) => pair.question_turn === candidate.question_turn_id).pair,
+      candidate.evidence,
+    ]));
+    assert.deepEqual(evidenceByPair, {
+      1: {
+        questionType: 'yes_no',
+        optionMatch: false,
+        contentOverlap: 0,
+        imperativeOpening: true,
+        topicShift: false,
+      },
+      3: {
+        questionType: 'alternative',
+        optionMatch: false,
+        contentOverlap: 0,
+        imperativeOpening: true,
+        topicShift: false,
+      },
+      6: {
+        questionType: 'numbered_list',
+        optionMatch: 'not_applicable',
+        contentOverlap: 3,
+        imperativeOpening: false,
+        topicShift: false,
+      },
+      7: {
+        questionType: 'numbered_list',
+        optionMatch: 'not_applicable',
+        contentOverlap: 0,
+        imperativeOpening: true,
+        topicShift: false,
+      },
+    });
   });
+});
+
+// The extended fixture is the labelled set a save model is judged against, so the
+// test pins the shape it must always have rather than the labels themselves, which
+// remain a judgement call. It prints every label beside its evidence for a reader
+// to compare.
+function turnsFromChatFixture(entries) {
+  const turns = [];
+  for (const entry of entries) {
+    const content = entry?.message?.content;
+    if (entry?.type === 'assistant') {
+      const parts = Array.isArray(content)
+        ? content.filter((block) => block?.type === 'text' && typeof block.text === 'string')
+        : [];
+      if (parts.length > 0) {
+        turns.push({ kind: 'assistant', id: entry.uuid, text: parts.map((block) => block.text).join('\n') });
+      }
+      continue;
+    }
+    if (typeof content === 'string' && content !== '') {
+      turns.push({ kind: 'prompt', id: entry.uuid, text: content });
+    }
+  }
+  return turns;
+}
+
+test('the extended Claude chat fixture yields one candidate per labelled pair', () => {
+  const entries = readFileSync(
+    join(HERE, 'fixtures', 'claude-chat-answers-extended.jsonl'),
+    'utf8',
+  )
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line));
+  const labels = JSON.parse(readFileSync(
+    join(HERE, 'fixtures', 'claude-chat-answers-extended.labels.json'),
+    'utf8',
+  ));
+
+  const { candidates } = chatCandidatesFromTurns({
+    runtime: 'claude',
+    sessionId: 'synthetic-session',
+    turns: turnsFromChatFixture(entries),
+    consumed: new Set(),
+  });
+
+  assert.equal(candidates.length, labels.length);
+  for (const candidate of candidates) {
+    assert.deepEqual(Object.keys(candidate.evidence).sort(), [
+      'contentOverlap',
+      'imperativeOpening',
+      'optionMatch',
+      'questionType',
+      'topicShift',
+    ]);
+  }
+
+  for (const label of labels) {
+    const candidate = candidates.find((item) => item.question_turn_id === label.question_turn);
+    console.log(`pair ${label.pair} answers=${label.answers} evidence=${JSON.stringify(candidate?.evidence)}`);
+  }
 });

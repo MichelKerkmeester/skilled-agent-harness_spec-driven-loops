@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture live conversation"
   - "decision capture runtime matrix"
   - "live decision capture scenario"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # decision-capture-live-conversation -- Decision capture live conversation
@@ -47,7 +47,7 @@ Operators run the exact conversation script for decision-capture-live-conversati
 
 ### Stage Table
 
-Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000]. The runner draws the pauses from its recorded seed. Q is `.skilled/skills/.state/decision-capture` inside the scratch project, and a queue row is a record carrying a session id, so the consumed log is never counted as a row.
+Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000]. The runner draws the pauses from its recorded seed. Q is the project subfolder `queueDir(".")` returns under `.skilled/skills/.state/decision-capture` inside the scratch project, and a queue row is a record carrying a session id, so the consumed log is never counted as a row.
 
 | Stage | Human turn or action | Answer the human gives | Pause | Checkpoint observable | Expected |
 |-------|----------------------|-----------------------|-------|------------------------|----------|
@@ -95,7 +95,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;T=$CONVERSATION_TURN_DIR;R=$CONVERSATION_REPO_ROOT;cp $Q/* \"$T\" 2>/dev/null;(rg --files \"$R/specs\";cat \"$R/.skilled/skills/.state/decision-capture/\"* 2>/dev/null)|shasum>\"$T/base.sha\";rg -q '\"session_id\"' $Q/*.jsonl 2>/dev/null&&{ echo \"DEVIATION: queue rows\";exit 1;};echo \"rows=0 base=base.sha\""
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');T=$CONVERSATION_TURN_DIR;R=$CONVERSATION_REPO_ROOT;cp $Q/* \"$T\" 2>/dev/null;(rg --files \"$R/specs\";find \"$R/.skilled/skills/.state/decision-capture\" -type f -exec cat {} + 2>/dev/null)|shasum>\"$T/base.sha\";rg -q '\"session_id\"' $Q/*.jsonl 2>/dev/null&&{ echo \"DEVIATION: queue rows\";exit 1;};echo \"rows=0 base=base.sha\""
     },
     {
       "id": "S1",
@@ -128,7 +128,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;m=$(rg -c '\"session_id\"' $Q/*.jsonl 2>/dev/null);g=not-asked;rg -q -i 'gate 3|spec folder' \"$CONVERSATION_TURN_DIR/screen.txt\"&&g=visible;[ -z \"$m\" ]&&{ [ $CONVERSATION_RUNTIME != claude-code ]||[ $g = visible ]; }&&echo \"rows=0 gate3=$g\"||{ echo \"DEVIATION: rows=${m:-0} gate3=$g\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;m=$(rg -c '\"session_id\"' $Q/*.jsonl 2>/dev/null);g=not-asked;rg -q -i 'gate 3|spec folder' \"$CONVERSATION_TURN_DIR/screen.txt\"&&g=visible;[ -z \"$m\" ]&&{ [ $CONVERSATION_RUNTIME != claude-code ]||[ $g = visible ]; }&&echo \"rows=0 gate3=$g\"||{ echo \"DEVIATION: rows=${m:-0} gate3=$g\";exit 1;}"
     },
     {
       "id": "S2",
@@ -152,7 +152,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=1;; *) w=;; esac;[ \"$n\" = 1 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=1;; *) w=;; esac;[ \"$n\" = 1 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S3",
@@ -179,7 +179,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=2;; *) w=;; esac;[ \"$n\" = 2 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=2;; *) w=;; esac;[ \"$n\" = 2 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S4",
@@ -201,7 +201,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=3;; *) w=;; esac;[ \"$n\" = 3 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=3;; *) w=;; esac;[ \"$n\" = 3 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S5",
@@ -223,7 +223,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=3;; *) w=;; esac;[ \"$n\" = 3 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=3;; *) w=;; esac;[ \"$n\" = 3 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S6",
@@ -232,7 +232,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;cp specs/demo/001-demo-widget/decision-record.md \"$CONVERSATION_TURN_DIR/\" 2>/dev/null;s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");r=$(grep -cE '^[|] Q[0-9]+ [|]' specs/demo/001-demo-widget/decision-record.md 2>/dev/null);o=\"pending=$p rows=$r\";[ \"$p\" = 0 ]&&[ \"$r\" = 4 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;cp specs/demo/001-demo-widget/decision-record.md \"$CONVERSATION_TURN_DIR/\" 2>/dev/null;s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");r=$(grep -cE '^[|] Q[0-9]+ [|]' specs/demo/001-demo-widget/decision-record.md 2>/dev/null);o=\"pending=$p rows=$r\";[ \"$p\" = 0 ]&&[ \"$r\" = 4 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S7",
@@ -256,7 +256,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ \"$n\" = 4 ]&&shasum $Q/*.jsonl>.queue.sha&&echo \"rows=$n digest=saved\"||{ echo \"DEVIATION: rows=$n\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ \"$n\" = 4 ]&&shasum $Q/*.jsonl>.queue.sha&&echo \"rows=$n digest=saved\"||{ echo \"DEVIATION: rows=$n\";exit 1;}"
     },
     {
       "id": "S8-compact",
@@ -265,7 +265,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;a=$(cat .queue.sha 2>/dev/null);b=$(shasum $Q/*.jsonl);n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ -n \"$a\" ]&&[ \"$a\" = \"$b\" ]&&[ \"$n\" = 4 ]&&echo \"rows=$n digest=unchanged\"||{ echo \"DEVIATION: rows=$n or the digest changed\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;a=$(cat .queue.sha 2>/dev/null);b=$(shasum $Q/*.jsonl);n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);[ -n \"$a\" ]&&[ \"$a\" = \"$b\" ]&&[ \"$n\" = 4 ]&&echo \"rows=$n digest=unchanged\"||{ echo \"DEVIATION: rows=$n or the digest changed\";exit 1;}"
     },
     {
       "id": "S8-ask",
@@ -289,7 +289,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=2;; *) w=;; esac;[ \"$n\" = 5 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);v=$(cat $Q/*.nudge 2>/dev/null);o=\"rows=$n nudge=$v\";case $CONVERSATION_RUNTIME in claude-code|opencode|devin|pi) w=2;; *) w=;; esac;[ \"$n\" = 5 ]&&[ \"$v\" = \"$w\" ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S9-restart",
@@ -298,7 +298,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);c=$(jq -s 'map(.session_id//empty)|unique|length' $Q/*.jsonl);[ \"$n\" = 5 ]&&[ \"$c\" = 1 ]&&echo \"rows=$n sessions=$c\"||{ echo \"DEVIATION: rows=$n sessions=$c\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);c=$(jq -s 'map(.session_id//empty)|unique|length' $Q/*.jsonl);[ \"$n\" = 5 ]&&[ \"$c\" = 1 ]&&echo \"rows=$n sessions=$c\"||{ echo \"DEVIATION: rows=$n sessions=$c\";exit 1;}"
     },
     {
       "id": "S9-ask",
@@ -322,7 +322,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
           ]
         }
       ],
-      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);c=$(jq -s 'map(.session_id//empty)|unique|length' $Q/*.jsonl);[ \"$n\" = 6 ]&&[ \"$c\" = 1 ]&&echo \"rows=$n sessions=$c\"||{ echo \"DEVIATION: rows=$n sessions=$c\";exit 1;}"
+      "check": "[ $CONVERSATION_RUNTIME = codex ]&&echo \"no live queue on codex\"&&exit 77;Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;n=$(jq -s 'map(select(.session_id))|length' $Q/*.jsonl);c=$(jq -s 'map(.session_id//empty)|unique|length' $Q/*.jsonl);[ \"$n\" = 6 ]&&[ \"$c\" = 1 ]&&echo \"rows=$n sessions=$c\"||{ echo \"DEVIATION: rows=$n sessions=$c\";exit 1;}"
     },
     {
       "id": "S10",
@@ -331,7 +331,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;cp specs/demo/001-demo-widget/decision-record.md .s10;cp .s10 \"$CONVERSATION_TURN_DIR/decision-record.md\";s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");r=$(grep -cE '^[|] Q[0-9]+ [|]' .s10);o=\"pending=$p rows=$r\";[ \"$p\" = 0 ]&&[ \"$r\" = 7 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;cp specs/demo/001-demo-widget/decision-record.md .s10;cp .s10 \"$CONVERSATION_TURN_DIR/decision-record.md\";s=$(jq -sr 'map(.session_id//empty)|last' $Q/*.jsonl);p=$(node --input-type=module -e 'import{pendingRecords as p}from\"./.dc.mjs\";console.log(p(\".\",process.argv[1]).length)' \"$s\");r=$(grep -cE '^[|] Q[0-9]+ [|]' .s10);o=\"pending=$p rows=$r\";[ \"$p\" = 0 ]&&[ \"$r\" = 7 ]&&echo \"$o\"||{ echo \"DEVIATION: $o\";exit 1;}"
     },
     {
       "id": "S11",
@@ -340,7 +340,7 @@ Every turn uses delay_ms [5000, 15000]; every answer uses delay_ms [3000, 8000].
         5000,
         15000
       ],
-      "check": "Q=.skilled/skills/.state/decision-capture;cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;g=$(rg -c '^\\| Q' specs/demo/001-demo-widget/decision-record.md);cmp -s .s10 specs/demo/001-demo-widget/decision-record.md&&[ \"$g\" = 7 ]&&echo \"record_rows=$g repeat=identical\"||{ echo \"DEVIATION: record_rows=$g or the copy no longer matches\";exit 1;}"
+      "check": "Q=$(node --input-type=module -e 'import{queueDir as q}from\"./.skilled/hooks/decision-capture/lib/capture-core.mjs\";console.log(q(\".\"))');cp $Q/* \"$CONVERSATION_TURN_DIR\" 2>/dev/null;g=$(rg -c '^\\| Q' specs/demo/001-demo-widget/decision-record.md);cmp -s .s10 specs/demo/001-demo-widget/decision-record.md&&[ \"$g\" = 7 ]&&echo \"record_rows=$g repeat=identical\"||{ echo \"DEVIATION: record_rows=$g or the copy no longer matches\";exit 1;}"
     }
   ]
 }

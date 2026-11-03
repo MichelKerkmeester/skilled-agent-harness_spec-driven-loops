@@ -41,12 +41,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Work on any other artifact gets its own packet. |
+| D1 | Every child changes the decision-capture pipeline: `.skilled/hooks/decision-capture/`, the decision-record writer or the save step. Work on any other artifact gets its own packet. Exception (2026-11-03): 010 may change `system-spec-kit` routing metadata. |
 | D2 | Children 002 to 005 close only after the 006 conversation scenario re-proves their change. |
 | D3 | 006 runs on the shared conversation runner from `specs/sk-doc/065-conversation-playbook-scenarios` and builds no runner of its own. |
-| D4 | Live tests run in a scratch project. No test writes to this repository's packets or its `.skilled/skills/.state/decision-capture/`. |
+| D4 | Live tests run in a scratch project and never write to this repository's packets or its decision-capture state. |
 | D5 | A runtime adapter is registered only after a live probe shows the answers. A runtime with no answer surface is recorded with evidence, never skipped. |
-| D6 | Implementation workers run `gpt-6-luna` at reasoning `xhigh` on service tier `fast` through cli-codex. When Luna's quota is used up they fall back to `llmgateway/deepseek-v4.1-flash-1017` at thinking `max` through cli-pi. Luna never runs through a gateway. |
+| D6 | Implementation workers run `gpt-6-luna` xhigh, tier fast, via cli-codex. When its quota runs out they use `llmgateway/deepseek-v4.1-flash-1017` max via cli-pi. Luna never runs through a gateway. |
 
 <!-- /ANCHOR:directive -->
 
@@ -67,6 +67,9 @@ phase and binds as if written here.
 | 005-chat-question-detection | `005-chat-question-detection/goal.md` |
 | 006-live-conversation-test | `006-live-conversation-test/goal.md` |
 | 007-gap-closure | `007-gap-closure/goal.md` |
+| 008-project-scoped-state | `008-project-scoped-state/goal.md` |
+| 009-chat-answer-evidence | `009-chat-answer-evidence/goal.md` |
+| 010-decision-routing-vocabulary | `010-decision-routing-vocabulary/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -112,6 +115,7 @@ and findings belong here.
 | 006 live conversations | done for 4 of 5 | Claude, OpenCode, Pi, Devin main 14/14 + kill-switch 1/1 on the mirror root; Codex waits on its quota (2026-11-05) and the hook-trust rule (Q012) |
 | Children closed after 006 | 004, 005 Complete | 004 and 005 validate --strict PASSED; 002 waits on two operator answers; 003 waits on the Codex run; lib+bin 93/93 |
 | All six children Complete | done | Codex ran 2026-11-02; save sufficiency gate fixed; next: deep review, alignment, second live pass, commit list (Q010) |
+| Children 008 to 010 Complete | done | 2026-11-03: per-project state, chat-answer evidence and decision routing built and verified; hooks 122/122, writer, matcher and session-stop 52/52; recursive strict 11/11 PASSED; not committed |
 
 ### Deviations and findings
 

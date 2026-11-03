@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sweep"
   - "devin transcript sweep"
   - "opencode session sweep"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # decision-capture-transcript-sweeps -- Decision capture transcript sweeps
@@ -55,9 +55,9 @@ Operators run the exact prompt and command sequence for `decision-capture-transc
 R="$PWD"; P="$(mktemp -d)"
 (cd "$P" && node "$R/.skilled/hooks/decision-capture/bin/sweep-devin.mjs" --transcript "$R/.skilled/hooks/decision-capture/bin/fixtures/devin-transcript.json" | grep '"recovered"')
 (cd "$P" && node "$R/.skilled/hooks/decision-capture/bin/sweep-devin.mjs" --transcript "$R/.skilled/hooks/decision-capture/bin/fixtures/devin-transcript.json" | grep '"recovered"')
-wc -l "$P"/.skilled/skills/.state/decision-capture/*.jsonl
-grep -o '"answer":"[^"]*"' "$P"/.skilled/skills/.state/decision-capture/*.jsonl
-grep -c 'Spec folder' "$P"/.skilled/skills/.state/decision-capture/*.jsonl
+wc -l "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
+grep -o '"answer":"[^"]*"' "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
+grep -c 'Spec folder' "$P"/.skilled/skills/.state/decision-capture/*/*.jsonl
 ```
 
 Leave `$P` in place: it is a `mktemp -d` folder under the system temp directory.
