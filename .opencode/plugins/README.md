@@ -38,6 +38,7 @@ One plugin is an exception. `sk-git-message-gate.js` has no switch, because the 
 | `classifier-injection-screen.js` | `injection-screen` | `tool.execute.after` for `webfetch`, `experimental.chat.system.transform` | Screens fetched `webfetch` text for instructions aimed at the agent. Buffers up to 20 advisories per session and drains them on the next transform, the model call that reads the fetch result. Never writes stdout/stderr. |
 | `cli-dispatch-audit.js` | `dispatch`, `dispatch-guard` | `tool.execute.before` and `tool.execute.after` for Bash | `tool.execute.before` blocks a CLI dispatch that breaks a hard rule declared in the target skill's `SKILL.md` by throwing, and fails open on its own errors. `tool.execute.after` records redacted dispatch telemetry after completed CLI calls, recognizes an `opencode` or `opencode2` invocation and appends a bounded audit record. |
 | `codex-hooks-watchdog.js` | `codex-watchdog` | `event` (`session.created`) | Watches Codex hook installation and reports drift. Never affects the guarded session. |
+| `decision-capture.js` | `decision-capture` | `tool.execute.after` for `question`, `experimental.chat.system.transform` | Queues each answered `question` call for the next full-auto save under the same key as the save-time sweep, and pushes one system line when the count of answers still waiting for a decision record rises. Fails open and never changes the tool output. |
 | `mcp-route-guard.js` | `mcp-route-guard` | `tool.execute.before` | Advises when native MCP calls should use Code Mode. Persists to a bounded, rotated workspace log. |
 | `opencode-goal.js` | `goal` | `event` (`session.created`/`status`/`idle`/`deleted`, `message.updated`/`message.part.updated`, `permission.asked`/`replied`, `question.asked`/`replied`/`rejected`), `experimental.chat.system.transform`, `tool` (goal tools) | Holds a text goal or binds a session to a packet `goal.md` and injects the objective slice built from it (via `../hooks/goal/lib/goal-slice.cjs`). Largest plugin in this folder. Owns the goal state machine, supervisor, continuation, capabilities and the goal tool surface including `bind`, `resent` and `packet`. |
 | `session-cleanup.js` | `session-cleanup` | `event` (`session.created`/`deleted`), `experimental.chat.system.transform`, `dispose` | Performs bounded session and host cleanup. Startup guards and teardown cleanup. Reaps MCP helper processes via `session-cleanup.sh`. |
@@ -99,6 +100,7 @@ plugins/
 +-- classifier-injection-screen.js
 +-- cli-dispatch-audit.js
 +-- codex-hooks-watchdog.js
++-- decision-capture.js
 +-- mcp-route-guard.js
 +-- opencode-goal.js
 +-- session-cleanup.js

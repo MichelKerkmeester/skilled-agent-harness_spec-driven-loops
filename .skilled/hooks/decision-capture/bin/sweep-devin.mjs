@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Devin CLI Transcript Decision Sweep                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Recover Devin's answered questions into the queue.              ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Devin CLI Transcript Decision Sweep
+// ───────────────────────────────────────────────────────────────────
+// Recover Devin's answered questions into the queue.
 // Backstop for the decision queue.
 //
 // Devin keeps a question call on the step that asked and puts the answer in that
@@ -18,17 +17,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { readFileSync, realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { basename, join } from 'node:path';
 import process from 'node:process';
-import { DatabaseSync } from 'node:sqlite';
 import { fileURLToPath } from 'node:url';
 
 import {
   appendRecords,
   normalizeAskUserQuestion,
   pendingRecords,
+  readConsumedKeys,
 } from '../lib/capture-core.mjs';
+import { chatCandidatesFromTurns } from '../lib/chat-questions.mjs';
+
+const require = createRequire(import.meta.url);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -148,7 +151,45 @@ export function devinAnswerRecords({ transcript, sessionId, now } = {}) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. SWEEP
+// 5. CHAT CANDIDATES
+// ─────────────────────────────────────────────────────────────────────────────
+
+// A step becomes at most one chat turn. An agent step that called a tool is
+// recorded as a bare tool turn because the detector refuses to pair a question
+// across it: real work between asking and answering means the answer may not
+// belong to the question the sweep can see. A system step is never a turn at
+// all, so harness boilerplate cannot pass for something the operator said, and
+// a user step that opens with '<' is an injected block for the same reason.
+function chatTurnsOf(steps) {
+  const turns = [];
+
+  for (const step of steps) {
+    const toolCalls = Array.isArray(step?.tool_calls) ? step.tool_calls : [];
+    const message = step?.message;
+
+    if (step?.source === 'agent') {
+      if (toolCalls.length > 0) {
+        turns.push({ kind: 'tool' });
+        continue;
+      }
+      if (typeof message === 'string' && message !== '') {
+        turns.push({ kind: 'assistant', id: String(step.step_id), text: message });
+      }
+      continue;
+    }
+
+    if (step?.source !== 'user') continue;
+    if (typeof message !== 'string' || message === '') continue;
+    if (!message.startsWith('<')) {
+      turns.push({ kind: 'prompt', id: String(step.step_id), text: message });
+    }
+  }
+
+  return turns;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. SWEEP
 // ─────────────────────────────────────────────────────────────────────────────
 
 // The file name carries the session id, so a transcript without a declared id
@@ -164,24 +205,32 @@ export function sweepDevinTranscript({ projectDir, transcriptPath, now } = {}) {
   const transcript = JSON.parse(readFileSync(transcriptPath, 'utf8'));
   const sessionId = sessionIdOf(transcript, transcriptPath);
   const capturedAt = now || new Date().toISOString();
+  const steps = Array.isArray(transcript?.steps) ? transcript.steps : [];
 
   const { appended } = appendRecords(
     projectDir,
     sessionId,
     devinAnswerRecords({ transcript, sessionId, now: capturedAt }),
   );
+  const { candidates: chatCandidates, dropped: chatCandidatesDropped } = chatCandidatesFromTurns({
+    runtime: RUNTIME,
+    sessionId,
+    turns: chatTurnsOf(steps),
+    consumed: readConsumedKeys(projectDir),
+  });
 
   return {
     transcript: transcriptPath,
     session_id: sessionId,
     recovered: appended,
     pending: pendingRecords(projectDir, sessionId),
-    chat_candidates: [],
+    chat_candidates: chatCandidates,
+    chat_candidates_dropped: chatCandidatesDropped,
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 6. CLI
+// 7. CLI
 // ─────────────────────────────────────────────────────────────────────────────
 
 function transcriptFromArgs(argv) {
@@ -194,20 +243,47 @@ function transcriptFromArgs(argv) {
 // Devin keys a session by the directory it ran in, and only the newest matching
 // row can be the session a save is resuming. The database is opened read-only
 // because a sweep must never write to Devin's own state.
+// The live Devin adapter imports this file for its answer mapping, and on Node 22
+// and 24 loading node:sqlite prints an experimental warning to stderr, which the
+// adapter's silent-success contract forbids, so the driver loads only here.
+function openDatabase(dbPath) {
+  const { DatabaseSync } = require('node:sqlite');
+  return new DatabaseSync(dbPath, { readOnly: true });
+}
+
+// Devin records the directory it was started in, which can be the symlinked
+// spelling of the real path this process sees.
+function projectSpellings(projectDir) {
+  const spellings = new Set([projectDir]);
+  for (const candidate of [projectDir, process.env.PWD]) {
+    if (!candidate) continue;
+    try {
+      if (realpathSync(candidate) === realpathSync(projectDir)) {
+        spellings.add(candidate);
+        spellings.add(realpathSync(candidate));
+      }
+    } catch {
+      continue;
+    }
+  }
+  return [...spellings];
+}
+
 function latestTranscript(projectDir) {
   const dataDir = join(
     process.env.XDG_DATA_HOME || join(homedir(), '.local', 'share'),
     'devin',
     'cli',
   );
-  const database = new DatabaseSync(join(dataDir, 'sessions.db'), { readOnly: true });
+  const database = openDatabase(join(dataDir, 'sessions.db'));
 
   try {
+    const spellings = projectSpellings(projectDir);
     const row = database
       .prepare(
-        'SELECT id FROM sessions WHERE working_directory = ? ORDER BY last_activity_at DESC LIMIT 1',
+        `SELECT id FROM sessions WHERE working_directory IN (${spellings.map(() => '?').join(', ')}) ORDER BY last_activity_at DESC LIMIT 1`,
       )
-      .get(projectDir);
+      .get(...spellings);
     if (typeof row?.id !== 'string' || !row.id) return null;
     return join(dataDir, 'transcripts', `${row.id}${TRANSCRIPT_EXT}`);
   } finally {

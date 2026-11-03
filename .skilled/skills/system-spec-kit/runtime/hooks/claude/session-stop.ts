@@ -104,7 +104,7 @@ export async function decisionCaptureNudge(
     };
     const count = core.takeNudge?.(projectDir, sessionId) ?? 0;
     if (count > 0) {
-      return `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them.`;
+      return `${count} operator answer(s) captured this session are not in a decision record yet. Run /speckit:save with --full-auto to record them; the save's transcript sweep offers chat answers, and an answer already in a hand-written table is matched with match-decision-table.`;
     }
     return null;
   } catch {

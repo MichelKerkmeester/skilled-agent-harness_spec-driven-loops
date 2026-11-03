@@ -495,6 +495,45 @@ describe('save writer operator decisions', () => {
     expect(consumedKeys()).toContain('claude:s1:toolu_a:0');
   });
 
+  it('writes operator decisions from a save that carries little else', async () => {
+    // A runtime whose save payload holds only a one-line summary and the swept
+    // answers must still record them: the answers are the session's evidence.
+    const answers = [
+      decision,
+      {
+        sourceKey: 'codex:s1:call_b:0',
+        decided: 'The badge supports Web, iOS and Android.',
+        carriedBy: 'REQ-002',
+        question: 'Which platforms must the badge support?',
+        options: ['Web', 'iOS', 'Android'],
+        answer: 'Web, iOS, Android',
+      },
+      {
+        sourceKey: 'codex:s1:call_c:0',
+        decided: 'The badge label reads Needs review.',
+        carriedBy: 'REQ-003',
+        question: 'What should the badge label say?',
+        options: ['Pending', 'Needs review'],
+        answer: 'Needs review',
+      },
+      {
+        sourceKey: 'codex:s1:chat:1',
+        decided: 'The badge stays static and does not blink.',
+        carriedBy: 'REQ-004',
+        question: 'Should the badge blink?',
+        options: [],
+        answer: 'No, keep it static.',
+      },
+    ];
+
+    await save(LEAF, { sessionSummary: 'Recorded the badge answers.', keyDecisions: [], operatorDecisions: answers });
+
+    const record = read(`${LEAF}/decision-record.md`);
+    expect(record).toContain('| Q001 | Use the blue badge.');
+    expect(record).toContain('| Q002 | The badge supports Web, iOS and Android.');
+    expect(record).toContain('| Q004 | The badge stays static and does not blink.');
+  });
+
   it('leaves the record byte-identical when the same save runs twice', async () => {
     await save(LEAF, { operatorDecisions: [decision] });
     const first = read(`${LEAF}/decision-record.md`);

@@ -13,6 +13,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
+import { pathToFileURL } from 'node:url';
 
 import {
   QUEUE_RELATIVE_DIR,
@@ -26,9 +27,17 @@ import {
   takeNudge,
   toolSourceKey,
 } from './capture-core.mjs';
+import { devinAnswerRecords } from '../bin/sweep-devin.mjs';
+import { openCodeAnswerRecords } from '../bin/sweep-opencode.mjs';
+import { recoveredRecords, sweepPiTranscript } from '../bin/sweep-pi.mjs';
+import { sweepTranscript } from '../bin/sweep-transcript.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ADAPTER = join(HERE, '..', 'claude', 'ask-capture-posttooluse.mjs');
+const DEVIN_ADAPTER = join(HERE, '..', 'devin', 'ask-capture-posttooluse.mjs');
+const OPEN_CODE_PLUGIN_URL = pathToFileURL(
+  join(HERE, '..', '..', '..', '..', '.opencode', 'plugins', 'decision-capture.js'),
+).href;
 const NOW = '2026-11-01T12:00:00.000Z';
 
 // The product question keeps a double space and a trailing space on purpose:
@@ -461,4 +470,425 @@ test('concurrent appends of the same keys from separate processes write each key
   } finally {
     rmSync(projectDir, { recursive: true, force: true });
   }
+});
+
+function writeJsonLines(projectDir, fileName, entries) {
+  const transcriptPath = join(projectDir, fileName);
+  writeFileSync(transcriptPath, entries.map((entry) => JSON.stringify(entry)).join('\n') + '\n');
+  return transcriptPath;
+}
+
+function assertBothCaptureOrders({ sessionId, expectedKeys, live, reader }) {
+  const sortedExpectedKeys = [...expectedKeys].sort();
+
+  for (const [order, first, second] of [
+    ['live then reader', live, reader],
+    ['reader then live', reader, live],
+  ]) {
+    withProject((projectDir) => {
+      first(projectDir);
+      second(projectDir);
+
+      const path = queueFile(projectDir, sessionId);
+      const lines = existsSync(path)
+        ? readFileSync(path, 'utf8').split('\n').filter((line) => line.trim() !== '')
+        : [];
+      const records = readQueue(projectDir, sessionId);
+
+      assert.equal(lines.length, sortedExpectedKeys.length, order + ' line count');
+      assert.equal(records.length, sortedExpectedKeys.length, order + ' record count');
+      assert.deepEqual(
+        records.map((record) => record.key).sort(),
+        sortedExpectedKeys,
+        order + ' keys',
+      );
+    });
+  }
+}
+
+function runAdapter(adapter, payload) {
+  const run = spawnSync(process.execPath, [adapter], {
+    input: JSON.stringify(payload),
+    encoding: 'utf8',
+    env: hookEnv(),
+    timeout: 15000,
+  });
+  assert.equal(run.status, 0, run.stderr);
+  assert.equal(run.stdout, '');
+}
+
+function runOpenCodeHook(projectDir, input, output) {
+  const script = [
+    'import plugin from ' + JSON.stringify(OPEN_CODE_PLUGIN_URL) + ';',
+    "let inputText = '';",
+    'for await (const chunk of process.stdin) inputText += chunk;',
+    'const payload = JSON.parse(inputText);',
+    'const hooks = await plugin.server({ directory: payload.projectDir });',
+    "await hooks['tool.execute.after'](payload.input, payload.output);",
+  ].join('\n');
+  const run = spawnSync(process.execPath, ['--input-type=module', '-e', script], {
+    input: JSON.stringify({ projectDir, input, output }),
+    encoding: 'utf8',
+    env: hookEnv(),
+    timeout: 15000,
+  });
+  assert.equal(run.status, 0, run.stderr);
+  assert.equal(run.stdout, '');
+}
+
+function claudeTranscriptEntries(payload) {
+  return [
+    {
+      type: 'assistant',
+      sessionId: payload.session_id,
+      uuid: 'assistant-question',
+      message: {
+        content: [{
+          type: 'tool_use',
+          id: payload.tool_use_id,
+          name: 'AskUserQuestion',
+          input: payload.tool_input,
+        }],
+      },
+    },
+    {
+      type: 'user',
+      sessionId: payload.session_id,
+      uuid: 'user-answer',
+      message: { content: [{ type: 'tool_result', tool_use_id: payload.tool_use_id }] },
+      toolUseResult: payload.tool_response,
+    },
+  ];
+}
+
+function piLinesForCall(fixture, callId) {
+  const assistant = fixture.lines.find((line) => (
+    line?.message?.role === 'assistant'
+    && line.message.content?.some((item) => item?.id === callId)
+  ));
+  const result = fixture.lines.find((line) => (
+    line?.message?.role === 'toolResult'
+    && line.message.toolCallId === callId
+  ));
+  assert.ok(assistant);
+  assert.ok(result);
+  return [fixture.lines[0], assistant, result];
+}
+
+function devinPayloadForTranscript(transcript, projectDir) {
+  const [step] = transcript.steps;
+  const [call] = step.tool_calls;
+  const [result] = step.observation.results;
+  return {
+    tool_name: 'ask_user_question',
+    session_id: transcript.session_id,
+    tool_use_id: call.tool_call_id,
+    cwd: projectDir,
+    tool_input: call.arguments,
+    tool_response: { output: result.content },
+  };
+}
+
+test('Claude hook and transcript sweep deduplicate answered and empty calls in either order', () => {
+  const fixture = JSON.parse(readFileSync(
+    join(HERE, '..', 'claude', 'fixtures', 'claude-posttooluse-askuserquestion.json'),
+    'utf8',
+  ));
+  const sessionId = 'claude-ordering-session';
+  const toolUseId = 'claude-ordering-call';
+  const [question] = fixture.tool_input.questions;
+  const makePayload = (answer) => ({
+    tool_name: 'AskUserQuestion',
+    session_id: sessionId,
+    tool_use_id: toolUseId,
+    tool_input: { questions: fixture.tool_input.questions },
+    tool_response: { answers: { [question.question]: answer } },
+  });
+  const answeredPayload = makePayload(fixture.tool_response.answers[question.question]);
+  const answeredKey = toolSourceKey('claude', sessionId, toolUseId, 0);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [answeredKey],
+    live: (projectDir) => runAdapter(ADAPTER, { ...answeredPayload, cwd: projectDir }),
+    reader: (projectDir) => {
+      const transcriptPath = writeJsonLines(
+        projectDir,
+        'claude.jsonl',
+        claudeTranscriptEntries(answeredPayload),
+      );
+      sweepTranscript({ projectDir, transcriptPath, now: NOW });
+    },
+  });
+
+  const emptyPayload = makePayload('');
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [],
+    live: (projectDir) => runAdapter(ADAPTER, { ...emptyPayload, cwd: projectDir }),
+    reader: (projectDir) => {
+      const transcriptPath = writeJsonLines(
+        projectDir,
+        'claude-empty.jsonl',
+        claudeTranscriptEntries(emptyPayload),
+      );
+      sweepTranscript({ projectDir, transcriptPath, now: NOW });
+    },
+  });
+});
+
+test('Pi live mapping and transcript sweep deduplicate answers and ignore cancelled calls in either order', () => {
+  const fixture = JSON.parse(readFileSync(
+    join(HERE, '..', 'bin', 'fixtures', 'pi-ask-user-question.json'),
+    'utf8',
+  ));
+  const sessionId = fixture.lines[0].id;
+  const answeredLines = piLinesForCall(fixture, 'call_fixture_1');
+  const answeredRecords = recoveredRecords(answeredLines, sessionId, NOW)
+    .map((record) => ({ ...record, source: 'hook' }));
+  assert.equal(answeredRecords.length, 1);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: answeredRecords.map((record) => record.key),
+    live: (projectDir) => appendRecords(projectDir, sessionId, answeredRecords),
+    reader: (projectDir) => {
+      const transcriptPath = writeJsonLines(projectDir, 'pi.jsonl', answeredLines);
+      sweepPiTranscript({ projectDir, transcriptPath, now: NOW });
+    },
+  });
+
+  const cancelledLines = piLinesForCall(fixture, 'call_fixture_7');
+  const cancelledRecords = recoveredRecords(cancelledLines, sessionId, NOW)
+    .map((record) => ({ ...record, source: 'hook' }));
+  assert.equal(cancelledRecords.length, 0);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [],
+    live: (projectDir) => appendRecords(projectDir, sessionId, cancelledRecords),
+    reader: (projectDir) => {
+      const transcriptPath = writeJsonLines(projectDir, 'pi-cancelled.jsonl', cancelledLines);
+      sweepPiTranscript({ projectDir, transcriptPath, now: NOW });
+    },
+  });
+});
+
+test('OpenCode plugin and answer reader deduplicate answered calls and ignore calls without answer lists', () => {
+  const parts = JSON.parse(readFileSync(
+    join(HERE, '..', 'bin', 'fixtures', 'opencode-question-parts.json'),
+    'utf8',
+  ));
+  const sessionId = 'opencode-ordering-session';
+  const answeredPart = { ...parts[0], sessionID: sessionId, callID: 'opencode-ordering-call' };
+  const answeredRecords = openCodeAnswerRecords({ parts: [answeredPart], sessionId, now: NOW });
+  assert.equal(answeredRecords.length, answeredPart.state.input.questions.length);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: answeredRecords.map((record) => record.key),
+    live: (projectDir) => runOpenCodeHook(projectDir, {
+      tool: 'question',
+      sessionID: sessionId,
+      callID: answeredPart.callID,
+      args: answeredPart.state.input,
+    }, { metadata: { answers: answeredPart.state.metadata.answers } }),
+    reader: (projectDir) => appendRecords(
+      projectDir,
+      sessionId,
+      openCodeAnswerRecords({ parts: [answeredPart], sessionId, now: NOW }),
+    ),
+  });
+
+  const missingAnswerMetadata = { ...answeredPart.state.metadata };
+  delete missingAnswerMetadata.answers;
+  const unansweredPart = {
+    ...answeredPart,
+    callID: 'opencode-no-answer-call',
+    state: { ...answeredPart.state, metadata: missingAnswerMetadata },
+  };
+  assert.deepEqual(openCodeAnswerRecords({ parts: [unansweredPart], sessionId, now: NOW }), []);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [],
+    live: (projectDir) => runOpenCodeHook(projectDir, {
+      tool: 'question',
+      sessionID: sessionId,
+      callID: unansweredPart.callID,
+      args: unansweredPart.state.input,
+    }, { metadata: unansweredPart.state.metadata }),
+    reader: (projectDir) => appendRecords(
+      projectDir,
+      sessionId,
+      openCodeAnswerRecords({ parts: [unansweredPart], sessionId, now: NOW }),
+    ),
+  });
+});
+
+test('OpenCode capture keys stay exact for skipped answers and near-miss ids', () => {
+  const parts = JSON.parse(readFileSync(
+    join(HERE, '..', 'bin', 'fixtures', 'opencode-question-parts.json'),
+    'utf8',
+  ));
+  const sessionId = 'opencode-exact-session';
+  const [first, , third] = parts[0].state.metadata.answers;
+  const partialPart = {
+    ...parts[0],
+    sessionID: sessionId,
+    callID: 'opencode-exact-call',
+    state: {
+      ...parts[0].state,
+      metadata: { ...parts[0].state.metadata, answers: [first, [], third] },
+    },
+  };
+  const liveInput = (callID, sessionID) => ({
+    tool: 'question',
+    sessionID,
+    callID,
+    args: partialPart.state.input,
+  });
+  const liveOutput = { metadata: { answers: partialPart.state.metadata.answers } };
+  const readerRecords = () => openCodeAnswerRecords({ parts: [partialPart], sessionId, now: NOW });
+
+  // One skipped question in a multi-question call leaves the others' keys intact.
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [
+      toolSourceKey('opencode', sessionId, partialPart.callID, 0),
+      toolSourceKey('opencode', sessionId, partialPart.callID, 2),
+    ],
+    live: (projectDir) => runOpenCodeHook(projectDir, liveInput(partialPart.callID, sessionId), liveOutput),
+    reader: (projectDir) => appendRecords(projectDir, sessionId, readerRecords()),
+  });
+
+  // Keys match exactly, so ids that differ only in case or prefix are never merged.
+  for (const nearMissCallId of [partialPart.callID.toUpperCase(), 'call_' + partialPart.callID]) {
+    withProject((projectDir) => {
+      appendRecords(projectDir, sessionId, readerRecords());
+      runOpenCodeHook(projectDir, liveInput(nearMissCallId, sessionId), liveOutput);
+      assert.equal(readQueue(projectDir, sessionId).length, 4, nearMissCallId);
+    });
+  }
+
+  // A live session id that differs from the stored one writes its own queue.
+  withProject((projectDir) => {
+    appendRecords(projectDir, sessionId, readerRecords());
+    runOpenCodeHook(projectDir, liveInput(partialPart.callID, 'opencode-other-session'), liveOutput);
+    assert.equal(readQueue(projectDir, sessionId).length, 2);
+    assert.equal(readQueue(projectDir, 'opencode-other-session').length, 2);
+  });
+});
+
+test('Devin hook and answer reader deduplicate answered and skipped calls in either order', () => {
+  const fixture = JSON.parse(readFileSync(
+    join(HERE, '..', 'bin', 'fixtures', 'devin-transcript.json'),
+    'utf8',
+  ));
+  const sessionId = 'devin-ordering-session';
+  const sourceStep = fixture.steps[1];
+  const answeredTranscript = { session_id: sessionId, steps: [sourceStep] };
+  const answeredRecords = devinAnswerRecords({
+    transcript: answeredTranscript,
+    sessionId,
+    now: NOW,
+  });
+  assert.equal(answeredRecords.length, 1);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: answeredRecords.map((record) => record.key),
+    live: (projectDir) => runAdapter(
+      DEVIN_ADAPTER,
+      devinPayloadForTranscript(answeredTranscript, projectDir),
+    ),
+    reader: (projectDir) => appendRecords(
+      projectDir,
+      sessionId,
+      devinAnswerRecords({ transcript: answeredTranscript, sessionId, now: NOW }),
+    ),
+  });
+
+  const [sourceResult] = sourceStep.observation.results;
+  const newline = sourceResult.content.indexOf('\n');
+  const answerMap = JSON.parse(sourceResult.content.slice(newline + 1));
+  const [question] = sourceStep.tool_calls[0].arguments.questions;
+  const skippedContent = sourceResult.content.slice(0, newline + 1) + JSON.stringify({
+    ...answerMap,
+    [question.question]: { selected: [], skipped: true },
+  });
+  const skippedStep = {
+    ...sourceStep,
+    observation: {
+      ...sourceStep.observation,
+      results: [{ ...sourceResult, content: skippedContent }],
+    },
+  };
+  const skippedTranscript = { session_id: sessionId, steps: [skippedStep] };
+  assert.deepEqual(
+    devinAnswerRecords({ transcript: skippedTranscript, sessionId, now: NOW }),
+    [],
+  );
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: [],
+    live: (projectDir) => runAdapter(
+      DEVIN_ADAPTER,
+      devinPayloadForTranscript(skippedTranscript, projectDir),
+    ),
+    reader: (projectDir) => appendRecords(
+      projectDir,
+      sessionId,
+      devinAnswerRecords({ transcript: skippedTranscript, sessionId, now: NOW }),
+    ),
+  });
+});
+
+test('Devin call ids carrying # still give one key the decision-record writer accepts', () => {
+  // The writer's own source-key pattern, mirrored so a key it would reject fails here first.
+  const WRITER_SOURCE_KEY = /^[A-Za-z0-9:._-]+$/u;
+  const fixture = JSON.parse(readFileSync(
+    join(HERE, '..', 'bin', 'fixtures', 'devin-transcript.json'),
+    'utf8',
+  ));
+  const sessionId = 'clover-ceder';
+  const realCallId = 'ask_user_question:0#94b3c0de11aa4f0e9b7d2c5e8f1a3b6d';
+  const sourceStep = fixture.steps[1];
+  const [sourceResult] = sourceStep.observation.results;
+  const step = {
+    ...sourceStep,
+    tool_calls: [{ ...sourceStep.tool_calls[0], tool_call_id: realCallId }],
+    observation: {
+      ...sourceStep.observation,
+      results: [{ ...sourceResult, source_call_id: realCallId }],
+    },
+  };
+  const transcript = { session_id: sessionId, steps: [step] };
+  const records = devinAnswerRecords({ transcript, sessionId, now: NOW });
+
+  assert.equal(records.length, 1);
+  assert.match(records[0].key, WRITER_SOURCE_KEY);
+  assert.equal(records[0].key, `devin:${sessionId}:ask_user_question:0.94b3c0de11aa4f0e9b7d2c5e8f1a3b6d:0`);
+
+  assertBothCaptureOrders({
+    sessionId,
+    expectedKeys: records.map((record) => record.key),
+    live: (projectDir) => runAdapter(
+      DEVIN_ADAPTER,
+      devinPayloadForTranscript(transcript, projectDir),
+    ),
+    reader: (projectDir) => appendRecords(
+      projectDir,
+      sessionId,
+      devinAnswerRecords({ transcript, sessionId, now: NOW }),
+    ),
+  });
+});
+
+test('chat source keys preserve four segments and accept an optional fifth segment', async () => {
+  const { chatSourceKey } = await import('./capture-core.mjs');
+
+  assert.equal(chatSourceKey('claude', 's', 'a', 'u'), 'claude:s:chat:a:u');
+  assert.equal(chatSourceKey('claude', 's', 'a', 'u', 'pabc'), 'claude:s:chat:a:u:pabc');
 });

@@ -1,0 +1,89 @@
+{
+  "description": "Derived from a real Devin transcript so the sweep is exercised against the step shapes the CLI actually writes: one system step, the operator's user step, an agent step carrying tool calls with an observation, and the final agent text step. The final agent message was replaced with a plain chat question and a user answer step was appended after it, because the captured session asked its question through the question tool instead of in prose. Long messages were shortened and the model, metrics and reasoning fields were dropped.",
+  "schema_version": "ATIF-v1.7",
+  "session_id": "glow-chef",
+  "agent": {
+    "name": "devin",
+    "version": "3000.11.234"
+  },
+  "steps": [
+    {
+      "step_id": 6,
+      "timestamp": "2026-11-02T12:13:06.214536+00:00",
+      "source": "system",
+      "message": "You are powered by SWE-2 High.",
+      "extra": {
+        "telemetry": {
+          "source": "system",
+          "operation": "unknown"
+        }
+      }
+    },
+    {
+      "step_id": 11,
+      "timestamp": "2026-11-02T12:13:33.970130+00:00",
+      "source": "user",
+      "message": "Add a status badge to the demo widget in this project. Once you know where it is documented, stop and wait: write nothing until I tell you, and ask me product questions only when I tell you to.",
+      "extra": {
+        "telemetry": {
+          "source": "user",
+          "operation": "unknown"
+        }
+      }
+    },
+    {
+      "step_id": 14,
+      "timestamp": "2026-11-02T12:13:48.697231+00:00",
+      "source": "agent",
+      "message": "Trigger index: clean no-hit. There's a `specs/demo` packet — let me look inside.",
+      "tool_calls": [
+        {
+          "tool_call_id": "exec:0#151f89089539473fbcd2ce6f4e8a8eea",
+          "function_name": "exec",
+          "arguments": {
+            "command": "ls specs/demo"
+          }
+        }
+      ],
+      "observation": {
+        "results": [
+          {
+            "source_call_id": "exec:0#151f89089539473fbcd2ce6f4e8a8eea",
+            "content": "(trimmed)"
+          }
+        ]
+      },
+      "extra": {
+        "telemetry": {
+          "source": "assistant",
+          "operation": "inference"
+        }
+      }
+    },
+    {
+      "step_id": 22,
+      "timestamp": "2026-11-02T12:14:35.475624+00:00",
+      "source": "agent",
+      "message": "Should the badge blink?",
+      "tool_calls": [],
+      "extra": {
+        "telemetry": {
+          "source": "assistant",
+          "operation": "inference"
+        }
+      }
+    },
+    {
+      "step_id": 23,
+      "timestamp": "2026-11-02T12:14:51.108204+00:00",
+      "source": "user",
+      "message": "No, keep it static.",
+      "extra": {
+        "telemetry": {
+          "source": "user",
+          "operation": "unknown"
+        }
+      }
+    }
+  ]
+}

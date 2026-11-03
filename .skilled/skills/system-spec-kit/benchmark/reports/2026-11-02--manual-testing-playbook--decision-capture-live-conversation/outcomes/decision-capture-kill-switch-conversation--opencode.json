@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-kill-switch-conversation",
+  "runtime": "opencode",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run1/runner/kill-switch/opencode/checkpoints.tsv",
+          "bytes": 147,
+          "sha256": "007d50074272bb9628dedaaaa22f2fedf478635b09448e68d4bd517e16ac9744"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run1/runner/kill-switch/opencode/result.json",
+          "bytes": 1116,
+          "sha256": "b7be01b316f004a71eb27dc03391ab6e4e127860a84999ce0d83d32a4c621d73"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run2/runner/kill-switch/opencode/checkpoints.tsv",
+          "bytes": 147,
+          "sha256": "007d50074272bb9628dedaaaa22f2fedf478635b09448e68d4bd517e16ac9744"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run2/runner/kill-switch/opencode/result.json",
+          "bytes": 1142,
+          "sha256": "bff131c2f3d6e4fe04d019a62b6275181bcaab39abac2a863b0c89fd86b1cf20"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run1/runner/kill-switch/opencode/checkpoints.tsv",
+      "bytes": 147,
+      "sha256": "007d50074272bb9628dedaaaa22f2fedf478635b09448e68d4bd517e16ac9744"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run1/runner/kill-switch/opencode/result.json",
+      "bytes": 1116,
+      "sha256": "b7be01b316f004a71eb27dc03391ab6e4e127860a84999ce0d83d32a4c621d73"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run2/runner/kill-switch/opencode/checkpoints.tsv",
+      "bytes": 147,
+      "sha256": "007d50074272bb9628dedaaaa22f2fedf478635b09448e68d4bd517e16ac9744"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/opencode-run2/runner/kill-switch/opencode/result.json",
+      "bytes": 1142,
+      "sha256": "bff131c2f3d6e4fe04d019a62b6275181bcaab39abac2a863b0c89fd86b1cf20"
+    }
+  ]
+}

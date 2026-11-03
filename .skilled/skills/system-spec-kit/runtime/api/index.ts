@@ -121,8 +121,13 @@ export {
 export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
 
 // The save writes operator decisions with the same public surface it uses for continuity.
-export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
-export type { OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
+export { writeDecisionRecord, readVerbatimAppendix, recordConsumedKeys, consumedLogPath, readConsumedRows, DecisionRecordWriteError } from '../lib/continuity/decision-record-writer.js';
+export type { ConsumedLogRow, OperatorDecisionEntry, DecisionRecordWriteResult } from '../lib/continuity/decision-record-writer.js';
+
+// A hand-written decision record already holds answers the queue captured, so the
+// matcher proves the queue against it and the CLI consumes the row ids it finds.
+export { matchRecords, normalize, parseDecisionTables, summaryLine } from '../lib/continuity/decision-table-matcher.js';
+export type { ConsumedDecisionRow, DecisionMatchResult, DecisionQueueRecord } from '../lib/continuity/decision-table-matcher.js';
 
 // The drift gate flag is read by the CLI's validation entry point through the public surface.
 export { isGeneratedMetadataDriftGateEnabled } from '../lib/config/capability-flags.js';

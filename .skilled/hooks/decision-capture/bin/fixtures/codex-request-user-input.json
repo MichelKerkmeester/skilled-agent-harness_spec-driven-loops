@@ -1,0 +1,135 @@
+{
+  "description": "Redacted Codex rollout lines for the decision-capture Codex reader. Taken from harmless scratch-project codex-tui sessions on 2026-11-02 (one live probe, two conversation-runner runs); session id, call ids and paths replaced. One JSONL line per array item.",
+  "cases": [
+    {
+      "call_id": "call_fixture_1",
+      "case": "option answer from the live probe"
+    },
+    {
+      "call_id": "call_fixture_2",
+      "case": "interrupted with Esc"
+    },
+    {
+      "call_id": "call_fixture_3",
+      "case": "multi-select typed as a note"
+    },
+    {
+      "call_id": "call_fixture_4",
+      "case": "free-text typed as a note"
+    },
+    {
+      "call_id": "call_fixture_5",
+      "case": "async variant that only accepts"
+    }
+  ],
+  "lines": [
+    {
+      "timestamp": "2026-11-02T07:24:51.919Z",
+      "type": "session_meta",
+      "payload": {
+        "id": "codex-fixture-session",
+        "session_id": "codex-fixture-session",
+        "timestamp": "2026-11-02T07:24:20.896Z",
+        "cwd": "/scratch/project",
+        "originator": "codex-tui",
+        "cli_version": "0.165.0",
+        "source": "vscode"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T07:24:56.131Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call",
+        "name": "request_user_input",
+        "arguments": "{\"questions\":[{\"header\":\"Fruit\",\"id\":\"fruit\",\"question\":\"Which fruit should I name in my reply?\",\"options\":[{\"label\":\"apple\",\"description\":\"Name apple in my reply.\"},{\"label\":\"pear\",\"description\":\"Name pear in my reply.\"},{\"label\":\"plum\",\"description\":\"Name plum in my reply.\"}]}]}",
+        "call_id": "call_fixture_1"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T07:25:26.860Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call_output",
+        "call_id": "call_fixture_1",
+        "output": "{\"answers\":{\"fruit\":{\"answers\":[\"pear\"]}}}"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T07:26:02.620Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call",
+        "name": "request_user_input",
+        "arguments": "{\"questions\":[{\"header\":\"Vegetable\",\"id\":\"vegetable\",\"question\":\"Which vegetable should I name?\",\"options\":[{\"label\":\"leek\",\"description\":\"Name leek in my reply.\"},{\"label\":\"kale\",\"description\":\"Name kale in my reply.\"}]}]}",
+        "call_id": "call_fixture_2"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T07:26:31.174Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call_output",
+        "call_id": "call_fixture_2",
+        "output": "aborted by user after 28.6s"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:10:57.904Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call",
+        "name": "request_user_input",
+        "arguments": "{\"questions\":[{\"header\":\"Sizes\",\"id\":\"size_choices\",\"question\":\"Which sizes do you want? Select all that apply.\",\"options\":[{\"label\":\"small\",\"description\":\"Include small.\"},{\"label\":\"medium\",\"description\":\"Include medium.\"},{\"label\":\"large\",\"description\":\"Include large.\"}]}]}",
+        "call_id": "call_fixture_3"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:10:59.874Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call_output",
+        "call_id": "call_fixture_3",
+        "output": "{\"answers\":{\"size_choices\":{\"answers\":[\"None of the above\",\"user_note: small, large\"]}}}"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:11:21.499Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call",
+        "name": "request_user_input",
+        "arguments": "{\"questions\":[{\"header\":\"Colour\",\"id\":\"custom_colour\",\"question\":\"Which custom colour would you like? Choose a suggestion or use the free-text Other option to enter any colour.\",\"options\":[{\"label\":\"teal\",\"description\":\"Choose teal.\"},{\"label\":\"violet\",\"description\":\"Choose violet.\"},{\"label\":\"amber\",\"description\":\"Choose amber.\"}]}]}",
+        "call_id": "call_fixture_4"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:11:23.380Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call_output",
+        "call_id": "call_fixture_4",
+        "output": "{\"answers\":{\"custom_colour\":{\"answers\":[\"None of the above\",\"user_note: teal\"]}}}"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:25:02.508Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call",
+        "name": "request_user_input_async",
+        "arguments": "{\"questions\":[{\"title\":\"Which sizes do you want? Select all that apply.\",\"options\":[\"small\",\"medium\",\"large\"]}]}",
+        "call_id": "call_fixture_5"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T06:25:02.636Z",
+      "type": "response_item",
+      "payload": {
+        "type": "function_call_output",
+        "call_id": "call_fixture_5",
+        "output": "{\"accepted\":true}"
+      }
+    }
+  ]
+}

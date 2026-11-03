@@ -32,6 +32,7 @@ import {
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRIPT = join(HERE, 'sweep-opencode.mjs');
 const FIXTURE = join(HERE, 'fixtures', 'opencode-question-parts.json');
+const MESSAGE_FIXTURE = join(HERE, 'fixtures', 'opencode-session-message.json');
 const SESSION = 'ses_REDACTED0001';
 const NOW = '2026-11-01T12:00:00.000Z';
 
@@ -191,6 +192,53 @@ test('the message layout recovers a question stored as a content item', () => {
   });
 });
 
+test('real session_message rows queue the answered call and ignore the dismissed call', () => {
+  withTemp(({ root, projectDir }) => {
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    mkdirSync(dirname(dbPath), { recursive: true });
+    const { rows } = JSON.parse(readFileSync(MESSAGE_FIXTURE, 'utf8'));
+
+    const database = new DatabaseSync(dbPath);
+    try {
+      database.exec(
+        'CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, time_created INTEGER, time_updated INTEGER, data TEXT)',
+      );
+      const insert = database.prepare(
+        'INSERT INTO session_message (id, session_id, type, seq, time_created, time_updated, data) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      );
+      rows.forEach((row, index) => {
+        insert.run(
+          `msg_fixture_${index + 1}`,
+          row.session_id,
+          row.type,
+          row.seq,
+          row.seq,
+          row.seq,
+          JSON.stringify(row.data),
+        );
+      });
+    } finally {
+      database.close();
+    }
+
+    const result = sweepOpenCodeSession({
+      projectDir,
+      dbPath,
+      sessionId: 'ses_fixture',
+      now: NOW,
+    });
+    assert.equal(result.recovered, 1);
+    assert.deepEqual(
+      result.pending.map(({ answer, question, key }) => ({ answer, question, key })),
+      [{
+        answer: 'pear',
+        question: 'Which fruit should I name in my reply?',
+        key: 'opencode:ses_fixture:call_fixture_1:0',
+      }],
+    );
+  });
+});
+
 test('the newest session for the directory wins across both session tables', () => {
   withTemp(({ root, projectDir }) => {
     const dbPath = join(root, 'opencode', 'opencode.db');
@@ -264,5 +312,131 @@ test('the CLI reports a missing database as JSON and fails', () => {
     const result = JSON.parse(run.stdout);
     assert.equal(typeof result.error, 'string');
     assert.ok(result.error.length > 0);
+  });
+});
+
+function chatFixtureRows() {
+  const fixturePath = join(HERE, 'fixtures', 'opencode-chat-session.json');
+  return JSON.parse(readFileSync(fixturePath, 'utf8')).rows;
+}
+
+function writeSessionMessageDatabase(dbPath, rows, sequenceOverrides = new Map()) {
+  mkdirSync(dirname(dbPath), { recursive: true });
+  const database = new DatabaseSync(dbPath);
+  try {
+    database.exec(
+      'CREATE TABLE session_message (id TEXT, session_id TEXT, type TEXT, seq INTEGER, '
+        + 'time_created INTEGER, time_updated INTEGER, data TEXT)',
+    );
+    const insert = database.prepare(
+      'INSERT INTO session_message (id, session_id, type, seq, time_created, time_updated, '
+        + 'data) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    );
+    rows.forEach((row) => {
+      const sequence = sequenceOverrides.get(row.id) ?? row.seq;
+      insert.run(
+        row.id,
+        row.session_id,
+        row.type,
+        sequence,
+        sequence,
+        sequence,
+        JSON.stringify(row.data),
+      );
+    });
+  } finally {
+    database.close();
+  }
+}
+
+function fixtureRow(rows, predicate) {
+  const row = rows.find(predicate);
+  assert.ok(row, 'expected row is present in the chat fixture');
+  return row;
+}
+
+test('real session_message rows offer the answered plain chat question', () => {
+  withTemp(({ root, projectDir }) => {
+    const rows = chatFixtureRows();
+    const sessionId = rows[0].session_id;
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    writeSessionMessageDatabase(dbPath, rows);
+
+    const result = sweepOpenCodeSession({ projectDir, dbPath, sessionId, now: NOW });
+
+    assert.equal(result.chat_candidates.length, 1);
+    assert.ok(result.chat_candidates[0].key.startsWith('opencode:'));
+    assert.equal(result.chat_candidates[0].answer, 'No, keep it static.');
+  });
+});
+
+test('a tool row between a question and prompt clears the chat candidate', () => {
+  withTemp(({ root, projectDir }) => {
+    const rows = chatFixtureRows();
+    const question = fixtureRow(
+      rows,
+      (row) => row.type === 'assistant'
+        && row.data.content?.some((item) => item.type === 'text' && item.text.endsWith('Should the badge blink?')),
+    );
+    const tool = fixtureRow(
+      rows,
+      (row) => row.type === 'assistant'
+        && row.data.content?.some((item) => item.type === 'tool'),
+    );
+    const prompt = fixtureRow(
+      rows,
+      (row) => row.type === 'user' && row.data.text === 'No, keep it static.',
+    );
+    const orderedRows = [question, tool, prompt];
+    const sequenceOverrides = new Map([
+      [question.id, 1],
+      [tool.id, 2],
+      [prompt.id, 3],
+    ]);
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    writeSessionMessageDatabase(dbPath, orderedRows, sequenceOverrides);
+
+    const result = sweepOpenCodeSession({
+      projectDir,
+      dbPath,
+      sessionId: rows[0].session_id,
+      now: NOW,
+    });
+
+    assert.deepEqual(result.chat_candidates, []);
+  });
+});
+
+test('a synthetic row does not answer a chat question', () => {
+  withTemp(({ root, projectDir }) => {
+    const rows = chatFixtureRows();
+    const question = fixtureRow(
+      rows,
+      (row) => row.type === 'assistant'
+        && row.data.content?.some((item) => item.type === 'text' && item.text.endsWith('Should the badge blink?')),
+    );
+    const synthetic = fixtureRow(rows, (row) => row.type === 'synthetic');
+    const prompt = fixtureRow(
+      rows,
+      (row) => row.type === 'user' && row.data.text === 'No, keep it static.',
+    );
+    const orderedRows = [question, synthetic, prompt];
+    const sequenceOverrides = new Map([
+      [question.id, 1],
+      [synthetic.id, 2],
+      [prompt.id, 3],
+    ]);
+    const dbPath = join(root, 'opencode', 'opencode.db');
+    writeSessionMessageDatabase(dbPath, orderedRows, sequenceOverrides);
+
+    const result = sweepOpenCodeSession({
+      projectDir,
+      dbPath,
+      sessionId: rows[0].session_id,
+      now: NOW,
+    });
+
+    assert.equal(result.chat_candidates.length, 1);
+    assert.equal(result.chat_candidates[0].answer, 'No, keep it static.');
   });
 });

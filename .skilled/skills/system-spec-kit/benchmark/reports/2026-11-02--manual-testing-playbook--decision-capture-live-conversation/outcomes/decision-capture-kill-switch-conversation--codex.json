@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-kill-switch-conversation",
+  "runtime": "codex",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/kill-switch/codex/checkpoints.tsv",
+          "bytes": 144,
+          "sha256": "4a8749cb149348529794d5c933dd54d2705a0d902deb86e1fe551f9e3cc607c0"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/kill-switch/codex/result.json",
+          "bytes": 1137,
+          "sha256": "907693729b1959491e6ecbf08a870ca799aa77d0493fb2b1266b2648d06c339f"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "1 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/kill-switch/codex/checkpoints.tsv",
+          "bytes": 144,
+          "sha256": "4a8749cb149348529794d5c933dd54d2705a0d902deb86e1fe551f9e3cc607c0"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/kill-switch/codex/result.json",
+          "bytes": 1137,
+          "sha256": "77f5f21908c107c8231f861302b72e69f3cf0cf1f73035f6e18344459c532bd4"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/kill-switch/codex/checkpoints.tsv",
+      "bytes": 144,
+      "sha256": "4a8749cb149348529794d5c933dd54d2705a0d902deb86e1fe551f9e3cc607c0"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/kill-switch/codex/result.json",
+      "bytes": 1137,
+      "sha256": "907693729b1959491e6ecbf08a870ca799aa77d0493fb2b1266b2648d06c339f"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/kill-switch/codex/checkpoints.tsv",
+      "bytes": 144,
+      "sha256": "4a8749cb149348529794d5c933dd54d2705a0d902deb86e1fe551f9e3cc607c0"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/kill-switch/codex/result.json",
+      "bytes": 1137,
+      "sha256": "77f5f21908c107c8231f861302b72e69f3cf0cf1f73035f6e18344459c532bd4"
+    }
+  ]
+}

@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude Transcript Decision Sweep                              ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Recover missed answers and list plain-chat candidates.          ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude Transcript Decision Sweep
+// ───────────────────────────────────────────────────────────────────
+// Recover missed answers and list plain-chat candidates.
 // Backstop for the decision queue.
 //
 // The PostToolUse adapter sees a question only while its hook is registered and
@@ -20,7 +19,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
+import { closeSync, openSync, readFileSync, readSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { basename, join } from 'node:path';
 import process from 'node:process';
@@ -28,12 +27,11 @@ import { fileURLToPath } from 'node:url';
 
 import {
   appendRecords,
-  chatSourceKey,
-  isProcessQuestion,
   normalizeAskUserQuestion,
   pendingRecords,
   readConsumedKeys,
 } from '../lib/capture-core.mjs';
+import { chatCandidatesFromTurns } from '../lib/chat-questions.mjs';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -42,13 +40,6 @@ import {
 const RUNTIME = 'claude';
 const QUESTION_TOOL = 'AskUserQuestion';
 const TRANSCRIPT_EXT = '.jsonl';
-
-// A paragraph ends at a blank line, and a run of blank lines is still one break.
-const PARAGRAPH_BREAK = /(?:\r?\n[ \t]*){2,}/;
-// The gate rules offer lettered choices; those letters are what the process
-// filter reads, so the sweep has to hand them over the way the tool would.
-const OPTION_LINE = /^\s*(?:[-*]\s+)?(?:\*\*)?[A-D]\)/;
-const OPTION_MARKER = /^\s*(?:[-*]\s+)?(?:\*\*)?/;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TRANSCRIPT LINES
@@ -162,45 +153,38 @@ function typedPrompt(entry) {
   return text;
 }
 
-// The closing paragraph is the question; earlier paragraphs are the reasoning
-// that led to it, and quoting all of them would bury what was actually asked.
-// The paragraph is returned untouched so the record reproduces it byte for byte.
-function lastParagraph(text) {
-  const paragraphs = text
-    .split(PARAGRAPH_BREAK)
-    .filter((paragraph) => paragraph.trim() !== '');
-  return paragraphs.at(-1) ?? '';
-}
+// The detector stays runtime-neutral by receiving turn kinds instead of Claude
+// transcript fields.
+function chatTurnsOf(entries) {
+  const turns = [];
 
-function optionLabelsOf(paragraph) {
-  return paragraph
-    .split('\n')
-    .filter((line) => OPTION_LINE.test(line))
-    .map((line) => line.replace(OPTION_MARKER, ''));
-}
+  for (const entry of entries) {
+    const blocks = blocksOf(entry);
 
-function chatCandidate({ sessionId, lastText, answer, answerTurnId, consumed }) {
-  const paragraph = lastParagraph(lastText.text);
-  if (!paragraph.includes('?')) return null;
+    if (entry?.type === 'assistant') {
+      if (blocks.some((block) => block.type === 'tool_use')) {
+        turns.push({ kind: 'tool' });
+        continue;
+      }
 
-  const options = optionLabelsOf(paragraph);
-  if (isProcessQuestion({ question: paragraph, header: '', options })) return null;
+      const parts = blocks.filter(
+        (block) => block.type === 'text' && typeof block.text === 'string',
+      );
+      if (parts.length > 0) {
+        turns.push({
+          kind: 'assistant',
+          id: entry.uuid,
+          text: parts.map((block) => block.text).join('\n'),
+        });
+      }
+      continue;
+    }
 
-  // An unanswered question has no second turn, so it has no identity to dedupe
-  // against and must stay a fresh candidate on every sweep until it is answered.
-  const key = answerTurnId
-    ? chatSourceKey(RUNTIME, sessionId, lastText.uuid, answerTurnId)
-    : null;
-  if (key && consumed.has(key)) return null;
+    const text = typedPrompt(entry);
+    if (text !== null) turns.push({ kind: 'prompt', id: entry.uuid, text });
+  }
 
-  return {
-    key,
-    kind: 'chat',
-    question: paragraph,
-    answer,
-    question_turn_id: lastText.uuid,
-    answer_turn_id: answerTurnId,
-  };
+  return turns;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -220,62 +204,21 @@ export function sweepTranscript({ projectDir, transcriptPath, now } = {}) {
   const pending = pendingRecords(projectDir, sessionId);
   const consumed = readConsumedKeys(projectDir);
 
-  const chatCandidates = [];
-  let lastText = null;
-
-  for (const entry of entries) {
-    const blocks = blocksOf(entry);
-
-    if (entry?.type === 'assistant') {
-      // A later tool call means the text before it did not close the turn, so it
-      // cannot be the question that a typed reply answers.
-      if (blocks.some((block) => block.type === 'tool_use')) {
-        lastText = null;
-        continue;
-      }
-      const parts = blocks.filter(
-        (block) => block.type === 'text' && typeof block.text === 'string',
-      );
-      if (parts.length > 0) {
-        lastText = { uuid: entry.uuid, text: parts.map((block) => block.text).join('\n') };
-      }
-      continue;
-    }
-
-    const typed = typedPrompt(entry);
-    if (typed === null) continue;
-
-    if (lastText) {
-      const candidate = chatCandidate({
-        sessionId,
-        lastText,
-        answer: typed,
-        answerTurnId: entry.uuid,
-        consumed,
-      });
-      if (candidate) chatCandidates.push(candidate);
-    }
-    lastText = null;
-  }
-
-  // A question left at the end of the file was never answered in this session.
-  if (lastText) {
-    const candidate = chatCandidate({
+  const { candidates: keptChatCandidates, dropped: chatCandidatesDropped } =
+    chatCandidatesFromTurns({
+      runtime: RUNTIME,
       sessionId,
-      lastText,
-      answer: null,
-      answerTurnId: null,
+      turns: chatTurnsOf(entries),
       consumed,
     });
-    if (candidate) chatCandidates.push(candidate);
-  }
 
   return {
     transcript: transcriptPath,
     session_id: sessionId,
     recovered: appended,
     pending,
-    chat_candidates: chatCandidates,
+    chat_candidates: keptChatCandidates,
+    chat_candidates_dropped: chatCandidatesDropped,
   };
 }
 
@@ -290,9 +233,46 @@ function transcriptFromArgs(argv) {
   return null;
 }
 
-// Claude stores each project's transcripts under a directory named after the
-// project path with every separator flattened, so the newest file there is the
-// session a save without an explicit path is most likely to be resuming.
+// Claude names a project's transcript directory after its path with every
+// non-alphanumeric character flattened, so `/work/foo-bar` and `/work/foo/bar`
+// share one directory. The recorded `cwd` tells the two projects apart.
+const CWD_PROBE_BYTES = 1024 * 1024;
+
+function samePath(left, right) {
+  if (left === right) return true;
+  try {
+    return realpathSync(left) === realpathSync(right);
+  } catch {
+    return false;
+  }
+}
+
+function recordedCwd(filePath) {
+  let head = '';
+  let fd;
+  try {
+    fd = openSync(filePath, 'r');
+    const buffer = Buffer.alloc(CWD_PROBE_BYTES);
+    head = buffer.subarray(0, readSync(fd, buffer, 0, CWD_PROBE_BYTES, 0)).toString('utf8');
+  } catch {
+    return null;
+  } finally {
+    if (fd !== undefined) closeSync(fd);
+  }
+
+  for (const line of head.split('\n')) {
+    try {
+      const cwd = JSON.parse(line)?.cwd;
+      if (typeof cwd === 'string' && cwd) return cwd;
+    } catch {
+      // The probe can end mid-line; a cut line is skipped like a malformed one.
+    }
+  }
+  return null;
+}
+
+// The newest transcript recorded for this project is the session a save
+// without an explicit path is most likely to be resuming.
 function latestTranscript(projectDir) {
   const transcriptDir = join(
     homedir(),
@@ -308,23 +288,23 @@ function latestTranscript(projectDir) {
     return null;
   }
 
-  let newest = null;
-  let newestMs = -Infinity;
+  const candidates = [];
   for (const name of names) {
     if (!name.endsWith(TRANSCRIPT_EXT)) continue;
     const filePath = join(transcriptDir, name);
-    let modifiedMs;
     try {
-      modifiedMs = statSync(filePath).mtimeMs;
+      candidates.push({ filePath, modifiedMs: statSync(filePath).mtimeMs });
     } catch {
       continue;
     }
-    if (modifiedMs > newestMs) {
-      newestMs = modifiedMs;
-      newest = filePath;
-    }
   }
-  return newest;
+
+  candidates.sort((left, right) => right.modifiedMs - left.modifiedMs);
+  for (const { filePath } of candidates) {
+    const cwd = recordedCwd(filePath);
+    if (cwd && samePath(cwd, projectDir)) return filePath;
+  }
+  return null;
 }
 
 function main() {

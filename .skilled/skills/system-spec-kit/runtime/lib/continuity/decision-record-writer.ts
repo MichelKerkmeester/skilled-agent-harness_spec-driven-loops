@@ -82,7 +82,8 @@ const DECISION_ROW_RE = /^\|\s*(Q\d+)\s*\|/u;
 const APPENDIX_HEADING_RE = /^###\s+(Q\d+)\s*$/u;
 const SOURCE_COMMENT_RE = /^<!--\s*source:\s*(\S+)\s*-->$/u;
 const FENCE_OPEN_RE = /^(`{3,})text$/u;
-const FIELD_LABEL_RE = /^(Question|Options|Answer):[ \t]?(.*)$/u;
+const FIELD_LABEL_RE =
+  /^[ \t]*(?:\*\*(Question|Options|Answer)(?::\*\*|\*\*:)|(Question|Options|Answer):)[ \t]?(.*)$/u;
 
 // The level shapes detectLevel accepts. A marker already present means the
 // level survives the new decision-record.md, so no marker is added.
@@ -255,7 +256,22 @@ function insertDecisionRow(lines: string[], id: string, row: string): string[] {
   return [...lines.slice(0, bounds.end), '', row, '', ...lines.slice(bounds.end)];
 }
 
-function insertAppendixItem(lines: string[], id: string, item: string[]): string[] {
+function appendixItemMatches(
+  existing: VerbatimAppendixItem,
+  entry: OperatorDecisionEntry,
+): boolean {
+  return existing.question === entry.question
+    && existing.answer === entry.answer
+    && existing.options.length === entry.options.length
+    && existing.options.every((option, index) => option === entry.options[index]);
+}
+
+function insertAppendixItem(
+  lines: string[],
+  id: string,
+  item: string[],
+  entry: OperatorDecisionEntry,
+): string[] {
   const bounds = sectionBounds(lines, APPENDIX_OPEN, APPENDIX_CLOSE);
   if (!bounds) {
     return lines;
@@ -264,7 +280,20 @@ function insertAppendixItem(lines: string[], id: string, item: string[]): string
   const mask = fencedLineMask(lines);
   for (let index = bounds.start + 1; index < bounds.end; index += 1) {
     if (!mask[index] && APPENDIX_HEADING_RE.exec(lines[index].trim())?.[1] === id) {
-      return lines;
+      let itemEnd = bounds.end;
+      for (let next = index + 1; next < bounds.end; next += 1) {
+        if (!mask[next] && APPENDIX_HEADING_RE.test(lines[next].trim())) {
+          itemEnd = next;
+          break;
+        }
+      }
+
+      const existing = parseAppendixBlock(lines.slice(index + 1, itemEnd));
+      if (appendixItemMatches(existing, entry)) {
+        return lines;
+      }
+
+      return [...lines.slice(0, index), ...item, '', ...lines.slice(itemEnd)];
     }
   }
 
@@ -529,8 +558,9 @@ function parseAppendixBlock(lines: string[]): VerbatimAppendixItem {
     const label = FIELD_LABEL_RE.exec(line);
     if (label) {
       commit();
-      field = label[1].toLowerCase() as FieldName;
-      buffer = label[2].length > 0 ? [label[2]] : [];
+      const fieldName = label[1] ?? label[2];
+      field = fieldName.toLowerCase() as FieldName;
+      buffer = label[3].length > 0 ? [label[3]] : [];
       continue;
     }
 
@@ -699,7 +729,7 @@ export function writeDecisionRecord(
     }
     ids.push({ sourceKey: entry.sourceKey, id });
     lines = insertDecisionRow(lines, id, formatDecisionRow(id, entry));
-    lines = insertAppendixItem(lines, id, formatAppendixItem(id, entry));
+    lines = insertAppendixItem(lines, id, formatAppendixItem(id, entry), entry);
   }
 
   const nextText = lines.join('\n');
@@ -715,33 +745,62 @@ export function writeDecisionRecord(
 // 6. CONSUMED KEYS
 // ───────────────────────────────────────────────────────────────────
 
+/** One line of the consumed log, kept with its raw text so a caller can print it back. */
+export interface ConsumedLogRow {
+  readonly raw: string;
+  readonly key: string;
+  readonly packet: string;
+  readonly id: string;
+}
+
 /**
- * Keys already in the consumed log. A torn or hand-edited line is skipped, the
- * same way the capture core reads this file, so one bad line cannot block a save.
+ * Where the consumed log lives. A save appends to it and the matcher reads it back,
+ * so both resolve the path here instead of each keeping its own copy of the name.
  */
-function readConsumedKeySet(filePath: string): Set<string> {
-  const keys = new Set<string>();
+export function consumedLogPath(projectRoot: string): string {
+  return path.join(projectRoot, ...STATE_DIR_SEGMENTS, 'consumed.jsonl');
+}
+
+/**
+ * Every usable row in the consumed log, and none when the file does not exist yet.
+ * A torn or hand-edited line is skipped, and a row with no key is dropped: a row
+ * that names no key records nothing, so it must not fail the whole read.
+ */
+export function readConsumedRows(projectRoot: string): ConsumedLogRow[] {
   let raw: string;
   try {
-    raw = fs.readFileSync(filePath, 'utf8');
+    raw = fs.readFileSync(consumedLogPath(projectRoot), 'utf8');
   } catch {
-    return keys;
+    return [];
   }
+  const rows: ConsumedLogRow[] = [];
   for (const line of raw.split('\n')) {
     if (line.trim() === '') {
       continue;
     }
+    let parsed: unknown;
     try {
-      const row: unknown = JSON.parse(line);
-      const key = row && typeof row === 'object' ? (row as { key?: unknown }).key : undefined;
-      if (typeof key === 'string' && key.length > 0) {
-        keys.add(key);
-      }
+      parsed = JSON.parse(line);
     } catch {
       // Unparseable line: it records nothing, so it cannot hide a key.
+      continue;
     }
+    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      continue;
+    }
+    const row = parsed as Record<string, unknown>;
+    const key = typeof row.key === 'string' ? row.key : '';
+    if (key === '') {
+      continue;
+    }
+    rows.push({
+      raw: line,
+      key,
+      packet: typeof row.packet === 'string' ? row.packet : '',
+      id: typeof row.id === 'string' ? row.id : '',
+    });
   }
-  return keys;
+  return rows;
 }
 
 /**
@@ -760,8 +819,7 @@ export function recordConsumedKeys(
   }
 
   const stateDir = path.join(projectRoot, ...STATE_DIR_SEGMENTS);
-  const consumedPath = path.join(stateDir, 'consumed.jsonl');
-  const recorded = readConsumedKeySet(consumedPath);
+  const recorded = new Set(readConsumedRows(projectRoot).map((row) => row.key));
   const fresh = ids.filter(({ sourceKey }) => {
     if (recorded.has(sourceKey)) {
       return false;
@@ -777,5 +835,5 @@ export function recordConsumedKeys(
   const lines = fresh
     .map(({ sourceKey, id }) => JSON.stringify({ key: sourceKey, packet, id, at: now }))
     .join('\n');
-  fs.appendFileSync(consumedPath, `${lines}\n`, 'utf8');
+  fs.appendFileSync(consumedLogPath(projectRoot), `${lines}\n`, 'utf8');
 }

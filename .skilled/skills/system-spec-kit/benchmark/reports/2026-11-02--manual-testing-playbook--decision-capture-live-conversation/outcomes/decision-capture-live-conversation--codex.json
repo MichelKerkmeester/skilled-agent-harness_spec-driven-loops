@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-live-conversation",
+  "runtime": "codex",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "5 stages passed, 9 skipped, 0 failed; repo.changed false. Skipped stages are live-queue checks Codex cannot meet, because it captures at save time.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "5 stages passed, 9 skipped, 0 failed; repo.changed false. Skipped stages are live-queue checks Codex cannot meet, because it captures at save time.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/main/codex/checkpoints.tsv",
+          "bytes": 673,
+          "sha256": "d35474a4c1ddde78f69ba6463f14079c22e61fa791187aa418d81f9bd3edb2a9"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/main/codex/result.json",
+          "bytes": 3835,
+          "sha256": "ae3f21ab9a7a7496a28a95842ffbe06e182c2b72ee7d2ba7bf61da3be303df13"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "5 stages passed, 9 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/main/codex/checkpoints.tsv",
+          "bytes": 673,
+          "sha256": "d35474a4c1ddde78f69ba6463f14079c22e61fa791187aa418d81f9bd3edb2a9"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/main/codex/result.json",
+          "bytes": 3835,
+          "sha256": "f3b361b7852ec5d1c1d076622bb4def8daa47cea77c274f21840c7eb5fa3425f"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/main/codex/checkpoints.tsv",
+      "bytes": 673,
+      "sha256": "d35474a4c1ddde78f69ba6463f14079c22e61fa791187aa418d81f9bd3edb2a9"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run1/runner/main/codex/result.json",
+      "bytes": 3835,
+      "sha256": "ae3f21ab9a7a7496a28a95842ffbe06e182c2b72ee7d2ba7bf61da3be303df13"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/main/codex/checkpoints.tsv",
+      "bytes": 673,
+      "sha256": "d35474a4c1ddde78f69ba6463f14079c22e61fa791187aa418d81f9bd3edb2a9"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/codex-run2/runner/main/codex/result.json",
+      "bytes": 3835,
+      "sha256": "f3b361b7852ec5d1c1d076622bb4def8daa47cea77c274f21840c7eb5fa3425f"
+    }
+  ]
+}

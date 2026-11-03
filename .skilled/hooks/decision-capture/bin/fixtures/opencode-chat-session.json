@@ -1,0 +1,102 @@
+{
+  "description": "Selected real session_message rows. Reasoning, model and timing fields are omitted. Synthetic content uses a neutral placeholder.",
+  "rows": [
+    {
+      "id": "msg_19c1241f30016HPrWbU021tXVh",
+      "session_id": "ses_eee3ae5e1fb5441a8a98ce86fd",
+      "type": "synthetic",
+      "seq": 46,
+      "data": {
+        "text": "Instructions from: <PROJECT_ROOT>/AGENTS.md\n[synthetic context omitted]"
+      }
+    },
+    {
+      "id": "msg_19c1529a0001S5fhs8TIv47o1s",
+      "session_id": "ses_eee3ae5e1fb5441a8a98ce86fd",
+      "type": "assistant",
+      "seq": 233,
+      "data": {
+        "content": [
+          {
+            "type": "tool",
+            "id": "call_00_THR66TmCRJuwaNoIw6Ms6081",
+            "name": "question",
+            "executed": false,
+            "state": {
+              "status": "completed",
+              "input": {
+                "questions": [
+                  {
+                    "header": "Badge label",
+                    "multiple": false,
+                    "options": [
+                      {
+                        "description": "Shows the widget is enabled and working.",
+                        "label": "Active"
+                      },
+                      {
+                        "description": "Shows the widget is published or real-time.",
+                        "label": "Live"
+                      },
+                      {
+                        "description": "Shows the widget is in preview.",
+                        "label": "Beta"
+                      }
+                    ],
+                    "question": "What label should the badge show? Type your own if none of these fit."
+                  }
+                ]
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "User has answered your questions: \"What label should the badge show? Type your own if none of these fit.\"=\"Needs review\". You can now continue with the user's answers in mind."
+                }
+              ],
+              "metadata": {
+                "answers": [
+                  [
+                    "Needs review"
+                  ]
+                ],
+                "truncated": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg_19c159cf9001cJHFU4QrMho44e",
+      "session_id": "ses_eee3ae5e1fb5441a8a98ce86fd",
+      "type": "user",
+      "seq": 253,
+      "data": {
+        "text": "Do not use the tool this time. End your reply with one plain question to me about whether the badge should blink."
+      }
+    },
+    {
+      "id": "msg_19c159d14001KOItwdQp4jGwtJ",
+      "session_id": "ses_eee3ae5e1fb5441a8a98ce86fd",
+      "type": "assistant",
+      "seq": 254,
+      "data": {
+        "content": [
+          {
+            "type": "text",
+            "text": "Nothing new is recorded and nothing has been written, because the demo widget still has no code in this checkout to attach a badge to.\n\nYour answers so far stand: Amber, Web, iOS and Android, with the label \"Needs review\". The packet remains an empty Level 3 template with completion at 0.\n\nShould the badge blink?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "msg_19c15cf65001rCXm5MLP7GTGyV",
+      "session_id": "ses_eee3ae5e1fb5441a8a98ce86fd",
+      "type": "user",
+      "seq": 265,
+      "data": {
+        "text": "No, keep it static."
+      }
+    }
+  ]
+}

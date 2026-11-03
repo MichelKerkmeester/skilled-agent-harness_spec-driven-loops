@@ -1825,6 +1825,14 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
   const sessionFiles = Array.isArray(sessionData.FILES) ? sessionData.FILES : [];
   const sessionOutcomes = Array.isArray(sessionData.OUTCOMES) ? sessionData.OUTCOMES : [];
   const sessionDecisions = Array.isArray(decisions.DECISIONS) ? decisions.DECISIONS : [];
+  // An operator's answers are first-hand evidence of what the session decided, so a
+  // save that carries little besides them must still clear the sufficiency gate.
+  const operatorDecisionTexts = (Array.isArray(collectedData._operatorDecisions)
+    ? collectedData._operatorDecisions as unknown as OperatorDecisionPayload[]
+    : []
+  ).map((entry) => [entry.decided, entry.question, entry.answer]
+    .filter((part): part is string => typeof part === 'string' && part.trim().length > 0)
+    .join(' - '));
   const canonicalQualityContent = [
     `# ${sessionData.TITLE}`,
     sessionData.QUICK_SUMMARY,
@@ -1863,11 +1871,14 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
       facts: observation.FACTS_LIST ? [observation.FACTS_LIST] : [],
       specRelevant: true,
     })),
-    decisions: sessionDecisions.map((decision) => [
-      decision.TITLE,
-      decision.CHOSEN,
-      decision.RATIONALE,
-    ].filter(Boolean).join(' - ')),
+    decisions: [
+      ...sessionDecisions.map((decision) => [
+        decision.TITLE,
+        decision.CHOSEN,
+        decision.RATIONALE,
+      ].filter(Boolean).join(' - ')),
+      ...operatorDecisionTexts,
+    ],
     nextActions: sessionData.NEXT_ACTION ? [sessionData.NEXT_ACTION] : [],
     blockers: sessionData.BLOCKERS ? [sessionData.BLOCKERS] : [],
     outcomes: sessionOutcomes.map((outcome) => outcome.OUTCOME),

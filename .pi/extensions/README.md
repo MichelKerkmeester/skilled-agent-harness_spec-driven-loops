@@ -22,6 +22,7 @@ trigger_phrases:
 | `mcp-route-guard.ts` | `.skilled/hooks/mcp-route-guard/pi/` |
 | `post-edit-quality.ts` | `.skilled/hooks/post-edit-quality/pi/` |
 | `classifier-injection-screen.ts` | `.skilled/hooks/classifier-injection-screen/pi/` |
+| `decision-capture.ts` | `.skilled/hooks/decision-capture/pi/` |
 | `spec-gate-{classify,enforce}.ts`, `session-{start,stop,compact}-context.ts`, `session-start-advisories.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/` |
 | `lib/claude-hook-adapter.ts` | `.skilled/skills/system-spec-kit/runtime/hooks/pi/lib/` |
 | `prompt-advisor.ts` | `.skilled/skills/system-skill-advisor/hooks/pi/` |
@@ -42,6 +43,7 @@ extensions/
 +-- dispatch-audit.ts           # Records a completed bash dispatch to the audit log
 +-- post-edit-quality.ts        # Appends post-edit quality findings to an edit/write result
 +-- classifier-injection-screen.ts  # Appends the Jev injection-screen advisory to a fetch_content result
++-- decision-capture.ts         # Queues each answered question for the decision record; shows the pending count at turn end
 +-- mcp-route-guard.ts          # Attaches route warnings to a native mcp_* tool call
 +-- task-dispatch-guard.ts      # Returns the dispatch-guard text for a direct subagent call (advisory)
 +-- session-start-context.ts    # Bridges session-prime's SessionStart context into the session
@@ -69,6 +71,7 @@ extensions/
 | `post-edit-quality.ts` | `tool_result` (edit/write) | `.skilled/hooks/post-edit-quality/lib/post-edit-router.cjs` `resolveDispatch()`/`runChecks()` |
 | `mcp-route-guard.ts` | `tool_call` (`mcp_*`) | `.skilled/hooks/mcp-route-guard/lib/mcp-route-guard.cjs` `evaluateNativeMcpCall()` |
 | `classifier-injection-screen.ts` | `tool_result` (`fetch_content`) | `.skilled/hooks/classifier-injection-screen/lib/classifier-injection-advisory.mjs` `fetchedText()`/`screenAdvisory()`; appends the advisory to the tool result |
+| `decision-capture.ts` | `tool_result` (`ask_user_question`, `question`), `turn_end` | `.skilled/hooks/decision-capture/bin/sweep-pi.mjs` `recoveredRecords()` and `.skilled/hooks/decision-capture/lib/capture-core.mjs` `appendRecords()`/`takeNudge()`; never changes a tool result |
 | `task-dispatch-guard.ts` | `tool_call` (`subagent`) | `.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs` `evaluateDispatch()`; returns the guard's text as an advisory (`~ partial`: direct calls only) |
 | `session-start-context.ts` | `session_start` | `system-spec-kit/runtime/dist/hooks/claude/session-prime.js` (via `lib/claude-hook-adapter.ts`) |
 | `session-start-advisories.ts` | `session_start` | `worktree-guard.sh`, `check-git-hooks.sh`, `git-primary-reconcile.sh`, `git-live-follow.sh --start`, `check-dist-staleness.sh --all`, `install-codex-hooks.mjs --check` (direct `ctx.exec()`, each gated by its own concern) |

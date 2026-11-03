@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-live-conversation",
+  "runtime": "devin",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run1/runner/main/devin/checkpoints.tsv",
+          "bytes": 607,
+          "sha256": "d31587825b973f27a6e8abb1a7a654ce18f4569754d9561cf8452c3cc6100e14"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run1/runner/main/devin/result.json",
+          "bytes": 3531,
+          "sha256": "4b1034a89c262fa4dc3cd41a5e76b160e8ec077ecadccaff73bf9edaa7ba2e86"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run2/runner/main/devin/checkpoints.tsv",
+          "bytes": 621,
+          "sha256": "78248d35ad7801589ed4ef97698e8a90a0d6bdbd0d4480ab92fbba2fe728aff8"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run2/runner/main/devin/result.json",
+          "bytes": 3569,
+          "sha256": "e8dc40587c42b2a5a4b9d0f3be41a33078606d01c4915ab6614452b88fe175a6"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run1/runner/main/devin/checkpoints.tsv",
+      "bytes": 607,
+      "sha256": "d31587825b973f27a6e8abb1a7a654ce18f4569754d9561cf8452c3cc6100e14"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run1/runner/main/devin/result.json",
+      "bytes": 3531,
+      "sha256": "4b1034a89c262fa4dc3cd41a5e76b160e8ec077ecadccaff73bf9edaa7ba2e86"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run2/runner/main/devin/checkpoints.tsv",
+      "bytes": 621,
+      "sha256": "78248d35ad7801589ed4ef97698e8a90a0d6bdbd0d4480ab92fbba2fe728aff8"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/devin-run2/runner/main/devin/result.json",
+      "bytes": 3569,
+      "sha256": "e8dc40587c42b2a5a4b9d0f3be41a33078606d01c4915ab6614452b88fe175a6"
+    }
+  ]
+}

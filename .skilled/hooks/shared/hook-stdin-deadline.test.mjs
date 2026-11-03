@@ -25,7 +25,7 @@ const REPO_ROOT = path.resolve(HOOKS_ROOT, '..', '..');
 
 // The shared reader waits 3000 ms. A hook blocked on an open stdin cannot exit
 // before that, so the lower bound shows the hook reached the read at all; the
-// upper bound is the deadline plus room for start-up with seventeen processes
+// upper bound is the deadline plus room for start-up with eighteen processes
 // running at once; the kill timer only stops a regression from hanging the run.
 const EARLIEST_EXIT_MS = 2900;
 const LATEST_EXIT_MS = 8000;
@@ -37,6 +37,7 @@ const HOOKS = [
   { id: 'classifier-injection-screen/claude', file: 'classifier-injection-screen/claude/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
   { id: 'classifier-injection-screen/devin', file: 'classifier-injection-screen/devin/classifier-injection-screen-posttooluse.mjs', failOpen: '' },
   { id: 'decision-capture/claude', file: 'decision-capture/claude/ask-capture-posttooluse.mjs', failOpen: '' },
+  { id: 'decision-capture/devin', file: 'decision-capture/devin/ask-capture-posttooluse.mjs', failOpen: '' },
   { id: 'dispatch/claude preflight', file: 'dispatch/claude/dispatch-preflight-lint.mjs', failOpen: '' },
   { id: 'dispatch/codex preflight', file: 'dispatch/codex/dispatch-preflight-lint.mjs', failOpen: '' },
   { id: 'dispatch/cursor preflight', file: 'dispatch/cursor/dispatch-preflight-lint.mjs', failOpen: ALLOW },

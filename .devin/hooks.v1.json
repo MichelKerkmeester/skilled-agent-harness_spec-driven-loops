@@ -155,6 +155,16 @@
           "timeout": 30
         }
       ]
+    },
+    {
+      "matcher": "^ask_user_question$",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash -c 'cd \"${DEVIN_PROJECT_DIR:-$PWD}\" && node .skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs'",
+          "timeout": 5
+        }
+      ]
     }
   ],
   "PermissionRequest": [

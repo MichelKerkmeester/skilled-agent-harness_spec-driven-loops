@@ -290,7 +290,22 @@
             "timeout": 5,
             "fallback": "envelope"
           }
+        ],
+        "devin": [
+          {
+            "event": "PostToolUse",
+            "group": 3,
+            "slot": 0,
+            "matcher": "^ask_user_question$",
+            "runner": "node",
+            "script": ".skilled/hooks/decision-capture/devin/ask-capture-posttooluse.mjs",
+            "timeout": 5,
+            "fallback": "none"
+          }
         ]
+      },
+      "pi": {
+        "extension": "decision-capture.ts"
       }
     },
     {

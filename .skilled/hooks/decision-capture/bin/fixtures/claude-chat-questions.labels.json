@@ -1,0 +1,9 @@
+[
+  { "pair": 1, "question_turn": "fixture-a1", "reply_turn": "fixture-u1", "process": false, "answers_earlier": false },
+  { "pair": 2, "question_turn": "fixture-a2", "reply_turn": "fixture-u2", "process": true, "answers_earlier": false },
+  { "pair": 3, "question_turn": "fixture-a3", "reply_turn": "fixture-u3", "process": false, "answers_earlier": false },
+  { "pair": 4, "question_turn": "fixture-a4", "reply_turn": "fixture-u4", "process": true, "answers_earlier": false },
+  { "pair": 5, "question_turn": "fixture-a5", "reply_turn": "fixture-u5", "process": true, "answers_earlier": false },
+  { "pair": 6, "question_turn": "fixture-a6", "reply_turn": "fixture-u6", "process": false, "answers_earlier": true },
+  { "pair": 7, "question_turn": "fixture-a7", "reply_turn": "fixture-u7", "process": false, "answers_earlier": false }
+]

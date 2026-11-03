@@ -2,7 +2,7 @@
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
 last_updated: "2026-10-30"
-version: 2.1.13.0
+version: 2.1.14.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -282,6 +282,9 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | decision-capture-claude-hook | Decision capture Claude hook: one queued record per answered AskUserQuestion, registry and mirror wiring, kill switch | [decision-capture-claude-hook](plugins-and-hooks/decision-capture-claude-hook.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | decision-capture-transcript-sweeps | Decision capture transcript sweeps for Claude, OpenCode and Devin, each answer queued once | [decision-capture-transcript-sweeps](plugins-and-hooks/decision-capture-transcript-sweeps.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | decision-capture-save-writer | Decision capture save writer: plan-only writes nothing, full-auto writes one row and its verbatim answer, a repeat save changes no byte | [decision-capture-save-writer](plugins-and-hooks/decision-capture-save-writer.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
+| decision-capture-live-conversation | Decision capture live conversation: timed queue, nudge, save, compaction and restart checks across five runtimes | [decision-capture-live-conversation](plugins-and-hooks/decision-capture-live-conversation.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
+| decision-capture-kill-switch-conversation | Decision capture kill-switch conversation: disabled capture leaves no queue file or Stop nudge | [decision-capture-kill-switch-conversation](plugins-and-hooks/decision-capture-kill-switch-conversation.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
+| decision-capture-sibling-reproof-conversation | Decision capture sibling re-proof conversation: a hand-written row is consumed under its id and a mid-message chat question is offered once | [decision-capture-sibling-reproof-conversation](plugins-and-hooks/decision-capture-sibling-reproof-conversation.md) | [operator-decision-capture](../feature-catalog/ux-hooks/operator-decision-capture.md) |
 | dist-freshness-guard | Dist freshness guard | [dist-freshness-guard](plugins-and-hooks/dist-freshness-guard.md) | [dist-freshness-enforcement](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
 | session-cleanup-plugin | Session cleanup plugin | [session-cleanup-plugin](plugins-and-hooks/session-cleanup-plugin.md) | [orphan-sweep-stop-hook-activation](../feature-catalog/tooling-and-scripts/orphan-sweep-stop-hook-activation.md) |
 | spec-mutation-gate-enforce | Spec mutation gate enforce | [spec-mutation-gate-enforce](plugins-and-hooks/spec-mutation-gate-enforce.md) | — |

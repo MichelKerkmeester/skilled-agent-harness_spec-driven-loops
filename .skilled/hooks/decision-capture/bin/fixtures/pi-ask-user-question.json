@@ -1,0 +1,470 @@
+{
+  "description": "Redacted Pi session lines for the decision-capture Pi reader. Taken from harmless scratch-project sessions on 2026-11-02; session id, call ids, paths, usage and thinking removed. One JSONL line per array item.",
+  "cases": [
+    {
+      "call_id": "call_fixture_1",
+      "case": "option answer"
+    },
+    {
+      "call_id": "call_fixture_2",
+      "case": "other tool noise"
+    },
+    {
+      "call_id": "call_fixture_3",
+      "case": "multi-select answer"
+    },
+    {
+      "call_id": "call_fixture_4",
+      "case": "a different tool named question"
+    },
+    {
+      "call_id": "call_fixture_5",
+      "case": "free-text answer"
+    },
+    {
+      "call_id": "call_fixture_6",
+      "case": "option answer from the live probe"
+    },
+    {
+      "call_id": "call_fixture_7",
+      "case": "cancelled with Esc"
+    }
+  ],
+  "lines": [
+    {
+      "type": "session",
+      "version": 3,
+      "id": "pi-fixture-session",
+      "timestamp": "2026-11-02T00:00:00.000Z",
+      "cwd": "/scratch/project"
+    },
+    {
+      "type": "message",
+      "id": "m1a",
+      "parentId": null,
+      "timestamp": "2026-11-02T06:28:59.924Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_1",
+            "name": "ask_user_question",
+            "arguments": {
+              "questions": [
+                {
+                  "question": "Which colour do you pick?",
+                  "header": "Colour",
+                  "multiSelect": false,
+                  "options": [
+                    {
+                      "label": "red",
+                      "description": "Append \"red\" to answers.txt"
+                    },
+                    {
+                      "label": "green",
+                      "description": "Append \"green\" to answers.txt"
+                    },
+                    {
+                      "label": "blue",
+                      "description": "Append \"blue\" to answers.txt"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m1b",
+      "parentId": "m1a",
+      "timestamp": "2026-11-02T06:29:01.372Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_1",
+        "toolName": "ask_user_question",
+        "content": [
+          {
+            "type": "text",
+            "text": "User has answered your questions: \"Which colour do you pick?\"=\"green\". You can now continue with the user's answers in mind."
+          }
+        ],
+        "details": {
+          "answers": [
+            {
+              "questionIndex": 0,
+              "question": "Which colour do you pick?",
+              "kind": "option",
+              "answer": "green"
+            }
+          ],
+          "cancelled": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m2a",
+      "parentId": null,
+      "timestamp": "2026-11-02T06:29:02.631Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_2",
+            "name": "bash",
+            "arguments": {
+              "command": "echo \"green\" >> answers.txt && cat answers.txt"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m2b",
+      "parentId": "m2a",
+      "timestamp": "2026-11-02T06:29:02.650Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_2",
+        "toolName": "bash",
+        "content": [
+          {
+            "type": "text",
+            "text": "green\n"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m3a",
+      "parentId": null,
+      "timestamp": "2026-11-02T06:29:10.846Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_3",
+            "name": "ask_user_question",
+            "arguments": {
+              "questions": [
+                {
+                  "header": "Sizes",
+                  "multiSelect": true,
+                  "options": [
+                    {
+                      "description": "Add \"small\" to the list",
+                      "label": "small"
+                    },
+                    {
+                      "description": "Add \"medium\" to the list",
+                      "label": "medium"
+                    },
+                    {
+                      "description": "Add \"large\" to the list",
+                      "label": "large"
+                    }
+                  ],
+                  "question": "Which sizes do you want?"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m3b",
+      "parentId": "m3a",
+      "timestamp": "2026-11-02T06:29:12.321Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_3",
+        "toolName": "ask_user_question",
+        "content": [
+          {
+            "type": "text",
+            "text": "User has answered your questions: \"Which sizes do you want?\"=\"small, large\". You can now continue with the user's answers in mind."
+          }
+        ],
+        "details": {
+          "answers": [
+            {
+              "questionIndex": 0,
+              "question": "Which sizes do you want?",
+              "kind": "multi",
+              "answer": null,
+              "selected": [
+                "small",
+                "large"
+              ]
+            }
+          ],
+          "cancelled": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m4a",
+      "parentId": null,
+      "timestamp": "2026-11-02T06:00:33.571Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_4",
+            "name": "question",
+            "arguments": {
+              "questions": [
+                {
+                  "multiple": true,
+                  "header": "Sizes",
+                  "options": [
+                    {
+                      "label": "Small",
+                      "description": "Include the small size."
+                    },
+                    {
+                      "label": "Medium",
+                      "description": "Include the medium size."
+                    },
+                    {
+                      "label": "Large",
+                      "description": "Include the large size."
+                    }
+                  ],
+                  "question": "Which sizes would you like? (Select all that apply)"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m4b",
+      "parentId": "m4a",
+      "timestamp": "2026-11-02T06:00:39.070Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_4",
+        "toolName": "question",
+        "content": [
+          {
+            "type": "text",
+            "text": "You chose not to answer the question(s). Awaiting your instructions."
+          }
+        ],
+        "details": {
+          "cancelled": true
+        },
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m5a",
+      "parentId": null,
+      "timestamp": "2026-11-02T06:01:43.903Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_5",
+            "name": "ask_user_question",
+            "arguments": {
+              "questions": [
+                {
+                  "header": "Colour",
+                  "multiSelect": false,
+                  "options": [
+                    {
+                      "description": "Red.",
+                      "label": "Red"
+                    },
+                    {
+                      "description": "Green.",
+                      "label": "Green"
+                    },
+                    {
+                      "description": "Blue.",
+                      "label": "Blue"
+                    }
+                  ],
+                  "question": "Which colour would you like?"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m5b",
+      "parentId": "m5a",
+      "timestamp": "2026-11-02T06:01:53.621Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_5",
+        "toolName": "ask_user_question",
+        "content": [
+          {
+            "type": "text",
+            "text": "User has answered your questions: \"Which colour would you like?\"=\"teal\". You can now continue with the user's answers in mind."
+          }
+        ],
+        "details": {
+          "answers": [
+            {
+              "questionIndex": 0,
+              "question": "Which colour would you like?",
+              "kind": "custom",
+              "answer": "teal"
+            }
+          ],
+          "cancelled": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m6a",
+      "parentId": null,
+      "timestamp": "2026-11-02T07:21:45.081Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_6",
+            "name": "ask_user_question",
+            "arguments": {
+              "questions": [
+                {
+                  "question": "Which fruit should I name in my reply?",
+                  "header": "Fruit",
+                  "options": [
+                    {
+                      "label": "apple",
+                      "description": "I'll name apple in my reply."
+                    },
+                    {
+                      "label": "pear",
+                      "description": "I'll name pear in my reply."
+                    },
+                    {
+                      "label": "plum",
+                      "description": "I'll name plum in my reply."
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m6b",
+      "parentId": "m6a",
+      "timestamp": "2026-11-02T07:22:10.887Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_6",
+        "toolName": "ask_user_question",
+        "content": [
+          {
+            "type": "text",
+            "text": "User has answered your questions: \"Which fruit should I name in my reply?\"=\"pear\". You can now continue with the user's answers in mind."
+          }
+        ],
+        "details": {
+          "answers": [
+            {
+              "questionIndex": 0,
+              "question": "Which fruit should I name in my reply?",
+              "kind": "option",
+              "answer": "pear"
+            }
+          ],
+          "cancelled": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "type": "message",
+      "id": "m7a",
+      "parentId": null,
+      "timestamp": "2026-11-02T07:22:41.094Z",
+      "message": {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "toolCall",
+            "id": "call_fixture_7",
+            "name": "ask_user_question",
+            "arguments": {
+              "questions": [
+                {
+                  "header": "Vegetable",
+                  "options": [
+                    {
+                      "description": "I'll name leek in my reply.",
+                      "label": "leek"
+                    },
+                    {
+                      "description": "I'll name kale in my reply.",
+                      "label": "kale"
+                    }
+                  ],
+                  "question": "Which vegetable should I name?"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "message",
+      "id": "m7b",
+      "parentId": "m7a",
+      "timestamp": "2026-11-02T07:23:04.504Z",
+      "message": {
+        "role": "toolResult",
+        "toolCallId": "call_fixture_7",
+        "toolName": "ask_user_question",
+        "content": [
+          {
+            "type": "text",
+            "text": "User declined to answer questions"
+          }
+        ],
+        "details": {
+          "answers": [],
+          "cancelled": true
+        },
+        "isError": false
+      }
+    }
+  ]
+}

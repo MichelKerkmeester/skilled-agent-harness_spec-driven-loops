@@ -63,9 +63,15 @@ Procedure:
 3. Extract session summary, key decisions, modified files, trigger phrases, technical context, tool calls, and notable exchanges.
    On Claude, also collect operator decisions: run `node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs` from the repository root.
    It copies any AskUserQuestion answer the hook missed into the local queue, then prints `pending` and `chat_candidates`.
-   On OpenCode run `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` instead, and on Devin `node .skilled/hooks/decision-capture/bin/sweep-devin.mjs`. Each reads the runtime's stored session and prints the same `pending` list with an empty `chat_candidates`.
+   On OpenCode run `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` instead, and on Devin `node .skilled/hooks/decision-capture/bin/sweep-devin.mjs`. Each reads the runtime's stored session and prints the same `pending` list and `chat_candidates`.
+   On Codex run `node .skilled/hooks/decision-capture/bin/sweep-codex.mjs`, and on Pi `node .skilled/hooks/decision-capture/bin/sweep-pi.mjs`. They print the same two lists, print nothing at all when both are empty, and print an `error` and exit 1 when the session file cannot be read.
+   When the target packet already has a `decision-record.md`, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` next, before writing any entry, whether or not you have seen a hand-written table in it.
+   The dry run lists each pending answer that already sits as a row in a hand-written decision table, and in an apply or full-auto save a second run with `--apply` records that row's id as consumed, so the answer needs no entry.
+   On every save, whether or not the packet has a record, run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --scan-orphans`. It prints one `<count> <session-id>` line per session whose answers are still pending.
+   Tell the operator about every listed session other than this one, with its count: those answers came from a session that ended without a save. Write no entries for them in this save.
    Write one `operatorDecisions` entry for each pending answer, and for each chat candidate whose answer clearly replies to its question.
-   Leave out a candidate whose answer is null, and any question about Gate 3, spec folders, worktrees, branches or commit and push permission.
+   Several candidates can share one reply, so write an entry only for a question that reply answers.
+   Leave out a candidate whose answer is null. The sweeps already drop process questions, so every pending record and candidate they print is a product question.
    Each entry carries the record's printed `key` as its `sourceKey`, a one-sentence `decided`, the `why` the session stated, `supersedes`, `carriedBy` and the exact `question`, `options` and `answer`.
    Fill `carriedBy` with what in the target packet carries the decision: requirement or task ids, files or anchors, such as `REQ-003, plan.md`.
    Omit `why` when no reason was stated, so the record says `Not stated.` instead of a guess.
@@ -100,6 +106,8 @@ Tool map:
 | Continuity frontmatter, description and graph-metadata refresh | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js` |
 | Operator answers waiting for a decision record, on Claude | `node .skilled/hooks/decision-capture/bin/sweep-transcript.mjs` |
 | Operator answers waiting for a decision record, on OpenCode or Devin | `node .skilled/hooks/decision-capture/bin/sweep-opencode.mjs` or `sweep-devin.mjs` |
+| Operator answers waiting for a decision record, on Codex or Pi | `node .skilled/hooks/decision-capture/bin/sweep-codex.mjs` or `sweep-pi.mjs` |
+| Answers already holding a row in a hand-written decision table | `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` |
 | Trigger-index regeneration, only when `trigger_phrases` changed | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Trigger phrase correction | Edit the packet document's `trigger_phrases` frontmatter, then rerun the writer |
 

@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-sibling-reproof-conversation",
+  "runtime": "claude-code",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "7 stages passed, 0 skipped, 0 failed; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "7 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run1/runner/sibling/claude-code/checkpoints.tsv",
+          "bytes": 376,
+          "sha256": "27dc33e531eece2d462740203dab05c6134dd89f08aa1e459b10f904bce04ccb"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run1/runner/sibling/claude-code/result.json",
+          "bytes": 2236,
+          "sha256": "3d1b6311081dc7bfd32dde17ad1bcef60a8df5730cb5ff60c8308088007466d4"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "7 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run2/runner/sibling/claude-code/checkpoints.tsv",
+          "bytes": 376,
+          "sha256": "27dc33e531eece2d462740203dab05c6134dd89f08aa1e459b10f904bce04ccb"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run2/runner/sibling/claude-code/result.json",
+          "bytes": 2289,
+          "sha256": "46392fd028bfcb51b6eceb9d7bdf2bd6fbdca9772c8d0edb75f252e398a45c38"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run1/runner/sibling/claude-code/checkpoints.tsv",
+      "bytes": 376,
+      "sha256": "27dc33e531eece2d462740203dab05c6134dd89f08aa1e459b10f904bce04ccb"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run1/runner/sibling/claude-code/result.json",
+      "bytes": 2236,
+      "sha256": "3d1b6311081dc7bfd32dde17ad1bcef60a8df5730cb5ff60c8308088007466d4"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run2/runner/sibling/claude-code/checkpoints.tsv",
+      "bytes": 376,
+      "sha256": "27dc33e531eece2d462740203dab05c6134dd89f08aa1e459b10f904bce04ccb"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/claude-run2/runner/sibling/claude-code/result.json",
+      "bytes": 2289,
+      "sha256": "46392fd028bfcb51b6eceb9d7bdf2bd6fbdca9772c8d0edb75f252e398a45c38"
+    }
+  ]
+}

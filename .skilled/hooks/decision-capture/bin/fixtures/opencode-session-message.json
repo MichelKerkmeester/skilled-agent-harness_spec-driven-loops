@@ -1,0 +1,109 @@
+{
+  "description": "Redacted session_message rows from a live OpenCode 2.1.4 probe on 2026-11-02 in a scratch project: one answered question and one the operator dismissed. Session id, call ids, reasoning text, timing and model fields removed. Each row is one session_message row; data is stored as a JSON string in the real table.",
+  "cases": [
+    {
+      "call_id": "call_fixture_1",
+      "case": "answered: pear"
+    },
+    {
+      "call_id": "call_fixture_2",
+      "case": "dismissed: state.status error, aborted"
+    }
+  ],
+  "rows": [
+    {
+      "session_id": "ses_fixture",
+      "type": "assistant",
+      "seq": 5,
+      "data": {
+        "content": [
+          {
+            "type": "tool",
+            "id": "call_fixture_1",
+            "name": "question",
+            "executed": false,
+            "state": {
+              "status": "completed",
+              "input": {
+                "questions": [
+                  {
+                    "question": "Which fruit should I name in my reply?",
+                    "header": "Fruit choice",
+                    "options": [
+                      {
+                        "label": "apple",
+                        "description": "Name apple in the reply."
+                      },
+                      {
+                        "label": "pear",
+                        "description": "Name pear in the reply."
+                      },
+                      {
+                        "label": "plum",
+                        "description": "Name plum in the reply."
+                      }
+                    ]
+                  }
+                ]
+              },
+              "content": [
+                {
+                  "type": "text",
+                  "text": "User has answered your questions: \"Which fruit should I name in my reply?\"=\"pear\". You can now continue with the user's answers in mind."
+                }
+              ],
+              "metadata": {
+                "answers": [
+                  [
+                    "pear"
+                  ]
+                ],
+                "truncated": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "session_id": "ses_fixture",
+      "type": "assistant",
+      "seq": 26,
+      "data": {
+        "content": [
+          {
+            "type": "tool",
+            "id": "call_fixture_2",
+            "name": "question",
+            "executed": false,
+            "state": {
+              "status": "error",
+              "input": {
+                "questions": [
+                  {
+                    "header": "Vegetable choice",
+                    "options": [
+                      {
+                        "description": "Name leek in the reply.",
+                        "label": "leek"
+                      },
+                      {
+                        "description": "Name kale in the reply.",
+                        "label": "kale"
+                      }
+                    ],
+                    "question": "Which vegetable should I name?"
+                  }
+                ]
+              },
+              "error": {
+                "type": "aborted",
+                "message": "The user dismissed this question"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

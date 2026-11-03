@@ -1,0 +1,74 @@
+{
+  "scenarioId": "decision-capture-live-conversation",
+  "runtime": "pi",
+  "evidenceClass": "manual-testing-playbook",
+  "verdict": "PASS",
+  "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+  "executionContext": {
+    "evidenceRoot": ".",
+    "requireDurableEvidence": true
+  },
+  "supersedes": [],
+  "providerModel": null,
+  "dispatchModel": "none",
+  "runs": [
+    {
+      "run": "1",
+      "verdict": "PASS",
+      "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run1/runner/main/pi/checkpoints.tsv",
+          "bytes": 600,
+          "sha256": "a13957ff5e063adc6d6c973cbf947ae326f3d54e6517663635748179a45b852b"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run1/runner/main/pi/result.json",
+          "bytes": 3509,
+          "sha256": "4c4467758e83575bf9b203835fcecfbf694ae59c0359aa1ffefc7c0410318c85"
+        }
+      ]
+    },
+    {
+      "run": "2",
+      "verdict": "PASS",
+      "reason": "14 stages passed, 0 skipped, 0 failed; repo.changed false.",
+      "operatorInputs": "None; the runner typed every turn and answer.",
+      "evidence": [
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run2/runner/main/pi/checkpoints.tsv",
+          "bytes": 619,
+          "sha256": "6336d70209b1a9f4062731365de317e0aa91911d3ed31a406f9575ff3ab4510e"
+        },
+        {
+          "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run2/runner/main/pi/result.json",
+          "bytes": 3554,
+          "sha256": "3a5e75c85d11ca04ba59e86ad9200bbb4718471c4414a6fddc9aff30677e8cde"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run1/runner/main/pi/checkpoints.tsv",
+      "bytes": 600,
+      "sha256": "a13957ff5e063adc6d6c973cbf947ae326f3d54e6517663635748179a45b852b"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run1/runner/main/pi/result.json",
+      "bytes": 3509,
+      "sha256": "4c4467758e83575bf9b203835fcecfbf694ae59c0359aa1ffefc7c0410318c85"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run2/runner/main/pi/checkpoints.tsv",
+      "bytes": 619,
+      "sha256": "6336d70209b1a9f4062731365de317e0aa91911d3ed31a406f9575ff3ab4510e"
+    },
+    {
+      "path": "specs/system-speckit/043-decision-capture/006-live-conversation-test/scratch/live-runs/pi-run2/runner/main/pi/result.json",
+      "bytes": 3554,
+      "sha256": "3a5e75c85d11ca04ba59e86ad9200bbb4718471c4414a6fddc9aff30677e8cde"
+    }
+  ]
+}

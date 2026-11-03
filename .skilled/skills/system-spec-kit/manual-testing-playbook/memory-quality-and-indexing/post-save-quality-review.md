@@ -2,7 +2,7 @@
 title: "155 -- Post-save quality review"
 description: "This scenario validates the POST-SAVE QUALITY REVIEW block a JSON mode save prints, which reports SKIPPED because the save target is the packet folder, and the reviewer's own suite for issue grading."
 audited_post_018: true
-version: 1.7.0.0
+version: 1.7.1.0
 id: memory-quality-and-indexing-post-save-quality-review
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -44,7 +44,7 @@ Validate post-save quality review issue detection and remediation guidance.
 ```bash
 R="$PWD"; F="$(mktemp -d)"
 mkdir -p "$F/specs/demo" "$F/.skilled/skills" "$F/.opencode"
-rsync -a --exclude scratch specs/system-speckit/042-decision-capture/ "$F/specs/demo/001-demo/"
+rsync -a --exclude scratch specs/system-speckit/043-decision-capture/001-decision-capture-build/ "$F/specs/demo/001-demo/"
 ln -s "$R/.skilled/skills/system-spec-kit" "$F/.skilled/skills/system-spec-kit"
 git -C "$F" init -q
 J='{"sessionSummary":"Review the post-save quality block","triggerPhrases":["post-save review check"],"keyDecisions":["Keep the review non-blocking","Report the skip reason"],"importanceTier":"important","contextType":"implementation"}'

@@ -1,0 +1,42 @@
+{
+  "hook_event_name": "PostToolUse",
+  "tool_name": "ask_user_question",
+  "tool_input": {
+    "questions": [
+      {
+        "question": "Which fruit should I name in my reply?",
+        "header": "Fruit",
+        "options": [
+          {
+            "label": "apple",
+            "description": "Name the fruit apple"
+          },
+          {
+            "label": "pear",
+            "description": "Name the fruit pear"
+          },
+          {
+            "label": "plum",
+            "description": "Name the fruit plum"
+          }
+        ],
+        "multi_select": false
+      }
+    ],
+    "answers": {
+      "Which fruit should I name in my reply?": {
+        "selected": [
+          "pear"
+        ]
+      }
+    }
+  },
+  "tool_use_id": "ask_user_question:0#fixture0001",
+  "tool_response": {
+    "success": true,
+    "output": "User answered your questions:\n{\n  \"Which fruit should I name in my reply?\": {\n    \"selected\": [\n      \"pear\"\n    ],\n    \"skipped\": false\n  }\n}",
+    "error": null
+  },
+  "session_id": "devin-fixture-session",
+  "prompt_id": "00000000-0000-0000-0000-000000000000"
+}

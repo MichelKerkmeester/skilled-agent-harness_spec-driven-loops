@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Claude PostToolUse Decision Capture                           ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Append an answered question tool call to the local queue.       ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Claude PostToolUse Decision Capture
+// ───────────────────────────────────────────────────────────────────
+// Append an answered question tool call to the local queue.
 // PostToolUse(AskUserQuestion) capture for Claude Code.
 //
 // The operator's own answer is the part of a session nothing else keeps in a
@@ -51,7 +50,8 @@ async function main() {
 
   if (String(payload?.tool_name ?? '') !== 'AskUserQuestion') return done();
 
-  const projectDir = process.env.CLAUDE_PROJECT_DIR || payload?.cwd || process.cwd();
+  const projectDir = process.env.CLAUDE_PROJECT_DIR || payload?.cwd;
+  if (!projectDir) return done(); // No known project directory -> fail open.
 
   const records = normalizeAskUserQuestion({
     runtime: 'claude',

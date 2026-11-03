@@ -5,7 +5,7 @@ trigger_phrases:
   - "decision capture sweep"
   - "devin transcript sweep"
   - "opencode session sweep"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # decision-capture-transcript-sweeps -- Decision capture transcript sweeps
@@ -22,7 +22,7 @@ The save step runs one sweep per runtime before it writes decisions. `sweep-tran
 
 ### Why This Matters
 
-The Claude hook only sees answers while it is registered, and OpenCode and Devin have no live hook at all. The sweeps are what make a save complete, so a sweep that misses an answer, keeps a Gate 3 question or writes a duplicate puts the wrong thing in the decision record.
+The live hooks on Claude, OpenCode and Devin only see answers while they are registered and loaded, so an answer given while a hook was off or failing reaches the queue only through a sweep. The sweeps are what make a save complete, so a sweep that misses an answer, keeps a Gate 3 question or writes a duplicate puts the wrong thing in the decision record.
 
 ---
 

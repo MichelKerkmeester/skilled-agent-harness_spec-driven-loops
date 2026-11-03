@@ -269,6 +269,54 @@ describe('writeDecisionRecord', () => {
     expect(after.slice(after.indexOf('### Q001'), after.indexOf(APPENDIX_CLOSE))).toBe(appendixItem);
   });
 
+  it('replaces a same-key appendix item when the answer changes', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writeDecisionRecord(PACKET, [entry({ sourceKey: 'K', decided: 'Amber', answer: 'Amber' })]);
+
+    const result = writeDecisionRecord(PACKET, [
+      entry({ sourceKey: 'K', decided: 'Red', answer: 'Red' }),
+    ]);
+
+    const record = readRecord();
+    const appendix = record.slice(record.indexOf('### Q001'), record.indexOf(APPENDIX_CLOSE));
+    expect(result.ids).toEqual([{ sourceKey: 'K', id: 'Q001' }]);
+    expect(record.split('\n').filter((line) => line.startsWith('| Q001 |'))).toHaveLength(1);
+    expect(record).toContain('| Q001 | Red |');
+    expect(record.split('\n').filter((line) => line.trim() === '### Q001')).toHaveLength(1);
+    expect(appendix).toContain('Answer:\n```text\nRed\n```');
+    expect(appendix).not.toContain('Amber');
+  });
+
+  it('keeps a repeated changed answer byte-identical', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writeDecisionRecord(PACKET, [entry({ sourceKey: 'K', decided: 'Amber', answer: 'Amber' })]);
+    const redEntry = entry({ sourceKey: 'K', decided: 'Red', answer: 'Red' });
+    writeDecisionRecord(PACKET, [redEntry]);
+    const firstRedWrite = fs.readFileSync(path.join(PACKET, 'decision-record.md'));
+
+    const result = writeDecisionRecord(PACKET, [redEntry]);
+    const repeatedRedWrite = fs.readFileSync(path.join(PACKET, 'decision-record.md'));
+
+    expect(result.changed).toBe(false);
+    expect(repeatedRedWrite.equals(firstRedWrite)).toBe(true);
+  });
+
+  it('leaves another source key appendix item untouched when one answer changes', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    writeDecisionRecord(PACKET, [
+      entry({ sourceKey: 'K', decided: 'Amber', answer: 'Amber' }),
+      entry({ sourceKey: 'other', decided: 'Blue', answer: 'Blue' }),
+    ]);
+    const before = readRecord();
+    const otherItemBefore = before.slice(before.indexOf('### Q002'), before.indexOf(APPENDIX_CLOSE));
+
+    writeDecisionRecord(PACKET, [entry({ sourceKey: 'K', decided: 'Red', answer: 'Red' })]);
+
+    const after = readRecord();
+    const otherItemAfter = after.slice(after.indexOf('### Q002'), after.indexOf(APPENDIX_CLOSE));
+    expect(otherItemAfter).toBe(otherItemBefore);
+  });
+
   it('round-trips fenced questions, piped options and multi-line answers exactly', () => {
     writePacketFile('spec.md', LEVEL_TWO_SPEC);
     const question = 'Which block should the note show?\n```js\nconst value = 1;\n```\nAnd why?';
@@ -331,9 +379,57 @@ describe('writeDecisionRecord', () => {
 // A row an author wrote by hand carries no source comment, so a later sweep of
 // the same exchange arrives with a key the record has never seen.
 describe('writeDecisionRecord with hand-written rows', () => {
-  it('reuses the id of a hand-written item whose question and answer match', () => {
+  it('reuses the id of a plain-label hand-written item whose question and answer match', () => {
     writePacketFile('spec.md', LEVEL_TWO_SPEC);
     writePacketFile('decision-record.md', HAND_WRITTEN_RECORD);
+
+    const result = writeDecisionRecord(PACKET, [
+      entry({
+        sourceKey: 'claude:session:toolu_second:0',
+        decided: 'Second choice',
+        question: '  second   QUESTION? ',
+        options: ['First', 'Second'],
+        answer: 'Second',
+      }),
+    ]);
+
+    const after = readRecord();
+    expect(result.ids).toEqual([{ sourceKey: 'claude:session:toolu_second:0', id: 'Q002' }]);
+    expect(after.split('\n').filter((line) => line.startsWith('| Q00'))).toHaveLength(3);
+    expect(after.split('\n').filter((line) => line.trim() === '### Q002')).toHaveLength(1);
+  });
+
+  it('reuses the id of a hand-written item with bolded labels', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    const record = HAND_WRITTEN_RECORD
+      .replace('Question: Second question?', '**Question:** Second question?')
+      .replace('Options: First; Second', '**Options**: First; Second')
+      .replace('Answer: Second', '**Answer:** Second');
+    writePacketFile('decision-record.md', record);
+
+    const result = writeDecisionRecord(PACKET, [
+      entry({
+        sourceKey: 'claude:session:toolu_second:0',
+        decided: 'Second choice',
+        question: '  second   QUESTION? ',
+        options: ['First', 'Second'],
+        answer: 'Second',
+      }),
+    ]);
+
+    const after = readRecord();
+    expect(result.ids).toEqual([{ sourceKey: 'claude:session:toolu_second:0', id: 'Q002' }]);
+    expect(after.split('\n').filter((line) => line.startsWith('| Q00'))).toHaveLength(3);
+    expect(after.split('\n').filter((line) => line.trim() === '### Q002')).toHaveLength(1);
+  });
+
+  it('reuses the id of a hand-written item with indented labels', () => {
+    writePacketFile('spec.md', LEVEL_TWO_SPEC);
+    const record = HAND_WRITTEN_RECORD
+      .replace('Question: Second question?', '  Question: Second question?')
+      .replace('Options: First; Second', '\tOptions: First; Second')
+      .replace('Answer: Second', '    Answer: Second');
+    writePacketFile('decision-record.md', record);
 
     const result = writeDecisionRecord(PACKET, [
       entry({

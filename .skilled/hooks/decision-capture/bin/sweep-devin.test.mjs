@@ -3,6 +3,9 @@
 // ───────────────────────────────────────────────────────────────────
 // The redacted fixture is a real transcript shape, so the sweep is exercised
 // against what Devin actually writes rather than a shape invented for the test.
+// The chat fixture keeps those same shapes but ends in a typed question and a
+// plain reply, because the captured transcript asked through the question tool
+// and never wrote a question into chat.
 // Every test writes its queue into a throwaway project directory. Two tests spawn
 // the CLI: one proves the explicit transcript argument, the other proves the
 // SQLite lookup for the current working directory.
@@ -30,6 +33,7 @@ import { sweepDevinTranscript } from './sweep-devin.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCRIPT = join(HERE, 'sweep-devin.mjs');
 const FIXTURE = join(HERE, 'fixtures', 'devin-transcript.json');
+const CHAT_FIXTURE = join(HERE, 'fixtures', 'devin-chat-session.json');
 const SESSION = 'redacted-devin-session';
 const NOW = '2026-11-01T12:00:00.000Z';
 
@@ -186,5 +190,83 @@ test('the CLI resolves the newest session for the working directory', () => {
     } finally {
       rmSync(dataHome, { recursive: true, force: true });
     }
+  });
+});
+
+// ───────────────────────────────────────────────────────────────────
+// CHAT CANDIDATES
+// ───────────────────────────────────────────────────────────────────
+
+// The turn rules read only a step's source, message and tool calls, so these
+// synthetic transcripts carry those fields and nothing else.
+function bareTranscript(sessionId, steps) {
+  return { schema_version: 'ATIF-v1.7', session_id: sessionId, steps };
+}
+
+function bareStep(stepId, source, message) {
+  return { step_id: stepId, source, message };
+}
+
+function sweepBare(projectDir, fileName, transcript) {
+  const transcriptPath = join(projectDir, fileName);
+  writeFileSync(transcriptPath, JSON.stringify(transcript));
+  return sweepDevinTranscript({ projectDir, transcriptPath, now: NOW });
+}
+
+test('the chat fixture yields one candidate that names its question and answer', () => {
+  withProject((projectDir) => {
+    const result = sweepDevinTranscript({ projectDir, transcriptPath: CHAT_FIXTURE, now: NOW });
+
+    assert.equal(result.chat_candidates.length, 1);
+    const [candidate] = result.chat_candidates;
+    assert.ok(candidate.key.startsWith('devin:'));
+    assert.equal(candidate.question, 'Should the badge blink?');
+    assert.equal(candidate.answer, 'No, keep it static.');
+
+    assert.equal(result.recovered, 0);
+    assert.deepEqual(result.pending, []);
+  });
+});
+
+test('a tool step between a question and its answer breaks the pair', () => {
+  withProject((projectDir) => {
+    const toolStep = bareStep(2, 'agent', 'Checking the widget first.');
+    toolStep.tool_calls = [
+      { tool_call_id: 'exec:1#ab', function_name: 'exec', arguments: { command: 'ls specs/demo' } },
+    ];
+
+    const result = sweepBare(projectDir, 'tool-between.json', bareTranscript('tool-between', [
+      bareStep(1, 'agent', 'Should the badge blink?'),
+      toolStep,
+      bareStep(3, 'user', 'No, keep it static.'),
+    ]));
+
+    assert.deepEqual(result.chat_candidates, []);
+  });
+});
+
+test('a system step never stands in for the operator prompt', () => {
+  withProject((projectDir) => {
+    const stepsWith = (answerSource) => [
+      bareStep(1, 'agent', 'Should the badge blink?'),
+      bareStep(2, answerSource, 'No, keep it static.'),
+    ];
+
+    const fromUser = sweepBare(projectDir, 'from-user.json', bareTranscript('from-user', stepsWith('user')));
+    const fromSystem = sweepBare(
+      projectDir,
+      'from-system.json',
+      bareTranscript('from-system', stepsWith('system')),
+    );
+
+    assert.equal(fromUser.chat_candidates.length, 1);
+    assert.equal(fromUser.chat_candidates[0].answer, 'No, keep it static.');
+
+    // The question is still read, but the same text from the harness leaves it
+    // unanswered: a system step never became a prompt.
+    assert.ok(
+      fromSystem.chat_candidates.some((candidate) => candidate.question === 'Should the badge blink?'),
+    );
+    assert.ok(fromSystem.chat_candidates.every((candidate) => candidate.answer === null));
   });
 });

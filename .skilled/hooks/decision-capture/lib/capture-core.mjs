@@ -1,8 +1,7 @@
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: Operator Decision Capture Queue                               ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Normalize answers into deduplicated, lock-appended queue rows.  ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: Operator Decision Capture Queue
+// ───────────────────────────────────────────────────────────────────
+// Normalize answers into deduplicated, lock-appended queue rows.
 // Runtime-neutral core for the local decision queue.
 //
 // Two producers feed this queue: a runtime adapter that sees a question tool's
@@ -51,16 +50,34 @@ const LOCK_WAIT_BUFFER = new Int32Array(new SharedArrayBuffer(4));
 // 3. IDENTITY KEYS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The decision-record writer accepts only these characters in a source key, and
+// runtimes mint ids outside them: Devin's call ids carry `#`. Every producer
+// builds keys here, so a hook and a save-time reader still agree on one key.
+const KEY_UNSAFE = /[^A-Za-z0-9:._-]/g;
+
+function keyPart(value) {
+  return String(value).replace(KEY_UNSAFE, '.');
+}
+
 // A tool answer is identified by the call that asked and the position within it,
 // because one call can carry several questions.
 export function toolSourceKey(runtime, sessionId, toolUseId, questionIndex) {
-  return `${runtime}:${sessionId}:${toolUseId}:${questionIndex}`;
+  return [runtime, sessionId, toolUseId, questionIndex].map(keyPart).join(':');
 }
 
-// A chat answer has no tool id, so the pair of turns that asked and answered is
-// the identity. The literal `chat` segment keeps the two key spaces apart.
-export function chatSourceKey(runtime, sessionId, questionTurnId, answerTurnId) {
-  return `${runtime}:${sessionId}:chat:${questionTurnId}:${answerTurnId}`;
+/**
+ * Keeps chat-answer keys separate from tool keys and from other questions in one turn.
+ *
+ * @param {string} runtime Runtime that produced the chat question.
+ * @param {string} sessionId Transcript session identity.
+ * @param {string} questionTurnId Assistant turn that asked the question.
+ * @param {string} answerTurnId User turn that answered the question.
+ * @param {string} [segment] Optional identity segment for an additional question.
+ * @returns {string} Stable source key.
+ */
+export function chatSourceKey(runtime, sessionId, questionTurnId, answerTurnId, segment) {
+  const key = [runtime, sessionId, 'chat', questionTurnId, answerTurnId].map(keyPart).join(':');
+  return segment ? key + ':' + keyPart(segment) : key;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

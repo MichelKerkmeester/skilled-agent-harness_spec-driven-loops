@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ COMPONENT: OpenCode SQLite Decision Sweep                                ║
-// ╠══════════════════════════════════════════════════════════════════════════╣
-// ║ PURPOSE: Recover OpenCode's answered questions into the queue.           ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
+// ───────────────────────────────────────────────────────────────────
+// MODULE: OpenCode SQLite Decision Sweep
+// ───────────────────────────────────────────────────────────────────
+// Recover OpenCode's answered questions into the queue.
 // Backstop for the decision queue.
 //
 // OpenCode records a question call and its answer as one completed tool part, so
@@ -23,17 +22,21 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { realpathSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import process from 'node:process';
-import { DatabaseSync } from 'node:sqlite';
 import { fileURLToPath } from 'node:url';
 
 import {
   appendRecords,
   normalizeAskUserQuestion,
   pendingRecords,
+  readConsumedKeys,
 } from '../lib/capture-core.mjs';
+import { chatCandidatesFromTurns } from '../lib/chat-questions.mjs';
+
+const require = createRequire(import.meta.url);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -105,6 +108,13 @@ export function openCodeAnswerRecords({ parts, sessionId, now } = {}) {
 // 4. DATABASE PARTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+// OpenCode loads plugins under Bun, which has no node:sqlite, and the plugin imports this
+// file for its answer mapping, so the driver loads only when a database is opened.
+function openDatabase(dbPath) {
+  const { DatabaseSync } = require('node:sqlite');
+  return new DatabaseSync(dbPath, { readOnly: true });
+}
+
 // A torn row must not fail the whole sweep: one unreadable part is skipped while
 // every other answer still reaches the queue.
 function parsedPart(data) {
@@ -125,12 +135,13 @@ function tableNames(database) {
 // read before a query names a table that is not there. The database is opened
 // read-only because a sweep must never write to OpenCode's own state, and it is
 // closed in finally so a failed query cannot leave a handle behind.
-export function loadOpenCodeParts({ dbPath, sessionId } = {}) {
-  const database = new DatabaseSync(dbPath, { readOnly: true });
+function loadOpenCodeSessionData({ dbPath, sessionId } = {}) {
+  const database = openDatabase(dbPath);
 
   try {
     const tables = tableNames(database);
     const parts = [];
+    const turns = [];
 
     if (tables.has(PART_TABLE)) {
       const rows = database
@@ -145,31 +156,61 @@ export function loadOpenCodeParts({ dbPath, sessionId } = {}) {
     if (tables.has(MESSAGE_TABLE)) {
       const rows = database
         .prepare(
-          `SELECT data FROM ${MESSAGE_TABLE} WHERE session_id = ? AND type = 'assistant' ORDER BY seq`,
+          `SELECT id, type, data FROM ${MESSAGE_TABLE} WHERE session_id = ? ORDER BY seq`,
         )
         .all(sessionId);
       for (const row of rows) {
         const message = parsedPart(row.data);
+        if (!message) continue;
+
         const content = Array.isArray(message?.content) ? message.content : [];
-        for (const item of content) {
-          if (item?.type !== 'tool') continue;
-          // The message item names its tool with `name` where a part uses `tool`,
-          // so the item is converted into the part shape the answer reader
-          // already understands.
-          parts.push({
-            type: 'tool',
-            tool: item.name,
-            callID: item.id,
-            state: item.state,
-          });
+
+        if (row.type === 'assistant') {
+          const toolItems = content.filter((item) => item?.type === 'tool');
+          if (toolItems.length > 0) {
+            turns.push({ kind: 'tool' });
+            for (const item of toolItems) {
+              // The message item names its tool with `name` where a part uses `tool`,
+              // so the item is converted into the part shape the answer reader
+              // already understands.
+              parts.push({
+                type: 'tool',
+                tool: item.name,
+                callID: item.id,
+                state: item.state,
+              });
+            }
+            continue;
+          }
+
+          const textItems = content.filter(
+            (item) => item?.type === 'text' && typeof item.text === 'string',
+          );
+          if (textItems.length > 0) {
+            turns.push({
+              kind: 'assistant',
+              id: row.id,
+              text: textItems.map((item) => item.text).join('\n'),
+            });
+          }
+          continue;
         }
+
+        if (row.type !== 'user') continue;
+        if (typeof message.text !== 'string' || message.text === '') continue;
+        if (message.text.startsWith('<')) continue;
+        turns.push({ kind: 'prompt', id: row.id, text: message.text });
       }
     }
 
-    return parts;
+    return { parts, turns };
   } finally {
     database.close();
   }
+}
+
+export function loadOpenCodeParts({ dbPath, sessionId } = {}) {
+  return loadOpenCodeSessionData({ dbPath, sessionId }).parts;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -180,7 +221,7 @@ export function loadOpenCodeParts({ dbPath, sessionId } = {}) {
 // so both are asked and the larger timestamp wins. Directory matching is exact
 // because OpenCode stores the resolved path it ran in.
 export function latestOpenCodeSession({ dbPath, projectDir } = {}) {
-  const database = new DatabaseSync(dbPath, { readOnly: true });
+  const database = openDatabase(dbPath);
 
   try {
     const tables = tableNames(database);
@@ -212,7 +253,7 @@ export function latestOpenCodeSession({ dbPath, projectDir } = {}) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function sweepOpenCodeSession({ projectDir, dbPath, sessionId, now } = {}) {
-  const parts = loadOpenCodeParts({ dbPath, sessionId });
+  const { parts, turns } = loadOpenCodeSessionData({ dbPath, sessionId });
   const capturedAt = now || new Date().toISOString();
 
   const { appended } = appendRecords(
@@ -220,13 +261,21 @@ export function sweepOpenCodeSession({ projectDir, dbPath, sessionId, now } = {}
     sessionId,
     openCodeAnswerRecords({ parts, sessionId, now: capturedAt }),
   );
+  const pending = pendingRecords(projectDir, sessionId);
+  const { candidates: chatCandidates, dropped: chatCandidatesDropped } = chatCandidatesFromTurns({
+    runtime: RUNTIME,
+    sessionId,
+    turns,
+    consumed: readConsumedKeys(projectDir),
+  });
 
   return {
     transcript: dbPath,
     session_id: sessionId,
     recovered: appended,
-    pending: pendingRecords(projectDir, sessionId),
-    chat_candidates: [],
+    pending,
+    chat_candidates: chatCandidates,
+    chat_candidates_dropped: chatCandidatesDropped,
   };
 }
 
