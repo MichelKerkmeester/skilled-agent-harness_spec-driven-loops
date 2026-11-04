@@ -10,7 +10,7 @@ trigger_phrases:
   - "mass deletion guard blocked commit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Unsticking a Dirty or Behind Worktree
@@ -188,4 +188,4 @@ counts, and ask before committing.
 - [remote-branch-policy.md](./remote-branch-policy.md) — which branches accept a push and when to ask.
 - [worktree-workflows.md](./worktree-workflows.md) — isolated worktrees, the preferred place for real work.
 - [continuous-integration.md](./continuous-integration.md) — the safe publish model that replaced the removed auto-sync.
-- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh`.
+- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` and packet `specs/sk-git/z_archive/019-mass-deletion-guard/`.

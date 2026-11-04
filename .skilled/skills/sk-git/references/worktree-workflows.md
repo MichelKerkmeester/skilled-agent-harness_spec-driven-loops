@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -174,9 +174,10 @@ use one unified, numbered grammar:
   `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which:
   - holds a lock in the shared common git dir;
   - seeds each namespace's max from its stored high-water mark, every matching
-    local + remote ref, and (for `worktrees/`) every registered worktree basename;
+    local + remote ref, and (for `worktrees/`) every registered worktree basename,
+    so a partial scan can never reissue a live number.
 
-The lock serializes contenders, and the scan reads the high-water mark first, so a partial scan can never reissue a live number. Never hand-compute `{NNN}`.
+  Never hand-compute `{NNN}`.
 
 > **Two distinct lanes.** This `worktrees/{NNN}-{slug}` grammar is for *named feature
 > worktrees a human creates*. It is separate from the per-session **ephemeral**
