@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-figma routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,15 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A request that names `figma`, `figma-ds-cli`, Figma Desktop, rendering in Figma, tokens and variables, an extract to DESIGN.md, an export, a connect or a daemon reaches mcp-figma, and this router picks from the CLI command reference, the command-gating taxonomy, the optional MCP wiring, the troubleshooting reference and the paste-ready MCP assets rather than from the whole folder. Design context pulled through an opt-in Figma MCP loads the wiring doc and the paste-ready assets on top of the CLI baseline, so the MCP path never replaces the transport every other route reads. A request whose keywords barely score loads nothing and asks a disambiguation checklist instead of guessing.
+A request that names `figma`, `figma-ds-cli`, Figma Desktop, rendering in Figma, tokens and variables, an extract to DESIGN.md, an export, a connect or a daemon reaches mcp-figma. This router picks from these resource families rather than from the whole folder:
+
+- `references/figma-cli-reference.md` for the CLI command reference
+- `references/tool-surface.md` for the command-gating taxonomy
+- `references/mcp-wiring.md` for the optional MCP wiring
+- `references/troubleshooting.md` for the troubleshooting reference
+- `assets/utcp-figma-manual.md` and `assets/env-template.md` for the paste-ready MCP assets
+
+Design context pulled through an opt-in Figma MCP loads the wiring doc and the paste-ready assets on top of the CLI baseline, so the MCP path never replaces the transport every other route reads. A request whose keywords barely score loads nothing and asks a disambiguation checklist instead of guessing.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

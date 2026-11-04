@@ -2,7 +2,7 @@
 name: mcp-obsidian
 description: Runs Obsidian vault and note work across notesmd-cli, the obsidian CLI and the cyanheads MCP, plus plugin and theme knowledge.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.24.6.0
+version: 0.24.7.0
 ---
 
 <!-- keywords: obsidian, obsidian vault, notesmd-cli, obsidian-mcp, note management, markdown notes, local rest api, health-md, health data, iconic, icon rules, iconic rulebook, icon automation, file icons, folder icons, iconic data json, iconic ruleset, iconic-rules.full.json, iconic-rules.full.md, data.json, obsidian theme, theme system, css theme, css snippet, css variables, theme development, plugin development -->
@@ -323,6 +323,6 @@ Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed t
 - `mcp-code-mode` — Code Mode MCP orchestration (used for cyanheads MCP invocation)
 
 **External:**
-- notesmd-cli repository: https://github.com/Yakitrak/obsidian-cli
-- cyanheads obsidian-mcp-server: https://github.com/cyanheads/obsidian-mcp-server
-- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api
+- notesmd-cli repository: [Yakitrak/obsidian-cli](https://github.com/Yakitrak/obsidian-cli)
+- cyanheads obsidian-mcp-server: [cyanheads/obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server)
+- Obsidian Local REST API plugin: [obsidian-local-rest-api](https://github.com/coddingtonbear/obsidian-local-rest-api)

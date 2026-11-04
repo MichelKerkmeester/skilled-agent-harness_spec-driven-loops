@@ -10,15 +10,15 @@ trigger_phrases:
   - "notion markdown"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Official Notion MCP Tools Reference
 
-**MCP Server:** `notion` manual — the `@notionhq/notion-mcp-server` package (v2.5.1, published 2026-08-04) launched over stdio via `npx -y @notionhq/notion-mcp-server`, registered as a Code Mode manual in `.utcp_config.json`. This is the local open-source server, not the hosted `https://mcp.notion.com/mcp` OAuth server; the dual-backend split is documented in `../mcp-servers/notion-mcp/README.md`.
-**Auth:** `NOTION_TOKEN` environment variable (an internal integration token, prefix `ntn_`), interpolated into `.utcp_config.json`. Not OAuth — there is no browser authorization step on the local stdio backend.
-**Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions, not an array of `{tool, input}` records.
-**Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>`. For this manual the pattern is `notion.notion_<tool_name>`. Notion tool names contain hyphens (e.g. `create-a-page`), which are not valid JavaScript dot-identifiers — see the invocation note in Section 8 about hyphen handling. Do not guess a tool name or its exact callable form — confirm each with `tool_info()`/`list_tools()` before calling.
+- **MCP Server:** `notion` manual — the `@notionhq/notion-mcp-server` package (v2.5.1, published 2026-08-04) launched over stdio via `npx -y @notionhq/notion-mcp-server`, registered as a Code Mode manual in `.utcp_config.json`. This is the local open-source server, not the hosted `https://mcp.notion.com/mcp` OAuth server; the dual-backend split is documented in `../mcp-servers/notion-mcp/README.md`.
+- **Auth:** `NOTION_TOKEN` environment variable (an internal integration token, prefix `ntn_`), interpolated into `.utcp_config.json`. Not OAuth — there is no browser authorization step on the local stdio backend.
+- **Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions, not an array of `{tool, input}` records.
+- **Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>`. For this manual the pattern is `notion.notion_<tool_name>`. Notion tool names contain hyphens (e.g. `create-a-page`), which are not valid JavaScript dot-identifiers — see the invocation note in Section 8 about hyphen handling. Do not guess a tool name or its exact callable form — confirm each with `tool_info()`/`list_tools()` before calling.
 
 > **Verification status (2026-08-21):** the 24 tool names below were confirmed verbatim against the official README (`https://raw.githubusercontent.com/makenotion/notion-mcp-server/main/README.md`, fetched 2026-08-21). The `notion` manual is NOT yet registered in this environment — `NOTION_TOKEN` is unset and `list_tools()` returns zero `notion.*` entries — so no name here has been live-reconfirmed through Code Mode. Treat the tool set as source-confirmed but not runtime-confirmed: re-run `list_tools()` / `tool_info("notion.notion_<name>")` once the manual is registered before hardcoding any callable. The README's prose still states "Total tools now: 22 (was 19 in v1.x)" — that count predates the two markdown tools (`retrieve-page-markdown`, `update-page-markdown`) added in a later minor release; the actual tools table lists 24, matching a third-party benchmark that counted "24 tools (one per endpoint)".
 
@@ -26,9 +26,13 @@ version: 0.1.1.0
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The official Notion MCP server exposes **24 tools across 6 API domains** — one tool per Notion REST endpoint, generated from the Notion OpenAPI spec. It mutates the Notion workspace (creates pages, manages data sources, appends content), so mcp-notion is a light **workflow** mode, not a read-only transport.
 
 The 6 covered domains are: **Pages (7), Blocks (5), Databases / Data Sources (6), Comments (2), Users (3), Search (1)**.
+
+### When to Use
 
 Use this reference when:
 - Routing a Notion request to a specific MCP tool (see the priority table in Section 6 and the operation table in `../ROUTER.md` section 3).

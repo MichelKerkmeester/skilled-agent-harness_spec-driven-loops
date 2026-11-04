@@ -10,16 +10,27 @@ trigger_phrases:
   - "obsidian cli unable to find"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Official Obsidian CLI, Agent Usage
 
-The official `obsidian` binary is a remote control for a running desktop app, not a headless tool. Everything below follows from that one fact.
+The official `obsidian` binary is a remote control for a running desktop app, not a headless tool. An agent that scripts it like `curl` will misread its exit codes and write to the wrong note.
 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Make the app-backed CLI safe to script: prove it will answer, read its stdout instead of its exit status, and never let the human's open note become the target.
+
+### When to Use
+
+- Scripting the official `obsidian` CLI against a running app.
+- Diagnosing a preflight failure or an exit-0 error.
+
+### Registration
 
 The official CLI ships inside the Obsidian desktop app and is registered from Settings → General → Command line interface → Register CLI. On macOS that registration creates a symlink at `/usr/local/bin/obsidian` pointing into the app bundle.
 
@@ -166,7 +177,13 @@ Three surfaces reach an Obsidian vault. Pick by what the outcome needs, not by w
 
 > **Agent default stays `notesmd-cli`.** It has no app dependency and no exit-code trap. Escalate to the official CLI when the result requires the live app, and preflight per §2 before depending on it.
 
-**Among the two app-backed surfaces, this CLI is the default.** It needs only the running app, where the MCP server also needs the Local REST API plugin enabled, a bearer token and a Node process. It exposes 106 commands against the server's 12, and it answers in about 38 ms per call with nothing to keep warm. Escalate to the MCP server for the four things this CLI cannot do (patch a section in place, replace text inside a note, write tags as a YAML list, set a JSON-typed frontmatter value) or for a batch over roughly 20 calls, where a warm session costs about 3 ms per call. Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
+**Among the two app-backed surfaces, this CLI is the default.**
+
+- It needs only the running app, where the MCP server also needs the Local REST API plugin enabled, a bearer token and a Node process.
+- It exposes 106 commands against the server's 12, and it answers in about 38 ms per call with nothing to keep warm.
+- Escalate to the MCP server for the four things this CLI cannot do (patch a section in place, replace text inside a note, write tags as a YAML list, set a JSON-typed frontmatter value) or for a batch over roughly 20 calls, where a warm session costs about 3 ms per call.
+
+Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
 
 ---
 

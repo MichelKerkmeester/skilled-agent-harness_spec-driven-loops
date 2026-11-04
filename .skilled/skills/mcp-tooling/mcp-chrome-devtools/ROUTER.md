@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-chrome-devtools routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,13 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name browser debugging, Chrome DevTools, CDP, `bdg` or `browser-debugger-cli`, when they ask for a screenshot, HAR export, console log, network inspection, DOM query or an in-browser script, when they need a CI-ready automation script, or when a Chrome DevTools MCP call chains browser work with other tools or runs parallel isolated sessions. It routes to three resource families: `references/cdp-patterns.md` for the CDP command patterns, `references/session-management.md` for the session lifecycle, and `references/troubleshooting.md` for an install, a failure, or the fuller diagnostics an on-demand keyword requests.
+Requests reach this skill from four kinds of signal: browser-debugging vocabulary ("browser debugging", "Chrome DevTools", "CDP", `bdg`, `browser-debugger-cli`); inspection tasks (a screenshot, HAR export, console log, network inspection, DOM query or in-browser script); CI-ready automation; and a Chrome DevTools MCP call that chains browser work with other tools or runs parallel isolated sessions.
+
+It routes to three resource families:
+
+- `references/cdp-patterns.md` for the CDP command patterns.
+- `references/session-management.md` for the session lifecycle.
+- `references/troubleshooting.md` for an install, a failure, or the fuller diagnostics an on-demand keyword requests.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -30,13 +36,15 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`CLI`** (weight 4) fires on "bdg", "browser-debugger-cli", "terminal", "cli", "command line", "shell", "headless", "lightweight" and "token efficient", and a `bdg` binary on PATH adds 5 on top. It loads `references/cdp-patterns.md` and `references/session-management.md`.
-- **`MCP`** (weight 4) fires on "mcp", "code mode", "multi-tool", "tool chain", "isolated instances", "parallel sessions" and "in parallel", and a configured Code Mode adds 4 on top. It loads `references/session-management.md` and `references/cdp-patterns.md`.
-- **`INSTALL`** (weight 4) fires on "install", "setup", "not installed", "not found", "command -v bdg", "npm install", "getting started" and "first time". It loads `references/troubleshooting.md`.
-- **`TROUBLESHOOT`** (weight 4) fires on "error", "failed", "troubleshoot", "keeps dropping", "won't connect", "hangs", "stuck", "not working" and "root cause", and a request carrying an error adds 4 on top. It loads `references/troubleshooting.md`.
-- **`AUTOMATION`** (weight 3) fires on "ci", "continuous integration", "pipeline", "automation", "production", "automate" and "batch". It loads `references/cdp-patterns.md` and `references/session-management.md`.
+- **`CLI`** (weight 4) fires on "bdg", "browser-debugger-cli", "terminal", "cli", "command line", "command-line", "shell", "headless", "lightweight" and "token efficient", and a `bdg` binary on PATH adds 5 on top. It loads `references/cdp-patterns.md` and `references/session-management.md`.
+- **`MCP`** (weight 4) fires on "mcp", "code mode", "multi-tool", "model context protocol", "multiple tools", "tool chain", "isolated instances", "parallel sessions" and "in parallel", and a configured Code Mode adds 4 on top. It loads `references/session-management.md` and `references/cdp-patterns.md`.
+- **`INSTALL`** (weight 4) fires on "install", "setup", "set up", "not installed", "command -v bdg", "getting started", "download", "npm install", "not found" and "first time". It loads `references/troubleshooting.md`.
+- **`TROUBLESHOOT`** (weight 4) fires on "error", "failed", "troubleshoot", "session issue", "keeps dropping", "won't connect", "figure out why", "work out the cause", "hangs", "hanging", "stuck", "crash", "crashing", "broken", "not working", "timeout", "disconnect", "flaky" and "root cause", and a request carrying an error adds 4 on top. It loads `references/troubleshooting.md`.
+- **`AUTOMATION`** (weight 3) fires on "ci", "continuous integration", "pipeline", "automation", "unattended", "production", "automate", "batch" and "recurring". It loads `references/cdp-patterns.md` and `references/session-management.md`.
 
-The two highest-scoring intents load together when their scores sit within 1.0 of each other, at most two intents per request, and a request that scores on none loads nothing: it returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cdp-patterns.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set. A scoring `ON_DEMAND_KEYWORDS` term then adds `references/troubleshooting.md` and `references/session-management.md` on top of the scored set.
+- The two highest-scoring intents load together when their scores sit within 1.0 of each other, and at most two intents load per request.
+- A request that scores on none loads nothing: it returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cdp-patterns.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set.
+- A scoring `ON_DEMAND_KEYWORDS` term then adds `references/troubleshooting.md` and `references/session-management.md` on top of the scored set.
 
 ---
 

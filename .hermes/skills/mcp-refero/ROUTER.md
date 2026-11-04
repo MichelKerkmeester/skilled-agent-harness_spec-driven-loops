@@ -20,7 +20,16 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A Refero request reaches this skill when it names Refero, or asks for real shipped app screens, user journeys, a UI reference search, a named visual style, or the full detail of a shortlisted style, screen or flow, and the `mcp-tooling` hub's `mcp-refero` mode signal selects the packet, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset: the 8-tool contract and research funnel in `references/tool-surface.md`, the manual, bridge and auth model in `references/mcp-wiring.md`, the failure modes in `references/troubleshooting.md`, and the already-registered manual snapshot in `assets/utcp-refero-manual.md`, because this is a flat intent router with no keyed resource subdirectories. `references/tool-surface.md` is the declared default, offered as a fallback suggestion rather than loaded by any scored route.
+A Refero request reaches this skill when it names Refero, or asks for real shipped app screens, user journeys, a UI reference search, a named visual style, or the full detail of a shortlisted style, screen or flow, and the `mcp-tooling` hub's `mcp-refero` mode signal selects the packet, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset:
+
+- `references/tool-surface.md` for the 8-tool contract and research funnel
+- `references/mcp-wiring.md` for the manual, bridge and auth model
+- `references/troubleshooting.md` for the failure modes
+- `assets/utcp-refero-manual.md` for the already-registered manual snapshot
+
+It is a flat intent router with no keyed resource subdirectories.
+
+`references/tool-surface.md` is the declared default: the three research routes load it, and a zero-score route offers it as a suggestion.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

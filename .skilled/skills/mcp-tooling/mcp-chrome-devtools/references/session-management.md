@@ -10,7 +10,7 @@ trigger_phrases:
   - "browser session state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
 # Advanced Session Management
@@ -20,6 +20,18 @@ Advanced patterns for session lifecycle, multi-session handling, and state persi
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep a `bdg` browser session healthy from start to stop, with the scripts that verify, recover and clean it up.
+
+### When to Use
+
+- You are writing a script that starts and stops its own browser session.
+- A session start is flaky and needs retries, a timeout or a health check.
+- You need cleanup that survives errors and interrupts.
+
+### Core Principle
 
 Always verify session state before operations - session failures cascade. Implement proper cleanup patterns (trap-based) to prevent resource leaks and orphaned browser processes.
 
@@ -573,7 +585,7 @@ stop_and_verify
 
 ## 10. PERFORMANCE OPTIMIZATION
 
-### Session Pooling Pattern
+### Warm Session Reuse
 
 ```bash
 #!/bin/bash
@@ -664,7 +676,7 @@ batch_operations "https://example.com" \
 1. **Always verify session state** before executing operations
 2. **Use trap for cleanup** to ensure sessions are stopped on script exit
 3. **Implement retry logic** for production scripts
-4. **Track multiple sessions** with metadata when running concurrent operations
+4. **Label sessions for reporting only** and finish one before starting the next, because `bdg` exposes a single active session (§6).
 5. **Save session state** for resumption after interruptions
 6. **Enable common domains upfront** (Network, Runtime, DOM) for better performance
 7. **Implement health checks** with meaningful error messages

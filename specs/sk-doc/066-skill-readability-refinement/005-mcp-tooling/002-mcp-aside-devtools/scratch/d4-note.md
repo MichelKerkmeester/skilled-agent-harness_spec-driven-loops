@@ -1,0 +1,1 @@
+Review 2 passed and a read of the diff found nothing to restore. Every primary-source URL in the four references survives, now wrapped in angle brackets so it renders as a link; no intro, heading, code block or citation changed.

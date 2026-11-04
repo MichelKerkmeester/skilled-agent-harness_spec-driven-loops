@@ -9,22 +9,40 @@ trigger_phrases:
   - "health-viz render block"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.5.0.0
+version: 0.5.1.0
 ---
 
 # Health.md Plugin Index (health-md)
 
 The `mcp-obsidian` mode operates this plugin by **managing the data files it renders** — never by driving its chart UI. Health.md Visualizations renders Apple Health and Android Health exports already present in the vault.
 
+---
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep every chart trustworthy by treating the folder, the settings, and the files as the contract and the rendered image as an unproven claim.
+
+### When to Use
+
+- Opening the Health.md file layer before trusting a chart.
+- Deciding which reference or data file a request touches.
+- Checking whether the rendered data is real or the bundled fallback.
 
 | Identity field | Current value | Why it matters |
 | --- | --- | --- |
 | Obsidian plugin ID | health-md | Plugin directory name + enablement entry |
 | Display name | **Health.md Visualizations** | Current manifest name |
 | Plugin repository | codybontecou/health-md-visualizations | Source of release assets + behavior facts |
-| Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults (Phase 11); desktop and mobile supported |
+| Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults; desktop and mobile supported |
 | Companion exporters | Health.md iOS/Android/Mac app (`healthmd.app`) | Current Apple export: daily `healthmd.health_data` v8, roll-up `healthmd.rollup_summary` v9; Android frozen v4, analytical v5. Whether the installed plugin v2.1.0 reads v8/v9 is VERIFY — historically v0–v7 |
+
+### Reference files
+
+- [data-model.md](data-model.md) - the full file-layer contract: data folder and settings, supported formats, the v8 daily envelope, v9 roll-ups, the dictionary, and the archives.
+- [workflows.md](workflows.md) - recipes for adding files, placing `health-viz` blocks, restructuring the folder, and proving a chart is real.
+- [troubleshooting.md](troubleshooting.md) - cause, detection, and recovery for empty charts, ignored files, schema drift, and platform gaps.
 
 ---
 
@@ -47,7 +65,7 @@ Chart coverage is shared across platforms for common activity, heart, respirator
 | Individual entry notes | Workout, vitals, platform-specific entries | Separate discovery path via declared frontmatter/tags; do not merge into daily summaries |
 | Chart placement | `health-viz` fenced block in a note | Yes — insert the render block |
 | Plugin settings | `.obsidian/plugins/health-md/data.json` | Read the full contract (folder/structure/pattern/format plus theme/palette/appearance, chart dimensions, click behavior); edit only on explicit user request |
-| Enablement | `.obsidian/community-plugins.json` | Yes (Phase 11 done) |
+| Enablement | `.obsidian/community-plugins.json` | Yes |
 
 ---
 

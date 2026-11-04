@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma var name binding"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # Figma CLI Reference
@@ -20,12 +20,18 @@ version: 1.0.0.3
 
 ## 1. OVERVIEW
 
-### Core Principle
-figma-ds-cli drives the live Figma **Desktop** session over a local HTTP daemon, so there is no Figma API key and nothing renders without Figma Desktop open on a file. Identify the binary first, confirm Figma Desktop is open and the daemon is healthy, then act, gating every command by its mutation class.
+### Purpose
+
+This reference gives a reader the binary identity, connect mode, daemon transport and command class for a `figma-ds-cli` command before that command runs.
 
 ### When to Use
+
 - Look up the exact binary identity, connect mode, daemon transport, and command surface before running anything.
 - Confirm whether a given command is read-only, mutating, or destructive before promising it is safe.
+
+### Core Principle
+
+figma-ds-cli drives the live Figma **Desktop** session over a local HTTP daemon, so there is no Figma API key and nothing renders without Figma Desktop open on a file. Identify the binary first, confirm Figma Desktop is open and the daemon is healthy, then act, gating every command by its mutation class.
 
 ### Key Sources
 - [tool-surface.md](tool-surface.md) - the full read-only / mutating / destructive taxonomy and gating policy.
@@ -33,7 +39,7 @@ figma-ds-cli drives the live Figma **Desktop** session over a local HTTP daemon,
 - [troubleshooting.md](troubleshooting.md) - failure modes and fixes.
 - [INSTALL-GUIDE.md](../INSTALL-GUIDE.md) - install steps and binary verification (installation detail lives there, not here).
 
-This skill is **version 1.0.0.0** and installs figma-ds-cli through the embedded `mcp-servers/figma-cli` scaffold rather than source-vendoring it.
+This skill installs figma-ds-cli through the embedded `mcp-servers/figma-cli` scaffold rather than source-vendoring it.
 
 All load-bearing claims below are tagged **[CONFIRMED]** (read from the upstream source or package metadata, or verified live with `npm view`) or **[INFERRED]** (reasoned from source, needs a live `--help` or run to close). The figma-ds-cli binary was verified live at 1.2.0 for this release, but the command examples below were drafted from source rather than transcribed from each subcommand, so treat them as **illustrative and verify the exact flags with `<bin> <group> --help`** before relying on them. The full uncertainty list is Section 8.
 

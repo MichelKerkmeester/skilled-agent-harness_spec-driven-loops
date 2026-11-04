@@ -1,0 +1,11 @@
+.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md:315: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md:316: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md:317: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md:14: render_h2_numbering: Unnumbered H2 "MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE" among numbered peers; number ever
+.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:21: render_bold_label_join: Consecutive bold labels "MCP server:" and "Auth:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md:22: render_bold_label_join: Consecutive bold labels "Auth:" and "Tool naming:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md:327: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md:328: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md:329: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md:330: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=6 render_warnings=10 invalid=0

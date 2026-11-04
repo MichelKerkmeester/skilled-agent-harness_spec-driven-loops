@@ -1,0 +1,9 @@
+.skilled/skills/mcp-tooling/mcp-notion/README.md
+.skilled/skills/mcp-tooling/mcp-notion/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-notion/SKILL.md
+.skilled/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md
+.skilled/skills/mcp-tooling/mcp-notion/references/database-model.md
+.skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md
+.skilled/skills/mcp-tooling/mcp-notion/references/migration-inventory.md
+.skilled/skills/mcp-tooling/mcp-notion/references/property-types.md
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md

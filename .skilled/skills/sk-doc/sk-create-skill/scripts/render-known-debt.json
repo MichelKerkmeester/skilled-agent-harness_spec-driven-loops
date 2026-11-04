@@ -44,43 +44,6 @@
         "render_bold_label_join"
       ]
     },
-    "mcp-tooling/mcp-aside-devtools": {
-      "findings": 24,
-      "codes": [
-        "render_bare_url"
-      ]
-    },
-    "mcp-tooling/mcp-chrome-devtools": {
-      "findings": 3,
-      "codes": [
-        "render_bare_url"
-      ]
-    },
-    "mcp-tooling/mcp-click-up": {
-      "findings": 6,
-      "codes": [
-        "render_bare_url",
-        "render_bold_label_join"
-      ]
-    },
-    "mcp-tooling/mcp-notion": {
-      "findings": 8,
-      "codes": [
-        "render_bare_url",
-        "render_bold_label_join"
-      ]
-    },
-    "mcp-tooling/mcp-obsidian": {
-      "findings": 20,
-      "codes": [
-        "render_bare_url",
-        "render_bold_label_join",
-        "render_h2_numbering",
-        "render_overview_heading",
-        "render_overview_orientation",
-        "render_section_order"
-      ]
-    },
     "sk-design/sk-design-chart": {
       "findings": 1,
       "codes": [

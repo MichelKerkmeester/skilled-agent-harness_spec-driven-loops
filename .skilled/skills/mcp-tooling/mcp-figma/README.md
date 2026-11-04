@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 # mcp-figma
@@ -104,13 +104,21 @@ The single most important fact about installing this tool is that two different 
 
 ### Connect Modes And The Daemon
 
-Connecting has two modes and a sharp difference in risk. The **safe mode**, `figma-ds-cli connect --safe`, is the default. It runs the FigCli plugin bridge and patches nothing: you import `plugin/manifest.json` once, then keep `Plugins > Development > FigCli` open each session. The **yolo mode**, `figma-ds-cli connect` with no `--safe`, patches Figma Desktop's `app.asar`, codesigns on macOS and restarts Figma with a CDP debug port on 9222. It may need Full Disk Access or admin rights. It breaks when Figma updates. The skill never runs it without explicit consent and a stated rollback, which is `figma-ds-cli unpatch`.
+Connecting has two modes and a sharp difference in risk.
+
+- **Safe mode (default):** `figma-ds-cli connect --safe` runs the FigCli plugin bridge and patches nothing. Import `plugin/manifest.json` once, then keep `Plugins > Development > FigCli` open each session.
+- **Yolo mode (gated):** `figma-ds-cli connect` with no `--safe` patches Figma Desktop's `app.asar`, codesigns on macOS and restarts Figma with a CDP debug port on 9222. It may need Full Disk Access or admin rights, and it breaks when Figma updates. The skill never runs it without explicit consent and a stated rollback, which is `figma-ds-cli unpatch`.
 
 Behind both modes sits a local daemon, an HTTP server on `127.0.0.1:3456` authenticated by a token at `~/.figma-ds-cli/.daemon-token`, with verbs `status`, `diagnose`, `start`, `stop`, `restart` and `reconnect`. The daemon is idle-timed and not reboot-persistent. The token is never exposed in output. An "Unauthorized" error is diagnosed and restarted rather than fixed by deleting the token.
 
 ### The Command Safety Model
 
-The CLI's verbs fall into classes. The gate depends on the class. **Read-only** verbs are the safe default: `status`, `get`, `find`, `inspect`, the `var list` and `var find` queries, `extract`, every `export` form, the analyze and a11y audits plus dry-run variants. None of them change the Figma document, though the local exports do write files, so they still demand an explicit output path and never a silent overwrite. **Mutating** verbs change the open file and are gated behind confirmation: every `create`, `render` and token or variable verb, the bind and set families, layout verbs, variant generation, imports and the app-level `connect`, `unpatch` and `config set`. **Destructive** verbs are gated more strictly, requiring explicit confirmation, an explicit target node or file, a command preview and a one-line rollback. The destructive set is `var delete-all`, `var delete-batch`, `delete` and `remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear` and `annotate clear`. Finally, `eval`, `raw` and `run` execute arbitrary instructions, so the skill treats them as mutating and reviews the code or command before running it, even when the prompt sounds exploratory.
+The CLI's verbs fall into classes. The gate depends on the class.
+
+- **Read-only** verbs are the safe default: `status`, `get`, `find`, `inspect`, the `var list` and `var find` queries, `extract`, every `export` form, the analyze and a11y audits plus dry-run variants. None of them change the Figma document, though the local exports do write files, so they still demand an explicit output path and never a silent overwrite.
+- **Mutating** verbs change the open file and are gated behind confirmation: every `create`, `render` and token or variable verb, the bind and set families, layout verbs, variant generation, imports and the app-level `connect`, `unpatch` and `config set`.
+- **Destructive** verbs are gated more strictly, requiring explicit confirmation, an explicit target node or file, a command preview and a one-line rollback. The destructive set is `var delete-all`, `var delete-batch`, `delete` and `remove`, `node delete`, `undo`, `unwrap`, `fj delete`, `plugins uninstall`, `dev unlink`, `component prop delete`, `grid clear` and `annotate clear`.
+- **Arbitrary** verbs are `eval`, `raw` and `run`, which execute arbitrary instructions, so the skill treats them as mutating and reviews the code or command before running it, even when the prompt sounds exploratory.
 
 ### The Optional Figma MCP
 
@@ -201,7 +209,16 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 | [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating and destructive command taxonomy, the destructive set, the `eval/raw/run` rule and the export no-overwrite rule |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts and the Code Mode env-var prefix |
-| Skills Library, `.skilled/skills/README.txt` in the skills repository | The skill catalog and routing front door |
+| [`assets/utcp-figma-manual.md`](./assets/utcp-figma-manual.md) | Paste-ready Framelink `figma` `.utcp_config.json` manual entry and the matching `.env` note for the optional Code Mode path |
+| [`assets/env-template.md`](./assets/env-template.md) | The single prefixed `figma_FIGMA_API_KEY` `.env` line for the optional Figma MCP token |
+| [`examples/README.md`](./examples/README.md) | Safe worked walkthroughs: safe connect and daemon health, read-only inspect/export and the optional MCP context pull |
+| [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory for every `figma-ds-cli` command group, tagged read-only, mutating or destructive |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios across detection, daemon health, read-only access, the safety gate and routing |
+| [`scripts/install.sh`](./scripts/install.sh) | Installs and verifies `figma-ds-cli`, preferring the silships repo when the npm build is stale |
+| [`scripts/README.md`](./scripts/README.md) | What each setup, connect, daemon and diagnostic script changes and the output it prints |
+| [`mcp-servers/figma-cli/README.md`](./mcp-servers/figma-cli/README.md) | Install and verification notes for the `figma-ds-cli` binary the skill drives |
+| [`mcp-servers/figma-mcp/README.md`](./mcp-servers/figma-mcp/README.md) | Configuration notes for the optional Framelink Figma MCP through Code Mode |
+| [Skills Library](../../README.txt) | The skill catalog and routing front door |
 
 <!-- readme-check
 allow-ref plugin/manifest.json | the FigCli plugin manifest inside the installed figma-ds-cli package, imported into Figma Desktop rather than a path in this repository

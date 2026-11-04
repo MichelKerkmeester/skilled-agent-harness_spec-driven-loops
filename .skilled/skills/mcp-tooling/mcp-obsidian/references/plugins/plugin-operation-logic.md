@@ -10,7 +10,7 @@ trigger_phrases:
   - "file layer over ui principle"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Reference — Plugin operation logic (file-layer model)
@@ -23,19 +23,19 @@ The `mcp-obsidian` mode operates Obsidian community plugins by editing the data 
 
 ### Purpose
 
-Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The surviving per-plugin and theme references (`health-md`, `iconic`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
-
-### Core Principle
-
-> **Operate a plugin's features by editing the DATA the plugin reads — not by driving the plugin's UI.**
-
-The mode has no headless UI bridge, so command-palette actions and in-app buttons are out of reach. Almost every plugin persists its state as text/JSON in the vault, and *that* is directly operable.
+`plugin-operation-logic.md` ships in the `mcp-obsidian` mode at `references/plugins/` and defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The surviving per-plugin and theme references (`health-md`, `iconic`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
 
 ### When to Use
 
 - Any request that changes what a plugin shows or computes (icons, health charts, theme appearance).
 - Deciding whether a plugin capability is reachable headlessly before promising it to the operator.
 - Extending the mode to a plugin not yet covered by a per-plugin reference.
+
+### Core Principle
+
+> **Operate a plugin's features by editing the DATA the plugin reads — not by driving the plugin's UI.**
+
+The mode has no headless UI bridge, so command-palette actions and in-app buttons are out of reach. Almost every plugin persists its state as text/JSON in the vault, and *that* is directly operable.
 
 ### Prerequisites
 

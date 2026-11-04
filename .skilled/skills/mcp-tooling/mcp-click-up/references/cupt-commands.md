@@ -10,7 +10,7 @@ trigger_phrases:
   - "cupt note"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # cupt CLI Reference
@@ -21,7 +21,16 @@ cupt (ClickUP Terminal) — Python CLI for ClickUp task management, purpose-buil
 
 ## 1. OVERVIEW
 
+### Purpose
+
 cupt provides a terminal interface to ClickUp designed for agent-driven workflows. Every read command supports `--json` for machine-readable output. Completion uses automatic per-list status resolution so agents never need to hardcode status names. The `--offline` flag uses a local cache populated by `cupt prefetch`, enabling operation without network access.
+
+### When to Use
+
+- You need a daily ClickUp task operation from the terminal.
+- You need machine-readable output for an agent.
+- You need a completion that resolves the per-list closed status.
+- You need to keep working without network access.
 
 **Key agent advantages over direct API calls:**
 - `cupt done` resolves the correct closed status per list automatically
@@ -114,7 +123,7 @@ cupt list --team "Engineering" --tag urgent # Combine (slow due to client-side t
 
 ---
 
-## 6. TASK DETAILS
+## 6. TASK DETAILS AND CREATION
 
 | Command | Description | Flags |
 |---------|-------------|-------|

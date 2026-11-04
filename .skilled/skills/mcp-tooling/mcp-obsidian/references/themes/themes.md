@@ -12,7 +12,7 @@ trigger_phrases:
   - "minimal theme"
 importance_tier: "normal"
 contextType: "reference"
-version: "1.0.0.0"
+version: "1.0.1.0"
 ---
 
 # Obsidian Theme System
@@ -21,7 +21,17 @@ The `mcp-obsidian` mode treats a theme as a **file package plus an activation re
 
 ## 1. OVERVIEW
 
-A theme is a **full restyle of Obsidian's appearance** shipped as a single `theme.css` plus a `manifest.json`. It is one of three extension surfaces, and they are distinct:
+### Purpose
+
+A theme is a **full restyle of Obsidian's appearance** shipped as a single `theme.css` plus a `manifest.json`. It is one of three extension surfaces.
+
+### When to Use
+
+- Installing, activating, or managing a community theme.
+- Checking which theme is active from the file layer.
+- Distinguishing a theme from a snippet or a plugin.
+
+The three extension surfaces are distinct:
 
 | Surface | What it changes | Carrier file | Lives in |
 | --- | --- | --- | --- |

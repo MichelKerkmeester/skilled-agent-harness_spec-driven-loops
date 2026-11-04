@@ -10,7 +10,7 @@ trigger_phrases:
   - "figma code mode variable not found"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Figma CLI Troubleshooting
@@ -21,25 +21,29 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Find the root cause before applying a fix, because symptom fixes create cascading failures. The most common traps are upstream of any Figma operation: the wrong package installed under a colliding name, an old Node, Figma Desktop not open, or a connect mode that was never completed. Work the quick diagnostics first, then jump to the matching symptom row.
+This reference lets a reader resolve a `figma-ds-cli` failure at its cause, with the fix or escalation that matches the symptom.
 
 ### When to Use
 
 - Diagnose a `figma-ds-cli` install, binary-collision, connect, daemon, or port-conflict failure before mutating anything.
 - Resolve an optional Figma MCP (Code Mode) discovery or env-prefix failure.
 
-### Key Sources
+### Core Principle
 
-- [figma-cli-reference.md](figma-cli-reference.md) - binary identity, connect modes, and the daemon model behind these symptoms.
-- [tool-surface.md](tool-surface.md) - the command gating classes the escalation rows reference.
-- [mcp-wiring.md](mcp-wiring.md) - the optional Code Mode MCP path and its `.env` prefix.
+Find the root cause before applying a fix, because symptom fixes create cascading failures. The most common traps are upstream of any Figma operation: the wrong package installed under a colliding name, an old Node, Figma Desktop not open, or a connect mode that was never completed. Work the quick diagnostics first, then jump to the matching symptom row.
 
 Two hard facts shape every fix below:
 
 - **The canonical binary is `figma-ds-cli`** (silships, npm, MIT). The npm package literally named `figma-cli` is an **unrelated** tool (unic/figma-cli, bin `figma`). The `figma-cli` command only exists when installed from the silships git repo. **Never `npm i -g figma-cli`.**
 - **The CLI drives the live Figma Desktop session**, so Figma Desktop must be **open with a file**, Node must be **>=18**, and there is **no Figma API key** for the CLI. macOS is the supported baseline, and Linux/Windows are experimental and unverified.
+
+### Key Sources
+
+- [figma-cli-reference.md](figma-cli-reference.md) - binary identity, connect modes, and the daemon model behind these symptoms.
+- [tool-surface.md](tool-surface.md) - the command gating classes the escalation rows reference.
+- [mcp-wiring.md](mcp-wiring.md) - the optional Code Mode MCP path and its `.env` prefix.
 
 ---
 
@@ -307,7 +311,14 @@ figma-ds-cli connect --safe # prefer the no-patch path going forward
 
 ## 7. DAEMON ISSUES
 
-The daemon is a local **HTTP server on `127.0.0.1:3456`** (not a Unix socket), authed via the `X-Daemon-Token` header (`~/.figma-ds-cli/.daemon-token`), PID at `~/.figma-cli-daemon.pid`, with an idle timeout (~60 min) and no reboot persistence. Recovery order is always **status -> diagnose -> restart -> reconnect**.
+The daemon is a local HTTP server, not a Unix socket:
+
+- **Endpoint**: `127.0.0.1:3456`.
+- **Auth**: the `X-Daemon-Token` header (`~/.figma-ds-cli/.daemon-token`).
+- **PID file**: `~/.figma-cli-daemon.pid`.
+- **Lifetime**: an idle timeout (~60 min), with no reboot persistence.
+
+Recovery order is always **status -> diagnose -> restart -> reconnect**.
 
 ### Issue: daemon "Unauthorized"
 
@@ -320,14 +331,14 @@ Unauthorized
 
 **Cause**: Token mismatch between the client and the running daemon (`X-Daemon-Token`).
 
+> **Never auto-delete the token** (`~/.figma-ds-cli/.daemon-token`) and never print its contents in user-facing output. Diagnose, then restart, because deletion is not the remedy.
+
 **Fix**:
 
 ```bash
 figma-ds-cli daemon diagnose 2>&1   # inspect the mismatch first
 figma-ds-cli daemon restart 2>&1    # restart re-aligns the token
 ```
-
-> **Never auto-delete the token** (`~/.figma-ds-cli/.daemon-token`) and never print its contents in user-facing output. Diagnose, then restart, because deletion is not the remedy.
 
 ---
 

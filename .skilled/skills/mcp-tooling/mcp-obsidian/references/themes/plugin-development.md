@@ -11,14 +11,24 @@ trigger_phrases:
   - "community-plugins json"
 importance_tier: "normal"
 contextType: "reference"
-version: "1.0.0.0"
+version: "1.0.1.0"
 ---
 
 # Obsidian Plugin Development Overview
 
-A plugin is JavaScript that changes Obsidian's **behavior** — commands, views, settings. It is the behavioral counterpart to a theme (styling only). This is an overview that points to `docs.obsidian.md/Plugins` for depth, not an exhaustive tutorial.
+A plugin is JavaScript that changes Obsidian's **behavior** — commands, views, settings. It is the behavioral counterpart to a theme (styling only).
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Choose the right build surface (theme, snippet, or plugin) and know the package a plugin needs before writing code.
+
+### When to Use
+
+- A need is behavioral rather than visual, and a theme or snippet will not cover it.
+- Checking the required plugin files, manifest fields, or the sample starting point.
+- Preparing a plugin for community submission.
 
 | Surface | What it changes | Carrier |
 | --- | --- | --- |
@@ -27,6 +37,10 @@ A plugin is JavaScript that changes Obsidian's **behavior** — commands, views,
 | **Plugin** | Behavior / logic (commands, views, settings) | `main.js` |
 
 A plugin adds behavior a theme cannot: commands, custom views, workspace actions, persisted settings. If a need is purely visual, use a theme or snippet instead.
+
+### Boundaries
+
+This document is deliberately an **overview**. For depth on the Plugin API, build tooling, lifecycle hooks, settings UI, and publishing, read `docs.obsidian.md/Plugins`. The `mcp-obsidian` mode interacts with installed plugins at the file layer (manifest, `data.json` settings, enablement in `community-plugins.json`); authoring and compiling a plugin is out of scope for the mode.
 
 ---
 
@@ -61,13 +75,7 @@ The exact current submission steps (required manifest fields for the listing ent
 
 ---
 
-## 5. SCOPE OF THIS REFERENCE
-
-This document is deliberately an **overview**. For depth on the Plugin API, build tooling, lifecycle hooks, settings UI, and publishing, read `docs.obsidian.md/Plugins`. The `mcp-obsidian` mode interacts with installed plugins at the file layer (manifest, `data.json` settings, enablement in `community-plugins.json`); authoring and compiling a plugin is out of scope for the mode.
-
----
-
-## 6. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 | File | Use it for |
 | --- | --- |

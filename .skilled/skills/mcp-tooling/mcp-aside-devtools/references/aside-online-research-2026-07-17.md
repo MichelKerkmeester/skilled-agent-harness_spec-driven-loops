@@ -9,7 +9,7 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 last_updated: "2026-07-17"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Aside Online Research Refresh (2026-07-17)
@@ -47,14 +47,14 @@ Use this document as corroborating source evidence, then re-capture the installe
 
 **CONFIRMED (S1, S2, S4)** — the online docs corroborate the version-pinned surface already captured in [`aside-cli-reference.md`](aside-cli-reference.md); nothing new was added or removed:
 
-- `aside "<task>"` — start a natural-language browser-agent session. [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside --session <session-id> "<task>"` — continue an existing session. [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside --account <id> "<task>"` — target a specific account for a single run (documented for `aside` and `aside exec`). [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside account list` — list accounts (current marked with `*`). [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside account status [id]` — show current or specific account status. [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside account use <id>` — set the default account for future commands. [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside mcp` — launch MCP server mode. [SOURCE: https://docs.aside.com/help/developers.md]
-- `aside repl "<code>"` — execute deterministic browser-automation REPL code. [SOURCE: https://docs.aside.com/help/developers.md]
+- `aside "<task>"` — start a natural-language browser-agent session. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside --session <session-id> "<task>"` — continue an existing session. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside --account <id> "<task>"` — target a specific account for a single run (documented for `aside` and `aside exec`). [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside account list` — list accounts (current marked with `*`). [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside account status [id]` — show current or specific account status. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside account use <id>` — set the default account for future commands. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside mcp` — launch MCP server mode. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- `aside repl "<code>"` — execute deterministic browser-automation REPL code. [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
 
 **UNKNOWN — model-flag spelling.** The public docs do not resolve the `-m provider/model` vs separate `--model` / `--provider` conflict noted in SKILL.md. Still capture the installed `aside --help` before relying on either. [SOURCE: not present in S1–S5]
 
@@ -63,7 +63,7 @@ Use this document as corroborating source evidence, then re-capture the installe
 - `aside "Open the failed GitHub Actions run for this PR, find the first failing step, compare it with the last passing run, and draft a PR comment with log links. Do not post it."`
 - `aside "Open localhost:3000, run through signup, capture desktop and mobile screenshots, and write a short QA note."`
 
-Both examples end with an explicit "do not post / do not change settings" boundary — the docs repeatedly steer developers to keep Aside read-oriented and leave code changes in the coding agent. [SOURCE: https://aside.com/blog/developers]
+Both examples end with an explicit "do not post / do not change settings" boundary — the docs repeatedly steer developers to keep Aside read-oriented and leave code changes in the coding agent. [SOURCE: https://aside.com/blog/developers](https://aside.com/blog/developers)
 
 ---
 
@@ -82,10 +82,10 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 }
 ```
 
-[SOURCE: https://docs.aside.com/help/developers.md]
+[SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
 
-- **CONFIRMED** — purpose framing: `"Use aside mcp to connect Aside to another agent or coding tool as a Model Context Protocol server."` [SOURCE: https://docs.aside.com/help/developers.md]
-- **CONFIRMED** — MCP use case (S4): reach for MCP "when your coding agent needs evidence from private browser pages, such as a CI log, feature-flag dashboard, Datadog trace, internal admin page, or staging screenshot." [SOURCE: https://aside.com/blog/developers]
+- **CONFIRMED** — purpose framing: `"Use aside mcp to connect Aside to another agent or coding tool as a Model Context Protocol server."` [SOURCE: https://docs.aside.com/help/developers.md](https://docs.aside.com/help/developers.md)
+- **CONFIRMED** — MCP use case (S4): reach for MCP "when your coding agent needs evidence from private browser pages, such as a CI log, feature-flag dashboard, Datadog trace, internal admin page, or staging screenshot." [SOURCE: https://aside.com/blog/developers](https://aside.com/blog/developers)
 - **INFERRED** — transport is local stdio launched by the client as `command: aside, args: ["mcp"]` (no URL/port/token field in the config), matching the direct-stdio probe already recorded in [`mcp-wiring.md`](mcp-wiring.md) and the fixture. [SOURCE: S2 config shape + `discovery-fixture-2026-07-16.json`]
 - **CONFIRMED (fixture)** — the exposed tool inventory is exactly one tool, `repl`; Code Mode registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`. The online docs do not enumerate tools, so the fixture stays the authority. [SOURCE: `discovery-fixture-2026-07-16.json`]
 - **UNKNOWN** — which permission mode the spawned `aside mcp` process inherits. S3 confirms modes exist and that per-session settings layer on agent defaults, but does not state the MCP process's default mode. [SOURCE: partial in S3]
@@ -94,7 +94,7 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 ## 5. REPL ENVIRONMENT AND HELPER API
 
-**CONFIRMED (S1, S4)** — the docs describe the REPL as Playwright-shaped: "It feels like Playwright: you get `page`, tabs, locators, screenshots, downloads, and JavaScript," plus "the same page snapshots and stable element refs that the browser agent uses, so a click or assertion lines up with what Aside will actually act on." [SOURCE: https://docs.aside.com/help/developers ; https://aside.com/blog/developers]
+**CONFIRMED (S1, S4)** — the docs describe the REPL as Playwright-shaped: "It feels like Playwright: you get `page`, tabs, locators, screenshots, downloads, and JavaScript," plus "the same page snapshots and stable element refs that the browser agent uses, so a click or assertion lines up with what Aside will actually act on." [SOURCE: https://docs.aside.com/help/developers ; https://aside.com/blog/developers](https://docs.aside.com/help/developers)
 
 **CONFIRMED (fixture)** — the online prose is corroborated and made precise by the live tool schema. The full helper surface (authoritative) is in [`discovery-fixture-2026-07-16.json`](discovery-fixture-2026-07-16.json) `search_tools[0].description`:
 
@@ -111,19 +111,19 @@ Both examples end with an explicit "do not post / do not change settings" bounda
 
 **CONFIRMED (S3)** — corroborates and sharpens SKILL.md §3:
 
-- Three session permission modes: **Read only** (inspect browser + file context, no file changes), **Guard** (default; work in approved folders, ask before others), **Full access** (read/write anywhere). [SOURCE: https://docs.aside.com/help/security.md]
-- Three rule values: **Allow** (use without asking), **Ask** (ask first), **Deny** (block; **takes precedence**). [SOURCE: https://docs.aside.com/help/security.md]
-- **CONFIRMED** — "Saved password values stay hidden from the AI agent"; the system checks password-access policy and target URL before building autofill payloads. [SOURCE: https://docs.aside.com/help/security.md]
-- **CONFIRMED** — layering: "When a task has its own permission settings, Aside applies those task settings on top of the agent defaults." Permission areas span sandbox, readable/writable file roots, and tool/browser/network rules. [SOURCE: https://docs.aside.com/help/security.md]
+- Three session permission modes: **Read only** (inspect browser + file context, no file changes), **Guard** (default; work in approved folders, ask before others), **Full access** (read/write anywhere). [SOURCE: https://docs.aside.com/help/security.md](https://docs.aside.com/help/security.md)
+- Three rule values: **Allow** (use without asking), **Ask** (ask first), **Deny** (block; **takes precedence**). [SOURCE: https://docs.aside.com/help/security.md](https://docs.aside.com/help/security.md)
+- **CONFIRMED** — "Saved password values stay hidden from the AI agent"; the system checks password-access policy and target URL before building autofill payloads. [SOURCE: https://docs.aside.com/help/security.md](https://docs.aside.com/help/security.md)
+- **CONFIRMED** — layering: "When a task has its own permission settings, Aside applies those task settings on top of the agent defaults." Permission areas span sandbox, readable/writable file roots, and tool/browser/network rules. [SOURCE: https://docs.aside.com/help/security.md](https://docs.aside.com/help/security.md)
 - **UNKNOWN** — exact MFA / CAPTCHA / vault-unlock pause semantics are not spelled out in S3; SKILL.md's "human-only boundary" posture stands as the safe default, not a doc-quoted contract. [SOURCE: not detailed in S3]
 
 ---
 
 ## 7. DISTRIBUTION AND VERSIONING
 
-- **CONFIRMED** — install is the operator-invoked curl bootstrap: `curl -fsSL https://releases.aside.com/install.sh | bash`. [SOURCE: https://docs.aside.com/help/developers]
-- **CONFIRMED** — no official public npm or GitHub package for the Aside AI browser's CLI/MCP was found. The two GitHub repos named "aside" (`alxclark/aside` — a browser-extension boilerplate; `google/aside` — an unrelated Google tool) are NOT this product. Distribution is the installer only; there is no `npx`-style MCP launch (contrast `mcp-chrome-devtools`, which launches `chrome-devtools-mcp` via `npx`). [SOURCE: web search 2026-07-17; https://github.com/alxclark/aside ; https://github.com/google/aside]
-- **CONFIRMED** — the native browser changelog (S5) latest entry is **v1.0.714.1** (most recent), prior dated entry **v1.0.626.1 (2026-06-26)**; entries are browser-shell/rendering/bookmark fixes. **No CLI, MCP, REPL, permission, or Playwright-surface change is documented since 2026-07-16.** [SOURCE: https://docs.aside.com/changelog/native]
+- **CONFIRMED** — install is the operator-invoked curl bootstrap: `curl -fsSL https://releases.aside.com/install.sh | bash`. [SOURCE: https://docs.aside.com/help/developers](https://docs.aside.com/help/developers)
+- **CONFIRMED** — no official public npm or GitHub package for the Aside AI browser's CLI/MCP was found. The two GitHub repos named "aside" (`alxclark/aside` — a browser-extension boilerplate; `google/aside` — an unrelated Google tool) are NOT this product. Distribution is the installer only; there is no `npx`-style MCP launch (contrast `mcp-chrome-devtools`, which launches `chrome-devtools-mcp` via `npx`). [SOURCE: web search 2026-07-17; https://github.com/alxclark/aside ; https://github.com/google/aside](https://github.com/alxclark/aside)
+- **CONFIRMED** — the native browser changelog (S5) latest entry is **v1.0.714.1** (most recent), prior dated entry **v1.0.626.1 (2026-06-26)**; entries are browser-shell/rendering/bookmark fixes. **No CLI, MCP, REPL, permission, or Playwright-surface change is documented since 2026-07-16.** [SOURCE: https://docs.aside.com/changelog/native](https://docs.aside.com/changelog/native)
 - **Version-number note.** The native changelog versioning (`v1.0.714.1`) differs from the CLI/MCP build string observed by probe (`1.26.626.1517`). These appear to be separate version lines (browser shell vs CLI/agent build). INFERRED — do not equate them; pin each independently. [SOURCE: S5 vs fixture]
 
 ---

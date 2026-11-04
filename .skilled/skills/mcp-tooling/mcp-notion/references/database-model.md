@@ -9,7 +9,7 @@ trigger_phrases:
   - "notion query data source"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Notion Database Model Reference
@@ -23,6 +23,17 @@ version: 0.1.0.0
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep every schema read, query and write on the right object: the data source rather than the database, a relation target shared with the integration, a rollup function the read side can compute, and a formula that validates on save.
+
+### When to Use
+
+- Resolving a `database_id` to the `data_source_id` a schema read, query or row create needs.
+- Choosing `single_property` or `dual_property` for a new relation, or setting a relation value on a row.
+- Configuring a rollup, or interpreting the function a rollup reports on read.
+- Writing, debugging or validating a Formulas 2.0 expression.
 
 A Notion "database" is not a single flat table. As of API `2025-09-03` it is a three-level nesting:
 

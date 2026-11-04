@@ -10,7 +10,7 @@ trigger_phrases:
   - "pipe bdg output to jq"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
 # CDP Patterns & Command Examples
@@ -20,6 +20,18 @@ CDP command reference with domain patterns and Unix pipeline examples.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Turn a browser task into a CDP command that runs against the connected Chrome version, without a hardcoded method list.
+
+### When to Use
+
+- You know the browser task but not the CDP method name or signature.
+- You are assembling a multi-step browser workflow from commands that already run.
+- You want to filter `bdg` output with `jq`, `grep` or another Unix tool.
+
+### Core Principle
 
 Progressive disclosure from discovery to execution - always explore capabilities via `bdg cdp --list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to 300+ CDP methods across 53 domains.
 
@@ -733,6 +745,4 @@ bdg stop 2>&1
 - [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) - Official CDP documentation with 300+ methods across 53 domains
 - [browser-debugger-cli GitHub](https://github.com/szymdzum/browser-debugger-cli) - Source repository and issue tracker
 
----
-
-**Reference**: Full CDP documentation at https://chromedevtools.github.io/devtools-protocol/
+**Reference**: [Full CDP documentation](https://chromedevtools.github.io/devtools-protocol/)

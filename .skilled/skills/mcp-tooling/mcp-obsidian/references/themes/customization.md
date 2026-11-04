@@ -11,7 +11,7 @@ trigger_phrases:
   - "theme-dark theme-light"
 importance_tier: "normal"
 contextType: "reference"
-version: "1.0.0.0"
+version: "1.0.1.0"
 ---
 
 # Obsidian Theme Customization
@@ -19,6 +19,16 @@ version: "1.0.0.0"
 Customization in `mcp-obsidian` means **layering snippets and CSS-variable overrides on top of an installed theme** — never editing the theme's own `theme.css`. This keeps community themes update-safe and keeps every change reversible from the file layer.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep every visual change in a snippet the user can toggle off, while the theme underneath stays updatable.
+
+### When to Use
+
+- A user wants a visual change to an installed theme.
+- Deciding between a CSS snippet and a variable override.
+- Checking whether a snippet is actually enabled.
 
 There are two customization levers, both file-based:
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside session flag"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Aside CLI Reference
@@ -69,7 +69,14 @@ Use `aside "<prompt>"` or `aside exec` for goal-driven, multi-step, approval-gat
 
 Use `aside repl "<JavaScript>"` for direct inspection, screenshots, downloads, and repeatable evidence-producing steps. The documented example pattern is `openTab(...)`. The REPL keeps a persistent JavaScript context while its process is alive.
 
-Helper surface of the MCP `repl` tool, confirmed by live Code Mode discovery 2026-07-16 ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json); supersedes the earlier version-pinned advertised list; the CLI REPL is documented as the same deterministic lane): `console.log`, `display(input)`, `page`, `tabs`, `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`, `snapshot(page, options?)`, `page.screenshot(options?)`, `locator.screenshot(options?)`, `page.pdf(options?)`, `annotatedScreenshot(page)`, `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)`. A non-mutating probe had earlier confirmed `page`, `tabs`, `fs`, `pwd` as values and `openTab`, `snapshot`, `annotatedScreenshot`, `fetch` as functions.
+Helper surface of the MCP `repl` tool, confirmed by live Code Mode discovery 2026-07-16 ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json); supersedes the earlier version-pinned advertised list; the CLI REPL is documented as the same deterministic lane):
+- Console and display: `console.log`, `display(input)`
+- Browser state: `page`, `tabs`
+- Tab helpers: `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`
+- Evidence: `snapshot(page, options?)`, `page.screenshot(options?)`, `locator.screenshot(options?)`, `page.pdf(options?)`, `annotatedScreenshot(page)`
+- Node and utilities: `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)`
+
+A non-mutating probe had earlier confirmed `page`, `tabs`, `fs`, `pwd` as values and `openTab`, `snapshot`, `annotatedScreenshot`, `fetch` as functions.
 
 **UNKNOWN**: the exact output shapes of `snapshot` and screenshots on a *bound* page are untested (discovery lists the surface; it does not exercise calls). Treat every helper call's result shape as probe-required until exercised.
 
@@ -98,4 +105,4 @@ Sign-out behavior: a warning is printed; BYO provider keys keep working, built-i
 - [session-management.md](./session-management.md) — three-layer session model, daemon, concurrency, permission modes.
 - [mcp-wiring.md](./mcp-wiring.md) — MCP transport, discovery, and Code Mode registration posture.
 - [troubleshooting.md](./troubleshooting.md) — error taxonomy and recovery flows.
-- Primary sources: https://docs.aside.com/help/developers, https://docs.aside.com/help/ai, https://docs.aside.com/help/tasks.
+- Primary sources: <https://docs.aside.com/help/developers>, <https://docs.aside.com/help/ai>, <https://docs.aside.com/help/tasks>.

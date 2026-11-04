@@ -1,0 +1,1113 @@
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/README.md b/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
+index 8c378321744..635152565fc 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
+@@ -29,12 +29,6 @@ version: 0.18.2.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-Obsidian holds your thinking. Notes, daily notes, tags and a stack of plugins that turn plain files into charts, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
+-
+-That is the whole reason this skill exists. It makes AI use inside Obsidian effective. It knows how to read and write vault files headlessly, how to reach the live app when the UI itself is the goal and how to understand the plugins you run at the data level so it can operate them without guessing. The skill is not a launcher for two CLIs. The CLIs and the MCP are the means. Working with your knowledge and your plugins is the point.
+-
+ ### What It Does
+ 
+ The skill gives an agent three ways to touch a vault, chosen by what the request needs:
+@@ -45,6 +39,12 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
+ 
+ On top of those surfaces sits the plugin knowledge layer. The mode treats each documented community plugin as a file format: Health.md export files with `health-viz` render blocks and the Iconic `data.json` rulebook. Alongside the plugins it operates the Obsidian theme system at the file layer: the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+ 
++### Why This Skill Exists
++
++Obsidian holds your thinking. Notes, daily notes, tags and a stack of plugins that turn plain files into charts, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
++
++That is the whole reason this skill exists. It makes AI use inside Obsidian effective. It knows how to read and write vault files headlessly, how to reach the live app when the UI itself is the goal and how to understand the plugins you run at the data level so it can operate them without guessing. The skill is not a launcher for two CLIs. The CLIs and the MCP are the means. Working with your knowledge and your plugins is the point.
++
+ ### The Plugin Knowledge Layer
+ 
+ | Plugin | What the skill knows how to operate |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md b/.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md
+index 6229b434bd9..54e26183000 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md
+@@ -323,6 +323,6 @@ Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed t
+ - `mcp-code-mode` — Code Mode MCP orchestration (used for cyanheads MCP invocation)
+ 
+ **External:**
+-- notesmd-cli repository: https://github.com/Yakitrak/obsidian-cli
+-- cyanheads obsidian-mcp-server: https://github.com/cyanheads/obsidian-mcp-server
+-- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api
++- notesmd-cli repository: [Yakitrak/obsidian-cli](https://github.com/Yakitrak/obsidian-cli)
++- cyanheads obsidian-mcp-server: [cyanheads/obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server)
++- Obsidian Local REST API plugin: [obsidian-local-rest-api](https://github.com/coddingtonbear/obsidian-local-rest-api)
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md b/.skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md
+index 788f08bc4b7..521c81183cd 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md
+@@ -15,14 +15,28 @@ These blocks are the forms validated against the researched render contract. The
+ 
+ **Mock-data warning**: when the configured `Health/` data folder is missing or empty, the plugin falls back to deterministic bundled example data. A rendered chart therefore proves neither that a data folder was found nor that real exports were loaded. Verify the selected data folder and at least one authentic source file before trusting a chart.
+ 
+-## Minimal default
++## 1. OVERVIEW
++
++### Purpose
++
++A note author can place a working `health-viz` chart without reading the render contract first.
++
++### Usage
++
++Paste the block that matches the window you need, then adjust its dates or `last` value.
++
++---
++
++## 2. MINIMAL DEFAULT
+ 
+ ```health-viz
+ type: step-spiral
+ last: 7
+ ```
+ 
+-## Sized chart
++---
++
++## 3. SIZED CHART
+ 
+ ```health-viz
+ type: step-spiral
+@@ -31,7 +45,9 @@ width: 400
+ height: 300
+ ```
+ 
+-## Windowed (inclusive from/to)
++---
++
++## 4. WINDOWED (INCLUSIVE FROM/TO)
+ 
+ ```health-viz
+ type: step-spiral
+@@ -39,14 +55,18 @@ from: 2026-08-01
+ to: 2026-08-07
+ ```
+ 
+-## Last-N days
++---
++
++## 5. LAST-N DAYS
+ 
+ ```health-viz
+ type: step-spiral
+ last: 30
+ ```
+ 
+-## Click action (pin tooltip)
++---
++
++## 6. CLICK ACTION (PIN TOOLTIP)
+ 
+ ```health-viz
+ type: step-spiral
+@@ -54,7 +74,9 @@ last: 7
+ clickAction: pin-tooltip
+ ```
+ 
+-## Dynamic date variable
++---
++
++## 7. DYNAMIC DATE VARIABLE
+ 
+ ```health-viz
+ type: step-spiral
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md b/.skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md
+index 567a387b0b4..993950bc41f 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md
+@@ -17,9 +17,13 @@ This asset gives plugin-specific data edits a shared operating sequence. Each re
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++A plugin data edit lands safely, and the operator knows when a reload is the only step left.
++
+ The mode operates vault files through its CLI and MCP surfaces. A plugin's UI renders or transforms data already stored in the vault, so an agent should identify the plugin's source file, preserve its schema, make the smallest reversible mutation, validate the data, and tell the operator when a reload is needed for rendering. ([plugin operation logic](../references/plugins/plugin-operation-logic.md))
+ 
+-### Shared sequence
++### Usage
+ 
+ 1. Identify the exact vault and source-of-truth file.
+ 2. Read the current file and any plugin settings or include/index references.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md
+index b13cbf5fe0f..dddcf4b20b5 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md
+@@ -19,10 +19,12 @@ Two surfaces drive a running Obsidian vault: the official `obsidian` CLI and the
+ 
+ ---
+ 
+-## 1. OVERVIEW AND VERDICT
++## 1. OVERVIEW
+ 
+ This reference answers one question: given a running Obsidian app, which of the two surfaces should an agent drive, and when should it switch. Section 2 records the machine and vault the numbers came from. Sections 3 and 4 hold the per-capability results in each app state, Section 5 the timings, Section 6 the rule that follows, and Section 7 what stayed unproven.
+ 
++### Verdict
++
+ **Default to the official `obsidian` CLI, wrapped in a stdout error check.** Reach for the MCP server only for section-scoped editing, tag-list management, or a batch of more than roughly twenty calls, and only after confirming the Local REST API plugin is enabled.
+ 
+ Three measurements decided it.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md
+index 32300e1b3d5..96dbd00caac 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md
+@@ -15,10 +15,10 @@ version: 0.1.2.0
+ 
+ # Obsidian MCP Tools Reference
+ 
+-**MCP Server:** `obsidian`, the `obsidian-mcp-server` package (cyanheads) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`. On 2026-09-02 that `@latest` tag resolved to **v0.12.3**, so pin nothing to a version this document names.
+-**Auth:** `OBSIDIAN_API_KEY` (the Local REST API bearer token) plus `OBSIDIAN_BASE_URL` and `OBSIDIAN_VERIFY_SSL`, interpolated into `.utcp_config.json`. The token comes from the Obsidian **Local REST API** plugin, not from an OAuth flow.
+-**Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions (not an array of `{tool, input}` records).
+-**Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore. For this manual the pattern is `obsidian.obsidian_<tool_name>` (e.g. `obsidian.obsidian_get_note`). Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
++- **MCP Server:** `obsidian`, the `obsidian-mcp-server` package (cyanheads) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`. On 2026-09-02 that `@latest` tag resolved to **v0.12.3**, so pin nothing to a version this document names.
++- **Auth:** `OBSIDIAN_API_KEY` (the Local REST API bearer token) plus `OBSIDIAN_BASE_URL` and `OBSIDIAN_VERIFY_SSL`, interpolated into `.utcp_config.json`. The token comes from the Obsidian **Local REST API** plugin, not from an OAuth flow.
++- **Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions (not an array of `{tool, input}` records).
++- **Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore. For this manual the pattern is `obsidian.obsidian_<tool_name>` (e.g. `obsidian.obsidian_get_note`). Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
+ 
+ > **App-backed surface:** unlike `notesmd-cli` (headless, filesystem), this MCP server drives the vault through Obsidian's **Local REST API plugin**, which requires a **running Obsidian app**. If no app/token is available, route to the `notesmd-cli` CLI instead (see `obsidian-cli-commands.md`).
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md
+index 201e4aaa140..b21ecefae88 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md
+@@ -24,11 +24,45 @@ The `mcp-obsidian` mode's write-side method for migrating a database-heavy Notio
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Finish a Notion migration at the file layer and prove parity before the source workspace is retired.
++
++### When to Use
++
++Open it once `mcp-notion`'s inventory exists and the Importer has run, or before either, to see what the import will leave behind.
++
+ A flawless migration is not a single tool run. The **Obsidian Importer's Notion API mode** is the only import path that preserves database structure — it converts blocks to Markdown, generates `.base` files for databases, and resolves cross-page references through a three-phase placeholder system (Import → Resolution, up to 10 rounds → Cleanup). It runs once, in the Obsidian desktop app, driven by a human. Everything after that import — verifying what the importer converted, rebuilding what it dropped, and proving parity — is an agent task performed at the file layer against the vault the importer produced.
+ 
+-The importer auto-converts pages, nested hierarchy, internal links, databases (→ Bases), properties (→ frontmatter), formulas and rollups (→ Bases formulas, a hybrid strategy), single relations (→ wikilinks), block attachments, and page covers. It does **not** convert comments, secondary database views, two-way relation back-references, gallery cover images, external attachments (unless opted in), or the `style()`/`name()`/`email()` formula functions (no Obsidian equivalent). Treat every one of those as a reconstruction task, not a lost cause — sections 3-5 below cover the recovery path for each.
++The importer auto-converts:
++
++- Pages and nested hierarchy
++- Internal links
++- Databases → Bases
++- Properties → frontmatter
++- Formulas and rollups → Bases formulas (a hybrid strategy)
++- Single relations → wikilinks
++- Block attachments
++- Page covers
++
++It does **not** convert:
++
++- Comments
++- Secondary database views
++- Two-way relation back-references
++- Gallery cover images
++- External attachments (unless opted in)
++- The `style()`/`name()`/`email()` formula functions (no Obsidian equivalent)
+ 
+-The write layer this method operates against has three surfaces: **notesmd-cli** (headless filesystem operations, the default for unattended migration work), the **cyanheads MCP** (app-backed, an accelerator when a live Obsidian session with Local REST API is available), and direct **file-layer edits** on `.base` files, plugin `_database.md` schemas, and `data.json` configs. No CLI or MCP tool authors a `.base` file or a Dataview query block — both are pure file-layer writes the agent performs directly with Read/Write/Edit.
++Treat every one of those as a reconstruction task, not a lost cause: sections 3-5 below cover the recovery path for each.
++
++The write layer this method operates against has three surfaces:
++
++- **notesmd-cli:** headless filesystem operations, the default for unattended migration work.
++- **The cyanheads MCP:** app-backed, an accelerator when a live Obsidian session with Local REST API is available.
++- **Direct file-layer edits:** on `.base` files, plugin `_database.md` schemas, and `data.json` configs.
++
++No CLI or MCP tool authors a `.base` file or a Dataview query block. Both are pure file-layer writes the agent performs directly with Read/Write/Edit.
+ 
+ ---
+ 
+@@ -181,13 +215,6 @@ Load this reference when a request involves:
+ - Reconstructing comment threads that the importer dropped.
+ - Running the post-import parity verification protocol, or deciding whether Notion can be retired.
+ 
+-### Sibling references
+-
+-| File | Use it for |
+-|---|---|
+-| `references/plugins/plugin-operation-logic.md` | The general file-layer model for writing `.base` files and plugin schemas |
+-| `../../mcp-notion/references/migration-inventory.md` | The read-side counterpart: the 7-step inventory procedure that must run before and during this method |
+-
+ ---
+ 
+ ## 8. RELATED RESOURCES
+@@ -195,5 +222,5 @@ Load this reference when a request involves:
+ - `../../mcp-notion/references/migration-inventory.md` — `mcp-notion`'s read-side inventory method (7-step procedure, API-gap reads, and read-limit constraints) that feeds step 1 of this method.
+ - `references/plugins/plugin-operation-logic.md` — the general file-layer model this method's `.base`/plugin-schema writes follow.
+ - `references/mcp-tools.md` — the cyanheads MCP catalog, an optional accelerator for step 6/8 when a live Obsidian session is available.
+-- Notion Bases community plugin: https://github.com/bgarciamoura/obsidian-notion-bases-plugin — the P0 plugin behind sections 3-4's recovery matrix.
+-- Obsidian Importer: https://github.com/obsidianmd/obsidian-importer — the source of the auto-conversion behavior this method verifies and extends.
++- [Notion Bases community plugin](https://github.com/bgarciamoura/obsidian-notion-bases-plugin) - the P0 plugin behind sections 3-4's recovery matrix.
++- [Obsidian Importer](https://github.com/obsidianmd/obsidian-importer) - the source of the auto-conversion behavior this method verifies and extends.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md
+index 91e06317474..6133b7f5731 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md
+@@ -24,6 +24,15 @@ Two distinct CLI profiles operate an Obsidian vault. Pick by whether a live app
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Run the right vault command against the right profile, with the flags and failure behavior that profile actually has.
++
++### When to Use
++
++- Choosing between `notesmd-cli` and the official `obsidian` CLI for a task.
++- Looking up a vault command, flag, or agent invariant before scripting one.
++
+ `notesmd-cli` is a Go CLI that reads and writes the vault's markdown files directly. Because it never talks to a running app, it is the reliable surface for scripted, headless agent workflows: create notes, search content, list files, edit frontmatter, and manage which vault is the default — all against the filesystem.
+ 
+ The official `obsidian` CLI is a thin remote control shipped inside the desktop app (GA in desktop v1.12.4, Feb 2026). It drives an app that is **already running** and does not start one. It is the right surface when you need the live app's resolved link graph, its computed tag/task index, its plugins, sync and file history, or its rendering. Agent-facing usage, preflight and the exit-0 failure contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+@@ -84,7 +93,60 @@ yay -S notesmd-cli-bin
+ 
+ ---
+ 
+-## 4. VAULT CONFIGURATION (notesmd-cli)
++## 4. AGENT INVARIANTS (MUST FOLLOW)
++
++### 1. Confirm the vault before writing
++
++```bash
++# WRONG — assume the default vault is the intended one:
++notesmd-cli create "Important Note"
++
++# RIGHT — verify which vault is default first:
++notesmd-cli list-vaults                  # Which vault is default?
++notesmd-cli set-default-vault work       # Pin it explicitly for this session
++notesmd-cli create "Important Note"
++```
++
++### 2. Read before mutate
++
++```bash
++notesmd-cli search "Sprint Board"        # Does it exist?
++notesmd-cli print  "Sprint Board"        # Read current contents
++# THEN edit / move / delete
++```
++
++### 3. Delete and move are destructive — confirm the target
++
++```bash
++# WRONG — delete on an unverified name:
++notesmd-cli delete "Notes"               # Ambiguous — which note?
++
++# RIGHT — resolve the exact note first:
++notesmd-cli search "Notes"               # Confirm the exact title
++notesmd-cli print  "Notes/2026-08-02"    # Confirm it is the right file
++notesmd-cli delete "Notes/2026-08-02"
++```
++
++### 4. Empty search result is VALID
++
++```bash
++# An empty result means no matching note exists — not an error.
++result="$(notesmd-cli search "nonexistent" || true)"
++if [[ -z "$result" ]]; then
++  echo "No matching note. Not fabricating one."
++  # Before escalating: try search-content, check the vault, verify spelling.
++  notesmd-cli search-content "nonexistent"
++  notesmd-cli list
++fi
++```
++
++### 5. Prefer notesmd-cli; escalate to the official CLI only for app-only outcomes
++
++The official `obsidian` CLI needs an **already-running** app and does not start one. Do not route a file-shaped task to it. Reach for it only when the result requires the live app (§9), and before depending on it run the preflight `obsidian version` and check its output looks like a version — exit 0 means the binary is registered and the app is up. Once the app is running the CLI **exits 0 on failure**, so check its stdout for a leading `Error:` rather than `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
++
++---
++
++## 5. VAULT CONFIGURATION (notesmd-cli)
+ 
+ | Command | Description | Example |
+ |---------|-------------|---------|
+@@ -104,7 +166,7 @@ notesmd-cli set-default-vault work   # Pin the vault this session will operate o
+ 
+ ---
+ 
+-## 5. NOTE READING & LISTING (notesmd-cli)
++## 6. NOTE READING & LISTING (notesmd-cli)
+ 
+ | Command | Description | Notes |
+ |---------|-------------|-------|
+@@ -122,7 +184,7 @@ notesmd-cli print "Sprint Board"      # Read the full note before editing
+ 
+ ---
+ 
+-## 6. NOTE CREATION & MUTATION (notesmd-cli)
++## 7. NOTE CREATION & MUTATION (notesmd-cli)
+ 
+ | Command | Description | Notes |
+ |---------|-------------|-------|
+@@ -130,7 +192,7 @@ notesmd-cli print "Sprint Board"      # Read the full note before editing
+ | `notesmd-cli open <note>` | Open a note | Headless: resolves/prints the note `VERIFY`; app-backed open is the official CLI's job |
+ | `notesmd-cli daily` | Create/open today's daily note | Honors the vault's daily-note settings `VERIFY` |
+ | `notesmd-cli move <src> <dst>` | Move/rename a note (updates links) `VERIFY link-update` | Prefer over raw `mv` so backlinks follow |
+-| `notesmd-cli delete <note>` | Delete a note | Destructive — see agent invariants (§11) |
++| `notesmd-cli delete <note>` | Delete a note | Destructive — see agent invariants (§4) |
+ | `notesmd-cli frontmatter <note>` | Read/modify a note's YAML frontmatter | `VERIFY` get-vs-set flag surface |
+ 
+ > **`VERIFY` note:** exact flags for `create` (how body content is supplied) and `frontmatter` (read vs. set, key/value syntax) are not confirmed in this pass. Run `notesmd-cli <command> --help` against the installed binary to confirm before scripting bulk writes.
+@@ -144,7 +206,7 @@ notesmd-cli print "Meeting 2026-08-02"        # Read back to confirm
+ 
+ ---
+ 
+-## 7. FULL SUBCOMMAND INVENTORY (notesmd-cli)
++## 8. FULL SUBCOMMAND INVENTORY (notesmd-cli)
+ 
+ Fourteen subcommands, grouped by purpose:
+ 
+@@ -155,11 +217,11 @@ Fourteen subcommands, grouped by purpose:
+ | Navigate | `open` |
+ | Vault config | `add-vault`, `remove-vault`, `list-vaults`, `set-default-vault` |
+ 
+-> **Headless note:** every subcommand above operates on the vault **filesystem** and needs **no running Obsidian app**. This is what makes `notesmd-cli` safe for servers, CI, and unattended agent runs. Behavior that requires the live app (rendering, plugin execution, UI focus) is out of scope for `notesmd-cli` — use the official `obsidian` CLI (§8) for that.
++> **Headless note:** every subcommand above operates on the vault **filesystem** and needs **no running Obsidian app**. This is what makes `notesmd-cli` safe for servers, CI, and unattended agent runs. Behavior that requires the live app (rendering, plugin execution, UI focus) is out of scope for `notesmd-cli` — use the official `obsidian` CLI (§9) for that.
+ 
+ ---
+ 
+-## 8. OFFICIAL OBSIDIAN CLI (APP-BACKED)
++## 9. OFFICIAL OBSIDIAN CLI (APP-BACKED)
+ 
+ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is a remote control for a running app. It is **not** headless, and it does **not** start the app: with the app down every invocation prints `The CLI is unable to find Obsidian. Please make sure Obsidian is running and try again.` to stderr and exits 1.
+ 
+@@ -183,11 +245,17 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
+ 
+ > **Two contracts an agent must respect before scripting this CLI.** First, run the preflight: `obsidian version` prints a version number only when the binary is registered **and** the app is answering. Test the output, not the status, because an app that is still starting answers 0 with an error on stdout. Second, once the app is up the CLI **exits 0 even on failure** and prints `Error: ...` to stdout, so `$?` is not a success signal. Both, with the command surface and the safety invariants, are in [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+ 
+-**When to prefer it:** whenever the outcome requires the live app. That covers the resolved link graph, the computed tag and task index, Bases, sync and file history, plugin and theme state, and the UI itself, none of which the MCP server exposes. For everything file-shaped, `notesmd-cli` is faster and needs no app. Where the CLI and the MCP server overlap, the CLI wins the default on prerequisites and coverage, and loses only on in-place section editing, tag writes and warm-batch latency. See [`cli-versus-mcp.md`](cli-versus-mcp.md).
++**When to prefer it:**
++
++- **App-only outcomes:** the resolved link graph, the computed tag and task index, Bases, sync and file history, plugin and theme state, and the UI itself, none of which the MCP server exposes.
++- **File-shaped outcomes:** `notesmd-cli` is faster and needs no app.
++- **Overlap:** the CLI wins the default on prerequisites and coverage, and loses only on in-place section editing, tag writes and warm-batch latency.
++
++See [`cli-versus-mcp.md`](cli-versus-mcp.md).
+ 
+ ---
+ 
+-## 9. GLOBAL FLAGS (notesmd-cli)
++## 10. GLOBAL FLAGS (notesmd-cli)
+ 
+ > The official `obsidian` CLI has no POSIX flags. Its one global option is `vault=<name>`, accepted either before or after the command word.
+ 
+@@ -202,7 +270,7 @@ The official `obsidian` binary ships inside Obsidian desktop **v1.12.4+** and is
+ 
+ ---
+ 
+-## 10. HEADLESS WORKFLOW RECIPES (notesmd-cli)
++## 11. HEADLESS WORKFLOW RECIPES (notesmd-cli)
+ 
+ **Create a dated note, then read it back:**
+ ```bash
+@@ -228,59 +296,6 @@ notesmd-cli move "Draft" "Published/Launch Plan"   # Prefer over raw mv (VERIFY
+ 
+ ---
+ 
+-## 11. AGENT INVARIANTS (MUST FOLLOW)
+-
+-### 1. Confirm the vault before writing
+-
+-```bash
+-# WRONG — assume the default vault is the intended one:
+-notesmd-cli create "Important Note"
+-
+-# RIGHT — verify which vault is default first:
+-notesmd-cli list-vaults                  # Which vault is default?
+-notesmd-cli set-default-vault work       # Pin it explicitly for this session
+-notesmd-cli create "Important Note"
+-```
+-
+-### 2. Read before mutate
+-
+-```bash
+-notesmd-cli search "Sprint Board"        # Does it exist?
+-notesmd-cli print  "Sprint Board"        # Read current contents
+-# THEN edit / move / delete
+-```
+-
+-### 3. Delete and move are destructive — confirm the target
+-
+-```bash
+-# WRONG — delete on an unverified name:
+-notesmd-cli delete "Notes"               # Ambiguous — which note?
+-
+-# RIGHT — resolve the exact note first:
+-notesmd-cli search "Notes"               # Confirm the exact title
+-notesmd-cli print  "Notes/2026-08-02"    # Confirm it is the right file
+-notesmd-cli delete "Notes/2026-08-02"
+-```
+-
+-### 4. Empty search result is VALID
+-
+-```bash
+-# An empty result means no matching note exists — not an error.
+-result="$(notesmd-cli search "nonexistent" || true)"
+-if [[ -z "$result" ]]; then
+-  echo "No matching note. Not fabricating one."
+-  # Before escalating: try search-content, check the vault, verify spelling.
+-  notesmd-cli search-content "nonexistent"
+-  notesmd-cli list
+-fi
+-```
+-
+-### 5. Prefer notesmd-cli; escalate to the official CLI only for app-only outcomes
+-
+-The official `obsidian` CLI needs an **already-running** app and does not start one. Do not route a file-shaped task to it. Reach for it only when the result requires the live app (§8), and before depending on it run the preflight `obsidian version` and check its output looks like a version — exit 0 means the binary is registered and the app is up. Once the app is running the CLI **exits 0 on failure**, so check its stdout for a leading `Error:` rather than `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
+-
+----
+-
+ ## 12. CONFIGURATION STORAGE
+ 
+ | Profile | Config location |
+@@ -292,9 +307,9 @@ The official `obsidian` CLI needs an **already-running** app and does not start
+ 
+ ## 13. GETTING HELP
+ 
+-- `notesmd-cli` repo: https://github.com/Yakitrak/obsidian-cli
++- [notesmd-cli repo](https://github.com/Yakitrak/obsidian-cli)
+ - `notesmd-cli <command> --help` — authoritative per-command flag reference
+ - Official Obsidian CLI: enable via Settings → General → Command line interface, then `obsidian help` (not `--help`, which is not a valid flag)
+ - Official CLI agent contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md)
+-- Obsidian CLI vendor reference: https://obsidian.md/help/cli
+-- Obsidian help/docs: https://help.obsidian.md/
++- [Obsidian CLI vendor reference](https://obsidian.md/help/cli)
++- [Obsidian help/docs](https://help.obsidian.md/)
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md
+index 6ef3762e59a..15fb8f02e40 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md
+@@ -15,12 +15,23 @@ version: 0.1.0.0
+ 
+ # Official Obsidian CLI, Agent Usage
+ 
+-The official `obsidian` binary is a remote control for a running desktop app, not a headless tool. Everything below follows from that one fact.
++The official `obsidian` binary is a remote control for a running desktop app, not a headless tool. An agent that scripts it like `curl` will misread its exit codes and write to the wrong note.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Make the app-backed CLI safe to script: prove it will answer, read its stdout instead of its exit status, and never let the human's open note become the target.
++
++### When to Use
++
++- Scripting the official `obsidian` CLI against a running app.
++- Diagnosing a preflight failure or an exit-0 error.
++
++### Registration
++
+ The official CLI ships inside the Obsidian desktop app and is registered from Settings → General → Command line interface → Register CLI. On macOS that registration creates a symlink at `/usr/local/bin/obsidian` pointing into the app bundle.
+ 
+ Three properties decide how an agent must use it, and all three differ from an ordinary UNIX tool:
+@@ -35,7 +46,7 @@ Use `notesmd-cli` for file-shaped work. Reach for this CLI when the outcome need
+ 
+ ## 2. PREFLIGHT: PROVE IT WILL ANSWER
+ 
+-Run one cheap command and check **only the exit status**. This is the single case where `$?` is meaningful, because the app-down failure is the one failure raised by the launcher rather than by the app.
++Run one cheap command and test **its output**. The app-down failure is the one failure raised by the launcher rather than by the app, so this is also the one place `$?` carries information, but the status alone is not enough, because an app that is still starting can answer 0 with an error on stdout.
+ 
+ ```bash
+ if obsidian version 2>/dev/null | grep -qE '^[0-9]+\.[0-9]+'; then
+@@ -166,7 +177,13 @@ Three surfaces reach an Obsidian vault. Pick by what the outcome needs, not by w
+ 
+ > **Agent default stays `notesmd-cli`.** It has no app dependency and no exit-code trap. Escalate to the official CLI when the result requires the live app, and preflight per §2 before depending on it.
+ 
+-**Among the two app-backed surfaces, this CLI is the default.** It needs only the running app, where the MCP server also needs the Local REST API plugin enabled, a bearer token and a Node process. It exposes 106 commands against the server's 12, and it answers in about 38 ms per call with nothing to keep warm. Escalate to the MCP server for the four things this CLI cannot do (patch a section in place, replace text inside a note, write tags as a YAML list, set a JSON-typed frontmatter value) or for a batch over roughly 20 calls, where a warm session costs about 3 ms per call. Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
++**Among the two app-backed surfaces, this CLI is the default.**
++
++- It needs only the running app, where the MCP server also needs the Local REST API plugin enabled, a bearer token and a Node process.
++- It exposes 106 commands against the server's 12, and it answers in about 38 ms per call with nothing to keep warm.
++- Escalate to the MCP server for the four things this CLI cannot do (patch a section in place, replace text inside a note, write tags as a YAML list, set a JSON-typed frontmatter value) or for a batch over roughly 20 calls, where a warm session costs about 3 ms per call.
++
++Measured comparison: [`cli-versus-mcp.md`](cli-versus-mcp.md).
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md
+index 3471590a62a..f66542ffa20 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md
+@@ -23,6 +23,16 @@ Health.md Visualizations renders Apple and Android health data from **plain data
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Read and write a Health.md data file against the exact schema, layer, and version the plugin expects.
++
++### When to Use
++
++- Reading, validating, or repairing a Health.md data file.
++- Deciding which layer a new file belongs to.
++- Checking a schema version or settings default before a write.
++
+ ### Canonical identity
+ 
+ | Identity field | Current value |
+@@ -30,7 +40,7 @@ Health.md Visualizations renders Apple and Android health data from **plain data
+ | Obsidian plugin ID | health-md |
+ | Display name | Health.md Visualizations |
+ | Plugin repository | codybontecou/health-md-visualizations |
+-| Installed version | 2.1.0 (all vaults, Phase 11) |
++| Installed version | 2.1.0 (all vaults) |
+ | Companion app | Health.md (App Store id 6757763969; site `healthmd.app`) — exports Apple Health and Android data into the vault, and can also merge metrics into Obsidian daily notes |
+ | Current export schemas | Daily `healthmd.health_data` **v8**; roll-up `healthmd.rollup_summary` **v9** (roll-up rules v8, derived from daily v8); HealthKit archive `healthmd.healthkit_records` v1; provider section `healthmd.provider.whoop_daily` v1 (all per healthmd.app docs) |
+ | Plugin schema ceiling | The installed plugin v2.1.0 was documented to read daily **v0–v7**. Whether v2.1.0 renders the current **v8/v9** exports is **VERIFY** against the installed build — treat newer files as best-effort until confirmed |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md
+index 4465c2610c8..8ef4bf8a2e7 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md
+@@ -16,16 +16,34 @@ version: 0.5.0.0
+ 
+ The `mcp-obsidian` mode operates this plugin by **managing the data files it renders** — never by driving its chart UI. Health.md Visualizations renders Apple Health and Android Health exports already present in the vault.
+ 
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keep every chart trustworthy by treating the folder, the settings, and the files as the contract and the rendered image as an unproven claim.
++
++### When to Use
++
++- Opening the Health.md file layer before trusting a chart.
++- Deciding which reference or data file a request touches.
++- Checking whether the rendered data is real or the bundled fallback.
++
+ | Identity field | Current value | Why it matters |
+ | --- | --- | --- |
+ | Obsidian plugin ID | health-md | Plugin directory name + enablement entry |
+ | Display name | **Health.md Visualizations** | Current manifest name |
+ | Plugin repository | codybontecou/health-md-visualizations | Source of release assets + behavior facts |
+-| Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults (Phase 11); desktop and mobile supported |
++| Version / minApp | 2.1.0 / 1.12.0 | Installed in all vaults; desktop and mobile supported |
+ | Companion exporters | Health.md iOS/Android/Mac app (`healthmd.app`) | Current Apple export: daily `healthmd.health_data` v8, roll-up `healthmd.rollup_summary` v9; Android frozen v4, analytical v5. Whether the installed plugin v2.1.0 reads v8/v9 is VERIFY — historically v0–v7 |
+ 
++### Reference files
++
++- [data-model.md](data-model.md) - the full file-layer contract: data folder and settings, supported formats, the v8 daily envelope, v9 roll-ups, the dictionary, and the archives.
++- [workflows.md](workflows.md) - recipes for adding files, placing `health-viz` blocks, restructuring the folder, and proving a chart is real.
++- [troubleshooting.md](troubleshooting.md) - cause, detection, and recovery for empty charts, ignored files, schema drift, and platform gaps.
++
+ ---
+ 
+ ## 2. WHAT IT DOES
+@@ -47,7 +65,7 @@ Chart coverage is shared across platforms for common activity, heart, respirator
+ | Individual entry notes | Workout, vitals, platform-specific entries | Separate discovery path via declared frontmatter/tags; do not merge into daily summaries |
+ | Chart placement | `health-viz` fenced block in a note | Yes — insert the render block |
+ | Plugin settings | `.obsidian/plugins/health-md/data.json` | Read the full contract (folder/structure/pattern/format plus theme/palette/appearance, chart dimensions, click behavior); edit only on explicit user request |
+-| Enablement | `.obsidian/community-plugins.json` | Yes (Phase 11 done) |
++| Enablement | `.obsidian/community-plugins.json` | Yes |
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md
+index 8188cdbbb7a..35c5a2ab7d8 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md
+@@ -21,6 +21,16 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Name the one cause behind a Health.md failure before changing a file or a setting.
++
++### When to Use
++
++- A Health.md chart is empty, missing, or shows data the user did not export.
++- A data file is ignored, misread, or silently best-effort.
++- The cause could sit in the folder, pattern, format, schema, platform, or render block.
++
+ | Symptom | Most likely cause |
+ | --- | --- |
+ | "No data found" in the chart | Data folder path or file pattern setting doesn't cover the files |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/workflows.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/workflows.md
+index dd966781c6a..5891e33f6a3 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/workflows.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/workflows.md
+@@ -20,6 +20,17 @@ These recipes change the **data files** Health.md renders. The plugin invalidate
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Leave the vault with data files the plugin can actually read and a chart that is provably fed by them, without fabricating a single observation.
++
++### When to Use
++
++- Setting up or restructuring the data folder.
++- Adding a real export, roll-up, or entry note.
++- Placing or checking a `health-viz` block.
++- Proving a chart is fed by authentic data.
++
+ ### Operating sequence
+ 
+ 1. Read the plugin settings (`.obsidian/plugins/health-md/data.json`) and resolve the **actual selected data folder**, structure, pattern, and format — never assume the default.
+@@ -62,12 +73,6 @@ last: 7
+ - Dates may be ISO dates/datetimes, built-in dynamic variables such as `{{today:YYYY-MM-DD}}`, or frontmatter variables; raw Templater or Dataview expressions are not a reliable substitute.
+ - Prefer copying an existing working block from the vault over inventing keys; unknown block options render nothing.
+ 
+-### Switch to a dated structure
+-
+-- Create `<data folder>/2026/06/` etc., move existing files, and set the data folder structure to `Year`/`Month`/`Week`/`Day` or a custom template (`{year}`, `{month}`, `{week}`, `{day}`, `{date}`).
+-- Files directly under the data folder keep loading in nested modes, so migration is safe.
+-- Update the settings via the same JSON edit discipline as any plugin settings file.
+-
+ ### Verify a chart shows real data (mock-fallback escape)
+ 
+ 1. Read the data folder value from settings — not the default.
+@@ -75,6 +80,12 @@ last: 7
+ 3. Open at least one authentic source file: it parses and matches the file pattern.
+ 4. Confirm the block's `type` is a registered renderer and any referenced metric resolves via `_healthmd_data_dictionary.json`.
+ 
++### Switch to a dated structure
++
++- Create `<data folder>/2026/06/` etc., move existing files, and set the data folder structure to `Year`/`Month`/`Week`/`Day` or a custom template (`{year}`, `{month}`, `{week}`, `{day}`, `{date}`).
++- Files directly under the data folder keep loading in nested modes, so migration is safe.
++- Update the settings via the same JSON edit discipline as any plugin settings file.
++
+ ### Discover individual entry notes
+ 
+ - Search for workout, vitals, and platform-specific entries by declared frontmatter/tags — a separate discovery path from daily summaries.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/data-model.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/data-model.md
+index 8435b26b7fa..5a52566356a 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/data-model.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/data-model.md
+@@ -20,6 +20,16 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Edit Iconic's configuration without losing a setting, a rule id, or a user customization.
++
++### When to Use
++
++- Reading or changing `<vault>/.obsidian/plugins/iconic/data.json`.
++- Adding or editing a `fileRules` or `folderRules` entry.
++- Merging the canonical rulebook asset into a vault.
++
+ ### Canonical identity
+ 
+ | Identity field | Current value |
+@@ -109,7 +119,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
+ 2. **Back up**: copy to `data.json.bak-<timestamp>` (or follow `maxBackups` rotation).
+ 3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable. When applying the canonical asset, update matching ids and append missing ids only.
+ 4. **Write** valid JSON; re-parse to verify.
+-5. **Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
++
++**Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md
+index 549f770c0ca..c3d2e6ce7bb 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/iconic.md
+@@ -15,9 +15,21 @@ version: 0.7.1.0
+ 
+ # Iconic Plugin Index (`iconic`)
+ 
++Open this first when a request touches Iconic. It maps the file-layer surface and names the companion reference that answers the next question.
++
++---
++
+ ## 1. OVERVIEW
+ 
+-The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook** — never by driving the icon-picker UI.
++### Purpose
++
++The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook**, never by driving the icon-picker UI.
++
++### When to Use
++
++- A request names Iconic, an icon, a folder color, or an icon rule.
++- Choosing between a rule, a visibility toggle, and a per-item override.
++- Checking a rule's shape before merging it into a vault.
+ 
+ ---
+ 
+@@ -35,7 +47,11 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
+ 
+ ## 3. WHAT IT DOES
+ 
+-Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
++Customizes icons and their colors directly in the Obsidian UI.
++
++- **Surfaces:** tabs, files & folders, bookmarks, tags, properties, and ribbon commands.
++- **Matching:** rules match by file extension or folder name; per-item overrides exist for individual icons.
++- **Rendering:** in-app; the mode touches only the JSON.
+ 
+ ---
+ 
+@@ -91,3 +107,13 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
+ - **Never downgrade the plugin.** Only the rulebook is (re)applied.
+ - **Re-read `data.json` before operating** — the user may have changed icons in-app since the last read.
+ - Render confirmation needs an in-app reload; the file-layer claim is verified by JSON round-trip only.
++
++---
++
++## 7. RELATED RESOURCES
++
++| File | Use it for |
++| --- | --- |
++| `data-model.md` | The full `data.json` contract: top-level keys, rulebook schema, visibility toggles, per-item icon maps, and safe-merge discipline |
++| `workflows.md` | Safe recipes: add or edit rules, flip toggles, change colors, and merge the canonical rulebook |
++| `troubleshooting.md` | Cause, detection, and recovery for invalid JSON, lost rules, missing icons, stale reads, and version drift |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md
+index 4ec2fbe07ad..2d88376aa8b 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md
+@@ -20,6 +20,16 @@ Diagnose the JSON, the rule, and the app separately. A valid `data.json` can sti
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Name the one cause behind an Iconic failure before changing a file or a rule.
++
++### When to Use
++
++- Icons are missing, wrong, or the wrong color.
++- The plugin will not load after a write.
++- Rules vanished after an edit, or an unknown key appeared after an update.
++
+ | Symptom | Most likely cause |
+ |---|---|
+ | No icons at all | `showAllFileIcons`/`showAllFolderIcons` off, plugin disabled, or app not reloaded |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/workflows.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/workflows.md
+index 323b77b6084..dc5721028e4 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/workflows.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/workflows.md
+@@ -20,6 +20,16 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Change one Iconic rule or toggle and leave every other setting exactly as it was.
++
++### When to Use
++
++- Adding, editing, disabling, or recoloring a rule.
++- Flipping a visibility toggle.
++- Applying the canonical rulebook to a vault.
++
+ ### Operating sequence
+ 
+ 1. Read `<vault>/.obsidian/plugins/iconic/data.json`.
+@@ -42,6 +52,14 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts
+ 
+ - Prefer editing the existing rule when one matches the extension — merging beats duplicating.
+ 
++### Add a folder rule
++
++- Append to `folderRules` with `source: name` conditions (`is` for exact names, `contains` for partial):
++
++```json
++{ "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
++```
++
+ ### Change a color
+ 
+ - Find the rule by `name` or `conditions.value`, set `color` to the new hex, keep `id` and everything else.
+@@ -60,14 +78,6 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts
+ - Merge by stable rule `id`: **update rules whose ids already exist, append rules with missing ids.** Preserve unrelated settings and user overrides (including per-item icon maps).
+ - The full asset contains only the two rule arrays — it is never a whole-`data.json` replacement. The compact `assets/plugins/iconic/iconic-rules.example.json` is schema reference only. Rule-class coverage and the merge contract are summarized in the usage companion `assets/plugins/iconic/iconic-rules.full.md`.
+ 
+-### Add a folder rule
+-
+-- Append to `folderRules` with `source: name` conditions (`is` for exact names, `contains` for partial):
+-
+-```json
+-{ "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
+-```
+-
+ ---
+ 
+ ## 3. VERIFYING
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md
+index ba41e7a84fd..77a8efdb987 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md
+@@ -21,6 +21,16 @@ This is the single source of truth for **every community plugin enabled in the o
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keep the vault's plugin inventory and its documentation status in one place, so an install, enablement, or removal has one place to reconcile.
++
++### When to Use
++
++- A request names an Obsidian plugin and you need its id, version, or repository.
++- Checking whether a plugin still has a dedicated reference tree.
++- Reconciling the roster after an install, enablement, or removal.
++
+ The vault has **24 community plugins** enabled (`.obsidian/community-plugins.json`). They split into three operating classes, and the counts add up: **2 documented + 13 undocumented file-layer + 9 UI/automatic = 24**.
+ 
+ - **Documented file-layer plugins (2)** — persist their state as markdown, frontmatter, or a structured file, and the mode documents them at the file layer: each has a dedicated four-file integration reference tree under `references/plugins/<name>/` plus a `feature-catalog/plugins/<name>.md` entry. Only these two carry dedicated docs.
+@@ -44,7 +54,11 @@ Only these two plugins have a dedicated integration reference. Each tree is `ref
+ 
+ ## 3. FURTHER FILE-LAYER PLUGINS (dedicated docs removed)
+ 
+-These plugins persist their state as markdown, frontmatter, or a structured file, so the file-layer operating model in `plugin-operation-logic.md` applies to them exactly as it applies in §2. What changed is the documentation: their dedicated reference trees were removed from this skill, so there is no `references/plugins/<name>/` tree and no `feature-catalog/plugins/<name>.md` entry to follow. All 13 remain installed and enabled in the vault. To operate one, locate its on-disk data and edit that directly.
++These plugins persist their state as markdown, frontmatter, or a structured file, so the file-layer operating model in `plugin-operation-logic.md` applies to them exactly as it applies in §2.
++
++- **What changed:** their dedicated reference trees were removed from this skill, so there is no `references/plugins/<name>/` tree and no `feature-catalog/plugins/<name>.md` entry to follow.
++- **Install state:** all 13 remain installed and enabled in the vault.
++- **How to operate one:** locate its on-disk data and edit that directly.
+ 
+ | Plugin | Manifest id | Ver | Repository | Purpose | Docs status |
+ | --- | --- | --- | --- | --- | --- |
+@@ -84,17 +98,7 @@ These are enabled in the vault and supported operationally, but they have no vau
+ 
+ ---
+ 
+-## 5. NOTES AND RELATED
+-
+-- **Themes.** `references/themes/` documents the Obsidian *theme system* (with Minimal as the worked example), not a community plugin. Themes live under `.obsidian/themes/` and appearance settings, not in `community-plugins.json`, so no theme is a row in this roster.
+-- **Overlap decisions.** Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases, both kept. **Project Manager was removed** (deprecated 2026-08-22): its task-tracking role is consolidated onto Notion Bases (relations, rollups, Table/Board/Timeline/Calendar views) plus Meta Bind + JS Engine for the live start/stop task timer, which made a dedicated PM plugin redundant. **Excalidraw was removed** the same day — freeform drawing/whiteboard use was retired from the vault.
+-- **Notion-parity stack (2026-08-22).** The vault standardizes on Notion Bases as the database and calendar foundation. The Notion-style task timer (Start/End buttons that stamp frontmatter + a Total-Time formula column) is built with Meta Bind + JS Engine over a Bases task database.
+-- **Dynamic Outline activation.** Selected and pinned to v1.19.0 (repo `theopavlove/obsidian-dynamic-outline`) for a Notion-style floating table of contents; install it via BRAT and reload Obsidian to activate. Until that install runs, the live `community-plugins.json` shows 23 enabled ids rather than the 24 this roster documents.
+-- **Compatibility watch.** Notebook Navigator replaces the core file-explorer pane; Iconic injects icons into that pane. Confirm Iconic's icons still render inside Notebook Navigator's row UI when relying on both.
+-
+----
+-
+-## 6. KEEPING THIS ROSTER CURRENT
++## 5. KEEPING THIS ROSTER CURRENT
+ 
+ This roster is a hand-maintained snapshot, reconciled against the vault, not an auto-generated file. When a plugin is installed, enabled, or removed:
+ 
+@@ -104,3 +108,13 @@ This roster is a hand-maintained snapshot, reconciled against the vault, not an
+ 4. Keep the total in §1 in step with the row count (2 promoted + 13 undocumented + 9 UI/automatic = 24).
+ 
+ A plugin belongs in §2 only if the mode ships a four-file reference tree for it under `references/plugins/<name>/`. A file-layer plugin without that tree belongs in §3, and a plugin whose configuration is display preferences, URLs, or automatic behavior belongs in §4.
++
++---
++
++## 6. NOTES AND RELATED
++
++- **Themes.** `references/themes/` documents the Obsidian *theme system* (with Minimal as the worked example), not a community plugin. Themes live under `.obsidian/themes/` and appearance settings, not in `community-plugins.json`, so no theme is a row in this roster.
++- **Overlap decisions.** Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases, both kept. **Project Manager was removed** (deprecated 2026-08-22): its task-tracking role is consolidated onto Notion Bases (relations, rollups, Table/Board/Timeline/Calendar views) plus Meta Bind + JS Engine for the live start/stop task timer, which made a dedicated PM plugin redundant. **Excalidraw was removed** the same day — freeform drawing/whiteboard use was retired from the vault.
++- **Notion-parity stack (2026-08-22).** The vault standardizes on Notion Bases as the database and calendar foundation. The Notion-style task timer (Start/End buttons that stamp frontmatter + a Total-Time formula column) is built with Meta Bind + JS Engine over a Bases task database.
++- **Dynamic Outline activation.** Selected and pinned to v1.19.0 (repo `theopavlove/obsidian-dynamic-outline`) for a Notion-style floating table of contents; install it via BRAT and reload Obsidian to activate. Until that install runs, the live `community-plugins.json` shows 23 enabled ids rather than the 24 this roster documents.
++- **Compatibility watch.** Notebook Navigator replaces the core file-explorer pane; Iconic injects icons into that pane. Confirm Iconic's icons still render inside Notebook Navigator's row UI when relying on both.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md
+index 5133b8b25f1..f99d8b719dc 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/plugin-operation-logic.md
+@@ -23,13 +23,7 @@ The `mcp-obsidian` mode operates Obsidian community plugins by editing the data
+ 
+ ### Purpose
+ 
+-Ships in the `mcp-obsidian` mode at `references/plugins/`. It defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The surviving per-plugin and theme references (`health-md`, `iconic`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
+-
+-### Core Principle
+-
+-> **Operate a plugin's features by editing the DATA the plugin reads — not by driving the plugin's UI.**
+-
+-The mode has no headless UI bridge, so command-palette actions and in-app buttons are out of reach. Almost every plugin persists its state as text/JSON in the vault, and *that* is directly operable.
++`plugin-operation-logic.md` ships in the `mcp-obsidian` mode at `references/plugins/` and defines one operating model for every plugin the mode covers: locate the plugin's persisted data, edit the data directly, and let the app re-render. The surviving per-plugin and theme references (`health-md`, `iconic`, `minimal`) apply this model to their specific file shapes; this document is the general contract.
+ 
+ ### When to Use
+ 
+@@ -37,6 +31,12 @@ The mode has no headless UI bridge, so command-palette actions and in-app button
+ - Deciding whether a plugin capability is reachable headlessly before promising it to the operator.
+ - Extending the mode to a plugin not yet covered by a per-plugin reference.
+ 
++### Core Principle
++
++> **Operate a plugin's features by editing the DATA the plugin reads — not by driving the plugin's UI.**
++
++The mode has no headless UI bridge, so command-palette actions and in-app buttons are out of reach. Almost every plugin persists its state as text/JSON in the vault, and *that* is directly operable.
++
+ ### Prerequisites
+ 
+ - Per-plugin identity and schema: `references/plugins/plugin-operation-logic.md` siblings under `references/plugins/{plugin}/`.
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/customization.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/customization.md
+index 35282eec978..2dc8987cd78 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/customization.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/customization.md
+@@ -20,6 +20,16 @@ Customization in `mcp-obsidian` means **layering snippets and CSS-variable overr
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keep every visual change in a snippet the user can toggle off, while the theme underneath stays updatable.
++
++### When to Use
++
++- A user wants a visual change to an installed theme.
++- Deciding between a CSS snippet and a variable override.
++- Checking whether a snippet is actually enabled.
++
+ There are two customization levers, both file-based:
+ 
+ | Lever | What it does | Carrier | Where |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md
+index 96d3912f012..d99fe9d2a8f 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md
+@@ -16,10 +16,20 @@ version: "1.0.0.0"
+ 
+ # Obsidian Plugin Development Overview
+ 
+-A plugin is JavaScript that changes Obsidian's **behavior** — commands, views, settings. It is the behavioral counterpart to a theme (styling only). This is an overview that points to `docs.obsidian.md/Plugins` for depth, not an exhaustive tutorial.
++A plugin is JavaScript that changes Obsidian's **behavior** — commands, views, settings. It is the behavioral counterpart to a theme (styling only).
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Choose the right build surface (theme, snippet, or plugin) and know the package a plugin needs before writing code.
++
++### When to Use
++
++- A need is behavioral rather than visual, and a theme or snippet will not cover it.
++- Checking the required plugin files, manifest fields, or the sample starting point.
++- Preparing a plugin for community submission.
++
+ | Surface | What it changes | Carrier |
+ | --- | --- | --- |
+ | **Theme** | Look only | `theme.css` |
+@@ -28,6 +38,10 @@ A plugin is JavaScript that changes Obsidian's **behavior** — commands, views,
+ 
+ A plugin adds behavior a theme cannot: commands, custom views, workspace actions, persisted settings. If a need is purely visual, use a theme or snippet instead.
+ 
++### Boundaries
++
++This document is deliberately an **overview**. For depth on the Plugin API, build tooling, lifecycle hooks, settings UI, and publishing, read `docs.obsidian.md/Plugins`. The `mcp-obsidian` mode interacts with installed plugins at the file layer (manifest, `data.json` settings, enablement in `community-plugins.json`); authoring and compiling a plugin is out of scope for the mode.
++
+ ---
+ 
+ ## 2. PLUGIN ANATOMY
+@@ -61,13 +75,7 @@ The exact current submission steps (required manifest fields for the listing ent
+ 
+ ---
+ 
+-## 5. SCOPE OF THIS REFERENCE
+-
+-This document is deliberately an **overview**. For depth on the Plugin API, build tooling, lifecycle hooks, settings UI, and publishing, read `docs.obsidian.md/Plugins`. The `mcp-obsidian` mode interacts with installed plugins at the file layer (manifest, `data.json` settings, enablement in `community-plugins.json`); authoring and compiling a plugin is out of scope for the mode.
+-
+----
+-
+-## 6. RELATED RESOURCES
++## 5. RELATED RESOURCES
+ 
+ | File | Use it for |
+ | --- | --- |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/theme-development.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/theme-development.md
+index 7130f06c759..8d01064bfc1 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/theme-development.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/theme-development.md
+@@ -16,10 +16,20 @@ version: "1.0.0.0"
+ 
+ # Obsidian Theme Development
+ 
+-Building a theme means authoring a `manifest.json` and a single `theme.css` that restyles Obsidian. This reference covers the package contract, the official starting point, dark/light support, and submission. It is not an exhaustive CSS tutorial.
++Building a theme means authoring a `manifest.json` and a single `theme.css` that restyles Obsidian; open this before you create the folder and again at submission time. It is not an exhaustive CSS tutorial.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Produce a theme package Obsidian loads, that works in both dark and light modes, and that the community catalog accepts.
++
++### When to Use
++
++- Building a theme from the official sample.
++- Checking the two required files or the `manifest.json` name rule.
++- Preparing a theme for submission to the community catalog.
++
+ A theme is a folder under `.obsidian/themes/` containing two required files:
+ 
+ ```
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/themes.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/themes.md
+index 8e716b75c5d..6c2f2651fde 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/themes.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/themes.md
+@@ -21,7 +21,17 @@ The `mcp-obsidian` mode treats a theme as a **file package plus an activation re
+ 
+ ## 1. OVERVIEW
+ 
+-A theme is a **full restyle of Obsidian's appearance** shipped as a single `theme.css` plus a `manifest.json`. It is one of three extension surfaces, and they are distinct:
++### Purpose
++
++A theme is a **full restyle of Obsidian's appearance** shipped as a single `theme.css` plus a `manifest.json`. It is one of three extension surfaces.
++
++### When to Use
++
++- Installing, activating, or managing a community theme.
++- Checking which theme is active from the file layer.
++- Distinguishing a theme from a snippet or a plugin.
++
++The three extension surfaces are distinct:
+ 
+ | Surface | What it changes | Carrier file | Lives in |
+ | --- | --- | --- | --- |
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md
+index 9666102a487..83ff6dd28fd 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md
+@@ -21,6 +21,17 @@ Diagnostic guide for the two Obsidian CLI profiles (`notesmd-cli` headless, `obs
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++An Obsidian failure reaches the fix for the surface that produced it, whether that is the headless CLI, the official app-backed CLI, or the MCP server.
++
++### When to Use
++
++- A `notesmd-cli` or `obsidian` command fails or is not found.
++- An MCP call returns 401, connection refused, or an npx launch error.
++- A search returns nothing and you need to confirm that is the real answer.
++- A task keeps failing because the app is not running.
++
+ Most failures fall into six categories:
+ 1. **Installation / PATH** — `notesmd-cli` or `obsidian` not on PATH (often a GUI-vs-shell PATH mismatch).
+ 2. **Official CLI not registered** — the `obsidian` binary was never enabled in Settings.
+@@ -37,7 +48,12 @@ Start with the Quick Diagnostics sequence (§3) before diving into specifics.
+ 
+ - `notesmd-cli` installed: `notesmd-cli --version` `VERIFY exact version-flag`
+ - For the official CLI: Obsidian desktop v1.12.4+ with CLI registered (Settings → General → Command line interface)
+-- For MCP: a **running Obsidian app**, the **Local REST API plugin v4.0.0+** enabled, a token, and the `obsidian` manual registered in `.utcp_config.json` launching `npx -y obsidian-mcp-server@latest` over stdio with `OBSIDIAN_API_KEY` / `OBSIDIAN_BASE_URL` / `OBSIDIAN_VERIFY_SSL` available to Code Mode
++- For MCP:
++  - a **running Obsidian app**
++  - the **Local REST API plugin v4.0.0+** enabled
++  - a token
++  - the `obsidian` manual registered in `.utcp_config.json`, launching `npx -y obsidian-mcp-server@latest` over stdio
++  - `OBSIDIAN_API_KEY` / `OBSIDIAN_BASE_URL` / `OBSIDIAN_VERIFY_SSL` available to Code Mode
+ 
+ ---
+ 
+@@ -356,7 +372,7 @@ npx -y obsidian-mcp-server@latest --help
+ 
+ ## 12. GETTING HELP
+ 
+-- `notesmd-cli` repo: https://github.com/Yakitrak/obsidian-cli
+-- cyanheads `obsidian-mcp-server`: https://github.com/cyanheads/obsidian-mcp-server
+-- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api
+-- Obsidian help/docs: https://help.obsidian.md/
++- `notesmd-cli` repo: [Yakitrak/obsidian-cli](https://github.com/Yakitrak/obsidian-cli)
++- cyanheads `obsidian-mcp-server`: [cyanheads/obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server)
++- Obsidian Local REST API plugin: [obsidian-local-rest-api](https://github.com/coddingtonbear/obsidian-local-rest-api)
++- Obsidian help/docs: [Obsidian Help](https://help.obsidian.md/)

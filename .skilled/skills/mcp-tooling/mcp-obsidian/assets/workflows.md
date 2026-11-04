@@ -6,7 +6,7 @@ trigger_phrases:
   - "plugin data over ui"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-obsidian Shared File-Layer Workflows
@@ -17,9 +17,13 @@ This asset gives plugin-specific data edits a shared operating sequence. Each re
 
 ## 1. OVERVIEW
 
+### Purpose
+
+A plugin data edit lands safely, and the operator knows when a reload is the only step left.
+
 The mode operates vault files through its CLI and MCP surfaces. A plugin's UI renders or transforms data already stored in the vault, so an agent should identify the plugin's source file, preserve its schema, make the smallest reversible mutation, validate the data, and tell the operator when a reload is needed for rendering. ([plugin operation logic](../references/plugins/plugin-operation-logic.md))
 
-### Shared sequence
+### Usage
 
 1. Identify the exact vault and source-of-truth file.
 2. Read the current file and any plugin settings or include/index references.

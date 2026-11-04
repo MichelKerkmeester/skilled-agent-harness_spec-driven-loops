@@ -1,0 +1,7 @@
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/assets/utcp-chrome-devtools-manuals.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md

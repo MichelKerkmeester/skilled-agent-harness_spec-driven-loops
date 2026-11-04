@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-refero
@@ -33,7 +33,10 @@ version: 1.1.4.0
 
 Refero indexes a large library of real shipped UI. Its official repository counts 150,000+ app screens and 6,000+ user flows, exposed through a paid, read-only MCP. Reaching that library from a coding agent without a contract is risky in specific, documented ways.
 
-The callable names double their prefix inside Code Mode (`refero.refero_refero_<tool>`). Two independent research lineages got that detail wrong by derivation. Only live evidence settled it, so discovery confirmation is mandatory. Access is plan-gated. The Free tier has no MCP at all. Unauthenticated calls return HTTP 401, so an agent that guesses burns a round trip and then misreports the failure. Stale extractions of an older tool surface still circulate: four-tool lists, `_tool` names, numeric screen IDs and `limit`/`offset` paging. Calling them fails.
+- **Doubled callable names.** The callable names double their prefix inside Code Mode (`refero.refero_refero_<tool>`). Two independent research lineages got that detail wrong by derivation. Only live evidence settled it, so discovery confirmation is mandatory.
+- **Plan gating.** Access is plan-gated. The Free tier has no MCP at all.
+- **Authentication.** Unauthenticated calls return HTTP 401, so an agent that guesses burns a round trip and then misreports the failure.
+- **Stale surfaces.** Stale extractions of an older tool surface still circulate: four-tool lists, `_tool` names, numeric screen IDs and `limit`/`offset` paging. Calling them fails.
 
 The biggest risk is not technical. Search results look authoritative. An agent will happily treat a top-ranked reference as a design verdict. This packet wraps the wiring, the eight-tool contract, the funnel discipline and the hard boundary that this transport supplies evidence, never a taste verdict; a measured Style Reference (extracted design tokens) comes from `sk-design-md-generator`. The agent always knows what it can call, what it can claim and what it must hand off.
 
@@ -109,7 +112,11 @@ Every request runs the same read order. Styles come first because they carry vis
 
 ### The Doubled-Prefix Callable
 
-Code Mode names calls `{manual}.{manual}_{tool}`. Every Refero tool is already named `refero_*`, so the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`. Live discovery on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`) settled the naming conflict in the research record. All eight tools list pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`. The fixture's `Access as:` line confirms the doubled TypeScript callable. The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session and fail closed on drift. Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
+Code Mode names calls `{manual}.{manual}_{tool}`. Every Refero tool is already named `refero_*`, so the callable form doubles the prefix: `refero.refero_refero_search_styles(...)`.
+
+- **Evidence.** Live discovery on 2026-07-16 (`references/discovery-fixture-2026-07-16.json`) settled the naming conflict in the research record. All eight tools list pre-auth under the dotted doubled registry names `refero.refero.refero_<tool>`, and the fixture's `Access as:` line confirms the doubled TypeScript callable.
+- **Rule.** The rule stays discovery-first: re-confirm the exact callable with `tool_info` per session and fail closed on drift.
+- **Call style.** Calls run synchronously inside the `call_tool_chain` body, with no top-level `await`.
 
 ### Wiring And Authentication
 
@@ -133,7 +140,7 @@ A transport response is untrusted reference evidence. Search rank is not taste. 
 
 Reach for this packet when you want Refero evidence: visual styles for a direction, real app screens for a pattern or state, user flows for a multi-step process or company and domain research through screen and flow metadata. Also reach for it when the `refero` wiring or its auth expectations need verification.
 
-Skip it when the work is the design judgment itself; this packet stays the transport and only supplies reference evidence. Skip it for Mobbin-based app research (`mcp-mobbin`, a planned future sibling), for browser automation and previews (`mcp-chrome-devtools`), for Figma work (`mcp-figma`) and for generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
+Skip it when the work is the design judgment itself; this packet stays the transport and only supplies reference evidence. Skip it for Mobbin-based app research (`mcp-mobbin`, the sibling Mobbin transport), for browser automation and previews (`mcp-chrome-devtools`), for Figma work (`mcp-figma`) and for generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob and Code Mode calls only.
 
 ### Related Skills
 
@@ -216,4 +223,6 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: the full funnel, a metadata-first lookup and a screen-image fetch |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |
+| [`scripts/README.md`](./scripts/README.md) | What each helper script checks and the output it prints: verify-only posture and report-only diagnostics |
+| [`mcp-servers/refero-mcp/README.md`](./mcp-servers/refero-mcp/README.md) | The remote Refero MCP registration: the `mcp-remote` bridge, discovery, auth and plan posture |
 | [Skills Library](../../README.txt) | The skill catalog and routing front door |

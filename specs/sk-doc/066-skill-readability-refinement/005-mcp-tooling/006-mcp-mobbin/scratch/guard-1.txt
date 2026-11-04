@@ -1,0 +1,3 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md edited=3
+code_blocks_changed=1 block_count_mismatch=0 restored

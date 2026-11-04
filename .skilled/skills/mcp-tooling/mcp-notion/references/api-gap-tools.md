@@ -10,7 +10,7 @@ trigger_phrases:
   - "notion daily notes"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-notion API Gap Tools Reference
@@ -20,6 +20,18 @@ Direct Notion REST API calls that fill the 5 capability gaps the official Notion
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Turn each uncovered capability into a working direct call: the exact endpoint, method, version pin and a runnable example, with every body shape that is not fully confirmed marked VERIFY.
+
+### When to Use
+
+- Attaching an image, PDF or file to a page, block, cover/icon or `files` property.
+- Creating, editing or running a saved database view.
+- Reading a `relation`, long `rich_text`/`title` or wide `people` field past the 25-item truncation.
+- Polling a long-running operation on the local stdio backend.
+- Any journaling or daily-log workflow.
 
 Each section below gives the exact endpoint(s) and method, a runnable example, and when to reach for it. Two invocation styles appear throughout:
 
@@ -220,4 +232,4 @@ Core CRUD through the MCP pins `2025-09-03`; the newer file-upload, view, and as
 
 - `mcp-tools.md` — the 24-tool official MCP catalog and Code Mode invocation shape (the CRUD surface these gap calls sit alongside).
 - `troubleshooting.md` — recovery recipes for 401/403, 429 backoff, version mismatch, data-source-vs-database confusion, and the local-to-remote migration path.
-- Notion API reference: https://developers.notion.com/reference/intro — authoritative endpoint and schema source; reconfirm any `VERIFY` body shape here before relying on it.
+- Notion API reference: [developers.notion.com/reference/intro](https://developers.notion.com/reference/intro) — authoritative endpoint and schema source; reconfirm any `VERIFY` body shape here before relying on it.

@@ -10,14 +10,26 @@ trigger_phrases:
   - "folder icon colors"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.7.1.0
+version: 0.7.2.0
 ---
 
 # Iconic Plugin Index (`iconic`)
 
+Open this first when a request touches Iconic. It maps the file-layer surface and names the companion reference that answers the next question.
+
+---
+
 ## 1. OVERVIEW
 
-The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook** — never by driving the icon-picker UI.
+### Purpose
+
+The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebook**, never by driving the icon-picker UI.
+
+### When to Use
+
+- A request names Iconic, an icon, a folder color, or an icon rule.
+- Choosing between a rule, a visibility toggle, and a per-item override.
+- Checking a rule's shape before merging it into a vault.
 
 ---
 
@@ -35,7 +47,11 @@ The `mcp-obsidian` mode operates this plugin by **editing its `data.json` rulebo
 
 ## 3. WHAT IT DOES
 
-Customizes icons and their colors directly in the Obsidian UI: tabs, files & folders, bookmarks, tags, properties, and ribbon commands. Rules can match by file extension or folder name; per-item overrides exist for individual icons. Rendering happens in-app; the mode touches only the JSON.
+Customizes icons and their colors directly in the Obsidian UI.
+
+- **Surfaces:** tabs, files & folders, bookmarks, tags, properties, and ribbon commands.
+- **Matching:** rules match by file extension or folder name; per-item overrides exist for individual icons.
+- **Rendering:** in-app; the mode touches only the JSON.
 
 ---
 
@@ -91,3 +107,13 @@ Customizes icons and their colors directly in the Obsidian UI: tabs, files & fol
 - **Never downgrade the plugin.** Only the rulebook is (re)applied.
 - **Re-read `data.json` before operating** — the user may have changed icons in-app since the last read.
 - Render confirmation needs an in-app reload; the file-layer claim is verified by JSON round-trip only.
+
+---
+
+## 7. RELATED RESOURCES
+
+| File | Use it for |
+| --- | --- |
+| `data-model.md` | The full `data.json` contract: top-level keys, rulebook schema, visibility toggles, per-item icon maps, and safe-merge discipline |
+| `workflows.md` | Safe recipes: add or edit rules, flip toggles, change colors, and merge the canonical rulebook |
+| `troubleshooting.md` | Cause, detection, and recovery for invalid JSON, lost rules, missing icons, stale reads, and version drift |

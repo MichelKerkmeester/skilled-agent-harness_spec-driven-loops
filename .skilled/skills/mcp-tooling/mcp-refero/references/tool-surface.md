@@ -9,7 +9,7 @@ trigger_phrases:
   - "refero plan gating"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Refero Tool Surface
@@ -22,9 +22,9 @@ Read-only contract reference for the eight Refero MCP tools.
 
 The expected contract for the Refero MCP's **eight read-only tools across three layers** (styles, screens, flows). Treat this table as the documented baseline and Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. Documented facts trace to the official Refero MCP docs (doc.refero.design) and the official `referodesign/refero_skill` repository; live-verified facts trace to this repo's design-reference catalog.
 
-### Usage
+### When to Use
 
-Use the tables and constraints as the documented baseline, then confirm every intended callable and schema through live Code Mode discovery.
+Open this before writing or reviewing a Refero call: the tables and constraints are the documented baseline, and every intended callable and schema still needs a live Code Mode discovery check.
 
 > "Apps" and "elements" are **query and result facets** (the `site` metadata and `ui_elements` arrays), not tool families. There are no `search_apps`, `get_app`, `search_elements`, or `get_element` tools.
 
@@ -32,16 +32,16 @@ Use the tables and constraints as the documented baseline, then confirm every in
 
 ## 2. THE EIGHT TOOLS
 
-| Layer   | Tool                         | Required args                        | Optional args / bounds                       | Returns                                                                                      |                                                                                                                                      |
-| ---------| ------------------------------| --------------------------------------| ----------------------------------------------| ----------------------------------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------|
-| Styles  | `refero_search_styles`       | `query: string`                      | `page` (default 1); `response_format?`       | `{pagination, records[]}`: style UUID, title, source URL, preview URL, platform, description |                                                                                                                                      |
-| Styles  | `refero_get_style`           | exactly one of `style_id: string` \  | `style_ids: string[]`                        | `response_format?`                                                                           | Visual thesis, color/token roles, typography, layout, spacing, surfaces/elevation, components, imagery, do/don't rules               |
-| Screens | `refero_search_screens`      | `query: string`, `platform: "web"\   | "ios"`                                       | `page`; `response_format?`                                                                   | Paginated UUID records with `site`, `page_url`, `refero_url`, thumbnail, `page_types`, `ux_patterns`, `ui_elements`, colors, content |
-| Screens | `refero_get_screen`          | exactly one of `screen_id: string` \ | `screen_ids: string[]`                       | `response_format?`                                                                           | Full screen metadata, fonts, tags, description/layout/functions. Never pass `image_size` or `include_similar` here                   |
-| Screens | `refero_get_similar_screens` | `screen_id: string`                  | `limit` 1-20, default 10; `response_format?` | Comparable screen records                                                                    |                                                                                                                                      |
-| Screens | `refero_get_screen_image`    | `screen_id: string`                  | `image_size: "thumbnail"\                    | "full"` (default thumbnail)                                                                  | Raw screenshot image content                                                                                                         |
-| Flows   | `refero_search_flows`        | `query: string`, `platform: "web"\   | "ios"`                                       | `page`; `response_format?`                                                                   | Paginated summaries with **numeric** flow IDs, site, steps summary, problem, description                                             |
-| Flows   | `refero_get_flow`            | exactly one of `flow_id: number` \   | `flow_ids: number[]`                         | `response_format?`                                                                           | Ordered steps: screen UUID, goal, action, system response, metadata, `related_queries`                                               |
+| Layer | Tool | Required args | Optional args / bounds | Returns |
+| --- | --- | --- | --- | --- |
+| Styles | `refero_search_styles` | `query: string` | `page` (default 1); `response_format?` | `{pagination, records[]}`: style UUID, title, source URL, preview URL, platform, description |
+| Styles | `refero_get_style` | exactly one of `style_id: string` \| `style_ids: string[]` | `response_format?` | Visual thesis, color/token roles, typography, layout, spacing, surfaces/elevation, components, imagery, do/don't rules |
+| Screens | `refero_search_screens` | `query: string`, `platform: "web"\| "ios"` | `page`; `response_format?` | Paginated UUID records with `site`, `page_url`, `refero_url`, thumbnail, `page_types`, `ux_patterns`, `ui_elements`, colors, content |
+| Screens | `refero_get_screen` | exactly one of `screen_id: string` \| `screen_ids: string[]` | `response_format?` | Full screen metadata, fonts, tags, description/layout/functions. Never pass `image_size` or `include_similar` here |
+| Screens | `refero_get_similar_screens` | `screen_id: string` | `limit` 1-20, default 10; `response_format?` | Comparable screen records |
+| Screens | `refero_get_screen_image` | `screen_id: string` | `image_size: "thumbnail"\| "full"` (default thumbnail) | Raw screenshot image content |
+| Flows | `refero_search_flows` | `query: string`, `platform: "web"\| "ios"` | `page`; `response_format?` | Paginated summaries with **numeric** flow IDs, site, steps summary, problem, description |
+| Flows | `refero_get_flow` | exactly one of `flow_id: number` \| `flow_ids: number[]` | `response_format?` | Ordered steps: screen UUID, goal, action, system response, metadata, `related_queries` |
 
 ### Hard constraints
 
@@ -108,9 +108,9 @@ Documented entitlements (official plans and MCP getting-started pages):
 
 ---
 
-## 6. OPEN QUESTIONS (UNKNOWN, RUNTIME-ONLY)
+## 6. QUESTION STATUS (RESOLVED, PARTIAL AND UNKNOWN)
 
-These stay UNKNOWN until live evidence exists; none can be resolved by authoring:
+Each entry records what live evidence has settled and what stays UNKNOWN until a runtime check; none of it can be resolved by authoring:
 
 1. **RESOLVED 2026-07-16** ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)): `tools/list` through Code Mode exactly matches the eight documented tools under the dotted doubled registry names `refero.refero.refero_<tool>`, and it listed them **pre-auth** (no OAuth needed for discovery). The TS callable is the doubled `refero.refero_refero_<tool>(...)` form (fixture `Access as:` line). Per-session re-confirmation remains the rule.
 2. **PARTIALLY RESOLVED 2026-07-16**: the fixture's live schemas confirm `response_format?: "json" | "md"` (default `"md"`) on `refero_search_styles` and `refero_search_screens`, and `platform: "ios" | "web"` required on `refero_search_screens`. The remaining six tools' `response_format` exposure through this client stays a live `tool_info` check per tool.

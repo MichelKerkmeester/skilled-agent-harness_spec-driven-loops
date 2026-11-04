@@ -1,0 +1,3 @@
+.skilled/skills/mcp-tooling/README.md
+.skilled/skills/mcp-tooling/ROUTER.md
+.skilled/skills/mcp-tooling/SKILL.md

@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian mcp npx failed"
 importance_tier: "normal"
 contextType: "general"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-obsidian Troubleshooting Guide
@@ -21,10 +21,21 @@ Diagnostic guide for the two Obsidian CLI profiles (`notesmd-cli` headless, `obs
 
 ## 1. OVERVIEW
 
+### Purpose
+
+An Obsidian failure reaches the fix for the surface that produced it, whether that is the headless CLI, the official app-backed CLI, or the MCP server.
+
+### When to Use
+
+- A `notesmd-cli` or `obsidian` command fails or is not found.
+- An MCP call returns 401, connection refused, or an npx launch error.
+- A search returns nothing and you need to confirm that is the real answer.
+- A task keeps failing because the app is not running.
+
 Most failures fall into six categories:
 1. **Installation / PATH** — `notesmd-cli` or `obsidian` not on PATH (often a GUI-vs-shell PATH mismatch).
 2. **Official CLI not registered** — the `obsidian` binary was never enabled in Settings.
-3. **Official CLI registered but the app is down** — the most common official-CLI failure, and the only one that exits non-zero (§5b).
+3. **Official CLI registered but the app is down** — the most common official-CLI failure, and the only one that exits non-zero (§5).
 4. **Local REST API prerequisite** — the plugin is not enabled, or is on the wrong port / SSL mode.
 5. **Authentication** — `OBSIDIAN_API_KEY` unset or wrong.
 6. **MCP launch** — npx cannot fetch `obsidian-mcp-server`, or the app is not running.
@@ -37,7 +48,12 @@ Start with the Quick Diagnostics sequence (§3) before diving into specifics.
 
 - `notesmd-cli` installed: `notesmd-cli --version` `VERIFY exact version-flag`
 - For the official CLI: Obsidian desktop v1.12.4+ with CLI registered (Settings → General → Command line interface)
-- For MCP: a **running Obsidian app**, the **Local REST API plugin v4.0.0+** enabled, a token, and the `obsidian` manual registered in `.utcp_config.json` launching `npx -y obsidian-mcp-server@latest` over stdio with `OBSIDIAN_API_KEY` / `OBSIDIAN_BASE_URL` / `OBSIDIAN_VERIFY_SSL` available to Code Mode
+- For MCP:
+  - a **running Obsidian app**
+  - the **Local REST API plugin v4.0.0+** enabled
+  - a token
+  - the `obsidian` manual registered in `.utcp_config.json`, launching `npx -y obsidian-mcp-server@latest` over stdio
+  - `OBSIDIAN_API_KEY` / `OBSIDIAN_BASE_URL` / `OBSIDIAN_VERIFY_SSL` available to Code Mode
 
 ---
 
@@ -127,9 +143,9 @@ which notesmd-cli                             # Resolves here?
 
 ---
 
-## 5. OFFICIAL CLI NOT REGISTERED
+## 5. OFFICIAL CLI ISSUES
 
-### `command not found: obsidian`
+### Not Registered: `command not found: obsidian`
 
 **Symptoms:** `obsidian version` prints `command not found`, even though the desktop app is installed.
 
@@ -145,11 +161,7 @@ which notesmd-cli                             # Resolves here?
 
 > The official CLI is **app-backed** and does **not** launch the app. For headless/file work, use `notesmd-cli` instead; it needs no app and no registration step.
 
----
-
-## 5b. OFFICIAL CLI REGISTERED BUT THE APP IS NOT RUNNING
-
-### `The CLI is unable to find Obsidian. Please make sure Obsidian is running and try again.`
+### Registered but the App Is Not Running: `The CLI is unable to find Obsidian. Please make sure Obsidian is running and try again.`
 
 **Symptoms:** every `obsidian` command prints that line to **stderr** and exits **1**, including `obsidian version` and `obsidian help`. The binary resolves fine under `command -v`.
 
@@ -170,15 +182,13 @@ The wait matters. Issuing commands immediately after `open` races the app's star
 
 | Check | Meaning |
 |-------|---------|
-| `command -v obsidian` finds nothing | Not registered (§5) |
-| `obsidian version` exits 1 | Registered, app down (this section) |
+| `command -v obsidian` finds nothing | Not registered (above) |
+| `obsidian version` exits 1 | Registered, app down (this subsection) |
 | `obsidian version` exits 0 and prints a version | Usable |
 
 > **Do not carry this exit status over to other commands.** Once the app is running, the CLI exits **0 even when a command fails**, printing `Error: ...` to stdout. Check the output text, not `$?`. Full contract: [`official-cli-agent-usage.md`](official-cli-agent-usage.md).
 
----
-
-## 5c. OFFICIAL CLI RETURNS AN ERROR BUT EXITS 0
+### Returns an Error but Exits 0
 
 **Symptoms:** a script using `set -e` or `if obsidian ...; then` treats a failed command as success. Output contains `Error: File "X" not found.` or `Vault not found.` yet `$?` is `0`.
 
@@ -356,7 +366,7 @@ npx -y obsidian-mcp-server@latest --help
 
 ## 12. GETTING HELP
 
-- `notesmd-cli` repo: https://github.com/Yakitrak/obsidian-cli
-- cyanheads `obsidian-mcp-server`: https://github.com/cyanheads/obsidian-mcp-server
-- Obsidian Local REST API plugin: https://github.com/coddingtonbear/obsidian-local-rest-api
-- Obsidian help/docs: https://help.obsidian.md/
+- `notesmd-cli` repo: [Yakitrak/obsidian-cli](https://github.com/Yakitrak/obsidian-cli)
+- cyanheads `obsidian-mcp-server`: [cyanheads/obsidian-mcp-server](https://github.com/cyanheads/obsidian-mcp-server)
+- Obsidian Local REST API plugin: [obsidian-local-rest-api](https://github.com/coddingtonbear/obsidian-local-rest-api)
+- Obsidian help/docs: [Obsidian Help](https://help.obsidian.md/)

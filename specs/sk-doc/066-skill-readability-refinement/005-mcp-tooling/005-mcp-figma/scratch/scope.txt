@@ -1,0 +1,9 @@
+.skilled/skills/mcp-tooling/mcp-figma/README.md
+.skilled/skills/mcp-tooling/mcp-figma/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-figma/SKILL.md
+.skilled/skills/mcp-tooling/mcp-figma/assets/env-template.md
+.skilled/skills/mcp-tooling/mcp-figma/assets/utcp-figma-manual.md
+.skilled/skills/mcp-tooling/mcp-figma/references/figma-cli-reference.md
+.skilled/skills/mcp-tooling/mcp-figma/references/mcp-wiring.md
+.skilled/skills/mcp-tooling/mcp-figma/references/tool-surface.md
+.skilled/skills/mcp-tooling/mcp-figma/references/troubleshooting.md

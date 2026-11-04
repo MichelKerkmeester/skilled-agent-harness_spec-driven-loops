@@ -9,7 +9,7 @@ trigger_phrases:
   - "refero tools not resolving"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Refero Troubleshooting
@@ -22,9 +22,9 @@ Root-cause reference for diagnosing Refero transport failures.
 
 Failure modes for the `mcp-refero` transport, ordered roughly by how often they block first use. Every fix stays inside the transport's read-only boundary: no config edits, no auth-state repair, no invented retry policies.
 
-### Usage
+### When to Use
 
-Match the observed symptom to the table, preserve the read-only boundary, and use the linked references when discovery or authentication needs confirmation.
+Open this when a Refero call fails, stalls or returns less than expected: match the observed symptom to the table, preserve the read-only boundary, and use the linked references when discovery or authentication needs confirmation.
 
 ---
 

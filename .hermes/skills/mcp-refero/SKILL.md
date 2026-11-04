@@ -3,7 +3,7 @@ name: mcp-refero
 description: "Refero MCP transport: read-only UI reference search via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a Refero Pro plan (Free has no MCP access), the npx mcp-remote bridge, and Node.js >=18; this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.7.0
+version: 1.1.8.0
 user-invocable: true
 ---
 
@@ -56,7 +56,7 @@ Pair any design-affecting use with `sk-design-md-generator` for a measured Style
 
 **Skip this skill when:**
 - The work is the design judgment itself (palette, type, layout, taste verdicts, accessibility or readiness calls). This packet is only an evidence transport and issues no such verdict.
-- The task is app or screen research through Mobbin. That is `mcp-mobbin` (a future sibling transport, not this packet).
+- The task is app or screen research through Mobbin. That is `mcp-mobbin` (the sibling Mobbin transport, not this packet).
 - The task is browser automation, live-page inspection, or visual preview of a built page. That is `mcp-chrome-devtools`.
 - The work is generic app coding with no design-reference input: use `sk-code`.
 - The user asks to change this repo's files, the `.utcp_config.json` manual, or auth state. This transport forbids Write/Edit/Task and never mutates the workspace.
@@ -68,7 +68,7 @@ Pair any design-affecting use with `sk-design-md-generator` for a measured Style
 `mcp-tooling` routes a Refero design-reference request here when the request names Refero, or asks for real shipped app screens, user journeys, or a UI reference search.
 The hub's `mcp-refero` mode signal selects this packet, and generic design, UI or screen wording does not.
 
-A scored route loads the documents its intent maps to. `references/tool-surface.md` is the default resource, offered as a fallback suggestion and never loaded on a scored route.
+A scored route loads the documents its intent maps to. `references/tool-surface.md` is the default resource: the three research routes load it, and a zero-score route offers it as a suggestion.
 
 Read [`ROUTER.md`](../../../.skilled/skills/mcp-tooling/mcp-refero/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
@@ -228,13 +228,13 @@ Breadth is allowed during transport research; for design-affecting use, pair wit
 
 - **Code Mode** (`mcp__code_mode__call_tool_chain`) owns every Refero call, including discovery (`list_tools`, `search_tools`, `tool_info`).
 - **Read/Grep/Glob** load references and verify the manual's presence in `.utcp_config.json` read-only.
-- **Bash** runs only the read-only `scripts/doctor.sh` diagnostics; this transport has no other shell role (Code Mode owns the stdio process launch, so the packet never runs `npx` itself).
+- **Bash** runs only the read-only helpers: `scripts/doctor.sh` diagnostics and the verify-only `scripts/install.sh` posture check. This transport has no other shell role (Code Mode owns the stdio process launch, so the packet never runs `npx` itself).
 
 ### Cross-Workflow Contracts
 
 - **`sk-design-md-generator`** is the cross-hub design pairing: it extracts a live website's real CSS into a measured Style Reference DESIGN.md (named design tokens, type scale, components). This packet retrieves only requested shipped-UI evidence and returns it to that measured-extraction pairing.
 - **`mcp-code-mode`** is the substrate: manuals, `{manual}.{manual}_{tool}` naming, prefixed env vars (`refero_<NAME>` if a token is ever wired via env), discovery, and the error-envelope discipline all come from it.
-- **`mcp-figma`** is the sibling Figma transport in this hub; **`mcp-mobbin`** is a planned future sibling for Mobbin research. Neither overlaps this packet's Refero surface.
+- **`mcp-figma`** is the sibling Figma transport in this hub; **`mcp-mobbin`** is the sibling transport for Mobbin research. Neither overlaps this packet's Refero surface.
 
 ### External Tools
 

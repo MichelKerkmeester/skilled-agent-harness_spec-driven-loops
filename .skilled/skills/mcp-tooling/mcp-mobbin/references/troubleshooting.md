@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin tools not resolving"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mobbin Troubleshooting
@@ -53,7 +53,7 @@ Match the observed symptom to the table, keep all fixes within the read-only bou
 - Never delete, inspect, or "repair" `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR`; auth state is operator-owned, and reauthorization is an explicit operator action.
 - Never paste tokens, OAuth URLs with codes, Authorization headers, or auth-state contents into output or evidence.
 - Never force the SSE transport; the bridge is HTTP-first with SSE fallback only after HTTP 404, and Mobbin requires Streamable HTTP.
-- `deep` is a **[CONFIRMED] client-settable mode** on `search_screens` (`mode?: "deep" | "standard" | "fast"` in the 2026-07-16 fixture); use it only on that tool and still re-confirm the active schema with `tool_info` before calling.
+- Never treat `deep` as a server-side behavior: it is a **[CONFIRMED] client-settable mode** on `search_screens` (`mode?: "deep" | "standard" | "fast"` in the 2026-07-16 fixture); use it only on that tool and still re-confirm the active schema with `tool_info` before calling.
 - Never claim the failure is fixed until a live discovery (`tool_info`) or call confirms it.
 
 ---

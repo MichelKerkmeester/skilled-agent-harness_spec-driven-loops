@@ -10,15 +10,15 @@ trigger_phrases:
   - "obsidian rest api"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # Obsidian MCP Tools Reference
 
-**MCP Server:** `obsidian`, the `obsidian-mcp-server` package (cyanheads) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`. On 2026-09-02 that `@latest` tag resolved to **v0.12.3**, so pin nothing to a version this document names.
-**Auth:** `OBSIDIAN_API_KEY` (the Local REST API bearer token) plus `OBSIDIAN_BASE_URL` and `OBSIDIAN_VERIFY_SSL`, interpolated into `.utcp_config.json`. The token comes from the Obsidian **Local REST API** plugin, not from an OAuth flow.
-**Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions (not an array of `{tool, input}` records).
-**Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore. For this manual the pattern is `obsidian.obsidian_<tool_name>` (e.g. `obsidian.obsidian_get_note`). Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
+- **MCP Server:** `obsidian`, the `obsidian-mcp-server` package (cyanheads) launched over **stdio** via `npx -y obsidian-mcp-server@latest`, registered as the `obsidian` manual in `.utcp_config.json`. It also supports Streamable HTTP on `127.0.0.1:3010/mcp`. On 2026-09-02 that `@latest` tag resolved to **v0.12.3**, so pin nothing to a version this document names.
+- **Auth:** `OBSIDIAN_API_KEY` (the Local REST API bearer token) plus `OBSIDIAN_BASE_URL` and `OBSIDIAN_VERIFY_SSL`, interpolated into `.utcp_config.json`. The token comes from the Obsidian **Local REST API** plugin, not from an OAuth flow.
+- **Invocation:** Code Mode `call_tool_chain({ code: "..." })` via `mcp__code_mode__call_tool_chain` — a single TypeScript code string with direct access to registered tools as hierarchical functions (not an array of `{tool, input}` records).
+- **Tool naming:** Code Mode namespaces every registered tool as `<manual_name>.<manual_name>_<tool_name>` — one dot then underscore. For this manual the pattern is `obsidian.obsidian_<tool_name>` (e.g. `obsidian.obsidian_get_note`). Do not guess a tool name — confirm every one with `tool_info()`/`list_tools()` before calling.
 
 > **App-backed surface:** unlike `notesmd-cli` (headless, filesystem), this MCP server drives the vault through Obsidian's **Local REST API plugin**, which requires a **running Obsidian app**. If no app/token is available, route to the `notesmd-cli` CLI instead (see `obsidian-cli-commands.md`).
 

@@ -12,7 +12,7 @@ trigger_phrases:
   - "healthmd rollup_summary"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.5.0.0
+version: 0.5.1.0
 ---
 
 # Health.md File-Layer Data Model
@@ -23,6 +23,16 @@ Health.md Visualizations renders Apple and Android health data from **plain data
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Read and write a Health.md data file against the exact schema, layer, and version the plugin expects.
+
+### When to Use
+
+- Reading, validating, or repairing a Health.md data file.
+- Deciding which layer a new file belongs to.
+- Checking a schema version or settings default before a write.
+
 ### Canonical identity
 
 | Identity field | Current value |
@@ -30,7 +40,7 @@ Health.md Visualizations renders Apple and Android health data from **plain data
 | Obsidian plugin ID | health-md |
 | Display name | Health.md Visualizations |
 | Plugin repository | codybontecou/health-md-visualizations |
-| Installed version | 2.1.0 (all vaults, Phase 11) |
+| Installed version | 2.1.0 (all vaults) |
 | Companion app | Health.md (App Store id 6757763969; site `healthmd.app`) — exports Apple Health and Android data into the vault, and can also merge metrics into Obsidian daily notes |
 | Current export schemas | Daily `healthmd.health_data` **v8**; roll-up `healthmd.rollup_summary` **v9** (roll-up rules v8, derived from daily v8); HealthKit archive `healthmd.healthkit_records` v1; provider section `healthmd.provider.whoop_daily` v1 (all per healthmd.app docs) |
 | Plugin schema ceiling | The installed plugin v2.1.0 was documented to read daily **v0–v7**. Whether v2.1.0 renders the current **v8/v9** exports is **VERIFY** against the installed build — treat newer files as best-effort until confirmed |

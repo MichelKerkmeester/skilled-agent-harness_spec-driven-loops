@@ -1,0 +1,324 @@
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
+index e486a44143f..740837fe103 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
+@@ -39,6 +39,18 @@ This skill drives a real browser through two complementary paths. The `bdg` CLI
+ 
+ The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as a provider and does not implement the transport. For generated application code that gets inspected, `sk-code` owns the standards and tests.
+ 
++### When To Use This Skill
++
++- Reach for this skill when you need a browser screenshot, a console read, a network trace or a CDP operation from an agent.
++- Reach for the CLI when the work is a single inspection.
++- Reach for the MCP path when you are already using Code Mode for other tools or need parallel isolated browsers.
++- Reach for the example scripts when you want a pre-built CI workflow.
++
++This skill is not a cross-browser test framework. The CLI targets Chromium-based browsers only:
++
++- Supported: Chrome, Chromium and Edge
++- Not covered: Firefox and Safari. Cross-browser suites such as Puppeteer, Playwright or Selenium need a dedicated framework
++
+ ### The CDP Capability Surface
+ 
+ | Capability | What the skill can operate |
+@@ -151,30 +163,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
+-
+-### When To Use This Skill
+-
+-- Reach for this skill when you need a browser screenshot, a console read, a network trace or a CDP operation from an agent.
+-- Reach for the CLI when the work is a single inspection.
+-- Reach for the MCP path when you are already using Code Mode for other tools or need parallel isolated browsers.
+-- Reach for the example scripts when you want a pre-built CI workflow.
+-
+-This skill is not a cross-browser test framework. The CLI targets Chromium-based browsers only:
+-
+-- Supported: Chrome, Chromium and Edge
+-- Not covered: Firefox and Safari. Cross-browser suites such as Puppeteer, Playwright or Selenium need a dedicated framework
+-
+-### Related Skills
+-
+-| Skill | Relationship |
+-|---|---|
+-| `mcp-code-mode` | Owns the MCP transport. This skill registers Chrome DevTools as a Code Mode provider and calls tools through `call_tool_chain()`. |
+-| `sk-code` | Owns application-code standards and tests. This skill verifies browser behavior that `sk-code` produces. |
+-
+----
+-
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -187,7 +176,7 @@ This skill is not a cross-browser test framework. The CLI targets Chromium-based
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: When do I use the CLI versus the MCP path?**
+ 
+@@ -199,7 +188,7 @@ A: Run `bdg stop` after each session. In scripts, register `trap "bdg stop" EXIT
+ 
+ **Q: Can I use this with Firefox or Safari?**
+ 
+-A: No. The CLI targets Chromium-based browsers only. For other engines, reach for a dedicated framework such as Puppeteer or Playwright. See INTEGRATION & NAVIGATION for the full boundary.
++A: No. The CLI targets Chromium-based browsers only. For other engines, reach for a dedicated framework such as Puppeteer or Playwright. See OVERVIEW for the full boundary.
+ 
+ **Q: How do I keep CDP method names stable across Chrome versions?**
+ 
+@@ -211,23 +200,32 @@ A: Register multiple entries in `.utcp_config.json`, each with its own name such
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships a manual testing playbook and three example scripts that double as verification gates.
+ 
+ | Check | How to run it |
+ |---|---|
+-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md --type readme` reports zero issues |
+ | Setup diagnostics | `bash .skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/doctor.sh` reports the detected CLI and MCP prerequisites without changing them |
+ | CLI health | `command -v bdg && bdg --version 2>&1 && bdg https://example.com 2>&1 && bdg dom screenshot /tmp/verify.png 2>&1 && bdg stop 2>&1 && ls -la /tmp/verify.png` all pass with no errors |
+ | MCP health | Confirm `chrome_devtools` tools appear in `list_tools()` output and a `navigate_page` call completes without connection errors |
+ | Example scripts | Run `performance-baseline.sh`, `animation-testing.sh` and `multi-viewport-test.sh` in headless mode and confirm all exit zero |
++| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md --type readme` reports zero issues |
+ 
+ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md`) runs every scenario behind these checks.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED RESOURCES
++
++### Related Skills
++
++| Skill | Relationship |
++|---|---|
++| `mcp-code-mode` | Owns the MCP transport. This skill registers Chrome DevTools as a Code Mode provider and calls tools through `call_tool_chain()`. |
++| `sk-code` | Owns application-code standards and tests. This skill verifies browser behavior that `sk-code` produces. |
++
++### Related Documents
+ 
+ | Document | Purpose |
+ |---|---|
+@@ -242,6 +240,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
+ | [`examples/README.md`](./examples/README.md) | Guide to the three production scripts and CI integration |
+ | [`scripts/install.sh`](./scripts/install.sh) | Automated bdg installer with Chrome detection |
+ | [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only environment diagnostics |
++| [`scripts/README.md`](./scripts/README.md) | What each script changes and the output it prints |
+ | [`mcp-servers/bdg-cli/README.md`](./mcp-servers/bdg-cli/README.md) | Install pointer for the bdg CLI, nothing vendored |
+ | [`mcp-servers/chrome-devtools-mcp/README.md`](./mcp-servers/chrome-devtools-mcp/README.md) | The Code Mode server behind the manual entries |
+ | [`assets/utcp-chrome-devtools-manuals.md`](./assets/utcp-chrome-devtools-manuals.md) | Byte-true snapshot of both registered manual entries |
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md
+index 5b147754b5f..f93875d398d 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/ROUTER.md
+@@ -20,7 +20,13 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name browser debugging, Chrome DevTools, CDP, `bdg` or `browser-debugger-cli`, when they ask for a screenshot, HAR export, console log, network inspection, DOM query or an in-browser script, when they need a CI-ready automation script, or when a Chrome DevTools MCP call chains browser work with other tools or runs parallel isolated sessions. It routes to three resource families: `references/cdp-patterns.md` for the CDP command patterns, `references/session-management.md` for the session lifecycle, and `references/troubleshooting.md` for an install, a failure, or the fuller diagnostics an on-demand keyword requests.
++Requests reach this skill from four kinds of signal: browser-debugging vocabulary ("browser debugging", "Chrome DevTools", "CDP", `bdg`, `browser-debugger-cli`); inspection tasks (a screenshot, HAR export, console log, network inspection, DOM query or in-browser script); CI-ready automation; and a Chrome DevTools MCP call that chains browser work with other tools or runs parallel isolated sessions.
++
++It routes to three resource families:
++
++- `references/cdp-patterns.md` for the CDP command patterns.
++- `references/session-management.md` for the session lifecycle.
++- `references/troubleshooting.md` for an install, a failure, or the fuller diagnostics an on-demand keyword requests.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -30,13 +36,15 @@ loads before an intent selects it.
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`CLI`** (weight 4) fires on "bdg", "browser-debugger-cli", "terminal", "cli", "command line", "shell", "headless", "lightweight" and "token efficient", and a `bdg` binary on PATH adds 5 on top. It loads `references/cdp-patterns.md` and `references/session-management.md`.
+-- **`MCP`** (weight 4) fires on "mcp", "code mode", "multi-tool", "tool chain", "isolated instances", "parallel sessions" and "in parallel", and a configured Code Mode adds 4 on top. It loads `references/session-management.md` and `references/cdp-patterns.md`.
+-- **`INSTALL`** (weight 4) fires on "install", "setup", "not installed", "not found", "command -v bdg", "npm install", "getting started" and "first time". It loads `references/troubleshooting.md`.
+-- **`TROUBLESHOOT`** (weight 4) fires on "error", "failed", "troubleshoot", "keeps dropping", "won't connect", "hangs", "stuck", "not working" and "root cause", and a request carrying an error adds 4 on top. It loads `references/troubleshooting.md`.
+-- **`AUTOMATION`** (weight 3) fires on "ci", "continuous integration", "pipeline", "automation", "production", "automate" and "batch". It loads `references/cdp-patterns.md` and `references/session-management.md`.
++- **`CLI`** (weight 4) fires on "bdg", "browser-debugger-cli", "terminal", "cli", "command line", "command-line", "shell", "headless", "lightweight" and "token efficient", and a `bdg` binary on PATH adds 5 on top. It loads `references/cdp-patterns.md` and `references/session-management.md`.
++- **`MCP`** (weight 4) fires on "mcp", "code mode", "multi-tool", "model context protocol", "multiple tools", "tool chain", "isolated instances", "parallel sessions" and "in parallel", and a configured Code Mode adds 4 on top. It loads `references/session-management.md` and `references/cdp-patterns.md`.
++- **`INSTALL`** (weight 4) fires on "install", "setup", "set up", "not installed", "command -v bdg", "getting started", "download", "npm install", "not found" and "first time". It loads `references/troubleshooting.md`.
++- **`TROUBLESHOOT`** (weight 4) fires on "error", "failed", "troubleshoot", "session issue", "keeps dropping", "won't connect", "figure out why", "work out the cause", "hangs", "hanging", "stuck", "crash", "crashing", "broken", "not working", "timeout", "disconnect", "flaky" and "root cause", and a request carrying an error adds 4 on top. It loads `references/troubleshooting.md`.
++- **`AUTOMATION`** (weight 3) fires on "ci", "continuous integration", "pipeline", "automation", "unattended", "production", "automate", "batch" and "recurring". It loads `references/cdp-patterns.md` and `references/session-management.md`.
+ 
+-The two highest-scoring intents load together when their scores sit within 1.0 of each other, at most two intents per request, and a request that scores on none loads nothing: it returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cdp-patterns.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set. A scoring `ON_DEMAND_KEYWORDS` term then adds `references/troubleshooting.md` and `references/session-management.md` on top of the scored set.
++- The two highest-scoring intents load together when their scores sit within 1.0 of each other, and at most two intents load per request.
++- A request that scores on none loads nothing: it returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cdp-patterns.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set.
++- A scoring `ON_DEMAND_KEYWORDS` term then adds `references/troubleshooting.md` and `references/session-management.md` on top of the scored set.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md
+index 363de043d91..eb03203fc6a 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md
+@@ -110,7 +110,7 @@ Common MCP tools include navigation, screenshots, console messages, viewport res
+ - Subset of CDP methods (CLI has 300+ methods across 53 domains)
+ - Less self-documenting than CLI's `--list`, `--describe`
+ 
+-### MCP Session Cleanup
++#### MCP Session Cleanup
+ 
+ Always close browser instances when done. Wrap Code Mode browser operations in `try/finally` so cleanup runs even on errors.
+ 
+@@ -150,7 +150,15 @@ Always close browser instances when done. Wrap Code Mode browser operations in `
+ 
+ ### Browser Debugging Completion Checklist
+ 
+-Workflow is complete when CLI/MCP path is selected, installation or config is verified, session is active, CDP operations exit 0 with valid JSON, requested data is captured, sessions are cleaned up, and discovery/error handling are documented.
++The workflow is complete when:
++
++- [ ] A CLI or MCP path is selected.
++- [ ] Installation or configuration is verified.
++- [ ] The session is active.
++- [ ] CDP operations exit 0 with valid JSON.
++- [ ] The requested data is captured.
++- [ ] Sessions are cleaned up.
++- [ ] Discovery and error handling are documented.
+ 
+ ### Quality Targets
+ 
+@@ -179,7 +187,19 @@ Use Bash for `bdg`, Read for references, Grep for logs/output, and Glob for scre
+ 
+ ### Essential CLI Commands
+ 
+-Use `bdg cdp --list`, `bdg cdp --describe <domain>`, `bdg cdp --search <term>`, `bdg <url>`, `bdg status`, `bdg stop`, `bdg dom screenshot <path>`, `bdg console --list`, `bdg dom query`, `bdg dom eval`, and `bdg network har <path>`. In shell scripts, install a trap so `bdg stop 2>&1` runs on exit.
++- `bdg cdp --list`
++- `bdg cdp --describe <domain>`
++- `bdg cdp --search <term>`
++- `bdg <url>`
++- `bdg status`
++- `bdg stop`
++- `bdg dom screenshot <path>`
++- `bdg console --list`
++- `bdg dom query`
++- `bdg dom eval`
++- `bdg network har <path>`
++
++In shell scripts, install a trap so `bdg stop 2>&1` runs on exit.
+ 
+ ---
+ 
+@@ -189,7 +209,7 @@ The router discovers Markdown resources dynamically from `references/` and `asse
+ This skill currently routes over the flat reference set: `references/cdp-patterns.md`, `references/session-management.md` and `references/troubleshooting.md`.
+ The asset [`assets/utcp-chrome-devtools-manuals.md`](assets/utcp-chrome-devtools-manuals.md) is the registered-state snapshot of the `chrome_devtools_1` and `chrome_devtools_2` Code Mode manuals. Verify them, do not re-add them.
+ 
+-Scripts: `scripts/install.sh`.
++Scripts: `scripts/install.sh` and `scripts/doctor.sh`, both documented in `scripts/README.md`.
+ 
+ Examples: [`examples/README.md`](examples/README.md) — automation example scripts. It lives outside the `references/`/`assets/` discovery roots, so it is linked here rather than auto-loaded by the router.
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md
+index a496673f75d..a86f48c4223 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md
+@@ -21,6 +21,18 @@ CDP command reference with domain patterns and Unix pipeline examples.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Turn a browser task into a CDP command that runs against the connected Chrome version, without a hardcoded method list.
++
++### When to Use
++
++- You know the browser task but not the CDP method name or signature.
++- You are assembling a multi-step browser workflow from commands that already run.
++- You want to filter `bdg` output with `jq`, `grep` or another Unix tool.
++
++### Core Principle
++
+ Progressive disclosure from discovery to execution - always explore capabilities via `bdg cdp --list`/`--describe`/`--search` before executing CDP methods. Self-documentation eliminates hardcoded method lists and ensures up-to-date access to 300+ CDP methods across 53 domains.
+ 
+ ---
+@@ -733,6 +745,4 @@ bdg stop 2>&1
+ - [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) - Official CDP documentation with 300+ methods across 53 domains
+ - [browser-debugger-cli GitHub](https://github.com/szymdzum/browser-debugger-cli) - Source repository and issue tracker
+ 
+----
+-
+-**Reference**: Full CDP documentation at https://chromedevtools.github.io/devtools-protocol/
++**Reference**: [Full CDP documentation](https://chromedevtools.github.io/devtools-protocol/)
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md
+index 416e58d8da6..a3cb8d573a1 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md
+@@ -21,6 +21,18 @@ Advanced patterns for session lifecycle, multi-session handling, and state persi
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keep a `bdg` browser session healthy from start to stop, with the scripts that verify, recover and clean it up.
++
++### When to Use
++
++- You are writing a script that starts and stops its own browser session.
++- A session start is flaky and needs retries, a timeout or a health check.
++- You need cleanup that survives errors and interrupts.
++
++### Core Principle
++
+ Always verify session state before operations - session failures cascade. Implement proper cleanup patterns (trap-based) to prevent resource leaks and orphaned browser processes.
+ 
+ ---
+@@ -573,7 +585,7 @@ stop_and_verify
+ 
+ ## 10. PERFORMANCE OPTIMIZATION
+ 
+-### Session Pooling Pattern
++### Warm Session Reuse
+ 
+ ```bash
+ #!/bin/bash
+@@ -664,7 +676,7 @@ batch_operations "https://example.com" \
+ 1. **Always verify session state** before executing operations
+ 2. **Use trap for cleanup** to ensure sessions are stopped on script exit
+ 3. **Implement retry logic** for production scripts
+-4. **Track multiple sessions** with metadata when running concurrent operations
++4. **Label sessions for reporting only** and finish one before starting the next, because `bdg` exposes a single active session (§6).
+ 5. **Save session state** for resumption after interruptions
+ 6. **Enable common domains upfront** (Network, Runtime, DOM) for better performance
+ 7. **Implement health checks** with meaningful error messages
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md
+index 93c6510de41..709256a7217 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md
+@@ -21,6 +21,18 @@ Systematic diagnostics and solutions for common bdg CLI installation, session, a
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Turn a failing `bdg` command into a named cause and the fix that addresses it.
++
++### When to Use
++
++- `bdg` will not install, start a session or find Chrome.
++- A CDP command fails on a method name, a parameter or a missing session.
++- You need the meaning of an exit code or the fix for one platform.
++
++### Core Principle
++
+ Find root cause before attempting fixes - symptom fixes create cascading failures. Always run systematic diagnostics (5-check sequence) before implementing solutions.
+ 
+ ---
+@@ -799,8 +811,8 @@ bdg status 2>&1
+ 
+ ## 13. GETTING HELP
+ 
+-1. **Check documentation**: https://github.com/szymdzum/browser-debugger-cli
+-2. **Search issues**: https://github.com/szymdzum/browser-debugger-cli/issues
++1. **Check documentation**: [browser-debugger-cli repository](https://github.com/szymdzum/browser-debugger-cli)
++2. **Search issues**: [browser-debugger-cli issues](https://github.com/szymdzum/browser-debugger-cli/issues)
+ 3. **Report bug** with:
+    - bdg version (`bdg --version`)
+    - Platform (macOS/Linux/WSL)

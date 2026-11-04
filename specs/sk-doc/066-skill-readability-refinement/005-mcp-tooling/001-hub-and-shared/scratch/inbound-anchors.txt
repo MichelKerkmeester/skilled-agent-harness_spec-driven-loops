@@ -1,0 +1,2 @@
+.skilled/skills/mcp-tooling/ROUTER.md: numbered-section or line references (keep section numbers and the cited lines in place, or update each) at .skilled/skills/mcp-tooling/README.md:38, .skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md:49
+.skilled/skills/mcp-tooling/SKILL.md: numbered-section or line references (keep section numbers and the cited lines in place, or update each) at .skilled/skills/mcp-tooling/README.md:38, .skilled/skills/mcp-tooling/ROUTER.md:159, AGENTS.md:216

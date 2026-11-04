@@ -1,0 +1,7 @@
+.skilled/skills/mcp-tooling/mcp-mobbin/README.md
+.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md
+.skilled/skills/mcp-tooling/mcp-mobbin/assets/utcp-mobbin-manual.md
+.skilled/skills/mcp-tooling/mcp-mobbin/references/mcp-wiring.md
+.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md
+.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md

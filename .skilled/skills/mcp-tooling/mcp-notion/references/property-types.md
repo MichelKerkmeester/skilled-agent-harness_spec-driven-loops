@@ -9,7 +9,7 @@ trigger_phrases:
   - "notion filter sort properties"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Notion Property Types Reference
@@ -23,6 +23,17 @@ version: 0.1.0.0
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Write property values in the shape the data source schema demands and query each type with the operators it supports, so a create or update validates and a filter returns rows.
+
+### When to Use
+
+- Building `create-a-page` or `update-page-properties` values for a typed property.
+- Reading a data source's schema before a write.
+- Choosing a filter operator or sort for `query-data-source`.
+- Checking whether a computed type can be written at all.
 
 A Notion data source (see `database-model.md`) has a `properties` object: a map of property name to a config whose `type` field is one of the types below. Each property type appears in **three different shapes**, and an agent that conflates them will send malformed requests:
 
@@ -150,7 +161,7 @@ Three entries need explicit handling so an agent does not treat them like ordina
 - **`place`** — appears in the `property-object` schema type list but is documented as **not fully supported**. Treat its config and value shapes as `VERIFY` (confirm current support against the `property-object` reference before relying on it); do not depend on it in generated schemas.
 - **`button`** — a Notion UI property that triggers actions. It has **no API representation**: it is not in `property-schema-object` (cannot be created via the API) and not in `page-property-values` (no readable value). If a workspace column is a button, the API simply will not expose it as a settable/gettable property. `VERIFY` only if a future API version adds it.
 
-The task brief's candidate list included `verification` and `button`; the reconciliation above is the confirmed outcome — `verification` is value-only and read-only, `button` is not in the API, and `place` is the schema-only type the brief omitted.
+The candidate list for this reference included `verification` and `button`; the reconciliation above is the confirmed outcome: `verification` is value-only and read-only, `button` is not in the API, and `place` is the schema-only type that list omitted.
 
 ---
 

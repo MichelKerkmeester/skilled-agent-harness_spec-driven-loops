@@ -12,14 +12,14 @@ trigger_phrases:
   - "mcp tools"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Official ClickUp MCP Tools Reference
 
-**MCP server:** `clickup_official`, ClickUp's hosted server at `https://mcp.clickup.com/mcp`. The manual in `.utcp_config.json` reaches it over stdio with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the hosted route replaces it.
-**Auth:** OAuth 2.1 with PKCE. The first launch opens one browser approval, and the manual reads no API key.
-**Tool naming:** Code Mode names each tool `clickup_official.clickup_official_<server tool name>`. Every server tool name already starts with `clickup_`, so the full name repeats it: `clickup_official.clickup_official_clickup_create_task`. A name without the inner `clickup_`, such as `clickup_official.clickup_official_create_task`, does not exist.
+- **MCP server:** `clickup_official`, ClickUp's hosted server at `https://mcp.clickup.com/mcp`. The manual in `.utcp_config.json` reaches it over stdio with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the hosted route replaces it.
+- **Auth:** OAuth 2.1 with PKCE. The first launch opens one browser approval, and the manual reads no API key.
+- **Tool naming:** Code Mode names each tool `clickup_official.clickup_official_<server tool name>`. Every server tool name already starts with `clickup_`, so the full name repeats it: `clickup_official.clickup_official_clickup_create_task`. A name without the inner `clickup_`, such as `clickup_official.clickup_official_create_task`, does not exist.
 
 > **Verification status (2026-10-08):** the hosted server registered 61 tools on 2026-10-08. The inventory in section 5 and every parameter named in this document come from that registration's schema. Confirm a name with `tool_info()` if a call reports that the tool is missing, because the server can add or rename tools.
 
@@ -148,7 +148,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 | Tool | What it does | Required |
 |------|--------------|----------|
 | `clickup_attach_task_file` | Attach file to task | `task_id` |
-| `clickup_request_attachment_upload` | Get short-lived, structured upload details (upload URL, ticket, HTTP method, and multipart field name) to attach a LOCAL file (any size) to a task; fo | `task_id` |
+| `clickup_request_attachment_upload` | Get short-lived, structured upload details (upload URL, ticket, HTTP method, and multipart field name) to attach a LOCAL file (any size) to a task | `task_id` |
 | `clickup_download_task_attachment` | Download a ClickUp task attachment (get attachment IDs from clickup_get_task with include: ["attachments"]) | `task_id`, `attachment_id` |
 
 ### Time (7)
@@ -192,7 +192,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
 
 | Tool | What it does | Required |
 |------|--------------|----------|
-| `clickup_get_operators` | Lists the Unified API operators enabled on this server (`<model>.<operator>` pairs) with each one's HTTP route, parameters and request/response body s | none |
+| `clickup_get_operators` | Lists the Unified API operators enabled on this server (`<model>.<operator>` pairs) with each one's HTTP route, parameters and request/response body | none |
 | `clickup_execute_operator` | Run one enabled Unified API operator (a `<model>.<operator>` pair) as the authenticated user, in the session workspace | `model`, `operator` |
 | `clickup_get_schema` | Returns the entity-relationship schema (Markdown with a Mermaid ER diagram) for the models behind the enabled Unified API operators | none |
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Aside Session Management
@@ -89,4 +89,4 @@ Default posture:
 - [aside-cli-reference.md](./aside-cli-reference.md) — command surface for tasks, REPL, and accounts.
 - [mcp-wiring.md](./mcp-wiring.md) — transport, handshake, binding error, registration posture.
 - [troubleshooting.md](./troubleshooting.md) — recovery flows for daemon, binding, and sign-out states.
-- Primary sources: https://docs.aside.com/help/tasks, https://docs.aside.com/help/security, https://docs.aside.com/help/automation, https://docs.aside.com/changelog/components.md.
+- Primary sources: <https://docs.aside.com/help/tasks>, <https://docs.aside.com/help/security>, <https://docs.aside.com/help/automation>, <https://docs.aside.com/changelog/components.md>.

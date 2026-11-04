@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-mobbin
@@ -35,7 +35,15 @@ Mobbin holds one of the largest libraries of real app UI screenshots. It exposes
 
 ### What It Does
 
-This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). It reports the `mobbin` manual's registration state honestly, carries the registered manual's reference shape, mandates discovery-first callable confirmation before any call and runs the research workflows: intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success. Every call happens against the external Mobbin service and nothing in this repo changes: the transport is read-only, never changes a file and never dispatches another agent. Whenever a measured Style Reference of real, extracted design tokens is also wanted, `sk-design-md-generator` produces it from a live site. This transport supplies metadata and cited images, with every claim sourced from the provider response; its output is never a design-token set or Style Reference by itself.
+- **Transport**: This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). Every call happens against the external Mobbin service and nothing in this repo changes: the transport never changes a file and never dispatches another agent.
+- **Wiring report**: It reports the `mobbin` manual's registration state honestly and carries the registered manual's reference shape.
+- **Discovery first**: It mandates discovery-first callable confirmation before any call.
+- **Research workflows**: Intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success.
+- **Companion**: Whenever a measured Style Reference of real, extracted design tokens is also wanted, `sk-design-md-generator` produces it from a live site. This transport supplies metadata and cited images, with every claim sourced from the provider response; its output is never a design-token set or Style Reference by itself.
+
+### When To Use This Skill
+
+Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is measured design-reference extraction (a live site's real CSS to a Style Reference DESIGN.md of named tokens), which belongs to `sk-design-md-generator` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
 
 ### The Three-Tool Search Surface
 
@@ -109,7 +117,11 @@ The provider is a hosted remote server over Streamable HTTP at `api.mobbin.com/m
 
 ### Authentication Without An API Key
 
-Mobbin MCP auth is browser OAuth only: protected-resource discovery, Dynamic Client Registration (RFC 7591), authorization code with PKCE S256 and the `openid` scope, revocable from Account Settings. A live unauthenticated probe returned HTTP 401 with a `WWW-Authenticate` pointer to the protected-resource metadata. That challenge is the expected shape, not a missing-key error. No static API key exists for MCP. The API-key Bearer model belongs to the separate Team and Enterprise REST API, so the manual `env` stays empty and no `.env` line is ever added. Adapter auth state under `~/.mcp-auth` is operator-owned. End-to-end OAuth through the local bridge is Inferred, not verified. Plan gating is hard: MCP access starts at Pro or higher. Free has no MCP access. The service enforces 60 requests per 60 seconds per user. On HTTP 429, honor `Retry-After` and back off with jitter.
+Mobbin MCP auth is browser OAuth only: protected-resource discovery, Dynamic Client Registration (RFC 7591), authorization code with PKCE S256 and the `openid` scope, revocable from Account Settings. A live unauthenticated probe returned HTTP 401 with a `WWW-Authenticate` pointer to the protected-resource metadata. That challenge is the expected shape, not a missing-key error. No static API key exists for MCP. The API-key Bearer model belongs to the separate Team and Enterprise REST API, so the manual `env` stays empty and no `.env` line is ever added. Adapter auth state under `~/.mcp-auth` is operator-owned. End-to-end OAuth through the local bridge is Inferred, not verified.
+
+### Plans And Limits
+
+Plan gating is hard: MCP access starts at Pro or higher. Free has no MCP access. The service enforces 60 requests per 60 seconds per user. On HTTP 429, honor `Retry-After` and back off with jitter.
 
 ### The Transport Boundary
 
@@ -123,10 +135,6 @@ The transport allows breadth while researching: apps, screens, flows and intents
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is measured design-reference extraction (a live site's real CSS to a Style Reference DESIGN.md of named tokens), which belongs to `sk-design-md-generator` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
 
 ### Related Skills
 
@@ -219,6 +227,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth, DCR, PKCE, inferred naming and discovery |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
 | [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed, live items pending) |
+| [`scripts/README.md`](./scripts/README.md) | Operator helper scripts: the verify-only install.sh posture check and the report-only doctor.sh diagnostics |
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: three tools across the supported query-intent domains |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP allowed for registration and OAuth-gated steps) |

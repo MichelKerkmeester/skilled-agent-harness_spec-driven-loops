@@ -10,7 +10,7 @@ trigger_phrases:
   - "jq parse error bdg output"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # Troubleshooting Guide
@@ -20,6 +20,18 @@ Systematic diagnostics and solutions for common bdg CLI installation, session, a
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Turn a failing `bdg` command into a named cause and the fix that addresses it.
+
+### When to Use
+
+- `bdg` will not install, start a session or find Chrome.
+- A CDP command fails on a method name, a parameter or a missing session.
+- You need the meaning of an exit code or the fix for one platform.
+
+### Core Principle
 
 Find root cause before attempting fixes - symptom fixes create cascading failures. Always run systematic diagnostics (5-check sequence) before implementing solutions.
 
@@ -799,8 +811,8 @@ bdg status 2>&1
 
 ## 13. GETTING HELP
 
-1. **Check documentation**: https://github.com/szymdzum/browser-debugger-cli
-2. **Search issues**: https://github.com/szymdzum/browser-debugger-cli/issues
+1. **Check documentation**: [browser-debugger-cli repository](https://github.com/szymdzum/browser-debugger-cli)
+2. **Search issues**: [browser-debugger-cli issues](https://github.com/szymdzum/browser-debugger-cli/issues)
 3. **Report bug** with:
    - bdg version (`bdg --version`)
    - Platform (macOS/Linux/WSL)

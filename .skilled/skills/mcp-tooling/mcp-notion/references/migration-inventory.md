@@ -11,7 +11,7 @@ trigger_phrases:
   - "migrate notion to obsidian"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Notion Migration Inventory Reference
@@ -21,6 +21,17 @@ The `mcp-notion` mode's read-side method for inventorying a Notion workspace bef
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Produce the ledger the Obsidian write-side method consumes, so nothing the importer drops or truncates goes unrecorded.
+
+### When to Use
+
+- Building a migration ledger before a Notion-to-Obsidian import.
+- Reading Notion data that the standard MCP tools truncate or omit (wide relations, saved views, file uploads).
+- Scoping a large workspace migration under the ~3 req/s rate-limit budget.
+- Verifying inventoried data (row counts, comment threads, relation values) against a migrated Obsidian vault.
 
 A migration inventory has to see more than the official MCP surface exposes. The 24-tool Notion MCP (`references/mcp-tools.md`) covers page, block, data-source, comment, user, and search CRUD, but truncates large relation/people/rich_text values at 25 references, only title-searches, and has no tool for file uploads, saved views, or non-truncated property reads. A complete inventory therefore interleaves MCP calls with the 5 direct-API gap reads in `references/api-gap-tools.md`, walking every data source, view, comment thread, and attachment before the importer ever runs.
 
@@ -82,18 +93,7 @@ These four constraints shape how the inventory must be sequenced and paced — d
 
 ---
 
-## 5. WHEN TO USE THIS REFERENCE
-
-Load this reference when a request involves:
-
-- Building a migration ledger before a Notion-to-Obsidian import.
-- Reading Notion data that the standard MCP tools truncate or omit (wide relations, saved views, file uploads).
-- Scoping a large workspace migration under the ~3 req/s rate-limit budget.
-- Verifying inventoried data (row counts, comment threads, relation values) against a migrated Obsidian vault.
-
----
-
-## 6. RELATED RESOURCES
+## 5. RELATED RESOURCES
 
 - `../../mcp-obsidian/references/notion-migration.md` — the write-side counterpart: the 8-step reconstruction method this inventory feeds, the recovery matrix, comment reconstruction, and the verification protocol.
 - `references/api-gap-tools.md` — full request/response recipes for the 5 API-gap reads in section 3.

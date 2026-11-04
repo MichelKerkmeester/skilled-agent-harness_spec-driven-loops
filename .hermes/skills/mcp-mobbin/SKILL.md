@@ -3,7 +3,7 @@ name: mcp-mobbin
 description: "Mobbin MCP transport: read-only app/screen/flow research via Code Mode, paired with sk-design-md-generator for a Style Reference."
 compatibility: Requires a paid Mobbin plan for MCP (Pro, Team, or Enterprise; Free has no MCP access), the npx mcp-remote bridge, Node.js >=18, and a browser OAuth round-trip on first use.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.1.6.0
+version: 1.1.7.0
 user-invocable: true
 ---
 
@@ -120,6 +120,8 @@ Never invent `search_apps`, `search_elements` or any detail, image-download or m
 > **Callable-name status.** Live discovery on 2026-07-16 confirmed the callable form (`references/discovery-fixture-2026-07-16.json`). The registry name is `mobbin.mobbin.search_screens`, and the TypeScript callable is `mobbin.mobbin_search_screens(args)`.
 > The call below uses the confirmed form. Live RESPONSE behavior remains unexercised because authenticated calls await operator OAuth. Re-confirm the name with `tool_info` in each session.
 
+Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_description: "Mobbin screen design research", limit: 10 })` -> filter to the `mobbin` manual -> `tool_info()` on the exact dotted name -> only then `call_tool_chain({ code })`. Cite every selected reference by its `mobbin_url`.
+
 ```typescript
 call_tool_chain({
   code: `
@@ -132,8 +134,6 @@ call_tool_chain({
   `
 });
 ```
-
-Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_description: "Mobbin screen design research", limit: 10 })` -> filter to the `mobbin` manual -> `tool_info()` on the exact dotted name -> only then `call_tool_chain({ code })`. Cite every selected reference by its `mobbin_url`.
 
 ### Research workflows (query intents over the three live tools)
 
@@ -180,9 +180,9 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
 
 1. **ALWAYS confirm callables with `tool_info` before first use.** The `mobbin.mobbin_search_screens` form is **CONFIRMED by live discovery 2026-07-16** (fixture `references/discovery-fixture-2026-07-16.json`; registry names are dotted `mobbin.mobbin.<tool>`). Fail closed on any drift from the live three-tool baseline (`search_screens`, `search_flows`, `search_sections`).
 2. **ALWAYS route measured-extraction needs to `sk-design-md-generator`. Pair it when a measured Style Reference is also wanted.**
-
-This packet is the transport. `sk-design-md-generator` is its cross-hub measured-extraction companion. It turns a live site's real CSS into a Style Reference DESIGN.md of named design tokens.
-Transport output is Mobbin screenshot evidence. It is never a design-token set or Style Reference by itself.
+   - This packet is the transport.
+   - `sk-design-md-generator` is its cross-hub measured-extraction companion. It turns a live site's real CSS into a Style Reference DESIGN.md of named design tokens.
+   - Transport output is Mobbin screenshot evidence. It is never a design-token set or Style Reference by itself.
 3. **ALWAYS report the manual's registration state honestly.** The `mobbin` manual is registered in `.utcp_config.json`: presence means verify read-only and proceed to discovery; absence is a **failure symptom** (a broken or reverted registration) to escalate to the operator, never to repair from this packet.
 4. **ALWAYS follow the documented input contract**: `query` from the user's actual words, `platform` `ios`|`web` (infer from context; unclear -> ask), `limit` starting at 5 and never exceeding ~15 without asking. Preserve unknown response fields untouched.
 5. **ALWAYS cite evidence by `mobbin_url`** and report `failed[]` entries and missing images as partial success, never silently discarding them.
@@ -195,9 +195,8 @@ Transport output is Mobbin screenshot evidence. It is never a design-token set o
 3. **NEVER invent an API key or auth env var.** No `MOBBIN_API_KEY` or any MCP auth env var exists — the manual's `env` stays empty, and the auth env-var question is answered in the negative, not open. Never accept credentials in prompts or tool arguments; never print Authorization headers, OAuth codes, token responses, adapter debug logs, or auth-cache contents.
 4. **NEVER claim OAuth works end-to-end.** It is **Inferred** pending an operator-completed authorization; report it as such. Never inspect, clear, or repair `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR` — reauthorization is an explicit operator action.
 5. **NEVER invent tool schemas or tool families beyond the discovered inventory.** The live pre-auth listing on 2026-07-16 contains exactly `search_screens`, `search_flows` and `search_sections`.
-
-No `search_apps`, `search_elements`, detail, image-download or mutation tools exist to call.
-The `deep` question is resolved: `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens`. Do not assume undeclared parameters on any tool.
+   - No `search_apps`, `search_elements`, detail, image-download or mutation tools exist to call.
+   - The `deep` question is resolved: `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens`. Do not assume undeclared parameters on any tool.
 6. **NEVER target `docs.mobbin.com/mcp`.** That is a separate Mintlify docs-search MCP; the design-reference server this packet owns is `api.mobbin.com/mcp` only. Likewise never conflate the OAuth MCP with the separate API-key REST API.
 7. **NEVER treat search rank or image appeal as a taste verdict**, never average strong references into a generic middle, and never copy or cache third-party reference content (screenshots, images) into this repo.
 

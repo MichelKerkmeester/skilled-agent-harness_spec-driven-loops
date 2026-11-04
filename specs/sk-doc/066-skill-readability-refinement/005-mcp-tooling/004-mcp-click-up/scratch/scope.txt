@@ -1,0 +1,6 @@
+.skilled/skills/mcp-tooling/mcp-click-up/README.md
+.skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md
+.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
+.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md
+.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md

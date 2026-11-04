@@ -10,7 +10,7 @@ trigger_phrases:
   - "notion mcp manual not found"
 importance_tier: "normal"
 contextType: "general"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # mcp-notion Troubleshooting Guide
@@ -75,6 +75,8 @@ curl -sS -o /dev/null -w "%{http_code}\n" "https://api.notion.com/v1/pages/<page
 
 **Causes:** token missing from the environment, mistyped, revoked, or from the wrong workspace. Note the token format changed on 2024-09-25 from `secret_` to `ntn_`; both still work — treat tokens as opaque and do not regex-validate them.
 
+The remote MCP backend does NOT accept these tokens — it uses interactive OAuth. A token that works against `api.notion.com` and the local server will still 401 against `https://mcp.notion.com/mcp`. See §8.
+
 **Fix:**
 ```bash
 # Confirm the variable is exported to the mode's environment
@@ -83,7 +85,6 @@ env | grep -c notion_NOTION_TOKEN     # expect 1
 # Re-copy the token: Notion → Settings → Connections → your integration → Internal Integration Secret
 # Then re-set notion_NOTION_TOKEN and re-run Quick Diagnostics step 2.
 ```
-The remote MCP backend does NOT accept these tokens — it uses interactive OAuth. A token that works against `api.notion.com` and the local server will still 401 against `https://mcp.notion.com/mcp`. See §8.
 
 ---
 
@@ -104,13 +105,6 @@ The remote MCP backend does NOT accept these tokens — it uses interactive OAut
 **Root cause:** an integration averages ~3 requests/second. Batch loops — multi-part uploads, paginated property reads, bulk page writes — blow through it. 529 is transient server overload and is handled identically.
 
 **Fix — respect `Retry-After`, then back off with jitter:**
-```bash
-# Single-call pattern: read Retry-After and wait exactly that long before one retry
-resp=$(curl -sS -D - -o /dev/null "https://api.notion.com/v1/users/me" \
-  -H "Authorization: Bearer $notion_NOTION_TOKEN" -H "Notion-Version: 2025-09-03")
-retry=$(printf '%s' "$resp" | awk 'tolower($1)=="retry-after:"{print $2+0}')
-[ -n "$retry" ] && sleep "$retry"
-```
 
 Doctrine for the mode:
 1. Centralize retries in the HTTP layer, not per-call.
@@ -118,6 +112,13 @@ Doctrine for the mode:
 3. Space steady-state batch calls to ~333 ms apart to stay under 3 req/s.
 4. Cap retries; after the cap, surface the failure rather than hammering the API.
 
+```bash
+# Single-call pattern: read Retry-After and wait exactly that long before one retry
+resp=$(curl -sS -D - -o /dev/null "https://api.notion.com/v1/users/me" \
+  -H "Authorization: Bearer $notion_NOTION_TOKEN" -H "Notion-Version: 2025-09-03")
+retry=$(printf '%s' "$resp" | awk 'tolower($1)=="retry-after:"{print $2+0}')
+[ -n "$retry" ] && sleep "$retry"
+```
 There is no published way to raise the 3 req/s limit for a standard integration — design batches around it.
 
 ---
@@ -200,8 +201,8 @@ grep -A8 '"notion"' .utcp_config.json
 
 ## 10. GETTING HELP
 
-- Notion API reference: https://developers.notion.com/reference/intro
-- Rate limits: https://developers.notion.com/reference/request-limits
-- Authorization / token model: https://developers.notion.com/guides/get-started/authorization
-- MCP backends: https://developers.notion.com/guides/mcp/build-mcp-client (remote) and hosting-open-source-mcp (local, deprecated)
+- Notion API reference: [Introduction](https://developers.notion.com/reference/intro)
+- Rate limits: [Request limits](https://developers.notion.com/reference/request-limits)
+- Authorization / token model: [Authorization](https://developers.notion.com/guides/get-started/authorization)
+- MCP backends: [build-mcp-client](https://developers.notion.com/guides/mcp/build-mcp-client) (remote) and [hosting-open-source-mcp](https://developers.notion.com/guides/mcp/hosting-open-source-mcp) (local, deprecated)
 - Direct API-gap recipes: `api-gap-tools.md`; official MCP catalog: `mcp-tools.md`

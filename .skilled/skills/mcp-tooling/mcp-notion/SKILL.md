@@ -2,7 +2,7 @@
 name: mcp-notion
 description: Operates a Notion workspace through the official Notion MCP over Code Mode, filling its API gaps with direct Notion API calls.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 0.1.4.0
+version: 0.1.5.0
 ---
 
 <!-- keywords: notion, notion mcp, notion api, notion database, notion data source, notion page, notion property, notion relation, notion rollup, notion formula, notion token, ntn_, notion-mcp-server, notion markdown, notion search -->
@@ -13,7 +13,7 @@ Notion workspace operations via the **official Notion MCP** (`@notionhq/notion-m
 
 ---
 
-## MARKDOWN + DATA-SOURCE CONTRACT — READ BEFORE ANY NOTION WRITE
+## 0. MARKDOWN + DATA-SOURCE CONTRACT: READ BEFORE ANY NOTION WRITE
 
 Two shape rules cause most Notion write failures:
 
@@ -184,7 +184,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 **Code Mode MCP:** the official Notion MCP tools are invoked via `mcp__code_mode__call_tool_chain`; Code Mode namespaces each as `notion.notion_<tool_name>` — use hyphen-safe bracket access since Notion names are hyphenated. See `references/mcp-tools.md`.
 
-**Migration (packet 015):** this mode is the read-side inventory enabler for Notion→Obsidian migration (`references/migration-inventory.md`) — the same knowledge layer that operates a live workspace reads its structure to drive an Obsidian import; the write-side reconstruction method lives in `mcp-obsidian`'s `references/notion-migration.md`.
+**Migration:** this mode is the read-side inventory enabler for Notion→Obsidian migration (`references/migration-inventory.md`) — the same knowledge layer that operates a live workspace reads its structure to drive an Obsidian import; the write-side reconstruction method lives in `mcp-obsidian`'s `references/notion-migration.md`.
 
 **Memory:** save Notion workflow context (target data-source ids, integration name, backend) with `/speckit:save` when switching sessions.
 
@@ -257,9 +257,9 @@ Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — token setup
 
 **Related Skills:**
 - `mcp-click-up` — structural sibling (light workflow mode)
-- `mcp-obsidian` — sibling knowledge app; the 015 migration counterpart
+- `mcp-obsidian` — sibling knowledge app; the migration counterpart
 - `mcp-code-mode` — Code Mode MCP orchestration (used for Notion MCP invocation)
 
 **External:**
-- Official Notion MCP server: https://github.com/makenotion/notion-mcp-server
-- Notion API reference: https://developers.notion.com/reference
+- Official Notion MCP server: [makenotion/notion-mcp-server](https://github.com/makenotion/notion-mcp-server)
+- Notion API reference: [developers.notion.com/reference](https://developers.notion.com/reference)

@@ -1,0 +1,25 @@
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md:101: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:50: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:51: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:52: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:53: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:54: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:55: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:56: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:57: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:66: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:85: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:87: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:88: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:97: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:114: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:115: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:116: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:117: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:124: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:125: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md:126: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md:141: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md:92: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md:113: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=9 render_warnings=24 invalid=0

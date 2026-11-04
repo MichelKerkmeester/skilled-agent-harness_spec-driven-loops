@@ -1,0 +1,166 @@
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/README.md b/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
+index e59007f9423..e0d857e7b5a 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
+@@ -35,7 +35,15 @@ Mobbin holds one of the largest libraries of real app UI screenshots. It exposes
+ 
+ ### What It Does
+ 
+-This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). It reports the `mobbin` manual's registration state honestly, carries the registered manual's reference shape, mandates discovery-first callable confirmation before any call and runs the research workflows: intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success. Every call happens against the external Mobbin service and nothing in this repo changes: the transport is read-only, never changes a file and never dispatches another agent. Whenever a measured Style Reference of real, extracted design tokens is also wanted, `sk-design-md-generator` produces it from a live site. This transport supplies metadata and cited images, with every claim sourced from the provider response; its output is never a design-token set or Style Reference by itself.
++- **Transport**: This packet is a read-only TRANSPORT in the `mcp-tooling` hub (`packetKind: transport`, `mutatesWorkspace: false`). Every call happens against the external Mobbin service and nothing in this repo changes: the transport never changes a file and never dispatches another agent.
++- **Wiring report**: It reports the `mobbin` manual's registration state honestly and carries the registered manual's reference shape.
++- **Discovery first**: It mandates discovery-first callable confirmation before any call.
++- **Research workflows**: Intent-shaped queries over `search_screens`, `limit` starting at 5, platform inferred or asked, every reference cited by `mobbin_url` and `failed[]` reported as partial success.
++- **Companion**: Whenever a measured Style Reference of real, extracted design tokens is also wanted, `sk-design-md-generator` produces it from a live site. This transport supplies metadata and cited images, with every claim sourced from the provider response; its output is never a design-token set or Style Reference by itself.
++
++### When To Use This Skill
++
++Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is measured design-reference extraction (a live site's real CSS to a Style Reference DESIGN.md of named tokens), which belongs to `sk-design-md-generator` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
+ 
+ ### The Three-Tool Search Surface
+ 
+@@ -109,7 +117,11 @@ The provider is a hosted remote server over Streamable HTTP at `api.mobbin.com/m
+ 
+ ### Authentication Without An API Key
+ 
+-Mobbin MCP auth is browser OAuth only: protected-resource discovery, Dynamic Client Registration (RFC 7591), authorization code with PKCE S256 and the `openid` scope, revocable from Account Settings. A live unauthenticated probe returned HTTP 401 with a `WWW-Authenticate` pointer to the protected-resource metadata. That challenge is the expected shape, not a missing-key error. No static API key exists for MCP. The API-key Bearer model belongs to the separate Team and Enterprise REST API, so the manual `env` stays empty and no `.env` line is ever added. Adapter auth state under `~/.mcp-auth` is operator-owned. End-to-end OAuth through the local bridge is Inferred, not verified. Plan gating is hard: MCP access starts at Pro or higher. Free has no MCP access. The service enforces 60 requests per 60 seconds per user. On HTTP 429, honor `Retry-After` and back off with jitter.
++Mobbin MCP auth is browser OAuth only: protected-resource discovery, Dynamic Client Registration (RFC 7591), authorization code with PKCE S256 and the `openid` scope, revocable from Account Settings. A live unauthenticated probe returned HTTP 401 with a `WWW-Authenticate` pointer to the protected-resource metadata. That challenge is the expected shape, not a missing-key error. No static API key exists for MCP. The API-key Bearer model belongs to the separate Team and Enterprise REST API, so the manual `env` stays empty and no `.env` line is ever added. Adapter auth state under `~/.mcp-auth` is operator-owned. End-to-end OAuth through the local bridge is Inferred, not verified.
++
++### Plans And Limits
++
++Plan gating is hard: MCP access starts at Pro or higher. Free has no MCP access. The service enforces 60 requests per 60 seconds per user. On HTTP 429, honor `Retry-After` and back off with jitter.
+ 
+ ### The Transport Boundary
+ 
+@@ -124,10 +136,6 @@ The transport allows breadth while researching: apps, screens, flows and intents
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for this packet when a user wants Mobbin evidence: real-app screens for a UI pattern or state, app-category comparison, flow research reconstructed from screens or element behavior in context. Reach for it too when the `mobbin` wiring state or its auth expectations need reporting. Skip it when the work is measured design-reference extraction (a live site's real CSS to a Style Reference DESIGN.md of named tokens), which belongs to `sk-design-md-generator` while this packet stays the transport. Skip it for Refero research (`mcp-refero`, the sibling transport), for Figma work (`mcp-figma`), for browser automation or previews (`mcp-chrome-devtools`) and for generic app coding (`sk-code`). Skip it for Mobbin's documentation search too: `docs.mobbin.com/mcp` is a separate docs-search MCP, not this packet's server. And never use it to change files: it is a read-only transport that never writes or edits files and never runs the Task tool. It never registers or edits the `.utcp_config.json` manual.
+-
+ ### Related Skills
+ 
+ The packet is the hub's third transport. Its closest structural sibling is `mcp-refero`: both are remote-MCP-via-`mcp-remote`, read-only, OAuth-gated design-research transports with no CLI machinery. What separates this packet from Refero is the three-tool surface and the no-API-key auth model.
+@@ -219,6 +227,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
+ | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The registered manual, the mcp-remote bridge, OAuth, DCR, PKCE, inferred naming and discovery |
+ | [`references/troubleshooting.md`](./references/troubleshooting.md) | Full failure-mode table |
+ | [`assets/utcp-mobbin-manual.md`](./assets/utcp-mobbin-manual.md) | The registered manual's reference shape and the post-registration checklist (doc-side executed, live items pending) |
++| [`scripts/README.md`](./scripts/README.md) | Operator helper scripts: the verify-only install.sh posture check and the report-only doctor.sh diagnostics |
+ | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
+ | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: three tools across the supported query-intent domains |
+ | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP allowed for registration and OAuth-gated steps) |
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md b/.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md
+index a77fbb3aa03..50e86f318e5 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/ROUTER.md
+@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-A Mobbin request reaches this skill when it names Mobbin, or asks for real app screenshots, app design research, UX flow references, screen examples from shipped apps, or the wiring, auth, plan gating and rate-limit troubleshooting of the registered `mobbin` manual, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset: the live three-tool contract and query-intent workflows in `references/tool-surface.md`, the registered manual, bridge and auth model in `references/mcp-wiring.md`, the failure modes in `references/troubleshooting.md`, and the registered manual's reference shape in `assets/utcp-mobbin-manual.md`, because this is a flat intent router with no keyed resource subdirectories. `references/tool-surface.md` is the declared default, offered as a fallback suggestion rather than loaded by any scored route.
++A Mobbin request reaches this skill when it names Mobbin, or asks for real app screenshots, app design research, UX flow references, screen examples from shipped apps, or the wiring, auth, plan gating and rate-limit troubleshooting of the registered `mobbin` manual, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset: the live three-tool contract and query-intent workflows in `references/tool-surface.md`, the registered manual, bridge and auth model in `references/mcp-wiring.md`, the failure modes in `references/troubleshooting.md`, and the registered manual's reference shape in `assets/utcp-mobbin-manual.md`, because this is a flat intent router with no keyed resource subdirectories. `references/tool-surface.md` is the declared default, offered as a fallback suggestion and never unioned into a scored route's loaded set; a scored route loads only the files its `RESOURCE_MAP` entry names.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -89,7 +89,7 @@ assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-reg
+ | ----- | ------------ | --------- |
+ | CONDITIONAL | Research intent (apps/screens/flows/elements) | `references/tool-surface.md` (tool contract + workflow baseline) |
+ | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-mobbin-manual.md` |
+-| CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
++| CONDITIONAL | Setup / error intent | `references/troubleshooting.md`, `references/mcp-wiring.md` |
+ | FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
+ | PAIR (measured reference) | A measured Style Reference of extracted tokens is also wanted | `sk-design-md-generator`, the measured-extraction companion |
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md b/.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md
+index ef390828170..b915c6c81e6 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/SKILL.md
+@@ -115,6 +115,8 @@ Never invent `search_apps`, `search_elements` or any detail, image-download or m
+ > **Callable-name status.** Live discovery on 2026-07-16 confirmed the callable form (`references/discovery-fixture-2026-07-16.json`). The registry name is `mobbin.mobbin.search_screens`, and the TypeScript callable is `mobbin.mobbin_search_screens(args)`.
+ > The call below uses the confirmed form. Live RESPONSE behavior remains unexercised because authenticated calls await operator OAuth. Re-confirm the name with `tool_info` in each session.
+ 
++Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_description: "Mobbin screen design research", limit: 10 })` -> filter to the `mobbin` manual -> `tool_info()` on the exact dotted name -> only then `call_tool_chain({ code })`. Cite every selected reference by its `mobbin_url`.
++
+ ```typescript
+ call_tool_chain({
+   code: `
+@@ -128,8 +130,6 @@ call_tool_chain({
+ });
+ ```
+ 
+-Mandatory discovery-first sequence: `list_tools()` or `search_tools({ task_description: "Mobbin screen design research", limit: 10 })` -> filter to the `mobbin` manual -> `tool_info()` on the exact dotted name -> only then `call_tool_chain({ code })`. Cite every selected reference by its `mobbin_url`.
+-
+ ### Research workflows (query intents over the three live tools)
+ 
+ App, screen, and element research remain intent-specific query designs over `search_screens`; flow and website-section research now have dedicated live-discovered tools (2026-07-16):
+@@ -175,9 +175,9 @@ Context discipline: start `limit: 5`; ask before widening materially (do not exc
+ 
+ 1. **ALWAYS confirm callables with `tool_info` before first use.** The `mobbin.mobbin_search_screens` form is **CONFIRMED by live discovery 2026-07-16** (fixture `references/discovery-fixture-2026-07-16.json`; registry names are dotted `mobbin.mobbin.<tool>`). Fail closed on any drift from the live three-tool baseline (`search_screens`, `search_flows`, `search_sections`).
+ 2. **ALWAYS route measured-extraction needs to `sk-design-md-generator`. Pair it when a measured Style Reference is also wanted.**
+-
+-This packet is the transport. `sk-design-md-generator` is its cross-hub measured-extraction companion. It turns a live site's real CSS into a Style Reference DESIGN.md of named design tokens.
+-Transport output is Mobbin screenshot evidence. It is never a design-token set or Style Reference by itself.
++   - This packet is the transport.
++   - `sk-design-md-generator` is its cross-hub measured-extraction companion. It turns a live site's real CSS into a Style Reference DESIGN.md of named design tokens.
++   - Transport output is Mobbin screenshot evidence. It is never a design-token set or Style Reference by itself.
+ 3. **ALWAYS report the manual's registration state honestly.** The `mobbin` manual is registered in `.utcp_config.json`: presence means verify read-only and proceed to discovery; absence is a **failure symptom** (a broken or reverted registration) to escalate to the operator, never to repair from this packet.
+ 4. **ALWAYS follow the documented input contract**: `query` from the user's actual words, `platform` `ios`|`web` (infer from context; unclear -> ask), `limit` starting at 5 and never exceeding ~15 without asking. Preserve unknown response fields untouched.
+ 5. **ALWAYS cite evidence by `mobbin_url`** and report `failed[]` entries and missing images as partial success, never silently discarding them.
+@@ -190,9 +190,8 @@ Transport output is Mobbin screenshot evidence. It is never a design-token set o
+ 3. **NEVER invent an API key or auth env var.** No `MOBBIN_API_KEY` or any MCP auth env var exists — the manual's `env` stays empty, and the auth env-var question is answered in the negative, not open. Never accept credentials in prompts or tool arguments; never print Authorization headers, OAuth codes, token responses, adapter debug logs, or auth-cache contents.
+ 4. **NEVER claim OAuth works end-to-end.** It is **Inferred** pending an operator-completed authorization; report it as such. Never inspect, clear, or repair `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR` — reauthorization is an explicit operator action.
+ 5. **NEVER invent tool schemas or tool families beyond the discovered inventory.** The live pre-auth listing on 2026-07-16 contains exactly `search_screens`, `search_flows` and `search_sections`.
+-
+-No `search_apps`, `search_elements`, detail, image-download or mutation tools exist to call.
+-The `deep` question is resolved: `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens`. Do not assume undeclared parameters on any tool.
++   - No `search_apps`, `search_elements`, detail, image-download or mutation tools exist to call.
++   - The `deep` question is resolved: `mode: "deep" | "standard" | "fast"` is a real client input on `search_screens`. Do not assume undeclared parameters on any tool.
+ 6. **NEVER target `docs.mobbin.com/mcp`.** That is a separate Mintlify docs-search MCP; the design-reference server this packet owns is `api.mobbin.com/mcp` only. Likewise never conflate the OAuth MCP with the separate API-key REST API.
+ 7. **NEVER treat search rank or image appeal as a taste verdict**, never average strong references into a generic middle, and never copy or cache third-party reference content (screenshots, images) into this repo.
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md b/.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md
+index 0e8957c6ffe..46412018f33 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/references/tool-surface.md
+@@ -20,7 +20,13 @@ Read-only contract reference for the live-discovered Mobbin MCP tools.
+ 
+ ### Purpose
+ 
+-The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16, pre-auth** (fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)), and it **SUPERSEDES the research's one-public-tool baseline**: `list_tools` returned **THREE read tools** — registry names `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows`, `mobbin.mobbin.search_sections` (TS callables `mobbin.mobbin_search_screens(args)` etc., per the fixture's `Access as:` lines). All three are read-only search tools: the mutation-refusal check passed — no mutation-capable tool appeared in the live listing. Treat per-session Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
++The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16, pre-auth** (fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)), and it **SUPERSEDES the research's one-public-tool baseline**:
++
++- `list_tools` returned **THREE read tools**: registry names `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows` and `mobbin.mobbin.search_sections` (TS callables `mobbin.mobbin_search_screens(args)` etc., per the fixture's `Access as:` lines).
++- All three are read-only search tools: the mutation-refusal check passed, with no mutation-capable tool in the live listing.
++- Treat per-session Code Mode discovery (`list_tools`, `search_tools`, `tool_info`) as the final live schema before calling.
++
++The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
+ 
+ ### Usage
+ 
+@@ -120,9 +126,9 @@ This transport allows breadth while researching (multiple apps, screens, intents
+ 
+ ---
+ 
+-## 6. OPEN QUESTIONS (UNKNOWN, RUNTIME-ONLY)
++## 6. OPEN QUESTIONS AND RESOLVED ITEMS
+ 
+-These stay UNKNOWN until an operator-authorized, paid, authenticated runtime exists; none can be resolved by authoring, and none blocked this packet's authorship. Note: **auth env-var naming is NOT among them** — no MCP auth env var exists; that question is answered in the negative.
++Open items stay UNKNOWN until an operator-authorized, paid, authenticated runtime exists; none can be resolved by authoring, and none blocked this packet's authorship. Note: **auth env-var naming is NOT among them** — no MCP auth env var exists; that question is answered in the negative.
+ 
+ 1. **RESOLVED for pre-auth discovery, 2026-07-16** ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)): `list_tools()` and `tool_info()` work WITHOUT OAuth and return three tools with full declared schemas (Section 2). Whether an authenticated session's inventory differs remains unobserved — re-run discovery after operator OAuth.
+ 2. **Adapter round trip** — does the current local Code Mode + `mcp-remote` version complete first-use Mobbin OAuth, token refresh, and reconnect reliably (any extra flags needed)?
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md
+index f1d55d34602..56f87952d15 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/references/troubleshooting.md
+@@ -53,7 +53,7 @@ Match the observed symptom to the table, keep all fixes within the read-only bou
+ - Never delete, inspect, or "repair" `~/.mcp-auth` / `MCP_REMOTE_CONFIG_DIR`; auth state is operator-owned, and reauthorization is an explicit operator action.
+ - Never paste tokens, OAuth URLs with codes, Authorization headers, or auth-state contents into output or evidence.
+ - Never force the SSE transport; the bridge is HTTP-first with SSE fallback only after HTTP 404, and Mobbin requires Streamable HTTP.
+-- `deep` is a **[CONFIRMED] client-settable mode** on `search_screens` (`mode?: "deep" | "standard" | "fast"` in the 2026-07-16 fixture); use it only on that tool and still re-confirm the active schema with `tool_info` before calling.
++- Never treat `deep` as a server-side behavior: it is a **[CONFIRMED] client-settable mode** on `search_screens` (`mode?: "deep" | "standard" | "fast"` in the 2026-07-16 fixture); use it only on that tool and still re-confirm the active schema with `tool_info` before calling.
+ - Never claim the failure is fixed until a live discovery (`tool_info`) or call confirms it.
+ 
+ ---

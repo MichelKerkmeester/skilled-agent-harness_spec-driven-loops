@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma eval raw run rule"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Figma CLI Tool Surface
@@ -20,15 +20,19 @@ version: 1.0.1.0
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Surface read-only commands freely, gate every mutating verb behind confirmation plus an explicit target plus a one-line rollback, treat the explicit destructive set as the strictest case (confirm + explicit target + rollback, prefer duplicate-first), and treat `eval` / `raw` / `run` as arbitrary mutation that must be reviewed before it runs. The canonical binary is **`figma-ds-cli`**, and the source surface is the only source of truth and it drifts from the docs.
+This reference lets a reader classify any `figma-ds-cli` command and apply the matching gate before it runs.
 
 ### When to Use
 
 - Decide whether a `figma-ds-cli` command is safe to call unprompted, must be gated, or is destructive and needs confirmation plus a rollback.
 - Confirm the gating class of any command before authoring, modifying, deleting, or exporting in a Figma document.
 - Reach for the destructive set and rollback table before any delete / clear / undo / unwrap / uninstall / unlink operation.
+
+### Core Principle
+
+Surface read-only commands freely, gate every mutating verb behind confirmation plus an explicit target plus a one-line rollback, treat the explicit destructive set as the strictest case (confirm + explicit target + rollback, prefer duplicate-first), and treat `eval` / `raw` / `run` as arbitrary mutation that must be reviewed before it runs. The canonical binary is **`figma-ds-cli`**, and the source surface is the only source of truth and it drifts from the docs.
 
 ### Key Sources
 

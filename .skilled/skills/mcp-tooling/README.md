@@ -9,7 +9,7 @@ trigger_phrases:
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.5.0
+version: 1.8.6.0
 ---
 
 # mcp-tooling
@@ -35,7 +35,7 @@ External tools do not share one setup story or one safety model. The hub gives t
 
 The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
 
-[`SKILL.md`](./SKILL.md) is the hub's routing contract, the file an agent loads first, and it carries the mode table, the routing summary, the compiled-route directive and the reference list while every per-mode detail stays in the packets, and the machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
+[`SKILL.md`](./SKILL.md) is the hub's routing contract and the file an agent loads first. It carries the mode table, the routing summary, the compiled-route directive and the reference list, while every per-mode detail stays in the packets. The machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
 
 ---
 
@@ -56,6 +56,8 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 
 ## 4. QUICK START
 
+For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
+
 Make a plain-language request that names the owning surface:
 
 ```text
@@ -69,8 +71,6 @@ Query my Notion roadmap data source for in-progress rows.
 ```
 
 The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
-
-For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
 
 ---
 

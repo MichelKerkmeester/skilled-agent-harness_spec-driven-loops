@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.0.0
+version: 1.2.1.0
 user-invocable: true
 ---
 
@@ -111,8 +111,9 @@ The full per-command taxonomy lives in [`references/tool-surface.md`](references
 
 The skill works **fully with the CLI alone**.
 When you need to pull design context FROM Figma, use the **Framelink `figma` manual already registered in Code Mode** (`figma-developer-mcp`, stdio, needs a Figma personal token).
+Before invoking a tool, discover it with `search_tools()` or `tool_info()`.
 Calls go through `call_tool_chain()` with the name `figma.figma_<tool>`. Store the token in `.env` as `figma_FIGMA_API_KEY`; Code Mode prefixes the manual name.
-Before invoking a tool, discover it with `search_tools()` or `tool_info()`. Find the full details and snippet in [`references/mcp-wiring.md`](references/mcp-wiring.md).
+Find the full details and snippet in [`references/mcp-wiring.md`](references/mcp-wiring.md).
 
 ---
 

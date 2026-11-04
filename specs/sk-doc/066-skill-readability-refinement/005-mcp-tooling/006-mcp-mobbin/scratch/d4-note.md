@@ -1,0 +1,1 @@
+Review 2 passed and a read of the diff found nothing to restore. The tool-surface reference's open-questions heading now names the resolved items it already held, and its body keeps the statement that open items stay UNKNOWN until a paid, authenticated runtime exists; no file links to the old anchor. The live discovery summary became a list.

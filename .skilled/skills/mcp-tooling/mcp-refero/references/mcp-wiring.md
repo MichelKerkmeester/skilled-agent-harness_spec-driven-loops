@@ -9,7 +9,7 @@ trigger_phrases:
   - "refero code mode"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Refero MCP Wiring (via Code Mode)
@@ -20,9 +20,16 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Wiring here means the agent reaches Refero's remote, paid, read-only MCP (`https://api.refero.design/mcp`) through this project's **Code Mode** transport. Code Mode consumes stdio; Refero speaks remote HTTP; the `mcp-remote` bridge connects them. Nothing needs to be installed and nothing needs to be configured for the base path: the manual exists, and the only missing piece for live use is **operator authentication on a Pro (or higher) plan**.
 
 Claims below are tagged **[CONFIRMED]** (read from this repo's config or from the cited primary docs at research time), **[INFERRED]** (supported but not exercised end-to-end), or **[UNKNOWN]** (requires authenticated access or unpublished provider policy).
+
+### When to Use
+
+- Check the registered `refero` manual and the `mcp-remote` bridge before the first Refero call in a session.
+- Confirm the doubled-prefix callable names, or choose between browser OAuth and the env-backed Bearer alternative.
 
 ---
 
@@ -68,7 +75,11 @@ With no custom header, first use triggers a **browser OAuth** flow with a localh
 
 That auth state is **operator-owned**: the packet must never inspect, clear, or repair it, and never auto-delete `~/.mcp-auth` as a "fix".
 
-**Live unauthenticated observation** [CONFIRMED at research time]: direct GET and JSON-RPC `initialize` against the endpoint both returned **HTTP 401** advertising Bearer auth, scope `files:read`, and a protected-resource metadata URL. That URL (`/.well-known/oauth-protected-resource`) returned **404** during research, but current `mcp-remote` treats a 404 as a discovery miss and tries alternate well-known locations; `/.well-known/oauth-authorization-server` IS available and advertises authorization-code and client-credentials grants, dynamic registration, token/revocation endpoints, and `read`/`files:read` scopes.
+**Live unauthenticated observation** [CONFIRMED at research time]:
+
+- Direct GET and JSON-RPC `initialize` against the endpoint both returned **HTTP 401** advertising Bearer auth, scope `files:read`, and a protected-resource metadata URL.
+- That URL (`/.well-known/oauth-protected-resource`) returned **404** during research, but current `mcp-remote` treats a 404 as a discovery miss and tries alternate well-known locations.
+- `/.well-known/oauth-authorization-server` IS available and advertises authorization-code and client-credentials grants, dynamic registration, token/revocation endpoints, and `read`/`files:read` scopes.
 
 **End-to-end OAuth completion, refresh, and dynamic registration through this bridge is [INFERRED]** until an operator completes it. The strongest available evidence that the wiring functions is a prior **live-verified invocation through this exact manual** with a paid, OAuth-completed account, recorded in this repo's design-reference catalog. Ephemeral runtimes without a persistent home may require re-authentication; headless/CI environments likely need the Bearer path [INFERRED].
 

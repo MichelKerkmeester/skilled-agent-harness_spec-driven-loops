@@ -1,0 +1,9 @@
+.skilled/skills/mcp-tooling/mcp-aside-devtools/README.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/SKILL.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/assets/utcp-aside-manual.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md
+.skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md

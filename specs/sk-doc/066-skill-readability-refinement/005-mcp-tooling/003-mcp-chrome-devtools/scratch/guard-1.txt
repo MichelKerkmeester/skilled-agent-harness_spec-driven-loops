@@ -1,0 +1,5 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md edited=1
+BLOCK-CHANGED .skilled/skills/mcp-tooling/mcp-chrome-devtools/references/session-management.md edited=1
+BLOCK-CHANGED .skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md edited=1
+code_blocks_changed=3 block_count_mismatch=0 restored

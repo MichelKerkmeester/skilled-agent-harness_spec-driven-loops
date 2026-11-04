@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake"
 importance_tier: normal
 contextType: reference
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Aside MCP Wiring
@@ -59,7 +59,12 @@ Live handshake observed 2026-07-16 against installed version `1.26.626.1517`:
 Live `tools/list` returned exactly **one tool: `repl`** — re-confirmed through Code Mode discovery on 2026-07-16 as the single `aside.*` registry entry `aside.aside.repl` ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)):
 - Required inputs: `title` (string) + `code` (string); `execution.taskSupport: forbidden`.
 - Persistent sandboxed ES2023+ REPL with Playwright APIs; 120-second call timeout; no default/external modules; no `import`/`require`; all calls share one persistent scope (`const`/`let` persist across calls).
-- Full helper surface from the 2026-07-16 fixture (supersedes the earlier version-pinned "advertised helpers" description): `console.log`, `display(input)`, `page`, `tabs`, `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`, `snapshot(page, options?)` (primary read method), `page.screenshot(options?)`, `locator.screenshot(options?)` (default type `webp`, `margin` default 8), `page.pdf(options?)`, `annotatedScreenshot(page)`, `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)` (user's cookies).
+- Full helper surface from the 2026-07-16 fixture (supersedes the earlier version-pinned "advertised helpers" description):
+  - Console and display: `console.log`, `display(input)`
+  - Browser state: `page`, `tabs`
+  - Tab helpers: `listBrowserTabs()`, `attachBrowserTab(targetId)`, `attachActiveBrowserTab()`, `getTabByTargetId(targetId)`, `openTab(url)`, `closeTab(tab)`
+  - Evidence: `snapshot(page, options?)` (primary read method), `page.screenshot(options?)`, `locator.screenshot(options?)` (default type `webp`, `margin` default 8), `page.pdf(options?)`, `annotatedScreenshot(page)`
+  - Node and utilities: `fs` (`node:fs/promises`), `pwd`, `path`, `Buffer`, `sleep(ms)`, `fetch(url)` (user's cookies)
 - Fixture-documented rules: `console.log` is the only way to return data (no last-expression return); the REPL starts as a neutral session — call `listBrowserTabs()` first and prefer `attachActiveBrowserTab()`/`attachBrowserTab(targetId)` over `openTab()` when a relevant tab may already be open.
 
 There are **no** first-class `navigate`, `dom`, `screenshot`, `console`, or `network` MCP tools in this version.
@@ -138,4 +143,4 @@ Operational lifecycle notes: connection failures preserve stderr and timeout det
 - [troubleshooting.md](./troubleshooting.md) — MCP failure taxonomy and recovery.
 - [../mcp-servers/aside-mcp/README.md](../mcp-servers/aside-mcp/README.md) — registration package pointer.
 - Repository contracts: `.skilled/skills/mcp-code-mode/SKILL.md` (naming convention, discovery, structured results).
-- Primary sources: https://docs.aside.com/help/developers#use-mcp, https://docs.aside.com/changelog/components.md.
+- Primary sources: <https://docs.aside.com/help/developers#use-mcp>, <https://docs.aside.com/changelog/components.md>.

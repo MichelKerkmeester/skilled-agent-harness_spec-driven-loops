@@ -1,0 +1,147 @@
+diff --git a/.skilled/skills/mcp-tooling/README.md b/.skilled/skills/mcp-tooling/README.md
+index f3002f3502..73f374603b 100644
+--- a/.skilled/skills/mcp-tooling/README.md
++++ b/.skilled/skills/mcp-tooling/README.md
+@@ -35,7 +35,7 @@ External tools do not share one setup story or one safety model. The hub gives t
+ 
+ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
+ 
+-[`SKILL.md`](./SKILL.md) is the hub's routing contract, the file an agent loads first, and it carries the mode table, the routing summary, the compiled-route directive and the reference list while every per-mode detail stays in the packets, and the machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
++[`SKILL.md`](./SKILL.md) is the hub's routing contract and the file an agent loads first. It carries the mode table, the routing summary, the compiled-route directive and the reference list, while every per-mode detail stays in the packets. The machine routing rule, the outcomes and the two-axis model live in [`ROUTER.md`](./ROUTER.md) section 5.
+ 
+ ---
+ 
+@@ -56,6 +56,8 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
+ 
+ ## 4. QUICK START
+ 
++For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
++
+ Make a plain-language request that names the owning surface:
+ 
+ ```text
+@@ -70,8 +72,6 @@ Query my Notion roadmap data source for in-progress rows.
+ 
+ The hub routes a browser/CDP request to Chrome and a generic agentic browser request to Aside. Orca CLI work is owned by the standalone `cli-orca` skill, which keeps a bare `orca` mention out of routing because unrelated OpenOrca model traffic and the GNOME screen reader share the token.
+ 
+-For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
+-
+ ---
+ 
+ ## 5. ROUTING AND BOUNDARIES
+@@ -108,18 +108,24 @@ Hub structure and coupled metadata:
+ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/mcp-tooling
+ ```
+ 
++Expected: every check line reads `PASS`, and the run ends with `OK: parent-skill-check`, `all hard invariants passed` and a warning count of 0.
++
+ Positive route replay:
+ 
+ ```bash
+ node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "Use Chrome DevTools to capture a HAR for the staging dashboard"
+ ```
+ 
++Expected: JSON with `"action":"route"` and `mcp-chrome-devtools` listed in `targets`.
++
+ Advisor replay:
+ 
+ ```bash
+ python3 .skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py "Use Chrome DevTools to capture a HAR for the staging dashboard" --threshold 0.5
+ ```
+ 
++Expected: `mcp-tooling` ranks first with `passes_threshold: true`.
++
+ Generated metadata and leaf package:
+ 
+ ```bash
+@@ -127,6 +133,8 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
+ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/mcp-tooling --check
+ ```
+ 
++Expected: `package_skill.py --check` prints `Result: PASS`, and the metadata command reports `fixed=0` and writes nothing when the files are current.
++
+ ---
+ 
+ ## 7. RELATED SKILLS
+diff --git a/.skilled/skills/mcp-tooling/ROUTER.md b/.skilled/skills/mcp-tooling/ROUTER.md
+index 7566ca27c7..76e8aa9652 100644
+--- a/.skilled/skills/mcp-tooling/ROUTER.md
++++ b/.skilled/skills/mcp-tooling/ROUTER.md
+@@ -15,6 +15,8 @@ skill_pointer: SKILL.md
+ 
+ # mcp-tooling Surface Router — per-mode leaf sets
+ 
++Open this page once the hub has named a mode, and before you open any packet file.
++
+ ## 1. OVERVIEW
+ 
+ This is mcp-tooling's second-layer (surface) router, first-class at the hub root
+@@ -33,10 +35,23 @@ Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
+ router picks the LEAVES within it. The two layers stay separate — the hub never
+ emits leaf paths, and this router never re-decides the mode.
+ 
++> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
++> ```bash
++> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
++> ```
++> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
++
+ ---
+ 
+ ## 2. INTENT MODEL
+ 
++A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
++this") names no mode, so it fires no intent and falls back to the hub default
++(disambiguation) — the router does not silently default to `mcp-chrome-devtools`
++on genuine ambiguity. Provider-neutral design-research phrasing ("screen
++examples") is deliberately absent below so a request naming neither Refero nor
++Mobbin defers between the two transports rather than fanning out to both.
++
+ - **mcp-chrome-devtools leaves** — the CDP command patterns (screenshot/HAR/
+   console/network/performance-trace flows) and the session-management guide a
+   request to debug a live browser, capture a HAR or console/network evidence,
+@@ -65,13 +80,6 @@ emits leaf paths, and this router never re-decides the mode.
+   guide a request to research mobile-app UX flows and design patterns from real
+   iOS / Android apps loads.
+ 
+-A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
+-this") names no mode, so it fires no intent and falls back to the hub default
+-(disambiguation) — the router does not silently default to `mcp-chrome-devtools`
+-on genuine ambiguity. Provider-neutral design-research phrasing ("screen
+-examples") is deliberately absent below so a request naming neither Refero nor
+-Mobbin defers between the two transports rather than fanning out to both.
+-
+ ---
+ 
+ ## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
+@@ -158,12 +166,6 @@ RESOURCE_MAP = {
+ 
+ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+ 
+-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+-> ```bash
+-> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+-> ```
+-> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
+-
+ ### Two-Axis Model
+ 
+ - `packetKind: workflow` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` can change workspace or external workflow state and use explicit safety gates.
+diff --git a/.skilled/skills/mcp-tooling/SKILL.md b/.skilled/skills/mcp-tooling/SKILL.md
+index af97d9502e..fa1ac7e678 100644
+--- a/.skilled/skills/mcp-tooling/SKILL.md
++++ b/.skilled/skills/mcp-tooling/SKILL.md
+@@ -50,12 +50,12 @@ Use this hub for any request that names one of its eight tool-bridge surfaces. T
+ Stage one scores `hub-router.json` `routerSignals` against `vocabularyClasses` and reads `mode-registry.json` to select one mode, an ordered bundle, or a defer outcome.
+ Stage two lives in the root [`ROUTER.md`](./ROUTER.md), which maps each mode's tool intent to the packet-qualified leaf resources it loads.
+ The hub selects a mode, and `ROUTER.md` selects that mode's leaves.
++Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
+ 
+ The advisor routes every MCP tool-bridge request to the single identity `mcp-tooling`.
+ Resolve a mode with `node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"`.
+ Follow the decision: `route` loads `targets`, and `clarify` or `defer` asks for the missing tool identity.
+ A scored route loads only the selected mode's resources, so the fallback resource is never added to it.
+-Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
+ 
+ ---
+ 

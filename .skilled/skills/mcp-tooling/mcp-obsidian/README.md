@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.2.0
+version: 0.18.3.0
 ---
 
 # mcp-obsidian
@@ -29,12 +29,6 @@ version: 0.18.2.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-Obsidian holds your thinking. Notes, daily notes, tags and a stack of plugins that turn plain files into charts, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
-
-That is the whole reason this skill exists. It makes AI use inside Obsidian effective. It knows how to read and write vault files headlessly, how to reach the live app when the UI itself is the goal and how to understand the plugins you run at the data level so it can operate them without guessing. The skill is not a launcher for two CLIs. The CLIs and the MCP are the means. Working with your knowledge and your plugins is the point.
-
 ### What It Does
 
 The skill gives an agent three ways to touch a vault, chosen by what the request needs:
@@ -44,6 +38,12 @@ The skill gives an agent three ways to touch a vault, chosen by what the request
 - The cyanheads Obsidian MCP exposes a structured 12-tool `obsidian_*` surface through Code Mode when the live app and the Local REST API plugin are available. It is the specialist surface, not the default one.
 
 On top of those surfaces sits the plugin knowledge layer. The mode treats each documented community plugin as a file format: Health.md export files with `health-viz` render blocks and the Iconic `data.json` rulebook. Alongside the plugins it operates the Obsidian theme system at the file layer: the theme package, `cssTheme` activation, CSS snippets and CSS variables. Instead of driving plugin UI that no headless agent can reach, it edits the data the plugin renders.
+
+### Why This Skill Exists
+
+Obsidian holds your thinking. Notes, daily notes, tags and a stack of plugins that turn plain files into charts, dashboards and icon rules. The value of AI in that workspace comes from one thing: an agent that can actually work with what the vault contains.
+
+That is the whole reason this skill exists. It makes AI use inside Obsidian effective. It knows how to read and write vault files headlessly, how to reach the live app when the UI itself is the goal and how to understand the plugins you run at the data level so it can operate them without guessing. The skill is not a launcher for two CLIs. The CLIs and the MCP are the means. Working with your knowledge and your plugins is the point.
 
 ### The Plugin Knowledge Layer
 

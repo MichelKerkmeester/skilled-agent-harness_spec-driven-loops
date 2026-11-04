@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.16.0
+version: 1.0.17.0
 ---
 
 # mcp-chrome-devtools
@@ -38,6 +38,18 @@ Driving a browser from an agent usually means a heavyweight automation framework
 This skill drives a real browser through two complementary paths. The `bdg` CLI is fast and token-efficient. It is self-documenting at every level and reaches the full Chrome DevTools Protocol surface. The Code Mode MCP path runs isolated browser instances for parallel sessions and multi-tool chaining. A routing rule picks the right path for the work at hand, so a quick screenshot never pays the MCP overhead and a complex chain never blocks on a single session.
 
 The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as a provider and does not implement the transport. For generated application code that gets inspected, `sk-code` owns the standards and tests.
+
+### When To Use This Skill
+
+- Reach for this skill when you need a browser screenshot, a console read, a network trace or a CDP operation from an agent.
+- Reach for the CLI when the work is a single inspection.
+- Reach for the MCP path when you are already using Code Mode for other tools or need parallel isolated browsers.
+- Reach for the example scripts when you want a pre-built CI workflow.
+
+This skill is not a cross-browser test framework. The CLI targets Chromium-based browsers only:
+
+- Supported: Chrome, Chromium and Edge
+- Not covered: Firefox and Safari. Cross-browser suites such as Puppeteer, Playwright or Selenium need a dedicated framework
 
 ### The CDP Capability Surface
 
@@ -151,30 +163,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-- Reach for this skill when you need a browser screenshot, a console read, a network trace or a CDP operation from an agent.
-- Reach for the CLI when the work is a single inspection.
-- Reach for the MCP path when you are already using Code Mode for other tools or need parallel isolated browsers.
-- Reach for the example scripts when you want a pre-built CI workflow.
-
-This skill is not a cross-browser test framework. The CLI targets Chromium-based browsers only:
-
-- Supported: Chrome, Chromium and Edge
-- Not covered: Firefox and Safari. Cross-browser suites such as Puppeteer, Playwright or Selenium need a dedicated framework
-
-### Related Skills
-
-| Skill | Relationship |
-|---|---|
-| `mcp-code-mode` | Owns the MCP transport. This skill registers Chrome DevTools as a Code Mode provider and calls tools through `call_tool_chain()`. |
-| `sk-code` | Owns application-code standards and tests. This skill verifies browser behavior that `sk-code` produces. |
-
----
-
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -187,7 +176,7 @@ This skill is not a cross-browser test framework. The CLI targets Chromium-based
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When do I use the CLI versus the MCP path?**
 
@@ -199,7 +188,7 @@ A: Run `bdg stop` after each session. In scripts, register `trap "bdg stop" EXIT
 
 **Q: Can I use this with Firefox or Safari?**
 
-A: No. The CLI targets Chromium-based browsers only. For other engines, reach for a dedicated framework such as Puppeteer or Playwright. See INTEGRATION & NAVIGATION for the full boundary.
+A: No. The CLI targets Chromium-based browsers only. For other engines, reach for a dedicated framework such as Puppeteer or Playwright. See OVERVIEW for the full boundary.
 
 **Q: How do I keep CDP method names stable across Chrome versions?**
 
@@ -211,23 +200,32 @@ A: Register multiple entries in `.utcp_config.json`, each with its own name such
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships a manual testing playbook and three example scripts that double as verification gates.
 
 | Check | How to run it |
 |---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md --type readme` reports zero issues |
 | Setup diagnostics | `bash .skilled/skills/mcp-tooling/mcp-chrome-devtools/scripts/doctor.sh` reports the detected CLI and MCP prerequisites without changing them |
 | CLI health | `command -v bdg && bdg --version 2>&1 && bdg https://example.com 2>&1 && bdg dom screenshot /tmp/verify.png 2>&1 && bdg stop 2>&1 && ls -la /tmp/verify.png` all pass with no errors |
 | MCP health | Confirm `chrome_devtools` tools appear in `list_tools()` output and a `navigate_page` call completes without connection errors |
 | Example scripts | Run `performance-baseline.sh`, `animation-testing.sh` and `multi-viewport-test.sh` in headless mode and confirm all exit zero |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md --type readme` reports zero issues |
 
 The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md`) runs every scenario behind these checks.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED RESOURCES
+
+### Related Skills
+
+| Skill | Relationship |
+|---|---|
+| `mcp-code-mode` | Owns the MCP transport. This skill registers Chrome DevTools as a Code Mode provider and calls tools through `call_tool_chain()`. |
+| `sk-code` | Owns application-code standards and tests. This skill verifies browser behavior that `sk-code` produces. |
+
+### Related Documents
 
 | Document | Purpose |
 |---|---|
@@ -242,6 +240,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 | [`examples/README.md`](./examples/README.md) | Guide to the three production scripts and CI integration |
 | [`scripts/install.sh`](./scripts/install.sh) | Automated bdg installer with Chrome detection |
 | [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only environment diagnostics |
+| [`scripts/README.md`](./scripts/README.md) | What each script changes and the output it prints |
 | [`mcp-servers/bdg-cli/README.md`](./mcp-servers/bdg-cli/README.md) | Install pointer for the bdg CLI, nothing vendored |
 | [`mcp-servers/chrome-devtools-mcp/README.md`](./mcp-servers/chrome-devtools-mcp/README.md) | The Code Mode server behind the manual entries |
 | [`assets/utcp-chrome-devtools-manuals.md`](./assets/utcp-chrome-devtools-manuals.md) | Byte-true snapshot of both registered manual entries |

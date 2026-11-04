@@ -12,7 +12,7 @@ trigger_phrases:
   - "plugins we support"
 importance_tier: "normal"
 contextType: "implementation"
-version: "0.2.0.0"
+version: "0.2.1.0"
 ---
 
 # Installed Obsidian Plugins Roster (`installed-plugins`)
@@ -20,6 +20,16 @@ version: "0.2.0.0"
 This is the single source of truth for **every community plugin enabled in the operator's vault** — including the ones that carry no dedicated integration reference. It answers three questions at a glance: what is installed, what each plugin is for, and where (if anywhere) the AI-usable integration docs live.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep the vault's plugin inventory and its documentation status in one place, so an install, enablement, or removal has one place to reconcile.
+
+### When to Use
+
+- A request names an Obsidian plugin and you need its id, version, or repository.
+- Checking whether a plugin still has a dedicated reference tree.
+- Reconciling the roster after an install, enablement, or removal.
 
 The vault has **24 community plugins** enabled (`.obsidian/community-plugins.json`). They split into three operating classes, and the counts add up: **2 documented + 13 undocumented file-layer + 9 UI/automatic = 24**.
 
@@ -44,7 +54,11 @@ Only these two plugins have a dedicated integration reference. Each tree is `ref
 
 ## 3. FURTHER FILE-LAYER PLUGINS (dedicated docs removed)
 
-These plugins persist their state as markdown, frontmatter, or a structured file, so the file-layer operating model in `plugin-operation-logic.md` applies to them exactly as it applies in §2. What changed is the documentation: their dedicated reference trees were removed from this skill, so there is no `references/plugins/<name>/` tree and no `feature-catalog/plugins/<name>.md` entry to follow. All 13 remain installed and enabled in the vault. To operate one, locate its on-disk data and edit that directly.
+These plugins persist their state as markdown, frontmatter, or a structured file, so the file-layer operating model in `plugin-operation-logic.md` applies to them exactly as it applies in §2.
+
+- **What changed:** their dedicated reference trees were removed from this skill, so there is no `references/plugins/<name>/` tree and no `feature-catalog/plugins/<name>.md` entry to follow.
+- **Install state:** all 13 remain installed and enabled in the vault.
+- **How to operate one:** locate its on-disk data and edit that directly.
 
 | Plugin | Manifest id | Ver | Repository | Purpose | Docs status |
 | --- | --- | --- | --- | --- | --- |
@@ -84,17 +98,7 @@ These are enabled in the vault and supported operationally, but they have no vau
 
 ---
 
-## 5. NOTES AND RELATED
-
-- **Themes.** `references/themes/` documents the Obsidian *theme system* (with Minimal as the worked example), not a community plugin. Themes live under `.obsidian/themes/` and appearance settings, not in `community-plugins.json`, so no theme is a row in this roster.
-- **Overlap decisions.** Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases, both kept. **Project Manager was removed** (deprecated 2026-08-22): its task-tracking role is consolidated onto Notion Bases (relations, rollups, Table/Board/Timeline/Calendar views) plus Meta Bind + JS Engine for the live start/stop task timer, which made a dedicated PM plugin redundant. **Excalidraw was removed** the same day — freeform drawing/whiteboard use was retired from the vault.
-- **Notion-parity stack (2026-08-22).** The vault standardizes on Notion Bases as the database and calendar foundation. The Notion-style task timer (Start/End buttons that stamp frontmatter + a Total-Time formula column) is built with Meta Bind + JS Engine over a Bases task database.
-- **Dynamic Outline activation.** Selected and pinned to v1.19.0 (repo `theopavlove/obsidian-dynamic-outline`) for a Notion-style floating table of contents; install it via BRAT and reload Obsidian to activate. Until that install runs, the live `community-plugins.json` shows 23 enabled ids rather than the 24 this roster documents.
-- **Compatibility watch.** Notebook Navigator replaces the core file-explorer pane; Iconic injects icons into that pane. Confirm Iconic's icons still render inside Notebook Navigator's row UI when relying on both.
-
----
-
-## 6. KEEPING THIS ROSTER CURRENT
+## 5. KEEPING THIS ROSTER CURRENT
 
 This roster is a hand-maintained snapshot, reconciled against the vault, not an auto-generated file. When a plugin is installed, enabled, or removed:
 
@@ -104,3 +108,13 @@ This roster is a hand-maintained snapshot, reconciled against the vault, not an 
 4. Keep the total in §1 in step with the row count (2 promoted + 13 undocumented + 9 UI/automatic = 24).
 
 A plugin belongs in §2 only if the mode ships a four-file reference tree for it under `references/plugins/<name>/`. A file-layer plugin without that tree belongs in §3, and a plugin whose configuration is display preferences, URLs, or automatic behavior belongs in §4.
+
+---
+
+## 6. NOTES AND RELATED
+
+- **Themes.** `references/themes/` documents the Obsidian *theme system* (with Minimal as the worked example), not a community plugin. Themes live under `.obsidian/themes/` and appearance settings, not in `community-plugins.json`, so no theme is a row in this roster.
+- **Overlap decisions.** Claudian (`realclaudian`) runs an agent inside Obsidian while Local REST API serves external agents — different use cases, both kept. **Project Manager was removed** (deprecated 2026-08-22): its task-tracking role is consolidated onto Notion Bases (relations, rollups, Table/Board/Timeline/Calendar views) plus Meta Bind + JS Engine for the live start/stop task timer, which made a dedicated PM plugin redundant. **Excalidraw was removed** the same day — freeform drawing/whiteboard use was retired from the vault.
+- **Notion-parity stack (2026-08-22).** The vault standardizes on Notion Bases as the database and calendar foundation. The Notion-style task timer (Start/End buttons that stamp frontmatter + a Total-Time formula column) is built with Meta Bind + JS Engine over a Bases task database.
+- **Dynamic Outline activation.** Selected and pinned to v1.19.0 (repo `theopavlove/obsidian-dynamic-outline`) for a Notion-style floating table of contents; install it via BRAT and reload Obsidian to activate. Until that install runs, the live `community-plugins.json` shows 23 enabled ids rather than the 24 this roster documents.
+- **Compatibility watch.** Notebook Navigator replaces the core file-explorer pane; Iconic injects icons into that pane. Confirm Iconic's icons still render inside Notebook Navigator's row UI when relying on both.

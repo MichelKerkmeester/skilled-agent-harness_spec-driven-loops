@@ -13,7 +13,7 @@ trigger_phrases:
   - "parity verification"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Notion to Obsidian Migration Method (`notion-migration`)
@@ -24,11 +24,45 @@ The `mcp-obsidian` mode's write-side method for migrating a database-heavy Notio
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Finish a Notion migration at the file layer and prove parity before the source workspace is retired.
+
+### When to Use
+
+Open it once `mcp-notion`'s inventory exists and the Importer has run, or before either, to see what the import will leave behind.
+
 A flawless migration is not a single tool run. The **Obsidian Importer's Notion API mode** is the only import path that preserves database structure — it converts blocks to Markdown, generates `.base` files for databases, and resolves cross-page references through a three-phase placeholder system (Import → Resolution, up to 10 rounds → Cleanup). It runs once, in the Obsidian desktop app, driven by a human. Everything after that import — verifying what the importer converted, rebuilding what it dropped, and proving parity — is an agent task performed at the file layer against the vault the importer produced.
 
-The importer auto-converts pages, nested hierarchy, internal links, databases (→ Bases), properties (→ frontmatter), formulas and rollups (→ Bases formulas, a hybrid strategy), single relations (→ wikilinks), block attachments, and page covers. It does **not** convert comments, secondary database views, two-way relation back-references, gallery cover images, external attachments (unless opted in), or the `style()`/`name()`/`email()` formula functions (no Obsidian equivalent). Treat every one of those as a reconstruction task, not a lost cause — sections 3-5 below cover the recovery path for each.
+The importer auto-converts:
 
-The write layer this method operates against has three surfaces: **notesmd-cli** (headless filesystem operations, the default for unattended migration work), the **cyanheads MCP** (app-backed, an accelerator when a live Obsidian session with Local REST API is available), and direct **file-layer edits** on `.base` files, plugin `_database.md` schemas, and `data.json` configs. No CLI or MCP tool authors a `.base` file or a Dataview query block — both are pure file-layer writes the agent performs directly with Read/Write/Edit.
+- Pages and nested hierarchy
+- Internal links
+- Databases → Bases
+- Properties → frontmatter
+- Formulas and rollups → Bases formulas (a hybrid strategy)
+- Single relations → wikilinks
+- Block attachments
+- Page covers
+
+It does **not** convert:
+
+- Comments
+- Secondary database views
+- Two-way relation back-references
+- Gallery cover images
+- External attachments (unless opted in)
+- The `style()`/`name()`/`email()` formula functions (no Obsidian equivalent)
+
+Treat every one of those as a reconstruction task, not a lost cause: sections 3-5 below cover the recovery path for each.
+
+The write layer this method operates against has three surfaces:
+
+- **notesmd-cli:** headless filesystem operations, the default for unattended migration work.
+- **The cyanheads MCP:** app-backed, an accelerator when a live Obsidian session with Local REST API is available.
+- **Direct file-layer edits:** on `.base` files, plugin `_database.md` schemas, and `data.json` configs.
+
+No CLI or MCP tool authors a `.base` file or a Dataview query block. Both are pure file-layer writes the agent performs directly with Read/Write/Edit.
 
 ---
 
@@ -181,13 +215,6 @@ Load this reference when a request involves:
 - Reconstructing comment threads that the importer dropped.
 - Running the post-import parity verification protocol, or deciding whether Notion can be retired.
 
-### Sibling references
-
-| File | Use it for |
-|---|---|
-| `references/plugins/plugin-operation-logic.md` | The general file-layer model for writing `.base` files and plugin schemas |
-| `../../mcp-notion/references/migration-inventory.md` | The read-side counterpart: the 7-step inventory procedure that must run before and during this method |
-
 ---
 
 ## 8. RELATED RESOURCES
@@ -195,5 +222,5 @@ Load this reference when a request involves:
 - `../../mcp-notion/references/migration-inventory.md` — `mcp-notion`'s read-side inventory method (7-step procedure, API-gap reads, and read-limit constraints) that feeds step 1 of this method.
 - `references/plugins/plugin-operation-logic.md` — the general file-layer model this method's `.base`/plugin-schema writes follow.
 - `references/mcp-tools.md` — the cyanheads MCP catalog, an optional accelerator for step 6/8 when a live Obsidian session is available.
-- Notion Bases community plugin: https://github.com/bgarciamoura/obsidian-notion-bases-plugin — the P0 plugin behind sections 3-4's recovery matrix.
-- Obsidian Importer: https://github.com/obsidianmd/obsidian-importer — the source of the auto-conversion behavior this method verifies and extends.
+- [Notion Bases community plugin](https://github.com/bgarciamoura/obsidian-notion-bases-plugin) - the P0 plugin behind sections 3-4's recovery matrix.
+- [Obsidian Importer](https://github.com/obsidianmd/obsidian-importer) - the source of the auto-conversion behavior this method verifies and extends.

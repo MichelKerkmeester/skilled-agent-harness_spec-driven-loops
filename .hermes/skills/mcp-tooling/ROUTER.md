@@ -15,6 +15,8 @@ skill_pointer: SKILL.md
 
 # mcp-tooling Surface Router — per-mode leaf sets
 
+Open this page once the hub has named a mode, and before you open any packet file.
+
 ## 1. OVERVIEW
 
 This is mcp-tooling's second-layer (surface) router, first-class at the hub root
@@ -33,9 +35,22 @@ Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub never
 emits leaf paths, and this router never re-decides the mode.
 
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
+
 ---
 
 ## 2. INTENT MODEL
+
+A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
+this") names no mode, so it fires no intent and falls back to the hub default
+(disambiguation) — the router does not silently default to `mcp-chrome-devtools`
+on genuine ambiguity. Provider-neutral design-research phrasing ("screen
+examples") is deliberately absent below so a request naming neither Refero nor
+Mobbin defers between the two transports rather than fanning out to both.
 
 - **mcp-chrome-devtools leaves** — the CDP command patterns (screenshot/HAR/
   console/network/performance-trace flows) and the session-management guide a
@@ -64,13 +79,6 @@ emits leaf paths, and this router never re-decides the mode.
 - **mcp-mobbin leaves** — the Mobbin tool-surface catalog and the MCP-wiring
   guide a request to research mobile-app UX flows and design patterns from real
   iOS / Android apps loads.
-
-A bare tool-bridge phrase that names no tool (e.g. "use the MCP tool bridge for
-this") names no mode, so it fires no intent and falls back to the hub default
-(disambiguation) — the router does not silently default to `mcp-chrome-devtools`
-on genuine ambiguity. Provider-neutral design-research phrasing ("screen
-examples") is deliberately absent below so a request naming neither Refero nor
-Mobbin defers between the two transports rather than fanning out to both.
 
 ---
 
@@ -157,12 +165,6 @@ RESOURCE_MAP = {
 ## 5. MACHINE ROUTER
 
 The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
-
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
-> ```
-> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
 
 ### Two-Axis Model
 

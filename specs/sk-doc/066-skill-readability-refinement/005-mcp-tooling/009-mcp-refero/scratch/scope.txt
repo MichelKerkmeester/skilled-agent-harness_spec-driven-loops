@@ -1,0 +1,7 @@
+.skilled/skills/mcp-tooling/mcp-refero/README.md
+.skilled/skills/mcp-tooling/mcp-refero/ROUTER.md
+.skilled/skills/mcp-tooling/mcp-refero/SKILL.md
+.skilled/skills/mcp-tooling/mcp-refero/assets/utcp-refero-manual.md
+.skilled/skills/mcp-tooling/mcp-refero/references/mcp-wiring.md
+.skilled/skills/mcp-tooling/mcp-refero/references/tool-surface.md
+.skilled/skills/mcp-tooling/mcp-refero/references/troubleshooting.md

@@ -9,7 +9,7 @@ trigger_phrases:
   - "health-viz block"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.5.0.0
+version: 0.5.1.0
 ---
 
 # Health.md File-Layer Workflows
@@ -19,6 +19,17 @@ These recipes change the **data files** Health.md renders. The plugin invalidate
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Leave the vault with data files the plugin can actually read and a chart that is provably fed by them, without fabricating a single observation.
+
+### When to Use
+
+- Setting up or restructuring the data folder.
+- Adding a real export, roll-up, or entry note.
+- Placing or checking a `health-viz` block.
+- Proving a chart is fed by authentic data.
 
 ### Operating sequence
 
@@ -62,18 +73,18 @@ last: 7
 - Dates may be ISO dates/datetimes, built-in dynamic variables such as `{{today:YYYY-MM-DD}}`, or frontmatter variables; raw Templater or Dataview expressions are not a reliable substitute.
 - Prefer copying an existing working block from the vault over inventing keys; unknown block options render nothing.
 
-### Switch to a dated structure
-
-- Create `<data folder>/2026/06/` etc., move existing files, and set the data folder structure to `Year`/`Month`/`Week`/`Day` or a custom template (`{year}`, `{month}`, `{week}`, `{day}`, `{date}`).
-- Files directly under the data folder keep loading in nested modes, so migration is safe.
-- Update the settings via the same JSON edit discipline as any plugin settings file.
-
 ### Verify a chart shows real data (mock-fallback escape)
 
 1. Read the data folder value from settings — not the default.
 2. Confirm that folder exists and is non-empty.
 3. Open at least one authentic source file: it parses and matches the file pattern.
 4. Confirm the block's `type` is a registered renderer and any referenced metric resolves via `_healthmd_data_dictionary.json`.
+
+### Switch to a dated structure
+
+- Create `<data folder>/2026/06/` etc., move existing files, and set the data folder structure to `Year`/`Month`/`Week`/`Day` or a custom template (`{year}`, `{month}`, `{week}`, `{day}`, `{date}`).
+- Files directly under the data folder keep loading in nested modes, so migration is safe.
+- Update the settings via the same JSON edit discipline as any plugin settings file.
 
 ### Discover individual entry notes
 

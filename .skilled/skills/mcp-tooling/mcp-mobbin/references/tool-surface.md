@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin rate limit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mobbin Tool Surface
@@ -20,7 +20,13 @@ Read-only contract reference for the live-discovered Mobbin MCP tools.
 
 ### Purpose
 
-The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16, pre-auth** (fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)), and it **SUPERSEDES the research's one-public-tool baseline**: `list_tools` returned **THREE read tools** — registry names `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows`, `mobbin.mobbin.search_sections` (TS callables `mobbin.mobbin_search_screens(args)` etc., per the fixture's `Access as:` lines). All three are read-only search tools: the mutation-refusal check passed — no mutation-capable tool appeared in the live listing. Treat per-session Code Mode discovery (`list_tools` / `search_tools` / `tool_info`) as the final live schema before calling. The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
+The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16, pre-auth** (fixture: [`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)), and it **SUPERSEDES the research's one-public-tool baseline**:
+
+- `list_tools` returned **THREE read tools**: registry names `mobbin.mobbin.search_screens`, `mobbin.mobbin.search_flows` and `mobbin.mobbin.search_sections` (TS callables `mobbin.mobbin_search_screens(args)` etc., per the fixture's `Access as:` lines).
+- All three are read-only search tools: the mutation-refusal check passed, with no mutation-capable tool in the live listing.
+- Treat per-session Code Mode discovery (`list_tools`, `search_tools`, `tool_info`) as the final live schema before calling.
+
+The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
 
 ### Usage
 
@@ -120,9 +126,9 @@ This transport allows breadth while researching (multiple apps, screens, intents
 
 ---
 
-## 6. OPEN QUESTIONS (UNKNOWN, RUNTIME-ONLY)
+## 6. OPEN QUESTIONS AND RESOLVED ITEMS
 
-These stay UNKNOWN until an operator-authorized, paid, authenticated runtime exists; none can be resolved by authoring, and none blocked this packet's authorship. Note: **auth env-var naming is NOT among them** — no MCP auth env var exists; that question is answered in the negative.
+Open items stay UNKNOWN until an operator-authorized, paid, authenticated runtime exists; none can be resolved by authoring, and none blocked this packet's authorship. Note: **auth env-var naming is NOT among them** — no MCP auth env var exists; that question is answered in the negative.
 
 1. **RESOLVED for pre-auth discovery, 2026-07-16** ([`discovery-fixture-2026-07-16.json`](./discovery-fixture-2026-07-16.json)): `list_tools()` and `tool_info()` work WITHOUT OAuth and return three tools with full declared schemas (Section 2). Whether an authenticated session's inventory differs remains unobserved — re-run discovery after operator OAuth.
 2. **Adapter round trip** — does the current local Code Mode + `mcp-remote` version complete first-use Mobbin OAuth, token refresh, and reconnect reliably (any extra flags needed)?

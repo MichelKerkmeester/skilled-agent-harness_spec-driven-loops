@@ -1,0 +1,12 @@
+.skilled/skills/mcp-tooling/mcp-notion/SKILL.md:264: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/SKILL.md:265: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/SKILL.md:16: render_h2_numbering: Unnumbered H2 "MARKDOWN + DATA-SOURCE CONTRACT — READ BEFORE ANY NOTION WRITE" among numbered peers; number ev
+.skilled/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md:223: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md:19: render_bold_label_join: Consecutive bold labels "MCP Server:" and "Auth:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md:20: render_bold_label_join: Consecutive bold labels "Auth:" and "Invocation:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md:21: render_bold_label_join: Consecutive bold labels "Invocation:" and "Tool naming:" join into one paragraph; separate them or use list it
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md:203: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md:204: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md:205: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md:206: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=9 render_warnings=11 invalid=0

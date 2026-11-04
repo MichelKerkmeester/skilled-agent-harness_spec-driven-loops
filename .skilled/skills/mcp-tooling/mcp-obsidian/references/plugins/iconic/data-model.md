@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic backup merge"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.7.0.0
+version: 0.7.1.0
 ---
 
 # Iconic File-Layer Data Model
@@ -19,6 +19,16 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Edit Iconic's configuration without losing a setting, a rule id, or a user customization.
+
+### When to Use
+
+- Reading or changing `<vault>/.obsidian/plugins/iconic/data.json`.
+- Adding or editing a `fileRules` or `folderRules` entry.
+- Merging the canonical rulebook asset into a vault.
 
 ### Canonical identity
 
@@ -109,7 +119,8 @@ Iconic stores its entire configuration in one JSON file: `<vault>/.obsidian/plug
 2. **Back up**: copy to `data.json.bak-<timestamp>` (or follow `maxBackups` rotation).
 3. **Merge**: change only the requested keys/rules; preserve all other settings and rules; keep rule `id`s stable. When applying the canonical asset, update matching ids and append missing ids only.
 4. **Write** valid JSON; re-parse to verify.
-5. **Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
+
+**Never downgrade** the plugin binary when installing (the rulebook is the only thing (re)applied).
 
 ---
 

@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A Mobbin request reaches this skill when it names Mobbin, or asks for real app screenshots, app design research, UX flow references, screen examples from shipped apps, or the wiring, auth, plan gating and rate-limit troubleshooting of the registered `mobbin` manual, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset: the live three-tool contract and query-intent workflows in `references/tool-surface.md`, the registered manual, bridge and auth model in `references/mcp-wiring.md`, the failure modes in `references/troubleshooting.md`, and the registered manual's reference shape in `assets/utcp-mobbin-manual.md`, because this is a flat intent router with no keyed resource subdirectories. `references/tool-surface.md` is the declared default, offered as a fallback suggestion rather than loaded by any scored route.
+A Mobbin request reaches this skill when it names Mobbin, or asks for real app screenshots, app design research, UX flow references, screen examples from shipped apps, or the wiring, auth, plan gating and rate-limit troubleshooting of the registered `mobbin` manual, while generic design, UI or screen wording does not. From there the router selects among three reference families and one asset: the live three-tool contract and query-intent workflows in `references/tool-surface.md`, the registered manual, bridge and auth model in `references/mcp-wiring.md`, the failure modes in `references/troubleshooting.md`, and the registered manual's reference shape in `assets/utcp-mobbin-manual.md`, because this is a flat intent router with no keyed resource subdirectories. `references/tool-surface.md` is the declared default, offered as a fallback suggestion and never unioned into a scored route's loaded set; a scored route loads only the files its `RESOURCE_MAP` entry names.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -89,7 +89,7 @@ assets/utcp-mobbin-manual.md    # Registered manual's reference shape + post-reg
 | ----- | ------------ | --------- |
 | CONDITIONAL | Research intent (apps/screens/flows/elements) | `references/tool-surface.md` (tool contract + workflow baseline) |
 | CONDITIONAL | Wiring / auth intent | `references/mcp-wiring.md`, `assets/utcp-mobbin-manual.md` |
-| CONDITIONAL | Setup / error intent | `references/troubleshooting.md` |
+| CONDITIONAL | Setup / error intent | `references/troubleshooting.md`, `references/mcp-wiring.md` |
 | FALLBACK | Zero-score routes only | `references/tool-surface.md` suggested (never auto-loaded) |
 | PAIR (measured reference) | A measured Style Reference of extracted tokens is also wanted | `sk-design-md-generator`, the measured-extraction companion |
 

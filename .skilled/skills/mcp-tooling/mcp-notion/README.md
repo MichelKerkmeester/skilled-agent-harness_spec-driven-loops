@@ -7,7 +7,7 @@ trigger_phrases:
   - "notion workspace"
   - "notion database"
   - "notion page"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # mcp-notion
@@ -38,6 +38,10 @@ Notion is cloud-only. There is no headless filesystem to edit, no third-party pl
 This skill drives Notion through two complementary paths. The official Notion MCP handles all CRUD through Code Mode: page create, retrieve, update, archive, move and markdown round-trip; block read, append, update and delete; data-source query, retrieve, update and create; comments, users and search. Direct Notion REST API calls fill the five capabilities the MCP does not expose. An operation-based routing rule picks the path for the work at hand, and a knowledge layer supplies the hierarchy, property-type and relational semantics that keep every write valid. A page create never bypasses the schema. A file upload never fails because the MCP has no tool for it.
 
 The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as a provider. It does not implement the transport. For the generated application code that integrates Notion, `sk-code` owns the standards and tests.
+
+### When To Use This Skill
+
+Reach for this skill when you need to create, read, update or organize Notion pages, blocks, data sources, comments or users from an agent. Reach for the official MCP path for any CRUD operation in its six domains. Reach for the direct API path when the work is a file upload, a view operation, a non-truncated property read or an async-task poll. Reach for the knowledge-layer references before authoring any property, relation, rollup or formula write.
 
 ### The Notion Operation Layer
 
@@ -119,7 +123,14 @@ Code Mode uses the local stdio server, because the remote OAuth server cannot co
 
 ### Agent Safety Invariants
 
-Always share a page or database with the integration before operating on it. An unshared target returns HTTP 403, and a missing share is the single most common cause of "not found" confusion. Always respect the rate limit: about 3 requests per second per integration, with bursts allowed. On HTTP 429 (`rate_limited`) or 529 (`service_overload`), honor the `Retry-After` header and back off with jitter; centralize retries in the HTTP layer, not per tool. Always let the server pin the API version per operation, and never hardcode a single version across markdown and non-markdown tools. Treat tokens as opaque strings; do not validate them with a regex. Never auto-modify `opencode.json`, the Code Mode config lives in `.utcp_config.json`. Confirm every tool name with `tool_info()`; never guess it. An empty `search` result is valid and common, do not fabricate pages.
+- Always share a page or database with the integration before operating on it. An unshared target returns HTTP 403, and a missing share is the single most common cause of "not found" confusion.
+- Always respect the rate limit: about 3 requests per second per integration, with bursts allowed.
+- On HTTP 429 (`rate_limited`) or 529 (`service_overload`), honor the `Retry-After` header and back off with jitter; centralize retries in the HTTP layer, not per tool.
+- Always let the server pin the API version per operation, and never hardcode a single version across markdown and non-markdown tools.
+- Treat tokens as opaque strings; do not validate them with a regex.
+- Never auto-modify `opencode.json`, the Code Mode config lives in `.utcp_config.json`.
+- Confirm every tool name with `tool_info()`; never guess it.
+- An empty `search` result is valid and common, do not fabricate pages.
 
 ### Preflight Check
 
@@ -137,10 +148,6 @@ call_tool_chain({
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for this skill when you need to create, read, update or organize Notion pages, blocks, data sources, comments or users from an agent. Reach for the official MCP path for any CRUD operation in its six domains. Reach for the direct API path when the work is a file upload, a view operation, a non-truncated property read or an async-task poll. Reach for the knowledge-layer references before authoring any property, relation, rollup or formula write.
 
 The MCP path and the direct API path cover different operation sets by design. Neither is a drop-in for the other. For "create a page" or "query this database with a filter", the official MCP is the right answer. For "upload this file to a page" or "read the full multi-select values that got truncated", only a direct API call will work.
 
@@ -218,4 +225,5 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
 | [`references/api-gap-tools.md`](./references/api-gap-tools.md) | Direct Notion REST API calls for the five gap capabilities the MCP does not expose |
 | [`references/property-types.md`](./references/property-types.md) | The 22 property types with schema, value, filter and sort semantics |
 | [`references/database-model.md`](./references/database-model.md) | The database, data-source and page hierarchy, relations, rollups (14 functions) and Formulas 2.0 |
+| [`references/migration-inventory.md`](./references/migration-inventory.md) | The read-side Notion→Obsidian inventory method: the 7-step procedure, the 5 API-gap reads it uses, and the read-limit constraints that shape it |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Error reference and recovery for auth, sharing, rate limits, API version and the local-server deprecation migration |

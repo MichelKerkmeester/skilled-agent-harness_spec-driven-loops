@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic version drift"
 importance_tier: "normal"
 contextType: "general"
-version: 0.5.0.0
+version: 0.5.1.0
 ---
 
 # Iconic File-Layer Troubleshooting
@@ -19,6 +19,16 @@ Diagnose the JSON, the rule, and the app separately. A valid `data.json` can sti
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Name the one cause behind an Iconic failure before changing a file or a rule.
+
+### When to Use
+
+- Icons are missing, wrong, or the wrong color.
+- The plugin will not load after a write.
+- Rules vanished after an edit, or an unknown key appeared after an update.
 
 | Symptom | Most likely cause |
 |---|---|

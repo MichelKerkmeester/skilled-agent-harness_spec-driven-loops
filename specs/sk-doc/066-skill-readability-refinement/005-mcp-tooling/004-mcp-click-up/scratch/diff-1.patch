@@ -1,0 +1,291 @@
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/README.md b/.skilled/skills/mcp-tooling/mcp-click-up/README.md
+index ec165491caf..204d83b7d98 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/README.md
+@@ -110,23 +110,6 @@ The MCP config snippet from `install.sh` is the JSON block to paste. It needs no
+ 
+ The skill reads your request, scores it against weighted intent signals and loads only the reference files relevant to the chosen path. A keyword such as "list", "done", "note" or "tag" routes to the cupt CLI. A keyword such as "document", "create a task" or "search clickup" routes to the official MCP. So do "goal" and "bulk", and the MCP reference then tells the user those features have no route. Eleven daily operations go to cupt. Six operation classes are MCP-only. If cupt is not installed, the router loads the install guide first.
+ 
+-### The cupt CLI Path
+-
+-cupt is a Python CLI purpose-built for agent-driven ClickUp workflows. It talks to the ClickUp REST API v2 and writes human-readable output with a `--json` flag for machine parsing. It resolves per-list status schemas automatically, so you write `cupt done <id>` without hardcoding a status name. The `--dry-run` flag on `cupt done` previews the resolved status and the selected target without writing, which is the safety net that enables batch completions. The `--offline` flag serves a local cache populated by `cupt prefetch`, so you can operate without network access.
+-
+-```bash
+-cupt list --today --json | head -5
+-# [{"id":"abc123","name":"Fix login bug","status":{"status":"in progress",...
+-```
+-
+-cupt covers every daily task operation: list with server-side `--tag` filtering (fast) and client-side `--team` filtering (slow on large workspaces), full task detail with `cupt show`, notes and comments with `cupt note` and `cupt notes`, a full time-tracking lifecycle with `cupt time start`, `stop`, `add` and `status`, tag management and task context discovery with `cupt context` and `cupt statuses`.
+-
+-### The Official MCP Path
+-
+-The official server is ClickUp's hosted MCP server at `https://mcp.clickup.com/mcp`, registered through Code Mode: `.utcp_config.json` defines the `clickup_official` manual, launched over stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp` and signed in with OAuth. It exposes tools across task CRUD, documents, time tracking, chat, reminders and workspace structure. You reach it through Code Mode with `call_tool_chain({ code: "..." })`. The callable form is `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. For example `clickup_official.clickup_official_clickup_get_task`, `clickup_official.clickup_official_clickup_filter_tasks` and `clickup_official.clickup_official_clickup_create_document`. Confirm a name with `tool_info()` when a call reports it missing.
+-
+-The MCP path is the only surface for task creation, documents, workspace search, lists and folders, task relations, chat and reminders. Goals, bulk creates, webhooks, checklist edits and audit logs have no route on either surface. Many daily operations also have an MCP fallback tool, but the routing rule keeps daily writes on cupt because the MCP has no dry-run equivalent. Use the MCP when you need its exclusive surface or when you are already in a Code Mode flow with other tools.
+-
+ ### Agent Safety Invariants
+ 
+ cupt ships built-in guardrails that prevent the most dangerous ClickUp mistakes. The skill enforces them at the routing level and in every example workflow.
+@@ -135,7 +118,11 @@ Always run `cupt statuses <id>` before any `cupt done` call. Each ClickUp list d
+ 
+ Always run `cupt done <id> --dry-run` before a batch completion, one dry-run per task. Batch status errors are hard to reverse. A dry-run costs nothing and confirms the resolved status and the selected target before the write happens.
+ 
+-Always use `--json` for programmatic reads. Never hardcode status names across tasks. Never use the community `@krodak/clickup-cli` (`cu` command), which conflicts with the Unix `cu` command and is not supported by this skill. Never auto-modify `opencode.json`. Print the MCP config snippet for the user to apply. Never fabricate tasks when `cupt list` returns empty. An empty queue is valid and common.
++- Always use `--json` for programmatic reads.
++- Never hardcode status names across tasks.
++- Never use the community `@krodak/clickup-cli` (`cu` command), which conflicts with the Unix `cu` command and is not supported by this skill.
++- Never auto-modify `opencode.json`. Print the MCP config snippet for the user to apply.
++- Never fabricate tasks when `cupt list` returns empty. An empty queue is valid and common.
+ 
+ ### Preflight Check
+ 
+@@ -146,6 +133,29 @@ cupt --version && cupt status
+ # Expected: cupt, version X.Y.Z followed by workspace name and authenticated user
+ ```
+ 
++### The cupt CLI Path
++
++cupt is a Python CLI purpose-built for agent-driven ClickUp workflows. It talks to the ClickUp REST API v2 and writes human-readable output with a `--json` flag for machine parsing. It resolves per-list status schemas automatically, so you write `cupt done <id>` without hardcoding a status name. The `--dry-run` flag on `cupt done` previews the resolved status and the selected target without writing, which is the safety net that enables batch completions. The `--offline` flag serves a local cache populated by `cupt prefetch`, so you can operate without network access.
++
++```bash
++cupt list --today --json | head -5
++# [{"id":"abc123","name":"Fix login bug","status":{"status":"in progress",...
++```
++
++cupt covers every daily task operation:
++
++- list, with server-side `--tag` filtering (fast) and client-side `--team` filtering (slow on large workspaces)
++- full task detail with `cupt show`
++- notes and comments with `cupt note` and `cupt notes`
++- a full time-tracking lifecycle with `cupt time start`, `stop`, `add` and `status`
++- tag management and task context discovery with `cupt context` and `cupt statuses`
++
++### The Official MCP Path
++
++The official server is ClickUp's hosted MCP server at `https://mcp.clickup.com/mcp`, registered through Code Mode: `.utcp_config.json` defines the `clickup_official` manual, launched over stdio via `npx -y mcp-remote https://mcp.clickup.com/mcp` and signed in with OAuth. It exposes tools across task CRUD, documents, time tracking, chat, reminders and workspace structure. You reach it through Code Mode with `call_tool_chain({ code: "..." })`. The callable form is `clickup_official.clickup_official_clickup_{tool}`, because every server tool name already starts with `clickup_`. For example `clickup_official.clickup_official_clickup_get_task`, `clickup_official.clickup_official_clickup_filter_tasks` and `clickup_official.clickup_official_clickup_create_document`. Confirm a name with `tool_info()` when a call reports it missing.
++
++The MCP path is the only surface for task creation, documents, workspace search, lists and folders, task relations, chat and reminders. Goals, bulk creates, webhooks, checklist edits and audit logs have no route on either surface. Many daily operations also have an MCP fallback tool, but the routing rule keeps daily writes on cupt because the MCP has no dry-run equivalent. Use the MCP when you need its exclusive surface or when you are already in a Code Mode flow with other tools.
++
+ ### Example Workflows
+ 
+ The skill ships two production scripts under `examples/`. Each doubles as an end-to-end workflow and a manual verification check against a live workspace.
+@@ -221,7 +231,7 @@ The skill ships a manual testing playbook and two example scripts that double as
+ | Check | How to run it |
+ |---|---|
+ | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/mcp-tooling/mcp-click-up/README.md --type readme` reports zero issues |
+-| cupt health | `cupt --version && cupt status && cupt list --today --json | python3 -m json.tool` all pass with no errors |
++| cupt health | `cupt --version && cupt status && cupt list --today --json \| python3 -m json.tool` all pass with no errors |
+ | MCP health | Confirm `clickup_official` tools appear in `list_tools()` and a `clickup_official.clickup_official_clickup_get_workspace_hierarchy` call returns workspace data |
+ | Example scripts | Run `task-queue-workflow.sh --dry-run` with a valid tag and confirm exit code 0, then run `time-tracking-workflow.sh status` and confirm no errors |
+ 
+@@ -241,3 +251,7 @@ The skill ships a manual testing playbook and two example scripts that double as
+ | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate each catalog entry |
+ | [`examples/README.md`](./examples/README.md) | Guide to the two production scripts and common workflow patterns |
+ | [`scripts/install.sh`](./scripts/install.sh) | Automated cupt installer that prints the MCP config snippet |
++| [`scripts/doctor.sh`](./scripts/doctor.sh) | Read-only diagnostics for the local environment and the registered ClickUp manual |
++| [`scripts/README.md`](./scripts/README.md) | What each script changes and the output it prints |
++| [`mcp-servers/clickup-mcp/README.md`](./mcp-servers/clickup-mcp/README.md) | Configuration notes for the hosted official server, reached through `mcp-remote` by the `clickup_official` manual |
++| [`mcp-servers/clickup-cli/README.md`](./mcp-servers/clickup-cli/README.md) | Install and verification notes for the `cupt` CLI |
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md b/.skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md
+index 2a03f48f98a..22e00b3b756 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/ROUTER.md
+@@ -20,7 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name `clickup` or `cupt` with a task action such as list, show, done, note, time, tag or context, when they mention a work queue, time tracking, a ClickUp document, a workspace search, an install or auth question, or a ClickUp failure. It routes to four resource families: `references/cupt-commands.md` for the CLI's daily operations, `references/mcp-tools.md` for the hosted MCP's task, document, search, list, relation, chat and reminder tools, `INSTALL-GUIDE.md` with `references/troubleshooting.md` for setup and auth, and `references/troubleshooting.md` alone for a failure report.
++Requests reach this skill when they name `clickup` or `cupt` with a task action such as list, show, done, note, time, tag or context, when they mention a work queue, time tracking, a ClickUp document, a workspace search, an install or auth question, or a ClickUp failure. It routes to four resource families:
++
++- `references/cupt-commands.md` for the CLI's daily operations
++- `references/mcp-tools.md` for the hosted MCP's task, document, search, list, relation, chat and reminder tools
++- `INSTALL-GUIDE.md` with `references/troubleshooting.md` for setup and auth
++- `references/troubleshooting.md` alone for a failure report
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -32,7 +37,7 @@ loads before an intent selects it.
+ 
+ - **`CUPT_DAILY`** (weight 5) fires on the daily cupt phrasing, "list", "show", "done", "mark done", "complete task", "my tasks", "due today", "overdue", "log time", "start timer", "add a comment", "work queue" and "task details". It loads `references/cupt-commands.md`, and nothing else.
+ - **`MCP_ADVANCED`** (weight 5) fires on "create a task", "subtask", "document", "doc page", "search clickup", "manage lists", "task dependencies", "chat", "reminder" and "move task", and the MCP-only phrasings in `MCP_ONLY_PHRASES` select it whenever an error or install signal does not outrank them. It loads `references/mcp-tools.md`.
+-- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "sign in" and "how do i install", and a score above 4 selects it ahead of every other intent. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
++- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "sign in" and "how do i install", and a score above 4 selects it, unless `TROUBLESHOOT` also scores above 3, which the machine router checks first. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
+ - **`TROUBLESHOOT`** (weight 6) fires on "error", "failed", "not working", "401", "403", "rate limit", "429", "empty", "no tasks", "not authenticated" and "can't connect", and a score above 3 selects it ahead of every other intent. It loads `references/troubleshooting.md`.
+ 
+ A request that scores on no intent loads nothing. It returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cupt-commands.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set.
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md b/.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md
+index ddcb09ac8b7..7b1568ba88f 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md
+@@ -11,7 +11,7 @@ ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP**
+ 
+ ---
+ 
+-## MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
++## 0. MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
+ 
+ ClickUp shows plain text literally. Markdown sent through a plain-text path shows up in the ClickUp UI as raw `### Heading`, `**bold**`, and `- [ ]` text. Whenever the content contains ANY markdown syntax, use the markdown-aware parameter for the operation. On the Code Mode manual (`clickup_official`), checked against the server's schema on 2026-10-08:
+ 
+@@ -128,6 +128,19 @@ This is ClickUp's official hosted MCP server at `https://mcp.clickup.com/mcp`.
+ The registered `clickup_official` manual reaches it over stdio through `npx -y mcp-remote`. It authenticates with OAuth, so the first launch needs one approval in the browser. The manual reads no API key.
+ The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The older API-key route no longer works.
+ 
++**When to prefer MCP:**
++- Creating a task or subtask whose description carries markdown, since `cupt add` sends only the plain `description` field
++- Creating documents and reading or writing their pages
++- Searching the workspace by keyword, or filtering tasks across lists by field
++- Creating or updating lists and folders
++- Task relations, comment threads, chat and reminders
++
++**Limitations:**
++- No dry-run for task completion (always specify correct status)
++- No offline mode
++- Requires Code Mode MCP to be configured
++- No goals, bulk create or update, webhooks, checklist edits, spaces, views, templates, guests, user groups or audit logs. Its operator catalog had nothing enabled on 2026-10-08
++
+ **Prerequisites:**
+ - Code Mode MCP configured, with the `clickup_official` manual in `.utcp_config.json` (not `opencode.json`, that file is for native/non-Code-Mode MCP tools)
+ - One OAuth approval for ClickUp in the browser, on the first launch
+@@ -167,19 +180,6 @@ Top-level `await` is rejected, and a returned value comes back as `{}`. Wrap cal
+ ```
+ The document tool takes no content. Add text with `clickup_create_document_page` and `content_format: "text/md"`. See `references/mcp-tools.md` sections 7 and 8.
+ 
+-**When to prefer MCP:**
+-- Creating a task or subtask whose description carries markdown, since `cupt add` sends only the plain `description` field
+-- Creating documents and reading or writing their pages
+-- Searching the workspace by keyword, or filtering tasks across lists by field
+-- Creating or updating lists and folders
+-- Task relations, comment threads, chat and reminders
+-
+-**Limitations:**
+-- No dry-run for task completion (always specify correct status)
+-- No offline mode
+-- Requires Code Mode MCP to be configured
+-- No goals, bulk create or update, webhooks, checklist edits, spaces, views, templates, guests, user groups or audit logs. Its operator catalog had nothing enabled on 2026-10-08
+-
+ ---
+ 
+ ## 4. RULES
+@@ -291,9 +291,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
+ - `references/cupt-commands.md` — Full cupt command reference with agent patterns
+ - `references/mcp-tools.md`: the 61 live MCP tools, invocation, markdown contract and what the server cannot do
+ - `references/troubleshooting.md` — Auth, status, team-filter, MCP failures
+-- `INSTALL-GUIDE.md`: step-by-step install with validation checkpoints, at the packet root
+-
+-Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed top-level install doc; the phase-validation reference above stays the router's INSTALL-intent target.
++- [INSTALL-GUIDE.md](INSTALL-GUIDE.md): the condensed top-level install front door at the packet root, with step-by-step install and validation checkpoints, and the router's INSTALL-intent target
+ 
+ **Scripts:**
+ - `scripts/install.sh` — Installs cupt + prints MCP config snippet
+@@ -312,6 +310,6 @@ Install guide (front door): [INSTALL-GUIDE.md](INSTALL-GUIDE.md) — condensed t
+ - `mcp-code-mode` — Code Mode MCP orchestration (used for official MCP invocation)
+ 
+ **External:**
+-- cupt repository: https://github.com/newz2000/cupt
+-- Official ClickUp MCP setup docs: https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1
+-- ClickUp API tokens: https://app.clickup.com/settings/apps
++- [cupt repository](https://github.com/newz2000/cupt)
++- [Official ClickUp MCP setup docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server-1)
++- [ClickUp API tokens](https://app.clickup.com/settings/apps)
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md b/.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
+index d5cb0706970..75f00344f52 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/references/cupt-commands.md
+@@ -21,8 +21,17 @@ cupt (ClickUP Terminal) — Python CLI for ClickUp task management, purpose-buil
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ cupt provides a terminal interface to ClickUp designed for agent-driven workflows. Every read command supports `--json` for machine-readable output. Completion uses automatic per-list status resolution so agents never need to hardcode status names. The `--offline` flag uses a local cache populated by `cupt prefetch`, enabling operation without network access.
+ 
++### When to Use
++
++- You need a daily ClickUp task operation from the terminal.
++- You need machine-readable output for an agent.
++- You need a completion that resolves the per-list closed status.
++- You need to keep working without network access.
++
+ **Key agent advantages over direct API calls:**
+ - `cupt done` resolves the correct closed status per list automatically
+ - `--dry-run` on `cupt done` previews without writing
+@@ -114,7 +123,7 @@ cupt list --team "Engineering" --tag urgent # Combine (slow due to client-side t
+ 
+ ---
+ 
+-## 6. TASK DETAILS
++## 6. TASK DETAILS AND CREATION
+ 
+ | Command | Description | Flags |
+ |---------|-------------|-------|
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md b/.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md
+index 56c39f697cc..992257c4a41 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md
+@@ -17,9 +17,9 @@ version: 1.1.2.0
+ 
+ # Official ClickUp MCP Tools Reference
+ 
+-**MCP server:** `clickup_official`, ClickUp's hosted server at `https://mcp.clickup.com/mcp`. The manual in `.utcp_config.json` reaches it over stdio with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the hosted route replaces it.
+-**Auth:** OAuth 2.1 with PKCE. The first launch opens one browser approval, and the manual reads no API key.
+-**Tool naming:** Code Mode names each tool `clickup_official.clickup_official_<server tool name>`. Every server tool name already starts with `clickup_`, so the full name repeats it: `clickup_official.clickup_official_clickup_create_task`. A name without the inner `clickup_`, such as `clickup_official.clickup_official_create_task`, does not exist.
++- **MCP server:** `clickup_official`, ClickUp's hosted server at `https://mcp.clickup.com/mcp`. The manual in `.utcp_config.json` reaches it over stdio with `npx -y mcp-remote https://mcp.clickup.com/mcp`. The npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08, so the hosted route replaces it.
++- **Auth:** OAuth 2.1 with PKCE. The first launch opens one browser approval, and the manual reads no API key.
++- **Tool naming:** Code Mode names each tool `clickup_official.clickup_official_<server tool name>`. Every server tool name already starts with `clickup_`, so the full name repeats it: `clickup_official.clickup_official_clickup_create_task`. A name without the inner `clickup_`, such as `clickup_official.clickup_official_create_task`, does not exist.
+ 
+ > **Verification status (2026-10-08):** the hosted server registered 61 tools on 2026-10-08. The inventory in section 5 and every parameter named in this document come from that registration's schema. Confirm a name with `tool_info()` if a call reports that the tool is missing, because the server can add or rename tools.
+ 
+@@ -148,7 +148,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
+ | Tool | What it does | Required |
+ |------|--------------|----------|
+ | `clickup_attach_task_file` | Attach file to task | `task_id` |
+-| `clickup_request_attachment_upload` | Get short-lived, structured upload details (upload URL, ticket, HTTP method, and multipart field name) to attach a LOCAL file (any size) to a task; fo | `task_id` |
++| `clickup_request_attachment_upload` | Get short-lived, structured upload details (upload URL, ticket, HTTP method, and multipart field name) to attach a LOCAL file (any size) to a task | `task_id` |
+ | `clickup_download_task_attachment` | Download a ClickUp task attachment (get attachment IDs from clickup_get_task with include: ["attachments"]) | `task_id`, `attachment_id` |
+ 
+ ### Time (7)
+@@ -192,7 +192,7 @@ Each tool has a feature card under `feature-catalog/` with its full parameter ta
+ 
+ | Tool | What it does | Required |
+ |------|--------------|----------|
+-| `clickup_get_operators` | Lists the Unified API operators enabled on this server (`<model>.<operator>` pairs) with each one's HTTP route, parameters and request/response body s | none |
++| `clickup_get_operators` | Lists the Unified API operators enabled on this server (`<model>.<operator>` pairs) with each one's HTTP route, parameters and request/response body | none |
+ | `clickup_execute_operator` | Run one enabled Unified API operator (a `<model>.<operator>` pair) as the authenticated user, in the session workspace | `model`, `operator` |
+ | `clickup_get_schema` | Returns the entity-relationship schema (Markdown with a Mermaid ER diagram) for the models behind the enabled Unified API operators | none |
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md b/.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md
+index 2b0d7b15cd6..bfc4b1ad53d 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md
+@@ -21,7 +21,18 @@ Diagnostic guide for cupt CLI and official ClickUp MCP failures, covering instal
+ 
+ ## 1. OVERVIEW
+ 
+-Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (manual misconfigured, credentials unavailable, stdio launch failure, or wrong tool name).
++### Purpose
++
++Diagnostic reference for cupt CLI and official ClickUp MCP errors.
++
++### When to Use
++
++Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories:
++
++- installation (cupt not found)
++- authentication (401/no credentials)
++- status resolution (wrong status on completion)
++- MCP connection (manual misconfigured, credentials unavailable, stdio launch failure, or wrong tool name)
+ 
+ ---
+ 
+@@ -324,7 +335,7 @@ cupt --version
+ 
+ ## 12. GETTING HELP
+ 
+-- cupt documentation: https://github.com/newz2000/cupt
+-- ClickUp API docs: https://clickup.com/api/
+-- Official MCP setup docs: https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server
+-- Report cupt bugs: https://github.com/newz2000/cupt/issues
++- [cupt documentation](https://github.com/newz2000/cupt)
++- [ClickUp API docs](https://clickup.com/api/)
++- [Official MCP setup docs](https://developer.clickup.com/docs/connect-an-ai-assistant-to-clickups-mcp-server)
++- [Report cupt bugs](https://github.com/newz2000/cupt/issues)

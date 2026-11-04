@@ -1,0 +1,25 @@
+.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md:326: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md:327: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md:328: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+INVALID .skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md: ['Missing required section: overview']
+.skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md:22: render_overview_heading: The first H2 compounds OVERVIEW with "AND VERDICT"; name it OVERVIEW and move the topic into a subsection.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md:19: render_bold_label_join: Consecutive bold labels "MCP Server:" and "Auth:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md:20: render_bold_label_join: Consecutive bold labels "Auth:" and "Invocation:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md:21: render_bold_label_join: Consecutive bold labels "Invocation:" and "Tool naming:" join into one paragraph; separate them or use list it
+.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md:198: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md:199: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md:295: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md:299: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md:300: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md:21: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md:24: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md:23: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md:87: render_section_order: "NOTES AND RELATED" must be the last H2; it is followed by "KEEPING THIS ROSTER CURRENT".
+.skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md:23: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:359: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:360: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:361: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:362: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:150: render_h2_numbering: H2 number carries a letter suffix ("5b."); use integers only.
+.skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md:181: render_h2_numbering: H2 number carries a letter suffix ("5c."); use integers only.
+files=26 render_warnings=23 invalid=1

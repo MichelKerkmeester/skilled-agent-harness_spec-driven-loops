@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian default surface"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.0
+version: 0.1.1.0
 ---
 
 # Official CLI versus Obsidian MCP, Measured
@@ -19,9 +19,11 @@ Two surfaces drive a running Obsidian vault: the official `obsidian` CLI and the
 
 ---
 
-## 1. OVERVIEW AND VERDICT
+## 1. OVERVIEW
 
 This reference answers one question: given a running Obsidian app, which of the two surfaces should an agent drive, and when should it switch. Section 2 records the machine and vault the numbers came from. Sections 3 and 4 hold the per-capability results in each app state, Section 5 the timings, Section 6 the rule that follows, and Section 7 what stayed unproven.
+
+### Verdict
 
 **Default to the official `obsidian` CLI, wrapped in a stdout error check.** Reach for the MCP server only for section-scoped editing, tag-list management, or a batch of more than roughly twenty calls, and only after confirming the Local REST API plugin is enabled.
 

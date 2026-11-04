@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-click-up routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name `clickup` or `cupt` with a task action such as list, show, done, note, time, tag or context, when they mention a work queue, time tracking, a ClickUp document, a workspace search, an install or auth question, or a ClickUp failure. It routes to four resource families: `references/cupt-commands.md` for the CLI's daily operations, `references/mcp-tools.md` for the hosted MCP's task, document, search, list, relation, chat and reminder tools, `INSTALL-GUIDE.md` with `references/troubleshooting.md` for setup and auth, and `references/troubleshooting.md` alone for a failure report.
+Requests reach this skill when they name `clickup` or `cupt` with a task action such as list, show, done, note, time, tag or context, when they mention a work queue, time tracking, a ClickUp document, a workspace search, an install or auth question, or a ClickUp failure. It routes to four resource families:
+
+- `references/cupt-commands.md` for the CLI's daily operations
+- `references/mcp-tools.md` for the hosted MCP's task, document, search, list, relation, chat and reminder tools
+- `INSTALL-GUIDE.md` with `references/troubleshooting.md` for setup and auth
+- `references/troubleshooting.md` alone for a failure report
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -32,7 +37,7 @@ loads before an intent selects it.
 
 - **`CUPT_DAILY`** (weight 5) fires on the daily cupt phrasing, "list", "show", "done", "mark done", "complete task", "my tasks", "due today", "overdue", "log time", "start timer", "add a comment", "work queue" and "task details". It loads `references/cupt-commands.md`, and nothing else.
 - **`MCP_ADVANCED`** (weight 5) fires on "create a task", "subtask", "document", "doc page", "search clickup", "manage lists", "task dependencies", "chat", "reminder" and "move task", and the MCP-only phrasings in `MCP_ONLY_PHRASES` select it whenever an error or install signal does not outrank them. It loads `references/mcp-tools.md`.
-- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "sign in" and "how do i install", and a score above 4 selects it ahead of every other intent. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
+- **`INSTALL`** (weight 6) fires on "install cupt", "setup", "not installed", "auth", "authenticate", "api token", "mcp config", "sign in" and "how do i install", and a score above 4 selects it, unless `TROUBLESHOOT` also scores above 3, which the machine router checks first. It loads `INSTALL-GUIDE.md` and `references/troubleshooting.md`, because a setup request usually ends in a failure report.
 - **`TROUBLESHOOT`** (weight 6) fires on "error", "failed", "not working", "401", "403", "rate limit", "429", "empty", "no tasks", "not authenticated" and "can't connect", and a score above 3 selects it ahead of every other intent. It loads `references/troubleshooting.md`.
 
 A request that scores on no intent loads nothing. It returns `UNKNOWN_FALLBACK` with `UNKNOWN_FALLBACK_CHECKLIST`, and `references/cupt-commands.md` is suggested beside that checklist as a fallback-only default, so it never enters a scored route's loaded set.

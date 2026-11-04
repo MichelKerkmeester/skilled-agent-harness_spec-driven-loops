@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/005-mcp-tooling/008-mcp-obsidian",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/005-mcp-tooling/008-mcp-obsidian",
+  "parent_id": "sk-doc/066-skill-readability-refinement/005-mcp-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp obsidian",
+      "phase 8 mcp obsidian",
+      "mcp obsidian plan",
+      "mcp obsidian tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "mcp obsidian implementation summary"
+    ],
+    "key_topics": [
+      "mcp",
+      "obsidian",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/README.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/ROUTER.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/iconic/iconic-rules.full.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md",
+      ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "health-viz-blocks.example.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/health-md/health-viz-blocks.example.md",
+        "source": "derived"
+      },
+      {
+        "name": "iconic-rules.full.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/assets/plugins/iconic/iconic-rules.full.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/assets/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-versus-mcp.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-migration.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+        "source": "derived"
+      },
+      {
+        "name": "obsidian-cli-commands.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md",
+        "source": "derived"
+      },
+      {
+        "name": "official-cli-agent-usage.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/official-cli-agent-usage.md",
+        "source": "derived"
+      },
+      {
+        "name": "data-model.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/data-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "health-md.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/mcp-tooling/mcp-obsidian` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:30Z",
+    "last_save_at": "2026-11-04T15:44:47.760Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a0a73fb1e1e3a3c6caeac454d4aed39f8d5ab6d2af206dff37cb7dff27cfb22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "74e7e997be9adad7465ce607527ef420bf4d99115f77984a0537f3cd663cb562",
+      "plan.md": "9f5bff9ceb1fa837728c0e12177ca4101679ed99e38c730cb27914ae23241e47",
+      "tasks.md": "d879465422ecd018a291a4fdc197b7bdda2a825f54912027d9f702689b01a8f0",
+      "implementation-summary.md": "b5829bf251d344f152bb7e35cceddd43138797690aac248805e0967c5f513a36"
+    },
+    "last_active_at": null
+  }
+}

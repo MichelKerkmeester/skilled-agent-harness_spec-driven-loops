@@ -11,14 +11,24 @@ trigger_phrases:
   - "obsidian theme dark light"
 importance_tier: "normal"
 contextType: "reference"
-version: "1.0.0.0"
+version: "1.0.1.0"
 ---
 
 # Obsidian Theme Development
 
-Building a theme means authoring a `manifest.json` and a single `theme.css` that restyles Obsidian. This reference covers the package contract, the official starting point, dark/light support, and submission. It is not an exhaustive CSS tutorial.
+Building a theme means authoring a `manifest.json` and a single `theme.css` that restyles Obsidian; open this before you create the folder and again at submission time. It is not an exhaustive CSS tutorial.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Produce a theme package Obsidian loads, that works in both dark and light modes, and that the community catalog accepts.
+
+### When to Use
+
+- Building a theme from the official sample.
+- Checking the two required files or the `manifest.json` name rule.
+- Preparing a theme for submission to the community catalog.
 
 A theme is a folder under `.obsidian/themes/` containing two required files:
 

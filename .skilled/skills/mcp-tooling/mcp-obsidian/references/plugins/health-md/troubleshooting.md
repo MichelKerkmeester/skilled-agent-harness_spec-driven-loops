@@ -10,7 +10,7 @@ trigger_phrases:
   - "health md mock data"
 importance_tier: "normal"
 contextType: "general"
-version: 0.5.0.0
+version: 0.5.1.0
 ---
 
 # Health.md File-Layer Troubleshooting
@@ -20,6 +20,16 @@ Diagnose data files, folder settings, platform boundaries, and render blocks sep
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Name the one cause behind a Health.md failure before changing a file or a setting.
+
+### When to Use
+
+- A Health.md chart is empty, missing, or shows data the user did not export.
+- A data file is ignored, misread, or silently best-effort.
+- The cause could sit in the folder, pattern, format, schema, platform, or render block.
 
 | Symptom | Most likely cause |
 | --- | --- |

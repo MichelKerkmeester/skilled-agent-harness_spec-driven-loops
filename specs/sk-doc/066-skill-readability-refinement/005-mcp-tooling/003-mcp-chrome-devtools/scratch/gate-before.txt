@@ -1,0 +1,4 @@
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md:738: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md:802: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md:803: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=7 render_warnings=3 invalid=0

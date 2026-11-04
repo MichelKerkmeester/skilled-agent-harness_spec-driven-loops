@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/066-skill-readability-refinement/005-mcp-tooling/001-hub-and-shared",
+  "description": "Phase 1: hub-and-shared",
+  "keywords": [
+    "phase",
+    "hub-and-shared"
+  ],
+  "lastUpdated": "2026-11-04T07:16:27.275Z",
+  "specId": "001",
+  "folderSlug": "hub-and-shared",
+  "parentChain": [
+    "sk-doc",
+    "066-skill-readability-refinement",
+    "005-mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

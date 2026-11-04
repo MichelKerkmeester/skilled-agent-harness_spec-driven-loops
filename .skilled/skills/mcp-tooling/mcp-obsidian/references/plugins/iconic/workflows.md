@@ -9,7 +9,7 @@ trigger_phrases:
   - "iconic backup"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.7.0.0
+version: 0.7.1.0
 ---
 
 # Iconic File-Layer Workflows
@@ -19,6 +19,16 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Change one Iconic rule or toggle and leave every other setting exactly as it was.
+
+### When to Use
+
+- Adding, editing, disabling, or recoloring a rule.
+- Flipping a visibility toggle.
+- Applying the canonical rulebook to a vault.
 
 ### Operating sequence
 
@@ -42,6 +52,14 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 
 - Prefer editing the existing rule when one matches the extension — merging beats duplicating.
 
+### Add a folder rule
+
+- Append to `folderRules` with `source: name` conditions (`is` for exact names, `contains` for partial):
+
+```json
+{ "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
+```
+
 ### Change a color
 
 - Find the rule by `name` or `conditions.value`, set `color` to the new hex, keep `id` and everything else.
@@ -59,14 +77,6 @@ These recipes edit `.obsidian/plugins/iconic/data.json`. Every operation starts 
 - Same as the Iconic-Setup `merge_rules.py`: back up, then merge the canonical asset `assets/plugins/iconic/iconic-rules.full.json` into the freshly-read vault `data.json` — ONLY its `fileRules`/`folderRules` arrays (plus any explicitly requested keys).
 - Merge by stable rule `id`: **update rules whose ids already exist, append rules with missing ids.** Preserve unrelated settings and user overrides (including per-item icon maps).
 - The full asset contains only the two rule arrays — it is never a whole-`data.json` replacement. The compact `assets/plugins/iconic/iconic-rules.example.json` is schema reference only. Rule-class coverage and the merge contract are summarized in the usage companion `assets/plugins/iconic/iconic-rules.full.md`.
-
-### Add a folder rule
-
-- Append to `folderRules` with `source: name` conditions (`is` for exact names, `contains` for partial):
-
-```json
-{ "id": "gen<4chars>", "name": "Screenshots", "icon": "lucide-camera", "color": "#64748b", "match": "any", "conditions": [{ "source": "name", "operator": "is", "value": "screenshots" }], "enabled": true }
-```
 
 ---
 
