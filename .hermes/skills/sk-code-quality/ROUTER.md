@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-quality routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---

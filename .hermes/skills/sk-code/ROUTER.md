@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.17.0
+version: 2.3.18.0
 router_state: active
 skill_pointer: SKILL.md
 ---
