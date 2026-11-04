@@ -9,7 +9,7 @@ trigger_phrases:
   - "where does this content belong"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Decision Tests: May This Rule Exist?
@@ -21,6 +21,17 @@ matters once these four pass.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+An admitted proposal becomes a rule file; a refused one moves to the surface that should
+carry its content, or is recorded with its reason when no surface should.
+
+### When to Use
+
+- Before drafting a rule, and before refusing a request for one.
+- When a proposal reads well but nobody can name what fails today without it.
+- When content needs a home and it is unclear whether a rule file is the right one.
 
 Each test is recovered from the phase record that established it, not restated from
 memory.
@@ -130,17 +141,17 @@ Refusing is not the end of the decision. Every refusal routes somewhere:
 |------------|-----------|
 | Test 1, always-loaded | `AGENTS.md`, as a compressed row |
 | Test 2, routing | `AGENTS.md` §2, or the skill its router resolves |
-| Test 3 part 2, has a home | A new section inside the rule that already owns it |
 | Test 3 part 1, single row | A section, not a file |
+| Test 3 part 2, has a home | A new section inside the rule that already owns it |
 | Test 4, restraint | Nowhere. Record the refusal with its reason so it is not re-proposed |
-
-**Record every refusal with the test it failed.** A declined proposal with a written
-reason is what stops the same suggestion arriving next quarter with nobody remembering
-why it was refused.
 
 **Where the record lives:** the decision record of the spec packet that owns the rule
 set for that repository. Spec folders are where this repository keeps refusal history,
 diffed and archived with the work, and the rule files and the router stay free of it.
+
+**Record every refusal with the test it failed.** A declined proposal with a written
+reason is what stops the same suggestion arriving next quarter with nobody remembering
+why it was refused.
 
 ---
 

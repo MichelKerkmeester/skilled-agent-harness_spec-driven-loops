@@ -1,10 +1,29 @@
 ---
 title: "Promotion Rule"
 description: "When a command may flip from fallback to fix: the promotion evidence that must be green and the evidence mechanism its JSON entry carries."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Promotion Rule
+
+Read this before flipping a command to `fix`, and again when a `fix` entry is challenged.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+A command flips from `fallback` to `fix` only on green promotion evidence, and its JSON entry carries that evidence.
+
+### When to Use
+
+- Promoting a command from fallback to fix.
+- Checking an existing fix entry before it ships.
+
+---
+
+## 2. PROMOTION EVIDENCE
 
 Flip a command from `fallback` to `fix` only after all promotion evidence is green:
 
@@ -12,6 +31,10 @@ Flip a command from `fallback` to `fix` only after all promotion evidence is gre
 - Comparator status is green.
 - Fallback hash is unchanged.
 - Zero unexpected Claude-baseline divergence.
+
+---
+
+## 3. EVIDENCE MECHANISM
 
 The JSON entry must carry the evidence mechanism alongside the mode:
 
@@ -26,5 +49,9 @@ The JSON entry must carry the evidence mechanism alongside the mode:
   }
 }
 ```
+
+---
+
+## 4. VALIDATION
 
 Run `node .skilled/skills/system-deep-loop/shared/rollout/validate-rollout.cjs` before promotion. It fails closed when any required evidence field is absent or empty; a command may not claim `fix` without a passing validator run.

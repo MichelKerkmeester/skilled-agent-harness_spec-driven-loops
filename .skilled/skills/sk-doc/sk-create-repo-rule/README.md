@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my rule refused"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-repo-rule
@@ -94,9 +94,23 @@ Sections and dividers match in all nine shipped rules and in the router. The com
 
 The four decision tests load on every path, including retirement, because "should this exist" and "should this still exist" are the same four questions.
 
-Test 1 asks what must bind on a turn where no trigger fires. Content that holds unconditionally cannot live behind a trigger, so it belongs in `AGENTS.md` instead. Test 2 checks the router's scope statement, which puts routing out of bounds: which skill, which command, which model, which flags. Test 3 runs four conditions covering single rows, content another rule already carries and proposals with nothing to load them. Test 4 asks what fails today without the rule.
+- **Test 1** asks what must bind on a turn where no trigger fires. Content that holds unconditionally cannot live behind a trigger, so it belongs in `AGENTS.md` instead.
+- **Test 2** checks the router's scope statement, which puts routing out of bounds: which skill, which command, which model, which flags.
+- **Test 3** runs four conditions covering single rows, content another rule already carries and proposals with nothing to load them.
+- **Test 4** asks what fails today without the rule.
 
-Survive all four and the anatomy reference and template load. You fill ten fixed elements: six-key frontmatter in one order, a title line, a routed-from line, a line stating the rule expands `AGENTS.md` and never overrides it, the actions that fire it, one bold sentence carrying the obligation, a numbered body in capitals, one divider per numbered section, a closing self-check and a link back to the router.
+Survive all four and the anatomy reference and template load. You fill ten fixed elements:
+
+- six-key frontmatter in one order
+- a title line
+- a routed-from line
+- a line stating the rule expands `AGENTS.md` and never overrides it
+- the actions that fire it
+- one bold sentence carrying the obligation
+- a numbered body in capitals
+- one divider per numbered section
+- a closing self-check
+- a link back to the router
 
 Then five reader tests decide whether the draft earns its load. Structure is checkable and it is not the bar. A rule can satisfy every assertion above and still say nothing you would change your behaviour over. None of those five can be automated, so a person has to read the draft and answer them.
 
@@ -186,6 +200,8 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the create, revise and retire orderings |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent model, resource map and loading levels |
+| [`references/README.md`](./references/README.md) | The index over the four references, in the order the questions arrive |
 | [`references/decision-tests.md`](./references/decision-tests.md) | The four tests deciding whether a rule may exist and where refused content goes |
 | [`references/rule-anatomy.md`](./references/rule-anatomy.md) | The ten fixed elements, what varies and the length bands |
 | [`references/creation-standards.md`](./references/creation-standards.md) | The five reader tests deciding whether a well-formed rule earns its load |

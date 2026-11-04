@@ -1,0 +1,10 @@
+.skilled/skills/sk-doc/sk-create-readme/README.md
+.skilled/skills/sk-doc/sk-create-readme/ROUTER.md
+.skilled/skills/sk-doc/sk-create-readme/SKILL.md
+.skilled/skills/sk-doc/sk-create-readme/assets/architecture-template.md
+.skilled/skills/sk-doc/sk-create-readme/assets/readme-code-template.md
+.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+.skilled/skills/sk-doc/sk-create-readme/references/README.md
+.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md
+.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md

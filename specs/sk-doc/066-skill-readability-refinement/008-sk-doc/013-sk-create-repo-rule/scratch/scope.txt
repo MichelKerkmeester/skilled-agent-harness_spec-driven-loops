@@ -1,0 +1,10 @@
+.skilled/skills/sk-doc/sk-create-repo-rule/README.md
+.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
+.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
+.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md
+.skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md

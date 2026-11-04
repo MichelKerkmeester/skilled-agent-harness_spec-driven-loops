@@ -10,7 +10,7 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # create-with-human-voice
@@ -62,7 +62,11 @@ and calls this one for the voice finding it reports.
 
 ## 3. QUICK START
 
-**Step 1: Scan before you read.**
+**Step 1: Decide what the scanner may not touch.** Quotations, code, generated files and
+released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
+and getting this wrong is how a voice pass breaks a working code sample.
+
+**Step 2: Scan before you read.**
 
 ```bash
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <file>
@@ -71,12 +75,8 @@ python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <f
 You get the hard blockers, the soft deductions, a count per term and a mechanical ceiling.
 It takes under a second and settles the part of the standard a reader is worst at.
 
-**Step 2: Decide what the scanner may not touch.** Quotations, code, generated files and
-released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
-and getting this wrong is how a voice pass breaks a working code sample.
-
 **Step 3: Read for what the scanner cannot see.** Three-item lists, triple headers, setup
-language, synonym cycling, fragmented headers, hedging. The scanner prints this list on
+language, synonym cycling, fragmented headers, hedging. The scanner prints its own list on
 every run so a clean mechanical result is never mistaken for a clean document.
 
 **Step 4: After editing, scan again and report both numbers.** A rewrite that only reports

@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/008-sk-doc/012-sk-create-readme",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/008-sk-doc/012-sk-create-readme",
+  "parent_id": "sk-doc/066-skill-readability-refinement/008-sk-doc",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create readme",
+      "phase 12 sk create readme",
+      "sk create readme plan",
+      "sk create readme tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk create readme implementation summary"
+    ],
+    "key_topics": [
+      "readme",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/scope.txt",
+      "scratch/inbound-anchors.txt",
+      "specs/sk-doc/066-skill-readability-refinement/008-sk-doc/012-sk-create-readme/scratch/findings.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "inbound-anchors.txt",
+        "kind": "file",
+        "path": "scratch/inbound-anchors.txt",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/066-skill-readability-refinement/008-sk-doc/012-sk-create-readme/scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Clean Architecture",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "and",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-11-04T07:16:46Z",
+    "last_save_at": "2026-11-04T20:34:41.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8a0a7b1c9587e19bfde85d123386999ec29c1b985ac3ce84cc24722448e82c97",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "018801ff6465ddac5b3f3aae470387cea0e65946cea4cfa4adeed81643973902",
+      "plan.md": "25f5b18864041003fc5a9b729ab377a4564a978cea2db1481106dfd64ad37774",
+      "tasks.md": "ca46695c98eb23945c9688c5a0913f42335f3603b92c8b2eaabfdada7091753f",
+      "implementation-summary.md": "18d98a4f7a6d74510f589c9e417a2c7706d679c79c263855b0bbbd224f568b1f"
+    },
+    "last_active_at": null
+  }
+}

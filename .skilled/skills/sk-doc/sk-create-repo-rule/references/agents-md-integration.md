@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -26,6 +26,12 @@ The router's trigger table is the only thing that **loads** one; the pointer fro
 governed `AGENTS.md` section is the only thing that makes it **findable at the moment
 of need**.
 
+**When to Use**:
+
+- Wiring an accepted rule: the trigger row, the index row and the governed-section pointer.
+- Revising a rule, especially when the firing condition changed.
+- Retiring a rule, in the order that leaves nothing pointing at a deleted file.
+
 ---
 
 ## 2. THE THREE WIRING POINTS
@@ -37,11 +43,16 @@ of need**.
 | **Governed-section pointer** | The `AGENTS.md` section it expands | The rule is discoverable at session start and invisible at the moment of need. This is the one people skip |
 
 **Required:** every shipped rule has its trigger row and its index row, and
-`check-repo-rules.cjs` fails the corpus when either is missing. The governed-section
-pointer is the default, not a gate: a rule that expands an `AGENTS.md` section gets a
-pointer there, and a rule governing two areas gets one in each. A rule whose subject no
-`AGENTS.md` section states is reached through its trigger row alone. Count the live
-pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number written here.
+`check-repo-rules.cjs` fails the corpus when either is missing.
+
+- **A rule that expands an `AGENTS.md` section** gets a pointer there, and a rule
+  governing two areas gets one in each. The governed-section pointer is the default, not
+  a gate.
+- **A rule whose subject no `AGENTS.md` section states** is reached through its trigger
+  row alone.
+
+Count the live pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number
+written here.
 
 ---
 
@@ -58,16 +69,20 @@ anyone looked:
 
 All four were caught and the boundary was widened deliberately each time, the third
 being the narrow routing carve-out that admits verifying wiring you changed while still
-refusing route selection. **A fifth widening that admitted selection itself would
-dissolve the boundary the set exists to hold** — if the scope statement excludes a
-proposal, that is a refusal, not a paperwork problem. The mode does not widen §4
-unilaterally; that is an operator decision, and each of the four was one.
+refusing route selection.
+
+**A fifth widening that admitted selection itself would dissolve the boundary the set
+exists to hold:** if the scope statement excludes a proposal, that is a refusal, not a
+paperwork problem. The mode does not widen §4 unilaterally; that is an operator decision,
+and each of the four was one.
 
 ---
 
 ## 4. CREATE
 
-Order matters, and it is chosen so an interruption is survivable.
+Order matters, and it is chosen so an interruption is survivable. A repository with no
+`REPO RULES.md` gets its router emitted first, from `assets/repo-rules-router-template.md`
+(§8), because no router means no rule can load.
 
 1. **Scope check** (§3 above). Refuse here if it fails.
 2. **Write the rule file.** First, deliberately.

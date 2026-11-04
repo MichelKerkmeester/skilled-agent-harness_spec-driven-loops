@@ -10,7 +10,7 @@ trigger_phrases:
   - "reviewing a draft rule"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Creation Standards: Is This Rule Worth Loading?
@@ -26,6 +26,15 @@ would change their behaviour over.
 These five tests are read out of what the shipped corpus already does. Every one passes
 across the corpus. Each is a question a reviewer answers by reading; none can be automated, and
 that limit is the reason they live here rather than in the structural floor.
+
+**When to Use**:
+
+- Before finishing a draft rule, once it is shaped like a rule.
+- Reviewing a rule that passes every structural check and still reads as filler.
+- Deciding whether a section, a trigger phrase, a binding sentence, a self-check item or a misreading guard earns its place.
+
+**Not a gate on whether the rule may exist**: that is `decision-tests.md`, and it runs
+first. These standards assume the rule has already earned the right to be written.
 
 ---
 
@@ -153,8 +162,6 @@ Each is an observed failure, not a preference.
 
 - **Not a scoring rubric.** There is no number. Every test needs a reader, and a checkable
   proxy would measure the proxy.
-- **Not a gate on whether the rule may exist** — that is `decision-tests.md`, and it runs
-  first. These standards assume the rule has already earned the right to be written.
 - **Not licence to hold a draft to a bar the corpus does not meet.** Every test here passes
   on every shipped rule. A proposed sixth standard that they fail is a wrong standard.
 

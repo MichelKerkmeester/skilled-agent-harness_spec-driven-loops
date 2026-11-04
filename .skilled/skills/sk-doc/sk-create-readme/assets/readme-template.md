@@ -8,7 +8,7 @@ trigger_phrases:
   - "narrative readme structure"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # README Template and Selection Guide
@@ -29,7 +29,7 @@ README files answer two questions: what is this, and how does someone use or nav
 | Component | A reusable module has an API, examples or configuration | This file, trimmed |
 | Code Folder | A source directory needs developer orientation | [`readme-code-template.md`](./readme-code-template.md) |
 
-Create a README when someone can land in the folder and need orientation. Skip it when inline comments or a nearby parent README already explain the folder.
+Create a README when someone can land in the folder and needs orientation. Skip it when inline comments or a nearby parent README already explain the folder.
 
 ```text
 Is this a project, package, skill or feature root?

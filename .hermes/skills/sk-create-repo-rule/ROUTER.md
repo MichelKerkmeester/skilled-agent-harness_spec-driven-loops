@@ -20,7 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they ask for a repo rule, a project rule, a `REPO RULES.md` row or `/create:repo-rule`, when a recurring failure needs a constraint that binds before an action, when an existing rule no longer matches how the work is done or nothing it prevents still happens, and when a repository needs a rule router because it has none. It routes to two resource families: `references/`, which opens at `references/decision-tests.md` on every path and continues through the rule anatomy, the creation standards and the `AGENTS.md` wiring orderings, and `assets/`, the blank rule template and the router template a repository with no `REPO RULES.md` needs before any rule can load.
+Requests reach this skill when they ask for a repo rule, a project rule, a `REPO RULES.md` row or `/create:repo-rule`, when a recurring failure needs a constraint that binds before an action, when an existing rule no longer matches how the work is done or nothing it prevents still happens, and when a repository needs a rule router because it has none.
+
+It routes to two resource families:
+
+- `references/`, which opens at `references/decision-tests.md` on every path and continues through the rule anatomy, the creation standards and the `AGENTS.md` wiring orderings.
+- `assets/`, the blank rule template and the router template a repository with no `REPO RULES.md` needs before any rule can load.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

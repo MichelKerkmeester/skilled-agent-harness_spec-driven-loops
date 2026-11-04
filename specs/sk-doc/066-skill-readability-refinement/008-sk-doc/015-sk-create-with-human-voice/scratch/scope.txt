@@ -1,0 +1,9 @@
+.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/ROUTER.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/assets/voice-report-template.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md

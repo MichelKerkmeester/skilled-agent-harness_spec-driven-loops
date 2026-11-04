@@ -9,7 +9,7 @@ trigger_phrases:
   - "generated file voice edit"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Voice Scope: What HVR Governs And What It Never Touches
@@ -120,11 +120,14 @@ then scores clean while seeding every document authored from it.
 
 The gap was not hypothetical. Of forty templates measured across the skills tree, twenty-four
 hid blockers this way. The worst scored zero and emitted forty-three, and the voice mode's own
-report template hid six. The scanner now detects a template by its own naming convention (a
-name ending in "template" or "templates", under an `assets/` or `templates/` tree) and reads
-its payload fence without needing `--include-code`. A target that does not match still masks
-by default, so a zero on a document is a pass and a zero on an undetected template is still
-unmeasured, worth a manual `--include-code` run to confirm.
+report template hid six.
+
+- The scanner now detects a template by its own naming convention: a name ending in "template"
+  or "templates", under an `assets/` or `templates/` tree. It reads that template's payload
+  fence without needing `--include-code`.
+- A target that does not match still masks by default, so a zero on a document is a pass and a
+  zero on an undetected template is still unmeasured, worth a manual `--include-code` run to
+  confirm.
 
 **Inside a detected template, the fence tag separates the payload from a code sample.** A fence
 tagged with a code language stays masked, exactly as it would anywhere else. An untagged fence,

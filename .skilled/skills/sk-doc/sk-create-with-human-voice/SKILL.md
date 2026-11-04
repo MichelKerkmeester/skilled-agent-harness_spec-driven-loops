@@ -35,7 +35,7 @@ Keyword triggers: `human voice rules`, `apply human voice`, `rewrite in human vo
 
 - **The target is a whole document needing structure, DQI and validators.** That is `sk-create-quality-control`, which owns the file-level audit. This mode owns the voice, and the audit calls it for that step.
 - **The artifact does not exist yet.** A README, changelog, agent, command, catalog, playbook, benchmark, diagram or repo rule is scaffolded by its own sibling mode, which then applies this standard to the prose it produced.
-- **The text is code, output, a quotation or a generated file.** See `references/scope-and-exemptions.md`. A voice edit there is a defect, not an improvement.
+- **The text is code, output, a quotation or a generated file.** A voice edit there is a defect, not an improvement.
 - **The request is about brand or product tone.** The Human Voice Rules are a linguistic standard for documentation, not a tone-of-voice guide.
 
 ---
@@ -49,6 +49,8 @@ The operation decides which resources load, and the scope gate decides which spa
 
 `references/scope-and-exemptions.md` loads first on every path, because what may be touched comes before what to change.
 `references/hvr-rules.md` is the standard the scanner parses on every run, so it is read rather than copied.
+
+An unmatched request returns `UNKNOWN_FALLBACK` with its checklist rather than guessing.
 
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
@@ -71,7 +73,7 @@ the standard and refuses to report a clean scan.
 
 3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
 4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
-5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 1 and 3 describe where attention goes, not a second arithmetic, and no run combines the two.
+5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 2 and 4 describe where attention goes, not a second arithmetic, and no run combines the two.
 6. **Report** using `assets/voice-report-template.md`. Do not edit.
 
 ### Apply

@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-readme
@@ -20,21 +20,34 @@ version: 1.1.1.0
 | **Use it for** | Current-state `README.md` authoring, sourced from real files, never from memory |
 | **Invoke with** | `/create:readme`, "create readme", "write a readme" |
 | **Works on** | Project, skill, feature, component and source-code folders |
-| **Produces** | A `README.md` in the target folder |
+| **Produces** | A `README.md` in the target folder, or a skill package's `ARCHITECTURE.md` |
 
 ---
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-A folder with no README makes every visitor start from zero. They open every file, guess the entry point and wonder what is safe to touch. A README written from memory drifts fast. Paths get renamed and commands get replaced. The document quietly starts lying to the next reader. A single template applied everywhere also produces the wrong shape: a source-code folder needs topology and boundaries rather than a features list. create-readme exists to read the real folder first and pick the shape that fits before writing a word.
-
 ### What It Does
 
-create-readme turns a request into one of two current-state artifacts, chosen by what the folder needs. The shape table below names each one and what it operates on. It reads the target folder, nearby docs and existing commands before drafting, then copies the matching template as a scaffold and removes what does not fit. The entry point is the `/create:readme` command, with the natural phrases "create readme" and "write a readme" as alternatives.
+create-readme turns a request into one of two current-state README shapes, chosen by what the folder needs. The shape table below names each one and what it operates on. It reads the target folder, nearby docs and existing commands before drafting, then copies the matching template as a scaffold and removes what does not fit. The entry point is the `/create:readme` command, with the natural phrases "create readme" and "write a readme" as alternatives.
 
 It is the maintenance path, not the birth path. `create-skill` writes a brand-new skill's first README from its own `skill-readme-template.md` while scaffolding the package. create-readme is what you reach for afterward, to refresh that README against what the skill has become or to write one for anything that is not being scaffolded from scratch.
+
+### Why This Skill Exists
+
+A folder with no README makes every visitor start from zero. They open every file, guess the entry point and wonder what is safe to touch.
+
+Two more failures make the problem worse:
+
+- **A README written from memory.** It drifts fast. Paths get renamed and commands get replaced, so the document quietly starts lying to the next reader.
+- **A single template applied everywhere.** It produces the wrong shape: a source-code folder needs topology and boundaries rather than a features list.
+
+create-readme exists to read the real folder first and pick the shape that fits before writing a word.
+
+### When To Use This Skill
+
+Reach for create-readme when a `README.md` needs to be created or refreshed for a project, skill, feature, component or source-code folder. The repo-wide `audit_readmes.py` check for template drift or broken links also lands here.
+
+Skip it when the folder is self-explanatory and a parent README or inline comments already give enough orientation. Also skip a brand-new skill's very first README: `create-skill` writes that one during scaffolding.
 
 ### The Two Output Shapes
 
@@ -42,6 +55,8 @@ It is the maintenance path, not the birth path. `create-skill` writes a brand-ne
 |---|---|
 | **General README** | a project, skill, feature or component folder's current state, written as narrative prose with a quick start |
 | **Code-folder README** | a source-code folder's topology, boundaries and allowed dependency direction, in technical reference voice |
+
+The packet also writes a skill package's `ARCHITECTURE.md` from `assets/architecture-template.md`, a system document for a maintainer rather than a third README shape.
 
 ---
 
@@ -89,7 +104,12 @@ Expected output is a JSON summary, for example:
 
 ## 4. HOW IT WORKS
 
-Every run follows one lifecycle no matter which artifact comes out the other end. First it reads local evidence only: the target folder, nearby documentation, package files, config files and any commands already in use. It never documents a file, command, API or metric it has not confirmed. Second it routes by artifact type and folder purpose to one of the two output shapes described above. Third it drafts current-state content in the smallest useful shape, copying the matching template as a scaffold and deleting sections that do not earn their place rather than leaving placeholders. Fourth it validates the authored markdown and confirms every local link resolves before calling the work done.
+Every run follows one lifecycle no matter which artifact comes out the other end:
+
+1. Read local evidence only: the target folder, nearby documentation, package files, config files and any commands already in use. It never documents a file, command, API or metric it has not confirmed.
+2. Route by artifact type and folder purpose to the matching output shape described above.
+3. Draft current-state content in the smallest useful shape, copying the matching template as a scaffold and deleting sections that do not earn their place rather than leaving placeholders.
+4. Validate the authored markdown and confirm every local link resolves before calling the work done.
 
 ### One Lifecycle, Two Shapes
 
@@ -98,12 +118,6 @@ The same read-route-draft-validate sequence produces very different documents de
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for create-readme when a `README.md` needs to be created or refreshed for a project, skill, feature, component or source-code folder. The repo-wide `audit_readmes.py` check for template drift or broken links also lands here.
-
-Skip it when the folder is self-explanatory and a parent README or inline comments already give enough orientation. Also skip a brand-new skill's very first README: `create-skill` writes that one during scaffolding.
 
 ### Related Skills
 
@@ -145,6 +159,8 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 | Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path> --type readme` | `✅ VALID`, zero blocking issues |
 | Repo-wide drift | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/scripts/validate_document.py` | `template_invalid: 0`, `broken_references: 0` |
 | Authored name casing | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` | Exits clean for authored names (`README.md` is exempt) |
+| Reference integrity | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py <path/to/README.md>` | `SUMMARY files=1 pass=1 fail=0`, every link and path-shaped code span resolves |
+| Derived counts | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py <path/to/README.md>` | `SUMMARY files=1 pass=1 fail=0`, every count claim is proven by the folder |
 
 ---
 
@@ -156,5 +172,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/readme-template.md`](./assets/readme-template.md) | Fillable scaffold for project, skill, feature and component READMEs |
 | [`assets/readme-code-template.md`](./assets/readme-code-template.md) | Fillable scaffold for source-code folder READMEs, with diagram examples |
+| [`assets/architecture-template.md`](./assets/architecture-template.md) | Fillable scaffold for a skill package's `ARCHITECTURE.md` |
 | [`references/README.md`](./references/README.md) | Route map into the `readme/` reference group |
 | [`scripts/audit_readmes.py`](./scripts/audit_readmes.py) | Repo-wide template alignment and freshness audit |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator playbook: four scenarios across README routing, evidence-first writing and code-folder navigation |

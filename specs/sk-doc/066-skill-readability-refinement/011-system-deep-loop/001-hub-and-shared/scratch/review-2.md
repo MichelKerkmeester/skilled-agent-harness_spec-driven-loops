@@ -1,0 +1,16 @@
+VERDICT: PASS
+
+No required changes. The round is preservation-clean and the files meet the rubric.
+
+**What I verified against the final working tree, not the patch text:**
+
+- **Findings:** 15 of 16 applied. The one skip is the `[P1] README.md:119` `LOADING_LEVELS` finding, and it is justified: applying it would narrow what a checklist instruction says, which the frozen rule forbids; the fixer restored the HEAD line byte-for-byte (`README.md:112` is identical to HEAD line 119), which is exactly what the round-1 review required. The remaining premise (hub `ROUTER.md` declares no `LOADING_LEVELS`) is a genuine accuracy conflict that belongs in its own finding, not this preservation pass.
+- **Preservation:** every HEAD line is present in the final file except the six sanctioned rewrites (README §6/§7 swap, `## PURPOSE` → `## 1. OVERVIEW` + `### Purpose`, `## SCHEMA VERSIONING` → `### Schema versioning`, `## 2. DEFERRED TODOS` → `## 2. DEFERRED SCOPE`, and the extended TESTS sentence in `shared/behavior-benchmark/README.md`, whose old clauses all survive as substrings). No claim, number, name or qualifier lost.
+- **Code, JSON, frontmatter:** fence blocks and block counts identical to HEAD in all seven changed files (1/2/1/2/4/0/1), every `json`/`bash`/`text`/`python` block byte-equal; frontmatter byte-equal everywhere.
+- **Intros:** `framework.md` had no intro, so its hook replaces nothing; `promotion-rule.md`'s old lead-in survives verbatim at `## 2. PROMOTION EVIDENCE`, and its Purpose restates the same claim. Both new intros are hooks, not pointer sentences, and neither restates Purpose.
+- **Render checks:** `JEV_FEATURES=0 … validate_document.py` returns zero `render_*` warnings and zero issues on all nine scope files (framework and promotion-rule also clean under `--type reference`); the scope gate reports `files=9 render_warnings=0 invalid=0`.
+- **Inbound anchors:** `ROUTER.md` `## 5. MACHINE ROUTER` is still §5 and still the final H2; `SKILL.md` §1 and §4 that the README checklist cites are unchanged in number and title; `README.md:121`'s targets resolve; `framework.md` has no numbered or line-level inbound reference (every inbound link is a bare path or a heading-name mention, and all heading names survive); `shared/rollout/README.md` §2 keeps its number.
+- **New claims are true, not invented:** `validate-rollout.cjs` does reject `fix` entries with missing evidence (`EVIDENCE_FIELDS`, fail-closed); `hub-router.json` really holds `routerSignals`, `vocabularyClasses` and `routerPolicy.tieBreak`; `runtime/` is the backend layer described; the TESTS block's expected string is the exact `console.log` at `behavior-benchmark-run.test.cjs:565`.
+- **Rubric:** README OVERVIEW now opens with `What It Does`; Layout names `hub-router.json` and `runtime/`; related documents is last; framework sections run 1-11 in the required order with governing delegation rules before the rubric they bind; `ROUTER.md` packs into four verbatim bullets; no progress tokens or spec paths remain; indexes are complete against `ls`.
+
+Nothing is the operator's to decide for this file set. The open `LOADING_LEVELS` accuracy conflict in `README.md:112` needs its own finding against the router contract, as the fix log already states.

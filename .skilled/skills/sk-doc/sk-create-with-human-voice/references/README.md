@@ -7,12 +7,12 @@ trigger_phrases:
   - "hvr workflow references"
 importance_tier: normal
 contextType: general
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # sk-create-with-human-voice References
 
-Four references, in the order the table gives.
+Four references sit here. Read the first before you read the target, because it decides what a later edit is allowed to change.
 
 ---
 

@@ -9,25 +9,30 @@ trigger_phrases:
   - "readme review checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # README Quality and Pre-Publish Checklist
 
-Overflow detail behind `SKILL.md` Section 7 (validation and audit). Use it to review a drafted README before delivery. `SKILL.md` lists the short pre-publish checks; this file carries the DQI weighting, per-section checks and the full itemized checklist.
+Open this before delivering a drafted README, when the structural validator has passed but a command nobody ran or a link that resolves nowhere could still ship. It is overflow detail behind `SKILL.md` Section 7 (validation and audit), which lists the short pre-publish checks.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Quality for a README is weighted toward structure and content, then style. Score against the components below, then walk the pre-publish checklist for the sections the README actually includes.
 
-**Core Principle**: Apply every check only to the sections that fit the README's audience and purpose. Do not force sections a code folder never needed.
+### When to Use
 
-**When to Use**:
 - Scoring a drafted README before delivery
 - Confirming an included section meets its quality bar
 - Running the final pre-publish pass
+
+### Core Principle
+
+Apply every check only to the sections that fit the README's audience and purpose. Do not force sections a code folder never needed.
 
 ---
 

@@ -1,0 +1,3 @@
+INVALID .skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md: ['Missing required section: overview']
+INVALID .skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md: ['Missing required section: overview']
+files=9 render_warnings=0 invalid=2

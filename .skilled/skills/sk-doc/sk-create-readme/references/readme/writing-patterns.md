@@ -9,25 +9,30 @@ trigger_phrases:
   - "readme heading hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # README Writing Patterns
 
-Overflow detail behind `SKILL.md` Sections 5 and 6 (output shapes). Use it while drafting individual sections or reaching for a proven formatting pattern. The output-shape tables in `SKILL.md` decide which sections to include; this file covers how to write them well.
+Open this while drafting a single section, once the section list is settled and the question is how to shape that section. It is overflow detail behind `SKILL.md` Sections 5 and 6 (output shapes), which decide which sections to include.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 These are the writing patterns that make a README scannable and consistent: what each section is for, how headings nest, when an analogy helps, and which table shapes carry which content.
 
-**Core Principle**: Show it in a table when the content is comparable, and lead every section with what the reader needs first.
+### When to Use
 
-**When to Use**:
 - Drafting a specific README section and wanting a writing tip
 - Choosing a table pattern for comparison, statistics or parameters
 - Confirming heading, code-block or placeholder conventions
+
+### Core Principle
+
+Show it in a table when the content is comparable, and lead every section with what the reader needs first.
 
 ---
 
@@ -45,7 +50,11 @@ Get users to a working state in under 2 minutes. "30-Second Setup" is aspiration
 
 ### Features
 
-Comprehensive feature documentation with two-tier structure. Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`). Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections. Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
+Comprehensive feature documentation with two-tier structure.
+
+- Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`).
+- Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections.
+- Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
 
 Name the feature in its heading and lead with its benefit: `### Spec Kit: a written record of every change` rather than `### Powered by Spec Kit`. When a document covers four or more major features, give each one its own numbered H2 section instead of splitting a single Features section, so every feature gets the full two-tier treatment and its own anchor.
 

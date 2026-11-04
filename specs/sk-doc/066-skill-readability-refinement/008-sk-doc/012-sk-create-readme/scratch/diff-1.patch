@@ -1,0 +1,349 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/README.md b/.skilled/skills/sk-doc/sk-create-readme/README.md
+index 33d7ffad943..5bad64849b8 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/README.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/README.md
+@@ -20,21 +20,34 @@ version: 1.1.1.0
+ | **Use it for** | Current-state `README.md` authoring, sourced from real files, never from memory |
+ | **Invoke with** | `/create:readme`, "create readme", "write a readme" |
+ | **Works on** | Project, skill, feature, component and source-code folders |
+-| **Produces** | A `README.md` in the target folder |
++| **Produces** | A `README.md` in the target folder, or a skill package's `ARCHITECTURE.md` |
+ 
+ ---
+ 
+ ## 2. OVERVIEW
+ 
++### What It Does
++
++create-readme turns a request into one of two current-state README shapes, chosen by what the folder needs. The shape table below names each one and what it operates on. It reads the target folder, nearby docs and existing commands before drafting, then copies the matching template as a scaffold and removes what does not fit. The entry point is the `/create:readme` command, with the natural phrases "create readme" and "write a readme" as alternatives.
++
++It is the maintenance path, not the birth path. `create-skill` writes a brand-new skill's first README from its own `skill-readme-template.md` while scaffolding the package. create-readme is what you reach for afterward, to refresh that README against what the skill has become or to write one for anything that is not being scaffolded from scratch.
++
+ ### Why This Skill Exists
+ 
+-A folder with no README makes every visitor start from zero. They open every file, guess the entry point and wonder what is safe to touch. A README written from memory drifts fast. Paths get renamed and commands get replaced. The document quietly starts lying to the next reader. A single template applied everywhere also produces the wrong shape: a source-code folder needs topology and boundaries rather than a features list. create-readme exists to read the real folder first and pick the shape that fits before writing a word.
++A folder with no README makes every visitor start from zero. They open every file, guess the entry point and wonder what is safe to touch.
+ 
+-### What It Does
++Two more failures make the problem worse:
+ 
+-create-readme turns a request into one of two current-state artifacts, chosen by what the folder needs. The shape table below names each one and what it operates on. It reads the target folder, nearby docs and existing commands before drafting, then copies the matching template as a scaffold and removes what does not fit. The entry point is the `/create:readme` command, with the natural phrases "create readme" and "write a readme" as alternatives.
++- **A README written from memory.** It drifts fast. Paths get renamed and commands get replaced, so the document quietly starts lying to the next reader.
++- **A single template applied everywhere.** It produces the wrong shape: a source-code folder needs topology and boundaries rather than a features list.
+ 
+-It is the maintenance path, not the birth path. `create-skill` writes a brand-new skill's first README from its own `skill-readme-template.md` while scaffolding the package. create-readme is what you reach for afterward, to refresh that README against what the skill has become or to write one for anything that is not being scaffolded from scratch.
++create-readme exists to read the real folder first and pick the shape that fits before writing a word.
++
++### When To Use This Skill
++
++Reach for create-readme when a `README.md` needs to be created or refreshed for a project, skill, feature, component or source-code folder. The repo-wide `audit_readmes.py` check for template drift or broken links also lands here.
++
++Skip it when the folder is self-explanatory and a parent README or inline comments already give enough orientation. Also skip a brand-new skill's very first README: `create-skill` writes that one during scaffolding.
+ 
+ ### The Two Output Shapes
+ 
+@@ -43,6 +56,8 @@ It is the maintenance path, not the birth path. `create-skill` writes a brand-ne
+ | **General README** | a project, skill, feature or component folder's current state, written as narrative prose with a quick start |
+ | **Code-folder README** | a source-code folder's topology, boundaries and allowed dependency direction, in technical reference voice |
+ 
++The packet also writes a skill package's `ARCHITECTURE.md` from `assets/architecture-template.md`, a system document for a maintainer rather than a third README shape.
++
+ ---
+ 
+ ## 3. QUICK START
+@@ -89,7 +104,12 @@ Expected output is a JSON summary, for example:
+ 
+ ## 4. HOW IT WORKS
+ 
+-Every run follows one lifecycle no matter which artifact comes out the other end. First it reads local evidence only: the target folder, nearby documentation, package files, config files and any commands already in use. It never documents a file, command, API or metric it has not confirmed. Second it routes by artifact type and folder purpose to one of the two output shapes described above. Third it drafts current-state content in the smallest useful shape, copying the matching template as a scaffold and deleting sections that do not earn their place rather than leaving placeholders. Fourth it validates the authored markdown and confirms every local link resolves before calling the work done.
++Every run follows one lifecycle no matter which artifact comes out the other end:
++
++1. Read local evidence only: the target folder, nearby documentation, package files, config files and any commands already in use. It never documents a file, command, API or metric it has not confirmed.
++2. Route by artifact type and folder purpose to the matching output shape described above.
++3. Draft current-state content in the smallest useful shape, copying the matching template as a scaffold and deleting sections that do not earn their place rather than leaving placeholders.
++4. Validate the authored markdown and confirm every local link resolves before calling the work done.
+ 
+ ### One Lifecycle, Two Shapes
+ 
+@@ -99,12 +119,6 @@ The same read-route-draft-validate sequence produces very different documents de
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for create-readme when a `README.md` needs to be created or refreshed for a project, skill, feature, component or source-code folder. The repo-wide `audit_readmes.py` check for template drift or broken links also lands here.
+-
+-Skip it when the folder is self-explanatory and a parent README or inline comments already give enough orientation. Also skip a brand-new skill's very first README: `create-skill` writes that one during scaffolding.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+@@ -145,6 +159,8 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
+ | Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <path> --type readme` | `✅ VALID`, zero blocking issues |
+ | Repo-wide drift | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py --repo-root . --validator .skilled/skills/sk-doc/scripts/validate_document.py` | `template_invalid: 0`, `broken_references: 0` |
+ | Authored name casing | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` | Exits clean for authored names (`README.md` is exempt) |
++| Reference integrity | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py <path/to/README.md>` | `SUMMARY files=1 pass=1 fail=0`, every link and path-shaped code span resolves |
++| Derived counts | `python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py <path/to/README.md>` | `SUMMARY files=1 pass=1 fail=0`, every count claim is proven by the folder |
+ 
+ ---
+ 
+@@ -156,5 +172,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
+ | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+ | [`assets/readme-template.md`](./assets/readme-template.md) | Fillable scaffold for project, skill, feature and component READMEs |
+ | [`assets/readme-code-template.md`](./assets/readme-code-template.md) | Fillable scaffold for source-code folder READMEs, with diagram examples |
++| [`assets/architecture-template.md`](./assets/architecture-template.md) | Fillable scaffold for a skill package's `ARCHITECTURE.md` |
+ | [`references/README.md`](./references/README.md) | Route map into the `readme/` reference group |
+ | [`scripts/audit_readmes.py`](./scripts/audit_readmes.py) | Repo-wide template alignment and freshness audit |
++| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator playbook: four scenarios across README routing, evidence-first writing and code-folder navigation |
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/ROUTER.md b/.skilled/skills/sk-doc/sk-create-readme/ROUTER.md
+index 52ff075169e..0e259dad834 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/ROUTER.md
+@@ -20,7 +20,15 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, and when they ask for developer orientation on a project, skill, feature, component or source-code directory. It routes to three artifact templates under `assets/`: `readme-template.md` for a general README, `readme-code-template.md` for a source-code folder and `architecture-template.md` for a skill package's `ARCHITECTURE.md`. It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
++Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, and when they ask for developer orientation on a project, skill, feature, component or source-code directory.
++
++It routes to three artifact templates under `assets/`:
++
++- `readme-template.md` for a general README.
++- `readme-code-template.md` for a source-code folder.
++- `architecture-template.md` for a skill package's `ARCHITECTURE.md`.
++
++It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -40,8 +48,6 @@ loads before an intent selects it.
+ The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+ reader finds it. This section is the last in the file, and it holds the only pseudocode.
+ 
+-The packet's artifact table, its router resilience rules, its prompt-intent projection and its README decision tree.
+-
+ Route by artifact type first, then by folder purpose.
+ 
+ | Request | Output | Primary Template |
+@@ -59,6 +65,18 @@ Router resilience rules:
+ - Ask for the missing artifact type, target folder or validation expectation instead of silently loading no resources.
+ - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+ 
++Use this README decision tree:
++
++```text
++Is this a project root?
+++-- YES: write a general README using the sections the audience needs
++`-- NO: is this a reusable component?
++    +-- YES: write a component README trimmed to API, examples, configuration and known issues
++    `-- NO: is someone likely to land here?
++        +-- YES: write a focused README with overview plus needed navigation or usage
++        `-- NO: skip README and use inline comments or parent documentation
++```
++
+ ### Smart Router Pseudocode
+ 
+ For this flat-reference packet, the canonical resilient router discovers resources at call
+@@ -135,15 +153,3 @@ def route_readme_request(request):
+         load_if_available(path, inventory, loaded, seen)
+     return {"artifact_type": artifact_type, "resources": loaded}
+ ```
+-
+-Use this README decision tree:
+-
+-```text
+-Is this a project root?
+-+-- YES: write a general README using the sections the audience needs
+-`-- NO: is this a reusable component?
+-    +-- YES: write a component README trimmed to API, examples, configuration and known issues
+-    `-- NO: is someone likely to land here?
+-        +-- YES: write a focused README with overview plus needed navigation or usage
+-        `-- NO: skip README and use inline comments or parent documentation
+-```
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/SKILL.md b/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
+index 43b8d0da5d1..27286b13151 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/SKILL.md
+@@ -47,6 +47,8 @@ The artifact decides the template before the folder decides the sections.
+ Authoring starts from the matching template: `assets/readme-template.md` for a general README, `assets/readme-code-template.md` for a source-code folder, and `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`.
+ `references/README.md` is the fallback route map when the artifact type or folder purpose is unclear.
+ 
++When nothing matches, report `UNKNOWN_FALLBACK` with the router's disambiguation checklist instead of guessing.
++
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+ ---
+@@ -237,7 +239,7 @@ Pre-publish checks for READMEs:
+ 
+ ## 8. WRITING RULES
+ 
+-Always:
++### ALWAYS
+ 
+ - Read the target folder and nearby docs before writing.
+ - Choose the README type before choosing a template.
+@@ -249,7 +251,7 @@ Always:
+ - Use tables for file maps, options, comparisons and troubleshooting.
+ - Keep `README.md` and `SKILL.md` casing intact.
+ 
+-Never:
++### NEVER
+ 
+ - Add a Table of Contents or anchor-comment navigation.
+ - Leave template placeholders in the final document.
+@@ -258,7 +260,7 @@ Never:
+ - Force Quick Start, Features, FAQ or Troubleshooting into a code-folder README when the folder only needs orientation.
+ - Create `graph-metadata.json` in this packet.
+ 
+-Human Voice Rules apply:
++### HUMAN VOICE RULES
+ 
+ - No em dashes. Use commas, periods or colons.
+ - No semicolons. Split the sentence or use "and".
+@@ -268,7 +270,7 @@ Human Voice Rules apply:
+ - Prefer active voice and direct verbs.
+ - Use analogies only when they clarify narrative sections. Do not use analogies in component or code-folder READMEs.
+ 
+-Escalate if:
++### ESCALATE IF
+ 
+ - The target folder purpose or audience is unclear.
+ - The README would require product, brand or public-facing claims that are not in the repo.
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md b/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+index c64adea27a0..b7057d50a8f 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/assets/readme-template.md
+@@ -29,7 +29,7 @@ README files answer two questions: what is this, and how does someone use or nav
+ | Component | A reusable module has an API, examples or configuration | This file, trimmed |
+ | Code Folder | A source directory needs developer orientation | [`readme-code-template.md`](./readme-code-template.md) |
+ 
+-Create a README when someone can land in the folder and need orientation. Skip it when inline comments or a nearby parent README already explain the folder.
++Create a README when someone can land in the folder and needs orientation. Skip it when inline comments or a nearby parent README already explain the folder.
+ 
+ ```text
+ Is this a project, package, skill or feature root?
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md
+index 58add873e6c..6b8a9a233f1 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md
+@@ -14,21 +14,26 @@ version: 1.2.1.0
+ 
+ # README Quality and Pre-Publish Checklist
+ 
+-Overflow detail behind `SKILL.md` Section 7 (validation and audit). Use it to review a drafted README before delivery. `SKILL.md` lists the short pre-publish checks; this file carries the DQI weighting, per-section checks and the full itemized checklist.
++Open this before delivering a drafted README, when the structural validator has passed but a command nobody ran or a link that resolves nowhere could still ship. It is overflow detail behind `SKILL.md` Section 7 (validation and audit), which lists the short pre-publish checks.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Quality for a README is weighted toward structure and content, then style. Score against the components below, then walk the pre-publish checklist for the sections the README actually includes.
+ 
+-**Core Principle**: Apply every check only to the sections that fit the README's audience and purpose. Do not force sections a code folder never needed.
++### When to Use
+ 
+-**When to Use**:
+ - Scoring a drafted README before delivery
+ - Confirming an included section meets its quality bar
+ - Running the final pre-publish pass
+ 
++### Core Principle
++
++Apply every check only to the sections that fit the README's audience and purpose. Do not force sections a code folder never needed.
++
+ ---
+ 
+ ## 2. DQI COMPONENTS
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+index da9159ebbac..f471793f6f1 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/types-and-voice.md
+@@ -20,16 +20,21 @@ Overflow detail behind `SKILL.md` Section 4 (README authoring). Use it to choose
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ A README answers "What is this?" and "How do I use it?" in a scannable, progressive format. The type and voice decisions below shape every section that follows, so make them before copying a template.
+ 
+-**Core Principle**: Help users succeed in under 2 minutes, then provide depth for those who need it.
++The README type decision tree lives in `ROUTER.md` Section 3. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
++
++### When to Use
+ 
+-**When to Use**:
+ - Deciding which of the five README types a folder needs
+ - Setting how much a reader gets at each disclosure stage
+ - Splitting narrative and reference voice inside one file
+ 
+-The README type decision tree lives in `ROUTER.md` Section 3. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
++### Core Principle
++
++Help users succeed in under 2 minutes, then provide depth for those who need it.
+ 
+ ---
+ 
+@@ -49,7 +54,13 @@ Project, Skill and Feature READMEs use both voice tiers. Component and Code Fold
+ 
+ One Project README is also the repository's front page: `/README.md`. It may use the marketing register: value-first ordering and benefit-led headings, with decorative emoji on section headings, because its job is to win the reader's attention in seconds.
+ 
+-Every other README, including Skill and Feature, keeps the technical register for formatting: numbered ALL-CAPS sections, tables for lookups and only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. The writing voice may still borrow the front page's engagement: a skill README may open with a pitch and benefit-led bullets before the technical detail. It explains rather than sells, and it never copies the decorative section emoji.
++Every other README, including Skill and Feature, keeps the technical register for formatting:
++
++- Numbered ALL-CAPS sections.
++- Tables for lookups.
++- Only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
++
++The writing voice may still borrow the front page's engagement: a skill README may open with a pitch and benefit-led bullets before the technical detail. It explains rather than sells, and it never copies the decorative section emoji.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md b/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
+index 15966472481..67e975cc707 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/references/readme/writing-patterns.md
+@@ -14,21 +14,26 @@ version: 1.2.0.0
+ 
+ # README Writing Patterns
+ 
+-Overflow detail behind `SKILL.md` Sections 5 and 6 (output shapes). Use it while drafting individual sections or reaching for a proven formatting pattern. The output-shape tables in `SKILL.md` decide which sections to include; this file covers how to write them well.
++Open this while drafting a single section, once the section list is settled and the question is how to shape that section. It is overflow detail behind `SKILL.md` Sections 5 and 6 (output shapes), which decide which sections to include.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ These are the writing patterns that make a README scannable and consistent: what each section is for, how headings nest, when an analogy helps, and which table shapes carry which content.
+ 
+-**Core Principle**: Show it in a table when the content is comparable, and lead every section with what the reader needs first.
++### When to Use
+ 
+-**When to Use**:
+ - Drafting a specific README section and wanting a writing tip
+ - Choosing a table pattern for comparison, statistics or parameters
+ - Confirming heading, code-block or placeholder conventions
+ 
++### Core Principle
++
++Show it in a table when the content is comparable, and lead every section with what the reader needs first.
++
+ ---
+ 
+ ## 2. SECTION WRITING STANDARDS
+@@ -45,7 +50,11 @@ Get users to a working state in under 2 minutes. "30-Second Setup" is aspiration
+ 
+ ### Features
+ 
+-Comprehensive feature documentation with two-tier structure. Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`). Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections. Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
++Comprehensive feature documentation with two-tier structure.
++
++- Split into a narrative subsection (`### 3.1 HOW IT WORKS`) and a reference subsection (`### 3.2 TECHNICAL REFERENCE`).
++- Use numbered H3 ALL CAPS subsections with `---` dividers between them, and numbered H4 ALL CAPS sub-subsections (3.1.1, 3.1.2) within narrative subsections.
++- Open each sub-subsection with 1-2 plain-language sentences, and bold key term names on first use.
+ 
+ Name the feature in its heading and lead with its benefit: `### Spec Kit: a written record of every change` rather than `### Powered by Spec Kit`. When a document covers four or more major features, give each one its own numbered H2 section instead of splitting a single Features section, so every feature gets the full two-tier treatment and its own anchor.
+ 

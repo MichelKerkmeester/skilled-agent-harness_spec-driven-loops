@@ -94,11 +94,12 @@ Its legacy public surfaces, the `/deep:ai-council` command and the `ai-council` 
 ### Backend
 All modes consume `runtime/`, a frozen, MCP-free layer.
 It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the council primitives.
-The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
-It compares a backend's judgment with the operator's labels and makes no model call by default.
-Until the operator has labeled 40 pairs, 10 of them cross-body, it prints `stop: fewer than 40 labeled pairs`.
-It runs its `--jev` arm only with `--out <dir>` and past that backend's own gate.
-It leaves the merge unchanged.
+
+- The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
+- It compares a backend's judgment with the operator's labels and makes no model call by default.
+- Until the operator has labeled 40 pairs, 10 of them cross-body, it prints `stop: fewer than 40 labeled pairs`.
+- It runs its `--jev` arm only with `--out <dir>` and past that backend's own gate.
+- It leaves the merge unchanged.
 
 ---
 

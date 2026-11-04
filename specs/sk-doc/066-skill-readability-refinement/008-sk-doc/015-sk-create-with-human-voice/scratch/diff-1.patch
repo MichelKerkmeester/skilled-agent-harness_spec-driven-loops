@@ -1,0 +1,271 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+index aa15b6ef06a..57b756bfb54 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+@@ -62,7 +62,11 @@ and calls this one for the voice finding it reports.
+ 
+ ## 3. QUICK START
+ 
+-**Step 1: Scan before you read.**
++**Step 1: Decide what the scanner may not touch.** Quotations, code, generated files and
++released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
++and getting this wrong is how a voice pass breaks a working code sample.
++
++**Step 2: Scan before you read.**
+ 
+ ```bash
+ python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <file>
+@@ -71,12 +75,8 @@ python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <f
+ You get the hard blockers, the soft deductions, a count per term and a mechanical ceiling.
+ It takes under a second and settles the part of the standard a reader is worst at.
+ 
+-**Step 2: Decide what the scanner may not touch.** Quotations, code, generated files and
+-released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
+-and getting this wrong is how a voice pass breaks a working code sample.
+-
+ **Step 3: Read for what the scanner cannot see.** Three-item lists, triple headers, setup
+-language, synonym cycling, fragmented headers, hedging. The scanner prints this list on
++language, synonym cycling, fragmented headers, hedging. The scanner prints its own list on
+ every run so a clean mechanical result is never mistaken for a clean document.
+ 
+ **Step 4: After editing, scan again and report both numbers.** A rewrite that only reports
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/ROUTER.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/ROUTER.md
+index 7598e273f04..53b85b43968 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/ROUTER.md
+@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-A request that names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice` reaches this packet, and so does a draft someone calls machine-written and a passage someone wants scored without edits. The resource families split with the operation: `apply` edits, so it reaches the scope gate, the scoring arithmetic and the report template, while `score` reports and stops at the scope gate and the arithmetic. `references/hvr-rules.md` sits outside both, because the scanner parses it on every run.
++A request that names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice` reaches this packet, and so does a draft someone calls machine-written and a passage someone wants scored without edits. The resource families split with the operation: `apply` edits, so it reaches the scope gate, the scoring arithmetic, the publish supplement and the report template, while `score` reports and loads the same four without editing. `references/hvr-rules.md` sits outside both, because the scanner parses it on every run.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -30,8 +30,8 @@ loads before an intent selects it.
+ 
+ ## 2. INTENT MODEL
+ 
+-- **APPLY** fires on "apply human voice", "rewrite in human voice", "make this sound human", "remove ai tells", "de-ai the writing" and "voice pass", at weight 5. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md` and `assets/voice-report-template.md`.
+-- **SCORE** fires on "sounds ai-generated", "reads like ai wrote it", "ai writing tells", "how does this score" and "human voice rules", at weight 4. It loads `references/scope-and-exemptions.md` and `references/scoring-and-verification.md`.
++- **APPLY** fires on "apply human voice", "rewrite in human voice", "make this sound human", "remove ai tells", "de-ai the writing" and "voice pass", at weight 5. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md`, `references/hvr-publish-supplement.md` and `assets/voice-report-template.md`.
++- **SCORE** fires on "sounds ai-generated", "reads like ai wrote it", "ai writing tells", "how does this score" and "human voice rules", at weight 4. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md`, `references/hvr-publish-supplement.md` and `assets/voice-report-template.md`.
+ 
+ A request that scores below 4 on both keys loads `references/scope-and-exemptions.md` alone and returns `UNKNOWN_FALLBACK` with the checklist in the block below, because what may be touched is worth answering before the operation settles. The loading-levels table adds `references/hvr-rules.md` on every path, and `references/hvr-publish-supplement.md` when a document is scored or published.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+index 2ca6ab7bd3e..15f38e55e57 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/SKILL.md
+@@ -35,7 +35,7 @@ Keyword triggers: `human voice rules`, `apply human voice`, `rewrite in human vo
+ 
+ - **The target is a whole document needing structure, DQI and validators.** That is `sk-create-quality-control`, which owns the file-level audit. This mode owns the voice, and the audit calls it for that step.
+ - **The artifact does not exist yet.** A README, changelog, agent, command, catalog, playbook, benchmark, diagram or repo rule is scaffolded by its own sibling mode, which then applies this standard to the prose it produced.
+-- **The text is code, output, a quotation or a generated file.** See `references/scope-and-exemptions.md`. A voice edit there is a defect, not an improvement.
++- **The text is code, output, a quotation or a generated file.** A voice edit there is a defect, not an improvement.
+ - **The request is about brand or product tone.** The Human Voice Rules are a linguistic standard for documentation, not a tone-of-voice guide.
+ 
+ ---
+@@ -50,6 +50,8 @@ The operation decides which resources load, and the scope gate decides which spa
+ `references/scope-and-exemptions.md` loads first on every path, because what may be touched comes before what to change.
+ `references/hvr-rules.md` is the standard the scanner parses on every run, so it is read rather than copied.
+ 
++An unmatched request returns `UNKNOWN_FALLBACK` with its checklist rather than guessing.
++
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+ ---
+@@ -71,7 +73,7 @@ the standard and refuses to report a clean scan.
+ 
+ 3. **Read the mechanical findings as candidates.** Word sense decides, not spelling. `harness` the noun is fine, `harness` the verb is not, and the scanner reports both.
+ 4. **Run the judgment pass.** Structure, sentence habits, content habits and voice. The scanner prints this list on every run precisely because it cannot check any of it.
+-5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 1 and 3 describe where attention goes, not a second arithmetic, and no run combines the two.
++5. **Compute the score** under the precedence rule and the point table in `references/hvr-publish-supplement.md`, using the point arithmetic in `references/scoring-and-verification.md`, or report hard blockers and density on a long document. The category weights in the publish supplement's sections 2 and 4 describe where attention goes, not a second arithmetic, and no run combines the two.
+ 6. **Report** using `assets/voice-report-template.md`. Do not edit.
+ 
+ ### Apply
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md
+index cd56e411930..398e14804e7 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/README.md
+@@ -12,7 +12,7 @@ version: 1.1.0.4
+ 
+ # sk-create-with-human-voice References
+ 
+-Four references, in the order the table gives.
++Four references sit here. Read the first before you read the target, because it decides what a later edit is allowed to change.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md
+index 5fb9f8d48d6..5a336f580ad 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-publish-supplement.md
+@@ -14,16 +14,24 @@ version: 1.1.1.0
+ 
+ # Human Voice Rules: Publish Supplement
+ 
++A draft can pass every wording rule and still be unpublishable. This file supplies the numbers and the checklist that decide whether it ships.
++
++---
++
+ ## 1. OVERVIEW
+ 
+-This supplement is loaded after the wording standard, `hvr-rules.md`, and never alone. The base is what a reply loads. This supplement is what a published document adds.
++### Purpose
++
++The base is what a reply loads. This supplement is what a published document adds.
++
++### When to Use
++
++Load it after the wording standard, `hvr-rules.md`, and never alone.
+ 
+ ---
+ 
+ ## 2. SCORING
+ 
+-- **Scoring:** Hard blockers cost -5 points. Soft deductions cost -2 or -1. Clean document starts at 100.
+-
+ A document starts at 100 points. Hard blockers (-5 each) and soft deductions (-2 or -1 each) reduce the score. Below 70 is a failing grade. Below 85 needs revision before publishing. That subtraction is the whole arithmetic, and `references/scoring-and-verification.md` section 3 owns it.
+ 
+ ### Where To Spend Attention
+@@ -62,7 +70,11 @@ When a word or phrase appears in multiple categories, apply exactly one penalty
+ 5. Soft deduction -1 (Section 8)
+ 6. Context flag (0, advisory)
+ 
+-A term listed in both hard blocker and soft deduction is evaluated only as hard blocker. Context-dependent terms cleared as literal get no lower-tier penalty. Structural removal directives (cut_always modifiers in Section 4) are not scored penalties and apply independently.
++Three consequences follow:
++
++- A term listed in both hard blocker and soft deduction is evaluated only as hard blocker.
++- Context-dependent terms cleared as literal get no lower-tier penalty.
++- Structural removal directives (cut_always modifiers in Section 4) are not scored penalties and apply independently.
+ 
+ ---
+ 
+@@ -82,8 +94,6 @@ A clean document starts at 100 points and every finding subtracts from it. The t
+ 
+ **Pass threshold:** 85+ (publish-ready). 70-84 (needs revision). Below 70 (failing, must rewrite).
+ 
+-- **Document scan:** Cover the body and read the headers alone. Each header is a label of content, not a sentence. A reader scanning them alone can tell what each section holds. The failure it prevents: a document that cannot be scanned.
+-
+ ### Checklist
+ 
+ ```yaml
+@@ -133,6 +143,8 @@ pre_publish_checklist:
+     - "Complexity acknowledged, not flattened into neat categories"
+ ```
+ 
++- **Document scan:** Cover the body and read the headers alone. Each header is a label of content, not a sentence. A reader scanning them alone can tell what each section holds. The failure it prevents: a document that cannot be scanned.
++
+ ---
+ 
+ ## 5. RELATED RESOURCES
+@@ -151,4 +163,3 @@ pre_publish_checklist:
+ 
+ ### Creation Guides
+ - [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow and standards
+-- [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+index 2dc27ca433a..87047163641 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scope-and-exemptions.md
+@@ -120,11 +120,14 @@ then scores clean while seeding every document authored from it.
+ 
+ The gap was not hypothetical. Of forty templates measured across the skills tree, twenty-four
+ hid blockers this way. The worst scored zero and emitted forty-three, and the voice mode's own
+-report template hid six. The scanner now detects a template by its own naming convention (a
+-name ending in "template" or "templates", under an `assets/` or `templates/` tree) and reads
+-its payload fence without needing `--include-code`. A target that does not match still masks
+-by default, so a zero on a document is a pass and a zero on an undetected template is still
+-unmeasured, worth a manual `--include-code` run to confirm.
++report template hid six.
++
++- The scanner now detects a template by its own naming convention: a name ending in "template"
++  or "templates", under an `assets/` or `templates/` tree. It reads that template's payload
++  fence without needing `--include-code`.
++- A target that does not match still masks by default, so a zero on a document is a pass and a
++  zero on an undetected template is still unmeasured, worth a manual `--include-code` run to
++  confirm.
+ 
+ **Inside a detected template, the fence tag separates the payload from a code sample.** A fence
+ tagged with a code language stays masked, exactly as it would anywhere else. An untagged fence,
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
+index ea6e4bf314c..67f24227bef 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/references/scoring-and-verification.md
+@@ -24,9 +24,8 @@ rewrite actually landed.
+ 
+ ### Purpose
+ 
+-The standard sets the penalties. This document sets the order they are applied in, the
+-arithmetic that stops one word being charged twice, and the check that proves a rewrite
+-landed rather than only claiming it.
++A pass that produces a number a reader can defend, and the evidence that shows how it was
++reached.
+ 
+ ### When to Use
+ 
+@@ -64,24 +63,29 @@ Nothing in this list can be settled by a pattern, so a reader settles all of it:
+ - Content habits: banned metaphors used as metaphors, vague generalisations, significance inflation, generic positive conclusions.
+ - Voice: active voice, direct address, sentence rhythm, opinions the writer actually holds.
+ 
+-The scanner prints this list on every run so the reader cannot mistake a clean mechanical
++The scanner prints its own list on every run so the reader cannot mistake a clean mechanical
+ result for a clean document.
+ 
+ ---
+ 
+ ## 3. THE ARITHMETIC
+ 
+-A document starts at 100. Findings subtract. The standard's precedence rule (its section
+-5) settles what happens when one span matches several rules.
++A document starts at 100. Findings subtract. The publish supplement's precedence rule (its
++section 3) settles what happens when one span matches several rules.
+ 
+-This is the only arithmetic. The standard's sections 1 and 9 also carry a table of
+-category shares, and that table allocates a reader's attention across the judgment pass
++This is the only arithmetic. The publish supplement's sections 2 and 4 also carry tables of
++category shares, and those tables allocate a reader's attention across the judgment pass
+ rather than computing anything. No run multiplies a finding by a share, and no run
+ combines the two.
+ 
+-**One occurrence, one penalty, first match wins.** The order is: hard phrase blocker,
+-then hard word blocker, then context-dependent when metaphorical, then a soft two-point
+-deduction, then a soft one-point deduction, then an advisory flag worth nothing.
++**One occurrence, one penalty, first match wins.** The order:
++
++1. Hard phrase blocker.
++2. Hard word blocker.
++3. Context-dependent when metaphorical.
++4. Soft two-point deduction.
++5. Soft one-point deduction.
++6. Advisory flag worth nothing.
+ 
+ Two consequences worth stating outright.
+ 
+@@ -97,21 +101,21 @@ span that wraps across two lines is masked as well: the scanner pairs backticks
+ paragraph and stops at the blank line, which is where Markdown ends a code span too. An
+ unmatched backtick therefore blanks nothing past its own paragraph.
+ 
+-**Transitions are counted, not charged.** `however`, `furthermore`, `moreover`,
++**Transitions are counted, not charged per use.** `however`, `furthermore`, `moreover`,
+ `additionally` and `consequently` cost a point only from the third use of the same word
+ onward. The scanner implements this. A hand count usually gets it wrong.
+ 
+ ### Bands
+ 
++For a document past roughly 400 lines, report the hard-blocker count and the deduction
++density instead of a band. `scope-and-exemptions.md` section 5 says why.
++
+ | Score | Meaning |
+ |---|---|
+ | 85 and above | Publish |
+ | 70 to 84 | Revise before publishing |
+ | Below 70 | Rewrite |
+ 
+-For a document past roughly 400 lines, report the hard-blocker count and the deduction
+-density instead. `scope-and-exemptions.md` section 5 says why.
+-
+ ---
+ 
+ ## 4. THE REWRITE IS NOT THE END

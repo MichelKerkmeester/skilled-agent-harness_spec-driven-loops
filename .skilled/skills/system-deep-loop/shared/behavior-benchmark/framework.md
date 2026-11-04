@@ -15,7 +15,15 @@ importance_tier: high
 contextType: implementation
 ---
 
-## PURPOSE
+# Deep-Loop Behavior Benchmark Framework
+
+Open this file before authoring a scenario, scoring a run or calibrating a benchmark round.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
 
 This document is the single-source measurement contract for the active
 `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
@@ -25,6 +33,14 @@ when its command surface is triggered with a realistic user prompt. The unit of
 measurement is a single run of one scenario against one executor, scored on a
 fixed rubric and classified into exactly one terminal bucket. This file is
 normative: where a package's own notes diverge, this framework prevails.
+
+### When to Use
+
+- Authoring or reviewing a scenario contract.
+- Scoring a captured run against D1-D5 and assigning its terminal bucket.
+- Calibrating budgets, watchdogs, reruns or fixture isolation.
+
+### Boundaries
 
 The behavior_benchmark charter is deliberately distinct from its sibling
 efforts, and authors must keep them from colliding:
@@ -41,14 +57,14 @@ system by hand, or scores against fixtures.
 
 ---
 
-## SCENARIO CONTRACT SCHEMA
+## 2. SCENARIO CONTRACT SCHEMA
 
 Each scenario is one markdown file. Its **first fenced ```` ```json ```` block is
 the machine contract**; everything below it is human context for the author and
 reviewer. The runner parses only the first JSON block. Additional JSON blocks in
 the same file are ignored by the runner and treated as prose illustrations.
 
-## SCHEMA VERSIONING
+### Schema versioning
 
 Schema v1 remains the default. A scenario opts into schema v2 only by declaring
 `"schema_version": 2`; missing values, `1`, and every other value use the v1
@@ -111,7 +127,27 @@ runner; it exists to disambiguate close calls during scoring.
 
 ---
 
-## SCORING RUBRIC
+## 3. DELEGATION EVIDENCE KINDS
+
+Not every mode delegates by dispatching a LEAF sub-agent. `expected_delegation.evidence_kind`
+selects how D3 (delegation) is measured and what counts as `role_absorption`:
+
+| Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
+| --- | --- | --- | --- | --- |
+| `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
+| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
+| `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
+
+The critical property: the **common ai-council case is IN-CLI** — its seats are the active
+runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
+delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
+the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
+seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
+`task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
+
+---
+
+## 4. SCORING RUBRIC
 
 Every run is scored on five dimensions. Each dimension yields `0`, `1`, `2`, or
 `null` (where the dimension does not apply). Scores are assigned by the scorer
@@ -170,7 +206,7 @@ Scored only when a baseline result exists for the same scenario cell.
 
 ---
 
-## CLASSIFICATION TAXONOMY
+## 5. CLASSIFICATION TAXONOMY
 
 > Ordering note: role_absorption is checked before refused, so refusal-shaped
 > words inside absorbed work cannot relabel it. In schema v2,
@@ -201,7 +237,7 @@ them (e.g. a `crash` run should also score D4 = 0).
 
 ---
 
-## BUDGET POLICY
+## 6. BUDGET POLICY
 
 The per-scenario hard budget `budget_ms` is derived from the Claude baseline:
 
@@ -227,7 +263,7 @@ still producing events or writing artifacts is instead classified
 
 ---
 
-## RERUN POLICY
+## 7. RERUN POLICY
 
 The default is **one sample per scenario x executor cell**, with provenance
 marked `single-sample`. A cell is "contested" when its result is surprising
@@ -241,27 +277,7 @@ with the reason it was triggered.
 
 ---
 
-## DELEGATION EVIDENCE KINDS
-
-Not every mode delegates by dispatching a LEAF sub-agent. `expected_delegation.evidence_kind`
-selects how D3 (delegation) is measured and what counts as `role_absorption`:
-
-| Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
-| --- | --- | --- | --- | --- |
-| `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
-| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
-| `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
-
-The critical property: the **common ai-council case is IN-CLI** — its seats are the active
-runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
-delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
-the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
-seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
-`task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
-
----
-
-## POSTCONDITION PROBES
+## 8. POSTCONDITION PROBES
 
 Schema v2 accepts only these postcondition kinds:
 
@@ -286,7 +302,7 @@ produces `boundary_violation` under the ordering above.
 
 ---
 
-## FIXTURE ISOLATION
+## 9. FIXTURE ISOLATION
 
 Fixtures are frozen reference inputs: only `FIXTURE.md`, `spec.md`, `plan.md`,
 `tasks.md`, and `src/` are legitimate. Active deep-loop runs write output
@@ -312,7 +328,7 @@ alone to keep a fixture frozen.
 
 ---
 
-## PACKAGE CONVENTIONS
+## 10. PACKAGE CONVENTIONS
 
 Each deep-loop sub-skill carries a `behavior-benchmark/` directory with this
 fixed layout:
@@ -348,7 +364,7 @@ packet phase.
 
 ---
 
-## RUNNER
+## 11. RUNNER
 
 The reference implementation of this contract is
 `./behavior-bench-run.cjs`, sibling to this file. It owns process spawn, the

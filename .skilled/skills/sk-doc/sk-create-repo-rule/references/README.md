@@ -7,7 +7,7 @@ trigger_phrases:
   - "rule authoring references"
 importance_tier: normal
 contextType: reference
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # sk-create-repo-rule References
@@ -17,6 +17,10 @@ Four references, in the order the questions arrive.
 ---
 
 ## 1. OVERVIEW
+
+This index exists so a reader never guesses which reference answers the question in hand.
+
+**When to Use**: at the start of a repo-rule task, to pick the file the current question belongs to.
 
 | Load | When |
 |------|------|

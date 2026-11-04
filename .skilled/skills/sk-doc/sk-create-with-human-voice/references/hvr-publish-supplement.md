@@ -9,20 +9,28 @@ trigger_phrases:
   - "point table"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Human Voice Rules: Publish Supplement
 
+A draft can pass every wording rule and still be unpublishable. This file supplies the numbers and the checklist that decide whether it ships.
+
+---
+
 ## 1. OVERVIEW
 
-This supplement is loaded after the wording standard, `hvr-rules.md`, and never alone. The base is what a reply loads. This supplement is what a published document adds.
+### Purpose
+
+The base is what a reply loads. This supplement is what a published document adds.
+
+### When to Use
+
+Load it after the wording standard, `hvr-rules.md`, and never alone.
 
 ---
 
 ## 2. SCORING
-
-- **Scoring:** Hard blockers cost -5 points. Soft deductions cost -2 or -1. Clean document starts at 100.
 
 A document starts at 100 points. Hard blockers (-5 each) and soft deductions (-2 or -1 each) reduce the score. Below 70 is a failing grade. Below 85 needs revision before publishing. That subtraction is the whole arithmetic, and `references/scoring-and-verification.md` section 3 owns it.
 
@@ -62,7 +70,11 @@ When a word or phrase appears in multiple categories, apply exactly one penalty 
 5. Soft deduction -1 (Section 8)
 6. Context flag (0, advisory)
 
-A term listed in both hard blocker and soft deduction is evaluated only as hard blocker. Context-dependent terms cleared as literal get no lower-tier penalty. Structural removal directives (cut_always modifiers in Section 4) are not scored penalties and apply independently.
+Three consequences follow:
+
+- A term listed in both hard blocker and soft deduction is evaluated only as hard blocker.
+- Context-dependent terms cleared as literal get no lower-tier penalty.
+- Structural removal directives (cut_always modifiers in Section 4) are not scored penalties and apply independently.
 
 ---
 
@@ -81,8 +93,6 @@ A clean document starts at 100 points and every finding subtracts from it. The t
 | **Voice** | 15% | Active voice, direct address, sentence rhythm, hedging, certainty |
 
 **Pass threshold:** 85+ (publish-ready). 70-84 (needs revision). Below 70 (failing, must rewrite).
-
-- **Document scan:** Cover the body and read the headers alone. Each header is a label of content, not a sentence. A reader scanning them alone can tell what each section holds. The failure it prevents: a document that cannot be scanned.
 
 ### Checklist
 
@@ -133,6 +143,8 @@ pre_publish_checklist:
     - "Complexity acknowledged, not flattened into neat categories"
 ```
 
+- **Document scan:** Cover the body and read the headers alone. Each header is a label of content, not a sentence. A reader scanning them alone can tell what each section holds. The failure it prevents: a document that cannot be scanned.
+
 ---
 
 ## 5. RELATED RESOURCES
@@ -151,4 +163,3 @@ pre_publish_checklist:
 
 ### Creation Guides
 - [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow and standards
-- [references/README.md](../../sk-create-readme/references/README.md) - README creation workflow

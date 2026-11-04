@@ -1,0 +1,9 @@
+.skilled/skills/system-deep-loop/README.md
+.skilled/skills/system-deep-loop/ROUTER.md
+.skilled/skills/system-deep-loop/SKILL.md
+.skilled/skills/system-deep-loop/shared/behavior-benchmark/README.md
+.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+.skilled/skills/system-deep-loop/shared/progress/README.md
+.skilled/skills/system-deep-loop/shared/rollout/README.md
+.skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md
+.skilled/skills/system-deep-loop/shared/synthesis/README.md

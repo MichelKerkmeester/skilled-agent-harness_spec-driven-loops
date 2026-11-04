@@ -1,0 +1,11 @@
+VERDICT: PASS
+
+All nine form findings land, and the frozen claims survive:
+
+- **README.md** — OVERVIEW now opens with `### What It Does`; the failure paragraph is split into a lede plus two bullets with every clause intact; the lifecycle is a four-step list matching `SKILL.md` §3; `### When To Use This Skill` sits before `### The Two Output Shapes` and before QUICK START; the architecture output is visible in `Produces`, the §2 paragraph and the §9 row; the two per-README gates and the playbook row are present. The §8 rows were run: `check_readme_references.py` reports `references=44 unresolved=0`, and `check_derived_readme_counts.py` reports `claims=0 failures=0`.
+- **ROUTER.md** — §1 is split into triggers, the three-template list and the fallback; the verbless §3 fragment is gone; the decision tree now precedes `### Smart Router Pseudocode` inside §3. `#3-machine-router` and the `Route by artifact type first, then by folder purpose` text are unchanged.
+- **SKILL.md** — the `UNKNOWN_FALLBACK` sentence is added in §2, and §8's groups render as `### ALWAYS`, `### NEVER`, `### HUMAN VOICE RULES`, `### ESCALATE IF` with no content change.
+- **References** — `quality-and-checklist.md`, `types-and-voice.md` and `writing-patterns.md` all open their overviews with Purpose, then When to Use, then Core Principle; the two packed paragraphs are now lists; the two intro replacements keep the old claims and replace only the contents-pointer tail with a hook.
+- **Mechanical evidence** — `render_*` warnings are zero on every scope file, `code_blocks_changed=0`, `block_count_mismatch=0`, `frontmatter_changed=0`, `citations_missing=0`. The inbound `#3-machine-router` anchor and every cited section number hold. The two citing line numbers shifted with the inserted sentences (`SKILL.md:59` → `61`, `writing-patterns.md:36` → `41`) and still point at the same references; recheck those two lines at commit.
+
+One residual, not a blocker for this readability pass: `assets/readme-template.md:38` still names `readme_code_template.md` inside the fenced decision tree. That P1 finding was applied and then the code-block guard restored the block, so the name remains at HEAD under the frozen-code-block rule. The fix log's claim that it was applied is inaccurate. Correct it in a separate content pass with an approved block if the dead name is to ship fixed.

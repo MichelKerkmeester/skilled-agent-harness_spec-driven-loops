@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council"
   - "deep-loop hub routing"
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # system-deep-loop
@@ -28,13 +28,13 @@ version: 1.6.5.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-The deep-loop workflows used to ship as five separate sibling skills over one backend. Five identities for one runtime meant the advisor had to disambiguate near-duplicates, and a shared fix had to be applied five times. This hub gives the family one advisor identity while keeping each workflow's logic intact in its own packet.
-
 ### What It Does
 
 `Skill(system-deep-loop)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `runtime/`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
+
+### Why This Skill Exists
+
+The deep-loop workflows used to ship as five separate sibling skills over one backend. Five identities for one runtime meant the advisor had to disambiguate near-duplicates, and a shared fix had to be applied five times. This hub gives the family one advisor identity while keeping each workflow's logic intact in its own packet.
 
 ---
 
@@ -79,9 +79,11 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 | `SKILL.md` | The routing hub, with no per-mode logic. |
 | `ROUTER.md` | The machine router: the hub's intent map, resource map and loading levels. |
 | `mode-registry.json` | The single source of truth for the three-tier discriminator. |
+| `hub-router.json` | Stage one's authored signals, vocabulary classes and tie-break order. |
 | `graph-metadata.json` | The one advisor identity for the whole skill. |
 | `package.json` | The skill-root manifest. It lets the mode packets' scripts outside `runtime/` depend on the spec-kit shared package instead of carrying their own parsers. |
 | `deep-research/`, `deep-review/`, `deep-ai-council/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
+| `runtime/` | The frozen, MCP-free backend layer every mode consumes: executor config, prompt-pack rendering, validation, atomic state, coverage graph and scoring. |
 | `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
 
 ### Commands and agents
@@ -100,7 +102,23 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `a
 
 ---
 
-## 6. RELATED DOCUMENTS
+## 6. ADDING A WORKFLOW MODE
+
+Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+
+- [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
+- [ ] **`leaf-manifest.json`**: regenerate the manifest so the new leaves resolve to canonical `(workflowMode, leafResourceId)` pairs.
+- [ ] **`description.json`**: add the new packet name as a description keyword.
+- [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
+- [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
+- [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
+- [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
+- [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
+- [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.
+
+---
+
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
@@ -108,17 +126,3 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `a
 | [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
 | [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
 | [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
-
----
-
-## 7. ADDING A WORKFLOW MODE
-
-Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
-
-- [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
-- [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
-- [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
-- [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
-- [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
-- [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
-- [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.

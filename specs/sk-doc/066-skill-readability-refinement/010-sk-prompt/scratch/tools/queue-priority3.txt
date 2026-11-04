@@ -1,0 +1,1 @@
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/009-sk-create-goal .skilled/skills/sk-doc/sk-create-goal mode repair

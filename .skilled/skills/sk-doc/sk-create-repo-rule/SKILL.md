@@ -143,3 +143,10 @@ git holds the history. Full ordering: `references/agents-md-integration.md` §6.
 
 Routed by [`references/README.md`](references/README.md). Load
 `references/decision-tests.md` first on every path; everything else is conditional.
+
+- [`references/decision-tests.md`](references/decision-tests.md): the four tests deciding whether a rule may exist and where refused content goes.
+- [`references/rule-anatomy.md`](references/rule-anatomy.md): the ten fixed elements, what varies and the length bands.
+- [`references/creation-standards.md`](references/creation-standards.md): the five reader tests deciding whether a well-formed rule earns its load.
+- [`references/agents-md-integration.md`](references/agents-md-integration.md): the three wiring points, the scope check and the create, revise and retire orderings.
+- [`assets/repo-rule-template.md`](assets/repo-rule-template.md): the blank a new rule is filled from.
+- [`assets/repo-rules-router-template.md`](assets/repo-rules-router-template.md): the router for a repository that has none.

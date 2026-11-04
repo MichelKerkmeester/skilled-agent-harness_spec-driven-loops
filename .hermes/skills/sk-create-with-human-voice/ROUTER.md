@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A request that names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice` reaches this packet, and so does a draft someone calls machine-written and a passage someone wants scored without edits. The resource families split with the operation: `apply` edits, so it reaches the scope gate, the scoring arithmetic and the report template, while `score` reports and stops at the scope gate and the arithmetic. `references/hvr-rules.md` sits outside both, because the scanner parses it on every run.
+A request that names the Human Voice Rules, a voice pass, a rewrite in human voice or `/create:with-human-voice` reaches this packet, and so does a draft someone calls machine-written and a passage someone wants scored without edits. The resource families split with the operation: `apply` edits, so it reaches the scope gate, the scoring arithmetic, the publish supplement and the report template, while `score` reports and loads the same four without editing. `references/hvr-rules.md` sits outside both, because the scanner parses it on every run.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -30,8 +30,8 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **APPLY** fires on "apply human voice", "rewrite in human voice", "make this sound human", "remove ai tells", "de-ai the writing" and "voice pass", at weight 5. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md` and `assets/voice-report-template.md`.
-- **SCORE** fires on "sounds ai-generated", "reads like ai wrote it", "ai writing tells", "how does this score" and "human voice rules", at weight 4. It loads `references/scope-and-exemptions.md` and `references/scoring-and-verification.md`.
+- **APPLY** fires on "apply human voice", "rewrite in human voice", "make this sound human", "remove ai tells", "de-ai the writing" and "voice pass", at weight 5. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md`, `references/hvr-publish-supplement.md` and `assets/voice-report-template.md`.
+- **SCORE** fires on "sounds ai-generated", "reads like ai wrote it", "ai writing tells", "how does this score" and "human voice rules", at weight 4. It loads `references/scope-and-exemptions.md`, `references/scoring-and-verification.md`, `references/hvr-publish-supplement.md` and `assets/voice-report-template.md`.
 
 A request that scores below 4 on both keys loads `references/scope-and-exemptions.md` alone and returns `UNKNOWN_FALLBACK` with the checklist in the block below, because what may be touched is worth answering before the operation settles. The loading-levels table adds `references/hvr-rules.md` on every path, and `references/hvr-publish-supplement.md` when a document is scored or published.
 

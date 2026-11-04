@@ -1,0 +1,287 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/README.md b/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
+index be7ff4a36d3..9eeafa27627 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
+@@ -94,9 +94,23 @@ Sections and dividers match in all nine shipped rules and in the router. The com
+ 
+ The four decision tests load on every path, including retirement, because "should this exist" and "should this still exist" are the same four questions.
+ 
+-Test 1 asks what must bind on a turn where no trigger fires. Content that holds unconditionally cannot live behind a trigger, so it belongs in `AGENTS.md` instead. Test 2 checks the router's scope statement, which puts routing out of bounds: which skill, which command, which model, which flags. Test 3 runs four conditions covering single rows, content another rule already carries and proposals with nothing to load them. Test 4 asks what fails today without the rule.
+-
+-Survive all four and the anatomy reference and template load. You fill ten fixed elements: six-key frontmatter in one order, a title line, a routed-from line, a line stating the rule expands `AGENTS.md` and never overrides it, the actions that fire it, one bold sentence carrying the obligation, a numbered body in capitals, one divider per numbered section, a closing self-check and a link back to the router.
++- **Test 1** asks what must bind on a turn where no trigger fires. Content that holds unconditionally cannot live behind a trigger, so it belongs in `AGENTS.md` instead.
++- **Test 2** checks the router's scope statement, which puts routing out of bounds: which skill, which command, which model, which flags.
++- **Test 3** runs four conditions covering single rows, content another rule already carries and proposals with nothing to load them.
++- **Test 4** asks what fails today without the rule.
++
++Survive all four and the anatomy reference and template load. You fill ten fixed elements:
++
++- six-key frontmatter in one order
++- a title line
++- a routed-from line
++- a line stating the rule expands `AGENTS.md` and never overrides it
++- the actions that fire it
++- one bold sentence carrying the obligation
++- a numbered body in capitals
++- one divider per numbered section
++- a closing self-check
++- a link back to the router
+ 
+ Then five reader tests decide whether the draft earns its load. Structure is checkable and it is not the bar. A rule can satisfy every assertion above and still say nothing you would change your behaviour over. None of those five can be automated, so a person has to read the draft and answer them.
+ 
+@@ -186,6 +200,8 @@ A: No. Every refusal except the restraint one names a destination. The restraint
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Runtime instructions, the create, revise and retire orderings |
++| [`ROUTER.md`](./ROUTER.md) | Machine router: intent model, resource map and loading levels |
++| [`references/README.md`](./references/README.md) | The index over the four references, in the order the questions arrive |
+ | [`references/decision-tests.md`](./references/decision-tests.md) | The four tests deciding whether a rule may exist and where refused content goes |
+ | [`references/rule-anatomy.md`](./references/rule-anatomy.md) | The ten fixed elements, what varies and the length bands |
+ | [`references/creation-standards.md`](./references/creation-standards.md) | The five reader tests deciding whether a well-formed rule earns its load |
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md b/.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
+index 507144adb41..df091d6a2a2 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/ROUTER.md
+@@ -20,7 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they ask for a repo rule, a project rule, a `REPO RULES.md` row or `/create:repo-rule`, when a recurring failure needs a constraint that binds before an action, when an existing rule no longer matches how the work is done or nothing it prevents still happens, and when a repository needs a rule router because it has none. It routes to two resource families: `references/`, which opens at `references/decision-tests.md` on every path and continues through the rule anatomy, the creation standards and the `AGENTS.md` wiring orderings, and `assets/`, the blank rule template and the router template a repository with no `REPO RULES.md` needs before any rule can load.
++Requests reach this skill when they ask for a repo rule, a project rule, a `REPO RULES.md` row or `/create:repo-rule`, when a recurring failure needs a constraint that binds before an action, when an existing rule no longer matches how the work is done or nothing it prevents still happens, and when a repository needs a rule router because it has none.
++
++It routes to two resource families:
++
++- `references/`, which opens at `references/decision-tests.md` on every path and continues through the rule anatomy, the creation standards and the `AGENTS.md` wiring orderings.
++- `assets/`, the blank rule template and the router template a repository with no `REPO RULES.md` needs before any rule can load.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md b/.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
+index ad0420c7ed2..82f898dbfae 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/SKILL.md
+@@ -143,3 +143,10 @@ git holds the history. Full ordering: `references/agents-md-integration.md` §6.
+ 
+ Routed by [`references/README.md`](references/README.md). Load
+ `references/decision-tests.md` first on every path; everything else is conditional.
++
++- [`references/decision-tests.md`](references/decision-tests.md): the four tests deciding whether a rule may exist and where refused content goes.
++- [`references/rule-anatomy.md`](references/rule-anatomy.md): the ten fixed elements, what varies and the length bands.
++- [`references/creation-standards.md`](references/creation-standards.md): the five reader tests deciding whether a well-formed rule earns its load.
++- [`references/agents-md-integration.md`](references/agents-md-integration.md): the three wiring points, the scope check and the create, revise and retire orderings.
++- [`assets/repo-rule-template.md`](assets/repo-rule-template.md): the blank a new rule is filled from.
++- [`assets/repo-rules-router-template.md`](assets/repo-rules-router-template.md): the router for a repository that has none.
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md b/.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md
+index 587caf5a946..d9da184ab67 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/references/README.md
+@@ -18,6 +18,10 @@ Four references, in the order the questions arrive.
+ 
+ ## 1. OVERVIEW
+ 
++This index exists so a reader never guesses which reference answers the question in hand.
++
++**When to Use**: at the start of a repo-rule task, to pick the file the current question belongs to.
++
+ | Load | When |
+ |------|------|
+ | [`decision-tests.md`](decision-tests.md) | **First, always.** Four gates deciding whether a request may become a rule at all. Most requests stop here |
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md b/.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+index d55739ab51a..acd270f4106 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md
+@@ -26,6 +26,12 @@ The router's trigger table is the only thing that **loads** one; the pointer fro
+ governed `AGENTS.md` section is the only thing that makes it **findable at the moment
+ of need**.
+ 
++**When to Use**:
++
++- Wiring an accepted rule: the trigger row, the index row and the governed-section pointer.
++- Revising a rule, especially when the firing condition changed.
++- Retiring a rule, in the order that leaves nothing pointing at a deleted file.
++
+ ---
+ 
+ ## 2. THE THREE WIRING POINTS
+@@ -37,11 +43,16 @@ of need**.
+ | **Governed-section pointer** | The `AGENTS.md` section it expands | The rule is discoverable at session start and invisible at the moment of need. This is the one people skip |
+ 
+ **Required:** every shipped rule has its trigger row and its index row, and
+-`check-repo-rules.cjs` fails the corpus when either is missing. The governed-section
+-pointer is the default, not a gate: a rule that expands an `AGENTS.md` section gets a
+-pointer there, and a rule governing two areas gets one in each. A rule whose subject no
+-`AGENTS.md` section states is reached through its trigger row alone. Count the live
+-pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number written here.
++`check-repo-rules.cjs` fails the corpus when either is missing.
++
++- **A rule that expands an `AGENTS.md` section** gets a pointer there, and a rule
++  governing two areas gets one in each. The governed-section pointer is the default, not
++  a gate.
++- **A rule whose subject no `AGENTS.md` section states** is reached through its trigger
++  row alone.
++
++Count the live pointers with `grep -c <rule-file> AGENTS.md` rather than trusting a number
++written here.
+ 
+ ---
+ 
+@@ -58,16 +69,20 @@ anyone looked:
+ 
+ All four were caught and the boundary was widened deliberately each time, the third
+ being the narrow routing carve-out that admits verifying wiring you changed while still
+-refusing route selection. **A fifth widening that admitted selection itself would
+-dissolve the boundary the set exists to hold** — if the scope statement excludes a
+-proposal, that is a refusal, not a paperwork problem. The mode does not widen §4
+-unilaterally; that is an operator decision, and each of the four was one.
++refusing route selection.
++
++**A fifth widening that admitted selection itself would dissolve the boundary the set
++exists to hold:** if the scope statement excludes a proposal, that is a refusal, not a
++paperwork problem. The mode does not widen §4 unilaterally; that is an operator decision,
++and each of the four was one.
+ 
+ ---
+ 
+ ## 4. CREATE
+ 
+-Order matters, and it is chosen so an interruption is survivable.
++Order matters, and it is chosen so an interruption is survivable. A repository with no
++`REPO RULES.md` gets its router emitted first, from `assets/repo-rules-router-template.md`
++(§8), because no router means no rule can load.
+ 
+ 1. **Scope check** (§3 above). Refuse here if it fails.
+ 2. **Write the rule file.** First, deliberately.
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md b/.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+index 9f61ae91664..1bd8c6d8b3f 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md
+@@ -27,6 +27,15 @@ These five tests are read out of what the shipped corpus already does. Every one
+ across the corpus. Each is a question a reviewer answers by reading; none can be automated, and
+ that limit is the reason they live here rather than in the structural floor.
+ 
++**When to Use**:
++
++- Before finishing a draft rule, once it is shaped like a rule.
++- Reviewing a rule that passes every structural check and still reads as filler.
++- Deciding whether a section, a trigger phrase, a binding sentence, a self-check item or a misreading guard earns its place.
++
++**Not a gate on whether the rule may exist**: that is `decision-tests.md`, and it runs
++first. These standards assume the rule has already earned the right to be written.
++
+ ---
+ 
+ ## 2. THE SECTION TEST
+@@ -153,8 +162,6 @@ Each is an observed failure, not a preference.
+ 
+ - **Not a scoring rubric.** There is no number. Every test needs a reader, and a checkable
+   proxy would measure the proxy.
+-- **Not a gate on whether the rule may exist** — that is `decision-tests.md`, and it runs
+-  first. These standards assume the rule has already earned the right to be written.
+ - **Not licence to hold a draft to a bar the corpus does not meet.** Every test here passes
+   on every shipped rule. A proposed sixth standard that they fail is a wrong standard.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md b/.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+index ecad7cf518b..9fe70c8fb45 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/references/decision-tests.md
+@@ -22,6 +22,17 @@ matters once these four pass.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++An admitted proposal becomes a rule file; a refused one moves to the surface that should
++carry its content, or is recorded with its reason when no surface should.
++
++### When to Use
++
++- Before drafting a rule, and before refusing a request for one.
++- When a proposal reads well but nobody can name what fails today without it.
++- When content needs a home and it is unclear whether a rule file is the right one.
++
+ Each test is recovered from the phase record that established it, not restated from
+ memory.
+ 
+@@ -130,18 +141,18 @@ Refusing is not the end of the decision. Every refusal routes somewhere:
+ |------------|-----------|
+ | Test 1, always-loaded | `AGENTS.md`, as a compressed row |
+ | Test 2, routing | `AGENTS.md` §2, or the skill its router resolves |
+-| Test 3 part 2, has a home | A new section inside the rule that already owns it |
+ | Test 3 part 1, single row | A section, not a file |
++| Test 3 part 2, has a home | A new section inside the rule that already owns it |
+ | Test 4, restraint | Nowhere. Record the refusal with its reason so it is not re-proposed |
+ 
+-**Record every refusal with the test it failed.** A declined proposal with a written
+-reason is what stops the same suggestion arriving next quarter with nobody remembering
+-why it was refused.
+-
+ **Where the record lives:** the decision record of the spec packet that owns the rule
+ set for that repository. Spec folders are where this repository keeps refusal history,
+ diffed and archived with the work, and the rule files and the router stay free of it.
+ 
++**Record every refusal with the test it failed.** A declined proposal with a written
++reason is what stops the same suggestion arriving next quarter with nobody remembering
++why it was refused.
++
+ ---
+ 
+ ## 7. SELF-CHECK
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md b/.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+index 763e505f264..a872f95bc1b 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/references/rule-anatomy.md
+@@ -20,16 +20,38 @@ shipped rule.
+ 
+ Corpus figures are deliberately not restated here. To see the current ones, run
+ `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` (the
+-corpus checker) from the repository root. Its eleven checks report count parity, link wiring,
+-trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule-body
+-links, fires-when sections, index summaries against each rule's description,
+-fires-when coverage (every Fires-when bullet named in its router row), and card sync
+-(every committed card under `cards/` equal to the card `build-rule-cards.cjs` renders from
+-its rule) for the corpus as it stands.
++corpus checker) from the repository root. For the corpus as it stands, its eleven checks
++report:
++
++- count parity
++- link wiring
++- trigger-phrase uniqueness
++- the line ceiling
++- frontmatter keys
++- divider parity
++- rule-body links
++- fires-when sections
++- index summaries against each rule's description
++- fires-when coverage (every Fires-when bullet named in its router row)
++- card sync (every committed card under `cards/` equal to the card
++  `build-rule-cards.cjs` renders from its rule)
+ 
+ ---
+ 
+-## 1. OVERVIEW: WHAT A REPO RULE IS
++## 1. OVERVIEW
++
++### Purpose
++
++A generated rule carries every fixed element, varies the rest with its subject, and lands
++inside a length band.
++
++### When to Use
++
++- Writing a new rule from the template.
++- Reviewing a shipped rule for a missing MUST element.
++- Checking a draft's length before adding another section.
++
++### What a Repo Rule Is
+ 
+ A repo rule **supplements the harness**. It is not a law and not a contract with the
+ runtime: it can be overridden by an explicit operator instruction, changed when it stops
+@@ -113,7 +135,7 @@ explanation should be looked at.
+ 
+ ---
+ 
+-## 5. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
++## 5. INTER-RULE CROSS-REFERENCES
+ 
+ Every rule links back to the router, and sideways links between rules stay few next to
+ the doctrine each rule holds. `check-repo-rules.cjs` reports the live link count, so this

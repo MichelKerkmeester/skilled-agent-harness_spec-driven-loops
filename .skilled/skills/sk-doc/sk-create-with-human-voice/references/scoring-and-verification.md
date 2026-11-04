@@ -9,7 +9,7 @@ trigger_phrases:
   - "mechanical versus judgment findings"
 importance_tier: important
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Voice Scoring And Verification
@@ -24,9 +24,8 @@ rewrite actually landed.
 
 ### Purpose
 
-The standard sets the penalties. This document sets the order they are applied in, the
-arithmetic that stops one word being charged twice, and the check that proves a rewrite
-landed rather than only claiming it.
+A pass that produces a number a reader can defend, and the evidence that shows how it was
+reached.
 
 ### When to Use
 
@@ -64,24 +63,29 @@ Nothing in this list can be settled by a pattern, so a reader settles all of it:
 - Content habits: banned metaphors used as metaphors, vague generalisations, significance inflation, generic positive conclusions.
 - Voice: active voice, direct address, sentence rhythm, opinions the writer actually holds.
 
-The scanner prints this list on every run so the reader cannot mistake a clean mechanical
+The scanner prints its own list on every run so the reader cannot mistake a clean mechanical
 result for a clean document.
 
 ---
 
 ## 3. THE ARITHMETIC
 
-A document starts at 100. Findings subtract. The standard's precedence rule (its section
-5) settles what happens when one span matches several rules.
+A document starts at 100. Findings subtract. The publish supplement's precedence rule (its
+section 3) settles what happens when one span matches several rules.
 
-This is the only arithmetic. The standard's sections 1 and 9 also carry a table of
-category shares, and that table allocates a reader's attention across the judgment pass
+This is the only arithmetic. The publish supplement's sections 2 and 4 also carry tables of
+category shares, and those tables allocate a reader's attention across the judgment pass
 rather than computing anything. No run multiplies a finding by a share, and no run
 combines the two.
 
-**One occurrence, one penalty, first match wins.** The order is: hard phrase blocker,
-then hard word blocker, then context-dependent when metaphorical, then a soft two-point
-deduction, then a soft one-point deduction, then an advisory flag worth nothing.
+**One occurrence, one penalty, first match wins.** The order:
+
+1. Hard phrase blocker.
+2. Hard word blocker.
+3. Context-dependent when metaphorical.
+4. Soft two-point deduction.
+5. Soft one-point deduction.
+6. Advisory flag worth nothing.
 
 Two consequences worth stating outright.
 
@@ -97,20 +101,20 @@ span that wraps across two lines is masked as well: the scanner pairs backticks 
 paragraph and stops at the blank line, which is where Markdown ends a code span too. An
 unmatched backtick therefore blanks nothing past its own paragraph.
 
-**Transitions are counted, not charged.** `however`, `furthermore`, `moreover`,
+**Transitions are counted, not charged per use.** `however`, `furthermore`, `moreover`,
 `additionally` and `consequently` cost a point only from the third use of the same word
 onward. The scanner implements this. A hand count usually gets it wrong.
 
 ### Bands
+
+For a document past roughly 400 lines, report the hard-blocker count and the deduction
+density instead of a band. `scope-and-exemptions.md` section 5 says why.
 
 | Score | Meaning |
 |---|---|
 | 85 and above | Publish |
 | 70 to 84 | Revise before publishing |
 | Below 70 | Rewrite |
-
-For a document past roughly 400 lines, report the hard-blocker count and the deduction
-density instead. `scope-and-exemptions.md` section 5 says why.
 
 ---
 

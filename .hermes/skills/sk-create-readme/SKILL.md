@@ -52,6 +52,8 @@ The artifact decides the template before the folder decides the sections.
 Authoring starts from the matching template: `assets/readme-template.md` for a general README, `assets/readme-code-template.md` for a source-code folder, and `assets/architecture-template.md` for a skill package's `ARCHITECTURE.md`.
 `references/README.md` is the fallback route map when the artifact type or folder purpose is unclear.
 
+When nothing matches, report `UNKNOWN_FALLBACK` with the router's disambiguation checklist instead of guessing.
+
 Read [`ROUTER.md`](../../../.skilled/skills/sk-doc/sk-create-readme/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
@@ -242,7 +244,7 @@ Pre-publish checks for READMEs:
 
 ## 8. WRITING RULES
 
-Always:
+### ALWAYS
 
 - Read the target folder and nearby docs before writing.
 - Choose the README type before choosing a template.
@@ -254,7 +256,7 @@ Always:
 - Use tables for file maps, options, comparisons and troubleshooting.
 - Keep `README.md` and `SKILL.md` casing intact.
 
-Never:
+### NEVER
 
 - Add a Table of Contents or anchor-comment navigation.
 - Leave template placeholders in the final document.
@@ -263,7 +265,7 @@ Never:
 - Force Quick Start, Features, FAQ or Troubleshooting into a code-folder README when the folder only needs orientation.
 - Create `graph-metadata.json` in this packet.
 
-Human Voice Rules apply:
+### HUMAN VOICE RULES
 
 - No em dashes. Use commas, periods or colons.
 - No semicolons. Split the sentence or use "and".
@@ -273,7 +275,7 @@ Human Voice Rules apply:
 - Prefer active voice and direct verbs.
 - Use analogies only when they clarify narrative sections. Do not use analogies in component or code-folder READMEs.
 
-Escalate if:
+### ESCALATE IF
 
 - The target folder purpose or audience is unclear.
 - The README would require product, brand or public-facing claims that are not in the repo.

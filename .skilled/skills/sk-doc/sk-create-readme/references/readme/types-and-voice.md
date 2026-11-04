@@ -9,7 +9,7 @@ trigger_phrases:
   - "component readme voice"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # README Types and Voice
@@ -20,16 +20,21 @@ Overflow detail behind `SKILL.md` Section 4 (README authoring). Use it to choose
 
 ## 1. OVERVIEW
 
+### Purpose
+
 A README answers "What is this?" and "How do I use it?" in a scannable, progressive format. The type and voice decisions below shape every section that follows, so make them before copying a template.
 
-**Core Principle**: Help users succeed in under 2 minutes, then provide depth for those who need it.
+The README type decision tree lives in `ROUTER.md` Section 3. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
 
-**When to Use**:
+### When to Use
+
 - Deciding which of the five README types a folder needs
 - Setting how much a reader gets at each disclosure stage
 - Splitting narrative and reference voice inside one file
 
-The README type decision tree lives in `ROUTER.md` Section 3. This reference covers the type table, disclosure stages and voice split that the tree feeds into.
+### Core Principle
+
+Help users succeed in under 2 minutes, then provide depth for those who need it.
 
 ---
 
@@ -49,7 +54,13 @@ Project, Skill and Feature READMEs use both voice tiers. Component and Code Fold
 
 One Project README is also the repository's front page: `/README.md`. It may use the marketing register: value-first ordering and benefit-led headings, with decorative emoji on section headings, because its job is to win the reader's attention in seconds.
 
-Every other README, including Skill and Feature, keeps the technical register for formatting: numbered ALL-CAPS sections, tables for lookups and only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. The writing voice may still borrow the front page's engagement: a skill README may open with a pitch and benefit-led bullets before the technical detail. It explains rather than sells, and it never copies the decorative section emoji.
+Every other README, including Skill and Feature, keeps the technical register for formatting:
+
+- Numbered ALL-CAPS sections.
+- Tables for lookups.
+- Only semantic emoji (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers.
+
+The writing voice may still borrow the front page's engagement: a skill README may open with a pitch and benefit-led bullets before the technical detail. It explains rather than sells, and it never copies the decorative section emoji.
 
 ---
 

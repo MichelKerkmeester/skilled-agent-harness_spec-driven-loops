@@ -1,0 +1,402 @@
+diff --git a/.skilled/skills/system-deep-loop/README.md b/.skilled/skills/system-deep-loop/README.md
+index 5c45789b63b..48f2015eee2 100644
+--- a/.skilled/skills/system-deep-loop/README.md
++++ b/.skilled/skills/system-deep-loop/README.md
+@@ -28,14 +28,14 @@ version: 1.6.5.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-The deep-loop workflows used to ship as five separate sibling skills over one backend. Five identities for one runtime meant the advisor had to disambiguate near-duplicates, and a shared fix had to be applied five times. This hub gives the family one advisor identity while keeping each workflow's logic intact in its own packet.
+-
+ ### What It Does
+ 
+ `Skill(system-deep-loop)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `runtime/`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
+ 
++### Why This Skill Exists
++
++The deep-loop workflows used to ship as five separate sibling skills over one backend. Five identities for one runtime meant the advisor had to disambiguate near-duplicates, and a shared fix had to be applied five times. This hub gives the family one advisor identity while keeping each workflow's logic intact in its own packet.
++
+ ---
+ 
+ ## 3. QUICK START
+@@ -79,9 +79,11 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
+ | `SKILL.md` | The routing hub, with no per-mode logic. |
+ | `ROUTER.md` | The machine router: the hub's intent map, resource map and loading levels. |
+ | `mode-registry.json` | The single source of truth for the three-tier discriminator. |
++| `hub-router.json` | Stage one's authored signals, vocabulary classes and tie-break order. |
+ | `graph-metadata.json` | The one advisor identity for the whole skill. |
+ | `package.json` | The skill-root manifest. It lets the mode packets' scripts outside `runtime/` depend on the spec-kit shared package instead of carrying their own parsers. |
+ | `deep-research/`, `deep-review/`, `deep-ai-council/` | The active mode packets, each with its own `SKILL.md`, references, scripts, assets and governance. |
++| `runtime/` | The frozen, MCP-free backend layer every mode consumes: executor config, prompt-pack rendering, validation, atomic state, coverage graph and scoring. |
+ | `shared/synthesis/` | Synthesis helpers shared across modes, such as resource-map emission. |
+ 
+ ### Commands and agents
+@@ -100,25 +102,27 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `a
+ 
+ ---
+ 
+-## 6. RELATED DOCUMENTS
+-
+-| Document | Purpose |
+-|---|---|
+-| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
+-| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
+-| [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
+-| [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
+-
+----
+-
+-## 7. ADDING A WORKFLOW MODE
++## 6. ADDING A WORKFLOW MODE
+ 
+ Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+ 
+ - [ ] **`mode-registry.json`**: add the mode's registry entry: `workflowMode`, `runtimeLoopType` (or explicit `null`), `backendKind`, `packet`, `packetKind`, `toolSurface`, `advisorRouting`, and `aliases`.
++- [ ] **`leaf-manifest.json`**: regenerate the manifest so the new leaves resolve to canonical `(workflowMode, leafResourceId)` pairs.
++- [ ] **`description.json`**: add the new packet name as a description keyword.
+ - [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
+ - [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
+ - [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
+ - [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
+ - [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
+ - [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.
++
++---
++
++## 7. RELATED DOCUMENTS
++
++| Document | Purpose |
++|---|---|
++| [`SKILL.md`](./SKILL.md) | Runtime instructions and routing logic. |
++| [`ROUTER.md`](./ROUTER.md) | Stage-two surface router: deep-loop intent to the exact leaf resources the selected mode loads. |
++| [`mode-registry.json`](./mode-registry.json) | The three-tier discriminator for every mode. |
++| [`deep-ai-council/SKILL.md`](./deep-ai-council/SKILL.md) | An example mode packet. |
+diff --git a/.skilled/skills/system-deep-loop/ROUTER.md b/.skilled/skills/system-deep-loop/ROUTER.md
+index d675ab3459f..672f9174733 100644
+--- a/.skilled/skills/system-deep-loop/ROUTER.md
++++ b/.skilled/skills/system-deep-loop/ROUTER.md
+@@ -127,15 +127,6 @@ That router is a benchmark/replay artifact, mirroring sk-prompt/sk-code. It maps
+ The surface layer never re-decides the mode and is not a runtime hub discovery surface.
+ The hub still routes by `workflowMode` through `mode-registry.json` alone.
+ 
+-### Note on the `allowed-tools` grant in `SKILL.md`'s frontmatter
+-
+-The hub's own routing logic is read-only: it classifies, guards a path and loads a packet.
+-Under the two-axis hub canon contract, a hub's `allowed-tools` list MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json`.
+-This hard invariant is enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces").
+-Narrowing `SKILL.md`'s frontmatter grant to what routing-only logic needs would fail that check.
+-It would also break every mode whose `toolSurface` is not a subset of the narrowed list.
+-Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
+-
+ ### The three-tier discriminator
+ - **`workflowMode`** — the public active mode key: `research`, `review`, and `ai-council`.
+ - **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
+@@ -162,18 +153,25 @@ else:
+   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
+ ```
+ 
+-Before router-driven loads call `load()`, use `_guard_in_skill(relative_path)`.
+-Reject paths that escape this skill or do not end in `.md`.
+-Before loading, check `if packet_base.exists()` and `if packet_skill.exists()`.
+-The fallback must name the unresolved `workflowMode` when known and avoid loading any guessed packet.
+-Ask the operator to provide one of the registered modes or the matching `/deep:*` command.
+-
+-Intent classification favors the single dominant active deep-loop mode.
+-A mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier.
+-The legacy advisor projection maps stay hardcoded and drift-guarded against the registry.
+-The command files remain static routers with hardcoded asset/mode routing. Neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+-
+-Per-mode behavior is **not flattened**.
+-Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review/ai-council are code/inward-only.
+-This hub preserves exactly one `graph-metadata.json`, so the advisor discovers exactly one skill identity.
+-That remains true whether a mode is reached through the hub `Skill()`, a `/deep:*` command or an agent.
++- Before router-driven loads call `load()`, use `_guard_in_skill(relative_path)`.
++  Reject paths that escape this skill or do not end in `.md`.
++  Before loading, check `if packet_base.exists()` and `if packet_skill.exists()`.
++- The fallback must name the unresolved `workflowMode` when known and avoid loading any guessed packet.
++  Ask the operator to provide one of the registered modes or the matching `/deep:*` command.
++- Intent classification favors the single dominant active deep-loop mode.
++  A mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier.
++  The legacy advisor projection maps stay hardcoded and drift-guarded against the registry.
++  The command files remain static routers with hardcoded asset/mode routing. Neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
++- Per-mode behavior is **not flattened**.
++  Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review/ai-council are code/inward-only.
++  This hub preserves exactly one `graph-metadata.json`, so the advisor discovers exactly one skill identity.
++  That remains true whether a mode is reached through the hub `Skill()`, a `/deep:*` command or an agent.
++
++### Note on the `allowed-tools` grant in `SKILL.md`'s frontmatter
++
++The hub's own routing logic is read-only: it classifies, guards a path and loads a packet.
++Under the two-axis hub canon contract, a hub's `allowed-tools` list MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json`.
++This hard invariant is enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces").
++Narrowing `SKILL.md`'s frontmatter grant to what routing-only logic needs would fail that check.
++It would also break every mode whose `toolSurface` is not a subset of the narrowed list.
++Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
+diff --git a/.skilled/skills/system-deep-loop/SKILL.md b/.skilled/skills/system-deep-loop/SKILL.md
+index 323cef2973f..687904eb5a3 100644
+--- a/.skilled/skills/system-deep-loop/SKILL.md
++++ b/.skilled/skills/system-deep-loop/SKILL.md
+@@ -89,11 +89,12 @@ Its legacy public surfaces, the `/deep:ai-council` command and the `ai-council`
+ ### Backend
+ All modes consume `runtime/`, a frozen, MCP-free layer.
+ It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the council primitives.
+-The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
+-It compares a backend's judgment with the operator's labels and makes no model call by default.
+-Until the operator has labeled 40 pairs, 10 of them cross-body, it prints `stop: fewer than 40 labeled pairs`.
+-It runs its `--jev` arm only with `--out <dir>` and past that backend's own gate.
+-It leaves the merge unchanged.
++
++- The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
++- It compares a backend's judgment with the operator's labels and makes no model call by default.
++- Until the operator has labeled 40 pairs, 10 of them cross-body, it prints `stop: fewer than 40 labeled pairs`.
++- It runs its `--jev` arm only with `--out <dir>` and past that backend's own gate.
++- It leaves the merge unchanged.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/shared/behavior-benchmark/README.md b/.skilled/skills/system-deep-loop/shared/behavior-benchmark/README.md
+index c33eb06306a..955c5e576ff 100644
+--- a/.skilled/skills/system-deep-loop/shared/behavior-benchmark/README.md
++++ b/.skilled/skills/system-deep-loop/shared/behavior-benchmark/README.md
+@@ -41,4 +41,4 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
+ node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
+ ```
+ 
+-Runs hermetically against a fake executor leg. No live model session required. See `tests/README.md`.
++Runs hermetically against a fake executor leg. No live model session required. Expected: `behavior-bench-run.test.cjs: all assertions passed`. See `tests/README.md`.
+diff --git a/.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md b/.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+index 3aa8550a512..41075986b8f 100644
+--- a/.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
++++ b/.skilled/skills/system-deep-loop/shared/behavior-benchmark/framework.md
+@@ -15,7 +15,15 @@ importance_tier: high
+ contextType: implementation
+ ---
+ 
+-## PURPOSE
++# Deep-Loop Behavior Benchmark Framework
++
++Open this file before authoring a scenario, scoring a run or calibrating a benchmark round.
++
++---
++
++## 1. OVERVIEW
++
++### Purpose
+ 
+ This document is the single-source measurement contract for the active
+ `behavior_benchmark` packages carried by the deep-loop workflow sub-skills
+@@ -26,6 +34,14 @@ measurement is a single run of one scenario against one executor, scored on a
+ fixed rubric and classified into exactly one terminal bucket. This file is
+ normative: where a package's own notes diverge, this framework prevails.
+ 
++### When to Use
++
++- Authoring or reviewing a scenario contract.
++- Scoring a captured run against D1-D5 and assigning its terminal bucket.
++- Calibrating budgets, watchdogs, reruns or fixture isolation.
++
++### Boundaries
++
+ The behavior_benchmark charter is deliberately distinct from its sibling
+ efforts, and authors must keep them from colliding:
+ 
+@@ -41,14 +57,14 @@ system by hand, or scores against fixtures.
+ 
+ ---
+ 
+-## SCENARIO CONTRACT SCHEMA
++## 2. SCENARIO CONTRACT SCHEMA
+ 
+ Each scenario is one markdown file. Its **first fenced ```` ```json ```` block is
+ the machine contract**; everything below it is human context for the author and
+ reviewer. The runner parses only the first JSON block. Additional JSON blocks in
+ the same file are ignored by the runner and treated as prose illustrations.
+ 
+-## SCHEMA VERSIONING
++### Schema versioning
+ 
+ Schema v1 remains the default. A scenario opts into schema v2 only by declaring
+ `"schema_version": 2`; missing values, `1`, and every other value use the v1
+@@ -111,7 +127,27 @@ runner; it exists to disambiguate close calls during scoring.
+ 
+ ---
+ 
+-## SCORING RUBRIC
++## 3. DELEGATION EVIDENCE KINDS
++
++Not every mode delegates by dispatching a LEAF sub-agent. `expected_delegation.evidence_kind`
++selects how D3 (delegation) is measured and what counts as `role_absorption`:
++
++| Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
++| --- | --- | --- | --- | --- |
++| `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
++| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
++| `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
++
++The critical property: the **common ai-council case is IN-CLI** — its seats are the active
++runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
++delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
++the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
++seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
++`task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
++
++---
++
++## 4. SCORING RUBRIC
+ 
+ Every run is scored on five dimensions. Each dimension yields `0`, `1`, `2`, or
+ `null` (where the dimension does not apply). Scores are assigned by the scorer
+@@ -170,7 +206,7 @@ Scored only when a baseline result exists for the same scenario cell.
+ 
+ ---
+ 
+-## CLASSIFICATION TAXONOMY
++## 5. CLASSIFICATION TAXONOMY
+ 
+ > Ordering note: role_absorption is checked before refused, so refusal-shaped
+ > words inside absorbed work cannot relabel it. In schema v2,
+@@ -201,7 +237,7 @@ them (e.g. a `crash` run should also score D4 = 0).
+ 
+ ---
+ 
+-## BUDGET POLICY
++## 6. BUDGET POLICY
+ 
+ The per-scenario hard budget `budget_ms` is derived from the Claude baseline:
+ 
+@@ -227,7 +263,7 @@ still producing events or writing artifacts is instead classified
+ 
+ ---
+ 
+-## RERUN POLICY
++## 7. RERUN POLICY
+ 
+ The default is **one sample per scenario x executor cell**, with provenance
+ marked `single-sample`. A cell is "contested" when its result is surprising
+@@ -241,27 +277,7 @@ with the reason it was triggered.
+ 
+ ---
+ 
+-## DELEGATION EVIDENCE KINDS
+-
+-Not every mode delegates by dispatching a LEAF sub-agent. `expected_delegation.evidence_kind`
+-selects how D3 (delegation) is measured and what counts as `role_absorption`:
+-
+-| Kind | Modes | Delegation evidence | D3 = 2 when | role_absorption when |
+-| --- | --- | --- | --- | --- |
+-| `task_dispatch` (default) | research, review | Structured `Agent`/`task` tool-call events + route-proof records | task events ≥ `min_task_events` (and route proof matches `leaf_agent` if required) | `role_absorption_forbidden` and `min_task_events > 0` and a work product was produced with ZERO task events |
+-| `seat_artifacts` | ai-council | Distinct seat ids (`seat-001`, `seat-002`, …) named in the persisted `ai-council/` artifacts (deliberation, council-report, state JSONL) — seats are sections/identifiers WITHIN the artifacts, not separate files | distinct seats ≥ `min_seats` | `role_absorption_forbidden` and a plan/report was produced naming ZERO seats |
+-| `direct_dispatch` (v2) | command and direct-dispatch families | Case-insensitive stdout-line events matching `expected_targets`, checked against `forbidden_targets`; each target is a literal substring or `/regex/[flags]` matcher | expected-target events ≥ `min_task_events` (default `1`) and ZERO forbidden-target events | `role_absorption_forbidden`, fixture work was produced, and expected-target evidence is absent |
+-
+-The critical property: the **common ai-council case is IN-CLI** — its seats are the active
+-runtime's own models, so a correct council run has ZERO task-dispatch events. Scoring council
+-delegation on task events would flag every correct run as absorption. `seat_artifacts` measures
+-the persisted seat outputs instead, so a legit in-CLI council that convened and persisted its
+-seats has evidence and is NOT flagged; a council that emitted a plan without seat diversity is.
+-`task_dispatch` behavior is unchanged — contracts without `evidence_kind` score exactly as before.
+-
+----
+-
+-## POSTCONDITION PROBES
++## 8. POSTCONDITION PROBES
+ 
+ Schema v2 accepts only these postcondition kinds:
+ 
+@@ -286,7 +302,7 @@ produces `boundary_violation` under the ordering above.
+ 
+ ---
+ 
+-## FIXTURE ISOLATION
++## 9. FIXTURE ISOLATION
+ 
+ Fixtures are frozen reference inputs: only `FIXTURE.md`, `spec.md`, `plan.md`,
+ `tasks.md`, and `src/` are legitimate. Active deep-loop runs write output
+@@ -312,7 +328,7 @@ alone to keep a fixture frozen.
+ 
+ ---
+ 
+-## PACKAGE CONVENTIONS
++## 10. PACKAGE CONVENTIONS
+ 
+ Each deep-loop sub-skill carries a `behavior-benchmark/` directory with this
+ fixed layout:
+@@ -348,7 +364,7 @@ packet phase.
+ 
+ ---
+ 
+-## RUNNER
++## 11. RUNNER
+ 
+ The reference implementation of this contract is
+ `./behavior-bench-run.cjs`, sibling to this file. It owns process spawn, the
+diff --git a/.skilled/skills/system-deep-loop/shared/rollout/README.md b/.skilled/skills/system-deep-loop/shared/rollout/README.md
+index c0f09072685..cf255c59e8f 100644
+--- a/.skilled/skills/system-deep-loop/shared/rollout/README.md
++++ b/.skilled/skills/system-deep-loop/shared/rollout/README.md
+@@ -18,12 +18,13 @@ This directory contains the isolated rollout-mode core for command injection.
+ - `command-injection-rollout.json` maps command names to `fallback` or `fix`.
+ - `resolve-injection-mode.cjs` resolves the effective mode from the environment override first, then the JSON map, then `fallback`.
+ - `promotion-rule.md` defines the evidence required before flipping any command to `fix`.
++- `validate-rollout.cjs` rejects any `fix` entry that is missing required evidence, and is the script to run before promotion.
+ 
+ The [`tests/`](./tests/README.md) folder pins this behavior with two test files, which assert resolver precedence across the default, the JSON map and the environment override, and check that the rollout and its `fix` entries carry the evidence `validate-rollout.cjs` requires.
+ 
+ ---
+ 
+-## 2. DEFERRED TODOS
++## 2. DEFERRED SCOPE
+ 
+ - Manifest capture: add emitter wiring later to capture fallback/fix manifests and fallback hashes from the live command-injection path.
+ - Comparator: add the CI comparator later after capture data exists; do not stub fake capture or synthetic comparator logic here.
+diff --git a/.skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md b/.skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md
+index e12b240c7df..f31cf3139c1 100644
+--- a/.skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md
++++ b/.skilled/skills/system-deep-loop/shared/rollout/promotion-rule.md
+@@ -6,6 +6,25 @@ version: 1.0.0.0
+ 
+ # Promotion Rule
+ 
++Read this before flipping a command to `fix`, and again when a `fix` entry is challenged.
++
++---
++
++## 1. OVERVIEW
++
++### Purpose
++
++A command flips from `fallback` to `fix` only on green promotion evidence, and its JSON entry carries that evidence.
++
++### When to Use
++
++- Promoting a command from fallback to fix.
++- Checking an existing fix entry before it ships.
++
++---
++
++## 2. PROMOTION EVIDENCE
++
+ Flip a command from `fallback` to `fix` only after all promotion evidence is green:
+ 
+ - 3 consecutive green CI comparator runs on both `gpt-fast-med` and `gpt-fast-high`.
+@@ -13,6 +32,10 @@ Flip a command from `fallback` to `fix` only after all promotion evidence is gre
+ - Fallback hash is unchanged.
+ - Zero unexpected Claude-baseline divergence.
+ 
++---
++
++## 3. EVIDENCE MECHANISM
++
+ The JSON entry must carry the evidence mechanism alongside the mode:
+ 
+ ```json
+@@ -27,4 +50,8 @@ The JSON entry must carry the evidence mechanism alongside the mode:
+ }
+ ```
+ 
++---
++
++## 4. VALIDATION
++
+ Run `node .skilled/skills/system-deep-loop/shared/rollout/validate-rollout.cjs` before promotion. It fails closed when any required evidence field is absent or empty; a command may not claim `fix` without a passing validator run.

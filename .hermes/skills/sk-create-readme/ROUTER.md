@@ -20,7 +20,15 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, and when they ask for developer orientation on a project, skill, feature, component or source-code directory. It routes to three artifact templates under `assets/`: `readme-template.md` for a general README, `readme-code-template.md` for a source-code folder and `architecture-template.md` for a skill package's `ARCHITECTURE.md`. It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
+Requests reach this skill when they name a README, a folder readme, a code-folder readme or `/create:readme`, and when they ask for developer orientation on a project, skill, feature, component or source-code directory.
+
+It routes to three artifact templates under `assets/`:
+
+- `readme-template.md` for a general README.
+- `readme-code-template.md` for a source-code folder.
+- `architecture-template.md` for a skill package's `ARCHITECTURE.md`.
+
+It falls back to `references/README.md` and the `references/readme/` overflow group when the artifact type or folder purpose is unclear.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -40,8 +48,6 @@ loads before an intent selects it.
 The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
 reader finds it. This section is the last in the file, and it holds the only pseudocode.
 
-The packet's artifact table, its router resilience rules, its prompt-intent projection and its README decision tree.
-
 Route by artifact type first, then by folder purpose.
 
 | Request | Output | Primary Template |
@@ -58,6 +64,18 @@ Router resilience rules:
 - Treat `references/README.md` as the fallback route map when artifact type or folder purpose is unclear.
 - Ask for the missing artifact type, target folder or validation expectation instead of silently loading no resources.
 - Do not add a full `references/<key>/` or `assets/<key>/` runtime-key router unless this packet gains real keyed resource subdirectories.
+
+Use this README decision tree:
+
+```text
+Is this a project root?
++-- YES: write a general README using the sections the audience needs
+`-- NO: is this a reusable component?
+    +-- YES: write a component README trimmed to API, examples, configuration and known issues
+    `-- NO: is someone likely to land here?
+        +-- YES: write a focused README with overview plus needed navigation or usage
+        `-- NO: skip README and use inline comments or parent documentation
+```
 
 ### Smart Router Pseudocode
 
@@ -134,16 +152,4 @@ def route_readme_request(request):
     for path in sorted(inventory):
         load_if_available(path, inventory, loaded, seen)
     return {"artifact_type": artifact_type, "resources": loaded}
-```
-
-Use this README decision tree:
-
-```text
-Is this a project root?
-+-- YES: write a general README using the sections the audience needs
-`-- NO: is this a reusable component?
-    +-- YES: write a component README trimmed to API, examples, configuration and known issues
-    `-- NO: is someone likely to land here?
-        +-- YES: write a focused README with overview plus needed navigation or usage
-        `-- NO: skip README and use inline comments or parent documentation
 ```

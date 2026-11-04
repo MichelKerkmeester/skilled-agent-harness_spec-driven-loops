@@ -127,15 +127,6 @@ That router is a benchmark/replay artifact, mirroring sk-prompt/sk-code. It maps
 The surface layer never re-decides the mode and is not a runtime hub discovery surface.
 The hub still routes by `workflowMode` through `mode-registry.json` alone.
 
-### Note on the `allowed-tools` grant in `SKILL.md`'s frontmatter
-
-The hub's own routing logic is read-only: it classifies, guards a path and loads a packet.
-Under the two-axis hub canon contract, a hub's `allowed-tools` list MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json`.
-This hard invariant is enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces").
-Narrowing `SKILL.md`'s frontmatter grant to what routing-only logic needs would fail that check.
-It would also break every mode whose `toolSurface` is not a subset of the narrowed list.
-Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.
-
 ### The three-tier discriminator
 - **`workflowMode`** — the public active mode key: `research`, `review`, and `ai-council`.
 - **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
@@ -162,18 +153,25 @@ else:
   → if registry[mode].runtimeLoopType !== null: backend = convergence.cjs --loop-type <runtimeLoopType>
 ```
 
-Before router-driven loads call `load()`, use `_guard_in_skill(relative_path)`.
-Reject paths that escape this skill or do not end in `.md`.
-Before loading, check `if packet_base.exists()` and `if packet_skill.exists()`.
-The fallback must name the unresolved `workflowMode` when known and avoid loading any guessed packet.
-Ask the operator to provide one of the registered modes or the matching `/deep:*` command.
+- Before router-driven loads call `load()`, use `_guard_in_skill(relative_path)`.
+  Reject paths that escape this skill or do not end in `.md`.
+  Before loading, check `if packet_base.exists()` and `if packet_skill.exists()`.
+- The fallback must name the unresolved `workflowMode` when known and avoid loading any guessed packet.
+  Ask the operator to provide one of the registered modes or the matching `/deep:*` command.
+- Intent classification favors the single dominant active deep-loop mode.
+  A mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier.
+  The legacy advisor projection maps stay hardcoded and drift-guarded against the registry.
+  The command files remain static routers with hardcoded asset/mode routing. Neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+- Per-mode behavior is **not flattened**.
+  Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review/ai-council are code/inward-only.
+  This hub preserves exactly one `graph-metadata.json`, so the advisor discovers exactly one skill identity.
+  That remains true whether a mode is reached through the hub `Skill()`, a `/deep:*` command or an agent.
 
-Intent classification favors the single dominant active deep-loop mode.
-A mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier.
-The legacy advisor projection maps stay hardcoded and drift-guarded against the registry.
-The command files remain static routers with hardcoded asset/mode routing. Neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
+### Note on the `allowed-tools` grant in `SKILL.md`'s frontmatter
 
-Per-mode behavior is **not flattened**.
-Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review/ai-council are code/inward-only.
-This hub preserves exactly one `graph-metadata.json`, so the advisor discovers exactly one skill identity.
-That remains true whether a mode is reached through the hub `Skill()`, a `/deep:*` command or an agent.
+The hub's own routing logic is read-only: it classifies, guards a path and loads a packet.
+Under the two-axis hub canon contract, a hub's `allowed-tools` list MUST equal the exact union of every registered mode's `toolSurface.allowed` in `mode-registry.json`.
+This hard invariant is enforced by `parent-skill-check.cjs` (check 3j: "hub allowed-tools equals the union of mode tool surfaces").
+Narrowing `SKILL.md`'s frontmatter grant to what routing-only logic needs would fail that check.
+It would also break every mode whose `toolSurface` is not a subset of the narrowed list.
+Treat the breadth of `allowed-tools` as evidence of the child modes' combined needs, not of mutating logic living in the hub.

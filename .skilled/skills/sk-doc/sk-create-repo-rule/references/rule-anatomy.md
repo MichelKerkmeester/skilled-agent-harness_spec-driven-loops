@@ -9,7 +9,7 @@ trigger_phrases:
   - "divergence classification"
 importance_tier: important
 contextType: reference
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Rule Anatomy Contract
@@ -20,16 +20,38 @@ shipped rule.
 
 Corpus figures are deliberately not restated here. To see the current ones, run
 `node .skilled/skills/sk-doc/sk-create-repo-rule/scripts/check-repo-rules.cjs` (the
-corpus checker) from the repository root. Its eleven checks report count parity, link wiring,
-trigger-phrase uniqueness, the line ceiling, frontmatter keys, divider parity, rule-body
-links, fires-when sections, index summaries against each rule's description,
-fires-when coverage (every Fires-when bullet named in its router row), and card sync
-(every committed card under `cards/` equal to the card `build-rule-cards.cjs` renders from
-its rule) for the corpus as it stands.
+corpus checker) from the repository root. For the corpus as it stands, its eleven checks
+report:
+
+- count parity
+- link wiring
+- trigger-phrase uniqueness
+- the line ceiling
+- frontmatter keys
+- divider parity
+- rule-body links
+- fires-when sections
+- index summaries against each rule's description
+- fires-when coverage (every Fires-when bullet named in its router row)
+- card sync (every committed card under `cards/` equal to the card
+  `build-rule-cards.cjs` renders from its rule)
 
 ---
 
-## 1. OVERVIEW: WHAT A REPO RULE IS
+## 1. OVERVIEW
+
+### Purpose
+
+A generated rule carries every fixed element, varies the rest with its subject, and lands
+inside a length band.
+
+### When to Use
+
+- Writing a new rule from the template.
+- Reviewing a shipped rule for a missing MUST element.
+- Checking a draft's length before adding another section.
+
+### What a Repo Rule Is
 
 A repo rule **supplements the harness**. It is not a law and not a contract with the
 runtime: it can be overridden by an explicit operator instruction, changed when it stops
@@ -113,7 +135,7 @@ explanation should be looked at.
 
 ---
 
-## 5. A SECOND FINDING: THE RULES ARE NEARLY INDEPENDENT
+## 5. INTER-RULE CROSS-REFERENCES
 
 Every rule links back to the router, and sideways links between rules stay few next to
 the doctrine each rule holds. `check-repo-rules.cjs` reports the live link count, so this

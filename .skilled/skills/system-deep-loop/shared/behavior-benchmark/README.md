@@ -41,4 +41,4 @@ node behavior-bench-run.cjs --scenario <file> --leg <name> --out-dir <dir>
 node .skilled/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs
 ```
 
-Runs hermetically against a fake executor leg. No live model session required. See `tests/README.md`.
+Runs hermetically against a fake executor leg. No live model session required. Expected: `behavior-bench-run.test.cjs: all assertions passed`. See `tests/README.md`.
