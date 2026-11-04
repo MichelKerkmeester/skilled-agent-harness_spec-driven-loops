@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement",
+  "spec_folder": "sk-doc/066-skill-readability-refinement",
+  "parent_id": null,
+  "children_ids": [
+    "sk-doc/066-skill-readability-refinement/001-cli-classifier",
+    "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration",
+    "sk-doc/066-skill-readability-refinement/003-cli-orca",
+    "sk-doc/066-skill-readability-refinement/004-mcp-code-mode",
+    "sk-doc/066-skill-readability-refinement/005-mcp-tooling",
+    "sk-doc/066-skill-readability-refinement/006-sk-code",
+    "sk-doc/066-skill-readability-refinement/007-sk-design",
+    "sk-doc/066-skill-readability-refinement/008-sk-doc",
+    "sk-doc/066-skill-readability-refinement/009-sk-git",
+    "sk-doc/066-skill-readability-refinement/010-sk-prompt",
+    "sk-doc/066-skill-readability-refinement/011-system-deep-loop",
+    "sk-doc/066-skill-readability-refinement/012-system-skill-advisor",
+    "sk-doc/066-skill-readability-refinement/013-system-spec-kit"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill readability refinement phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "skill",
+      "readability",
+      "refinement",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive.sh",
+      "001-cli-classifier/goal.md",
+      "002-cli-external-orchestration/goal.md",
+      "003-cli-orca/goal.md",
+      "004-mcp-code-mode/goal.md",
+      "005-mcp-tooling/goal.md",
+      "006-sk-code/goal.md",
+      "007-sk-design/goal.md",
+      "008-sk-doc/goal.md",
+      "009-sk-git/goal.md",
+      "010-sk-prompt/goal.md",
+      "011-system-deep-loop/goal.md",
+      "012-system-skill-advisor/goal.md",
+      "013-system-spec-kit/goal.md",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "drive.sh",
+        "kind": "script",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "leaves.txt",
+        "kind": "file",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Skilled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "changelog",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
+    "created_at": "2026-11-04T07:15:52Z",
+    "last_save_at": "2026-11-04T08:10:48.500Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:53ca3dad5cf4e31ae5632377feca577384035f70e062420007fb82709a93b20b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7ff2eb607607e5baf282c9246bbb71dac407cda07db72cf5c2a74a518acaf405"
+    },
+    "last_active_at": null
+  }
+}

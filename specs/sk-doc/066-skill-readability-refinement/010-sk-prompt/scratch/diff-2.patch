@@ -1,0 +1,356 @@
+diff --git a/.skilled/skills/sk-prompt/README.md b/.skilled/skills/sk-prompt/README.md
+index 237e679062b..9d56182e5f0 100644
+--- a/.skilled/skills/sk-prompt/README.md
++++ b/.skilled/skills/sk-prompt/README.md
+@@ -12,7 +12,7 @@ version: 4.0.1.0
+ 
+ # sk-prompt
+ 
+-> Turn a vague ask into a structured prompt that clears a fixed quality bar in one pass: one component skeleton with optional framework presets, a ten-row checklist, a CLEAR screen against a fixed threshold and a transparency report that shows what changed.
++> The prompt comes first; the explanation follows.
+ 
+ ---
+ 
+@@ -35,7 +35,19 @@ A vague prompt gets a vague answer. People under-specify the role, skip the cons
+ 
+ ### What It Does
+ 
+-`sk-prompt` is the prompt-engineering engine. It routes on the user's own words, with a pasted prompt set aside before routing, then checks the request once against ten checklist rows and exits early when the prompt already passes. Otherwise it writes the prompt from one component skeleton or a named framework preset, self-checks the draft against its own success criteria and screens it with the CLEAR rubric. The prompt arrives first, followed by the numbered open items and a change report. You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
++`sk-prompt` is the prompt-engineering engine. It works in one pass:
++
++1. Route on the user's own words, with a pasted prompt set aside before routing.
++2. Check the request once against ten checklist rows, and exit early when the prompt already passes.
++3. Otherwise, write the prompt from one component skeleton or a named framework preset.
++4. Self-check the draft against its own success criteria.
++5. Screen it with the CLEAR rubric.
++
++You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
++
++### When To Use This Skill
++
++Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
+ 
+ ### The Framework Layer
+ 
+@@ -156,10 +168,6 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+diff --git a/.skilled/skills/sk-prompt/ROUTER.md b/.skilled/skills/sk-prompt/ROUTER.md
+index 6b9f2787db8..6dbbb619f4d 100644
+--- a/.skilled/skills/sk-prompt/ROUTER.md
++++ b/.skilled/skills/sk-prompt/ROUTER.md
+@@ -86,6 +86,7 @@ references/patterns-evaluation.md        - 7 frameworks, CLEAR scoring
+ assets/format-guide-markdown.md          - Markdown format deep-dive
+ assets/format-guide-json.md              - JSON format deep-dive
+ assets/format-guide-yaml.md              - YAML format deep-dive
++assets/cli-prompt-quality-card.md        - CLI prompt-quality card a CLI orchestrator reads before dispatch
+ ```
+ 
+ ### Resource Loading Levels
+@@ -96,6 +97,7 @@ assets/format-guide-yaml.md              - YAML format deep-dive
+ | ALWAYS      | Every skill invocation   | ROUTER.md: machine router, intent map, resource map and loading levels     |
+ | CONDITIONAL | If intent signals match  | references/improvement-checklist.md, references/patterns-evaluation.md      |
+ | CONDITIONAL | If design-generation signals match | references/patterns-evaluation.md                                 |
++| CONDITIONAL | If CLI fast-path signals match | assets/cli-prompt-quality-card.md                                         |
+ | ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |
+ 
+ A run that loads `references/patterns-evaluation.md` reads three of its sections, not the whole file:
+diff --git a/.skilled/skills/sk-prompt/SKILL.md b/.skilled/skills/sk-prompt/SKILL.md
+index 5b7a293ca38..cd19984e8c9 100644
+--- a/.skilled/skills/sk-prompt/SKILL.md
++++ b/.skilled/skills/sk-prompt/SKILL.md
+@@ -38,7 +38,7 @@ Transforms vague or basic inputs into structured AI prompts in one pass: a ten-r
+ Transform vague requests into structured prompts from one default skeleton, with RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE or CRAFT as optional presets, and CLEAR screening (40+/50 threshold).
+ 
+ #### Design-Generation Prompt
+-Construct a grounded, anti-default generation brief for a design-generation run. The `DESIGN_GEN` intent loads `references/patterns-evaluation.md`, the framework library and the CLEAR rubric, so the brief is built from a named framework rather than a design-specific reference this skill does not ship. This skill owns the prompt only, never the measured design-reference extraction (`sk-design-md-generator`) or the run transport.
++Construct a grounded, anti-default generation brief for a design-generation run. This skill owns the prompt only, never the measured design-reference extraction (`sk-design-md-generator`) or the run transport.
+ 
+ ### When NOT to Use
+ 
+@@ -57,8 +57,11 @@ The prefix is authoritative: it fixes the operating mode, and the intent scores
+ With no prefix, weighted keyword scoring picks the top intent, or the top two when their scores sit within `AMBIGUITY_DELTA`.
+ A zero score falls back to `TEXT_ENHANCE` with the disambiguation checklist rather than guessing.
+ 
+-`references/improvement-checklist.md` loads first on every run except `$raw` and the `FRAMEWORK` intent, and `references/patterns-evaluation.md` joins it for the text, design-generation, Markdown, JSON and YAML intents; on `FRAMEWORK` it replaces the checklist default instead of joining it.
+-Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
++`references/improvement-checklist.md` loads first on every run except `$raw` and the `FRAMEWORK` intent, and `references/patterns-evaluation.md` joins it for the text, design-generation, Markdown, JSON and YAML intents.
++On `FRAMEWORK` it replaces the checklist default instead of joining it.
++The `DESIGN_GEN` intent loads `references/patterns-evaluation.md`, the framework library and the CLEAR rubric, so the brief is built from a named framework rather than a design-specific reference this skill does not ship.
++Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources.
++Open only the matched files.
+ 
+ ---
+ 
+@@ -182,6 +185,7 @@ See [patterns-evaluation.md](./references/patterns-evaluation.md) for complete f
+ - [format-guide-json.md](./assets/format-guide-json.md) - JSON format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, validation, best practices
+ - [format-guide-yaml.md](./assets/format-guide-yaml.md) - YAML format deep-dive: fundamentals, data types, delivery standards, RCAF/CRAFT structures, advanced patterns, templates, validation, best practices
+ - [cli-prompt-quality-card.md](./assets/cli-prompt-quality-card.md) - CLI fast-path card: the framework selection table, the CLEAR pre-dispatch check and the escalation triggers the `cli-*` packets delegate to
++- [framework-registry.json](./assets/framework-registry.json) - Machine-readable scaffold registry with code-oriented slot templates for a subset of five frameworks
+ 
+ ### Reference Loading Notes
+ 
+@@ -303,7 +307,7 @@ Key integrations:
+ 
+ The router discovers reference, asset, and script docs dynamically. Start with `references/improvement-checklist.md`, `references/patterns-evaluation.md`, `assets/format-guide-json.md`, `assets/format-guide-markdown.md`, `assets/format-guide-yaml.md`, `assets/cli-prompt-quality-card.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+ 
+-## RELATED PLAYBOOK
++### RELATED PLAYBOOK
+ 
+ Manual validation lives at `manual-testing-playbook/manual-testing-playbook.md`.
+ 
+diff --git a/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md b/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+index 968b837a700..a2cf40febaf 100644
+--- a/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
++++ b/.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+@@ -14,7 +14,7 @@ version: 0.8.1.0
+ 
+ # CLI Prompt Quality Card
+ 
+-Lightweight prompt-quality guidance for CLI orchestrator skills. Use this card on the fast path so routine dispatches get framework selection, a quick CLEAR check, and explicit escalation triggers without loading the full `sk-prompt` body.
++The sections below cover the fast path and escalation boundary for CLI prompt work.
+ 
+ ## 1. OVERVIEW
+ 
+@@ -52,8 +52,11 @@ Load this card before building any CLI dispatch prompt. Select a framework from
+ | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
+ | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
+ 
+-**Pre-planning density**: 
+-For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
++**Pre-planning density**:
++
++- For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning**: 3-4 ordered steps with per-step acceptance criteria + verification command.
++- Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield. Medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model.
++- For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output. For frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
+ 
+ **Bundle-gate strictness**:
+ Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
+@@ -82,7 +85,7 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
+ Two tiers govern how a prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
+ 
+ **Tier 1 — Fast path (default)**
+-Build the prompt directly from this canonical card. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
++Build the prompt directly from this canonical card. Apply Section 6 (PERSONA INJECTION) before any external-CLI dispatch. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
+ 
+ **Tier 2 — Deep path (escalation)**
+ Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when ANY of the following are true:
+diff --git a/.skilled/skills/sk-prompt/assets/format-guide-json.md b/.skilled/skills/sk-prompt/assets/format-guide-json.md
+index 7e5d4e1e2a8..d4f47b268d1 100644
+--- a/.skilled/skills/sk-prompt/assets/format-guide-json.md
++++ b/.skilled/skills/sk-prompt/assets/format-guide-json.md
+@@ -14,7 +14,7 @@ version: 2.3.0.3
+ 
+ # Format Guide -- JSON
+ 
+-Complete formatting specification for delivering enhanced prompts in JSON format, optimized for API integration and programmatic consumption.
++The examples below show prompts delivered as JSON.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-prompt/assets/format-guide-markdown.md b/.skilled/skills/sk-prompt/assets/format-guide-markdown.md
+index 4b66ab094d1..5398b6ef288 100644
+--- a/.skilled/skills/sk-prompt/assets/format-guide-markdown.md
++++ b/.skilled/skills/sk-prompt/assets/format-guide-markdown.md
+@@ -14,7 +14,7 @@ version: 2.3.1.0
+ 
+ # Format Guide -- Markdown
+ 
+-Complete formatting specification for delivering enhanced prompts in Markdown format, the default human-readable output mode.
++The examples below show prompts delivered as Markdown.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-prompt/assets/format-guide-yaml.md b/.skilled/skills/sk-prompt/assets/format-guide-yaml.md
+index 97fa851ecdc..1e4246db508 100644
+--- a/.skilled/skills/sk-prompt/assets/format-guide-yaml.md
++++ b/.skilled/skills/sk-prompt/assets/format-guide-yaml.md
+@@ -14,7 +14,7 @@ version: 2.3.1.0
+ 
+ # Format Guide -- YAML
+ 
+-Complete formatting specification for delivering enhanced prompts in YAML format, optimized for configuration templates and human-editable structured data.
++The examples below show prompts delivered as YAML.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-prompt/references/improvement-checklist.md b/.skilled/skills/sk-prompt/references/improvement-checklist.md
+index e9197fc21f4..5053c31db9b 100644
+--- a/.skilled/skills/sk-prompt/references/improvement-checklist.md
++++ b/.skilled/skills/sk-prompt/references/improvement-checklist.md
+@@ -15,13 +15,21 @@ version: 1.0.0.0
+ 
+ # Improvement Checklist
+ 
+-One pass over a prompt: read it once against ten rows, write it once from one skeleton, check it once against its own success criteria, then deliver it.
++This reference explains the checklist and delivery rules used by sk-prompt.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-sk-prompt improves a prompt in one pass. It checks the prompt once against ten rows, writes the prompt from one component skeleton, checks it once against the stated success criteria, and delivers.
++### Purpose
++
++sk-prompt improves a prompt in one pass. It checks the prompt once against the rows selected by the effort level, writes from one component skeleton when an improvement is needed, checks the result against its stated success criteria, and delivers.
++
++### When to Use
++
++Use this reference when choosing an effort level, applying the checklist, or preparing a prompt for delivery.
++
++### Core Principle
+ 
+ There are no rounds and no phases. The checklist is not a gate that repeats until clean. It is a single reading that decides what the prompt is missing before the prompt is written.
+ 
+@@ -32,11 +40,26 @@ What that shape implies:
+ - The finished draft is measured against its own success criteria one time.
+ - Repair is bounded, so an answer always arrives.
+ 
+-Every prompt is checked against the same ten rows in the same order. Checking against one list keeps every prompt in a session shaped alike, which is what makes later comparison possible.
++---
++
++## 2. EFFORT LEVELS
++
++Effort decides how much of the checklist runs and whether the quick test runs. It never decides a hidden count of thinking rounds.
++
++- **Quick** — `$short`. Checks rows 1, 3, 4 and 6: task, context, constraints, output format. Runs no quick test. Suitable when the job is clear and the risk of a wrong answer is low.
++- **Standard** — the default, and what `$text`, `$improve`, `$json` and `$yaml` select. Checks all ten rows. Runs the quick test only when a target model is available and the caller wants it.
++- **Thorough** — `$refine`. Checks all ten rows and attempts the quick test.
++- **None** — `$raw`. Runs no pass. The prompt passes through as written, for a caller that owns its own prompt handling.
++
++Effort changes checklist breadth and whether the quick test runs. Nothing else moves with it.
++
++Choosing effort is about consequence, not about prompt length. A short prompt that drives a schema-validated response deserves thorough attention; a long prompt that produces a casual draft does not.
++
++When a checklist pass runs, it uses the same ten-row list in the same order. The selected effort determines how many rows it checks. That shared list makes checklist runs comparable.
+ 
+ ---
+ 
+-## 2. THE CHECKLIST
++## 3. THE CHECKLIST
+ 
+ 1. Task and requested outcome.
+ 2. Role or audience, only when it changes the response.
+@@ -63,7 +86,7 @@ The reasons matter as much as the marks. A mark without a reason is an opinion;
+ 
+ ---
+ 
+-## 3. EARLY EXIT
++## 4. EARLY EXIT
+ 
+ When every row is present or not needed, return the prompt unchanged, or with the smallest edit the user explicitly asked for. Say that no broader improvement was needed, and name the rows already covered so the judgment is visible.
+ 
+@@ -73,21 +96,6 @@ The early exit also covers the narrow request. A user who asks for one wording c
+ 
+ ---
+ 
+-## 4. EFFORT LEVELS
+-
+-Effort decides how much of the checklist runs and whether the quick test runs. It never decides a hidden count of thinking rounds.
+-
+-- **Quick** — `$short`. Checks rows 1, 3, 4 and 6: task, context, constraints, output format. Runs no quick test. Suitable when the job is clear and the risk of a wrong answer is low.
+-- **Standard** — the default, and what `$text`, `$improve`, `$json` and `$yaml` select. Checks all ten rows. Runs the quick test only when a target model is available and the caller wants it.
+-- **Thorough** — `$refine`. Checks all ten rows and attempts the quick test.
+-- **None** — `$raw`. Runs no pass. The prompt passes through as written, for a caller that owns its own prompt handling.
+-
+-Effort changes checklist breadth and whether the quick test runs. Nothing else moves with it.
+-
+-Choosing effort is about consequence, not about prompt length. A short prompt that drives a schema-validated response deserves thorough attention; a long prompt that produces a casual draft does not.
+-
+----
+-
+ ## 5. SELF-CHECK AND QUICK TEST
+ 
+ Self-check the draft once against its success criteria before delivering. Read the draft as the target model would: check the format against the requested format, the constraints against the stated priorities, and the examples against each other for drift. Record what the self-check caught and what it changed.
+diff --git a/.skilled/skills/sk-prompt/references/patterns-evaluation.md b/.skilled/skills/sk-prompt/references/patterns-evaluation.md
+index af3812a2182..d8e1851021b 100644
+--- a/.skilled/skills/sk-prompt/references/patterns-evaluation.md
++++ b/.skilled/skills/sk-prompt/references/patterns-evaluation.md
+@@ -17,11 +17,13 @@ version: 2.4.0.0
+ 
+ Comprehensive framework library, enhancement patterns, and CLEAR evaluation methodology for systematic prompt engineering excellence.
+ 
++---
++
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Systematic prompt engineering requires matching the right framework to each task, applying structured enhancement patterns, and evaluating quality through CLEAR scoring to achieve consistent, measurable excellence.
++This reference helps readers choose and refine prompts, then assess their quality with CLEAR scoring.
+ 
+ ### When to Use
+ 
+@@ -33,13 +35,26 @@ Systematic prompt engineering requires matching the right framework to each task
+ - Recovering and repairing weak prompts
+ - Building reusable prompt templates
+ 
++### Core Principle
++
++Systematic prompt engineering requires matching the right framework to each task, applying structured enhancement patterns, and evaluating quality through CLEAR scoring to achieve consistent, measurable excellence.
++
+ ---
+ 
+ ## 2. FRAMEWORK LIBRARY & SELECTION
+ 
+ ### Default Skeleton
+ 
+-Every prompt starts from one default skeleton, in this order: task and outcome, context, constraints and priorities, output format, examples when they help, success criteria. Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
++Every prompt starts from one default skeleton, in this order:
++
++1. Task and outcome
++2. Context
++3. Constraints and priorities
++4. Output format
++5. Examples, when they help
++6. Success criteria
++
++Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
+ 
+ ### Complete Framework Matrix
+ 
+@@ -327,6 +342,8 @@ comprehensive_craft:
+ 
+ **RCAF + CoT (Chain of Thought)**
+ 
++Ask for conclusions and the criteria behind them, not a transcript of the reasoning. A model with built-in thinking already reasons before it answers, and Claude Opus 5.5 can decline a prompt that pushes it to reproduce that reasoning in the response.
++
+ ```yaml
+ rcaf_cot_fusion:
+   role: "[Expert] who thinks systematically"
+@@ -340,8 +357,6 @@ rcaf_cot_fusion:
+   format: "Each step's conclusion with the criterion that decided it, then the final answer"
+ ```
+ 
+-Ask for conclusions and the criteria behind them, not a transcript of the reasoning. A model with built-in thinking already reasons before it answers, and Claude Opus 5.5 can decline a prompt that pushes it to reproduce that reasoning in the response.
+-
+ **COSTAR + ReAct (Reasoning-Action)**
+ 
+ ```yaml
+@@ -362,6 +377,8 @@ costar_react_fusion:
+ 
+ **TIDD-EC + Few-Shot**
+ 
++Give three to five cases that differ the way real inputs differ, and wrap each in `<example>` tags inside one `<examples>` block. The tags keep the model from reading a demonstration as an instruction, and the variety keeps it from copying one case's quirks.
++
+ ```yaml
+ tidd_ec_fewshot:
+   task: "[Primary objective]"
+@@ -375,8 +392,6 @@ tidd_ec_fewshot:
+   context: "Apply learned patterns to new inputs"
+ ```
+ 
+-Give three to five cases that differ the way real inputs differ, and wrap each in `<example>` tags inside one `<examples>` block. The tags keep the model from reading a demonstration as an instruction, and the variety keeps it from copying one case's quirks.
+-
+ ### Framework Fusion Summary
+ 
+ | Combination            | Use Case             | Key Feature                       |

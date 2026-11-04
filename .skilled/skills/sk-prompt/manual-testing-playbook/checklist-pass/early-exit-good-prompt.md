@@ -1,7 +1,7 @@
 ---
 title: "SP-010 -- Early exit returns a good prompt unchanged"
 description: "This scenario validates the early exit for `SP-010`. It focuses on returning a prompt that already covers its needed checklist rows unchanged or minimally edited, with a statement that no broader improvement was needed."
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # SP-010 -- Early exit returns a good prompt unchanged
@@ -64,7 +64,7 @@ Capture the returned prompt, a diff against the original text, the list of cover
 ### Failure Triage
 
 1. Confirm the run used standard effort and that the early exit was applied rather than treated as a starting point for edits.
-2. Re-read section 3 of `improvement-checklist.md` and confirm the rule "do not invent work to justify the pass" is being followed.
+2. Re-read section 4 of `improvement-checklist.md` and confirm the rule "do not invent work to justify the pass" is being followed.
 3. Re-dispatch to `@prompt-improver` with a hard constraint to print the original prompt verbatim first, then justify each proposed edit in one line.
 
 ### Optional Supplemental Checks

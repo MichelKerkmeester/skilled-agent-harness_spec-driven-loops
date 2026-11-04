@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-prompt routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -86,6 +86,7 @@ references/patterns-evaluation.md        - 7 frameworks, CLEAR scoring
 assets/format-guide-markdown.md          - Markdown format deep-dive
 assets/format-guide-json.md              - JSON format deep-dive
 assets/format-guide-yaml.md              - YAML format deep-dive
+assets/cli-prompt-quality-card.md        - CLI prompt-quality card a CLI orchestrator reads before dispatch
 ```
 
 ### Resource Loading Levels
@@ -96,6 +97,7 @@ assets/format-guide-yaml.md              - YAML format deep-dive
 | ALWAYS      | Every skill invocation   | ROUTER.md: machine router, intent map, resource map and loading levels     |
 | CONDITIONAL | If intent signals match  | references/improvement-checklist.md, references/patterns-evaluation.md      |
 | CONDITIONAL | If design-generation signals match | references/patterns-evaluation.md                                 |
+| CONDITIONAL | If CLI fast-path signals match | assets/cli-prompt-quality-card.md                                         |
 | ON_DEMAND   | Only on explicit request | assets/format-guide-markdown.md, assets/format-guide-json.md, assets/format-guide-yaml.md |
 
 A run that loads `references/patterns-evaluation.md` reads three of its sections, not the whole file:

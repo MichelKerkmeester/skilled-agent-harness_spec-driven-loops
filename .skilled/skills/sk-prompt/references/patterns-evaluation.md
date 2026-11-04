@@ -10,18 +10,20 @@ trigger_phrases:
   - "prompt weakness detection"
 importance_tier: normal
 contextType: implementation
-version: 2.4.0.0
+version: 2.4.1.0
 ---
 
 # Prompt Patterns & Evaluation Reference
 
 Comprehensive framework library, enhancement patterns, and CLEAR evaluation methodology for systematic prompt engineering excellence.
 
+---
+
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Systematic prompt engineering requires matching the right framework to each task, applying structured enhancement patterns, and evaluating quality through CLEAR scoring to achieve consistent, measurable excellence.
+This reference helps readers choose and refine prompts, then assess their quality with CLEAR scoring.
 
 ### When to Use
 
@@ -33,13 +35,26 @@ Systematic prompt engineering requires matching the right framework to each task
 - Recovering and repairing weak prompts
 - Building reusable prompt templates
 
+### Core Principle
+
+Systematic prompt engineering requires matching the right framework to each task, applying structured enhancement patterns, and evaluating quality through CLEAR scoring to achieve consistent, measurable excellence.
+
 ---
 
 ## 2. FRAMEWORK LIBRARY & SELECTION
 
 ### Default Skeleton
 
-Every prompt starts from one default skeleton, in this order: task and outcome, context, constraints and priorities, output format, examples when they help, success criteria. Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
+Every prompt starts from one default skeleton, in this order:
+
+1. Task and outcome
+2. Context
+3. Constraints and priorities
+4. Output format
+5. Examples, when they help
+6. Success criteria
+
+Add a role or steps only when they change the response. The seven frameworks below are optional presets: apply one when the user or caller names it, or when its fit is clear from the task. No preset is required.
 
 ### Complete Framework Matrix
 
@@ -327,6 +342,8 @@ comprehensive_craft:
 
 **RCAF + CoT (Chain of Thought)**
 
+Ask for conclusions and the criteria behind them, not a transcript of the reasoning. A model with built-in thinking already reasons before it answers, and Claude Opus 5.5 can decline a prompt that pushes it to reproduce that reasoning in the response.
+
 ```yaml
 rcaf_cot_fusion:
   role: "[Expert] who thinks systematically"
@@ -339,8 +356,6 @@ rcaf_cot_fusion:
       step_4: {validate: "[Verify]", reasoning: "[Criteria]"}
   format: "Each step's conclusion with the criterion that decided it, then the final answer"
 ```
-
-Ask for conclusions and the criteria behind them, not a transcript of the reasoning. A model with built-in thinking already reasons before it answers, and Claude Opus 5.5 can decline a prompt that pushes it to reproduce that reasoning in the response.
 
 **COSTAR + ReAct (Reasoning-Action)**
 
@@ -362,6 +377,8 @@ costar_react_fusion:
 
 **TIDD-EC + Few-Shot**
 
+Give three to five cases that differ the way real inputs differ, and wrap each in `<example>` tags inside one `<examples>` block. The tags keep the model from reading a demonstration as an instruction, and the variety keeps it from copying one case's quirks.
+
 ```yaml
 tidd_ec_fewshot:
   task: "[Primary objective]"
@@ -374,8 +391,6 @@ tidd_ec_fewshot:
     case_3: {input: "[ex3]", output: "[out3]"}
   context: "Apply learned patterns to new inputs"
 ```
-
-Give three to five cases that differ the way real inputs differ, and wrap each in `<example>` tags inside one `<examples>` block. The tags keep the model from reading a demonstration as an instruction, and the variety keeps it from copying one case's quirks.
 
 ### Framework Fusion Summary
 

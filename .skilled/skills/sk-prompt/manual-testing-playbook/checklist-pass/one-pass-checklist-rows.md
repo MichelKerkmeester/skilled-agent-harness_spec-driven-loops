@@ -1,7 +1,7 @@
 ---
 title: "SP-009 -- One-pass checklist marks every row"
 description: "This scenario validates single-pass checklist marking for `SP-009`. It focuses on proving all ten rows are marked with a reason and that only absent rows reach the prompt."
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # SP-009 -- One-pass checklist marks every row
@@ -54,7 +54,7 @@ The response lists the ten checklist rows in order, each marked present, absent 
 
 ### Evidence
 
-Capture the full `@prompt-improver` response, the ten-row marking list, the improved prompt, and the `rg` output proving the marking rule sits in section 2 of the checklist reference.
+Capture the full `@prompt-improver` response, the ten-row marking list, the improved prompt, and the `rg` output proving the marking rule sits in section 3 of the checklist reference.
 
 ### Pass / Fail
 
@@ -64,7 +64,7 @@ Capture the full `@prompt-improver` response, the ten-row marking list, the impr
 ### Failure Triage
 
 1. Confirm the operator request did not use `$raw`, which intentionally skips the pass, or `$short`, which checks only four rows.
-2. Inspect `references/improvement-checklist.md` section 2 for the ten rows and the marking rule.
+2. Inspect `references/improvement-checklist.md` section 3 for the ten rows and the marking rule.
 3. Re-run through `@prompt-improver` with `constraints="include a one-line reason for every row"` and compare the marking list against the prompt additions.
 
 ### Optional Supplemental Checks

@@ -9,12 +9,12 @@ trigger_phrases:
   - "json syntax validation checklist"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.3
+version: 2.3.1.0
 ---
 
 # Format Guide -- JSON
 
-Complete formatting specification for delivering enhanced prompts in JSON format, optimized for API integration and programmatic consumption.
+Use JSON when code, not a person, reads the prompt.
 
 ---
 

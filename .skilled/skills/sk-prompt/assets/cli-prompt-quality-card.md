@@ -9,12 +9,12 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # CLI Prompt Quality Card
 
-Lightweight prompt-quality guidance for CLI orchestrator skills. Use this card on the fast path so routine dispatches get framework selection, a quick CLEAR check, and explicit escalation triggers without loading the full `sk-prompt` body.
+Everything a routine CLI dispatch prompt needs fits on this page, along with the signs that a prompt needs more.
 
 ## 1. OVERVIEW
 
@@ -52,8 +52,11 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
 | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
 
-**Pre-planning density**: 
-For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
+**Pre-planning density**:
+
+- For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning**: 3-4 ordered steps with per-step acceptance criteria + verification command.
+- Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield. Medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model.
+- For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output. For frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
 
 **Bundle-gate strictness**:
 Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
@@ -82,7 +85,7 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 Two tiers govern how a prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
 
 **Tier 1 — Fast path (default)**
-Build the prompt directly from this canonical card. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
+Build the prompt directly from this canonical card. Apply Section 6 (PERSONA INJECTION) before any external-CLI dispatch. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
 
 **Tier 2 — Deep path (escalation)**
 Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when ANY of the following are true:

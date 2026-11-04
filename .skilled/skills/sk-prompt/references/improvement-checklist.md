@@ -10,18 +10,26 @@ trigger_phrases:
   - "prompt change report"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Improvement Checklist
 
-One pass over a prompt: read it once against ten rows, write it once from one skeleton, check it once against its own success criteria, then deliver it.
+Ten rows decide whether a prompt needs work and how much, and the delivery rules decide what you see first.
 
 ---
 
 ## 1. OVERVIEW
 
-sk-prompt improves a prompt in one pass. It checks the prompt once against ten rows, writes the prompt from one component skeleton, checks it once against the stated success criteria, and delivers.
+### Purpose
+
+sk-prompt improves a prompt in one pass. It checks the prompt once against the rows selected by the effort level, writes from one component skeleton when an improvement is needed, checks the result against its stated success criteria, and delivers.
+
+### When to Use
+
+Use this reference when choosing an effort level, applying the checklist, or preparing a prompt for delivery.
+
+### Core Principle
 
 There are no rounds and no phases. The checklist is not a gate that repeats until clean. It is a single reading that decides what the prompt is missing before the prompt is written.
 
@@ -32,11 +40,26 @@ What that shape implies:
 - The finished draft is measured against its own success criteria one time.
 - Repair is bounded, so an answer always arrives.
 
-Every prompt is checked against the same ten rows in the same order. Checking against one list keeps every prompt in a session shaped alike, which is what makes later comparison possible.
+---
+
+## 2. EFFORT LEVELS
+
+Effort decides how much of the checklist runs and whether the quick test runs. It never decides a hidden count of thinking rounds.
+
+- **Quick** — `$short`. Checks rows 1, 3, 4 and 6: task, context, constraints, output format. Runs no quick test. Suitable when the job is clear and the risk of a wrong answer is low.
+- **Standard** — the default, and what `$text`, `$improve`, `$json` and `$yaml` select. Checks all ten rows. Runs the quick test only when a target model is available and the caller wants it.
+- **Thorough** — `$refine`. Checks all ten rows and attempts the quick test.
+- **None** — `$raw`. Runs no pass. The prompt passes through as written, for a caller that owns its own prompt handling.
+
+Effort changes checklist breadth and whether the quick test runs. Nothing else moves with it.
+
+Choosing effort is about consequence, not about prompt length. A short prompt that drives a schema-validated response deserves thorough attention; a long prompt that produces a casual draft does not.
+
+When a checklist pass runs, it uses the same ten-row list in the same order. The selected effort determines how many rows it checks. That shared list keeps every prompt in a session shaped alike, which is what makes later comparison possible.
 
 ---
 
-## 2. THE CHECKLIST
+## 3. THE CHECKLIST
 
 1. Task and requested outcome.
 2. Role or audience, only when it changes the response.
@@ -63,28 +86,13 @@ The reasons matter as much as the marks. A mark without a reason is an opinion; 
 
 ---
 
-## 3. EARLY EXIT
+## 4. EARLY EXIT
 
 When every row is present or not needed, return the prompt unchanged, or with the smallest edit the user explicitly asked for. Say that no broader improvement was needed, and name the rows already covered so the judgment is visible.
 
 Do not invent work to justify the pass. A prompt that names its task, supplies its context, states its constraints and fixes its output format is usually complete. Adding a role or a worked example to such a prompt changes the response more often than it improves it.
 
 The early exit also covers the narrow request. A user who asks for one wording change gets that change, plus a note that the rest of the prompt stands. Rewriting around a small request is the most common way a one-pass check turns into unwanted churn.
-
----
-
-## 4. EFFORT LEVELS
-
-Effort decides how much of the checklist runs and whether the quick test runs. It never decides a hidden count of thinking rounds.
-
-- **Quick** — `$short`. Checks rows 1, 3, 4 and 6: task, context, constraints, output format. Runs no quick test. Suitable when the job is clear and the risk of a wrong answer is low.
-- **Standard** — the default, and what `$text`, `$improve`, `$json` and `$yaml` select. Checks all ten rows. Runs the quick test only when a target model is available and the caller wants it.
-- **Thorough** — `$refine`. Checks all ten rows and attempts the quick test.
-- **None** — `$raw`. Runs no pass. The prompt passes through as written, for a caller that owns its own prompt handling.
-
-Effort changes checklist breadth and whether the quick test runs. Nothing else moves with it.
-
-Choosing effort is about consequence, not about prompt length. A short prompt that drives a schema-validated response deserves thorough attention; a long prompt that produces a casual draft does not.
 
 ---
 

@@ -1,0 +1,9 @@
+.skilled/skills/sk-prompt/README.md
+.skilled/skills/sk-prompt/ROUTER.md
+.skilled/skills/sk-prompt/SKILL.md
+.skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+.skilled/skills/sk-prompt/assets/format-guide-json.md
+.skilled/skills/sk-prompt/assets/format-guide-markdown.md
+.skilled/skills/sk-prompt/assets/format-guide-yaml.md
+.skilled/skills/sk-prompt/references/improvement-checklist.md
+.skilled/skills/sk-prompt/references/patterns-evaluation.md

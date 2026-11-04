@@ -1,7 +1,7 @@
 ---
 title: "SP-001 -- Default mode runs the standard checklist"
 description: "This scenario validates default-mode routing for `SP-001`. It focuses on confirming that a request with no mode token runs standard effort: all ten checklist rows, the CLEAR screen, and the prompt delivered first."
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # SP-001 -- Default mode runs the standard checklist
@@ -46,7 +46,7 @@ Run sk-prompt on my meeting-notes action-item prompt in default mode; confirm al
 
 1. `sk-prompt: Improve my meeting-notes action-item prompt.`
 2. `agent: @prompt-improver improve my meeting-notes action-item prompt in default mode; keep all ten checklist rows with a reason each, write the CLEAR screen with the reason before each dimension, and deliver the prompt before any commentary` (confirm standard effort, ten rows, screen, prompt-first order)
-3. `bash: rg -n 'Standard' .skilled/skills/sk-prompt/references/improvement-checklist.md` (confirm section 4 names standard as the default and ties it to all ten rows)
+3. `bash: rg -n 'Standard' .skilled/skills/sk-prompt/references/improvement-checklist.md` (confirm section 2 names standard as the default and ties it to all ten rows)
 
 ### Expected
 
@@ -64,7 +64,7 @@ Capture the full reply in order: the prompt body first, the numbered open items,
 ### Failure Triage
 
 1. Confirm the operator input carries no mode token and no override directive.
-2. Inspect section 4 of the checklist reference to confirm standard is the default and covers all ten rows.
+2. Inspect section 2 of the checklist reference to confirm standard is the default and covers all ten rows.
 3. Re-dispatch with an explicit standard token and compare the row count against the first run.
 4. Check the reply order directly: front-loaded commentary or an early question is a delivery failure, not a style preference.
 

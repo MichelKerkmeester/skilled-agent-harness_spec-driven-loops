@@ -9,12 +9,12 @@ trigger_phrases:
   - "configuration-style prompt template"
 importance_tier: normal
 contextType: implementation
-version: 2.3.1.0
+version: 2.3.2.0
 ---
 
 # Format Guide -- YAML
 
-Complete formatting specification for delivering enhanced prompts in YAML format, optimized for configuration templates and human-editable structured data.
+Use YAML when people edit the prompt as a template and code reads it too.
 
 ---
 

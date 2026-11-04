@@ -1,7 +1,7 @@
 ---
 title: "SP-013 -- Contradiction check resolves clashing rules"
 description: "This scenario validates the contradiction row for `SP-013`. It focuses on naming two rules that fight and resolving them with a stated priority order."
-version: 3.0.0.0
+version: 3.0.1.0
 ---
 
 # SP-013 -- Contradiction check resolves clashing rules
@@ -63,7 +63,7 @@ Capture the contradiction row mark with its one-line reason, the clause in the i
 
 ### Failure Triage
 
-1. Check the contradiction row in `improvement-checklist.md` section 2 against the draft; a mark reading present with no clash named means the mark is wrong.
+1. Check the contradiction row in `improvement-checklist.md` section 3 against the draft; a mark reading present with no clash named means the mark is wrong.
 2. Check whether the improved prompt carries both rules with no priority clause, which means the rewrite copied the clash instead of resolving it.
 3. Re-run through `@prompt-improver` with `constraints="state which rule wins and when; do not drop a rule without recording why"`.
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 4.0.1.0
+version: 4.0.2.0
 ---
 
 # sk-prompt
 
-> Turn a vague ask into a structured prompt that clears a fixed quality bar in one pass: one component skeleton with optional framework presets, a ten-row checklist, a CLEAR screen against a fixed threshold and a transparency report that shows what changed.
+> Send a vague ask in and get back a prompt that clears a fixed quality bar, with a report of what changed and why.
 
 ---
 
@@ -35,7 +35,20 @@ A vague prompt gets a vague answer. People under-specify the role, skip the cons
 
 ### What It Does
 
-`sk-prompt` is the prompt-engineering engine. It routes on the user's own words, with a pasted prompt set aside before routing, then checks the request once against ten checklist rows and exits early when the prompt already passes. Otherwise it writes the prompt from one component skeleton or a named framework preset, self-checks the draft against its own success criteria and screens it with the CLEAR rubric. The prompt arrives first, followed by the numbered open items and a change report. You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
+`sk-prompt` is the prompt-engineering engine. It works in one pass:
+
+1. Route on the user's own words, with a pasted prompt set aside before routing.
+2. Check the request once against ten checklist rows, and exit early when the prompt already passes.
+3. Otherwise, write the prompt from one component skeleton or a named framework preset.
+4. Self-check the draft against its own success criteria.
+5. Screen it with the CLEAR rubric.
+6. Deliver the prompt first, followed by the numbered open items and a change report.
+
+You call it through the `/prompt:improve` command or the `@prompt-improver` agent. The skill sets the quality bar. The output tells you how it measured up.
+
+### When To Use This Skill
+
+Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
 
 ### The Framework Layer
 
@@ -155,10 +168,6 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for `sk-prompt` when a prompt you are about to send feels vague or unstructured, when you need a framework you do not use every day, when you want a quality score before you dispatch and when you are building a reusable prompt template. Skip it for a one-line fact-check query where structure adds no value. For design-generation work, the skill constructs the brief from the framework library and CLEAR rubric in `references/patterns-evaluation.md`, plus a handoff note to `sk-code`; it ships no design-specific reference of its own. It owns the prompt only. `sk-design-md-generator` owns measured design-reference extraction.
 
 ### Related Skills
 

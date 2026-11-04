@@ -9,12 +9,12 @@ trigger_phrases:
   - "markdown delivery standards"
 importance_tier: normal
 contextType: implementation
-version: 2.3.1.0
+version: 2.3.2.0
 ---
 
 # Format Guide -- Markdown
 
-Complete formatting specification for delivering enhanced prompts in Markdown format, the default human-readable output mode.
+Use Markdown when a person reads the prompt, which is every run that names no other format.
 
 ---
 
