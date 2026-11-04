@@ -148,8 +148,7 @@ Recovery follows the continuity ladder rather than inferring a session:
 Saves go through `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`, invoked by `/speckit:save`.
 The writer updates the packet's continuity surfaces in place.
 
-- A `--full-auto` save also writes the payload's `operatorDecisions` into the target packet's `decision-record.md`, creating it when absent.
-- The save first stamps a missing level marker into `spec.md`, so the packet's level does not move.
+- A `--full-auto` save also writes the payload's `operatorDecisions` into the target packet's `decision-record.md`, creating it when absent and first stamping a missing level marker into `spec.md` so the packet's level does not move.
 - No indexing hand-off follows.
 
 Regenerate the index with `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` after spec-doc frontmatter changes. The artifact at `runtime/data/trigger-index.json` is committed, so a fresh clone answers Gate 1 before anything is built.
