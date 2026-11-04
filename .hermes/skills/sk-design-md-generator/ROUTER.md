@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-md-generator routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
