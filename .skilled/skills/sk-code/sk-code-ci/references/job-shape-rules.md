@@ -9,12 +9,12 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Job Shape Rules
 
-What every job carries beyond its steps: a timeout, a permissions scope, a concurrency group, a shared provisioning step and a switch condition.
+How long a job may run, what it may touch and when it may be skipped are set before its steps, in a handful of lines a reviewer skims past. Getting them wrong stays invisible until a hang, a leak or a wasted run shows up on the bill.
 
 ---
 
@@ -87,8 +87,6 @@ Enforcement: honour-system.
 ---
 
 ## 5. THE COMPOSITE SETUP ACTION
-
-status: landed
 
 Every workflow that needs the repository's dependency trees calls one composite action instead of repeating the install and build steps. The profile's `setupAction` names it, and the job template adds the step only when the profile does. Everything below in this section is the Skilled example.
 

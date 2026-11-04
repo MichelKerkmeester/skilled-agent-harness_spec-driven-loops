@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Toolchain, Compilation Baseline & Project Structure
@@ -20,13 +20,14 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for toolchain, compilation baseline & project structure in the OpenCode development environment.
+Fixes the workspace toolchain, compilation baseline and source and module layout that every Rust crate in the workspace inherits.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Setting up or reviewing a workspace `Cargo.toml`, edition, MSRV or release profile
+- Deciding feature flags or compilation targets
+- Laying out a Rust file's sections, modules or workspace crates
+- Checking module responsibilities and visibility
 
 ---
 

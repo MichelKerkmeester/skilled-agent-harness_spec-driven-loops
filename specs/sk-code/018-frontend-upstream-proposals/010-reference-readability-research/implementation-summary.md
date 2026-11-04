@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-code/018-frontend-upstream-proposals/010-reference-readability-research"
     last_updated_at: "2026-11-03T21:43:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Built the render checks, the template fixes and the sk-code fixes; every gate holds"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-010-reference-readability-research"
+      session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,62 +45,71 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The validator now reads document bodies: ten `render_*` warnings catch joined bold labels, setext headings, bare URLs, compound or empty overviews, repeated labels and sentences, letter-suffixed section numbers, out-of-place related sections and intros that restate the Purpose. `package_skill.py --strict` turns them into errors for new defects, while a known-debt ledger tolerates the 382 existing hits in other skills until their owners clear them.
 
 ### Phase 10: reference-readability-research
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Two lineages, DeepSeek V4.1 Flash max for 8 iterations and GPT-6 Luna xhigh for 7, audited every sk-code reference and asset and the sk-create-skill package. A fresh Opus pass confirmed 27 sk-code defects and the template and validator gaps behind them. The fix plan then ran in order: the checks first, the sk-create-skill templates and guidance next, then the sk-code fixes, mechanical by script and authored by DeepSeek builds, and the strict gate last. The sk-create-skill templates no longer teach the defects, and the reference template carries a body skeleton.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `sk-doc/shared/scripts/validate_document.py`, `shared/assets/template-rules.json` | Modified | Ten render checks as warnings |
+| `sk-doc/scripts/tests/test_render_checks.py`, `scripts/tests/render/` | Created | Positive and negative fixtures |
+| `sk-create-skill/scripts/package_skill.py`, `render-known-debt.json`, `test_package_skill_regressions.py` | Modified, created | Strict gate past a shrink-only ledger |
+| `sk-create-skill/assets/` and `references/` (11 files) | Modified | Templates and guidance that no longer teach the defects |
+| `sk-code/` hub, `shared/` and five packets | Modified | The 27 confirmed defects |
+| Eight changelogs and `SKILL.md` versions | Created, modified | Release entries |
+| `sk-code` and `sk-doc` compiled route manifests | Regenerated | Follow the edited routers and versions |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+`scratch/baseline.sh` recorded every gate before the first edit, and the same script ran again at the end (`scratch/final-gates.txt`). Mechanical fixes ran as `scratch/mech-fixes.py` and `renumber-surface.py`. Ten DeepSeek V4.1 Flash max builds ran through `opencode run` from the briefs in `scratch/`, each read before the next step. The sk-code and sk-doc route manifests were re-minted after the router and version edits.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Render findings are warnings in the validator and errors only under strict packaging | Existing skills keep validating; new defects cannot ship |
+| A shrink-only known-debt ledger for other skills | 382 existing hits belong to their owners, and the ledger stops new ones |
+| SC-002 reworded | The control file holds only five of the ten defect classes; the operator accepted proving each check on a named known-bad file |
+| Keep released changelog text as written | A released entry records history |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Render gate, sk-code and sk-create-skill | `render_warnings=0 invalid=0` over 172 files |
+| Controls | Cascade control trips exactly the five planned checks; the pre-fix markup file trips `render_setext_underline` |
+| sk-doc script suite | Baseline lines plus `PASS test_render_checks.py`, no FAIL |
+| Strict packaging | PASS for sk-code, its five packets, sk-create-skill and mcp-code-mode |
+| Compiled-route suites | 101 tests, 101 pass after the re-mint |
+| Playbooks, drift guards, checklist map | Unchanged PASS; drift exit 0; fail 0 |
+| Links | 0 broken across 7,640 files; anchor check 21, the template example links of the baseline |
+| Fleet `valid: true` count | 1,682 before and after |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Other skills still carry 382 render hits.** They are ledgered, not fixed; the every-skill refinement program clears them skill by skill.
+2. **The anchor check counts 21 deliberate example links** in the sk-create-skill templates, such as `./ROUTER.md`; they are placeholders a new skill fills.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

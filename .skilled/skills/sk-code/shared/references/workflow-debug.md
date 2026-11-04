@@ -8,7 +8,7 @@ trigger_phrases:
   - "scoped repair workflow"
 importance_tier: important
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Workflow Reference - Debugging
@@ -22,10 +22,6 @@ Shared `sk-code` doctrine for root-cause diagnosis and scoped repair once a symp
 ### Purpose
 
 Debugging is the controlled-experiment phase. It reproduces or tightly characterizes the symptom, captures exact evidence, traces the symptom back to its source, fixes one cause at a time and sends the result back through quality and verification.
-
-### Core Principle
-
-Fix the producer, not the place the symptom surfaced. A patch at the failure site hides the cause and leaves every other reader of the bad value broken.
 
 ### When to Use
 
@@ -42,6 +38,10 @@ Fix the producer, not the place the symptom surfaced. A patch at the failure sit
 - The work is final non-mutating evidence after a fix. Use [verification](./workflow-verify.md).
 - The user wants findings-first review output instead of a repair. Use the `sk-code-review` mode.
 - The task is documentation-only prose with no failing behavior.
+
+### Core Principle
+
+Fix the producer, not the place the symptom surfaced. A patch at the failure site hides the cause and leaves every other reader of the bad value broken.
 
 ---
 

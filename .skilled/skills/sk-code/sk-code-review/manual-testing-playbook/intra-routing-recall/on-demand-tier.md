@@ -5,7 +5,7 @@ stage: routing
 title: 'ON_DEMAND tier loading'
 description: "This scenario validates ON_DEMAND tier loading for `CR-R12`. It confirms an ON_DEMAND keyword match loads every RESOURCE_MAP target, so a single-intent prompt resolves to the ten deep-dive paths."
 expected_intent: SECURITY
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CR-R12: ON_DEMAND tier loading
@@ -145,7 +145,7 @@ Both router transcripts, the resource count from each, and the `ON_DEMAND_KEYWOR
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | The three loading levels, `ON_DEMAND_KEYWORDS`, `RESOURCE_MAP` and the router block this scenario executes |
-| [SKILL.md](../../SKILL.md) §9.3 (`SK_CODE_REVIEW_DEPTH`) | The `ultra` alias that biases intent selection toward the tier this scenario exercises |
+| [SKILL.md](../../SKILL.md) §8.3 (`SK_CODE_REVIEW_DEPTH`) | The `ultra` alias that biases intent selection toward the tier this scenario exercises |
 | [solid-checklist.md](../../assets/solid-checklist.md) | A deep-dive path that arrives through the ON_DEMAND tier alone |
 
 ---

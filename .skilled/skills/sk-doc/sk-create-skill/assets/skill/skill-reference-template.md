@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference creation guidelines"
 importance_tier: normal
 contextType: general
-version: 1.2.0.25
+version: 1.2.1.0
 ---
 
 # Skill Reference File Templates - AI Agent Skills
@@ -32,22 +32,6 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 | `debugging-guide.md` | `DebuggingGuide.MD` (wrong case) |
 | `quick-reference.md` | `quickReference.md` (camelCase) |
 | `code-quality-standards.md` | `code quality standards.md` (spaces) |
-
-### When to Create References
-
-**Create a reference file when:**
-- Multi-phase workflows with validation checkpoints
-- Decision trees with multiple branches
-- Pattern libraries with 5+ variations
-- Systematic debugging procedures
-- Tool integration details
-- Content exceeds 200 lines
-
-**Keep in SKILL.md when:**
-- Content under 200 lines
-- Simple workflows (3-5 steps)
-- Overview and "When to Use" sections
-- Essential rules (ALWAYS/NEVER/ESCALATE IF)
 
 ---
 
@@ -91,14 +75,14 @@ Every reference file carries this full 5-field frontmatter block: the Skill Advi
 ```markdown
 # Git Commit Workflows
 
-Step-by-step workflows for creating clean, atomic commits with proper filtering.
+This reference turns a mixed working tree into a small set of reviewable commits.
 
 ---
 
 \## 1. OVERVIEW
 
 ### Purpose
-Provides systematic workflows for analyzing changes, filtering artifacts, and creating well-structured commits.
+Each rule keeps one commit focused on one intent, so history stays easy to read, review and revert.
 
 ### When to Use
 - Creating commits with multiple file changes
@@ -144,6 +128,74 @@ Atomic commits...  ← DUPLICATED from intro!
 | Purpose (detailed)    | ❌ NO             | ✅ YES              |
 | Prerequisites         | ❌ NO             | ✅ YES              |
 | Any H3 subsections    | ❌ NEVER          | ✅ YES              |
+
+---
+
+### Reference Body Skeleton
+
+**Every reference body follows this order.** The hook and the Purpose say different things: the hook names the job, and the Purpose names the outcome.
+
+```markdown
+# [Title]
+
+[1-2 sentence hook: what this reference covers and when to reach for it.]
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+[The outcome this reference produces, in one or two sentences.]
+
+### When to Use
+
+- [Trigger that sends a reader here]
+- [Second trigger]
+
+### Core Principle
+
+[One-line statement that governs every rule below.]
+
+### Boundaries
+
+- **In scope**: [What this reference owns]
+- **Out of scope**: [What belongs in a sibling reference]
+
+### Key Sources
+
+- [title](url) - [What the source establishes]
+
+---
+
+## 2. [CONTENT SECTION]
+
+### [Rule Group]
+
+- **Rule:** [What to do]
+- **Why:** [The failure it prevents]
+- **Check:** [How to verify it]
+
+---
+
+## 3. [CONTENT SECTION]
+
+[Body of the section]
+
+---
+
+## 4. RELATED RESOURCES
+
+- [title](./sibling-reference.md) - [What the reader gets there]
+```
+
+**Rules the skeleton encodes:**
+- Core Principle, Boundaries and Key Sources follow Purpose and When to Use, in that order, and each appears only when it has content.
+- Content sections use integer numbers only: `## 2.`, `## 3.`, and so on.
+- Rule fields are `- **Label:** text` bullets, never two bold labels on consecutive lines.
+- Links are `[title](url)`, never a bare URL.
+- Every `---` has a blank line above it, so a divider never turns the line above into a setext heading.
+- A related section, when present, is the last H2.
 
 ---
 
@@ -237,6 +289,14 @@ Level 3: Reference files (this document)
 **Format**:
 ```markdown
 \## 1. OVERVIEW
+
+### Purpose
+
+[The outcome this reference produces]
+
+### When to Use
+
+- [Trigger that sends a reader here]
 
 ### Core Principle
 

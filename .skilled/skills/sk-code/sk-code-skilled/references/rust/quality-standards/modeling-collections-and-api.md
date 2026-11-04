@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts
@@ -20,13 +20,13 @@ Ownership, safety, interop, error handling, async patterns, Cargo baseline, and 
 
 ### Purpose
 
-Provides focused Rust guidance for domain modeling, collections & public api/abi contracts in the OpenCode development environment.
+Defines the domain types, collection choices and public API and ABI shapes that make Rust state explicit and every exported contract reviewable.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Modeling a parity-sensitive primitive or a state machine
+- Choosing a collection or a serialization DTO
+- Designing or reviewing a public Rust API or an ABI contract for napi-rs, WASM or a sidecar
 
 ---
 

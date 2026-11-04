@@ -1,0 +1,188 @@
+{
+  "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding.",
+  "debt": {
+    "cli-external-orchestration/cli-claude-code": {
+      "findings": 3,
+      "codes": [
+        "render_bare_url",
+        "render_section_order"
+      ]
+    },
+    "cli-external-orchestration/cli-codex": {
+      "findings": 3,
+      "codes": [
+        "render_bare_url",
+        "render_intro_restates_purpose",
+        "render_section_order"
+      ]
+    },
+    "cli-external-orchestration/cli-cursor": {
+      "findings": 4,
+      "codes": [
+        "render_bare_url",
+        "render_intro_restates_purpose"
+      ]
+    },
+    "cli-external-orchestration/cli-devin": {
+      "findings": 4,
+      "codes": [
+        "render_bare_url",
+        "render_intro_restates_purpose",
+        "render_section_order"
+      ]
+    },
+    "cli-external-orchestration/cli-hermes": {
+      "findings": 1,
+      "codes": [
+        "render_h2_numbering"
+      ]
+    },
+    "cli-external-orchestration/cli-opencode": {
+      "findings": 29,
+      "codes": [
+        "render_bare_url",
+        "render_bold_label_join"
+      ]
+    },
+    "mcp-code-mode": {
+      "findings": 27,
+      "codes": [
+        "render_bare_url",
+        "render_bold_label_join",
+        "render_h2_numbering"
+      ]
+    },
+    "mcp-tooling/mcp-aside-devtools": {
+      "findings": 24,
+      "codes": [
+        "render_bare_url"
+      ]
+    },
+    "mcp-tooling/mcp-chrome-devtools": {
+      "findings": 3,
+      "codes": [
+        "render_bare_url"
+      ]
+    },
+    "mcp-tooling/mcp-click-up": {
+      "findings": 6,
+      "codes": [
+        "render_bare_url",
+        "render_bold_label_join"
+      ]
+    },
+    "mcp-tooling/mcp-notion": {
+      "findings": 8,
+      "codes": [
+        "render_bare_url",
+        "render_bold_label_join"
+      ]
+    },
+    "mcp-tooling/mcp-obsidian": {
+      "findings": 20,
+      "codes": [
+        "render_bare_url",
+        "render_bold_label_join",
+        "render_h2_numbering",
+        "render_overview_heading",
+        "render_overview_orientation",
+        "render_section_order"
+      ]
+    },
+    "sk-design/sk-design-chart": {
+      "findings": 1,
+      "codes": [
+        "render_h2_numbering"
+      ]
+    },
+    "sk-design/sk-design-diagram": {
+      "findings": 35,
+      "codes": [
+        "render_bare_url",
+        "render_h2_numbering"
+      ]
+    },
+    "sk-design/sk-design-md-generator": {
+      "findings": 69,
+      "codes": [
+        "render_bold_label_join"
+      ]
+    },
+    "sk-doc/sk-create-command": {
+      "findings": 2,
+      "codes": [
+        "render_bold_label_join",
+        "render_section_order"
+      ]
+    },
+    "sk-doc/sk-create-diff": {
+      "findings": 10,
+      "codes": [
+        "render_h2_numbering"
+      ]
+    },
+    "sk-doc/sk-create-frontmatter": {
+      "findings": 1,
+      "codes": [
+        "render_overview_heading"
+      ]
+    },
+    "sk-doc/sk-create-goal": {
+      "findings": 1,
+      "codes": [
+        "render_overview_heading"
+      ]
+    },
+    "sk-doc/sk-create-quality-control": {
+      "findings": 31,
+      "codes": [
+        "render_bold_label_join",
+        "render_h2_numbering"
+      ]
+    },
+    "sk-git": {
+      "findings": 3,
+      "codes": [
+        "render_bold_label_join",
+        "render_h2_numbering",
+        "render_section_order"
+      ]
+    },
+    "system-deep-loop/deep-ai-council": {
+      "findings": 6,
+      "codes": [
+        "render_h2_numbering",
+        "render_overview_orientation"
+      ]
+    },
+    "system-deep-loop/deep-research": {
+      "findings": 4,
+      "codes": [
+        "render_h2_numbering",
+        "render_section_order"
+      ]
+    },
+    "system-deep-loop/deep-review": {
+      "findings": 5,
+      "codes": [
+        "render_h2_numbering",
+        "render_section_order"
+      ]
+    },
+    "system-skill-advisor": {
+      "findings": 2,
+      "codes": [
+        "render_intro_restates_purpose"
+      ]
+    },
+    "system-spec-kit": {
+      "findings": 49,
+      "codes": [
+        "render_bold_label_join",
+        "render_h2_numbering",
+        "render_overview_heading",
+        "render_section_order"
+      ]
+    }
+  }
+}

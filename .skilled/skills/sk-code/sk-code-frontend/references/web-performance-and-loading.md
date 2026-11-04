@@ -7,7 +7,7 @@ trigger_phrases:
   - "font metrics and layout shift"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Performance and Loading
@@ -127,7 +127,7 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 - **Why:** The browser multiplies the selected slot width by device pixel ratio to choose a source candidate. A 600-pixel slot at DPR 2 needs a candidate near 1200 pixels.
 - **When not to:** Use density descriptors when the source set represents the same rendered dimensions at different pixel densities.
 - **Pitfall:** Setting `sizes="100vw"` for a 600-pixel column can select a much larger image than the layout needs.
-- **Support:** Baseline widely available since 2019-09-27 (web-features `srcset`). Chrome 38 / Firefox 38 / Safari 10.1. Baseline widely available since 2019-09-27 (web-features `srcset`). Chrome 38 / Firefox 38 / Safari 10.1.
+- **Support:** Baseline widely available since 2019-09-27 (web-features `srcset`). Chrome 38 / Firefox 38 / Safari 10.1.
 - **See also:** [MDN: Responsive images](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images)
 
 ### P9. Picture formats and image hints

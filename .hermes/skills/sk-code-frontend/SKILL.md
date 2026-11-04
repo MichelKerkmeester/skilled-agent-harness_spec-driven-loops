@@ -2,7 +2,7 @@
 name: sk-code-frontend
 description: Read-only frontend evidence for stack-agnostic web practice, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.2.0
+version: 1.0.3.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -45,7 +45,13 @@ Validate the package with the operator-scenario contract:
 
 ---
 
-## 3. SURFACE STANDARDS
+## 3. SMART ROUTING
+
+Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-frontend/ROUTER.md) for the intent map, topic-file loading conditions, and machine router. The core loads by default, followed by the matching web or Figma-to-code reference.
+
+---
+
+## 4. SURFACE STANDARDS
 
 ### ✅ ALWAYS
 
@@ -65,12 +71,6 @@ Validate the package with the operator-scenario contract:
 
 ---
 
-## 4. FRONTEND OVERRIDES
+## 5. FRONTEND OVERRIDES
 
 A project mode records each change to a core or web-layer statement under a `Frontend overrides` heading in its own `SKILL.md`, naming the section, whether it replaces, extends, or disables the statement, and the reason; when nothing differs, it says that it follows the core and web layer unchanged. Its completion report names the overrides it applied. See [Frontend practice, Section 5](../../../.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md#5-overrides).
-
----
-
-## 5. SMART ROUTING
-
-Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-frontend/ROUTER.md) for the intent map, topic-file loading conditions, and machine router. The core loads by default, followed by the matching web or Figma-to-code reference.

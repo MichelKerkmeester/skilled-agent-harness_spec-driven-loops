@@ -8,14 +8,31 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Repository Quality Config
 
+A repository's own quality checks live in one committed file, and this reference is the contract for writing and reading it.
+
+---
+
 ## 1. OVERVIEW
 
-A repository names its own quality checks in one committed file, `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`. The quality runner reads it on every run, and `/doctor:sk-code quality` shows, checks and creates it. Both read it through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says. The file's additions tighten the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, minus the rules `commentHygiene.disableRules` switches off, which they read through the same loader by way of `scripts/hygiene-config-flags.cjs`. So a rule the file switches off blocks nowhere, and a ticket prefix the file adds can fail locally and pass on push. A file that does not validate leaves both layers on every core rule.
+### Purpose
+
+A repository can add checks and tighten hygiene through `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` without forking the shipped base layer. The quality runner reads it on every run and `/doctor:sk-code quality` shows, checks and creates it, both through `scripts/lib/quality-config.cjs`, so they never disagree about what the file says.
+
+### When to Use
+
+- Adding, changing or removing a repository quality check
+- Writing or reviewing a checklist and its rule overrides
+- Reading a discovery, trust or validation failure
+- Deciding which layer a `commentHygiene` change reaches
+
+### Author Gate and CI
+
+The file's additions tighten the author gate only. The CI job and the pre-commit hook keep the core hygiene set at whole-file scope, minus the rules `commentHygiene.disableRules` switches off, which they read through the same loader by way of `scripts/hygiene-config-flags.cjs`. So a rule the file switches off blocks nowhere, and a ticket prefix the file adds can fail locally and pass on push. A file that does not validate leaves both layers on every core rule.
 
 ---
 
@@ -129,7 +146,7 @@ The shipped base layer, `assets/quality-defaults.json`, always loads first, and 
 ## 5. HOW A CONFIGURED CHECK RUNS
 
 - **Matching.** A check reads the in-scope files the runner reads, binary files, large files and files with no comment family included, and never an excluded file, a folder or a dead link. A `generated` row also reads excluded files. A check that matches no file is `NOT_APPLICABLE` and never starts.
-- **Order of states.** No match is `NOT_APPLICABLE`. Then `--only` and `--skip` give `SKIPPED_BY_FLAG`, an absent `requires` tool gives `SKIPPED_ABSENT` with a repair line, `--no-run` gives `LISTED` with each planned run, an untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line and a run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`.
+- **Order of states.** No match is `NOT_APPLICABLE`. Then `--only` and `--skip` give `SKIPPED_BY_FLAG`, an absent `requires` tool gives `SKIPPED_ABSENT` with a repair line, `--no-run` gives `LISTED` with each planned run, an untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line and a run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`. [Trust boundary](#8-trust-boundary) says what makes a config trusted.
 - **Runs.** `{files}` expands to the matching files relative to the run's `cwd`, and a name that starts with a dash is passed as `./name`. A check runs once per `cwd` group, with or without `{files}`. `runs[]` lists each run with its `cwd`, `argv`, `files`, `state`, `exit` and `duration_ms`. A run that times out or cannot start ends the check.
 - **Process.** Each run is an argv array with no shell, no input and no `NODE_OPTIONS`, `NODE_COMPILE_CACHE`, `BASH_ENV` or `ENV`. It starts as the leader of its own process group, and the whole group is killed at the deadline and again when the leader exits, so a helper it forked cannot outlive it.
 - **Workspace guard.** The built-in checks run in one guard window, then each configured check runs in its own window, chained from the one before. A changed snapshot ends the run with exit 3 and `CHECK_MUTATED_WORKSPACE`, names the check and the paths and reverts nothing. Every configured check after it reads `ERROR`, not run.

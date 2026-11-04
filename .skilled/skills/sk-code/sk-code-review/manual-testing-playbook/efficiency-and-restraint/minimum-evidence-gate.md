@@ -1,7 +1,7 @@
 ---
 title: "CR-033 -- Opt-in minimum evidence gate"
 description: "This scenario validates the M-2 minimum-evidence gate for `CR-033`. It focuses on the opt-in SK_CODE_REVIEW_MIN_CHANGED_LINES threshold, the numstat changed-line count, the exact skip status line for a small non-sensitive diff, and the sensitive-path taxonomy that forces the full review anyway."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # CR-033 -- Opt-in minimum evidence gate
@@ -16,7 +16,7 @@ This scenario validates the M-2 minimum-evidence gate for `CR-033`. It focuses o
 
 ### Why This Matters
 
-M-2 is the gate that trades a full review for a cheaper skip on trivially small diffs, and its whole safety rests on one exception: six high-risk path classes are never skipped. A gate that skips too eagerly hides exactly the defects a review exists to catch, and a gate that never skips is dead weight. The two halves need separate evidence, which is why this scenario runs the same threshold twice: once on a diff that must skip and once on a diff that must not. No other scenario exports the variable, runs the counting command, or asserts the skip line, so without this one the gate could change its threshold semantics, its count, or its taxonomy and the battery would stay green. `SKILL.md` §9.2 holds the contract and `scripts/README.md` holds the whole-output rule the checker enforces.
+M-2 is the gate that trades a full review for a cheaper skip on trivially small diffs, and its whole safety rests on one exception: six high-risk path classes are never skipped. A gate that skips too eagerly hides exactly the defects a review exists to catch, and a gate that never skips is dead weight. The two halves need separate evidence, which is why this scenario runs the same threshold twice: once on a diff that must skip and once on a diff that must not. No other scenario exports the variable, runs the counting command, or asserts the skip line, so without this one the gate could change its threshold semantics, its count, or its taxonomy and the battery would stay green. `SKILL.md` §8.2 holds the contract and `scripts/README.md` holds the whole-output rule the checker enforces.
 
 ---
 
@@ -157,7 +157,7 @@ Both counting transcripts, both changed-path lists, the skip output file, the fi
 1. Confirm `SK_CODE_REVIEW_MIN_CHANGED_LINES` was exported in the same shell as the count. The gate is opt-in: without it M-2 has zero effect and every diff receives a full review, which looks identical to a passing skip test until the skip line is read.
 2. Re-run the counting command on its own. It must print one integer; a multi-line result means `--numstat` hit a binary file or the range was wrong.
 3. If the checker rejects the skip output, quote its message. A trailing `Not checked:` line, a trailing blank line or any text after the status line fails, and the M-2 skip output carries none of them.
-4. If step 4 produced a skip, re-read the six never-skip rows in `SKILL.md` §9.2 and name the class the path falls in. `*token*` sits in the first row.
+4. If step 4 produced a skip, re-read the six never-skip rows in `SKILL.md` §8.2 and name the class the path falls in. `*token*` sits in the first row.
 5. A count that lands exactly on the threshold does not skip: the condition is strictly below.
 
 ---
@@ -175,7 +175,7 @@ Both counting transcripts, both changed-path lists, the skip output file, the fi
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Section 9.2 M-2 enable gate, counting command, six never-skip classes and skip behavior |
+| `../../SKILL.md` | Section 8.2 M-2 enable gate, counting command, six never-skip classes and skip behavior |
 | `../../references/pr-state-dedup.md` | The sibling M-1 gate the depth alias maps `lite` onto |
 | `../../scripts/check-review-final-line.js` | Accepts the skip status only as the whole output |
 | `../../scripts/README.md` | States the whole-output rule the checker enforces |

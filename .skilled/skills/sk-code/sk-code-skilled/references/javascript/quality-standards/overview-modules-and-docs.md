@@ -8,12 +8,12 @@ trigger_phrases:
   - "javascript error handling standards"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # JavaScript Quality Standards
 
-Module organization, error handling, documentation, and security patterns for JavaScript files.
+Reach for this file when a JavaScript module boundary, error path or security rule needs a decision that survives review.
 
 ---
 

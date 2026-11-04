@@ -1,0 +1,22 @@
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md:296 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md:26 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md:29 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md:76 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/packet-skill-scaffold.md:34 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:195 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:220 -> ./references/workflow-details.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:316 -> ./references/reference-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:317 -> ./references/workflow-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:321 -> ./assets/template-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:322 -> ./assets/checklist-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:406 -> INSTALL-GUIDE.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:521 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:562 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:779 -> ./references/reference-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:782 -> ./assets/template-name.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:939 -> ./ROUTER.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:1012 -> ../scripts/
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:1012 -> ../assets/
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md:16 -> ./SKILL.md
+MISSING FILE .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md:47 -> ./ROUTER.md
+checked=1796 broken=21

@@ -9,16 +9,30 @@ trigger_phrases:
   - "commented no changes status"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # PR-State Content-Hash Dedup (M-1)
 
+An unchanged pull request should not be reviewed twice, and a skip is only trustworthy when its evidence is written down. The sections below hold the signature, the cache and the status line that prove it.
+
+---
+
 ## 1. OVERVIEW
 
-Detailed reference for the M-1 PR-state deduplication gate documented in `../SKILL.md` §9.1.
+### Purpose
 
-## Signature Computation
+This is the detailed reference for the M-1 PR-state deduplication gate documented in [SKILL.md](../SKILL.md) §8.1. A pull request whose diff and commit subject are unchanged since the last recorded review gets no second full analysis, and the cache entry states which revision was already reviewed.
+
+### When to Use
+
+- A review is requested for a branch that may already have been reviewed at the same content.
+- A reviewer needs the cache path, the retention cap or the pathspec key the gate uses.
+- An operator needs to audit a skip or reset the cache.
+
+---
+
+## 2. SIGNATURE COMPUTATION
 
 ```text
 diff_content_hash = sha256(git diff <base-ref>...HEAD)
@@ -39,7 +53,9 @@ SUBJECT=$(git log $BASE...HEAD --format=%s ${SCOPE:+-- "$SCOPE"} | head -1)
 SIGNATURE=$(printf '%s\x1f%s' "$SUBJECT" "$DIFF_HASH" | sha256sum | awk '{print $1}')
 ```
 
-## Cache Format
+---
+
+## 3. CACHE FORMAT
 
 **Path:** `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`
 
@@ -56,7 +72,9 @@ The cache lives in the reviewing user's cache directory, outside every reviewed 
 {"signature": "<sha256-hex-64>", "timestamp": "<ISO-8601>", "prev_sha": "<full-commit-sha>"}
 ```
 
-## Pathspec Scope
+---
+
+## 4. PATHSPEC SCOPE
 
 The scope is optional. With no pathspec, the whole repository is one scope, which is the behavior every earlier cache entry was written under.
 
@@ -68,14 +86,18 @@ When a review targets one package of a monorepo, pass that package path as the p
 
 A change outside the package then leaves that package's signature unchanged, and a change inside it no longer matches a whole-repository entry.
 
-## Retention
+---
+
+## 5. RETENTION
 
 - Maximum **100 entries** per repo-ref
 - On write: append, then if line count > 100, keep last 100 lines
 - No TTL-based expiry — entries persist until pruned by the 100-entry cap
 - Cache file may be deleted entirely to reset; recreated on next write
 
-## Skip Behavior
+---
+
+## 6. SKIP BEHAVIOR
 
 When a review is requested and the computed signature matches a prior cache entry:
 
@@ -87,11 +109,15 @@ Review status: COMMENTED (no changes since last review at <prev_sha>)
 - The cached `prev_sha` is reported so operators can verify
 - Downstream automation must treat `COMMENTED` as equivalent to a pass (no new findings)
 
-## Cache Write
+---
+
+## 7. CACHE WRITE
 
 After every **full review** that reaches the final status line, write the current signature to cache. If the gate skipped the review (COMMENTED match), do NOT re-write — the existing cache entry remains authoritative.
 
-## Cache Location Rationale
+---
+
+## 8. CACHE LOCATION RATIONALE
 
 - The user cache directory sits outside every reviewed repository, so reviewing a foreign repository leaves no folder in it, and deleting the cache folder resets the gate
 - `<repo-ref>` deduplication supports multiple remotes / forks without collision

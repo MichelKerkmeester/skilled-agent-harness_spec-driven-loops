@@ -28,7 +28,7 @@ function selectors(row) {
 
 function renderedRows() {
   const skill = fs.readFileSync(path.join(SKILLED_ROOT, 'SKILL.md'), 'utf8');
-  const section = (skill.split('## 5. QUALITY CHECKLIST MAP')[1] || '').split(/\n#{2,3} /)[0];
+  const section = (skill.split('## 6. QUALITY CHECKLIST MAP')[1] || '').split(/\n#{2,3} /)[0];
   assert.ok(section.includes('| Owner |'), 'the quality checklist map table is missing');
   return section.split('\n').filter((line) => line.startsWith('| ')).slice(2)
     .map((line) => line.split('|').slice(1, -1).map((cell) => cell.trim()))

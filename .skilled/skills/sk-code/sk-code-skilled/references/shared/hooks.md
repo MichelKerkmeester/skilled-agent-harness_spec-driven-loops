@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -23,10 +23,6 @@ Reference for the current runtime-hook surfaces in this workspace: checked-in Cl
 
 This reference documents the runtime-hook entrypoint pattern for OpenCode-family system code: how hook sources are registered, wired, and maintained. Some hook source files have no static `import` callers inside their server; runtime settings, plugin declarations, or wrapper files make them reachable. Static dead-code analyzers can see those entrypoints as unused; they are not.
 
-### Core Principle
-
-> **Hook entrypoints are runtime-loaded, not necessarily statically imported.** Their reachability lives in runtime settings, plugin bridge registrations, or checked-in wrapper files. Treat those registration surfaces as part of the contract.
-
 ### When to Use
 
 - Editing an existing hook entrypoint and verifying its runtime wiring still resolves
@@ -34,6 +30,10 @@ This reference documents the runtime-hook entrypoint pattern for OpenCode-family
 - Removing a hook (must update both source and runtime registration)
 - Triaging a static analysis report flagging hook code as dead
 - Reviewing parity across the four runtimes
+
+### Core Principle
+
+> **Hook entrypoints are runtime-loaded, not necessarily statically imported.** Their reachability lives in runtime settings, plugin bridge registrations, or checked-in wrapper files. Treat those registration surfaces as part of the contract.
 
 ### Key Sources (Evidence)
 

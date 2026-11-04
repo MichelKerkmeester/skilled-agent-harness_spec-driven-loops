@@ -8,12 +8,12 @@ trigger_phrases:
   - "tsconfig baseline standards"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # TypeScript Quality Standards
 
-Type system patterns, error handling, documentation, async patterns, and tsconfig baseline for TypeScript files in the OpenCode development environment.
+Reach for this file when a TypeScript type choice, error boundary or tsconfig setting needs a defensible default rather than a local preference.
 
 ---
 

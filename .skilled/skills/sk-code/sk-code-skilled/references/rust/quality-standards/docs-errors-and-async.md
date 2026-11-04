@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rustdoc, Error/Panic Translation & Async Patterns
@@ -20,13 +20,14 @@ Ownership, safety, interop, error handling, async patterns, Cargo baseline, and 
 
 ### Purpose
 
-Provides focused Rust guidance for rustdoc, error/panic translation & async patterns in the OpenCode development environment.
+Specifies the documentation, typed-error and async policies that keep boundary failures recoverable and move runtime work off the Node thread where it belongs.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Documenting a public operation or a boundary adapter
+- Translating a core error into a JavaScript error shape
+- Deciding whether work stays synchronous or moves into `AsyncTask`, Tokio or Rayon
+- Writing error tests or a panic policy
 
 ---
 

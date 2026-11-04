@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.16.0
+version: 2.1.17.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -107,7 +107,9 @@ Authoring and validation assets:
 
 Workflow: the implement -> debug -> verify phases use the split shared, language, hook, and alignment resources above; no root-level `workflow-*.md` trio is assumed.
 
-## 2b. SMART ROUTING
+---
+
+## 3. SMART ROUTING
 
 The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
 
@@ -117,7 +119,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ---
 
-## 3. SURFACE STANDARDS (the non-negotiables)
+## 4. SURFACE STANDARDS (the non-negotiables)
 
 - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality-standards/overview-modules-and-docs.md` and the plugin exemption tier.
 - **Descriptors are load-bearing.** `graph-metadata.json` / `description.json` shape drives discovery; validate JSON/JSONC against `references/config/quality-standards.md`.
@@ -145,7 +147,7 @@ You cannot hold Rust byte-identical to TypeScript without seeing both standards.
 
 ---
 
-## 4. ASSETS AND OTHER SURFACE AREAS — ON-DEMAND
+## 5. SUPPORTING ASSETS
 
 Component authoring (`assets/checklists/`): `skill-authoring.md`, `agent-authoring.md`, `command-authoring.md`, `mcp-server-authoring.md`
 
@@ -161,7 +163,7 @@ Spec-folder authoring lives in system-spec-kit (`.skilled/skills/system-spec-kit
 
 ---
 
-## 5. QUALITY CHECKLIST MAP
+## 6. QUALITY CHECKLIST MAP
 
 This is this repository's quality checklist map, not a universal one.
 The quality runner resolves checklists from two sources: the rows owned by the quality mode in `../sk-code-quality/assets/quality-defaults.json` and each surface's `quality.checklists` declaration in `../mode-registry.json`.

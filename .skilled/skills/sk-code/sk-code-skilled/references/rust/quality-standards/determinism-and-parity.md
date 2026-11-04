@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Byte-for-Byte Determinism & Parity
@@ -20,13 +20,14 @@ Ownership, safety, interop, error handling, async patterns, Cargo baseline, and 
 
 ### Purpose
 
-Provides focused Rust guidance for byte-for-byte determinism & parity in the OpenCode development environment.
+Defines byte-for-byte parity as the acceptance standard and enumerates the numeric, ordering, identifier and serialization contracts a Rust boundary must preserve against the TypeScript oracle.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Migrating a behavior from TypeScript to Rust
+- Reviewing numeric rounding, sorting, identifier or map-order behavior
+- Adding the parity test inventory for a new boundary
+- Checking a cross-target release matrix
 
 ---
 

@@ -1,0 +1,9 @@
+templates-a exit=0
+guidance exit=0
+templates-b exit=0
+review exit=0
+skilled exit=0
+frontend-quality exit=0
+hub-ci exit=0
+strict exit=0
+changelogs exit=0

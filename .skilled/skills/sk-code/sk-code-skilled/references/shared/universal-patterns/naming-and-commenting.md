@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -23,16 +23,16 @@ Patterns applicable to ALL languages in OpenCode system code.
 
 This reference defines patterns that apply universally across JavaScript, TypeScript, Python, Shell, Rust, and JSON/JSONC in the OpenCode codebase. These principles ensure consistency regardless of language choice.
 
-### Core Principle
-
-> **Clarity over cleverness.** Code is read far more often than written. Optimize for the reader, not the writer.
-
 ### When to Use
 
 - Before writing any new OpenCode system code
 - When reviewing code for consistency
 - When onboarding to OpenCode development patterns
 - As the foundation before applying language-specific rules
+
+### Core Principle
+
+> **Clarity over cleverness.** Code is read far more often than written. Optimize for the reader, not the writer.
 
 ### Key Sources (Evidence)
 

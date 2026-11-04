@@ -9,7 +9,7 @@ trigger_phrases:
   - "repository ci profile"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Repository CI Profile and Protected Workflows
@@ -19,6 +19,16 @@ Where a repository states its own CI conventions, and which workflows are never 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Two guards sit behind every CI change: the profile that holds a repository's own values, and the workflow set that carries an invariant no other check backs up. This reference states where each lives, so a reviewer can name what a change would weaken before it lands.
+
+### When to Use
+
+- Before editing, switching off or scaffolding a workflow
+- When `/doctor:ci report`, `scaffold` or `toggle` returns something the packet default does not explain
+- When a new workflow takes on a job that an existing protected workflow already guards
 
 ### The Profile
 

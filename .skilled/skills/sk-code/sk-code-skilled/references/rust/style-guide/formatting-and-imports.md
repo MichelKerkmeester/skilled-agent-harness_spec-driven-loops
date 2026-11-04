@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Formatting Rules & Import/Module Ordering
@@ -20,13 +20,14 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for formatting rules & import/module ordering in the OpenCode development environment.
+Fixes the rustfmt baseline, numeric literal style and import and module ordering that make Rust source mechanically reviewable and its collection output deterministic.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Formatting Rust source or configuring rustfmt
+- Writing numeric literals or parity helper expressions
+- Ordering imports, module declarations, re-exports or macros
+- Reviewing deterministic collection formatting and sorting
 
 ---
 

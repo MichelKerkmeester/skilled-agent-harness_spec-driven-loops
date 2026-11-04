@@ -1,0 +1,84 @@
+## run-script-tests
+PASS test_audit_readmes_accuracy.py
+PASS test_authored_name_kebab.py
+PASS test_benchmark_companion_typing.py
+PASS test_build_rule_cards.py
+PASS test_category_classification_denumbered.py
+PASS test_changelog_validator.py
+PASS test_check_repo_rules.py
+PASS test_cite_drift_advisory.py
+PASS test_code_folder_readme.py
+PASS test_create_benchmark_family_registry.py
+PASS test_create_skill_contract.py
+PASS test_derived_readme_counts.py
+PASS test_extract_structure_regressions.py
+PASS test_feature_catalog_validation.py
+PASS test_format_spec_exclusion.py
+PASS test_frontmatter_fleet.py
+PASS test_frontmatter_values.py
+PASS test_frontmatter_yaml.py
+PASS test_instruction_file_exclusion.py
+PASS test_is_uppercase_section.py
+PASS test_measure_rule_compliance.py
+PASS test_naming_root_resolver.py
+PASS test_no_new_snake_case_guard.py
+PASS test_package_skill_regressions.py
+PASS test_quick_validate_086.py
+PASS test_readme_checker_false_positives.py
+PASS test_readme_manifest.py
+PASS test_readme_reference_checker.py
+PASS test_readme_verdict_parity.py
+PASS test_reference_checker.py
+PASS test_reference_rewrite_executor.py
+PASS test_rename_tooling_fixture_harness.py
+PASS test_root_name_consumer_matrix.py
+PASS test_routing_shape.py
+PASS test_rule_experiment.py
+PASS test_scaffold_template_typing.py
+PASS test_semantic_rename_engine.py
+PASS test_skill_contract.py
+PASS test_structure_validation.py
+PASS test_surface_packet_sections.py
+PASS test_template_version_seed.py
+PASS test_validate_catalog_package.py
+PASS test_validation_switch.py
+PASS test_validator.py
+PASS test-frontmatter-version.mjs
+PASS test-frontmatter-version-bump.mjs
+PASS test-cite-drift-scan.mjs
+PASS install-guide-contract.test.cjs
+exit=0
+## markdown links
+check-markdown-links: 7640 files, 14323 links checked, 0 broken
+OK — 0 broken markdown links.
+## package strict
+.skilled/skills/sk-code: Result: PASS
+.skilled/skills/sk-code/sk-code-ci: Result: PASS
+.skilled/skills/sk-code/sk-code-frontend: Result: PASS
+.skilled/skills/sk-code/sk-code-quality: Result: PASS
+.skilled/skills/sk-code/sk-code-review: Result: PASS
+.skilled/skills/sk-code/sk-code-skilled: Result: PASS
+.skilled/skills/sk-doc/sk-create-skill: Result: PASS
+.skilled/skills/mcp-code-mode: Result: PASS
+## drift guards
+exit=0
+## compiled-route
+ℹ tests 101
+ℹ pass 101
+ℹ fail 0
+## checklist map
+ℹ pass 3
+ℹ fail 0
+## playbooks
+PASS package=sk-code tier=FAIL_CLOSED scenarios=27 categories=8 operator=18 routing_gold_excluded=9 violations=0 warnings=0
+PASS package=sk-code/sk-code-review tier=FAIL_CLOSED scenarios=48 categories=11 operator=48 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-code/sk-code-quality tier=FAIL_CLOSED scenarios=23 categories=1 operator=23 routing_gold_excluded=0 violations=0 warnings=0
+PASS package=sk-code/sk-code-frontend tier=FAIL_CLOSED scenarios=2 categories=1 operator=2 routing_gold_excluded=0 violations=0 warnings=0
+## frontend rule ids
+65
+## fleet render
+fleet files=4315 valid=1682 invalid=2633 unparsed=0 render_warnings=0
+render_warnings=0 invalid=2633
+## anchors
+checked=1796 broken=21
+done

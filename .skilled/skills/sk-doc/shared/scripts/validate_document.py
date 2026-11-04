@@ -729,6 +729,559 @@ def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> 
     return errors
 
 
+# ───────────────────────────────────────────────────────────────
+# 4B. RENDER CHECKS
+# ───────────────────────────────────────────────────────────────
+#
+# Each check reads rendered Markdown shape rather than section presence, so it
+# skips YAML frontmatter and every line `_fenced_line_numbers` marks as code.
+# A finding is always a warning: the classes are mechanical to spot but their
+# repair is editorial, and only a strict packaging run promotes them.
+
+_LIST_LINE = re.compile(r'^\s*(?:[-*+]|\d+[.)])\s+')
+_H2_ANY = re.compile(r'^##(?!#)\s+(\S.*?)\s*$')
+_H2_NUMBERED = re.compile(r'^##(?!#)\s+(\d+)([A-Za-z]?)\.\s+(\S.*?)\s*$')
+_RULE_ID_H3 = re.compile(r'^###(?!#)\s+[A-Z]{1,4}\d+[a-z]?\.\s')
+_SEPARATOR_LINE = re.compile(r'^\s*(?:-{3,}|\*{3,}|_{3,})\s*$')
+_SETEXT_UNDERLINE = re.compile(r'^\s*(?:-{3,}|={3,})\s*$')
+_HTML_COMMENT_LINE = re.compile(r'^\s*<!--.*-->\s*$')
+_BARE_URL = re.compile(r'https?://')
+_INLINE_CODE = re.compile(r'`[^`\n]*`')
+_INLINE_LINK = re.compile(r'\[[^\]]*\]\([^)]*\)')
+_ANGLE_TAG = re.compile(r'<[^>\n]*>')
+_LINK_DEFINITION = re.compile(r'^\s*\[[^\]]+\]:\s*\S+')
+_SENTENCE_BREAK = re.compile(r'(?<=[.!?])\s+')
+_WORD = re.compile(r'[a-z0-9]+')
+
+# Advisory threshold for the intro/Purpose overlap. A restatement scores high
+# because it reuses the Purpose's own vocabulary; a hook shares little.
+_PURPOSE_OVERLAP_THRESHOLD = 0.6
+
+
+def _render_warning(check: str, message: str, line_number: int) -> Dict[str, Any]:
+    """Build a render finding in the shape the other warnings use."""
+    return {
+        'type': check,
+        'severity': 'warning',
+        'message': message,
+        'line': line_number,
+        'line_number': line_number,
+        'auto_fixable': False,
+    }
+
+
+def _frontmatter_line_numbers(lines: List[str]) -> set:
+    """1-based line numbers of the YAML frontmatter block, delimiters included.
+
+    Leading blank lines and HTML comments are skipped the way the frontmatter
+    reader skips them. A block with no `key:` line is a thematic break and a
+    later rule, not frontmatter, so its body lines stay in scope.
+    """
+    index = 0
+    while index < len(lines):
+        stripped = lines[index].strip()
+        if not stripped or _HTML_COMMENT_LINE.match(lines[index]):
+            index += 1
+            continue
+        break
+    if index >= len(lines) or lines[index].strip() != '---':
+        return set()
+    for close in range(index + 1, len(lines)):
+        if lines[close].strip() != '---':
+            continue
+        block = lines[index + 1:close]
+        if not any(re.match(r'^[A-Za-z0-9_.-]+:', line) for line in block):
+            return set()
+        return set(range(index + 1, close + 2))
+    return set()
+
+
+def _is_list_line(line: str) -> bool:
+    return bool(_LIST_LINE.match(line))
+
+
+def _is_structural_line(line: str) -> bool:
+    """Whether a line cannot be part of a prose paragraph."""
+    stripped = line.strip()
+    if not stripped:
+        return True
+    if stripped.startswith('#') or stripped.startswith('|') or stripped.startswith('>'):
+        return True
+    if _HTML_COMMENT_LINE.match(line) or _SEPARATOR_LINE.match(line):
+        return True
+    if line.startswith('    ') or line.startswith('\t'):
+        return True
+    return False
+
+
+def _bold_label(line: str) -> Optional[str]:
+    """The text of a line that opens with a `**label**` run, else None."""
+    match = re.match(r'^\s*\*\*(.+?)\*\*', line)
+    return match.group(1).strip() if match else None
+
+
+def _label_key(label: str) -> str:
+    return re.sub(r'[\s:.,;]+$', '', label).strip().lower()
+
+
+def _is_placeholder_label(label: str) -> bool:
+    return bool(re.fullmatch(
+        r'[\[\(\{<]*\s*placeholder\s*[\]\)\}>]*',
+        _label_key(label),
+        re.IGNORECASE,
+    ))
+
+
+def _render_bold_label_join(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """Two adjacent non-list lines that both open with a bold label join."""
+    issues: List[Dict[str, Any]] = []
+    for index in range(len(lines) - 1):
+        first_number, second_number = index + 1, index + 2
+        if first_number in skip or second_number in skip:
+            continue
+        first, second = lines[index], lines[index + 1]
+        if not first.strip() or not second.strip():
+            continue
+        if _is_list_line(first) or _is_list_line(second):
+            continue
+        first_label = _bold_label(first)
+        second_label = _bold_label(second)
+        if first_label is None or second_label is None:
+            continue
+        if _is_placeholder_label(first_label) or _is_placeholder_label(second_label):
+            continue
+        issues.append(_render_warning(
+            'render_bold_label_join',
+            f'Consecutive bold labels "{first_label}" and "{second_label}" join into one paragraph; '
+            'separate them or use list items.',
+            second_number,
+        ))
+    return issues
+
+
+def _render_setext_underline(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """A `---` or `===` line directly under a paragraph line becomes a heading."""
+    issues: List[Dict[str, Any]] = []
+    for index in range(1, len(lines)):
+        line_number = index + 1
+        if line_number in skip:
+            continue
+        if not _SETEXT_UNDERLINE.match(lines[index]):
+            continue
+        above_number = index
+        if above_number in skip:
+            continue
+        above = lines[index - 1]
+        if _is_list_line(above) or _is_structural_line(above):
+            continue
+        issues.append(_render_warning(
+            'render_setext_underline',
+            'A setext underline follows a paragraph line; add a blank line above the divider.',
+            line_number,
+        ))
+    return issues
+
+
+def _render_bare_url(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """A URL outside code, a link target and an autolink renders as raw text."""
+    issues: List[Dict[str, Any]] = []
+    for index, line in enumerate(lines):
+        line_number = index + 1
+        if line_number in skip or _LINK_DEFINITION.match(line):
+            continue
+        masked = _INLINE_CODE.sub(' ', line)
+        masked = _INLINE_LINK.sub(' ', masked)
+        masked = _ANGLE_TAG.sub(' ', masked)
+        if _BARE_URL.search(masked):
+            issues.append(_render_warning(
+                'render_bare_url',
+                'Bare URL outside a link target; wrap it as [title](url).',
+                line_number,
+            ))
+    return issues
+
+
+def _first_numbered_h2(lines: List[str], skip: set) -> Optional[Tuple[int, Any]]:
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = _H2_NUMBERED.match(line)
+        if match:
+            return index + 1, match
+    return None
+
+
+def _render_overview_heading(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """The first numbered H2 names OVERVIEW and continues with another topic."""
+    first = _first_numbered_h2(lines, skip)
+    if first is None:
+        return []
+    line_number, match = first
+    words = extract_section_name_text(match.group(3)).split()
+    if len(words) > 1 and words[0].upper() == 'OVERVIEW':
+        issues = [_render_warning(
+            'render_overview_heading',
+            f'The first H2 compounds OVERVIEW with "{" ".join(words[1:])}"; name it OVERVIEW '
+            'and move the topic into a subsection.',
+            line_number,
+        )]
+        return issues
+    return []
+
+
+def _render_overview_orientation(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """The first block under OVERVIEW is a fence, a table or a rule-id H3."""
+    first = _first_numbered_h2(lines, skip)
+    if first is None:
+        return []
+    line_number, match = first
+    words = extract_section_name_text(match.group(3)).split()
+    if not words or words[0].upper() != 'OVERVIEW':
+        return []
+    for index in range(line_number, len(lines)):
+        stripped = lines[index].strip()
+        if not stripped or _HTML_COMMENT_LINE.match(lines[index]):
+            continue
+        if re.fullmatch(r'-{3,}', stripped):
+            continue
+        if re.match(r'^#{1,2}\s', stripped):
+            break
+        if stripped.startswith('```') or stripped.startswith('~~~'):
+            kind = 'a fenced block'
+        elif stripped.startswith('|'):
+            kind = 'a table'
+        elif _RULE_ID_H3.match(stripped):
+            kind = 'a rule-id subsection'
+        else:
+            break
+        return [_render_warning(
+            'render_overview_orientation',
+            f'The OVERVIEW opens with {kind} instead of orienting prose; add Purpose or When to Use first.',
+            index + 1,
+        )]
+    return []
+
+
+def _prose_blocks(lines: List[str], skip: set) -> List[Tuple[int, str]]:
+    """Prose paragraphs and list items as (start line, joined text)."""
+    blocks: List[Tuple[int, str]] = []
+    paragraph: List[str] = []
+    start = 0
+
+    def flush() -> None:
+        nonlocal paragraph
+        if paragraph:
+            blocks.append((start, ' '.join(paragraph)))
+            paragraph = []
+
+    for index, line in enumerate(lines):
+        line_number = index + 1
+        stripped = line.strip()
+        if line_number in skip or not stripped or _is_structural_line(line):
+            flush()
+            continue
+        if _is_list_line(line):
+            flush()
+            blocks.append((line_number, stripped))
+            continue
+        if not paragraph:
+            start = line_number
+        paragraph.append(stripped)
+    flush()
+    return blocks
+
+
+def _sentence_key(text: str) -> str:
+    return ' '.join(text.split()).lower()
+
+
+def _render_repeated_sentence(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """A pair of adjacent sentences repeats inside one paragraph or list item."""
+    issues: List[Dict[str, Any]] = []
+    for line_number, text in _prose_blocks(lines, skip):
+        sentences = [part for part in _SENTENCE_BREAK.split(text) if part.strip()]
+        seen = set()
+        for index in range(len(sentences) - 1):
+            pair = (_sentence_key(sentences[index]), _sentence_key(sentences[index + 1]))
+            if pair in seen:
+                issues.append(_render_warning(
+                    'render_repeated_sentence',
+                    'A sentence pair repeats in this paragraph or item; remove the duplicate.',
+                    line_number,
+                ))
+                break
+            seen.add(pair)
+    return issues
+
+
+def _render_repeated_label(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """The same bold label opens two adjacent non-list paragraphs."""
+    issues: List[Dict[str, Any]] = []
+    for index in range(len(lines) - 1):
+        first_number, second_number = index + 1, index + 2
+        if first_number in skip or second_number in skip:
+            continue
+        first, second = lines[index], lines[index + 1]
+        if not first.strip() or not second.strip():
+            continue
+        if _is_list_line(first) or _is_list_line(second):
+            continue
+        first_label = _bold_label(first)
+        second_label = _bold_label(second)
+        if first_label is None or second_label is None:
+            continue
+        if _is_placeholder_label(first_label) or _is_placeholder_label(second_label):
+            continue
+        if _label_key(first_label) != _label_key(second_label):
+            continue
+        issues.append(_render_warning(
+            'render_repeated_label',
+            f'The bold label "{first_label}" opens two adjacent paragraphs; use one label per field.',
+            second_number,
+        ))
+    return issues
+
+
+def _render_h2_numbering(lines: List[str], skip: set, doc_type: str) -> List[Dict[str, Any]]:
+    """A letter-suffixed H2 number, or an unnumbered H2 among numbered ones."""
+    if doc_type not in ('reference', 'asset', 'skill'):
+        return []
+    headings: List[Tuple[int, str]] = []
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = _H2_ANY.match(line)
+        if match:
+            headings.append((index + 1, match.group(1)))
+    has_numbered = any(_H2_NUMBERED.match('## ' + title) for _, title in headings)
+    issues: List[Dict[str, Any]] = []
+    for line_number, title in headings:
+        match = _H2_NUMBERED.match('## ' + title)
+        if match and match.group(2):
+            issues.append(_render_warning(
+                'render_h2_numbering',
+                f'H2 number carries a letter suffix ("{match.group(1)}{match.group(2)}."); use integers only.',
+                line_number,
+            ))
+        elif not match and has_numbered:
+            issues.append(_render_warning(
+                'render_h2_numbering',
+                f'Unnumbered H2 "{title}" among numbered peers; number every section.',
+                line_number,
+            ))
+    return issues
+
+
+def _heading_name(title: str) -> str:
+    """Section text with any number prefix and emoji removed."""
+    name = re.sub(r'^\d+[A-Za-z]?\.\s*', '', title)
+    return EMOJI_PATTERN.sub('', name).strip()
+
+
+def _render_section_order(
+    lines: List[str],
+    skip: set,
+    doc_type: str,
+    doc_type_rules: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Declared first and last sections sit where the rules say they do."""
+    first_section = doc_type_rules.get('firstSectionName')
+    last_pattern = doc_type_rules.get('lastSectionPattern')
+    headings: List[Tuple[int, str]] = []
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = _H2_ANY.match(line)
+        if match:
+            headings.append((index + 1, _heading_name(match.group(1))))
+    if not headings:
+        return []
+
+    issues: List[Dict[str, Any]] = []
+    if first_section:
+        wanted = normalize_section_name(first_section)
+        if not normalize_section_name(headings[0][1]).startswith(wanted):
+            issues.append(_render_warning(
+                'render_section_order',
+                f'The first H2 should be "{first_section}"; found "{headings[0][1]}".',
+                headings[0][0],
+            ))
+
+    if last_pattern:
+        wanted = normalize_section_name(last_pattern)
+        for position, (line_number, name) in enumerate(headings):
+            if wanted not in normalize_section_name(name):
+                continue
+            trailing = headings[position + 1:]
+            if not trailing:
+                continue
+            if len(trailing) == 1 and 'machine_router' in normalize_section_name(trailing[0][1]):
+                continue
+            issues.append(_render_warning(
+                'render_section_order',
+                f'"{name}" must be the last H2; it is followed by "{trailing[0][1]}".',
+                line_number,
+            ))
+
+    if doc_type == 'skill_router':
+        for position, (line_number, name) in enumerate(headings):
+            if 'related' not in normalize_section_name(name):
+                continue
+            following = headings[position + 1:]
+            if following and 'machine_router' in normalize_section_name(following[0][1]):
+                continue
+            issues.append(_render_warning(
+                'render_section_order',
+                'A related section in a skill router sits directly before MACHINE ROUTER.',
+                line_number,
+            ))
+    return issues
+
+
+def _intro_paragraph(lines: List[str], skip: set) -> Optional[Tuple[int, str]]:
+    """The first prose paragraph after the H1."""
+    start = None
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        if re.match(r'^#\s+\S', line):
+            start = index + 1
+            break
+    if start is None:
+        return None
+    first_line = 0
+    paragraph: List[str] = []
+    for index in range(start, len(lines)):
+        line_number = index + 1
+        line = lines[index]
+        stripped = line.strip()
+        if line_number in skip or _HTML_COMMENT_LINE.match(line):
+            if paragraph:
+                break
+            continue
+        if not stripped or re.fullmatch(r'-{3,}', stripped):
+            if paragraph:
+                break
+            continue
+        if re.match(r'^#{1,6}\s', stripped) or _is_list_line(line) or _is_structural_line(line):
+            break
+        if not paragraph:
+            first_line = line_number
+        paragraph.append(stripped)
+    if not paragraph:
+        return None
+    return first_line, ' '.join(paragraph)
+
+
+def _first_sentence(text: str) -> str:
+    parts = [part.strip() for part in _SENTENCE_BREAK.split(text) if part.strip()]
+    return parts[0] if parts else ''
+
+
+def _first_purpose_sentence(lines: List[str], skip: set) -> Optional[str]:
+    """The first sentence under a Purpose heading, at H2 or H3 level."""
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = re.match(r'^#{2,3}\s+(.+?)\s*$', line)
+        if not match:
+            continue
+        if 'purpose' not in normalize_section_name(_heading_name(match.group(1))):
+            continue
+        paragraph: List[str] = []
+        for inner in range(index + 1, len(lines)):
+            inner_number = inner + 1
+            if inner_number in skip or _HTML_COMMENT_LINE.match(lines[inner]):
+                if paragraph:
+                    break
+                continue
+            stripped = lines[inner].strip()
+            if not stripped or re.fullmatch(r'-{3,}', stripped):
+                if paragraph:
+                    break
+                continue
+            if re.match(r'^#{1,6}\s', stripped):
+                break
+            if _is_list_line(lines[inner]):
+                if paragraph:
+                    break
+                return _first_sentence(_LIST_LINE.sub('', stripped))
+            if _is_structural_line(lines[inner]):
+                break
+            paragraph.append(stripped)
+        if paragraph:
+            return _first_sentence(' '.join(paragraph))
+    return None
+
+
+def _token_overlap(first: str, second: str) -> float:
+    """How much of the longer token run the two texts share, in order.
+
+    A paraphrase that keeps the same vocabulary and sentence shape scores near
+    one; a hook that names a different reader benefit scores low. Word order
+    counts, so a restatement with one substituted word stays high while an
+    unrelated sentence with the same domain nouns does not.
+    """
+    first_tokens = _WORD.findall(first.lower())
+    second_tokens = _WORD.findall(second.lower())
+    if not first_tokens or not second_tokens:
+        return 0.0
+    previous = list(range(len(second_tokens) + 1))
+    for row, token in enumerate(first_tokens, start=1):
+        current = [row]
+        for column, other in enumerate(second_tokens, start=1):
+            current.append(min(
+                previous[column] + 1,
+                current[column - 1] + 1,
+                previous[column - 1] + (token != other),
+            ))
+        previous = current
+    return 1.0 - previous[-1] / max(len(first_tokens), len(second_tokens))
+
+
+def _render_intro_restates_purpose(lines: List[str], skip: set) -> List[Dict[str, Any]]:
+    """The intro and the first Purpose sentence share most of their vocabulary."""
+    intro = _intro_paragraph(lines, skip)
+    if intro is None:
+        return []
+    purpose = _first_purpose_sentence(lines, skip)
+    if not purpose:
+        return []
+    overlap = _token_overlap(intro[1], purpose)
+    if overlap < _PURPOSE_OVERLAP_THRESHOLD:
+        return []
+    return [_render_warning(
+        'render_intro_restates_purpose',
+        f'The intro repeats the Purpose ({overlap:.2f} token overlap); make the intro a hook.',
+        intro[0],
+    )]
+
+
+def validate_render_checks(
+    content: str,
+    doc_type: str,
+    doc_type_rules: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """Run the rendered-shape checks for document types that opt in."""
+    if not doc_type_rules.get('renderChecks', False):
+        return []
+    lines = content.splitlines()
+    fenced = _fenced_line_numbers(content)
+    skip = fenced | _frontmatter_line_numbers(lines)
+    issues: List[Dict[str, Any]] = []
+    issues.extend(_render_bold_label_join(lines, skip))
+    issues.extend(_render_setext_underline(lines, skip))
+    issues.extend(_render_bare_url(lines, skip))
+    issues.extend(_render_overview_heading(lines, skip))
+    issues.extend(_render_overview_orientation(lines, skip))
+    issues.extend(_render_repeated_sentence(lines, skip))
+    issues.extend(_render_repeated_label(lines, skip))
+    issues.extend(_render_h2_numbering(lines, skip, doc_type))
+    issues.extend(_render_section_order(lines, skip, doc_type, doc_type_rules))
+    issues.extend(_render_intro_restates_purpose(lines, skip))
+    return issues
+
+
 def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Validate H2 header format and emojis."""
     errors = []
@@ -2013,6 +2566,7 @@ def validate_document(
         if is_repo_root_readme(file_path):
             structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
         all_errors.extend(validate_general_structure(content, structure_rules))
+    all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))

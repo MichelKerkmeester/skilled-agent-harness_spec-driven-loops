@@ -12,7 +12,7 @@ expected_resources:
   - assets/code-quality-checklist.md
   - assets/fix-completeness-checklist.md
   - references/pr-state-dedup.md
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # CR-R10: PR_STATE routing
@@ -168,7 +168,7 @@ Both router transcripts, the six-line path-existence output, and the `INTENT_SIG
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 (`MACHINE ROUTER`) | `INTENT_SIGNALS`, `RESOURCE_MAP`, `DEFAULT_RESOURCES` and the router block this scenario executes |
 | [pr-state-dedup.md](../../references/pr-state-dedup.md) | The dedup doctrine and M-1 commands this route adds |
-| [SKILL.md](../../SKILL.md) §9.1 (`M-1`) | The gate the added reference defines |
+| [SKILL.md](../../SKILL.md) §8.1 (`M-1`) | The gate the added reference defines |
 
 ---
 

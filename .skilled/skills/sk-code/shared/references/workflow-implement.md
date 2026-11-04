@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface implementation standards"
 importance_tier: important
 contextType: general
-version: 2.1.4.0
+version: 2.1.5.0
 ---
 
 # Workflow Reference - Implementation
@@ -22,10 +22,6 @@ Shared `sk-code` doctrine for the mutating build phase, from research before a c
 ### Purpose
 
 Implementation is the one lifecycle phase that builds new behavior. It reads before it writes, lands the smallest correct edit and hands the result on with the facts later phases need. It takes the active surface from the shared router and loads only that surface's resources.
-
-### Core Principle
-
-Read first, change the least and write the baseline down before the first edit. Debugging and verification can only measure a change against the starting state this phase recorded.
 
 ### When to Use
 
@@ -42,6 +38,10 @@ Read first, change the least and write the baseline down before the first edit. 
 - The task is final non-mutating evidence. Use [verification](./workflow-verify.md).
 - The user wants findings-first review output instead of workspace edits. Use the `sk-code-review` mode.
 - The change is documentation-only prose with no executable behavior or routing change.
+
+### Core Principle
+
+Read first, change the least and write the baseline down before the first edit. Debugging and verification can only measure a change against the starting state this phase recorded.
 
 ---
 

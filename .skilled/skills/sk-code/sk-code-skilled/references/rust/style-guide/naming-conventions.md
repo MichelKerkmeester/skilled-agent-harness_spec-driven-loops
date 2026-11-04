@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Naming Conventions
@@ -20,13 +20,14 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for naming conventions in the OpenCode development environment.
+Gives the naming rules for every Rust item, including the JavaScript-visible and DTO field names that cross the interop boundary.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Naming a type, trait, function, constant or module
+- Choosing a getter, conversion prefix or boolean name
+- Naming a JavaScript-visible export or a DTO field
+- Checking a name against the summary table
 
 ---
 

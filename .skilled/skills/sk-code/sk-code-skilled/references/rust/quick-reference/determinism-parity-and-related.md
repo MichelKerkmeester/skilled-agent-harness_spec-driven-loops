@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Determinism, Parity & Common Recipes
@@ -20,13 +20,14 @@ Copy-paste boundary templates, naming conventions, deterministic recipes, and Ca
 
 ### Purpose
 
-Provides focused Rust guidance for determinism, parity & common recipes in the OpenCode development environment.
+Provides the recipe-level numeric, sort, identifier and serialization recipes and the replay commands that make a Rust result match the pinned TypeScript bytes.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Converting a TypeScript rounding, `toFixed` or fixed-six expression
+- Building a stable sort, a deterministic ID or a canonical map or serialization
+- Adding a golden replay or determinism replay across boundaries
+- Testing a forced WASI fallback path
 
 ---
 

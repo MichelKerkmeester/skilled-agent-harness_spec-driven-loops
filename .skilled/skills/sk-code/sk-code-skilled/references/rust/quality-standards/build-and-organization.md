@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Cargo/Build Baseline & Module Organization
@@ -20,13 +20,14 @@ Ownership, safety, interop, error handling, async patterns, Cargo baseline, and 
 
 ### Purpose
 
-Provides focused Rust guidance for cargo/build baseline & module organization in the OpenCode development environment.
+Sets the Cargo, verification and module-organization baseline that keeps a Rust workspace reproducible from build through release.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Bootstrapping a crate or reviewing its edition, MSRV, rustfmt or Clippy baseline
+- Choosing the verification and test layout, including property or golden tests
+- Splitting a workspace into core and boundary crates
+- Organizing features, modules or re-exports
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "instance only opt out"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Fix Completeness Checklist
 
-Checklist for turning a review finding into a complete fix that covers same-class producers, consumers, changed algorithms, matrix coverage, and hostile runtime state.
+A finding names one site; the defect behind it rarely stops there. This checklist is the proof that a fix reached every place the same class of mistake can appear.
 
 ## 1. OVERVIEW
 

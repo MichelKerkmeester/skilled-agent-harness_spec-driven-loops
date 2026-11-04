@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.14.0
+version: 1.9.15.0
 metadata:
   family: sk-code
 ---
@@ -67,9 +67,10 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-review/ROUTER.md) be
 
 ### Phase 1: Scope and Baseline
 
-1. Inspect the review target (`git diff`, staged diff, file list, or commit range).
-2. Load baseline standards from the `sk-code-review` mode (of the sk-code family).
-3. Resolve the rule sources for the reviewed files in one call, from the reviewed repository's root, where `<hub>` is the sk-code folder this mode was loaded from (`.skilled/skills/sk-code` in the repository that ships it):
+1. Check the two efficiency gates in section 8 before scoping anything: M-1 skips a review whose pull request is unchanged since the last one, and M-2 skips a diff below its opt-in evidence threshold unless it touches a sensitive path. A skip ends the review there, with the status line alone.
+2. Inspect the review target (`git diff`, staged diff, file list, or commit range).
+3. Load baseline standards from the `sk-code-review` mode (of the sk-code family).
+4. Resolve the rule sources for the reviewed files in one call, from the reviewed repository's root, where `<hub>` is the sk-code folder this mode was loaded from (`.skilled/skills/sk-code` in the repository that ships it):
 
    ```bash
    git diff --name-only --diff-filter=d <range>   # the reviewed paths that still exist
@@ -85,9 +86,9 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-review/ROUTER.md) be
    It prints one `code-quality-explain/v1` JSON document and always exits 2, because it runs nothing. Read each `files[]` entry's `surfaces`, `surface_skills` (the folder each surface loads from), `checklists` (each with its `source`, `sources` and parsed `overrides`) and the document's `config.hygiene.disabled`.
 
    Exit 3 on that filtered list is a usage or root fault: name it on the `Not checked:` line and review those files against the baseline only. [`runner-contract.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md) section 3 owns the fields.
-4. Load `sk-code` surface standards evidence for the surfaces the resolver returned. A surface the hub's router bundled from request words is a candidate, and it applies only to the files the resolver places in it: the file's `surfaces` holds its label, or one of its checklists applies to the file. A candidate that holds no reviewed file is not loaded and not named in `Surface evidence used`.
-5. With no file paths to review, nothing is resolved. The bundle keeps `sk-code-skilled` only when the working directory is inside the hub's own checkout, the same git common dir as the hub folder. Anywhere else it drops `sk-code-skilled`, because a word such as "typescript" says nothing about whose code it is.
-6. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
+5. Load `sk-code` surface standards evidence for the surfaces the resolver returned. A surface the hub's router bundled from request words is a candidate, and it applies only to the files the resolver places in it: the file's `surfaces` holds its label, or one of its checklists applies to the file. A candidate that holds no reviewed file is not loaded and not named in `Surface evidence used`.
+6. With no file paths to review, nothing is resolved. The bundle keeps `sk-code-skilled` only when the working directory is inside the hub's own checkout, the same git common dir as the hub folder. Anywhere else it drops `sk-code-skilled`, because a word such as "typescript" says nothing about whose code it is.
+7. Read the connected code: the callers of each changed function, the functions each changed function calls, the tests that cover it, and the README or docs that describe it. Anything you could not read goes on the `Not checked:` line.
 
 ### Phase 2: Surface Alignment
 
@@ -200,7 +201,7 @@ Review status: COMMENTED
 
 Directly above the status line, separated from it by one blank line, every full review carries one `Not checked:` line naming what mattered but could not be checked and why, or `Not checked: nothing material`.
 An optional `AGENT_IO_RESULT` block, when requested, goes above the `Not checked:` line and never below the status line.
-The M-1 and M-2 skip outputs (§9) are the status line alone and carry no `Not checked:` line.
+The M-1 and M-2 skip outputs (§8) are the status line alone and carry no `Not checked:` line.
 
 **Example output bottom:**
 
@@ -217,7 +218,7 @@ Review status: REQUESTED_CHANGES
 
 Downstream automation parses this final line via exact string match.
 Do not vary the format, add trailing punctuation, or wrap in Markdown formatting.
-The sole exception is the documented M-1 / M-2 skip output (§9): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`.
+The sole exception is the documented M-1 / M-2 skip output (§8): those lines begin with the exact `Review status: COMMENTED` and append a parenthetical reason, so a leading-verdict (grep / `startsWith`) parse still yields `COMMENTED`.
 A normal review must still end with one of the three exact lines above.
 
 ---
@@ -326,27 +327,9 @@ The playbook scenario `CR-028` replays a user security surface through both rout
 
 ---
 
-## 8. RELATED RESOURCES
+## 8. PR-STATE EFFICIENCY GATES
 
-Start with `references/quick-reference.md`, then load task-specific doctrine, assets, or scripts.
-
-### Manual Testing Playbook
-
-Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md`, the root index, plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md`.
-Both the category folder and the scenario file use bare descriptive slugs, with no numeric prefix.
-
-Validate the root index with the sk-doc document validator in playbook mode:
-`validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`.
-The playbook path is relative to this packet, and the validator path is wherever sk-doc is installed.
-Playbook mode applies the playbook rule set.
-
-Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
-
----
-
-## 9. PR-STATE EFFICIENCY GATES
-
-### 9.1 M-1: PR-State Content-Hash Dedup
+### 8.1 M-1: PR-State Content-Hash Dedup
 
 Prevents redundant re-reviews when a PR has not changed since the last review.
 
@@ -374,7 +357,7 @@ No full review analysis runs. Automation may treat `COMMENTED` as a pass (no new
 
 **Cache write:** After each full review completes, write the current signature + timestamp + HEAD SHA to the cache file.
 
-### 9.2 M-2: Opt-In Minimum Evidence Gate
+### 8.2 M-2: Opt-In Minimum Evidence Gate
 
 Skips full review for trivially small diffs to save compute, with a conservative taxonomy that **never skips** high-risk changes.
 
@@ -408,16 +391,34 @@ If sensitive paths ARE touched, the full review runs regardless of line count.
 
 **Gate is ALWAYS opt-in.** Without `SK_CODE_REVIEW_MIN_CHANGED_LINES` set, M-2 has zero effect: all diffs receive full reviews.
 
-### 9.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
+### 8.3 SK_CODE_REVIEW_DEPTH (opt-in depth alias)
 
-`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate.
+`SK_CODE_REVIEW_DEPTH=lite|full|ultra` is an optional environment variable the **reviewing agent honors** (resolved env > default), exactly like the §8.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` gate.
 Both are skill guidance the reviewer reads and applies in-loop, not a separate compiled dispatcher; this alias only NAMES and PERSISTS an already-existing routing behavior, adds no new tier, and relaxes no floor:
 
 - `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing ([`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-review/ROUTER.md) §3).
 - `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier in [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-review/ROUTER.md) §3) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
-- `lite`: maps to the existing M-2 conservative skip (§9.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
+- `lite`: maps to the existing M-2 conservative skip (§8.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
 
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
+
+---
+
+## 9. RELATED RESOURCES
+
+Start with `references/quick-reference.md`, then load task-specific doctrine, assets, or scripts.
+
+### Manual Testing Playbook
+
+Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md`, the root index, plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md`.
+Both the category folder and the scenario file use bare descriptive slugs, with no numeric prefix.
+
+Validate the root index with the sk-doc document validator in playbook mode:
+`validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`.
+The playbook path is relative to this packet, and the validator path is wherever sk-doc is installed.
+Playbook mode applies the playbook rule set.
+
+Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.
 
 ---
 

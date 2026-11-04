@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.3.0.0
+version: 2.3.1.0
 ---
 
 # Universal Code Style Guide
@@ -23,16 +23,16 @@ Language-agnostic style principles that hold in any repository. Identifier schem
 
 Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline and formatter use. The concrete conventions are surface-specific and live in each surface packet. For this repository's own code that is SKILLED, under `.skilled/skills/sk-code/sk-code-skilled/references/shared/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
 
-### Core Principle
-
-Names communicate intent. Files express one concept. Comments explain WHY (never WHAT) and describe the code as it is now. Use the formatter the project picked.
-
 ### When to Use
 
 - When picking a name for a new variable, function, type, or file.
 - When deciding how to lay out a file's top-of-file structure.
 - When deciding whether to add a comment.
 - When a reviewer flags a style nit and you need the surface-agnostic contract.
+
+### Core Principle
+
+Names communicate intent. Files express one concept. Comments explain WHY (never WHAT) and describe the code as it is now. Use the formatter the project picked.
 
 ### Key Sources
 

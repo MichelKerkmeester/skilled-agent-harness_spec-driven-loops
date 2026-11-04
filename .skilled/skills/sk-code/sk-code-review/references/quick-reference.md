@@ -8,7 +8,7 @@ trigger_phrases:
   - "which review checklist to load"
 importance_tier: normal
 contextType: general
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Code Review Quick Reference
@@ -50,6 +50,7 @@ Use this file as an entry index, not as the primary source of review rules. Load
 | [solid-checklist.md](../assets/solid-checklist.md) | Architecture and SOLID (SRP/OCP/LSP/ISP/DIP) checks |
 | [removal-plan.md](../assets/removal-plan.md) | Safe-now versus deferred deletion planning |
 | [test-quality-checklist.md](../assets/test-quality-checklist.md) | Test quality, coverage, and anti-pattern detection |
+| [fix-completeness-checklist.md](../assets/fix-completeness-checklist.md) | Checklist for turning review findings into complete fixes across same-class producers, consumers, algorithms, matrices, and hostile environments. |
 
 Surface portability: apply this baseline with `sk-code` surface evidence.
 

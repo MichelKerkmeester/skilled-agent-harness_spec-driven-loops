@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rust/TypeScript Interop — Model & Boundary Types
@@ -20,13 +20,15 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for rust/typescript interop — model & boundary types in the OpenCode development environment.
+Draws the line between TypeScript ownership and Rust compute, then fixes the boundary type, buffer and enumeration shapes that cross it.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Deciding whether logic belongs in TypeScript, the pure core or a thin adapter
+- Designing an owned or borrowed boundary type
+- Handling buffer ownership or fixed-width integers
+- Validating a DTO or implementing `From` or `TryFrom`
+- Choosing an enum representation for JavaScript
 
 ---
 

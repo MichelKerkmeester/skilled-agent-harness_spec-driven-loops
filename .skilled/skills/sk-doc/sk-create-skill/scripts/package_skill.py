@@ -228,6 +228,32 @@ ROUTING_SHAPE_MACHINE_LINE_RE = re.compile(
 # as written rather than read up to its first space.
 MARKDOWN_LINK_TARGET_RE = re.compile(r'(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)')
 
+# Render canon: a skill's reference and asset docs are the guidance a reader
+# copies, so the shape they render in matters as much as their frontmatter. The
+# shared document validator names those render findings; a skill still carrying
+# the findings it was listed with keeps them in the render known-debt ledger,
+# keyed by its path under the skills root and recording the finding count and
+# types, so the listed shape is tolerated while a new finding is not. The ledger
+# may only shrink: an entry comes out as its docs are fixed and never gets added
+# or raised to excuse a new finding.
+RENDER_DEBT_FILE_ENV = 'RENDER_DEBT_FILE'
+RENDER_DEBT_PATH = Path(__file__).resolve().parent / 'render-known-debt.json'
+RENDER_SKILLS_ROOT_ENV = 'RENDER_SKILLS_ROOT'
+# The render finding types the shared validator emits, and the only ones a debt
+# entry may record.
+RENDER_CHECK_TYPES = (
+    'render_bold_label_join',
+    'render_setext_underline',
+    'render_bare_url',
+    'render_overview_heading',
+    'render_overview_orientation',
+    'render_repeated_sentence',
+    'render_repeated_label',
+    'render_h2_numbering',
+    'render_section_order',
+    'render_intro_restates_purpose',
+)
+
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
 VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
 
@@ -245,6 +271,7 @@ STRICT_PROMOTED_MARKERS = [
     "is not 4-part",                  # bad version on doc-class
     "missing smart-router marker",    # SMART ROUTING resilience markers
     "routing shape RS-",              # routing canon (SMART ROUTING length, appendix, packet ROUTER.md)
+    "render check",                   # reference/asset docs render as markdown (joined labels, bare URLs, section order)
     "SMART ROUTING must be its own H2 section",  # non-standalone/merged routing heading
     "Placeholder file should be removed",  # example_*/placeholder_*/sample_* files
     "must use kebab-case",           # generated package path contract
@@ -808,6 +835,141 @@ def validate_resource_frontmatter(skill_path: Path) -> Tuple[bool, str, List[str
             )
 
     return True, "Resource frontmatter checked", warnings
+
+
+def load_render_debt() -> Dict[str, Dict[str, Any]]:
+    """Read the render known-debt ledger as its per-skill entries.
+
+    An absent, unreadable or half-written ledger records no debt, so a broken
+    ledger can only tighten the render check, never silently excuse a skill. An
+    entry that does not record both the finding count and every finding type the
+    check reads is ignored for the same reason.
+    """
+    path = Path(os.environ.get(RENDER_DEBT_FILE_ENV) or RENDER_DEBT_PATH)
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+
+    debt: Dict[str, Dict[str, Any]] = {}
+    recorded_entries = data.get('debt')
+    if isinstance(recorded_entries, dict):
+        for key, entry in recorded_entries.items():
+            if not isinstance(entry, dict) or set(entry) != {'findings', 'codes'}:
+                continue
+            count = entry['findings']
+            if not isinstance(count, int) or isinstance(count, bool) or count < 0:
+                continue
+            codes = entry['codes']
+            if not isinstance(codes, list) or any(
+                not isinstance(code, str) or code not in RENDER_CHECK_TYPES for code in codes
+            ):
+                continue
+            debt[str(key)] = entry
+    return debt
+
+
+def _render_debt_key(skill_path: Path) -> Optional[str]:
+    """Return the known-debt key for a skill, or None when it sits outside the skills root.
+
+    The key is the skill's path relative to the skills root, so a folder that
+    only shares a debt skill's basename is not read as that skill, and a None
+    key never matches a ledger entry.
+    """
+    override = os.environ.get(RENDER_SKILLS_ROOT_ENV)
+    root = Path(override).resolve() if override else Path(__file__).resolve().parents[3]
+    try:
+        relative = Path(skill_path).resolve().relative_to(root)
+    except ValueError:
+        return None
+    if relative == Path('.'):
+        return None
+    return relative.as_posix()
+
+
+def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
+    """Return the shared validator's render findings for a skill's reference and asset docs.
+
+    The shared validator owns the render rules, so the packaging gate asks it
+    rather than keeping a second copy that could drift. Only the reference and
+    asset subtrees are read: those docs are the guidance a skill hands a reader,
+    and a finding there is the skill teaching the shape it forbids.
+    """
+    from validate_document import validate_document as shared_validate_document
+
+    findings: List[Dict[str, Any]] = []
+    for file, _subtree in _iter_subtree_markdown(skill_path, RESOURCE_DOC_SUBTREES):
+        result = shared_validate_document(str(file))
+        for finding in result.get('blocking_errors', []) + result.get('warnings', []):
+            if not isinstance(finding, dict):
+                continue
+            code = str(finding.get('type', ''))
+            if code not in RENDER_CHECK_TYPES:
+                continue
+            line = finding.get('line', finding.get('line_number', '?'))
+            findings.append({
+                'code': code,
+                'file': file.relative_to(skill_path).as_posix(),
+                'line': line,
+                'message': str(finding.get('message', '')).strip(),
+            })
+    return findings
+
+
+def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
+    """Check reference and asset docs against the render canon, tolerating recorded debt.
+
+    A skill recorded in the known-debt ledger keeps the findings it was listed
+    with while that set does not grow: its finding count may not pass the
+    recorded count, and a type the entry does not record is never tolerated.
+    Every other finding is a warning that --strict promotes to an error.
+
+    Args:
+        skill_path: Path to the skill directory.
+
+    Returns:
+        Tuple of (is_valid, message, warnings). Always valid=True.
+    """
+    warnings: List[str] = []
+    findings = _render_findings(skill_path)
+    key = _render_debt_key(skill_path)
+    debt = load_render_debt()
+    entry = debt.get(key) if key is not None else None
+
+    def describe(finding: Dict[str, Any]) -> str:
+        return f"render check: {finding['file']}:{finding['line']} {finding['message']}"
+
+    if entry is None:
+        warnings.extend(describe(finding) for finding in findings)
+        return True, "Render checks ran", warnings
+
+    recorded_codes = entry['codes']
+    kept: List[Dict[str, Any]] = []
+    for finding in findings:
+        if finding['code'] in recorded_codes:
+            kept.append(finding)
+        else:
+            warnings.append(f"{describe(finding)} (not recorded in its known debt)")
+
+    if len(kept) > entry['findings']:
+        warnings.append(
+            f"render check: {key} carries {len(kept)} recorded-type render findings, "
+            f"above its known debt of {entry['findings']}"
+        )
+    elif kept:
+        warnings.append(
+            f"render known-debt: {len(kept)} render finding(s) tolerated for {key}"
+        )
+
+    if len(findings) < entry['findings']:
+        warnings.append(
+            f"render known-debt: {key} records {entry['findings']} render finding(s) "
+            f"but {len(findings)} remain; lower or remove the entry"
+        )
+
+    return True, "Render checks ran", warnings
 
 
 class MachineRouterSection(NamedTuple):
@@ -1473,6 +1635,14 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     # smart-router markers. Emitted as warnings (see VERSION_DOC_SUBTREES
     # comment) so the hardened contract does not break validation repo-wide.
     valid, message, warnings = validate_resource_frontmatter(skill_path)
+    all_warnings.extend(warnings)
+    if not valid:
+        return False, message, all_warnings
+
+    # A reference or asset doc renders as the reader's copy source, so its
+    # rendered shape is contract: a finding there is a warning unless the
+    # skill's known-debt ledger records it, and --strict promotes a new one.
+    valid, message, warnings = validate_render(skill_path)
     all_warnings.extend(warnings)
     if not valid:
         return False, message, all_warnings

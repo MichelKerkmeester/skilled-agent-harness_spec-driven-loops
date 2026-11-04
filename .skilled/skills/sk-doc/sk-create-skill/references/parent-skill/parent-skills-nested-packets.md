@@ -9,7 +9,7 @@ trigger_phrases:
   - "surface packet workflow packet"
 importance_tier: normal
 contextType: implementation
-version: 1.2.10.0
+version: 1.2.11.0
 ---
 
 # Parent Skills with Nested Mode Packets
@@ -18,9 +18,11 @@ A parent hub is one advisor-routable skill identity that dispatches to self-cont
 
 ---
 
-## 1. OVERVIEW AND CANONICAL METHOD
+## 1. OVERVIEW
 
 Use this pattern when a skill family needs multiple independently documented packets under one public advisor identity. The hub stays routing-only; packets own the detailed workflow, evidence, examples, tool boundaries, and validation.
+
+### Canonical Method
 
 The method has one physical shape:
 

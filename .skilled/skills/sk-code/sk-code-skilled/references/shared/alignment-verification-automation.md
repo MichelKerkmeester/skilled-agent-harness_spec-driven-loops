@@ -8,7 +8,7 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Alignment Verification Automation
@@ -136,16 +136,7 @@ Notes:
 
 ---
 
-## 5. RELATED RESOURCES
-
-- [code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)
-- [universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)
-- [hooks.md](./hooks.md)
-- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, `verify-router-sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) and `verify-doc-claims.cjs` together as one gate.
-
----
-
-## 6. ALIGNMENT AUTHORITY INTERFACE (sk-code-skilled)
+## 5. ALIGNMENT AUTHORITY INTERFACE (sk-code-skilled)
 
 sk-code-skilled has exactly one alignment source of truth: the three-part interface
 below. Later coverage and activation work must consume this interface rather than
@@ -167,3 +158,12 @@ re-derive a second RESOURCE_MAP parser or a local eligibility map.
 
 Any new check that needs sk-code-skilled RESOURCE_MAP alignment extends this
 interface; it must not stand up a competing parser or eligibility map.
+
+---
+
+## 6. RELATED RESOURCES
+
+- [code-organization/overview-and-module-organization.md](code-organization/overview-and-module-organization.md)
+- [universal-patterns/naming-and-commenting.md](universal-patterns/naming-and-commenting.md)
+- [hooks.md](./hooks.md)
+- Drift-guard entry point: `.skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` — runs this verifier, `verify_stack_folders.py`, `verify-router-sync.cjs` (every leg: 1a, 1b, 2, 3 and 4) and `verify-doc-claims.cjs` together as one gate.

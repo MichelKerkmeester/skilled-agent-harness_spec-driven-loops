@@ -8,12 +8,12 @@ trigger_phrases:
   - "intentional trigger exception"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Trigger and Filter Rules
 
-Which events start a workflow, which paths it ignores and which triggers only look like drift.
+A trigger decides whether a commit starts any workflow at all, and the filters under it decide whether that run was worth starting. Both read as boilerplate until a path filter quietly stops a required check.
 
 ---
 

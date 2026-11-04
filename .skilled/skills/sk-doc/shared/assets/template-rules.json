@@ -141,7 +141,9 @@
       "tocForbidden": true,
       "anchorNavigationForbidden": true,
       "h2EmojiRequired": false,
-      "h2UppercaseRequired": true
+      "h2UppercaseRequired": true,
+      "renderChecks": true,
+      "lastSectionPattern": "related"
     },
     "command": {
       "description": "Command files in .skilled/commands/ folders",
@@ -367,7 +369,9 @@
       "tocRequired": false,
       "h2DividerRequired": true,
       "h2EmojiRequired": false,
-      "h2UppercaseRequired": true
+      "h2UppercaseRequired": true,
+      "renderChecks": true,
+      "lastSectionPattern": "related"
     },
     "asset": {
       "description": "Asset files in skill assets/ folders",
@@ -431,7 +435,9 @@
       "tocRequired": false,
       "h2DividerRequired": true,
       "h2EmojiRequired": false,
-      "h2UppercaseRequired": true
+      "h2UppercaseRequired": true,
+      "renderChecks": true,
+      "lastSectionPattern": "related"
     },
     "changelog": {
       "description": "Component changelog files at .skilled/changelog/{component}/v{VERSION}.md or .skilled/skills/<skill>/changelog/v{VERSION}.md. Entry files open with a frontmatter block of search metadata, then the summary paragraph, with no TOC, no Overview section and no version header. Authoritative format reference: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
@@ -727,7 +733,8 @@
       "h2EmojiRequired": false,
       "h2UppercaseRequired": true,
       "firstSectionName": "overview",
-      "lastSectionPattern": "machine_router"
+      "lastSectionPattern": "machine_router",
+      "renderChecks": true
     }
   },
   "validationRules": {

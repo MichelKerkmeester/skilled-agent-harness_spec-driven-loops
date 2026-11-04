@@ -1,0 +1,3263 @@
+{
+  "files": 4315,
+  "valid": 1682,
+  "invalid": 2633,
+  "render_hits": {
+    ".skilled/skills/cli-classifier/SKILL.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"RELATED RESOURCES\" among numbered peers; number every section.",
+        "line": 158,
+        "line_number": 158,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 35,
+        "line_number": 35,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"MEMORY EPILOGUE\".",
+        "line": 479,
+        "line_number": 479,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 45,
+        "line_number": 45,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 46,
+        "line_number": 46,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"MEMORY EPILOGUE\".",
+        "line": 549,
+        "line_number": 549,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 44,
+        "line_number": 44,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_intro_restates_purpose",
+        "severity": "warning",
+        "message": "The intro repeats the Purpose (0.60 token overlap); make the intro a hook.",
+        "line": 18,
+        "line_number": 18,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 44,
+        "line_number": 44,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 45,
+        "line_number": 45,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 46,
+        "line_number": 46,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_intro_restates_purpose",
+        "severity": "warning",
+        "message": "The intro repeats the Purpose (0.67 token overlap); make the intro a hook.",
+        "line": 18,
+        "line_number": 18,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"MEMORY EPILOGUE\".",
+        "line": 426,
+        "line_number": 426,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 44,
+        "line_number": 44,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 45,
+        "line_number": 45,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_intro_restates_purpose",
+        "severity": "warning",
+        "message": "The intro repeats the Purpose (0.60 token overlap); make the intro a hook.",
+        "line": 18,
+        "line_number": 18,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 60,
+        "line_number": 60,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"3A.\"); use integers only.",
+        "line": 46,
+        "line_number": 46,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"REFERENCES AND RELATED RESOURCES\" must be the last H2; it is followed by \"SUCCESS CRITERIA\".",
+        "line": 291,
+        "line_number": 291,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Calling runtime:\" join into one paragraph; separate them or use list items.",
+        "line": 33,
+        "line_number": 33,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Calling runtime:\" join into one paragraph; separate them or use list items.",
+        "line": 99,
+        "line_number": 99,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Calling runtime:\" join into one paragraph; separate them or use list items.",
+        "line": 149,
+        "line_number": 149,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 199,
+        "line_number": 199,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 236,
+        "line_number": 236,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 237,
+        "line_number": 237,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 287,
+        "line_number": 287,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 288,
+        "line_number": 288,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 323,
+        "line_number": 323,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 324,
+        "line_number": 324,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 369,
+        "line_number": 369,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 370,
+        "line_number": 370,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 419,
+        "line_number": 419,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 420,
+        "line_number": 420,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 459,
+        "line_number": 459,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 460,
+        "line_number": 460,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 497,
+        "line_number": 497,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 498,
+        "line_number": 498,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Framework:\" and \"Agent:\" join into one paragraph; separate them or use list items.",
+        "line": 662,
+        "line_number": 662,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Agent:\" and \"Use case:\" join into one paragraph; separate them or use list items.",
+        "line": 663,
+        "line_number": 663,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 45,
+        "line_number": 45,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 36,
+        "line_number": 36,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 55,
+        "line_number": 55,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 165,
+        "line_number": 165,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 167,
+        "line_number": 167,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 174,
+        "line_number": 174,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 215,
+        "line_number": 215,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 381,
+        "line_number": 381,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 426,
+        "line_number": 426,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/cli-orca/SKILL.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"REFERENCES AND RELATED RESOURCES\" must be the last H2; it is followed by \"SUCCESS CRITERIA\".",
+        "line": 205,
+        "line_number": 205,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-code-mode/SKILL.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"These discovery methods ONLY work for Code Mode tools in `.utcp_config.json`\" and \"They show only Code Mode manuals \u2014 never a natively registered MCP server\" join into one paragraph; separate them or use list items.",
+        "line": 133,
+        "line_number": 133,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-code-mode/assets/config-template.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Features\" and \"Authentication\" join into one paragraph; separate them or use list items.",
+        "line": 238,
+        "line_number": 238,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Authentication\" and \"Transport\" join into one paragraph; separate them or use list items.",
+        "line": 239,
+        "line_number": 239,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Features\" and \"Authentication\" join into one paragraph; separate them or use list items.",
+        "line": 264,
+        "line_number": 264,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Authentication\" and \"Package\" join into one paragraph; separate them or use list items.",
+        "line": 265,
+        "line_number": 265,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Features\" and \"Authentication\" join into one paragraph; separate them or use list items.",
+        "line": 289,
+        "line_number": 289,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Authentication\" and \"Package\" join into one paragraph; separate them or use list items.",
+        "line": 290,
+        "line_number": 290,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Features\" and \"Authentication\" join into one paragraph; separate them or use list items.",
+        "line": 314,
+        "line_number": 314,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Authentication\" and \"Package\" join into one paragraph; separate them or use list items.",
+        "line": 315,
+        "line_number": 315,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Features\" and \"Authentication\" join into one paragraph; separate them or use list items.",
+        "line": 337,
+        "line_number": 337,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Authentication\" and \"Multiple Instances\" join into one paragraph; separate them or use list items.",
+        "line": 338,
+        "line_number": 338,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Multiple Instances\" and \"Package\" join into one paragraph; separate them or use list items.",
+        "line": 339,
+        "line_number": 339,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Template Version\" and \"Last Updated\" join into one paragraph; separate them or use list items.",
+        "line": 457,
+        "line_number": 457,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Last Updated\" and \"Compatibility\" join into one paragraph; separate them or use list items.",
+        "line": 458,
+        "line_number": 458,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-code-mode/assets/env-template.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Template Version\" and \"Last Updated\" join into one paragraph; separate them or use list items.",
+        "line": 483,
+        "line_number": 483,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Last Updated\" and \"Compatibility\" join into one paragraph; separate them or use list items.",
+        "line": 484,
+        "line_number": 484,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 122,
+        "line_number": 122,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"CRITICAL: Variable Naming Convention\" among numbered peers; number every section.",
+        "line": 189,
+        "line_number": 189,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-code-mode/references/architecture.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Before:\" and \"After:\" join into one paragraph; separate them or use list items.",
+        "line": 468,
+        "line_number": 468,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"After:\" and \"Savings:\" join into one paragraph; separate them or use list items.",
+        "line": 469,
+        "line_number": 469,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Before:\" and \"After:\" join into one paragraph; separate them or use list items.",
+        "line": 474,
+        "line_number": 474,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"After:\" and \"Improvement:\" join into one paragraph; separate them or use list items.",
+        "line": 475,
+        "line_number": 475,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Before:\" and \"After:\" join into one paragraph; separate them or use list items.",
+        "line": 480,
+        "line_number": 480,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"After:\" and \"Benefit:\" join into one paragraph; separate them or use list items.",
+        "line": 481,
+        "line_number": 481,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Before:\" and \"After:\" join into one paragraph; separate them or use list items.",
+        "line": 486,
+        "line_number": 486,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"After:\" and \"Benefit:\" join into one paragraph; separate them or use list items.",
+        "line": 487,
+        "line_number": 487,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Before:\" and \"After:\" join into one paragraph; separate them or use list items.",
+        "line": 492,
+        "line_number": 492,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"After:\" and \"Benefit:\" join into one paragraph; separate them or use list items.",
+        "line": 493,
+        "line_number": 493,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-cli-reference.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 101,
+        "line_number": 101,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/aside-online-research-2026-07-17.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 50,
+        "line_number": 50,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 51,
+        "line_number": 51,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 52,
+        "line_number": 52,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 53,
+        "line_number": 53,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 54,
+        "line_number": 54,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 55,
+        "line_number": 55,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 56,
+        "line_number": 56,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 57,
+        "line_number": 57,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 66,
+        "line_number": 66,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 85,
+        "line_number": 85,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 87,
+        "line_number": 87,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 88,
+        "line_number": 88,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 97,
+        "line_number": 97,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 114,
+        "line_number": 114,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 115,
+        "line_number": 115,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 116,
+        "line_number": 116,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 117,
+        "line_number": 117,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 124,
+        "line_number": 124,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 125,
+        "line_number": 125,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 126,
+        "line_number": 126,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/mcp-wiring.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 141,
+        "line_number": 141,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/session-management.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 92,
+        "line_number": 92,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-aside-devtools/references/troubleshooting.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 113,
+        "line_number": 113,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/references/cdp-patterns.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 738,
+        "line_number": 738,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-chrome-devtools/references/troubleshooting.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 802,
+        "line_number": 802,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 803,
+        "line_number": 803,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 315,
+        "line_number": 315,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 316,
+        "line_number": 316,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 317,
+        "line_number": 317,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"MARKDOWN FORMATTING CONTRACT \u2014 READ BEFORE ANY CLICKUP WRITE\" among numbered peers; number every section.",
+        "line": 14,
+        "line_number": 14,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"MCP server:\" and \"Auth:\" join into one paragraph; separate them or use list items.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Auth:\" and \"Tool naming:\" join into one paragraph; separate them or use list items.",
+        "line": 22,
+        "line_number": 22,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 327,
+        "line_number": 327,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 328,
+        "line_number": 328,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 329,
+        "line_number": 329,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 330,
+        "line_number": 330,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-notion/SKILL.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 264,
+        "line_number": 264,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 265,
+        "line_number": 265,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"MARKDOWN + DATA-SOURCE CONTRACT \u2014 READ BEFORE ANY NOTION WRITE\" among numbered peers; number every section.",
+        "line": 16,
+        "line_number": 16,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 223,
+        "line_number": 223,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-notion/references/mcp-tools.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"MCP Server:\" and \"Auth:\" join into one paragraph; separate them or use list items.",
+        "line": 19,
+        "line_number": 19,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Auth:\" and \"Invocation:\" join into one paragraph; separate them or use list items.",
+        "line": 20,
+        "line_number": 20,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Invocation:\" and \"Tool naming:\" join into one paragraph; separate them or use list items.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-notion/references/troubleshooting.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 203,
+        "line_number": 203,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 204,
+        "line_number": 204,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 205,
+        "line_number": 205,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 206,
+        "line_number": 206,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/SKILL.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 326,
+        "line_number": 326,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 327,
+        "line_number": 327,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 328,
+        "line_number": 328,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/cli-versus-mcp.md": [
+      {
+        "type": "render_overview_heading",
+        "severity": "warning",
+        "message": "The first H2 compounds OVERVIEW with \"AND VERDICT\"; name it OVERVIEW and move the topic into a subsection.",
+        "line": 22,
+        "line_number": 22,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"MCP Server:\" and \"Auth:\" join into one paragraph; separate them or use list items.",
+        "line": 19,
+        "line_number": 19,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Auth:\" and \"Invocation:\" join into one paragraph; separate them or use list items.",
+        "line": 20,
+        "line_number": 20,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Invocation:\" and \"Tool naming:\" join into one paragraph; separate them or use list items.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 198,
+        "line_number": 198,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 199,
+        "line_number": 199,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/obsidian-cli-commands.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 295,
+        "line_number": 295,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 299,
+        "line_number": 299,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 300,
+        "line_number": 300,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/health-md.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/health-md/troubleshooting.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 24,
+        "line_number": 24,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/iconic/troubleshooting.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 23,
+        "line_number": 23,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/plugins/installed-plugins.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"NOTES AND RELATED\" must be the last H2; it is followed by \"KEEPING THIS ROSTER CURRENT\".",
+        "line": 87,
+        "line_number": 87,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/themes/plugin-development.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 23,
+        "line_number": 23,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/mcp-tooling/mcp-obsidian/references/troubleshooting.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 359,
+        "line_number": 359,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 360,
+        "line_number": 360,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 361,
+        "line_number": 361,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 362,
+        "line_number": 362,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"5b.\"); use integers only.",
+        "line": 150,
+        "line_number": 150,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"5c.\"); use integers only.",
+        "line": 181,
+        "line_number": 181,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-chart/references/color-system.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Where the values come from\" among numbered peers; number every section.",
+        "line": 195,
+        "line_number": 195,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: Marketing Content Approval Process\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 332,
+        "line_number": 332,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Review Stages\" among numbered peers; number every section.",
+        "line": 344,
+        "line_number": 344,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Loop-Back Points\" among numbered peers; number every section.",
+        "line": 362,
+        "line_number": 362,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Escalation Triggers\" among numbered peers; number every section.",
+        "line": 368,
+        "line_number": 368,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 374,
+        "line_number": 374,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Design Principles Applied\" among numbered peers; number every section.",
+        "line": 385,
+        "line_number": 385,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Typical Timeline\" among numbered peers; number every section.",
+        "line": 396,
+        "line_number": 396,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: E-commerce Order Processing System\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 271,
+        "line_number": 271,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Decision Points Covered\" among numbered peers; number every section.",
+        "line": 282,
+        "line_number": 282,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 295,
+        "line_number": 295,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Design Principles Applied\" among numbered peers; number every section.",
+        "line": 306,
+        "line_number": 306,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: Deployment Pipeline with Parallel Tests\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 188,
+        "line_number": 188,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 198,
+        "line_number": 198,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: New User Registration\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 92,
+        "line_number": 92,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 101,
+        "line_number": 101,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: Microservices Authentication & Data Flow\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 295,
+        "line_number": 295,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Architectural Layers\" among numbered peers; number every section.",
+        "line": 307,
+        "line_number": 307,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Data Flow Steps\" among numbered peers; number every section.",
+        "line": 340,
+        "line_number": 340,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 357,
+        "line_number": 357,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Design Principles Applied\" among numbered peers; number every section.",
+        "line": 368,
+        "line_number": 368,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Performance Considerations\" among numbered peers; number every section.",
+        "line": 379,
+        "line_number": 379,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Use Case: Product Onboarding with Profile & Content Creation\" among numbered peers; number every section.",
+        "line": 25,
+        "line_number": 25,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Key Features Demonstrated\" among numbered peers; number every section.",
+        "line": 312,
+        "line_number": 312,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"When to Use This Pattern\" among numbered peers; number every section.",
+        "line": 324,
+        "line_number": 324,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Design Principles Applied\" among numbered peers; number every section.",
+        "line": 334,
+        "line_number": 334,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Estimated Time to Complete\" among numbered peers; number every section.",
+        "line": 344,
+        "line_number": 344,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md": [
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 865,
+        "line_number": 865,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 866,
+        "line_number": 866,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 867,
+        "line_number": 867,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bare_url",
+        "severity": "warning",
+        "message": "Bare URL outside a link target; wrap it as [title](url).",
+        "line": 868,
+        "line_number": 868,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-md-generator/references/anti-patterns.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 28,
+        "line_number": 28,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 35,
+        "line_number": 35,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 48,
+        "line_number": 48,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 55,
+        "line_number": 55,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 69,
+        "line_number": 69,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 75,
+        "line_number": 75,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 87,
+        "line_number": 87,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 96,
+        "line_number": 96,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 117,
+        "line_number": 117,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 123,
+        "line_number": 123,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 136,
+        "line_number": 136,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 146,
+        "line_number": 146,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 162,
+        "line_number": 162,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 174,
+        "line_number": 174,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 194,
+        "line_number": 194,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 202,
+        "line_number": 202,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 216,
+        "line_number": 216,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 224,
+        "line_number": 224,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 240,
+        "line_number": 240,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 250,
+        "line_number": 250,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 270,
+        "line_number": 270,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 281,
+        "line_number": 281,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 298,
+        "line_number": 298,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 308,
+        "line_number": 308,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 324,
+        "line_number": 324,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 332,
+        "line_number": 332,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 346,
+        "line_number": 346,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 358,
+        "line_number": 358,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 376,
+        "line_number": 376,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 384,
+        "line_number": 384,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 398,
+        "line_number": 398,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 413,
+        "line_number": 413,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 433,
+        "line_number": 433,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 441,
+        "line_number": 441,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 458,
+        "line_number": 458,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 464,
+        "line_number": 464,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 477,
+        "line_number": 477,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 485,
+        "line_number": 485,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 504,
+        "line_number": 504,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 515,
+        "line_number": 515,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 535,
+        "line_number": 535,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 541,
+        "line_number": 541,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 556,
+        "line_number": 556,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 565,
+        "line_number": 565,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 580,
+        "line_number": 580,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 591,
+        "line_number": 591,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 610,
+        "line_number": 610,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 617,
+        "line_number": 617,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 635,
+        "line_number": 635,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 642,
+        "line_number": 642,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 657,
+        "line_number": 657,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 663,
+        "line_number": 663,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 679,
+        "line_number": 679,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 688,
+        "line_number": 688,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 703,
+        "line_number": 703,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 712,
+        "line_number": 712,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 727,
+        "line_number": 727,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 733,
+        "line_number": 733,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 747,
+        "line_number": 747,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 756,
+        "line_number": 756,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 771,
+        "line_number": 771,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 777,
+        "line_number": 777,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Description\" and \"Bad Example\" join into one paragraph; separate them or use list items.",
+        "line": 788,
+        "line_number": 788,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Why It's Wrong\" and \"Correct Approach\" join into one paragraph; separate them or use list items.",
+        "line": 795,
+        "line_number": 795,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-design/sk-design-md-generator/references/writing-style-guide.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Pattern A:\" and \"Pattern B:\" join into one paragraph; separate them or use list items.",
+        "line": 595,
+        "line_number": 595,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Pattern B:\" and \"Pattern C:\" join into one paragraph; separate them or use list items.",
+        "line": 596,
+        "line_number": 596,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"FAILS\" and \"PASSES\" join into one paragraph; separate them or use list items.",
+        "line": 780,
+        "line_number": 780,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"FAILS\" and \"PASSES\" join into one paragraph; separate them or use list items.",
+        "line": 783,
+        "line_number": 783,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"FAILS\" and \"PASSES\" join into one paragraph; separate them or use list items.",
+        "line": 786,
+        "line_number": 786,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/ROUTER.md": [
+      {
+        "type": "render_setext_underline",
+        "severity": "warning",
+        "message": "A setext underline follows a paragraph line; add a blank line above the divider.",
+        "line": 37,
+        "line_number": 37,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/shared/assets/llmstxt-templates.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Emphasis:\" and \"Key Sections:\" join into one paragraph; separate them or use list items.",
+        "line": 358,
+        "line_number": 358,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Emphasis:\" and \"Key Sections:\" join into one paragraph; separate them or use list items.",
+        "line": 367,
+        "line_number": 367,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Emphasis:\" and \"Key Sections:\" join into one paragraph; separate them or use list items.",
+        "line": 376,
+        "line_number": 376,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Emphasis:\" and \"Key Sections:\" join into one paragraph; separate them or use list items.",
+        "line": 385,
+        "line_number": 385,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/shared/references/quick-reference.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Issue\" and \"Fix\" join into one paragraph; separate them or use list items.",
+        "line": 152,
+        "line_number": 152,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Issue\" and \"Fix\" join into one paragraph; separate them or use list items.",
+        "line": 155,
+        "line_number": 155,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Issue\" and \"Fix\" join into one paragraph; separate them or use list items.",
+        "line": 158,
+        "line_number": 158,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Issue\" and \"Fix\" join into one paragraph; separate them or use list items.",
+        "line": 161,
+        "line_number": 161,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Use when\" and \"Skip when\" join into one paragraph; separate them or use list items.",
+        "line": 1193,
+        "line_number": 1193,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"COMMAND CONTRACT\".",
+        "line": 1238,
+        "line_number": 1238,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-diff/SKILL.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"REFERENCES\".",
+        "line": 216,
+        "line_number": 216,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Self-containment (validated)\" among numbered peers; number every section.",
+        "line": 20,
+        "line_number": 20,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Accessibility\" among numbered peers; number every section.",
+        "line": 27,
+        "line_number": 27,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Views\" among numbered peers; number every section.",
+        "line": 38,
+        "line_number": 38,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"What is not guaranteed\" among numbered peers; number every section.",
+        "line": 45,
+        "line_number": 45,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-diff/references/workflow.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Automatic flow (snapshot-backed)\" among numbered peers; number every section.",
+        "line": 20,
+        "line_number": 20,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Explicit-pair flow (fallback)\" among numbered peers; number every section.",
+        "line": 36,
+        "line_number": 36,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pre-composed aggregate pairs\" among numbered peers; number every section.",
+        "line": 49,
+        "line_number": 49,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Where snapshots live\" among numbered peers; number every section.",
+        "line": 73,
+        "line_number": 73,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Lifecycle\" among numbered peers; number every section.",
+        "line": 79,
+        "line_number": 79,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"After generating a report\" among numbered peers; number every section.",
+        "line": 93,
+        "line_number": 93,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md": [
+      {
+        "type": "render_overview_heading",
+        "severity": "warning",
+        "message": "The first H2 compounds OVERVIEW with \"AND SCOPE\"; name it OVERVIEW and move the topic into a subsection.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md": [
+      {
+        "type": "render_overview_heading",
+        "severity": "warning",
+        "message": "The first H2 compounds OVERVIEW with \"AND SOURCE CHECK\"; name it OVERVIEW and move the topic into a subsection.",
+        "line": 18,
+        "line_number": 18,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 31,
+        "line_number": 31,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 108,
+        "line_number": 108,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 119,
+        "line_number": 119,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 137,
+        "line_number": 137,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 153,
+        "line_number": 153,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 176,
+        "line_number": 176,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 191,
+        "line_number": 191,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 207,
+        "line_number": 207,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 223,
+        "line_number": 223,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 237,
+        "line_number": 237,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 254,
+        "line_number": 254,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 274,
+        "line_number": 274,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 286,
+        "line_number": 286,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Impact\" and \"Effort\" join into one paragraph; separate them or use list items.",
+        "line": 293,
+        "line_number": 293,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 1: API Reference \u2192 Usage Example\" among numbered peers; number every section.",
+        "line": 28,
+        "line_number": 28,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 4: Remove Metadata\" among numbered peers; number every section.",
+        "line": 105,
+        "line_number": 105,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 5: Add Error Handling\" among numbered peers; number every section.",
+        "line": 116,
+        "line_number": 116,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 6: Combine Installation + First Usage\" among numbered peers; number every section.",
+        "line": 134,
+        "line_number": 134,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 7: Add Configuration Examples\" among numbered peers; number every section.",
+        "line": 150,
+        "line_number": 150,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 8: Demonstrate OAuth/Auth Patterns\" among numbered peers; number every section.",
+        "line": 173,
+        "line_number": 173,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 9: Show Batch/Bulk Operations\" among numbered peers; number every section.",
+        "line": 188,
+        "line_number": 188,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 10: Add Testing Examples\" among numbered peers; number every section.",
+        "line": 204,
+        "line_number": 204,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 11: Provide Advanced Use Cases\" among numbered peers; number every section.",
+        "line": 220,
+        "line_number": 220,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 12: Add Integration Examples\" among numbered peers; number every section.",
+        "line": 234,
+        "line_number": 234,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 13: Clarify Common Pitfalls\" among numbered peers; number every section.",
+        "line": 251,
+        "line_number": 251,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 14: Add Output Examples\" among numbered peers; number every section.",
+        "line": 271,
+        "line_number": 271,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 15: Consolidate Duplicates\" among numbered peers; number every section.",
+        "line": 283,
+        "line_number": 283,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Pattern 16: Fix Formatting\" among numbered peers; number every section.",
+        "line": 290,
+        "line_number": 290,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"RELATED RESOURCES\" among numbered peers; number every section.",
+        "line": 303,
+        "line_number": 303,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"RELATED RESOURCES\" among numbered peers; number every section.",
+        "line": 221,
+        "line_number": 221,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"RELATED RESOURCES\" among numbered peers; number every section.",
+        "line": 95,
+        "line_number": 95,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-git/assets/pr-template.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED ISSUES GUIDELINES\" must be the last H2; it is followed by \"PR CHECKLIST\".",
+        "line": 443,
+        "line_number": 443,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-git/references/finish-workflows.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"If user chooses 'n'\" and \"If user chooses 'y'\" join into one paragraph; separate them or use list items.",
+        "line": 234,
+        "line_number": 234,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-git/references/worktree-workflows.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"8b.\"); use integers only.",
+        "line": 518,
+        "line_number": 518,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/sk-prompt/SKILL.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"RELATED PLAYBOOK\" among numbered peers; number every section.",
+        "line": 306,
+        "line_number": 306,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"REFERENCES AND RELATED RESOURCES\" must be the last H2; it is followed by \"RELATED PLAYBOOK\".",
+        "line": 302,
+        "line_number": 302,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"REFERENCES AND RELATED RESOURCES\" must be the last H2; it is followed by \"SUCCESS CRITERIA\".",
+        "line": 216,
+        "line_number": 216,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md": [
+      {
+        "type": "render_overview_orientation",
+        "severity": "warning",
+        "message": "The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.",
+        "line": 21,
+        "line_number": 21,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Convergence Threshold Semantics\" among numbered peers; number every section.",
+        "line": 54,
+        "line_number": 54,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Deep Mode (Iterative Multi-Topic)\" among numbered peers; number every section.",
+        "line": 19,
+        "line_number": 19,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)\" among numbered peers; number every section.",
+        "line": 156,
+        "line_number": 156,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"5.2 PROGRESS RECORD (v1.3, shared cross-mode)\" among numbered peers; number every section.",
+        "line": 171,
+        "line_number": 171,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"6A.\"); use integers only.",
+        "line": 83,
+        "line_number": 83,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"10A.\"); use integers only.",
+        "line": 131,
+        "line_number": 131,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"11A.\"); use integers only.",
+        "line": 143,
+        "line_number": 143,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED\" must be the last H2; it is followed by \"REVIEW MODE\".",
+        "line": 223,
+        "line_number": 223,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-review/SKILL.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"REFERENCES AND RELATED RESOURCES\" must be the last H2; it is followed by \"SUCCESS CRITERIA\".",
+        "line": 266,
+        "line_number": 266,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"2A.\"); use integers only.",
+        "line": 51,
+        "line_number": 51,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "H2 number carries a letter suffix (\"10A.\"); use integers only.",
+        "line": 108,
+        "line_number": 108,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"OPTIMIZER-TUNABLE THRESHOLDS\" among numbered peers; number every section.",
+        "line": 580,
+        "line_number": 580,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Executor Selection Contract\" among numbered peers; number every section.",
+        "line": 732,
+        "line_number": 732,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"Executor Selection Contract\".",
+        "line": 691,
+        "line_number": 691,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-deep-loop/runtime/references/integration-points.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"7.1 ADDITIONAL CONSUMERS\" among numbered peers; number every section.",
+        "line": 151,
+        "line_number": 151,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md": [
+      {
+        "type": "render_intro_restates_purpose",
+        "severity": "warning",
+        "message": "The intro repeats the Purpose (0.73 token overlap); make the intro a hook.",
+        "line": 15,
+        "line_number": 15,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md": [
+      {
+        "type": "render_intro_restates_purpose",
+        "severity": "warning",
+        "message": "The intro repeats the Purpose (0.63 token overlap); make the intro a hook.",
+        "line": 16,
+        "line_number": 16,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/config/environment-variables.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED RESOURCES\" must be the last H2; it is followed by \"CLEAN TRANSPORT (HOOK STDOUT)\".",
+        "line": 191,
+        "line_number": 191,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/memory/save-workflow.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"When to Use:\" and \"Requirement:\" join into one paragraph; separate them or use list items.",
+        "line": 138,
+        "line_number": 138,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"When to Use:\" and \"Requirement:\" join into one paragraph; separate them or use list items.",
+        "line": 179,
+        "line_number": 179,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/templates/level-specifications.md": [
+      {
+        "type": "render_section_order",
+        "severity": "warning",
+        "message": "\"RELATED SPECS: UPDATE VS CREATE\" must be the last H2; it is followed by \"CROSS-CUTTING TEMPLATES (ANY LEVEL)\".",
+        "line": 641,
+        "line_number": 641,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/templates/template-guide.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Parent Spec:\" and \"Purpose:\" join into one paragraph; separate them or use list items.",
+        "line": 1011,
+        "line_number": 1011,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/validation/five-checks.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Overall PASS:\" and \"Conditional PASS:\" join into one paragraph; separate them or use list items.",
+        "line": 209,
+        "line_number": 209,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Conditional PASS:\" and \"FAIL:\" join into one paragraph; separate them or use list items.",
+        "line": 210,
+        "line_number": 210,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/validation/template-compliance-contract.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Requirements format\" and \"Acceptance scenario format\" join into one paragraph; separate them or use list items.",
+        "line": 239,
+        "line_number": 239,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"8.5. DISCOVERING A LEVEL'S CONTRACT (DO NOT GUESS)\" among numbered peers; number every section.",
+        "line": 253,
+        "line_number": 253,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/validation/validation-rules.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Rule ID:\" and \"Severity:\" join into one paragraph; separate them or use list items.",
+        "line": 155,
+        "line_number": 155,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Default:\" join into one paragraph; separate them or use list items.",
+        "line": 156,
+        "line_number": 156,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Default:\" and \"Lifecycle predicate:\" join into one paragraph; separate them or use list items.",
+        "line": 157,
+        "line_number": 157,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Lifecycle predicate:\" and \"Coverage calculation:\" join into one paragraph; separate them or use list items.",
+        "line": 158,
+        "line_number": 158,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Coverage calculation:\" and \"Escape hatch:\" join into one paragraph; separate them or use list items.",
+        "line": 159,
+        "line_number": 159,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Escape hatch:\" and \"Evidence citations:\" join into one paragraph; separate them or use list items.",
+        "line": 160,
+        "line_number": 160,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Rule ID:\" and \"Severity (inner label):\" join into one paragraph; separate them or use list items.",
+        "line": 174,
+        "line_number": 174,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity (inner label):\" and \"Default:\" join into one paragraph; separate them or use list items.",
+        "line": 175,
+        "line_number": 175,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Default:\" and \"Lifecycle predicate:\" join into one paragraph; separate them or use list items.",
+        "line": 176,
+        "line_number": 176,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Lifecycle predicate:\" and \"Clean-tree scope:\" join into one paragraph; separate them or use list items.",
+        "line": 177,
+        "line_number": 177,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Clean-tree scope:\" and \"Clock drift:\" join into one paragraph; separate them or use list items.",
+        "line": 178,
+        "line_number": 178,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 198,
+        "line_number": 198,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 291,
+        "line_number": 291,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 359,
+        "line_number": 359,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 403,
+        "line_number": 403,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 521,
+        "line_number": 521,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 565,
+        "line_number": 565,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 621,
+        "line_number": 621,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 668,
+        "line_number": 668,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 733,
+        "line_number": 733,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Severity:\" and \"Rule:\" join into one paragraph; separate them or use list items.",
+        "line": 788,
+        "line_number": 788,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Rule:\" and \"Description:\" join into one paragraph; separate them or use list items.",
+        "line": 789,
+        "line_number": 789,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"Compatibility\" among numbered peers; number every section.",
+        "line": 199,
+        "line_number": 199,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md": [
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a71. Three-Tier Flow\" among numbered peers; number every section.",
+        "line": 23,
+        "line_number": 23,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a72. PRE-BOUND SETUP ANSWERS Schema\" among numbered peers; number every section.",
+        "line": 58,
+        "line_number": 58,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a73. Default Resolution Table\" among numbered peers; number every section.",
+        "line": 86,
+        "line_number": 86,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a74. Tier 3 Fail-Fast Error Template\" among numbered peers; number every section.",
+        "line": 110,
+        "line_number": 110,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a75. `:confirm` Invariance\" among numbered peers; number every section.",
+        "line": 133,
+        "line_number": 133,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a76. Verification Protocol\" among numbered peers; number every section.",
+        "line": 141,
+        "line_number": 141,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a77. Adoption Checklist\" among numbered peers; number every section.",
+        "line": 169,
+        "line_number": 169,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a78. Out of Scope\" among numbered peers; number every section.",
+        "line": 188,
+        "line_number": 188,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_h2_numbering",
+        "severity": "warning",
+        "message": "Unnumbered H2 \"\u00a79. PROVENANCE\" among numbered peers; number every section.",
+        "line": 195,
+        "line_number": 195,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/workflows/execution-methods.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Phase creation\" and \"Append phases\" join into one paragraph; separate them or use list items.",
+        "line": 132,
+        "line_number": 132,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Append phases\" and \"Recursive validation\" join into one paragraph; separate them or use list items.",
+        "line": 133,
+        "line_number": 133,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md": [
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"If ANY unchecked \u2192 STOP\" and \"If required template missing \u2192 Cannot claim completion\" join into one paragraph; separate them or use list items.",
+        "line": 191,
+        "line_number": 191,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Option A:\" and \"Option B:\" join into one paragraph; separate them or use list items.",
+        "line": 268,
+        "line_number": 268,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Option B:\" and \"Option C:\" join into one paragraph; separate them or use list items.",
+        "line": 269,
+        "line_number": 269,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"Option C:\" and \"Option D:\" join into one paragraph; separate them or use list items.",
+        "line": 270,
+        "line_number": 270,
+        "auto_fixable": false
+      },
+      {
+        "type": "render_bold_label_join",
+        "severity": "warning",
+        "message": "Consecutive bold labels \"If ANY unchecked \u2192 Fix before user presentation\" and \"If required template missing \u2192 Cannot claim completion\" join into one paragraph; separate them or use list items.",
+        "line": 461,
+        "line_number": 461,
+        "auto_fixable": false
+      }
+    ],
+    ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md": [
+      {
+        "type": "render_overview_heading",
+        "severity": "warning",
+        "message": "The first H2 compounds OVERVIEW with \"AND BOUNDS\"; name it OVERVIEW and move the topic into a subsection.",
+        "line": 20,
+        "line_number": 20,
+        "auto_fixable": false
+      }
+    ]
+  }
+}

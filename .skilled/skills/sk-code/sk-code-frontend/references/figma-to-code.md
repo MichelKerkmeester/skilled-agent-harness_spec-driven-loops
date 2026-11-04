@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Figma to Code Translation
@@ -17,10 +17,6 @@ How to read a Figma design as a reference and build the simplest correct structu
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Figma is a reference for code, never its markup. Never copy the layer tree, absolute coordinates, fixed frame sizes or component property sets 1:1 into code.
 
 ### Purpose
 
@@ -33,6 +29,10 @@ A Figma read, export or MCP pull tells you what the screen should look like and 
 - Mapping Figma variables and styles to installed tokens
 - Running the five-pass check against a rendered build
 - Reporting a Figma-to-code red flag
+
+### Core Principle
+
+Figma is a reference for code, never its markup. Never copy the layer tree, absolute coordinates, fixed frame sizes or component property sets 1:1 into code.
 
 ### Boundaries
 
@@ -108,28 +108,6 @@ Gather these inputs before comparing the frame with the rendered build:
 - The installed token package and its version.
 - The rendered build.
 
-### Five Passes
-
-| Pass | Evidence source | Pass condition | Fail condition |
-|---|---|---|---|
-| 1. Same-width comparison | Web: render at the frame's authored width W at device scale 1 beside the frame image. Compare presence, order, wrapping, alignment and overflow. | Every frame element is present in order, there is no overflow at W, and no fixed width was copied. | An element is missing or extra, wrapping differs, overflow occurs, or a mismatch changes meaning. Pixel difference alone never fails. |
-| 2. State by state | Every variant plus the empty, loading, error and disabled states named at workflow step 2. Dark mode only where the mode supports it. Motion is not in design unless the frame specifies it. | Each state has a capture and a verdict, and one component with props covers them. A state absent from the design is recorded as not in design. | A state is unrendered, there is one component per variant, or a state contradicts its frame. |
-| 3a. Render token check | Web: resolved styles from bdg cdp Runtime.evaluate and getComputedStyle. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
-| 3b. Source token check | Search changed source files for literal colors, sizes and font values where a token exists. Run the repository's own token checker if it has one. | No literal appears where a token exists, and the repository checker passes when one is available. | A literal appears where a token exists, or the repository checker fails. |
-| 4. Variable to token | Read each used Figma variable and node binding, then compare with the installed token package and version. Record one row per variable: Figma variable \| Figma value \| installed token \| installed value \| verdict. | Every variable maps to an installed token, or a package lag is reported. An open value goes to sk-design-fundamentals per workflow step 4. | A Figma variable name or value appears in code, or a missing variable is treated as resolved. |
-| 5. Range and access | Web: widths below and above W across phone, tablet and desktop widths, 200 percent zoom, keyboard-only use, screen reader, and contrast for text and controls against their backgrounds. | Each check has a verdict, and none fails. | An element clips or overlaps, a keyboard trap or unreachable control appears, a name, role or state is missing, or contrast is below the target set by sk-design-fundamentals. When no project target exists, use WCAG 2.2 AA: 4.5:1 for normal text and 3:1 for large text under [success criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum), plus 3:1 for user-interface components and graphical objects under [success criterion 1.4.11](https://www.w3.org/TR/WCAG22/#non-text-contrast). |
-
-### Verdict and Report
-
-The overall result is `PASS` only when every pass passes. Record a pass that cannot run as `NOT RUN` with its reason, and the overall verdict is then `INCOMPLETE`, never `PASS`.
-
-The report names:
-
-- The frame, node id and W.
-- The installed token package and version, and the tool used for each pass.
-- Capture paths, the state matrix, the rendered value table and the variable-to-token table.
-- The lag list and overall verdict.
-
 ### Figma-Side Tool Ladder
 
 Use these read-only transports in order:
@@ -153,6 +131,17 @@ The official Figma MCP is a native runtime connection. The `mcp-figma` skill doc
 Passes 3a and 3b are checked against the rendered application and changed source, not supplied by a Figma transport. `UNKNOWN` means the referenced documentation does not establish support.
 
 `spec --check` measures a built node inside Figma. It does not compare the application render with the frame.
+
+### Five Passes
+
+| Pass | Evidence source | Pass condition | Fail condition |
+|---|---|---|---|
+| 1. Same-width comparison | Web: render at the frame's authored width W at device scale 1 beside the frame image. Compare presence, order, wrapping, alignment and overflow. | Every frame element is present in order, there is no overflow at W, and no fixed width was copied. | An element is missing or extra, wrapping differs, overflow occurs, or a mismatch changes meaning. Pixel difference alone never fails. |
+| 2. State by state | Every variant plus the empty, loading, error and disabled states named at workflow step 2. Dark mode only where the mode supports it. Motion is not in design unless the frame specifies it. | Each state has a capture and a verdict, and one component with props covers them. A state absent from the design is recorded as not in design. | A state is unrendered, there is one component per variant, or a state contradicts its frame. |
+| 3a. Render token check | Web: resolved styles from bdg cdp Runtime.evaluate and getComputedStyle. Use the Pass 4 table to map Figma variables to tokens. | Every resolved color, spacing, radius, depth, type and breakpoint value matches an installed token value, or a package lag is reported. | A resolved value is in no installed token. Resolved styles turn var() into their final value, so this pass cannot distinguish a token from a literal of the same value. Pass 3b checks source usage. |
+| 3b. Source token check | Search changed source files for literal colors, sizes and font values where a token exists. Run the repository's own token checker if it has one. | No literal appears where a token exists, and the repository checker passes when one is available. | A literal appears where a token exists, or the repository checker fails. |
+| 4. Variable to token | Read each used Figma variable and node binding, then compare with the installed token package and version. Record one row per variable: Figma variable \| Figma value \| installed token \| installed value \| verdict. | Every variable maps to an installed token, or a package lag is reported. An open value goes to sk-design-fundamentals per workflow step 4. | A Figma variable name or value appears in code, or a missing variable is treated as resolved. |
+| 5. Range and access | Web: widths below and above W across phone, tablet and desktop widths, 200 percent zoom, keyboard-only use, screen reader, and contrast for text and controls against their backgrounds. | Each check has a verdict, and none fails. | An element clips or overlaps, a keyboard trap or unreachable control appears, a name, role or state is missing, or contrast is below the target set by sk-design-fundamentals. When no project target exists, use WCAG 2.2 AA: 4.5:1 for normal text and 3:1 for large text under [success criterion 1.4.3](https://www.w3.org/TR/WCAG22/#contrast-minimum), plus 3:1 for user-interface components and graphical objects under [success criterion 1.4.11](https://www.w3.org/TR/WCAG22/#non-text-contrast). |
 
 Capture mechanics: see [Capture Mechanics on the Web](#capture-mechanics-on-the-web).
 
@@ -185,6 +174,17 @@ Open the rendered build in a `bdg` session.
 - Use [mcp-aside-devtools](../../../mcp-tooling/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
 
 See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
+
+### Verdict and Report
+
+The overall result is `PASS` only when every pass passes. Record a pass that cannot run as `NOT RUN` with its reason, and the overall verdict is then `INCOMPLETE`, never `PASS`.
+
+The report names:
+
+- The frame, node id and W.
+- The installed token package and version, and the tool used for each pass.
+- Capture paths, the state matrix, the rendered value table and the variable-to-token table.
+- The lag list and overall verdict.
 
 ---
 

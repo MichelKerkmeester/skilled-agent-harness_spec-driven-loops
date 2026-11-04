@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Commenting & Rustdoc Rules
@@ -20,13 +20,14 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for commenting & rustdoc rules in the OpenCode development environment.
+Sets the comment and rustdoc rules that let a reviewer recover intent, safety preconditions and the protected parity contract from the code itself.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Writing or reviewing comments in Rust source
+- Adding a `// SAFETY:` justification around an unsafe block
+- Drafting rustdoc for a public or boundary operation
+- Suppressing a lint and recording the reason
 
 ---
 

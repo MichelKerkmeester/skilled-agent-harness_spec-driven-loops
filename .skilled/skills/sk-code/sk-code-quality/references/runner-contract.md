@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Quality Runner Contract
@@ -17,7 +17,21 @@ version: 1.0.10.0
 
 ---
 
-## 1. OVERVIEW AND CLI
+## 1. OVERVIEW
+
+### Purpose
+
+One reference carries the whole contract a caller needs in order to read a quality run: the CLI, gate values, check states, verdict and envelope grammar, rule ids, reader rules, checker input fields and the dist adapter.
+
+### When to Use
+
+- Running `scripts/quality-gate.cjs` and reading its verdict, exit code or check states
+- Choosing a scope, a format or a subset of checks
+- Debugging an `ERROR`, `UNVERIFIED` or `NOTHING_CHECKED` result
+- Reading what a rule id, a checklist or a surface applies to
+- Wiring a configured check or the dist adapter
+
+### CLI
 
 ```text
 node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs [scope] [options]
@@ -50,7 +64,10 @@ Every line of an untracked file counts as changed. So does every line of a file 
 
 Git runs with `GIT_OPTIONAL_LOCKS=0`, `core.fsmonitor=false` and `GIT_LITERAL_PATHSPECS=1`, so it refreshes no index, starts no monitor and never reads a file name as a glob. Every spawned tool is an argv array with no shell, and it runs without `NODE_OPTIONS`, `NODE_COMPILE_CACHE`, `BASH_ENV` and `ENV`. A configured command also runs with no input as the leader of its own process group, which is killed at its deadline and again when it exits.
 
-The scope lists the untracked files once per run and hands that list to the workspace guard, so a run walks the tree once for the scope rather than once per snapshot. A named-file scope takes no listing for the scope itself, because it hashes the named files by name. Every guard window lists once more, bounded to the folders the scope reaches, so a path a check creates where the scope already reads a file is still seen. A named-file scope bounds that listing to the folders its named files sit in, at both snapshots, so a check that writes beside one is still caught. The bound reaches each of those folders and every folder below it. It does not reach a sibling folder, the repository root or an ignored path, so a write there stays invisible, and a named file at the repository root folds the bound to `.`, which widens the listing to the whole tree. That bound is what the coverage costs: on `arm64` with an `Apple M5 Max` at HEAD `f1732e4d95`, where the tree held five untracked entries, `/usr/bin/time -p` around `git ls-files --others --exclude-standard -z -- <folders>` printed `real 0.04`, `0.03`, `0.03`, `0.03` and `0.03` over the five folders the fifty-file measurement below reaches, and the same listing over the whole tree printed `real 1.74`, `0.62`, `0.97`, `0.68` and `0.60`.
+- **Scope listing.** The scope lists the untracked files once per run and hands that list to the workspace guard, so a run walks the tree once for the scope rather than once per snapshot. A named-file scope takes no listing for the scope itself, because it hashes the named files by name.
+- **Guard windows.** Every guard window lists once more, bounded to the folders the scope reaches, so a path a check creates where the scope already reads a file is still seen. A named-file scope bounds that listing to the folders its named files sit in, at both snapshots, so a check that writes beside one is still caught.
+- **The bound.** The bound reaches each of those folders and every folder below it. It does not reach a sibling folder, the repository root or an ignored path, so a write there stays invisible, and a named file at the repository root folds the bound to `.`, which widens the listing to the whole tree.
+- **Coverage cost.** That bound is what the coverage costs: on `arm64` with an `Apple M5 Max` at HEAD `f1732e4d95`, where the tree held five untracked entries, `/usr/bin/time -p` around `git ls-files --others --exclude-standard -z -- <folders>` printed `real 0.04`, `0.03`, `0.03`, `0.03` and `0.03` over the five folders the fifty-file measurement below reaches, and the same listing over the whole tree printed `real 1.74`, `0.62`, `0.97`, `0.68` and `0.60`.
 
 The guard hashes the tracked diff against `HEAD`, the untracked files inside the folders the scope reaches, the commit `HEAD` names and the named files. No ignored path is hashed, so a write to one is invisible to the guard, and a write outside the folders the scope reaches is invisible for the same reason, as is a write in another repository or to the hub that holds the runner. The ignored half was measured and refused: with the hash of every listed path included, a bounded watch cost 33 to 98 ms over the 447 ignored paths beside the dist entries, 327 to 1232 ms over the 10570 under the system-spec-kit skill folder, which holds the dist output and a package tree, and 10782 to 12786 ms over the whole tree, so it does not stay under 50 ms at a folder a scope can land on.
 
@@ -110,7 +127,11 @@ A configured check runs only from a trusted config. One of four rules makes it t
 | `broken` | Installed but not runnable: the layer names the checker or adapter, and the path it names is missing, is not a regular file, or lacks the execute bit |
 | `unknown` | The probe could not read what it needed |
 
-The pre-commit probe reads the hook folder git resolves, then the checker the hook text names. Shell comments are stripped first, so a hook that only mentions the checker in a comment reads `absent`, while a `#` inside quotes stays text. Every path in the remaining text ending in `check-comment-hygiene.sh` is a candidate, with or without a prefix: a plain `tools/...`, a `./tools/...` and a path after `sh`, `bash` or `cd ... &&` all count, and a leading `$NAME/`, `${NAME}/`, `${NAME:-default}/` or `$(...)/`, nested substitutions included, is dropped, any quotes around it included, because the probe reads the hook as text and never runs it. A checker path inside an `echo` string, a heredoc or a branch that never runs still counts as a mention for the same reason. An absolute path with no prefix is tried as it stands, and the rest is joined to the repository root, its `.skilled` and `.opencode` source roots and the root of the repository that owns the hook, read through `git rev-parse --git-common-dir`. One candidate that is a regular file with the execute bit makes the layer `present`. When no candidate is, the layer is installed but not runnable and reads `broken`, and the repair names the path to install the checker at or to give the execute bit. When the hook carries the `skilled.trustRepoHooks` gate, a hook from another repository is untrusted unless this repository sets that key to true. The CI probe reads `.github/workflows/*.yml` and `*.yaml`. The post-edit probe reads `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`, and a named adapter path missing from the repository is broken.
+- **Hook text.** The pre-commit probe reads the hook folder git resolves, then the checker the hook text names. Shell comments are stripped first, so a hook that only mentions the checker in a comment reads `absent`, while a `#` inside quotes stays text.
+- **Candidates.** Every path in the remaining text ending in `check-comment-hygiene.sh` is a candidate, with or without a prefix: a plain `tools/...`, a `./tools/...` and a path after `sh`, `bash` or `cd ... &&` all count, and a leading `$NAME/`, `${NAME}/`, `${NAME:-default}/` or `$(...)/`, nested substitutions included, is dropped, any quotes around it included, because the probe reads the hook as text and never runs it. A checker path inside an `echo` string, a heredoc or a branch that never runs still counts as a mention for the same reason.
+- **Resolution.** An absolute path with no prefix is tried as it stands, and the rest is joined to the repository root, its `.skilled` and `.opencode` source roots and the root of the repository that owns the hook, read through `git rev-parse --git-common-dir`.
+- **Layer state.** One candidate that is a regular file with the execute bit makes the layer `present`. When no candidate is, the layer is installed but not runnable and reads `broken`, and the repair names the path to install the checker at or to give the execute bit. When the hook carries the `skilled.trustRepoHooks` gate, a hook from another repository is untrusted unless this repository sets that key to true.
+- **CI and post-edit probes.** The CI probe reads `.github/workflows/*.yml` and `*.yaml`. The post-edit probe reads `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` and `.devin/hooks.v1.json`, and a named adapter path missing from the repository is broken.
 
 | Error code | Cause |
 | --- | --- |
@@ -179,7 +200,12 @@ One resolution covers every named file, as one run does, so a fault is an error 
 | `checks` | One `{id, applies, why}` row per built-in check and one `{id, origin, applies, why}` row per configured check |
 | `rule_conflicts` | One `{id, files}` row per rule that two checklists at the same precedence level give a different action or text for this file, found by the run's own override pass over the named files. `files` names the checklists. A run over this file lists the same conflict in its `rule_conflicts` and reads `UNVERIFIED`. Empty when no rule conflicts here |
 
-`overrides` is the checklist's `## Rule overrides` section, read through `lintOverrides` in `shared/scripts/check-rule-overrides.cjs`, the same reader both modes use. It holds `found`, `refused`, `rows` and `errors`. A row is `{line, id, action, text, reason}`, with `action` `none` or `replace`. An error is `{line, message}`, such as a floor rule that cannot be overridden. `refused` is true when `errors` holds anything: the contract applies a file's rows only when its error list is empty, so a caller then applies none of them. A file with no section reads `found: false` and `refused: false`. `overrides` is null when the checklist file is not a regular file, which `errors` already reports as `CHECKLIST_MISSING`. A run reads the same section of every checklist it loads: a refused one ends the run `ERROR` with `CONFIG_INVALID`, exit 3, and each accepted row is listed in `rule_overrides`. The run also refuses a section with a row whose id no rule carries, which the linter does not check. The known ids come from `shared/scripts/lib/rule-registry.cjs`, which reads them from the documents that declare them: section 5 of this file, with the hygiene names from the checker's own table, sections 3 to 5 of `code-quality-standards.md` and section 8 of `review-core.md`. An explanation does not apply this check, so its `overrides` block is the linter's alone. Its `rule_conflicts` does come from the run's pass, so a row that check refuses takes part in no conflict.
+- **Reader.** `overrides` is the checklist's `## Rule overrides` section, read through `lintOverrides` in `shared/scripts/check-rule-overrides.cjs`, the same reader both modes use.
+- **Shape.** It holds `found`, `refused`, `rows` and `errors`. A row is `{line, id, action, text, reason}`, with `action` `none` or `replace`. An error is `{line, message}`, such as a floor rule that cannot be overridden.
+- **Refusal.** `refused` is true when `errors` holds anything: the contract applies a file's rows only when its error list is empty, so a caller then applies none of them. A file with no section reads `found: false` and `refused: false`. `overrides` is null when the checklist file is not a regular file, which `errors` already reports as `CHECKLIST_MISSING`.
+- **Run behavior.** A run reads the same section of every checklist it loads: a refused one ends the run `ERROR` with `CONFIG_INVALID`, exit 3, and each accepted row is listed in `rule_overrides`. The run also refuses a section with a row whose id no rule carries, which the linter does not check.
+- **Known ids.** The known ids come from `shared/scripts/lib/rule-registry.cjs`, which reads them from the documents that declare them: section 5 of this file, with the hygiene names from the checker's own table, sections 3 to 5 of `code-quality-standards.md` and section 8 of `review-core.md`.
+- **Explanation.** An explanation does not apply this check, so its `overrides` block is the linter's alone. Its `rule_conflicts` does come from the run's pass, so a row that check refuses takes part in no conflict.
 
 Precedence follows the shared contract. Each checklist takes the highest level of the seats that list it for a file: `repo-config` is the repository checklist, a `hub-surface` other than the SKILLED fallback or an `outside-skill` is a specific surface, the SKILLED fallback comes next and `default` is the rule as the mode ships it. For each file and rule the highest level wins. Rows at that level that give the same action and text agree and all apply. Rows that differ are listed in `rule_conflicts`, none of them applies, and the rule id joins `summary.unverified`, so the gate reads `UNVERIFIED`, exit 4, unless an error or a blocker outranks it. No new exit code is added.
 
@@ -262,7 +288,12 @@ The runner reads these fields of `check-comment-hygiene.sh --json`, schema `comm
 | `files[].findings[].reason`, `excerpt` | Copied to the finding |
 | `disabled_rules` | Present only when a rule is off: the core rule names `--disable-rule` switched off |
 
-The runner passes the repository config's `commentHygiene` values as the checker's own flags: `--ticket-prefix` per prefix, `--extension EXT=FAMILY` per mapped extension, `--extra-pattern` per pattern and `--disable-rule` per rule `commentHygiene.disableRules` names, before `--`. `quality-config.cjs` builds that list in `hygieneCheckerFlags`. The pre-commit hook and the CI hygiene job take only the `--disable-rule` part, `hygieneDisableFlags`, from `scripts/hygiene-config-flags.cjs`, because the config's additions tighten the author gate alone. The checker refuses a `--disable-rule` id that names no core rule or that `rule-overrides.json` fixes. The verdict's `config.hygiene.disabled` lists each disabled rule as `hygiene.<rule>`, and it is empty when the key is absent. A file `commentHygiene.exclude` matches is left out of the call. Output that does not parse as this document makes the check `ERROR`, so a broken checker never reads as clean. When the checker refuses its arguments, a value the repository config supplied ends the run with `CONFIG_INVALID`, exit 3 and one `config.errors` row naming the field, where a refused flag the runner supplies itself leaves the row's `repair` carrying the checker's message. The runner reads `languages.<name>.extensions`, `shebangs` and `family` from `assets/comment-syntax.json`, the same table the checker reads.
+- **Flags passed.** The runner passes the repository config's `commentHygiene` values as the checker's own flags: `--ticket-prefix` per prefix, `--extension EXT=FAMILY` per mapped extension, `--extra-pattern` per pattern and `--disable-rule` per rule `commentHygiene.disableRules` names, before `--`. `quality-config.cjs` builds that list in `hygieneCheckerFlags`.
+- **Hook and CI.** The pre-commit hook and the CI hygiene job take only the `--disable-rule` part, `hygieneDisableFlags`, from `scripts/hygiene-config-flags.cjs`, because the config's additions tighten the author gate alone.
+- **Disabled rules.** The checker refuses a `--disable-rule` id that names no core rule or that `rule-overrides.json` fixes. The verdict's `config.hygiene.disabled` lists each disabled rule as `hygiene.<rule>`, and it is empty when the key is absent.
+- **Excluded files.** A file `commentHygiene.exclude` matches is left out of the call.
+- **Failure.** Output that does not parse as this document makes the check `ERROR`, so a broken checker never reads as clean. When the checker refuses its arguments, a value the repository config supplied ends the run with `CONFIG_INVALID`, exit 3 and one `config.errors` row naming the field, where a refused flag the runner supplies itself leaves the row's `repair` carrying the checker's message.
+- **Language table.** The runner reads `languages.<name>.extensions`, `shebangs` and `family` from `assets/comment-syntax.json`, the same table the checker reads.
 
 ---
 

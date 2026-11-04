@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Collections, Imports/Exports & Error Mapping
@@ -20,13 +20,14 @@ Copy-paste boundary templates, naming conventions, deterministic recipes, and Ca
 
 ### Purpose
 
-Provides focused Rust guidance for collections, imports/exports & error mapping in the OpenCode development environment.
+Collects the copy-ready collection, import and export, and error-mapping templates that keep a Rust boundary deterministic and its module surface deliberate.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Building or sorting a canonical collection
+- Converting a fixed-width boundary value
+- Laying out imports, modules, re-exports or feature-gated boundary code
+- Mapping a domain error or containing a panic at the boundary
 
 ---
 

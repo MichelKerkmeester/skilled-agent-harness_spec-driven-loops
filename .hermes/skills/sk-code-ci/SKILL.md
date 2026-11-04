@@ -2,7 +2,7 @@
 name: sk-code-ci
 description: "Read-only GitHub Actions workflow evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set and the scaffold templates."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.13.0
+version: 1.1.14.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -57,9 +57,11 @@ Scaffold templates (`assets/`):
 
 Workflow doctrine: the implement, debug and verify phases are the shared doctrine symlinked in as `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md`. The acting agent applies it.
 
-## 2b. SMART ROUTING
+---
 
-The hub bundles this surface when a CI-workflow signal fires: the request names a GitHub Actions workflow, a path filter, a job timeout, a concurrency group, a permissions block or a required status check, or the task touches `.github/workflows/`. The first leaf it loads is `references/ci-workflow-standards.md`, the rule index the other three references extend.
+## 3. SMART ROUTING
+
+The hub bundles this surface when a CI-workflow signal fires; §1 WHEN THE HUB BUNDLES THIS lists every signal. The first leaf it loads is `references/ci-workflow-standards.md`, the rule index the other three references extend.
 
 The parent hub `RESOURCE_MAP` carries the same four paths under `CI_WORKFLOW`, re-prefixed with `sk-code-ci/`, and the router-sync guard (`sk-code-skilled/assets/scripts/verify-router-sync.cjs`, leg 2) checks that the two lists stay equal.
 
@@ -67,7 +69,7 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-ci/ROUTER.md) before
 
 ---
 
-## 3. SURFACE STANDARDS (the non-negotiables)
+## 4. SURFACE STANDARDS (the non-negotiables)
 
 The rules below hold for every workflow change, whoever applies it.
 
@@ -96,7 +98,7 @@ The rules below hold for every workflow change, whoever applies it.
 
 ---
 
-## 4. INTEGRATION POINTS
+## 5. INTEGRATION POINTS
 
 - Input: requests the `sk-code` hub bundles beside a workflow mode when the task is about a GitHub Actions workflow.
 - Output: the rule evidence, the protected set, the exception record and the scaffold templates the paired mode applies.

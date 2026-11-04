@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.16.0
+version: 2.3.17.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -46,7 +46,7 @@ Routing is a two-stage decision: **surface-first, intent-second**. Surface narro
 
 ## 2. INTENT MODEL
 
-Intent classification scores task text against weighted keyword signals to pick the dominant work type after surface detection. The vocabulary and weights are authored once, in the `INTENT_SIGNALS` block of §9 MACHINE-READABLE ROUTER; read them there. This section is the human-facing summary of how that block is scored, never a second copy of its keywords.
+Intent classification scores task text against weighted keyword signals to pick the dominant work type after surface detection. The vocabulary and weights are authored once, in the `INTENT_SIGNALS` block of §8 MACHINE-READABLE ROUTER; read them there. This section is the human-facing summary of how that block is scored, never a second copy of its keywords.
 
 ### Scoring algorithm
 
@@ -83,7 +83,7 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | The §9 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
+| ALWAYS | Every invocation | The §8 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
 | SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
@@ -215,16 +215,7 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 
 ---
 
-## 8. RELATED RESOURCES
-
-- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
-- [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
-- `SKILL.md` §2 SMART ROUTING — names the routing authority split and the compiled front door
-- Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
-
----
-
-## 9. MACHINE-READABLE ROUTER (replay / benchmark source)
+## 8. MACHINE-READABLE ROUTER (replay / benchmark source)
 
 This block is the authored source for the intent vocabulary and weights. §2 explains how it is scored and does not repeat the keywords; §4 renders the same rows as prose. When an intent row changes here, update the matching prose row in §4.
 
@@ -438,7 +429,7 @@ It does not load another surface's resources, and it defers `assets/*` (checklis
 
 ---
 
-## 10. HOW TO READ THIS
+## 9. HOW TO READ THIS
 
 - Every code task first loads the always-on preamble (stack + phase detection and the universal quality baseline); routing then narrows to the detected surface's slice for the matched intents.
 - One dominant intent on one surface loads that surface's slice; two near-tied intents (within the router's ambiguity delta) load both intent sets, deduped by canonical pair.
@@ -447,9 +438,18 @@ It does not load another surface's resources, and it defers `assets/*` (checklis
 
 ---
 
+## 10. RELATED RESOURCES
+
+- [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
+- [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
+- `SKILL.md` §2 SMART ROUTING — names the routing authority split and the compiled front door
+- Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
+
+---
+
 ## 11. MACHINE ROUTER
 
-The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 9 stays the only replay source.
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 8 stays the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash
@@ -467,7 +467,7 @@ With `UNKNOWN`, no hint or a surface the prompt did not match, the `routerPolicy
 ### Surface Router: per-intent leaf sets
 
 Root `ROUTER.md` owns the second-stage `INTENT_SIGNALS` / `RESOURCE_MAP`, while packet-owned resources stay typed through `leaf-manifest.json`.
-The hub-level shared controls are declared once, in `ROUTER.md` §9: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves.
+The hub-level shared controls are declared once, in `ROUTER.md` §8: the `SHARED_CONTROL_RESOURCES` list plus the always-loaded `DEFAULT_RESOURCE` preamble. They resolve on disk but never project as leaves.
 The hub router keeps stage-one mode selection and its `shared/README.md` fallback.
 
 ### The discriminator

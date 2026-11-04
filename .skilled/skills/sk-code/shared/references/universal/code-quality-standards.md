@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Universal Code Quality Standards
@@ -24,16 +24,16 @@ Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate, plus
 
 The severity contract behind every surface quality checklist in `sk-code`. P0 blocks completion. P1 needs explicit approval to defer. P2 is tracked and never blocks. Surface checklists hold the concrete rules and give each one a tier from this contract.
 
-### Core Principle
-
-Severity tiers exist so reviewers and authors agree on what blocks "done". A rule's tier is a stable contract: the bar does not move per PR, per author or per deadline.
-
 ### When to Use
 
 - At the Phase 1.5 Code Quality Gate, which the `sk-code-quality` mode runs before Phase 1 (Implementation) can be called complete.
 - When authoring or reviewing a surface quality checklist.
 - When deciding whether a finding blocks merge or can ship as a follow-up.
 - When the `sk-code-review` mode ranks findings, so reviewer and author tiers mean the same thing.
+
+### Core Principle
+
+Severity tiers exist so reviewers and authors agree on what blocks "done". A rule's tier is a stable contract: the bar does not move per PR, per author or per deadline.
 
 ### Key Sources
 

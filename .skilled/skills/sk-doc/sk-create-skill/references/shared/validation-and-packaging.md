@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Skill Validation and Packaging
@@ -117,7 +117,8 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
 **What “comprehensive validation” means in this repo**:
 
 - **Structure checklist (script)**: Deterministic checks from `extract_structure.py` (frontmatter, headings, required sections, fenced code blocks).
-- **Content quality (AI)**: Judgement based on the extracted JSON + the actual text (clarity, completeness, examples).
+- **Render checks (script)**: The deterministic half of content quality. `validate_document.py --json` reports `render_*` warnings for a compound overview heading, an overview that opens without orientation, a joined bold label, a setext underline, a bare URL, a repeated sentence or label, a letter-suffixed H2 number, a related section that is not last, and an intro that restates the Purpose.
+- **Content quality (AI)**: Judgement based on the extracted JSON + the actual text (clarity, completeness, examples) and on the questions no check answers: whether the intro and the Purpose differ, whether a governing decision precedes the steps it governs, whether an index lists every file of the directory it indexes, whether a status token leaked into the body, and whether a paragraph packs several mechanisms.
 - **Style compliance (AI)**: Judgement against `core-standards.md` (headings format, bullets, emoji rules, consistency).
 
 **Quality gate (qualitative)**:

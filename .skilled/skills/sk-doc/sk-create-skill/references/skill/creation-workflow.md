@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Skill Creation Process
@@ -327,6 +327,18 @@ version: 1.0.0.0
 scripts/package_skill.py <path/to/skill-folder> --check --strict
 ```
 `--check --strict` runs validation only (no zip). It is the authoritative gate. It hard-fails on a missing `version`, a non-4-part `X.Y.Z.W`, a `name` that does not match the folder, a missing required SKILL.md section or a non-exempt generated package path that is not kebab-case. Do not claim the skill is complete until strict validation passes.
+
+**Reference and asset content review (run with the completion gate)**:
+
+The gate reads resource frontmatter only, so read every shipped `references/*.md` and `assets/*.md` in rendered form and check:
+
+- The intro and the Purpose say different things.
+- A governing decision comes before the steps it governs.
+- An index lists every file of the directory it indexes.
+- No status token, such as a TODO or a draft marker, appears in the body.
+- A paragraph that packs several mechanisms becomes a list.
+
+`python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <file> --json` reports the deterministic half of this review as `render_*` warnings. Clear those warnings before you make the judgment calls above.
 
 **Command** (validate + package into a zip):
 ```bash

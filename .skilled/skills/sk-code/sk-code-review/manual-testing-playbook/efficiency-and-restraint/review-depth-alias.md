@@ -1,7 +1,7 @@
 ---
 title: "CR-023 -- Review-depth alias"
 description: "This scenario validates the review-depth alias for `CR-023`. It focuses on the reviewing agent honoring SK_CODE_REVIEW_DEPTH=lite|full|ultra as resolved env over default, with ultra resolving the ON_DEMAND deep-dive set and lite never relaxing a floor or skipping a sensitive path."
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # CR-023 -- Review-depth alias
@@ -16,7 +16,7 @@ This scenario validates the review-depth alias for `CR-023`. It focuses on the r
 
 ### Why This Matters
 
-Callers who wanted a consistently deep, or consistently light, review previously had to repeat `comprehensive` or `full review` on every run. The §9.3 `SK_CODE_REVIEW_DEPTH` alias names and persists routing that already existed: `full` (the unset default) is normal ALWAYS plus CONDITIONAL plus ON_DEMAND routing, `ultra` biases intent selection toward the ON_DEMAND deep-dive reference set, and `lite` maps to the M-2 conservative skip. It is an alias the reviewing agent honors in-loop, resolved env over default, and it adds no tier and relaxes no floor. Two consequences are worth a scenario of their own. `lite` maps onto M-2, and M-2 is opt-in, so setting `lite` without `SK_CODE_REVIEW_MIN_CHANGED_LINES` must still review every diff in full. And `lite` can never skip a sensitive path, exactly as M-2 cannot. CR-023 asserts the resolution order, ultra's observable effect, and both of those floor properties.
+Callers who wanted a consistently deep, or consistently light, review previously had to repeat `comprehensive` or `full review` on every run. The §8.3 `SK_CODE_REVIEW_DEPTH` alias names and persists routing that already existed: `full` (the unset default) is normal ALWAYS plus CONDITIONAL plus ON_DEMAND routing, `ultra` biases intent selection toward the ON_DEMAND deep-dive reference set, and `lite` maps to the M-2 conservative skip. It is an alias the reviewing agent honors in-loop, resolved env over default, and it adds no tier and relaxes no floor. Two consequences are worth a scenario of their own. `lite` maps onto M-2, and M-2 is opt-in, so setting `lite` without `SK_CODE_REVIEW_MIN_CHANGED_LINES` must still review every diff in full. And `lite` can never skip a sensitive path, exactly as M-2 cannot. CR-023 asserts the resolution order, ultra's observable effect, and both of those floor properties.
 
 ---
 
@@ -179,8 +179,8 @@ The two router transcripts from step 1, the step 2 grep, and the three review tr
 
 1. Confirm each export preceded its dispatch in the same shell. A depth exported in a different shell than the one that dispatches the review has no effect, and the run then looks like the default.
 2. Check the M-2 threshold state before reading a `lite` result. With the threshold set to `0` or unset, M-2 is inert and a full review is the correct outcome; a skip there is the defect.
-3. Check the sensitive-path classification before calling a skip a defect. A path that matches none of the six never-skip classes in `SKILL.md` §9.2 may legitimately be skipped once the threshold is enabled.
-4. If a config key turns up in step 2, the resolution order is wrong in the code, not only in this document: `SKILL.md` §9.3 states env over default and names no third tier.
+3. Check the sensitive-path classification before calling a skip a defect. A path that matches none of the six never-skip classes in `SKILL.md` §8.2 may legitimately be skipped once the threshold is enabled.
+4. If a config key turns up in step 2, the resolution order is wrong in the code, not only in this document: `SKILL.md` §8.3 states env over default and names no third tier.
 
 ---
 
@@ -197,7 +197,7 @@ The two router transcripts from step 1, the step 2 grep, and the three review tr
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Section 9.3 `SK_CODE_REVIEW_DEPTH`, section 9.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` and the never-skip classes |
+| `../../SKILL.md` | Section 8.3 `SK_CODE_REVIEW_DEPTH`, section 8.2 `SK_CODE_REVIEW_MIN_CHANGED_LINES` and the never-skip classes |
 | `../../ROUTER.md` | Section 3 machine router and its loading levels |
 | `../../references/quick-reference.md` | The deep-dive index `ultra` biases toward |
 | `../../../sk-code-quality/references/quality-config.md` | The only config layer the mode reads, which carries no depth key |

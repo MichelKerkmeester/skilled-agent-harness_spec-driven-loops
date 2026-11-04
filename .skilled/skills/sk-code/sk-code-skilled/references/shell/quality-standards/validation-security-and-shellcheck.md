@@ -8,12 +8,12 @@ trigger_phrases:
   - "shellcheck integration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Validation, Errors, Output, Security, Review & ShellCheck
 
-Validation, error handling, output, security, review, and ShellCheck guidance for Bash scripts.
+Reach for this file before a Bash script ships, when validation, error handling and ShellCheck findings need to agree.
 
 ---
 

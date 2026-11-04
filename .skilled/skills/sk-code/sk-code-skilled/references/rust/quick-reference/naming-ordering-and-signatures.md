@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Naming, Section Ordering & Signature Patterns
@@ -20,13 +20,13 @@ Copy-paste boundary templates, naming conventions, deterministic recipes, and Ca
 
 ### Purpose
 
-Provides focused Rust guidance for naming, section ordering & signature patterns in the OpenCode development environment.
+Supplies the naming table, source-section order and copy-ready boundary type and signature patterns that keep a Rust module consistent with the TypeScript contract.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Naming a crate, module, function or exported symbol
+- Ordering a Rust source file's sections
+- Drafting an owned DTO, a fallible conversion or a napi-rs or wasm-bindgen export signature
 
 ---
 

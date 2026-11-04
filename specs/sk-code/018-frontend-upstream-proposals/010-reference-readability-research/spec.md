@@ -22,7 +22,7 @@ contextType: "research"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-03 |
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | ../spec.md |
@@ -124,7 +124,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `research/research.md` exists with ranked findings and the 15 iteration files are on disk.
-- **SC-002**: Each proposed validator check would have flagged the phase 009 baseline file shown under Measured Behavior.
+- **SC-002**: Each proposed validator check flags at least one named known-bad file (the `cd00629166` control, another `cd00629166` reference, or a confirmed HEAD defect), and none flags a file this research confirmed clean. The operator accepted this wording on 2026-11-04, because the control holds only five of the ten defect classes.
 <!-- /ANCHOR:success-criteria -->
 
 ---

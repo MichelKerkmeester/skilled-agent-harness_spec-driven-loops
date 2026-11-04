@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -62,7 +62,7 @@ SKILL.md architecture follows progressive disclosure:
 **Required Elements**:
 - ✅ YAML frontmatter with required fields
 - ✅ H1 title with subtitle
-- ✅ Numbered H2 sections (ALL CAPS)
+- ✅ Numbered H2 sections (ALL CAPS, integers only, never a letter suffix such as `2b.`)
 - ✅ Section separators (`---`)
 - ✅ No table of contents (forbidden in SKILL.md)
 
@@ -131,12 +131,14 @@ Packaging enforcement note:
 
 ### Template
 
+```yaml
 ---
 name: example-skill
 description: Example skill demonstrating proper template structure with specific capabilities for semantic code search and context preservation workflows.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 1.0.0.0
 ---
+```
 
 <!-- Keywords: [KEYWORDS] -->
 
@@ -854,8 +856,8 @@ mode_detection:
 
 ### Knowledge Base Dependencies
 
-**Required**: [Files needed]
-**Optional**: [Enhancing files]
+- **Required**: [Files needed]
+- **Optional**: [Enhancing files]
 
 ### External Tools
 

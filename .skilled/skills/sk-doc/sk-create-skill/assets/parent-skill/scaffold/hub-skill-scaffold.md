@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # {{HUB_TITLE}}
@@ -81,16 +81,16 @@ This is the hub's only glossary. Its packets link here instead of defining routi
 
 ---
 
-## 6. RELATED RESOURCES
-
-- `README.md`: short operator entry point.
-- `graph-metadata.json`: hub discovery metadata.
-- [`description.json`](../../../references/shared/skill-root-metadata-contract.md): hub-doctor metadata.
-
----
-
-## 7. INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 - Inputs: requests routed to the `{{HUB_NAME}}` hub.
 - Routing: `hub-router.json` selects a `workflowMode` registered in `mode-registry.json`.
 - Outputs: the selected packet's workflow result.
+
+---
+
+## 7. RELATED RESOURCES
+
+- `README.md`: short operator entry point.
+- `graph-metadata.json`: hub discovery metadata.
+- [`description.json`](../../../references/shared/skill-root-metadata-contract.md): hub-doctor metadata.

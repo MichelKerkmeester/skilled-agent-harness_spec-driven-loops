@@ -8,7 +8,7 @@ trigger_phrases:
   - "import ordering rules"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Code Organization - File Structure and Module Principles
@@ -23,16 +23,16 @@ File structure and module organization principles for OpenCode system code.
 
 This reference defines how to organize files, structure modules, and order imports across all languages in the OpenCode codebase. Consistent organization enables faster navigation and reduces cognitive load.
 
-### Core Principle
-
-> **Predictable structure enables fast navigation.** Every file type has a known structure. Developers should find what they expect where they expect it.
-
 ### When to Use
 
 - Creating new files or modules
 - Reorganizing existing code
 - Deciding import order
 - Reviewing code structure
+
+### Core Principle
+
+> **Predictable structure enables fast navigation.** Every file type has a known structure. Developers should find what they expect where they expect it.
 
 ### Key Sources (Evidence)
 

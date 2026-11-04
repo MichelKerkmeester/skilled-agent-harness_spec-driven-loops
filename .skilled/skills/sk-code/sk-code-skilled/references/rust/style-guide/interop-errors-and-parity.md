@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rust/TypeScript Interop — Errors, Parity & Related Resources
@@ -20,13 +20,15 @@ Formatting standards, naming conventions, and TypeScript interoperability rules 
 
 ### Purpose
 
-Provides focused Rust guidance for rust/typescript interop — errors, parity & related resources in the OpenCode development environment.
+Shows how a Rust boundary reports errors, serializes results and exposes itself through napi-rs or wasm-bindgen without breaking TypeScript parity.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Defining a core error type or its JavaScript mapping
+- Removing a panic path from boundary validation
+- Building deterministic identifiers or stable serialization
+- Writing a napi-rs or wasm-bindgen export
+- Wiring a fallback or a differential parity test
 
 ---
 

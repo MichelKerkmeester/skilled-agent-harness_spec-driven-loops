@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.2.3.0
+version: 2.2.4.0
 ---
 
 # Workflow Reference - Verification
@@ -22,12 +22,6 @@ Shared `sk-code` doctrine for the final non-mutating evidence phase that gates e
 ### Purpose
 
 Verification owns evidence, not fixes. It runs fresh surface-appropriate commands, records the outcomes, compares them against the implementation baseline, names the blind spots and claims only what the evidence proves. When verification fails, it hands back to debugging, implementation or quality without editing.
-
-### Iron Law
-
-**Iron Law**: no completion claim without fresh surface-appropriate verification evidence.
-
-A clean static read is not runtime evidence. A green unit test is not live proof. A successful build is not exercised behavior. One exercised path is not full regression coverage. Name the rung you reached and its blind spot.
 
 ### When to Use
 
@@ -45,6 +39,12 @@ A clean static read is not runtime evidence. A green unit test is not live proof
 - Verification finds a defect that needs root-cause repair. Use [debugging](./workflow-debug.md).
 - The user wants findings-first review output or PR-style critique. Use the `sk-code-review` mode.
 - The active surface and verification command set are unknown. Ask for them before claiming anything.
+
+### Iron Law
+
+**Iron Law**: no completion claim without fresh surface-appropriate verification evidence.
+
+A clean static read is not runtime evidence. A green unit test is not live proof. A successful build is not exercised behavior. One exercised path is not full regression coverage. Name the rung you reached and its blind spot.
 
 ---
 

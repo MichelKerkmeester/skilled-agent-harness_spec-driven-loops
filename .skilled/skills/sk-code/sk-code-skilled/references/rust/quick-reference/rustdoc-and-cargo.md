@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rustdoc Template & Cargo/Build Quick Reference
@@ -20,13 +20,14 @@ Copy-paste boundary templates, naming conventions, deterministic recipes, and Ca
 
 ### Purpose
 
-Provides focused Rust guidance for rustdoc template & cargo/build quick reference in the OpenCode development environment.
+Provides the rustdoc block and the Cargo, formatting, build and supply-chain commands needed to take a Rust crate through its release gate.
 
 ### When to Use
 
-- Implementing or reviewing Rust code covered by this topic
-- Preserving TypeScript interoperability and deterministic behavior
-- Applying the corresponding Rust standards at an implementation boundary
+- Writing rustdoc for a new public operation
+- Setting up workspace, rustfmt or Clippy baselines
+- Running the build and verification gate for a core, native, WASM or WASI target
+- Checking feature isolation or supply-chain gates
 
 ---
 

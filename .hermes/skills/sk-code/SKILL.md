@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.10.0.0
+version: 3.10.1.0
 metadata:
   family: sk-code
 ---
@@ -56,13 +56,6 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 
 The hub also has two workflow modes: quality (`sk-code-quality`) and review (`sk-code-review`).
 Any other sk-code doc that counts surfaces points to this sentence.
-After adding or removing a surface, run `/doctor:sk-code setup`. It checks the hub and names the repair for each failing check.
-
-The **implement → debug → verify** phases are not standalone modes.
-Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md`.
-Those files are symlinked into each surface, so the active surface carries the full workflow.
-A request to implement, debug or verify code causes the router to detect its surface and load that surface's bundled doctrine.
-The acting agent applies that doctrine.
 
 ### When NOT to Use
 - Documentation-only changes with no code-work contract - use `sk-doc`.
@@ -140,6 +133,16 @@ The `evidence-base` backend serves the surface packets as read-only domain evide
 The packet mutates nothing and never carries process. The acting agent applies the doctrine it bundles.
 Shared backend material provides surface identity, the workflow doctrine and cross-mode helpers.
 It must never gain per-mode workflow contracts.
+
+The **implement → debug → verify** phases are not standalone modes.
+Their surface-agnostic doctrine lives once in `shared/references/workflow-implement.md`, `workflow-debug.md` and `workflow-verify.md`.
+Those files are symlinked into each surface, so the active surface carries the full workflow.
+A request to implement, debug or verify code causes the router to detect its surface and load that surface's bundled doctrine.
+The acting agent applies that doctrine.
+
+### Maintenance
+
+After adding or removing a surface, run `/doctor:sk-code setup`. It checks the hub and names the repair for each failing check.
 
 ---
 

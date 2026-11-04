@@ -8,7 +8,7 @@ trigger_phrases:
   - "standard asset structure"
 importance_tier: normal
 contextType: general
-version: 1.2.0.31
+version: 1.2.1.0
 ---
 
 # Skill Asset File Templates - Creation Guidelines
@@ -179,13 +179,13 @@ Every asset file carries this full 5-field frontmatter block: the Skill Advisor 
 ```markdown
 # Git Commit Templates
 
-Copy-paste templates for creating well-structured commit messages.
+Copy the template that matches the change, fill the fields, and commit.
 
 \## 1. OVERVIEW
 
 ### Purpose
 
-Provides consistent commit message formats for atomic commits...
+Uniform messages let a reader scan history by intent instead of by author.
 
 ### Usage
 
@@ -804,12 +804,12 @@ Integration:
 
 ### Example 1: Template File
 
-**File**: `frontmatter-templates.md`
-**Purpose**: Provide YAML frontmatter templates for different document types
-**Structure**:
-- Introduction explaining frontmatter purpose
-- One section per document type (SKILL.md, commands, knowledge files)
-- Each section includes: required fields, template, field guidelines, complete example
+- **File**: `frontmatter-templates.md`
+- **Purpose**: Provide YAML frontmatter templates for different document types
+- **Structure**:
+  - Introduction explaining frontmatter purpose
+  - One section per document type (SKILL.md, commands, knowledge files)
+  - Each section includes: required fields, template, field guidelines, complete example
 
 **Key Features**:
 - Clear separation by document type
@@ -819,13 +819,13 @@ Integration:
 
 ### Example 2: Structure File
 
-**File**: `structure-templates.md`
-**Purpose**: Show correct document structure for each file type
-**Structure**:
-- TOC listing all templates
-- One section per document type
-- Section order requirements
-- Quick validation checklist
+- **File**: `structure-templates.md`
+- **Purpose**: Show correct document structure for each file type
+- **Structure**:
+  - TOC listing all templates
+  - One section per document type
+  - Section order requirements
+  - Quick validation checklist
 
 **Key Features**:
 - Visual structure examples
@@ -835,14 +835,14 @@ Integration:
 
 ### Example 3: Reference File
 
-**File**: `llmstxt-templates.md`
-**Purpose**: Templates for creating llms.txt files (AI-friendly site maps)
-**Structure**:
-- Format explanation
-- Template sections for different scenarios
-- Field descriptions
-- Complete examples
-- Best practices
+- **File**: `llmstxt-templates.md`
+- **Purpose**: Templates for creating llms.txt files (AI-friendly site maps)
+- **Structure**:
+  - Format explanation
+  - Template sections for different scenarios
+  - Field descriptions
+  - Complete examples
+  - Best practices
 
 **Key Features**:
 - Multiple template variations

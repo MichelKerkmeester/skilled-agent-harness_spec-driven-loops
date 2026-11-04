@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-reference-readability-research"
+    packet_pointer: "sk-code/018-frontend-upstream-proposals/010-reference-readability-research"
     last_updated_at: "2026-11-03T21:43:32Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -16,9 +16,9 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "[YOUR_VALUE_HERE: SESSION-ID]"
+      session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -35,11 +35,10 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill the packet id, the level, the status and the date. GOOD: `004-rotate-logs-keep`. Level 1. Draft. 2026-10-24. WEAK: Packet TBD. -->
 
-**Packet:** [YOUR_VALUE_HERE: PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [YOUR_VALUE_HERE: Draft/In Progress/Complete]
+**Packet:** `010-reference-readability-research`
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-11-03
 <!-- /ANCHOR:metadata -->
 
@@ -47,13 +46,17 @@ _memory:
 
 <!-- ANCHOR:criteria -->
 ## 2. CRITERIA
-<!-- FILL: Write one row per requirement. The Then clause names a command. GOOD: AC-001: When `--keep 3` runs, Then `ls logs/archive | wc -l` prints 3. WEAK: The feature works. -->
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [YOUR_VALUE_HERE: context], When [YOUR_VALUE_HERE: action], Then [YOUR_VALUE_HERE: observable outcome] | [YOUR_VALUE_HERE: command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given the fan-out run, When its lineages finish, Then DeepSeek wrote 8 and Luna 7 iteration files with no early stop | `research/lineages/deepseek/iterations/` (8), `research/lineages/luna/iterations/` (7) | Met | - |
+| AC-002 | REQ-002 | Given both lineages, When a fresh Opus pass reads each cited file at HEAD, Then only confirmed findings enter `research/research.md` | `research/research.md` Sections 2, 3 and 7 | Met | - |
+| AC-003 | REQ-003 | Given the fix plan, When the operator approves it, Then the first skill edit comes after the approval | Approval 2026-11-04 precedes the first edit in this phase | Met | - |
+| AC-004 | REQ-004 | Given the five modes and `shared/`, When the synthesis is read, Then each has findings or is reported clean | `research/research.md` Section 3 | Met | - |
+| AC-005 | REQ-005 | Given each defect class, When the prevention table is read, Then it names the template, guidance or validator change and whether it is mechanical | `research/research.md` Section 5 | Met | - |
+| AC-006 | REQ-005 | Given the built fixes, When the render gate and the baseline battery rerun, Then sk-code and sk-create-skill show 0 render warnings and every baseline gate holds | `scratch/final-gates.txt`, `scratch/baseline.txt` | Met | - |
 
 ### Status values
 
@@ -77,9 +80,8 @@ waiver is treated as an unmet criterion rather than as a pass.
 
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
-<!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** [YOUR_VALUE_HERE: Yes/No]
+**Closeable:** Yes
 
-[One sentence: what decides closure now. Name a criterion by id only when it blocks closure.]
+Every criterion is met with its evidence named in the row.
 <!-- /ANCHOR:closure -->

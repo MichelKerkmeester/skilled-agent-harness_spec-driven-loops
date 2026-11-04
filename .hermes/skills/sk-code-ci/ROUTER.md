@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-ci routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,7 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this surface when a CI-workflow signal fires: the request names a GitHub Actions workflow, a path filter, a job timeout, a concurrency group, a permissions block or a required status check, the task touches `.github/workflows/`, `.github/actions/` or `.github/scripts/`, or the request asks whether a workflow trigger is intentional or drift, or for the shape of a new workflow or job before it is written. It routes to two resource families: the rule data under `references/`, which starts at `references/ci-workflow-standards.md` and extends to `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`, and the scaffold templates under `assets/`, which hold the whole-workflow template, the single-job template and the CI profile template. The default resource is `references/ci-workflow-standards.md`, the rule index the other three references extend, and no other reference loads before the single intent selects it.
+Requests reach this surface when a CI-workflow signal fires: the request names a workflow concern such as a trigger, a path filter, a job shape, a permission or a protected workflow, or the task touches a workflow, action or CI script path. It routes to two resource families: the rule references under `references/` and the scaffold templates under `assets/`, which hold the workflow, job and profile starting points. §2 INTENT MODEL holds the exact keywords, the four reference paths and the default resource.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

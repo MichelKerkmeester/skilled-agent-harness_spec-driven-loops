@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.13.0
+version: 2.2.14.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -18,6 +18,16 @@ version: 2.2.13.0
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+This reference gives one detection contract that every sk-code reader applies before it classifies intent, so each route loads the resources of the surface the work actually touches.
+
+### When to Use
+
+- Before intent classification, when the request's surface is not yet settled
+- When a specific surface and SKILLED both match and their order decides which resources load
+- When a hub surface's `surfaceDetection` block or an external skill's `surface_detection` block is declared or checked
 
 ### Core Principle
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.4.1
+version: 1.2.5.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -74,6 +74,15 @@ Surface packets have these required properties:
 - `toolSurface.allowed` is a subset of `Read`, `Bash`, `Grep`, and `Glob`.
 - `toolSurface.forbidden` includes `Write`, `Edit`, and `Task`.
 - `advisorRouting.routingClass: "metadata"` so the surface stays advisor-invisible.
+
+A surface packet opens in a fixed order:
+
+1. `## 1. WHEN THE HUB BUNDLES THIS`
+2. `## 2. REFERENCE MAP`
+3. `## 3. SMART ROUTING`
+4. `## 4. SURFACE STANDARDS`
+
+Packet-specific sections follow those four.
 
 ---
 

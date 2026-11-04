@@ -165,6 +165,25 @@ _VALID_RESOURCE_FM = (
     "# Demo Reference\n\nBody.\n"
 )
 
+_RENDER_JOINED_LABEL_DOC = (
+    "---\n"
+    "title: Render Fixture Reference\n"
+    "description: A fixture reference that joins two bold labels into one rendered paragraph.\n"
+    "trigger_phrases:\n"
+    "  - \"render fixture\"\n"
+    "importance_tier: normal\n"
+    "contextType: general\n"
+    "version: 1.0.0.0\n"
+    "---\n\n"
+    "# Render Fixture Reference\n\n"
+    "A hook paragraph for the render fixture.\n\n"
+    "## 1. OVERVIEW\n\n"
+    "The fixture shows the joined bold label shape.\n\n"
+    "## 2. FIELD LIST\n\n"
+    "**File**: references/render-fixture.md\n"
+    "**Purpose**: Exercise the joined bold label check.\n"
+)
+
 
 def _write_valid_skill(
     skill_path,
@@ -219,6 +238,18 @@ def _write_valid_skill(
     return skill_path
 
 
+def _write_render_fixture_skill(tmp_path):
+    """A strict-clean skill whose reference joins two bold labels."""
+    skill_path = _write_valid_skill(
+        tmp_path / "render-label-skill",
+        with_recommended_sections=True,
+    )
+    refs = skill_path / "references"
+    refs.mkdir()
+    (refs / "render-fixture.md").write_text(_RENDER_JOINED_LABEL_DOC, encoding="utf-8")
+    return skill_path
+
+
 def test_strict_mode_promotes_contract_warning_only(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(
@@ -260,6 +291,69 @@ def test_strict_mode_keeps_recommended_sections_advisory(tmp_path):
     valid, message, warnings = module.validate_skill(skill_path, strict=True)
     assert valid is True, message
     assert any("Missing recommended section" in warning for warning in warnings)
+
+
+def test_render_joined_bold_label_is_advisory_until_strict(tmp_path):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=False)
+    assert valid is True, message
+    assert any("render check" in warning for warning in warnings)
+
+    strict_valid, strict_message, _strict_warnings = module.validate_skill(skill_path, strict=True)
+    assert strict_valid is False
+    assert "render check" in strict_message
+
+
+def test_render_finding_passes_strict_once_ledgered(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    ledger = tmp_path / "render-known-debt.json"
+    ledger.write_text(
+        json.dumps({
+            "debt": {
+                "render-label-skill": {
+                    "findings": 1,
+                    "codes": ["render_bold_label_join"],
+                },
+            },
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is True, message
+    assert not any("render check" in warning for warning in warnings)
+
+
+def test_render_debt_cannot_cover_a_growing_count(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    refs = skill_path / "references"
+    (refs / "second-render-fixture.md").write_text(
+        _RENDER_JOINED_LABEL_DOC, encoding="utf-8"
+    )
+    ledger = tmp_path / "render-known-debt.json"
+    ledger.write_text(
+        json.dumps({
+            "debt": {
+                "render-label-skill": {
+                    "findings": 1,
+                    "codes": ["render_bold_label_join"],
+                },
+            },
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False
+    assert "above its known debt" in message
 
 
 def test_resource_frontmatter_flags_missing_five_fields(tmp_path):

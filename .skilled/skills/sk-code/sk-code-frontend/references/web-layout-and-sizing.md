@@ -7,7 +7,7 @@ trigger_phrases:
   - "container query layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Layout and Sizing
@@ -123,7 +123,7 @@ This file covers stacking contexts, containing blocks, intrinsic sizing, grid tr
 - **Why:** The contain value keeps overscroll from propagating to an ancestor. Scroll snap adjusts the final scroll position toward configured snap areas.
 - **When not to:** Keep normal chaining when users should continue scrolling the page after reaching the end of a pane.
 - **Pitfall:** The `chain` value is unavailable in some browsers. Feature-detect it and keep the default or `contain` path.
-- **Support:** Baseline limited availability (web-features `overscroll-behavior`). Chrome 144 / Firefox 150 / Safari unsupported. Baseline limited availability (web-features `overscroll-behavior`). Chrome 144 / Firefox 150 / Safari unsupported. Baseline widely available since 2022-07-15 (web-features `scroll-snap`). Chrome 69 / Firefox 68 / Safari 11.
+- **Support:** Baseline limited availability (web-features `overscroll-behavior`). Chrome 144 / Firefox 150 / Safari unsupported. Baseline widely available since 2022-07-15 (web-features `scroll-snap`). Chrome 69 / Firefox 68 / Safari 11.
 - **See also:** [MDN: CSS overscroll-behavior](https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior)
 
 ### L10. Small, large and dynamic viewport heights
