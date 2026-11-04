@@ -8,7 +8,7 @@ trigger_phrases:
   - "tsconfig baseline standards"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # TypeScript Quality Standards
@@ -333,6 +333,3 @@ function normalizeScore(raw: number, max: number) {
 **Why explicit on public API**: Return types serve as documentation, prevent accidental signature changes, and improve compile-time error messages for consumers.
 
 **Why inferred on private helpers**: Reduces boilerplate for internal code where the return type is obvious from the implementation.
-
----
-

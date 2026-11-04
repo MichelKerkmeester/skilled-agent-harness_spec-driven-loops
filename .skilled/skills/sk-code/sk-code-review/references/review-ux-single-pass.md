@@ -8,7 +8,7 @@ trigger_phrases:
   - "pre commit review guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Review UX - Single Pass
@@ -19,7 +19,14 @@ Interactive behavior for a one-pass review where findings are reported first and
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Interactive single-pass review behavior for human-facing review sessions.
+
+### When to Use
+
+- A single-pass review that will end with the human choosing the next step.
+- A pre-commit or PR review that needs the report flow and the next-step prompt.
 
 ---
 

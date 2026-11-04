@@ -1,0 +1,17 @@
+VERDICT: FIX
+
+- [P1] `.skilled/skills/sk-code/shared/README.md:48` | 8 | The STRUCTURE tree still omits `scripts/lib/repository-identity.cjs` and `scripts/tests/repository-identity.test.cjs`, so the folder index does not list every file. `fix-1.log` claims this landed, but `guard-1.txt` records the tree block edited and restored, so the final state is unchanged. | Replace line 48 with these two lines and insert the test line after line 50:
+  ```text
+      |   +-- repository-identity.cjs      # the repository a config is scoped to
+      |   `-- rule-registry.cjs            # every rule id an override row may name, read from the declaring documents
+          +-- repository-identity.test.cjs   # node --test suite for the identity helper
+  ```
+  Record the whole edited tree block verbatim in `scratch/approved-blocks.md` beside `scope.txt`, or the guard restores it again.
+
+- [P1] `.skilled/skills/sk-code/shared/references/phase-detection.md:39` | contract | The applied P1 finding rewrites a claim: HEAD says detection "returns SKILLED or UNKNOWN", the new text says it returns "a declared specific surface label, SKILLED or UNKNOWN". This readability pass freezes every claim and authorizes no factual rewrite. Route the correction as a separate content change. | Replace `It returns a declared specific surface label, SKILLED or UNKNOWN, and never` with `It returns SKILLED or UNKNOWN and never`.
+
+- [P1] `.skilled/skills/sk-code/shared/references/workflow-debug.md:62` | contract | The applied P1 finding changes a citation target and two claims: it moves the one-cause-at-a-time floor from `.skilled/repo-rules/root-cause-and-debugging.md` section 1 to this file's own One-Cause Fix Rule, and changes "a change to a floor goes there first" to "a change to either goes to its rule file first". Both are frozen in this pass. | Replace the line with: "The reproduce, trace-to-source and one-cause-at-a-time floors in this loop belong to `.skilled/repo-rules/root-cause-and-debugging.md` section 1 (THE LOOP). The rule that the reproduction uses the same check that will prove the fix belongs to `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL). This loop is how sk-code applies both, so a change to a floor goes there first."
+
+Everything else passes. The other 13 findings are applied or are reflows: README's three-surface sentence, override paragraph and doctor-command paragraph; ROUTER's route-time paragraph; phase-detection's iron law 3; stack-detection's failure-condition bullet; code-quality-standards' Mechanical Floor; rule-overrides' Scope paragraph; and workflow-verify's step 2 and byte-identical block move all keep every claim. The phase-detection intro keeps its factual first sentence verbatim, and the pointer it replaced is a contents list whose claims live in §3 and §4, so the replacement is a hook, not a pointer. No code block, block count, frontmatter value or citation changed; all 11 files report zero render warnings; every inbound heading and every H2 number and order still holds.
+
+At commit, recheck the shifted line references: `README.md:132` → 142, `README.md:143` → 153, `ROUTER.md:445` → 449, `ROUTER.md:452` → 456, `shared/README.md:61` → 63 after the tree edit, and the `workflow-debug.md#debug-loop` citation in `workflow-verify.md:114` → 100. The fix log's "16 findings applied, skips: none" does not describe the final state; 13 are applied, and the three above remain.

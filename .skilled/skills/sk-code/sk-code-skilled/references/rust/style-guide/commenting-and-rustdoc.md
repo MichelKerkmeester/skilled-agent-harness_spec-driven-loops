@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Commenting & Rustdoc Rules
@@ -91,6 +91,15 @@ Every allowed unsafe block requires an adjacent `// SAFETY:` comment describing 
 - Cleanup responsibility
 - Thread affinity
 
+This pattern belongs only in a reviewed boundary crate. The pure core uses `#![forbid(unsafe_code)]`.
+
+An unsafe block also requires:
+
+- A test exercising the valid path
+- A test challenging enforceable preconditions
+- Boundary documentation stating ownership and lifetime
+- Review of cleanup and thread-affinity behavior
+
 ```rust
 fn copy_bytes(pointer: *const u8, length: usize) -> Vec<u8> {
     assert!(!pointer.is_null() || length == 0);
@@ -104,15 +113,6 @@ fn copy_bytes(pointer: *const u8, length: usize) -> Vec<u8> {
 }
 ```
 
-This pattern belongs only in a reviewed boundary crate. The pure core uses `#![forbid(unsafe_code)]`.
-
-An unsafe block also requires:
-
-- A test exercising the valid path
-- A test challenging enforceable preconditions
-- Boundary documentation stating ownership and lifetime
-- Review of cleanup and thread-affinity behavior
-
 ### Rustdoc Scope
 
 Document all public boundary types and operations. Document private items when their invariants are not obvious from types and names.
@@ -124,6 +124,17 @@ Use:
 - Markdown headings for contract sections
 - Compilable examples
 - Intra-doc links where practical
+
+### Required Rustdoc Sections
+
+Use exact standard headings where applicable:
+
+- `# Errors` for fallible public operations
+- `# Panics` when a public operation can panic
+- `# Safety` for every `unsafe fn`
+- `# Examples` for public operations and non-obvious public types
+
+Do not add `# Panics` merely to say a function never panics. Prefer an API whose signature and implementation avoid panic paths.
 
 ### Public Operation Template
 
@@ -219,17 +230,6 @@ impl TryFrom<&str> for SymbolId {
 ```
 
 Examples for fallible operations use `?`, not `unwrap` or `expect`.
-
-### Required Rustdoc Sections
-
-Use exact standard headings where applicable:
-
-- `# Errors` for fallible public operations
-- `# Panics` when a public operation can panic
-- `# Safety` for every `unsafe fn`
-- `# Examples` for public operations and non-obvious public types
-
-Do not add `# Panics` merely to say a function never panics. Prefer an API whose signature and implementation avoid panic paths.
 
 ### Boundary Documentation
 

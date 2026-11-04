@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.17.0
+version: 2.1.18.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -39,7 +39,17 @@ napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-pro
 
 ---
 
-## 2. REFERENCE MAP
+## 2. SMART ROUTING
+
+The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
+
+The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
+
+Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-skilled/ROUTER.md) before selecting skill-local resources; open only the matched files.
+
+---
+
+## 3. REFERENCE MAP
 
 Language standards — after `.skilled/` selects this surface, load the exact split resources for the detected language:
 - TypeScript:
@@ -94,6 +104,9 @@ Authoring and validation assets:
   - `assets/checklists/agent-authoring.md`
   - `assets/checklists/command-authoring.md`
   - `assets/checklists/javascript-checklist.md`
+  - `assets/checklists/js-css-style/overview-header-and-comments.md`
+  - `assets/checklists/js-css-style/naming-init-formatting-and-css.md`
+  - `assets/checklists/js-css-style/verification-quick-reference-and-related.md`
   - `assets/checklists/mcp-server-authoring.md`
   - `assets/checklists/python-checklist.md`
   - `assets/checklists/rust-checklist/overview-and-p0-parity.md`
@@ -111,16 +124,6 @@ Authoring and validation assets:
   - `references/shared/hooks.md`
 
 Workflow: the implement -> debug -> verify phases use the split shared, language, hook, and alignment resources above; no root-level `workflow-*.md` trio is assumed.
-
----
-
-## 3. SMART ROUTING
-
-The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
-
-The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
-
-Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-skilled/ROUTER.md) before selecting skill-local resources; open only the matched files.
 
 ---
 

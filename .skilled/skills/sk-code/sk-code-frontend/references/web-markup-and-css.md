@@ -7,7 +7,7 @@ trigger_phrases:
   - "web forms and layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Markup and CSS Practice
@@ -70,7 +70,10 @@ Form behavior such as label focus, the form wrapper, input `type`, `required`, d
 - Link help and error text with `aria-describedby`. Set `aria-invalid="true"` while a control has an error.
 - Use native constraints (`required`, `min`, `max`, `step`, `pattern` and `maxlength`) so the browser validates before the app.
 
-**The `autocomplete` disagreement.** `interaction-craft.md` Section 2 advises disabling `autocomplete` on most inputs. That holds for free-text fields where browser history adds noise, such as comments, in-app search filters and admin entry of someone else's data. It does not hold for fields about the user. Identity, contact, address, payment and credential fields need the right token so autofill and password managers work and the input purpose is machine-readable:
+**The `autocomplete` disagreement.** `interaction-craft.md` Section 2 advises disabling `autocomplete` on most inputs.
+
+- That holds for free-text fields where browser history adds noise, such as comments, in-app search filters and admin entry of someone else's data.
+- It does not hold for fields about the user. Identity, contact, address, payment and credential fields need the right token so autofill and password managers work and the input purpose is machine-readable:
 
 | Field | Token |
 |-------|-------|

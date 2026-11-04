@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Job Shape Rules
@@ -20,7 +20,15 @@ How long a job may run, what it may touch and when it may be skipped are set bef
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Five parts of a job sit here: its timeout, its permissions, its concurrency group, the composite setup action that provisions it and the switch condition that can turn it off. Each part states the rule, the file and line that show it and what enforces it.
+
+### When to Use
+
+- Before writing a new job or changing an existing one
+- When a job's timeout, permissions, concurrency, setup step or switch needs review
+- When a reviewer needs the file and line behind one of those five parts
 
 The shape of each part is universal. The values a repository fills in, its timeout floor, its setup action and its switch variables, come from the repository CI profile described in `references/protected-set.md`. A line marked Skilled example shows this repository's value and holds nowhere else.
 
@@ -112,6 +120,9 @@ Today five jobs in three workflows call the action: `opencode-dual-version.yml` 
 
 A job can be switched off from repository variables with one condition between `name:` and `runs-on:`. With no variable set, everything runs. A switch is any repository variable the condition compares against `off`, so `/doctor:ci report` reads any repository's names. The profile's `switch.master` and `switch.groups` name them, and the example below uses neutral names.
 
+- A job whose status context the branch ruleset requires is never switched off, and the other protected workflows follow `references/protected-set.md`.
+- A workflow in the profile's `switch.exempt` gets no switch. When `switch.required` is true, every other job carries one.
+
 ```yaml
 jobs:
   example:
@@ -125,8 +136,6 @@ Skilled example: `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != '
 - The condition is **job-level**, because `on:` filters see no contexts.
 - Where a job already has a condition, the switch is ANDed onto it and never replaces it.
 - `off` is the only disable token. `0`, `false` or a typo leaves the job on. That is fail-safe and must be documented wherever the variables are described.
-- A job whose status context the branch ruleset requires is never switched off, and the other protected workflows follow `references/protected-set.md`.
-- A workflow in the profile's `switch.exempt` gets no switch. When `switch.required` is true, every other job carries one.
 - Skilled example: `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
 - Skilled example: `message-contract.yml` holds the required context, and `dependabot-auto-merge.yml` is the exempt workflow.
 

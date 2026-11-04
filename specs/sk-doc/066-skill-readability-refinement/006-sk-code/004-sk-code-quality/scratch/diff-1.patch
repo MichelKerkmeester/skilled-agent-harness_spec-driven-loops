@@ -1,0 +1,195 @@
+diff --git a/.skilled/skills/sk-code/sk-code-quality/README.md b/.skilled/skills/sk-code/sk-code-quality/README.md
+index 292f9edcb1..44545ac846 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/README.md
++++ b/.skilled/skills/sk-code/sk-code-quality/README.md
+@@ -63,9 +63,16 @@ The mode's headline strength is routing by target path: every surface family lan
+ node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --format text
+ ```
+ 
+-The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4. No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field. A committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
++The runner reads the change, by default the working tree against `HEAD`. It runs the conflict-marker, secret and debug-leftover sensors, one comment-hygiene call over the changed files and a parse floor, and probes which hooks and workflows enforce hygiene. It prints one verdict with a gate and an exit code from 0 to 4.
+ 
+-**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. It gives each rule an id and marks it FIXED or overridable. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface. On SKILLED it also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/). For `.skilled/` targets it names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/). The house style of this framework (file layout, `MODULE:` headers, the `ceiling:` marker, test layout) lives in those SKILLED files, so another repository does not inherit it.
++- No gate means pass: exit 0 says only that no blocker was found and that every required check produced evidence. [`references/runner-contract.md`](./references/runner-contract.md) documents every field.
++- A committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` runs its commands only in a trusted repository. Without a grant each configured check reads `SKIPPED_UNTRUSTED` with the repair `git config --local skilled.trustRepoChecks true`, and [section 8 of the quality config reference](./references/quality-config.md) names the grants.
++
++**Step 3: Load the checklists the verdict names.** The universal floor [`code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) loads for every target. It gives each rule an id and marks it FIXED or overridable. [`universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) is the SKILLED house checklist, and it loads only when SKILLED is a resolved surface.
++
++- On SKILLED, the verdict also names the JavaScript and CSS house checks for a `.js` or `.css` target, in [`js-css-style/`](../sk-code-skilled/assets/checklists/js-css-style/).
++- For `.skilled/` targets, the verdict names the matching checklist under [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/).
++- The house style of this framework (file layout, `MODULE:` headers, the `ceiling:` marker, test layout) lives in those SKILLED files, so another repository does not inherit it.
+ 
+ **Step 4: Fix or hand back.** Fix in-place quality failures with `Edit`. Root-cause failures that need investigation to the surface debugging workflow (`workflow-debug.md`). Send final evidence to the surface verification workflow (`workflow-verify.md`).
+ 
+@@ -144,6 +151,7 @@ Use it when a change is already written and needs standards enforcement before f
+ | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
+ | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and routing pseudocode |
+ | [`references/runner-contract.md`](./references/runner-contract.md) | The runner's CLI, exit codes, states, verdict, envelope grammar and rule ids |
++| [`references/code-style-guide.md`](./references/code-style-guide.md) | This mode's code style and comment-hygiene guide |
+ | [`scripts/quality-gate.cjs`](./scripts/quality-gate.cjs) | The quality runner, one verdict per change in any repository |
+ | [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
+ | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
+diff --git a/.skilled/skills/sk-code/sk-code-quality/ROUTER.md b/.skilled/skills/sk-code/sk-code-quality/ROUTER.md
+index 4c960485ae..864871dba3 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/ROUTER.md
++++ b/.skilled/skills/sk-code/sk-code-quality/ROUTER.md
+@@ -20,7 +20,11 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this mode when they ask for the post-implementation quality gate, the P0/P1/P2 author checks, comment hygiene, a SKILLED or surface authoring checklist for `.skilled/`, `specs/` or MCP server source, or a check before done. It routes by target path more than by keyword, because the checklists a change needs follow the files it touches, and `node scripts/quality-gate.cjs --explain <path>` outranks any keyword match. It selects from three resource families: this mode's own doctrine under `references/`, starting at `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md` and `references/code-style-guide.md`; the surface and language checklists under `../sk-code-skilled/assets/checklists/`; and the runner with `assets/quality-defaults.json` and the scripts this mode owns.
++Requests reach this mode when they ask for the post-implementation quality gate, the P0/P1/P2 author checks, comment hygiene, a SKILLED or surface authoring checklist for `.skilled/`, `specs/` or MCP server source, or a check before done. It routes by target path more than by keyword, because the checklists a change needs follow the files it touches, and `node scripts/quality-gate.cjs --explain <path>` outranks any keyword match. It selects from three resource families:
++
++- this mode's own doctrine under `references/`, starting at `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md` and `references/code-style-guide.md`
++- the surface and language checklists under `../sk-code-skilled/assets/checklists/`
++- the runner with `assets/quality-defaults.json` and the scripts this mode owns.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/sk-code/sk-code-quality/SKILL.md b/.skilled/skills/sk-code/sk-code-quality/SKILL.md
+index 0d75d4f265..659cbbd805 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/SKILL.md
++++ b/.skilled/skills/sk-code/sk-code-quality/SKILL.md
+@@ -113,12 +113,12 @@ This repository's own map, the SKILLED rows among them, is rendered in `../sk-co
+ `/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
+ 
+ **A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub.
+-A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block.
+-Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead.
+-Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`.
+-A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface.
+-The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own.
+-`references/quality-config.md` section 3 holds the row rules.
++- A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block.
++- Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead.
++- Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`.
++- A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface.
++- The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own.
++- `references/quality-config.md` section 3 holds the row rules.
+ 
+ ### Comment-Hygiene Enforcement Gates
+ 
+@@ -291,21 +291,21 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
+ - [`references/runner-contract.md`](references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
+ - [`references/quality-config.md`](references/quality-config.md) - The repository config `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
+ - [`assets/quality-defaults.json`](assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
+-- [`assets/checklists/universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
+-- [`assets/checklists/skill-authoring.md`](../sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
+-- [`assets/checklists/agent-authoring.md`](../sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
+-- [`assets/checklists/command-authoring.md`](../sk-code-skilled/assets/checklists/command-authoring.md) - Command authoring checklist.
++- [`../sk-code-skilled/assets/checklists/universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
++- [`../sk-code-skilled/assets/checklists/skill-authoring.md`](../sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
++- [`../sk-code-skilled/assets/checklists/agent-authoring.md`](../sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
++- [`../sk-code-skilled/assets/checklists/command-authoring.md`](../sk-code-skilled/assets/checklists/command-authoring.md) - Command authoring checklist.
+ - [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
+-- [`assets/checklists/mcp-server-authoring.md`](../sk-code-skilled/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
+-- [`assets/checklists/javascript-checklist.md`](../sk-code-skilled/assets/checklists/javascript-checklist.md) - JavaScript checklist.
+-- [`assets/checklists/typescript-checklist.md`](../sk-code-skilled/assets/checklists/typescript-checklist.md) - TypeScript checklist.
+-- [`assets/checklists/python-checklist.md`](../sk-code-skilled/assets/checklists/python-checklist.md) - Python checklist.
+-- [`assets/checklists/shell-checklist.md`](../sk-code-skilled/assets/checklists/shell-checklist.md) - Shell checklist.
+-- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
+-- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
+-- [`assets/checklists/rust-checklist/p1-required.md`](../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
+-- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
+-- [`assets/checklists/config-checklist.md`](../sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
++- [`../sk-code-skilled/assets/checklists/mcp-server-authoring.md`](../sk-code-skilled/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
++- [`../sk-code-skilled/assets/checklists/javascript-checklist.md`](../sk-code-skilled/assets/checklists/javascript-checklist.md) - JavaScript checklist.
++- [`../sk-code-skilled/assets/checklists/typescript-checklist.md`](../sk-code-skilled/assets/checklists/typescript-checklist.md) - TypeScript checklist.
++- [`../sk-code-skilled/assets/checklists/python-checklist.md`](../sk-code-skilled/assets/checklists/python-checklist.md) - Python checklist.
++- [`../sk-code-skilled/assets/checklists/shell-checklist.md`](../sk-code-skilled/assets/checklists/shell-checklist.md) - Shell checklist.
++- [`../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`](../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
++- [`../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
++- [`../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`](../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
++- [`../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
++- [`../sk-code-skilled/assets/checklists/config-checklist.md`](../sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+ 
+ ### Scripts
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md b/.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md
+index 4b20d2cf6e..8b97f5bce9 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md
++++ b/.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md
+@@ -21,7 +21,7 @@ Language-agnostic style principles that hold in any repository. Identifier schem
+ 
+ ### Purpose
+ 
+-Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline and formatter use. The concrete conventions are surface-specific and live in each surface packet. For this repository's own code that is SKILLED, under `.skilled/skills/sk-code/sk-code-skilled/references/shared/`. Use this doc when the project lacks a surface-specific style guide or when a contributor is new to the codebase.
++Codifies the style principles that apply regardless of code surface: naming intent, file organization, commenting discipline and formatter use. The concrete conventions are surface-specific and live in each surface packet, and this repository's own code, which is SKILLED, takes them from `.skilled/skills/sk-code/sk-code-skilled/references/shared/`.
+ 
+ ### When to Use
+ 
+@@ -29,6 +29,7 @@ Codifies the style principles that apply regardless of code surface: naming inte
+ - When deciding how to lay out a file's top-of-file structure.
+ - When deciding whether to add a comment.
+ - When a reviewer flags a style nit and you need the surface-agnostic contract.
++- When the project has no surface-specific style guide, or a contributor is new to the codebase.
+ 
+ ### Core Principle
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-quality/references/quality-config.md b/.skilled/skills/sk-code/sk-code-quality/references/quality-config.md
+index 4e70dbb146..57774dde66 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/references/quality-config.md
++++ b/.skilled/skills/sk-code/sk-code-quality/references/quality-config.md
+@@ -41,7 +41,10 @@ The file's additions tighten the author gate only. The CI job and the pre-commit
+ The runner picks exactly one source, the most explicit first.
+ 
+ 1. `--config <path>`, read relative to the working directory.
+-2. The git config value `skcode.qualityConfig`, read relative to the repository root. Only a value stored in a config file counts. A value set with `git -c` or a `GIT_CONFIG_*` variable reports scope `command` and is ignored, because one invocation must not swap the commands a repository committed. When several files set it, the last value git reads wins. Discovery follows an include, and trust reads only this repository's own `.git/config` with no include, so a value an include supplies can name the config a run reads and still never make that config trusted.
++2. The git config value `skcode.qualityConfig`, read relative to the repository root.
++    - Only a value stored in a config file counts. A value set with `git -c` or a `GIT_CONFIG_*` variable reports scope `command` and is ignored, because one invocation must not swap the commands a repository committed.
++    - When several files set it, the last value git reads wins.
++    - Discovery follows an include, and trust reads only this repository's own `.git/config` with no include, so a value an include supplies can name the config a run reads and still never make that config trusted.
+ 3. `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` inside the skill folder, or the same path under `.opencode/` when the skills are installed there.
+ 4. None. The runner uses the shipped base layer alone and fills `suggested_checks`.
+ 
+@@ -146,7 +149,14 @@ The shipped base layer, `assets/quality-defaults.json`, always loads first, and
+ ## 5. HOW A CONFIGURED CHECK RUNS
+ 
+ - **Matching.** A check reads the in-scope files the runner reads, binary files, large files and files with no comment family included, and never an excluded file, a folder or a dead link. A `generated` row also reads excluded files. A check that matches no file is `NOT_APPLICABLE` and never starts.
+-- **Order of states.** No match is `NOT_APPLICABLE`. Then `--only` and `--skip` give `SKIPPED_BY_FLAG`, an absent `requires` tool gives `SKIPPED_ABSENT` with a repair line, `--no-run` gives `LISTED` with each planned run, an untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line and a run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`. [Trust boundary](#8-trust-boundary) says what makes a config trusted.
++- **Order of states.** No match is `NOT_APPLICABLE`.
++    1. `--only` and `--skip` give `SKIPPED_BY_FLAG`.
++    2. An absent `requires` tool gives `SKIPPED_ABSENT` with a repair line.
++    3. `--no-run` gives `LISTED` with each planned run.
++    4. An untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line.
++    5. A run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`.
++
++    [Trust boundary](#8-trust-boundary) says what makes a config trusted.
+ - **Runs.** `{files}` expands to the matching files relative to the run's `cwd`, and a name that starts with a dash is passed as `./name`. A check runs once per `cwd` group, with or without `{files}`. `runs[]` lists each run with its `cwd`, `argv`, `files`, `state`, `exit` and `duration_ms`. A run that times out or cannot start ends the check.
+ - **Process.** Each run is an argv array with no shell, no input and no `NODE_OPTIONS`, `NODE_COMPILE_CACHE`, `BASH_ENV` or `ENV`. It starts as the leader of its own process group, and the whole group is killed at the deadline and again when the leader exits, so a helper it forked cannot outlive it.
+ - **Workspace guard.** The built-in checks run in one guard window, then each configured check runs in its own window, chained from the one before. A changed snapshot ends the run with exit 3 and `CHECK_MUTATED_WORKSPACE`, names the check and the paths and reverts nothing. Every configured check after it reads `ERROR`, not run.
+@@ -194,7 +204,13 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
+ 3. The workspace guard brackets every command and reverts nothing.
+ 4. Nothing is installed. A missing tool gets a repair line and nothing else.
+ 5. The doctor reads and probes the config. It never runs a configured command, and its only write is `init --apply`.
+-6. A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`. `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include. `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test. The repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one leaves the run UNVERIFIED. `config.trust` names the state and the rule that decided it. Built-in checks are not affected, and `--no-run` still lists a configured check without starting it.
++6. A configured check runs only from a trusted config. One of four rules makes it trusted.
++    - The operator names the file with `--config`.
++    - `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include.
++    - `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test.
++    - The repository under test shares its git common dir with the checkout that holds the runner.
++
++    Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one leaves the run UNVERIFIED. `config.trust` names the state and the rule that decided it. Built-in checks are not affected, and `--no-run` still lists a configured check without starting it.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md b/.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md
+index 3b128fbec3..d5ae2074ec 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md
++++ b/.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md
+@@ -117,7 +117,14 @@ Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKE
+ | `dist-staleness` | P1 | no | The dist adapter in section 8 |
+ | A configured id | Declared | Declared, and true by default for P0 only | The commands `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes. A command starts only from a trusted config |
+ 
+-A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`, `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include, `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test, or the repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
++A configured check runs only from a trusted config. One of four rules makes it trusted.
++
++- The operator names the file with `--config`.
++- `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include.
++- `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test.
++- The repository under test shares its git common dir with the checkout that holds the runner.
++
++Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
+ 
+ | Layer state | Meaning |
+ | --- | --- |

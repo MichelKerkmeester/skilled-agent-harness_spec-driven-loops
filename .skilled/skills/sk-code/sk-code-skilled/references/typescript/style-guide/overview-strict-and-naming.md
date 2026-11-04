@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.17
+version: 1.0.1.0
 ---
 
 # TypeScript Style Guide
@@ -51,9 +51,13 @@ All TypeScript files MUST begin with a module header block identifying the modul
 - Immediately followed by imports
 
 **Rationale**: TypeScript's `"strict": true` in `tsconfig.json` enables strict
-type checking at compilation. Current system-spec-kit workspaces are
-package-aware: `shared/` and `mcp-server/` use NodeNext ESM, `scripts/` uses
-ES2022 ESM, and the root CommonJS setting is only a fallback default.
+type checking at compilation.
+
+Current system-spec-kit workspaces are package-aware:
+
+- `shared/` and `mcp-server/` use NodeNext ESM
+- `scripts/` uses ES2022 ESM
+- the root CommonJS setting is only a fallback default
 
 ### Full Header Example
 
@@ -376,6 +380,3 @@ function fromRow(row: MemoryRow): MemoryRecord {
 | DB-mapped props   | `snake_case`*      | `importance_tier`           |
 
 \* Exception: Only for properties that directly map to SQLite column names. See "snake_case Exception" above.
-
----
-

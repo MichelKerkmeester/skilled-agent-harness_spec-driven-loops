@@ -8,7 +8,7 @@ trigger_phrases:
   - "python public api exports"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Import Ordering & Export Patterns
@@ -217,5 +217,3 @@ __all__ = [
 
 # Implementation follows...
 ```
-
----

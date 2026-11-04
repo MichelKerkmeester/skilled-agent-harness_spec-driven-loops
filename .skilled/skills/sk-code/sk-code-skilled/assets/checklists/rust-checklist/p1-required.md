@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust interop quality gate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # P1 — Required
@@ -161,7 +161,7 @@ Feature combinations must not accidentally hide target-specific imports, seriali
 - [ ] Formatting, locked checks, Clippy, tests, rustdoc, and release builds pass
 ```
 
-**Evidence**: Attach the complete command output or CI job links for the gate sequence in section 6.
+**Evidence**: Attach the complete command output or CI job links for the gate sequence in [p2-evidence-validation-and-resources.md](./p2-evidence-validation-and-resources.md) §4.
 
 All dependency-resolving CI commands use `--locked`.
 

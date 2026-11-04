@@ -20,7 +20,9 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this mode when they ask for code review, PR review, merge readiness, an audit, a security review, request changes or findings over a diff. Its vocabulary is `review`, `code review`, `pr review`, `audit`, `security review`, `request changes`, `findings`, `blocking issues` and `merge readiness`. It routes to two resource families: the `references/` doctrine, which starts at `references/review-core.md` and adds the single-pass UX flow, the lightweight index and the PR-state dedup rules, and the `assets/` checklists and templates for security, correctness and quality, SOLID, dead-code removal, test quality and fix completeness.
+- **Reach**: requests that ask for code review, PR review, merge readiness, an audit, a security review, request changes or findings over a diff.
+- **Vocabulary**: `review`, `code review`, `pr review`, `audit`, `security review`, `request changes`, `findings`, `blocking issues` and `merge readiness`.
+- **Resource families**: the `references/` doctrine, which starts at `references/review-core.md` and adds the single-pass UX flow, the lightweight index and the PR-state dedup rules, plus the `assets/` checklists and templates for security, correctness and quality, SOLID, dead-code removal, test quality and fix completeness.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

@@ -9,7 +9,7 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Universal Code Quality Standards
@@ -90,7 +90,12 @@ When more than one source speaks to the same rule, the contract's precedence in 
 
 ### Mechanical Floor (every surface)
 
-Three faults are P0 on every surface, because no other check can be trusted on a file that has one. The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML. The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required. They also detect the conflict markers and the credential signature over every readable text file. A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
+Three faults are P0 on every surface, because no other check can be trusted on a file that has one.
+
+- The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML.
+- The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required.
+- They also detect the conflict markers and the credential signature over every readable text file.
+- A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
 
 | Id | Override | Rule | Review severity |
 | --- | --- | --- | --- |

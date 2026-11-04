@@ -8,7 +8,7 @@ trigger_phrases:
   - "rust determinism recipes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rust Quick Reference
@@ -21,10 +21,7 @@ Copy-paste templates, naming conventions, deterministic recipes, and Cargo comma
 
 ### Purpose
 
-Quick-access reference card for Rust compute kernels and their JavaScript boundaries. For detailed explanations, see:
-
-- [style-guide.md](../style-guide/overview-and-file-header.md) - Full Rust style and interop documentation
-- [quality-standards.md](../quality-standards/overview-and-data-ownership.md) - Safety, parity, and verification requirements
+Quick-access reference card for Rust compute kernels and their JavaScript boundaries.
 
 Rust supplements the existing TypeScript/Node MCP backend. Keep MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection in TypeScript. Move only measured compute kernels behind narrow napi-rs, WASM/WASI, or sidecar adapters.
 
@@ -467,3 +464,12 @@ fn js_error(code: &str, message: &str) -> JsValue {
 Keep serializer configuration explicit. `Serializer::json_compatible()` produces JavaScript-compatible values, but exact field order, omission behavior, integer representation, and number spelling still require golden tests against the TypeScript oracle.
 
 ---
+
+## 3. RELATED RESOURCES
+
+- [naming-ordering-and-signatures.md](./naming-ordering-and-signatures.md) - Naming table, source-section order and boundary signature patterns
+- [collections-imports-and-errors.md](./collections-imports-and-errors.md) - Canonical collection, import/export and error-mapping recipes
+- [rustdoc-and-cargo.md](./rustdoc-and-cargo.md) - Rustdoc template and the Cargo, formatting, build and supply-chain commands
+- [determinism-parity-and-related.md](./determinism-parity-and-related.md) - Determinism, parity and golden-replay recipes
+- [style-guide.md](../style-guide/overview-and-file-header.md) - Full Rust style and interop documentation
+- [quality-standards.md](../quality-standards/overview-and-data-ownership.md) - Safety, parity, and verification requirements

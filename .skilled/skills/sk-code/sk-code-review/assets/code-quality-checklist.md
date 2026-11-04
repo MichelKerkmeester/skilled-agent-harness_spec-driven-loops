@@ -9,7 +9,7 @@ trigger_phrases:
   - "error handling review defects"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Code Quality Checklist
@@ -151,7 +151,10 @@ Rule: default lens, `review.kiss`, `review.dry`, `review.rule-of-three` and `rev
 - Generic helpers used in only one place.
 - Workflow complexity introduced "for future flexibility" without evidence.
 - Features, parameters, or configuration options added for speculative future use without a current requirement (YAGNI).
-- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for). Recommend removal (see removal-plan.md), not just simplification. Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate. P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
+- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for).
+  - Recommend removal (see removal-plan.md), not just simplification.
+  - Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate.
+  - P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
 
 ### DRY Checks
 

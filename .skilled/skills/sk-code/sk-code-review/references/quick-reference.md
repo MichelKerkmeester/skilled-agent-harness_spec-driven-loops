@@ -8,7 +8,7 @@ trigger_phrases:
   - "which review checklist to load"
 importance_tier: normal
 contextType: general
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Code Review Quick Reference
@@ -23,7 +23,7 @@ Lightweight index for the split review references in this skill.
 
 Route review consumers to the correct reference file based on their intent. This file replaces the former monolithic quick reference with a split architecture: shared doctrine in `review-core.md` and interactive UX rules in `review-ux-single-pass.md`.
 
-### Usage
+### When to Use
 
 Use this file as an entry index, not as the primary source of review rules. Load the specific reference that matches your mode:
 - **Both modes** (single-pass and deep review): Load `review-core.md`
@@ -38,6 +38,7 @@ Use this file as an entry index, not as the primary source of review rules. Load
 |-----------|-------|-----------|
 | [review-core.md](./review-core.md) | Shared doctrine: severity, evidence, findings schema, baseline+surface precedence, floor and default lens ids, rule overrides and the `Rule sources:` line | `@review`, `@deep-review` |
 | [review-ux-single-pass.md](./review-ux-single-pass.md) | Interactive UX: report flow, next-step prompts, PR/pre-commit guidance | `@review` only |
+| [pr-state-dedup.md](./pr-state-dedup.md) | PR-state gate: signature computation, cache format, pathspec scope, retention and skip behavior | `@review` |
 
 ---
 

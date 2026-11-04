@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell conditionals reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Shell Quick Reference
@@ -21,9 +21,7 @@ Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCo
 
 ### Purpose
 
-Quick-access reference card for Bash patterns. For detailed explanations, see:
-- [style-guide.md](../style-guide/overview-structure-and-naming.md) - Full style documentation
-- [quality-standards.md](../quality-standards/overview-and-priority-blockers.md) - Quality requirements
+Quick-access reference card for Bash patterns.
 
 ### When to Use
 
@@ -292,3 +290,8 @@ done
 ```
 
 ---
+
+## 7. RELATED RESOURCES
+
+- [style-guide.md](../style-guide/overview-structure-and-naming.md) - Full style documentation
+- [quality-standards.md](../quality-standards/overview-and-priority-blockers.md) - Quality requirements

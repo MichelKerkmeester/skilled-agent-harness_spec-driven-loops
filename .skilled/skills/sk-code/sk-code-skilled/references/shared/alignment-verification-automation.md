@@ -8,7 +8,7 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Alignment Verification Automation
@@ -52,13 +52,17 @@ Use this reference when tuning recurring checks or interpreting verifier output 
 ### What it does not check
 
 The verifier is intentionally lightweight. It does not replace the standards
-checklists and, by default, does not scan markdown. The opt-in `--check-router`
-flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
-leaf a skill's router names exists on disk (a dead-route guard, scoped to the
-router block only). It still never inspects markdown prose. RESOURCE_MAP
-parent-child *equality* is not checked by this script either; leg 2 of
-`verify-router-sync.cjs` checks it, as the section "Router-sync guard" below
-records. These remain manual review gates:
+checklists and, by default, does not scan markdown.
+
+- The opt-in `--check-router` flag adds one narrow exception: it checks that
+  every RESOURCE_MAP/DEFAULT_RESOURCE leaf a skill's router names exists on
+  disk (a dead-route guard, scoped to the router block only). It still never
+  inspects markdown prose.
+- RESOURCE_MAP parent-child *equality* is not checked by this script either;
+  leg 2 of `verify-router-sync.cjs` checks it, as the section "Router-sync
+  guard" below records.
+
+These remain manual review gates:
 
 - exact visual header shape beyond the marker-level checks above;
 - naming conventions;

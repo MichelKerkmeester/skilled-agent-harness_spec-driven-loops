@@ -8,7 +8,7 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Shell Style Guide
@@ -165,7 +165,10 @@ _json_escape() {
 }
 ```
 
-**Exception**: a file sourced into an interactive shell gives every helper that its public functions call a plain prefixed name instead, such as `skilled_loop_resolve`. Agent tool shells, Claude Code's among them, are rebuilt from a function snapshot that drops names starting with a single underscore, so a public function that calls `_helper` there fails with `command not found`.
+**Exception**:
+
+- A file sourced into an interactive shell gives every helper that its public functions call a plain prefixed name instead, such as `skilled_loop_resolve`.
+- Agent tool shells, Claude Code's among them, are rebuilt from a function snapshot that drops names starting with a single underscore, so a public function that calls `_helper` there fails with `command not found`.
 
 **Evidence**: `.skilled/bin/skilled-loop-shell.sh` and `.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:37-45`
 
@@ -280,14 +283,17 @@ log_detail() {
 
 **Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:345`
 
+---
+
+## 6. COMMENT CONVENTIONS
+
 ### Inline Comments
 
 Follow the universal commenting principles (see `../../shared/universal-patterns/naming-and-commenting.md`):
 
 1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))
-2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
-3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
-4. **No commented-out code:** Delete unused code (git preserves history)
+2. **Focus on WHY, not WHAT:** Explain the intent, constraints and reasoning behind the code, not what it does
+3. **No commented-out code:** Delete unused code (git preserves history)
 
 **Good - explains reasoning:**
 
@@ -342,4 +348,3 @@ validate_json() {
 }
 ```
 
----

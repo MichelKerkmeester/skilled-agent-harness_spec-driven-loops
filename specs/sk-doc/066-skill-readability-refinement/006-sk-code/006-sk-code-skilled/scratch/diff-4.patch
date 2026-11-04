@@ -1,0 +1,1681 @@
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/README.md b/.skilled/skills/sk-code/sk-code-skilled/README.md
+index 0e9ab127ba3..eabb6b32572 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/README.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/README.md
+@@ -27,13 +27,19 @@ version: 1.0.6.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
++### What It Does
+ 
+-A task that touches `.skilled/` system code, be it a skill, agent, command, plugin, MCP server or descriptor, needs the right language rules and the right authoring checklist, not the whole sk-code reference tree. Without this surface, a workflow mode would either hold every language standard itself or guess which trio applies. A TypeScript edit would end up pulling Python and shell guidance it never needed.
++This surface carries the system-code evidence for the sk-code hub:
+ 
+-### What It Does
++- Language standards for TypeScript, Python, shell, Rust, config and JavaScript, plus a language-agnostic shared tier for naming, organization, hooks and alignment verification.
++- Authoring checklists for skills, agents, commands and MCP servers.
++- Detection that tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence.
++- The hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both.
++- Read-only, advisor-invisible evidence. The paired workflow mode owns all edits, tests and commits.
++
++### Why This Skill Exists
+ 
+-This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. Detection tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence. Within it, the hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
++A task that touches `.skilled/` system code, be it a skill, agent, command, plugin, MCP server or descriptor, needs the right language rules and the right authoring checklist, not the whole sk-code reference tree. Without this surface, a workflow mode would either hold every language standard itself or guess which trio applies. A TypeScript edit would end up pulling Python and shell guidance it never needed.
+ 
+ ### The House Style Lives Here
+ 
+@@ -75,11 +81,28 @@ A clean exit means all four guards pass: the alignment verifier, the stack-folde
+ 
+ ### Detection and Slicing
+ 
+-Detection is two-step. First, work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring. Second, file extensions and local markers select the language. `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript. `.py` plus argparse maps to Python. `.sh` and `.bash` map to shell. `.rs` maps to Rust. JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config. `.cjs`, `.mjs` and `.js` map to JavaScript. When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
++Detection is two-step.
++
++1. Work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring.
++2. File extensions and local markers select the language:
++   - `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript.
++   - `.py` plus argparse maps to Python.
++   - `.sh` and `.bash` map to shell.
++   - `.rs` maps to Rust.
++   - JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config.
++   - `.cjs`, `.mjs` and `.js` map to JavaScript.
++
++When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
+ 
+ ### The Surface Standards
+ 
+-Four non-negotiables hold across the evidence. OpenCode plugins never write to the TUI. Their output goes through system-context injection, tools, append-only log files or a DEBUG-gated stream behind an env flag. Descriptors are load-bearing, since `graph-metadata.json` and `description.json` shape discovery. Alignment drift is a verification gate, so system-code changes re-run the drift guards before any completion claim. Rust preserves the TypeScript contract. The slice stays the touched-language set.
++Five non-negotiables hold across the evidence.
++
++- **OpenCode plugins never write to the TUI.** Their output goes through system-context injection, tools, append-only log files or a DEBUG-gated stream behind an env flag.
++- **Descriptors are load-bearing**, since `graph-metadata.json` and `description.json` shape discovery.
++- **Alignment drift is a verification gate**, so system-code changes re-run the drift guards before any completion claim.
++- **Rust preserves the TypeScript contract.**
++- **The slice stays the touched-language set.**
+ 
+ ---
+ 
+@@ -136,6 +159,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary.
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Surface contract, reference map and standards |
++| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+ | [`references/`](./references/) | Language standard folders and the shared pattern tier |
+ | [`assets/checklists/`](./assets/checklists/) | Component authoring checklists, per-language quality gates and the JavaScript and CSS house checks |
+ | [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract this surface's universal checklist follows |
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/SKILL.md b/.skilled/skills/sk-code/sk-code-skilled/SKILL.md
+index 1a10cb1e972..7c69f8e54cd 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/SKILL.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/SKILL.md
+@@ -34,7 +34,17 @@ napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-pro
+ 
+ ---
+ 
+-## 2. REFERENCE MAP
++## 2. SMART ROUTING
++
++The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
++
++The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
++
++Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
++
++---
++
++## 3. REFERENCE MAP
+ 
+ Language standards — after `.skilled/` selects this surface, load the exact split resources for the detected language:
+ - TypeScript:
+@@ -89,6 +99,9 @@ Authoring and validation assets:
+   - `assets/checklists/agent-authoring.md`
+   - `assets/checklists/command-authoring.md`
+   - `assets/checklists/javascript-checklist.md`
++  - `assets/checklists/js-css-style/overview-header-and-comments.md`
++  - `assets/checklists/js-css-style/naming-init-formatting-and-css.md`
++  - `assets/checklists/js-css-style/verification-quick-reference-and-related.md`
+   - `assets/checklists/mcp-server-authoring.md`
+   - `assets/checklists/python-checklist.md`
+   - `assets/checklists/rust-checklist/overview-and-p0-parity.md`
+@@ -109,16 +122,6 @@ Workflow: the implement -> debug -> verify phases use the split shared, language
+ 
+ ---
+ 
+-## 3. SMART ROUTING
+-
+-The hub bundles this surface when the task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, descriptor or config — and a language or authoring signal then selects the leaf. The first leaves it loads are the shared tier under `references/shared/` and `references/shared/workflow-guardrails.md`, because every language standard builds on them.
+-
+-The parent hub `RESOURCE_MAP` carries this map re-prefixed with `sk-code-skilled/` plus the parent-owned universal tier, and the router-sync guard (`assets/scripts/verify-router-sync.cjs`, leg 2) checks that equality. A new doc under `references/` or `assets/` needs a `RESOURCE_MAP` entry here, or leg 1b fails.
+-
+-Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+-
+----
+-
+ ## 4. SURFACE STANDARDS (the non-negotiables)
+ 
+ - **Plugins never write to the TUI.** OpenCode plugins must not print to the process stdout/stderr (no overlay on the chat input); user/agent-visible output goes through system-context injection, tools, or append-only log files; DEBUG-gated stderr is allowed only behind an env flag. See `references/javascript/quality-standards/overview-modules-and-docs.md` and the plugin exemption tier.
+@@ -147,23 +150,7 @@ You cannot hold Rust byte-identical to TypeScript without seeing both standards.
+ 
+ ---
+ 
+-## 5. SUPPORTING ASSETS
+-
+-Component authoring (`assets/checklists/`): `skill-authoring.md`, `agent-authoring.md`, `command-authoring.md`, `mcp-server-authoring.md`
+-
+-Language quality gates (`assets/checklists/`): `universal-checklist.md`, `typescript-checklist.md`, `python-checklist.md`, `shell-checklist.md`, `javascript-checklist.md`, `rust-checklist/` (split into topic parts), `config-checklist.md`
+-
+-Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts, the router-sync guard (`verify-router-sync.cjs`) with its replay library (`router-replay-lib.cjs`) and the documentation claim guard (`verify-doc-claims.cjs`), used by this surface. `scripts/run-all-drift-guards.sh` is the single entry point that runs all four as one gate (non-zero if any fails).
+-
+-Changelog directories (`changelog/`): real skill and packet changelog files are part of the Skilled surface inventory, not out-of-scope documentation noise.
+-
+-Daemon IPC/socket wiring: daemon-backed CLIs and plugin bridges resolve runtime Unix socket paths such as `daemon-ipc.sock`; sockets are runtime artifacts, so checked-in evidence lives in launcher, bridge, and config files rather than in committed `.sock` files.
+-
+-Spec-folder authoring lives in system-spec-kit (`.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` + `spec-folder-authoring-checklist.md`), not in this surface. Checklists are pulled on demand by the active workflow phase.
+-
+----
+-
+-## 6. QUALITY CHECKLIST MAP
++## 5. QUALITY CHECKLIST MAP
+ 
+ This is this repository's quality checklist map, not a universal one.
+ The quality runner resolves checklists from two sources: the rows owned by the quality mode in `../sk-code-quality/assets/quality-defaults.json` and each surface's `quality.checklists` declaration in `../mode-registry.json`.
+@@ -198,3 +185,19 @@ The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no pa
+ | SKILLED | `.rs` | `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
+ | SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `assets/checklists/config-checklist.md` |
+ | sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
++
++---
++
++## 6. SUPPORTING ASSETS
++
++Component authoring (`assets/checklists/`): `skill-authoring.md`, `agent-authoring.md`, `command-authoring.md`, `mcp-server-authoring.md`
++
++Language quality gates (`assets/checklists/`): `universal-checklist.md`, `typescript-checklist.md`, `python-checklist.md`, `shell-checklist.md`, `javascript-checklist.md`, `rust-checklist/` (split into topic parts), `config-checklist.md`
++
++Verifier assets (`assets/scripts/`): alignment-drift and stack-folder verifier scripts, the router-sync guard (`verify-router-sync.cjs`) with its replay library (`router-replay-lib.cjs`) and the documentation claim guard (`verify-doc-claims.cjs`), used by this surface. `scripts/run-all-drift-guards.sh` is the single entry point that runs all four as one gate (non-zero if any fails).
++
++Changelog directories (`changelog/`): real skill and packet changelog files are part of the Skilled surface inventory, not out-of-scope documentation noise.
++
++Daemon IPC/socket wiring: daemon-backed CLIs and plugin bridges resolve runtime Unix socket paths such as `daemon-ipc.sock`; sockets are runtime artifacts, so checked-in evidence lives in launcher, bridge, and config files rather than in committed `.sock` files.
++
++Spec-folder authoring lives in system-spec-kit (`.skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md` + `spec-folder-authoring-checklist.md`), not in this surface. Checklists are pulled on demand by the active workflow phase.
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md
+index 4d499fb447c..9d5442667ac 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md
+@@ -72,5 +72,5 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
+ - `.skilled/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
+ - Mirror checker: `.skilled/bin/check-agent-mirror-sync.cjs`
+ - Mirrored example: `.skilled/agents/code.md` and `.claude/agents/code.md`
+-- Runtime directories: `.skilled/agents/` and `.claude/agents/`
++- Runtime directories: `.skilled/agents/`, `.claude/agents/` and `.codex/agents/`
+ - Verification recipes: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md`
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md
+index 010c66335bd..6ed766caa86 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md
+@@ -39,7 +39,7 @@ This checklist keeps user-invoked commands consistent with the two live command
+ - [ ] For YAML-router commands, verify real assets such as `.skilled/commands/create/assets/create-skill-auto.yaml`, `.skilled/commands/create/assets/create-skill-confirm.yaml`, and `.skilled/commands/create/assets/create-skill-presentation.txt`.
+ - [ ] For contract-renderer commands, verify the rendered contract source such as `.skilled/commands/deep/assets/compiled/deep-research.contract.markdown` and workflow assets such as `.skilled/commands/deep/assets/deep-research-auto.yaml`.
+ - [ ] Confirm command scope, required user inputs, dispatch targets, and file-write authority.
+-- [ ] Classify the command's runtime scope, then run the mirror generator. `.claude/commands` is a real filtered tree of per-command symlinks, so OpenCode-only commands must be excluded deliberately.
++- [ ] Classify the command's runtime scope: `.claude/commands` is a real filtered tree of per-command symlinks, so OpenCode-only commands must be excluded deliberately.
+ - [ ] Do not mirror commands into `.skilled/prompts/`; that path is not present in this workspace.
+ - [ ] Confirm the command does not bypass skill-owned workflows for deep research, deep review, memory save, or spec folder writes.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md
+index 0d606a3b249..d09a1c6ec99 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md
+@@ -106,6 +106,16 @@ semantics; the verifier intentionally skips `.mjs` strict-mode enforcement.
+ [ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
+ ```
+ 
++### Plugin Runtime Output
++
++```markdown
++[ ] OpenCode plugin never writes to stdout/stderr (would overlay the TUI chat input)
++```
++Surface stale/guard notices via `experimental.chat.system.transform` (bounded
++`output.system` push), a fail-open log file, or a plugin tool — `stderr` only
++behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
++See `quality-standards.md` §10.
++
+ ---
+ 
+ ## 3. P1 - REQUIRED
+@@ -134,15 +144,6 @@ export default async function ExamplePlugin(ctx, options = {}) {
+ **Plugin paths**: Files in `.opencode/plugins/` MUST use ESM (`export default`)
+ — see `quality-standards.md` §10 OpenCode Plugin Exemption Tier.
+ 
+-**Plugin runtime output (P0)**:
+-```markdown
+-[ ] OpenCode plugin never writes to stdout/stderr (would overlay the TUI chat input)
+-```
+-Surface stale/guard notices via `experimental.chat.system.transform` (bounded
+-`output.system` push), a fail-open log file, or a plugin tool — `stderr` only
+-behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
+-See `quality-standards.md` §10.
+-
+ **Wrong for non-plugin CommonJS utilities**:
+ ```javascript
+ export { function_name };
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md
+index ab7567c1a83..c7a559d9157 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md
+@@ -22,7 +22,7 @@ Hold the few JavaScript checks the SKILLED surface applies on top of its JavaScr
+ ### Usage
+ 
+ 1. **Load** the SKILLED JavaScript checklist first, `../javascript-checklist.md`, with its style guide.
+-2. **Load** this file and its companion, [naming-init-formatting-and-css.md](./naming-init-formatting-and-css.md), for a `.js` or `.css` target.
++2. **Load** this file and its two companions, [naming-init-formatting-and-css.md](./naming-init-formatting-and-css.md) and [verification-quick-reference-and-related.md](./verification-quick-reference-and-related.md), for a `.js` or `.css` target.
+ 3. **Validate** each applicable item against the code.
+ 4. **Mark** items `[x]` when verified.
+ 5. **Block** completion if any P0 item fails.
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md
+index 1e0b77d3d21..673797a8fc0 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md
+@@ -35,7 +35,10 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be
+ - [ ] Read `opencode.json` before changing MCP registration; it is the native MCP registration surface for this repo.
+ - [ ] Identify the startup pattern in `opencode.json`.
+   - Launcher-fronted pattern: `code_mode` runs `node` with `.skilled/bin/mcp-code-mode-launcher.cjs`, which reads the interpreter range the server declares in `engines.node` and resolves a satisfying interpreter before starting it. The indirection exists because that server bundles a native addon with no build for newer Node majors, and the wrong interpreter segfaults on the first tool call rather than failing at startup — so the range must be enforced at launch, and naming one absolute interpreter would only encode the machine the config was written on.
+-- [ ] For launcher-backed services, account for the three-tier assembly: launcher process, daemon/server `dist/` entrypoint, and socket path configured through `SPECKIT_IPC_SOCKET_DIR`.
++- [ ] For launcher-backed services, account for the three-tier assembly:
++  - Launcher process
++  - Daemon/server `dist/` entrypoint
++  - Socket path configured through `SPECKIT_IPC_SOCKET_DIR`
+ - [ ] For Code Mode, keep external MCP tools in `.utcp_config.json` under `manual_call_templates`; do not add those tools as native `opencode.json` MCP servers unless they need native OpenCode tool registration.
+ - [ ] Decide whether the server should be TypeScript based on the owning skill runtime, dependencies, and typed schema needs.
+ - [ ] Verify MCP tool registration in the relevant registry, schema file, or server entrypoint.
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md
+index 330e222684d..9bcf9032cd6 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md
+@@ -27,7 +27,7 @@ This checklist treats the TypeScript implementation as the compatibility oracle.
+ 
+ ### Usage
+ 
+-Apply this first split checklist with the universal checklist, then continue through the remaining Rust checklist files in order.
++Apply this first part with the universal checklist, then continue in order through [p0-safety-and-boundary-discipline.md](./p0-safety-and-boundary-discipline.md), [p1-required.md](./p1-required.md) and [p2-evidence-validation-and-resources.md](./p2-evidence-validation-and-resources.md).
+ 
+ ### Scope
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
+index 9d7a0a681e3..f10b1b3b6a4 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
+@@ -49,7 +49,12 @@ pub struct SearchResultDto {
+ 
+ Use napi-rs or wasm-bindgen rename attributes when the JavaScript contract requires camelCase. Do not contaminate pure-core Rust naming to achieve boundary spelling.
+ 
+-Boundary contracts must not expose `usize`, `isize`, borrowed fields, Rust ordinal enum values, or integers that exceed JavaScript’s safe range without an explicit `BigInt` or decimal-string contract.
++Boundary contracts must not expose:
++
++- `usize` or `isize`
++- borrowed fields
++- Rust ordinal enum values
++- integers that exceed JavaScript’s safe range without an explicit `BigInt` or decimal-string contract
+ 
+ ### Stable JavaScript Error Shape
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md
+index 13caf2b05f5..24b6c761a81 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md
+@@ -161,7 +161,7 @@ Feature combinations must not accidentally hide target-specific imports, seriali
+ - [ ] Formatting, locked checks, Clippy, tests, rustdoc, and release builds pass
+ ```
+ 
+-**Evidence**: Attach the complete command output or CI job links for the gate sequence in section 6.
++**Evidence**: Attach the complete command output or CI job links for the gate sequence in [p2-evidence-validation-and-resources.md](./p2-evidence-validation-and-resources.md) §4.
+ 
+ All dependency-resolving CI commands use `--locked`.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md
+index f06f9c22714..740e8977ab8 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md
+@@ -52,6 +52,21 @@ These items MUST be fixed before any commit.
+ #!/usr/bin/env bash
+ ```
+ 
++### File Header
++
++```markdown
++[ ] COMPONENT comment block present
++```
++
++**Required format**:
++```bash
++#!/usr/bin/env bash
++# ───────────────────────────────────────────────────────────────
++# COMPONENT: [COMPONENT NAME]
++# ───────────────────────────────────────────────────────────────
++# Brief description
++```
++
+ ### Strict Mode
+ 
+ ```markdown
+@@ -89,21 +104,6 @@ file_path=$1
+ [[ -f $file ]]
+ ```
+ 
+-### File Header
+-
+-```markdown
+-[ ] COMPONENT comment block present
+-```
+-
+-**Required format**:
+-```bash
+-#!/usr/bin/env bash
+-# ───────────────────────────────────────────────────────────────
+-# COMPONENT: [COMPONENT NAME]
+-# ───────────────────────────────────────────────────────────────
+-# Brief description
+-```
+-
+ ### No Commented-Out Code
+ 
+ ```markdown
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md
+index 1dd6f0f5281..ad77d04048b 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md
+@@ -54,7 +54,10 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
+ 4. For parent hubs, keep stage-one routing in `mode-registry.json` and `hub-router.json`, and each packet's machine router in that packet's own `ROUTER.md`; keep workflow or surface detail inside nested packet `SKILL.md` files.
+ 5. For parent hubs, keep a single advisor identity in hub-level `graph-metadata.json`; do not add packet-level graph metadata.
+ 6. Put detailed standards in `references/`, reusable output material in `assets/`, and deterministic helpers in `scripts/`.
+-7. Put the `INTENT_SIGNALS` / `RESOURCE_MAP` block and its routing prose in the packet's own `ROUTER.md`, under a final `## MACHINE ROUTER` heading; a hub root `ROUTER.md` carries the hub's stage-two control document instead. `SKILL.md` SMART ROUTING stays short prose plus the link to that file.
++7. Put the router block in the packet's own `ROUTER.md`.
++   - Put the `INTENT_SIGNALS` / `RESOURCE_MAP` block and its routing prose under a final `## MACHINE ROUTER` heading.
++   - A hub root `ROUTER.md` carries the hub's stage-two control document instead.
++   - `SKILL.md` SMART ROUTING stays short prose plus the link to that file.
+ 8. Add or update `description.json` with matching version, keywords, and trigger examples.
+ 9. Add changelog coverage when the skill has a versioned release stream.
+ 10. Check that new links resolve from the file that contains them.
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md
+index 2405888a8e4..0c7f32251b4 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md
+@@ -367,6 +367,7 @@ The SKILLED surface changes one rule of the review default lens. The rows below
+ - [python-checklist.md](./python-checklist.md)
+ - [shell-checklist.md](./shell-checklist.md)
+ - [config-checklist.md](./config-checklist.md)
++- [rust-checklist/overview-and-p0-parity.md](./rust-checklist/overview-and-p0-parity.md) - Rust checks, split into four topic parts
+ 
+ ### Style Guides
+ - [JavaScript Style Guide](../../references/javascript/style-guide.md)
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md b/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
+index 47be8d802e9..45fc7f813b6 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md
+@@ -62,7 +62,7 @@ Run individual scripts from the repository root with the documented arguments.
+ |---|---|
+ | Folder boundary | Documents direct code files under `assets/scripts`. |
+ | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
+-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
++| Verification handoff | Points reviewers at the owning skill files for follow-up work. |
+ 
+ ---
+ 
+@@ -76,7 +76,7 @@ Run individual scripts from the repository root with the documented arguments.
+ | `test_verify_stack_folders.py` | Builds a temporary references tree and proves `verify_stack_folders.py` exits 1 on an orphan folder and 0 on a clean tree. |
+ | `verify_alignment_drift.py` | Recurring read-only alignment verifier for TypeScript, JavaScript, Python, shell, JSON, and JSONC files. |
+ | `verify-doc-claims.cjs` | Documentation claim guard: path references in the sk-code docs resolve, including path-shaped link labels and `#anchor` targets, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`, with an allowlist for deliberate legacy names. Usage: `node verify-doc-claims.cjs [--root <hub dir>] [--checks paths,names,surfaces,tiers]`. |
+-| `verify-router-sync.cjs` | Restored router-sync drift guard: four checks over the sk-code router, one PASS or FAIL line per leg. Usage: `node verify-router-sync.cjs [--checks 1a,1b,2,3,4]`. |
++| `verify-router-sync.cjs` | Router-sync drift guard: four checks over the sk-code router, one PASS or FAIL line per leg. Usage: `node verify-router-sync.cjs [--checks 1a,1b,2,3,4]`. |
+ | `verify_stack_folders.py` | Verifies sk-code-skilled language reference folders match the known language set and flags missing or orphan folders. |
+ 
+ ---
+@@ -106,7 +106,7 @@ Expected output: Findings recorded in the current refinement and release-alignme
+ 
+ | What You See | Cause | Fix |
+ |---|---|---|
+-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the current release-alignment README remediation check. |
++| README appears stale | Source files changed after the README was written | Refresh the structure table and rerun the README coverage check. |
+ | Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
+ 
+ ---
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md b/.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md
+index 482acadb47a..b0931941b74 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md
+@@ -105,7 +105,7 @@ rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .skilled/skills/sk-code/sk-code-skilled/r
+ 
+ ## 6. RELATED RESOURCES
+ 
+-- [quick-reference.md](./quick-reference.md)
+-- [style-guide.md](./style-guide.md)
+-- [shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)
+-- [config-checklist.md](../../assets/checklists/config-checklist.md)
++- [quick-reference.md](./quick-reference.md) - Pattern lookup for common config shapes
++- [style-guide.md](./style-guide.md) - Formatting, naming and comment conventions
++- [shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md) - Module and file organization rules
++- [config-checklist.md](../../assets/checklists/config-checklist.md) - Checklist form of these gates
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md b/.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md
+index 9ff74e2acb5..51353cf8a38 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md
+@@ -21,9 +21,7 @@ Fast lookup for JSON/JSONC configuration patterns and common structures in OpenC
+ 
+ ### Purpose
+ 
+-Quick-access reference card for configuration file patterns. For detailed explanations, see:
+-- [style-guide.md](./style-guide.md) - Full style documentation
+-- [quality-standards.md](./quality-standards.md) - P0/P1/P2 quality gates
++Quick-access reference card for configuration file patterns.
+ 
+ ### When to Use
+ 
+@@ -342,4 +340,4 @@ P2 - Nice to Have:
+ 
+ - [style-guide.md](./style-guide.md) - Detailed style documentation
+ - [quality-standards.md](./quality-standards.md) - Config quality gates
+-- [JSON Specification](https://www.json.org/)
++- [JSON Specification](https://www.json.org/) - The grammar JSON and JSONC files must parse as
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md b/.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md
+index e307f75c6cb..653f0d5b507 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md
+@@ -415,7 +415,8 @@ opencode.json                         # Root OpenCode runtime config (strict JSO
+ 
+ ### Internal References
+ - [quick-reference.md](./quick-reference.md) - Quick lookup for config patterns
++- [quality-standards.md](./quality-standards.md) - P0/P1/P2 quality gates
+ 
+ ### External Standards
+-- [JSON Specification](https://www.json.org/)
+-- [JSONC (JSON with Comments)](https://code.visualstudio.com/docs/languages/json#_json-with-comments)
++- [JSON Specification](https://www.json.org/) - The grammar JSON and JSONC files must parse as
++- [JSONC (JSON with Comments)](https://code.visualstudio.com/docs/languages/json#_json-with-comments) - The comment and trailing-comma extension JSONC adds
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md b/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md
+index 6cdee0c6fa6..4910fd81435 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md
+@@ -47,10 +47,9 @@ contract. Do not force one JavaScript module style across all paths.
+ 
+ ### CommonJS Pattern
+ 
+-Use CommonJS for `.cjs` files and `.js` files whose package boundary selects
+-CommonJS. Those files include the repository's required `'use strict'`
+-directive. ESM `.js` files follow their package boundary and also keep that
+-directive to satisfy the repository's alignment checks; it is redundant in ESM.
++- Use CommonJS for `.cjs` files and `.js` files whose package boundary selects CommonJS.
++- Include the repository's required `'use strict'` directive in those files.
++- ESM `.js` files follow their package boundary and also keep that directive to satisfy the repository's alignment checks; it is redundant in ESM.
+ 
+ ```javascript
+ 'use strict';
+@@ -68,9 +67,9 @@ pattern applies to legacy `.js/.cjs` utility surfaces and test runners that use
+ 
+ ### Export Pattern
+ 
+-Export functions using `camelCase` names. For MCP handlers, include
+-`snake_case` aliases for backward compatibility. Do not apply this export shape
+-to OpenCode plugin paths; those use `export default`.
++- Export functions using `camelCase` names.
++- For MCP handlers, include `snake_case` aliases for backward compatibility.
++- Do not apply this export shape to OpenCode plugin paths; those use `export default`.
+ 
+ ```javascript
+ // ─────────────────────────────────────────────────────────────────────────────
+@@ -297,3 +296,6 @@ class VectorIndex {
+ 
+ ---
+ 
++## 6. RELATED RESOURCES
++
++- [security-testing-and-exemptions.md](./security-testing-and-exemptions.md) - Security, testing, async and exemption tiers
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md b/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md
+index 61c9f692f83..ff7d703dbe5 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md
+@@ -21,9 +21,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
+ 
+ ### Purpose
+ 
+-Quick-access reference card for JavaScript patterns. For detailed explanations, see:
+-- [style-guide.md](./style-guide.md) - Full style documentation
+-- [quality-standards.md](quality-standards/overview-modules-and-docs.md) - Quality requirements
++Quick-access reference card for JavaScript patterns.
+ 
+ ### When to Use
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md b/.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md
+index f9e5f9f73cb..17cddf35102 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md
+@@ -439,8 +439,11 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
+ For review runs:
+ 
+ 1. The review reads which rules apply to a Python file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
+-2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the Python checklist, [`python-checklist.md`](../../assets/checklists/python-checklist.md), repeats the format without a second row.
++2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`.
++   - Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches.
++   - The Python checklist, [`python-checklist.md`](../../assets/checklists/python-checklist.md), repeats the format without a second row.
+ 3. Cite this Python standards file as the overlay source for Python-specific findings.
++
+ ---
+ 
+ ## 9. RELATED RESOURCES
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md b/.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md
+index 88175cd9865..d85b5f38888 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md
+@@ -21,9 +21,7 @@ Fast lookup for Python coding patterns, naming conventions, and common structure
+ 
+ ### Purpose
+ 
+-Quick-access reference card for Python patterns. For detailed explanations, see:
+-- [style-guide.md](./style-guide.md) - Full style documentation
+-- [quality-standards.md](./quality-standards.md) - Quality requirements
++Quick-access reference card for Python patterns.
+ 
+ ### When to Use
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md b/.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md
+index 02fad4590c7..a466ef5ad58 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md
+@@ -238,7 +238,7 @@ def func() -> Dict[str, Any]:
+ 
+ ---
+ 
+-## 5. DOCSTRINGS
++## 5. DOCSTRINGS AND COMMENTS
+ 
+ ### Google-Style Format
+ 
+@@ -306,9 +306,8 @@ Example:
+ Follow the universal commenting principles (see `../shared/universal-patterns/naming-and-commenting.md`):
+ 
+ 1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))
+-2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
+-3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
+-4. **No commented-out code:** Delete unused code (git preserves history)
++2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does, including the intent, constraints and reasoning
++3. **No commented-out code:** Delete unused code (git preserves history)
+ 
+ **Good - explains reasoning:**
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md
+index 8234fa3d1a5..5536c08ba81 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md
+@@ -262,6 +262,20 @@ crates/
+       main.rs
+ ```
+ 
++```toml
++[workspace]
++resolver = "3"
++members = [
++  "crates/core",
++  "crates/napi",
++  "crates/wasm",
++]
++
++[workspace.package]
++edition = "2024"
++rust-version = "1.85"
++```
++
+ ### Responsibility Matrix
+ 
+ | Module | Owns | Must Not Own | Severity |
+@@ -290,20 +304,6 @@ crates/
+ - **[P0]** Do not permit target-specific dependencies to change core semantics.
+ - **[P1]** Test feature combinations intentionally rather than relying on default features.
+ 
+-```toml
+-[workspace]
+-resolver = "3"
+-members = [
+-  "crates/core",
+-  "crates/napi",
+-  "crates/wasm",
+-]
+-
+-[workspace.package]
+-edition = "2024"
+-rust-version = "1.85"
+-```
+-
+ ### Re-Exports
+ 
+ **[P1] Re-export a deliberate public API rather than exposing internal module topology.**
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md
+index 08785a18bf1..69e90def093 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md
+@@ -204,6 +204,8 @@ pub fn deterministic_id(
+ - Whitespace
+ - Error payload shape
+ 
++**Acceptance-test rules:**
++
+ - **[P0]** Do not parse and reserialize expected output before comparison.
+ - **[P0]** Do not normalize whitespace, paths, Unicode, or line endings in the acceptance test.
+ - **[P0]** Do not accept semantic JSON equality as release evidence.
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md
+index 01d99cc6b8e..e40a4801001 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md
+@@ -178,7 +178,15 @@ pub fn canonical_entries(
+ 
+ ### Serialization DTOs
+ 
+-**[P0] Boundary DTOs are passive, owned, and versioned.** Serialization must preserve the TypeScript contract for field names, field order, omission, nullability, escaping, encoding, and number spelling.
++**[P0] Boundary DTOs are passive, owned, and versioned.** Serialization must preserve the TypeScript contract for:
++
++- Field names
++- Field order
++- Omission
++- Nullability
++- Escaping
++- Encoding
++- Number spelling
+ 
+ ```rust
+ use serde::{Deserialize, Serialize};
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md
+index 8a4194b1c68..f69166dfcba 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md
+@@ -334,3 +334,9 @@ overflow-checks = true
+ 
+ ---
+ 
++## 4. RELATED RESOURCES
++
++- [build-and-organization.md](./build-and-organization.md) - Cargo, verification and module-organization baseline
++- [modeling-collections-and-api.md](./modeling-collections-and-api.md) - Domain types, collection choices and public API/ABI contracts
++- [docs-errors-and-async.md](./docs-errors-and-async.md) - Rustdoc, error and panic translation, and async patterns
++- [determinism-and-parity.md](./determinism-and-parity.md) - Byte-for-byte determinism and TypeScript parity contracts
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md
+index 264c3d343ba..c9e3823a2ab 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md
+@@ -47,6 +47,18 @@ fn canonical_metadata(
+ 
+ Use `BTreeMap` when key order is observable through serialization, hashing, IDs, traversal, or output. A `HashMap` may be used internally only when its iteration order cannot escape.
+ 
++### IndexMap Exception
++
++```rust
++use indexmap::IndexMap;
++
++fn insertion_ordered_fields() -> IndexMap<String, String> {
++    IndexMap::new()
++}
++```
++
++Use `IndexMap` only when deterministic insertion order is itself the documented contract. If canonical key order is required, prefer `BTreeMap`.
++
+ ### Collect and Sort
+ 
+ ```rust
+@@ -112,18 +124,6 @@ pub fn score_request(request: ScoreRequestDto) -> Result<ScoreOutputDto, CoreErr
+ 
+ When `as` conversions are denied, replace the final conversion with an explicitly reviewed helper or a checked intermediate type appropriate to the domain.
+ 
+-### IndexMap Exception
+-
+-```rust
+-use indexmap::IndexMap;
+-
+-fn insertion_ordered_fields() -> IndexMap<String, String> {
+-    IndexMap::new()
+-}
+-```
+-
+-Use `IndexMap` only when deterministic insertion order is itself the documented contract. If canonical key order is required, prefer `BTreeMap`.
+-
+ ---
+ 
+ ## 3. IMPORT, MODULE, AND EXPORT TEMPLATES
+@@ -204,7 +204,7 @@ Native and WASM features must compile independently. Do not make boundary runtim
+ 
+ ---
+ 
+-## 4. ERROR AND PANIC MAPPING
++## 4. ERROR, PANIC, AND LINT POLICY
+ 
+ ### Domain Error
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md
+index 5829ddc45ed..f1a41b8dcdc 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md
+@@ -21,10 +21,7 @@ Copy-paste templates, naming conventions, deterministic recipes, and Cargo comma
+ 
+ ### Purpose
+ 
+-Quick-access reference card for Rust compute kernels and their JavaScript boundaries. For detailed explanations, see:
+-
+-- [style-guide.md](../style-guide/overview-and-file-header.md) - Full Rust style and interop documentation
+-- [quality-standards.md](../quality-standards/overview-and-data-ownership.md) - Safety, parity, and verification requirements
++Quick-access reference card for Rust compute kernels and their JavaScript boundaries.
+ 
+ Rust supplements the existing TypeScript/Node MCP backend. Keep MCP transport, public tool schemas, daemon and CLI wiring, feature flags, and fallback selection in TypeScript. Move only measured compute kernels behind narrow napi-rs, WASM/WASI, or sidecar adapters.
+ 
+@@ -467,3 +464,12 @@ fn js_error(code: &str, message: &str) -> JsValue {
+ Keep serializer configuration explicit. `Serializer::json_compatible()` produces JavaScript-compatible values, but exact field order, omission behavior, integer representation, and number spelling still require golden tests against the TypeScript oracle.
+ 
+ ---
++
++## 3. RELATED RESOURCES
++
++- [naming-ordering-and-signatures.md](./naming-ordering-and-signatures.md) - Naming table, source-section order and boundary signature patterns
++- [collections-imports-and-errors.md](./collections-imports-and-errors.md) - Canonical collection, import/export and error-mapping recipes
++- [rustdoc-and-cargo.md](./rustdoc-and-cargo.md) - Rustdoc template and the Cargo, formatting, build and supply-chain commands
++- [determinism-parity-and-related.md](./determinism-parity-and-related.md) - Determinism, parity and golden-replay recipes
++- [style-guide.md](../style-guide/overview-and-file-header.md) - Full Rust style and interop documentation
++- [quality-standards.md](../quality-standards/overview-and-data-ownership.md) - Safety, parity, and verification requirements
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md
+index bfce1394744..8fc64f3d6de 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md
+@@ -198,7 +198,8 @@ cargo build -p ranking-napi \
+   --target aarch64-apple-darwin
+ ```
+ 
+-Use the lowest proven Node-API level supporting the required APIs. Test the oldest declared Node version and every published OS, CPU, and libc package.
++- Use the lowest proven Node-API level supporting the required APIs.
++- Test the oldest declared Node version and every published OS, CPU, and libc package.
+ 
+ ### wasm-bindgen Target
+ 
+@@ -241,13 +242,13 @@ cargo check -p ranking-wasm --no-default-features --features wasm --locked
+ 
+ ### Supply-Chain Gates
+ 
++`cargo deny` and `cargo audit` are blocking when configured. Record `cargo vet` status while policy is advisory, then make it blocking after criteria, imports, and exceptions are committed.
++
+ ```bash
+ cargo deny check
+ cargo audit
+ cargo vet --locked
+ ```
+ 
+-`cargo deny` and `cargo audit` are blocking when configured. Record `cargo vet` status while policy is advisory, then make it blocking after criteria, imports, and exceptions are committed.
+-
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md
+index a914de37e77..743ed894865 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md
+@@ -91,6 +91,15 @@ Every allowed unsafe block requires an adjacent `// SAFETY:` comment describing
+ - Cleanup responsibility
+ - Thread affinity
+ 
++This pattern belongs only in a reviewed boundary crate. The pure core uses `#![forbid(unsafe_code)]`.
++
++An unsafe block also requires:
++
++- A test exercising the valid path
++- A test challenging enforceable preconditions
++- Boundary documentation stating ownership and lifetime
++- Review of cleanup and thread-affinity behavior
++
+ ```rust
+ fn copy_bytes(pointer: *const u8, length: usize) -> Vec<u8> {
+     assert!(!pointer.is_null() || length == 0);
+@@ -104,15 +113,6 @@ fn copy_bytes(pointer: *const u8, length: usize) -> Vec<u8> {
+ }
+ ```
+ 
+-This pattern belongs only in a reviewed boundary crate. The pure core uses `#![forbid(unsafe_code)]`.
+-
+-An unsafe block also requires:
+-
+-- A test exercising the valid path
+-- A test challenging enforceable preconditions
+-- Boundary documentation stating ownership and lifetime
+-- Review of cleanup and thread-affinity behavior
+-
+ ### Rustdoc Scope
+ 
+ Document all public boundary types and operations. Document private items when their invariants are not obvious from types and names.
+@@ -125,6 +125,17 @@ Use:
+ - Compilable examples
+ - Intra-doc links where practical
+ 
++### Required Rustdoc Sections
++
++Use exact standard headings where applicable:
++
++- `# Errors` for fallible public operations
++- `# Panics` when a public operation can panic
++- `# Safety` for every `unsafe fn`
++- `# Examples` for public operations and non-obvious public types
++
++Do not add `# Panics` merely to say a function never panics. Prefer an API whose signature and implementation avoid panic paths.
++
+ ### Public Operation Template
+ 
+ ```rust
+@@ -220,17 +231,6 @@ impl TryFrom<&str> for SymbolId {
+ 
+ Examples for fallible operations use `?`, not `unwrap` or `expect`.
+ 
+-### Required Rustdoc Sections
+-
+-Use exact standard headings where applicable:
+-
+-- `# Errors` for fallible public operations
+-- `# Panics` when a public operation can panic
+-- `# Safety` for every `unsafe fn`
+-- `# Examples` for public operations and non-obvious public types
+-
+-Do not add `# Panics` merely to say a function never panics. Prefer an API whose signature and implementation avoid panic paths.
+-
+ ### Boundary Documentation
+ 
+ Every exported napi-rs, WASM, WASI, or sidecar operation documents:
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md
+index 2894aff2a2f..ccec6aa352d 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md
+@@ -188,6 +188,41 @@ const MAX_SAFE_INTEGER: u64 = 9_007_199_254_740_991;
+ 
+ Do not use magic constants for parity-sensitive operations. Name the scale, radix, delimiter, truncation length, and algorithm parameters.
+ 
++### Numeric Parity Helpers
++
++Keep distinct TypeScript operations in distinct helpers.
++
++```rust
++const SIX_DECIMAL_SCALE: f64 = 1_000_000.0;
++
++fn round_scaled_six(value: f64) -> Result<f64, &'static str> {
++    if !value.is_finite() {
++        return Err("value must be finite");
++    }
++
++    let rounded = (value * SIX_DECIMAL_SCALE).round() / SIX_DECIMAL_SCALE;
++    Ok(if rounded == 0.0 { 0.0 } else { rounded })
++}
++
++fn fixed_six_text(value: f64) -> Result<String, &'static str> {
++    if !value.is_finite() {
++        return Err("value must be finite");
++    }
++
++    Ok(format!("{value:.6}"))
++}
++```
++
++These helpers demonstrate separate operations; they do not establish TypeScript equivalence by themselves. JavaScript and Rust differ on rounding edge cases, negative zero, and number spelling. Each parity helper requires exhaustive fixtures generated by the pinned TypeScript oracle.
++
++Never substitute one of the following without fixture evidence:
++
++- `format!("{value:.6}")`
++- `f64::to_string`
++- A shortest-round-trip formatter
++- `serde_json` number serialization
++- `(value * scale).round() / scale`
++
+ ### Deterministic Collection Formatting
+ 
+ Use canonical collection types when order is observable:
+@@ -247,41 +282,6 @@ Requirements:
+ - Verify lexical ordering against the permitted TypeScript identifier alphabet.
+ - Do not assume Rust `str::cmp` is equivalent to locale-sensitive JavaScript comparison.
+ 
+-### Numeric Parity Helpers
+-
+-Keep distinct TypeScript operations in distinct helpers.
+-
+-```rust
+-const SIX_DECIMAL_SCALE: f64 = 1_000_000.0;
+-
+-fn round_scaled_six(value: f64) -> Result<f64, &'static str> {
+-    if !value.is_finite() {
+-        return Err("value must be finite");
+-    }
+-
+-    let rounded = (value * SIX_DECIMAL_SCALE).round() / SIX_DECIMAL_SCALE;
+-    Ok(if rounded == 0.0 { 0.0 } else { rounded })
+-}
+-
+-fn fixed_six_text(value: f64) -> Result<String, &'static str> {
+-    if !value.is_finite() {
+-        return Err("value must be finite");
+-    }
+-
+-    Ok(format!("{value:.6}"))
+-}
+-```
+-
+-These helpers demonstrate separate operations; they do not establish TypeScript equivalence by themselves. JavaScript and Rust differ on rounding edge cases, negative zero, and number spelling. Each parity helper requires exhaustive fixtures generated by the pinned TypeScript oracle.
+-
+-Never substitute one of the following without fixture evidence:
+-
+-- `format!("{value:.6}")`
+-- `f64::to_string`
+-- A shortest-round-trip formatter
+-- `serde_json` number serialization
+-- `(value * scale).round() / scale`
+-
+ ---
+ 
+ ## 3. IMPORT AND MODULE ORDERING
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md
+index 4f8c977ff37..545adfd0ae6 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md
+@@ -100,6 +100,16 @@ The adapter must also preserve whether the existing TypeScript operation throws
+ 
+ ## 4. PANIC-FREE BOUNDARY VALIDATION
+ 
++JavaScript-controlled data must not reach:
++
++- `unwrap`
++- `expect`
++- Unchecked indexing
++- `panic!`
++- `unreachable!`
++- Assertions used as validation
++- `partial_cmp(...).unwrap()`
++
+ Do not use:
+ 
+ ```rust
+@@ -122,16 +132,6 @@ fn first_candidate(candidates: &[String]) -> Option<&str> {
+ }
+ ```
+ 
+-JavaScript-controlled data must not reach:
+-
+-- `unwrap`
+-- `expect`
+-- Unchecked indexing
+-- `panic!`
+-- `unreachable!`
+-- Assertions used as validation
+-- `partial_cmp(...).unwrap()`
+-
+ ---
+ 
+ ## 5. DETERMINISTIC IDENTIFIERS
+@@ -222,7 +222,8 @@ After worker execution:
+ 
+ Use Tokio only for genuine Rust-owned asynchronous I/O. Use Rayon only after benchmark evidence demonstrates a useful batch-size threshold.
+ 
+-Parity-visible floating-point reductions MUST NOT run in nondeterministic parallel order. If parallel reduction is unavoidable, fix the reduction tree and golden-test it across every supported target.
++- Parity-visible floating-point reductions MUST NOT run in nondeterministic parallel order.
++- If parallel reduction is unavoidable, fix the reduction tree and golden-test it across every supported target.
+ 
+ Baseline WASM is single-threaded. Promise bridging does not create CPU parallelism.
+ 
+@@ -230,6 +231,8 @@ Baseline WASM is single-threaded. Promise bridging does not create CPU paralleli
+ 
+ ## 8. NAPI-RS EXPORT EXAMPLE
+ 
++In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
++
+ ```rust
+ use napi::bindgen_prelude::{Error, Status};
+ use napi_derive::napi;
+@@ -262,8 +265,6 @@ pub fn rank_candidates(candidates: Vec<CandidateDto>) -> napi::Result<Vec<Candid
+ }
+ ```
+ 
+-In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
+-
+ ---
+ 
+ ## 9. WASM-BINDGEN EXPORT EXAMPLE
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md
+index 23eae8e34aa..8a4fde7eafc 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md
+@@ -257,6 +257,8 @@ impl TryFrom<SearchOptionsDto> for SearchOptions {
+ 
+ ### `From` and `TryFrom`
+ 
++Implement `From` or `TryFrom`, not `Into` or `TryInto`, directly.
++
+ Use `From` only when conversion is:
+ 
+ - Infallible
+@@ -319,12 +321,12 @@ impl TryFrom<&str> for MemoryState {
+ }
+ ```
+ 
+-Implement `From` or `TryFrom`, not `Into` or `TryInto`, directly.
+-
+ ### Enum Representation
+ 
+ Use stable string discriminants or explicit numeric codes at the boundary. Never export incidental Rust ordinals.
+ 
++Do not use `variant as u8` as a wire contract unless every numeric code is explicit and versioned.
++
+ ```rust
+ use serde::{Deserialize, Serialize};
+ 
+@@ -337,7 +339,5 @@ enum MemoryTierDto {
+ }
+ ```
+ 
+-Do not use `variant as u8` as a wire contract unless every numeric code is explicit and versioned.
+-
+ Use `#[non_exhaustive]` only when wildcard evolution is intentional. Adapter error mappings SHOULD remain exhaustive so new variants cannot silently receive the wrong JavaScript code.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md
+index 3b911e4e13d..b8204780ff0 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md
+@@ -67,6 +67,20 @@ All Rust source files MUST begin with a module header block identifying the modu
+ 
+ Crate roots add crate-level safety and documentation attributes before the module header. Ordinary module files begin directly with the header.
+ 
++### Requirements
++
++- Box width: 67 `─` characters plus the `// ` prefix (70 columns total)
++- Module name: Left-aligned within the header
++- Pure core: `#![forbid(unsafe_code)]` at the crate root
++- FFI or runtime adapter: `#![deny(unsafe_op_in_unsafe_fn)]` at the crate root
++- Crate attributes: Before the module header
++- Module documentation: After the module header and before imports
++- Imports: After module documentation
++- No generated timestamp, packet identifier, ticket identifier, or transient ownership marker
++- No copied TypeScript file path unless it is part of a durable compatibility contract
++
++**Rationale**: The crate-level attribute states the safety policy enforced by the compiler. The module header makes mixed TypeScript/Rust workspaces easier to navigate without embedding transient project-management data.
++
+ ### Module Template
+ 
+ ```rust
+@@ -95,20 +109,6 @@ Crate roots add crate-level safety and documentation attributes before the modul
+ // ───────────────────────────────────────────────────────────────────
+ ```
+ 
+-### Requirements
+-
+-- Box width: 67 characters total
+-- Module name: Left-aligned within the header
+-- Pure core: `#![forbid(unsafe_code)]` at the crate root
+-- FFI or runtime adapter: `#![deny(unsafe_op_in_unsafe_fn)]` at the crate root
+-- Crate attributes: Before the module header
+-- Module documentation: After the module header and before imports
+-- Imports: After module documentation
+-- No generated timestamp, packet identifier, ticket identifier, or transient ownership marker
+-- No copied TypeScript file path unless it is part of a durable compatibility contract
+-
+-**Rationale**: The crate-level attribute states the safety policy enforced by the compiler. The module header makes mixed TypeScript/Rust workspaces easier to navigate without embedding transient project-management data.
+-
+ ### Full Header Example
+ 
+ ```rust
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md
+index 9f76ea96a0c..22e68f00429 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md
+@@ -178,6 +178,8 @@ Use one divider format consistently within a file. Rust source uses line-comment
+ 
+ ### Standard Source Order
+ 
++Number sections from the first divider actually present. The module header does not count.
++
+ | Order | Section Name | Purpose |
+ |-------|--------------|---------|
+ | 1 | IMPORTS | Standard-library, third-party, and crate imports |
+@@ -188,8 +190,6 @@ Use one divider format consistently within a file. Rust source uses line-comment
+ | 6 | CORE LOGIC | Public and private implementation |
+ | 7 | TESTS | Unit tests in `#[cfg(test)] mod tests` |
+ 
+-Number sections from the first divider actually present. The module header does not count.
+-
+ ### Complete Organization Example
+ 
+ ```rust
+@@ -274,7 +274,9 @@ mod tests {
+ }
+ ```
+ 
+-### Module and Workspace Layout
++---
++
++## 4. MODULE AND WORKSPACE LAYOUT
+ 
+ Use a pure core with thin runtime adapters:
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+index 8c8b752fb83..b88e5a92d6f 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+@@ -13,7 +13,7 @@ version: 1.0.3.0
+ 
+ # Alignment Verification Automation
+ 
+-This document describes the repeatable verifier introduced for recurring alignment drift checks.
++When a repeatable drift check fires, this tells you whether it was meant to block the build and where a new check attaches so the guard set stays one system.
+ 
+ ## 1. OVERVIEW
+ 
+@@ -52,13 +52,17 @@ Use this reference when tuning recurring checks or interpreting verifier output
+ ### What it does not check
+ 
+ The verifier is intentionally lightweight. It does not replace the standards
+-checklists and, by default, does not scan markdown. The opt-in `--check-router`
+-flag adds one narrow exception: it checks that every RESOURCE_MAP/DEFAULT_RESOURCE
+-leaf a skill's router names exists on disk (a dead-route guard, scoped to the
+-router block only). It still never inspects markdown prose. RESOURCE_MAP
+-parent-child *equality* is not checked by this script either; leg 2 of
+-`verify-router-sync.cjs` checks it, as the section "Router-sync guard" below
+-records. These remain manual review gates:
++checklists and, by default, does not scan markdown.
++
++- The opt-in `--check-router` flag adds one narrow exception: it checks that
++  every RESOURCE_MAP/DEFAULT_RESOURCE leaf a skill's router names exists on
++  disk (a dead-route guard, scoped to the router block only). It still never
++  inspects markdown prose.
++- RESOURCE_MAP parent-child *equality* is not checked by this script either;
++  leg 2 of `verify-router-sync.cjs` checks it, as the section "Router-sync
++  guard" below records.
++
++These remain manual review gates:
+ 
+ - exact visual header shape beyond the marker-level checks above;
+ - naming conventions;
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md
+index d0e6ec1b4e5..a77795132de 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md
+@@ -217,5 +217,3 @@ __all__ = [
+ 
+ # Implementation follows...
+ ```
+-
+----
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md
+index 4695911817d..f3542a8acbf 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md
+@@ -206,6 +206,3 @@ Benefits:
+ - Single import point: `import { MemoryError } from './lib/errors';`
+ - Clear public API surface
+ - Implementation details hidden
+-
+----
+-
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md
+index 6ae272d5884..3ab9822560a 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md
+@@ -161,13 +161,21 @@ The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is
+ 
+ ### MCP Config And The Split-Shape Caveat
+ 
+-`.cursor/mcp.json` is a symlink to the repo's own `.mcp.json`. Cursor's documented MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), so one file serves both. `opencode.json` cannot participate — its schema differs (`mcp` key, `command` as an array, `environment` rather than `env`).
+-
+-Cursor's MCP hook payloads split the server and tool across **two** fields — `mcp_server_name: "sequential_thinking"` alongside a BARE `tool_name: "sequentialthinking"` — where Claude packs both into one `mcp__<server>__<tool>` string. The shared `mcp-route-guard` core parses only the packed forms, so a Cursor adapter MUST recombine the two fields before forwarding; passing the bare tool name through matches nothing and the guard silently never advises. Confirmed by testing the core directly: `mcp__figma__get_screenshot` and `figma_get_screenshot` both advise, bare `get_screenshot` does not. `afterMCPExecution` also fires (adding `result_json` + `duration`) but has no Claude-side counterpart to proxy to, so nothing is wired for it.
++- `.cursor/mcp.json` is a symlink to the repo's own `.mcp.json`.
++- Cursor's documented MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), so one file serves both.
++- `opencode.json` cannot participate — its schema differs (`mcp` key, `command` as an array, `environment` rather than `env`).
++- Cursor's MCP hook payloads split the server and tool across **two** fields — `mcp_server_name: "sequential_thinking"` alongside a BARE `tool_name: "sequentialthinking"` — where Claude packs both into one `mcp__<server>__<tool>` string.
++- The shared `mcp-route-guard` core parses only the packed forms, so a Cursor adapter MUST recombine the two fields before forwarding; passing the bare tool name through matches nothing and the guard silently never advises.
++- Confirmed by testing the core directly: `mcp__figma__get_screenshot` and `figma_get_screenshot` both advise, bare `get_screenshot` does not.
++- `afterMCPExecution` also fires (adding `result_json` + `duration`) but has no Claude-side counterpart to proxy to, so nothing is wired for it.
+ 
+ ### Discovery Mirror — `.cursor/hooks/`
+ 
+-`.cursor/hooks/` holds a symlink to every file `.cursor/hooks.json` invokes, purely so the scripts are visible at Cursor's own documented conventional path (`.cursor/hooks/<script>`). `.cursor/hooks.json`'s `command` fields still point at the real paths above, not these symlinks — confirmed by direct testing, invoking `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js` through the symlink produces **zero output**, because each compiles from a `.ts` source ending in `runCursorHook(import.meta.url, main)`, whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against the ESM-loader-resolved `import.meta.url` (resolves through the symlink to the real path) — they never match, so `main()` never runs. The plain `.mjs` files have no such guard and work through either path, but every `command` entry stays pointed at the real path for consistency. See `.cursor/hooks/README.md` for the full explanation.
++- `.cursor/hooks/` holds a symlink to every file `.cursor/hooks.json` invokes, purely so the scripts are visible at Cursor's own documented conventional path (`.cursor/hooks/<script>`).
++- `.cursor/hooks.json`'s `command` fields still point at the real paths above, not these symlinks.
++- Invoking `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js` through the symlink produces **zero output** (confirmed by direct testing): each compiles from a `.ts` source ending in `runCursorHook(import.meta.url, main)`, whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against the ESM-loader-resolved `import.meta.url` (resolves through the symlink to the real path) — they never match, so `main()` never runs.
++- The plain `.mjs` files have no such guard and work through either path, but every `command` entry stays pointed at the real path for consistency.
++- See `.cursor/hooks/README.md` for the full explanation.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md
+index f9dc4ea690a..0b7e55f532e 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md
+@@ -302,7 +302,9 @@ handleMemoryDriftWhy, handleMemoryCausalLink, handleMemoryCausalStats, handleMem
+ 2. **Documented workaround**: name the durable external tracker plus the symptom.
+ 3. **Never** to point at a spec folder, task, requirement, checklist, packet, phase, or ADR — capture the WHY instead.
+ 
+-### Design Principles Gate (KISS/DRY/SOLID)
++---
++
++## 5. DESIGN PRINCIPLES GATE (KISS/DRY/SOLID)
+ 
+ Apply this gate before finalizing implementation:
+ 
+@@ -311,5 +313,3 @@ Apply this gate before finalizing implementation:
+ 3. **SOLID**: flag SRP/OCP/LSP/ISP/DIP violations and simplify before merge.
+ 
+ Keep rule constants centralized and make tests import those constants rather than repeat local literals.
+-
+----
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md
+index f74bb60a35c..e6e2f8ffbeb 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md
+@@ -274,7 +274,7 @@ Use equivalent names with language-appropriate casing for the same concept.
+ 
+ ### Pattern C: Cross-language comment consistency
+ 
+-Express the same durable WHY across code and config comments — never a shared task/requirement id (those rot per the canonical rule; see §4).
++Express the same durable WHY across code and config comments — never a shared task/requirement id (those rot per the canonical rule; see [`../../../../sk-code-quality/references/code-style-guide.md`](../../../../sk-code-quality/references/code-style-guide.md) §4).
+ 
+ **TypeScript / JavaScript**
+ ```typescript
+@@ -303,18 +303,7 @@ readonly MAX_RETRIES=3
+ 
+ ---
+ 
+-## 5. RELATED RESOURCES
+-
+-### Language-Specific References
+-
+-- `../../javascript/style-guide.md` - JavaScript naming, formatting, headers
+-- `../../typescript/style-guide/overview-strict-and-naming.md` - TypeScript naming, types, interfaces, imports
+-- `../../python/style-guide.md` - Python naming, docstrings, imports
+-- `../../shell/style-guide/overview-structure-and-naming.md` - Shell shebang, quoting, functions
+-- `../rust/style-guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
+-- `../../config/style-guide.md` - JSON/JSONC structure, comments
+-
+-### Cross-Language Determinism Contracts
++## 5. CROSS-LANGUAGE DETERMINISM CONTRACTS
+ 
+ Rust here is a napi-rs/WASM/sidecar compatibility layer over the TypeScript
+ backend, so its outputs are bound by language-neutral contracts the shared tier
+@@ -326,6 +315,19 @@ owns (the mechanics live in each language's trio, not here):
+ - Deterministic hash/iteration order — canonical map iteration, never hash-seeded.
+ - Byte-for-byte differential fixtures — the same input yields identical bytes from the Rust and TypeScript paths.
+ 
++---
++
++## 6. RELATED RESOURCES
++
++### Language-Specific References
++
++- `../../javascript/style-guide.md` - JavaScript naming, formatting, headers
++- `../../typescript/style-guide/overview-strict-and-naming.md` - TypeScript naming, types, interfaces, imports
++- `../../python/style-guide.md` - Python naming, docstrings, imports
++- `../../shell/style-guide/overview-structure-and-naming.md` - Shell shebang, quoting, functions
++- `../rust/style-guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
++- `../../config/style-guide.md` - JSON/JSONC structure, comments
++
+ ### Related Documents
+ 
+ - `code_organization.md` - Module organization, file structure
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md b/.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md
+index 3edcd90fcc3..86028f1713f 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md
+@@ -19,8 +19,16 @@ OpenCode-only rules for the implement and verify phases.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ The shared [implementation](../workflow-implement.md) and [verification](../workflow-verify.md) workflows apply on every surface. This file adds what holds only for OpenCode system code under `.skilled/`: the implementation guardrails, the verification command chain and the runtime build traps.
+ 
++### When to Use
++
++- Implementing or verifying a change to OpenCode system code under `.skilled/`
++- Deciding whether a source edit needs a `dist/` rebuild before its behavior is verified
++- Handing missing build output, stale generated runtime files or a wrong package boundary back to implementation
++
+ ---
+ 
+ ## 2. IMPLEMENTATION GUARDRAILS
+@@ -41,7 +49,11 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder>
+ 
+ The exit-code and warning contract of `validate.sh` is owned by `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` (section 1 for the exit taxonomy, section 14 for the ways a run misleads). Read it there, not from a copy here. The one fact this workflow needs: a completion claim requires the explicit `RESULT: PASSED` line, because a warning never changes the exit code and exit status alone has misled in both directions.
+ 
+-Use the package script for the package you changed. The spec-kit root and project-reference workspaces use `tsc --build`. Satellite packages with their own package boundary use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay. For TypeScript tests, run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
++Use the package script for the package you changed:
++
++- **Spec-kit root and project-reference workspaces**: `tsc --build`.
++- **Satellite packages with their own package boundary**: `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
++- **TypeScript tests**: run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
+ 
+ When verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](../workflow-implement.md) before making any completion claim.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md
+index 74eaf561bd4..9bf31d182a7 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md
+@@ -53,6 +53,18 @@ Every shell script must start with the portable shebang:
+ 
+ **Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:1`
+ 
++### File Header Present
++
++Every script must have a header comment block:
++
++```bash
++#!/usr/bin/env bash
++# ───────────────────────────────────────────────────────────────
++# COMPONENT: [COMPONENT NAME]
++# ───────────────────────────────────────────────────────────────
++# Brief description of script purpose
++```
++
+ ### Strict Mode
+ 
+ Every script must enable strict mode:
+@@ -91,18 +103,6 @@ file_path=$1
+ if (( count > 10 )); then
+ ```
+ 
+-### File Header Present
+-
+-Every script must have a header comment block:
+-
+-```bash
+-#!/usr/bin/env bash
+-# ───────────────────────────────────────────────────────────────
+-# COMPONENT: [COMPONENT NAME]
+-# ───────────────────────────────────────────────────────────────
+-# Brief description of script purpose
+-```
+-
+ ### No Commented-Out Code
+ 
+ Remove all commented-out code. Use version control for history.
+@@ -272,4 +272,3 @@ Scripts should pass ShellCheck without warnings:
+ shellcheck script.sh
+ ```
+ 
+----
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md
+index 1645f9943e0..8bffb0dfdb6 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md
+@@ -245,8 +245,11 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
+ For review runs:
+ 
+ 1. The review reads which rules apply to a shell file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
+-2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the shell checklist, [`shell-checklist.md`](../../../assets/checklists/shell-checklist.md), repeats the format without a second row.
++2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`.
++   - Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../../assets/checklists/universal-checklist.md).
++   - That is the checklist every SKILLED file reaches, so the shell checklist, [`shell-checklist.md`](../../../assets/checklists/shell-checklist.md), repeats the format without a second row.
+ 3. Cite this shell standards file as the overlay source for shell-specific findings.
++
+ ---
+ 
+ ## 7. SHELLCHECK INTEGRATION
+@@ -297,4 +300,4 @@ problematic_function() {
+ 
+ ### External Tools
+ - [ShellCheck](https://www.shellcheck.net/) - Static analysis
+-- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
++- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) - The upstream conventions these rules follow
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md
+index 23043b07adf..91ba5b81e80 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md
+@@ -21,9 +21,7 @@ Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCo
+ 
+ ### Purpose
+ 
+-Quick-access reference card for Bash patterns. For detailed explanations, see:
+-- [style-guide.md](../style-guide/overview-structure-and-naming.md) - Full style documentation
+-- [quality-standards.md](../quality-standards/overview-and-priority-blockers.md) - Quality requirements
++Quick-access reference card for Bash patterns.
+ 
+ ### When to Use
+ 
+@@ -292,3 +290,8 @@ done
+ ```
+ 
+ ---
++
++## 7. RELATED RESOURCES
++
++- [style-guide.md](../style-guide/overview-structure-and-naming.md) - Full style documentation
++- [quality-standards.md](../quality-standards/overview-and-priority-blockers.md) - Quality requirements
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md b/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md
+index 46396d172fa..bee77964d50 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md
+@@ -165,7 +165,10 @@ _json_escape() {
+ }
+ ```
+ 
+-**Exception**: a file sourced into an interactive shell gives every helper that its public functions call a plain prefixed name instead, such as `skilled_loop_resolve`. Agent tool shells, Claude Code's among them, are rebuilt from a function snapshot that drops names starting with a single underscore, so a public function that calls `_helper` there fails with `command not found`.
++**Exception**:
++
++- A file sourced into an interactive shell gives every helper that its public functions call a plain prefixed name instead, such as `skilled_loop_resolve`.
++- Agent tool shells, Claude Code's among them, are rebuilt from a function snapshot that drops names starting with a single underscore, so a public function that calls `_helper` there fails with `command not found`.
+ 
+ **Evidence**: `.skilled/bin/skilled-loop-shell.sh` and `.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:37-45`
+ 
+@@ -280,14 +283,17 @@ log_detail() {
+ 
+ **Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh:345`
+ 
++---
++
++## 6. COMMENT CONVENTIONS
++
+ ### Inline Comments
+ 
+ Follow the universal commenting principles (see `../../shared/universal-patterns/naming-and-commenting.md`):
+ 
+ 1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))
+-2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
+-3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
+-4. **No commented-out code:** Delete unused code (git preserves history)
++2. **Focus on WHY, not WHAT:** Explain the intent, constraints and reasoning behind the code, not what it does
++3. **No commented-out code:** Delete unused code (git preserves history)
+ 
+ **Good - explains reasoning:**
+ 
+@@ -342,4 +348,3 @@ validate_json() {
+ }
+ ```
+ 
+----
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md b/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md
+index 52c53ea47af..fe2fa21fa3a 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md
+@@ -316,5 +316,5 @@ fi
+ - [quick-reference.md](../quick-reference/template-variables-and-loops.md) - Quick lookup
+ 
+ ### External Standards
+-- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
++- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) - The upstream conventions these rules follow
+ - [ShellCheck](https://www.shellcheck.net/) - Static analysis tool
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md
+index 22409ad5f3f..73d2ae35091 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md
+@@ -333,6 +333,3 @@ function normalizeScore(raw: number, max: number) {
+ **Why explicit on public API**: Return types serve as documentation, prevent accidental signature changes, and improve compile-time error messages for consumers.
+ 
+ **Why inferred on private helpers**: Reduces boilerplate for internal code where the return type is obvious from the implementation.
+-
+----
+-
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md
+index 9e5a51427be..789cc417d93 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md
+@@ -98,6 +98,8 @@ MCP server package rule.
+ 
+ After editing TypeScript source files, the compiled `dist/` output must be rebuilt. The MCP server and CLI scripts run from `dist/`, not from `.ts` source directly.
+ 
++**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
++
+ **Build command** (from skill root, e.g. `.skilled/skills/system-spec-kit/`):
+ 
+ ```bash
+@@ -114,8 +116,6 @@ npm run typecheck      # often adds: --noEmit --composite false
+ npm run test:cli       # verifies dist/ output runs correctly
+ ```
+ 
+-**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
+-
+ **Workspace build order**: `tsc --build` respects project references and builds in dependency order:
+ 1. `shared/` (no dependencies)
+ 2. `mcp-server/` (depends on `shared/`)
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md
+index 83fd8d4d478..cabe5492976 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md
+@@ -153,7 +153,7 @@ interface CacheEntry<T> {
+ | `@throws`       | Document thrown exceptions                   | `@throws {@link MemoryError} If DB fails`      |
+ | `@typeParam`    | Describe generic type parameter              | `@typeParam T - Cached value type`             |
+ | `@remarks`      | Extended description (after summary)         | `@remarks Uses cosine similarity...`           |
+-| `@example`      | Usage example with code block                | `@example \`\`\`typescript ... \`\`\``         |
++| `@example`      | Usage example with code block                | ``@example ```typescript ... ``` `` |
+ | `@see`          | Cross-reference                              | `@see {@link SearchOptions}`                   |
+ | `@deprecated`   | Mark as deprecated                           | `@deprecated Use searchMemories instead`       |
+ | `@internal`     | Mark as internal (not public API)            | `@internal`                                    |
+@@ -163,6 +163,23 @@ interface CacheEntry<T> {
+ 
+ ## 3. TYPED ERROR CLASSES
+ 
++### Error Code Const Object
++
++```typescript
++export const ErrorCodes = {
++  EMBEDDING_FAILED: 'E001',
++  FILE_NOT_FOUND: 'E010',
++  DB_CONNECTION_FAILED: 'E020',
++  INVALID_PARAMETER: 'E030',
++  SEARCH_FAILED: 'E040',
++  RATE_LIMITED: 'E429',
++} as const;
++
++export type ErrorCodeKey = keyof typeof ErrorCodes;
++```
++
++Prefer `export const X = {...} as const` plus `keyof typeof X` over `enum` for shared code maps.
++
+ ### Custom Error Pattern
+ 
+ Extend `Error` with typed properties:
+@@ -209,23 +226,6 @@ class ValidationError extends MemoryError {
+ }
+ ```
+ 
+-### Error Code Const Object
+-
+-```typescript
+-export const ErrorCodes = {
+-  EMBEDDING_FAILED: 'E001',
+-  FILE_NOT_FOUND: 'E010',
+-  DB_CONNECTION_FAILED: 'E020',
+-  INVALID_PARAMETER: 'E030',
+-  SEARCH_FAILED: 'E040',
+-  RATE_LIMITED: 'E429',
+-} as const;
+-
+-export type ErrorCodeKey = keyof typeof ErrorCodes;
+-```
+-
+-Prefer `export const X = {...} as const` plus `keyof typeof X` over `enum` for shared code maps.
+-
+ ### Typed Error Handling
+ 
+ ```typescript
+@@ -316,5 +316,3 @@ const result = await safeAsync(
+   'memory-search',
+ );
+ ```
+-
+----
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md
+index bad5ed826b2..fa72fca64ac 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md
+@@ -257,6 +257,8 @@ module settings where their package boundary requires ESM.
+ 
+ ### Build & Rebuild Commands
+ 
++**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
++
+ ```bash
+ # Standard build (type check + emit dist/)
+ npm run build                        # runs: tsc --build
+@@ -276,8 +278,6 @@ npm run test:cli
+ 
+ **After editing `.ts` source files**: Always rebuild `dist/` — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
+ 
+-**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
+-
+ ---
+ 
+ ## 6. COMMON ONE-LINERS
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md
+index 511e43d7252..fd8f2870c07 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md
+@@ -21,13 +21,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
+ 
+ ### Purpose
+ 
+-Quick-access reference card for TypeScript patterns. For detailed explanations, see:
+-- [style-guide.md](../style-guide/overview-strict-and-naming.md) - Full style documentation
+-- [quality-standards.md](../quality-standards/overview-and-type-system.md) - Quality requirements
+-
+-Current system-spec-kit TypeScript is package-aware: `shared/` and
+-`mcp-server/` use NodeNext ESM, `scripts/` uses ES2022 ESM, and root CommonJS
+-settings are only fallback defaults for workspaces that do not override them.
++Quick-access reference card for TypeScript patterns.
+ 
+ ### When to Use
+ 
+@@ -35,6 +29,12 @@ settings are only fallback defaults for workspaces that do not override them.
+ - Looking up naming or type-annotation conventions
+ - Reusing common TypeScript utility-type patterns
+ 
++Current system-spec-kit TypeScript is package-aware:
++
++- `shared/` and `mcp-server/` use NodeNext ESM
++- `scripts/` uses ES2022 ESM
++- root CommonJS settings are only fallback defaults for workspaces that do not override them
++
+ ---
+ 
+ ## 2. COMPLETE FILE TEMPLATE
+@@ -278,3 +278,8 @@ type SearchReturn = ReturnType<typeof searchMemories>;
+ ```
+ 
+ ---
++
++## 7. RELATED RESOURCES
++
++- [style-guide.md](../style-guide/overview-strict-and-naming.md) - Full style documentation
++- [quality-standards.md](../quality-standards/overview-and-type-system.md) - Quality requirements
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md
+index c490984dbda..e8e848a8a46 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md
+@@ -213,9 +213,8 @@ export type { SearchResult, SearchOptions } from '../types.js';
+ ### Principles (Same as JavaScript)
+ 
+ 1. **Quantity limit (Skilled surface setting)**: Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))
+-2. **Focus on purposeful semantics**: Explain WHY something is done, not WHAT it does
+-3. **Focus on WHY, not WHAT**: Explain intent, constraints, reasoning
+-4. **No commented-out code**: Delete unused code (git preserves history)
++2. **Focus on purposeful semantics**: Explain WHY something is done, including intent, constraints and reasoning, not WHAT it does
++3. **No commented-out code**: Delete unused code (git preserves history)
+ 
+ ### Comment Examples
+ 
+@@ -241,7 +240,7 @@ All comment text MUST start with a capital letter:
+ 
+ ### TSDoc Comments (Replaces JSDoc)
+ 
+-TypeScript uses TSDoc format for documentation comments. See `quality-standards.md` for the full TSDoc reference.
++TypeScript uses TSDoc format for documentation comments. See [tsdoc-errors-and-async.md](../quality-standards/tsdoc-errors-and-async.md) for the full TSDoc reference.
+ 
+ ```typescript
+ /**
+@@ -292,7 +291,9 @@ const require = createRequire(import.meta.url);
+ const legacyHelper = require('legacy-helper') as LegacyHelper;
+ ```
+ 
+-For frequently imported JS modules, add a `.d.ts` declaration file co-located with the JS module and sharing its exact basename. A relative `declare module './legacy-config.js' { ... }` block does NOT type an untyped local sibling — it fails with `TS7016 (Could not find a declaration file for module …)`; use plain top-level declarations instead:
++- **Do**: for frequently imported JS modules, add a `.d.ts` declaration file co-located with the JS module and sharing its exact basename.
++- **Don't**: use a relative `declare module './legacy-config.js' { ... }` block; it fails with `TS7016 (Could not find a declaration file for module …)` on an untyped local sibling.
++- **Instead**: use plain top-level declarations:
+ 
+ ```typescript
+ // legacy-config.d.ts — same directory and exact basename as legacy-config.js
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
+index 24db6e8c2d6..010ae27566f 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
+@@ -51,9 +51,13 @@ All TypeScript files MUST begin with a module header block identifying the modul
+ - Immediately followed by imports
+ 
+ **Rationale**: TypeScript's `"strict": true` in `tsconfig.json` enables strict
+-type checking at compilation. Current system-spec-kit workspaces are
+-package-aware: `shared/` and `mcp-server/` use NodeNext ESM, `scripts/` uses
+-ES2022 ESM, and the root CommonJS setting is only a fallback default.
++type checking at compilation.
++
++Current system-spec-kit workspaces are package-aware:
++
++- `shared/` and `mcp-server/` use NodeNext ESM
++- `scripts/` uses ES2022 ESM
++- the root CommonJS setting is only a fallback default
+ 
+ ### Full Header Example
+ 
+@@ -376,6 +380,3 @@ function fromRow(row: MemoryRow): MemoryRecord {
+ | DB-mapped props   | `snake_case`*      | `importance_tier`           |
+ 
+ \* Exception: Only for properties that directly map to SQLite column names. See "snake_case Exception" above.
+-
+----
+-

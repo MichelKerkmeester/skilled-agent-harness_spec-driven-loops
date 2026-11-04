@@ -1,0 +1,13 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md edited=1
+code_blocks_changed=11 block_count_mismatch=0 restored

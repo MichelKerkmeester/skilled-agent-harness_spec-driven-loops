@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-ci routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -30,7 +30,10 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`CI_WORKFLOW`** fires on `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action` and `.github/workflows/` at weight 4, the only intent in the packet. It loads `references/ci-workflow-standards.md`, `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`, and `references/ci-workflow-standards.md` is also the default resource a run loads before intent scoring.
+- **`CI_WORKFLOW`** is the only intent in the packet, at weight 4.
+  - Fires on `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action` and `.github/workflows/`.
+  - Loads `references/ci-workflow-standards.md`, `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`.
+  - Default resource: `references/ci-workflow-standards.md`, which a run loads before intent scoring.
 
 ---
 

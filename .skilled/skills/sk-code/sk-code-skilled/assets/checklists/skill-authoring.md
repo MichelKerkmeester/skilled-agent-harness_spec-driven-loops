@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill validation path"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Skill Authoring Checklist
@@ -54,7 +54,10 @@ This checklist keeps new and modified OpenCode skills consistent with the live s
 4. For parent hubs, keep stage-one routing in `mode-registry.json` and `hub-router.json`, and each packet's machine router in that packet's own `ROUTER.md`; keep workflow or surface detail inside nested packet `SKILL.md` files.
 5. For parent hubs, keep a single advisor identity in hub-level `graph-metadata.json`; do not add packet-level graph metadata.
 6. Put detailed standards in `references/`, reusable output material in `assets/`, and deterministic helpers in `scripts/`.
-7. Put the `INTENT_SIGNALS` / `RESOURCE_MAP` block and its routing prose in the packet's own `ROUTER.md`, under a final `## MACHINE ROUTER` heading; a hub root `ROUTER.md` carries the hub's stage-two control document instead. `SKILL.md` SMART ROUTING stays short prose plus the link to that file.
+7. Put the router block in the packet's own `ROUTER.md`.
+   - Put the `INTENT_SIGNALS` / `RESOURCE_MAP` block and its routing prose under a final `## MACHINE ROUTER` heading.
+   - A hub root `ROUTER.md` carries the hub's stage-two control document instead.
+   - `SKILL.md` SMART ROUTING stays short prose plus the link to that file.
 8. Add or update `description.json` with matching version, keywords, and trigger examples.
 9. Add changelog coverage when the skill has a versioned release stream.
 10. Check that new links resolve from the file that contains them.

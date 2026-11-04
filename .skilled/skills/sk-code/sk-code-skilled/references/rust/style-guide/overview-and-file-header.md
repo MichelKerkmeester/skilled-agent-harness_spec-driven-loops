@@ -8,7 +8,7 @@ trigger_phrases:
   - "rust typescript interop style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rust Style Guide
@@ -67,6 +67,20 @@ All Rust source files MUST begin with a module header block identifying the modu
 
 Crate roots add crate-level safety and documentation attributes before the module header. Ordinary module files begin directly with the header.
 
+### Requirements
+
+- Box width: 67 `─` characters plus the `// ` prefix (70 columns total)
+- Module name: Left-aligned within the header
+- Pure core: `#![forbid(unsafe_code)]` at the crate root
+- FFI or runtime adapter: `#![deny(unsafe_op_in_unsafe_fn)]` at the crate root
+- Crate attributes: Before the module header
+- Module documentation: After the module header and before imports
+- Imports: After module documentation
+- No generated timestamp, packet identifier, ticket identifier, or transient ownership marker
+- No copied TypeScript file path unless it is part of a durable compatibility contract
+
+**Rationale**: The crate-level attribute states the safety policy enforced by the compiler. The module header makes mixed TypeScript/Rust workspaces easier to navigate without embedding transient project-management data.
+
 ### Module Template
 
 ```rust
@@ -94,20 +108,6 @@ Crate roots add crate-level safety and documentation attributes before the modul
 // MODULE: Node.js Ranking Adapter
 // ───────────────────────────────────────────────────────────────────
 ```
-
-### Requirements
-
-- Box width: 67 characters total
-- Module name: Left-aligned within the header
-- Pure core: `#![forbid(unsafe_code)]` at the crate root
-- FFI or runtime adapter: `#![deny(unsafe_op_in_unsafe_fn)]` at the crate root
-- Crate attributes: Before the module header
-- Module documentation: After the module header and before imports
-- Imports: After module documentation
-- No generated timestamp, packet identifier, ticket identifier, or transient ownership marker
-- No copied TypeScript file path unless it is part of a durable compatibility contract
-
-**Rationale**: The crate-level attribute states the safety policy enforced by the compiler. The module header makes mixed TypeScript/Rust workspaces easier to navigate without embedding transient project-management data.
 
 ### Full Header Example
 

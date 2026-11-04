@@ -8,7 +8,7 @@ trigger_phrases:
   - "rebuild dist before verifying"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # OpenCode Workflow Guardrails
@@ -19,7 +19,15 @@ OpenCode-only rules for the implement and verify phases.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The shared [implementation](../workflow-implement.md) and [verification](../workflow-verify.md) workflows apply on every surface. This file adds what holds only for OpenCode system code under `.skilled/`: the implementation guardrails, the verification command chain and the runtime build traps.
+
+### When to Use
+
+- Implementing or verifying a change to OpenCode system code under `.skilled/`
+- Deciding whether a source edit needs a `dist/` rebuild before its behavior is verified
+- Handing missing build output, stale generated runtime files or a wrong package boundary back to implementation
 
 ---
 
@@ -41,7 +49,11 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <spec-folder> 
 
 The exit-code and warning contract of `validate.sh` is owned by `.skilled/skills/system-spec-kit/references/validation/validation-rules.md` (section 1 for the exit taxonomy, section 14 for the ways a run misleads). Read it there, not from a copy here. The one fact this workflow needs: a completion claim requires the explicit `RESULT: PASSED` line, because a warning never changes the exit code and exit status alone has misled in both directions.
 
-Use the package script for the package you changed. The spec-kit root and project-reference workspaces use `tsc --build`. Satellite packages with their own package boundary use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay. For TypeScript tests, run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
+Use the package script for the package you changed:
+
+- **Spec-kit root and project-reference workspaces**: `tsc --build`.
+- **Satellite packages with their own package boundary**: `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
+- **TypeScript tests**: run the package's Vitest-backed script where present, such as `npm test`, `npm run test:core`, or the targeted `vitest run ...` command exposed by that package.
 
 When verification discovers missing build output, stale generated runtime files, or a wrong package boundary, hand back to [Workflow Reference - Implementation](../workflow-implement.md) before making any completion claim.
 

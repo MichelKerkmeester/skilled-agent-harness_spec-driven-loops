@@ -8,7 +8,7 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.9.0
+version: 1.0.10.0
 ---
 
 # Repository Quality Config
@@ -41,7 +41,10 @@ The file's additions tighten the author gate only. The CI job and the pre-commit
 The runner picks exactly one source, the most explicit first.
 
 1. `--config <path>`, read relative to the working directory.
-2. The git config value `skcode.qualityConfig`, read relative to the repository root. Only a value stored in a config file counts. A value set with `git -c` or a `GIT_CONFIG_*` variable reports scope `command` and is ignored, because one invocation must not swap the commands a repository committed. When several files set it, the last value git reads wins. Discovery follows an include, and trust reads only this repository's own `.git/config` with no include, so a value an include supplies can name the config a run reads and still never make that config trusted.
+2. The git config value `skcode.qualityConfig`, read relative to the repository root.
+    - Only a value stored in a config file counts. A value set with `git -c` or a `GIT_CONFIG_*` variable reports scope `command` and is ignored, because one invocation must not swap the commands a repository committed.
+    - When several files set it, the last value git reads wins.
+    - Discovery follows an include, and trust reads only this repository's own `.git/config` with no include, so a value an include supplies can name the config a run reads and still never make that config trusted.
 3. `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` inside the skill folder, or the same path under `.opencode/` when the skills are installed there.
 4. None. The runner uses the shipped base layer alone and fills `suggested_checks`.
 
@@ -146,7 +149,14 @@ The shipped base layer, `assets/quality-defaults.json`, always loads first, and 
 ## 5. HOW A CONFIGURED CHECK RUNS
 
 - **Matching.** A check reads the in-scope files the runner reads, binary files, large files and files with no comment family included, and never an excluded file, a folder or a dead link. A `generated` row also reads excluded files. A check that matches no file is `NOT_APPLICABLE` and never starts.
-- **Order of states.** No match is `NOT_APPLICABLE`. Then `--only` and `--skip` give `SKIPPED_BY_FLAG`, an absent `requires` tool gives `SKIPPED_ABSENT` with a repair line, `--no-run` gives `LISTED` with each planned run, an untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line and a run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`. [Trust boundary](#8-trust-boundary) says what makes a config trusted.
+- **Order of states.** No match is `NOT_APPLICABLE`.
+    1. `--only` and `--skip` give `SKIPPED_BY_FLAG`.
+    2. An absent `requires` tool gives `SKIPPED_ABSENT` with a repair line.
+    3. `--no-run` gives `LISTED` with each planned run.
+    4. An untrusted config gives `SKIPPED_UNTRUSTED` with the trust repair line.
+    5. A run outside git gives `ERROR` with code `GUARD_UNAVAILABLE`.
+
+    [Trust boundary](#8-trust-boundary) says what makes a config trusted.
 - **Runs.** `{files}` expands to the matching files relative to the run's `cwd`, and a name that starts with a dash is passed as `./name`. A check runs once per `cwd` group, with or without `{files}`. `runs[]` lists each run with its `cwd`, `argv`, `files`, `state`, `exit` and `duration_ms`. A run that times out or cannot start ends the check.
 - **Process.** Each run is an argv array with no shell, no input and no `NODE_OPTIONS`, `NODE_COMPILE_CACHE`, `BASH_ENV` or `ENV`. It starts as the leader of its own process group, and the whole group is killed at the deadline and again when the leader exits, so a helper it forked cannot outlive it.
 - **Workspace guard.** The built-in checks run in one guard window, then each configured check runs in its own window, chained from the one before. A changed snapshot ends the run with exit 3 and `CHECK_MUTATED_WORKSPACE`, names the check and the paths and reverts nothing. Every configured check after it reads `ERROR`, not run.
@@ -194,7 +204,13 @@ Each `config.errors` row holds `code`, `field`, `message` and `repair`.
 3. The workspace guard brackets every command and reverts nothing.
 4. Nothing is installed. A missing tool gets a repair line and nothing else.
 5. The doctor reads and probes the config. It never runs a configured command, and its only write is `init --apply`.
-6. A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`. `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include. `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test. The repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one leaves the run UNVERIFIED. `config.trust` names the state and the rule that decided it. Built-in checks are not affected, and `--no-run` still lists a configured check without starting it.
+6. A configured check runs only from a trusted config. One of four rules makes it trusted.
+    - The operator names the file with `--config`.
+    - `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include.
+    - `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test.
+    - The repository under test shares its git common dir with the checkout that holds the runner.
+
+    Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one leaves the run UNVERIFIED. `config.trust` names the state and the rule that decided it. Built-in checks are not affected, and `--no-run` still lists a configured check without starting it.
 
 ---
 

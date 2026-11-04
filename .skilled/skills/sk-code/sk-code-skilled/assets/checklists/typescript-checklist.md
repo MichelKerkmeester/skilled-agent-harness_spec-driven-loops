@@ -8,7 +8,7 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # TypeScript Code Quality Checklist
@@ -95,13 +95,15 @@ Same rule as JavaScript. Delete unused code; git preserves history.
     - No narrative comments describing obvious mechanics
 ```
 
+Explain reasoning, not mechanics.
+
 ### Numbered ALL-CAPS Sections
 
 ```markdown
 [ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
 ```
 
-Same rule as JavaScript. Explain reasoning, not mechanics.
+Same rule as JavaScript.
 
 ---
 

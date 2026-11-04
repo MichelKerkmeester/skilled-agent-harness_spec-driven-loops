@@ -8,7 +8,7 @@ trigger_phrases:
   - "python docstring format"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Python Quick Reference
@@ -21,9 +21,7 @@ Fast lookup for Python coding patterns, naming conventions, and common structure
 
 ### Purpose
 
-Quick-access reference card for Python patterns. For detailed explanations, see:
-- [style-guide.md](./style-guide.md) - Full style documentation
-- [quality-standards.md](./quality-standards.md) - Quality requirements
+Quick-access reference card for Python patterns.
 
 ### When to Use
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.13.0
+version: 1.7.14.0
 ---
 
 # sk-code-review mode
@@ -35,6 +35,10 @@ version: 1.7.13.0
 An ad-hoc review reads the diff once and reports whatever the reviewer happened to notice. Security gaps slip through. Correctness bugs get a mention but no evidence. A single generic checklist cannot capture a specific stack's idioms and its build and test commands, but a per-stack reviewer would need rebuilding for every language. Without a fixed output shape, downstream automation cannot tell an approval from a request for changes. And a reviewer that carries one house style into every repository raises findings the repository has already decided against.
 
 The `sk-code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic floor that always enforces security and correctness minimums with a default lens a repository can change, and with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
+
+### When To Use This Mode
+
+Reach for the `sk-code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code quality evaluation.
 
 ### What It Does
 
@@ -144,17 +148,17 @@ All findings publish in one message with a next-action prompt. Findings never dr
 
 ### PR-State Efficiency
 
-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
+Two optional gates reduce redundant work.
+
+- The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository.
+- The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths.
+- Both gates are opt-in and never change the baseline findings.
 
 The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` maps to the conservative skip. Neither relaxes the security and correctness floor.
 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Mode
-
-Reach for the `sk-code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code quality evaluation.
 
 ### Related Skills
 

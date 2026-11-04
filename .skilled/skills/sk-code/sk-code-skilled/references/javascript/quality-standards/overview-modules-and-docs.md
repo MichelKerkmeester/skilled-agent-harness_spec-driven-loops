@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript error handling standards"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # JavaScript Quality Standards
@@ -47,10 +47,9 @@ contract. Do not force one JavaScript module style across all paths.
 
 ### CommonJS Pattern
 
-Use CommonJS for `.cjs` files and `.js` files whose package boundary selects
-CommonJS. Those files include the repository's required `'use strict'`
-directive. ESM `.js` files follow their package boundary and also keep that
-directive to satisfy the repository's alignment checks; it is redundant in ESM.
+- Use CommonJS for `.cjs` files and `.js` files whose package boundary selects CommonJS.
+- Include the repository's required `'use strict'` directive in those files.
+- ESM `.js` files follow their package boundary and also keep that directive to satisfy the repository's alignment checks; it is redundant in ESM.
 
 ```javascript
 'use strict';
@@ -68,9 +67,9 @@ pattern applies to legacy `.js/.cjs` utility surfaces and test runners that use
 
 ### Export Pattern
 
-Export functions using `camelCase` names. For MCP handlers, include
-`snake_case` aliases for backward compatibility. Do not apply this export shape
-to OpenCode plugin paths; those use `export default`.
+- Export functions using `camelCase` names.
+- For MCP handlers, include `snake_case` aliases for backward compatibility.
+- Do not apply this export shape to OpenCode plugin paths; those use `export default`.
 
 ```javascript
 // ─────────────────────────────────────────────────────────────────────────────
@@ -297,3 +296,6 @@ class VectorIndex {
 
 ---
 
+## 6. RELATED RESOURCES
+
+- [security-testing-and-exemptions.md](./security-testing-and-exemptions.md) - Security, testing, async and exemption tiers

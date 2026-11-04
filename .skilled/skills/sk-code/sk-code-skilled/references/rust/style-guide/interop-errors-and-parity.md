@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rust/TypeScript Interop — Errors, Parity & Related Resources
@@ -100,6 +100,16 @@ The adapter must also preserve whether the existing TypeScript operation throws 
 
 ## 4. PANIC-FREE BOUNDARY VALIDATION
 
+JavaScript-controlled data must not reach:
+
+- `unwrap`
+- `expect`
+- Unchecked indexing
+- `panic!`
+- `unreachable!`
+- Assertions used as validation
+- `partial_cmp(...).unwrap()`
+
 Do not use:
 
 ```rust
@@ -121,16 +131,6 @@ fn first_candidate(candidates: &[String]) -> Option<&str> {
     candidates.first().map(String::as_str)
 }
 ```
-
-JavaScript-controlled data must not reach:
-
-- `unwrap`
-- `expect`
-- Unchecked indexing
-- `panic!`
-- `unreachable!`
-- Assertions used as validation
-- `partial_cmp(...).unwrap()`
 
 ---
 
@@ -222,13 +222,16 @@ After worker execution:
 
 Use Tokio only for genuine Rust-owned asynchronous I/O. Use Rayon only after benchmark evidence demonstrates a useful batch-size threshold.
 
-Parity-visible floating-point reductions MUST NOT run in nondeterministic parallel order. If parallel reduction is unavoidable, fix the reduction tree and golden-test it across every supported target.
+- Parity-visible floating-point reductions MUST NOT run in nondeterministic parallel order.
+- If parallel reduction is unavoidable, fix the reduction tree and golden-test it across every supported target.
 
 Baseline WASM is single-threaded. Promise bridging does not create CPU parallelism.
 
 ---
 
 ## 8. NAPI-RS EXPORT EXAMPLE
+
+In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
 
 ```rust
 use napi::bindgen_prelude::{Error, Status};
@@ -261,8 +264,6 @@ pub fn rank_candidates(candidates: Vec<CandidateDto>) -> napi::Result<Vec<Candid
     Ok(candidates)
 }
 ```
-
-In production, ranking belongs in the pure core and the adapter converts DTOs and errors only. The example shows the JavaScript-visible naming and owned boundary shape.
 
 ---
 

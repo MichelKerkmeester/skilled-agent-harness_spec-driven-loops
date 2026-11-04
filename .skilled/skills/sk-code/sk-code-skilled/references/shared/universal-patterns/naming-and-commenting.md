@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference comment patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Universal Patterns - Cross-Language Code Standards
@@ -302,7 +302,9 @@ handleMemoryDriftWhy, handleMemoryCausalLink, handleMemoryCausalStats, handleMem
 2. **Documented workaround**: name the durable external tracker plus the symptom.
 3. **Never** to point at a spec folder, task, requirement, checklist, packet, phase, or ADR — capture the WHY instead.
 
-### Design Principles Gate (KISS/DRY/SOLID)
+---
+
+## 5. DESIGN PRINCIPLES GATE (KISS/DRY/SOLID)
 
 Apply this gate before finalizing implementation:
 
@@ -311,5 +313,3 @@ Apply this gate before finalizing implementation:
 3. **SOLID**: flag SRP/OCP/LSP/ISP/DIP violations and simplify before merge.
 
 Keep rule constants centralized and make tests import those constants rather than repeat local literals.
-
----

@@ -1,0 +1,1 @@
+Review 1 passed and a read of the diff found nothing to restore. The four reflowed passages (the README's per-repository values, the router's intent keywords, the profile lookup order and the trigger-rules overview) became lists with every item kept, and every routing keyword in `ROUTER.md` is still present.

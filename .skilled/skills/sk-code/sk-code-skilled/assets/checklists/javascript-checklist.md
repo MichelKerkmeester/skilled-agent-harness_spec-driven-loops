@@ -8,7 +8,7 @@ trigger_phrases:
   - "use strict checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # JavaScript Code Quality Checklist
@@ -106,6 +106,16 @@ semantics; the verifier intentionally skips `.mjs` strict-mode enforcement.
 [ ] Numbered ALL-CAPS section headers are preserved (`## N. SECTION NAME`)
 ```
 
+### Plugin Runtime Output
+
+```markdown
+[ ] OpenCode plugin never writes to stdout/stderr (would overlay the TUI chat input)
+```
+Surface stale/guard notices via `experimental.chat.system.transform` (bounded
+`output.system` push), a fail-open log file, or a plugin tool — `stderr` only
+behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
+See `quality-standards.md` §10.
+
 ---
 
 ## 3. P1 - REQUIRED
@@ -133,15 +143,6 @@ export default async function ExamplePlugin(ctx, options = {}) {
 
 **Plugin paths**: Files in `.opencode/plugins/` MUST use ESM (`export default`)
 — see `quality-standards.md` §10 OpenCode Plugin Exemption Tier.
-
-**Plugin runtime output (P0)**:
-```markdown
-[ ] OpenCode plugin never writes to stdout/stderr (would overlay the TUI chat input)
-```
-Surface stale/guard notices via `experimental.chat.system.transform` (bounded
-`output.system` push), a fail-open log file, or a plugin tool — `stderr` only
-behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
-See `quality-standards.md` §10.
 
 **Wrong for non-plugin CommonJS utilities**:
 ```javascript

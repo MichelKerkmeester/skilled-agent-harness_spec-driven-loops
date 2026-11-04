@@ -425,7 +425,12 @@ The router does NOT load the whole matched-intent union. After surface detection
 - the `shared/` entries the matched intents map (for example `code-quality-standards.md` under CODE_QUALITY, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION), never the whole `shared/references/universal/` folder, plus
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents.
 
-It does not load another surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+- It does not load another surface's resources.
+- It defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice.
+- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders.
+- An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map.
+
+This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
 
 ---
 

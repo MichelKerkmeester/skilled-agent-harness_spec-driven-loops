@@ -1,0 +1,13 @@
+.skilled/skills/sk-code/sk-code-review/README.md
+.skilled/skills/sk-code/sk-code-review/ROUTER.md
+.skilled/skills/sk-code/sk-code-review/SKILL.md
+.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md
+.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md
+.skilled/skills/sk-code/sk-code-review/assets/removal-plan.md
+.skilled/skills/sk-code/sk-code-review/assets/security-checklist.md
+.skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md
+.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md
+.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md
+.skilled/skills/sk-code/sk-code-review/references/quick-reference.md
+.skilled/skills/sk-code/sk-code-review/references/review-core.md
+.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md

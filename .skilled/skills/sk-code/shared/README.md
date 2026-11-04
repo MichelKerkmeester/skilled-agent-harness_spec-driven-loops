@@ -8,7 +8,7 @@ trigger_phrases:
   - "sk-code surface detection"
 importance_tier: normal
 contextType: general
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # sk-code shared
@@ -45,9 +45,11 @@ shared/
 `-- scripts/
     +-- check-rule-overrides.cjs       # linter for a checklist's Rule overrides section
     +-- lib/
+    |   +-- repository-identity.cjs    # the repository a config is scoped to
     |   `-- rule-registry.cjs          # every rule id an override row may name, read from the declaring documents
     `-- tests/
         +-- check-rule-overrides.test.cjs  # node --test suite for the linter
+        +-- repository-identity.test.cjs   # node --test suite for the identity helper
         +-- review-lens-overrides.test.cjs # review floor and lens ids against the contract
         `-- rule-registry.test.cjs         # the registry's derivation and no-silent-shrink cases
 ```

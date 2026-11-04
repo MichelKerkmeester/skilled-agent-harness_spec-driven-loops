@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell quality validation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Shell Quality Standards
@@ -53,6 +53,18 @@ Every shell script must start with the portable shebang:
 
 **Evidence**: `.skilled/skills/system-spec-kit/runtime/cli/lib/shell-common.sh:1`
 
+### File Header Present
+
+Every script must have a header comment block:
+
+```bash
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: [COMPONENT NAME]
+# ───────────────────────────────────────────────────────────────
+# Brief description of script purpose
+```
+
 ### Strict Mode
 
 Every script must enable strict mode:
@@ -89,18 +101,6 @@ file_path=$1
 ```bash
 # OK without quotes in arithmetic
 if (( count > 10 )); then
-```
-
-### File Header Present
-
-Every script must have a header comment block:
-
-```bash
-#!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────
-# COMPONENT: [COMPONENT NAME]
-# ───────────────────────────────────────────────────────────────
-# Brief description of script purpose
 ```
 
 ### No Commented-Out Code
@@ -272,4 +272,3 @@ Scripts should pass ShellCheck without warnings:
 shellcheck script.sh
 ```
 
----

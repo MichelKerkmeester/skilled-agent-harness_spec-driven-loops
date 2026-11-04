@@ -10,7 +10,7 @@ trigger_phrases:
   - "baseline check families"
 importance_tier: important
 contextType: implementation
-version: 1.5.8.0
+version: 1.5.9.0
 ---
 
 # Review Core Doctrine
@@ -23,7 +23,14 @@ Shared doctrine consumed by both `@review` and `@deep-review`.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Shared findings-first review doctrine for both single-pass and deep-review workflows.
+
+### When to Use
+
+- A `@review` or `@deep-review` pass that needs the severity contract, the evidence rules or the finding schema.
+- A review that must state its `Rule sources:` line, or apply a repository or surface override to a default-lens rule.
 
 Every rule in sections 2 to 7 is review floor, the part no repository or surface can change. Section 8 names the floor ids, the default lens that a repository may drop or replace, and how the review reads and reports those overrides.
 
@@ -137,7 +144,10 @@ Suggested shape:
 
 ## 8. FLOOR, DEFAULT LENS AND RULE OVERRIDES
 
-Review applies two kinds of rule. The floor applies in every repository, and no source changes it. The default lens is this mode's own view of maintainable code. It applies as written until a repository or a surface drops or replaces one of its rules through the shared [rule overrides contract](../../shared/references/universal/rule-overrides.md), which this section adopts for review.
+Review applies two kinds of rule.
+
+- **The floor** applies in every repository, and no source changes it.
+- **The default lens** is this mode's own view of maintainable code. It applies as written until a repository or a surface drops or replaces one of its rules through the shared [rule overrides contract](../../shared/references/universal/rule-overrides.md), which this section adopts for review.
 
 ### The Floor
 
@@ -192,7 +202,15 @@ Every severity above still follows the reach rule in section 2, and a `replace:`
 
 ### Where the Rules for a File Come From
 
-The review reads the rules for each reviewed file from one resolver, the quality runner's explain entry ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 3). [`SKILL.md`](../SKILL.md) section 3 holds the command. For each file the output names its surfaces, the folder each surface loads from, every checklist that applies with the seat that declared it, and each checklist's `## Rule overrides` section already read through the contract's linter. Its `config.hygiene.disabled` lists the comment-hygiene rules the repository switched off.
+The review reads the rules for each reviewed file from one resolver, the quality runner's explain entry ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 3). [`SKILL.md`](../SKILL.md) section 3 holds the command.
+
+For each file the output names:
+
+- its surfaces, and the folder each surface loads from
+- every checklist that applies, with the seat that declared it
+- each checklist's `## Rule overrides` section, already read through the contract's linter
+
+Its `config.hygiene.disabled` lists the comment-hygiene rules the repository switched off.
 
 A surface the hub's router bundles from request words alone is a candidate. It applies only to the files the resolver places in it: the file's `surfaces` holds its label, or a checklist it declares applies to the file. With no file to review there is nothing to resolve, and [`SKILL.md`](../SKILL.md) section 3 says which evidence stays.
 

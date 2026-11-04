@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.17.0
+version: 1.13.18.0
 metadata:
   family: sk-code
 ---
@@ -118,12 +118,12 @@ This repository's own map, the SKILLED rows among them, is rendered in `../sk-co
 `/doctor:sk-code quality` shows the same answer for a whole repository: every checklist the gate would load, its seat, its override rows and the hygiene rules that apply.
 
 **A repository outside this hub declares its rules in its own config.** The runner reads surface declarations only from the hub that holds it: the hub's `mode-registry.json` and the `graph-metadata.json` of each skill in the skills folder beside that hub.
-A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block.
-Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead.
-Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`.
-A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface.
-The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own.
-`references/quality-config.md` section 3 holds the row rules.
+- A surface skill that lives in the repository under test, or in any other checkout, is never discovered, even when it declares `surface_detection` and a `quality` block.
+- Such a repository names its rules in `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` instead.
+- Each `checklists[]` row names a repository-relative checklist file and selects files by `paths`, `extensions` or `contentMarkers`.
+- A file the row names may carry a `## Rule overrides` section, read through the shared linter `../shared/scripts/check-rule-overrides.cjs`, to drop or replace a rule outside the hard floor at the repository level, which ranks above every surface.
+- The limit stays: such a row adds a checklist and never a surface label, so `--explain` lists the checklist while its `surfaces` and `surface_skills` never name a surface of the repository's own.
+- `references/quality-config.md` section 3 holds the row rules.
 
 ### Comment-Hygiene Enforcement Gates
 
@@ -296,21 +296,21 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`references/runner-contract.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
 - [`references/quality-config.md`](../../../.skilled/skills/sk-code/sk-code-quality/references/quality-config.md) - The repository config `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
 - [`assets/quality-defaults.json`](../../../.skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
-- [`assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
-- [`assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
-- [`assets/checklists/agent-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
-- [`assets/checklists/command-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md) - Command authoring checklist.
+- [`../sk-code-skilled/assets/checklists/universal-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
+- [`../sk-code-skilled/assets/checklists/skill-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
+- [`../sk-code-skilled/assets/checklists/agent-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
+- [`../sk-code-skilled/assets/checklists/command-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md) - Command authoring checklist.
 - [`spec-folder-authoring-checklist.md`](../../../.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) - Spec folder authoring checklist (owned by system-spec-kit).
-- [`assets/checklists/mcp-server-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
-- [`assets/checklists/javascript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md) - JavaScript checklist.
-- [`assets/checklists/typescript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md) - TypeScript checklist.
-- [`assets/checklists/python-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md) - Python checklist.
-- [`assets/checklists/shell-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md) - Shell checklist.
-- [`assets/checklists/rust-checklist/overview-and-p0-parity.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
-- [`assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
-- [`assets/checklists/rust-checklist/p1-required.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
-- [`assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
-- [`assets/checklists/config-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
+- [`../sk-code-skilled/assets/checklists/mcp-server-authoring.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md) - MCP server authoring checklist.
+- [`../sk-code-skilled/assets/checklists/javascript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md) - JavaScript checklist.
+- [`../sk-code-skilled/assets/checklists/typescript-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md) - TypeScript checklist.
+- [`../sk-code-skilled/assets/checklists/python-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md) - Python checklist.
+- [`../sk-code-skilled/assets/checklists/shell-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md) - Shell checklist.
+- [`../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md) - Rust checklist overview and P0 parity.
+- [`../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md) - Rust P0 safety and boundary discipline.
+- [`../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md) - Rust required P1 checks.
+- [`../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md) - Rust P2 evidence, validation, and resources.
+- [`../sk-code-skilled/assets/checklists/config-checklist.md`](../../../.skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md) - JSON and JSONC config checklist.
 
 ### Scripts
 

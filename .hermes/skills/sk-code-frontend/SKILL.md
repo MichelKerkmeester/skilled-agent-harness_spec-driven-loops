@@ -2,7 +2,7 @@
 name: sk-code-frontend
 description: Read-only frontend evidence for stack-agnostic web practice, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.3.0
+version: 1.0.4.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -31,7 +31,7 @@ This packet writes nothing. When the hub bundles it beside a workflow mode, that
 
 - [`references/frontend-practice.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md) holds the shared principles and the Frontend overrides contract.
 - [`references/web-markup-and-css.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md) is the web layer.
-- The six web topic files cover focused implementation details for web work.
+- The six web topic files cover focused implementation details for web work: [`references/web-elements-and-attributes.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md), [`references/web-cascade-and-selectors.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md), [`references/web-layout-and-sizing.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md), [`references/web-accessibility-patterns.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md), [`references/web-performance-and-loading.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md) and [`references/web-internationalization.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md).
 - [`references/figma-to-code.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md) holds the five-pass check for comparing a built screen with its Figma frame.
 - [`references/workflow-implement.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md), [`references/workflow-debug.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md), and [`references/workflow-verify.md`](../../../.skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md) provide the shared workflow doctrine.
 
@@ -73,4 +73,7 @@ Read [`ROUTER.md`](../../../.skilled/skills/sk-code/sk-code-frontend/ROUTER.md) 
 
 ## 5. FRONTEND OVERRIDES
 
-A project mode records each change to a core or web-layer statement under a `Frontend overrides` heading in its own `SKILL.md`, naming the section, whether it replaces, extends, or disables the statement, and the reason; when nothing differs, it says that it follows the core and web layer unchanged. Its completion report names the overrides it applied. See [Frontend practice, Section 5](../../../.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md#5-overrides).
+A project mode records each change to a core or web-layer statement under a `Frontend overrides` heading in its own `SKILL.md`, naming the section, whether it replaces, extends, or disables the statement, and the reason. See [Frontend practice, Section 5](../../../.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md#5-overrides).
+
+- When nothing differs, the heading says that it follows the core and web layer unchanged.
+- Its completion report names the overrides it applied.

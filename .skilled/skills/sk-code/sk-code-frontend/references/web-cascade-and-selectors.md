@@ -7,7 +7,7 @@ trigger_phrases:
   - "native css nesting"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Cascade and Selectors
@@ -89,7 +89,7 @@ This file covers cascade order, selector specificity and modern selector behavio
 
 ---
 
-## 4. NESTING, SCOPE AND PROPERTIES
+## 4. NESTING, SCOPE, PROPERTIES AND STATE
 
 ### CS6. Native nesting and the nesting selector
 

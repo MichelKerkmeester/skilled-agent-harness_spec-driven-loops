@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust adapter boundary review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # P0 — Safety & Boundary Discipline
@@ -49,7 +49,12 @@ pub struct SearchResultDto {
 
 Use napi-rs or wasm-bindgen rename attributes when the JavaScript contract requires camelCase. Do not contaminate pure-core Rust naming to achieve boundary spelling.
 
-Boundary contracts must not expose `usize`, `isize`, borrowed fields, Rust ordinal enum values, or integers that exceed JavaScript’s safe range without an explicit `BigInt` or decimal-string contract.
+Boundary contracts must not expose:
+
+- `usize` or `isize`
+- borrowed fields
+- Rust ordinal enum values
+- integers that exceed JavaScript’s safe range without an explicit `BigInt` or decimal-string contract
 
 ### Stable JavaScript Error Shape
 

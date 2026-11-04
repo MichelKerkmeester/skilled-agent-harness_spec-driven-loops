@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rustdoc Template & Cargo/Build Quick Reference
@@ -198,7 +198,8 @@ cargo build -p ranking-napi \
   --target aarch64-apple-darwin
 ```
 
-Use the lowest proven Node-API level supporting the required APIs. Test the oldest declared Node version and every published OS, CPU, and libc package.
+- Use the lowest proven Node-API level supporting the required APIs.
+- Test the oldest declared Node version and every published OS, CPU, and libc package.
 
 ### wasm-bindgen Target
 
@@ -241,13 +242,13 @@ cargo check -p ranking-wasm --no-default-features --features wasm --locked
 
 ### Supply-Chain Gates
 
+`cargo deny` and `cargo audit` are blocking when configured. Record `cargo vet` status while policy is advisory, then make it blocking after criteria, imports, and exceptions are committed.
+
 ```bash
 cargo deny check
 cargo audit
 cargo vet --locked
 ```
-
-`cargo deny` and `cargo audit` are blocking when configured. Record `cargo vet` status while policy is advisory, then make it blocking after criteria, imports, and exceptions are committed.
 
 ---
 

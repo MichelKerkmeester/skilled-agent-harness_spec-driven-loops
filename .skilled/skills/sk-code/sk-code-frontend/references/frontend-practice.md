@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma to code review"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Frontend Practice
@@ -84,7 +84,11 @@ Check dark mode only where the mode supports it.
 
 ## 5. OVERRIDES
 
-A project mode wins for its app when it declares a change to one core or web-layer statement. A mode may replace, extend or disable that statement. It records each change under a Frontend overrides heading in its own SKILL.md, naming the section, action and reason. When nothing differs, the heading says: none: this mode follows the core and its web layer unchanged. A project mode's completion report names the overrides it applied.
+A project mode wins for its app when it declares a change to one core or web-layer statement. A mode may replace, extend or disable that statement.
+
+- It records each change under a `Frontend overrides` heading in its own `SKILL.md`, naming the section, action and reason.
+- When nothing differs, the heading says: none: this mode follows the core and its web layer unchanged.
+- A project mode's completion report names the overrides it applied.
 
 ---
 

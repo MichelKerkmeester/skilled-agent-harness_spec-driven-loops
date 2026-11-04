@@ -7,7 +7,7 @@ trigger_phrases:
   - "font metrics and layout shift"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Performance and Loading
@@ -133,10 +133,18 @@ This file covers Core Web Vitals, image and font loading, layout stability and m
 ### P9. Picture formats and image hints
 
 - **Rule:** List preferred AVIF and WebP sources before the JPEG `<img>` fallback, use loading, decoding and priority hints for their intended stages, and use `sizes="auto"` only as an enhancement.
-- **Why:** The browser selects the first supported `<source>` in a `<picture>`. `fetchpriority` guides scheduling, `loading` changes fetch timing, `decoding` guides display scheduling and explicit `sizes` values remain the baseline when `sizes="auto"` is unavailable.
+- **Why:** The browser selects the first supported `<source>` in a `<picture>`.
+  - `fetchpriority` guides scheduling.
+  - `loading` changes fetch timing.
+  - `decoding` guides display scheduling.
+  - Explicit `sizes` values remain the baseline when `sizes="auto"` is unavailable.
 - **When not to:** Use one `<img>` when there is no format, density or art-direction choice.
 - **Pitfall:** Lazy-loading the LCP image fights its need to load early. Follow the [LCP rule](#p1-largest-contentful-paint-resource).
-- **Support:** Baseline newly available since 2024-10-29 (web-features `fetch-priority`). Chrome 103 / Firefox 132 / Safari 17.2. Baseline widely available since 2026-06-19 (web-features `loading-lazy`). Chrome 77 / Firefox 121 / Safari 16.4. Baseline: no web-features entry. Chrome 65 / Firefox 63 / Safari 11.1. Baseline limited availability (web-features `sizes-auto`). Chrome 126 / Firefox 150 / Safari unsupported.
+- **Support:**
+  - `fetchpriority`: Baseline newly available since 2024-10-29 (web-features `fetch-priority`). Chrome 103 / Firefox 132 / Safari 17.2.
+  - `loading`: Baseline widely available since 2026-06-19 (web-features `loading-lazy`). Chrome 77 / Firefox 121 / Safari 16.4.
+  - `decoding`: Baseline: no web-features entry. Chrome 65 / Firefox 63 / Safari 11.1.
+  - `sizes="auto"`: Baseline limited availability (web-features `sizes-auto`). Chrome 126 / Firefox 150 / Safari unsupported.
 - **See also:** [MDN: HTML picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 
 ---

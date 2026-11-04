@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript workspace configuration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # tsconfig Baseline & Module Organization
@@ -98,6 +98,8 @@ MCP server package rule.
 
 After editing TypeScript source files, the compiled `dist/` output must be rebuilt. The MCP server and CLI scripts run from `dist/`, not from `.ts` source directly.
 
+**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
+
 **Build command** (from skill root, e.g. `.skilled/skills/system-spec-kit/`):
 
 ```bash
@@ -113,8 +115,6 @@ npm run typecheck      # often adds: --noEmit --composite false
 # Smoke test after build
 npm run test:cli       # verifies dist/ output runs correctly
 ```
-
-**Package-aware build rule**: Use the package script for the package you changed. The spec-kit root uses `tsc --build`; satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`. A satellite typecheck script may add `--noEmit --composite false` over that same overlay.
 
 **Workspace build order**: `tsc --build` respects project references and builds in dependency order:
 1. `shared/` (no dependencies)

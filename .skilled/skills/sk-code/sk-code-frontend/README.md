@@ -4,7 +4,7 @@ description: "Stack-agnostic web frontend practice with a five-pass Figma check,
 trigger_phrases:
   - "web frontend practice"
   - "figma to code check"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # sk-code-frontend
@@ -47,10 +47,11 @@ The packet is read-only. The paired workflow mode applies its evidence to the re
 |---|---|
 | `references/frontend-practice.md` | Shared principles, token precedence, the Figma boundary, and the Frontend overrides contract |
 | `references/web-markup-and-css.md` | Semantic web markup, forms, layout, responsive behavior, media, CSS architecture, and framework examples |
-| Six web topic files | Elements and attributes, cascade and selectors, layout and sizing, accessibility patterns, performance and loading, and internationalization |
+| Six web topic files | [Elements and attributes](references/web-elements-and-attributes.md), [cascade and selectors](references/web-cascade-and-selectors.md), [layout and sizing](references/web-layout-and-sizing.md), [accessibility patterns](references/web-accessibility-patterns.md), [performance and loading](references/web-performance-and-loading.md) and [internationalization](references/web-internationalization.md) |
 | `references/figma-to-code.md` | Read-only inputs, five passes, the verdict and report, and the Figma-side tool ladder |
 | `manual-testing-playbook/` | The routing scenarios the hub's router-sync guard replays: one web and one Figma check |
-| `references/workflow-*.md` | Shared implement, debug, and verify workflow doctrine |
+| `references/workflow-*.md` | Shared [implement](references/workflow-implement.md), [debug](references/workflow-debug.md) and [verify](references/workflow-verify.md) workflow doctrine |
+| `changelog/` | Release history for this surface |
 
 The packet router lists each topic file and the condition that calls for it.
 

@@ -1,0 +1,7 @@
+.skilled/skills/sk-code/sk-code-ci/README.md
+.skilled/skills/sk-code/sk-code-ci/ROUTER.md
+.skilled/skills/sk-code/sk-code-ci/SKILL.md
+.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md
+.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
+.skilled/skills/sk-code/sk-code-ci/references/protected-set.md
+.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md

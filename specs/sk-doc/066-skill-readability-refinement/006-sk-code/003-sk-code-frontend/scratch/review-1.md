@@ -1,0 +1,3 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/sk-code/sk-code-frontend/README.md:53 | 8 | The applied replacement dropped the qualifier `Shared` from the HEAD description `Shared implement, debug, and verify workflow doctrine`, so the map no longer tells the reader these three references are shared doctrine even though each link resolves through `references/workflow-*.md` to `../../shared/references/`. | Replace line 53 with: ``| `references/workflow-*.md` | Shared [implement](references/workflow-implement.md), [debug](references/workflow-debug.md) and [verify](references/workflow-verify.md) workflow doctrine |``

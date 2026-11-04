@@ -1,0 +1,237 @@
+diff --git a/.skilled/skills/sk-code/sk-code-review/README.md b/.skilled/skills/sk-code/sk-code-review/README.md
+index c3b4241899..262ceb270a 100644
+--- a/.skilled/skills/sk-code/sk-code-review/README.md
++++ b/.skilled/skills/sk-code/sk-code-review/README.md
+@@ -36,6 +36,10 @@ An ad-hoc review reads the diff once and reports whatever the reviewer happened
+ 
+ The `sk-code-review` mode of the sk-code family fixes this. It pairs a stack-agnostic floor that always enforces security and correctness minimums with a default lens a repository can change, and with surface-specific standards loaded through sk-code. Every review ends with one exact status line a gate can parse.
+ 
++### When To Use This Mode
++
++Reach for the `sk-code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code quality evaluation.
++
+ ### What It Does
+ 
+ The `sk-code-review` mode is the single-pass review baseline for the `@review` agent. It classifies every finding by blocking severity with file:line evidence on P0 and P1 findings, orders the report by severity and closes with one exact status line. It is read-only on the target: it reports findings and never edits the code under review.
+@@ -144,7 +148,11 @@ All findings publish in one message with a next-action prompt. Findings never dr
+ 
+ ### PR-State Efficiency
+ 
+-Two optional gates reduce redundant work. The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository. The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths. Both gates are opt-in and never change the baseline findings.
++Two optional gates reduce redundant work.
++
++- The content-hash dedup gate skips a re-review when the diff has not changed since the last one, writing a signature into `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/` in your user cache directory, never into the reviewed repository.
++- The minimum-evidence gate skips full review for trivially small diffs when enabled through `SK_CODE_REVIEW_MIN_CHANGED_LINES`, but it never skips diffs that touch auth, config, persistence, dependencies, sandboxing or public-facing response paths.
++- Both gates are opt-in and never change the baseline findings.
+ 
+ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists this routing for a session. `ultra` biases toward the deep-dive reference set. `lite` maps to the conservative skip. Neither relaxes the security and correctness floor.
+ 
+@@ -152,10 +160,6 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Mode
+-
+-Reach for the `sk-code-review` mode when you want severity-ranked findings with file:line evidence before merging, when a gate workflow dispatches `@review` for pre-commit validation or when you need a read-only security and correctness pass with a machine-readable verdict. Skip it for feature implementation without review intent, for pure documentation edits or for git-only tasks that carry no code quality evaluation.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+diff --git a/.skilled/skills/sk-code/sk-code-review/ROUTER.md b/.skilled/skills/sk-code/sk-code-review/ROUTER.md
+index c3611a0e89..18db073696 100644
+--- a/.skilled/skills/sk-code/sk-code-review/ROUTER.md
++++ b/.skilled/skills/sk-code/sk-code-review/ROUTER.md
+@@ -20,7 +20,9 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this mode when they ask for code review, PR review, merge readiness, an audit, a security review, request changes or findings over a diff. Its vocabulary is `review`, `code review`, `pr review`, `audit`, `security review`, `request changes`, `findings`, `blocking issues` and `merge readiness`. It routes to two resource families: the `references/` doctrine, which starts at `references/review-core.md` and adds the single-pass UX flow, the lightweight index and the PR-state dedup rules, and the `assets/` checklists and templates for security, correctness and quality, SOLID, dead-code removal, test quality and fix completeness.
++- **Reach**: requests that ask for code review, PR review, merge readiness, an audit, a security review, request changes or findings over a diff.
++- **Vocabulary**: `review`, `code review`, `pr review`, `audit`, `security review`, `request changes`, `findings`, `blocking issues` and `merge readiness`.
++- **Resource families**: the `references/` doctrine, which starts at `references/review-core.md` and adds the single-pass UX flow, the lightweight index and the PR-state dedup rules, plus the `assets/` checklists and templates for security, correctness and quality, SOLID, dead-code removal, test quality and fix completeness.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/sk-code/sk-code-review/SKILL.md b/.skilled/skills/sk-code/sk-code-review/SKILL.md
+index a35565e745..4bd59a40b0 100644
+--- a/.skilled/skills/sk-code/sk-code-review/SKILL.md
++++ b/.skilled/skills/sk-code/sk-code-review/SKILL.md
+@@ -66,14 +66,13 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ 2. Inspect the review target (`git diff`, staged diff, file list, or commit range).
+ 3. Load baseline standards from the `sk-code-review` mode (of the sk-code family).
+ 4. Resolve the rule sources for the reviewed files in one call, from the reviewed repository's root, where `<hub>` is the sk-code folder this mode was loaded from (`.skilled/skills/sk-code` in the repository that ships it):
++   Pass only paths that exist as regular files. One deleted or missing path makes the runner stop the whole call with `FILE_NOT_FOUND`, exit 3, which would drop every surface and override for the files that do exist.
+ 
+    ```bash
+    git diff --name-only --diff-filter=d <range>   # the reviewed paths that still exist
+    node <hub>/sk-code-quality/scripts/quality-gate.cjs --explain <file> [<file>...]
+    ```
+ 
+-   Pass only paths that exist as regular files. One deleted or missing path makes the runner stop the whole call with `FILE_NOT_FOUND`, exit 3, which would drop every surface and override for the files that do exist.
+-
+    - For a diff, `--diff-filter=d` leaves the deleted paths out.
+    - For a file list, drop any path that is not a regular file.
+    - List a deleted path on the `Not checked:` line when its removal matters to the review, such as a deleted test or a removed caller.
+@@ -102,7 +101,6 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ 3. Analyze KISS/DRY and SOLID violations (SRP/OCP/LSP/ISP/DIP) with evidence.
+ 4. Analyze removal opportunities with safe-now vs deferred classification.
+ 5. Produce findings ordered by severity (`P0`, `P1`, `P2`), numbered once across all three groups so the first `P1` finding continues after the last `P0` finding. A finding with no case is not reported.
+-6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
+ 
+ #### Reach Calibration
+ 
+@@ -130,6 +128,8 @@ A finding may use the narrow fix path only when all are true:
+ 
+ Otherwise, run the full fix completeness checklist.
+ 
++6. For every actionable finding, classify fix scope as `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. If unknown, default to class/cross-consumer until a producer/consumer inventory proves instance-only.
++
+ ### Phase 4: Output and Next Action
+ 
+ Required output contract:
+@@ -237,7 +237,7 @@ A normal review must still end with one of the three exact lines above.
+ - Produce vague findings without concrete evidence.
+ - Mix unrelated cleanup into targeted fix recommendations.
+ - Let an override row drop or reword a floor rule, or apply a row from a checklist the resolver did not return.
+-- Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
++- Implementing fixes during review. Report findings only; implementation is a separate follow-up step.
+ 
+ ### ⚠️ ESCALATE IF
+ 
+@@ -274,6 +274,7 @@ A repository, a surface packet or a mode a user adds to the hub may raise these
+ - [solid-checklist.md](./assets/solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
+ - [removal-plan.md](./assets/removal-plan.md) - Safe-now vs deferred removal planning template.
+ - [test-quality-checklist.md](./assets/test-quality-checklist.md) - Test quality, coverage, and anti-pattern detection.
++- [fix-completeness-checklist.md](./assets/fix-completeness-checklist.md) - Finding classes and the producer and consumer inventories a complete fix covers.
+ 
+ ### Reference Loading Notes
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md b/.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md
+index 146b01389c..dcd90794a3 100644
+--- a/.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md
++++ b/.skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md
+@@ -151,7 +151,10 @@ Rule: default lens, `review.kiss`, `review.dry`, `review.rule-of-three` and `rev
+ - Generic helpers used in only one place.
+ - Workflow complexity introduced "for future flexibility" without evidence.
+ - Features, parameters, or configuration options added for speculative future use without a current requirement (YAGNI).
+-- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for). Recommend removal (see removal-plan.md), not just simplification. Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate. P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
++- New code not traceable to a current requirement (a feature, parameter, branch, or config that nothing in the stated scope asked for).
++  - Recommend removal (see removal-plan.md), not just simplification.
++  - Ask: was this asked for? If the requirement were dropped, would anything break? If not, it is a removal candidate.
++  - P2 by default per the severity rule below; escalate to P1 only when the unneeded code adds attack surface, contract obligations, or regression/maintenance risk.
+ 
+ ### DRY Checks
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md b/.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md
+index 52763b7579..79ae335bbb 100644
+--- a/.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md
++++ b/.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md
+@@ -114,4 +114,4 @@ The fix response must include:
+ 
+ - [code-quality-checklist.md](./code-quality-checklist.md) - Correctness, performance, and maintainability checks.
+ - [security-checklist.md](./security-checklist.md) - Security, authz, and reliability checks.
+-- [../references/review-core.md](../references/review-core.md) - Findings-first review doctrine, severity model, and evidence rules.
++- [review-core.md](../references/review-core.md) - Findings-first review doctrine, severity model, and evidence rules.
+diff --git a/.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md b/.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md
+index 3fb6143f7e..13276e7f15 100644
+--- a/.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md
++++ b/.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md
+@@ -14,7 +14,7 @@ version: 1.6.1.0
+ 
+ # PR-State Content-Hash Dedup (M-1)
+ 
+-An unchanged pull request should not be reviewed twice, and a skip is only trustworthy when its evidence is written down. The sections below hold the signature, the cache and the status line that prove it.
++An unchanged pull request should not be reviewed twice, and a skip is only trustworthy when its evidence is written down. Open this before re-reviewing a branch, to check whether its content has actually changed since the last recorded pass.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-review/references/quick-reference.md b/.skilled/skills/sk-code/sk-code-review/references/quick-reference.md
+index 3b54f4ba48..859dafe8ea 100644
+--- a/.skilled/skills/sk-code/sk-code-review/references/quick-reference.md
++++ b/.skilled/skills/sk-code/sk-code-review/references/quick-reference.md
+@@ -23,7 +23,7 @@ Lightweight index for the split review references in this skill.
+ 
+ Route review consumers to the correct reference file based on their intent. This file replaces the former monolithic quick reference with a split architecture: shared doctrine in `review-core.md` and interactive UX rules in `review-ux-single-pass.md`.
+ 
+-### Usage
++### When to Use
+ 
+ Use this file as an entry index, not as the primary source of review rules. Load the specific reference that matches your mode:
+ - **Both modes** (single-pass and deep review): Load `review-core.md`
+@@ -38,6 +38,7 @@ Use this file as an entry index, not as the primary source of review rules. Load
+ |-----------|-------|-----------|
+ | [review-core.md](./review-core.md) | Shared doctrine: severity, evidence, findings schema, baseline+surface precedence, floor and default lens ids, rule overrides and the `Rule sources:` line | `@review`, `@deep-review` |
+ | [review-ux-single-pass.md](./review-ux-single-pass.md) | Interactive UX: report flow, next-step prompts, PR/pre-commit guidance | `@review` only |
++| [pr-state-dedup.md](./pr-state-dedup.md) | PR-state gate: signature computation, cache format, pathspec scope, retention and skip behavior | `@review` |
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-review/references/review-core.md b/.skilled/skills/sk-code/sk-code-review/references/review-core.md
+index 2260646fed..317d7d4fa8 100644
+--- a/.skilled/skills/sk-code/sk-code-review/references/review-core.md
++++ b/.skilled/skills/sk-code/sk-code-review/references/review-core.md
+@@ -23,8 +23,15 @@ Shared doctrine consumed by both `@review` and `@deep-review`.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Shared findings-first review doctrine for both single-pass and deep-review workflows.
+ 
++### When to Use
++
++- A `@review` or `@deep-review` pass that needs the severity contract, the evidence rules or the finding schema.
++- A review that must state its `Rule sources:` line, or apply a repository or surface override to a default-lens rule.
++
+ Every rule in sections 2 to 7 is review floor, the part no repository or surface can change. Section 8 names the floor ids, the default lens that a repository may drop or replace, and how the review reads and reports those overrides.
+ 
+ ---
+@@ -137,7 +144,10 @@ Suggested shape:
+ 
+ ## 8. FLOOR, DEFAULT LENS AND RULE OVERRIDES
+ 
+-Review applies two kinds of rule. The floor applies in every repository, and no source changes it. The default lens is this mode's own view of maintainable code. It applies as written until a repository or a surface drops or replaces one of its rules through the shared [rule overrides contract](../../shared/references/universal/rule-overrides.md), which this section adopts for review.
++Review applies two kinds of rule.
++
++- **The floor** applies in every repository, and no source changes it.
++- **The default lens** is this mode's own view of maintainable code. It applies as written until a repository or a surface drops or replaces one of its rules through the shared [rule overrides contract](../../shared/references/universal/rule-overrides.md), which this section adopts for review.
+ 
+ ### The Floor
+ 
+@@ -192,7 +202,15 @@ Every severity above still follows the reach rule in section 2, and a `replace:`
+ 
+ ### Where the Rules for a File Come From
+ 
+-The review reads the rules for each reviewed file from one resolver, the quality runner's explain entry ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 3). [`SKILL.md`](../SKILL.md) section 3 holds the command. For each file the output names its surfaces, the folder each surface loads from, every checklist that applies with the seat that declared it, and each checklist's `## Rule overrides` section already read through the contract's linter. Its `config.hygiene.disabled` lists the comment-hygiene rules the repository switched off.
++The review reads the rules for each reviewed file from one resolver, the quality runner's explain entry ([`runner-contract.md`](../../sk-code-quality/references/runner-contract.md) section 3). [`SKILL.md`](../SKILL.md) section 3 holds the command.
++
++For each file the output names:
++
++- its surfaces, and the folder each surface loads from
++- every checklist that applies, with the seat that declared it
++- each checklist's `## Rule overrides` section, already read through the contract's linter
++
++Its `config.hygiene.disabled` lists the comment-hygiene rules the repository switched off.
+ 
+ A surface the hub's router bundles from request words alone is a candidate. It applies only to the files the resolver places in it: the file's `surfaces` holds its label, or a checklist it declares applies to the file. With no file to review there is nothing to resolve, and [`SKILL.md`](../SKILL.md) section 3 says which evidence stays.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md b/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md
+index 41ed5d8c9c..df62c68ab2 100644
+--- a/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md
++++ b/.skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md
+@@ -19,8 +19,15 @@ Interactive behavior for a one-pass review where findings are reported first and
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Interactive single-pass review behavior for human-facing review sessions.
+ 
++### When to Use
++
++- A single-pass review that will end with the human choosing the next step.
++- A pre-commit or PR review that needs the report flow and the next-step prompt.
++
+ ---
+ 
+ ## 2. HUMAN INTERACTION BEHAVIOR

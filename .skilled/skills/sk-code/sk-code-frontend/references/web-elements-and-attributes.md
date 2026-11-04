@@ -7,7 +7,7 @@ trigger_phrases:
   - "html resource loading attributes"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Elements and Attributes
@@ -86,7 +86,10 @@ This file keeps the detailed HTML element and attribute mechanics.
 ### EA5. Keyboard hints and autocomplete tokens
 
 - **Rule:** Set `inputmode` for the expected data, `enterkeyhint` for the next action and `autocomplete` for the field's actual purpose.
-- **Why:** Keyboard hints influence the virtual keyboard without validating the value. Autocomplete tokens let browsers and credential managers identify fields by meaning. Use `username`, `current-password`, `new-password`, `one-time-code` and `webauthn` for sign-in, password, verification and passkey flows. Use `cc-name`, `cc-given-name`, `cc-additional-name`, `cc-family-name`, `cc-number`, `cc-exp`, `cc-exp-month`, `cc-exp-year`, `cc-csc` and `cc-type` for payment-card fields. Use `tel-national` for a national phone number and `address-line1`, `address-line2` or `address-line3` for separate address lines.
+- **Why:** Keyboard hints influence the virtual keyboard without validating the value. Autocomplete tokens let browsers and credential managers identify fields by meaning:
+  - For sign-in, password, verification and passkey flows: `username`, `current-password`, `new-password`, `one-time-code` and `webauthn`.
+  - For payment-card fields: `cc-name`, `cc-given-name`, `cc-additional-name`, `cc-family-name`, `cc-number`, `cc-exp`, `cc-exp-month`, `cc-exp-year`, `cc-csc` and `cc-type`.
+  - For phone and address fields: `tel-national` for a national phone number, and `address-line1`, `address-line2` or `address-line3` for separate address lines.
 - **When not to:** Omit a keyboard hint when the default keyboard already fits the input and its next action.
 - **Pitfall:** Using `autocomplete="off"` on sign-in or payment fields can block useful credential or payment autofill.
 - **Support:** Baseline widely available since 2024-06-07 (web-features `inputmode`). Chrome 66 / Firefox 95 / Safari 12.1. Baseline widely available since 2024-05-02 (web-features `enterkeyhint`). Chrome 77 / Firefox 94 / Safari 13.1. Baseline: no web-features entry. Chrome Unknown / Firefox Unknown / Safari Unknown.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "container query layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Layout and Sizing
@@ -49,7 +49,10 @@ This file covers stacking contexts, containing blocks, intrinsic sizing, grid tr
 ### L2. Stacking context triggers
 
 - **Rule:** Inspect the ancestor chain for a stacking context before increasing a `z-index` value.
-- **Why:** A stacking context is painted as one unit, so a descendant cannot out-rank content in a different context. Triggers include the root, positioned elements with non-auto `z-index`, fixed or sticky positioning, flex or grid items with `z-index`, opacity below one, blend modes, `transform`, `translate`, `rotate`, `scale`, filters, perspective, clipping, masks, `isolation: isolate`, `contain: layout`, `contain: paint`, `contain: strict`, `contain: content`, `container-type`, `content-visibility: auto` and `will-change` naming one of these properties. Top-layer elements paint above ordinary stacking contexts.
+- **Why:** A stacking context is painted as one unit, so a descendant cannot out-rank content in a different context. Top-layer elements paint above ordinary stacking contexts. Triggers include:
+  - the root, positioned elements with non-auto `z-index`, fixed or sticky positioning, and flex or grid items with `z-index`
+  - opacity below one, blend modes, `transform`, `translate`, `rotate`, `scale`, filters and perspective
+  - clipping, masks, `isolation: isolate`, `contain: layout`, `contain: paint`, `contain: strict`, `contain: content`, `container-type`, `content-visibility: auto` and `will-change` naming one of these properties
 - **When not to:** Raise a local `z-index` when the elements already share the same stacking context and the order alone is wrong.
 - **Pitfall:** An opacity such as `0.999` creates a stacking context, while `isolation: isolate` creates one without changing opacity or clipping paint.
 - **Support:** Judgment, no version gate.
@@ -66,7 +69,7 @@ This file covers stacking contexts, containing blocks, intrinsic sizing, grid tr
 
 ---
 
-## 3. INTRINSIC AND GRID SIZING
+## 3. INTRINSIC, GRID AND CONTAINER SIZING
 
 ### L4. Automatic minimum on flex and grid items
 
@@ -145,7 +148,10 @@ This file covers stacking contexts, containing blocks, intrinsic sizing, grid tr
 - **Why:** `field-sizing` lets supported controls size from their content. Intrinsic-size interpolation extends animation beyond numeric lengths and remains unavailable in several browsers.
 - **When not to:** Use a stable row count when a control must keep a fixed editing area, or omit the animation when an instant state change is clear.
 - **Pitfall:** Shipping either feature as the only layout or interaction path leaves browsers without it with a fixed default size or no transition.
-- **Support:** Baseline newly available since 2026-06-16 (web-features `field-sizing`). Chrome 123 / Firefox 152 / Safari 26.2. Baseline limited availability (web-features `interpolate-size`). Chrome 129 / Firefox unsupported / Safari unsupported. Baseline limited availability (web-features `calc-size`). Chrome 129 / Firefox unsupported / Safari unsupported.
+- **Support:**
+  - `field-sizing`: Baseline newly available since 2026-06-16 (web-features `field-sizing`). Chrome 123 / Firefox 152 / Safari 26.2.
+  - `interpolate-size`: Baseline limited availability (web-features `interpolate-size`). Chrome 129 / Firefox unsupported / Safari unsupported.
+  - `calc-size()`: Baseline limited availability (web-features `calc-size`). Chrome 129 / Firefox unsupported / Safari unsupported.
 - **See also:** [MDN: CSS field-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing)
 
 ---

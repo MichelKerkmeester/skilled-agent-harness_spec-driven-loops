@@ -8,7 +8,7 @@ trigger_phrases:
   - "tsconfig quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # Imports/Exports, Errors, TSDoc, tsconfig & One-Liners
@@ -257,6 +257,8 @@ module settings where their package boundary requires ESM.
 
 ### Build & Rebuild Commands
 
+**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
+
 ```bash
 # Standard build (type check + emit dist/)
 npm run build                        # runs: tsc --build
@@ -275,8 +277,6 @@ npm run test:cli
 ```
 
 **After editing `.ts` source files**: Always rebuild `dist/` — the MCP server and CLI scripts run from compiled `.js`, not `.ts` source.
-
-**Package-aware build rule**: The spec-kit root uses `tsc --build`. Satellite packages with their own package boundary, such as `system-skill-advisor/runtime`, use `tsc -p tsconfig.build.json`; their typecheck script may add `--noEmit --composite false` over that same overlay.
 
 ---
 

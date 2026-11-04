@@ -9,7 +9,7 @@ trigger_phrases:
   - "check rule overrides linter"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Rule Overrides Contract
@@ -24,13 +24,24 @@ How a repository or a surface drops or replaces a sk-code rule, and which rules 
 
 Each repository keeps its own house style. One wants almost no inline comments, and another wants a comment on every function. The quality mode and the review mode ship default rules, and this contract is how a repository or a surface says "not here" or "this instead" for one of them. Both modes read the same section in the same files, so a rule dropped for quality does not come back as a review finding.
 
+### When to Use
+
+- A repository or surface needs to drop or replace a rule outside the hard floor.
+- A checklist needs a `## Rule overrides` section, or a mode needs to know how one is read and recorded.
+
 ### Core Principle
 
 A repository may change any rule except the hard floor. The floor holds the rules whose breach causes an incident in any codebase, and the review severity scale that every finding is ranked on.
 
 ### Scope
 
-This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. The review mode applies the rows it reads and records them on its `Rule sources` line. The quality runner reads the section of every checklist it loads through the same linter, applies and records the rows as section 7 describes, and shows the parsed rows and the conflicts in its explain output. Its registry of known rule ids is read from the documents that declare them, and `commentHygiene.disableRules` carries the machine-checked half. A mode that does not state that it reads overrides behaves as before.
+This file defines the format, the ids, the floor, the precedence and how an applied override is recorded.
+
+- The quality and review modes adopt it in their own contracts.
+- The review mode applies the rows it reads and records them on its `Rule sources` line.
+- The quality runner reads the section of every checklist it loads through the same linter, applies and records the rows as section 7 describes, and shows the parsed rows and the conflicts in its explain output.
+- Its registry of known rule ids is read from the documents that declare them, and `commentHygiene.disableRules` carries the machine-checked half.
+- A mode that does not state that it reads overrides behaves as before.
 
 ### Key Sources
 

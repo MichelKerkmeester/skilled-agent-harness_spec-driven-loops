@@ -8,7 +8,7 @@ trigger_phrases:
   - "import ordering rules"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Code Organization - File Structure and Module Principles
@@ -206,6 +206,3 @@ Benefits:
 - Single import point: `import { MemoryError } from './lib/errors';`
 - Clear public API surface
 - Implementation details hidden
-
----
-

@@ -1,0 +1,174 @@
+diff --git a/.skilled/skills/sk-code/sk-code-ci/README.md b/.skilled/skills/sk-code/sk-code-ci/README.md
+index 270fad5eef..0063bb84f1 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/README.md
++++ b/.skilled/skills/sk-code/sk-code-ci/README.md
+@@ -40,11 +40,22 @@ Without one written source a reviewer cannot tell a deliberate trigger from drif
+ 
+ The packet states each rule next to the file and line that prove it and says whether anything enforces it. It lists the workflows protected by function, so a change that would weaken one asks for a second confirmation first. It records message-contract's every-branch push trigger as an intentional exception, with the reason, so a report does not flag it. It also holds a whole-workflow template and a job template that start compliant.
+ 
+-The packet never writes. The acting mode or a doctor command applies any change it recommends. `/doctor:ci report` lists every workflow with its switch state. `/doctor:ci scaffold` writes a new workflow from these templates after a yes. `/doctor:ci toggle` turns one switch variable off or back on after a yes.
++The packet never writes. The acting mode or a doctor command applies any change it recommends.
++
++- `/doctor:ci report` lists every workflow with its switch state.
++- `/doctor:ci scaffold` writes a new workflow from these templates after a yes.
++- `/doctor:ci toggle` turns one switch variable off or back on after a yes.
+ 
+ ### The Repository Profile
+ 
+-The rules are universal, but the values they apply to are not. Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three `/doctor:ci` routes read them from a CI profile: `--profile`, then the git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default that forces none of them. This repository commits its profile, and its `SKILLED_CI*` switches, its `gate-inputs.yml` protected workflow and its `.opencode/` twin are that profile's values, not rules of the packet. A `repository` field limits the profile to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read, with its move named. A repository without a profile reads clean: the report requires no switch and checks no README row, the scaffold prints none of this repository's names, and the toggle accepts any variable a job compares against `off` and refuses the one behind a status check the live branch ruleset requires. `assets/ci-profile.template.json` is the starting point for a new profile.
++The rules are universal, but the values they apply to are not. Branch names, switch variables, protected workflows, path twins, the workflows README and the setup action differ from one repository to the next, so the three `/doctor:ci` routes read them from a CI profile:
++
++- Source order: `--profile`, then the git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default that forces none of them.
++- This repository commits its profile, and its `SKILLED_CI*` switches, its `gate-inputs.yml` protected workflow and its `.opencode/` twin are that profile's values, not rules of the packet.
++- A `repository` field limits the profile to the repository it names, so a copy shipped with the skills into another repository is ignored.
++- A file left at the former root-level `.sk-code/` path is refused rather than read, with its move named.
++- A repository without a profile reads clean: the report requires no switch and checks no README row, the scaffold prints none of this repository's names, and the toggle accepts any variable a job compares against `off` and refuses the one behind a status check the live branch ruleset requires.
++- `assets/ci-profile.template.json` is the starting point for a new profile.
+ 
+ ---
+ 
+@@ -61,7 +72,7 @@ The rules are universal, but the values they apply to are not. Branch names, swi
+ | `assets/ci-profile.template.json` | The profile a repository fills in to give `/doctor:ci` its own conventions |
+ | `manual-testing-playbook/` | The routing scenario the hub's router-sync guard replays, and the foreign-repository scenario that runs the CI doctor against a mocked `gh` |
+ 
+-The implement, debug and verify doctrine is symlinked in from `../shared/references/`.
++The implement, debug and verify doctrine is symlinked in from `../shared/references/` as `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md`.
+ 
+ ---
+ 
+@@ -89,3 +100,4 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
+ | [../../../commands/doctor/ci.md](../../../commands/doctor/ci.md) | The `/doctor:ci` command that reports, scaffolds and toggles workflows against these rules |
+ | [repository/ci.json](repository/ci.json) | This repository's committed CI profile |
+ | [../../../../.github/workflows/README.md](../../../../.github/workflows/README.md) | The workflow README the rules cite for the contents table and the trigger table |
++| [changelog/](changelog/) | Release history for this surface |
+diff --git a/.skilled/skills/sk-code/sk-code-ci/ROUTER.md b/.skilled/skills/sk-code/sk-code-ci/ROUTER.md
+index 49f1bf38d6..f1fc9607a6 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/ROUTER.md
++++ b/.skilled/skills/sk-code/sk-code-ci/ROUTER.md
+@@ -30,7 +30,10 @@ loads before an intent selects it.
+ 
+ ## 2. INTENT MODEL
+ 
+-- **`CI_WORKFLOW`** fires on `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action` and `.github/workflows/` at weight 4, the only intent in the packet. It loads `references/ci-workflow-standards.md`, `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`, and `references/ci-workflow-standards.md` is also the default resource a run loads before intent scoring.
++- **`CI_WORKFLOW`** is the only intent in the packet, at weight 4.
++  - Fires on `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action` and `.github/workflows/`.
++  - Loads `references/ci-workflow-standards.md`, `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`.
++  - Default resource: `references/ci-workflow-standards.md`, which a run loads before intent scoring.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md b/.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md
+index 5eb2bc2bdd..985ba69a2a 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md
++++ b/.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md
+@@ -23,6 +23,12 @@ The normative list of rules the repository's workflows follow, with the evidence
+ 
+ A reader lands here first, then follows a row to the detailed file. The counts are the values read on the tree when this packet was written. Re-run the quoted command before relying on one, because the workflow files change faster than this index.
+ 
++### When to Use
++
++- Before adding or editing a workflow, to see which rows the change touches
++- When a review needs the file and line behind a rule
++- When deciding whether a rule is machine-enforced or honour-system
++
+ ### Universal Rules and Repository Values
+ 
+ Each statement is universal. The names it applies to, the twin roots, the switch variables, the branches and the README tables, come from the repository CI profile described in `references/protected-set.md`. The evidence and the counts are read from this repository, so a line marked Skilled example shows this repository's value and holds nowhere else.
+diff --git a/.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md b/.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
+index 9da362a807..c24c4f3e9c 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
++++ b/.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md
+@@ -20,8 +20,16 @@ How long a job may run, what it may touch and when it may be skipped are set bef
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Five parts of a job sit here: its timeout, its permissions, its concurrency group, the composite setup action that provisions it and the switch condition that can turn it off. Each part states the rule, the file and line that show it and what enforces it.
+ 
++### When to Use
++
++- Before writing a new job or changing an existing one
++- When a job's timeout, permissions, concurrency, setup step or switch needs review
++- When a reviewer needs the file and line behind one of those five parts
++
+ The shape of each part is universal. The values a repository fills in, its timeout floor, its setup action and its switch variables, come from the repository CI profile described in `references/protected-set.md`. A line marked Skilled example shows this repository's value and holds nowhere else.
+ 
+ 
+@@ -112,6 +120,9 @@ Today five jobs in three workflows call the action: `opencode-dual-version.yml`
+ 
+ A job can be switched off from repository variables with one condition between `name:` and `runs-on:`. With no variable set, everything runs. A switch is any repository variable the condition compares against `off`, so `/doctor:ci report` reads any repository's names. The profile's `switch.master` and `switch.groups` name them, and the example below uses neutral names.
+ 
++- A job whose status context the branch ruleset requires is never switched off, and the other protected workflows follow `references/protected-set.md`.
++- A workflow in the profile's `switch.exempt` gets no switch. When `switch.required` is true, every other job carries one.
++
+ ```yaml
+ jobs:
+   example:
+@@ -125,8 +136,6 @@ Skilled example: `if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != '
+ - The condition is **job-level**, because `on:` filters see no contexts.
+ - Where a job already has a condition, the switch is ANDed onto it and never replaces it.
+ - `off` is the only disable token. `0`, `false` or a typo leaves the job on. That is fail-safe and must be documented wherever the variables are described.
+-- A job whose status context the branch ruleset requires is never switched off, and the other protected workflows follow `references/protected-set.md`.
+-- A workflow in the profile's `switch.exempt` gets no switch. When `switch.required` is true, every other job carries one.
+ - Skilled example: `SKILLED_CI` is the master switch. The five group switches are `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
+ - Skilled example: `message-contract.yml` holds the required context, and `dependabot-auto-merge.yml` is the exempt workflow.
+ 
+diff --git a/.skilled/skills/sk-code/sk-code-ci/references/protected-set.md b/.skilled/skills/sk-code/sk-code-ci/references/protected-set.md
+index 80afbd2775..29a0b8e5a0 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/references/protected-set.md
++++ b/.skilled/skills/sk-code/sk-code-ci/references/protected-set.md
+@@ -34,7 +34,11 @@ Two guards sit behind every CI change: the profile that holds a repository's own
+ 
+ Branch names, switch variables, path twins, README tables and the setup action differ from one repository to the next, so no rule in this packet hard-codes them. A repository states them in one file, `repository/ci.json` in its `sk-code-ci` packet, and `/doctor:ci report`, `scaffold` and `toggle` read it through `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`.
+ 
+-The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default. A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read. A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word. An unknown key is an error too.
++- The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default.
++- A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored.
++- A file left at the former root-level `.sk-code/` path is refused rather than read.
++- A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word.
++- An unknown key is an error too.
+ 
+ The generic default forces nothing. It requires no switch, checks no README row, assumes no branch and protects no workflow. A repository without a profile gets the parser checks that hold everywhere and nothing that only this repository needs. To start one, copy `assets/ci-profile.template.json`, which reads as the default, and fill in the keys that differ.
+ 
+@@ -43,6 +47,7 @@ The generic default forces nothing. It requires no switch, checks no README row,
+ | Key | What reads it | Default |
+ |---|---|---|
+ | `schemaVersion` | Every reader. It must be `1` | required |
++| `repository` | The loader's scope check. A file whose field names another repository is ignored rather than read | `null`, applies anywhere |
+ | `defaultBranch` | The report's run list and the toggle's ruleset read. Without it the report asks GitHub, then falls back to `main` | `null` |
+ | `integrationBranches` | The scaffold's push `branches:` filter | `[]`, no filter |
+ | `workflowsReadme` | `{ path, rowTables }`. The report reads purposes from the README's `Workflow` and `Responsibility` table and flags a missing row. The scaffold prints one row per table. The toggle reads a `<NAME> must stay unset` sentence | `null`, no README check |
+@@ -107,6 +112,9 @@ This repository commits its profile as `repository/ci.json`. Everything in this
+ 
+ `message-contract.yml` holds the only required status context in the branch ruleset, `Commit messages, branch names and PR description follow the templates`. The workflow also pushes on every branch as a recorded exception. See the intentional exceptions table in `references/trigger-and-filter-rules.md`.
+ 
+-The Skilled example switches are the master `SKILLED_CI` and the groups `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`. `SKILLED_CI` and `SKILLED_CI_MESSAGES` are in `neverOff` (Skilled example) because both skip `message-contract.yml`. `SKILLED_CI_FRESHNESS` reaches `gate-inputs.yml`, `dispatch-enforcement-guard.yml` and `naming-standard-guard.yml`, and `SKILLED_CI_REPORTS` reaches `trigger-index-rebuild.yml` (Skilled example), so the toggle asks the second confirmation for both. `dependabot-auto-merge.yml` is in `switch.exempt`, the rebuild trailer is `Trigger-Index-Rebuild: ci` and the setup action is `./.github/actions/setup`.
++- The Skilled example switches are the master `SKILLED_CI` and the groups `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
++- `SKILLED_CI` and `SKILLED_CI_MESSAGES` are in `neverOff` (Skilled example) because both skip `message-contract.yml`.
++- `SKILLED_CI_FRESHNESS` reaches `gate-inputs.yml`, `dispatch-enforcement-guard.yml` and `naming-standard-guard.yml`, and `SKILLED_CI_REPORTS` reaches `trigger-index-rebuild.yml` (Skilled example), so the toggle asks the second confirmation for both.
++- `dependabot-auto-merge.yml` is in `switch.exempt`, the rebuild trailer is `Trigger-Index-Rebuild: ci` and the setup action is `./.github/actions/setup`.
+ 
+ A contract test fails when `repository/ci.json` goes missing or loses a protected entry, because without it this repository would read the generic default and a single yes could switch off a guard.
+diff --git a/.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md b/.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md
+index e3b4c8341a..0d51a6c450 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md
++++ b/.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md
+@@ -19,7 +19,16 @@ A trigger decides whether a commit starts any workflow at all, and the filters u
+ 
+ ## 1. OVERVIEW
+ 
+-Four topics sit here: the twin rule for path filters, the rule that stops a rebuild commit from starting the downstream workflows, the push-only scope of generated-path filters and the table of intentional trigger exceptions. A review reads the exceptions table before it flags a trigger as drift.
++### Purpose
++
++Four topics sit here: the twin rule for path filters, the rule that stops a rebuild commit from starting the downstream workflows, the push-only scope of generated-path filters and the table of intentional trigger exceptions.
++
++### When to Use
++
++- Before flagging a workflow trigger as drift, read the exceptions table first
++- When a path filter, hook input or dependabot entry names one source root of a pair
++- When a rebuild commit must not start the downstream workflows
++- When a generated-path filter needs its push-only scope
+ 
+ Each rule is universal. The values it applies to, the twin roots, the integration branches and the rebuild trailer, come from the repository CI profile described in `references/protected-set.md`. A line marked Skilled example shows this repository's value and holds nowhere else.
+ 

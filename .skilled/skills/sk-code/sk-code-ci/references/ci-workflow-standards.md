@@ -8,7 +8,7 @@ trigger_phrases:
   - "sha pinned actions"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # CI Workflow Standards - Rule Index
@@ -22,6 +22,12 @@ The normative list of rules the repository's workflows follow, with the evidence
 ### Purpose
 
 A reader lands here first, then follows a row to the detailed file. The counts are the values read on the tree when this packet was written. Re-run the quoted command before relying on one, because the workflow files change faster than this index.
+
+### When to Use
+
+- Before adding or editing a workflow, to see which rows the change touches
+- When a review needs the file and line behind a rule
+- When deciding whether a rule is machine-enforced or honour-system
 
 ### Universal Rules and Repository Values
 

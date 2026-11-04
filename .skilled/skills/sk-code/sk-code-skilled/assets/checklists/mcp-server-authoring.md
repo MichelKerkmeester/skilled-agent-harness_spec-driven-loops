@@ -8,7 +8,7 @@ trigger_phrases:
   - "mcp error envelopes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # MCP Server Authoring Checklist
@@ -35,7 +35,10 @@ This checklist covers the foundation needed for a new OpenCode MCP server to be 
 - [ ] Read `opencode.json` before changing MCP registration; it is the native MCP registration surface for this repo.
 - [ ] Identify the startup pattern in `opencode.json`.
   - Launcher-fronted pattern: `code_mode` runs `node` with `.skilled/bin/mcp-code-mode-launcher.cjs`, which reads the interpreter range the server declares in `engines.node` and resolves a satisfying interpreter before starting it. The indirection exists because that server bundles a native addon with no build for newer Node majors, and the wrong interpreter segfaults on the first tool call rather than failing at startup — so the range must be enforced at launch, and naming one absolute interpreter would only encode the machine the config was written on.
-- [ ] For launcher-backed services, account for the three-tier assembly: launcher process, daemon/server `dist/` entrypoint, and socket path configured through `SPECKIT_IPC_SOCKET_DIR`.
+- [ ] For launcher-backed services, account for the three-tier assembly:
+  - Launcher process
+  - Daemon/server `dist/` entrypoint
+  - Socket path configured through `SPECKIT_IPC_SOCKET_DIR`
 - [ ] For Code Mode, keep external MCP tools in `.utcp_config.json` under `manual_call_templates`; do not add those tools as native `opencode.json` MCP servers unless they need native OpenCode tool registration.
 - [ ] Decide whether the server should be TypeScript based on the owning skill runtime, dependencies, and typed schema needs.
 - [ ] Verify MCP tool registration in the relevant registry, schema file, or server entrypoint.

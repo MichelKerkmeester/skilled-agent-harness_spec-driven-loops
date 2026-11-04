@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # SKILLED House Code Quality Checklist
@@ -367,6 +367,7 @@ The SKILLED surface changes one rule of the review default lens. The rows below 
 - [python-checklist.md](./python-checklist.md)
 - [shell-checklist.md](./shell-checklist.md)
 - [config-checklist.md](./config-checklist.md)
+- [rust-checklist/overview-and-p0-parity.md](./rust-checklist/overview-and-p0-parity.md) - Rust checks, split into four topic parts
 
 ### Style Guides
 - [JavaScript Style Guide](../../references/javascript/style-guide.md)

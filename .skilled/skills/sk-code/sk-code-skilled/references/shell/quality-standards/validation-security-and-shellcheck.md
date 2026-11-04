@@ -8,7 +8,7 @@ trigger_phrases:
   - "shellcheck integration"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Validation, Errors, Output, Security, Review & ShellCheck
@@ -245,8 +245,11 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
 For review runs:
 
 1. The review reads which rules apply to a shell file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
-2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the shell checklist, [`shell-checklist.md`](../../../assets/checklists/shell-checklist.md), repeats the format without a second row.
+2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`.
+   - Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../../assets/checklists/universal-checklist.md).
+   - That is the checklist every SKILLED file reaches, so the shell checklist, [`shell-checklist.md`](../../../assets/checklists/shell-checklist.md), repeats the format without a second row.
 3. Cite this shell standards file as the overlay source for shell-specific findings.
+
 ---
 
 ## 7. SHELLCHECK INTEGRATION
@@ -297,4 +300,4 @@ problematic_function() {
 
 ### External Tools
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis
-- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) - The upstream conventions these rules follow

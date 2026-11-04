@@ -6,7 +6,7 @@ trigger_phrases:
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # Code Quality Checklist
@@ -22,7 +22,7 @@ Hold the few JavaScript checks the SKILLED surface applies on top of its JavaScr
 ### Usage
 
 1. **Load** the SKILLED JavaScript checklist first, `../javascript-checklist.md`, with its style guide.
-2. **Load** this file and its companion, [naming-init-formatting-and-css.md](./naming-init-formatting-and-css.md), for a `.js` or `.css` target.
+2. **Load** this file and its two companions, [naming-init-formatting-and-css.md](./naming-init-formatting-and-css.md) and [verification-quick-reference-and-related.md](./verification-quick-reference-and-related.md), for a `.js` or `.css` target.
 3. **Validate** each applicable item against the code.
 4. **Mark** items `[x]` when verified.
 5. **Block** completion if any P0 item fails.

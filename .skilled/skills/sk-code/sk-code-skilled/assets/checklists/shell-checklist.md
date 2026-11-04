@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell variable quoting check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Shell Code Quality Checklist
@@ -52,6 +52,21 @@ These items MUST be fixed before any commit.
 #!/usr/bin/env bash
 ```
 
+### File Header
+
+```markdown
+[ ] COMPONENT comment block present
+```
+
+**Required format**:
+```bash
+#!/usr/bin/env bash
+# ───────────────────────────────────────────────────────────────
+# COMPONENT: [COMPONENT NAME]
+# ───────────────────────────────────────────────────────────────
+# Brief description
+```
+
 ### Strict Mode
 
 ```markdown
@@ -87,21 +102,6 @@ file_path="$1"
 echo $variable
 file_path=$1
 [[ -f $file ]]
-```
-
-### File Header
-
-```markdown
-[ ] COMPONENT comment block present
-```
-
-**Required format**:
-```bash
-#!/usr/bin/env bash
-# ───────────────────────────────────────────────────────────────
-# COMPONENT: [COMPONENT NAME]
-# ───────────────────────────────────────────────────────────────
-# Brief description
 ```
 
 ### No Commented-Out Code

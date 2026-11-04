@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # opencode
@@ -27,13 +27,19 @@ version: 1.0.6.0
 
 ## 2. OVERVIEW
 
+### What It Does
+
+This surface carries the system-code evidence for the sk-code hub:
+
+- Language standards for TypeScript, Python, shell, Rust, config and JavaScript, plus a language-agnostic shared tier for naming, organization, hooks and alignment verification.
+- Authoring checklists for skills, agents, commands and MCP servers.
+- Detection that tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence.
+- The hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both.
+- Read-only, advisor-invisible evidence. The paired workflow mode owns all edits, tests and commits.
+
 ### Why This Skill Exists
 
 A task that touches `.skilled/` system code, be it a skill, agent, command, plugin, MCP server or descriptor, needs the right language rules and the right authoring checklist, not the whole sk-code reference tree. Without this surface, a workflow mode would either hold every language standard itself or guess which trio applies. A TypeScript edit would end up pulling Python and shell guidance it never needed.
-
-### What It Does
-
-This surface carries the system-code evidence for the sk-code hub: language standards for TypeScript, Python, shell, Rust, config and JavaScript, a language-agnostic shared tier for naming, organization, hooks and alignment verification, plus authoring checklists for skills, agents, commands and MCP servers. Detection tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence. Within it, the hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both. The surface is read-only and advisor-invisible. The paired workflow mode owns all edits, tests and commits.
 
 ### The House Style Lives Here
 
@@ -75,11 +81,28 @@ A clean exit means all four guards pass: the alignment verifier, the stack-folde
 
 ### Detection and Slicing
 
-Detection is two-step. First, work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring. Second, file extensions and local markers select the language. `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript. `.py` plus argparse maps to Python. `.sh` and `.bash` map to shell. `.rs` maps to Rust. JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config. `.cjs`, `.mjs` and `.js` map to JavaScript. When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
+Detection is two-step.
+
+1. Work under `.skilled/` makes this surface the leading one when no specific surface matched: skills, agents, commands, plugins, MCP servers, config, changelogs and runtime bridge wiring.
+2. File extensions and local markers select the language:
+   - `.ts`, `.tsx`, `.mts` and `.d.ts` map to TypeScript.
+   - `.py` plus argparse maps to Python.
+   - `.sh` and `.bash` map to shell.
+   - `.rs` maps to Rust.
+   - JSON, JSONC and YAML with graph-metadata or spec-folder markers map to config.
+   - `.cjs`, `.mjs` and `.js` map to JavaScript.
+
+When no `.rs` file is touched, local `Cargo.toml` or `Cargo.lock` markers select Rust, with napi-rs and wasm-bindgen vocabulary as intent signals. The slice is the set of touched languages, not one per task.
 
 ### The Surface Standards
 
-Four non-negotiables hold across the evidence. OpenCode plugins never write to the TUI. Their output goes through system-context injection, tools, append-only log files or a DEBUG-gated stream behind an env flag. Descriptors are load-bearing, since `graph-metadata.json` and `description.json` shape discovery. Alignment drift is a verification gate, so system-code changes re-run the drift guards before any completion claim. Rust preserves the TypeScript contract. The slice stays the touched-language set.
+Five non-negotiables hold across the evidence.
+
+- **OpenCode plugins never write to the TUI.** Their output goes through system-context injection, tools, append-only log files or a DEBUG-gated stream behind an env flag.
+- **Descriptors are load-bearing**, since `graph-metadata.json` and `description.json` shape discovery.
+- **Alignment drift is a verification gate**, so system-code changes re-run the drift guards before any completion claim.
+- **Rust preserves the TypeScript contract.**
+- **The slice stays the touched-language set.**
 
 ---
 
@@ -136,6 +159,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Surface contract, reference map and standards |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`references/`](./references/) | Language standard folders and the shared pattern tier |
 | [`assets/checklists/`](./assets/checklists/) | Component authoring checklists, per-language quality gates and the JavaScript and CSS house checks |
 | [`../shared/references/universal/rule-overrides.md`](../shared/references/universal/rule-overrides.md) | The `## Rule overrides` contract this surface's universal checklist follows |

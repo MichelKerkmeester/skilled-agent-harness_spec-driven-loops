@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.15.0
+version: 1.9.16.0
 metadata:
   family: sk-code
 ---
@@ -242,7 +242,7 @@ A normal review must still end with one of the three exact lines above.
 - Produce vague findings without concrete evidence.
 - Mix unrelated cleanup into targeted fix recommendations.
 - Let an override row drop or reword a floor rule, or apply a row from a checklist the resolver did not return.
-- Do not implement fixes during review. Report findings only; implementation is a separate follow-up step.
+- Implement fixes during review. Report findings only; implementation is a separate follow-up step.
 
 ### ⚠️ ESCALATE IF
 
@@ -279,6 +279,7 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 - [solid-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture assessment prompts.
 - [removal-plan.md](../../../.skilled/skills/sk-code/sk-code-review/assets/removal-plan.md) - Safe-now vs deferred removal planning template.
 - [test-quality-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md) - Test quality, coverage, and anti-pattern detection.
+- [fix-completeness-checklist.md](../../../.skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md) - Finding classes and the producer and consumer inventories a complete fix covers.
 
 ### Reference Loading Notes
 

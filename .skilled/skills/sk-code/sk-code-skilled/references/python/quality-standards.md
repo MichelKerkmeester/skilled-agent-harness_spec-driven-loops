@@ -8,7 +8,7 @@ trigger_phrases:
   - "snake case function naming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Python Quality Standards
@@ -439,8 +439,11 @@ Use `sk-code`'s code-review mode for formal findings-first review output and sev
 For review runs:
 
 1. The review reads which rules apply to a Python file from the quality runner's `--explain` resolver: its surfaces, the checklists that apply and their `## Rule overrides` rows. It keeps its severity model, output contract and baseline checklists in its own mode.
-2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`. Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches, so the Python checklist, [`python-checklist.md`](../../assets/checklists/python-checklist.md), repeats the format without a second row.
+2. The one default-lens rule the SKILLED surface changes is the TODO format, `review.todo-tracking`.
+   - Its row lives in the `## 7. RULE OVERRIDES` section of [`universal-checklist.md`](../../assets/checklists/universal-checklist.md), the checklist every SKILLED file reaches.
+   - The Python checklist, [`python-checklist.md`](../../assets/checklists/python-checklist.md), repeats the format without a second row.
 3. Cite this Python standards file as the overlay source for Python-specific findings.
+
 ---
 
 ## 9. RELATED RESOURCES

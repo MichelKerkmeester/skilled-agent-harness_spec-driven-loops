@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript naming cheat sheet"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # TypeScript Quick Reference
@@ -21,19 +21,19 @@ Copy-paste templates, naming cheat sheet, and common patterns for TypeScript dev
 
 ### Purpose
 
-Quick-access reference card for TypeScript patterns. For detailed explanations, see:
-- [style-guide.md](../style-guide/overview-strict-and-naming.md) - Full style documentation
-- [quality-standards.md](../quality-standards/overview-and-type-system.md) - Quality requirements
-
-Current system-spec-kit TypeScript is package-aware: `shared/` and
-`mcp-server/` use NodeNext ESM, `scripts/` uses ES2022 ESM, and root CommonJS
-settings are only fallback defaults for workspaces that do not override them.
+Quick-access reference card for TypeScript patterns.
 
 ### When to Use
 
 - Starting a TypeScript file from the standard template
 - Looking up naming or type-annotation conventions
 - Reusing common TypeScript utility-type patterns
+
+Current system-spec-kit TypeScript is package-aware:
+
+- `shared/` and `mcp-server/` use NodeNext ESM
+- `scripts/` uses ES2022 ESM
+- root CommonJS settings are only fallback defaults for workspaces that do not override them
 
 ---
 
@@ -278,3 +278,8 @@ type SearchReturn = ReturnType<typeof searchMemories>;
 ```
 
 ---
+
+## 7. RELATED RESOURCES
+
+- [style-guide.md](../style-guide/overview-strict-and-naming.md) - Full style documentation
+- [quality-standards.md](../quality-standards/overview-and-type-system.md) - Quality requirements

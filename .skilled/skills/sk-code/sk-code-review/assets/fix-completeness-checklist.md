@@ -9,7 +9,7 @@ trigger_phrases:
   - "instance only opt out"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Fix Completeness Checklist
@@ -114,4 +114,4 @@ The fix response must include:
 
 - [code-quality-checklist.md](./code-quality-checklist.md) - Correctness, performance, and maintainability checks.
 - [security-checklist.md](./security-checklist.md) - Security, authz, and reliability checks.
-- [../references/review-core.md](../references/review-core.md) - Findings-first review doctrine, severity model, and evidence rules.
+- [review-core.md](../references/review-core.md) - Findings-first review doctrine, severity model, and evidence rules.

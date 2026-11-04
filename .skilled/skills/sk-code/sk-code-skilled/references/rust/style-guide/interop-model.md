@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rust/TypeScript Interop — Model & Boundary Types
@@ -257,6 +257,8 @@ impl TryFrom<SearchOptionsDto> for SearchOptions {
 
 ### `From` and `TryFrom`
 
+Implement `From` or `TryFrom`, not `Into` or `TryInto`, directly.
+
 Use `From` only when conversion is:
 
 - Infallible
@@ -319,11 +321,11 @@ impl TryFrom<&str> for MemoryState {
 }
 ```
 
-Implement `From` or `TryFrom`, not `Into` or `TryInto`, directly.
-
 ### Enum Representation
 
 Use stable string discriminants or explicit numeric codes at the boundary. Never export incidental Rust ordinals.
+
+Do not use `variant as u8` as a wire contract unless every numeric code is explicit and versioned.
 
 ```rust
 use serde::{Deserialize, Serialize};
@@ -336,8 +338,6 @@ enum MemoryTierDto {
     LongTerm,
 }
 ```
-
-Do not use `variant as u8` as a wire contract unless every numeric code is explicit and versioned.
 
 Use `#[non_exhaustive]` only when wildcard evolution is intentional. Adapter error mappings SHOULD remain exhaustive so new variants cannot silently receive the wrong JavaScript code.
 

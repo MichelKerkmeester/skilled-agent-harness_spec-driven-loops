@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.40.0
+version: 2.2.41.0
 ---
 
 # sk-code
@@ -27,11 +27,15 @@ version: 2.2.40.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
+### Purpose
 
 Code work is not one activity. Writing code needs author-side quality gates and comment hygiene. Reviewing it needs a findings-first baseline with security and correctness checks. CI workflow work needs trigger, permission and job-shape rules. System work needs hook and alignment verification. Each kind of code work carries its own contract, yet they all share the same surface identity rules.
 
 Without one routing point, every contract would duplicate surface detection and a request that touches several kinds of code work would have no ordered way to resolve. sk-code exists so one advisor identity covers the whole code family: the hub centralizes surface detection once and routes each request to the focused packet that owns the work.
+
+### When to Use
+
+Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. Shared stack detection tries every declared specific surface first, then the SKILLED fallback, then UNKNOWN. A skill outside the hub that names family sk-code can declare its own `surface_detection` block in `graph-metadata.json` and outrank SKILLED. The CI surface is bundled from request vocabulary, not from detection (see `shared/references/stack-detection.md`). Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
 
 ### What It Does
 
@@ -82,7 +86,13 @@ The implement → debug → verify phases are not standalone modes. Their surfac
 
 The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids, reach rule and security and correctness minimums. Every other rule can be dropped or replaced.
 
-A repository does that in a `## Rule overrides` section of a checklist its quality config names, and a surface does it in the checklists its declaration names. Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding. A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified. `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together. The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
+A repository does that in a `## Rule overrides` section of a checklist its quality config names, and a surface does it in the checklists its declaration names.
+
+- Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding.
+- A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified.
+- `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together.
+
+The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
 
 ### One Advisor Identity
 
@@ -91,10 +101,6 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 ---
 
 ## 4. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. Shared stack detection tries every declared specific surface first, then the SKILLED fallback, then UNKNOWN. A skill outside the hub that names family sk-code can declare its own `surface_detection` block in `graph-metadata.json` and outrank SKILLED. The CI surface is bundled from request vocabulary, not from detection (see `shared/references/stack-detection.md`). Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
 
 ### Related Skills
 
@@ -111,7 +117,11 @@ Reach for sk-code when the task is code work and the next step is implementation
 
 ## 5. ADAPTING TO YOUR STACK
 
-sk-code ships three surfaces: the native SKILLED surface, the CI standards surface and a stack-agnostic frontend surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Frontend surface, at `.skilled/skills/sk-code/sk-code-frontend/`, holds web practice, topic references and Figma-to-code checks. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
+sk-code ships three surfaces:
+
+- **CI** (`.skilled/skills/sk-code/sk-code-ci/`): the GitHub Actions workflow rules and their evidence. Its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.
+- **Frontend** (`.skilled/skills/sk-code/sk-code-frontend/`): stack-agnostic web practice, topic references and Figma-to-code checks.
+- **Skilled** (`.skilled/skills/sk-code/sk-code-skilled/`): the native standards for this framework's own code, so keep it.
 
 A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
 
@@ -168,7 +178,10 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
 node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
 ```
 
-`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg. `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates the quality config the `sk-code-quality` packet holds, once after you approve. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
+- `/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg.
+- `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates the quality config the `sk-code-quality` packet holds, once after you approve.
+- Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`.
+- For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "json style conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Config Style Guide
@@ -415,7 +415,8 @@ opencode.json                         # Root OpenCode runtime config (strict JSO
 
 ### Internal References
 - [quick-reference.md](./quick-reference.md) - Quick lookup for config patterns
+- [quality-standards.md](./quality-standards.md) - P0/P1/P2 quality gates
 
 ### External Standards
-- [JSON Specification](https://www.json.org/)
-- [JSONC (JSON with Comments)](https://code.visualstudio.com/docs/languages/json#_json-with-comments)
+- [JSON Specification](https://www.json.org/) - The grammar JSON and JSONC files must parse as
+- [JSONC (JSON with Comments)](https://code.visualstudio.com/docs/languages/json#_json-with-comments) - The comment and trailing-comma extension JSONC adds

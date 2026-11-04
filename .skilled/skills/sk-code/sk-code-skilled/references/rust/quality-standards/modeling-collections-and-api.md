@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts
@@ -178,7 +178,15 @@ pub fn canonical_entries(
 
 ### Serialization DTOs
 
-**[P0] Boundary DTOs are passive, owned, and versioned.** Serialization must preserve the TypeScript contract for field names, field order, omission, nullability, escaping, encoding, and number spelling.
+**[P0] Boundary DTOs are passive, owned, and versioned.** Serialization must preserve the TypeScript contract for:
+
+- Field names
+- Field order
+- Omission
+- Nullability
+- Escaping
+- Encoding
+- Number spelling
 
 ```rust
 use serde::{Deserialize, Serialize};

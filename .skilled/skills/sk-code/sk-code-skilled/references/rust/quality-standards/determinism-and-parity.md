@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Byte-for-Byte Determinism & Parity
@@ -203,6 +203,8 @@ pub fn deterministic_id(
 - Array order
 - Whitespace
 - Error payload shape
+
+**Acceptance-test rules:**
 
 - **[P0]** Do not parse and reserialize expected output before comparison.
 - **[P0]** Do not normalize whitespace, paths, Unicode, or line endings in the acceptance test.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Collections, Imports/Exports & Error Mapping
@@ -46,6 +46,18 @@ fn canonical_metadata(
 ```
 
 Use `BTreeMap` when key order is observable through serialization, hashing, IDs, traversal, or output. A `HashMap` may be used internally only when its iteration order cannot escape.
+
+### IndexMap Exception
+
+```rust
+use indexmap::IndexMap;
+
+fn insertion_ordered_fields() -> IndexMap<String, String> {
+    IndexMap::new()
+}
+```
+
+Use `IndexMap` only when deterministic insertion order is itself the documented contract. If canonical key order is required, prefer `BTreeMap`.
 
 ### Collect and Sort
 
@@ -111,18 +123,6 @@ pub fn score_request(request: ScoreRequestDto) -> Result<ScoreOutputDto, CoreErr
 ```
 
 When `as` conversions are denied, replace the final conversion with an explicitly reviewed helper or a checked intermediate type appropriate to the domain.
-
-### IndexMap Exception
-
-```rust
-use indexmap::IndexMap;
-
-fn insertion_ordered_fields() -> IndexMap<String, String> {
-    IndexMap::new()
-}
-```
-
-Use `IndexMap` only when deterministic insertion order is itself the documented contract. If canonical key order is required, prefer `BTreeMap`.
 
 ---
 
@@ -204,7 +204,7 @@ Native and WASM features must compile independently. Do not make boundary runtim
 
 ---
 
-## 4. ERROR AND PANIC MAPPING
+## 4. ERROR, PANIC, AND LINT POLICY
 
 ### Domain Error
 

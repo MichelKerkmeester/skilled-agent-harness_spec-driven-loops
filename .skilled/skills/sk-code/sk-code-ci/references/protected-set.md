@@ -9,7 +9,7 @@ trigger_phrases:
   - "repository ci profile"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Repository CI Profile and Protected Workflows
@@ -34,7 +34,11 @@ Two guards sit behind every CI change: the profile that holds a repository's own
 
 Branch names, switch variables, path twins, README tables and the setup action differ from one repository to the next, so no rule in this packet hard-codes them. A repository states them in one file, `repository/ci.json` in its `sk-code-ci` packet, and `/doctor:ci report`, `scaffold` and `toggle` read it through `.skilled/commands/doctor/scripts/lib/ci-profile.cjs`.
 
-The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default. A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored, and a file left at the former root-level `.sk-code/` path is refused rather than read. A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word. An unknown key is an error too.
+- The lookup order is `--profile <path>`, then the file-scoped git config value `skcode.ciProfile`, then `repository/ci.json` in this packet, then a generic default.
+- A `repository` field limits the file to the repository it names, so a copy shipped with the skills into another repository is ignored.
+- A file left at the former root-level `.sk-code/` path is refused rather than read.
+- A named path that does not exist is an error and never falls back, because a typo would otherwise drop every protection without a word.
+- An unknown key is an error too.
 
 The generic default forces nothing. It requires no switch, checks no README row, assumes no branch and protects no workflow. A repository without a profile gets the parser checks that hold everywhere and nothing that only this repository needs. To start one, copy `assets/ci-profile.template.json`, which reads as the default, and fill in the keys that differ.
 
@@ -43,6 +47,7 @@ The generic default forces nothing. It requires no switch, checks no README row,
 | Key | What reads it | Default |
 |---|---|---|
 | `schemaVersion` | Every reader. It must be `1` | required |
+| `repository` | The loader's scope check. A file whose field names another repository is ignored rather than read | `null`, applies anywhere |
 | `defaultBranch` | The report's run list and the toggle's ruleset read. Without it the report asks GitHub, then falls back to `main` | `null` |
 | `integrationBranches` | The scaffold's push `branches:` filter | `[]`, no filter |
 | `workflowsReadme` | `{ path, rowTables }`. The report reads purposes from the README's `Workflow` and `Responsibility` table and flags a missing row. The scaffold prints one row per table. The toggle reads a `<NAME> must stay unset` sentence | `null`, no README check |
@@ -107,6 +112,9 @@ This repository commits its profile as `repository/ci.json`. Everything in this 
 
 `message-contract.yml` holds the only required status context in the branch ruleset, `Commit messages, branch names and PR description follow the templates`. The workflow also pushes on every branch as a recorded exception. See the intentional exceptions table in `references/trigger-and-filter-rules.md`.
 
-The Skilled example switches are the master `SKILLED_CI` and the groups `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`. `SKILLED_CI` and `SKILLED_CI_MESSAGES` are in `neverOff` (Skilled example) because both skip `message-contract.yml`. `SKILLED_CI_FRESHNESS` reaches `gate-inputs.yml`, `dispatch-enforcement-guard.yml` and `naming-standard-guard.yml`, and `SKILLED_CI_REPORTS` reaches `trigger-index-rebuild.yml` (Skilled example), so the toggle asks the second confirmation for both. `dependabot-auto-merge.yml` is in `switch.exempt`, the rebuild trailer is `Trigger-Index-Rebuild: ci` and the setup action is `./.github/actions/setup`.
+- The Skilled example switches are the master `SKILLED_CI` and the groups `SKILLED_CI_TESTS`, `SKILLED_CI_REPORTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_FRESHNESS` and `SKILLED_CI_MESSAGES`.
+- `SKILLED_CI` and `SKILLED_CI_MESSAGES` are in `neverOff` (Skilled example) because both skip `message-contract.yml`.
+- `SKILLED_CI_FRESHNESS` reaches `gate-inputs.yml`, `dispatch-enforcement-guard.yml` and `naming-standard-guard.yml`, and `SKILLED_CI_REPORTS` reaches `trigger-index-rebuild.yml` (Skilled example), so the toggle asks the second confirmation for both.
+- `dependabot-auto-merge.yml` is in `switch.exempt`, the rebuild trailer is `Trigger-Index-Rebuild: ci` and the setup action is `./.github/actions/setup`.
 
 A contract test fails when `repository/ci.json` goes missing or loses a protected entry, because without it this repository would read the generic default and a single yes could switch off a guard.

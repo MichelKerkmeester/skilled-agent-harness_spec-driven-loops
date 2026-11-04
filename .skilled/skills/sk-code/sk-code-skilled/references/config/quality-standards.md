@@ -8,7 +8,7 @@ trigger_phrases:
   - "json config validation rules"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Config Quality Standards
@@ -105,7 +105,7 @@ rg -n "^// [0-9]+\\. [A-Z0-9 ()/:-]+$" .skilled/skills/sk-code/sk-code-skilled/r
 
 ## 6. RELATED RESOURCES
 
-- [quick-reference.md](./quick-reference.md)
-- [style-guide.md](./style-guide.md)
-- [shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md)
-- [config-checklist.md](../../assets/checklists/config-checklist.md)
+- [quick-reference.md](./quick-reference.md) - Pattern lookup for common config shapes
+- [style-guide.md](./style-guide.md) - Formatting, naming and comment conventions
+- [shared/code-organization/overview-and-module-organization.md](../shared/code-organization/overview-and-module-organization.md) - Module and file organization rules
+- [config-checklist.md](../../assets/checklists/config-checklist.md) - Checklist form of these gates

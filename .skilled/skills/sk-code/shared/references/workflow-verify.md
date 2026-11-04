@@ -8,7 +8,7 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.2.4.0
+version: 2.2.5.0
 ---
 
 # Workflow Reference - Verification
@@ -53,7 +53,12 @@ A clean static read is not runtime evidence. A green unit test is not live proof
 ### Verification Loop
 
 1. Resolve the active surface through [stack-detection.md](../../shared/references/stack-detection.md). If it is unsupported or ambiguous, ask for the verification command set before claiming anything. The quality config, `repository/quality.json` in the `sk-code-quality` packet, names quality checks only, so it never supplies the verification command set.
-2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks. From the quality envelope, read the `checker_outputs` field with the `gate` and `unverified` values it carries, and any field that still reads `PENDING_AGENT_JUDGMENT`. Hand back to quality only on `BLOCKED`, `ERROR` or a field still reading `PENDING_AGENT_JUDGMENT`, which is the 3 to 1.5 transition in [phase-detection.md](../../shared/references/phase-detection.md). On `UNVERIFIED`, prove each id it lists with this phase's own command or report that id open. On `NOTHING_CHECKED`, prove the claim with this phase's own commands and never read the gate as clean, because no check read any file as code, which is where a Markdown-only change lands. The run verdict has three readers: this step, the @code RETURN `Quality Gate` field and `sk-code-review`, which reads it as input evidence only.
+2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks.
+   - From the quality envelope, read the `checker_outputs` field with the `gate` and `unverified` values it carries, and any field that still reads `PENDING_AGENT_JUDGMENT`.
+   - Hand back to quality only on `BLOCKED`, `ERROR` or a field still reading `PENDING_AGENT_JUDGMENT`, which is the 3 to 1.5 transition in [phase-detection.md](../../shared/references/phase-detection.md).
+   - On `UNVERIFIED`, prove each id it lists with this phase's own command or report that id open.
+   - On `NOTHING_CHECKED`, prove the claim with this phase's own commands and never read the gate as clean, because no check read any file as code, which is where a Markdown-only change lands.
+   - The run verdict has three readers: this step, the @code RETURN `Quality Gate` field and `sk-code-review`, which reads it as input evidence only.
 3. Name the claim to prove and the command, action or observation that proves it.
 4. Select the surface-appropriate command set and targeted tests from the active-surface guidance.
 5. Run fresh commands and capture the command names, exit codes, test counts, important output and failures.
@@ -61,25 +66,6 @@ A clean static read is not runtime evidence. A green unit test is not live proof
 7. Compare the current evidence to the baseline and report the delta.
 8. Run a mutation check or claim falsifier when the claim depends on a new or changed test.
 9. Walk the Pre-Claim Gate below, then state only the claims the evidence proves. If the evidence fails, hand back without editing.
-
-### Pre-Claim Gate Substance
-
-Walk every gate in order before any status claim:
-
-| Gate | Required Discipline |
-| --- | --- |
-| Identify | Name the command, action or observation that proves the claim. |
-| Run | Execute the surface-appropriate verification commands in the current session. |
-| Test | Exercise targeted unit, integration, end-to-end, runtime or manual checks where available, including at least one edge case and one error path. |
-| Verify | Confirm the output, exit code, test count and observed behavior match expectations, and that the run reached the changed code on a fresh build with real assertions. |
-| Record | Save the exact evidence the final claim rests on. |
-| Claim | State only the narrow claim the evidence supports. |
-
-The Verify row guards against the four ways a green run lies, which `.skilled/repo-rules/evidence-and-proof.md` section 3 lists: it did not run, it ran on the wrong thing, it ran on stale artifacts or it asserted nothing.
-
-### OpenCode Verification Reality
-
-For system code under `.skilled/` (the `sk-code-skilled` surface), also apply the [verification reality](../../sk-code-skilled/references/shared/workflow-guardrails.md#3-verification-reality), including the `validate.sh` pointer, and the [runtime build traps](../../sk-code-skilled/references/shared/workflow-guardrails.md#4-runtime-build-traps).
 
 ### Baseline And Delta
 
@@ -112,6 +98,25 @@ Climb from the cheapest rung to the most authoritative and name what each rung c
 After green evidence for a new or modified test, confirm the test can fail for the right reason when that is feasible. A true red result is an assertion failing against the intended behavior. A compile error, or a command that never reached the assertion, is not a satisfying red. If a test stays green after the guarded behavior is broken, report it as a verification defect and hand back.
 
 This applies the idea behind `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL): a check that passes whether or not the behavior works proves nothing. The before-fix half of that control, reproducing the failure with the same check, is step 2 of the [Debug Loop](./workflow-debug.md#debug-loop).
+
+### Pre-Claim Gate Substance
+
+Walk every gate in order before any status claim:
+
+| Gate | Required Discipline |
+| --- | --- |
+| Identify | Name the command, action or observation that proves the claim. |
+| Run | Execute the surface-appropriate verification commands in the current session. |
+| Test | Exercise targeted unit, integration, end-to-end, runtime or manual checks where available, including at least one edge case and one error path. |
+| Verify | Confirm the output, exit code, test count and observed behavior match expectations, and that the run reached the changed code on a fresh build with real assertions. |
+| Record | Save the exact evidence the final claim rests on. |
+| Claim | State only the narrow claim the evidence supports. |
+
+The Verify row guards against the four ways a green run lies, which `.skilled/repo-rules/evidence-and-proof.md` section 3 lists: it did not run, it ran on the wrong thing, it ran on stale artifacts or it asserted nothing.
+
+### OpenCode Verification Reality
+
+For system code under `.skilled/` (the `sk-code-skilled` surface), also apply the [verification reality](../../sk-code-skilled/references/shared/workflow-guardrails.md#3-verification-reality), including the `validate.sh` pointer, and the [runtime build traps](../../sk-code-skilled/references/shared/workflow-guardrails.md#4-runtime-build-traps).
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "json section headers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Config Quick Reference
@@ -21,9 +21,7 @@ Fast lookup for JSON/JSONC configuration patterns and common structures in OpenC
 
 ### Purpose
 
-Quick-access reference card for configuration file patterns. For detailed explanations, see:
-- [style-guide.md](./style-guide.md) - Full style documentation
-- [quality-standards.md](./quality-standards.md) - P0/P1/P2 quality gates
+Quick-access reference card for configuration file patterns.
 
 ### When to Use
 
@@ -342,4 +340,4 @@ P2 - Nice to Have:
 
 - [style-guide.md](./style-guide.md) - Detailed style documentation
 - [quality-standards.md](./quality-standards.md) - Config quality gates
-- [JSON Specification](https://www.json.org/)
+- [JSON Specification](https://www.json.org/) - The grammar JSON and JSONC files must parse as

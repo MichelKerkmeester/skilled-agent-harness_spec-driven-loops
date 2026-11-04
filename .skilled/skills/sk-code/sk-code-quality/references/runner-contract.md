@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate exit codes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # Quality Runner Contract
@@ -117,7 +117,14 @@ Precedence runs `ERROR`, then `BLOCKED`, then `UNVERIFIED`, then `NOTHING_CHECKE
 | `dist-staleness` | P1 | no | The dist adapter in section 8 |
 | A configured id | Declared | Declared, and true by default for P0 only | The commands `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names in `checks` and `generated`, after the built-in rows, as `quality-config.md` describes. A command starts only from a trusted config |
 
-A configured check runs only from a trusted config. One of four rules makes it trusted. The operator names the file with `--config`, `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include, `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test, or the repository under test shares its git common dir with the checkout that holds the runner. Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
+A configured check runs only from a trusted config. One of four rules makes it trusted.
+
+- The operator names the file with `--config`.
+- `skcode.qualityConfig` is stored in the repository's own `.git/config`, not through an include.
+- `git config --local --bool skilled.trustRepoChecks` prints `true` in the repository under test.
+- The repository under test shares its git common dir with the checkout that holds the runner.
+
+Otherwise a configured check that would start a command reads `SKIPPED_UNTRUSTED`, starts nothing and carries the repair line `git config --local skilled.trustRepoChecks true`. A required one is unverified. A built-in check is never gated this way, and `--no-run` lists a configured check without starting it, so trust does not change that listing. The trust rule compares git common dirs, so every worktree of the hub's repository counts as the hub's own checkout, while a checklist row scoped to `hubRepo` reads the hub checkout's own path instead.
 
 | Layer state | Meaning |
 | --- | --- |

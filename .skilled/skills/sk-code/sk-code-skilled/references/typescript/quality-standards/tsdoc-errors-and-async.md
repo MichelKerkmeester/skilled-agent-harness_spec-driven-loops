@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript error handling"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # TSDoc, Typed Error Classes & Async Patterns
@@ -153,7 +153,7 @@ interface CacheEntry<T> {
 | `@throws`       | Document thrown exceptions                   | `@throws {@link MemoryError} If DB fails`      |
 | `@typeParam`    | Describe generic type parameter              | `@typeParam T - Cached value type`             |
 | `@remarks`      | Extended description (after summary)         | `@remarks Uses cosine similarity...`           |
-| `@example`      | Usage example with code block                | `@example \`\`\`typescript ... \`\`\``         |
+| `@example`      | Usage example with code block                | ``@example ```typescript ... ``` `` |
 | `@see`          | Cross-reference                              | `@see {@link SearchOptions}`                   |
 | `@deprecated`   | Mark as deprecated                           | `@deprecated Use searchMemories instead`       |
 | `@internal`     | Mark as internal (not public API)            | `@internal`                                    |
@@ -162,6 +162,23 @@ interface CacheEntry<T> {
 ---
 
 ## 3. TYPED ERROR CLASSES
+
+### Error Code Const Object
+
+```typescript
+export const ErrorCodes = {
+  EMBEDDING_FAILED: 'E001',
+  FILE_NOT_FOUND: 'E010',
+  DB_CONNECTION_FAILED: 'E020',
+  INVALID_PARAMETER: 'E030',
+  SEARCH_FAILED: 'E040',
+  RATE_LIMITED: 'E429',
+} as const;
+
+export type ErrorCodeKey = keyof typeof ErrorCodes;
+```
+
+Prefer `export const X = {...} as const` plus `keyof typeof X` over `enum` for shared code maps.
 
 ### Custom Error Pattern
 
@@ -208,23 +225,6 @@ class ValidationError extends MemoryError {
   }
 }
 ```
-
-### Error Code Const Object
-
-```typescript
-export const ErrorCodes = {
-  EMBEDDING_FAILED: 'E001',
-  FILE_NOT_FOUND: 'E010',
-  DB_CONNECTION_FAILED: 'E020',
-  INVALID_PARAMETER: 'E030',
-  SEARCH_FAILED: 'E040',
-  RATE_LIMITED: 'E429',
-} as const;
-
-export type ErrorCodeKey = keyof typeof ErrorCodes;
-```
-
-Prefer `export const X = {...} as const` plus `keyof typeof X` over `enum` for shared code maps.
 
 ### Typed Error Handling
 
@@ -316,5 +316,3 @@ const result = await safeAsync(
   'memory-search',
 );
 ```
-
----

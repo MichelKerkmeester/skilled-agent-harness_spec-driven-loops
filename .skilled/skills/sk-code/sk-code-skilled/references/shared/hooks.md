@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude cursor opencode copilot hooks"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Runtime Hooks - Entrypoint Authoring, Wiring, and Maintenance
@@ -161,13 +161,21 @@ The flat shape (`hooks.<event>[]`, each entry optionally carrying `matcher`) is 
 
 ### MCP Config And The Split-Shape Caveat
 
-`.cursor/mcp.json` is a symlink to the repo's own `.mcp.json`. Cursor's documented MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), so one file serves both. `opencode.json` cannot participate — its schema differs (`mcp` key, `command` as an array, `environment` rather than `env`).
-
-Cursor's MCP hook payloads split the server and tool across **two** fields — `mcp_server_name: "sequential_thinking"` alongside a BARE `tool_name: "sequentialthinking"` — where Claude packs both into one `mcp__<server>__<tool>` string. The shared `mcp-route-guard` core parses only the packed forms, so a Cursor adapter MUST recombine the two fields before forwarding; passing the bare tool name through matches nothing and the guard silently never advises. Confirmed by testing the core directly: `mcp__figma__get_screenshot` and `figma_get_screenshot` both advise, bare `get_screenshot` does not. `afterMCPExecution` also fires (adding `result_json` + `duration`) but has no Claude-side counterpart to proxy to, so nothing is wired for it.
+- `.cursor/mcp.json` is a symlink to the repo's own `.mcp.json`.
+- Cursor's documented MCP schema is byte-compatible with Claude's (`mcpServers` / `command` string / `args` array / `env` object), so one file serves both.
+- `opencode.json` cannot participate — its schema differs (`mcp` key, `command` as an array, `environment` rather than `env`).
+- Cursor's MCP hook payloads split the server and tool across **two** fields — `mcp_server_name: "sequential_thinking"` alongside a BARE `tool_name: "sequentialthinking"` — where Claude packs both into one `mcp__<server>__<tool>` string.
+- The shared `mcp-route-guard` core parses only the packed forms, so a Cursor adapter MUST recombine the two fields before forwarding; passing the bare tool name through matches nothing and the guard silently never advises.
+- Confirmed by testing the core directly: `mcp__figma__get_screenshot` and `figma_get_screenshot` both advise, bare `get_screenshot` does not.
+- `afterMCPExecution` also fires (adding `result_json` + `duration`) but has no Claude-side counterpart to proxy to, so nothing is wired for it.
 
 ### Discovery Mirror — `.cursor/hooks/`
 
-`.cursor/hooks/` holds a symlink to every file `.cursor/hooks.json` invokes, purely so the scripts are visible at Cursor's own documented conventional path (`.cursor/hooks/<script>`). `.cursor/hooks.json`'s `command` fields still point at the real paths above, not these symlinks — confirmed by direct testing, invoking `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js` through the symlink produces **zero output**, because each compiles from a `.ts` source ending in `runCursorHook(import.meta.url, main)`, whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against the ESM-loader-resolved `import.meta.url` (resolves through the symlink to the real path) — they never match, so `main()` never runs. The plain `.mjs` files have no such guard and work through either path, but every `command` entry stays pointed at the real path for consistency. See `.cursor/hooks/README.md` for the full explanation.
+- `.cursor/hooks/` holds a symlink to every file `.cursor/hooks.json` invokes, purely so the scripts are visible at Cursor's own documented conventional path (`.cursor/hooks/<script>`).
+- `.cursor/hooks.json`'s `command` fields still point at the real paths above, not these symlinks.
+- Invoking `session-start.js`/`session-end.js`/`user-prompt-submit.js`/`precompact.js` through the symlink produces **zero output** (confirmed by direct testing): each compiles from a `.ts` source ending in `runCursorHook(import.meta.url, main)`, whose entrypoint guard compares `process.argv[1]` (stays the symlink path) against the ESM-loader-resolved `import.meta.url` (resolves through the symlink to the real path) — they never match, so `main()` never runs.
+- The plain `.mjs` files have no such guard and work through either path, but every `command` entry stays pointed at the real path for consistency.
+- See `.cursor/hooks/README.md` for the full explanation.
 
 ---
 

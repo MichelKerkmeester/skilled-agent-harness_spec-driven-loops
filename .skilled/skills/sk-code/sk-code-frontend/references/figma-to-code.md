@@ -7,7 +7,7 @@ trigger_phrases:
   - "implement a figma design in code"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Figma to Code Translation
@@ -112,7 +112,9 @@ Gather these inputs before comparing the frame with the rendered build:
 
 Use these read-only transports in order:
 
-1. The official Figma MCP when it is connected natively in the runtime. This route belongs to the frontend reference. The tools exposed by this runtime are `get_design_context`, `get_screenshot`, `get_metadata` and `get_variable_defs`. Their return shapes belong to the runtime, not this reference. The connected server's own instructions require `create_session` with the file key before any file tool, including read-only tools. They also require loading its `figma-design-to-code` skill before calling `get_design_context`.
+1. The official Figma MCP when it is connected natively in the runtime. This route belongs to the frontend reference.
+   - The tools exposed by this runtime are `get_design_context`, `get_screenshot`, `get_metadata` and `get_variable_defs`. Their return shapes belong to the runtime, not this reference.
+   - The connected server's own instructions require `create_session` with the file key before any file tool, including read-only tools. They also require loading its `figma-design-to-code` skill before calling `get_design_context`.
 2. The Framelink figma manual through Code Mode, only after discovery confirms it is registered. It returns design data and can download referenced images. It does not return variable bindings, so Pass 4 cannot run from Framelink alone.
 3. `figma-ds-cli`, which requires Figma Desktop and its daemon. For the Pass 1 frame image, the documented form is `figma-ds-cli export node <nodeId> -o ./out/frame.png -s 1`. Its read-only Pass 4 commands include `node bindings` and `var list`. Its read-only Pass 5 commands include `a11y contrast`, `a11y touch`, `a11y text`, `a11y focus` and `a11y audit`. Confirm exact group flags with the documented help before relying on them.
 4. A static export already in the packet, marked as possibly stale.
@@ -145,6 +147,17 @@ Passes 3a and 3b are checked against the rendered application and changed source
 
 Capture mechanics: see [Capture Mechanics on the Web](#capture-mechanics-on-the-web).
 
+### Verdict and Report
+
+The overall result is `PASS` only when every pass passes. Record a pass that cannot run as `NOT RUN` with its reason, and the overall verdict is then `INCOMPLETE`, never `PASS`.
+
+The report names:
+
+- The frame, node id and W.
+- The installed token package and version, and the tool used for each pass.
+- Capture paths, the state matrix, the rendered value table and the variable-to-token table.
+- The lag list and overall verdict.
+
 ### Capture Mechanics on the Web
 
 Every recipe below ran against a live page with `bdg` 0.6.10. For methods with parameters, use `bdg cdp <Domain.method> --params '<json>'`; `bdg cdp --help` confirms the form.
@@ -174,17 +187,6 @@ Open the rendered build in a `bdg` session.
 - Use [mcp-aside-devtools](../../../mcp-tooling/mcp-aside-devtools/SKILL.md) as the fallback renderer. Its `aside repl` is Playwright-compatible and can capture screenshots, but it has no CDP-domain parity, so it cannot force states or emulate media. Keep `bdg` for those checks.
 
 See [mcp-chrome-devtools](../../../mcp-tooling/mcp-chrome-devtools/SKILL.md) for documented `bdg` commands.
-
-### Verdict and Report
-
-The overall result is `PASS` only when every pass passes. Record a pass that cannot run as `NOT RUN` with its reason, and the overall verdict is then `INCOMPLETE`, never `PASS`.
-
-The report names:
-
-- The frame, node id and W.
-- The installed token package and version, and the tool used for each pass.
-- Capture paths, the state matrix, the rendered value table and the variable-to-token table.
-- The lag list and overall verdict.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "javascript typescript coexistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Formatting, Imports, Commenting & JS/TS Coexistence
@@ -213,9 +213,8 @@ export type { SearchResult, SearchOptions } from '../types.js';
 ### Principles (Same as JavaScript)
 
 1. **Quantity limit (Skilled surface setting)**: Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../../shared/universal-patterns/naming-and-commenting.md))
-2. **Focus on purposeful semantics**: Explain WHY something is done, not WHAT it does
-3. **Focus on WHY, not WHAT**: Explain intent, constraints, reasoning
-4. **No commented-out code**: Delete unused code (git preserves history)
+2. **Focus on purposeful semantics**: Explain WHY something is done, including intent, constraints and reasoning, not WHAT it does
+3. **No commented-out code**: Delete unused code (git preserves history)
 
 ### Comment Examples
 
@@ -241,7 +240,7 @@ All comment text MUST start with a capital letter:
 
 ### TSDoc Comments (Replaces JSDoc)
 
-TypeScript uses TSDoc format for documentation comments. See `quality-standards.md` for the full TSDoc reference.
+TypeScript uses TSDoc format for documentation comments. See [tsdoc-errors-and-async.md](../quality-standards/tsdoc-errors-and-async.md) for the full TSDoc reference.
 
 ```typescript
 /**
@@ -292,7 +291,9 @@ const require = createRequire(import.meta.url);
 const legacyHelper = require('legacy-helper') as LegacyHelper;
 ```
 
-For frequently imported JS modules, add a `.d.ts` declaration file co-located with the JS module and sharing its exact basename. A relative `declare module './legacy-config.js' { ... }` block does NOT type an untyped local sibling — it fails with `TS7016 (Could not find a declaration file for module …)`; use plain top-level declarations instead:
+- **Do**: for frequently imported JS modules, add a `.d.ts` declaration file co-located with the JS module and sharing its exact basename.
+- **Don't**: use a relative `declare module './legacy-config.js' { ... }` block; it fails with `TS7016 (Could not find a declaration file for module …)` on an untyped local sibling.
+- **Instead**: use plain top-level declarations:
 
 ```typescript
 // legacy-config.d.ts — same directory and exact basename as legacy-config.js

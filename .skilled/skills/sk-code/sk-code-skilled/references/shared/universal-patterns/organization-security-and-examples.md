@@ -8,7 +8,7 @@ trigger_phrases:
   - "path traversal prevention"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # File Organization, Security & Copy-Paste Alignment Examples
@@ -274,7 +274,7 @@ Use equivalent names with language-appropriate casing for the same concept.
 
 ### Pattern C: Cross-language comment consistency
 
-Express the same durable WHY across code and config comments — never a shared task/requirement id (those rot per the canonical rule; see §4).
+Express the same durable WHY across code and config comments — never a shared task/requirement id (those rot per the canonical rule; see [`../../../../sk-code-quality/references/code-style-guide.md`](../../../../sk-code-quality/references/code-style-guide.md) §4).
 
 **TypeScript / JavaScript**
 ```typescript
@@ -303,18 +303,7 @@ readonly MAX_RETRIES=3
 
 ---
 
-## 5. RELATED RESOURCES
-
-### Language-Specific References
-
-- `../../javascript/style-guide.md` - JavaScript naming, formatting, headers
-- `../../typescript/style-guide/overview-strict-and-naming.md` - TypeScript naming, types, interfaces, imports
-- `../../python/style-guide.md` - Python naming, docstrings, imports
-- `../../shell/style-guide/overview-structure-and-naming.md` - Shell shebang, quoting, functions
-- `../rust/style-guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
-- `../../config/style-guide.md` - JSON/JSONC structure, comments
-
-### Cross-Language Determinism Contracts
+## 5. CROSS-LANGUAGE DETERMINISM CONTRACTS
 
 Rust here is a napi-rs/WASM/sidecar compatibility layer over the TypeScript
 backend, so its outputs are bound by language-neutral contracts the shared tier
@@ -325,6 +314,19 @@ owns (the mechanics live in each language's trio, not here):
 - Deterministic IDs — same inputs produce the same identifiers everywhere.
 - Deterministic hash/iteration order — canonical map iteration, never hash-seeded.
 - Byte-for-byte differential fixtures — the same input yields identical bytes from the Rust and TypeScript paths.
+
+---
+
+## 6. RELATED RESOURCES
+
+### Language-Specific References
+
+- `../../javascript/style-guide.md` - JavaScript naming, formatting, headers
+- `../../typescript/style-guide/overview-strict-and-naming.md` - TypeScript naming, types, interfaces, imports
+- `../../python/style-guide.md` - Python naming, docstrings, imports
+- `../../shell/style-guide/overview-structure-and-naming.md` - Shell shebang, quoting, functions
+- `../rust/style-guide/` - Rust naming, boundary API, error style, module layout (split into topic parts)
+- `../../config/style-guide.md` - JSON/JSONC structure, comments
 
 ### Related Documents
 

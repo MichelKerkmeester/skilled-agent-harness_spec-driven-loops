@@ -1,0 +1,278 @@
+diff --git a/.skilled/skills/sk-code/README.md b/.skilled/skills/sk-code/README.md
+index eb66b96db3..fd4427cdb8 100644
+--- a/.skilled/skills/sk-code/README.md
++++ b/.skilled/skills/sk-code/README.md
+@@ -27,12 +27,16 @@ version: 2.2.40.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
++### Purpose
+ 
+ Code work is not one activity. Writing code needs author-side quality gates and comment hygiene. Reviewing it needs a findings-first baseline with security and correctness checks. CI workflow work needs trigger, permission and job-shape rules. System work needs hook and alignment verification. Each kind of code work carries its own contract, yet they all share the same surface identity rules.
+ 
+ Without one routing point, every contract would duplicate surface detection and a request that touches several kinds of code work would have no ordered way to resolve. sk-code exists so one advisor identity covers the whole code family: the hub centralizes surface detection once and routes each request to the focused packet that owns the work.
+ 
++### When to Use
++
++Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. Shared stack detection tries every declared specific surface first, then the SKILLED fallback, then UNKNOWN. A skill outside the hub that names family sk-code can declare its own `surface_detection` block in `graph-metadata.json` and outrank SKILLED. The CI surface is bundled from request vocabulary, not from detection (see `shared/references/stack-detection.md`). Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
++
+ ### What It Does
+ 
+ `Skill(sk-code)` loads the hub. The hub routes the request through `mode-registry.json` to one of two workflow modes. Root `ROUTER.md` then selects the packet leaves and declared shared controls bundled alongside it. Each mode and surface holds its own code-work contract while the hub itself stays routing-only. The packets carry no `graph-metadata.json`, so the advisor discovers exactly one code skill.
+@@ -82,7 +86,13 @@ The implement → debug → verify phases are not standalone modes. Their surfac
+ 
+ The quality and review modes ship defaults, and a repository does not have to accept them. Each rule has an id. A small hard floor is fixed everywhere: secrets, conflict markers, parse failures, input validation, silent failures, initialization safety, resource cleanup, accessibility for UI code, and the review severity ids, reach rule and security and correctness minimums. Every other rule can be dropped or replaced.
+ 
+-A repository does that in a `## Rule overrides` section of a checklist its quality config names, and a surface does it in the checklists its declaration names. Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding. A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified. `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together. The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
++A repository does that in a `## Rule overrides` section of a checklist its quality config names, and a surface does it in the checklists its declaration names.
++
++- Both modes read the same section through one linter, so a rule dropped for quality does not return as a review finding.
++- A quality run applies the section of every checklist it loads: a refused section or an unknown rule id is `CONFIG_INVALID`, exit 3, each accepted row is recorded in the run's decisions, and two checklists at one level that disagree make the rule unverified.
++- `commentHygiene.disableRules` in the quality config switches off named comment-hygiene rules for the runner, the pre-commit hook and the CI job together.
++
++The contract is [`shared/references/universal/rule-overrides.md`](./shared/references/universal/rule-overrides.md), and this framework's own house style lives in the SKILLED surface so a foreign repository does not inherit it.
+ 
+ ### One Advisor Identity
+ 
+@@ -92,10 +102,6 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The
+ 
+ ## 4. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for sk-code when the task is code work and the next step is implementation, author-side quality, debugging, verification or review. Shared stack detection tries every declared specific surface first, then the SKILLED fallback, then UNKNOWN. A skill outside the hub that names family sk-code can declare its own `surface_detection` block in `graph-metadata.json` and outrank SKILLED. The CI surface is bundled from request vocabulary, not from detection (see `shared/references/stack-detection.md`). Use a mode hint when you already know the contract you need and let the hub classify when the request spans intents.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+@@ -111,7 +117,11 @@ Reach for sk-code when the task is code work and the next step is implementation
+ 
+ ## 5. ADAPTING TO YOUR STACK
+ 
+-sk-code ships three surfaces: the native SKILLED surface, the CI standards surface and a stack-agnostic frontend surface. The CI surface, at `.skilled/skills/sk-code/sk-code-ci/`, holds the GitHub Actions workflow rules and their evidence, and its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`. The Frontend surface, at `.skilled/skills/sk-code/sk-code-frontend/`, holds web practice, topic references and Figma-to-code checks. The Skilled surface, at `.skilled/skills/sk-code/sk-code-skilled/`, holds the standards for this framework's own code, so keep it.
++sk-code ships three surfaces:
++
++- **CI** (`.skilled/skills/sk-code/sk-code-ci/`): the GitHub Actions workflow rules and their evidence. Its references say which values (switch names, protected workflows, branches) come from the repository's own CI profile at `.skilled/skills/sk-code/sk-code-ci/repository/ci.json`.
++- **Frontend** (`.skilled/skills/sk-code/sk-code-frontend/`): stack-agnostic web practice, topic references and Figma-to-code checks.
++- **Skilled** (`.skilled/skills/sk-code/sk-code-skilled/`): the native standards for this framework's own code, so keep it.
+ 
+ A surface you add for your own stack ranks ahead of the Skilled surface. Run every command below from the repository root.
+ 
+@@ -168,7 +178,10 @@ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about your stack>"
+ ```
+ 
+-`/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg. `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates the quality config the `sk-code-quality` packet holds, once after you approve. Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`. For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
++- `/doctor:sk-code setup` runs these legs in one read-only pass, adds the derived-metadata freshness check CI runs, a provisioning precheck and a quality leg that checks the quality runner is ready, fails the route probe when it returns the legacy stub and prints one repair command for each failing leg.
++- `/doctor:sk-code quality` shows which quality config the gate reads, checks it, names the comment-hygiene rules it switches off, and when there is none it creates the quality config the `sk-code-quality` packet holds, once after you approve.
++- Outside an AI runtime, run `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs`.
++- For GitHub Actions workflows, `/doctor:ci report` lists each workflow's switch state and drift flags, and `/doctor:ci scaffold` or `/doctor:ci toggle` apply the CI surface's templates and switches after you say yes.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/ROUTER.md b/.skilled/skills/sk-code/ROUTER.md
+index 7515d19643..5723579175 100644
+--- a/.skilled/skills/sk-code/ROUTER.md
++++ b/.skilled/skills/sk-code/ROUTER.md
+@@ -425,7 +425,11 @@ The router does NOT load the whole matched-intent union. After surface detection
+ - the `shared/` entries the matched intents map (for example `code-quality-standards.md` under CODE_QUALITY, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION), never the whole `shared/references/universal/` folder, plus
+ - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents.
+ 
+-It does not load another surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders. An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
++- It does not load another surface's resources.
++- It defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice.
++- Within SKILLED it slices once more by the **detected language** (§1 sub-detection): a TypeScript task loads `sk-code-skilled/references/typescript/*` plus the language-agnostic `sk-code-skilled/references/shared/*`, not the Python, shell, config, or JavaScript folders.
++- An `UNKNOWN` surface falls back to the preamble plus the shared-tier entries its matched intents map.
++- This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/shared/references/phase-detection.md b/.skilled/skills/sk-code/shared/references/phase-detection.md
+index dd6d474a01..8e8876d426 100644
+--- a/.skilled/skills/sk-code/shared/references/phase-detection.md
++++ b/.skilled/skills/sk-code/shared/references/phase-detection.md
+@@ -13,7 +13,7 @@ version: 1.6.3.0
+ 
+ # Phase Detection and Lifecycle
+ 
+-Every sk-code task that changes code moves through the same gated phases, from research to verified completion. This reference names the phases, the doc that owns each one, the evidence each surface supplies and the laws no phase may skip.
++Every sk-code task that changes code moves through the same gated phases, from research to verified completion. Open it when the next move is unclear: which phase a task is in, which doctrine owns it, or what evidence ends it.
+ 
+ ---
+ 
+@@ -36,7 +36,7 @@ A phase ends on evidence, not on effort. The next phase starts only when the cur
+ 
+ ### Key Sources
+ 
+-- [stack-detection.md](./stack-detection.md) selects the surface. It returns SKILLED or UNKNOWN and never `sk-code-ci` or `sk-code-frontend`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime`, and `code-frontend-aliases`, in `hub-router.json`).
++- [stack-detection.md](./stack-detection.md) selects the surface. It returns a declared specific surface label, SKILLED or UNKNOWN, and never `sk-code-ci` or `sk-code-frontend`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime`, and `code-frontend-aliases`, in `hub-router.json`).
+ - `mode-registry.json` declares the workflow modes (`sk-code-quality`, `sk-code-review`) and the surfaces (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`).
+ 
+ ---
+@@ -118,7 +118,13 @@ These hold on every surface and in every mode. No phase transition relaxes them.
+ 
+ 1. **No completion claim without Phase 3 verification evidence.** A clean read, a green unit test or a successful build each prove less than the claim "it works", so only fresh verification output counts.
+ 2. **No Phase 1 completion claim without the Phase 1.5 quality gate.** Written code is unreviewed code until its P0 items pass.
+-3. **No claim about an unsupported surface.** An UNKNOWN surface gets the universal floor in [code-quality-standards.md](./universal/code-quality-standards.md), the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied under [rule-overrides.md](./universal/rule-overrides.md). That config can come from `--config`, the git config key `skcode.qualityConfig` or `repository/quality.json` in the `sk-code-quality` packet, and it never supplies a verification command, so the command set still comes from [workflow-verify.md](./workflow-verify.md), which asks for it. The spec-folder authoring checklist applies only where the SKILLED surface resolves. No other standard and no discovered command applies.
++3. **No claim about an unsupported surface.** An UNKNOWN surface gets:
++   - the universal floor in [code-quality-standards.md](./universal/code-quality-standards.md),
++   - the quality runner's built-in checks,
++   - the checks and checklists the repository's quality config names,
++   - each with its overrides applied under [rule-overrides.md](./universal/rule-overrides.md).
++
++   That config can come from `--config`, the git config key `skcode.qualityConfig` or `repository/quality.json` in the `sk-code-quality` packet, and it never supplies a verification command, so the command set still comes from [workflow-verify.md](./workflow-verify.md), which asks for it. The spec-folder authoring checklist applies only where the SKILLED surface resolves. No other standard and no discovered command applies.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-code/shared/references/stack-detection.md b/.skilled/skills/sk-code/shared/references/stack-detection.md
+index fdd2943557..051189bd07 100644
+--- a/.skilled/skills/sk-code/shared/references/stack-detection.md
++++ b/.skilled/skills/sk-code/shared/references/stack-detection.md
+@@ -109,7 +109,14 @@ These rules apply to an external block:
+ - It must state `"role": "specific"`. Readers ignore a block that claims the fallback role or states no role, because the fallback is the hub's own code.
+ - It needs a label and at least one marker, or it never matches.
+ - The registry compiler reads only the hub's registry, so it never checks the inner fields. Pick markers that do not catch other repositories. A bare `manifest.json` file marker would.
+-- The skill-root metadata check, `ci-skill-root-metadata.cjs`, accepts `surface_detection` as an optional top-level key and checks its fields. It fails with `GRAPH_METADATA_INVALID_SURFACE_DETECTION`, one finding per broken rule, when the value is not a JSON object, the `label` is missing or blank, the `role` is anything but `specific`, none of `pathMarkers`, `fileMarkers` and `contentMarkers` is a non-empty array, or one of those three is present but is not an array of strings. A marker must not be blank: one made only of spaces or tabs fails, because it would match nearly every path or request.
++- The skill-root metadata check, `ci-skill-root-metadata.cjs`, accepts `surface_detection` as an optional top-level key and checks its fields. It fails with `GRAPH_METADATA_INVALID_SURFACE_DETECTION`, one finding per broken rule, when:
++  - the value is not a JSON object,
++  - the `label` is missing or blank,
++  - the `role` is anything but `specific`,
++  - none of `pathMarkers`, `fileMarkers` and `contentMarkers` is a non-empty array, or
++  - one of those three is present but is not an array of strings.
++
++  A marker must not be blank: one made only of spaces or tabs fails, because it would match nearly every path or request.
+ - The check skips folders whose name starts with `local-`, so it does not validate a private skill such as `local-example`. Check that block by hand against the rules above.
+ 
+ ### The Fallback and the Symlink Guard
+diff --git a/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md b/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md
+index a3c4ae36cb..bd4f2c3db7 100644
+--- a/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md
++++ b/.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md
+@@ -90,7 +90,12 @@ When more than one source speaks to the same rule, the contract's precedence in
+ 
+ ### Mechanical Floor (every surface)
+ 
+-Three faults are P0 on every surface, because no other check can be trusted on a file that has one. The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML. The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required. They also detect the conflict markers and the credential signature over every readable text file. A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
++Three faults are P0 on every surface, because no other check can be trusted on a file that has one.
++
++- The quality runner's built-in checks detect a parse failure in JSON, in JavaScript through both its CommonJS and ESM loaders, in Python, in shell, in YAML and in TOML.
++- The YAML check parses through PyYAML and the TOML check through `tomllib`, and each runs only when the `python3` in use imports its parser. When one cannot, that check reads `SKIPPED_ABSENT` with a `repair` naming what to install, and the run stays verified because neither check is required.
++- They also detect the conflict markers and the credential signature over every readable text file.
++- A parse check for any language outside that list stays with the surface checklist or a configured `syntax-*` check, so no surface restates what the runner already covers.
+ 
+ | Id | Override | Rule | Review severity |
+ | --- | --- | --- | --- |
+diff --git a/.skilled/skills/sk-code/shared/references/universal/rule-overrides.md b/.skilled/skills/sk-code/shared/references/universal/rule-overrides.md
+index 5a061962bb..0124d78cb8 100644
+--- a/.skilled/skills/sk-code/shared/references/universal/rule-overrides.md
++++ b/.skilled/skills/sk-code/shared/references/universal/rule-overrides.md
+@@ -24,13 +24,24 @@ How a repository or a surface drops or replaces a sk-code rule, and which rules
+ 
+ Each repository keeps its own house style. One wants almost no inline comments, and another wants a comment on every function. The quality mode and the review mode ship default rules, and this contract is how a repository or a surface says "not here" or "this instead" for one of them. Both modes read the same section in the same files, so a rule dropped for quality does not come back as a review finding.
+ 
++### When to Use
++
++- A repository or surface needs to drop or replace a rule outside the hard floor.
++- A checklist needs a `## Rule overrides` section, or a mode needs to know how one is read and recorded.
++
+ ### Core Principle
+ 
+ A repository may change any rule except the hard floor. The floor holds the rules whose breach causes an incident in any codebase, and the review severity scale that every finding is ranked on.
+ 
+ ### Scope
+ 
+-This file defines the format, the ids, the floor, the precedence and how an applied override is recorded. The quality and review modes adopt it in their own contracts. The review mode applies the rows it reads and records them on its `Rule sources` line. The quality runner reads the section of every checklist it loads through the same linter, applies and records the rows as section 7 describes, and shows the parsed rows and the conflicts in its explain output. Its registry of known rule ids is read from the documents that declare them, and `commentHygiene.disableRules` carries the machine-checked half. A mode that does not state that it reads overrides behaves as before.
++This file defines the format, the ids, the floor, the precedence and how an applied override is recorded.
++
++- The quality and review modes adopt it in their own contracts.
++- The review mode applies the rows it reads and records them on its `Rule sources` line.
++- The quality runner reads the section of every checklist it loads through the same linter, applies and records the rows as section 7 describes, and shows the parsed rows and the conflicts in its explain output.
++- Its registry of known rule ids is read from the documents that declare them, and `commentHygiene.disableRules` carries the machine-checked half.
++- A mode that does not state that it reads overrides behaves as before.
+ 
+ ### Key Sources
+ 
+diff --git a/.skilled/skills/sk-code/shared/references/workflow-debug.md b/.skilled/skills/sk-code/shared/references/workflow-debug.md
+index 77bf5f5086..9bb6206745 100644
+--- a/.skilled/skills/sk-code/shared/references/workflow-debug.md
++++ b/.skilled/skills/sk-code/shared/references/workflow-debug.md
+@@ -59,7 +59,7 @@ Fix the producer, not the place the symptom surfaced. A patch at the failure sit
+ 8. When the fix changes code, return through quality before final verification.
+ 9. Hand the fixed state to verification with the reproduction command, the before and after results and the residual risk.
+ 
+-The reproduce, trace-to-source and one-cause-at-a-time floors in this loop belong to `.skilled/repo-rules/root-cause-and-debugging.md` section 1 (THE LOOP). The rule that the reproduction uses the same check that will prove the fix belongs to `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL). This loop is how sk-code applies both, so a change to a floor goes there first.
++The reproduce and trace-to-source floors in this loop belong to `.skilled/repo-rules/root-cause-and-debugging.md` section 1 (THE LOOP). The rule that the reproduction uses the same check that will prove the fix belongs to `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL). The one-cause-at-a-time floor is this file's own, in One-Cause Fix Rule below, so it changes here first. This loop is how sk-code applies both rule floors, and a change to either goes to its rule file first.
+ 
+ ### Four-Phase Checklist Substance
+ 
+diff --git a/.skilled/skills/sk-code/shared/references/workflow-verify.md b/.skilled/skills/sk-code/shared/references/workflow-verify.md
+index be54e9454d..75963c43e4 100644
+--- a/.skilled/skills/sk-code/shared/references/workflow-verify.md
++++ b/.skilled/skills/sk-code/shared/references/workflow-verify.md
+@@ -53,7 +53,12 @@ A clean static read is not runtime evidence. A green unit test is not live proof
+ ### Verification Loop
+ 
+ 1. Resolve the active surface through [stack-detection.md](../../shared/references/stack-detection.md). If it is unsupported or ambiguous, ask for the verification command set before claiming anything. The quality config, `repository/quality.json` in the `sk-code-quality` packet, names quality checks only, so it never supplies the verification command set.
+-2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks. From the quality envelope, read the `checker_outputs` field with the `gate` and `unverified` values it carries, and any field that still reads `PENDING_AGENT_JUDGMENT`. Hand back to quality only on `BLOCKED`, `ERROR` or a field still reading `PENDING_AGENT_JUDGMENT`, which is the 3 to 1.5 transition in [phase-detection.md](../../shared/references/phase-detection.md). On `UNVERIFIED`, prove each id it lists with this phase's own command or report that id open. On `NOTHING_CHECKED`, prove the claim with this phase's own commands and never read the gate as clean, because no check read any file as code, which is where a Markdown-only change lands. The run verdict has three readers: this step, the @code RETURN `Quality Gate` field and `sk-code-review`, which reads it as input evidence only.
++2. Read the implementation, quality or debug handoff for the intended behavior, changed scope, baseline and accepted risks.
++   - From the quality envelope, read the `checker_outputs` field with the `gate` and `unverified` values it carries, and any field that still reads `PENDING_AGENT_JUDGMENT`.
++   - Hand back to quality only on `BLOCKED`, `ERROR` or a field still reading `PENDING_AGENT_JUDGMENT`, which is the 3 to 1.5 transition in [phase-detection.md](../../shared/references/phase-detection.md).
++   - On `UNVERIFIED`, prove each id it lists with this phase's own command or report that id open.
++   - On `NOTHING_CHECKED`, prove the claim with this phase's own commands and never read the gate as clean, because no check read any file as code, which is where a Markdown-only change lands.
++   - The run verdict has three readers: this step, the @code RETURN `Quality Gate` field and `sk-code-review`, which reads it as input evidence only.
+ 3. Name the claim to prove and the command, action or observation that proves it.
+ 4. Select the surface-appropriate command set and targeted tests from the active-surface guidance.
+ 5. Run fresh commands and capture the command names, exit codes, test counts, important output and failures.
+@@ -62,25 +67,6 @@ A clean static read is not runtime evidence. A green unit test is not live proof
+ 8. Run a mutation check or claim falsifier when the claim depends on a new or changed test.
+ 9. Walk the Pre-Claim Gate below, then state only the claims the evidence proves. If the evidence fails, hand back without editing.
+ 
+-### Pre-Claim Gate Substance
+-
+-Walk every gate in order before any status claim:
+-
+-| Gate | Required Discipline |
+-| --- | --- |
+-| Identify | Name the command, action or observation that proves the claim. |
+-| Run | Execute the surface-appropriate verification commands in the current session. |
+-| Test | Exercise targeted unit, integration, end-to-end, runtime or manual checks where available, including at least one edge case and one error path. |
+-| Verify | Confirm the output, exit code, test count and observed behavior match expectations, and that the run reached the changed code on a fresh build with real assertions. |
+-| Record | Save the exact evidence the final claim rests on. |
+-| Claim | State only the narrow claim the evidence supports. |
+-
+-The Verify row guards against the four ways a green run lies, which `.skilled/repo-rules/evidence-and-proof.md` section 3 lists: it did not run, it ran on the wrong thing, it ran on stale artifacts or it asserted nothing.
+-
+-### OpenCode Verification Reality
+-
+-For system code under `.skilled/` (the `sk-code-skilled` surface), also apply the [verification reality](../../sk-code-skilled/references/shared/workflow-guardrails.md#3-verification-reality), including the `validate.sh` pointer, and the [runtime build traps](../../sk-code-skilled/references/shared/workflow-guardrails.md#4-runtime-build-traps).
+-
+ ### Baseline And Delta
+ 
+ Verification compares against the baseline whenever it states a no-regressions or improvement claim.
+@@ -113,6 +99,25 @@ After green evidence for a new or modified test, confirm the test can fail for t
+ 
+ This applies the idea behind `.skilled/repo-rules/evidence-and-proof.md` section 4 (THE NEGATIVE CONTROL): a check that passes whether or not the behavior works proves nothing. The before-fix half of that control, reproducing the failure with the same check, is step 2 of the [Debug Loop](./workflow-debug.md#debug-loop).
+ 
++### Pre-Claim Gate Substance
++
++Walk every gate in order before any status claim:
++
++| Gate | Required Discipline |
++| --- | --- |
++| Identify | Name the command, action or observation that proves the claim. |
++| Run | Execute the surface-appropriate verification commands in the current session. |
++| Test | Exercise targeted unit, integration, end-to-end, runtime or manual checks where available, including at least one edge case and one error path. |
++| Verify | Confirm the output, exit code, test count and observed behavior match expectations, and that the run reached the changed code on a fresh build with real assertions. |
++| Record | Save the exact evidence the final claim rests on. |
++| Claim | State only the narrow claim the evidence supports. |
++
++The Verify row guards against the four ways a green run lies, which `.skilled/repo-rules/evidence-and-proof.md` section 3 lists: it did not run, it ran on the wrong thing, it ran on stale artifacts or it asserted nothing.
++
++### OpenCode Verification Reality
++
++For system code under `.skilled/` (the `sk-code-skilled` surface), also apply the [verification reality](../../sk-code-skilled/references/shared/workflow-guardrails.md#3-verification-reality), including the `validate.sh` pointer, and the [runtime build traps](../../sk-code-skilled/references/shared/workflow-guardrails.md#4-runtime-build-traps).
++
+ ---
+ 
+ ## 3. DISCIPLINE

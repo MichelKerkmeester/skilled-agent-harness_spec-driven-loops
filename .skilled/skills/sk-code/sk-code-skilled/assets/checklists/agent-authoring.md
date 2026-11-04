@@ -8,7 +8,7 @@ trigger_phrases:
   - "runtime mirror parity"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Agent Authoring Checklist
@@ -72,5 +72,5 @@ This checklist makes agents safe to dispatch and keeps the two live runtime mirr
 - `.skilled/skills/sk-doc/sk-create-agent/references/README.md` (source-of-truth for agent content rules)
 - Mirror checker: `.skilled/bin/check-agent-mirror-sync.cjs`
 - Mirrored example: `.skilled/agents/code.md` and `.claude/agents/code.md`
-- Runtime directories: `.skilled/agents/` and `.claude/agents/`
+- Runtime directories: `.skilled/agents/`, `.claude/agents/` and `.codex/agents/`
 - Verification recipes: `.skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md`

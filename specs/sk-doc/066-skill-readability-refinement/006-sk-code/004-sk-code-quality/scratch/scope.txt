@@ -1,0 +1,6 @@
+.skilled/skills/sk-code/sk-code-quality/README.md
+.skilled/skills/sk-code/sk-code-quality/ROUTER.md
+.skilled/skills/sk-code/sk-code-quality/SKILL.md
+.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md
+.skilled/skills/sk-code/sk-code-quality/references/quality-config.md
+.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md

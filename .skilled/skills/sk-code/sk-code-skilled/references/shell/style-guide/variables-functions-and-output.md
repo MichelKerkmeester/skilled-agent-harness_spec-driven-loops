@@ -8,7 +8,7 @@ trigger_phrases:
   - "shell output formatting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.14
+version: 1.0.1.0
 ---
 
 # Variables, Conditionals, Args, Functions, Errors & Output
@@ -316,5 +316,5 @@ fi
 - [quick-reference.md](../quick-reference/template-variables-and-loops.md) - Quick lookup
 
 ### External Standards
-- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+- [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) - The upstream conventions these rules follow
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis tool

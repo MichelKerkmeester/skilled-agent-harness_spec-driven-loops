@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Toolchain, Compilation Baseline & Project Structure
@@ -178,6 +178,8 @@ Use one divider format consistently within a file. Rust source uses line-comment
 
 ### Standard Source Order
 
+Number sections from the first divider actually present. The module header does not count.
+
 | Order | Section Name | Purpose |
 |-------|--------------|---------|
 | 1 | IMPORTS | Standard-library, third-party, and crate imports |
@@ -187,8 +189,6 @@ Use one divider format consistently within a file. Rust source uses line-comment
 | 5 | HELPERS | Private utility functions |
 | 6 | CORE LOGIC | Public and private implementation |
 | 7 | TESTS | Unit tests in `#[cfg(test)] mod tests` |
-
-Number sections from the first divider actually present. The module header does not count.
 
 ### Complete Organization Example
 
@@ -274,7 +274,9 @@ mod tests {
 }
 ```
 
-### Module and Workspace Layout
+---
+
+## 4. MODULE AND WORKSPACE LAYOUT
 
 Use a pure core with thin runtime adapters:
 

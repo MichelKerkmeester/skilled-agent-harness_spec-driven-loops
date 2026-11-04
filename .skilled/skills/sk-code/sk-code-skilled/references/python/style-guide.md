@@ -8,7 +8,7 @@ trigger_phrases:
   - "python naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Python Style Guide
@@ -238,7 +238,7 @@ def func() -> Dict[str, Any]:
 
 ---
 
-## 5. DOCSTRINGS
+## 5. DOCSTRINGS AND COMMENTS
 
 ### Google-Style Format
 
@@ -306,9 +306,8 @@ Example:
 Follow the universal commenting principles (see `../shared/universal-patterns/naming-and-commenting.md`):
 
 1. **Quantity limit (Skilled surface setting):** Maximum 3 comments per 10 lines of code, this surface's budget for the shared comment-density rule (see [naming and commenting](../shared/universal-patterns/naming-and-commenting.md))
-2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does
-3. **Focus on WHY, not WHAT:** Explain intent, constraints, reasoning
-4. **No commented-out code:** Delete unused code (git preserves history)
+2. **Focus on purposeful semantics:** Explain WHY something is done, not WHAT it does, including the intent, constraints and reasoning
+3. **No commented-out code:** Delete unused code (git preserves history)
 
 **Good - explains reasoning:**
 

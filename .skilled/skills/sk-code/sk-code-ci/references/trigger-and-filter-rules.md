@@ -8,7 +8,7 @@ trigger_phrases:
   - "intentional trigger exception"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Trigger and Filter Rules
@@ -19,7 +19,16 @@ A trigger decides whether a commit starts any workflow at all, and the filters u
 
 ## 1. OVERVIEW
 
-Four topics sit here: the twin rule for path filters, the rule that stops a rebuild commit from starting the downstream workflows, the push-only scope of generated-path filters and the table of intentional trigger exceptions. A review reads the exceptions table before it flags a trigger as drift.
+### Purpose
+
+Four topics sit here: the twin rule for path filters, the rule that stops a rebuild commit from starting the downstream workflows, the push-only scope of generated-path filters and the table of intentional trigger exceptions.
+
+### When to Use
+
+- Before flagging a workflow trigger as drift, read the exceptions table first
+- When a path filter, hook input or dependabot entry names one source root of a pair
+- When a rebuild commit must not start the downstream workflows
+- When a generated-path filter needs its push-only scope
 
 Each rule is universal. The values it applies to, the twin roots, the integration branches and the rebuild trailer, come from the repository CI profile described in `references/protected-set.md`. A line marked Skilled example shows this repository's value and holds nowhere else.
 

@@ -1,0 +1,12 @@
+.skilled/skills/sk-code/sk-code-frontend/README.md
+.skilled/skills/sk-code/sk-code-frontend/ROUTER.md
+.skilled/skills/sk-code/sk-code-frontend/SKILL.md
+.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md
+.skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md
+.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md

@@ -8,7 +8,7 @@ trigger_phrases:
   - "cargo verification baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Rust Quality Standards
@@ -334,3 +334,9 @@ overflow-checks = true
 
 ---
 
+## 4. RELATED RESOURCES
+
+- [build-and-organization.md](./build-and-organization.md) - Cargo, verification and module-organization baseline
+- [modeling-collections-and-api.md](./modeling-collections-and-api.md) - Domain types, collection choices and public API/ABI contracts
+- [docs-errors-and-async.md](./docs-errors-and-async.md) - Rustdoc, error and panic translation, and async patterns
+- [determinism-and-parity.md](./determinism-and-parity.md) - Byte-for-byte determinism and TypeScript parity contracts

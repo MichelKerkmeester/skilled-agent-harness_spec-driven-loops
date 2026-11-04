@@ -7,7 +7,7 @@ trigger_phrases:
   - "browser accessibility preferences"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Accessibility Patterns
@@ -53,6 +53,8 @@ This file covers widget behavior, focus and browser accessibility preferences. S
 
 ## 3. LIBRARY MAPPING
 
+When a component library provides widget roles, state, focus movement or announcements, use that behavior as the source of truth. For hand-written widgets, implement the complete pattern described below.
+
 | Pattern | Integration boundary |
 |---|---|
 | Modal dialog | Close through the dialog lifecycle so focus returns to the opener. |
@@ -61,8 +63,6 @@ This file covers widget behavior, focus and browser accessibility preferences. S
 | Accordion, disclosure or tooltip | Keep expanded state aligned; disabled controls may not receive focus, and a tooltip cannot be the only label. |
 | Status region, table or grid | Keep the live region mounted before changing its text; set `aria-sort` on the sorted header when needed. |
 | Focus styling | Keep a visible replacement if an outline is removed. |
-
-When a component library provides widget roles, state, focus movement or announcements, use that behavior as the source of truth. For hand-written widgets, implement the complete pattern described below.
 
 ---
 
@@ -150,7 +150,11 @@ When a component library provides widget roles, state, focus movement or announc
 - **Why:** The media preferences expose user display choices, while `color-scheme` lets browser controls adapt to the declared theme.
 - **When not to:** Keep the opaque baseline when the interface has no transparency effect to reduce.
 - **Pitfall:** Depending on `prefers-reduced-transparency` alone leaves Safari users without the fallback, and Firefox support requires a preference flag.
-- **Support:** Baseline widely available since 2024-11-30 (web-features `prefers-contrast`). Chrome 96 / Firefox 101 / Safari 14.1. Baseline widely available since 2022-07-15 (web-features `prefers-color-scheme`). Chrome 76 / Firefox 67 / Safari 12.1. Baseline widely available since 2024-08-03 (web-features `color-scheme`). Chrome 98 / Firefox 96 / Safari 13. Baseline limited availability (web-features `prefers-reduced-transparency`). Chrome 119 / Firefox unsupported / Safari unsupported.
+- **Support:**
+  - `prefers-contrast`: Baseline widely available since 2024-11-30 (web-features `prefers-contrast`). Chrome 96 / Firefox 101 / Safari 14.1.
+  - `prefers-color-scheme`: Baseline widely available since 2022-07-15 (web-features `prefers-color-scheme`). Chrome 76 / Firefox 67 / Safari 12.1.
+  - `color-scheme`: Baseline widely available since 2024-08-03 (web-features `color-scheme`). Chrome 98 / Firefox 96 / Safari 13.
+  - `prefers-reduced-transparency`: Baseline limited availability (web-features `prefers-reduced-transparency`). Chrome 119 / Firefox unsupported / Safari unsupported.
 - **See also:** [MDN: prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast)
 
 ---

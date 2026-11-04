@@ -7,7 +7,7 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Cargo/Build Baseline & Module Organization
@@ -262,6 +262,20 @@ crates/
       main.rs
 ```
 
+```toml
+[workspace]
+resolver = "3"
+members = [
+  "crates/core",
+  "crates/napi",
+  "crates/wasm",
+]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+```
+
 ### Responsibility Matrix
 
 | Module | Owns | Must Not Own | Severity |
@@ -289,20 +303,6 @@ crates/
 - **[P1]** Keep one workspace lockfile.
 - **[P0]** Do not permit target-specific dependencies to change core semantics.
 - **[P1]** Test feature combinations intentionally rather than relying on default features.
-
-```toml
-[workspace]
-resolver = "3"
-members = [
-  "crates/core",
-  "crates/napi",
-  "crates/wasm",
-]
-
-[workspace.package]
-edition = "2024"
-rust-version = "1.85"
-```
 
 ### Re-Exports
 

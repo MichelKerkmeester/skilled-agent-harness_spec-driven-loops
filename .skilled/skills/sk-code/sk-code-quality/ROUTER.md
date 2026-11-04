@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-quality routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,11 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this mode when they ask for the post-implementation quality gate, the P0/P1/P2 author checks, comment hygiene, a SKILLED or surface authoring checklist for `.skilled/`, `specs/` or MCP server source, or a check before done. It routes by target path more than by keyword, because the checklists a change needs follow the files it touches, and `node scripts/quality-gate.cjs --explain <path>` outranks any keyword match. It selects from three resource families: this mode's own doctrine under `references/`, starting at `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md` and `references/code-style-guide.md`; the surface and language checklists under `../sk-code-skilled/assets/checklists/`; and the runner with `assets/quality-defaults.json` and the scripts this mode owns.
+Requests reach this mode when they ask for the post-implementation quality gate, the P0/P1/P2 author checks, comment hygiene, a SKILLED or surface authoring checklist for `.skilled/`, `specs/` or MCP server source, or a check before done. It routes by target path more than by keyword, because the checklists a change needs follow the files it touches, and `node scripts/quality-gate.cjs --explain <path>` outranks any keyword match. It selects from three resource families:
+
+- this mode's own doctrine under `references/`, starting at `references/runner-contract.md`, `../shared/references/universal/code-quality-standards.md` and `references/code-style-guide.md`
+- the surface and language checklists under `../sk-code-skilled/assets/checklists/`
+- the runner with `assets/quality-defaults.json` and the scripts this mode owns.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

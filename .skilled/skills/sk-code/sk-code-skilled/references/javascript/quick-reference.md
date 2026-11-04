@@ -8,7 +8,7 @@ trigger_phrases:
   - "jsdoc template pattern"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # JavaScript Quick Reference
@@ -21,9 +21,7 @@ Copy-paste templates, naming cheat sheet, and common patterns for JavaScript dev
 
 ### Purpose
 
-Quick-access reference card for JavaScript patterns. For detailed explanations, see:
-- [style-guide.md](./style-guide.md) - Full style documentation
-- [quality-standards.md](quality-standards/overview-modules-and-docs.md) - Quality requirements
+Quick-access reference card for JavaScript patterns.
 
 ### When to Use
 
