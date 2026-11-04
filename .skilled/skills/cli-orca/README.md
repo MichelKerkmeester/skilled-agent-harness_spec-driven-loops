@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.5.0
+version: 0.1.6.0
 ---
 
 # cli-orca
@@ -53,7 +53,7 @@ What it deliberately does not own:
 
 ## 3. WHAT IS IN THE PACKAGE
 
-The package is organized around the four leaf roots declared in `leaf-manifest.config.json`: `references`, `assets`, `feature-catalog` and `manual-testing-playbook`. The changelog tree sits outside the leaf roots on purpose, because it records history rather than a routing target. The tree holds `v0.1.0.0.md`, `v0.1.1.0.md`, `v0.1.2.0.md`, `v0.1.3.0.md`, `v0.1.4.0.md`, `v0.1.5.0.md`, `v0.1.6.0.md` and `v0.1.7.0.md`.
+The package is organized around the four leaf roots declared in `leaf-manifest.config.json`: `references`, `assets`, `feature-catalog` and `manual-testing-playbook`. The changelog tree sits outside the leaf roots on purpose, because it records history rather than a routing target. The tree holds one `v<version>.md` file per release, from `v0.1.0.0.md` on.
 
 - **Skill workflow** -- `SKILL.md` holds the operating workflow, the rules and the escalation taxonomy. `graph-metadata.json` carries the advisor identity for the root, and `leaf-manifest.json` with its derived projection `leaf-aliases.json` declares the leaves the metadata gate emits.
 - **Machine router** -- [`ROUTER.md`](ROUTER.md#3-machine-router) holds the intent map, resource map and loading levels for this skill.
