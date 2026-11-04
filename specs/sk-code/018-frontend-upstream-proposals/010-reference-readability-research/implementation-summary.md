@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-reference-readability-research"
+    packet_pointer: "sk-code/018-frontend-upstream-proposals/010-reference-readability-research"
     last_updated_at: "2026-11-03T21:43:32Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"

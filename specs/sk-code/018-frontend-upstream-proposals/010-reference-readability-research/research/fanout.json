@@ -1,0 +1,1 @@
+{"concurrency":2,"executors":[{"kind":"cli-opencode","model":"opencode-go/deepseek-v4.1-flash","reasoningEffort":"max","label":"deepseek","iterations":8,"timeoutSeconds":2400},{"kind":"cli-codex","model":"gpt-6-luna","reasoningEffort":"xhigh","serviceTier":"standard","label":"luna","iterations":7,"timeoutSeconds":2400}]}

@@ -1,0 +1,62 @@
+{
+  "type": "iteration",
+  "iteration": 4,
+  "run": 4,
+  "runId": "fanout-luna-1793742315296-80sid6",
+  "sessionId": "fanout-luna-1793742315296-80sid6",
+  "lineageId": "fanout-luna-1793742315296-80sid6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "Audit sk-code-quality skill, router, references and JSON assets for overview structure, task order and template alignment.",
+  "findingsCount": 2,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "This pass confirmed a combined overview heading with no overview and a trust contract that follows the operation it governs.",
+  "keyQuestions": [
+    "Which rendering defects occur in each sk-code area, and where are they visible?",
+    "Which references and assets diverge from their respective template structure or place content poorly?",
+    "Which section and item sequences follow authoring history instead of a reader task?",
+    "Why did the templates, authoring guidance and validator miss each defect class?",
+    "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "No confirmed post-frontmatter setext headings, consecutive standalone bold-label lines or bare URLs were found in the quality references.",
+    "The code-style guide repeats the overview-order variation already identified for shared references; it was not counted as a new defect class in this pass."
+  ],
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md:18",
+    ".skilled/skills/sk-code/sk-code-quality/SKILL.md:52",
+    ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:21",
+    ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:31",
+    ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:20",
+    ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:26",
+    ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:16",
+    ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:129",
+    ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:173",
+    ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20",
+    ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:22",
+    ".skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json:1",
+    ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json:1",
+    ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json:1",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:103",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:108",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:90"
+  ],
+  "timestamp": "2026-11-03T22:20:47Z",
+  "durationMs": 128000,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "standard"
+  }
+}

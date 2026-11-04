@@ -1,0 +1,76 @@
+{
+  "topic": "Audit every reference and asset under .skilled/skills/sk-code/ (hub shared/, sk-code-ci, sk-code-frontend, sk-code-quality, sk-code-review, sk-code-skilled, plus their SKILL.md and ROUTER.md) for readability, structure, layout and the sort order of sections and items inside each file, against the sk-doc reference and asset templates (.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md and skill-asset-template.md). Find rendering defects (consecutive bold-label lines that Markdown joins into one paragraph, a text line directly above --- that renders as a setext heading, 'OVERVIEW AND <topic>' sections with no overview, duplicated or misplaced content, bare URLs, items ordered by authoring history instead of reader task). Then trace why .skilled/skills/sk-doc/sk-create-skill (templates, authoring guidance, scripts) and .skilled/skills/sk-doc/scripts/validate_document.py let such defects pass (the pre-fix web-cascade-and-selectors.md at commit cd00629166 validated VALID with 0 issues), and propose template, guidance and validator changes that would catch each defect class, saying which are mechanically checkable. Read-only: write only under the research artifact directory. Cite file:line for every finding.",
+  "maxIterations": 8,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "stopPolicy": "max-iterations",
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 240,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research",
+  "createdAt": "2026-11-03T21:45:56Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 2400
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1793742315296-80sid6",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "research_archive",
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "resource_map": {
+    "emit": true
+  }
+}

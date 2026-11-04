@@ -1,0 +1,55 @@
+{
+  "type": "iteration",
+  "iteration": 6,
+  "run": 6,
+  "runId": "fanout-luna-1793742315296-80sid6",
+  "sessionId": "fanout-luna-1793742315296-80sid6",
+  "lineageId": "fanout-luna-1793742315296-80sid6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "Audit sk-code-skilled references and assets for rendering, template alignment, placement and reader-task order.",
+  "findingsCount": 1,
+  "newInfoRatio": 1.0,
+  "noveltyJustification": "This pass confirms the intro/Purpose duplication pattern in three additional quality references and found no other confirmed rendering defect class in the sk-code-skilled Markdown pass.",
+  "keyQuestions": [
+    "Which rendering defects occur in each sk-code area, and where are they visible?",
+    "Which references and assets diverge from their respective template structure or place content poorly?",
+    "Which section and item sequences follow authoring history instead of a reader task?",
+    "Why did the templates, authoring guidance and validator miss each defect class?",
+    "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?"
+  ],
+  "answeredQuestions": [],
+  "ruledOut": [
+    "The 69-file sk-code-skilled Markdown structural pass found no confirmed bare URLs, post-frontmatter setext headings, or OVERVIEW AND <topic> headings.",
+    "Bold-label matches inspected were inside Markdown list items and rendered as separate items."
+  ],
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:37",
+    ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:80",
+    ".skilled/skills/sk-code/sk-code-skilled/SKILL.md:104",
+    ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md:16",
+    ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md:24",
+    ".skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md:16",
+    ".skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md:24",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:16",
+    ".skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:24",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:112",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:136",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:757",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+  ],
+  "timestamp": "2026-11-03T22:31:14Z",
+  "durationMs": 0,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "standard"
+  }
+}

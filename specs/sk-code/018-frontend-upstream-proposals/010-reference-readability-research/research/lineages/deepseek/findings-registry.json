@@ -1,0 +1,1082 @@
+{
+  "sessionId": "fanout-deepseek-1793742315296-80sid6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 8,
+    "answeredCount": 8,
+    "totalQuestions": 8,
+    "timestamp": "2026-11-03T21:57:24.584Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-section-order-and-container-contract-does-the-sk-doc-skill-reference-templa",
+      "inboxId": null,
+      "text": "What section-order and container contract does the sk-doc skill-reference template define, and how do the hub SKILL.md, hub ROUTER.md and shared/ references diverge from it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-sk-code-ci-references-and-assets-violate-heading-shape-section-order-or-it",
+      "inboxId": null,
+      "text": "Which sk-code-ci references and assets violate heading shape, section order or item order, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-sk-code-frontend-references-including-web-cascade-and-selectors-md-carry-t",
+      "inboxId": null,
+      "text": "Which sk-code-frontend references, including web-cascade-and-selectors.md, carry the enumerated rendering defects, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-sk-code-quality-references-carry-the-enumerated-rendering-defects-or-struc",
+      "inboxId": null,
+      "text": "Which sk-code-quality references carry the enumerated rendering defects or structural divergence, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-sk-code-review-references-and-assets-carry-the-enumerated-rendering-defect",
+      "inboxId": null,
+      "text": "Which sk-code-review references and assets carry the enumerated rendering defects or structural divergence, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-6-which-sk-code-skilled-references-and-checklist-assets-carry-the-enumerated-defec",
+      "inboxId": null,
+      "text": "Which sk-code-skilled references and checklist assets carry the enumerated defects, and is the divergence systematic across a file family?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-7-why-do-the-sk-doc-templates-authoring-guidance-and-validate-document-py-fail-to-",
+      "inboxId": null,
+      "text": "Why do the sk-doc templates, authoring guidance and validate_document.py fail to detect each defect class, traced check by check?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7,
+      "resolved": true
+    },
+    {
+      "id": "question-8-which-template-guidance-and-validator-changes-would-catch-each-defect-class-and-",
+      "inboxId": null,
+      "text": "Which template, guidance and validator changes would catch each defect class, and which are mechanically checkable at what precision?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-section-order-and-container-contract-does-the-sk-doc-skill-reference-templa",
+      "inboxId": null,
+      "text": "What section-order and container contract does the sk-doc skill-reference template define, and how do the hub SKILL.md, hub ROUTER.md and shared/ references diverge from it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-sk-code-ci-references-and-assets-violate-heading-shape-section-order-or-it",
+      "inboxId": null,
+      "text": "Which sk-code-ci references and assets violate heading shape, section order or item order, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-sk-code-frontend-references-including-web-cascade-and-selectors-md-carry-t",
+      "inboxId": null,
+      "text": "Which sk-code-frontend references, including web-cascade-and-selectors.md, carry the enumerated rendering defects, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-sk-code-quality-references-carry-the-enumerated-rendering-defects-or-struc",
+      "inboxId": null,
+      "text": "Which sk-code-quality references carry the enumerated rendering defects or structural divergence, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-which-sk-code-review-references-and-assets-carry-the-enumerated-rendering-defect",
+      "inboxId": null,
+      "text": "Which sk-code-review references and assets carry the enumerated rendering defects or structural divergence, and at which exact lines?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-6-which-sk-code-skilled-references-and-checklist-assets-carry-the-enumerated-defec",
+      "inboxId": null,
+      "text": "Which sk-code-skilled references and checklist assets carry the enumerated defects, and is the divergence systematic across a file family?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-7-why-do-the-sk-doc-templates-authoring-guidance-and-validate-document-py-fail-to-",
+      "inboxId": null,
+      "text": "Why do the sk-doc templates, authoring guidance and validate_document.py fail to detect each defect class, traced check by check?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 7
+    },
+    {
+      "id": "question-8-which-template-guidance-and-validator-changes-would-catch-each-defect-class-and-",
+      "inboxId": null,
+      "text": "Which template, guidance and validator changes would catch each defect class, and which are mechanically checkable at what precision?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 8
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-shared-references-stack-detection-md-has-an-overview-section-with-core-principle",
+      "text": "`shared/references/stack-detection.md` has an OVERVIEW section with `### Core Principle` and `### Surfaces` only, omitting the template's `### Purpose` and `### When to Use`. A reader meets the detection rule before learning what the file is for or when to load it. [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:20] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/stack-detection.md:26] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`",
+        "`.skilled/skills/sk-code/ROUTER.md:16-450`",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/phase-detection.md:20-44`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/workflow-verify.md:20-36`",
+        "`.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21-40`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:14-30`",
+        "`.skilled/skills/sk-code/shared/README.md:20-123`"
+      ]
+    },
+    {
+      "id": "finding-1-3-sk-code-quality-references-runner-contract-md-opens-its-body-with-1-overview-and",
+      "text": "`sk-code-quality/references/runner-contract.md` opens its body with `## 1. OVERVIEW AND CLI` and then goes straight into a code fence: there is no overview paragraph and no `### Purpose` or `### When to Use`, so the section named \"overview\" contains only the CLI synopsis and option tables. The combined heading is also the accretion pattern the brief names: two topics welded onto one heading instead of an overview followed by a CLI section. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:22]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`",
+        "`.skilled/skills/sk-code/ROUTER.md:16-450`",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/phase-detection.md:20-44`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/workflow-verify.md:20-36`",
+        "`.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21-40`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:14-30`",
+        "`.skilled/skills/sk-code/shared/README.md:20-123`"
+      ]
+    },
+    {
+      "id": "finding-1-5-overview-subheading-order-is-not-consistent-across-sibling-references-which-is-t",
+      "text": "OVERVIEW subheading order is not consistent across sibling references, which is the \"items ordered by authoring history\" symptom at section level: `phase-detection.md` runs Purpose (22), When to Use (26), Core Principle (33); `workflow-implement.md` runs Purpose (22), Core Principle (26), When to Use (30); `workflow-verify.md` runs Purpose (22), Iron Law (26), When to Use (32); `code-quality-standards.md` runs Purpose (23), Core Principle (27), When to Use (31). Four files, three orders, and one file replaces Core Principle with Iron Law. [SOURCE: .skilled/skills/sk-code/shared/references/phase-detection.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:23]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`",
+        "`.skilled/skills/sk-code/ROUTER.md:16-450`",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/phase-detection.md:20-44`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/workflow-verify.md:20-36`",
+        "`.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21-40`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:14-30`",
+        "`.skilled/skills/sk-code/shared/README.md:20-123`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-asset-template-states-the-placement-rule-the-corpus-violates-n-related-resou",
+      "text": "The asset template states the placement rule the corpus violates: \"N. Related Resources (optional, if present must be last)\". The hub `ROUTER.md` breaks it by placing `## 8. RELATED RESOURCES` at line 218 before `## 9. MACHINE-READABLE ROUTER` (227), `## 10. HOW TO READ THIS` (441) and `## 11. MACHINE ROUTER` (450), so the reader's \"where next\" section interrupts the routing content it should close. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166] [SOURCE: .skilled/skills/sk-code/ROUTER.md:218] [SOURCE: .skilled/skills/sk-code/ROUTER.md:227] [SOURCE: .skilled/skills/sk-code/ROUTER.md:450]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`",
+        "`.skilled/skills/sk-code/ROUTER.md:16-450`",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/phase-detection.md:20-44`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/workflow-verify.md:20-36`",
+        "`.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21-40`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:14-30`",
+        "`.skilled/skills/sk-code/shared/README.md:20-123`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-reference-template-makes-the-contract-explicit-the-h1-intro-is-1-2-short-sen",
+      "text": "The reference template makes the contract explicit: the H1 intro is 1-2 short sentences with no subsections, the first section is `## 1. OVERVIEW` with `### Purpose`, `### When to Use` and `### Core Principle`, and every reference carries six frontmatter fields. Yet the same template teaches duplication: `### When to Create References` under Section 1 restates the whole `## 3. WHEN TO CREATE REFERENCE FILES` section, so the normative document itself models duplicated content. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:58] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:182]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`",
+        "`.skilled/skills/sk-code/ROUTER.md:16-450`",
+        "`.skilled/skills/sk-code/shared/references/stack-detection.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/phase-detection.md:20-44`",
+        "`.skilled/skills/sk-code/shared/references/workflow-implement.md:20-40`",
+        "`.skilled/skills/sk-code/shared/references/workflow-verify.md:20-36`",
+        "`.skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21-40`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:14-30`",
+        "`.skilled/skills/sk-code/shared/README.md:20-123`"
+      ]
+    },
+    {
+      "id": "finding-2-2-job-shape-rules-md-leaks-authoring-state-into-rendered-prose-line-91-is-a-bare-s",
+      "text": "`job-shape-rules.md` leaks authoring state into rendered prose: line 91 is a bare `status: landed` line between `## 5. THE COMPOSITE SETUP ACTION` and the section's first paragraph. A reader sees an unexplained status token and cannot tell whether it describes the section, the action or the repository. [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:89] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:91] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:93]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:1-67`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:1-137`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:1-88`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/protected-set.md:1-102`",
+        "`.skilled/skills/sk-code/sk-code-ci/SKILL.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-ci/ROUTER.md:1-66`",
+        "`.skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`"
+      ]
+    },
+    {
+      "id": "finding-2-3-router-md-duplicates-its-routing-declaration-the-1-paragraph-already-lists-all-f",
+      "text": "`ROUTER.md` duplicates its routing declaration: the §1 paragraph already lists all four references in load order and names the default resource, then §2 repeats the same four paths in the same order. The overview is also one 120-word paragraph with no subheading, so the duplication is invisible on a skim. [SOURCE: .skilled/skills/sk-code/sk-code-ci/ROUTER.md:23] [SOURCE: .skilled/skills/sk-code/sk-code-ci/ROUTER.md:33]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:1-67`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:1-137`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:1-88`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/protected-set.md:1-102`",
+        "`.skilled/skills/sk-code/sk-code-ci/SKILL.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-ci/ROUTER.md:1-66`",
+        "`.skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`"
+      ]
+    },
+    {
+      "id": "finding-2-4-skill-md-carries-2b-smart-routing-between-2-and-3-which-breaks-the-skill-templat",
+      "text": "`SKILL.md` carries `## 2b. SMART ROUTING` between §2 and §3, which breaks the skill template's \"Numbered H2 sections (ALL CAPS)\" contract and records authoring history in the section number. The section also restates the hub bundling rule already given in §1 and the resource list already given in §2, so the reader meets the same routing facts three times before §3. [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:28] [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:40] [SOURCE: .skilled/skills/sk-code/sk-code-ci/SKILL.md:55] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:1-67`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:1-137`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:1-88`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/protected-set.md:1-102`",
+        "`.skilled/skills/sk-code/sk-code-ci/SKILL.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-ci/ROUTER.md:1-66`",
+        "`.skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`"
+      ]
+    },
+    {
+      "id": "finding-2-1-none-of-the-four-ci-references-carries-the-template-s-purpose-plus-when-to-use-p",
+      "text": "None of the four ci references carries the template's `### Purpose` plus `### When to Use` pair, and they use three different OVERVIEW shapes: `ci-workflow-standards.md` opens with `### Purpose`, `### Universal Rules and Repository Values` and `### Reading the Enforcement Column`; `job-shape-rules.md` uses two plain paragraphs with no subheading; `trigger-and-filter-rules.md` uses one plain paragraph; `protected-set.md` uses `### The Profile` and `### Profile Keys`. The same packet therefore teaches four different \"overview\" contracts. [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:23] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/protected-set.md:23]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:1-67`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:1-137`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:1-88`",
+        "`.skilled/skills/sk-code/sk-code-ci/references/protected-set.md:1-102`",
+        "`.skilled/skills/sk-code/sk-code-ci/SKILL.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-ci/ROUTER.md:1-66`",
+        "`.skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`"
+      ]
+    },
+    {
+      "id": "finding-3-8-figma-to-code-md-is-the-only-web-family-reference-whose-overview-starts-with-cor",
+      "text": "`figma-to-code.md` is the only web-family reference whose OVERVIEW starts with `### Core Principle` (21) before `### Purpose` (25) and `### When to Use` (29); every sibling `web-*.md` starts with Purpose, When to Use, Boundaries. The same packet therefore presents two overview orders. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:21] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:25] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:21]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-7-web-internationalization-md-jumps-from-i7-date-only-parsing-105-to-i9-expansion-",
+      "text": "`web-internationalization.md` jumps from `### I7. Date-only parsing` (105) to `### I9. Expansion and pseudo-localization` (118) with no I8 anywhere in the file, so the numbering records a deleted or moved rule and gives the reader a false sense that a rule is missing. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:118]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-5-web-performance-and-loading-md-orders-rule-ids-by-authoring-history-rather-than-",
+      "text": "`web-performance-and-loading.md` orders rule ids by authoring history rather than reader task: §4 ends with `### P10. Main-thread long tasks` at line 111, then §5 begins with `### P8. srcset and sizes selection` at 124 and `### P9. Picture formats and image hints` at 133. A reader following the ids meets P10 before P8 and P9, and the section boundary hides the inversion. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:111] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:124] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:133]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-current-head-version-fixes-the-shape-by-converting-each-rule-block-to-a-bull",
+      "text": "The current HEAD version fixes the shape by converting each rule block to a bullet list and each bare URL to a named link, which confirms the intended remediation: `- **Rule:**` ... `- **See also:** [MDN: CSS cascade](...)`. The fix is real, but it was applied to this file rather than enforced, so the class survives elsewhere. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:41] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:48]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-duplicate-label-class-the-pre-fix-file-showed-also-survives-at-head-web-perf",
+      "text": "The duplicate-label class the pre-fix file showed also survives at HEAD: `web-performance-and-loading.md` P8 repeats the entire support sentence twice in one bullet, \"Baseline widely available since 2019-09-27 (web-features `srcset`). Chrome 38 / Firefox 38 / Safari 10.1.\" followed by the same sentence again. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:130]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-pre-fix-web-cascade-and-selectors-md-carries-the-consecutive-bold-label-defe",
+      "text": "The pre-fix `web-cascade-and-selectors.md` carries the consecutive-bold-label defect on every rule: lines 23-28 are six adjacent `**Rule.**` / `**Why.**` / `**When not to.**` / `**Pitfall.**` / `**Support.**` / `**See also.**` lines with no blank lines, so CommonMark joins them into one paragraph and the label structure disappears in the rendered page. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:23 (at cd00629166)]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-pre-fix-file-has-nine-bare-urls-one-per-rule-each-placed-after-a-see-also-la",
+      "text": "The pre-fix file has nine bare URLs, one per rule, each placed after a `**See also.**` label and never wrapped in a link: lines 28, 37, 46, 60, 69, 82, 91, 100 and 109. It also repeats the same `**Support.**` line twice inside CS4 at lines 58-59, so the reader sees the same compatibility sentence twice with no explanation. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:28 (at cd00629166)] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:58 (at cd00629166)]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-same-pre-fix-file-opens-with-1-overview-and-cascade-and-specificity-and-then",
+      "text": "The same pre-fix file opens with `## 1. OVERVIEW AND CASCADE AND SPECIFICITY` and then goes directly to `### CS1. Cascade decision order`, so the section that promises an overview contains no overview, no Purpose and no When to Use. This is exactly the \"OVERVIEW AND <topic>\" accretion pattern named in the brief. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:19 (at cd00629166)]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` (HEAD)",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md` at `cd00629166`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:105-144`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:105-125`",
+        "`.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:13-40`",
+        "`.skilled/skills/sk-code/sk-code-frontend/SKILL.md:13-69`",
+        "`.skilled/skills/sk-code/sk-code-frontend/ROUTER.md:10-28`"
+      ]
+    },
+    {
+      "id": "finding-4-4-code-style-guide-md-compresses-a-rule-id-its-rationale-and-a-before-after-pair-i",
+      "text": "`code-style-guide.md` compresses a rule id, its rationale, and a before/after pair into one 408-character paragraph at line 116: `**CHK-CMT-07 (P1):** ... Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`.` The template's before/after pattern expects a code block, so the contrast the rule depends on is buried mid-paragraph. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:114] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:116]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:1-278`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/quality-config.md:1-204`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:1-195`",
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:10-324`",
+        "`.skilled/skills/sk-code/sk-code-quality/ROUTER.md:14-116`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`"
+      ]
+    },
+    {
+      "id": "finding-4-3-quality-config-md-s-entire-overview-is-one-121-word-paragraph-at-line-18-with-no",
+      "text": "`quality-config.md`'s entire OVERVIEW is one 121-word paragraph at line 18 with no `### Purpose` and no `### When to Use`, so the first section states behavior, scope, CI interaction and failure mode in a single block before the reader knows whether the file applies to them. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:16] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:18]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:1-278`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/quality-config.md:1-204`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:1-195`",
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:10-324`",
+        "`.skilled/skills/sk-code/sk-code-quality/ROUTER.md:14-116`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`"
+      ]
+    },
+    {
+      "id": "finding-4-2-runner-contract-md-renders-as-walls-of-text-single-prose-lines-reach-1-296-chara",
+      "text": "`runner-contract.md` renders as walls of text: single prose lines reach 1,296 characters at line 53, 780 at 55, 971 at 103, 1,657 at 113 and 815 at 118. Each is one paragraph in the rendered page, and the longest mixes the guard's hash inputs, the ignored-path measurement and the reason for the bound in one block, so a reader cannot scan the option-to-effect mapping the section is supposed to provide. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:53] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:113] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:118]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:1-278`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/quality-config.md:1-204`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:1-195`",
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:10-324`",
+        "`.skilled/skills/sk-code/sk-code-quality/ROUTER.md:14-116`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`"
+      ]
+    },
+    {
+      "id": "finding-4-1-two-of-the-three-quality-references-end-without-a-related-resources-section-runn",
+      "text": "Two of the three quality references end without a Related Resources section: `runner-contract.md` stops at the dist adapter (`## 8. DIST ADAPTER`, 269) and `quality-config.md` stops at `## 10. KNOWN LIMITS` (196), while only `code-style-guide.md` closes with `## 7. RELATED RESOURCES` (189). The asset template says a related section, when present, must be last; a 278-line contract with no next-step links leaves the reader at the end of the deepest file in the packet. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:269] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:196] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:189] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:1-278`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/quality-config.md:1-204`",
+        "`.skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:1-195`",
+        "`.skilled/skills/sk-code/sk-code-quality/SKILL.md:10-324`",
+        "`.skilled/skills/sk-code/sk-code-quality/ROUTER.md:14-116`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166`"
+      ]
+    },
+    {
+      "id": "finding-5-4-pr-state-dedup-md-ends-on-cache-location-rationale-94-with-no-related-resources-",
+      "text": "`pr-state-dedup.md` ends on `## Cache Location Rationale` (94) with no Related Resources section, even though it is the reference `SKILL.md` §9.1 points at; the reader reaches the last bullet with no link back to `review-core.md` or `quick-reference.md`. [SOURCE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:94] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:342]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:255-419`",
+        "`.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-review/references/quick-reference.md:1-63`",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:16-405`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/*.md` heading maps and tails"
+      ]
+    },
+    {
+      "id": "finding-5-2-pr-state-dedup-md-mixes-one-numbered-section-with-a-run-of-unnumbered-peers-1-ov",
+      "text": "`pr-state-dedup.md` mixes one numbered section with a run of unnumbered peers: `## 1. OVERVIEW` at 17 is followed by `## Signature Computation` (21), `## Cache Format` (42), `## Pathspec Scope` (59), `## Retention` (71), `## Skip Behavior` (78), `## Cache Write` (90) and `## Cache Location Rationale` (94). The document implies a numbered structure and then abandons it after the first section. [SOURCE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:17] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:21] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:42]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:255-419`",
+        "`.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-review/references/quick-reference.md:1-63`",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:16-405`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/*.md` heading maps and tails"
+      ]
+    },
+    {
+      "id": "finding-5-3-quick-reference-md-s-3-supporting-checklists-table-lists-five-checklists-but-omi",
+      "text": "`quick-reference.md`'s `## 3. SUPPORTING CHECKLISTS` table lists five checklists but omits `fix-completeness-checklist.md`, which exists in `assets/` and is listed in `SKILL.md` §5. The index that promises to route consumers to the correct checklist therefore cannot route them to the fix-completeness one. [SOURCE: .skilled/skills/sk-code/sk-code-review/references/quick-reference.md:44] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/quick-reference.md:48] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:272]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:255-419`",
+        "`.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-review/references/quick-reference.md:1-63`",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:16-405`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/*.md` heading maps and tails"
+      ]
+    },
+    {
+      "id": "finding-5-1-skill-md-carries-two-separate-link-inventories-and-puts-the-related-section-befo",
+      "text": "`SKILL.md` carries two separate link inventories and puts the related section before live content: `## 5. REFERENCES` at 262 lists ten files, `## 8. RELATED RESOURCES` at 324 lists a second entry path, and `## 9. PR-STATE EFFICIENCY GATES` at 342 follows the related section. A reader looking for the PR-state gate is sent past the \"related resources\" close, and the same file list appears twice. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:262] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:324] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:342]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-review/SKILL.md:255-419`",
+        "`.skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:1-99`",
+        "`.skilled/skills/sk-code/sk-code-review/references/quick-reference.md:1-63`",
+        "`.skilled/skills/sk-code/sk-code-review/references/review-core.md:16-405`",
+        "`.skilled/skills/sk-code/sk-code-review/assets/*.md` heading maps and tails"
+      ]
+    },
+    {
+      "id": "finding-6-4-alignment-verification-automation-md-puts-5-related-resources-at-line-139-and-th",
+      "text": "`alignment-verification-automation.md` puts `## 5. RELATED RESOURCES` at line 139 and then continues with `## 6. ALIGNMENT AUTHORITY INTERFACE` at 148, so the related section interrupts the document's authority contract rather than closing it. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:139] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:148]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/*.md` (all seven OVERVIEW blocks)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/*.md` and `rust/quick-reference/*.md` (boilerplate count)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:130-160`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:160-180`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:195-270`",
+        "`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md:15-30`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md:11-198`"
+      ]
+    },
+    {
+      "id": "finding-6-5-shell-style-guide-overview-structure-and-naming-md-renders-two-consecutive-evide",
+      "text": "`shell/style-guide/overview-structure-and-naming.md` renders two consecutive `**Evidence**:` label paragraphs for one rule at lines 170 and 172, with no blank-line separation issue but no merge either; the reader sees the same label twice and has to infer that both paths prove the same exception. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:170] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:172]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/*.md` (all seven OVERVIEW blocks)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/*.md` and `rust/quick-reference/*.md` (boilerplate count)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:130-160`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:160-180`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:195-270`",
+        "`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md:15-30`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md:11-198`"
+      ]
+    },
+    {
+      "id": "finding-6-2-sk-code-skilled-skill-md-repeats-the-2b-numbering-defect-seen-in-sk-code-ci-2b-s",
+      "text": "`sk-code-skilled/SKILL.md` repeats the `2b` numbering defect seen in `sk-code-ci`: `## 2b. SMART ROUTING` sits between §2 and §3 at line 110, so the same authoring-history habit appears in two packets rather than once. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:110] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:37] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:120]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/*.md` (all seven OVERVIEW blocks)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/*.md` and `rust/quick-reference/*.md` (boilerplate count)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:130-160`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:160-180`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:195-270`",
+        "`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md:15-30`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md:11-198`"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-rust-split-references-repeat-a-content-free-overview-14-files-carry-the-sent",
+      "text": "The rust split references repeat a content-free overview: 14 files carry the sentence \"Provides focused Rust guidance for <topic> in the OpenCode development environment\" followed by the same three When-to-Use bullets (\"Implementing or reviewing Rust code covered by this topic\", \"Preserving TypeScript interoperability and deterministic behavior\", \"Applying the corresponding Rust standards at an implementation boundary\"). Thirteen of the fourteen say nothing a reader could not infer from the file name; only `rust/style-guide/overview-and-file-header.md` states a specific purpose and specific triggers. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md:22]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/*.md` (all seven OVERVIEW blocks)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/*.md` and `rust/quick-reference/*.md` (boilerplate count)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:130-160`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:160-180`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:195-270`",
+        "`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md:15-30`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md:11-198`"
+      ]
+    },
+    {
+      "id": "finding-6-3-the-same-skill-body-welds-qualifiers-into-h2-headings-4-assets-and-other-surface",
+      "text": "The same skill body welds qualifiers into H2 headings: `## 4. ASSETS AND OTHER SURFACE AREAS — ON-DEMAND` at line 148 combines three concepts (assets, other surface areas, on-demand loading) in one heading, so the table of contents gives no single reader task for the section. [SOURCE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md:148]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/*.md` (all seven OVERVIEW blocks)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/*.md` and `rust/quick-reference/*.md` (boilerplate count)",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md:130-160`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:160-180`",
+        "`.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md:195-270`",
+        "`.skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md:15-30`",
+        "`.skilled/skills/sk-code/sk-code-skilled/SKILL.md:11-198`"
+      ]
+    },
+    {
+      "id": "finding-7-5-no-check-exists-for-any-content-level-defect-class-the-orchestration-runs-toc-h2",
+      "text": "No check exists for any content-level defect class. The orchestration runs TOC, H2 headers, general structure, required sections and frontmatter, and nothing else: there is no adjacent-bold-label check, no setext-heading check, no bare-URL or link check, no duplicate-heading or duplicate-paragraph check, no intro-length check and no item-order check. The mechanical scan in this lineage found all of those classes, yet every one is outside the validator's vocabulary. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2009] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2016] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2028]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-7-4-related-section-placement-is-not-enforced-recommendedsections-is-read-only-insid",
+      "text": "Related-section placement is not enforced: `recommendedSections` is read only inside the router branch, so a reference's `related_resources` is never required, never ordered and never checked for position. That is why `pr-state-dedup.md` can end without one, `quality-config.md` can end without one, and `ROUTER.md` can place one before sections 9-11. The rule data even downgrades the asset template's \"must be last\" to `recommendedSections`, so the two normative sources disagree. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:928] [SOURCE: .skilled/skills/sk-doc/shared/assets/template-rules.json:323] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-7-2-required-sections-are-checked-by-name-not-by-content-validate-required-sections-",
+      "text": "Required sections are checked by name, not by content: `validate_required_sections` collects `## <n>.` headers, normalizes their names, and accepts a match when every required word appears as a substring of the raw heading. `requiredSections` for a reference is only `[\"overview\"]`, so `## 1. OVERVIEW AND CASCADE AND SPECIFICITY` satisfies it even when the section has no overview prose, no Purpose and no When to Use. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:837] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:909] [SOURCE: .skilled/skills/sk-doc/shared/assets/template-rules.json:321]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-7-6-the-divider-rule-can-reward-the-setext-layout-validate-general-structure-require",
+      "text": "The divider rule can reward the setext layout: `validate_general_structure` requires a `---` line immediately above every numbered ALL-CAPS H2, and it looks only for that line, never for a blank line between the preceding prose and the rule. A text line directly above `---` therefore satisfies the structure rule while rendering as a setext heading. The guidance compounds this: the reference template forbids duplication and fixes the intro to 1-2 sentences, but its own Section 1 duplicates Section 3's when-to-create content, and neither template says a bold-label line needs a blank line after it. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:676] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:690] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:86] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:182]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-7-3-the-h2-checker-only-recognises-d-s-so-an-unnumbered-h2-and-a-letter-suffixed-h2-",
+      "text": "The H2 checker only recognises `^## (\\d+)\\.\\s+`, so an unnumbered H2 and a letter-suffixed H2 are invisible to it: `## 2b. SMART ROUTING` never matches, which is why the ci and skilled skill bodies pass, and `pr-state-dedup.md`'s seven unnumbered H2s are never numbered at all. When a number does match, a non-sequential value is emitted as `severity: warning`, not blocking, so the P10/P8 inversion and the I8 gap cannot fail a run. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:736] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:761] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2041]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-7-1-the-validator-passes-every-confirmed-defect-the-pre-fix-web-cascade-and-selector",
+      "text": "The validator passes every confirmed defect. The pre-fix `web-cascade-and-selectors.md` returned `\"valid\": true`, `\"total_issues\": 0`, exit 0 under `--type reference`, and four current files with confirmed defects (`runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md`) also each returned `valid: true, total_issues: 0`. The claim that the pre-fix file validated VALID with 0 issues is confirmed by direct execution, not inference. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2008] [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2045]",
+      "addedAtIteration": 7,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:603-938`",
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "pre-fix `web-cascade-and-selectors.md` validator run (valid true, 0 issues)",
+        "current `runner-contract.md`, `web-performance-and-loading.md`, `rust/style-guide/naming-conventions.md`, `pr-state-dedup.md` validator runs (each valid true, 0 issues)"
+      ]
+    },
+    {
+      "id": "finding-8-3-overview-and-topic-with-no-overview-mechanically-checkable-for-emptiness-partial",
+      "text": "**`OVERVIEW AND <topic>` with no overview — mechanically checkable for emptiness, partially for quality.** Add `render_overview_empty`: for every H2 whose text contains OVERVIEW, require a prose paragraph of at least 40 characters or a `### Purpose` / `### When to Use` subsection with body text before the next section; flag a heading that continues after `OVERVIEW AND` as blocking. Whether the prose is a *good* overview remains human judgment, but the current `runner-contract.md` case and the pre-fix cascade case are both caught mechanically. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20] [SOURCE: .skilled/skills/sk-doc/shared/assets/template-rules.json:321]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-1-adjacent-bold-label-lines-mechanically-checkable-high-precision-add-render-bold-",
+      "text": "**Adjacent bold-label lines — mechanically checkable, high precision.** Add `render_bold_label_join`: outside fenced code, flag when two consecutive non-blank lines both start with `**Label**` and neither is a list item. On the 121-file corpus the detector found zero hits at HEAD and nine blocks in the pre-fix control, so it is a true-positive-only rule with negligible false-positive risk; make it blocking. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2008] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:130]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-5-bare-urls-mechanically-checkable-medium-high-precision-add-render-bare-url-outsi",
+      "text": "**Bare URLs — mechanically checkable, medium-high precision.** Add `render_bare_url`: outside fences and inline code, flag an `http(s)://` token that is not inside `[text](url)` and not an angle-bracket autolink. The current corpus has zero hits; the pre-fix control has nine. Keep it a warning for one migration window because command examples and generated text can carry intentional raw URLs. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:58] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:28 (at cd00629166)]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-6-duplicated-content-exact-duplicates-checkable-semantic-duplication-not-add-rende",
+      "text": "**Duplicated content — exact duplicates checkable, semantic duplication not.** Add `render_duplicate_block` for an identical paragraph or an identical bold-label line repeated inside one section (warning), which catches the current `web-performance-and-loading.md:130` doubled support sentence and the `shell/style-guide/overview-structure-and-naming.md:170/172` repeated Evidence label. The 14-file rust boilerplate is *not* catchable this way: it is semantic sameness with different topic words, so it needs a batch-level \"repeated purpose sentence\" heuristic (medium precision) plus editorial review. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:130] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md:170] [SOURCE: .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md:22]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-7-numbering-and-item-order-mechanically-checkable-proxies-medium-precision-extend-",
+      "text": "**Numbering and item order — mechanically checkable proxies, medium precision.** Extend the H2 regex to `^## (\\d+)([a-z]?)\\.` and make a letter suffix or a non-sequential number blocking, which catches `## 2b.` in two skill bodies and the unnumbered run in `pr-state-dedup.md`. Add a rule-id monotonic check for `^### ([A-Z]{1,4})(\\d+)\\.` as a warning, which catches P10 before P8 and the missing I8. Neither proves the order matches the reader's task; a monotonic id sequence is only a proxy for authoring-history ordering. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:736] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:111] [SOURCE: .skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:21]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-4-related-resources-missing-or-misplaced-mechanically-checkable-high-precision-onc",
+      "text": "**Related Resources missing or misplaced — mechanically checkable, high precision once the template settles the rule.** Add `render_related_last`: require a related section for `reference` and `asset`, and flag any same-or-higher-level heading after it. This catches the three confirmed misplacements (`ROUTER.md` §8, `sk-code-review/SKILL.md` §8, `alignment-verification-automation.md` §5) and the two confirmed omissions (`runner-contract.md`, `quality-config.md`). The template must first be made consistent: the asset template says \"must be last\", the reference template does not say it, and `template-rules.json` lists it as recommended only. Make all three say required-and-last, then enforce it. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:166] [SOURCE: .skilled/skills/sk-doc/shared/assets/template-rules.json:323] [SOURCE: .skilled/skills/sk-code/ROUTER.md:218]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-8-template-and-guidance-changes-the-precondition-for-every-mechanical-check-rewrit",
+      "text": "**Template and guidance changes — the precondition for every mechanical check.** Rewrite the reference template's Section 1/§3 duplication into one \"when to create\" section; add three rules the templates currently omit: (a) a bold-label line is a list item or is followed by a blank line and body text, (b) a thematic break always has a blank line above it, (c) an overview may not be titled `OVERVIEW AND <topic>`. Add the related-last clause to the *reference* template, and make the skill template's numbered-H2 rule reject letter suffixes. Without these, a validator rule would contradict the document authors are told to copy. [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:182] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-2-text-directly-above-mechanically-checkable-high-precision-add-render-setext-haza",
+      "text": "**Text directly above `---` — mechanically checkable, high precision.** Add `render_setext_hazard`: flag a non-blank, non-heading, non-list, non-table line immediately above a thematic break, because Markdown renders it as a setext H2. The current corpus has zero hits, the pre-fix control has the divider pattern the template encourages, and the check is a one-line lookbehind; make it blocking. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:676] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:77]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    },
+    {
+      "id": "finding-8-9-what-stays-human-items-ordered-by-authoring-history-instead-of-reader-task-at-th",
+      "text": "**What stays human.** \"Items ordered by authoring history instead of reader task\" at the semantic level, \"misplaced content\" beyond heading position, and whether an overview actually orients a reader cannot be decided by a regex. The validator can surface the proxies above; the review checklist must ask a human to read the rendered page and confirm the narrative order. [SOURCE: .skilled/skills/sk-doc/scripts/validate_document.py:2009]",
+      "addedAtIteration": 8,
+      "sources": [
+        "`.skilled/skills/sk-doc/scripts/validate_document.py:676-938`, `:1937-2058`",
+        "`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-345`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:36-213`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:129-174`",
+        "`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:65`",
+        "lineage scan prototype: `.executor-state/scan.cjs` over 121 scoped files"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-688d86e18323",
+      "text": "A purely regex-driven \"authoring order\" detector: section order can only be judged against a named reader task, so this iteration compares sibling files against each other and the template rather than inventing a universal order.",
+      "contentHash": "688d86e18323",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e5eb4e6c3fb2",
+      "text": "Treating `## Rule overrides` in `rule-overrides.md:51` as a stray heading: it sits inside a fenced example, and the fence-aware scan correctly excluded it.",
+      "contentHash": "e5eb4e6c3fb2",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-61dc0a9c9169",
+      "text": "Treating every `firstH2NotOverview` hit on a `SKILL.md` as a template violation: skill bodies follow a different template, so only reference and asset files were scored against the reference/asset contract.",
+      "contentHash": "61dc0a9c9169",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f80671a7b190",
+      "text": "Treating long prose lines as rendering defects: they wrap in rendered Markdown, so they were recorded as a style signal, not a finding.",
+      "contentHash": "f80671a7b190",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4c615a0a1aef",
+      "text": "`ci-workflow-standards.md:54` naming `assets/workflow-template.yml` looked like a dangling link, but the asset exists at 81 lines, so it is a valid pointer.",
+      "contentHash": "4c615a0a1aef",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-88aef2d2a7bc",
+      "text": "Scoring the ci references against the asset template's Purpose/Usage pair: they are references, not assets, so the reference template's Purpose/When to Use pair is the correct baseline.",
+      "contentHash": "88aef2d2a7bc",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-412dbee6a7d0",
+      "text": "The blank double line before `---` in two references is whitespace noise, not a rendering defect.",
+      "contentHash": "412dbee6a7d0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cd22e1dc2b10",
+      "text": "The three scaffold assets are YAML/JSON, not Markdown; their `#<<...>>` template directives are intentional scaffold syntax rather than rendering defects.",
+      "contentHash": "cd22e1dc2b10",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-67080ad2d3ce",
+      "text": "Searching for current bare URLs in the frontend references: all nine were repaired in the restructure, so the class is now historical in this family but live elsewhere.",
+      "contentHash": "67080ad2d3ce",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-0581a9b58b16",
+      "text": "Treating `frontend-practice.md:95` and `:102` (`**Layers**`, `**Web topic files**`) as adjacent bold joins: they are separated by blank lines and body text, so they render as separate label paragraphs.",
+      "contentHash": "0581a9b58b16",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-38c356eb3499",
+      "text": "Treating the `**Deeper:**` handoff lines in `web-markup-and-css.md` as orphaned labels: each closes a section with a valid link.",
+      "contentHash": "38c356eb3499",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-36cbb606700f",
+      "text": "Treating the current `web-cascade-and-selectors.md` as still defective: the diff shows the bold-label blocks became bullet lists and the bare URLs became named links, so the file now matches the template shape.",
+      "contentHash": "36cbb606700f",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-2e9ceec6214d",
+      "text": "`quality-config.md:99` looked like a stray unnumbered `## Rule overrides` heading, but it sits inside a fenced markdown example; the fence-aware scan excludes it.",
+      "contentHash": "2e9ceec6214d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-dfc37639adc3",
+      "text": "Counting `SKILL.md` §8 REFERENCES AND RELATED RESOURCES as misplaced: it is the last section of the skill body, which matches the skill template's expectation.",
+      "contentHash": "dfc37639adc3",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-149488d8e042",
+      "text": "Looking for bare URLs or adjacent bold labels in this family: none at HEAD, because these documents use bullets and tables rather than label paragraphs.",
+      "contentHash": "149488d8e042",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-214d70c45a31",
+      "text": "Treating the `runner-contract.md` CLI tables as the overview: they are the section content, which is the defect, not evidence that an overview exists.",
+      "contentHash": "214d70c45a31",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a5f98f8790b8",
+      "text": "Claiming the three checklist assets lack a closing related section: their tails carry link lists under a related heading, so the omission is specific to `pr-state-dedup.md`.",
+      "contentHash": "a5f98f8790b8",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-758e8fca6471",
+      "text": "Looking for adjacent bold labels in the review references: the packet uses bullets and tables, so the class is absent here.",
+      "contentHash": "758e8fca6471",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-3508715b00fb",
+      "text": "Treating `quick-reference.md`'s `### Usage` heading as a template violation on its own: the deeper defect is the incomplete table, not the heading name.",
+      "contentHash": "3508715b00fb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-32dd39874325",
+      "text": "Treating `review-core.md` §9's long Python resolver as misplaced: it is an executable contract the section names, not unrelated prose.",
+      "contentHash": "32dd39874325",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-27d366795426",
+      "text": "A file-by-file read of all 45 skilled references: the boilerplate and heading signals are dense enough to characterize the family, and reading every rule body would not change the structural verdict.",
+      "contentHash": "27d366795426",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a8eda3b2d17d",
+      "text": "Treating the checklist assets as boilerplate: their Purpose paragraphs are specific (`This split checklist protects DTO, error, panic, unsafe-code ... boundaries`), so the boilerplate is confined to the references.",
+      "contentHash": "a8eda3b2d17d",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-2d488af0ac6f",
+      "text": "Treating the repeated `### Scope`, `### Exempted Standards` and `### What Still Applies` headings in `security-testing-and-exemptions.md` as duplication: the repeat is deliberate parallel structure for two exemption tiers, and both instances carry distinct content.",
+      "contentHash": "2d488af0ac6f",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-a5074c091ab9",
+      "text": "Treating the same `**Evidence**:` path in `overview-modules-and-docs.md:137` and `:155` as a duplicate paragraph: two different rules cite the same implementation file, which is legitimate shared evidence.",
+      "contentHash": "a5074c091ab9",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-4da118abc1a0",
+      "text": "\"Frontmatter validation catches these files\": all ten frontmatter fields are present in the tested files, so the frontmatter path has nothing to report.",
+      "contentHash": "4da118abc1a0",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-333e20693051",
+      "text": "\"The citation-drift advisory would catch it\": that advisory checks file-and-line citations and never changes the exit code; it has no URL, adjacency or ordering check.",
+      "contentHash": "333e20693051",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-ed00d911ebcd",
+      "text": "\"The validator is disabled for these paths\": the explicit `--type reference` run returned a real verdict, not a skip, and `valid: true` came from `blocking_errors == []`.",
+      "contentHash": "ed00d911ebcd",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-1f5294bc94b6",
+      "text": "Looking for a hidden link checker under a different rule id: the `reference` rule block has no link or URL key, and the orchestration calls no link function.",
+      "contentHash": "1f5294bc94b6",
+      "addedAtIteration": 7
+    },
+    {
+      "id": "ruled-out-8674a6d60c64",
+      "text": "A cross-file \"same purpose sentence\" rule as blocking: the rust boilerplate differs by topic word and would need fuzzy matching, which is too imprecise for a blocking gate.",
+      "contentHash": "8674a6d60c64",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-faf1d38bf555",
+      "text": "A validator rule that rejects every bold-label paragraph: separate label paragraphs are legitimate; only adjacency is a rendering defect.",
+      "contentHash": "faf1d38bf555",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-df0c8e13f776",
+      "text": "A validator rule that rejects every raw URL: fenced command examples and generated reports can carry them; only unfenced, unlinked prose URLs are the defect.",
+      "contentHash": "df0c8e13f776",
+      "addedAtIteration": 8
+    },
+    {
+      "id": "ruled-out-b22ca55ffd11",
+      "text": "Trying to make \"reader-task order\" fully mechanical: no static analysis can know the reader's task; monotonic ids and related-last are the only defensible proxies.",
+      "contentHash": "b22ca55ffd11",
+      "addedAtIteration": 8
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 8,
+    "openQuestions": 0,
+    "resolvedQuestions": 8,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 45,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.85,
+    "coverageBySources": {
+      "code": 42,
+      "other": 29
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/315-frontend-reference-restructure/specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/lineages/deepseek/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

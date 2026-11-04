@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/018-frontend-upstream-proposals/010-reference-readability-research",
-  "description": "Phase 10: reference-readability-research",
+  "description": "Phase 009 found layout defects in the frontend references that every gate had passed",
   "keywords": [
     "phase",
-    "reference-readability-research"
+    "found",
+    "layout",
+    "defects",
+    "frontend",
+    "references",
+    "every",
+    "gate",
+    "passed"
   ],
-  "lastUpdated": "2026-11-03T21:43:32.884Z",
+  "lastUpdated": "2026-11-03T21:44:54.424Z",
   "specId": "010",
   "folderSlug": "reference-readability-research",
   "parentChain": [
@@ -13,6 +21,5 @@
     "018-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

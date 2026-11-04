@@ -1,0 +1,532 @@
+{
+  "sessionId": "fanout-luna-1793742315296-80sid6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 7,
+    "answeredCount": 0,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-03T22:47:42.440Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-rendering-defects-occur-in-each-sk-code-area-and-where-are-they-visible",
+      "inboxId": null,
+      "text": "Which rendering defects occur in each sk-code area, and where are they visible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-references-and-assets-diverge-from-their-respective-template-structure-or-",
+      "inboxId": null,
+      "text": "Which references and assets diverge from their respective template structure or place content poorly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-3-which-section-and-item-sequences-follow-authoring-history-instead-of-a-reader-ta",
+      "inboxId": null,
+      "text": "Which section and item sequences follow authoring history instead of a reader task?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-why-did-the-templates-authoring-guidance-and-validator-miss-each-defect-class",
+      "inboxId": null,
+      "text": "Why did the templates, authoring guidance and validator miss each defect class?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-5-which-fixes-belong-in-templates-guidance-or-validation-and-which-checks-can-run-",
+      "inboxId": null,
+      "text": "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-which-rendering-defects-occur-in-each-sk-code-area-and-where-are-they-visible",
+      "inboxId": null,
+      "text": "Which rendering defects occur in each sk-code area, and where are they visible?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-which-references-and-assets-diverge-from-their-respective-template-structure-or-",
+      "inboxId": null,
+      "text": "Which references and assets diverge from their respective template structure or place content poorly?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-section-and-item-sequences-follow-authoring-history-instead-of-a-reader-ta",
+      "inboxId": null,
+      "text": "Which section and item sequences follow authoring history instead of a reader task?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-why-did-the-templates-authoring-guidance-and-validator-miss-each-defect-class",
+      "inboxId": null,
+      "text": "Why did the templates, authoring guidance and validator miss each defect class?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-which-fixes-belong-in-templates-guidance-or-validation-and-which-checks-can-run-",
+      "inboxId": null,
+      "text": "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Whether the repeated content reflects a gap in templates, authoring guidance, or validation remained open and was investigated in the next pass.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether any section or item sequence follows authoring history instead of a reader task was not established in this surface scan.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The top-level questions about other sk-code areas and mechanically checkable fixes remained open for the remaining iterations.",
+      "addedAtIteration": 6,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Template-example overlap is a plausible contributor to repeated authored content, but authoring provenance is needed to establish causation.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "A controlled run against the pre-fix snapshot would confirm the task-reported VALID/0 validator result; this pass traced the static code path but did not rerun the validator.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Section and item ordering still needs a reviewer to judge the reader's workflow unless each document family defines a canonical sequence.",
+      "addedAtIteration": 7,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [
+    "Which rendering defects occur in each sk-code area, and where are they visible?",
+    "Which references and assets diverge from their respective template structure or place content poorly?",
+    "Which section and item sequences follow authoring history instead of a reader task?",
+    "Why did the templates, authoring guidance and validator miss each defect class?",
+    "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-the-hub-s-when-to-use-section-contains-two-navigation-tables-a-repeated-surface-",
+      "text": "The hub's WHEN TO USE section contains two navigation tables, a repeated surface list and implement/debug/verify workflow instructions. The sk-create-skill contract limits this section to activation triggers, use cases and when-not-to-use boundaries, and assigns routing and execution detail to SMART ROUTING and HOW IT WORKS. [SOURCE: .skilled/skills/sk-code/SKILL.md:32] [SOURCE: .skilled/skills/sk-code/SKILL.md:47] [SOURCE: .skilled/skills/sk-code/SKILL.md:56] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/SKILL.md:80] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/SKILL.md:81] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:455]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:28",
+        ".skilled/skills/sk-code/ROUTER.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-debug.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:22",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:20",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:20",
+        ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md:21",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:451",
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:80",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-shared-references-vary-from-the-sk-doc-overview-sequence-workflow-implement-",
+      "text": "The shared references vary from the sk-doc overview sequence. workflow-implement.md, workflow-debug.md and code-quality-standards.md place Core Principle before When to Use. workflow-verify.md places its Iron Law before When to Use. The reference template's example orders Purpose, When to Use and Core Principle. [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:26] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-implement.md:30] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-debug.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-debug.md:26] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-debug.md:30] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:22] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:26] [SOURCE: .skilled/skills/sk-code/shared/references/workflow-verify.md:32] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:23] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:27] [SOURCE: .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:31] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:103] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:108]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/sk-code/SKILL.md:28",
+        ".skilled/skills/sk-code/ROUTER.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-implement.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-debug.md:22",
+        ".skilled/skills/sk-code/shared/references/workflow-verify.md:22",
+        ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md:21",
+        ".skilled/skills/sk-code/shared/references/phase-detection.md:20",
+        ".skilled/skills/sk-code/shared/references/stack-detection.md:20",
+        ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md:21",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:451",
+        ".skilled/skills/sk-doc/sk-create-skill/SKILL.md:80",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-ci-router-s-overview-is-a-long-paragraph-that-includes-the-detailed-ci-workf",
+      "text": "The CI router's OVERVIEW is a long paragraph that includes the detailed CI_WORKFLOW trigger list, four-reference map, default resource and no-match behavior; the next INTENT MODEL section repeats the signal list and resource map. Keep the overview at orientation level and reserve the exact trigger and ordered resource declaration for the intent section. [SOURCE: .skilled/skills/sk-code/sk-code-ci/ROUTER.md:23] [SOURCE: .skilled/skills/sk-code/sk-code-ci/ROUTER.md:25] [SOURCE: .skilled/skills/sk-code/sk-code-ci/ROUTER.md:33]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-ci/SKILL.md:28",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:23",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:33",
+        ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:20",
+        ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:17",
+        ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:16",
+        ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:20",
+        ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml:4",
+        ".skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml:2",
+        ".skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json:1",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:136",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-2-1-two-ci-references-repeat-their-main-list-of-topics-in-the-intro-and-the-immediat",
+      "text": "Two CI references repeat their main list of topics in the intro and the immediately following OVERVIEW: job-shape-rules.md lists timeout, permissions, concurrency, setup and switch in both places; trigger-and-filter-rules.md lists events, paths, rebuild commits and exceptions in both places. The reference template separates intro summary from overview content, and the asset guidance explicitly says not to duplicate between them. [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:17] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:23] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:16] [SOURCE: .skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:22] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:136] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:145] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-ci/SKILL.md:28",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:23",
+        ".skilled/skills/sk-code/sk-code-ci/ROUTER.md:33",
+        ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md:20",
+        ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:17",
+        ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:16",
+        ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md:20",
+        ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md:21",
+        ".skilled/skills/sk-code/sk-code-ci/assets/workflow-template.yml:4",
+        ".skilled/skills/sk-code/sk-code-ci/assets/job-block-template.yml:2",
+        ".skilled/skills/sk-code/sk-code-ci/assets/ci-profile.template.json:1",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:136",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-figma-check-defines-its-five-passes-and-final-verdict-before-explaining-whic",
+      "text": "The Figma check defines its five passes and final verdict before explaining which Figma-side transport can run them. Its preceding workflow step sends readers forward to the tool ladder, while that ladder appears only after the verdict; the tool-specific coverage matrix and capture mechanics come later still. Put the transport choice before the pass procedure so the reader can select a viable path before executing it. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:88] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:111] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:122] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:133] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:137] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:144] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:159]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-frontend/README.md:16",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:17",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:25",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:43",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:69",
+        ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md:18",
+        ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md:35",
+        ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md:20",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:19",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:86",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:98",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:116",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:111",
+        ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.2.0.md:32",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:451",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:502",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-frontend-skill-md-places-smart-routing-last-after-surface-standards-and-fron",
+      "text": "The frontend SKILL.md places SMART ROUTING last, after Surface Standards and Frontend Overrides. Surface Standards already says to load a topic when its ROUTER condition applies, but the earlier Reference Map does not link to ROUTER.md and the later SMART ROUTING section is where the reader is told to open it. The sk-create-skill section guidance places SMART ROUTING immediately after WHEN TO USE, before later workflow and rules sections. [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:25] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:43] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:47] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:63] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:69] [SOURCE: .skilled/skills/sk-code/sk-code-frontend/SKILL.md:71] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:451] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:502]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-frontend/README.md:16",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:17",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:25",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:43",
+        ".skilled/skills/sk-code/sk-code-frontend/SKILL.md:69",
+        ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md:18",
+        ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md:35",
+        ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md:20",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:19",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:86",
+        ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md:98",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md:116",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md:8",
+        ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md:111",
+        ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.2.0.md:32",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:451",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md:502",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-4-2-quality-config-md-explains-the-configured-check-state-machine-including-skipped-",
+      "text": "quality-config.md explains the configured-check state machine, including SKIPPED_UNTRUSTED, under HOW A CONFIGURED CHECK RUNS before the detailed TRUST BOUNDARY that determines when commands may run. The operator must read through sections 6 and 7 before reaching the trust rules in section 8. Put the trust contract before the run procedure, or link it at the first SKIPPED_UNTRUSTED mention. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:129] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:132] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:141] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:173] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/quality-config.md:180]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:18",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:52",
+        ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:31",
+        ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:20",
+        ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:26",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:16",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:129",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:173",
+        ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20",
+        ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:22",
+        ".skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json:1",
+        ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json:1",
+        ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json:1",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:103",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:108",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-4-1-runner-contract-md-labels-its-first-section-overview-and-cli-but-the-section-beg",
+      "text": "runner-contract.md labels its first section OVERVIEW AND CLI, but the section begins immediately with a command block and then CLI flag tables; it contains no overview prose. The reference template gives OVERVIEW a reader-orientation role, so this section should either add that orientation or be titled CLI. [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:16] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:22] [SOURCE: .skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:26] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:18",
+        ".skilled/skills/sk-code/sk-code-quality/SKILL.md:52",
+        ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-quality/ROUTER.md:31",
+        ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:20",
+        ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md:26",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:16",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:129",
+        ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md:173",
+        ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:20",
+        ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md:22",
+        ".skilled/skills/sk-code/sk-code-quality/assets/comment-syntax.json:1",
+        ".skilled/skills/sk-code/sk-code-quality/assets/quality-config.template.json:1",
+        ".skilled/skills/sk-code/sk-code-quality/assets/quality-defaults.json:1",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:98",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:103",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:108",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-5-1-fix-completeness-checklist-md-repeats-its-entire-central-inventory-in-the-post-t",
+      "text": "fix-completeness-checklist.md repeats its entire central inventory in the post-title intro and the Purpose subsection: both list same-class producers, consumers, changed algorithms, matrix coverage and hostile runtime state. The asset template explicitly says the intro is a hook and OVERVIEW provides details. [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:17] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:19] [SOURCE: .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:23] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174] [SOURCE: .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:175]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:14",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:46",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:63",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:97",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:132",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:262",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:324",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:342",
+        ".skilled/skills/sk-code/sk-code-review/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-review/ROUTER.md:31",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:10",
+        ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md:8",
+        ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:4",
+        ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:17",
+        ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:23",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-review-skill-puts-pr-state-efficiency-gates-in-section-9-after-related-resou",
+      "text": "The review skill puts PR-state efficiency gates in section 9, after Related Resources, even though M-1 can skip redundant analysis and M-2 can skip a full review. Their decision belongs before the review phases that they may bypass; the current placement puts skip rules after the reader has traversed scope, analysis, output, references and integration. [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:63] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:97] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:132] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:324] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:342] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:346] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:363] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:372] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:397] [SOURCE: .skilled/skills/sk-code/sk-code-review/SKILL.md:404]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:14",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:46",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:63",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:97",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:132",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:262",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:324",
+        ".skilled/skills/sk-code/sk-code-review/SKILL.md:342",
+        ".skilled/skills/sk-code/sk-code-review/ROUTER.md:21",
+        ".skilled/skills/sk-code/sk-code-review/ROUTER.md:31",
+        ".skilled/skills/sk-code/sk-code-review/references/review-core.md:10",
+        ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md:8",
+        ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md:4",
+        ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md:8",
+        ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md:21",
+        ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:17",
+        ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md:23",
+        ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:759",
+        ".skilled/commands/deep/assets/deep-research-auto.yaml:776",
+        "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md:42"
+      ]
+    },
+    {
+      "id": "finding-6-1-three-sk-code-skilled-quality-references-restate-their-topic-inventory-in-both-t",
+      "text": "Three sk-code-skilled quality references restate their topic inventory in both the post-title hook and the Overview Purpose: TypeScript at `.skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md:16,24`, JavaScript at `.skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md:16,24`, and Shell at `.skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md:16,24`. This repeats nearly the same subject list before adding a distinct purpose. The reference template marks an intro/Purpose repeat as bad structure and reserves the intro for a short summary while Overview contains details (`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:112-145`); the asset template states the same hook/details split (`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174-175`). Keep each hook concise and use Purpose to explain the reader outcome rather than repeat the inventory.",
+      "addedAtIteration": 6,
+      "sources": []
+    },
+    {
+      "id": "finding-7-2-validate-document-py-has-no-markdown-rendering-lint-for-joined-bold-label-paragr",
+      "text": "`validate_document.py` has no Markdown-rendering lint for joined bold-label paragraphs, bare URLs, duplicate labels, or accidental Setext headings. The pre-fix CSS reference has adjacent unbulleted bold labels at `cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:23-29`, raw URLs at lines 28, 37, and 46 of that file, and a repeated `Support` label at lines 58-60. The validation pipeline calls TOC, H2, general-structure, required-section, selected table, and frontmatter checks (`.skilled/skills/sk-doc/scripts/validate_document.py:2008-2029`); general structure checks dividers before numbered uppercase H2s plus TOC and anchor rules (`.skilled/skills/sk-doc/scripts/validate_document.py:667-729`). The supplied report that this file returned VALID with 0 issues is consistent with this code path. Add a Markdown AST lint outside frontmatter and fences for label paragraphs, raw URLs, repeated labels, and forbidden Setext headings; these are mechanical when the document contract is explicit.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-3-both-resource-templates-warn-against-duplicating-intro-and-overview-content-but-",
+      "text": "Both resource templates warn against duplicating intro and Overview content, but their GOOD examples paraphrase the same central subject: the reference example repeats commit workflows and filtering in Purpose (`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:86-101`), and the asset example repeats commit-message templates and formats (`.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174-192`). This is a plausible contributor to repeated inventories found in sk-code references; authoring provenance would confirm whether it caused them. Revise the examples so the hook gives a distinct reader benefit and Purpose adds scope or outcome. Exact repeats are mechanical; semantic overlap should be advisory or human-reviewed.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-4-the-documented-completion-path-does-not-make-content-review-a-blocking-package-c",
+      "text": "The documented completion path does not make content review a blocking package check. The reference workflow points authors to the templates, then calls `package_skill.py --check --strict` authoritative and lists metadata, required SKILL.md sections, and paths as hard failures (`.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md:313-360`). The package script validates resource-document frontmatter and version as warnings (`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:751-810,1472-1478`), while separate comprehensive-validation guidance assigns content quality and style to AI judgment (`.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md:117-125`). Require a content review for each changed reference/asset covering intro-to-Purpose duplication, reader-task order, and rendered Markdown. Ordering and semantic duplication need human judgment; raw links, section shape, and Markdown AST defects can be scripted.",
+      "addedAtIteration": 7,
+      "sources": []
+    },
+    {
+      "id": "finding-7-1-the-reference-validator-accepts-a-compound-overview-heading-by-fuzzy-word-contai",
+      "text": "The reference validator accepts a compound OVERVIEW heading by fuzzy word containment and never requires an overview body, so the pre-fix CSS file's first rule subsection can stand in for the overview. The heading at `cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:19` is followed immediately by a CS1 rule subsection at `cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:21`. The reference rule requires only an `overview` heading (`.skilled/skills/sk-doc/shared/assets/template-rules.json:319-323`), and `validate_required_sections` accepts required words anywhere in the normalized heading (`.skilled/skills/sk-doc/scripts/validate_document.py:899-915`). Require the canonical numbered `OVERVIEW` heading and a minimal orientation body; both are mechanical checks.",
+      "addedAtIteration": 7,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 7,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 15,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "code": 102
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/315-frontend-reference-restructure/specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/lineages/luna/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

@@ -1,0 +1,3577 @@
+{
+  "generatedAt": "2026-11-03T21:48:20.230Z",
+  "fileCount": 121,
+  "results": [
+    {
+      "file": ".skilled/skills/sk-code/ROUTER.md",
+      "lines": 559,
+      "frontmatter": true,
+      "headings": 34,
+      "defects": {
+        "relatedNotLast": {
+          "line": 218,
+          "heading": "8. RELATED RESOURCES",
+          "lastLine": 450,
+          "lastHeading": "11. MACHINE ROUTER"
+        },
+        "overviews": [
+          {
+            "line": 22,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Core Principle",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 18,
+            "chars": 467
+          },
+          {
+            "line": 37,
+            "chars": 472
+          },
+          {
+            "line": 86,
+            "chars": 427
+          },
+          {
+            "line": 437,
+            "chars": 693
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/SKILL.md",
+      "lines": 174,
+      "frontmatter": true,
+      "headings": 13,
+      "defects": {
+        "firstH2NotOverview": {
+          "line": 28,
+          "heading": "1. WHEN TO USE"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "introTooLong": {
+          "line": 12,
+          "words": 176,
+          "lines": 10,
+          "hasH3": false
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/README.md",
+      "lines": 130,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 370,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 61,
+            "chars": 513
+          },
+          {
+            "line": 101,
+            "chars": 471
+          },
+          {
+            "line": 102,
+            "chars": 630
+          },
+          {
+            "line": 103,
+            "chars": 620
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/phase-detection.md",
+      "lines": 148,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Core Principle",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 121,
+            "chars": 781
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      "lines": 176,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [
+              "Core Principle",
+              "Surfaces"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 56,
+            "chars": 441
+          },
+          {
+            "line": 102,
+            "chars": 603
+          },
+          {
+            "line": 107,
+            "chars": 485
+          },
+          {
+            "line": 109,
+            "chars": 429
+          },
+          {
+            "line": 125,
+            "chars": 508
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/universal/code-quality-standards.md",
+      "lines": 209,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "Key Sources",
+              "Design Restraint Ladder (pre-write)"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 58,
+            "chars": 496
+          },
+          {
+            "line": 74,
+            "chars": 408
+          },
+          {
+            "line": 93,
+            "chars": 829
+          },
+          {
+            "line": 97,
+            "chars": 487
+          },
+          {
+            "line": 112,
+            "chars": 404
+          },
+          {
+            "line": 115,
+            "chars": 605
+          },
+          {
+            "line": 152,
+            "chars": 448
+          },
+          {
+            "line": 156,
+            "chars": 460
+          },
+          {
+            "line": 169,
+            "chars": 590
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/universal/rule-overrides.md",
+      "lines": 183,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "Scope",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 25,
+            "chars": 407
+          },
+          {
+            "line": 33,
+            "chars": 679
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/workflow-debug.md",
+      "lines": 161,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/workflow-implement.md",
+      "lines": 134,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 70,
+            "chars": 558
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/shared/references/workflow-verify.md",
+      "lines": 172,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Iron Law",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 56,
+            "chars": 920
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/ROUTER.md",
+      "lines": 67,
+      "frontmatter": true,
+      "headings": 4,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 986,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 23,
+            "chars": 986
+          },
+          {
+            "line": 33,
+            "chars": 622
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/SKILL.md",
+      "lines": 100,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "firstH2NotOverview": {
+          "line": 28,
+          "heading": "1. WHEN THE HUB BUNDLES THIS"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "introTooLong": {
+          "line": 11,
+          "words": 292,
+          "lines": 16,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/ci-workflow-standards.md",
+      "lines": 68,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Universal Rules and Repository Values",
+              "Reading the Enforcement Column"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 41,
+            "chars": 478
+          },
+          {
+            "line": 42,
+            "chars": 406
+          },
+          {
+            "line": 43,
+            "chars": 910
+          },
+          {
+            "line": 44,
+            "chars": 407
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      "lines": 138,
+      "frontmatter": true,
+      "headings": 7,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 255,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 63,
+            "chars": 514
+          },
+          {
+            "line": 135,
+            "chars": 625
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/protected-set.md",
+      "lines": 103,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [
+              "The Profile",
+              "Profile Keys"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 27,
+            "chars": 553
+          },
+          {
+            "line": 67,
+            "chars": 482
+          },
+          {
+            "line": 68,
+            "chars": 490
+          },
+          {
+            "line": 100,
+            "chars": 703
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/trigger-and-filter-rules.md",
+      "lines": 89,
+      "frontmatter": true,
+      "headings": 6,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 297,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 72,
+            "chars": 438
+          },
+          {
+            "line": 84,
+            "chars": 476
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/workflow-debug.md",
+      "lines": 161,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/workflow-implement.md",
+      "lines": 134,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 70,
+            "chars": 558
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-ci/references/workflow-verify.md",
+      "lines": 172,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Iron Law",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 56,
+            "chars": 920
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      "lines": 105,
+      "frontmatter": true,
+      "headings": 5,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 340,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [
+              "Web Topic Files"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 198,
+          "lines": 12,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+      "lines": 72,
+      "frontmatter": true,
+      "headings": 10,
+      "defects": {
+        "firstH2NotOverview": {
+          "line": 17,
+          "heading": "1. WHEN THE HUB BUNDLES THIS"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "introTooLong": {
+          "line": 13,
+          "words": 102,
+          "lines": 4,
+          "hasH3": true
+        },
+        "longLines": [
+          {
+            "line": 65,
+            "chars": 435
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
+      "lines": 202,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Core Principle",
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 115,
+            "chars": 412
+          },
+          {
+            "line": 116,
+            "chars": 452
+          },
+          {
+            "line": 117,
+            "chars": 493
+          },
+          {
+            "line": 119,
+            "chars": 479
+          },
+          {
+            "line": 120,
+            "chars": 749
+          },
+          {
+            "line": 137,
+            "chars": 526
+          },
+          {
+            "line": 139,
+            "chars": 433
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+      "lines": 124,
+      "frontmatter": true,
+      "headings": 11,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 87,
+            "chars": 434
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-accessibility-patterns.md",
+      "lines": 235,
+      "frontmatter": true,
+      "headings": 29,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 153,
+            "chars": 493
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md",
+      "lines": 144,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-elements-and-attributes.md",
+      "lines": 162,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 89,
+            "chars": 614
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md",
+      "lines": 126,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-layout-and-sizing.md",
+      "lines": 173,
+      "frontmatter": true,
+      "headings": 22,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 52,
+            "chars": 621
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+      "lines": 182,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 73,
+            "chars": 469
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
+      "lines": 163,
+      "frontmatter": true,
+      "headings": 20,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Boundaries"
+            ],
+            "flag": false
+          }
+        ],
+        "ruleIdOrder": [
+          {
+            "line": 124,
+            "prefix": "P",
+            "from": 10,
+            "to": 8,
+            "issue": "out-of-order"
+          }
+        ],
+        "longLines": [
+          {
+            "line": 139,
+            "chars": 419
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-debug.md",
+      "lines": 161,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-implement.md",
+      "lines": 134,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 70,
+            "chars": 558
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/workflow-verify.md",
+      "lines": 172,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Iron Law",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 56,
+            "chars": 920
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-quality/ROUTER.md",
+      "lines": 117,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 828,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 23,
+            "chars": 828
+          },
+          {
+            "line": 33,
+            "chars": 467
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      "lines": 325,
+      "frontmatter": true,
+      "headings": 28,
+      "defects": {
+        "firstH2NotOverview": {
+          "line": 18,
+          "heading": "1. WHEN TO USE"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "longLines": [
+          {
+            "line": 103,
+            "chars": 752
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-quality/references/code-style-guide.md",
+      "lines": 196,
+      "frontmatter": true,
+      "headings": 27,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 24,
+            "chars": 451
+          },
+          {
+            "line": 55,
+            "chars": 404
+          },
+          {
+            "line": 80,
+            "chars": 569
+          },
+          {
+            "line": 97,
+            "chars": 576
+          },
+          {
+            "line": 116,
+            "chars": 408
+          },
+          {
+            "line": 120,
+            "chars": 475
+          },
+          {
+            "line": 122,
+            "chars": 579
+          },
+          {
+            "line": 160,
+            "chars": 489
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-quality/references/quality-config.md",
+      "lines": 205,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "overviews": [
+          {
+            "line": 16,
+            "heading": "1. OVERVIEW",
+            "proseChars": 802,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 121,
+          "lines": 2,
+          "hasH3": true
+        },
+        "longLines": [
+          {
+            "line": 18,
+            "chars": 802
+          },
+          {
+            "line": 27,
+            "chars": 566
+          },
+          {
+            "line": 31,
+            "chars": 581
+          },
+          {
+            "line": 81,
+            "chars": 569
+          },
+          {
+            "line": 88,
+            "chars": 464
+          },
+          {
+            "line": 107,
+            "chars": 727
+          },
+          {
+            "line": 164,
+            "chars": 476
+          },
+          {
+            "line": 180,
+            "chars": 801
+          },
+          {
+            "line": 190,
+            "chars": 1235
+          },
+          {
+            "line": 192,
+            "chars": 738
+          },
+          {
+            "line": 199,
+            "chars": 692
+          },
+          {
+            "line": 204,
+            "chars": 605
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-quality/references/runner-contract.md",
+      "lines": 279,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "overviewAnd": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW AND CLI",
+            "bodyLines": 29,
+            "firstProse": "node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs [scope] [options]",
+            "proseChars": 87,
+            "flag": false
+          }
+        ],
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW AND CLI",
+            "proseChars": 0,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": true
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 78,
+          "lines": 1,
+          "hasH3": false
+        },
+        "longLines": [
+          {
+            "line": 16,
+            "chars": 497
+          },
+          {
+            "line": 51,
+            "chars": 447
+          },
+          {
+            "line": 53,
+            "chars": 1296
+          },
+          {
+            "line": 55,
+            "chars": 780
+          },
+          {
+            "line": 57,
+            "chars": 440
+          },
+          {
+            "line": 103,
+            "chars": 971
+          },
+          {
+            "line": 113,
+            "chars": 1657
+          },
+          {
+            "line": 118,
+            "chars": 815
+          },
+          {
+            "line": 123,
+            "chars": 492
+          },
+          {
+            "line": 124,
+            "chars": 439
+          },
+          {
+            "line": 139,
+            "chars": 626
+          },
+          {
+            "line": 144,
+            "chars": 414
+          },
+          {
+            "line": 154,
+            "chars": 590
+          },
+          {
+            "line": 156,
+            "chars": 721
+          },
+          {
+            "line": 160,
+            "chars": 445
+          },
+          {
+            "line": 177,
+            "chars": 553
+          },
+          {
+            "line": 178,
+            "chars": 443
+          },
+          {
+            "line": 182,
+            "chars": 1473
+          },
+          {
+            "line": 184,
+            "chars": 678
+          },
+          {
+            "line": 213,
+            "chars": 424
+          },
+          {
+            "line": 214,
+            "chars": 406
+          },
+          {
+            "line": 233,
+            "chars": 405
+          },
+          {
+            "line": 240,
+            "chars": 514
+          },
+          {
+            "line": 242,
+            "chars": 769
+          },
+          {
+            "line": 245,
+            "chars": 872
+          },
+          {
+            "line": 247,
+            "chars": 444
+          },
+          {
+            "line": 265,
+            "chars": 1370
+          },
+          {
+            "line": 271,
+            "chars": 660
+          },
+          {
+            "line": 274,
+            "chars": 718
+          },
+          {
+            "line": 275,
+            "chars": 498
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/ROUTER.md",
+      "lines": 198,
+      "frontmatter": true,
+      "headings": 5,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 646,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 23,
+            "chars": 646
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      "lines": 420,
+      "frontmatter": true,
+      "headings": 33,
+      "defects": {
+        "relatedNotLast": {
+          "line": 324,
+          "heading": "8. RELATED RESOURCES",
+          "lastLine": 342,
+          "lastHeading": "9. PR-STATE EFFICIENCY GATES"
+        },
+        "firstH2NotOverview": {
+          "line": 14,
+          "heading": "1. WHEN TO USE"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "introTooLong": {
+          "line": 10,
+          "words": 218,
+          "lines": 22,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/code-quality-checklist.md",
+      "lines": 183,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Core Principle",
+              "Rule Ids"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 134,
+            "chars": 586
+          },
+          {
+            "line": 154,
+            "chars": 477
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md",
+      "lines": 118,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 15,
+          "words": 95,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/removal-plan.md",
+      "lines": 108,
+      "frontmatter": true,
+      "headings": 10,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Core Principle",
+              "Priority Model"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/security-checklist.md",
+      "lines": 225,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 22,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Core Principle",
+              "Rule Ids",
+              "Web Items"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 38,
+            "chars": 556
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md",
+      "lines": 127,
+      "frontmatter": true,
+      "headings": 16,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Core Principle",
+              "Scope",
+              "Rule Ids"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 40,
+            "chars": 412
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/assets/test-quality-checklist.md",
+      "lines": 162,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Core Principle",
+              "Rule Ids"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 37,
+            "chars": 425
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/references/pr-state-dedup.md",
+      "lines": 100,
+      "frontmatter": true,
+      "headings": 10,
+      "defects": {
+        "overviews": [
+          {
+            "line": 17,
+            "heading": "1. OVERVIEW",
+            "proseChars": 92,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 15,
+          "words": 577,
+          "lines": 56,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/references/quick-reference.md",
+      "lines": 64,
+      "frontmatter": true,
+      "headings": 7,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      "lines": 406,
+      "frontmatter": true,
+      "headings": 20,
+      "defects": {
+        "overviews": [
+          {
+            "line": 24,
+            "heading": "1. OVERVIEW",
+            "proseChars": 85,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 16,
+          "words": 102,
+          "lines": 2,
+          "hasH3": false
+        },
+        "longLines": [
+          {
+            "line": 20,
+            "chars": 678
+          },
+          {
+            "line": 53,
+            "chars": 421
+          },
+          {
+            "line": 79,
+            "chars": 484
+          },
+          {
+            "line": 153,
+            "chars": 440
+          },
+          {
+            "line": 195,
+            "chars": 573
+          },
+          {
+            "line": 225,
+            "chars": 443
+          },
+          {
+            "line": 242,
+            "chars": 457
+          },
+          {
+            "line": 248,
+            "chars": 543
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-review/references/review-ux-single-pass.md",
+      "lines": 100,
+      "frontmatter": true,
+      "headings": 7,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 73,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+      "lines": 172,
+      "frontmatter": true,
+      "headings": 4,
+      "defects": {
+        "overviews": [
+          {
+            "line": 21,
+            "heading": "1. OVERVIEW",
+            "proseChars": 484,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 23,
+            "chars": 484
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      "lines": 199,
+      "frontmatter": true,
+      "headings": 7,
+      "defects": {
+        "firstH2NotOverview": {
+          "line": 29,
+          "heading": "1. WHEN THE HUB BUNDLES THIS"
+        },
+        "frontmatterMissing": [
+          "title",
+          "trigger_phrases",
+          "importance_tier",
+          "contextType"
+        ],
+        "introTooLong": {
+          "line": 11,
+          "words": 229,
+          "lines": 16,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/agent-authoring.md",
+      "lines": 77,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 110,
+          "lines": 9,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
+      "lines": 80,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 112,
+          "lines": 9,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/config-checklist.md",
+      "lines": 354,
+      "frontmatter": true,
+      "headings": 32,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/javascript-checklist.md",
+      "lines": 359,
+      "frontmatter": true,
+      "headings": 29,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/naming-init-formatting-and-css.md",
+      "lines": 92,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 100,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md",
+      "lines": 79,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "overviews": [
+          {
+            "line": 16,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Language Coverage",
+              "What Is Not Here",
+              "Review Baseline Handoff"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 12,
+          "words": 328,
+          "lines": 24,
+          "hasH3": true
+        },
+        "longLines": [
+          {
+            "line": 40,
+            "chars": 429
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md",
+      "lines": 123,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 55,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/mcp-server-authoring.md",
+      "lines": 79,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 146,
+          "lines": 9,
+          "hasH3": true
+        },
+        "longLines": [
+          {
+            "line": 37,
+            "chars": 560
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/python-checklist.md",
+      "lines": 360,
+      "frontmatter": true,
+      "headings": 31,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md",
+      "lines": 300,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Scope",
+              "Protected Contracts",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md",
+      "lines": 210,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 17,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 13,
+          "words": 51,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p1-required.md",
+      "lines": 346,
+      "frontmatter": true,
+      "headings": 26,
+      "defects": {
+        "overviews": [
+          {
+            "line": 17,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 13,
+          "words": 54,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md",
+      "lines": 240,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 17,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 13,
+          "words": 62,
+          "lines": 6,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/shell-checklist.md",
+      "lines": 344,
+      "frontmatter": true,
+      "headings": 32,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/skill-authoring.md",
+      "lines": 81,
+      "frontmatter": true,
+      "headings": 8,
+      "defects": {
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 149,
+          "lines": 10,
+          "hasH3": true
+        }
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md",
+      "lines": 406,
+      "frontmatter": true,
+      "headings": 32,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+      "lines": 377,
+      "frontmatter": true,
+      "headings": 34,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Priority Levels"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/README.md",
+      "lines": 121,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": false,
+            "h3": [
+              "Purpose",
+              "Usage",
+              "Key Statistics"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 78,
+            "chars": 464
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/config/quality-standards.md",
+      "lines": 112,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Scope"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/config/quick-reference.md",
+      "lines": 346,
+      "frontmatter": true,
+      "headings": 35,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/config/style-guide.md",
+      "lines": 422,
+      "frontmatter": true,
+      "headings": 38,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Scope",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/overview-modules-and-docs.md",
+      "lines": 300,
+      "frontmatter": true,
+      "headings": 21,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "duplicateParagraphs": [
+          {
+            "first": 1,
+            "text": "**Evidence**: `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts`"
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/javascript/quality-standards/security-testing-and-exemptions.md",
+      "lines": 340,
+      "frontmatter": true,
+      "headings": 26,
+      "defects": {
+        "duplicateHeadings": [
+          {
+            "line": 253,
+            "text": "Scope",
+            "firstLine": 204
+          },
+          {
+            "line": 258,
+            "text": "Exempted Standards",
+            "firstLine": 211
+          },
+          {
+            "line": 264,
+            "text": "What Still Applies",
+            "firstLine": 219
+          }
+        ],
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/javascript/quick-reference.md",
+      "lines": 293,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md",
+      "lines": 468,
+      "frontmatter": true,
+      "headings": 37,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Use Cases"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 326,
+            "chars": 493
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md",
+      "lines": 455,
+      "frontmatter": true,
+      "headings": 37,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Quality Tiers"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 442,
+            "chars": 409
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md",
+      "lines": 416,
+      "frontmatter": true,
+      "headings": 26,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md",
+      "lines": 490,
+      "frontmatter": true,
+      "headings": 39,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Scope",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "duplicateParagraphs": [
+          {
+            "first": 1,
+            "text": "**Evidence**: `.skilled/skills/sk-doc/scripts/package_skill.py:87-93`"
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md",
+      "lines": 328,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md",
+      "lines": 252,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md",
+      "lines": 318,
+      "frontmatter": true,
+      "headings": 20,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md",
+      "lines": 374,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md",
+      "lines": 337,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Severity Levels",
+              "Repository Non-Negotiables"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md",
+      "lines": 322,
+      "frontmatter": true,
+      "headings": 24,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md",
+      "lines": 406,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md",
+      "lines": 258,
+      "frontmatter": true,
+      "headings": 13,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md",
+      "lines": 470,
+      "frontmatter": true,
+      "headings": 9,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Repository Non-Negotiables"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md",
+      "lines": 253,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md",
+      "lines": 273,
+      "frontmatter": true,
+      "headings": 14,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/formatting-and-imports.md",
+      "lines": 424,
+      "frontmatter": true,
+      "headings": 25,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-errors-and-parity.md",
+      "lines": 340,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/interop-model.md",
+      "lines": 342,
+      "frontmatter": true,
+      "headings": 13,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/naming-conventions.md",
+      "lines": 325,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md",
+      "lines": 167,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Repository Non-Negotiables"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/toolchain-and-project-structure.md",
+      "lines": 333,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 19,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      "lines": 170,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "relatedNotLast": {
+          "line": 139,
+          "heading": "5. RELATED RESOURCES",
+          "lastLine": 148,
+          "lastHeading": "6. ALIGNMENT AUTHORITY INTERFACE (sk-code-skilled)"
+        },
+        "overviews": [
+          {
+            "line": 18,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "introTooLong": {
+          "line": 14,
+          "words": 67,
+          "lines": 10,
+          "hasH3": true
+        },
+        "longLines": [
+          {
+            "line": 135,
+            "chars": 440
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md",
+      "lines": 307,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/imports-and-exports.md",
+      "lines": 222,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md",
+      "lines": 212,
+      "frontmatter": true,
+      "headings": 15,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "Key Sources (Evidence)"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/hooks.md",
+      "lines": 265,
+      "frontmatter": true,
+      "headings": 28,
+      "defects": {
+        "duplicateHeadings": [
+          {
+            "line": 138,
+            "text": "Wiring Shape",
+            "firstLine": 93
+          }
+        ],
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "Key Sources (Evidence)"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 16,
+            "chars": 413
+          },
+          {
+            "line": 116,
+            "chars": 465
+          },
+          {
+            "line": 166,
+            "chars": 741
+          },
+          {
+            "line": 170,
+            "chars": 952
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
+      "lines": 316,
+      "frontmatter": true,
+      "headings": 26,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "Key Sources (Evidence)"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 265,
+            "chars": 480
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
+      "lines": 333,
+      "frontmatter": true,
+      "headings": 23,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shared/workflow-guardrails.md",
+      "lines": 56,
+      "frontmatter": true,
+      "headings": 5,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 295,
+            "hasPurpose": false,
+            "hasWhen": false,
+            "h3": [],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 42,
+            "chars": 448
+          },
+          {
+            "line": 44,
+            "chars": 479
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/overview-and-priority-blockers.md",
+      "lines": 276,
+      "frontmatter": true,
+      "headings": 23,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Quality Tiers"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/quality-standards/validation-security-and-shellcheck.md",
+      "lines": 301,
+      "frontmatter": true,
+      "headings": 28,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 248,
+            "chars": 412
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/functions-strings-and-checklist.md",
+      "lines": 246,
+      "frontmatter": true,
+      "headings": 21,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/quick-reference/template-variables-and-loops.md",
+      "lines": 295,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/overview-structure-and-naming.md",
+      "lines": 348,
+      "frontmatter": true,
+      "headings": 25,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use",
+              "Scope",
+              "Key Sources"
+            ],
+            "flag": false
+          }
+        ],
+        "repeatedBoldLabels": [
+          {
+            "line": 172,
+            "label": "Evidence",
+            "firstLine": 170
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/shell/style-guide/variables-functions-and-output.md",
+      "lines": 321,
+      "frontmatter": true,
+      "headings": 28,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/overview-and-type-system.md",
+      "lines": 339,
+      "frontmatter": true,
+      "headings": 20,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsconfig-and-modules.md",
+      "lines": 273,
+      "frontmatter": true,
+      "headings": 16,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quality-standards/tsdoc-errors-and-async.md",
+      "lines": 321,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/imports-errors-and-tsconfig.md",
+      "lines": 321,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/quick-reference/template-naming-and-types.md",
+      "lines": 281,
+      "frontmatter": true,
+      "headings": 12,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      "lines": 367,
+      "frontmatter": true,
+      "headings": 29,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md",
+      "lines": 382,
+      "frontmatter": true,
+      "headings": 26,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "When to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-debug.md",
+      "lines": 161,
+      "frontmatter": true,
+      "headings": 18,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-implement.md",
+      "lines": 134,
+      "frontmatter": true,
+      "headings": 17,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Core Principle",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 70,
+            "chars": 558
+          }
+        ]
+      }
+    },
+    {
+      "file": ".skilled/skills/sk-code/sk-code-skilled/references/workflow-verify.md",
+      "lines": 172,
+      "frontmatter": true,
+      "headings": 19,
+      "defects": {
+        "overviews": [
+          {
+            "line": 20,
+            "heading": "1. OVERVIEW",
+            "proseChars": 0,
+            "hasPurpose": true,
+            "hasWhen": true,
+            "h3": [
+              "Purpose",
+              "Iron Law",
+              "When to Use",
+              "When Not to Use"
+            ],
+            "flag": false
+          }
+        ],
+        "longLines": [
+          {
+            "line": 56,
+            "chars": 920
+          }
+        ]
+      }
+    }
+  ]
+}

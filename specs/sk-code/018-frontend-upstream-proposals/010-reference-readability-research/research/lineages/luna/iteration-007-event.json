@@ -1,0 +1,71 @@
+{
+  "type": "iteration",
+  "iteration": 7,
+  "run": 7,
+  "runId": "fanout-luna-1793742315296-80sid6",
+  "sessionId": "fanout-luna-1793742315296-80sid6",
+  "lineageId": "fanout-luna-1793742315296-80sid6",
+  "mode": "research",
+  "target_agent": "deep-research",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=research target_agent=deep-research",
+  "status": "complete",
+  "focus": "Trace templates, sk-create-skill authoring and packaging guidance, and validate_document.py against the pre-fix CSS reference.",
+  "findingsCount": 4,
+  "newInfoRatio": 0.8,
+  "noveltyJustification": "The corpus passes identified four body/template/overview classes; this pass traced the prior CSS example's acceptance to a fuzzy section-name rule and the gap between advisory content review and blocking validation.",
+  "keyQuestions": [
+    "Which rendering defects occur in each sk-code area, and where are they visible?",
+    "Which references and assets diverge from their respective template structure or place content poorly?",
+    "Which section and item sequences follow authoring history instead of a reader task?",
+    "Why did the templates, authoring guidance and validator miss each defect class?",
+    "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?"
+  ],
+  "answeredQuestions": [
+    "Why did the templates, authoring guidance and validator miss each defect class?",
+    "Which fixes belong in templates, guidance or validation, and which checks can run mechanically?"
+  ],
+  "ruledOut": [
+    "Static source tracing found no Markdown AST or rendering pass in validate_document.py's validation pipeline.",
+    "The templates contain an explicit no-duplication warning, but their GOOD examples repeat the hook's central subject in Purpose; causal influence on authored defects remains an inference."
+  ],
+  "toolsUsed": ["Read", "Bash", "Grep"],
+  "sourcesQueried": [
+    "cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:19",
+    "cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:21",
+    "cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:23",
+    "cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:28",
+    "cd00629166:.skilled/skills/sk-code/sk-code-frontend/references/web-cascade-and-selectors.md:58",
+    ".skilled/skills/sk-doc/shared/assets/template-rules.json:319",
+    ".skilled/skills/sk-doc/shared/assets/template-rules.json:321",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:667",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:729",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:899",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:915",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:2008",
+    ".skilled/skills/sk-doc/scripts/validate_document.py:2029",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:86",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:92",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md:100",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:174",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:180",
+    ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md:186",
+    ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md:313",
+    ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md:325",
+    ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md:341",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:751",
+    ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:810",
+    ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md:117",
+    ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md:125",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:757",
+    ".skilled/commands/deep/assets/deep-research-auto.yaml:776"
+  ],
+  "timestamp": "2026-11-03T22:37:15Z",
+  "durationMs": 240000,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-6-luna",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "standard"
+  }
+}
