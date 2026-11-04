@@ -9,7 +9,7 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Auto Mode Contract Reference
@@ -186,7 +186,7 @@ For each command adopting this contract, the §0 of the command markdown:
 - [ ] Preserves the existing `:confirm` consolidated Q-block path untouched
 - [ ] Authors §0 dry-run traces (A/B/C/D) and stores them under the adopting packet's `evidence/`
 
-Commands that have adopted this contract:
+Commands that have adopted this contract, with more appended as they adopt it:
 
 - `/deep:review` (prototype)
 
