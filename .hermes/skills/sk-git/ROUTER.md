@@ -20,7 +20,10 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens reaches sk-git, and this router picks from the worktree, commit, finish, GitKraken-MCP and shared-pattern reference families rather than from the whole folder. Spec folders and code implementation are routed elsewhere, so they never pull these files. A request whose keywords barely score loads the shared patterns and asks a disambiguation checklist instead of guessing.
+- A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens reaches sk-git.
+- This router picks from the worktree, commit, finish, GitKraken-MCP and shared-pattern reference families rather than from the whole folder.
+- Spec folders and code implementation are routed elsewhere, so they never pull these files.
+- A request whose keywords barely score loads the shared patterns and asks a disambiguation checklist instead of guessing.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder. The quick reference

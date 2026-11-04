@@ -11,7 +11,7 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
@@ -22,9 +22,18 @@ Complete workflow documentation for creating isolated git workspaces with minima
 
 ## 1. OVERVIEW
 
-Git worktrees create isolated working directories sharing the same repository database. Each worktree can have a different branch checked out, allowing parallel work without context switching.
+### Purpose
 
-**Core principle**: Systematic directory selection + safety verification = reliable isolation
+This complete workflow creates isolated Git workspaces with minimal branching while sharing the repository database. Each worktree can check out a different branch to support parallel work without context switching.
+
+### When to Use
+
+- After the user explicitly chooses "Create a git worktree" (Option A).
+- When parallel work needs separate branches in isolated directories.
+
+### Core Principle
+
+Systematic directory selection + safety verification = reliable isolation
 
 ---
 
@@ -55,7 +64,10 @@ If the user has not been prompted or selected a different option:
 5. Verify clean baseline (run tests)
 6. Report location and status
 
-**Branch namespace**: every named feature worktree uses the `worktrees/{NNN}-{slug}` branch and the `.worktrees/{NNN}-{slug}` directory (see Naming Convention below). `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999) issued by the allocator; `worktrees/` and `branches/` each number independently, strictly sequential, never skipped or reused. The lifecycle strategy below only changes *how the branch is managed after creation*, not how it is named.
+**Branch namespace**:
+- Every named feature worktree uses the `worktrees/{NNN}-{slug}` branch and the `.worktrees/{NNN}-{slug}` directory (see Naming Convention below).
+- `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999) issued by the allocator; `worktrees/` and `branches/` each number independently, strictly sequential, never skipped or reused.
+- The lifecycle strategy only changes *how the branch is managed after creation*, not how it is named.
 
 **Lifecycle strategies**:
 - **Fast-merge (default)**: short-lived branch that merges straight back to main after testing
@@ -65,6 +77,8 @@ If the user has not been prompted or selected a different option:
 ---
 
 ## 4. COMPLETE WORKFLOW
+
+For a large rename/reorg, use the worktree for file/rename ops only; defer all toolchain + DB work to main after merge. See §9.
 
 ### Step 1: Gather User Inputs
 
@@ -154,14 +168,15 @@ use one unified, numbered grammar:
   already-gitignored worktree home. The directory mirrors the branch tail exactly.
 - **`{NNN}`** is a 3-digit zero-padded **per-namespace** counter (001..999).
   `worktrees/` and `branches/` each number independently, strictly sequential,
-  never skipped or reused — a `worktrees/003` and a `branches/003` may coexist,
+  never skipped or reused: a `worktrees/003` and a `branches/003` may coexist,
   and deleting a middle number never back-fills the gap (next = max-in-use + 1).
   Git cannot enforce sequential uniqueness itself, so the counter is allocated by
-  `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which holds a lock in the
-  shared common git dir and seeds each namespace's max from its stored high-water
-  mark, every matching local + remote ref, and (for `worktrees/`) every registered
-  worktree basename, so a partial scan can never reissue a live number. Never
-  hand-compute `{NNN}`.
+  `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which:
+  - holds a lock in the shared common git dir;
+  - seeds each namespace's max from its stored high-water mark, every matching
+    local + remote ref, and (for `worktrees/`) every registered worktree basename;
+
+The lock serializes contenders, and the scan reads the high-water mark first, so a partial scan can never reissue a live number. Never hand-compute `{NNN}`.
 
 > **Two distinct lanes.** This `worktrees/{NNN}-{slug}` grammar is for *named feature
 > worktrees a human creates*. It is separate from the per-session **ephemeral**
@@ -515,7 +530,7 @@ Agent: "Promoting to a numbered branch from this detached HEAD state..."
 
 ---
 
-## 8b. LARGE REORG IN A WORKTREE - CAVEATS
+## 9. LARGE REORG IN A WORKTREE - CAVEATS
 
 A fresh worktree is a clean checkout of tracked files only. For a large rename/reorg
 (hundreds-to-thousands of `git mv`), this creates three sharp edges. Use the worktree
@@ -532,12 +547,15 @@ NOT contain them. Toolchains that depend on them break **silently**:
   module or — worse — no-op and report success on **zero** files.
 - **Do not share deps into a worktree in a way that resolves back to the source checkout.**
   Wholesale-linking `node_modules`/`dist` does exactly that, by two separate mechanisms.
-  A workspace self-link inside the tree is relative, so it re-anchors through wherever the
-  link physically sits and the worktree reads the source checkout's code however much it
-  edits its own. And a compiled entry point reached through a link compares the path it was
-  invoked with against the location it derives from its own file, finds them different, and
-  exits 0 having touched no files. The second is why a run can look like a pass and do no
-  work. Sharing is safe once the third-party entries are linked individually, each self-link
+  - A workspace self-link inside the tree is relative, so it re-anchors through wherever the
+    link physically sits and the worktree reads the source checkout's code however much it
+    edits its own.
+  - A compiled entry point reached through a link compares the path it was
+    invoked with against the location it derives from its own file, finds them different, and
+    exits 0 having touched no files. The second is why a run can look like a pass and do no
+    work.
+
+  Sharing is safe once the third-party entries are linked individually, each self-link
   is recreated relative to the worktree, and generators are invoked by their canonical path;
   installing is the blunt way to get the same guarantee.
 
@@ -585,7 +603,7 @@ leftovers. See the playbook step 4 for placement in the full flow.
 
 ---
 
-## 9. TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 
 ### Worktree Creation Fails
 
@@ -623,7 +641,10 @@ git worktree prune
 
 **Symptom**: In a worktree under `.worktrees/`, OpenCode 2 lists each repository plugin twice: the main checkout's copy active, the worktree's copy failed with `Duplicate plugin ID`.
 
-**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout. The session runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there. OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
+**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout.
+
+- OpenCode 2 runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there.
+- OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
 
 **Solution**:
 ```bash
@@ -654,13 +675,20 @@ The doctor battery does this on its own: its v2 read names each outer plugin fol
 
 **Symptom**: a launch-wrapper session edits its own files but reads, builds or validates against the main checkout's first-party code, and a generator run inside it exits 0 without writing.
 
-**Cause**: Those links are wholesale, so a wrapper session does not yet satisfy the ALWAYS #8 invariant: it reads the main checkout's first-party code however much it edits its own, and a generator run inside one exits 0 without writing. That is the real reason the line above sends strict-validate and metadata regeneration to `main`. Treat it as a constraint to work within, not a property of worktrees. The deep-loop lane provisioner performs the same sharing correctly, by splitting the link and recreating each self-link relative to the lane.
+**Cause**: Those links are wholesale, so a wrapper session does not yet satisfy the ALWAYS #8 invariant:
+
+- It reads the main checkout's first-party code however much it edits its own.
+- A generator run inside one exits 0 without writing.
+
+That is the real reason the line above sends strict-validate and metadata regeneration to `main`. Treat it as a constraint to work within, not a property of worktrees.
+
+The deep-loop lane provisioner performs the same sharing correctly, by splitting the link and recreating each self-link relative to the lane.
 
 **Actions**: run strict-validate and metadata regeneration on `main` after merge.
 
 ---
 
-## 10. SUCCESS CRITERIA
+## 11. SUCCESS CRITERIA
 
 **Worktree creation is successful when**:
 - ✅ Directory selected following priority system
@@ -677,7 +705,7 @@ The doctor battery does this on its own: its v2 read names each outer plugin fol
 
 ---
 
-## 11. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 ### Reference Files
 - [commit-workflows.md](./commit-workflows.md) - Professional commit practices with Conventional Commits

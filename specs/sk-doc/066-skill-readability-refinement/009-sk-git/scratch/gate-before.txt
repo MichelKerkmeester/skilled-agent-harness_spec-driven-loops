@@ -1,0 +1,4 @@
+.skilled/skills/sk-git/assets/pr-template.md:443: render_section_order: "RELATED ISSUES GUIDELINES" must be the last H2; it is followed by "PR CHECKLIST".
+.skilled/skills/sk-git/references/finish-workflows.md:234: render_bold_label_join: Consecutive bold labels "If user chooses 'n'" and "If user chooses 'y'" join into one paragraph; separate them
+.skilled/skills/sk-git/references/worktree-workflows.md:518: render_h2_numbering: H2 number carries a letter suffix ("8b."); use integers only.
+files=17 render_warnings=3 invalid=0

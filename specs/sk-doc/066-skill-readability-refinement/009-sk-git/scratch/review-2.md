@@ -1,0 +1,5 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:115 | 9 | The unquoted `<spec-folder>` placeholder is parsed as shell redirection, so the packet-commit example no longer works as intended. | Replace with: `SPECKIT_COMMIT_SPEC='<spec-folder>' \`
+- [P2] .skilled/skills/sk-git/references/github-mcp-integration.md:17 | 3 | The intro repeats the Purpose’s remote GitHub operations through Code Mode instead of giving a distinct hook. | Replace with: `Open this reference when a GitHub workflow needs to choose among the available MCP calls.`
+- [P2] .skilled/skills/sk-git/references/large-reorg-playbook.md:18 | 3 | The intro restates the Purpose’s large reorg, isolated file moves, and post-merge validation. | Replace with: `Open this playbook when a rename touches dozens of paths or its validation depends on build dependencies.`

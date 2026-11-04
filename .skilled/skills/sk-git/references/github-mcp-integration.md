@@ -9,7 +9,7 @@ trigger_phrases:
   - "pr status checks via mcp"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # GitHub MCP Integration - Remote Operations Reference
@@ -20,9 +20,17 @@ Programmatic access to GitHub's remote operations via Code Mode (`call_tool_chai
 
 ## 1. OVERVIEW
 
+### Purpose
+
 GitHub MCP Server provides full CRUD access to GitHub remote operations from within the sk-git workflow. All calls go through Code Mode's `call_tool_chain` interface using TypeScript.
 
-**Prerequisites**: PAT configured in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests).
+### When to Use
+
+- A workflow needs remote GitHub PR, issue, or repository operations through Code Mode.
+
+### Prerequisites
+
+PAT configured in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests).
 
 ---
 

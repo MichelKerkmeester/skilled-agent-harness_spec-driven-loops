@@ -9,7 +9,7 @@ trigger_phrases:
   - "worktree status report"
 importance_tier: normal
 contextType: implementation
-version: 1.3.0.0
+version: 1.3.1.0
 ---
 
 # Worktree Creation Checklist - Branch Isolation Setup
@@ -22,7 +22,7 @@ Step-by-step checklist for safe and reliable git worktree creation.
 
 ### Purpose
 
-This checklist ensures git worktrees are created safely with proper .gitignore configuration, dependency installation, and baseline test verification. Use it when setting up isolated development environments.
+This checklist ensures Git worktrees are created safely and reliably with proper .gitignore configuration, dependency installation, and baseline test verification. Use it when setting up isolated development environments.
 
 ### Usage
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "ide always shows current work"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Continuous Integration - Always-Current Live Branch
@@ -21,9 +21,17 @@ Keep the operator's IDE checkout continuously reflecting every concurrent AI ses
 
 ## 1. OVERVIEW
 
-The launch wrapper `worktree-session.sh` isolates every top-level session into its own worktree on a `work/<runtime>/<slug>` branch with isolated MCP databases. That isolation is what makes concurrent, multi-runtime work safe — but it also makes each session's work **invisible** in the operator's IDE, which is open on the primary checkout. Sharing one working tree across sessions is not an option: concurrent uncommitted writers on a single tree corrupt each other.
+### Purpose
 
-The continuous-integration workflow resolves this by giving the operator one **live branch** — whatever branch the primary checkout is on — that always reflects every session's committed work within seconds:
+The launch wrapper `worktree-session.sh` isolates every top-level session into its own worktree on a `work/<runtime>/<slug>` branch with isolated MCP databases. That isolation is what makes concurrent, multi-runtime work safe, but it also makes each session's work **invisible** in the operator's IDE, which is open on the primary checkout. Sharing one working tree across sessions is not an option: concurrent uncommitted writers on a single tree corrupt each other.
+
+### When to Use
+
+- When concurrent sessions need each session's committed work to reach the operator's primary checkout while each session keeps its isolated worktree and MCP databases.
+
+### How It Works
+
+The continuous-integration workflow resolves this by giving the operator one **live branch**, whatever branch the primary checkout is on, that always reflects every session's committed work within seconds:
 
 - Sessions keep their isolated worktree (safe writes and DB isolation are unchanged).
 - On each commit, the session **publishes** to the live branch through a safe primitive.
@@ -70,9 +78,16 @@ Polls the live branch and fast-forwards the checkout when the local tip is an an
 
 Every runtime backgrounds the same script at SessionStart, so primary-checkout correctness does not depend on a long-running follower surviving between sessions. The script acts only when `git-dir` and `git-common-dir` resolve to the same path and the checkout is on the resolved live branch. Linked worktrees, detached HEADs, and intentional feature branches are zero-exit no-ops.
 
-A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file — so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored. Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished. A pre-existing `rebase-merge`/`rebase-apply` state directory is refused untouched — the reconcile never aborts a rebase it did not start, so it cannot rewind the branch to a foreign orig-head and silently drop a just-made commit. A conflict aborts, then asserts HEAD returned to the exact pre-rebase commit — restoring it with `git reset --hard` if the abort moved it — and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
+- A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file, so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored.
+- Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished.
+- A pre-existing `rebase-merge`/`rebase-apply` state directory is refused untouched: the reconcile never aborts a rebase it did not start, so it cannot rewind the branch to a foreign orig-head and silently drop a just-made commit.
+- A conflict aborts, then asserts HEAD returned to the exact pre-rebase commit, restoring it with `git reset --hard` if the abort moved it, and clean tracked state.
+- A rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
 
-The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free. Fetch and push are time-bounded. Skips, advances, publications, and blocks append to `git-primary-reconcile.log`; every internal outcome exits zero so SessionStart cannot be blocked.
+- The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free.
+- Fetch and push are time-bounded.
+- Skips, advances, publications, and blocks append to `git-primary-reconcile.log`.
+- Every internal outcome exits zero so SessionStart cannot be blocked.
 
 ### `worktree-status.sh` — the dashboard
 

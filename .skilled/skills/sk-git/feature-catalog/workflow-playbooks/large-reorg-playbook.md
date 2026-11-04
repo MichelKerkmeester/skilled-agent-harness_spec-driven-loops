@@ -6,7 +6,7 @@ trigger_phrases:
   - "mass git mv renames"
   - "toolchain on main after merge"
   - "leftover ignored cruft cleanup"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Large reorg playbook
@@ -42,7 +42,7 @@ Everything from this point runs on `main`, the merged tree being the source of t
 | File | Layer | Role |
 |---|---|---|
 | `.skilled/skills/sk-git/references/large-reorg-playbook.md` | Shared | Step-ordered runbook: snapshot, worktree rename, merge, post-merge toolchain/DB, verify |
-| `.skilled/skills/sk-git/references/worktree-workflows.md` | Shared | §8b large-reorg caveats that motivate this playbook |
+| `.skilled/skills/sk-git/references/worktree-workflows.md` | Shared | §9 large-reorg caveats that motivate this playbook |
 
 ### Validation And Tests
 

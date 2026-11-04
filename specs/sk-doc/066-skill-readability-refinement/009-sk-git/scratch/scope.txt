@@ -1,0 +1,17 @@
+.skilled/skills/sk-git/README.md
+.skilled/skills/sk-git/ROUTER.md
+.skilled/skills/sk-git/SKILL.md
+.skilled/skills/sk-git/assets/commit-message-template.md
+.skilled/skills/sk-git/assets/pr-template.md
+.skilled/skills/sk-git/assets/worktree-checklist.md
+.skilled/skills/sk-git/references/commit-workflows.md
+.skilled/skills/sk-git/references/continuous-integration.md
+.skilled/skills/sk-git/references/finish-workflows.md
+.skilled/skills/sk-git/references/github-mcp-integration.md
+.skilled/skills/sk-git/references/gitkraken-mcp-integration.md
+.skilled/skills/sk-git/references/large-reorg-playbook.md
+.skilled/skills/sk-git/references/quick-reference.md
+.skilled/skills/sk-git/references/remote-branch-policy.md
+.skilled/skills/sk-git/references/shared-patterns.md
+.skilled/skills/sk-git/references/unstick-dirty-worktree.md
+.skilled/skills/sk-git/references/worktree-workflows.md

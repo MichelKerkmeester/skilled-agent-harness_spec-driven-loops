@@ -1,0 +1,4 @@
+VERDICT: FIX
+
+- [P2] `.skilled/skills/sk-git/references/shared-patterns.md:18` | 1,3 | The intro is the Purpose with an "Open this reference when..." prefix: both say "common patterns, commands, and conventions across ... worktree, commit, and finish workflows", so the file repeats itself before the overview. | Replace line 18 with: `Use this reference when a task spans worktree, commit, or finish workflows and needs a shared command or error pattern.`
+- [P2] `.skilled/skills/sk-git/references/worktree-workflows.md:19` | 1,3 | The intro restates the Purpose: "complete workflow", "isolated Git workspace", "minimal branching" and "parallel work" all repeat the first Purpose paragraph, which now carries the same claims. | Replace line 19 with: `Follow the numbered steps to create a named or detached worktree, prepare it, and check its baseline.`

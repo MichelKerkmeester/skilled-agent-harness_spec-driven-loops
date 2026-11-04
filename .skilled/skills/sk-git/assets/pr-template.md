@@ -9,7 +9,7 @@ trigger_phrases:
   - "gh pr create body"
 importance_tier: normal
 contextType: implementation
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Pull Request Template - PR Description Standard
@@ -22,7 +22,7 @@ Templates for creating professional pull requests following best practices.
 
 ### Purpose
 
-This asset provides structured templates for pull request descriptions. Use it when creating PRs to ensure consistent, comprehensive documentation of changes.
+This asset provides structured templates for professional pull request descriptions that follow best practices. Use it when creating PRs to ensure consistent, comprehensive documentation of changes.
 
 ### Usage
 
@@ -440,7 +440,7 @@ See the migration guide at `docs/migration.md` for details.
 
 ---
 
-## 13. RELATED ISSUES GUIDELINES
+## 13. ISSUE LINKING GUIDELINES
 
 **Format**:
 ```markdown

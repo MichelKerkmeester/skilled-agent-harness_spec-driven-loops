@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.15.0
+version: 1.8.16.0
 ---
 
 # sk-git
@@ -37,9 +37,21 @@ A shared repository with many AI sessions fails quietly unless the git workflow 
 
 ### What It Does
 
-sk-git runs the git workflow in three phases, from workspace setup through commit hygiene to completion. Setup creates an isolated worktree or keeps the current branch. Commit hygiene turns staged changes into deterministic Conventional Commit subjects with artifact filtering. Completion opens a PR, merges or discards, then cleans up. A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
+sk-git runs the git workflow in three phases, from workspace setup through commit hygiene to completion.
 
-What makes sk-git different from raw git is the rule set it holds. Branch names carry their owner. Numbers come from a clone-wide allocator under a lock, never a hand-count. The skill asks before it touches your workspace. Commits are byte-for-byte reproducible from the same diff. None of these are git defaults. Each one exists to stop a specific quiet failure before it compounds.
+- Setup creates an isolated worktree or keeps the current branch.
+- Commit hygiene turns staged changes into deterministic Conventional Commit subjects with artifact filtering.
+- Completion opens a PR, merges or discards, then cleans up.
+- A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
+
+What makes sk-git different from raw git is the rule set it holds:
+
+- Branch names carry their owner.
+- Numbers come from a clone-wide allocator under a lock, never a hand-count.
+- The skill asks before it touches your workspace.
+- Commits are byte-for-byte reproducible from the same diff.
+
+None of these are git defaults. Each rule exists to stop a specific quiet failure before it compounds.
 
 ### What It Does Not Own
 
@@ -122,11 +134,17 @@ WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exemp
 
 Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused. Deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
 
-`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base, and `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent: relocating the base can never reissue a live number.
+- `BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass.
+- The allocator, launch wrapper, and reaper all resolve this base.
+- `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate.
+- Number allocation is location-independent: relocating the base can never reissue a live number.
 
 ### The Number Allocator And Its Lock
 
-Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir, seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename. Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment. Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
+- Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir.
+- The counter is seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename.
+- Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment.
+- Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
 
 The allocator exposes `create`, `create-branch`, `create-detached`, `allocate`, `next` and `scan-max`, plus validators (`is_valid_slug`, `is_valid_nnn`, `is_valid_branch`, `is_wrapper_branch`, `is_backup_branch`, `is_valid_pair`, `is_remote_push_allowlisted`).
 
@@ -150,9 +168,18 @@ Worktree isolation keeps concurrent sessions safe, but it also hides each sessio
 
 ### Deterministic Commit Messages
 
-The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style. Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path. The history reads consistently no matter which session or model produced it.
-
-Every commit also ends with a contiguous trailer paragraph. Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock. An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one. The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there. Three queries read the trailer back with no extra tooling: `git log -E --grep='^Spec: sk-git/028'` lists a packet's commits, `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal and `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id.
+- The same diff and metadata always produce the same commit subject.
+- Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style.
+- Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path.
+- The history reads consistently no matter which session or model produced it.
+- Every commit also ends with a contiguous trailer paragraph.
+- Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock.
+- An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one.
+- The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there.
+- Three queries read the trailer back with no extra tooling:
+  - `git log -E --grep='^Spec: your-track/your-packet'` lists a packet's commits
+  - `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal
+  - `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id
 
 ### Cleanup And Safety Refusals
 
@@ -259,7 +286,7 @@ A: Run `git worktree list` to find the stale one, remove it with `git worktree r
 
 **Q: How do I find the commits for a packet?**
 
-A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: sk-git/028'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
+A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: your-track/your-packet'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
 
 ---
 

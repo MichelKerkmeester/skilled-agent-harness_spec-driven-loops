@@ -10,7 +10,7 @@ trigger_phrases:
   - "toolchain on main after merge"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree
@@ -20,6 +20,10 @@ Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Complete a large rename or renumber reorganization with file moves isolated in a worktree and validation on main after the merge.
 
 ### When to Use
 
@@ -35,13 +39,12 @@ For a handful of renames on the current branch, the standard
 
 The worktree does file/rename ops ONLY. The spec-kit toolchain (strict validate,
 generators, metadata regen) runs on `main` AFTER merge — never inside the bare worktree. See
-[worktree-workflows.md §8b](./worktree-workflows.md#8b-large-reorg-in-a-worktree---caveats)
+[worktree-workflows.md §9](./worktree-workflows.md#9-large-reorg-in-a-worktree---caveats)
 for the why behind each caveat.
 
-### Origin
+### Failure Modes Addressed
 
-Driven by a real incident: the 026 wave-4 spec-folder reorganization (17 phases → 7 themed
-parents, ~9000 renames) hit avoidable failure modes this runbook closes.
+Driven by a real incident: a spec-folder reorganization (17 phases → 7 themed parents, ~9000 renames) hit avoidable failure modes this runbook closes. It addresses ignored leftovers, toolchain checks against a bare worktree, metadata paths recorded before merge, and renames registered as delete/add pairs.
 
 ---
 
@@ -129,7 +132,7 @@ the commit/tree stays correct.
 #### 4b. Run the spec-kit toolchain ON MAIN
 
 `main` has the real `node_modules`/`dist`, so generators and strict validate actually
-work (a bare worktree silently no-ops — see §8b Caveat 1). Run, in order:
+work (a bare worktree silently no-ops — see §9 Caveat 1). Run, in order:
 
 ```bash
 # 1. Regenerate per-folder metadata for moved/renamed spec folders
@@ -172,7 +175,7 @@ running it from the worktree records paths that do not yet exist.
 
 ## 4. RELATED RESOURCES
 
-- [worktree-workflows.md](./worktree-workflows.md) - §8b caveats behind this runbook
+- [worktree-workflows.md](./worktree-workflows.md) - §9 caveats behind this runbook
 - [commit-workflows.md](./commit-workflows.md) - scoped staging + rename commit hygiene
 - [shared-patterns.md](./shared-patterns.md) - rename-heavy merge-conflict resolution
 - [quick-reference.md](./quick-reference.md) - one-page command cheat sheet

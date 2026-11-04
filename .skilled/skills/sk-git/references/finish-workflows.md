@@ -12,24 +12,35 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.4.0
+version: 1.7.5.0
 ---
 
 # Git Finish - Detailed Workflow Reference
 
 Complete workflow documentation for completing development work with structured integration options.
 
-This workflow assumes any branch already came from the numbered-worktree naming allocator, not from direct branch creation commands.
-
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
+
+### When to Use
+
+- A branch created through the numbered-worktree naming allocator is ready for final test verification and an integration choice.
+
+This workflow assumes any branch already came from the numbered-worktree naming allocator, not from direct branch creation commands.
 
 **Core principle**: Verify tests → Present options → Execute choice → Clean up = reliable completion workflow
 
-> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .skilled/bin/git-sync.sh` from the session worktree.
+> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model:
+>
+> - Each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)).
+> - The primary checkout follows it with `git-live-follow.sh`, so the Step 5b manual reconciliation below is normally already done for you.
+> - "Finish" is then just the final PR/merge decision.
+> - To publish outstanding commits on demand outside a commit, run `bash .skilled/bin/git-sync.sh` from the session worktree.
 
 ---
 
@@ -230,8 +241,8 @@ Keep worktree for PR updates? (y/n)
 - n: Remove worktree (switch to other work immediately)
 ```
 
-**If user chooses 'n'**: Proceed to Step 5 (Cleanup Worktree)
-**If user chooses 'y'**: Skip Step 5, report worktree location
+- **If user chooses 'n'**: Proceed to Step 5 (Cleanup Worktree)
+- **If user chooses 'y'**: Skip Step 5, report worktree location
 
 **Validation**: `pr_created`
 
@@ -871,11 +882,12 @@ gh auth login
 ```
 
 **Authenticated as the wrong account**. When more than one account is logged in, `gh auth status`
-reports each one and marks a single `Active account: true`. A push made while the wrong one is active
-fails with `403` and a remote line reading `Permission to <owner>/<repo>.git denied to <user>` — read
-that line, because the bare `403` alone looks like an expired token and sends you to re-login, which
-fixes nothing. Fetching still works, since read access is usually open, so the first symptom is that
-pulls succeed and pushes stop.
+reports each one and marks a single `Active account: true`.
+
+- A push made while the wrong one is active fails with `403` and a remote line reading `Permission to <owner>/<repo>.git denied to <user>`; read that line, because the bare `403` alone looks like an expired token and sends you to re-login, which fixes nothing.
+- Fetching still works, since read access is usually open, so the first symptom is that pulls succeed and pushes stop.
+- Switching changes the credential every session on the machine uses, so when the work is not yours to decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do switch, note which account `gh auth status` showed as active first, and switch back to it right after the push, so a parallel session's next push does not run as the wrong account.
+- A nested repository keeps its own remote, and its owner can differ from the outer repository's, so check `git remote -v` inside each one before you push it: the account that pushes the outer repository can get a 403 there.
 
 ```bash
 gh auth status                                  # which account is active, and who else is logged in
@@ -884,13 +896,6 @@ gh auth switch --hostname github.com --user <owner-account>
 git push                                        # the push that needed the other account
 gh auth switch --hostname github.com --user <previous-account>
 ```
-
-Switching changes the credential every session on the machine uses, so when the work is not yours to
-decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do
-switch, note which account `gh auth status` showed as active first, and switch back to it right after
-the push, so a parallel session's next push does not run as the wrong account. A nested repository
-keeps its own remote, and its owner can differ from the outer repository's, so check `git remote -v`
-inside each one before you push it: the account that pushes the outer repository can get a 403 there.
 
 **No upstream remote**:
 ```bash

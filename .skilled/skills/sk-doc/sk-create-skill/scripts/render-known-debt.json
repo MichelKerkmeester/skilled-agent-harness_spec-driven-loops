@@ -132,14 +132,6 @@
         "render_h2_numbering"
       ]
     },
-    "sk-git": {
-      "findings": 3,
-      "codes": [
-        "render_bold_label_join",
-        "render_h2_numbering",
-        "render_section_order"
-      ]
-    },
     "system-deep-loop/deep-ai-council": {
       "findings": 6,
       "codes": [

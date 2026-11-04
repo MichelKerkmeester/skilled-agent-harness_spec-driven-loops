@@ -10,7 +10,7 @@ trigger_phrases:
   - "failed push rejected remote"
 importance_tier: normal
 contextType: general
-version: 1.7.0.22
+version: 1.7.1.0
 ---
 
 # Shared Patterns - Cross-Workflow Reference
@@ -21,7 +21,13 @@ Common patterns, commands, and conventions used across all git workflows.
 
 ## 1. OVERVIEW
 
-This reference consolidates common patterns, commands, and conventions used across all git workflows (worktrees, commits, and finish). Use this as a quick lookup for branch naming, git commands, Conventional Commits format, and error handling patterns.
+### Purpose
+
+Consolidate common patterns, commands, and conventions across the worktree, commit, and finish workflows.
+
+### When to Use
+
+- Use this as a quick lookup for branch naming, Git commands, Conventional Commits, or error handling patterns.
 
 ---
 
@@ -791,7 +797,12 @@ call_tool_chain({
 
 ## 10. RENAME-HEAVY MERGE VERIFICATION
 
-Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation. The tree can end up *correct* while the working directory and `ls` *look* broken, and git's own rename detection can silently give up at scale. This section codifies the verification the 026 wave-4 reorg needed (the scoped-staging half of that same incident lives in `commit-workflows.md` §3 Step 7).
+Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation.
+
+- The tree can end up *correct* while the working directory and `ls` *look* broken.
+- git's own rename detection can silently give up at scale.
+
+This section codifies rename-heavy merge verification. Scoped staging for that operation lives in [commit-workflows.md](./commit-workflows.md) §3 Step 7.
 
 ### 10.1 Before the merge — prove disjointness
 

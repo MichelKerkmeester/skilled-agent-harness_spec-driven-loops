@@ -9,7 +9,7 @@ trigger_phrases:
   - "gitkraken start review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # GitKraken MCP Integration - Cross-Platform Git, Issue, and PR Reference
@@ -20,7 +20,19 @@ Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Regi
 
 ## 1. OVERVIEW
 
-The GitKraken MCP server (`@gitkraken/gk`) exposes local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Verify the current tool surface with `gk mcp --list-tools` before relying on this reference; the locally checked surface was verified on 2026-08-02. Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
+### Purpose
+
+Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Registered as the `gitkraken` manual in `.utcp_config.json` (stdio, `npx -y @gitkraken/gk mcp`).
+
+The GitKraken MCP server (`@gitkraken/gk`) exposes local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira.
+
+### When to Use
+
+Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
+
+### Tool Surface check
+
+Verify the current tool surface with `gk mcp --list-tools` before relying on this reference; the locally checked surface was verified on 2026-08-02.
 
 **Prerequisites**: The `gk` CLI must be authenticated (`gk auth login` / `gk whoami`) with the relevant provider(s) connected (`gk provider`). No `.utcp_config.json` env vars are required — auth is handled entirely by the CLI's own local auth state.
 

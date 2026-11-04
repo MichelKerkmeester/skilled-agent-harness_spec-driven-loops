@@ -9,7 +9,7 @@ trigger_phrases:
   - "essential git commands"
 importance_tier: normal
 contextType: general
-version: 1.1.0.12
+version: 1.1.1.0
 ---
 
 # Git Workflows - Quick Reference
@@ -20,7 +20,13 @@ One-page cheat sheet for git-worktrees, git-commit, and git-finish workflows.
 
 ## 1. OVERVIEW
 
-This quick reference provides a one-page cheat sheet for the three git workflow phases: worktrees (workspace setup), commit (change tracking), and finish (integration).
+### Purpose
+
+Provide a one-page lookup for the worktree, commit, and finish workflows: worktrees (workspace setup), commit (change tracking), and finish (integration).
+
+### When to Use
+
+- Choose a workflow or look up its essential commands.
 
 ---
 

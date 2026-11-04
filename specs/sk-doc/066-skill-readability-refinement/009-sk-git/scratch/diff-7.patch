@@ -1,0 +1,874 @@
+diff --git a/.skilled/skills/sk-git/README.md b/.skilled/skills/sk-git/README.md
+index f12c5c7da2b..3d5f2618fc4 100644
+--- a/.skilled/skills/sk-git/README.md
++++ b/.skilled/skills/sk-git/README.md
+@@ -37,9 +37,21 @@ A shared repository with many AI sessions fails quietly unless the git workflow
+ 
+ ### What It Does
+ 
+-sk-git runs the git workflow in three phases, from workspace setup through commit hygiene to completion. Setup creates an isolated worktree or keeps the current branch. Commit hygiene turns staged changes into deterministic Conventional Commit subjects with artifact filtering. Completion opens a PR, merges or discards, then cleans up. A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
++sk-git runs the git workflow in three phases, from workspace setup through commit hygiene to completion.
+ 
+-What makes sk-git different from raw git is the rule set it holds. Branch names carry their owner. Numbers come from a clone-wide allocator under a lock, never a hand-count. The skill asks before it touches your workspace. Commits are byte-for-byte reproducible from the same diff. None of these are git defaults. Each one exists to stop a specific quiet failure before it compounds.
++- Setup creates an isolated worktree or keeps the current branch.
++- Commit hygiene turns staged changes into deterministic Conventional Commit subjects with artifact filtering.
++- Completion opens a PR, merges or discards, then cleans up.
++- A smart router loads only the reference for the phase you are in, so the agent reads focused guidance instead of the whole library.
++
++What makes sk-git different from raw git is the rule set it holds:
++
++- Branch names carry their owner.
++- Numbers come from a clone-wide allocator under a lock, never a hand-count.
++- The skill asks before it touches your workspace.
++- Commits are byte-for-byte reproducible from the same diff.
++
++None of these are git defaults. Each rule exists to stop a specific quiet failure before it compounds.
+ 
+ ### What It Does Not Own
+ 
+@@ -122,11 +134,17 @@ WRAPPER         := "work/" RUNTIME "/" SLUG          (launch-wrapper lane, exemp
+ 
+ Two flat spec-style namespaces, `worktrees/` and `branches/`, keep a Git-UI branch tree legible as a few clean folders instead of a per-skill pile, and they number **independently**: a `worktrees/003` and a `branches/003` may coexist. Strictly sequential, never skipped, never reused. Deleting a middle number never back-fills the gap. `backup/<anything>` safety refs and the launch wrapper's `work/{runtime}/{slug}` lane stay distinct legal-but-not-numbered namespaces.
+ 
+-`BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass. The allocator, launch wrapper, and reaper all resolve this base, and `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate. Number allocation is location-independent: relocating the base can never reissue a live number.
++- `BASE` defaults to `.worktrees` inside the checkout. Set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout, so its file-watchers, `git status`/fsmonitor, Git GUIs, sync clients, stop scanning every worktree's `node_modules` on each pass.
++- The allocator, launch wrapper, and reaper all resolve this base.
++- `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout, so worktrees created before and after a relocation both validate.
++- Number allocation is location-independent: relocating the base can never reissue a live number.
+ 
+ ### The Number Allocator And Its Lock
+ 
+-Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir, seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename. Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment. Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
++- Git cannot enforce sequential uniqueness itself, so each namespace's counter is allocated under a lock in the shared common Git dir.
++- The counter is seeded from that namespace's stored high-water mark first, then every matching local + remote ref and (for `worktrees/`) every registered worktree basename.
++- Because the lock serializes contenders and the scan reads the high-water mark first, a partial scan can never reissue a live number, even when several sessions allocate at the same moment.
++- Never hand-compute `NNN`. Call `worktree-naming.sh create`, `create-branch`, or `allocate` and let the lock do its job.
+ 
+ The allocator exposes `create`, `create-branch`, `create-detached`, `allocate`, `next` and `scan-max`, plus validators (`is_valid_slug`, `is_valid_nnn`, `is_valid_branch`, `is_wrapper_branch`, `is_backup_branch`, `is_valid_pair`, `is_remote_push_allowlisted`).
+ 
+@@ -150,9 +168,18 @@ Worktree isolation keeps concurrent sessions safe, but it also hides each sessio
+ 
+ ### Deterministic Commit Messages
+ 
+-The same diff and metadata always produce the same commit subject. Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style. Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path. The history reads consistently no matter which session or model produced it.
+-
+-Every commit also ends with a contiguous trailer paragraph. Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock. An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one. The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there. Three queries read the trailer back with no extra tooling: `git log -E --grep='^Spec: sk-git/028'` lists a packet's commits, `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal and `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id.
++- The same diff and metadata always produce the same commit subject.
++- Type inference takes the first match in a fixed priority order: release, docs, fix, feat, perf, refactor, test, ci, build then style.
++- Scope inference maps file paths the same way, with the skill name taking priority over the agent or command directory, which beats the dominant top-level path.
++- The history reads consistently no matter which session or model produced it.
++- Every commit also ends with a contiguous trailer paragraph.
++- Packet work carries `Spec: <track>/<packet>[/<phase>...]`, and every commit carries `Commit-Id: NNNNNNN`, a seven-digit repository-wide ordinal minted once under a lock.
++- An amend keeps the id the commit already owns unless `-m` replaces the message, while a cherry-pick drops the copied id and mints a fresh one.
++- The stamper fails open: when the allocator cannot answer, the commit lands unstamped and the commit-msg hook still validates what is there.
++- Three queries read the trailer back with no extra tooling:
++  - `git log -E --grep='^Spec: your-track/your-packet'` lists a packet's commits
++  - `git log --fixed-strings --grep='Commit-Id: 0009113'` finds the commit that owns an ordinal
++  - `git log --format='%(trailers:key=Commit-Id,valueonly)'` lists every stamped id
+ 
+ ### Cleanup And Safety Refusals
+ 
+@@ -259,7 +286,7 @@ A: Run `git worktree list` to find the stale one, remove it with `git worktree r
+ 
+ **Q: How do I find the commits for a packet?**
+ 
+-A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: sk-git/028'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
++A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: your-track/your-packet'`. Substitute the track and packet you want. Every matching commit names that packet in its trailer paragraph, so the result needs no other index.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/ROUTER.md b/.skilled/skills/sk-git/ROUTER.md
+index c6f4cfddf13..5c2cce28f4f 100644
+--- a/.skilled/skills/sk-git/ROUTER.md
++++ b/.skilled/skills/sk-git/ROUTER.md
+@@ -20,7 +20,10 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens reaches sk-git, and this router picks from the worktree, commit, finish, GitKraken-MCP and shared-pattern reference families rather than from the whole folder. Spec folders and code implementation are routed elsewhere, so they never pull these files. A request whose keywords barely score loads the shared patterns and asks a disambiguation checklist instead of guessing.
++- A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens reaches sk-git.
++- This router picks from the worktree, commit, finish, GitKraken-MCP and shared-pattern reference families rather than from the whole folder.
++- Spec folders and code implementation are routed elsewhere, so they never pull these files.
++- A request whose keywords barely score loads the shared patterns and asks a disambiguation checklist instead of guessing.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder. The quick reference
+diff --git a/.skilled/skills/sk-git/SKILL.md b/.skilled/skills/sk-git/SKILL.md
+index a2c3579b5c3..e6511f152f0 100644
+--- a/.skilled/skills/sk-git/SKILL.md
++++ b/.skilled/skills/sk-git/SKILL.md
+@@ -38,10 +38,12 @@ complete), unsure which git skill to use, or seeking git best practices (branch
+ ## 2. SMART ROUTING
+ 
+ sk-git is a standalone skill, so the skill advisor scores its owned keywords against the request and selects it here.
+-A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens lands here, while spec folders and code implementation belong elsewhere.
++A request that names a worktree, a commit, a pull request, a merge, a finish, GitKraken or GitLens lands here,
++while spec folders and code implementation belong elsewhere.
+ 
+ `references/quick-reference.md` loads first on every invocation, then the winning intent loads its phase reference.
+-`references/gitkraken-mcp-integration.md` follows for GitKraken and GitLens, and `references/shared-patterns.md` carries what every phase shares.
++`references/gitkraken-mcp-integration.md` follows for GitKraken and GitLens,
++and `references/shared-patterns.md` carries what every phase shares.
+ 
+ A request whose scores stay near zero loads the shared patterns and asks a disambiguation checklist instead of guessing.
+ 
+@@ -84,10 +86,10 @@ Configured by `SPECKIT_LIVE_BRANCH`, `SPECKIT_AUTOSYNC`, the `post-commit` publi
+ 
+ ### Preflight Advisory: the rules reach you at command time
+ 
+-The rules in `hard-rules.json` beside this file are executed, not just documented: a preflight
+-advisory hook evaluates every visible `git` command against live repository state, fires on the
+-specific risky state rather than a bare verb, and prints the matching rule as typed, advising and
+-never blocking, with the pre-commit, commit-msg and pre-push hooks enforcing.
++- The rules in `hard-rules.json` beside this file are executed, not just documented.
++- A preflight advisory hook evaluates every visible `git` command against live repository state, and fires on the specific risky state rather than a bare verb.
++- It prints the matching rule as typed, advising and never blocking.
++- The pre-commit, commit-msg and pre-push hooks enforce.
+ 
+ Seven runtimes share it, and `SKGIT_ADVISORY=0`, `SKGIT_ADVISORY_SKIP=<rule-id>` or a
+ `SKGIT_ADVISORY_SKIP=commit`-style prefix silences it. Delivery and fail-open:
+@@ -145,7 +147,7 @@ Setup (worktree created) → Work → Complete (committed, tests passing) → ba
+     - The script header carries the full grammar, the relocatable `{base}` rule and the reserved `skilled/v*`, `main` and `backup/` lanes.
+     - This is distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` lane (see above).
+ 5. **Reference the spec packet in a `Spec:` trailer** - Put the packet path in a `Spec:` trailer shaped `Spec: <track>/<packet>[/<phase>...]`: the packet's path below `specs/`, with nested phases included and without the `specs/` segment itself.
+-    - The packet query is anchored on that line, `git log -E --grep='^Spec: sk-git/028'`, so a leading `specs/` makes every commit for that packet unfindable.
++    - The packet query is anchored on that line, `git log -E --grep='^Spec: your-track/your-packet'`, so a leading `specs/` makes every commit for that packet unfindable.
+     - Omit the line when the commit is not packet work.
+     - `Refs:` is for external links only: issues, pull requests and URLs.
+ 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
+diff --git a/.skilled/skills/sk-git/assets/commit-message-template.md b/.skilled/skills/sk-git/assets/commit-message-template.md
+index a349dd98e00..8f26ff7e135 100644
+--- a/.skilled/skills/sk-git/assets/commit-message-template.md
++++ b/.skilled/skills/sk-git/assets/commit-message-template.md
+@@ -14,9 +14,17 @@ version: 1.3.2.0
+ 
+ # Commit Message Template - Repository-Specific Contract
+ 
++Use this template before `git commit` to check that an authored message follows the repository's contract.
++
+ ## 1. OVERVIEW
+ 
+-This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal. The reasoning lives in `SKILL.md`. This file carries the procedure, the examples, the self-check you run before `git commit` and, in section 7, the rules block every gate enforces.
++### Purpose
++
++This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal.
++
++### Usage
++
++The reasoning lives in `SKILL.md`. This file carries the procedure, the examples, the self-check you run before `git commit` and, in section 7, the rules block every gate enforces.
+ 
+ ---
+ 
+@@ -146,9 +154,7 @@ Spec: system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliabili
+ Commit-Id: 0009023
+ ```
+ 
+-These examples are tightened versions of real commits in this repository's
+-own history (`8701343331`, `e6f9a97b8b`, `ed1c269ee6`), grounded in what
+-actually gets committed here, not generic auth/API scaffolding.
++These examples are tightened versions of real commits in this repository's own history (`8701343331`, `e6f9a97b8b`, `ed1c269ee6`), grounded in what actually gets committed here, not generic auth/API scaffolding.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/assets/pr-template.md b/.skilled/skills/sk-git/assets/pr-template.md
+index 486871d27f8..624203840f2 100644
+--- a/.skilled/skills/sk-git/assets/pr-template.md
++++ b/.skilled/skills/sk-git/assets/pr-template.md
+@@ -14,7 +14,7 @@ version: 1.3.1.0
+ 
+ # Pull Request Template - PR Description Standard
+ 
+-Templates for creating professional pull requests following best practices.
++Choose the template that matches the PR type when drafting a professional pull request that follows the included best-practice guidance.
+ 
+ ---
+ 
+@@ -22,7 +22,7 @@ Templates for creating professional pull requests following best practices.
+ 
+ ### Purpose
+ 
+-This asset provides structured templates for pull request descriptions. Use it when creating PRs to ensure consistent, comprehensive documentation of changes.
++This asset provides structured templates for professional pull request descriptions that follow best practices. Use it when creating PRs to ensure consistent, comprehensive documentation of changes.
+ 
+ ### Usage
+ 
+@@ -440,7 +440,7 @@ See the migration guide at `docs/migration.md` for details.
+ 
+ ---
+ 
+-## 13. RELATED ISSUES GUIDELINES
++## 13. ISSUE LINKING GUIDELINES
+ 
+ **Format**:
+ ```markdown
+diff --git a/.skilled/skills/sk-git/assets/worktree-checklist.md b/.skilled/skills/sk-git/assets/worktree-checklist.md
+index c038bd93ef4..362ac09cb08 100644
+--- a/.skilled/skills/sk-git/assets/worktree-checklist.md
++++ b/.skilled/skills/sk-git/assets/worktree-checklist.md
+@@ -14,7 +14,7 @@ version: 1.3.0.0
+ 
+ # Worktree Creation Checklist - Branch Isolation Setup
+ 
+-Step-by-step checklist for safe and reliable git worktree creation.
++Open this step-by-step checklist before selecting a location and creating a safe, reliable named Git worktree.
+ 
+ ---
+ 
+@@ -22,7 +22,7 @@ Step-by-step checklist for safe and reliable git worktree creation.
+ 
+ ### Purpose
+ 
+-This checklist ensures git worktrees are created safely with proper .gitignore configuration, dependency installation, and baseline test verification. Use it when setting up isolated development environments.
++This checklist ensures Git worktrees are created safely and reliably with proper .gitignore configuration, dependency installation, and baseline test verification. Use it when setting up isolated development environments.
+ 
+ ### Usage
+ 
+diff --git a/.skilled/skills/sk-git/references/commit-workflows.md b/.skilled/skills/sk-git/references/commit-workflows.md
+index edc71d4535b..fa90abf56f8 100644
+--- a/.skilled/skills/sk-git/references/commit-workflows.md
++++ b/.skilled/skills/sk-git/references/commit-workflows.md
+@@ -15,13 +15,21 @@ version: 1.7.0.16
+ 
+ # Git Commit - Detailed Workflow Reference
+ 
+-Complete workflow documentation for professional commit practices with Conventional Commits.
++Use this complete workflow reference when filtering and grouping changes before writing professional messages in the Conventional Commits format.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Systematically analyze changes, determine appropriate commit strategy, and craft professional commit messages following best practices. Ensures commits are atomic, well-documented, and exclude internal development artifacts.
++### Purpose
++
++Ensure commits are atomic, well-documented and exclude internal development artifacts.
++
++### When to Use
++
++- Analyzing changes systematically and determining the commit strategy
++- Filtering development artifacts out of the change set
++- Crafting professional commit messages that follow best practices and Conventional Commits
+ 
+ **Core principle**: Atomic commits with clear intent + filtered artifacts = maintainable Git history
+ 
+@@ -178,11 +186,12 @@ Quick summary: `type(scope)[!]: imperative summary`, both type and scope
+ required, scope is a stable subsystem name (never a numeric packet id),
+ subject target 80 / hard max 100 characters, and every authored commit
+ carries a prose body that says why, however few paths it stages. Trailers do
+-not count as a body. Every commit ends with one contiguous trailer paragraph separated from
+-the prose by a blank line: `Spec: <track>/<packet>[/<phase>...]` when the work
+-belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links
+-only. Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the
+-`prepare-commit-msg` hook adds `Spec:`. Never type a `Commit-Id:` by hand.
++not count as a body.
++
++- Every commit ends with one contiguous trailer paragraph separated from the prose by a blank line.
++- The trailer carries `Spec: <track>/<packet>[/<phase>...]` when the work belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links only.
++- Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the `prepare-commit-msg` hook adds `Spec:`.
++- Never type a `Commit-Id:` by hand.
+ 
+ **Validation**: `message_written`
+ 
+@@ -221,7 +230,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
+ 
+ **Purpose**: Prevent sweeping someone else's in-flight WIP into YOUR commit when the working tree is dirty (unrelated uncommitted or already-staged changes belonging to another packet/agent).
+ 
+-**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared-patterns.md` §10 for the rename-heavy merge half of the same incident.
++**Why this matters (real incident)**: During a large spec-folder reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared-patterns.md` §10 for the rename-heavy merge half of the same incident.
+ 
+ **Hard rules**:
+ 
+@@ -229,14 +238,14 @@ git commit -m "type(scope): description" -m "Body explaining why"
+ - Stage **explicit pathspecs for YOUR change only**. Enumerate the files; do not stage by directory unless every file under it is yours.
+ - Some unrelated WIP may already be **staged** (in the index) before you start. A broad add is not required to capture it — it is already captured. You MUST inspect the index, not just the unstaged diff.
+ 
+-**Step 7a — Snapshot the tree before staging**:
++**Step 7a: Snapshot the tree before staging**:
+ ```bash
+ git status --short                 # See BOTH staged (left col) and unstaged (right col)
+ git diff --cached --name-only      # Exactly what is ALREADY in the index
+ ```
+ If `git diff --cached --name-only` is non-empty and those files are not yours, decide first: unstage them (`git reset HEAD <file>`) or stash them (see Step 7c) before building your commit.
+ 
+-**Step 7b — Stage only your pathspecs, then ASSERT before committing**:
++**Step 7b: Stage only your pathspecs, then ASSERT before committing**:
+ ```bash
+ # Stage explicit files (yours only)
+ git add path/to/your/file1 path/to/your/file2
+@@ -252,7 +261,7 @@ fi
+ ```
+ Adjust `DENY` to the concrete unrelated paths you identified in Step 7a. A non-empty grep means STOP and re-stage; do not commit.
+ 
+-**Step 7c — If you must clear the tree first, use stash carefully**:
++**Step 7c: If you must clear the tree first, use stash carefully**:
+ ```bash
+ git stash push -k -m "unrelated WIP"   # -k/--keep-index keeps YOUR staged change, stashes the rest
+ # ... build and verify your commit ...
+@@ -261,7 +270,7 @@ git diff --cached --name-only          # RE-CHECK: `git stash pop` can restore e
+ ```
+ > **Caveat**: `git stash pop` can restore previously-staged entries back into the index as staged. Always re-run `git diff --cached --name-only` after a pop and re-assert against your deny-pattern before the next commit.
+ 
+-**Step 7d — Recovery if unrelated WIP already got committed**:
++**Step 7d: Recovery if unrelated WIP already got committed**:
+ ```bash
+ git reset --mixed HEAD~1               # Un-commit, KEEP all changes (staged → unstaged)
+ git status --short                     # Confirm nothing is staged
+@@ -309,7 +318,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
+ - **Fix**: Split into multiple atomic commits
+ 
+ **Internal references in messages**:
+-- **Problem**: "TASK-123: implement feature"
++- **Problem**: "TASK-<id>: implement feature"
+ - **Fix**: Write self-contained messages for external developers
+ 
+ **Committing non-conventional files**:
+@@ -322,7 +331,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
+ 
+ **Sweeping unrelated WIP into your commit (dirty tree)**:
+ - **Problem**: Broad `git add -A` / `git add <folder>` on a tree holding another agent's uncommitted or already-staged work captures their files into your commit
+-- **Fix**: Scoped-staging discipline (Step 7) — stage explicit pathspecs and assert the staged set against a deny-pattern before committing; recover with `git reset --mixed HEAD~1` if it already happened
++- **Fix**: Scoped-staging discipline (Step 7): stage explicit pathspecs and assert the staged set against a deny-pattern before committing; recover with `git reset --mixed HEAD~1` if it already happened
+ 
+ ---
+ 
+@@ -367,7 +376,7 @@ git add path/to/your/file1 path/to/your/file2 # re-stage YOUR pathspecs only
+ git diff --cached --name-only | grep -E '(^other-packet/|/install-guide)'  # must be empty
+ git commit -m "type(scope): description" -m "Body explaining why"
+ ```
+-Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index — popped entries can return staged.
++Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index: popped entries can return staged.
+ 
+ ### Commit Message Too Long
+ 
+@@ -420,7 +429,7 @@ Clients must update to handle JSON responses.
+ - ✅ No sensitive information included
+ - ✅ Changes are atomic and logically grouped
+ - ✅ Tests pass (or failures acknowledged)
+-- ✅ On a dirty tree, staged set asserted against a deny-pattern — no unrelated WIP captured (Step 7)
++- ✅ On a dirty tree, staged set asserted against a deny-pattern: no unrelated WIP captured (Step 7)
+ - ✅ `commit-msg` hook passed (or a documented bypass reason)
+ 
+ **Quality gates**:
+diff --git a/.skilled/skills/sk-git/references/continuous-integration.md b/.skilled/skills/sk-git/references/continuous-integration.md
+index 7e9cca45c3e..05a3cfd12c6 100644
+--- a/.skilled/skills/sk-git/references/continuous-integration.md
++++ b/.skilled/skills/sk-git/references/continuous-integration.md
+@@ -21,9 +21,17 @@ Keep the operator's IDE checkout continuously reflecting every concurrent AI ses
+ 
+ ## 1. OVERVIEW
+ 
+-The launch wrapper `worktree-session.sh` isolates every top-level session into its own worktree on a `work/<runtime>/<slug>` branch with isolated MCP databases. That isolation is what makes concurrent, multi-runtime work safe — but it also makes each session's work **invisible** in the operator's IDE, which is open on the primary checkout. Sharing one working tree across sessions is not an option: concurrent uncommitted writers on a single tree corrupt each other.
++### Purpose
+ 
+-The continuous-integration workflow resolves this by giving the operator one **live branch** — whatever branch the primary checkout is on — that always reflects every session's committed work within seconds:
++The launch wrapper `worktree-session.sh` isolates every top-level session into its own worktree on a `work/<runtime>/<slug>` branch with isolated MCP databases. That isolation is what makes concurrent, multi-runtime work safe, but it also makes each session's work **invisible** in the operator's IDE, which is open on the primary checkout. Sharing one working tree across sessions is not an option: concurrent uncommitted writers on a single tree corrupt each other.
++
++### When to Use
++
++- When concurrent sessions need each session's committed work to reach the operator's primary checkout while each session keeps its isolated worktree and MCP databases.
++
++### How It Works
++
++The continuous-integration workflow resolves this by giving the operator one **live branch**, whatever branch the primary checkout is on, that always reflects every session's committed work within seconds:
+ 
+ - Sessions keep their isolated worktree (safe writes and DB isolation are unchanged).
+ - On each commit, the session **publishes** to the live branch through a safe primitive.
+@@ -70,9 +78,16 @@ Polls the live branch and fast-forwards the checkout when the local tip is an an
+ 
+ Every runtime backgrounds the same script at SessionStart, so primary-checkout correctness does not depend on a long-running follower surviving between sessions. The script acts only when `git-dir` and `git-common-dir` resolve to the same path and the checkout is on the resolved live branch. Linked worktrees, detached HEADs, and intentional feature branches are zero-exit no-ops.
+ 
+-A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file — so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored. Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished. A pre-existing `rebase-merge`/`rebase-apply` state directory is refused untouched — the reconcile never aborts a rebase it did not start, so it cannot rewind the branch to a foreign orig-head and silently drop a just-made commit. A conflict aborts, then asserts HEAD returned to the exact pre-rebase commit — restoring it with `git reset --hard` if the abort moved it — and clean tracked state; a rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
++- A behind-only checkout fast-forwards through git's own `--ff-only`, which refuses to overwrite a modified tracked file, so a checkout carrying unrelated work-in-progress still follows for disjoint commits and is never clobbered on a collision. Untracked build output is intentionally ignored.
++- Rebasing is the hard clean-tree boundary: because it rewrites commits across the working tree, unpublished local commits are rebased onto `origin/<live>` and published only when the tracked tree is clean; otherwise they are left preserved and unpublished.
++- A pre-existing `rebase-merge`/`rebase-apply` state directory is refused untouched: the reconcile never aborts a rebase it did not start, so it cannot rewind the branch to a foreign orig-head and silently drop a just-made commit.
++- A conflict aborts, then asserts HEAD returned to the exact pre-rebase commit, restoring it with `git reset --hard` if the abort moved it, and clean tracked state.
++- A rejected push classifies the stable `[gate:<name>]` marker and leaves the local commit preserved but unpublished.
+ 
+-The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free. Fetch and push are time-bounded. Skips, advances, publications, and blocks append to `git-primary-reconcile.log`; every internal outcome exits zero so SessionStart cannot be blocked.
++- The common-dir single-flight lock prevents concurrent SessionStarts from racing and treats a short-TTL stale lock as free.
++- Fetch and push are time-bounded.
++- Skips, advances, publications, and blocks append to `git-primary-reconcile.log`.
++- Every internal outcome exits zero so SessionStart cannot be blocked.
+ 
+ ### `worktree-status.sh` — the dashboard
+ 
+diff --git a/.skilled/skills/sk-git/references/finish-workflows.md b/.skilled/skills/sk-git/references/finish-workflows.md
+index e3f34abbbee..2577d95e219 100644
+--- a/.skilled/skills/sk-git/references/finish-workflows.md
++++ b/.skilled/skills/sk-git/references/finish-workflows.md
+@@ -17,19 +17,30 @@ version: 1.7.4.0
+ 
+ # Git Finish - Detailed Workflow Reference
+ 
+-Complete workflow documentation for completing development work with structured integration options.
+-
+-This workflow assumes any branch already came from the numbered-worktree naming allocator, not from direct branch creation commands.
++Open this complete workflow reference once development is done and the branch needs one of the structured integration options.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Systematically complete development work by verifying tests, presenting integration options, and executing the chosen workflow. Ensures work is properly integrated with clean branch management.
+ 
++### When to Use
++
++- A branch created through the numbered-worktree naming allocator is ready for final test verification and an integration choice.
++
++This workflow assumes any branch already came from the numbered-worktree naming allocator, not from direct branch creation commands.
++
+ **Core principle**: Verify tests → Present options → Execute choice → Clean up = reliable completion workflow
+ 
+-> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model, each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)), and the primary checkout follows it with `git-live-follow.sh`. In that mode the Step 5b manual reconciliation below is normally already done for you; "finish" is then just the final PR/merge decision. To publish outstanding commits on demand outside a commit, run `bash .skilled/bin/git-sync.sh` from the session worktree.
++> **Continuous-integration note**: When a session runs under the launch wrapper's continuous-integration model:
++>
++> - Each commit is already **autosynced** to the shared live branch via `git-sync.sh` (see [continuous-integration.md](continuous-integration.md)).
++> - The primary checkout follows it with `git-live-follow.sh`, so the Step 5b manual reconciliation below is normally already done for you.
++> - "Finish" is then just the final PR/merge decision.
++> - To publish outstanding commits on demand outside a commit, run `bash .skilled/bin/git-sync.sh` from the session worktree.
+ 
+ ---
+ 
+@@ -230,8 +241,8 @@ Keep worktree for PR updates? (y/n)
+ - n: Remove worktree (switch to other work immediately)
+ ```
+ 
+-**If user chooses 'n'**: Proceed to Step 5 (Cleanup Worktree)
+-**If user chooses 'y'**: Skip Step 5, report worktree location
++- **If user chooses 'n'**: Proceed to Step 5 (Cleanup Worktree)
++- **If user chooses 'y'**: Skip Step 5, report worktree location
+ 
+ **Validation**: `pr_created`
+ 
+@@ -871,11 +882,12 @@ gh auth login
+ ```
+ 
+ **Authenticated as the wrong account**. When more than one account is logged in, `gh auth status`
+-reports each one and marks a single `Active account: true`. A push made while the wrong one is active
+-fails with `403` and a remote line reading `Permission to <owner>/<repo>.git denied to <user>` — read
+-that line, because the bare `403` alone looks like an expired token and sends you to re-login, which
+-fixes nothing. Fetching still works, since read access is usually open, so the first symptom is that
+-pulls succeed and pushes stop.
++reports each one and marks a single `Active account: true`.
++
++- A push made while the wrong one is active fails with `403` and a remote line reading `Permission to <owner>/<repo>.git denied to <user>`; read that line, because the bare `403` alone looks like an expired token and sends you to re-login, which fixes nothing.
++- Fetching still works, since read access is usually open, so the first symptom is that pulls succeed and pushes stop.
++- Switching changes the credential every session on the machine uses, so when the work is not yours to decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do switch, note which account `gh auth status` showed as active first, and switch back to it right after the push, so a parallel session's next push does not run as the wrong account.
++- A nested repository keeps its own remote, and its owner can differ from the outer repository's, so check `git remote -v` inside each one before you push it: the account that pushes the outer repository can get a 403 there.
+ 
+ ```bash
+ gh auth status                                  # which account is active, and who else is logged in
+@@ -885,13 +897,6 @@ git push                                        # the push that needed the other
+ gh auth switch --hostname github.com --user <previous-account>
+ ```
+ 
+-Switching changes the credential every session on the machine uses, so when the work is not yours to
+-decide, report the mismatch and the one-line fix rather than switching underneath someone. When you do
+-switch, note which account `gh auth status` showed as active first, and switch back to it right after
+-the push, so a parallel session's next push does not run as the wrong account. A nested repository
+-keeps its own remote, and its owner can differ from the outer repository's, so check `git remote -v`
+-inside each one before you push it: the account that pushes the outer repository can get a 403 there.
+-
+ **No upstream remote**:
+ ```bash
+ # Add remote
+diff --git a/.skilled/skills/sk-git/references/github-mcp-integration.md b/.skilled/skills/sk-git/references/github-mcp-integration.md
+index a09f7d86065..64388a2e9af 100644
+--- a/.skilled/skills/sk-git/references/github-mcp-integration.md
++++ b/.skilled/skills/sk-git/references/github-mcp-integration.md
+@@ -14,15 +14,23 @@ version: 1.1.0.4
+ 
+ # GitHub MCP Integration - Remote Operations Reference
+ 
+-Programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
++Open this reference when a workflow needs remote GitHub PR, issue, or repository operations through Code Mode.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ GitHub MCP Server provides full CRUD access to GitHub remote operations from within the sk-git workflow. All calls go through Code Mode's `call_tool_chain` interface using TypeScript.
+ 
+-**Prerequisites**: PAT configured in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests).
++### When to Use
++
++- A workflow needs remote GitHub PR, issue, or repository operations through Code Mode.
++
++### Prerequisites
++
++PAT configured in `.utcp_config.json` with appropriate scopes (repo, issues, pull_requests).
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/references/gitkraken-mcp-integration.md b/.skilled/skills/sk-git/references/gitkraken-mcp-integration.md
+index 8f239c63160..4f8e89e36f4 100644
+--- a/.skilled/skills/sk-git/references/gitkraken-mcp-integration.md
++++ b/.skilled/skills/sk-git/references/gitkraken-mcp-integration.md
+@@ -14,13 +14,25 @@ version: 1.0.0.0
+ 
+ # GitKraken MCP Integration - Cross-Platform Git, Issue, and PR Reference
+ 
+-Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Registered as the `gitkraken` manual in `.utcp_config.json` (stdio, `npx -y @gitkraken/gk mcp`).
++Open this reference when a repository uses a non-GitHub provider or the task benefits from GitLens AI workflows.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-The GitKraken MCP server (`@gitkraken/gk`) exposes local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira. Verify the current tool surface with `gk mcp --list-tools` before relying on this reference; the locally checked surface was verified on 2026-08-02. Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
++### Purpose
++
++Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Registered as the `gitkraken` manual in `.utcp_config.json` (stdio, `npx -y @gitkraken/gk mcp`).
++
++The GitKraken MCP server (`@gitkraken/gk`) exposes local git operations, GitLens AI workflows, and cross-platform issue/PR management across GitHub, GitLab, Azure DevOps, Bitbucket, and Jira.
++
++### When to Use
++
++Unlike [github-mcp-integration.md](./github-mcp-integration.md), which is GitHub-only, GitKraken MCP is the tool to reach for when a repository lives on a non-GitHub provider, or when the task benefits from GitLens' AI-assisted workflows (commit composition, PR review, launchpad triage).
++
++### Tool Surface check
++
++Verify the current tool surface with `gk mcp --list-tools` before relying on this reference; the locally checked surface was verified on 2026-08-02.
+ 
+ **Prerequisites**: The `gk` CLI must be authenticated (`gk auth login` / `gk whoami`) with the relevant provider(s) connected (`gk provider`). No `.utcp_config.json` env vars are required — auth is handled entirely by the CLI's own local auth state.
+ 
+diff --git a/.skilled/skills/sk-git/references/large-reorg-playbook.md b/.skilled/skills/sk-git/references/large-reorg-playbook.md
+index 06e2fd83e63..edba41798d6 100644
+--- a/.skilled/skills/sk-git/references/large-reorg-playbook.md
++++ b/.skilled/skills/sk-git/references/large-reorg-playbook.md
+@@ -15,12 +15,16 @@ version: 1.1.0.4
+ 
+ # Large Reorg Playbook - Rename/Renumber in a Worktree
+ 
+-Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`) executed in a worktree and merged to `main` without the known failure modes.
++Open this step-ordered runbook when a LARGE rename/reorg (hundreds-to-thousands of `git mv`) must execute in a worktree and merge to `main` without the known failure modes.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Complete a large rename or renumber reorganization with file moves isolated in a worktree and validation on main after the merge.
++
+ ### When to Use
+ 
+ - A rename/renumber/reorg touching dozens+ of paths (folder restructure, phase
+@@ -38,10 +42,9 @@ generators, metadata regen) runs on `main` AFTER merge — never inside the bare
+ [worktree-workflows.md §8b](./worktree-workflows.md#8b-large-reorg-in-a-worktree---caveats)
+ for the why behind each caveat.
+ 
+-### Origin
++### Failure Modes Addressed
+ 
+-Driven by a real incident: the 026 wave-4 spec-folder reorganization (17 phases → 7 themed
+-parents, ~9000 renames) hit avoidable failure modes this runbook closes.
++Driven by a real incident: a spec-folder reorganization (17 phases → 7 themed parents, ~9000 renames) hit avoidable failure modes this runbook closes. It addresses ignored leftovers, toolchain checks against a bare worktree, metadata paths recorded before merge, and renames registered as delete/add pairs.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/references/quick-reference.md b/.skilled/skills/sk-git/references/quick-reference.md
+index 5e6d84ea6f8..446ea7d7b6c 100644
+--- a/.skilled/skills/sk-git/references/quick-reference.md
++++ b/.skilled/skills/sk-git/references/quick-reference.md
+@@ -14,13 +14,19 @@ version: 1.1.0.12
+ 
+ # Git Workflows - Quick Reference
+ 
+-One-page cheat sheet for git-worktrees, git-commit, and git-finish workflows.
++Open this one-page cheat sheet when choosing or running a git-worktrees, git-commit, or git-finish workflow.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-This quick reference provides a one-page cheat sheet for the three git workflow phases: worktrees (workspace setup), commit (change tracking), and finish (integration).
++### Purpose
++
++Provide a one-page lookup for the worktree, commit, and finish workflows: worktrees (workspace setup), commit (change tracking), and finish (integration).
++
++### When to Use
++
++- Choose a workflow or look up its essential commands.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/references/remote-branch-policy.md b/.skilled/skills/sk-git/references/remote-branch-policy.md
+index 1c56fe98378..fd915bf01d3 100644
+--- a/.skilled/skills/sk-git/references/remote-branch-policy.md
++++ b/.skilled/skills/sk-git/references/remote-branch-policy.md
+@@ -20,14 +20,25 @@ Keep `origin` curated while local branch/worktree creation stays free: only a sm
+ 
+ ## 1. OVERVIEW
+ 
+-Numbered worktrees and `worktrees/NNN-slug` / `branches/NNN-slug` branches (ALWAYS #4) make local branch creation cheap and frequent by design — but nothing about that design implies every one of those branches belongs on `origin`. This policy adds a second question, independent of branch naming: **should this branch reach remote at all, right now?**
++### Purpose
++
++Numbered worktrees and `worktrees/NNN-slug` / `branches/NNN-slug` branches (ALWAYS #4) make local branch creation cheap and frequent by design, but nothing about that design implies every one of those branches belongs on `origin`. This policy adds a second question, independent of branch naming: **should this branch reach remote at all, right now?**
++
++### When to Use
++
++- Before pushing to origin or deciding whether a branch belongs on the allowlist.
+ 
+ Two layers answer it:
+ 
+ - **Agent behavior** (sk-git's own MANDATORY rule, [SKILL.md](../SKILL.md) §3 "Remote Push Permission Enforcement"): Claude asks the operator before pushing a non-allowlisted branch, unless the operator already gave an in-turn instruction to push it.
+ - **Technical check** (the [pre-push hook](../../../scripts/git-hooks/pre-push)): checks any push — new branch or update — to a non-allowlisted branch. An update passes with `SPECKIT_ALLOW_REMOTE_PUSH=1` set for that invocation; creating a branch needs the allowlist or `SPECKIT_ALLOW_REMOTE_PUSH=<branch>`, naming the branch. This applies uniformly whether the push came from an agent or a human at a real terminal, since a git hook cannot tell the two apart.
+ 
+-> **Safety limitation — concern-local fail-open enforcement.** If `worktree-naming.sh` is missing in a repository that carries the toolchain, the permission gate cannot read the allowlist, so it blocks every non-allowlisted push until that push is approved. If the script is present but cannot be sourced, lacks its validators, or returns an internal error, the naming and permission concerns warn and fail open. Mass-deletion, skill-root metadata, and test gates still run. Treat naming and permission as advisory enforcement unless the validator and hook installation are healthy.
++> **Safety limitation: concern-local fail-open enforcement.**
++>
++> - If `worktree-naming.sh` is missing in a repository that carries the toolchain, the permission gate cannot read the allowlist, so it blocks every non-allowlisted push until that push is approved.
++> - If the script is present but cannot be sourced, lacks its validators, or returns an internal error, the naming and permission concerns warn and fail open.
++> - Mass-deletion, skill-root metadata, and test gates still run.
++> - Treat naming and permission as advisory enforcement unless the validator and hook installation are healthy.
+ 
+ ---
+ 
+@@ -71,7 +82,12 @@ The exception covers updates only. Creating the live branch on origin still need
+ 
+ **Why this branch is different**: it was already an explicit operator choice — the primary checkout's own branch — made before any session existed to autosync into it. `git-sync.sh`'s documented contract is "never asks the caller mid-hook" and "non-fatal by default" ([continuous-integration.md](continuous-integration.md)); blocking its publish would silently strand every wrapper session's commits and regress a separately documented feature.
+ 
+-This exception does not apply to safety or consistency gates. The mass-deletion ceiling always blocks a destructive range. Skill-root metadata warns about stale committed metadata and does not block; CI enforces it on `main` and `skilled/v*`. Enforced test failures still block. `git-sync.sh` captures those hook messages, classifies their `[gate:<name>]` markers, prints the original diagnostics plus a loud `AUTOSYNC BLOCKED` line, and records the gate name and fix in the common-dir `git-sync.log`.
++This exception does not apply to safety or consistency gates.
++
++- The mass-deletion ceiling always blocks a destructive range.
++- Skill-root metadata warns about stale committed metadata and does not block; CI enforces it on `main` and `skilled/v*`.
++- Enforced test failures still block.
++- `git-sync.sh` captures those hook messages, classifies their `[gate:<name>]` markers, prints the original diagnostics plus a loud `AUTOSYNC BLOCKED` line, and records the gate name and fix in the common-dir `git-sync.log`.
+ 
+ ---
+ 
+@@ -103,7 +119,11 @@ If the operator has approved THIS push, retry with:
+ 
+ This applies identically whether the push was issued by Claude or typed at a real terminal — the hook cannot tell the two apart, so both get the same safety net and the same one-line fix.
+ 
+-An autosync block adds a durable publisher record. For example, stale skill metadata records `blocked`, `gate=skill-root-metadata`, and the exact `ci-skill-root-metadata.cjs --fix` command. Mass deletion records `gate=mass-deletion` and retains the separate deletion-count audit log. Known gate blocks stop immediately and are never retried or mislabeled as generic `pending` push races.
++An autosync block adds a durable publisher record.
++
++- For example, stale skill metadata records `blocked`, `gate=skill-root-metadata`, and the exact `ci-skill-root-metadata.cjs --fix` command.
++- Mass deletion records `gate=mass-deletion` and retains the separate deletion-count audit log.
++- Known gate blocks stop immediately and are never retried or mislabeled as generic `pending` push races.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-git/references/shared-patterns.md b/.skilled/skills/sk-git/references/shared-patterns.md
+index 15ad7971217..e099dc3c0e6 100644
+--- a/.skilled/skills/sk-git/references/shared-patterns.md
++++ b/.skilled/skills/sk-git/references/shared-patterns.md
+@@ -15,13 +15,19 @@ version: 1.7.0.22
+ 
+ # Shared Patterns - Cross-Workflow Reference
+ 
+-Common patterns, commands, and conventions used across all git workflows.
++Use this reference when a task spans worktree, commit, or finish workflows and needs a shared command or error pattern.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-This reference consolidates common patterns, commands, and conventions used across all git workflows (worktrees, commits, and finish). Use this as a quick lookup for branch naming, git commands, Conventional Commits format, and error handling patterns.
++### Purpose
++
++Consolidate common patterns, commands, and conventions across the worktree, commit, and finish workflows.
++
++### When to Use
++
++- Use this as a quick lookup for branch naming, Git commands, Conventional Commits, or error handling patterns.
+ 
+ ---
+ 
+@@ -791,7 +797,12 @@ call_tool_chain({
+ 
+ ## 10. RENAME-HEAVY MERGE VERIFICATION
+ 
+-Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation. The tree can end up *correct* while the working directory and `ls` *look* broken, and git's own rename detection can silently give up at scale. This section codifies the verification the 026 wave-4 reorg needed (the scoped-staging half of that same incident lives in `commit-workflows.md` §3 Step 7).
++Merging a branch that renamed thousands of files (e.g. a `git mv`-driven spec-folder reorg/renumber) into a main that has diverged is a distinct, high-risk operation.
++
++- The tree can end up *correct* while the working directory and `ls` *look* broken.
++- git's own rename detection can silently give up at scale.
++
++This section codifies rename-heavy merge verification. Scoped staging for that operation lives in [commit-workflows.md](./commit-workflows.md) §3 Step 7.
+ 
+ ### 10.1 Before the merge — prove disjointness
+ 
+diff --git a/.skilled/skills/sk-git/references/unstick-dirty-worktree.md b/.skilled/skills/sk-git/references/unstick-dirty-worktree.md
+index c3ea3c9d5cf..a4e42659eb3 100644
+--- a/.skilled/skills/sk-git/references/unstick-dirty-worktree.md
++++ b/.skilled/skills/sk-git/references/unstick-dirty-worktree.md
+@@ -21,9 +21,9 @@ Recover a session jammed on git state without re-clobbering the branch, and hand
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-A stale checkout's "deletions" are usually files it has not received yet, not files anyone removed — restore them from origin before you commit, and never `git add -A` a tree you have not reconciled.
++Restore files missing from a stale checkout while preserving intended local changes.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ A stale checkout's "deletions" are usually files it has not received yet, not fi
+ - `git status` shows deleted files that still exist on the remote.
+ - A commit was rejected by the mass-deletion guard.
+ 
++### Core Principle
++
++A stale checkout's "deletions" are usually files it has not received yet, not files anyone removed, so restore them from origin before you commit, and never `git add -A` a tree you have not reconciled.
++
+ ### Context
+ 
+ - The external auto-sync that used to commit and publish every session's WIP is **removed**. Nothing lands a session's work now except that session — but a commit is no longer orphaned by an automated reset, so committing and pushing your own work is safe.
+@@ -77,6 +81,8 @@ You MUST complete each phase before the next; do not skip ahead to a commit.
+ 
+ **Validation**: `no_phantom_deletions` — `git status --porcelain | grep -cE '^ ?D'` is `0`, or shows only deletions you actually intend.
+ 
++If after Phase 3 the tree still does not make sense, do NOT guess: report the branch, `HEAD` vs `origin/skilled/v4.0.0.0`, and the deletion/modification counts, and ask before committing.
++
+ #### Phase 4: Commit only your real changes
+ 
+ **Purpose**: The tree is now additive/intended. Land your own work.
+@@ -112,8 +118,6 @@ You MUST complete each phase before the next; do not skip ahead to a commit.
+ | Force-pushing the shared branch after a rejection | Overwrites concurrent writers' commits | Rebase onto origin, or push from a worktree off origin |
+ | Overriding the mass-deletion guard reflexively | Skips the one check that catches a stale-tree clobber | Investigate the deletion count; override only for a truly intended bulk delete |
+ 
+-If after Phase 3 the tree still does not make sense, do NOT guess — report the branch, `HEAD` vs `origin/skilled/v4.0.0.0`, and the deletion/modification counts, and ask before committing.
+-
+ ---
+ 
+ ## 4. READY-TO-PASTE SESSION PROMPT
+@@ -184,4 +188,4 @@ counts, and ask before committing.
+ - [remote-branch-policy.md](./remote-branch-policy.md) — which branches accept a push and when to ask.
+ - [worktree-workflows.md](./worktree-workflows.md) — isolated worktrees, the preferred place for real work.
+ - [continuous-integration.md](./continuous-integration.md) — the safe publish model that replaced the removed auto-sync.
+-- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` and packet `specs/sk-git/019-mass-deletion-guard/`.
++- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh`.
+diff --git a/.skilled/skills/sk-git/references/worktree-workflows.md b/.skilled/skills/sk-git/references/worktree-workflows.md
+index 1e0a20943fd..451a5615d81 100644
+--- a/.skilled/skills/sk-git/references/worktree-workflows.md
++++ b/.skilled/skills/sk-git/references/worktree-workflows.md
+@@ -16,15 +16,24 @@ version: 1.1.4.0
+ 
+ # Git Worktrees - Detailed Workflow Reference
+ 
+-Complete workflow documentation for creating isolated git workspaces with minimal branching.
++Follow the numbered steps to create a named or detached worktree, prepare it, and check its baseline.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Git worktrees create isolated working directories sharing the same repository database. Each worktree can have a different branch checked out, allowing parallel work without context switching.
++### Purpose
+ 
+-**Core principle**: Systematic directory selection + safety verification = reliable isolation
++This complete workflow creates isolated Git workspaces with minimal branching while sharing the repository database. Each worktree can check out a different branch to support parallel work without context switching.
++
++### When to Use
++
++- After the user explicitly chooses "Create a git worktree" (Option A).
++- When parallel work needs separate branches in isolated directories.
++
++### Core Principle
++
++Systematic directory selection + safety verification = reliable isolation
+ 
+ ---
+ 
+@@ -55,7 +64,10 @@ If the user has not been prompted or selected a different option:
+ 5. Verify clean baseline (run tests)
+ 6. Report location and status
+ 
+-**Branch namespace**: every named feature worktree uses the `worktrees/{NNN}-{slug}` branch and the `.worktrees/{NNN}-{slug}` directory (see Naming Convention below). `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999) issued by the allocator; `worktrees/` and `branches/` each number independently, strictly sequential, never skipped or reused. The lifecycle strategy below only changes *how the branch is managed after creation*, not how it is named.
++**Branch namespace**:
++- Every named feature worktree uses the `worktrees/{NNN}-{slug}` branch and the `.worktrees/{NNN}-{slug}` directory (see Naming Convention below).
++- `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999) issued by the allocator; `worktrees/` and `branches/` each number independently, strictly sequential, never skipped or reused.
++- The lifecycle strategy only changes *how the branch is managed after creation*, not how it is named.
+ 
+ **Lifecycle strategies**:
+ - **Fast-merge (default)**: short-lived branch that merges straight back to main after testing
+@@ -66,6 +78,8 @@ If the user has not been prompted or selected a different option:
+ 
+ ## 4. COMPLETE WORKFLOW
+ 
++For a large rename/reorg, use the worktree for file/rename ops only; defer all toolchain + DB work to main after merge. See §8b.
++
+ ### Step 1: Gather User Inputs
+ 
+ **Purpose**: Collect the slug, task description, and lifecycle strategy
+@@ -154,14 +168,15 @@ use one unified, numbered grammar:
+   already-gitignored worktree home. The directory mirrors the branch tail exactly.
+ - **`{NNN}`** is a 3-digit zero-padded **per-namespace** counter (001..999).
+   `worktrees/` and `branches/` each number independently, strictly sequential,
+-  never skipped or reused — a `worktrees/003` and a `branches/003` may coexist,
++  never skipped or reused: a `worktrees/003` and a `branches/003` may coexist,
+   and deleting a middle number never back-fills the gap (next = max-in-use + 1).
+   Git cannot enforce sequential uniqueness itself, so the counter is allocated by
+-  `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which holds a lock in the
+-  shared common git dir and seeds each namespace's max from its stored high-water
+-  mark, every matching local + remote ref, and (for `worktrees/`) every registered
+-  worktree basename, so a partial scan can never reissue a live number. Never
+-  hand-compute `{NNN}`.
++  `.skilled/skills/sk-git/scripts/worktree-naming.sh`, which:
++  - holds a lock in the shared common git dir;
++  - seeds each namespace's max from its stored high-water mark, every matching
++    local + remote ref, and (for `worktrees/`) every registered worktree basename;
++
++The lock serializes contenders, and the scan reads the high-water mark first, so a partial scan can never reissue a live number. Never hand-compute `{NNN}`.
+ 
+ > **Two distinct lanes.** This `worktrees/{NNN}-{slug}` grammar is for *named feature
+ > worktrees a human creates*. It is separate from the per-session **ephemeral**
+@@ -532,12 +547,15 @@ NOT contain them. Toolchains that depend on them break **silently**:
+   module or — worse — no-op and report success on **zero** files.
+ - **Do not share deps into a worktree in a way that resolves back to the source checkout.**
+   Wholesale-linking `node_modules`/`dist` does exactly that, by two separate mechanisms.
+-  A workspace self-link inside the tree is relative, so it re-anchors through wherever the
+-  link physically sits and the worktree reads the source checkout's code however much it
+-  edits its own. And a compiled entry point reached through a link compares the path it was
+-  invoked with against the location it derives from its own file, finds them different, and
+-  exits 0 having touched no files. The second is why a run can look like a pass and do no
+-  work. Sharing is safe once the third-party entries are linked individually, each self-link
++  - A workspace self-link inside the tree is relative, so it re-anchors through wherever the
++    link physically sits and the worktree reads the source checkout's code however much it
++    edits its own.
++  - A compiled entry point reached through a link compares the path it was
++    invoked with against the location it derives from its own file, finds them different, and
++    exits 0 having touched no files. The second is why a run can look like a pass and do no
++    work.
++
++  Sharing is safe once the third-party entries are linked individually, each self-link
+   is recreated relative to the worktree, and generators are invoked by their canonical path;
+   installing is the blunt way to get the same guarantee.
+ 
+@@ -623,7 +641,10 @@ git worktree prune
+ 
+ **Symptom**: In a worktree under `.worktrees/`, OpenCode 2 lists each repository plugin twice: the main checkout's copy active, the worktree's copy failed with `Duplicate plugin ID`.
+ 
+-**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout. The session runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there. OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
++**Cause**: OpenCode 2 merges the `.opencode` folder of every ancestor directory, and `.worktrees/` sits inside the main checkout.
++
++- OpenCode 2 runs the main checkout's plugin code, so a plugin change made in the worktree has no effect there.
++- OpenCode 1 stops at the worktree root and is not affected (observed on 2.0.32 and 1.19.3, 2026-10-20).
+ 
+ **Solution**:
+ ```bash
+@@ -654,7 +675,14 @@ The doctor battery does this on its own: its v2 read names each outer plugin fol
+ 
+ **Symptom**: a launch-wrapper session edits its own files but reads, builds or validates against the main checkout's first-party code, and a generator run inside it exits 0 without writing.
+ 
+-**Cause**: Those links are wholesale, so a wrapper session does not yet satisfy the ALWAYS #8 invariant: it reads the main checkout's first-party code however much it edits its own, and a generator run inside one exits 0 without writing. That is the real reason the line above sends strict-validate and metadata regeneration to `main`. Treat it as a constraint to work within, not a property of worktrees. The deep-loop lane provisioner performs the same sharing correctly, by splitting the link and recreating each self-link relative to the lane.
++**Cause**: Those links are wholesale, so a wrapper session does not yet satisfy the ALWAYS #8 invariant:
++
++- It reads the main checkout's first-party code however much it edits its own.
++- A generator run inside one exits 0 without writing.
++
++That is the real reason the line above sends strict-validate and metadata regeneration to `main`. Treat it as a constraint to work within, not a property of worktrees.
++
++The deep-loop lane provisioner performs the same sharing correctly, by splitting the link and recreating each self-link relative to the lane.
+ 
+ **Actions**: run strict-validate and metadata regeneration on `main` after merge.
+ 

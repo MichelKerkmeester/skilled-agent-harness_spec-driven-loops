@@ -10,7 +10,7 @@ trigger_phrases:
   - "staged deny pattern assertion"
 importance_tier: normal
 contextType: implementation
-version: 1.7.0.16
+version: 1.7.1.0
 ---
 
 # Git Commit - Detailed Workflow Reference
@@ -21,7 +21,15 @@ Complete workflow documentation for professional commit practices with Conventio
 
 ## 1. OVERVIEW
 
-Systematically analyze changes, determine appropriate commit strategy, and craft professional commit messages following best practices. Ensures commits are atomic, well-documented, and exclude internal development artifacts.
+### Purpose
+
+Ensure commits are atomic, well-documented and exclude internal development artifacts.
+
+### When to Use
+
+- Analyzing changes systematically and determining the commit strategy
+- Filtering development artifacts out of the change set
+- Crafting professional commit messages that follow best practices and Conventional Commits
 
 **Core principle**: Atomic commits with clear intent + filtered artifacts = maintainable Git history
 
@@ -178,11 +186,12 @@ Quick summary: `type(scope)[!]: imperative summary`, both type and scope
 required, scope is a stable subsystem name (never a numeric packet id),
 subject target 80 / hard max 100 characters, and every authored commit
 carries a prose body that says why, however few paths it stages. Trailers do
-not count as a body. Every commit ends with one contiguous trailer paragraph separated from
-the prose by a blank line: `Spec: <track>/<packet>[/<phase>...]` when the work
-belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links
-only. Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the
-`prepare-commit-msg` hook adds `Spec:`. Never type a `Commit-Id:` by hand.
+not count as a body.
+
+- Every commit ends with one contiguous trailer paragraph separated from the prose by a blank line.
+- The trailer carries `Spec: <track>/<packet>[/<phase>...]` when the work belongs to a packet, then `Commit-Id: NNNNNNN`, then `Refs:` for external links only.
+- Set `SPECKIT_COMMIT_SPEC` to the packet path before committing and the `prepare-commit-msg` hook adds `Spec:`.
+- Never type a `Commit-Id:` by hand.
 
 **Validation**: `message_written`
 
@@ -221,7 +230,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 **Purpose**: Prevent sweeping someone else's in-flight WIP into YOUR commit when the working tree is dirty (unrelated uncommitted or already-staged changes belonging to another packet/agent).
 
-**Why this matters (real incident)**: During the 026 wave-4 reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared-patterns.md` §10 for the rename-heavy merge half of the same incident.
+**Why this matters (real incident)**: During a large spec-folder reorg, an orchestrator ran a broad `git add` while the tree held unrelated WIP. 24 unrelated files (another packet plus install guides) were swept into the reorg commit and had to be backed out with `git reset --mixed HEAD~1` and re-staged precisely. See `shared-patterns.md` §10 for the rename-heavy merge half of the same incident.
 
 **Hard rules**:
 
@@ -229,14 +238,14 @@ git commit -m "type(scope): description" -m "Body explaining why"
 - Stage **explicit pathspecs for YOUR change only**. Enumerate the files; do not stage by directory unless every file under it is yours.
 - Some unrelated WIP may already be **staged** (in the index) before you start. A broad add is not required to capture it — it is already captured. You MUST inspect the index, not just the unstaged diff.
 
-**Step 7a — Snapshot the tree before staging**:
+**Step 7a: Snapshot the tree before staging**:
 ```bash
 git status --short                 # See BOTH staged (left col) and unstaged (right col)
 git diff --cached --name-only      # Exactly what is ALREADY in the index
 ```
 If `git diff --cached --name-only` is non-empty and those files are not yours, decide first: unstage them (`git reset HEAD <file>`) or stash them (see Step 7c) before building your commit.
 
-**Step 7b — Stage only your pathspecs, then ASSERT before committing**:
+**Step 7b: Stage only your pathspecs, then ASSERT before committing**:
 ```bash
 # Stage explicit files (yours only)
 git add path/to/your/file1 path/to/your/file2
@@ -252,7 +261,7 @@ fi
 ```
 Adjust `DENY` to the concrete unrelated paths you identified in Step 7a. A non-empty grep means STOP and re-stage; do not commit.
 
-**Step 7c — If you must clear the tree first, use stash carefully**:
+**Step 7c: If you must clear the tree first, use stash carefully**:
 ```bash
 git stash push -k -m "unrelated WIP"   # -k/--keep-index keeps YOUR staged change, stashes the rest
 # ... build and verify your commit ...
@@ -261,7 +270,7 @@ git diff --cached --name-only          # RE-CHECK: `git stash pop` can restore e
 ```
 > **Caveat**: `git stash pop` can restore previously-staged entries back into the index as staged. Always re-run `git diff --cached --name-only` after a pop and re-assert against your deny-pattern before the next commit.
 
-**Step 7d — Recovery if unrelated WIP already got committed**:
+**Step 7d: Recovery if unrelated WIP already got committed**:
 ```bash
 git reset --mixed HEAD~1               # Un-commit, KEEP all changes (staged → unstaged)
 git status --short                     # Confirm nothing is staged
@@ -309,7 +318,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 - **Fix**: Split into multiple atomic commits
 
 **Internal references in messages**:
-- **Problem**: "TASK-123: implement feature"
+- **Problem**: "TASK-<id>: implement feature"
 - **Fix**: Write self-contained messages for external developers
 
 **Committing non-conventional files**:
@@ -322,7 +331,7 @@ git commit -m "type(scope): description" -m "Body explaining why"
 
 **Sweeping unrelated WIP into your commit (dirty tree)**:
 - **Problem**: Broad `git add -A` / `git add <folder>` on a tree holding another agent's uncommitted or already-staged work captures their files into your commit
-- **Fix**: Scoped-staging discipline (Step 7) — stage explicit pathspecs and assert the staged set against a deny-pattern before committing; recover with `git reset --mixed HEAD~1` if it already happened
+- **Fix**: Scoped-staging discipline (Step 7): stage explicit pathspecs and assert the staged set against a deny-pattern before committing; recover with `git reset --mixed HEAD~1` if it already happened
 
 ---
 
@@ -367,7 +376,7 @@ git add path/to/your/file1 path/to/your/file2 # re-stage YOUR pathspecs only
 git diff --cached --name-only | grep -E '(^other-packet/|/install-guide)'  # must be empty
 git commit -m "type(scope): description" -m "Body explaining why"
 ```
-Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index — popped entries can return staged.
+Prevent recurrence with Step 7 (Scoped-Staging Discipline): enumerate your pathspecs and run the pre-commit deny-pattern assertion. After any `git stash pop`, re-check the index: popped entries can return staged.
 
 ### Commit Message Too Long
 
@@ -420,7 +429,7 @@ Clients must update to handle JSON responses.
 - ✅ No sensitive information included
 - ✅ Changes are atomic and logically grouped
 - ✅ Tests pass (or failures acknowledged)
-- ✅ On a dirty tree, staged set asserted against a deny-pattern — no unrelated WIP captured (Step 7)
+- ✅ On a dirty tree, staged set asserted against a deny-pattern: no unrelated WIP captured (Step 7)
 - ✅ `commit-msg` hook passed (or a documented bypass reason)
 
 **Quality gates**:

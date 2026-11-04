@@ -1,0 +1,54 @@
+### .skilled/skills/sk-git/references/finish-workflows.md
+
+- [P1] .skilled/skills/sk-git/references/finish-workflows.md:234 | 2 | The two bold labels run together in one paragraph. | Replace lines 233–234 with: `- **If user chooses 'n'**: Proceed to Step 5 (Cleanup Worktree)` and `- **If user chooses 'y'**: Skip Step 5, report worktree location`.
+- [P2] .skilled/skills/sk-git/references/finish-workflows.md:20 | 3 | The intro repeats the description, while the allocator assumption does not tell readers when to open the reference. | Replace lines 20–22 with: “Use this reference when a branch created through the numbered-worktree naming allocator is ready for final test verification and an integration choice.”
+- [P2] .skilled/skills/sk-git/references/finish-workflows.md:28 | 4 | The overview starts with an unlabeled purpose and has no When to Use section. | Add `### Purpose` before line 28. After the purpose paragraph, add `### When to Use` with the bullet `- A branch created through the numbered-worktree naming allocator is ready for final test verification and an integration choice.` Keep Core Principle after both.
+- [P2] .skilled/skills/sk-git/references/finish-workflows.md:32 | 7 | The CI note packs autosync, checkout-following, reconciliation, and manual publishing into one paragraph. | Reformat it as a list covering: commits autosynced to the live branch; the primary checkout following it and Step 5b normally being complete; the final PR or merge decision; and the `git-sync.sh` command for publishing outside a commit.
+- [P2] .skilled/skills/sk-git/references/finish-workflows.md:873 | 7 | The wrong-account explanation packs the 403 symptom, read access, account switching, and nested-repository behavior into one paragraph. | Split it into four bullets covering: how `gh auth status` identifies the active account and how a wrong account causes a 403; why fetch may still work and re-login will not fix the mismatch; recording and restoring the prior account when switching; and checking each nested repository’s remote.
+
+### .skilled/skills/sk-git/references/github-mcp-integration.md
+
+- [P2] .skilled/skills/sk-git/references/github-mcp-integration.md:17 | 3 | The intro describes the subject and repeats the overview purpose rather than giving a use-case hook. | Replace it with: “Open this reference when a workflow needs remote GitHub PR, issue, or repository operations through Code Mode.”
+- [P2] .skilled/skills/sk-git/references/github-mcp-integration.md:23 | 4 | The overview has no Purpose or When to Use headings. | Add `### Purpose` before the existing paragraph. After it, add `### When to Use` with the bullet `- A workflow needs remote GitHub PR, issue, or repository operations through Code Mode.` Label the existing prerequisites paragraph `### Prerequisites`.
+
+### .skilled/skills/sk-git/references/gitkraken-mcp-integration.md
+
+- [P2] .skilled/skills/sk-git/references/gitkraken-mcp-integration.md:17 | 3 | The intro describes access and registration instead of telling readers when to open the reference. | Move the existing sentence unchanged into §1 to preserve its Code Mode and `.utcp_config.json` details. Replace the intro with: “Open this reference when a repository uses a non-GitHub provider or the task benefits from GitLens AI workflows.”
+- [P2] .skilled/skills/sk-git/references/gitkraken-mcp-integration.md:23 | 4 | The overview lacks Purpose and When to Use headings. | Split the paragraph under `### Purpose` for server capabilities and `### When to Use` for the existing provider and GitLens use cases. Keep Prerequisites and Public preview after those sections.
+- [P2] .skilled/skills/sk-git/references/gitkraken-mcp-integration.md:23 | 7 | The paragraph combines server capabilities, a tool-surface verification instruction, and use-case guidance. | Move the `gk mcp --list-tools` instruction and verification date into a separate Tool Surface check section. Keep the capability description under Purpose and the provider comparison under When to Use.
+
+### .skilled/skills/sk-git/references/large-reorg-playbook.md
+
+- [P2] .skilled/skills/sk-git/references/large-reorg-playbook.md:18 | 3 | The intro describes the runbook but does not tell readers when to open it. | Replace it with: “Open this playbook when a large rename or reorg needs isolated file moves and post-merge validation.”
+- [P2] .skilled/skills/sk-git/references/large-reorg-playbook.md:24 | 4 | The overview opens with When to Use but has no preceding Purpose. | Insert before line 24: `### Purpose` followed by `Complete a large rename or renumber reorganization with file moves isolated in a worktree and validation on main after the merge.`
+- [P2] .skilled/skills/sk-git/references/large-reorg-playbook.md:43 | 9 | The Origin section records a specific incident and phase counts as authoring history. | Replace lines 41–44 with `### Failure Modes Addressed` and: `This runbook addresses ignored leftovers, toolchain checks against a bare worktree, metadata paths recorded before merge, and renames registered as delete/add pairs.`
+
+### .skilled/skills/sk-git/references/quick-reference.md
+
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:17 | 3 | The intro repeats the description and does not say when to use the sheet. | Replace it with: “Open this sheet when you need to choose or run a worktree, commit, or finish workflow.”
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:23 | 4 | The overview has no Purpose or When to Use headings. | Split the sentence into `### Purpose` with `Provide a one-page lookup for the worktree, commit, and finish workflows.` and `### When to Use` with `- Choose a workflow or look up its essential commands.`
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:109 | 9 | The command example contains a specific spec-folder path. | Replace `sk-git/028-crawlable-commit-history/003-contract-and-hook` with `<spec-folder>`.
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:117 | 9 | The search example embeds a specific packet identifier. | Replace `sk-git/028` with `<spec-folder>` in the grep pattern.
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:120 | 9 | The example uses a specific commit ID. | Replace `0009113` with `<commit-id>`.
+- [P2] .skilled/skills/sk-git/references/quick-reference.md:426 | 9 | The bad-message example contains a numbered task ID. | Replace `TASK-123` with `TASK-<id>`.
+
+### .skilled/skills/sk-git/references/remote-branch-policy.md
+
+- [P2] .skilled/skills/sk-git/references/remote-branch-policy.md:23 | 4 | The overview has no Purpose or When to Use headings. | Add `### Purpose` before the paragraph. After it, add `### When to Use` with the bullet `- Before pushing to origin or deciding whether a branch belongs on the allowlist.`
+- [P2] .skilled/skills/sk-git/references/remote-branch-policy.md:30 | 7 | The safety limitation paragraph combines separate fail-closed, fail-open, and remaining-gate behaviors. | Convert it to four bullets: missing script blocks non-allowlisted pushes until approval; an unsourceable script, missing validators, or internal error makes naming and permission concerns warn and fail open; mass-deletion, metadata, and test gates still run; naming and permission are advisory unless validation and hook installation are healthy.
+- [P2] .skilled/skills/sk-git/references/remote-branch-policy.md:74 | 7 | The paragraph packs four distinct gate and logging behaviors. | Convert it to bullets covering the mass-deletion ceiling; metadata warnings and CI enforcement; blocking test failures; and `git-sync.sh` capturing, classifying, printing, and logging hook messages.
+- [P2] .skilled/skills/sk-git/references/remote-branch-policy.md:87 | 9 | The paragraph explains the removed gate’s design history. | Replace it with: `` `SPECKIT_SKIP_PREPUSH_NAMING` has no effect on the current hook. Remove it from any environment configuration. ``
+- [P2] .skilled/skills/sk-git/references/remote-branch-policy.md:106 | 7 | The paragraph packs publisher-record fields, two gate examples, and retry behavior. | Split it into bullets for the stale-metadata record and fix command, the mass-deletion record and audit log, and the rule that known gate blocks stop without retrying or becoming generic `pending` races.
+
+### .skilled/skills/sk-git/references/shared-patterns.md
+
+- [P2] .skilled/skills/sk-git/references/shared-patterns.md:18 | 3 | The intro repeats the document description and does not tell readers when to use the reference. | Replace it with: “Use this reference when a task spans worktree, commit, or finish workflows and needs a shared command or error pattern.”
+- [P2] .skilled/skills/sk-git/references/shared-patterns.md:24 | 4 | The overview combines purpose and use without labeling either. | Split it into `### Purpose` with `Consolidate common patterns, commands, and conventions across the worktree, commit, and finish workflows.` and `### When to Use` with `- Use this as a quick lookup for branch naming, Git commands, Conventional Commits, or error handling patterns.`
+- [P2] .skilled/skills/sk-git/references/shared-patterns.md:794 | 7 | The paragraph packs two failure modes and the scoped-staging cross-reference together. | Put the two risks in separate bullets: “The tree can be correct while ignored leftovers make the working directory look broken.” and “Git rename detection can give up at scale.” Keep the scoped-staging cross-reference as a separate closing sentence.
+- [P2] .skilled/skills/sk-git/references/shared-patterns.md:794 | 9 | The reference to the `026 wave-4` reorg records a specific historical phase incident. | Replace the historical sentence with: `This section codifies rename-heavy merge verification. Scoped staging for that operation lives in [commit-workflows.md](./commit-workflows.md) §3 Step 7.`
+
+### .skilled/skills/sk-git/references/unstick-dirty-worktree.md
+
+- [P1] .skilled/skills/sk-git/references/unstick-dirty-worktree.md:115 | 5 | The stop-and-ask gate for an unclear tree appears after the commit and push phases it governs. | Move line 115 to after the Phase 3 validation at line 78 and before Phase 4.
+- [P2] .skilled/skills/sk-git/references/unstick-dirty-worktree.md:24 | 4 | The overview puts Core Principle before When to Use and has no Purpose section. | Insert `### Purpose` with `Restore files missing from a stale checkout while preserving intended local changes.` before the existing When to Use block, then move that block before Core Principle.
+- [P2] .skilled/skills/sk-git/references/unstick-dirty-worktree.md:187 | 9 | The related-resources bullet contains a specific spec-folder path. | Replace the line with: `- Mass-deletion guard: \`.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh\`.`

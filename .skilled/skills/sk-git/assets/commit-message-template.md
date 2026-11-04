@@ -9,14 +9,22 @@ trigger_phrases:
   - "commit subject length rules"
 importance_tier: normal
 contextType: implementation
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # Commit Message Template - Repository-Specific Contract
 
+Use this template before `git commit` to check that an authored message follows the repository's contract.
+
 ## 1. OVERVIEW
 
-This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal. The reasoning lives in `SKILL.md`. This file carries the procedure, the examples, the self-check you run before `git commit` and, in section 7, the rules block every gate enforces.
+### Purpose
+
+This asset shows the commit shape sk-git enforces: a `type(scope): summary` subject, a short prose body and a final trailer paragraph that names the packet and carries the stamped ordinal.
+
+### Usage
+
+The reasoning lives in `SKILL.md`. This file carries the procedure, the examples, the self-check you run before `git commit` and, in section 7, the rules block every gate enforces.
 
 ---
 
@@ -146,9 +154,7 @@ Spec: system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliabili
 Commit-Id: 0009023
 ```
 
-These examples are tightened versions of real commits in this repository's
-own history (`8701343331`, `e6f9a97b8b`, `ed1c269ee6`), grounded in what
-actually gets committed here, not generic auth/API scaffolding.
+These examples are tightened versions of real commits in this repository's own history (`8701343331`, `e6f9a97b8b`, `ed1c269ee6`), grounded in what actually gets committed here, not generic auth/API scaffolding.
 
 ---
 

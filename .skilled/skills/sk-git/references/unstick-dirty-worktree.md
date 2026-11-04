@@ -10,7 +10,7 @@ trigger_phrases:
   - "mass deletion guard blocked commit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Unsticking a Dirty or Behind Worktree
@@ -21,15 +21,19 @@ Recover a session jammed on git state without re-clobbering the branch, and hand
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-A stale checkout's "deletions" are usually files it has not received yet, not files anyone removed — restore them from origin before you commit, and never `git add -A` a tree you have not reconciled.
+Restore files missing from a stale checkout while preserving intended local changes.
 
 ### When to Use
 
 - A session reports a dirty worktree it cannot commit, a rebase blocked by unstaged changes, deletions it did not make, or a commit that "vanished."
 - `git status` shows deleted files that still exist on the remote.
 - A commit was rejected by the mass-deletion guard.
+
+### Core Principle
+
+A stale checkout's "deletions" are usually files it has not received yet, not files anyone removed, so restore them from origin before you commit, and never `git add -A` a tree you have not reconciled.
 
 ### Context
 
@@ -77,6 +81,8 @@ You MUST complete each phase before the next; do not skip ahead to a commit.
 
 **Validation**: `no_phantom_deletions` — `git status --porcelain | grep -cE '^ ?D'` is `0`, or shows only deletions you actually intend.
 
+If after Phase 3 the tree still does not make sense, do NOT guess: report the branch, `HEAD` vs `origin/skilled/v4.0.0.0`, and the deletion/modification counts, and ask before committing.
+
 #### Phase 4: Commit only your real changes
 
 **Purpose**: The tree is now additive/intended. Land your own work.
@@ -111,8 +117,6 @@ You MUST complete each phase before the next; do not skip ahead to a commit.
 | `git reset --hard origin/...` to "clean up" | Destroys another session's uncommitted WIP in a shared checkout | Restore phantoms additively (Phase 3); keep real WIP |
 | Force-pushing the shared branch after a rejection | Overwrites concurrent writers' commits | Rebase onto origin, or push from a worktree off origin |
 | Overriding the mass-deletion guard reflexively | Skips the one check that catches a stale-tree clobber | Investigate the deletion count; override only for a truly intended bulk delete |
-
-If after Phase 3 the tree still does not make sense, do NOT guess — report the branch, `HEAD` vs `origin/skilled/v4.0.0.0`, and the deletion/modification counts, and ask before committing.
 
 ---
 
@@ -184,4 +188,4 @@ counts, and ask before committing.
 - [remote-branch-policy.md](./remote-branch-policy.md) — which branches accept a push and when to ask.
 - [worktree-workflows.md](./worktree-workflows.md) — isolated worktrees, the preferred place for real work.
 - [continuous-integration.md](./continuous-integration.md) — the safe publish model that replaced the removed auto-sync.
-- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh` and packet `specs/sk-git/019-mass-deletion-guard/`.
+- Mass-deletion guard: `.skilled/scripts/git-hooks/lib/mass-deletion-guard.sh`.
