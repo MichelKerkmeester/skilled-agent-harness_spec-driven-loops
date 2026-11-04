@@ -1,7 +1,7 @@
 ---
 title: "SP-010 -- Early exit returns a good prompt unchanged"
 description: "This scenario validates the early exit for `SP-010`. It focuses on returning a prompt that already covers its needed checklist rows unchanged or minimally edited, with a statement that no broader improvement was needed."
-version: 3.0.1.0
+version: 3.0.2.0
 ---
 
 # SP-010 -- Early exit returns a good prompt unchanged
@@ -46,7 +46,7 @@ Here is my prompt, it already has a task, context, constraints and an output for
 
 1. `sk-prompt: Here is my prompt, it already has a task, context, constraints and an output format. Improve it if it needs it.`
 2. `agent: @prompt-improver raw_task="Review an already complete prompt and return it unchanged or minimally edited." task_type=improve target_cli=opencode complexity_hint=3 constraints="Preserve the prompt as written when it covers its rows; name the rows already covered; state that no broader improvement was needed; add no role, examples or process steps."`
-3. `bash: rg -n -A 4 '^## 3\. EARLY EXIT' .skilled/skills/sk-prompt/references/improvement-checklist.md`
+3. `bash: rg -n -A 4 '^## 4\. EARLY EXIT' .skilled/skills/sk-prompt/references/improvement-checklist.md`
 
 ### Expected
 

@@ -1,7 +1,7 @@
 ---
 title: "SP-009 -- One-pass checklist marks every row"
 description: "This scenario validates single-pass checklist marking for `SP-009`. It focuses on proving all ten rows are marked with a reason and that only absent rows reach the prompt."
-version: 3.0.1.0
+version: 3.0.2.0
 ---
 
 # SP-009 -- One-pass checklist marks every row
@@ -46,7 +46,7 @@ Improve my onboarding-email prompt and show me what you checked.
 
 1. `sk-prompt: Improve my onboarding-email prompt and show me what you checked.`
 2. `agent: @prompt-improver raw_task="Improve a prompt that writes onboarding emails while proving every checklist row is marked with a reason." task_type=generation target_cli=opencode complexity_hint=5 constraints="Show all ten rows, mark each present, absent or not needed with a one-line reason, and add only the absent rows."`
-3. `bash: rg '## 2\. THE CHECKLIST|Mark every row present' .skilled/skills/sk-prompt/references/improvement-checklist.md`
+3. `bash: rg '## 3\. THE CHECKLIST|Mark every row present' .skilled/skills/sk-prompt/references/improvement-checklist.md`
 
 ### Expected
 
