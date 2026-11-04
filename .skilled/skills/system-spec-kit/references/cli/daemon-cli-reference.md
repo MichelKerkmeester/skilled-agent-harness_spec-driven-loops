@@ -9,20 +9,24 @@ trigger_phrases:
   - "cli vs mcp transport"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.8
+version: 1.6.1.0
 ---
 
 # Daemon CLI Reference
 
 The daemon CLI shim is the skill-advisor's front door: an IPC client over the advisor's resident daemon and its newline-delimited socket protocol.
 
-Use it for shell diagnostics, CI checks, scripted maintenance, or any programmatic advisor call outside a prompt-time hook.
-
-Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.skilled/bin/*.cjs` shim instead.
+---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The skill-advisor daemon exposes its tool surface through one CLI front door. This reference covers that surface, the invocation forms, the output and exit-code contracts, the warm-only policy, and the recovery path when a stale build refuses to run. It is the operator's map.
+
+### When to Use
+
+- Use it for shell diagnostics, CI checks, scripted maintenance, or any programmatic advisor call outside a prompt-time hook.
 
 ---
 
@@ -48,6 +52,8 @@ When the daemon cannot be reached, a prompt-time hook still answers from the deg
 ---
 
 ## 3. INVOCATION FORMS
+
+Run the repo-relative examples from the repository root. If the caller is in another working directory, use an absolute path to the selected `.skilled/bin/*.cjs` shim instead.
 
 Common form:
 

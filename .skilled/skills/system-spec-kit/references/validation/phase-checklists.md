@@ -8,7 +8,7 @@ trigger_phrases:
   - "validation items by phase"
 importance_tier: normal
 contextType: general
-version: 1.6.0.18
+version: 1.6.1.0
 ---
 
 # Phase Checklists - Validation Items by Development Phase
@@ -19,12 +19,19 @@ Priority-based checklists for each phase of the SpecKit workflow.
 
 ## 1. OVERVIEW
 
-**Priority Levels**:
+### Purpose
+
+Make each phase end on checked items rather than memory, with the blocking ones marked so they cannot be skipped.
+
+### When to Use
+
+Use these checklists during the Completion Verification Rule to ensure all requirements are met.
+
+### Priority Levels
+
 - **P0 (HARD BLOCKER)** - Must complete before proceeding
 - **P1 (MUST COMPLETE)** - Required for completion, can defer with approval
 - **P2 (NICE TO HAVE)** - Optional, can defer without approval
-
-> **Context**: Use these checklists during the Completion Verification Rule to ensure all requirements are met.
 
 ---
 

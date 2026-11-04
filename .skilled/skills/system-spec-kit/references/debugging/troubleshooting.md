@@ -9,7 +9,7 @@ trigger_phrases:
   - "spec folder diagnosis"
 importance_tier: normal
 contextType: general
-version: 1.6.0.39
+version: 1.6.1.0
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide
@@ -20,7 +20,11 @@ Systematic diagnosis and resolution for retrieval, continuity and spec-folder pr
 
 ## 1. OVERVIEW
 
-**Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
+### Purpose
+
+Turn a symptom into its cause and fix in a fixed order, so a failing lookup, save or folder is diagnosed instead of guessed at.
+
+### When to Use
 
 This reference provides structured troubleshooting for spec-folder retrieval and continuity, covering:
 
@@ -29,7 +33,13 @@ This reference provides structured troubleshooting for spec-folder retrieval and
 - **Continuity save failures** - `generate-context.js` rejecting or mis-targeting a save
 - **Spec-folder problems** - missing files, validation errors, wrong packet
 
-Retrieval is lexical and file-based. There is no server to restart, no index to warm and no embedding to blame. That narrows the diagnosis: a miss is a corpus gap, a scoping error, or a broken invocation, and the exit status tells you which.
+### Core Principle
+
+**Core Principle:** Systematic diagnosis before fixes. Never guess at solutions.
+
+- **Retrieval model:** Retrieval is lexical and file-based.
+- **Excluded mechanisms:** There is no server to restart, no index to warm and no embedding to blame.
+- **Miss diagnosis:** That narrows the diagnosis: a miss is a corpus gap, a scoping error, or a broken invocation, and the exit status tells you which.
 
 ### Diagnosis Decision Tree
 
@@ -62,7 +72,7 @@ Issue Detected
 | Lookup refuses to run | Exit `2` from the lookup script | Bad invocation or unreadable index. Check the flags, then `ls -l runtime/data/trigger-index.json` |
 | Index stale after edits | New `trigger_phrases` not matched | Rerun `runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Wrong script path | `File not found` | Use `.skilled/skills/system-spec-kit/` |
-| Arg format error | Invalid scope | Use the full packet path: `specs/<track>/122-skill-standardization` |
+| Arg format error | Invalid scope | Use the full packet path: `specs/<track>/<NNN-skill-standardization>` |
 | Ripgrep result set surprises you | Files appear or vanish between runs | Missing `--no-config` or reordered globs; copy the recipe verbatim |
 
 ### Before/After: Common Mistakes

@@ -8,7 +8,7 @@ trigger_phrases:
   - "required templates by level"
 importance_tier: normal
 contextType: planning
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Template Mapping - Level to File Assignments
@@ -298,12 +298,21 @@ ls -d specs/[0-9]*/ | sed 's/.*\/\([0-9]*\)-.*/\1/' | sort -n | tail -1
 ```
 Add 1 to get next number.
 
-### Step 3: Create Folder
+### Step 3: Present to User
+- Show level chosen
+- Show folder path
+- Show which templates used (required vs optional)
+- Explain approach
+
+### Step 4: Wait for Approval
+Get explicit "yes/go ahead/proceed" before ANY file changes.
+
+### Step 5: Create Folder
 ```bash
 mkdir -p specs/###-short-name/
 ```
 
-### Step 4: Copy Required Templates (Complete Sets)
+### Step 6: Copy Required Templates (Complete Sets)
 
 **Level 1 (Baseline) - ALL features start here:**
 ```bash
@@ -325,7 +334,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --path specs/###-name --name feature-name
 ```
 
-### Step 5: Copy Optional Templates (Level 3/3+ - If Needed)
+### Step 7: Copy Optional Templates (Level 3/3+ - If Needed)
 
 ```bash
 # Comprehensive Research
@@ -336,20 +345,11 @@ bash .skilled/skills/system-spec-kit/runtime/cli/templates/inline-gate-renderer.
   .skilled/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
-### Step 6: Fill Templates
+### Step 8: Fill Templates
 - Replace every `[YOUR_VALUE_HERE: ...]` token
 - Remove sample/example sections
 - Adapt to specific feature
 - Remove instructional comments
-
-### Step 7: Present to User
-- Show level chosen
-- Show folder path
-- Show which templates used (required vs optional)
-- Explain approach
-
-### Step 8: Wait for Approval
-Get explicit "yes/go ahead/proceed" before ANY file changes.
 
 **Enforcement:** Verify required templates exist before claiming completion for the chosen level.
 

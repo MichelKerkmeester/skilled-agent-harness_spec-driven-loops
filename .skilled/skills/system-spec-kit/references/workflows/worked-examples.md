@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature implementation example"
 importance_tier: normal
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Worked Examples Reference
@@ -19,11 +19,12 @@ Practical scenarios demonstrating SpecKit workflows for different documentation 
 
 ## 1. OVERVIEW
 
-### What Are Worked Examples?
+### Purpose
 
 These examples demonstrate real-world usage of the SpecKit system across different complexity levels and scenarios. Each example shows the complete flow from Gate 3 (spec folder question) through implementation and completion, providing practical templates you can follow.
 
-**Core Purpose**:
+### When to Use
+
 - **Learn by Example** - See complete workflows in action
 - **Level Selection** - Understand when to use Level 1, 2, or 3
 - **Resume Patterns** - Learn how to continue interrupted work
@@ -40,6 +41,16 @@ These examples demonstrate real-world usage of the SpecKit system across differe
 | Feature Implementation | Notification system | 2 | ~300 | Checklist-driven QA |
 | Architecture Change | REST to GraphQL migration | 3 | ~800 | Decision records |
 | Resuming Work | Continue previous session | N/A | N/A | Context recovery |
+
+### Level Selection Guide
+
+| LOC | Risk | Level | Key File Added |
+|-----|------|-------|----------------|
+| <100 | Low | 1 | (base set only) |
+| 100-499 | Medium | 2 | acceptance-criteria.md |
+| 500+ | High | 3 | decision-record.md |
+
+> **Note**: Risk and complexity can override LOC thresholds. When in doubt, choose the higher level.
 
 ---
 
@@ -274,8 +285,7 @@ AI: Loading context for specs/009-notification-system/
 | File | Purpose |
 |------|---------|
 | `handover.md` | Session state snapshot in the packet root |
-| `tasks.md` | Progress tracking (6/10 verification items) |
-| `tasks.md` | Next action identification |
+| `tasks.md` | Progress tracking (6/10 verification items) and next action identification |
 
 ### Key Takeaways
 
@@ -294,7 +304,7 @@ AI: Loading context for specs/009-notification-system/
 
 | File | Purpose |
 |------|---------|
-| level specifications reference | Detailed level requirements and thresholds |
+| [level-specifications.md](../templates/level-specifications.md) | Detailed level requirements and thresholds |
 | [template-guide.md](../templates/template-guide.md) | Template usage and customization |
 | [folder-structure.md](../structure/folder-structure.md) | Spec folder organization |
 
@@ -307,15 +317,3 @@ AI: Loading context for specs/009-notification-system/
 | `/speckit:implement` | Implementation with existing plan |
 | `/speckit:resume` | Continue from previous session |
 | `/speckit:save` | Save context before ending session |
-
-### Level Selection Guide
-
-| LOC | Risk | Level | Key File Added |
-|-----|------|-------|----------------|
-| <100 | Low | 1 | (base set only) |
-| 100-499 | Medium | 2 | acceptance-criteria.md |
-| 500+ | High | 3 | decision-record.md |
-
-> **Note**: Risk and complexity can override LOC thresholds. When in doubt, choose the higher level.
-
----

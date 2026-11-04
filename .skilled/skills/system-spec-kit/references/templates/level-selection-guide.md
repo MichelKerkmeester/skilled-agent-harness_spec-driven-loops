@@ -8,7 +8,7 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm
@@ -18,6 +18,14 @@ Guide to selecting appropriate documentation levels based on task complexity.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Choose documentation depth from task complexity.
+
+### When to Use
+
+Use this guide when deciding whether to follow the complexity recommendation or set `--level N` directly.
 
 > Use `--level N` with `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` to select a level directly.
 

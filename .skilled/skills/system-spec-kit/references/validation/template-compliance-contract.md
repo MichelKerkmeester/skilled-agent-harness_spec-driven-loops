@@ -8,7 +8,7 @@ trigger_phrases:
   - "level contract headings"
 importance_tier: important
 contextType: implementation
-version: 1.6.0.17
+version: 1.6.1.0
 ---
 
 # Template Compliance Contract
@@ -19,6 +19,16 @@ Defines the exact heading hierarchy, required anchors, and content minimums for 
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Give authors and the validator one shared contract, so a document that follows it passes and a document that fails it is told exactly why.
+
+### When to Use
+
+- **Before writing** any spec folder `.md` file — consult the contract for the target level
+- **After writing** any spec folder `.md` file — run `validate.sh --strict`
+- **When syncing** agent definitions after template changes — follow the Sync Protocol (§9)
+
 ### Core Principle
 
 > Every spec folder document must match its level-specific structural contract — the exact heading hierarchy, required anchors, and content minimums — as defined by this reference and enforced by `validate.sh`.
@@ -27,12 +37,6 @@ Defines the exact heading hierarchy, required anchors, and content minimums for 
 
 - **Generator:** `template-structure.js` `loadTemplateContract()` output (`runtime/cli/utils/template-structure.js`)
 - **Applies to:** `distributed-governance spec authoring` agent definitions across all CLIs
-
-### When to Use
-
-- **Before writing** any spec folder `.md` file — consult the contract for the target level
-- **After writing** any spec folder `.md` file — run `validate.sh --strict`
-- **When syncing** agent definitions after template changes — follow the Sync Protocol (§9)
 
 ---
 
@@ -45,6 +49,31 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <SPEC_FOLDER> 
 ```
 
 Fix ALL errors before proceeding to the next file or workflow step.
+
+### Discovering a Level's Contract (Do Not Guess)
+
+Before authoring (or fixing) a spec folder to pass `validate.sh --strict`, ask the contract engine directly rather than copying `templates/examples/level_N/` (whose anchor ids and section order **differ** from what the validator enforces). Two checks are independent: **required anchors** (presence) and **header order** — a doc can have every anchor yet still fail on ordering.
+
+```bash
+cd .skilled/skills/system-spec-kit/runtime/cli/utils
+
+# Required anchors + section gates for a level (the ANCHORS_VALID source of truth):
+node template-structure.js level-contract 3
+
+# Required headers + their ORDER + required anchors for ONE doc type:
+node template-structure.js contract 3 spec.md
+
+# Compare an in-progress doc against the contract (missing / out-of-order / extras):
+node template-structure.js compare 3 spec.md <abs-path-to>/spec.md all
+```
+
+Notes that bite if ignored:
+- **Two sources, both must pass.** Required anchors come from `templates/spec-kit-docs.json` (`levels.<N>.sectionGates`); required-header *order* comes from `template-structure.js` against `templates/<doc>.md.tmpl`. They are checked separately.
+- **Section numbering is cosmetic** — the checker strips a leading `N. ` before matching, so renumbering headers never fixes (or breaks) order; only the relative sequence matters.
+- **Level-3 spec.md ordering gotcha:** `OPEN QUESTIONS` comes LAST (after `RISK MATRIX` and `USER STORIES`), even though the `questions` anchor is listed earlier in the gate set.
+- **decision-record.md** needs an `adr-001` wrapper anchor enclosing the per-ADR sub-anchors (`adr-001-context/-decision/-alternatives/-consequences/-five-checks/-impl`).
+- Put the maintained `_memory.continuity` frontmatter block in `implementation-summary.md` when that file exists; `spec.md` is the fallback host only when the implementation summary is absent. Resume reads the continuity tier from `implementation-summary.md`, so do not add stale continuity blocks to plan, tasks, or checklist files.
+- If a header looks correct yet still flags as out-of-order with the same message repeated, the file likely has hidden duplicated content — overwrite the whole doc with one clean write instead of chasing edits.
 
 ---
 
@@ -235,8 +264,8 @@ Agents MUST meet these thresholds to avoid warnings:
 | Requirements (`REQ-*` in spec.md) | ≥ 3 | ≥ 5 | ≥ 8 |
 | Acceptance scenarios (`**Given**` in spec.md) | ≥ 2 | ≥ 4 | ≥ 6 |
 
-**Requirements format**: Use `REQ-001`, `REQ-002`, etc. in the Requirements section.
-**Acceptance scenario format**: Use `**Given** [context], **When** [action], **Then** [outcome]` in the Success Criteria or Edge Cases section.
+- **Requirements format**: Use `REQ-001`, `REQ-002`, etc. in the Requirements section.
+- **Acceptance scenario format**: Use `**Given** [context], **When** [action], **Then** [outcome]` in the Success Criteria or Edge Cases section.
 
 ---
 
@@ -244,36 +273,19 @@ Agents MUST meet these thresholds to avoid warnings:
 
 Phase **children** (e.g., `specs/NNN-name/001-phase/`) inherit the base contract for their level plus phase-specific addenda. These are enforced automatically by `validate.sh` via `inferPhaseSpecAddenda()` in `template-structure.js`. No additional agent knowledge is needed for children — follow the base contract and validate after writing.
 
-Phase **parents** are NOT subject to Level 1–3+ structural contracts. When a folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9][a-z0-9-]*$` AND ≥1 such child has `spec.md` OR `description.json`), the parent uses the lean phase-parent template at `templates/packet-types/phase-parent.spec.md.tmpl` exclusively and only requires the lean trio: `spec.md` + `description.json` + `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live in the children, not at the parent. The validator's phase-parent branch in `check-files.sh`, `check-level-match.sh`, `check-template-source.sh`, and the native `ANCHORS_VALID` rule automatically skips Level-N expectations when `is_phase_parent($folder)` returns true.
+Phase **parents** are NOT subject to Level 1–3+ structural contracts.
+
+A folder qualifies as a phase parent when both hold:
+
+- ≥1 direct child matches `^[0-9]{3}-[a-z0-9][a-z0-9-]*$`
+- ≥1 such child has `spec.md` OR `description.json`
+
+A qualifying parent uses the lean phase-parent template at `templates/packet-types/phase-parent.spec.md.tmpl` exclusively and only requires the lean trio: `spec.md` + `description.json` + `graph-metadata.json`.
+
+- Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live in the children, not at the parent.
+- The validator's phase-parent branch in `check-files.sh`, `check-level-match.sh`, `check-template-source.sh`, and the native `ANCHORS_VALID` rule automatically skips Level-N expectations when `is_phase_parent($folder)` returns true.
 
 Phase-parent `spec.md` content discipline is a template convention, not a validated rule: the parent should avoid consolidation/merge/migration narratives. Required content is root purpose + sub-phase control file + what-needs-done. Migration history belongs in the changelog, not in the parent. Tolerant policy preserves legacy phase parents that retain heavy docs.
-
----
-
-## 8.5. DISCOVERING A LEVEL'S CONTRACT (DO NOT GUESS)
-
-Before authoring (or fixing) a spec folder to pass `validate.sh --strict`, ask the contract engine directly rather than copying `templates/examples/level_N/` (whose anchor ids and section order **differ** from what the validator enforces). Two checks are independent: **required anchors** (presence) and **header order** — a doc can have every anchor yet still fail on ordering.
-
-```bash
-cd .skilled/skills/system-spec-kit/runtime/cli/utils
-
-# Required anchors + section gates for a level (the ANCHORS_VALID source of truth):
-node template-structure.js level-contract 3
-
-# Required headers + their ORDER + required anchors for ONE doc type:
-node template-structure.js contract 3 spec.md
-
-# Compare an in-progress doc against the contract (missing / out-of-order / extras):
-node template-structure.js compare 3 spec.md <abs-path-to>/spec.md all
-```
-
-Notes that bite if ignored:
-- **Two sources, both must pass.** Required anchors come from `templates/spec-kit-docs.json` (`levels.<N>.sectionGates`); required-header *order* comes from `template-structure.js` against `templates/<doc>.md.tmpl`. They are checked separately.
-- **Section numbering is cosmetic** — the checker strips a leading `N. ` before matching, so renumbering headers never fixes (or breaks) order; only the relative sequence matters.
-- **Level-3 spec.md ordering gotcha:** `OPEN QUESTIONS` comes LAST (after `RISK MATRIX` and `USER STORIES`), even though the `questions` anchor is listed earlier in the gate set.
-- **decision-record.md** needs an `adr-001` wrapper anchor enclosing the per-ADR sub-anchors (`adr-001-context/-decision/-alternatives/-consequences/-five-checks/-impl`).
-- Put the maintained `_memory.continuity` frontmatter block in `implementation-summary.md` when that file exists; `spec.md` is the fallback host only when the implementation summary is absent. Resume reads the continuity tier from `implementation-summary.md`, so do not add stale continuity blocks to plan, tasks, or checklist files.
-- If a header looks correct yet still flags as out-of-order with the same message repeated, the file likely has hidden duplicated content — overwrite the whole doc with one clean write instead of chasing edits.
 
 ---
 
@@ -309,7 +321,7 @@ When templates in `templates/` change:
 
 ### Scripts
 - [validate.sh](../../runtime/cli/spec/validate.sh) — Validation orchestrator enforcing these contracts
-- [template-structure.js](../../runtime/cli/utils/template-structure.js) — Contract extraction engine; run `level-contract`, `contract`, or `compare` (see §8.5) to discover required anchors + header order instead of guessing
+- [template-structure.js](../../runtime/cli/utils/template-structure.js) — Contract extraction engine; run `level-contract`, `contract`, or `compare` (see §2) to discover required anchors + header order instead of guessing
 
 ### Templates
 - [template-guide.md](../templates/template-guide.md) — Template usage and composition rules

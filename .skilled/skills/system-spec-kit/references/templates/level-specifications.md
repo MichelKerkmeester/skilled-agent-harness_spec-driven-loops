@@ -8,7 +8,7 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
@@ -18,6 +18,14 @@ Complete specifications for all documentation levels using the manifest-backed L
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Compare the requirements and template contents for each documentation level, where higher levels add value, not just length.
+
+### When to Use
+
+Use this reference when selecting or checking a spec's documentation level.
 
 ### Template Architecture: Manifest-Backed Level Contracts
 
@@ -638,7 +646,7 @@ active (resume)
 
 ---
 
-## 8. RELATED SPECS: UPDATE VS CREATE
+## 8. UPDATE AN EXISTING SPEC OR CREATE A NEW ONE
 
 ### When to UPDATE Existing Spec
 

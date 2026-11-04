@@ -8,7 +8,7 @@ trigger_phrases:
   - "rename surface taxonomy"
 importance_tier: normal
 contextType: implementation
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Rename Pattern — mechanical refactor template
@@ -55,7 +55,13 @@ Every rename touches some subset of these categories. Map each before starting.
 
 ---
 
-## 3. WORKFLOW
+## 3. CASE-SENSITIVITY GOTCHA
+
+Per the `feedback_rename_grep_case_insensitive` memory note: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in `ROUTER.md` examples often uses underscores.
+
+---
+
+## 4. WORKFLOW
 
 ### Phase A — Pre-flight (sequential)
 1. Capture a rg baseline: `rg -l "<old-name>" --hidden -g '!node_modules' -g '!.git/**' -g '!**/skill-graph*.sqlite*' > scratch/rg/rg-baseline-before-files.txt`
@@ -63,7 +69,10 @@ Every rename touches some subset of these categories. Map each before starting.
 3. Read the cli-X SKILL.md file before composing any cli-X dispatch (per AGENTS.md CLI dispatch rule).
 
 ### Phase B — Optional CLI verification
-Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to verify the rename plan against each surface group. Read the chosen executor's SKILL.md before composing the dispatch (per AGENTS.md CLI dispatch rule). Apply bundle gate per the `feedback_bundle_gate_smoke_run` memory note. Aggregate verified bundles.
+1. Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to verify the rename plan against each surface group.
+2. Read the chosen executor's SKILL.md before composing the dispatch (per AGENTS.md CLI dispatch rule).
+3. Apply bundle gate per the `feedback_bundle_gate_smoke_run` memory note.
+4. Aggregate verified bundles.
 
 ### Phase C — Execute renames (parallel-eligible across disjoint surface groups)
 1. `git mv` dir/file renames (preserves rename history; `git log --follow` traces back).
@@ -84,10 +93,6 @@ Dispatch 2-4 parallel read-only CLI jobs (e.g. cli-opencode or cli-opencode) to 
 5. When the renamed folder is a packet directly under a track, run `node .skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs --track <track> --apply`. `generate-context.js` only adds the new name, and the pre-push hook blocks a commit whose track still lists the old one.
 
 ---
-
-## 4. CASE-SENSITIVITY GOTCHA
-
-Per the `feedback_rename_grep_case_insensitive` memory note: the final-gate grep MUST use `rg -il` (case-insensitive). UPPERCASE / Title-Case / underscore variants are easy to miss. Always also check for the underscore variant of any hyphenated identifier (e.g., `sk_small_model` next to `sk-small-model`) — Python pseudocode in `ROUTER.md` examples often uses underscores.
 
 ---
 

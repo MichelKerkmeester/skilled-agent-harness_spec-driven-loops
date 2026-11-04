@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -18,7 +18,7 @@ version: 1.6.5.0
 > Writing or amending a `goal.md`, including a phase parent's binding table? Use
 > `/create:goal` from `sk-create-goal`.
 
-Fast lookup for spec folder commands, checklists, and troubleshooting.
+Open it when you need a command, a checklist or a troubleshooting path without reading the full guide.
 
 ---
 
@@ -187,8 +187,8 @@ Before making ANY file changes, verify:
 - [ ] Presented approach to user (including templates used)
 - [ ] Got explicit approval ("yes"/"go ahead"/"proceed")
 
-**If ANY unchecked → STOP**
-**If required template missing → Cannot claim completion**
+- **If ANY unchecked → STOP**
+- **If required template missing → Cannot claim completion**
 
 ---
 
@@ -264,10 +264,10 @@ New/unrelated work is allowed to use Option B, but the new packet must still be 
 
 When Gate 3 applies, always present all four stable labels and ask the user to choose:
 
-**Option A:** Continue in the detected/current spec or current phase child when its scope fits.
-**Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
-**Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, a related standard packet decomposed into phases when it meets both phase thresholds, or a series parent when the work is a different change to the same artifact as an existing packet in the same track (phase-definitions.md §2).
-**Option D:** Skip spec documentation after the required warning or under an existing exemption.
+- **Option A:** Continue in the detected/current spec or current phase child when its scope fits.
+- **Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
+- **Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, a related standard packet decomposed into phases when it meets both phase thresholds, or a series parent when the work is a different change to the same artifact as an existing packet in the same track (phase-definitions.md §2).
+- **Option D:** Skip spec documentation after the required warning or under an existing exemption.
 
 **Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet, including a series parent; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
 
@@ -457,8 +457,8 @@ Before presenting documentation to user:
 - [ ] Structure matches template
 - [ ] Descriptive filenames used (for decision records)
 
-**If ANY unchecked → Fix before user presentation**
-**If required template missing → Cannot claim completion**
+- **If ANY unchecked → Fix before user presentation**
+- **If required template missing → Cannot claim completion**
 
 ---
 
@@ -492,7 +492,13 @@ Only load root memory when updating coordination snapshots.
 2. If the pointer is null, missing, malformed, points outside the parent, or names a child that no longer exists, fall back to listing children with statuses (sourced from each child's `graph-metadata.json` `derived.status`) and let the user pick.
 3. `--no-redirect` flag bypasses the pointer step entirely and shows the parent's spec.md plus child list.
 
-The pointer is maintained automatically by the generator: a save into a child points every phase-parent ancestor one level down toward it. A save aimed at a phase parent moves the pointers only when a `--full-auto` save routes its continuity into a leaf, and otherwise moves none. A track root keeps its pointer in the telemetry store only. Atomic write via temp+rename. No `_memory.continuity` block exists at a phase parent (per the lean trio policy — parents have no `implementation-summary.md`).
+The pointer is maintained automatically by the generator:
+
+- A save into a child points every phase-parent ancestor one level down toward it.
+- A save aimed at a phase parent moves the pointers only when a `--full-auto` save routes its continuity into a leaf, and otherwise moves none.
+- A track root keeps its pointer in the telemetry store only.
+- Atomic write via temp+rename.
+- No `_memory.continuity` block exists at a phase parent (per the lean trio policy: parents have no `implementation-summary.md`).
 
 **Save location:**
 - Primary: the active packet's canonical continuity surfaces
@@ -721,10 +727,7 @@ When in doubt:
 - [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation template
 
 **Summary Templates:**
-- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 1 baseline)
-- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 2)
-- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 3)
-- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary (Level 3+)
+- [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Required completion summary at every level
 
 ### Related Skills
 - `sk-code` - Implementation, debugging, and verification lifecycle

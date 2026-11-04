@@ -8,18 +8,22 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Spec Authoring Card
 
 This card is the short path. Follow the steps in order. Each step has one action, one acceptance line and one command. When the command prints what the acceptance line says, go to the next step.
 
-`references/templates/template-guide.md` is the long guide. Read it only when a section's fill note leaves you unsure what to write.
-
-## 1. OVERVIEW AND BOUNDS
+## 1. OVERVIEW
 
 You write one packet, in one folder. The folder is the one `create.sh` prints.
+
+Each step has one action, one acceptance line and one command. When the command prints what the acceptance line says, go to the next step.
+
+`references/templates/template-guide.md` is the long guide. Read it only when a section's fill note leaves you unsure what to write.
+
+### Bounds
 
 Allowed writes: the packet folder and its `scratch/` folder.
 Forbidden: `git commit`, `git push`, `git checkout`, `git switch`, `git branch`, `git reset`, `git stash`, `generate-context.js`, `/speckit:save`. Do not edit `.skilled/`, another packet or a source file. Do not run `create.sh` twice.

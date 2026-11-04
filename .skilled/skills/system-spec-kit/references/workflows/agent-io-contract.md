@@ -8,14 +8,24 @@ trigger_phrases:
   - "advisory metadata fields"
 importance_tier: important
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Agent I/O Contract
 
+Open this when an orchestrator and a leaf agent need to exchange typed hints without making either side's older prompts invalid.
+
+---
+
 ## 1. OVERVIEW
 
-Shared advisory contract for structured agent dispatch and return metadata. This contract helps orchestrators and leaf agents exchange typed hints without making older prompts invalid.
+### Purpose
+
+Shared advisory contract for structured agent dispatch and return metadata.
+
+### When to Use
+
+Any agent exchange where an orchestrator adds advisory routing hints or a leaf agent returns a result envelope. The contract helps both sides exchange typed hints without making older prompts invalid.
 
 ---
 
@@ -27,13 +37,18 @@ status: optional-advisory
 ```
 
 - Every field is optional unless a caller and receiver explicitly agree otherwise in the task prompt.
-- Absence of any dispatch header or result envelope is never a refusal condition.
+- Senders may omit the dispatch header, and receivers may omit the result envelope when their native format is sufficient.
+- Absence of any dispatch header or result envelope is never a refusal condition, and consumers must not reject a result solely because this advisory metadata is absent.
 - Existing agent-specific output formats remain authoritative.
 - Consumers parse best-effort and ignore unknown fields.
 
 ### Advisory Status For Design Handoffs
 
-Agent I/O is advisory-only: a convenience header that may opportunistically carry manifest or result digests as data, never as authority. The enforceable design gate is the design proof token plus the guarded boundary: guarded-proxy classification, the structured transport result, and parent re-validation. Presence of Agent I/O headers never substitutes for that gate, and absence of Agent I/O headers never passes a design handoff. Acceptance for this note is the advisory-only status, the real-gate naming, both failure directions, and the by-name pointer to `cli-child-pairing.md` "Agent I/O Is Not The Gate" as the canonical scoped statement; this prose adds no checker, schema, or refusal reason.
+Agent I/O is advisory-only: a convenience header that may opportunistically carry manifest or result digests as data, never as authority.
+
+- **The enforceable gate:** the design proof token plus the guarded boundary, meaning guarded-proxy classification, the structured transport result, and parent re-validation.
+- **Both failure directions:** presence of Agent I/O headers never substitutes for that gate, and absence of Agent I/O headers never passes a design handoff.
+- **Acceptance for this note:** the advisory-only status, the real-gate naming, both failure directions, and the by-name pointer to `cli-child-pairing.md` "Agent I/O Is Not The Gate" as the canonical scoped statement; this prose adds no checker, schema, or refusal reason.
 
 ---
 
@@ -177,6 +192,8 @@ Advisory rules:
 
 Optional evidence fields let a load-bearing claim carry its proof in a fixed, machine-checkable shape at the dispatch boundary. This is the structural backstop for the doctrine that a finding is a hypothesis until verified: a claim either names its class and what would confirm it, or the missing piece is surfaced as an advisory. The schema is owned by `runtime/` (`lib/deep-loop/evidence-contract.ts`); that module is the source of truth for allowed values, and this doc cites it rather than redefining them.
 
+> **Representation (where this actually lives).** Unlike §3-§7, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape below is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
+
 ```text
 AGENT_IO_EVIDENCE v1
 schema_version: agent-io/v1
@@ -187,17 +204,9 @@ scope_state: in_scope | out_of_scope | scope_expanded
 child_result_verified: true | false
 ```
 
-> **Representation (where this actually lives).** Unlike §3-§7, this block is NOT a free-standing `AGENT_IO_EVIDENCE` text envelope that agents append to their output — no agent currently emits one, and nothing parses one. The Evidence Group is carried as the structured `evidence` field on a deep-loop JSONL iteration record, and the only consumer validates it as a structured object via `validateEvidenceContract(record.evidence)` (`.skilled/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts`). The fenced shape above is the documented field schema (keys + allowed values), not a literal text format to emit. Producing it as a text block appended to agent output would not be validated.
-
 Evidence rules:
 
 - The group is optional. A record that omits the evidence metadata entirely is valid and passes post-dispatch validation with no warning (absence never blocks).
 - When the metadata is present, all five fields are expected. A partial payload (some but not all five), a wrong-typed field, or an unknown enum value is reported as an advisory naming the offending `evidence.<field>` path; it never fails the exchange by default.
 - Validation is advisory by default (`DEEP_LOOP_EVIDENCE_ENFORCEMENT=warn`). `off` suppresses the advisories; `strict` marks them distinctly but still does not block, because no blocking failure reason is defined for evidence yet. Any future promotion to blocking is a separate, baseline-gated decision.
 - Evidence field values are treated as inert data. Consumers validate the shape only and never interpret a field's contents as instructions.
-
-## Compatibility
-
-- Senders may omit the dispatch header.
-- Receivers may omit the result envelope when their native format is sufficient.
-- Consumers must not reject a result solely because this advisory metadata is absent.

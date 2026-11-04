@@ -8,10 +8,14 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 2.7.1.0
+version: 2.7.2.0
 ---
 
 # Spec Folder Write Recipe
+
+Read this before the first file of a new spec folder is written.
+
+---
 
 ## 1. OVERVIEW
 

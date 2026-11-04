@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.23.0
+version: 2.7.24.0
 ---
 
 # System Spec Kit
@@ -32,9 +32,19 @@ version: 2.7.23.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
+### Purpose
 
 AI conversations that modify files leave no reasoning trail. The session ends and the why behind every decision vanishes. A new session starts from a blank slate, so the architecture you explained on Monday is gone by Wednesday. Without enforced documentation and durable continuity, one session cannot build on another.
+
+### When to Use
+
+Reach for System Spec Kit whenever a conversation is about to modify files, when a session ends and context should survive or when a new session needs to pick up prior work.
+
+- Gate 3 asks "Which spec folder?" and the work needs a new or existing packet
+- A session ends and the reasoning behind the changes should survive
+- A new session starts on work from a previous one
+- A feature is large enough to split into phases
+- A spec folder needs validation before completion
 
 ### What It Does
 
@@ -72,9 +82,24 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 | **Gate 1 trigger lookup** | a committed index over author-declared `trigger_phrases`, answered from a cold Node process with no service running |
 | **Free-text retrieval** | literal ripgrep recipes scoped by track and packet, ordered by a caller-side ranking tuple |
 | **Continuity** | the `handover.md` then `_memory.continuity` then packet-docs ladder, written by `generate-context.js` |
-| **Session relaunch** | Ships off until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime. `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi, OpenCode and Hermes and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer. Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction. Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under it, also in a repository that links `.skilled`. Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show. Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)) |
-| **Decision capture** | answers you give to the AI's questions are queued per project under `.skilled/skills/.state/decision-capture/` by the Claude Code, Pi, OpenCode and Devin adapters, and the save-time sweeps add Codex and anything a live path missed. A full-auto `/speckit:save` writes each one into the bound packet's `decision-record.md`, offers a plain-chat answer only with its evidence and after you confirm it, and leaves process questions out. `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns it off ([hooks README](../../hooks/README.md), [save workflow](references/memory/save-workflow.md)) |
+| **Session relaunch** | Relaunches a near-limit session in a fresh runtime in the same terminal, gated per runtime and carrying a handoff note |
+| **Decision capture** | Queues the answers you give to the AI's questions and writes them into the bound packet's `decision-record.md` on a full-auto save |
 | **Declared loss** | semantic paraphrase, vector and BM25 fusion, decay, access tracking, session dedup and causal traversal are retired with no successor |
+
+**Session relaunch**
+
+- Ships off until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
+- `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi, OpenCode and Hermes and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer.
+- Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
+- Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under it, also in a repository that links `.skilled`.
+- Every hop also adds a line to a gitignored hop history that `session-relaunch.cjs history` and `/doctor:setup` show.
+- Its handoff note is gitignored runtime state for the next session, not the packet's `handover.md` ([`/speckit:handoff`](../../commands/speckit/handoff.md), [session-relaunch](../../hooks/session-relaunch/README.md)).
+
+**Decision capture**
+
+- Answers you give to the AI's questions are queued per project under `.skilled/skills/.state/decision-capture/` by the Claude Code, Pi, OpenCode and Devin adapters, and the save-time sweeps add Codex and anything a live path missed.
+- A full-auto `/speckit:save` writes each one into the bound packet's `decision-record.md`, offers a plain-chat answer only with its evidence and after you confirm it, and leaves process questions out.
+- `SYSTEM_DECISION_CAPTURE_DISABLED=1` turns it off ([hooks README](../../hooks/README.md), [save workflow](references/memory/save-workflow.md)).
 
 The retrieval contract is `references/retrieval/retrieval-conventions.md`, and the corpus convention those recipes depend on is `references/structure/grep-convention.md`. A lookup that matches nothing returns nothing; nothing degrades to an approximate answer.
 
@@ -297,17 +322,14 @@ Optional support documents such as `handover.md`, `debug-delegation.md` and `res
 
 `create.sh` rejects `--path` values that traverse outside the repository with a clear error before any write. Set `SPECKIT_POST_VALIDATE=1` when a strict workflow should run full validation immediately after scaffolding. A mkdir-based advisory lock protects `description.json` and `graph-metadata.json` writes during canonical save so two parallel `/speckit:save` calls for the same packet do not race.
 
-The memory MCP server that used to sit here is gone. It held the search pipeline, query
-intelligence, the memory lifecycle, save scoring, the causal graph, index self-maintenance and
-the evaluation harness, and none of that came back in another form.
+System Spec Kit has no memory MCP server. Its search pipeline, query intelligence, memory lifecycle, save scoring, causal graph, index self-maintenance and evaluation harness have no successor.
 
-Retrieval is now two lexical lanes over committed files. `lookup-trigger-index.mjs` matches a
-prompt against author-declared `trigger_phrases` through the generated index, and the ripgrep
-recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.
-Continuity is written by `runtime/cli/dist/continuity/generate-context.js` into the packet itself and read
-back through the ladder `/speckit:resume` walks. Semantic paraphrase, ranking fusion, decay,
-access tracking, session dedup and graph traversal have no successor: a phrase nobody wrote is a
-clean no-hit.
+Retrieval is two lexical lanes over committed files.
+
+- **Trigger-index lookup:** `lookup-trigger-index.mjs` matches a prompt against author-declared `trigger_phrases` through the generated index.
+- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus.
+- **Continuity:** `runtime/cli/dist/continuity/generate-context.js` writes it into the packet itself, and `/speckit:resume` reads it back through the ladder it walks.
+- **Declared losses:** semantic paraphrase, ranking fusion, decay, access tracking, session dedup and graph traversal have no successor, so a phrase nobody wrote is a clean no-hit.
 
 ---
 
@@ -400,16 +422,6 @@ The engine resolves feature flags at call time rather than at import, so a long-
 ---
 
 ## 7. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for System Spec Kit whenever a conversation is about to modify files, when a session ends and context should survive or when a new session needs to pick up prior work.
-
-- Gate 3 asks "Which spec folder?" and the work needs a new or existing packet
-- A session ends and the reasoning behind the changes should survive
-- A new session starts on work from a previous one
-- A feature is large enough to split into phases
-- A spec folder needs validation before completion
 
 ### Boundaries
 

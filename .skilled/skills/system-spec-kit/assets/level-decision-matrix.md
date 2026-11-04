@@ -8,7 +8,7 @@ trigger_phrases:
   - "secondary factors override"
 importance_tier: normal
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Level Decision Matrix - Complexity Scoring Guide
@@ -257,11 +257,11 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 
 If scope grows during implementation, escalate by adding the required files:
 
-| From Level | To Level                   | Action                                          | Files to Add                                                    |
-| ---------- | -------------------------- | ----------------------------------------------- | --------------------------------------------------------------- |
-| 1 → 2      | Add verification           | `acceptance-criteria.md` and the tasks.md checklist |                                                                 |
-| 2 → 3      | Add decision documentation | No new file (`decision-record.md` and `research/research.md` on request) |                                                                 |
-| 3 → 3+     | Add governance             | AI execution protocol + extended checklist      | Approval workflow in spec.md, sign-off section in tasks.md + multi-agent coordination patterns |
+| Transition | Change                     | Additions                                                       |
+| ---------- | -------------------------- | --------------------------------------------------------------- |
+| 1 → 2      | Add verification           | `acceptance-criteria.md` and the tasks.md checklist             |
+| 2 → 3      | Add decision documentation | No new file (`decision-record.md` and `research/research.md` on request) |
+| 3 → 3+     | Add governance             | AI execution protocol + extended checklist; approval workflow in spec.md, sign-off section in tasks.md + multi-agent coordination patterns |
 
 **Changelog example:**
 ```markdown
@@ -314,23 +314,7 @@ Architectural decision? ──YES──→ Level 3 (add decision-record.md)
 
 ---
 
-## 11. SPEC TRACEABILITY
-
-This decision matrix addresses the following spec requirements:
-
-| Requirement | Section | Description                                     |
-| ----------- | ------- | ----------------------------------------------- |
-| REQ-006     | §2.1    | Level 1 baseline documentation requirements     |
-| REQ-007     | §2.2    | Level 2 verification requirements (tasks checklist and acceptance criteria) |
-| REQ-008     | §2.3    | Level 3 full documentation (decision records)   |
-| REQ-009     | §2.4    | Level 3+ extended documentation (governance)    |
-| REQ-010     | §3      | LOC as one scored input to the level recommender |
-
-**Source**: `.skilled/skills/system-spec-kit/SKILL.md`
-
----
-
-## 12. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 ### Asset Files
 - [complexity-decision-matrix.md](./complexity-decision-matrix.md) - Complexity-based level selection and scoring

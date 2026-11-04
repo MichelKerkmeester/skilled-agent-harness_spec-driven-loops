@@ -9,7 +9,7 @@ trigger_phrases:
   - "decision evaluation framework"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.14
+version: 1.6.1.0
 ---
 
 # Five Checks Framework
@@ -20,11 +20,11 @@ Evaluation framework for validating significant decisions before implementation.
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Every significant decision must earn its existence through five explicit checks: Necessary?, Beyond Local Maxima?, Sufficient?, Fits Goal?, Open Horizons?
+Catch a weak decision while it is still cheap to change, before any code depends on it.
 
-### When to Apply Five Checks
+### When to Use
 
 **Mandatory Application:**
 - Changes exceeding 100 LOC
@@ -41,6 +41,10 @@ Every significant decision must earn its existence through five explicit checks:
 - Level 1 spec folders (<100 LOC)
 - Bug fixes with obvious solutions
 - Trivial documentation changes (typos, formatting, copy edits) — NOT coordination-contract or ADR-governed documentation changes
+
+### Core Principle
+
+Every significant decision must earn its existence through five explicit checks: Necessary?, Beyond Local Maxima?, Sufficient?, Fits Goal?, Open Horizons?
 
 ---
 
@@ -205,9 +209,9 @@ HORIZON CHECK:
 
 ### Pass/Fail Criteria
 
-**Overall PASS:** 5/5 checks pass
-**Conditional PASS:** 4/5 with documented mitigation for failed check
-**FAIL:** 3 or fewer checks pass - requires reconsideration
+- **Overall PASS:** 5/5 checks pass
+- **Conditional PASS:** 4/5 with documented mitigation for failed check
+- **FAIL:** 3 or fewer checks pass - requires reconsideration
 
 ### Handling Failures
 

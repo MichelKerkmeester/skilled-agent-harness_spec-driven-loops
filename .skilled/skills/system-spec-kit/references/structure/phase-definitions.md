@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Phase Definitions
@@ -20,13 +20,15 @@ This document defines the phase decomposition taxonomy, detection scoring, folde
 
 ## 1. OVERVIEW
 
-### What Are Phases?
+### Purpose
 
 Phases are a **behavioral overlay** on the existing documentation level system (Levels 1-3+). They are NOT a new level tier. Instead, phases decompose a single complex specification into multiple independent child spec folders, each representing a distinct work stream.
 
 **Key distinction:** Levels describe documentation depth (how thoroughly to document). Phases describe work decomposition (how to split large work into manageable parts).
 
-### When Phases Apply
+This document defines the phase decomposition taxonomy, detection scoring, folder structure conventions, lifecycle transitions, and validation rules.
+
+### When to Use
 
 Phases are suggested when a specification exceeds complexity thresholds that make single-folder management impractical. The phase decomposition workflow is offered only when both qualification thresholds in §2 are met. Child phases inside an already-established phase parent may use the documentation level appropriate to that child's work.
 
@@ -139,7 +141,12 @@ Phase child folders use the standard 3-digit numbered naming convention:
 
 ### Parent Folder Structure (lean trio policy)
 
-A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children where they stay accurate to that phase's actual work. One exception is optional: a parent may carry a `decision-record.md` for decisions that span its phases, such as a log of the operator's answers, because no single child owns those. A full-auto save writes an operator decision marked `cross-phase` there, while a local one goes to the child the continuity leaf rule selects. The parent's `spec.md` carries the Phase Documentation Map; the parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
+- **Lean trio:** A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`.
+- **Child-only documents:** Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live in the phase children where they stay accurate to that phase's actual work.
+- **Optional parent decision record:** One exception is optional: a parent may carry a `decision-record.md` for decisions that span its phases, such as a log of the operator's answers, because no single child owns those.
+- **Save routing:** A full-auto save writes an operator decision marked `cross-phase` there, while a local one goes to the child the continuity leaf rule selects.
+- **Parent spec map:** The parent's `spec.md` carries the Phase Documentation Map.
+- **Graph-metadata rollup:** The parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
 
 ```
 specs/###-parent-feature/

@@ -12,16 +12,16 @@ trigger_phrases:
   - "durable slice"
 importance_tier: normal
 contextType: implementation
-version: 1.12.2.0
+version: 1.12.3.0
 ---
 
 # Goal Set-String Playbook
 
+A packet's goal document can be as long as it needs to be. The objective an operator sets cannot: every runtime goal surface caps what it holds, and a slice that will not fit is truncated at the tail, which is exactly where the completion criteria live.
+
 ---
 
 ## 1. OVERVIEW
-
-A packet's goal document can be as long as it needs to be. The objective an operator sets cannot: every runtime goal surface caps what it holds, and a slice that will not fit is truncated at the tail, which is exactly where the completion criteria live.
 
 Goal authoring belongs to `sk-create-goal`, run through `/create:goal`. Its [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md) holds the budget, the one cut order and what a parent goal sent in chat contains, and its [parent-and-nested-goals.md](../../../sk-doc/sk-create-goal/references/parent-and-nested-goals.md) holds precedence and amendments. This playbook covers what system-spec-kit owns: the set string a runtime binds and when a changed goal is resent.
 
@@ -71,17 +71,13 @@ The validator fails a parent past 4,000 durable characters. That is the one limi
 The objective the operator set is a copy of the parent goal, and copies drift.
 The goal document is the source, so the agent working the packet owns the resync:
 
-1. Whenever anything above the log changes (the objective, a decision, the
-   binding table, a criterion), resend the parent's `chat_slice`, unprompted,
-   so the operator can paste it over the session objective. On Claude Code,
-   send it as one fenced code block that holds the slice and nothing else.
-   `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>`
-   prints it, JSON-quoted. What that slice contains, and the `packet_budget=ok`
-   check before it is sent, are section 4 of [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md). It
-   is a different payload from the Section 2 shape, which is what a runtime
-   stores when it binds the packet. Keep reminding while it stays unset. Never
-   stop work because it is unset: only the operator stops work. After the
-   operator sets it, acknowledge in one line and continue.
+1. Whenever anything above the log changes (the objective, a decision, the binding table, a criterion), resend the parent's `chat_slice`, unprompted, so the operator can paste it over the session objective.
+   - On Claude Code, send it as one fenced code block that holds the slice and nothing else.
+   - `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>` prints it, JSON-quoted.
+   - What that slice contains, and the `packet_budget=ok` check before it is sent, are section 4 of [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md).
+   - It is a different payload from the Section 2 shape, which is what a runtime stores when it binds the packet.
+   - Keep reminding while it stays unset. Never stop work because it is unset: only the operator stops work.
+   - After the operator sets it, acknowledge in one line and continue.
 2. A child `goal.md` change that alters a parent decision or criterion is a
    parent amendment, handled as section 6 of
    [parent-and-nested-goals.md](../../../sk-doc/sk-create-goal/references/parent-and-nested-goals.md) says. A child change that stays inside

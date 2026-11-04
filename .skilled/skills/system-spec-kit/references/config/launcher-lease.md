@@ -8,7 +8,7 @@ trigger_phrases:
   - "lease env-var override"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.6
+version: 1.6.1.0
 ---
 
 # Launcher Lease
@@ -35,7 +35,8 @@ The launcher may reclaim stale owners, but it must not open a second writer when
 
 The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.system-skill-advisor-launcher.json` from its database directory and probes the recorded PID with `process.kill(pid, 0)`.
 
-If the recorded process is alive, the launcher calls `bridgeOrReportLeaseHeld()`, which first attempts to bridge stdio through the existing daemon's session proxy so the second client survives a daemon recycle transparently; it only prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0` when bridge fallback is unavailable (for example, the bridge module is missing or `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`). If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
+- **Live recorded PID:** If the recorded process is alive, the launcher calls `bridgeOrReportLeaseHeld()`, which first attempts to bridge stdio through the existing daemon's session proxy so the second client survives a daemon recycle transparently; it only prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0` when bridge fallback is unavailable (for example, the bridge module is missing or `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`).
+- **Missing recorded PID:** If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
 
 ---
 

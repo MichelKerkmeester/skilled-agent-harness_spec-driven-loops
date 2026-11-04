@@ -10,7 +10,7 @@ trigger_phrases:
   - "intake lock"
 importance_tier: important
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Intake Contract Reference
@@ -84,7 +84,7 @@ All intake surfaces return the same `start_state`, `repair_mode`, relationship d
 
 ## 3. FOLDER STATE CLASSIFICATION
 
-Invoking YAML assets first classify a local `folder_state`, then map it to the canonical `start_state` enum before returning contract outputs or emitting intake events. After T-YML-PLN-01, four of the five tokens align 1:1; only the empty-folder case keeps a local-vs-canonical rename.
+Invoking YAML assets first classify a local `folder_state`, then map it to the canonical `start_state` enum before returning contract outputs or emitting intake events. Four of the five tokens align 1:1; only the empty-folder case keeps a local-vs-canonical rename.
 
 | Local `folder_state` | Canonical `start_state` | Consumption |
 |----------------------|-------------------------|-------------|

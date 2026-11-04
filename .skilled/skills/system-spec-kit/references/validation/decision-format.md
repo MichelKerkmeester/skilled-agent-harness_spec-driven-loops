@@ -9,7 +9,7 @@ trigger_phrases:
   - "adr decision records"
 importance_tier: important
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Structured Gate Decision Format
@@ -19,6 +19,14 @@ Standardized format for documenting gate decisions to ensure auditability and tr
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Record gate decisions in a consistent, auditable format.
+
+### When to Use
+
+Use this format when documenting a workflow gate outcome and its evidence.
 
 The Structured Gate Decision Format provides a consistent way to document decisions made at each gate in the workflow. This format ensures:
 
@@ -200,7 +208,53 @@ with path specs/078-new-feature/
 
 ---
 
-## 4. EXAMPLES
+## 4. DUAL-THRESHOLD VALIDATION
+
+The decision format integrates with the dual-threshold validation system:
+
+### Readiness Formula
+
+```
+READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)
+```
+
+### State Matrix
+
+| Confidence | Uncertainty | State | Action |
+|------------|-------------|-------|--------|
+| >= 0.70 | <= 0.35 | READY | Proceed with PASS |
+| >= 0.70 | > 0.35 | Confident Ignorance | INVESTIGATE |
+| < 0.70 | <= 0.35 | Low Confidence | INVESTIGATE |
+| < 0.70 | > 0.35 | Lost | ESCALATE to user |
+
+### Example with Dual-Threshold
+
+```
+GATE: UNDERSTANDING
+DECISION: BLOCK
+CONFIDENCE: MEDIUM (65%)
+UNCERTAINTY: 0.45
+
+DUAL-THRESHOLD CHECK:
+- Confidence: 65% -> BELOW 70% threshold
+- Uncertainty: 0.45 -> ABOVE 0.35 threshold
+- READINESS: NOT READY (both fail)
+- ACTION: ESCALATE
+
+EVIDENCE: Request "update the thing" is ambiguous. Multiple interpretations possible.
+
+RESOLUTION_PATH:
+1. Ask user: "Which 'thing' should be updated?"
+   - A) Authentication module
+   - B) Configuration file
+   - C) Documentation
+2. Wait for response
+3. Re-evaluate with clarified scope
+```
+
+---
+
+## 5. EXAMPLES
 
 ### PASS Example with Full Evidence
 
@@ -265,11 +319,17 @@ ALTERNATIVE: N/A - P0 items cannot be skipped
 
 ---
 
-## 5. SESSION DECISION LOG (LEVEL 3+)
+## 6. SESSION DECISION LOG (LEVEL 3+)
 
-For Level 3+ spec folders, you may optionally maintain a decision log table in decision-record.md. This is an authoring convention only. The live `decision-record.md.tmpl` does not scaffold a Session Decision Log section, and the validator does not require it.
+- **Optionality:** For Level 3+ spec folders, you may optionally maintain a decision log table in decision-record.md.
+- **Authoring-only status:** This is an authoring convention only.
+- **Template scaffolding:** The live `decision-record.md.tmpl` does not scaffold a Session Decision Log section, and the validator does not require it.
 
-The template does scaffold two other tables, which a `--full-auto` save fills from captured operator answers. The `operator-decisions` anchor holds one row per answer, with the columns ID, Decided, Why, Supersedes and Carried by. The `operator-answers-verbatim` anchor holds one `### Q###` item per row, with the exact question, options and answer and a `<!-- source: KEY -->` line. The ADR checks read only `adr-` anchors, so neither table is required. `references/memory/save-workflow.md` under Operator Decisions owns the payload and the write rules.
+- **Template tables:** The template does scaffold two other tables, which a `--full-auto` save fills from captured operator answers.
+- **`operator-decisions` anchor:** The `operator-decisions` anchor holds one row per answer, with the columns ID, Decided, Why, Supersedes and Carried by.
+- **`operator-answers-verbatim` anchor:** The `operator-answers-verbatim` anchor holds one `### Q###` item per row, with the exact question, options and answer and a `<!-- source: KEY -->` line.
+- **ADR-check exclusion:** The ADR checks read only `adr-` anchors, so neither table is required.
+- **Save-workflow source:** `references/memory/save-workflow.md` under Operator Decisions owns the payload and the write rules.
 
 ### Format
 
@@ -296,52 +356,6 @@ The template does scaffold two other tables, which a `--full-auto` save fills fr
 **Optional (but recommended):**
 - All PASS decisions for complete audit trail
 - Gate re-evaluations after BLOCK resolution
-
----
-
-## 6. DUAL-THRESHOLD VALIDATION
-
-The decision format integrates with the dual-threshold validation system:
-
-### Readiness Formula
-
-```
-READINESS = (confidence >= 0.70) AND (uncertainty <= 0.35)
-```
-
-### State Matrix
-
-| Confidence | Uncertainty | State | Action |
-|------------|-------------|-------|--------|
-| >= 0.70 | <= 0.35 | READY | Proceed with PASS |
-| >= 0.70 | > 0.35 | Confident Ignorance | INVESTIGATE |
-| < 0.70 | <= 0.35 | Low Confidence | INVESTIGATE |
-| < 0.70 | > 0.35 | Lost | ESCALATE to user |
-
-### Example with Dual-Threshold
-
-```
-GATE: UNDERSTANDING
-DECISION: BLOCK
-CONFIDENCE: MEDIUM (65%)
-UNCERTAINTY: 0.45
-
-DUAL-THRESHOLD CHECK:
-- Confidence: 65% -> BELOW 70% threshold
-- Uncertainty: 0.45 -> ABOVE 0.35 threshold
-- READINESS: NOT READY (both fail)
-- ACTION: ESCALATE
-
-EVIDENCE: Request "update the thing" is ambiguous. Multiple interpretations possible.
-
-RESOLUTION_PATH:
-1. Ask user: "Which 'thing' should be updated?"
-   - A) Authentication module
-   - B) Configuration file
-   - C) Documentation
-2. Wait for response
-3. Re-evaluate with clarified scope
-```
 
 ---
 

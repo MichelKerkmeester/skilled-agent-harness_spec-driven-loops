@@ -1,0 +1,14 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/config/environment-variables.md edited=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/debugging/troubleshooting.md edited=2
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/structure/folder-structure.md edited=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md edited=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/templates/level-specifications.md edited=3
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/templates/template-guide.md edited=9
+BLOCK-CHANGED .skilled/skills/system-spec-kit/references/validation/decision-format.md edited=4
+BLOCK-CHANGED .skilled/skills/system-spec-kit/shared/README.md edited=1
+BLOCK-COUNT .skilled/skills/system-spec-kit/shared/embeddings/providers/README.md edited=2 missing=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/shared/parsing/README.md edited=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/shared/predicates/README.md edited=1
+BLOCK-CHANGED .skilled/skills/system-spec-kit/shared/utils/README.md edited=2
+code_blocks_changed=11 block_count_mismatch=1 restored

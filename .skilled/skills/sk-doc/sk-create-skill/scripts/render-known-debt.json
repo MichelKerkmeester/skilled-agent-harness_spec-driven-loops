@@ -152,15 +152,6 @@
         "render_h2_numbering",
         "render_section_order"
       ]
-    },
-    "system-spec-kit": {
-      "findings": 49,
-      "codes": [
-        "render_bold_label_join",
-        "render_h2_numbering",
-        "render_overview_heading",
-        "render_section_order"
-      ]
     }
   }
 }

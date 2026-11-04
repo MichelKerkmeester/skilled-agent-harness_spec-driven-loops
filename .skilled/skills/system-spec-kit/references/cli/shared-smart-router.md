@@ -9,24 +9,32 @@ trigger_phrases:
   - "resource map scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Shared Smart-Router Helpers (cli-* family)
 
 None of the seven packet `SKILL.md` files defines `_task_text()`, `_guard_in_skill()`, `discover_markdown_resources()`, `keyword_present()`, `score_intents()`, `select_intents()` or `get_routing_key()`. Every packet names `discover_markdown_resources()` and `_guard_in_skill()`. Only `cli-hermes` names `score_intents()` and `select_intents()`, while `cli-hermes` and `cli-opencode` name `load_if_available()` and `get_routing_key()`.
 
-> Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
-
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Canonical helper-function bodies (_task_text, _guard_in_skill, discover_markdown_resources, score_intents, select_intents, route_<provider>_resources) shared across the seven cli-* sibling skills. Each cli-* skill provides its own INTENT_SIGNALS, RESOURCE_MAP, LOADING_LEVELS, UNKNOWN_FALLBACK_CHECKLIST inline.
+
+### When to Use
+
+- Use when implementing or reviewing cli-* routing helpers.
+
+None of the seven packet `SKILL.md` files defines `_task_text()`, `_guard_in_skill()`, `discover_markdown_resources()`, `keyword_present()`, `score_intents()`, `select_intents()` or `get_routing_key()`. Every packet names `discover_markdown_resources()` and `_guard_in_skill()`. Only `cli-hermes` names `score_intents()` and `select_intents()`, while `cli-hermes` and `cli-opencode` name `load_if_available()` and `get_routing_key()`.
 
 ---
 
 ## 2. HELPER FUNCTIONS
+
+> Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/sk-create-skill/assets/skill/skill-smart-router.md).
 
 ```python
 import re

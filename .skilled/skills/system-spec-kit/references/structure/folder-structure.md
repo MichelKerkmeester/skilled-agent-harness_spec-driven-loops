@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Folder Structure Reference
@@ -19,7 +19,13 @@ Spec folder naming conventions, level requirements, and organization patterns.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This document covers spec folder organization, naming conventions, and level-specific requirements for the Spec Kit system.
+
+### When to Use
+
+- Use when naming a spec folder or checking required files by level.
 
 ### Template Directory Structure
 
@@ -228,7 +234,7 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 - `ownerSlug` = the owning spec folder name by default (for example `019-system-hardening` or `003-gate-c-writer-ready`)
 - `NN` = two-digit zero-padded sequential counter per owner folder when a new packet must be allocated
 
-**Flat-first convention (post-028):** child-phase first runs go directly under `{spec_folder}/research/` or `{spec_folder}/review/` with no `-pt-NN` subfolder. A packet subfolder is allocated only when prior content already exists for a non-matching target. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet). Root specs always use the flat path.
+**Flat-first convention:** child-phase first runs go directly under `{spec_folder}/research/` or `{spec_folder}/review/` with no `-pt-NN` subfolder. A packet subfolder is allocated only when prior content already exists for a non-matching target. Continuation runs reuse the existing flat artifact (or matching `pt-NN` packet). Root specs always use the flat path.
 
 **Required resolver:** always use `resolveArtifactRoot(specFolder, 'research' | 'review')` from [`.skilled/skills/system-spec-kit/shared/review-research-paths.cjs`](../../shared/review-research-paths.cjs). It resolves the local owner folder, returns flat for first runs and matching continuations, reuses an existing packet for the same target when present, and allocates a `pt-NN` packet only when prior content for a non-matching target exists. Never hand-pick the path.
 
@@ -335,6 +341,6 @@ specs/022-hybrid-rag-fusion/        <- Coordination root (point-in-time snapshot
 
 ## 7. RELATED RESOURCES
 
-- Level specifications reference
+- [spec-kit-docs.json](../../templates/spec-kit-docs.json) - Level contract resolved by create.sh
 - [Template Guide](../templates/template-guide.md)
 - [Sub-folder Versioning](sub-folder-versioning.md)

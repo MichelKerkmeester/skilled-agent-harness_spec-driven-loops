@@ -8,7 +8,7 @@ trigger_phrases:
   - "spec folder detection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.27
+version: 1.6.1.0
 ---
 
 # Folder Routing & Alignment
@@ -19,7 +19,13 @@ Structured-first spec folder routing with alignment scoring for context preserva
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The continuity writer uses a **structured-first architecture**. Routine saves pass structured JSON plus an explicit target spec folder, and all saves go through alignment scoring.
+
+### When to Use
+
+- Use when a save needs to choose or validate its target spec folder.
 
 ### Core Principle
 
@@ -45,6 +51,11 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 ---
 
 ## 2. DETECTION LOGIC
+
+- **Explicit-target priority:** When the caller passes an explicit `[spec-folder]` CLI argument, that target is authoritative: it always wins over auto-detect, alignment scoring, and any heuristic preference.
+- **Phase-parent routing:** At a phase parent specifically, a save invoked with the parent path writes no pointer of its own: a `--full-auto` save routes its continuity to the leaf that holds the work and points the ancestors at it, and any other save leaves every pointer as it was.
+- **Ancestor pointers:** A save invoked with an explicit child path points every phase-parent ancestor one level down toward that child.
+- **Wrong-target recovery:** Re-run with the explicit target you actually want if a save routed to the wrong folder.
 
 ### Complete Routing Flow
 
@@ -105,8 +116,6 @@ Spec folder is passed explicitly as a CLI argument with alignment validation to 
 | 3    | Validate path       | Confirm `specs/###-name/` exists              |
 | 4    | Calculate alignment | Score against conversation context            |
 | 5    | Proceed or warn     | Low score triggers warning only               |
-
-> **Explicit-target priority.** When the caller passes an explicit `[spec-folder]` CLI argument, that target is authoritative — it always wins over auto-detect, alignment scoring, and any heuristic preference. At a phase parent specifically, a save invoked with the parent path writes no pointer of its own: a `--full-auto` save routes its continuity to the leaf that holds the work and points the ancestors at it, and any other save leaves every pointer as it was. A save invoked with an explicit child path points every phase-parent ancestor one level down toward that child. Re-run with the explicit target you actually want if a save routed to the wrong folder.
 
 ---
 
@@ -296,36 +305,7 @@ specs/122-skill-standardization/
 
 ---
 
-## 8. INTERACTIVE PROMPT
-
-When alignment **< 50%**, user sees an interactive prompt:
-
-```
-⚠️  LOW ALIGNMENT WARNING
-    Selected folder: 020-page-loader
-    Alignment score: 25%
-
-📋 Top 3 alternative folders:
-    1. 018-auth-improvements (85%)
-    2. 017-authentication-refactor (82%)
-    3. 019-login-flow (78%)
-
-Choose: [1-3] select alternative | [c] continue anyway | [n] cancel
-```
-
-**Note:** When alignment is **50-69%** (moderate), the script shows a warning but proceeds automatically without prompting.
-
-### Archive Filtering
-
-Folders matching these patterns are automatically excluded:
-
-- `z_*` (archive prefix)
-- `*archive*` (contains "archive")
-- `old*` (excluded naming pattern)
-
----
-
-## 9. BYPASS OPTIONS
+## 8. BYPASS OPTIONS
 
 ### Environment Variable
 
@@ -350,6 +330,35 @@ Users can set preferences that persist within a session:
 | `"auto-select"`| Skip prompts, use highest-scoring folder |
 | `"always ask"` | Prompt even for high-confidence matches  |
 | `"new folder"` | Route this save to a newly created spec folder rather than scoring against existing matches. This is a save-time preference only; it does not grant standing permission to relocate related work out of an active phased packet, and Gate 3 (AGENTS.md §2) still governs create-vs-extend routing for new work. |
+
+---
+
+## 9. INTERACTIVE PROMPT
+
+### Archive Filtering
+
+Folders matching these patterns are automatically excluded:
+
+- `z_*` (archive prefix)
+- `*archive*` (contains "archive")
+- `old*` (excluded naming pattern)
+
+When alignment **< 50%**, user sees an interactive prompt:
+
+```
+⚠️  LOW ALIGNMENT WARNING
+    Selected folder: 020-page-loader
+    Alignment score: 25%
+
+📋 Top 3 alternative folders:
+    1. 018-auth-improvements (85%)
+    2. 017-authentication-refactor (82%)
+    3. 019-login-flow (78%)
+
+Choose: [1-3] select alternative | [c] continue anyway | [n] cancel
+```
+
+**Note:** When alignment is **50-69%** (moderate), the script shows a warning but proceeds automatically without prompting.
 
 ---
 

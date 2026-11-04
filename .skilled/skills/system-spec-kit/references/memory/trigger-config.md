@@ -9,7 +9,7 @@ trigger_phrases:
   - "manual save triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.25
+version: 1.6.1.0
 ---
 
 # Trigger Configuration - Keywords and Manual Save Settings
@@ -20,6 +20,14 @@ Complete configuration guide for memory trigger phrases and the fast trigger mat
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Trigger phrase configuration, the committed trigger index that matches those phrases, and best practices for custom trigger design.
+
+### When to Use
+
+- Use when declaring trigger phrases or checking trigger-index matching.
+
 **Core Principle:** Trigger detection must be fast (<50ms) and reliable, using optimized phrase matching to surface relevant spec-doc records without impacting conversation flow.
 
 The spec-doc record workflow supports manual activation mechanisms:
@@ -27,8 +35,6 @@ The spec-doc record workflow supports manual activation mechanisms:
 2. **Phrase Triggers** - User phrases that directly invoke memory operations
 
 > **OpenCode Note:** Automatic interval-based saves (e.g., "every 20 messages") are NOT supported in OpenCode because OpenCode lacks the hooks system required to count messages and trigger saves automatically. All context preservation must be manually triggered.
-
-This reference covers trigger phrase configuration, the committed trigger index that matches those phrases, and best practices for custom trigger design.
 
 ### Key Components
 
@@ -94,7 +100,9 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.
   --json -- "I want to save context for this session"
 ```
 
-The result carries the matched paths, the phrases that matched and a match class. Exit `0` means candidates were found, `1` means none were, `2` means a bad invocation or an unreadable index. Regenerate the index with `runtime/cli/retrieval/generate-trigger-index.mjs` after frontmatter changes.
+- **Returned fields:** The result carries the matched paths, the phrases that matched and a match class.
+- **Exit statuses:** Exit `0` means candidates were found, `1` means none were, `2` means a bad invocation or an unreadable index.
+- **Index regeneration:** Regenerate the index with `runtime/cli/retrieval/generate-trigger-index.mjs` after frontmatter changes.
 
 **Usage Scenarios:**
 - Gate 1 prompt matching against author-declared phrases
@@ -158,7 +166,7 @@ Beyond the default trigger phrases, the system recognizes expanded signal types 
 
 These signals were detected during trigger-match processing on the retired server, where they influenced save-time arbitration and correction tracking. The index lookup does not classify signals: it returns matched phrases and nothing else, so a caller that needs this must read it from the documents themselves.
 
-### Trigger Sanitization (026 Remediation)
+### Trigger Sanitization
 
 Save-time trigger validation now applies sanitization rules to prevent low-quality triggers from degrading retrieval precision:
 

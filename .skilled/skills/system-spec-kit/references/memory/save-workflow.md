@@ -8,7 +8,7 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
@@ -18,6 +18,14 @@ Complete guide to saving conversation context, execution methods, and retrieval.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Save conversation context through the canonical entrypoint so the target packet's continuity surfaces stay current.
+
+### When to Use
+
+- Use when choosing a save method or checking which continuity surfaces it updates.
 
 ### Core Principle
 
@@ -134,8 +142,8 @@ The continuity writer supports **2 independent execution paths**. Any method can
 
 ## 3. SLASH COMMANDS
 
-**When to Use:** Manual save with AI-powered conversation analysis
-**Requirement:** Slash command files exist in `.skilled/commands/speckit/`
+- **When to Use:** Manual save with AI-powered conversation analysis
+- **Requirement:** Slash command files exist in `.skilled/commands/speckit/`
 
 ### Available Commands
 
@@ -175,8 +183,8 @@ The continuity writer supports **2 independent execution paths**. Any method can
 
 ## 4. DIRECT SCRIPT
 
-**When to Use:** Testing, debugging, custom workflows, CI/CD pipelines
-**Requirement:** Node.js installed
+- **When to Use:** Testing, debugging, custom workflows, CI/CD pipelines
+- **Requirement:** Node.js installed
 
 ### Usage Pattern
 
@@ -250,7 +258,9 @@ The writer sets `packet_pointer`, `last_updated_at` and `last_updated_by` itself
 
 ### Operator Decisions
 
-A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing. On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex and Pi, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs` and `sweep-pi.mjs` in the same folder do the same from the runtime's stored session. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`. Each candidate carries a deterministic `evidence` object: `questionType`, `optionMatch`, `contentOverlap`, `imperativeOpening` and `topicShift`. Read it before judging whether the reply answers the question; it informs the judgment and never replaces it, and `optionMatch: not_applicable` is no evidence against an answer.
+- **Save-mode behavior:** A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisions`) into the target packet's `decision-record.md`. A plan-only save lists the entries and writes nothing.
+- **Sweep commands by runtime:** On Claude, `.skilled/hooks/decision-capture/bin/sweep-transcript.mjs` prints the answers waiting for a record, each with its `sourceKey`. On OpenCode, Devin, Codex and Pi, `sweep-opencode.mjs`, `sweep-devin.mjs`, `sweep-codex.mjs` and `sweep-pi.mjs` in the same folder do the same from the runtime's stored session. Every sweep also prints chat candidates, through the shared detector in `lib/chat-questions.mjs`.
+- **Evidence fields and their use:** Each candidate carries a deterministic `evidence` object: `questionType`, `optionMatch`, `contentOverlap`, `imperativeOpening` and `topicShift`. Read it before judging whether the reply answers the question; it informs the judgment and never replaces it, and `optionMatch: not_applicable` is no evidence against an answer.
 
 | Field        | Type   | Required | Description |
 | ------------ | ------ | -------- | ----------- |
@@ -264,9 +274,15 @@ A `--full-auto` save writes each `operatorDecisions` entry (or `operator_decisio
 | `options`    | array  | No       | The offered option labels, exactly as shown |
 | `scope`      | string | No       | `local` (default) or `cross-phase` |
 
-Some packets keep a hand-written decision record whose table already holds the answer. Whenever the target packet has a `decision-record.md`, match before writing any entry, even when no hand-written table was seen in it, so the save does not append a second row for a decision the record states: run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` as a dry run, then again with `--apply`. It prints the row each queued answer belongs to, and consumes that row's id instead of writing a new one.
+- **Match before writing:** Some packets keep a hand-written decision record whose table already holds the answer. Whenever the target packet has a `decision-record.md`, match before writing any entry, even when no hand-written table was seen in it, so the save does not append a second row for a decision the record states: run `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/match-decision-table.js --session <id> --record <path>` as a dry run, then again with `--apply`.
+- **Row mapping:** It prints the row each queued answer belongs to, and consumes that row's id instead of writing a new one.
 
-Each `sourceKey` maps to one stable id such as `Q004`. The writer adds a row to the `operator-decisions` anchor and an item holding the verbatim question, options and answer to the `operator-answers-verbatim` anchor. A repeated save leaves the file byte-identical, and an existing appendix item is never rewritten. A `local` entry aimed at a phase parent follows the continuity leaf rule below, a `cross-phase` entry goes to the phase parent, and an unresolved target writes nothing. When the writer has to create `decision-record.md` in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change it. Written keys are recorded in the gitignored `consumed.jsonl` inside the project's own subfolder, `.skilled/skills/.state/decision-capture/<project-token>/`. A `consumed.jsonl` left in that folder's root by an older save is still read.
+- **Source-key mapping:** Each `sourceKey` maps to one stable id such as `Q004`.
+- **Anchor writes:** The writer adds a row to the `operator-decisions` anchor and an item holding the verbatim question, options and answer to the `operator-answers-verbatim` anchor.
+- **Idempotence:** A repeated save leaves the file byte-identical, and an existing appendix item is never rewritten.
+- **Phase routing:** A `local` entry aimed at a phase parent follows the continuity leaf rule below, a `cross-phase` entry goes to the phase parent, and an unresolved target writes nothing.
+- **Level stamping:** When the writer has to create `decision-record.md` in a packet whose `spec.md` carries no level marker, it first stamps the level the validator already detects, so the new file cannot change it.
+- **Consumed-file handling:** Written keys are recorded in the gitignored `consumed.jsonl` inside the project's own subfolder, `.skilled/skills/.state/decision-capture/<project-token>/`. A `consumed.jsonl` left in that folder's root by an older save is still read.
 
 If both the JSON payload and the CLI provide a spec folder, the explicit CLI argument wins.
 
@@ -298,7 +314,7 @@ Every planner mode refreshes `description.json`, `graph-metadata.json` and the p
 
 ### Canonical Output Surfaces
 
-The Phase 018 save path is packet-first. Retired `[spec]/memory/*.md` writes are no longer part of the workflow. `generate-context.js` updates continuity inside the selected packet.
+The save path is packet-first. Retired `[spec]/memory/*.md` writes are no longer part of the workflow. `generate-context.js` updates continuity inside the selected packet.
 
 | Surface | Role |
 |---------|------|
@@ -421,7 +437,10 @@ The canonical save path updates packet docs first. Two active source families ca
 | Spec documents | `<active-spec-folder>/**/*.md` and `specs/**/*.md` | Per-type multiplier | `findSpecDocuments()` |
 | Graph metadata | `graph-metadata.json` adjacent to spec docs | Packet metadata weighting | Graph metadata parser + scan pipeline |
 
-Spec documents are retrieved from the working tree, never from a database. The committed trigger index answers Gate 1 through `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`, and free-text retrieval follows the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, scoped by track and packet. Retrieval is lexical only: paraphrase, fusion, decay and access tracking are unsupported, and a miss is a clean no-hit.
+- **Working-tree source:** Spec documents are retrieved from the working tree, never from a database.
+- **Trigger-index lane:** The committed trigger index answers Gate 1 through `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"`.
+- **Ripgrep lane:** Free-text retrieval follows the ripgrep recipes in `references/retrieval/retrieval-conventions.md`, scoped by track and packet.
+- **Lexical-only limits:** Retrieval is lexical only: paraphrase, fusion, decay and access tracking are unsupported, and a miss is a clean no-hit.
 
 For context recovery, follow the continuity ladder: `handover.md`, then `_memory.continuity`, then the packet's spec docs read directly, then the ripgrep context recipe with bounded context.
 
@@ -594,7 +613,7 @@ sed -n '/<!-- ANCHOR:decision-auth-049 -->/,/<!-- \/ANCHOR:decision-auth-049 -->
 
 ---
 
-## 11. POST-SAVE QUALITY REVIEW (026 CALIBRATION)
+## 11. POST-SAVE QUALITY REVIEW
 
 After `generate-context.js` completes, it emits a **POST-SAVE QUALITY REVIEW** block. This review checks the saved canonical continuity surfaces for common issues that degrade retrieval quality.
 
@@ -612,7 +631,7 @@ After `generate-context.js` completes, it emits a **POST-SAVE QUALITY REVIEW** b
 - Overly broad `trigger_phrases` that cause false-positive surfacing
 - Incorrect `importance_tier` assignment (e.g., normal when critical is warranted)
 
-### 026 Heuristic Calibration
+### Heuristic Calibration
 
 - Save quality gate threshold calibrated to 0.4 signal density
 - Short decision-type memories bypass content-length gate when `SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS=true` and at least two structural signals (title, specFolder, or anchor) are present

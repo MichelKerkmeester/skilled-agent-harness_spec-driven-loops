@@ -11,7 +11,7 @@ trigger_phrases:
   - "retrofit diagnostics schema"
 importance_tier: important
 contextType: implementation
-version: 2.7.1.0
+version: 2.7.2.0
 ---
 
 # Grep Convention for Spec Documents
@@ -21,6 +21,14 @@ What an active spec document must look like so a single ripgrep invocation reach
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep retrieval a plain search: a document written to this shape needs no index or scorer to be found.
+
+### When to Use
+
+- Use when preparing active spec documents for literal ripgrep retrieval.
 
 ### Core Principle
 

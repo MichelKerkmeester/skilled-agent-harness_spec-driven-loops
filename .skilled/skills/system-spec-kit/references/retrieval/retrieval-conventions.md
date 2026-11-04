@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -22,6 +22,14 @@ The invocation contract for free-text retrieval over spec docs and skill docs, r
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Give every caller one way to search, so a free-text lookup returns the same documents whichever command or agent runs it.
+
+### When to Use
+
+- Use when searching spec or skill documents by declared trigger phrases or literal text.
 
 ### Core Principle
 
@@ -56,8 +64,8 @@ The retired memory surface carried stateful capabilities that a read-only scan c
 
 | Capability | Boundary |
 |------------|----------|
-| Resume and context assembly | Read `handover.md`, then `_memory.continuity`, then packet-first spec docs and bounded anchors. No session inference. Owned by phase `002-memory-consumer-rewire` |
-| Continuity frontmatter writing | A named packet-local writer keeping atomic same-directory update and lock semantics. Ripgrep cannot write. Owned by phase 002 |
+| Resume and context assembly | Read `handover.md`, then `_memory.continuity`, then packet-first spec docs and bounded anchors. No session inference. Owned by the memory consumer rewire |
+| Continuity frontmatter writing | A named packet-local writer keeping atomic same-directory update and lock semantics. Ripgrep cannot write. Owned by the memory consumer rewire |
 | Causal graph and drift analysis | Explicit Markdown links, typed evidence or a named unsupported capability. Grep cannot traverse or statefully update graph edges |
 | Resource maps | A static generated path catalog. It is not a dynamic graph |
 | Semantic paraphrase, vector and BM25 fusion, decay, access tracking and session dedup | Deliberate lexical-only loss with no owner. Decay, access tracking and dedup were properties of a stateful store that observed its own reads, and every lane here is stateless; callers must behave explicitly on a no-hit rather than degrading to a guess |
@@ -261,7 +269,12 @@ Use one canonical spelling in emitted frontmatter. A reader may recognize the `t
 
 Declare phrases of two or more tokens. A single-token phrase can only ever match by exact equality: `scorePhrase` in `lib/normalize.mjs` gives it no containment or token-overlap score, so against any longer prompt it surfaces as a zero-score `partial` candidate and never ranks. A phrase that is only numbers names a packet id or a date, never a concept a prompt would carry.
 
-The judge in `lib/phrase-judge.mjs` is the one place these rules live: the retrofit pipeline and the `GREP_CONVENTION` validator report each rejected phrase as a warning, and the generator counts every class over the committed index in the `phraseQuality` bucket of `generation-diagnostics.json`, which `/doctor:speckit` reads as its pollution signal. The generator judges each owning document with that document's packet-folder tokens (`packetFolderTokens` in `lib/grep-convention.mjs`, the derivation the validator uses), so `folder-token-fallback` reaches the bucket. When owners of one phrase disagree, `documents` counts each owner under its own class and `phrases` counts the phrase once, as `folder-token-fallback` if any owner's folder repeats it. A warning never deletes an author's phrase; it names what the index cannot use.
+- **Judge:** The judge in `lib/phrase-judge.mjs` is the one place these rules live.
+- **Retrofit and validator:** The retrofit pipeline and the `GREP_CONVENTION` validator report each rejected phrase as a warning.
+- **Generator diagnostics:** The generator counts every class over the committed index in the `phraseQuality` bucket of `generation-diagnostics.json`, which `/doctor:speckit` reads as its pollution signal.
+- **Folder-token fallback:** The generator judges each owning document with that document's packet-folder tokens (`packetFolderTokens` in `lib/grep-convention.mjs`, the derivation the validator uses), so `folder-token-fallback` reaches the bucket.
+- **Owner counting:** When owners of one phrase disagree, `documents` counts each owner under its own class and `phrases` counts the phrase once, as `folder-token-fallback` if any owner's folder repeats it.
+- **Warning behavior:** A warning never deletes an author's phrase; it names what the index cannot use.
 
 The lookup applies its own two limits to the prompt, not to declared phrases: a query token shorter than three characters is dropped before matching, and only the first eight distinct eligible tokens are kept, in the order they first appear; both discards are reported in the lookup's JSON output.
 
@@ -269,7 +282,8 @@ The lookup applies its own two limits to the prompt, not to declared phrases: a 
 
 ## 9. COVERAGE AND EXCLUSION POLICY
 
-The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep recipes (mirrored in code by `lib/rg-lane.mjs` and `rg-wrapper.mjs`) are two independent lanes over overlapping but not identical corpora. `runtime/cli/tests/retrieval-coverage-parity.vitest.ts` enforces this table: a divergence not named below fails that test rather than drifting in silently.
+- **Two independent lanes:** The trigger-index corpus walker (`lib/corpus.mjs`) and this document's ripgrep recipes (mirrored in code by `lib/rg-lane.mjs` and `rg-wrapper.mjs`) are two independent lanes over overlapping but not identical corpora.
+- **Coverage test:** `runtime/cli/tests/retrieval-coverage-parity.vitest.ts` enforces this table: a divergence not named below fails that test rather than drifting in silently.
 
 ### Root coverage
 

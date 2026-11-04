@@ -6,7 +6,7 @@ trigger_phrases:
   - "spec kit shared package"
   - "shared TypeScript modules"
   - "embedding provider stack"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Shared Library Modules
@@ -34,7 +34,7 @@ Nothing here opens a database or talks to a network on import. Modules take thei
 | Frontmatter and spec-doc parsing | `frontmatter/parse-frontmatter.ts`, `parsing/memory-sufficiency.ts`, `parsing/memory-template-contract.ts`, `parsing/spec-doc-health.ts` | engine rules, the save pipeline, sk-doc and deep-loop scripts |
 | Gate 3 | `gate-3-classifier.ts` | the prompt hooks of every runtime, the pi plugin, the spec-root registry |
 | Compaction | `compact-merger.ts`, `budget-allocator.ts` | the PreCompact hook adapters |
-| Paths and workspace | `workspace/repo-root.mjs`, `config.ts`, `utils/path-containment.ts`, `utils/path-security.ts`, `review-research-paths.cjs` | build scripts, CI, the deep-loop artifact root, the telemetry store |
+| Paths and workspace | `workspace/repo-root.mjs`, `workspace/package-root.ts`, `config.ts`, `utils/path-containment.ts`, `utils/path-security.ts`, `review-research-paths.cjs` | build scripts, CI, the deep-loop artifact root, the telemetry store |
 | Text helpers | `chunking.ts`, `trigger-extractor.ts`, `unicode-normalization.ts`, `context-types.ts`, `utils/jsonc-strip.ts`, `utils/token-estimate.ts`, `utils/retry.ts` | `chunking.ts` and `utils/retry.ts` serve the embedding providers in this package; the rest serve the engine, the CLI and the hooks |
 | Predicate grammar | `predicates/boolean-expr.ts` | the typed `when:` form the speckit and deep command contracts cite as their grammar |
 | Embedding providers | `embeddings/` (factory, profile, registry, auto-select, adapters, providers) | the skill advisor and the HF model server launcher |
@@ -55,13 +55,16 @@ The embedding stack talks to Ollama, the local HF model server under `.skilled/b
 
 ---
 
-## 1B. BOUNDARY AND IMPORT POLICY
+### Boundary and Import Policy
 
 - **Import convention**: consumers import `@spec-kit/shared/<module>`; the package maps every subpath onto `dist/`. `workspace/repo-root.mjs` and `review-research-paths.cjs` are shipped as source because build and CI scripts `require()` them before any build exists.
 - **No barrel**: there is no root export. Import the module you use, so a dead module has no importer to hide behind.
 - **Neutrality**: `shared/` imports nothing from `runtime/` or `runtime/cli/`; the CLI's `npm run check` rejects a reverse import.
 - **Stability**: a breaking change here needs coordination with every consumer in the table above.
-- **Root resolution**: three implementations survive, one per runtime boundary, and a parity test in the CLI feeds them the same trees. `workspace/repo-root.mjs` finds the repository root by sentinel and ships as source because build and CI scripts run it before any build exists. `workspace/package-root.ts` finds the skill package root by its marker directories (`shared`, `runtime`, `runtime/cli`) and is the compiled walk every TypeScript caller uses: `config.ts`, `embeddings/factory.ts` and the CLI's architecture and dist-alignment checks call it rather than walking themselves. `runtime/cli/lib/shell-common.sh` and `runtime/cli/common.sh` resolve the repository root for bash, where no Node module can be imported.
+- **Root resolution**: three implementations survive, one per runtime boundary, and a parity test in the CLI feeds them the same trees.
+  - `workspace/repo-root.mjs` finds the repository root by sentinel and ships as source because build and CI scripts run it before any build exists.
+  - `workspace/package-root.ts` finds the skill package root by its marker directories (`shared`, `runtime`, `runtime/cli`) and is the compiled walk every TypeScript caller uses: `config.ts`, `embeddings/factory.ts` and the CLI's architecture and dist-alignment checks call it rather than walking themselves.
+  - `runtime/cli/lib/shell-common.sh` and `runtime/cli/common.sh` resolve the repository root for bash, where no Node module can be imported.
 
 ---
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "spec doc health checks"
   - "spec doc health"
   - "memory sufficiency"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Parsing
@@ -39,6 +39,7 @@ parsing/
 | `memory-template-contract.ts` | Validates rendered memory documents for required anchors and template artifacts |
 | `memory-sufficiency.ts` | Scores whether memory evidence has enough concrete context to save |
 | `spec-doc-health.ts` | Computes lightweight spec folder health metadata for pipeline annotations |
+| `secret-scrubber.ts` | Redacts credentials to typed markers before memory content is hashed, embedded or indexed |
 
 ---
 
@@ -70,6 +71,8 @@ This package owns parser rules. It does not own source-of-truth decisions about 
 
 ## 5. VALIDATION
 
+For README-only edits, `validate_document.py` is the required file-level check.
+
 Run parser tests and TypeScript checks after behavior changes:
 
 ```bash
@@ -77,8 +80,6 @@ npm test -- --runInBand parsing
 npx tsc --noEmit
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/shared/parsing/README.md
 ```
-
-For README-only edits, `validate_document.py` is the required file-level check.
 
 ---
 

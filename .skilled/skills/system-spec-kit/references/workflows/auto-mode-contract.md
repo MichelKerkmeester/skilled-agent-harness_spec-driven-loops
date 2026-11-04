@@ -9,22 +9,30 @@ trigger_phrases:
   - "confirm invariance"
 importance_tier: important
 contextType: implementation
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Auto Mode Contract Reference
 
-## 1. OVERVIEW
-
-This reference defines the canonical setup-resolution contract for user-invokable `:auto` commands across `/speckit:*`, `/create:*` and `/deep:*`. Command authors use its tier semantics, marker grammar, fail-fast error format and verification protocol to define each command's field-level resolution table; commands follow it to resolve inputs, ask targeted questions or fail when required values remain missing.
+Open this when adding a `:auto` surface, or when a `:auto` dispatch asked a question it should have resolved.
 
 ---
 
-## §1. Three-Tier Flow
+## 1. OVERVIEW
+
+### Purpose
+
+The canonical setup-resolution contract for user-invokable `:auto` commands across `/speckit:*`, `/create:*` and `/deep:*`.
+
+### When to Use
+
+Command authors use its tier semantics, marker grammar, fail-fast error format and verification protocol to define each command's field-level resolution table; commands follow it to resolve inputs, ask targeted questions or fail when required values remain missing.
+
+### Three-Tier Flow
 
 `:auto` mode does NOT mean "never ask" (too rigid) and does NOT mean "always ask the full setup block" (too soft). It means "ask only when uncertain or ambiguous." This is achieved via three tiers, evaluated in order:
 
-### Tier 1 — Resolve Confidently
+#### Tier 1 — Resolve Confidently
 
 When `execution_mode = AUTONOMOUS` (from `:auto` suffix), the command's §0 MUST attempt to resolve every required input from these sources in order:
 
@@ -37,7 +45,7 @@ After resolution: if every required field has a value, persist the resolved map 
 
 **Standalone / no-folder fallback guard (fail-closed):** when a command offers a standalone (no-spec-folder) output mode, that mode is valid ONLY when no spec folder was named in the scope or otherwise derivable. If source 3 (or an interactive choice) identified a spec folder, the standalone mode MUST NOT be selected — bind the identified folder and write the packet under `{spec_folder}/`. Preflight MUST fail closed if a standalone target is bound while a spec folder was identifiable from the scope.
 
-### Tier 2 — Targeted Ask
+#### Tier 2 — Targeted Ask
 
 Use Tier 2 ONLY when Tier 1 leaves one or two required inputs unresolved AND each unresolved field is genuinely ambiguous AND no sensible default exists.
 
@@ -47,7 +55,7 @@ Constraints:
 - Missing required input (e.g. empty `$ARGUMENTS` with no marker for a required positional) is NOT ambiguity. Absence is a Tier 3 case.
 - Wait briefly for user reply. If an answer arrives, merge it into the resolved map and re-run Tier 1 from the default-application step. If stdin is closed (`</dev/null`, redirected output, non-interactive dispatch) and no answer arrives, fall through to Tier 3. Never wait indefinitely.
 
-### Tier 3 — Fail Fast
+#### Tier 3 — Fail Fast
 
 Use Tier 3 when `:auto` still has unresolved required inputs after Tier 1 and Tier 2, OR when Tier 2 produced no answer because stdin is closed.
 
@@ -55,7 +63,7 @@ Emit the named-missing-inputs error format (§4), exit non-zero, do NOT load the
 
 ---
 
-## §2. PRE-BOUND SETUP ANSWERS Schema
+## 2. PRE-BOUND SETUP ANSWERS SCHEMA
 
 The `PRE-BOUND SETUP ANSWERS:` block is a structured marker the dispatched AI parses out of the prompt body. It allows callers to pre-bind setup field values without using individual `$ARGUMENTS` flags.
 
@@ -83,7 +91,7 @@ The marker block applies ONLY under `:auto`. Under `:confirm`, the block is info
 
 ---
 
-## §3. Default Resolution Table
+## 3. DEFAULT RESOLUTION TABLE
 
 Every command MUST publish a Default Resolution Table in its §0 (after citing this contract). The table lists each setup field with the following columns:
 
@@ -107,7 +115,7 @@ A field is a Tier-2 candidate only when ALL of:
 
 ---
 
-## §4. Tier 3 Fail-Fast Error Template
+## 4. TIER 3 FAIL-FAST ERROR TEMPLATE
 
 When Tier 3 fires, the command emits this exact format and exits non-zero:
 
@@ -130,7 +138,7 @@ Rules:
 
 ---
 
-## §5. `:confirm` Invariance
+## 5. `:confirm` INVARIANCE
 
 The `:confirm` mode (interactive, with full consolidated Q-block) is unaffected by this contract. Commands MUST preserve their existing `:confirm` behavior exactly. The contract applies ONLY when `execution_mode = AUTONOMOUS` (from `:auto` suffix or explicit `--mode=AUTONOMOUS` flag).
 
@@ -138,7 +146,7 @@ Test invariant: a `:confirm` dispatch against any contract-adopting command MUST
 
 ---
 
-## §6. Verification Protocol
+## 6. VERIFICATION PROTOCOL
 
 Each contract-adopting command requires four verification traces (dry-run mental dispatch traces against the command's §0):
 
@@ -166,7 +174,7 @@ Stored under `<packet>/evidence/<command-slug>-<trace>.txt`.
 
 ---
 
-## §7. Adoption Checklist
+## 7. ADOPTION CHECKLIST
 
 For each command adopting this contract, the §0 of the command markdown:
 
@@ -180,19 +188,20 @@ For each command adopting this contract, the §0 of the command markdown:
 
 Commands that have adopted this contract:
 
-- `/deep:review` (prototype) — see `.../103/001-deep-review-three-tier-setup/`
-- (to be appended as `.../103/002-...` rolls out)
+- `/deep:review` (prototype)
 
 ---
 
-## §8. Out of Scope
+## 8. OUT OF SCOPE
 
 - Commands without paired YAML workflows (`/prompt`, `/goal-opencode`, etc.) — they have no setup-phase surface where the contract applies.
 - Skill-internal `:auto` flows (sk-doc, sk-code routing, etc.) — those are skill SKILL.md surfaces, not `/command:*` surfaces.
 - YAML workflow internal interaction gates (e.g. mid-loop approval gates) — handled by each YAML's own non-interactivity rules, not this contract.
 - Cross-command `:auto` integration (e.g. `/speckit:plan:auto` chained into `/speckit:implement:auto`) — separate contract concern.
 
-## §9. PROVENANCE
+---
+
+## 9. PROVENANCE
 
 Origin: shipped from the deep-review prototype and generalized in the 12-command rollout.
 

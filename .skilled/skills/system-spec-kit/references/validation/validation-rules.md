@@ -9,7 +9,7 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.9.0
+version: 2.7.10.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
@@ -20,7 +20,7 @@ Complete reference for all validation rules used by the SpecKit validation syste
 
 ## 1. OVERVIEW
 
-### What Is This Reference?
+### Purpose
 
 This document provides comprehensive documentation for every validation rule enforced by the SpecKit system. It covers rule behavior, severity levels, detection patterns, and remediation steps for each validation check.
 
@@ -28,6 +28,10 @@ This document provides comprehensive documentation for every validation rule enf
 - **Rule Documentation** - Complete specifications for all validation checks
 - **Fix Instructions** - Clear remediation steps when validation fails
 - **Configuration Guide** - Environment variables and usage patterns
+
+### When to Use
+
+Read a rule's entry when `validate.sh` names it and you need its behavior, severity, detection pattern and fix; §13 holds the configuration and §14 the ways a run misleads.
 
 ### Core Principle
 
@@ -149,14 +153,22 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 **How to fix:** paste the command the feature changes with its output into the anchor, or write an `N/A:` line carrying the reason there is nothing to measure.
 
+### AC_COVERAGE
+
 `AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, malformed evidence citations, and unresolved evidence citations without adding strict warnings or errors. A citation is unresolved when its file is not found as an absolute path, in the packet folder or under the repository root, or when its line is outside that file, and it still counts toward the covered count. `SPECKIT_AC_COVERAGE_ENFORCE=true` turns an under-floor result into a failure. The floor is aspirational today: across the repository about one in five criteria marked Met cites a `file:line`, so enabling the switch fleet-wide would fail most closed packets until their Verification cells are retro-cited.
 
 **Rule ID:** `AC_COVERAGE`  
+
 **Severity:** INFO  
+
 **Default:** Enabled (advisory). Set `SPECKIT_AC_COVERAGE=false` to opt out.  
+
 **Lifecycle predicate:** Level 2+ only, with `acceptance-criteria.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
+
 **Coverage calculation:** covered acceptance criteria divided by total acceptance criteria must meet `ceil(total * SPECKIT_AC_COVERAGE_FLOOR)`. The default floor is `0.9`; values outside `[0,1]` are clamped.  
+
 **Escape hatch:** a traceability row classified as Manual-infeasible counts as covered only when it carries a rationale.  
+
 **Evidence citations:** Tested or Partially covered rows count only with `file:line` evidence. Malformed evidence is named in the advisory details.
 
 | Flag | Default | Effect |
@@ -171,10 +183,15 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 `CONTINUITY_FRESHNESS` is strict-only and inert by default. It runs only when `SPECKIT_COMPLETION_FRESHNESS=true`, so unset validation output stays unchanged. When enabled, it binds a completion claim to the stored `session_dedup.fingerprint`: the validator recomputes the fingerprint, which is the SHA-256 of `implementation-summary.md`'s own text after line endings are normalized, trailing whitespace is stripped and the fingerprint line itself is zeroed, compares it to the stored value, and checks that packet-scoped working-tree paths are clean. The zero fingerprint placeholder is treated as never recorded and does not produce stale warnings. A stored value that is present but not a sha256 hex digest was written by hand and attests nothing; it reports the `malformed_fingerprint` warning rather than being folded into the never-recorded skips.
 
 **Rule ID:** `CONTINUITY_FRESHNESS`  
+
 **Severity (inner label):** `warn` by default; `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
+
 **Default:** Disabled. Set `SPECKIT_COMPLETION_FRESHNESS=true` to run the strict-only scan.  
+
 **Lifecycle predicate:** strict validation only, with a completion claim present (tasks.md checked verification evidence, `completion_pct: 100`, or complete/shipped status).  
+
 **Clean-tree scope:** packet-scoped paths only, not the whole repository.  
+
 **Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
 
 > **Completion-blocking note:** the rule runs only when `SPECKIT_COMPLETION_FRESHNESS` is enabled, and the decision to run it is made once, at the rule's own entry point, so every caller gets the same answer. A stale result reports a `warn`, which does not block: the orchestrator passes whenever no rule reports an error. `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates that `warn` to an `error`, and only then does `--strict` exit 2. The ENFORCE flag is the warn-versus-block switch.
@@ -195,6 +212,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 ## 3. FILE_EXISTS
 
 **Severity:** ERROR  
+
 **Description:** Validates that all required files exist for the detected documentation level.
 
 ### Required Files by Level
@@ -288,6 +306,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 ## 4. PLACEHOLDER_FILLED
 
 **Severity:** ERROR, or WARNING for an unfilled token in a doc stamped v2.3 or later while its status is Draft  
+
 **Description:** Detects unfilled template placeholders that should be replaced with actual content.
 
 ### Patterns Detected
@@ -356,6 +375,7 @@ Replace placeholder text with actual content:
 ## 5. LEVEL_DECLARED
 
 **Severity:** INFO  
+
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
 
 ### Detection Method
@@ -400,6 +420,7 @@ Add the Level field to your spec.md metadata table:
 ## 6. ANCHORS_VALID
 
 **Severity:** ERROR, nesting included  
+
 **Description:** Checks anchors in each spec doc whose template defines them, ignoring fenced code, and reports missing, unpaired, repeated or nested anchors as errors.
 
 ### What Are Anchors?
@@ -518,6 +539,7 @@ The nesting pass walks a document with a stack:
 ## 7. FOLDER_NAMING
 
 **Severity:** ERROR
+
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
 
 ### Naming Rules
@@ -562,6 +584,7 @@ mv specs/Feature specs/001-feature
 ## 8. FRONTMATTER_VALID
 
 **Severity:** ERROR
+
 **Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
 
 ### Validation Checks
@@ -618,6 +641,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 1 --path
 ## 9. COMPLEXITY_MATCH
 
 **Severity:** WARNING
+
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
 
 ### Expected Ranges by Level
@@ -665,6 +689,7 @@ Either adjust the declared level or modify content to match:
 ## 10. AI_PROTOCOLS
 
 **Severity:** ERROR
+
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
 
 ### Required for Level 3+
@@ -730,6 +755,7 @@ cat .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
 ## 11. LEVEL_MATCH
 
 **Severity:** ERROR
+
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
 
 ### Consistency Checks
@@ -785,7 +811,9 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 ## 12. GOAL DOCUMENT: DURABLE BUDGET AND BINDING
 
 **Severity:** ERROR past 4,000 characters (the one limit, with no warning tier below it), ERROR for a missing binding child  
+
 **Rule:** `SPEC_DOC_SUFFICIENCY`, diagnostics `SPECDOC_SUFFICIENCY_005` (budget) and `SPECDOC_SUFFICIENCY_006` (binding)  
+
 **Description:** A packet `goal.md` carries the directive an operator sets as the session objective. Every runtime goal surface caps what it holds and truncates at the tail, where the completion criteria live, so the slice that gets set has a budget.
 
 ### What Is Measured

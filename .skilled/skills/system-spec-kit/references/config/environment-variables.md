@@ -8,7 +8,7 @@ trigger_phrases:
   - "script execution configuration"
 importance_tier: normal
 contextType: general
-version: 2.7.1.0
+version: 2.7.2.0
 ---
 
 # Environment Variables Reference
@@ -19,7 +19,13 @@ Configuration options via environment variables for the Spec Kit system.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 These variables control path resolution, script execution, spec validation and generated metadata, and the shared embedding stack the package's operators configure alongside it.
+
+### When to Use
+
+- Use when configuring a variable or checking which file is its source of truth.
 
 This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtime/ENV-REFERENCE.md) is the source of truth: every row there names the file that actually reads the variable. When the two disagree, ENV-REFERENCE wins.
 
@@ -27,7 +33,9 @@ This document is the orientation view. [`runtime/ENV-REFERENCE.md`](../../runtim
 
 ## 2. PATH RESOLUTION
 
-`runtime/core/config.ts` resolves the package's working directories. The database-path derivation it used to carry went with the memory database; the directory-override family below is now read by `shared/config.ts` for the telemetry store and by `shared/embeddings/` for the skill advisor's own database, so it stays live.
+- **`runtime/core/config.ts`**: resolves the package's working directories. The database-path derivation it used to carry went with the memory database.
+- **`shared/config.ts`**: reads the directory-override family below for the telemetry store.
+- **`shared/embeddings/`**: reads the directory-override family below for the skill advisor's own database, so the family stays live.
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
@@ -188,18 +196,16 @@ The runtime-neutral spec-gate envs (`SYSTEM_SPEC_GATE_ENFORCE`, `SYSTEM_SPEC_GAT
 
 ---
 
-## 7. RELATED RESOURCES
+## 7. CLEAN TRANSPORT (HOOK STDOUT)
+
+The runtime hook adapters under `runtime/hooks/` write to a host that parses their stdout. Keep stdout reserved for the hook's declared output contract and send diagnostics, warnings and startup logs to stderr, so a host such as OpenCode or Claude does not read extra stdout as a malformed payload.
+
+---
+
+## 8. RELATED RESOURCES
 
 - [Execution Methods](../workflows/execution-methods.md)
 - [Troubleshooting](../debugging/troubleshooting.md)
 - [Quick Reference](../workflows/quick-reference.md)
 - [Retrieval and Continuity Reference](../memory/memory-system.md)
 - [SPECKIT Environment Variable Reference](../../runtime/ENV-REFERENCE.md)
-
----
-
-## 8. CLEAN TRANSPORT (HOOK STDOUT)
-
-The runtime hook adapters under `runtime/hooks/` write to a host that parses their stdout. Keep stdout reserved for the hook's declared output contract and send diagnostics, warnings and startup logs to stderr, so a host such as OpenCode or Claude does not read extra stdout as a malformed payload.
-
----

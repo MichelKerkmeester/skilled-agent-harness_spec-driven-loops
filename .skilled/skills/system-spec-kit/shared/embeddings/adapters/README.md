@@ -5,7 +5,7 @@ trigger_phrases:
   - "shared embedder adapters"
   - "canonical ollama adapter"
   - "embedding adapter contract"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Shared Embedder Adapters
@@ -52,3 +52,11 @@ Run from `shared/`:
 npm run typecheck
 npm run build
 ```
+
+---
+
+## 7. RELATED
+
+- [`../README.md`](../README.md)
+- [`../providers/README.md`](../providers/README.md)
+- [`../adapter.ts`](../adapter.ts)

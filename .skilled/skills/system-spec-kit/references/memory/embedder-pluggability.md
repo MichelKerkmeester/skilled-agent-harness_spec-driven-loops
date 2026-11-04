@@ -11,7 +11,7 @@ trigger_phrases:
   - "embedder device selection"
 importance_tier: important
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Embedder Pluggability
@@ -26,7 +26,7 @@ Canonical reference for the shared embedding stack at `.skilled/skills/system-sp
 
 ### Purpose
 
-Explain shared-stack embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
+Canonical reference for the shared embedding stack at `.skilled/skills/system-spec-kit/shared/embeddings/`. Explain shared-stack embedder pluggability, including defaults, swap flows, rollback, and supported candidates.
 
 ### When to Use
 
@@ -36,7 +36,7 @@ Load this reference when changing the shared text embedder, diagnosing vector re
 
 The shared stack has a pluggable text embedder. The current default is `nomic-embed-text-v1.5` through the local-first cascade described below.
 
-### Scope after 014
+### Scope
 
 The consumers of this stack index prose: spec docs, decision records, continuity frontmatter, conversation summaries. Prose recall benefits from text-tuned embedders that handle paraphrase, multilingual prefixes, and synonym overlap.
 
@@ -108,9 +108,15 @@ Three operations wrap the registry: list the registered manifests with their `re
 | Set | Swap active embedder; re-embeds the consumer's store and updates its active-embedder pointer on success. |
 | Status | Return the current active name, dimension, and the most recent swap-job status. |
 
-Operator flow is "list, set, watch." The set operation is asynchronous: it returns a job ID, the orchestrator re-embeds every row through the new adapter, and the active pointer flips only when the job reaches `completed`.
+1. Operator flow is "list, set, watch."
+2. The set operation is asynchronous: it returns a job ID.
+3. The orchestrator re-embeds every row through the new adapter.
+4. The active pointer flips only when the job reaches `completed`.
 
-**The spec kit exposes no tool for any of this, and `shared/` owns no store.** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`. Configure the stack through the environment variables in `../config/environment-variables.md`, and read health from the advisor's own status surface: `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json`.
+- **Shared-stack ownership:** **The spec kit exposes no tool for any of this, and `shared/` owns no store.**
+- **Advisor consumer components:** The stack produces vectors; the consuming service owns the pointer, the tables, and the swap. The skill advisor is that consumer today, holding the registry shim, the dim-tagged schema and its `skill-graph.sqlite`.
+- **Configuration:** Configure the stack through the environment variables in `../config/environment-variables.md`.
+- **Health checks:** Read health from the advisor's own status surface: `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json`.
 
 ### EmbedderAdapter interface
 
@@ -180,6 +186,8 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 
 ### Swap flow
 
+> **The advisor owns this now.** These four steps ran through the retired memory MCP surface, and the shared embedding stack moved to the skill advisor with the model server. Read them as the shape of the operation and drive it through the advisor's surface, not through a spec-kit tool.
+
 ```text
 1. list      // confirm candidate is registered + ready
 2. set       // returns job ID; runs async
@@ -188,8 +196,6 @@ No code changes. No schema migrations. A fresh clone reaches a ready state from 
 ```
 
 The swap is a single call and crash-resumable.
-
-> **The advisor owns this now.** These four steps ran through the retired memory MCP surface, and the shared embedding stack moved to the skill advisor with the model server. Read them as the shape of the operation and drive it through the advisor's surface, not through a spec-kit tool.
 
 ### Rollback flow
 
@@ -205,7 +211,7 @@ The table below lists the embedder that works without code changes because the r
 |---|---|---:|---:|---|
 | `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; local-first cascade default. |
 
-The candidates evaluated during the 016/004 bake-off (`jina-embeddings-v3`, `bge-base-en-v1.5`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, `snowflake-arctic-embed-l-v2.0`) are historical/removed and are NOT registered; restore them to `shared/embeddings/registry.ts` to make them selectable again.
+The candidates evaluated during the bake-off (`jina-embeddings-v3`, `bge-base-en-v1.5`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, `snowflake-arctic-embed-l-v2.0`) are historical/removed and are NOT registered; restore them to `shared/embeddings/registry.ts` to make them selectable again.
 
 ---
 
@@ -225,7 +231,7 @@ Larger embedders trade RAM and disk for stronger recall on long-tail queries. Th
 
 ### Latency vs recall
 
-Embedder choice is rarely the dominant latency term. The 016/004 bake-off measured swings of a few hundred milliseconds between candidates while the retrieval stages around them moved the number by more. Measure the consumer's whole query path before blaming the model: a swap that trades 100 ms for worse recall is a bad trade, and one made without a baseline is not a trade at all.
+Embedder choice is rarely the dominant latency term. The bake-off measured swings of a few hundred milliseconds between candidates while the retrieval stages around them moved the number by more. Measure the consumer's whole query path before blaming the model: a swap that trades 100 ms for worse recall is a bad trade, and one made without a baseline is not a trade at all.
 
 ---
 

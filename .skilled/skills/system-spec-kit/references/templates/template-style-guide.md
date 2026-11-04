@@ -8,7 +8,7 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Template Style Guide - Formatting Standards
@@ -19,9 +19,9 @@ Conventions and standards for system-spec-kit templates ensuring documentation c
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Consistent templates enable predictable documentation structure, automated validation, and seamless context recovery across sessions.
+Let any spec folder be read the same way, because every template it was filled from follows one set of conventions.
 
 ### When to Use This Guide
 
@@ -30,6 +30,10 @@ Consistent templates enable predictable documentation structure, automated valid
 - Validating template compliance
 - Understanding placeholder syntax
 - Troubleshooting validation failures
+
+### Core Principle
+
+Consistent templates enable predictable documentation structure, automated validation, and seamless context recovery across sessions.
 
 ### Template Inventory
 

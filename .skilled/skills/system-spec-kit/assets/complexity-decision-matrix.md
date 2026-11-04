@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature decision matrix"
 importance_tier: normal
 contextType: planning
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection
@@ -27,30 +27,15 @@ For cross-phase campaigns, treat boundary-management overhead as part of the com
 
 ### Usage
 
-1. Estimate your task's complexity score using the dimension signals in Section 3
-2. Match the score to a level in Section 2
+1. Estimate your task's complexity score using the dimension signals in Section 2
+2. Match the score to a level in Section 3
 3. Verify feature requirements in Section 4
 4. Use the CLI commands in Section 8 to create your spec folder
 5. If the work crosses phases or multiple runtime ownership boundaries, add coordination weight before choosing a level
 
 ---
 
-## 2. LEVEL SELECTION BY SCORE
-
-| Score Range | Level | Name         | Templates                                   | Features Auto-Enabled         |
-| ----------- | ----- | ------------ | ------------------------------------------- | ----------------------------- |
-| 0-25        | 1     | Baseline     | spec, plan, tasks, impl-summary             | None                          |
-| 26-55       | 2     | Verification | Level 1 + checklist                         | dep-graph (table)             |
-| 56-79       | 3     | Full         | Level 2 + decision-record                   | dep-graph (ASCII)             |
-| 80-100      | 3+    | Extended     | Level 3 + AI protocols + extended checklist | All features                  |
-
-**Coordination-Root Override**: Root coordination packets governing multi-phase efforts
-(phase maps, ADR records, tree-truth governance) should be classified as Level 3+
-regardless of complexity score, as they require governance artifacts not covered by Level 3.
-
----
-
-## 3. DIMENSION SCORING SIGNALS
+## 2. DIMENSION SCORING SIGNALS
 
 ### Scope (25% weight)
 
@@ -106,6 +91,21 @@ regardless of complexity score, as they require governance artifacts not covered
 | External services      | +15    | "external API", "third-party service" |
 | Blocking relationships | +15    | "must complete before"                |
 | Complex ordering       | +10    | "specific order", "sequence"          |
+
+---
+
+## 3. LEVEL SELECTION BY SCORE
+
+| Score Range | Level | Name         | Templates                                   | Features Auto-Enabled         |
+| ----------- | ----- | ------------ | ------------------------------------------- | ----------------------------- |
+| 0-25        | 1     | Baseline     | spec, plan, tasks, impl-summary             | None                          |
+| 26-55       | 2     | Verification | Level 1 + checklist                         | dep-graph (table)             |
+| 56-79       | 3     | Full         | Level 2 + decision-record                   | dep-graph (ASCII)             |
+| 80-100      | 3+    | Extended     | Level 3 + AI protocols + extended checklist | All features                  |
+
+**Coordination-Root Override**: Root coordination packets governing multi-phase efforts
+(phase maps, ADR records, tree-truth governance) should be classified as Level 3+
+regardless of complexity score, as they require governance artifacts not covered by Level 3.
 
 ---
 
@@ -214,23 +214,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "Platform migrat
 
 ---
 
-## 9. SPEC TRACEABILITY
-
-This decision matrix addresses the following spec requirements:
-
-| Requirement | Section | Description                                       |
-| ----------- | ------- | ------------------------------------------------- |
-| REQ-011     | §4.1    | Complexity scoring algorithm and dimensions       |
-| REQ-012     | §4.2    | Score-to-level mapping (0-25, 26-55, 56-79, 80+)  |
-| REQ-013     | §4.3    | Dimension signals and keyword detection           |
-| REQ-014     | §4.4    | Feature enablement based on complexity            |
-| REQ-015     | §4.5    | Override conditions for manual level selection    |
-
-**Source**: `.skilled/skills/system-spec-kit/spec.md`
-
----
-
-## 10. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 ### Asset Files
 - [level-decision-matrix.md](./level-decision-matrix.md) - LOC-based level selection and progressive enhancement

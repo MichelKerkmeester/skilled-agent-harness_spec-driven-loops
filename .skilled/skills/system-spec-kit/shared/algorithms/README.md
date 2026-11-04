@@ -5,7 +5,7 @@ trigger_phrases:
   - "RRF fusion"
   - "rank fusion primitives"
   - "shared algorithms"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Algorithms
@@ -64,7 +64,7 @@ rrf-fusion.ts -> embedding providers
 | `fuseResults(vectorResults, keywordResults, k)` | Returns fused results with `rrfScore`, `sources`, `sourceScores` and convergence data. |
 | `fuseResultsMulti(rankedLists, options)` | Fuses any number of ranked lists with optional source weights; `bonusOverChannels: 'active'` preserves the overlap bonus when a channel is empty. |
 | `fuseResultsCrossVariant(variants, options)` | Combines results from expanded query variants. |
-| `normalizeRrfScores(results)` | Normalizes RRF scores to the `0` to `1` range. |
+| `normalizeRrfScores(results)` | Normalizes RRF scores to the `0` to `1` range in place and returns nothing. |
 
 The flags the module reads are `SPECKIT_RRF`, `SPECKIT_RRF_K`, `SPECKIT_SCORE_NORMALIZATION`, `SPECKIT_CALIBRATED_OVERLAP_BONUS` and `SPECKIT_RETRIEVAL_PROFILE_WEIGHTS`; the root `.env.example` documents each.
 
@@ -100,7 +100,7 @@ Run from the repository root:
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/system-spec-kit/shared/algorithms/README.md
 ```
 
-Expected result: the validator exits with code `0`. The module's behavior is covered by the skill advisor's scorer tests, which import it.
+Expected result: the validator exits with code `0`. The module's behavior is covered by `.skilled/skills/system-spec-kit/runtime/tests/rrf-fusion.vitest.ts`, `unit-rrf-fusion.vitest.ts` and `calibrated-overlap-bonus.vitest.ts`, which import it.
 
 ---
 

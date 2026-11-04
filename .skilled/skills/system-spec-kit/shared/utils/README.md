@@ -5,7 +5,7 @@ trigger_phrases:
   - "shared utilities"
   - "path validation helpers"
   - "retry utilities"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Shared Utilities
@@ -62,6 +62,7 @@ utils/* -> network clients
 | File | Responsibility |
 |---|---|
 | `path-security.ts` | Validates that a requested path stays inside one of the allowed base directories. |
+| `path-containment.ts` | Canonicalizes the longest existing path prefix and checks that a write target stays inside an allowed root. |
 | `retry.ts` | Runs async work with exponential backoff after classifying transient and permanent errors. |
 | `jsonc-strip.ts` | Removes block and line comments from JSONC text while keeping comment-like text inside strings. |
 | `token-estimate.ts` | Estimates token count with `Math.ceil(text.length / 4)` and returns `0` for empty input. |
@@ -111,6 +112,7 @@ caller
 | Entrypoint | Type | Purpose |
 |---|---|---|
 | `path-security.ts` | Module | Path containment and regex escaping. |
+| `path-containment.ts` | Module | Write-boundary containment shared by every skill. |
 | `retry.ts` | Module | Retry wrappers and error classification. |
 | `jsonc-strip.ts` | Module | Config parsing support for JSONC input. |
 | `token-estimate.ts` | Module | Shared token budget estimates. |

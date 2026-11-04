@@ -8,7 +8,7 @@ trigger_phrases:
   - "uncertainty weighted average"
 importance_tier: normal
 contextType: research
-version: 1.6.0.14
+version: 1.6.1.0
 ---
 
 # Epistemic Vectors Reference - Uncertainty Tracking
@@ -19,7 +19,7 @@ Framework for measuring and tracking uncertainty separate from confidence, enabl
 
 ## 1. OVERVIEW
 
-### Why Uncertainty Tracking Matters
+### Purpose
 
 Traditional confidence scoring answers: "How sure am I about what I know?"
 
@@ -33,6 +33,10 @@ But this misses a critical dimension: "How much don't I know?"
 4. **Trust erosion** - Confident failures damage credibility more than cautious ones
 
 **Solution:** Track uncertainty as a separate, orthogonal dimension from confidence. Both must pass thresholds before proceeding.
+
+### When to Use
+
+- Use before acting on a significant task when knowledge gaps need assessment.
 
 ### Key Concepts
 

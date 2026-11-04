@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode timeout fallback"
 importance_tier: important
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Hook System Reference
@@ -20,9 +20,15 @@ Current hook registration, runtime vocabulary, lifecycle behavior, and fallback 
 
 ## 1. OVERVIEW
 
-The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin,pi}/` plus the OpenCode spec-gate adapter `runtime/hooks/opencode/system-spec-gate.js`, with compiled twins under `system-spec-kit/runtime/dist/hooks/` for the TypeScript adapters. OpenCode prompt-time advisor delivery is the plugin, which spawns the advisor CLI, not a source-hook tree.
+### Purpose
 
 Prompt delivery, startup wiring, compaction, and shutdown handling differ by runtime, but all adapters use the same retrieval primitives and fail-open recovery path.
+
+### When to Use
+
+- Use when inspecting a runtime's hook registration or lifecycle behavior.
+
+The maintained native hook source set is `system-spec-kit/runtime/hooks/{claude,codex,cursor,devin,pi}/` plus the OpenCode spec-gate adapter `runtime/hooks/opencode/system-spec-gate.js`, with compiled twins under `system-spec-kit/runtime/dist/hooks/` for the TypeScript adapters. OpenCode prompt-time advisor delivery is the plugin, which spawns the advisor CLI, not a source-hook tree.
 
 ---
 
@@ -96,7 +102,14 @@ When a runtime cannot deliver automatic advisor context, use `/speckit:resume`, 
 
 ### Goal transport
 
-The session goal rides the same hook surfaces. The bound packet's `goal.md` is the directive; each runtime injects the objective slice built from it and appends a one-line resend reminder while the operator copy is behind the file. OpenCode injects through `.opencode/plugins/opencode-goal.js` (`experimental.chat.system.transform`, tools `opencode_goal` with `bind`, `resent`, `packet` and `opencode_goal_status`). Pi injects on `input` and `session_start` through `.skilled/hooks/goal/pi/goal-context.ts` and manages through `/goal-pi`. Cursor injects on `sessionStart` through `.skilled/hooks/goal/cursor/goal-inject.mjs` and answers only a session-free packet read. Devin injects on `SessionStart` and `UserPromptSubmit` through `.skilled/hooks/goal/devin/goal-inject.mjs`. Claude Code and Codex keep their native host goal command; the speckit workflows hand them the parent's chat slice to set, as section 4 of `sk-create-goal`'s `references/budget-and-handoff.md` defines it. The model, the actions and the state layout are in `.skilled/hooks/goal/README.md`.
+The session goal rides the same hook surfaces. The bound packet's `goal.md` is the directive; each runtime injects the objective slice built from it and appends a one-line resend reminder while the operator copy is behind the file.
+
+- OpenCode injects through `.opencode/plugins/opencode-goal.js` (`experimental.chat.system.transform`, tools `opencode_goal` with `bind`, `resent`, `packet` and `opencode_goal_status`).
+- Pi injects on `input` and `session_start` through `.skilled/hooks/goal/pi/goal-context.ts` and manages through `/goal-pi`.
+- Cursor injects on `sessionStart` through `.skilled/hooks/goal/cursor/goal-inject.mjs` and answers only a session-free packet read.
+- Devin injects on `SessionStart` and `UserPromptSubmit` through `.skilled/hooks/goal/devin/goal-inject.mjs`.
+- Claude Code and Codex keep their native host goal command; the speckit workflows hand them the parent's chat slice to set, as section 4 of `sk-create-goal`'s `references/budget-and-handoff.md` defines it.
+- The model, the actions and the state layout are in `.skilled/hooks/goal/README.md`.
 
 ---
 

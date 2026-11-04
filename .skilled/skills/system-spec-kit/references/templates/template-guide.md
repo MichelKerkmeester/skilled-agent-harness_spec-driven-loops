@@ -8,7 +8,7 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.9.0
+version: 1.6.10.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
@@ -18,6 +18,14 @@ Guide to template selection, copying, adaptation, and quality standards.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Use the manifest-backed templates to select, copy and adapt spec documents consistently. This guide covers template selection, copying, adaptation, and quality standards.
+
+### When to Use
+
+Use this guide when choosing a template set or adapting one.
 
 ### Progressive Enhancement Model
 
@@ -179,7 +187,11 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 2 --path
 bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3 --path specs/###-name --name feature-name
 ```
 
-Add `--with-lazy-addons` to scaffold `timeline.md` and `decision-record.md`, and `--with-goal` to scaffold `goal.md`. Both work at every level, but with `--phase` the goal flag writes a `goal.md` into each child only. Author a parent goal, or any goal after scaffolding, with `/create:goal`.
+- **`--with-lazy-addons`:** scaffolds `timeline.md` and `decision-record.md`.
+- **`--with-goal`:** scaffolds `goal.md`.
+- **Availability at every level:** both flags work at every level.
+- **`--phase` behavior:** with `--phase` the goal flag writes a `goal.md` into each child only.
+- **`/create:goal`:** author a parent goal, or any goal after scaffolding, with `/create:goal`.
 
 **Optional Templates:**
 ```bash
@@ -239,7 +251,13 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --level 3+ --pat
 
 **Enforcement:** Hard block if required Level 3 files are missing; quality gates rely on the `tasks.md` Verification Checklist, `acceptance-criteria.md` and validation scripts
 
-**If spec is a coordination-root packet**: Replace the executive summary with a coordination overview. Include point-in-time snapshot metadata, a direct-phase documentation map, and cross-reference the governing ADR. Skip dependency graphs in favor of phase navigation links.
+**If spec is a coordination-root packet:**
+
+- Replace the executive summary with a coordination overview.
+- Include point-in-time snapshot metadata.
+- Include a direct-phase documentation map.
+- Cross-reference the governing ADR.
+- Skip dependency graphs in favor of phase navigation links.
 
 ---
 
@@ -609,7 +627,11 @@ mkdir -p specs/###-name/scratch
 
 ### Canonical Continuity Saves (Script-Managed)
 
-Continuity is no longer a standalone `memory/*.md` template surface. `generate-context.js` updates the target packet's canonical continuity surfaces, centered on `_memory.continuity` in `implementation-summary.md`. Recovery reads those docs directly; nothing is re-indexed and no database marker is touched.
+- **Retired standalone surface:** Continuity is no longer a standalone `memory/*.md` template surface.
+- **`generate-context.js` updates:** `generate-context.js` updates the target packet's canonical continuity surfaces, centered on `_memory.continuity` in `implementation-summary.md`.
+- **Direct recovery reads:** recovery reads those docs directly.
+- **No re-indexing:** nothing is re-indexed.
+- **No database marker:** no database marker is touched.
 
 **Creation (JSON mode — preferred):** `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --json '{"specFolder":"###-name","sessionSummary":"..."}' specs/###-name/`
 
@@ -1007,8 +1029,8 @@ mkdir -p specs/122-skill-standardization/spec-enforcement-improvements
 
 ### Real-World Example
 
-**Parent Spec:** `specs/122-skill-standardization/`
-**Purpose:** Standardize all skills across the project
+- **Parent Spec:** `<parent-spec-folder>/`
+- **Purpose:** Standardize all skills across the project
 
 **Sub-Folders:**
 ```text

@@ -8,7 +8,7 @@ trigger_phrases:
   - "structured json handback"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.15
+version: 1.6.1.0
 ---
 
 # Memory Handback Protocol (cli-* family)
@@ -19,7 +19,15 @@ When a calling AI delegates to one of the seven cli-* skills and needs to preser
 
 ## 1. OVERVIEW
 
-Canonical 7-step Memory Handback procedure shared across the seven cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+### Purpose
+
+Canonical 7-step Memory Handback procedure shared across the seven cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the save gates that run after normalization.
+
+### When to Use
+
+- Use when a calling AI delegates to one of the seven cli-* skills and needs to preserve the resulting session context.
+
+Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- MEMORY_HANDBACK_END -->`: cli-claude-code, cli-codex, cli-devin, and cli-opencode. The other three do not. Section 4 maps each packet reference to its actual template section and marker status.
 
 ---
 
@@ -50,7 +58,7 @@ Canonical 7-step Memory Handback procedure shared across the seven cli-* sibling
 
 **Explicit JSON mode failures**: If the explicit data file cannot be loaded, `generate-context.js` fails with `EXPLICIT_DATA_FILE_LOAD_FAILED: ...`. Do not fall back to OpenCode capture in that case; surface the error and stop.
 
-**Post-010 save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
+**Post-normalization save gates**: Valid JSON can still be rejected after normalization. File-backed handbacks skip the stateless alignment and `QUALITY_GATE_ABORT` checks, but they still fail with `INSUFFICIENT_CONTEXT_ABORT` when the payload is too thin and with `CONTAMINATION_GATE_ABORT` when it includes content from another spec.
 
 **Compatibility aliases**: The normalizer still accepts documented camelCase and snake_case pairs such as `sessionSummary` / `session_summary`, `nextSteps` / `next_steps`, `userPrompts` / `user_prompts`, and `recentContext` / `recent_context`. Prefer the canonical field names shown above in new handback payloads.
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "isolated continuity artifacts"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern
@@ -23,16 +23,19 @@ Workflow-assisted pattern for organizing iterative work within existing spec fol
 
 Enable clean separation of iterative work within a single spec folder while preserving historical context through packet continuity. Each iteration maintains its own canonical continuity (the `_memory.continuity` block in its `implementation-summary.md`) plus a git-ignored `scratch/` workspace tied to that child packet.
 
-### Important Note
-
-Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Option A flows and `create.sh --subfolder` creates numbered sub-folders with a `scratch/` directory and `graph-metadata.json` automatically. Legacy `[spec]/memory/*.md` artifacts are no longer produced. Existing root docs are not auto-moved; archival/reorganization remains explicit.
-
 ### When to Use
 
 - Working on distinct phases of the same feature
 - Separating distinct but related iterations within the parent spec's documented scope; genuinely unrelated work belongs in a separate top-level packet
 - Creating clear boundaries between implementation iterations
 - Preserving context when returning to old work
+
+### Important Note
+
+- **AI suggestion:** Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Option A flows.
+- **`create.sh --subfolder` outputs:** `create.sh --subfolder` creates numbered sub-folders with a `scratch/` directory and `graph-metadata.json` automatically.
+- **Retired artifacts:** Legacy `[spec]/memory/*.md` artifacts are no longer produced.
+- **Root-document archival:** Existing root docs are not auto-moved; archival/reorganization remains explicit.
 
 ---
 
@@ -211,7 +214,7 @@ When using subfolder versioning, the spec-doc record save script (`generate-cont
 
 Canonical continuity is always written to the CHILD folder's `implementation-summary.md`:
 - `specs/003-parent/121-child/implementation-summary.md` (correct)
-- `specs/003-parent/implementation-summary.md` (wrong — parent-level, not child)
+- `specs/003-parent/implementation-summary.md` (wrong: parent-level, not child)
 
 ### Bare Child Ambiguity
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "stack-agnostic debugging"
 importance_tier: normal
 contextType: general
-version: 1.6.0.8
+version: 1.6.1.0
 ---
 
 # Universal Debugging Methodology
@@ -80,18 +80,18 @@ Complete each phase before proceeding to the next.
 
 **Goal:** Form and test specific theories.
 
+**Rules:**
+- One hypothesis at a time
+- Form ranked theories; do NOT edit source code in this phase
+- Any command run here gathers evidence, it does not mutate source
+- If hypothesis fails, form a NEW one (don't add more fixes)
+
 | Action | How |
 |--------|-----|
 | State hypothesis clearly | "X causes Y because Z" |
 | Make minimal change | Test ONE variable at a time |
 | Verify result | Did it work or not? |
 | Iterate or conclude | Form new hypothesis if needed |
-
-**Rules:**
-- One hypothesis at a time
-- Form ranked theories; do NOT edit source code in this phase
-- Any command run here gathers evidence, it does not mutate source
-- If hypothesis fails, form a NEW one (don't add more fixes)
 
 ### Phase 4: CHALLENGE / RE-RANK
 

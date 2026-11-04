@@ -1,7 +1,7 @@
 ---
 title: "IPC: canonical daemon socket-server bridge"
 description: "Shared bind, reclaim and multi-client serve logic for every MCP daemon's Unix-socket IPC bridge."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # IPC
@@ -18,7 +18,16 @@ version: 1.0.0.0
 
 | File | Purpose |
 |------|---------|
-| `socket-server.ts` | `startIpcSocketServer()` binds the socket with a race-safe stale-socket fence and directory ownership/mode hardening, accepts secondary clients up to a cap, answers liveness probes without counting them against the cap and relays JSON-RPC frames between the socket and the primary `StdioServerTransport`. Also exports `canUnlinkExistingSocket`, `getIpcBridgeStats`, `parseMaxClients` and `resolveIpcSocketPath`. |
+| `socket-server.ts` | The shared bind, reclaim and multi-client serve logic. |
+
+`startIpcSocketServer()` does four things:
+
+- Binds the socket with a race-safe stale-socket fence and directory ownership/mode hardening.
+- Accepts secondary clients up to a cap.
+- Answers liveness probes without counting them against the cap.
+- Relays JSON-RPC frames between the socket and the primary `StdioServerTransport`.
+
+The module also exports `canUnlinkExistingSocket`, `getIpcBridgeStats`, `parseMaxClients` and `resolveIpcSocketPath`.
 
 ---
 
@@ -26,7 +35,7 @@ version: 1.0.0.0
 
 Each daemon's local `lib/ipc/socket-server.ts` is a thin re-export of this module via the `@spec-kit/shared/ipc/socket-server.js` package export, not a separate copy:
 
-- `.skilled/skills/system-skill-advisor/runtime/lib/ipc/socket-server.ts` and `mcp-server/advisor-server.ts`
+- `.skilled/skills/system-skill-advisor/runtime/lib/ipc/socket-server.ts` and `runtime/advisor-server.ts`
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "context saving commands"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Execution Methods Reference
@@ -19,7 +19,13 @@ How to execute spec folder operations - validation, completion checking, context
 
 ## 1. OVERVIEW
 
-This document covers validation, completion checking, context saving, folder creation, and template selection operations.
+### Purpose
+
+Name the command behind each spec folder operation, folder creation included, so an operation is run rather than reconstructed by hand.
+
+### When to Use
+
+When you know which operation you need and want its exact command, flags, exit codes and environment variables.
 
 ---
 
@@ -128,11 +134,11 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --subfolder spec
 
 Set `SPECKIT_POST_VALIDATE=1` to opt into immediate post-create `validate.sh --quiet` checks.
 
-**Phase creation**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'`
-**Append phases**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --parent specs/022-feature --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'`
-**Recursive validation**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/022-feature/ --recursive`
-These commands create/validate direct-child phase packets
-under a coordination root.
+- **Phase creation**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --phases 3 --phase-names 'foundation,implementation,integration' 'OAuth2 flow'`
+- **Append phases**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh --phase --parent specs/022-feature --phases 2 --phase-names 'stabilization,rollout' 'OAuth2 flow'`
+- **Recursive validation**: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/022-feature/ --recursive`
+
+These commands create/validate direct-child phase packets under a coordination root.
 
 **Flags:**
 | Flag | Purpose |
@@ -281,9 +287,9 @@ After the workflow completes, a **POST-SAVE QUALITY REVIEW** is emitted. This re
 
 ## 9. RELATED RESOURCES
 
-- [Validation Rules](../validation/validation-rules.md)
-- [Folder Routing](../structure/folder-routing.md)
-- [Quick Reference](quick-reference.md)
-- [Template Guide](../templates/template-guide.md)
+- [Validation Rules](../validation/validation-rules.md) - Complete rule reference
+- [Folder Routing](../structure/folder-routing.md) - Spec folder routing and alignment scoring
+- [Quick Reference](quick-reference.md) - Commands, checklists and troubleshooting
+- [Template Guide](../templates/template-guide.md) - Template selection, copying and adaptation
 
 ---

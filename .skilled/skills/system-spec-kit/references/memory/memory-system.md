@@ -9,7 +9,7 @@ trigger_phrases:
   - "indexable content sources"
 importance_tier: normal
 contextType: general
-version: 1.6.0.55
+version: 1.6.1.0
 ---
 
 # Retrieval and Continuity Reference
@@ -20,7 +20,13 @@ How a spec folder is found and how a session is resumed, after the memory MCP su
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Two mechanisms, and they answer different questions. A keyed lookup matches a prompt against phrases an author declared. A scan finds text anywhere in the corpus. Neither infers meaning, and neither runs a service.
+
+### When to Use
+
+- Use when locating a spec folder or resuming a session.
 
 ### Architecture
 
@@ -172,7 +178,9 @@ node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-contex
   specs/<track>/<NNN-name>
 ```
 
-The writer routes content into the right canonical doc and refreshes `description.json` and `graph-metadata.json`. It keeps atomic same-directory update and lock semantics, so a partial write cannot leave a half-updated continuity block. It is the only writer of `_memory.continuity`, and there is no indexing hand-off after it returns.
+- **Content routing and metadata refresh:** The writer routes content into the right canonical doc and refreshes `description.json` and `graph-metadata.json`.
+- **Atomic and locked updates:** It keeps atomic same-directory update and lock semantics, so a partial write cannot leave a half-updated continuity block.
+- **Writer ownership and index behavior:** It is the only writer of `_memory.continuity`, and there is no indexing hand-off after it returns.
 
 An explicit spec-folder target on the command line is authoritative and wins over any `specFolder` inside the payload. Full save mechanics live in [`save-workflow.md`](./save-workflow.md).
 

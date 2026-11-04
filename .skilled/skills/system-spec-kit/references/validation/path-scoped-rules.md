@@ -8,7 +8,7 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
-version: 2.1.3.0
+version: 2.1.4.0
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation
@@ -19,10 +19,17 @@ Path-scoped validation for differentiated rules based on file location, level, a
 
 ## 1. OVERVIEW
 
-Path-scoped rules enable differentiated validation based on:
+### Purpose
+
+Path-scoped rules apply different validation to each file based on file location, documentation level and file type:
+
 - File location (scratch/, memory/, templates/)
 - Documentation level (1/2/3/3+/phase parent)
 - File type (spec.md, decision-record.md, etc.)
+
+### When to Use
+
+Read this when a validation result depends on where a file lives, which level its folder declares, or which document type it is.
 
 ### Why This Matters
 

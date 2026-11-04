@@ -9,7 +9,7 @@ trigger_phrases:
   - "phase parent structure"
 importance_tier: normal
 contextType: planning
-version: 1.6.0.10
+version: 1.6.1.0
 ---
 
 # Phase System
@@ -20,7 +20,20 @@ The phase system decomposes complex specifications into independently trackable 
 
 ## 1. OVERVIEW
 
-The phase system is a behavioral overlay that decomposes complex specifications into independently trackable child spec folders without introducing a new documentation level. This reference covers when phases apply, how complexity is scored, suggested phase counts, lifecycle stages, key commands, folder structure, and links to the deeper taxonomy and validation references.
+### Purpose
+
+The phase system is a behavioral overlay on existing documentation levels (Levels 1-3+), not a new level tier, that decomposes complex specifications into independently trackable child spec folders. Levels describe documentation depth; phases describe work decomposition.
+
+### When to Use
+
+Phase decomposition is suggested when both conditions are met:
+
+- **Phase complexity score >= 25** (out of 50, scored across five dimensions)
+- **Documentation level >= 3** (from `recommend-level.sh` 100-point level scoring)
+
+A series parent qualifies without these thresholds.
+
+This reference covers when phases apply, how complexity is scored, suggested phase counts, lifecycle stages, key commands, folder structure, and links to the deeper taxonomy and validation references.
 
 ---
 
