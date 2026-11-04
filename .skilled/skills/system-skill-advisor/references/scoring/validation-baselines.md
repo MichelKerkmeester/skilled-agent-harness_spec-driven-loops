@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Validation Baselines + Troubleshooting
@@ -49,8 +49,8 @@ The measurement authority is [`scorer-eval-baseline.json`](../../runtime/scripts
 | Full-corpus top-1 accuracy | 0.7744 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
 | Holdout top-1 accuracy | 0.7361 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
 | UNKNOWN count (full corpus) | 13 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
-| Python regression suite | measurement unavailable | `runtime/scripts/skill_advisor_regression.py` |
-| Advisor vitest tests | measurement unavailable | `runtime/tests/` |
+| Python regression suite | not measured for this baseline | `runtime/scripts/skill_advisor_regression.py` |
+| Advisor vitest tests | not measured for this baseline | `runtime/tests/` |
 | Watcher idle CPU | 0.031% | `runtime/lib/daemon/watcher.ts` benchmark |
 | Watcher idle RSS | 5.516 MB | same |
 | Cache-hit p95 latency | ~6.989 ms | `runtime/bench/cache-latency.bench.ts` |

@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.12.0
+version: 0.12.13.0
 ---
 
 # system-skill-advisor
@@ -110,7 +110,10 @@ The Skill Advisor bridge plugin injects routing advice at prompt time.
 - With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed.
 - Full-delivery receipts commit after stdout handoff. A boundary failure poisons older receipts, and unsafe or unavailable durable state stays full.
 - `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery.
-- The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`.
+
+The separate `/goal` plugin:
+
+- Persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`.
 - Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`.
 - Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`.
 - Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
