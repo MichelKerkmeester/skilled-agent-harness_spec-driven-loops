@@ -1,0 +1,4 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-design/sk-design-diagram/references/types/type-it-state.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-design/sk-design-diagram/references/types/type-medallion.md edited=2
+code_blocks_changed=2 block_count_mismatch=0 restored

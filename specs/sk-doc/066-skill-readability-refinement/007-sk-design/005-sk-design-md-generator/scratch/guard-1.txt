@@ -1,0 +1,4 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-design/sk-design-md-generator/README.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-design/sk-design-md-generator/assets/design-md-prompt-template.md edited=1
+code_blocks_changed=2 block_count_mismatch=0 restored

@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-md-generator routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,9 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name `DESIGN.md`, `tokens.json`, a style reference, CSS capture, validation or a report measured from a live site or an existing extraction pair, and a brief-only request naming `DESIGN.md` still lands here for its authoring-boundary refusal. It routes to the v3 Style Reference format specification and writing-style guide, the colour and component taxonomies, the authoring-boundary and quality-checklist checks, the operational extraction-workflow and troubleshooting guides, and the three WRITE-phase assets, with the gold-standard example pairs reachable only under STUDY intent. `references/design-md-format.md` is the default resource and loads before any intent is scored.
+- **Signals.** Requests reach this skill when they name `DESIGN.md`, `tokens.json`, a style reference, CSS capture, validation or a report measured from a live site or an existing extraction pair, and a brief-only request naming `DESIGN.md` still lands here for its authoring-boundary refusal.
+- **Resources.** It routes to the v3 Style Reference format specification and writing-style guide, the colour and component taxonomies, the authoring-boundary and quality-checklist checks, the operational extraction-workflow and troubleshooting guides, and the three WRITE-phase assets, with the gold-standard example pairs reachable only under STUDY intent.
+- **Default.** `references/design-md-format.md` is the default resource and loads before any intent is scored.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -103,6 +105,8 @@ assets/design-md-prompt-template.md  # copy-paste WRITE-phase prompt
 assets/cardinal-rules-card.md        # one-page pre-write / pre-validate fidelity gate
 assets/source-of-truth-router-card.md  # fill-in provenance card
 ```
+
+Three further docs sit in `references/`: `references/creation-contract.md` (the `/design:extract` creation contract), `references/sk-code-handoff.md` (the `sk-code` handoff envelope) and `references/design-knowledge/README.md` (the Brand-vs-Product register and design-knowledge layer, which indexes the rest of `design-knowledge/`).
 
 ### Resource Loading Levels
 

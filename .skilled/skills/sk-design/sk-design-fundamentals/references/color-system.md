@@ -9,7 +9,7 @@ trigger_phrases:
   - "dark mode color ramp"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Building the Color System
@@ -20,9 +20,9 @@ The scales in `SKILL.md` say *what* to define. This says how to pick the values,
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-A palette is built once, from the edges inward, and adjusted by eye. The moment new shades get added outside the system, there is no system.
+A palette whose values are chosen by eye inside a system, with saturation raised at both ends and every text pair verified against its contrast minimum.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ A palette is built once, from the edges inward, and adjusted by eye. The moment 
 - Extending an existing ramp to a new accent or to dark mode.
 - A color fails contrast and raising lightness is making it worse.
 - Greys look flat, or the palest and darkest shades have drifted toward neutral.
+
+### Core Principle
+
+A palette is built once, from the edges inward, and adjusted by eye. The moment new shades get added outside the system, there is no system.
 
 ### Prerequisites
 

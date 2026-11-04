@@ -10,12 +10,20 @@ trigger_phrases:
   - "footer auth lines"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # DP integration
 
+Open this when a platform diagram is at risk of collapsing six integrations into one bus arrow.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Keeps the integration surface countable: every source, consumer and cross-cutting service gets its own wire, and the platform layer is drawn as one zone.
+
+### When to Use
 
 **Best for:** the integration topology of a data platform — which source systems plug in, which consumer surfaces plug out, and which protocol each one speaks. Hub-and-spoke layout wrapped in an explicit **Data platform** layer; no time/phase axis.
 
@@ -173,7 +181,11 @@ for entry in platform.rows[primary_row_idx+1:]:
 # Constraint: y <= zone_y + zone_h
 ```
 
-This produces the canonical layout for the standard shape (top bar / 3-node row / bottom bar): Trino at `y=104 h=56`, primary row at `y=176 h=72`, Airflow at `y=324 h=44`. Bottom anchor of Airflow at y=368 (40-px clear from zone bottom at y=408). **Note**: with the canonical layout there's a 76-px gap between the primary row's bottom (y=248) and Airflow's top (y=324). That gap is intentional — Airflow visually sits at the same y-band as source/consumer row 4 (cy=388), so it reads as a sibling of the bottom side-column row.
+This produces the canonical layout for the standard shape (top bar / 3-node row / bottom bar):
+
+- Trino at `y=104 h=56`, primary row at `y=176 h=72`, Airflow at `y=324 h=44`.
+- Airflow's bottom anchor at y=368, 40-px clear of the zone bottom at y=408.
+- The 76-px gap between the primary row's bottom (y=248) and Airflow's top (y=324) is intentional: Airflow sits at the same y-band as source/consumer row 4 (cy=388), so it reads as a sibling of the bottom side-column row.
 
 ### 3.2 Node placement inside a `row` entry
 
@@ -263,9 +275,9 @@ footer_auth_x(k) = zone_cx + (k - (N-1)/2) * 32     # 32-px stride per footer
 ```
 
 Examples:
-- N=1 → 560
-- N=2 → 544, 576
-- N=3 → 528, 560, 592
+- N=1 → 608
+- N=2 → 592, 624
+- N=3 → 576, 608, 640
 
 Each AUTH line goes from `(footer_auth_x(k), footer_y(k))` up to `(footer_auth_x(k), zone_y + zone_h)`. AUTH labels sit just above the arrowhead at the zone bottom edge.
 
@@ -419,9 +431,4 @@ When this gets unwieldy:
 
 ## 13. EXAMPLES
 
-- `assets/diagrams/dp-integration.html` — minimal light (1 footer = AD). Gallery default.
-- `assets/diagrams/dp-integration-dark.html` — same, dark skin.
-- `assets/diagrams/dp-integration-full.html` — same, editorial-card frame.
-- `assets/diagrams/dp-integration-extended.html` — exercises §5 color override + multi-footer: AD in rust-red, Observability (Prometheus/Grafana/Loki) in slate-blue. Canvas height grown to fit 2 footer rows.
-- `assets/diagrams/dp-integration-extended-dark.html` — extended pattern, dark skin.
-- `assets/diagrams/dp-integration-extended-full.html` — extended pattern, editorial-card frame.
+- `assets/diagrams/dp-integration.html`: the canonical rendered example (1 footer = AD).

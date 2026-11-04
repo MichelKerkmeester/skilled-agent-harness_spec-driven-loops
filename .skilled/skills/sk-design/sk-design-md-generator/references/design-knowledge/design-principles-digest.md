@@ -8,14 +8,26 @@ trigger_phrases:
   - "design intent vs slop"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Design Principles Digest
 
+Open this when a capture leaves you unsure whether a surface's choices were made or inherited.
+
+---
+
 ## 1. OVERVIEW
 
+### Purpose
+
 A condensed read of what deliberate design looks like on a surface. This skill extracts existing designs rather than authoring new UI, so the value here is recognition: knowing the marks of intent versus the marks of a templated default, so a captured Style Reference preserves what makes a surface itself instead of smoothing it toward a generic average.
+
+### When to Use
+
+- Reading a captured surface for intent before recording its tokens
+- Naming the move behind a hero, a structure, motion or copy choice
+- Deciding whether a captured choice is a signature move or a default
 
 ---
 

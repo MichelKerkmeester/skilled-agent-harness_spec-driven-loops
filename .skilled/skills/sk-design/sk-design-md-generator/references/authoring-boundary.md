@@ -10,7 +10,7 @@ trigger_phrases:
   - design md provenance
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Authoring Boundary
@@ -24,6 +24,12 @@ This mode extracts a live site and renders its real CSS into a Style Reference; 
 ### Purpose
 
 This document draws the line around the cardinal fidelity rule. It names four origins a value can have, gives each a source-of-truth label, and states plainly which origins this mode is allowed to write.
+
+### When to Use
+
+- A value's origin is unclear before it enters a token table.
+- A request asks for a Style Reference from a brief with no live site.
+- A review or validation finding needs its provenance traced.
 
 ### Core Principle
 
@@ -107,7 +113,12 @@ The reasons forward-authoring stays out are structural, not a matter of effort.
 - Fidelity must not weaken. The cardinal rule binds every value to `tokens.json`. A brief-driven path has no `tokens.json` to bind to, so admitting it here would force a relaxation of the contract. That trade is refused.
 - No second backend. This mode already extracts, writes, validates and reports through one pipeline. Forward-authoring is not a missing stage of that pipeline. It is a separate capability.
 
-When a user wants a design authored from a brief with no site to measure, that is the sibling authoring skill `sk-design`, routed away from this mode. Do not satisfy the request by loosening fidelity here, and do not produce any part of a Style Reference artifact as a consolation output — no Tokens table, no Surfaces, no Quick Start, not even with brief values labeled or a disclaimer sentence attached. A labeled or disclaimed artifact is still forward-authoring; this boundary forbids the artifact itself, not just unlabeled values inside it. The entire response is text: either a request for the live URL, or an explicit statement that this mode captures an existing surface and brief-only authoring is a different contract handled elsewhere — citing this document (`references/authoring-boundary.md`) and `assets/source-of-truth-router-card.md` by path so the boundary decision is traceable in what the user sees, not just in tool-call history.
+When a user wants a design authored from a brief with no site to measure, that is the sibling authoring skill `sk-design`, routed away from this mode.
+
+- Do not satisfy the request by loosening fidelity here.
+- Do not produce any part of a Style Reference artifact as a consolation output: no Tokens table, no Surfaces, no Quick Start, not even with brief values labeled or a disclaimer sentence attached.
+- A labeled or disclaimed artifact is still forward-authoring; this boundary forbids the artifact itself, not just unlabeled values inside it.
+- The entire response is text: either a request for the live URL, or an explicit statement that this mode captures an existing surface and brief-only authoring is a different contract handled elsewhere, citing this document (`references/authoring-boundary.md`) and `assets/source-of-truth-router-card.md` by path so the boundary decision is traceable in what the user sees, not just in tool-call history.
 
 ---
 

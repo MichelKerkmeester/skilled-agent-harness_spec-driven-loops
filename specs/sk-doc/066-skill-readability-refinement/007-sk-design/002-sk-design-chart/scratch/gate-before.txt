@@ -1,0 +1,4 @@
+INVALID .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md: ['Missing required section: overview']
+INVALID .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md: ['Missing required section: overview']
+.skilled/skills/sk-design/sk-design-chart/references/color-system.md:195: render_h2_numbering: Unnumbered H2 "Where the values come from" among numbered peers; number every section.
+files=10 render_warnings=1 invalid=2

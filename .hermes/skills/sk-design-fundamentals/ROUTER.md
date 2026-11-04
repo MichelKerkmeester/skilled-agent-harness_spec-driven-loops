@@ -20,7 +20,22 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name a value to decide or a surface to judge against values. That is a font size, spacing step, padding, colour, shadow, radius or duration, or a palette, shade ramp or token set built from scratch. It is also an input, menu, tooltip or dialog that needs focus, keyboard and touch behavior, an animation to add or retune, a UI review that has to return findings rather than impressions, or a vague complaint such as *looks off*, *feels cheap* or *cluttered* about UI that already exists. It routes to three resource families: the scales and hard rules that stay in `SKILL.md` and load on every invocation, one reference per routed intent under `references/`, and the two copy-in assets under `assets/`, `tokens.css` and `token-starter-set.md`, which load only on explicit request. A request that resolves to **improve** loads `references/diagnosis-table.md` first, a **review** loads `references/review-checklist.md`, and something new under **build** loads `references/build-procedure.md`.
+Requests reach this skill when they name a value to decide or a surface to judge against values:
+
+- a font size, spacing step, padding, colour, shadow, radius or duration
+- a palette, shade ramp or token set built from scratch
+- an input, menu, tooltip or dialog that needs focus, keyboard and touch behavior
+- an animation to add or retune
+- a UI review that has to return findings rather than impressions
+- a vague complaint such as *looks off*, *feels cheap* or *cluttered* about UI that already exists
+
+It routes to three resource families:
+
+- the scales and hard rules that stay in `SKILL.md` and load on every invocation
+- one reference per routed intent under `references/`
+- the copy-in assets under `assets/`: `tokens.css`, which loads only on explicit request, and `token-starter-set.md`, which also loads with a palette request
+
+A request that resolves to **improve** loads `references/diagnosis-table.md` first, a **review** loads `references/review-checklist.md`, and something new under **build** loads `references/build-procedure.md`.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -41,7 +56,7 @@ Ten intents, one per `INTENT_MODEL` key the machine router scores, and each bull
 - **`DEPTH`** fires on "shadow", "drop shadow", "elevation", "depth", "raised", "inset", "typeface", "letter-spacing", "image", "photo" or "grid". It loads `references/depth-and-detail.md`.
 - **`UX_LAWS`** fires on "too many options", "overwhelming", "cognitive load", "fitts", "hick", "miller", "doherty", "progressive disclosure", "feels slow" or "onboarding". It loads `references/ux-laws.md`.
 - **`PROCEDURE`** fires on "where do i start", "design a new", "from scratch", "grayscale", "wireframe", "mockup", "how much white space" or "which value". It loads `references/build-procedure.md`.
-- **`SCALES`** fires on "spacing", "font size", "type scale", "padding", "border radius", "line-height" or "font weight", and is the intent a request that scores nothing falls back to. It loads nothing at level `MINIMAL`: the scales stay in `SKILL.md` Section 3, so no extra reference is needed.
+- **`SCALES`** fires on "spacing", "font size", "type scale", "padding", "border radius", "line-height" or "font weight", and is the intent a request that scores nothing falls back to. It loads nothing at level `MINIMAL` when its keywords fire: the scales stay in `SKILL.md` Section 3, so no extra reference is needed. A request that scores nothing is reported as `UNKNOWN_FALLBACK` with the checklist below, starting from `references/diagnosis-table.md`.
 
 ---
 
@@ -97,8 +112,8 @@ assets/       copy-paste starting values
 | Level | When to Load | Resources |
 | ----------- | ------------------------ | ---------------------------- |
 | ALWAYS | Every skill invocation | The scales and hard rules in `SKILL.md`, and this `ROUTER.md` |
-| CONDITIONAL | If intent signals match | `build-procedure.md`, `diagnosis-table.md`, `hierarchy.md`, `color-system.md`, `depth-and-detail.md`, `interaction-craft.md`, `motion-principles.md`, `ux-laws.md`, `review-checklist.md` |
-| ON_DEMAND | Only on explicit request | `assets/tokens.css`, `assets/token-starter-set.md` |
+| CONDITIONAL | If intent signals match | `build-procedure.md`, `diagnosis-table.md`, `hierarchy.md`, `color-system.md`, `depth-and-detail.md`, `interaction-craft.md`, `motion-principles.md`, `ux-laws.md`, `review-checklist.md`, `assets/token-starter-set.md` |
+| ON_DEMAND | Only on explicit request | `assets/tokens.css` |
 
 ### Smart Router Pseudocode
 

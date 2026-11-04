@@ -10,12 +10,20 @@ trigger_phrases:
   - "ad group roles"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # DP security matrix
 
+Open this when the access question has to be answered per role and per component, not in prose.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Turns an access policy into a grid a reviewer can audit: every role-component intersection resolves to a level, and one focal cell carries the exception.
+
+### When to Use
 
 **Best for:** documenting per-role / per-component access permissions for a data platform — a grid where each row is a platform component (Keycloak, MinIO bucket, Trino catalog, JupyterHub, NiFi, …) and each column is a role / AD group (Data Administrators, Data Engineers, Data Scientists, Data Consumers, …). Each intersection cell holds a permission value (Admin / Full / R/W / Read / SELECT / Login / No access) with a visual category that matches the permission level. One cell may be marked focal to flag a critical access rule (e.g., "Data Consumers can ONLY `SELECT` from the aggregated catalog — sole consumer access").
 
@@ -308,9 +316,7 @@ Before emitting SVG, verify **every** item:
 
 ## 10. EXAMPLES
 
-- `assets/diagrams/dp-security-matrix.html` — minimal light (NatStat canonical: 4 roles × 8 components, focal at Data Consumers × Trino aggregated). Gallery default.
-- `assets/diagrams/dp-security-matrix-dark.html` — same, dark skin.
-- `assets/diagrams/dp-security-matrix-full.html` — same, editorial-card frame with subtitle + summary cards.
+- `assets/diagrams/dp-security-matrix.html`: the canonical rendered example (NatStat: 4 roles × 8 components, focal at Data Consumers × Trino aggregated).
 
 ---
 

@@ -7,15 +7,17 @@ trigger_phrases:
   - Linear extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Writing Notes: Linear DESIGN.md (v3 Style Reference)
 
+Open this beside `DESIGN.md` when a value needs explaining: the notes record the measured data behind the file, its validation result and the caveats fidelity imposed.
+
 ## 1. OVERVIEW
 
 - This is a **v3 Style Reference** regenerated from the existing `tokens.json` (no re-crawl) via `build-write-prompt.ts` → author prose → `validate.ts`. The value-bearing sections (Colors, Spacing & Shapes, Surfaces, Quick Start) are pasted verbatim from the deterministic formatter.
-- Final validation: **score 99/100, claims 100/100, PASS** (zero critical failures). The single warning — `unknown-font: "### Tailwind v4"` — is a benign false positive where the font heuristic matches the Tailwind heading; it costs 1 value point and matches the anobel exemplar's behavior.
+- Final validation at generation: **score 99/100, claims 100/100, PASS** (zero critical failures). A current `validate.ts` run over the shipped pair reports **45/100, FAIL** (missing `## Motion` and ten missing Quick Start groups) until the exemplar is regenerated. The single warning — `unknown-font: "### Tailwind v4"` — is a benign false positive where the font heuristic matches the Tailwind heading; it costs 1 value point and matches the anobel exemplar's behavior.
 - **Theme set to `dark`.** The measured product canvas is Ink 2 (`#08090a`) with Snow (`#f7f8f8`) text at 19.74:1, and components are built from `rgba(255,255,255,0.01–0.05)` overlays. The Surfaces table's light-first Canvas listing is the formatter's most-prominent-first ordering; the prose flags the inversion rather than contradicting the pre-rendered table.
 - **Data-quality caveat — large colour count.** The older extraction captured 43 colour tokens (most achromatic near-blacks/grays), far more than a hand-curated palette; the Colors table keeps every row for fidelity, and the prose names the gray ladder rather than dumping all 43.
 - **Data-quality caveat — element-keyed radii.** The Border Radius block is keyed by raw DOM tags (`a`, `span`, `div`, `button`) with duplicate keys (e.g. three `--radius-div` slugs) — an artifact of the older extractor. Pasted unchanged per the fidelity rule; prose refers to radii by value (2px button, 6px card/link, 9999px pill), never by tag.

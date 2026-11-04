@@ -9,12 +9,20 @@ trigger_phrases:
   - "focal layer bottleneck"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Layer Stack
 
+Open this when the argument is about where a change belongs, not what it does.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Gives a stack one band grammar: index tag, name, note, so depth reads top to bottom without a legend.
+
+### When to Use
 
 **Best for:** OSI model, CSS cascade, context hierarchy, tech stack, abstraction layers, memory hierarchy.
 
@@ -43,6 +51,4 @@ version: 1.2.1.0
 ---
 
 ## 4. EXAMPLES
-- `assets/diagrams/layers.html` — minimal light
-- `assets/diagrams/layers-dark.html` — minimal dark
-- `assets/diagrams/layers-full.html` — full editorial
+- `assets/diagrams/layers.html`: the canonical rendered example.

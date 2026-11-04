@@ -2,7 +2,7 @@
 name: sk-design-chart
 description: "Chart authoring for sk-design: turn a reader's comparison into one catalog form, copy its file and ship a standalone HTML chart."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 0.23.5.0
+version: 0.23.6.0
 metadata:
   packetKind: workflow
 ---
@@ -92,6 +92,13 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 The workflow is template-first, and that is a constraint rather than a preference. A chart assembled from a form file renders the way that file already rendered. A chart written freehand does not, and the failure shows up in a browser rather than in a check.
 
+When the request names a `DESIGN.md`, a style reference or a measured site's look, route the
+application branch to `scripts/apply-design-md.cjs`. It reads the v3 headings documented by
+`references/design-md-theming.md`, derives both grounds from local values, and writes themed
+copies only after the corpus gates pass. A request that asks for themed charts without naming a
+reference runs it with `--default`, the evilcharts reference carried at `assets/style-reference/evilcharts/`. If the request asks to create the Style Reference itself,
+route that extraction to `sk-design-md-generator`; this packet owns application, not extraction.
+
 1. Read the request and name the comparison the reader needs to make.
 2. Open `references/catalog.md` and resolve that comparison to one row.
 3. Copy the file that row names. Do not rewrite its render code.
@@ -99,13 +106,6 @@ The workflow is template-first, and that is a constraint rather than a preferenc
 5. Apply one colour system from the default reference's palette. One per artifact.
 6. Keep the result a single self-contained file. It opens in a browser with no install step.
 7. Run the corpus check before reporting the result: `node scripts/check-corpus.cjs` over the packet, and `node scripts/check-corpus.cjs --extra <dir>` over a delivery written outside it. Both must print `RESULT: PASSED`.
-
-When the request names a `DESIGN.md`, a style reference or a measured site's look, route the
-application branch to `scripts/apply-design-md.cjs`. It reads the v3 headings documented by
-`references/design-md-theming.md`, derives both grounds from local values, and writes themed
-copies only after the corpus gates pass. A request that asks for themed charts without naming a
-reference runs it with `--default`, the evilcharts reference carried at `assets/style-reference/evilcharts/`. If the request asks to create the Style Reference itself,
-route that extraction to `sk-design-md-generator`; this packet owns application, not extraction.
 
 ### What the corpus holds
 

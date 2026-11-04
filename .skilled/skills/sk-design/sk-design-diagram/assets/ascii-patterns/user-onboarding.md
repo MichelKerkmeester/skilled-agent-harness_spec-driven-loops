@@ -7,7 +7,7 @@ trigger_phrases:
   - "onboarding completion states"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
+version: 1.2.1.0
 ---
 
 # User Onboarding Flow Example - Complete Multi-Step Journey
@@ -18,11 +18,25 @@ Complete user onboarding journey with embedded multi-step processes.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+A worked journey that carries a reader from signup to an active account, so a new onboarding diagram can follow the same stages.
+
+### When to Use
+
 Use this asset when documenting onboarding journeys that mix education, validation, progress feedback, and completion states.
+
+- Multi-phase onboarding flows
+- Progressive feature introduction
+- Embedded sub-processes within main flow
+- User journeys with education and action
+- Flows requiring motivation and context
+- Complex setup with celebrations
+- Gradual feature unlock patterns
 
 ---
 
-## Use Case: Product Onboarding with Profile & Content Creation
+## 2. USE CASE: PRODUCT ONBOARDING WITH PROFILE & CONTENT CREATION
 
 Generic onboarding flow integrating value propositions, celebrations, and multi-step profile/content creation.
 
@@ -309,7 +323,7 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Layered onboarding** - Initial signup + enhanced onboarding layer
 - **Value propositions** - Context before effort
@@ -321,17 +335,9 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 - **Progressive disclosure** - Information revealed at appropriate times
 - **Success criteria** - Clear completion checklist
 
-## When to Use This Pattern
+---
 
-- Multi-phase onboarding flows
-- Progressive feature introduction
-- Embedded sub-processes within main flow
-- User journeys with education and action
-- Flows requiring motivation and context
-- Complex setup with celebrations
-- Gradual feature unlock patterns
-
-## Design Principles Applied
+## 4. DESIGN PRINCIPLES APPLIED
 
 1. **Context Before Effort** - Explain why before asking for work
 2. **Small Wins** - Celebrate each major milestone
@@ -341,7 +347,9 @@ Generic onboarding flow integrating value propositions, celebrations, and multi-
 6. **Flexibility** - Save draft vs publish options
 7. **Education** - Explain features as they're introduced
 
-## Estimated Time to Complete
+---
+
+## 5. ESTIMATED TIME TO COMPLETE
 
 - Initial signup: ~3 minutes
 - Value proposition: 30-45 seconds

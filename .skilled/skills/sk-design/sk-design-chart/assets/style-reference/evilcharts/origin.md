@@ -7,7 +7,7 @@ trigger_phrases:
   - "where the chart palette came from"
 importance_tier: normal
 contextType: reference
-version: 0.23.0.5
+version: 0.23.1.0
 ---
 
 # Origin of this Style Reference
@@ -16,13 +16,29 @@ This one was not captured by the style library. It was
 read out of the evilcharts source and written here, so what is measured and what is authored
 are recorded separately below.
 
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Records where the evilcharts reference came from, so what was measured and what was authored can be read apart.
+
+### When to Use
+
+- Checking a converted hex against the `oklch()` it came from.
+- Changing `DESIGN.md`, `tokens.json` or `source-globals.css`, because each row in the table pins a hash.
+- Re-deriving the stock palette, because this file records which claims were measured rather than asserted.
+
 **Source:** the evilcharts component library, `src/app/globals.css`, its `:root` and `.dark`
 custom-property blocks. Both blocks are carried verbatim beside this file as `source-globals.css`,
 so every converted hex can be checked against the `oklch()` it came from without reaching for the
 library clone, which lives in another packet's research context.
 **Read:** 2026-09-09
 
-## Measured
+---
+
+## 2. MEASURED
 
 Every hex in the colour table is a conversion of an `oklch()` value declared in that stylesheet.
 The conversion is the standard OKLab to linear sRGB matrix followed by the sRGB transfer
@@ -33,7 +49,9 @@ The radius ladder is `--radius: 0.525rem` (8.4px) with the file's own `calc` ste
 +0 and +4. The typefaces are the three the stylesheet binds: Geist Sans, JetBrains Mono and
 Inter.
 
-## Authored
+---
+
+## 3. AUTHORED
 
 The prose - the summary line, the role column, the dark-theme note and the do's and don'ts -
 is a reading of the source, not a quotation from it. Two claims in it are measured rather than
@@ -45,7 +63,9 @@ beside a DESIGN.md and reads `darkMode` from it; without it a reference that has
 is themed onto the corpus stock dark chrome instead of its own ground. evilcharts does have one,
 so the file declares it.
 
-## What it produces
+---
+
+## 4. WHAT IT PRODUCES
 
 ```
 node scripts/apply-design-md.cjs assets/style-reference/evilcharts/DESIGN.md --all --out <dir>

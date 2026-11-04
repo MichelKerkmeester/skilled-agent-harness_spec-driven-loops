@@ -10,10 +10,12 @@ trigger_phrases:
   - "brand logo icons"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Icons (primitive)
+
+Open this when a diagram needs a symbol a reader already knows (a database, a queue, a cloud) and a label alone will not carry it.
 
 ## 1. OVERVIEW
 
@@ -23,7 +25,10 @@ A monochrome 24×24 icon library for IT/cloud diagrams. Each icon uses `currentC
 
 ## 2. USAGE
 
-Find the icon by name (the `### name` headings below). Copy the fenced `<svg>` snippet into your diagram. Default size is 24×24; wrap in `<g transform="translate(x,y) scale(s)">` to position and resize. Set `color`, `fill`, or `stroke` on the parent group/SVG to control color.
+- **Find:** the icon by name (the `### name` headings below).
+- **Copy:** the fenced `<svg>` snippet into your diagram.
+- **Place:** default size is 24×24; wrap in `<g transform="translate(x,y) scale(s)">` to position and resize.
+- **Color:** set `color`, `fill`, or `stroke` on the parent group/SVG to control color.
 
 Generic icons are stroked (1.5px, hairline, like the rest of the skill); brand silhouettes are filled. Don't mix the two styles in the same diagram unnecessarily.
 
@@ -862,9 +867,9 @@ Source: Tabler Icons / `file-type-txt` (MIT)
 
 ## 15. LICENSE ATTRIBUTION
 
-- **Tabler Icons** — MIT — https://github.com/tabler/tabler-icons
-- **Simple Icons** — CC0 — https://github.com/simple-icons/simple-icons
-- **Devicon** — MIT — https://github.com/devicons/devicon
-- **log-z/logos** — MIT — https://github.com/log-z/logos
+- **Tabler Icons** — MIT — [tabler/tabler-icons](https://github.com/tabler/tabler-icons)
+- **Simple Icons** — CC0 — [simple-icons/simple-icons](https://github.com/simple-icons/simple-icons)
+- **Devicon** — MIT — [devicons/devicon](https://github.com/devicons/devicon)
+- **log-z/logos** — MIT — [log-z/logos](https://github.com/log-z/logos)
 
 All libraries' licenses permit redistribution, including in this repository's MIT-licensed source. Brand logos retain their respective trademarks; this set is for documentation and illustrative use only.

@@ -1,0 +1,3 @@
+Review 2 passed and a read of the diff found nothing to restore. `SKILL.md` puts its rules before its references, so the references table closes the file; no file cites either section by number. `ROUTER.md` gains a when-to-use line, splits the machine-projection notes into a list and moves the no-match rule up to its overview. One correction was kept after checking it: the references table no longer says the chart mode ships a gallery, since the chart mode's own `SKILL.md` and README say it has none.
+
+The skill's independent pre-commit review led to hand fixes here: the hub router loses a usage sentence HEAD never had.

@@ -9,12 +9,20 @@ trigger_phrases:
   - "domain model entities"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # ER / Data Model
 
+Open this before drawing a schema whose foreign keys outnumber the entities that own them.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Turns a data model into one repeatable figure: every entity box has the same two sections, cardinality sits at each end of a relationship, and related entities cluster so the lines stay straight.
+
+### When to Use
 
 **Best for:** database schemas, API resource relationships, domain models.
 
@@ -40,6 +48,4 @@ version: 1.2.1.0
 ---
 
 ## 4. EXAMPLES
-- `assets/diagrams/er.html` — minimal light
-- `assets/diagrams/er-dark.html` — minimal dark
-- `assets/diagrams/er-full.html` — full editorial
+- `assets/diagrams/er.html`: the canonical rendered example.

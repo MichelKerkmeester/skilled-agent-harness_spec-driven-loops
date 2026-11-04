@@ -10,12 +10,20 @@ trigger_phrases:
   - "vertical chevron strip"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # High-Level
 
+Open this when the deployment picture has to answer questions about phasing, boundaries and cross-cutting concerns at once.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes an end-to-end stack reproducible: a short input list fixes every chevron, node and connector, so two people drawing it produce the same SVG.
+
+### When to Use
 
 **Best for:** end-to-end data stack overviews — ingestion → storage → query → analytics → visualization — deployed on a container orchestrator (Kubernetes, ECS, Nomad). Combines a phase chevron banner, deployment boundary, orchestration bar, identity footer, and (optionally) a right-side vertical chevron strip for cross-cutting concerns (Orchestration, Security, Observability).
 
@@ -105,7 +113,7 @@ viewBox            = f"0 0 1000 {viewBox_h}"
 
 Every horizontal element (chevron banner, cluster, orchestration bar, identity / cross-cutting bars) ends at `effective_w`. The right strip sits at `x = 1000 - right_strip_w` (= 972). The 8-px band between them is visual breathing room — never put content there.
 
-`viewBox_h` grows when more than one cross-cutting bar is declared: 1 crosscut → 540, 2 → 600 (or 584 if you want it tight; the rule rounds to the next multiple of 20 for clean grids).
+`viewBox_h` grows when more than one cross-cutting bar is declared: 1 crosscut → 540, 2 → 584, and each further crosscut adds 44; the result stays on the 4px grid.
 
 ### 3.2 Horizontal chevron banner
 
@@ -437,7 +445,7 @@ Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 
 1. Every cluster `node.cx` equals its chevron's `cx` (§3.2 + §3.7). This is what makes the chevron banner a real legend.
 2. Every chevron `width` is a multiple of 4 and ≥ 120.
-3. The reserved right strip (28 px) exists **iff** any vertical chevron is declared. If yes, `effective_w = 972`; if no, `effective_w = 1000`.
+3. The reserved right strip (28 px) exists **iff** any vertical chevron is declared. If yes, `effective_w = 964`; if no, `effective_w = 1000`.
 4. Exactly **one** `focal` node. If `focal` is unset in inputs, default to the first `kind: node` under chevron "Storage".
 5. Every edge whose endpoint is the focal node uses `style: primary` (accent stroke + `arrow-accent` marker).
 6. Every edge originating from a `kind: bar` component uses `style: trigger` (dashed + `arrow-sm`).
@@ -447,7 +455,7 @@ Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 10. Each vertical chevron pairs **1:1** with exactly one `bar` or `cross-cutting` component (§6 pairing rule). `len(verticals) == len(bars) + len(crosscuts)`.
 11. `viewBox_h = max(540, strip_y_bot + 112)` — grow the canvas when multiple crosscuts are declared so the legend still fits.
 12. Custom component colors (§4.4) apply only to container + icon + name; connectors stay topology-driven. Cap at 2 custom-colored components in addition to the focal.
-11. The diagram passes SKILL.md §6 (4-px grid; ≤ 2 accent elements; mono only for technical content; hairlines; no shadows; no `rounded-2xl`).
+13. The diagram passes SKILL.md §6 (4-px grid; ≤ 2 accent elements; mono only for technical content; hairlines; no shadows; no `rounded-2xl`).
 
 ---
 
@@ -467,9 +475,4 @@ Before emitting SVG, verify **every** item. If any fails, fix it — don't ship.
 
 ## 10. EXAMPLES
 
-- `assets/diagrams/high-level.html` — horizontal-only, 5 phases, light skin.
-- `assets/diagrams/high-level-dark.html` — same, dark skin.
-- `assets/diagrams/high-level-full.html` — same, editorial-card frame.
-- `assets/diagrams/high-level-vertical.html` — adds vertical Orchestration + Security chevrons, Airflow bar, Keycloak cross-cutting. **Reference render of the full parametric pattern.**
-- `assets/diagrams/high-level-vertical-dark.html` — vertical pattern, dark skin.
-- `assets/diagrams/high-level-vertical-full.html` — vertical pattern, editorial-card frame.
+- `assets/diagrams/high-level.html`: the canonical rendered example: 5-phase horizontal chevron banner, light skin.

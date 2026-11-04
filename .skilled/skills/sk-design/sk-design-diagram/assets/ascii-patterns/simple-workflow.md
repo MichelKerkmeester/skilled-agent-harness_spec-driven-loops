@@ -7,7 +7,7 @@ trigger_phrases:
   - "basic flow diagram example"
 importance_tier: normal
 contextType: general
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Simple Workflow Example - Linear Sequential Process
@@ -18,11 +18,24 @@ A basic linear workflow demonstrating sequential steps without branching.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Lets a reader copy a proven box-and-arrow layout instead of drawing a linear flow from scratch.
+
+### When to Use
+
 Use this asset when documenting a short linear workflow where each step follows directly from the previous one.
+
+- Onboarding flows
+- Setup wizards
+- Linear processes without branches
+- Step-by-step tutorials
+- Installation procedures
+- Simple form submissions
 
 ---
 
-## Use Case: New User Registration
+## 2. USE CASE: NEW USER REGISTRATION
 
 ```
 ╭──────────────────────────────────────────╮
@@ -89,7 +102,7 @@ Use this asset when documenting a short linear workflow where each step follows 
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Terminal nodes**: Rounded boxes for start/end states
 - **Sequential flow**: Clear top-to-bottom progression
@@ -98,11 +111,3 @@ Use this asset when documenting a short linear workflow where each step follows 
 - **Role indicators**: User actions vs system actions
 - **Timing information**: Expected duration for each step
 
-## When to Use This Pattern
-
-- Onboarding flows
-- Setup wizards
-- Linear processes without branches
-- Step-by-step tutorials
-- Installation procedures
-- Simple form submissions

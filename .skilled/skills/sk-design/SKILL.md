@@ -2,7 +2,7 @@
 name: sk-design
 description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.10.0
+version: 2.0.11.0
 metadata:
   family: sk-design
 ---
@@ -56,10 +56,10 @@ The four modes are `sk-design-fundamentals`, `sk-design-md-generator`, `sk-desig
 Stage two maps the chosen mode to its leaves in the root [`ROUTER.md`](./ROUTER.md).
 The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 The advisor routes every design query to the single identity `sk-design`.
+Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`.
 Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses.
 With no signal at all, `routerPolicy.defaultMode` is `sk-design-fundamentals`, so the request lands on the values mode rather than asking.
-Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 
 ---
 
@@ -111,22 +111,7 @@ green gate all leave a request unable to arrive. Only replaying the request prov
 
 ---
 
-## 4. REFERENCES
-
-| Resource | Purpose |
-|----------|---------|
-| `mode-registry.json` | What modes exist, and what each may touch |
-| `hub-router.json` | Signals, vocabulary classes, tie-break |
-| `ROUTER.md` | Stage two: which resources a chosen mode loads |
-| `sk-design-fundamentals/` | The values mode, and everything it owns |
-| `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
-| `sk-design-chart/` | The chart corpus, its checker and its gallery |
-| `sk-design-diagram/` | The diagram forms and their validator |
-| `command-metadata.json` | The commands this hub owns, and which mode owns each |
-
----
-
-## 5. RULES
+## 4. RULES
 
 ### ALWAYS
 
@@ -148,3 +133,18 @@ green gate all leave a request unable to arrive. Only replaying the request prov
 
 - A request cannot be mapped to one registered mode.
 - Registry modes, router signal keys or leaf manifest entries disagree.
+
+---
+
+## 5. REFERENCES
+
+| Resource | Purpose |
+|----------|---------|
+| `mode-registry.json` | What modes exist, and what each may touch |
+| `hub-router.json` | Signals, vocabulary classes, tie-break |
+| `ROUTER.md` | Stage two: which resources a chosen mode loads |
+| `sk-design-fundamentals/` | The values mode, and everything it owns |
+| `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
+| `sk-design-chart/` | The chart corpus and its checker |
+| `sk-design-diagram/` | The diagram forms and their validator |
+| `command-metadata.json` | The commands this hub owns, and which mode owns each |

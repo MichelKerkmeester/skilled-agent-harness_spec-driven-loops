@@ -9,12 +9,20 @@ trigger_phrases:
   - "merge point dot"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Flowchart
 
+Open this when the reader has to follow a decision instead of reading a list of steps.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a branch readable at a glance: shape carries the node type, every exit is labelled, and rejoining branches meet at one dot.
+
+### When to Use
 
 **Best for:** decision logic, algorithms, user-facing branching flows ("Should I…?"), onboarding routing, support-triage trees.
 
@@ -40,6 +48,4 @@ version: 1.2.1.0
 ---
 
 ## 4. EXAMPLES
-- `assets/diagrams/flowchart.html` — minimal light
-- `assets/diagrams/flowchart-dark.html` — minimal dark
-- `assets/diagrams/flowchart-full.html` — full editorial
+- `assets/diagrams/flowchart.html`: the canonical rendered example.

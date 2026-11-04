@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-design-diagram routing"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,16 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name a diagram whose structure a reader follows rather than values to compare: an architecture, sequence, ER, swimlane, quadrant, timeline, Gantt or org-chart picture; a `.drawio`, `.mmd` or fenced-Mermaid source to redraw; an export of a finished diagram to PNG or SVG; or a plain-text flowchart in `ascii-markdown` rather than the default `html-svg`. The router selects from four resource families: the always-loaded `references/foundations/style-guide.md` with the onboarding, output-spec and derivation references beside it, the per-type and import/export references under `references/types/` and `references/import-export/`, the `references/ascii-format/pattern-selection.md` reference with one matching `assets/ascii-patterns/` asset, and the copyable forms, primitives and icon gallery under `assets/` and `references/primitives/`. An ambiguous format returns `UNKNOWN_FALLBACK` rather than a guess.
+Requests reach this skill when they name a diagram whose structure a reader follows rather than values to compare: an architecture, sequence, ER, swimlane, quadrant, timeline, Gantt or org-chart picture; a `.drawio`, `.mmd` or fenced-Mermaid source to redraw; an export of a finished diagram to PNG or SVG; or a plain-text flowchart in `ascii-markdown` rather than the default `html-svg`.
+
+The router selects from four resource families:
+
+- the always-loaded `references/foundations/style-guide.md` with the onboarding, output-spec and derivation references beside it
+- the per-type and import/export references under `references/types/` and `references/import-export/`
+- the `references/ascii-format/pattern-selection.md` reference with one matching `assets/ascii-patterns/` asset
+- the copyable forms, primitives and icon gallery under `assets/` and `references/primitives/`
+
+An ambiguous format returns `UNKNOWN_FALLBACK` rather than a guess.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

@@ -7,7 +7,7 @@ trigger_phrases:
   - "microservices data flow diagram"
 importance_tier: normal
 contextType: general
-version: 1.2.0.14
+version: 1.2.1.0
 ---
 
 # System Architecture Flow (Swimlane) - Multi-Tier System Interaction
@@ -18,11 +18,26 @@ Multi-tier system architecture showing interaction between different layers and 
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Lets a reader copy a proven layer-and-service layout instead of inventing swimlane boundaries from scratch.
+
+### When to Use
+
 Use this asset when documenting system interactions across layers, services, stores, caches, and error paths.
+
+- System architecture documentation
+- Microservices flow diagrams
+- API interaction flows
+- Multi-tier application designs
+- Service communication patterns
+- Data pipeline documentation
+- Security architecture flows
+- Integration architecture
 
 ---
 
-## Use Case: Microservices Authentication & Data Flow
+## 2. USE CASE: MICROSERVICES AUTHENTICATION & DATA FLOW
 
 ```
 ╭─────────────────────────────────────────────────────────────────────────────╮
@@ -292,7 +307,7 @@ Use this asset when documenting system interactions across layers, services, sto
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Swimlane separation** - 6 distinct architectural layers
 - **Horizontal flow** - Left-to-right and top-to-bottom navigation
@@ -304,7 +319,9 @@ Use this asset when documenting system interactions across layers, services, sto
 - **Return paths** - Both success and error flows
 - **System integration** - Multiple databases and services
 
-## Architectural Layers
+---
+
+## 4. ARCHITECTURAL LAYERS
 
 1. **Client Layer**
    - User interface
@@ -337,7 +354,9 @@ Use this asset when documenting system interactions across layers, services, sto
    - Primary data storage
    - Query execution
 
-## Data Flow Steps
+---
+
+## 5. DATA FLOW STEPS
 
 1. User submits credentials
 2. Gateway routes to Auth Service
@@ -354,18 +373,9 @@ Use this asset when documenting system interactions across layers, services, sto
 13. Data returned through layers
 14. UI updated with data
 
-## When to Use This Pattern
+---
 
-- System architecture documentation
-- Microservices flow diagrams
-- API interaction flows
-- Multi-tier application designs
-- Service communication patterns
-- Data pipeline documentation
-- Security architecture flows
-- Integration architecture
-
-## Design Principles Applied
+## 6. DESIGN PRINCIPLES APPLIED
 
 1. **Layer Separation** - Clear horizontal boundaries
 2. **Component Clarity** - Each box has specific purpose
@@ -376,7 +386,9 @@ Use this asset when documenting system interactions across layers, services, sto
 7. **Security** - Token validation and authentication
 8. **Complete Cycle** - Request to response fully shown
 
-## Performance Considerations
+---
+
+## 7. PERFORMANCE CONSIDERATIONS
 
 - **Cache Hit**: ~10ms response time
 - **Cache Miss**: ~100ms (includes DB query)

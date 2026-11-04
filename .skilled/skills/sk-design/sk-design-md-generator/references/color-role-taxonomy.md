@@ -12,7 +12,7 @@ trigger_phrases:
   - ambiguity resolution
 importance_tier: normal
 contextType: general
-version: 1.0.0.2
+version: 1.0.1.0
 ---
 
 # Color Role Taxonomy
@@ -22,6 +22,16 @@ Reference for assigning semantic roles to extracted color values. Use this taxon
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Give each extracted color one semantic role, so the palette a Style Reference publishes can be read as a decision rather than a swatch list.
+
+### When to Use
+
+- Assigning roles to a raw color inventory
+- Choosing between two plausible roles for one color
+- Ordering the palette for the DESIGN.md color section
 
 ### primary
 - **Definition**: The dominant brand/action color used for primary interactive elements and key visual anchors.
@@ -221,7 +231,19 @@ When assigning a semantic role to an extracted color, evaluate evidence in this 
 
 ---
 
-## 3. RECOMMENDED GROUPING ORDER
+## 3. AMBIGUITY RESOLUTION
+
+When a color could reasonably be assigned to multiple roles:
+
+1. **Check usage count.** The role with the highest usage count wins.
+2. **Check element types.** Buttons/controls suggest interactive roles; text elements suggest text roles; backgrounds suggest surface roles.
+3. **Assign the broader role.** If a color could be `primary` or `link`, and it appears on both buttons and inline links, assign `primary` (the broader role) and note that link color matches primary.
+4. **Document the ambiguity.** If genuinely unclear, assign the most likely role and add a note: "Also used as [alternative role]."
+5. **Never leave a frequently-used color unassigned.** Every color that appears more than incidentally must have a role.
+
+---
+
+## 4. RECOMMENDED GROUPING ORDER
 
 When presenting the final color palette in the design system document, use this ordering:
 
@@ -237,18 +259,6 @@ When presenting the final color palette in the design system document, use this 
 10. **Gradients** -- Document as complete gradient definitions, not individual color stops
 
 Within each group, order from most prominent/saturated to least.
-
----
-
-## 4. AMBIGUITY RESOLUTION
-
-When a color could reasonably be assigned to multiple roles:
-
-1. **Check usage count.** The role with the highest usage count wins.
-2. **Check element types.** Buttons/controls suggest interactive roles; text elements suggest text roles; backgrounds suggest surface roles.
-3. **Assign the more specific role.** If a color could be `primary` or `link`, and it appears on both buttons and inline links, assign `primary` (the broader role) and note that link color matches primary.
-4. **Document the ambiguity.** If genuinely unclear, assign the most likely role and add a note: "Also used as [alternative role]."
-5. **Never leave a frequently-used color unassigned.** Every color that appears more than incidentally must have a role.
 
 ---
 

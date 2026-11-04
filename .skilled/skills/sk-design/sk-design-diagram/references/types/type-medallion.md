@@ -9,12 +9,20 @@ trigger_phrases:
   - "bucket contents"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Medallion
 
+Open this when a reader has to trust what each storage tier holds before they can trust the promotion between tiers.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a tier stack reproducible: one inputs schema fixes every card, promotion arc and path label, so two runs from the same inputs produce the same SVG.
+
+### When to Use
 
 **Best for:** documenting a multi-tier data-storage layout where each tier is a distinct *quality / access level* of the same dataset — typically raw landing zone, anonymised, staging/cleaned, aggregated business indicators, and cold archive. Used when the reader needs to see at a glance *what each bucket contains*, *who writes it*, *with what tool and format*, and *how data is promoted between tiers*.
 
@@ -65,7 +73,7 @@ dark: false
 ```
 
 **Reserved field semantics:**
-- `tiers[i].style` — one of `outer`, `default`, `focal`, `cold`. Drives the card's fill/stroke palette (§3.4).
+- `tiers[i].style` — one of `outer`, `default`, `focal`, `cold`. Drives the card's fill/stroke palette (§3.3).
 - `tiers[i].focal: true` — exactly **one** tier may declare this. Overrides `style` to `focal` and switches the promotion arrow *into* this tier to `focal` automatically.
 - `tiers[i].fields` — `{tool, format, writer, example}`. `example` is a 1- or 2-item list; the section heading uses `example_label`.
 - `tiers[i].color` — optional `"#hex"` per-tier color override. See §5.
@@ -207,7 +215,7 @@ The cubic geometry: anchor y = 80 (tier top), control y = 0 (top of viewBox). Cu
 - `arrow-label` role at 10px with `letter-spacing=0.08em`, uppercase. Color matches the arrow stroke.
 - **No mask rect needed** — the cubic curve peaks at y ≈ 20 and the label sits at y=50, well below the curve. The label floats inside the open space *enclosed* by the arc, reading "X transforms into Y" with the arc itself as the visual frame.
 
-For shorter inter-tier gaps (if `tier_gap` is overridden below the default 16 px), the arc anchors `arc_inset` may need to shrink correspondingly to keep the arc visible.
+For shorter inter-tier gaps (if `tier_gap` is overridden below the default 16 px), the arc anchors' inset may need to shrink correspondingly to keep the arc visible.
 
 ### 3.5 Path row (bottom, optional)
 
@@ -270,7 +278,7 @@ Applied to:
 | Bucket text | `C` | `C_light` |
 | Example values | `C` | `C_light` |
 | Field labels / field values | **unchanged** (ink / muted) | **unchanged** |
-| Connectors touching this tier | **unchanged** — topology-driven | **unchanged** |
+| Connectors touching this tier | **incoming arc follows the §3.4 auto-style** (`C`); outgoing stays muted | same, `C_light` |
 
 `C_light` = the same hex lightened ~15% for dark-mode contrast.
 
@@ -283,7 +291,7 @@ Replaces the path card's stroke with `rgba(C, 0.45)` and the tag chip stroke wit
 - **Never on focal tiers.** The accent already carries that signal — a `color` on the focal tier is ignored.
 - **Never on the `cold` tier in addition to its dashed treatment.** Pick either dashed-cold or a custom color, not both.
 - **Cap at 2 custom-colored elements** per diagram (tier or path), in addition to the focal tier.
-- **Promotion arrows inherit the target tier's color** (§4 auto-style rule). A `color: "#c9a23a"` on the Staging tier means the CLEAN+WEIGHT arc landing in Staging is also rendered in yellow — connector, label, and arrowhead match. This keeps visual coherence: the colored tier and its incoming flow read as a single "concern" group. Arrows do **not** inherit color from the source tier — only the target — so the arc *out of* a colored tier reverts to muted (or to the next target's color/style).
+- **Promotion arrows inherit the target tier's color** (§3.4 auto-style rules). A `color: "#c9a23a"` on the Staging tier means the CLEAN+WEIGHT arc landing in Staging is also rendered in yellow — connector, label, and arrowhead match. This keeps visual coherence: the colored tier and its incoming flow read as a single "concern" group. Arrows do **not** inherit color from the source tier — only the target — so the arc *out of* a colored tier reverts to muted (or to the next target's color/style).
 
 ### 5.4 Semantic palette (recommended)
 
@@ -341,7 +349,7 @@ Before emitting SVG, verify **every** item:
 5. Promotion arcs render as cubic Béziers over the top of adjacent tiers; anchors at `(tier_cx(i), 80)` → `(tier_cx(i+1), 80)`, controls at y=0. Label inside the arc at `(arc_peak_x, 50)`, no mask.
 6. Bottom path row only present when `len(paths) > 0`. Cards at `y=476`, height 56.
 7. Custom component colors ≤ 2 in addition to the focal tier. Never on arrows.
-8. All promotion arrows + label masks emitted **before** any tier rect (z-order rule — cards mask the line ends inside the cards).
+8. All promotion arrows emitted **before** any tier card rect (z-order rule: cards mask the line ends inside the cards).
 9. The focal tier's bucket text and example values render in accent; the rest stay muted.
 10. `rx=6` on every tier and path card; `rx=2` on tag chips.
 
@@ -352,10 +360,10 @@ Before emitting SVG, verify **every** item:
 - **More than one focal tier** — focal exists to mark the central analytical surface; >1 erases the signal.
 - **Cold styling on a non-archive tier** — the dashed fog look is reserved for retention/archive tiers.
 - **Bidirectional promotion arrows** — promotions always flow left → right. Backflow (e.g., an aggregate writing back to raw) is wrong for this type; use a different diagram.
-- **Custom-colored arrows** — connectors are topology-driven; color on a tier never spreads to its edges.
+- **Custom-colored arrows**: connectors are topology-driven; an arrow takes the target tier's color only through the §3.4 auto-style rule, never from its source tier.
 - **Path cards explaining tier semantics** — paths describe *write methods* (how data moves between tiers), not what each tier holds. If you find yourself writing "Raw stores …" in a path card, that content belongs in the Raw tier's fields.
 - **Missing `example_label` content** — every tier should show a concrete example payload (quarterly survey rows, customer records, claims, …). Without it the diagram becomes abstract and stops earning its space.
-- **Promotion arrow label longer than the tier-gap label mask** — keep labels to ≤ 14 chars in the uppercase `arrow-label` role. Long verbs ("CALCULATE & SUMMARIZE") break the rhythm; shorten to "AGGREGATE" or split into two diagrams.
+- **Promotion arrow label longer than the arc it sits in**: keep labels to ≤ 14 chars in the uppercase `arrow-label` role. Long verbs ("CALCULATE & SUMMARIZE") break the rhythm; shorten to "AGGREGATE" or split into two diagrams.
 
 ---
 

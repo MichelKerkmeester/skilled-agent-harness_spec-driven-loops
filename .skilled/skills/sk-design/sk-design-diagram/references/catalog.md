@@ -7,14 +7,30 @@ trigger_phrases:
   - "diagram lookup"
 importance_tier: important
 contextType: reference
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Diagram Catalog
 
+Each row turns one reader question into one type and the canonical example that draws it, so the choice is made in one pass.
+
+---
+
 ## 1. OVERVIEW
 
-Read this before choosing a type. The table between the sentinels below is machine-read: the corpus check matches its columns by header name rather than by position. Every row resolves to a canonical example under `assets/diagrams/`, and every canonical example appears in exactly one row. Prose outside the sentinels is never asserted on, so rewrite this page freely. A ceiling cell carries the number and qualifier its own type file states. `No stated ceiling` means the file states none of its own, so the general budget of 9 nodes and 12 arrows applies.
+### Purpose
+
+The table between the sentinels below is machine-read: the corpus check matches its columns by header name rather than by position. Every row resolves to a canonical example under `assets/diagrams/`, and every canonical example appears in exactly one row.
+
+### When to Use
+
+Read this before choosing a type.
+
+### Reading the table
+
+- Prose outside the sentinels is never asserted on, so rewrite this page freely.
+- A ceiling cell carries the number and qualifier its own type file states.
+- `No stated ceiling` means the file states none of its own, so the general budget of 9 nodes and 12 arrows applies.
 
 <!-- DIAGRAM_CATALOG:BEGIN -->
 | id | family | question | canonical | variants | ceiling | imports | skin |

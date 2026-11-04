@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart skeleton"
 importance_tier: important
 contextType: reference
-version: 0.23.0.31
+version: 0.23.1.0
 ---
 
 # Chart Template Contract
@@ -19,6 +19,18 @@ A template is one HTML file. It opens on a double click, with no install, no pac
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+State the contract one chart template file meets: the card parts, the data and readout blocks, the dependencies it may not take and the twenty-five rules the corpus check enforces.
+
+### When to Use
+
+- Before authoring a template, or before editing one that already ships.
+- When a corpus check failure names a rule and the reader needs the contract behind it.
+- When deciding whether a dependency, a computed value or a pointer affordance is allowed.
+
+### Core Principle
 
 Both of those properties are load-bearing. The reader is a writer or an operations analyst rather than a developer, and the file has to survive being emailed to somebody who will open it on a laptop with no network.
 
@@ -36,7 +48,9 @@ One file holds one chart. Inside it, the visible unit is a card with five parts 
 | Footer | `data-chart-part="footer"` | The one-line finding in ink, separated from the figure by the rule |
 | Source | `data-chart-part="source"` | The muted description line in the footer; where the numbers came from |
 
-The fixed five are what make a chart legible with no caption around it. The headline rule is the highest-value writing rule in this packet: a reader who takes nothing but the top line should still have learned something. The footer is part of the card rather than a caption added around it: the finding tells the reader what to notice, and the source stays attached to that reading.
+- The fixed five are what make a chart legible with no caption around it.
+- The headline rule is the highest-value writing rule in this packet: a reader who takes nothing but the top line should still have learned something.
+- The footer is part of the card rather than a caption added around it: the finding tells the reader what to notice, and the source stays attached to that reading.
 
 ### Gallery and delivery are different things
 
@@ -438,7 +452,7 @@ Five rules from the polish pass, each held by the checker.
 
 A form whose data has an honest baseline declares a `METRIC` block beside `READOUT` and prints a
 value, a signed delta and the period above the plot. `present` is `true` or `false` in every form,
-so the decision is written down rather than implied: twenty-five forms declare `false` because a
+so the decision is written down rather than implied: nineteen forms declare `false` because a
 share, a distribution or a matrix has no earlier reading to compare against, and the block's own
 `why` line says so.
 
@@ -524,6 +538,8 @@ stayed a ceiling. Two is every theme this corpus has, the check counts the regio
 trusting the count, and each region is matched against its own projection of the source in both
 directions, which is the property the old rule was protecting.
 
+Rule 10 is the one worth doing first rather than last. A title inside the vector output, an accessible role and a hidden data table cost almost nothing while a template is being written, and are close to unaffordable to retrofit across a whole corpus.
+
 Rule 13 carries a number, and the number is what makes rule 12 checkable. One second is the
 settle time: every animation in the corpus finishes inside it, and the render check opens each
 file with a three second budget, which is three times over. Without a stated settle time the two
@@ -561,8 +577,6 @@ Rule 15 is the one that only pays later. The corner was already identical in eve
 it was enforced, so the check found nothing wrong on the day it shipped. That is the point: the
 uniformity held because twenty authors happened to agree, and a convention nothing asserts breaks
 on the file nobody diffs closely.
-
-Rule 10 is the one worth doing first rather than last. A title inside the vector output, an accessible role and a hidden data table cost almost nothing while a template is being written, and are close to unaffordable to retrofit across a whole corpus.
 
 Rule 16 is the one that decides what the picture means, and it was the last one anything looked at.
 Every other colour rule asks where a value came from. The palette block is matched against the
@@ -630,18 +644,6 @@ ones the applicator writes and the ones a user retargets. A delivery found behin
 defect in the delivery, the same way a drifted palette block is, and the fix is to bring the
 delivery forward, never to excuse it.
 
-A chart answers a pointer. Eighteen forms carry the hover-card register today. The other forms either
-print their values in the drawing or carry a native title on a mark, so a card would repeat the
-reading. See the per-form table below for the decided contract of all 29 forms.
-
-The pointer rows remain a register for behaviour a static check cannot see, while the state,
-number-format and card/table boundaries are asserted. The split is marked here so nobody reads a
-green run as agreement with the whole section.
-
-`interaction-hygiene` requires the hygiene line in any file whose markup declares one of the three registers, and separately fails an unconditional `outline: none` on a focus and any `user-select: none`, which are the two ways the line could be widened into taking something away from a reader. `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. `number-format` fails any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define its `READOUT` block and read its key from the registered datum.
-
-Everything else here is unasserted. What a handler may do, where a card flips, whether a figure inside a card is also in the table, and whether a selection latches are all read by a person.
-
 ### The four registers
 
 | Attribute | Where it goes | What it means |
@@ -652,6 +654,18 @@ Everything else here is unasserted. What a handler may do, where a card flips, w
 | `data-chart-inert` | the chart's figure wrapper (the `<div class="figure" data-chart-part="figure">` element, not a literal `<figure>` tag) | The form correctly answers a pointer with nothing. The attribute's value is the reason, and an empty or whitespace-only value fails the check |
 
 A form that gains any of the three also carries one line of interaction hygiene: `:focus:not(:focus-visible) { outline: none; }`. That drops the focus ring for a reader who clicked and keeps it for a reader who tabbed. Text stays selectable. A delivered chart is a document, and the numbers in it are meant to be copied out.
+
+A chart answers a pointer. Twenty forms carry the hover-card register. The other forms either
+print their values in the drawing or carry a native title on a mark, so a card would repeat the
+reading. See the per-form table below for the decided contract of all 29 forms.
+
+The pointer rows remain a register for behaviour a static check cannot see, while the state,
+number-format and card/table boundaries are asserted. The split is marked here so nobody reads a
+green run as agreement with the whole section.
+
+`interaction-hygiene` requires the hygiene line in any file whose markup declares one of the three registers, and separately fails an unconditional `outline: none` on a focus and any `user-select: none`, which are the two ways the line could be widened into taking something away from a reader. `interaction-state` requires the dim attribute to ship empty and the tooltip group to ship without content. `number-format` fails any host-locale formatter anywhere in the corpus, and requires a file carrying a hover card to define its `READOUT` block and read its key from the registered datum.
+
+Everything else here is unasserted. What a handler may do, where a card flips, whether a figure inside a card is also in the table, and whether a selection latches are all read by a person.
 
 ### The pointer contract, per form
 
@@ -675,6 +689,8 @@ A form that gains any of the three also carries one line of interaction hygiene:
 | `bar-line-composed` | `tooltip` | Two ladders share one gridline set, so an off-scale bar height cannot be converted with confidence even by a willing reader |
 | `daily-line` | `tooltip` | The emphasised low is the only printed reading. Every other point on the line is position only |
 | `daily-range` | `tooltip` | Each day's minimum and maximum exist only as the two endpoints of a bar and are never printed |
+| `bar-list` | `tooltip` | The count prints at the rail, a blank column away from the bar it measures, and the share of the total that the metric prints for the largest source exists for no other source outside the table. The card joins the pointed row's name, its count and its unit, which is the reading the separated rail makes you work for |
+| `tracker` | `tooltip` | A day's status is colour only in the drawing, and the degraded and failed runs read as a strip whose boundaries are never printed |
 | `parallel-axes` | `terminal` | Every dot carries a native `<title>` naming its label, axis, value and unit, and both axis bounds are printed in the figure. The title is a pointer-only affordance: every svg in this corpus carries `role="img"`, so a mark-level title is announced to nobody by a screen reader. Keyboard and screen-reader users reach the same values through the data table |
 | `waterfall` | `terminal`, native title | Every step's delta is printed above its bar, and each bar carries a native `<title>` naming the value and the running total. This form declares none of the three interaction registers today: it is not a legend-or-dim form, it carries no register of any kind. As with `parallel-axes`, the title reaches a pointer and the data table, not a screen reader |
 | `progress-single` | `inert` | The datum, its goal, its share and its pace comparison are each printed in the figure |
@@ -683,8 +699,6 @@ A form that gains any of the three also carries one line of interaction hygiene:
 | `independent-percentages` | `inert` | Each track's percentage is printed to its right and its name to its left |
 | `bar-columns` | `inert` | Each column's value is printed above it |
 | `bar-rows` | `inert` | Each bar's value is printed at its end, with its unit suffix |
-| `bar-list` | `tooltip` | The count prints at the rail, a blank column away from the bar it measures, and the share of the total that the metric prints for the largest source exists for no other source outside the table. The card joins the pointed row's name, its count and its unit, which is the reading the separated rail makes you work for |
-| `tracker` | `tooltip` | A day's status is colour only in the drawing, and the degraded and failed runs read as a strip whose boundaries are never printed |
 | `spark` | `inert` | The latest reading is printed in the metric header and every week sits one disclosure away in the table; the drawing carries no value a pointer could add, so the figure answers the pointer with nothing and declares why |
 
 ### What a pointer owes a reader

@@ -2,7 +2,7 @@
 name: sk-design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # Design System Extractor (md-generator)
@@ -77,6 +77,17 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 Every extraction runs as a sequential pipeline. No phase can be skipped in a full run, though VALIDATE and REPORT can be invoked standalone on an existing `DESIGN.md` + `tokens.json` pair.
 
+**Process Flow:** `EXTRACT (Phase 1)` → `WRITE (Phase 2)` → `VALIDATE (Phase 3)` → `REPORT (Phase 4, optional)`
+
+- **EXTRACT** — Playwright crawls 5 viewports, collecting computed CSS (colors, typography, shadows, radii, spacing, CSS variables), measured image-edge outlines, nested/concentric radii, root font smoothing, and hit-target affordances when present, plus dark-mode/framework/icon/motion/a11y signals. Every token is tagged with a stability class (L1–L4, see below). Output: `tokens.json`.
+- **WRITE** — Run `build-write-prompt.ts` first. It pre-renders the value tables (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) and a FACTS block deterministically from tokens via `formatters-v3.ts` (doc-as-view, no AI on the value tables).
+  Paste those sections unchanged. Write prose only: intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, and Similar Brands. Follow the voice in `references/writing-style-guide.md`.
+  Elevation renders FLAT when there are 0 shadow tokens. Output: `DESIGN.md`.
+- **VALIDATE** — `validate.ts` checks hex accuracy, v3 section completeness, Quick-Start fidelity, and prose provenance (see "What `validate.ts` traces" below). Output: pass/fail with a dual score and per-finding messages.
+- **REPORT** (optional) — `report-gen.ts` and `preview-gen.ts` render visual artifacts (HTML report, preview) for human review.
+
+Full phase-by-phase actions and handoff: `references/extraction-workflow.md`.
+
 ### Procedure Card Selection
 
 After the hub selects the public `md-generator` mode, choose the private `procedures/design-system-extraction.md` card when a request involves any of these:
@@ -104,18 +115,6 @@ Before any completion claim, include proof naming:
 - The selected procedure card, backend entrypoint used, `tokens.json`/`DESIGN.md` provenance, validation result, and unresolved gaps.
 
 If subagents are unavailable or disallowed, execute directly in the current session using this mode's normal backend boundary. Direct fallback does not weaken the pipeline: full extraction still requires extract, write, and validate; validation-only and report-only paths still use their dedicated backend entrypoints.
-
-**Process Flow:** `EXTRACT (Phase 1)` → `WRITE (Phase 2)` → `VALIDATE (Phase 3)` → `REPORT (Phase 4, optional)`
-
-- **EXTRACT** — Playwright crawls 5 viewports, collecting computed CSS (colors, typography, shadows, radii, spacing, CSS variables), measured image-edge outlines, nested/concentric radii, root font smoothing, and hit-target affordances when present, plus dark-mode/framework/icon/motion/a11y signals. Every token is tagged with a stability class (L1–L4, see below). Output: `tokens.json`.
-- **WRITE** — Run `build-write-prompt.ts` first. It pre-renders the value tables (Tokens — Colors, Spacing & Shapes, Surfaces, Quick Start) and a FACTS block deterministically from tokens via `formatters-v3.ts` (doc-as-view, no AI on the value tables).
-  Paste those sections unchanged. Write prose only: intro, Typography role prose, Components, Do's/Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, and Similar Brands. Follow the voice in `references/writing-style-guide.md`.
-  Elevation renders FLAT when there are 0 shadow tokens. Output: `DESIGN.md`.
-- **VALIDATE** — `validate.ts` checks hex accuracy, v3 section completeness, Quick-Start fidelity, and prose provenance (see "What `validate.ts` traces" below). Output: pass/fail with a dual score and per-finding messages.
-- **REPORT** (optional) — `report-gen.ts` and `preview-gen.ts` render visual artifacts (HTML report, preview) for human review.
-
-Full phase-by-phase actions and handoff: `references/extraction-workflow.md`.
-
 ### Cardinal Fidelity Rule
 
 **Every hex code, pixel value, font weight, box shadow, border radius, and spacing value in `DESIGN.md` MUST be copied verbatim from `tokens.json`.** No estimation, no rounding, no invention, no "close enough" substitution. This is the single non-negotiable contract of the skill — it is what makes `DESIGN.md` a hallucination-proof reference.
@@ -244,7 +243,6 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 - [component-taxonomy.md](references/component-taxonomy.md) — Component naming, hierarchy patterns, and the component-to-section mapping rules.
 - [anti-patterns.md](references/anti-patterns.md) — Common DESIGN.md authoring mistakes: invented values, missing sections, wrong hex case, L4 leaks, and dark-mode fabrication.
 - [quality-checklist.md](references/quality-checklist.md) — Pre-validate self-check list: hex format, section presence, stability-class compliance, dark-mode gate, a11y section presence.
-- [guided-run.md](references/guided-run.md) - Guided wrapper contract for readiness checks and phase orchestration without auto-authoring DESIGN.md.
 
 ### Gold-Standard Examples
 
@@ -259,7 +257,9 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 - [references/extraction-workflow.md](references/extraction-workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
 - [references/authoring-boundary.md](references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to the sibling authoring skill `sk-design`.
-- [references/guided-run.md](references/guided-run.md) - Guided wrapper behavior and stop conditions for smoke runs and operator handoff.
+- [references/guided-run.md](references/guided-run.md) - Guided wrapper contract and behavior for readiness checks, phase orchestration, smoke runs, stop conditions and operator handoff, without auto-authoring `DESIGN.md`.
+- [references/creation-contract.md](references/creation-contract.md) - Lifecycle, context, grounding, proof, authority and handoff contract for the `/design:extract` command.
+- [references/sk-code-handoff.md](references/sk-code-handoff.md) - Envelope for handing an accepted Style Reference from extraction to `sk-code` implementation.
 - [procedures/design-system-extraction.md](procedures/design-system-extraction.md) - Private measured-extraction procedure support for source evidence, gaps, inconsistencies, and next steps inside this existing mode.
 
 ### Design Knowledge
@@ -289,23 +289,23 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 ## 6. SUCCESS CRITERIA
 
 **Extraction complete when:**
-- [x] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
-- [x] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design-md-format.md`.
-- [x] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
-- [x] All hex codes use 6-digit lowercase format.
-- [x] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
-- [x] Elevation renders FLAT when there are 0 shadow tokens (states how depth is achieved instead); no false systems asserted.
-- [x] The Quick Start CSS + Tailwind blocks are present and every value traces to a token.
-- [x] `validate.ts` passes with zero hex mismatches, zero missing required sections, Quick-Start fidelity intact and zero hard failures in the `target`, `schema` and `provenance` categories.
-- [x] The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
-- [x] The mutating backend entrypoint and validation evidence are named; procedure support does not replace the extract-write-validate boundary.
+- [ ] `tokens.json` was written by `extract.ts` with no fatal errors, and the file is valid JSON with non-empty token arrays.
+- [ ] `DESIGN.md` was written conforming to the v3 Style Reference format in `references/design-md-format.md`.
+- [ ] Every hex, pixel, font-weight, shadow, and radius in DESIGN.md matches `tokens.json` verbatim.
+- [ ] All hex codes use 6-digit lowercase format.
+- [ ] L1 + L2 colours populate the main token table; L3 colours appear in the "Current Campaign Colors (Subject to change)" sub-table; L4 tokens are absent.
+- [ ] Elevation renders FLAT when there are 0 shadow tokens (states how depth is achieved instead); no false systems asserted.
+- [ ] The Quick Start CSS + Tailwind blocks are present and every value traces to a token.
+- [ ] `validate.ts` passes with zero hex mismatches, zero missing required sections, Quick-Start fidelity intact and zero hard failures in the `target`, `schema` and `provenance` categories.
+- [ ] The selected private procedure card is cited by relative path, or the no-procedure fallback is explicitly stated.
+- [ ] The mutating backend entrypoint and validation evidence are named; procedure support does not replace the extract-write-validate boundary.
 
 **Validation-only complete when:**
-- [x] `validate.ts` was run against the DESIGN.md + tokens.json pair.
-- [x] All reported errors are resolved or escalated per Section 4 (ESCALATE IF).
+- [ ] `validate.ts` was run against the DESIGN.md + tokens.json pair.
+- [ ] All reported errors are resolved or escalated per Section 4 (ESCALATE IF).
 
 **Report complete when:**
-- [x] `report-gen.ts` and `preview-gen.ts` produced artifacts at the specified output paths with no errors.
+- [ ] `report-gen.ts` and `preview-gen.ts` produced artifacts at the specified output paths with no errors.
 
 ---
 
@@ -315,10 +315,13 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 - `sk-code` implements against `DESIGN.md` as the hallucination-proof source of truth for colors, fonts, spacing, shadows, and radii.
 - `mcp-figma` is the Figma-file alternative to a live-URL extraction.
 - `system-spec-kit` applies when the extraction is part of a larger spec-tracked feature and packet documentation is required.
-- Requires Playwright (Apache 2.0, via `npx playwright install chromium`) and Node.js 20+ (`backend/package.json` does not pin an `engines` range — treat 20+ as the supported floor); `ts-node` executes the embedded TypeScript modules directly.
+- Requires Playwright (Apache 2.0, via `npx playwright install chromium`) and Node.js 20+ (`backend/package.json` pins `engines.node` to `>=20`); `ts-node` executes the embedded TypeScript modules directly.
 
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-Manual validation scenarios live in `manual-testing-playbook/manual-testing-playbook.md`. Release notes live in `changelog/`; the latest is `changelog/v1.0.0.0.md`. Tool setup: `INSTALL-GUIDE.md`. The embedded `backend/scripts/` pipeline (20 TypeScript modules) is documented operationally in `references/extraction-workflow.md`.
+- Manual validation scenarios: `manual-testing-playbook/manual-testing-playbook.md`.
+- Release notes: `changelog/`; the latest is `changelog/v1.1.11.0.md`.
+- Tool setup: `INSTALL-GUIDE.md`.
+- The embedded `backend/scripts/` pipeline (28 TypeScript modules) is documented operationally in `references/extraction-workflow.md`.

@@ -9,12 +9,20 @@ trigger_phrases:
   - "data type chips"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Process
 
+Open this when a process diagram has to survive a responsibility audit.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a multi-actor process reproducible: one inputs schema fixes every lane, step column, node and data chip, so the same inputs always draw the same figure.
+
+### When to Use
 
 **Best for:** sequential business processes with multiple actors/divisions where the reader needs to see *who* does *what*, *what data* enters and leaves each step, and *which tools* are used — not just the step order. Covers responsibility audits, data-quality gate reviews, cross-divisional handoff maps, and end-to-end workflow documentation.
 
@@ -121,7 +129,7 @@ legend_row_y     = [legend_y_top + 16, legend_y_top + 37,
 
 - Paper fill across full viewBox.
 - Dot pattern: 22×22 grid, `circle r=0.8`, `fill rgba(45,49,66,0.10)`. Opacity 0.55.
-- Alternating lane tints: odd-indexed lanes (0, 2, …) receive `rgba(45,49,66,0.018)` fill from `x=140` to `viewBox_w`.
+- Alternating lane tints: even-indexed lanes (0, 2, …) receive `rgba(45,49,66,0.018)` fill from `x=140` to `viewBox_w`.
 - Lane dividers: horizontal hairlines at every `lane_y_top(k)` and at `legend_y_top`; stroke `rgba(45,49,66,0.12)` width 0.8.
 - Label column right border: vertical hairline at `x = label_col_w`, stroke `rgba(45,49,66,0.20)` width 1, from `y = header_h` to `y = legend_y_top`.
 
@@ -364,7 +372,7 @@ Data-type chip colors are a **separate semantic axis** from the per-node color o
 
 ## 10. LEGEND (3- OR 4-ROW STRIP)
 
-Each row introduced by a category label at `x = label_col_w + 4` (= 144). The default legend has **3 rows** (`STEPS` / `DATA TYPE` / `FLOW`); when one or more nodes carry a `color` override (§5), add a 4th `CONCERN` row and grow `legend_h` to 100.
+Each row introduced by a category label at `x = label_col_w + 4` (= 144). The default legend has **3 rows** (`STEPS` / `DATA TYPE` / `FLOW`); when one or more nodes carry a `color` override (§5), add a `CONCERN` row (row 3, pushing `FLOW` to row 4) and grow `legend_h` to 100.
 
 - **Row 1 — `STEPS`** at `y = legend_y_top + 16`: repeat the header chips with their labels. Focal step keeps accent fill.
 - **Row 2 — `DATA TYPE`** at `y = legend_y_top + 37`: one swatch per chip type actually used in the diagram. Append a small sub-hint in muted mono: `left chip = input · right chip = output`.
@@ -404,9 +412,9 @@ Above 6 lanes or 12 steps: split into two diagrams (overview + detail).
 
 ---
 
-## 13. WORKED EXAMPLE — FULL YAML FOR `process-extended.html`
+## 13. WORKED EXAMPLE: 6 LANES × 11 STEPS
 
-The extended example diagram is fully described by the following inputs. Every coordinate in the rendered SVG is derivable from this block via §3 + §4 + §5. This is the canonical proof that the parametric contract works end-to-end.
+The following inputs describe a 6-lane × 11-step quarterly-survey process end to end. Every coordinate in a render is derivable from this block via §3 + §4 + §5. This is the canonical proof that the parametric contract works end-to-end.
 
 ```yaml
 # Quarterly survey — end-to-end workflow (extended variant)
@@ -477,15 +485,15 @@ dark: false
 Run §3 of this reference with these inputs:
 
 - `n_lanes = 6`, `n_steps = 11`, `has_color_row = true` (3 nodes carry `color`).
-- `viewBox_w = 140 + 11 * 112 + 28 = 1400`. ✓ matches rendered SVG.
+- `viewBox_w = 140 + 11 * 112 + 28 = 1400`. ✓
 - `legend_h = 100`, `viewBox_h = 36 + 6 * 80 + 100 = 616`. ✓
 - Lane y_top = [36, 116, 196, 276, 356, 436]; lane mid = [76, 156, 236, 316, 396, 476]. ✓
-- Step cx = [198, 310, 422, 534, 646, 758, 870, 982, 1094, 1208, 1320] (the 8-px content-area gutter shifts every value by 8 from `140 + j*112 + 50`). ✓
+- Step cx = [198, 310, 422, 534, 646, 758, 870, 982, 1094, 1206, 1318] (the 8-px content-area gutter shifts every value by 8 from `140 + j*112 + 50`). ✓
 - Node 4 (HQ Review): step=3, lane="SVY" (k=3) → x = 534-50 = 484, y = 276+8 = 284. ✓
 - Node 5 (Error Checks): step=4, lane="IT" (k=1) → x = 646-50 = 596, y = 116+8 = 124. ✓
-- Node 10 (Public Release): step=9, lane="CMM" (k=5) → x = 1208-50 = 1158, y = 436+8 = 444. ✓ *(Rendered uses x=1156 — 2-px tolerance from chip-width rounding on the step "10" label.)*
+- Node 10 (Public Release): step=9, lane="CMM" (k=5) → x = 1206-50 = 1156, y = 436+8 = 444. ✓
 
-The two coord drifts on the rightmost two nodes (chip width=20 for two-digit step numbers shifts the chip but not the node center math) are an artifact of the existing hand-tuned example, not a formula failure — a fresh generation from this YAML would produce x=1158 and the diagram would be visually indistinguishable from the shipped version.
+Every node centre follows the same formula, so a fresh generation from this YAML reproduces the coordinates above.
 
 ### 13.2 Adapting this YAML to a different process
 
@@ -503,9 +511,4 @@ Everything else — viewBox sizing, chip positions, legend layout, dark-mode tok
 
 ## 14. EXAMPLES
 
-- `assets/diagrams/process.html` — minimal light (quarterly survey: 11 steps, 6 divisions, data-type chips). Gallery default.
-- `assets/diagrams/process-dark.html` — same, dark skin.
-- `assets/diagrams/process-full.html` — same, editorial-card frame.
-- `assets/diagrams/process-extended.html` — exercises §5 color override: Build app in slate-blue (data quality), Train enumerators in rust-red (governance), Publish results in olive-green (data products). Focal accent on Pilot test step + node unchanged.
-- `assets/diagrams/process-extended-dark.html` — extended pattern, dark skin.
-- `assets/diagrams/process-extended-full.html` — extended pattern, editorial-card frame.
+- `assets/diagrams/process.html`: the canonical rendered example: order fulfillment, 8 steps across 4 lanes (Customer, Support, Warehouse, Finance), data-type chips, one focal step and node.

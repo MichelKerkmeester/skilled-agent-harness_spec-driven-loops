@@ -1,0 +1,13 @@
+.skilled/skills/sk-design/sk-design-fundamentals/README.md
+.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md
+.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
+.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md
+.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md

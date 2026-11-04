@@ -10,10 +10,14 @@ trigger_phrases:
   - "manual export never automatic"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Export to PNG / SVG
+
+Open this when a finished diagram has to leave the browser for a slide, a doc, a chat message, or a print handout.
+
+---
 
 ## 1. OVERVIEW
 
@@ -62,7 +66,7 @@ If the user explicitly asks for "a screenshot of the whole page including the ca
      ```
      If the SVG already contains a `<defs>` block, **merge** the `<style>` into it (don't add a second `<defs>`).
 4. Prepend `<?xml version="1.0" encoding="UTF-8"?>\n` so the file is well-formed XML.
-5. Write to `<basename>.svg` next to the source (e.g. `architecture.html` → `example-architecture.svg`). Honour an explicit output path if the user provides one.
+5. Write to `<basename>.svg` next to the source (e.g. `architecture.html` → `architecture.svg`). Honour an explicit output path if the user provides one.
 
 ### Caveat to surface to the user
 

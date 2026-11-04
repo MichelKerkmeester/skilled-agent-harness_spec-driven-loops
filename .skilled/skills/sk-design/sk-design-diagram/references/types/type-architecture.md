@@ -10,12 +10,20 @@ trigger_phrases:
   - "bridge hop crossings"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Architecture
 
+Open this when a topology has more boxes than the space between them allows, and the wires still have to be traceable.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Gives every topology the same grammar: orthogonal connectors, bridged crossings, and zones that carry their own boundary label.
+
+### When to Use
 
 **Best for:** system overviews, data-flow diagrams, integration maps, infra topology.
 
@@ -87,7 +95,7 @@ Group 2+ nodes that serve the same tier or trust boundary with a zone rect — d
 ```
 
 Rules:
-- Leave 12–16px above the first enclosed node — the eyebrow label sits in this margin.
+- Leave the header margin §3 sets: ≥16px between the label's bottom edge and the first enclosed node.
 - Zone fill: `rgba(45,49,66,0.02)` (2% ink wash). Any stronger competes with node fills.
 - Max 3 zones per diagram. More and it reads like a swimlane (use that type instead).
 - Dark mode: swap `rgba(45,49,66,…)` → `rgba(245,245,245,…)` same opacities; label mask fill = `paper` (dark).

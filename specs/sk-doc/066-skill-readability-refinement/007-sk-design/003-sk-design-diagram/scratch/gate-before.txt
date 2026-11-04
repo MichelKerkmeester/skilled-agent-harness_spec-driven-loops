@@ -1,0 +1,38 @@
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:25: render_h2_numbering: Unnumbered H2 "Use Case: Marketing Content Approval Process" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:332: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:344: render_h2_numbering: Unnumbered H2 "Review Stages" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:362: render_h2_numbering: Unnumbered H2 "Loop-Back Points" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:368: render_h2_numbering: Unnumbered H2 "Escalation Triggers" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:374: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:385: render_h2_numbering: Unnumbered H2 "Design Principles Applied" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md:396: render_h2_numbering: Unnumbered H2 "Typical Timeline" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md:25: render_h2_numbering: Unnumbered H2 "Use Case: E-commerce Order Processing System" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md:271: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md:282: render_h2_numbering: Unnumbered H2 "Decision Points Covered" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md:295: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md:306: render_h2_numbering: Unnumbered H2 "Design Principles Applied" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md:25: render_h2_numbering: Unnumbered H2 "Use Case: Deployment Pipeline with Parallel Tests" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md:188: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md:198: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md:25: render_h2_numbering: Unnumbered H2 "Use Case: New User Registration" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md:92: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md:101: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:25: render_h2_numbering: Unnumbered H2 "Use Case: Microservices Authentication & Data Flow" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:295: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:307: render_h2_numbering: Unnumbered H2 "Architectural Layers" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:340: render_h2_numbering: Unnumbered H2 "Data Flow Steps" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:357: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:368: render_h2_numbering: Unnumbered H2 "Design Principles Applied" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md:379: render_h2_numbering: Unnumbered H2 "Performance Considerations" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md:25: render_h2_numbering: Unnumbered H2 "Use Case: Product Onboarding with Profile & Content Creation" among numbered peers; number ever
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md:312: render_h2_numbering: Unnumbered H2 "Key Features Demonstrated" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md:324: render_h2_numbering: Unnumbered H2 "When to Use This Pattern" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md:334: render_h2_numbering: Unnumbered H2 "Design Principles Applied" among numbered peers; number every section.
+.skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md:344: render_h2_numbering: Unnumbered H2 "Estimated Time to Complete" among numbered peers; number every section.
+INVALID .skilled/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md: ['Missing required section: overview']
+INVALID .skilled/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md: ['Missing required section: overview']
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md:865: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md:866: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md:867: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md:868: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=62 render_warnings=35 invalid=2

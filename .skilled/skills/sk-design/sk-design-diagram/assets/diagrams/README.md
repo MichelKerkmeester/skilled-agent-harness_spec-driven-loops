@@ -7,7 +7,7 @@ trigger_phrases:
   - "which diagram to copy"
   - "skin starters"
 contextType: general
-version: 1.2.0.1
+version: 1.2.1.0
 ---
 
 # assets/diagrams
@@ -26,11 +26,17 @@ kinds side by side and neither is precious: 27 canonical diagrams, one per type,
 demonstrate a specific pattern, and 4 starters for when you want the skin without the drawing.
 
 Nothing here is a strict template. Change the data, the labels, the geometry, the node count. The
-corpus check holds what a file can be read for: accessibility wiring, the 4px grid, arrow-label mask
-clearance, unique ids, no external resources, and the palette block on the four starters whose
-tokens have to match the palette source. It says nothing about what you draw, and it leaves whether
-connectors meet their targets, overlap, or fan too close together to the judged reads in the capture
-review.
+corpus check holds six things a file can be read for:
+
+- accessibility wiring
+- the 4px grid
+- arrow-label mask clearance
+- unique ids
+- no external resources
+- the palette block on the four starters whose tokens have to match the palette source
+
+It says nothing about what you draw, and it leaves whether connectors meet their targets, overlap, or
+fan too close together to the judged reads in the capture review.
 
 The four starters are named `starter-light`, `starter-dark`, `starter-terminal` and `starter-full`.
 They are the only forms that carry a palette block for every role, because they are what a new

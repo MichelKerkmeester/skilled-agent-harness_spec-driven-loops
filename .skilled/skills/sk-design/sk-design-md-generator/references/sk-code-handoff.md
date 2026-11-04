@@ -7,7 +7,7 @@ trigger_phrases:
   - "design build manifest"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # sk-code Handoff Schema
@@ -22,7 +22,7 @@ Envelope for when an extracted Style Reference DESIGN.md moves to `sk-code` impl
 
 Keep the design-to-build boundary explicit. This skill decides the measured design reference, its locked values, and its risks. `sk-code` implements the accepted handoff in the detected stack, verifies it, and raises conflicts when the target surface cannot honor the card.
 
-### Usage
+### When to Use
 
 Use this schema whenever an accepted Style Reference (measured tokens, components, and provenance) is handed to `sk-code`. Add required fields as needed, but do not rename the shared envelope fields.
 

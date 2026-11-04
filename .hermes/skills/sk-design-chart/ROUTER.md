@@ -20,7 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when the artifact plots values rather than explains a structure: a ranked comparison, a part-to-whole split, a time series, a distribution, a relationship or a matrix, and when they name a form this corpus carries such as `treemap`, `waterfall chart`, `heatmap`, `box plot` or `histogram`. A request that names a `DESIGN.md`, a style reference or a measured site's look arrives on the same skill's theming branch. It routes to four resource families: the catalog that resolves a comparison to one form, the form files under `assets/templates/` copied whole, the style references under `assets/style-reference/` with the theming script that applies one, and the template contract with the corpus validator that proves every form still renders.
+Requests reach this skill when the artifact plots values rather than explains a structure: a ranked comparison, a part-to-whole split, a time series, a distribution, a relationship or a matrix, and when they name a form this corpus carries such as `treemap`, `waterfall chart`, `heatmap`, `box plot` or `histogram`. A request that names a `DESIGN.md`, a style reference or a measured site's look arrives on the same skill's theming branch. It routes to four resource families:
+
+- the catalog that resolves a comparison to one form
+- the form files under `assets/templates/`, copied whole
+- the style references under `assets/style-reference/`, with the theming script that applies one
+- the template contract, with the corpus validator that proves every form still renders
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

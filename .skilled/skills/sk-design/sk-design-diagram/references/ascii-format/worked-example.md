@@ -9,7 +9,7 @@ trigger_phrases:
   - "why flowchart passes validation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Worked Decision-Tree Example
@@ -20,7 +20,13 @@ A compact, validator-safe decision-tree flowchart and a breakdown of why it sati
 
 ## 1. OVERVIEW
 
-This file gives one compact, validator-passing decision-tree flowchart, then breaks down why its labels, connectors, and box widths satisfy the packet validator's checks. Use it as a shape to model a real decision tree on — replace the support-triage content with sourced nodes rather than copying it verbatim.
+### Purpose
+
+Gives a failing tree something to compare against, property by property.
+
+### When to Use
+
+Use it as a shape to model a real decision tree on: replace the support-triage content with sourced nodes rather than copying it verbatim.
 
 ---
 

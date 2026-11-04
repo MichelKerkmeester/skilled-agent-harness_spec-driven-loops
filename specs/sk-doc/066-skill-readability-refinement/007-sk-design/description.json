@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-doc/066-skill-readability-refinement/007-sk-design",
+  "description": "Phase 7: sk-design",
+  "keywords": [
+    "phase",
+    "sk-design"
+  ],
+  "lastUpdated": "2026-11-04T07:15:56.441Z",
+  "specId": "007",
+  "folderSlug": "sk-design",
+  "parentChain": [
+    "sk-doc",
+    "066-skill-readability-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

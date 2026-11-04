@@ -9,12 +9,20 @@ trigger_phrases:
   - "focal series dots"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Line Chart
 
+Open this when a table of weekly values hides the story a line would show.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Puts a trend on a shared axis so direction and rate of change survive comparison across series.
+
+### When to Use
 
 **Best for:** continuous trends over time or a sequential index — signups over weeks, revenue by month, latency over releases. Use when the direction and rate of change between points is the primary message.
 
@@ -25,7 +33,7 @@ version: 1.2.1.0
 - **Plot area margins:** left 80px, bottom 60px, top 40px, right 40px — inside `0 0 1000 500` viewBox.
 - **Points:** 4–12 data points. Fewer → consider a summary stat; more → aggregate into periods.
 - **X-axis:** evenly spaced time/index labels below the plot. Use Geist Mono 8px, centered on each point x.
-- **Y-axis gridlines:** 4–6 horizontals at regular intervals. Same faint treatment as bar chart.
+- **Y-axis gridlines:** 4–6 horizontals at regular intervals. Stroke `rgba(45,49,66,0.08)` at 0.8px; the x-axis baseline at `rgba(45,49,66,0.25)` at 1px.
 - **Lines:** `<polyline>` with `fill="none"`. Focal series `stroke-width="1.8"`, others `"1.2"`.
 - **Vertex dots:** only on the focal series (`r=4`, filled). Other series: line only.
 - **Area fill (optional):** `<polygon>` closing back to `y=420` (x-axis baseline) at 0.08 opacity. Use for the focal series only when the area meaning is important.
@@ -61,6 +69,4 @@ version: 1.2.1.0
 
 ## 4. EXAMPLES
 
-- `assets/diagrams/line.html` — minimal light
-- `assets/diagrams/line-dark.html` — minimal dark
-- `assets/diagrams/line-full.html` — full editorial
+- `assets/diagrams/line.html`: the canonical rendered example.

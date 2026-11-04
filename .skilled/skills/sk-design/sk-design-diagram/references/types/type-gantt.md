@@ -9,12 +9,20 @@ trigger_phrases:
   - "temporal overlap view"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Gantt Chart
 
+Open this when the argument is about when work collides, not about what the work is.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Places the whole plan on one time axis, so overlap, parallel tracks and milestones are read from the picture rather than explained in a caption.
+
+### When to Use
 
 **Best for:** project plans and roadmaps — tasks with explicit start and end dates, grouped into phases. Use when the reader needs to see temporal overlap, parallel tracks, and milestone sequencing at a glance.
 
@@ -62,6 +70,4 @@ Duration in pixels: `(end_week - start_week) × pitch`. Pitch = timeline_width /
 
 ## 4. EXAMPLES
 
-- `assets/diagrams/gantt.html` — minimal light
-- `assets/diagrams/gantt-dark.html` — minimal dark
-- `assets/diagrams/gantt-full.html` — full editorial
+- `assets/diagrams/gantt.html`: the canonical rendered example.

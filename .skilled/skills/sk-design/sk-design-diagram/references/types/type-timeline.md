@@ -9,23 +9,35 @@ trigger_phrases:
   - "incident timeline"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Timeline
 
+Reach for this when dated events must read in sequence and the gaps between them matter as much as the events.
+
 ## 1. OVERVIEW
 
-**Best for:** release history, project milestones, incident timelines, roadmaps, changelog visualizations.
+### Purpose
+
+Sets the grammar a dated sequence is drawn against, so elapsed time is read from position on the axis rather than from the labels alone.
+
+### When to Use
+
+- Release history
+- Project milestones
+- Incident timelines
+- Roadmaps
+- Changelog visualizations
 
 ---
 
 ## 2. LAYOUT CONVENTIONS
 - Horizontal hairline baseline across the middle (`stroke-width=1`).
 - Tick marks at time boundaries (quarters, months, sprints) with date labels below in Geist Mono.
+- Time scale must be honest: if intervals are non-equal, space the circles non-equally. Don't fake linear spacing for aesthetics. Break the axis visibly if a region is too dense.
 - Events: small filled circles (`r=4`) on the baseline. Labels alternate above and below to prevent collision, connected to the circle with a 1px hairline drop.
 - Major milestones: coral circle (`r=6`) + bold Geist label.
-- Time scale must be honest: if intervals are non-equal, space the circles non-equally. Don't fake linear spacing for aesthetics. Break the axis visibly if a region is too dense.
 
 ---
 

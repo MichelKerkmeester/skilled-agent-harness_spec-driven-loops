@@ -7,7 +7,7 @@ trigger_phrases:
   - "diagram token derivation"
 importance_tier: important
 contextType: reference
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Diagram Palette Derivation Record
@@ -18,14 +18,25 @@ Where every diagram-skin color comes from, and what stays fixed when the skin ch
 
 ## 1. OVERVIEW
 
-Every color role the diagram skin themes appears in exactly one of three lists: LIGHT (§2), DARK (§3) and TERMINAL (§4). Every value in those lists is exactly one of four kinds:
+### Purpose
+
+Classifies every diagram-skin value as hand-picked, derived or fixed, and records the rule or source behind it.
+
+### When to Use
+
+Open it when a value's origin is in question, before a re-theme, or when the corpus check reports a drift.
+
+Every color role the diagram skin themes appears in exactly one of three lists: LIGHT (§2), DARK (§3) and TERMINAL (§4). Every value in those lists is exactly one of three kinds:
 
 - **primary**: a value chosen by hand, stated verbatim. A re-theme replaces primaries and nothing else.
 - **derived**: computed from a primary by a stated rule, for example `ink` at an alpha. This is stricter than the style guide's prose, which also calls `soft` and `link` "derived" although no rule reproduces them.
 - **fixed**: a value that never re-themes. Onboarding and hand-edits of the skin leave it untouched.
-- **untokenized** used to be a fourth kind, applying to files rather than values: it marked a file exempt from this record because it carried its own fixed skin. The key is gone. The one file that held the exemption carried a tone the dark skin never defined, at 4.44:1 under the text gate, so the exemption was hiding a defect rather than recording a decision; repointing that tone onto the dark muted role emptied the list and the key went with it. Every form now regenerates from this record.
 
-The opt-in series palette for multi-series charts lives in the style guide, not here. The applicator of a later phase reads this record, and the corpus checker re-derives every value marked **derived** from the primaries recorded here.
+The opt-in series palette for multi-series charts lives in the style guide, not here. The applicator reads this record, and the corpus checker re-derives every value marked **derived** from the primaries recorded here.
+
+### Retired key: `untokenized`
+
+**untokenized** used to be a fourth kind, applying to files rather than values: it marked a file exempt from this record because it carried its own fixed skin. The key is gone. The one file that held the exemption carried a tone the dark skin never defined, at 4.44:1 under the text gate, so the exemption was hiding a defect rather than recording a decision; repointing that tone onto the dark muted role emptied the list and the key went with it. Every form now regenerates from this record.
 
 ---
 

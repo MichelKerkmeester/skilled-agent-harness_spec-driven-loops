@@ -9,7 +9,7 @@ trigger_phrases:
   - "extract.ts not running"
 importance_tier: "normal"
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Troubleshooting
@@ -50,10 +50,16 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 
 **`validate.ts` reports hex mismatches.** Validation flags a hex in `DESIGN.md` that is not in `tokens.json`. Usual cause: a write-phase value was estimated or its case/format drifted.
 - Fix: make the `DESIGN.md` value match `tokens.json` exactly (6-digit lowercase). If `tokens.json` itself holds an invalid value (uppercase or a 3-digit hex), that is an extractor issue - escalate before editing source data.
-- Note: the value-bearing token sections — Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind — come **pre-rendered** from `build-write-prompt.ts` (doc-as-view, via `formatters-v3.ts`). Paste those tables unchanged. A hex mismatch in those sections means they were hand-edited after pre-rendering — re-run `build-write-prompt.ts` and paste the fresh tables rather than patching values by hand. (Typography and component values are not pre-rendered as tables; they come verbatim from the FACTS block, so a mismatch there means a value was typed by hand instead of copied from FACTS.)
+- Note: the value-bearing token sections — Tokens — Colors, Tokens — Spacing & Shapes, Surfaces, and the Quick Start CSS + Tailwind — come **pre-rendered** from `build-write-prompt.ts` (doc-as-view, via `formatters-v3.ts`). Paste those tables unchanged.
+  - A hex mismatch in those sections means they were hand-edited after pre-rendering — re-run `build-write-prompt.ts` and paste the fresh tables rather than patching values by hand.
+  - Typography and component values are not pre-rendered as tables; they come verbatim from the FACTS block, so a mismatch there means a value was typed by hand instead of copied from FACTS.
 
 **`validate.ts` reports prose-discipline or section-coverage warnings.** WARNING-tier (never a hard fail): flags interpretive fabrication such as "gradient-as-depth", "unlike most systems", or an unbacked "focus is consistent" claim, and flags a section that is present but whose backing token field is empty.
 - Fix: remove the unbacked interpretive claim or label a genuine inference `[INFERRED]` with the token it rests on. For a filled-but-empty section, stamp it ABSENT (`_No <X> data was extracted._`) instead of inventing content. Validation reports a dual score: `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance).
+
+---
+
+## 5. CAPTURE AND OUTPUT
 
 **Interaction states are missing from `tokens.json`.** Hover/focus/active state capture runs by **default**, including under `--fast`.
 - Fix: if states are absent you likely passed `--no-interaction` or `--fast-no-interaction` (the only opt-outs). Re-run without those flags. There is no `--with-interaction` requirement — it is the default.
@@ -63,6 +69,6 @@ Resolve the failures that block an extraction run: missing browser binaries, uni
 
 ---
 
-## 5. TESTS
+## 6. TESTS
 
 Confirm the tool is intact with `cd backend && npx vitest run` - it runs the unit suite (clustering + validation).

@@ -12,7 +12,7 @@ trigger_phrases:
   - component decision logic
 importance_tier: normal
 contextType: general
-version: 1.0.0.2
+version: 1.0.1.0
 ---
 
 # Component Taxonomy
@@ -22,6 +22,16 @@ Reference for identifying, classifying, and documenting UI components extracted 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Give every element on a captured page one component name and one documentation shape, so the components section of a DESIGN.md stays comparable across surfaces.
+
+### When to Use
+
+- Classifying an extracted element inventory
+- Deciding whether an element is a standard component or a distinctive one
+- Recording the states and the Use: line for a component entry
 
 ### Button
 - **DOM signals**: `<button>`, `<a role="button">`, `<input type="submit">`, elements with `cursor: pointer` and `background-color` + `padding` + `border-radius` combination. Class patterns: `.btn`, `.button`, `[class*="cta"]`, `MuiButton`, `chakra-button`.
@@ -297,19 +307,53 @@ If an element does not match any standard component definition above, it is like
 
 ### Common Distinctive Patterns
 
-**Brand-specific metric cards** -- Numbers/stats displayed with custom layouts, often featuring large display typography, colored icons, trend indicators (arrows/sparklines), and branded color accents. Distinct from generic Cards by their data-heavy, dashboard-oriented purpose. Document: number formatting, trend color coding, sparkline styling, comparison period labels.
+**Brand-specific metric cards**
 
-**Workflow diagrams** -- Step sequences, flow charts, or process visualizations using connected nodes, arrows, progress lines, or numbered steps. May use SVG, canvas, or pure CSS. Look for sequential numbering, connecting lines, and status-colored nodes. Document: node styling, connector lines, active/complete/pending states, directional indicators.
+- **What it is:** Numbers/stats displayed with custom layouts, often featuring large display typography, colored icons, trend indicators (arrows/sparklines), and branded color accents.
+- **Identify by:** Distinct from generic Cards by their data-heavy, dashboard-oriented purpose.
+- **Document:** number formatting, trend color coding, sparkline styling, comparison period labels.
 
-**Trust/social proof bars** -- Logo strips, testimonial carousels, review aggregations, "as seen in" sections, or partner logo grids. Identified by repeating small images (logos), uniform sizing, grayscale treatment, and horizontal scroll or marquee behavior. Document: logo sizing/spacing/grayscale treatment, quote styling, rating component.
+**Workflow diagrams**
 
-**Bento grid layouts** -- Asymmetric grid compositions where cards vary in size (1x1, 2x1, 1x2, 2x2) to create editorial-style layouts. Distinguished from uniform card grids by deliberate size variation and visual hierarchy within the grid. Document: grid template, cell size variants, gap spacing, content alignment per cell, responsive reflow.
+- **What it is:** Step sequences, flow charts, or process visualizations using connected nodes, arrows, progress lines, or numbered steps.
+- **Identify by:** May use SVG, canvas, or pure CSS. Look for sequential numbering, connecting lines, and status-colored nodes.
+- **Document:** node styling, connector lines, active/complete/pending states, directional indicators.
 
-**Custom data visualization** -- Charts, graphs, gauges, or visual data representations beyond standard HTML tables. Look for SVG/canvas elements, D3 bindings, chart library wrappers, or custom-drawn visual elements with axis labels and legends. Document: chart type, axis styling, color scheme, legend position, tooltip format.
+**Trust/social proof bars**
 
-**Pricing tables** -- Multi-column comparison layouts with plan names, prices, feature lists (often with check/cross icons), and CTA buttons per plan. Distinguished from generic tables by their vertical comparison structure and promotional styling (highlighted/recommended plan). Document: column widths, highlight treatment, feature check/cross icons, CTA variant per tier, billing toggle style.
+- **What it is:** Logo strips, testimonial carousels, review aggregations, "as seen in" sections, or partner logo grids.
+- **Identify by:** Repeating small images (logos), uniform sizing, grayscale treatment, and horizontal scroll or marquee behavior.
+- **Document:** logo sizing/spacing/grayscale treatment, quote styling, rating component.
 
-**Feature comparison matrices** -- Grid-like layouts comparing features across products/tiers with check marks, cross marks, or partial indicators. Similar to pricing tables but focused on feature parity rather than pricing. Document: header styling, row alternation, indicator icons, sticky header behavior, responsive collapse.
+**Bento grid layouts**
+
+- **What it is:** Asymmetric grid compositions where cards vary in size (1x1, 2x1, 1x2, 2x2) to create editorial-style layouts.
+- **Identify by:** Distinguished from uniform card grids by deliberate size variation and visual hierarchy within the grid.
+- **Document:** grid template, cell size variants, gap spacing, content alignment per cell, responsive reflow.
+
+**Custom data visualization**
+
+- **What it is:** Charts, graphs, gauges, or visual data representations beyond standard HTML tables.
+- **Identify by:** Look for SVG/canvas elements, D3 bindings, chart library wrappers, or custom-drawn visual elements with axis labels and legends.
+- **Document:** chart type, axis styling, color scheme, legend position, tooltip format.
+
+**Pricing tables**
+
+- **What it is:** Multi-column comparison layouts with plan names, prices, feature lists (often with check/cross icons), and CTA buttons per plan.
+- **Identify by:** Distinguished from generic tables by their vertical comparison structure and promotional styling (highlighted/recommended plan).
+- **Document:** column widths, highlight treatment, feature check/cross icons, CTA variant per tier, billing toggle style.
+
+**Feature comparison matrices**
+
+- **What it is:** Grid-like layouts comparing features across products/tiers with check marks, cross marks, or partial indicators.
+- **Identify by:** Similar to pricing tables but focused on feature parity rather than pricing.
+- **Document:** header styling, row alternation, indicator icons, sticky header behavior, responsive collapse.
+
+### When NOT to Create a Distinctive Component Entry
+
+- The element is a minor visual decoration (gradient divider, decorative dot pattern) -- document inline in the relevant section.
+- The element is a standard component with unusual content but standard styling -- document as a variant of the standard type.
+- The element appears only once on the site and has no reuse potential -- mention in context but do not elevate to a component.
 
 ### Documentation Approach for Distinctive Components
 
@@ -320,12 +364,6 @@ When a distinctive component is identified:
 3. **Note the layout structure** -- Grid template, flex direction, gap values, responsive breakpoints.
 4. **Document interactive behavior** -- Hover effects, click actions, animations, transitions.
 5. **Screenshot or describe the visual** -- Distinctive components benefit from visual reference since they lack standard conventions.
-
-### When NOT to Create a Distinctive Component Entry
-
-- The element is a minor visual decoration (gradient divider, decorative dot pattern) -- document inline in the relevant section.
-- The element is a standard component with unusual content but standard styling -- document as a variant of the standard type.
-- The element appears only once on the site and has no reuse potential -- mention in context but do not elevate to a component.
 
 ---
 
@@ -470,4 +508,4 @@ Some components serve overlapping purposes. This decision logic helps the DESIGN
 | Does it need minimal space? | Yes | No | Moderate |
 | Is it a mode switch (affects visible content)? | Rarely | Sometimes | Yes |
 
-### Document these decision rules in the DESIGN.md when the system contains multiple components that serve overlapping purposes. Include them as a subsection under Components or as a dedicated "Component Selection Guide" section.
+Document these decision rules in the DESIGN.md when the system contains multiple components that serve overlapping purposes. Include them as a subsection under Components or as a dedicated "Component Selection Guide" section.

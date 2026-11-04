@@ -10,10 +10,14 @@ trigger_phrases:
   - "make this presentable"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Import from draw.io
+
+Open this when a `.drawio` file is the only record of a system's shape and nobody has read it in years.
+
+---
 
 ## 1. OVERVIEW
 
@@ -101,6 +105,7 @@ Work from the digest, not from coordinates. In order:
 
 Fresh layout on the 4px grid, per the type reference and SKILL.md §3 (layout/budget) + §4 (connector rules). Explicitly:
 
+- **Set the `viewBox` from the size preset**, then lay out inside it — don't draw first and crop after.
 - **Discard source coordinates.** draw.io positions are hand-dragged and land on odd pixels. Lay out from scratch: dominant flow left→right (or top→bottom), zones aligned, even gaps.
 - **Discard source colors.** Map them to semantic roles instead:
 
@@ -130,7 +135,6 @@ Fresh layout on the 4px grid, per the type reference and SKILL.md §3 (layout/bu
 | `text` (floating label) | Drop, or fold into a zone label |
 
 - **Reroute every connector.** Source waypoints are dead weight — the digest reports a waypoint count so you know how tangled the original was, not so you can reproduce it. Rounded orthogonal elbows, fanned attach points, no overlaps: SKILL.md §4 connector rules, no exceptions for imported content.
-- **Set the `viewBox` from the size preset**, then lay out inside it — don't draw first and crop after.
 
 ---
 

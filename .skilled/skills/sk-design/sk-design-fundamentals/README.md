@@ -6,7 +6,7 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # sk-design-fundamentals
@@ -23,7 +23,7 @@ Most interfaces built by people who do not consider themselves designers fail th
 |---|---|
 | **Use it for** | Deciding UI values and behavior when building, fixing or reviewing an interface. |
 | **Invoke with** | "make this look better", "looks off", "spacing scale", "color palette", "focus ring", "animation duration", "design review". |
-| **Works on** | Any web or app surface: a component, a screen, a described complaint, or a set of files. |
+| **Works on** | Any laid-out surface: screen UI, slide decks, printed layouts, document layouts, a component, a described complaint, or a set of files. |
 | **Produces** | Concrete values and CSS with the reason each was chosen, or severity-tiered review findings with file, line and fix. |
 
 ---
@@ -36,9 +36,9 @@ Visual design gets treated as talent, so people who do not have it guess. Guessi
 
 ### What It Does
 
-The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the four hierarchy rules that do most of the visible work. `references/hierarchy.md` carries the full method. Seven references carry the rest: hierarchy technique, palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, and a WCAG-cited review checklist.
+The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the four hierarchy rules that do most of the visible work. `references/hierarchy.md` carries the full method. Seven references carry the rest: palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, UX laws, and a WCAG-cited review checklist.
 
-It is the authoring counterpart to `sk-design-md-generator`, which measures a live site's real CSS into a Style Reference. That skill reads a surface; this one writes one. When a measured reference exists, its values win.
+It is the authoring counterpart to `sk-design-md-generator`, which measures a live site's real CSS into a Style Reference. That skill reads a surface and this one writes one. When a measured reference exists, its values win.
 
 ### Why It Matters
 
@@ -71,7 +71,7 @@ The skill distills four public sources into one operating model, kept in the ord
 cat .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
 ```
 
-The scales in Section 3 are the always-loaded part; everything else loads on intent.
+The scales in Section 3 are the always-loaded part. Everything else loads on intent.
 
 **Step 2: Take the token file.**
 
@@ -137,7 +137,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
 
 | Skill | Relationship |
 |---|---|
-| `sk-design-md-generator` | Measures an existing surface into a Style Reference. Its measured values outrank this skill's defaults; both skills state the boundary. |
+| `sk-design-md-generator` | Measures an existing surface into a Style Reference. Its measured values outrank this skill's defaults, and both skills state the boundary. |
 | `sk-code` | Implements the values this skill decides. |
 | `system-spec-kit` | Owns packet documentation and continuity when the work is tracked. |
 
@@ -149,7 +149,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
 |---|---|---|
 | Suggested values conflict with the project's tokens | The project has an established system this skill does not know about | Point the skill at the token file. An established system outranks these defaults. |
 | A color cannot reach 4.5:1 | The brand color is too light for its role | Use one of the two escape hatches in `references/color-system.md`, or escalate the brand color as an operator decision. |
-| A fix makes another element fail contrast | De-emphasizing a competitor pushed its text below the minimum | Re-run the contrast check after every hierarchy change; the hard rules apply after the fix, not only before it. |
+| A fix makes another element fail contrast | De-emphasizing a competitor pushed its text below the minimum | Re-run the contrast check after every hierarchy change, because the hard rules apply after the fix, not only before it. |
 | Motion guidance seems contradictory | Sources use different ceilings for different kinds of motion | See `references/motion-principles.md` Section 5, which separates feedback, state change and layout transition. |
 
 ---
@@ -197,3 +197,5 @@ A: That skill measures what a live site already does. This one decides what a su
 | [`references/review-checklist.md`](./references/review-checklist.md) | The severity-tiered WCAG and visual review pass |
 | [`assets/tokens.css`](./assets/tokens.css) | Every scale as contrast-verified CSS custom properties |
 | [`assets/token-starter-set.md`](./assets/token-starter-set.md) | What is in the token file and how to retune it |
+| [`changelog/`](./changelog/) | One file per release, named v[version].md |
+| [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |

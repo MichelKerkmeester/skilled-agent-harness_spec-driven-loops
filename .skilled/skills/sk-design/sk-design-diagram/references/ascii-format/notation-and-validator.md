@@ -9,7 +9,7 @@ trigger_phrases:
   - "validator passing notation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.10
+version: 1.2.1.0
 ---
 
 # Validator Mechanics and Notation
@@ -20,7 +20,15 @@ How the packet validator actually inspects a file, how to keep box widths consis
 
 ## 1. OVERVIEW
 
-This file explains how the packet validator actually inspects a flowchart file — box widths, connectors, decision labels, nesting, and size — then covers the box-width fix strategy, the mistakes that most often fail validation, and the judgment the validator cannot supply.
+### Purpose
+
+Knowing the mechanism behind each check turns a failed run into a fix rather than a guess at the threshold.
+
+### When to Use
+
+- A flowchart fails `validate-flowchart.sh`.
+- The `>5 width variations` error appears.
+- You need notation the validator accepts before drawing.
 
 ---
 
@@ -96,5 +104,5 @@ It catches common structural defects, but it does not prove the workflow is sema
 
 - [README.md](README.md) - create-flowchart reference route-map
 - [worked-example.md](worked-example.md) - a validator-passing decision-tree example
-- `../../SKILL.md` - authoritative workflow contract; §4 rule 8 for the validator requirement (this file carries the notation/mechanics detail directly, no separate SKILL.md notation section exists post-merge)
+- `../../SKILL.md` - authoritative workflow contract; §4 rule 8 for the validator requirement (this file carries the notation/mechanics detail directly, no separate SKILL.md notation section exists)
 - `../../scripts/validate-flowchart.sh` - packet-local validator and actual threshold source

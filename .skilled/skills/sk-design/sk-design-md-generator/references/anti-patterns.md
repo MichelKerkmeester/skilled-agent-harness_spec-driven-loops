@@ -12,7 +12,7 @@ trigger_phrases:
   - dark mode omission
 importance_tier: normal
 contextType: general
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # DESIGN.md Anti-Pattern Catalog
@@ -23,15 +23,33 @@ A catalog of common mistakes when generating DESIGN.md files from extracted desi
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Keep a generated `DESIGN.md` trustworthy by naming each failure mode, its detection signal and its correction before the document ships.
+
+### When to Use
+
+- Before writing a `DESIGN.md`, to know which failures to avoid.
+- While reviewing a generated `DESIGN.md` against the summary checklist.
+- When a validation finding needs a named cause and a correction.
+
+---
+
+## 2. ANTI-PATTERN CATALOG
+
 ### AP-01: Phantom Color
+
 **Description**: Outputting a hex color value that does not exist in the extracted `tokens.json` or style data. Often caused by rounding, autocomplete, or confusing similarly-named values.
+
 **Bad Example**:
 ```markdown
 | Role    | Value   |
 |---------|---------|
 | Primary | #2563eb |
 ```
+
 **Why It's Wrong**: The actual extracted token was `#2564eb`. A one-digit difference creates a color that was never present in the source design. Downstream consumers (code generators, theme builders) will produce output that diverges from the real product.
+
 **Correct Approach**:
 ```markdown
 | Role    | Value   |
@@ -39,19 +57,24 @@ A catalog of common mistakes when generating DESIGN.md files from extracted desi
 | Primary | #2564eb |
 ```
 Always copy hex values verbatim from the extracted data. Never round, correct, or "normalize" color values to well-known palette values.
+
 **Detection**: Diff every hex value in the output against the source token file. Any value absent from the source is a phantom.
 
 ---
 
 ### AP-02: Generic Description
+
 **Description**: Using vague, meaningless adjectives to describe the design system instead of concrete, measurable characteristics.
+
 **Bad Example**:
 ```markdown
 ## Overview
 The application uses a clean and modern design with a professional color palette
 and elegant typography choices.
 ```
+
 **Why It's Wrong**: "Clean", "modern", "professional", and "elegant" carry zero actionable information. They describe every design system ever created and distinguish nothing. A code generator cannot act on these words.
+
 **Correct Approach**:
 ```markdown
 ## Overview
@@ -60,30 +83,38 @@ The application uses a high-contrast light theme with a single accent hue
 weight stops (400-700) with a 1.25 type scale. Spacing follows an 8px base grid.
 ```
 Replace every adjective with a specific value, ratio, or named convention.
+
 **Detection**: Search the output for these banned terms: clean, modern, elegant, professional, sleek, beautiful, stunning, polished, sophisticated, minimalist (when used as a standalone descriptor without supporting metrics).
 
 ---
 
 ### AP-03: Semantic Misattribution
+
 **Description**: Labeling a color as "primary" based on its hue (e.g., blue = primary) rather than its actual usage frequency and role in the interface.
+
 **Bad Example**:
 ```markdown
 - Primary: #2564eb (blue)
 - Secondary: #6b7280 (gray)
 ```
+
 **Why It's Wrong**: If `#6b7280` appears on 80% of text and UI surfaces while `#2564eb` appears only on 3 buttons, then gray is functionally the dominant color. Calling the rarely-used blue "primary" misleads theme generation and creates incorrect weight in the output system.
+
 **Correct Approach**:
 ```markdown
 - Text/UI Base: #6b7280 (gray) — used across body text, labels, borders; highest frequency
 - Action Accent: #2564eb (blue) — used on CTAs and active states; low frequency, high salience
 ```
 Assign semantic roles based on measured frequency and functional role, not on hue conventions.
+
 **Detection**: Cross-reference the semantic label with frequency data. If a color labeled "primary" ranks below 3rd in usage frequency, flag it.
 
 ---
 
 ### AP-04: Missing Interaction States
+
 **Description**: Documenting only the default/rest state of interactive elements and omitting hover, focus, active, and disabled states.
+
 **Bad Example**:
 ```markdown
 ## Buttons
@@ -92,7 +123,9 @@ Assign semantic roles based on measured frequency and functional role, not on hu
 - Border radius: 6px
 - Padding: 8px 16px
 ```
+
 **Why It's Wrong**: A button specification without interaction states is incomplete. Any implementation built from this spec will either invent states (introducing inconsistency) or ship without them (failing accessibility and UX).
+
 **Correct Approach**:
 ```markdown
 ## Buttons
@@ -108,18 +141,23 @@ Assign semantic roles based on measured frequency and functional role, not on hu
 - Padding: 8px 16px
 ```
 Document every state present in the extracted data. If the source data lacks states, note the gap explicitly rather than omitting silently.
+
 **Detection**: For every interactive component (button, link, input, toggle, checkbox), verify that at least hover and focus states are documented.
 
 ---
 
 ### AP-05: Over-inference
+
 **Description**: Extrapolating a design principle or pattern from a single occurrence or low-frequency observation.
+
 **Bad Example**:
 ```markdown
 ## Design Principles
 - All cards use a left blue accent border to indicate importance hierarchy.
 ```
+
 **Why It's Wrong**: If only 1 out of 14 cards in the extracted data has a left blue border, this is not a system-wide principle. It may be a one-off treatment for a specific context. Elevating it to a principle causes over-application in generated output.
+
 **Correct Approach**:
 ```markdown
 ## Card Variants
@@ -127,12 +165,15 @@ Document every state present in the extracted data. If the source data lacks sta
 - **Highlighted card** (1 occurrence): Adds left 3px #2564eb border accent
 ```
 State the frequency. Distinguish one-off treatments from system patterns. A pattern requires at minimum 3 consistent occurrences to be stated as a convention.
+
 **Detection**: Every stated "principle" or "always" claim should have a frequency annotation. If the backing data shows fewer than 3 instances, demote from principle to variant note.
 
 ---
 
 ### AP-06: Format Inconsistency
+
 **Description**: Mixing incompatible formats for the same type of value within the document.
+
 **Bad Example**:
 ```markdown
 - Background: #FFF
@@ -142,7 +183,9 @@ State the frequency. Distinguish one-off treatments from system patterns. A patt
 - Font weight: bold
 - Heading weight: 700
 ```
+
 **Why It's Wrong**: Inconsistent casing (`#FFF` vs `#2564EB`), mixed notation (`hex` vs `rgb`), and mixed weight formats (`bold` vs `700`) make the document unreliable for programmatic consumption. Parsers and theme generators will choke or produce inconsistent results.
+
 **Correct Approach**:
 ```markdown
 - Background: #ffffff
@@ -153,12 +196,15 @@ State the frequency. Distinguish one-off treatments from system patterns. A patt
 - Heading weight: 700
 ```
 Pick one format per value type and enforce it: lowercase 6-digit hex for colors, numeric values for font weights, px for absolute sizes, rem for relative sizes.
+
 **Detection**: Regex scan for mixed hex formats (`#[A-F]` mixed with `#[a-f]`, or 3-digit mixed with 6-digit), mixed color notations, or `bold`/`normal` mixed with numeric weights.
 
 ---
 
 ### AP-07: Typography Table Gaps
+
 **Description**: Documenting heading and body text levels but omitting monospace/code font, caption, overline, or other specialized type levels present in the data.
+
 **Bad Example**:
 ```markdown
 ## Typography Scale
@@ -170,7 +216,9 @@ Pick one format per value type and enforce it: lowercase 6-digit hex for colors,
 | Body  | 16px | 400    | Inter      |
 | Small | 14px | 400    | Inter      |
 ```
+
 **Why It's Wrong**: If the extracted data includes a monospace font (e.g., `JetBrains Mono` at 14px/400 used in code blocks), omitting it leaves a gap that implementers will fill with arbitrary choices.
+
 **Correct Approach**:
 ```markdown
 ## Typography Scale
@@ -185,12 +233,15 @@ Pick one format per value type and enforce it: lowercase 6-digit hex for colors,
 | Code     | 14px | 400    | JetBrains Mono  | 1.6         |
 ```
 Include every distinct type treatment found in the data, including code, caption, overline, and label levels.
+
 **Detection**: Search extracted data for font-family values not represented in the typography table. Check for monospace fonts specifically.
 
 ---
 
 ### AP-08: Meaningless Don'ts
+
 **Description**: Stating prohibitions that are too vague to be actionable by a human or machine.
+
 **Bad Example**:
 ```markdown
 ## Don'ts
@@ -198,7 +249,9 @@ Include every distinct type treatment found in the data, including code, caption
 - Don't make text too small
 - Don't overcrowd the layout
 ```
+
 **Why It's Wrong**: "Too many" is undefined. "Too small" is undefined. "Overcrowd" is undefined. No system or person can evaluate compliance with these rules. They occupy space without constraining anything.
+
 **Correct Approach**:
 ```markdown
 ## Constraints
@@ -207,12 +260,15 @@ Include every distinct type treatment found in the data, including code, caption
 - Maintain minimum 16px gap between adjacent interactive elements (touch target spacing)
 ```
 Every constraint must include a threshold, value, or enumerable condition.
+
 **Detection**: Flag any "Don't" entry that lacks a numeric value, specific color, named element, or testable condition.
 
 ---
 
 ### AP-09: Non-Self-Contained Prompts
+
 **Description**: Writing an agent prompt section that references tokens by semantic name without including the actual values, requiring the agent to look elsewhere in the document.
+
 **Bad Example**:
 ```markdown
 ## Agent Prompt
@@ -220,7 +276,9 @@ When generating UI, use the primary color for call-to-action buttons and the
 secondary color for less prominent actions. Apply the standard border radius
 to all interactive elements.
 ```
+
 **Why It's Wrong**: An LLM consuming this prompt in isolation (e.g., as a system message) has no idea what "the primary color" resolves to. It will hallucinate a value. The prompt must be self-contained.
+
 **Correct Approach**:
 ```markdown
 ## Agent Prompt
@@ -231,12 +289,15 @@ When generating UI, apply these exact values:
 - Focus ring: 0 0 0 3px rgba(37,100,235,0.3)
 ```
 Inline every referenced value directly in the prompt. The prompt must function correctly even if extracted from the document and used standalone.
+
 **Detection**: Search the agent prompt section for semantic color names (primary, secondary, accent, etc.) or relative references (the standard, the default) without an accompanying literal value on the same line.
 
 ---
 
 ### AP-10: Shadow-Border Confusion
+
 **Description**: Classifying a zero-blur box-shadow used as a border substitute as an "elevation shadow," conflating two distinct visual techniques.
+
 **Bad Example**:
 ```markdown
 ## Elevation
@@ -246,7 +307,9 @@ Inline every referenced value directly in the prompt. The prompt must function c
 | Medium| 0 4px 6px rgba(0,0,0,0.1)    |
 | High  | 0 10px 15px rgba(0,0,0,0.1)  |
 ```
+
 **Why It's Wrong**: `0 0 0 1px` has no offset and no blur; it renders as a 1px solid border. Grouping it with elevation shadows misrepresents its visual function and causes agents to apply border-like effects when elevation is requested.
+
 **Correct Approach**:
 ```markdown
 ## Borders
@@ -261,12 +324,15 @@ Inline every referenced value directly in the prompt. The prompt must function c
 | High   | 0 10px 15px rgba(0,0,0,0.1)      |
 ```
 Separate zero-blur box-shadows into a border section. Only shadows with non-zero blur or offset belong in elevation.
+
 **Detection**: In the elevation/shadow table, flag any entry where both X-offset, Y-offset, and blur are zero (pattern: `0 0 0 Npx`).
 
 ---
 
 ### AP-11: Dark Mode Omission
+
 **Description**: Failing to document dark mode color mappings when the extracted data clearly contains them.
+
 **Bad Example**:
 ```markdown
 ## Color Palette
@@ -277,7 +343,9 @@ Separate zero-blur box-shadows into a border section. Only shadows with non-zero
 | Surface    | #f9fafb |
 ```
 *(No mention of dark mode despite tokens.json containing `dark.background: #0f172a`, etc.)*
+
 **Why It's Wrong**: Ignoring dark mode data produces a DESIGN.md that only works for light theme. Agents generating dark-mode UI will invent colors rather than using the documented values.
+
 **Correct Approach**:
 ```markdown
 ## Color Palette
@@ -289,12 +357,15 @@ Separate zero-blur box-shadows into a border section. Only shadows with non-zero
 | Border     | #e5e7eb | #334155 |
 ```
 If the source data contains dark/light variants, always present both in a single table.
+
 **Detection**: Search the source data for keys containing "dark", "night", or theme-variant identifiers. If present but not reflected in the output, flag the omission.
 
 ---
 
 ### AP-12: Vague Color Names
+
 **Description**: Using generic indexed names like "Blue 1" or "Gray Light" that carry no functional meaning and create ambiguity.
+
 **Bad Example**:
 ```markdown
 ## Colors
@@ -304,7 +375,9 @@ If the source data contains dark/light variants, always present both in a single
 - Gray Light: #f9fafb
 - Gray Dark: #374151
 ```
+
 **Why It's Wrong**: "Blue 1" and "Blue 2" give no indication of when to use which. An implementer or agent must guess. Sequential numbering provides ordering but not purpose.
+
 **Correct Approach**:
 ```markdown
 ## Colors
@@ -315,12 +388,15 @@ If the source data contains dark/light variants, always present both in a single
 - Text Secondary: #374151 — supporting body text, labels
 ```
 Each name should encode its function (where/when it is used), not just its hue and relative lightness.
+
 **Detection**: Flag color names that are purely `{Hue} {Number}` or `{Hue} {Relative}` without a functional descriptor.
 
 ---
 
 ### AP-13: Key Characteristics Without Values
+
 **Description**: Stating a design characteristic as a qualitative observation without the specific values that define it.
+
 **Bad Example**:
 ```markdown
 ## Key Characteristics
@@ -328,7 +404,9 @@ Each name should encode its function (where/when it is used), not just its hue a
 - Large, bold headings
 - Subtle borders between sections
 ```
+
 **Why It's Wrong**: "Tight" could mean 4px or 12px. "Large" could mean 24px or 48px. "Subtle" could mean 0.5px solid #eee or 1px solid rgba(0,0,0,0.05). Without values, these statements are useless for implementation.
+
 **Correct Approach**:
 ```markdown
 ## Key Characteristics
@@ -337,12 +415,15 @@ Each name should encode its function (where/when it is used), not just its hue a
 - Section dividers: 1px solid #e5e7eb (light mode), 1px solid #334155 (dark mode)
 ```
 Every characteristic must include the measured value from the extracted data.
+
 **Detection**: Flag any bullet point in a characteristics or principles section that lacks at least one numeric value (px, rem, hex, percentage, ratio).
 
 ---
 
 ### AP-14: Cross-Section Terminology Drift
+
 **Description**: Referring to the same design token by different names in different sections of the document.
+
 **Bad Example**:
 ```markdown
 ## Section 2: Color Palette
@@ -354,7 +435,9 @@ Every characteristic must include the measured value from the extracted data.
 ## Section 9: Agent Prompt
 Apply the Main Blue for interactive elements.
 ```
+
 **Why It's Wrong**: "Primary Blue", "Brand Blue", and "Main Blue" all reference `#2564eb`, but an agent or reader cannot be sure they are the same without checking hex values. Inconsistent naming erodes trust in the document and causes duplication in generated code.
+
 **Correct Approach**:
 ```markdown
 ## Section 2: Color Palette
@@ -367,12 +450,15 @@ Apply the Main Blue for interactive elements.
 Interactive element background: #2564eb (Action Default)
 ```
 Choose one canonical name per token and use it consistently across every section. Always parenthetically include the hex value on first use in each section.
+
 **Detection**: Extract all semantic color names and their hex values. Group by hex value. If any hex value maps to more than one name, flag the drift.
 
 ---
 
 ### AP-15: Do's Without Specifics
+
 **Description**: Listing "Do" guidelines that restate a principle without specifying the exact values to apply.
+
 **Bad Example**:
 ```markdown
 ## Do's
@@ -380,7 +466,9 @@ Choose one canonical name per token and use it consistently across every section
 - Maintain visual hierarchy with font sizes
 - Apply the brand colors consistently
 ```
+
 **Why It's Wrong**: Every design system aims for "consistent spacing." This tells the reader nothing about which spacing values constitute consistency in this specific system. It is a tautology.
+
 **Correct Approach**:
 ```markdown
 ## Do's
@@ -389,12 +477,15 @@ Choose one canonical name per token and use it consistently across every section
 - Limit accent color (#2564eb) to interactive elements and active indicators
 ```
 Every "Do" must reference specific values, tokens, or enumerable conditions from the design data.
+
 **Detection**: Flag any "Do" entry that contains words like "consistent", "appropriate", "proper", or "correct" without accompanying numeric values or token references.
 
 ---
 
 ### AP-16: Redundant Information
+
 **Description**: Restating information from a table in prose immediately below it, adding no new context.
+
 **Bad Example**:
 ```markdown
 ## Spacing Scale
@@ -409,7 +500,9 @@ Every "Do" must reference specific values, tokens, or enumerable conditions from
 The spacing scale uses 5 levels. The smallest is 4px (xs), followed by 8px (sm),
 then 16px (md), 24px (lg), and the largest at 32px (xl).
 ```
+
 **Why It's Wrong**: The prose adds zero information beyond what the table already states. It wastes tokens, increases document length, and creates a maintenance burden where two representations must be kept in sync.
+
 **Correct Approach**:
 ```markdown
 ## Spacing Scale
@@ -424,12 +517,15 @@ then 16px (md), 24px (lg), and the largest at 32px (xl).
 Base unit: 4px. The scale doubles at each major step (4 → 8 → 16 → 32) with 24px as an intermediate for component-level gaps.
 ```
 Prose following a table should add context, rationale, or relationships not visible in the table itself.
+
 **Detection**: Compare prose sentences to table content. If more than 80% of the prose is a direct restatement of table values, flag it as redundant.
 
 ---
 
 ### AP-17: Wrong Component Classification
+
 **Description**: Misclassifying a UI element, most commonly calling a styled anchor/link a "button variant" or a chip/tag a "badge."
+
 **Bad Example**:
 ```markdown
 ## Button Variants
@@ -437,7 +533,9 @@ Prose following a table should add context, rationale, or relationships not visi
 - Secondary Button: transparent background, #2564eb text, #2564eb border
 - Text Button: no background, #2564eb text, underline on hover
 ```
+
 **Why It's Wrong**: A "Text Button" with underline on hover is semantically and functionally a link (`<a>`), not a button (`<button>`). Misclassifying it causes agents to generate `<button>` elements where `<a>` is correct, harming accessibility and SEO.
+
 **Correct Approach**:
 ```markdown
 ## Buttons
@@ -449,18 +547,23 @@ Prose following a table should add context, rationale, or relationships not visi
 - Standalone Link: #2564eb text, no underline at rest, underline on hover
 ```
 Classify elements by their semantic role (navigates vs. performs action) and HTML element, not by visual similarity.
+
 **Detection**: Check for "button" entries that mention underline behavior or entries that describe navigation as their function.
 
 ---
 
 ### AP-18: Gradient Over-Simplification
+
 **Description**: Describing a complex multi-stop or angled gradient with a vague label like "blue gradient" instead of the full gradient definition.
+
 **Bad Example**:
 ```markdown
 ## Hero Section
 - Background: blue gradient
 ```
+
 **Why It's Wrong**: "Blue gradient" could mean any of thousands of combinations. The extracted data specifies `linear-gradient(135deg, #2564eb 0%, #7c3aed 50%, #ec4899 100%)` -- a three-stop, three-hue gradient at a specific angle. The oversimplification loses all of this.
+
 **Correct Approach**:
 ```markdown
 ## Hero Section
@@ -468,12 +571,15 @@ Classify elements by their semantic role (navigates vs. performs action) and HTM
 - Fallback solid: #2564eb
 ```
 Always include the full gradient definition: type, angle/direction, each color stop with position.
+
 **Detection**: Search for the word "gradient" in the output. If it appears without an accompanying `linear-gradient(...)` or `radial-gradient(...)` value, flag it.
 
 ---
 
 ### AP-19: Layout Without Numbers
+
 **Description**: Describing layout structure with qualitative terms instead of concrete grid specifications.
+
 **Bad Example**:
 ```markdown
 ## Layout
@@ -481,7 +587,9 @@ Always include the full gradient definition: type, angle/direction, each color s
 - Content is centered with appropriate max width
 - Cards arranged in a flexible grid
 ```
+
 **Why It's Wrong**: "Responsive grid" could mean 1-12 columns with any breakpoint set. "Appropriate max width" could be 960px or 1440px. No implementer or code generator can reproduce the layout from this description.
+
 **Correct Approach**:
 ```markdown
 ## Layout
@@ -495,12 +603,15 @@ Always include the full gradient definition: type, angle/direction, each color s
 - Section padding: 64px vertical, 24px horizontal (mobile: 32px vertical, 16px horizontal)
 ```
 Provide column counts, gutter widths, breakpoints, max-widths, and specific gap values.
+
 **Detection**: Flag any layout section that lacks at least: a max-width value, column count, and one breakpoint definition.
 
 ---
 
 ### AP-20: Ignoring Framework Context
+
 **Description**: Failing to mention the detected CSS framework (Tailwind, Bootstrap, Material UI, etc.) or misrepresenting utility classes as custom CSS.
+
 **Bad Example**:
 ```markdown
 ## Styling
@@ -511,7 +622,9 @@ The application uses custom CSS with consistent spacing and color application.
 - Medium: 6px
 - Large: 8px
 ```
+
 **Why It's Wrong**: If the extracted data shows Tailwind utility classes (`rounded-md`, `bg-blue-600`, `px-4`), the DESIGN.md should state this. Omitting the framework means the generated code will use raw CSS instead of the project's actual utility system, creating inconsistency. Additionally, the "custom" border radius values are actually Tailwind defaults (`rounded-sm`, `rounded-md`, `rounded-lg`).
+
 **Correct Approach**:
 ```markdown
 ## Styling Framework
@@ -526,18 +639,23 @@ Tailwind CSS v3.x detected. All values below map to Tailwind utility classes.
 | Full   | 9999px| rounded-full   |
 ```
 State the framework explicitly. Where possible, provide both raw values and framework-specific class names or tokens.
+
 **Detection**: Search extracted data for framework indicators: Tailwind (`class="bg-"`, `tailwind.config`), Bootstrap (`class="btn-"`, `class="col-"`), Material UI (`MuiButton`, `sx={{`), etc. If detected but not mentioned in the output, flag the omission.
 
 ---
 
 ### AP-21: Missing Brand Context
+
 **Description**: Writing design system values without identifying who the brand is, who the audience is, or what market position the system supports.
+
 **Bad Example**:
 ```markdown
 ## Overview
 The design system uses a blue accent (#2564eb) with Inter font and an 8px spacing grid.
 ```
+
 **Why It's Wrong**: This describes parameters without identity. The same sentence could describe a healthcare dashboard, a developer tool, or a children's learning platform. Without brand context, the DESIGN.md cannot guide decisions about tone, voice, or component appropriateness.
+
 **Correct Approach**:
 ```markdown
 ## Overview
@@ -547,12 +665,15 @@ The accent blue-violet (#533afd) anchors interactive elements across a palette
 that balances institutional confidence with approachable warmth.
 ```
 Name the brand, signal the audience, connect visual choices to brand position.
+
 **Detection**: Check the opening section for a company/product name and at least one audience or market-position signal. If both are absent, flag AP-21.
 
 ---
 
 ### AP-22: Generic Voice
+
 **Description**: Using casual, enthusiastic, or Silicon Valley-default copy conventions for brands where they are inappropriate.
+
 **Bad Example**:
 ```markdown
 ## Content & Voice
@@ -561,7 +682,9 @@ Name the brand, signal the audience, connect visual choices to brand position.
 - Empty state: "Nothing here yet! Start creating ✨"
 ```
 *(For a Japanese utility company's customer portal)*
+
 **Why It's Wrong**: Exclamation marks, emoji, and casual contractions violate the formality expectations of the brand's audience and market. A utility company in Japan communicating with residential customers requires institutional respect, not startup enthusiasm.
+
 **Correct Approach**:
 ```markdown
 ## Content & Voice
@@ -571,12 +694,15 @@ Name the brand, signal the audience, connect visual choices to brand position.
 - Tone: Formal, respectful, institutional. No emoji. No exclamation marks in UI text.
 ```
 Derive voice from the brand's actual UI text, not from Western SaaS conventions.
+
 **Detection**: Compare button text and microcopy against the identified brand category. Flag if casual/enthusiastic copy appears for formal/institutional brands.
 
 ---
 
 ### AP-23: No Accessibility Contract
+
 **Description**: Documenting colors, typography, and components without stating WCAG conformance level, contrast ratios, focus specifications, or touch target requirements.
+
 **Bad Example**:
 ```markdown
 ## Color Palette
@@ -587,7 +713,9 @@ Derive voice from the brand's actual UI text, not from Western SaaS conventions.
 | Accent     | #3b82f6 |
 ```
 *(No contrast ratios, no WCAG level, no focus ring spec)*
+
 **Why It's Wrong**: `#6b7280` on `#ffffff` has a contrast ratio of 4.6:1, which barely passes WCAG AA for normal text but fails for large text expectations that many teams apply universally. Without stating the ratio, implementers cannot evaluate compliance.
+
 **Correct Approach**:
 ```markdown
 ## Color Palette
@@ -601,19 +729,24 @@ Derive voice from the brand's actual UI text, not from Western SaaS conventions.
 - Focus ring: 2px solid #3b82f6, 2px offset
 - Minimum touch target: 44x44px
 ```
+
 **Detection**: Search for "WCAG", "contrast", "focus ring", "touch target" in the document. If none are present, flag AP-23.
 
 ---
 
 ### AP-24: State Blindness
+
 **Description**: Documenting only the default/resting state of components, ignoring loading, empty, error, disabled, and success states.
+
 **Bad Example**:
 ```markdown
 ## Data Table
 Background: #ffffff | Header: #f9fafb | Border: 1px solid #e5e7eb
 Row text: 14px Inter weight 400 | Header text: 12px weight 600 uppercase
 ```
+
 **Why It's Wrong**: A data table is empty when filtered results return nothing, loading when fetching, errored when the API fails, and may show selected rows. Documenting only the data-present state means implementers will invent the other states, creating visual inconsistency.
+
 **Correct Approach**:
 ```markdown
 ## Data Table
@@ -626,19 +759,24 @@ Row text: 14px Inter weight 400 | Header text: 12px weight 600 uppercase
 | Row hover | Background #f9fafb |
 | Row selected | Background #eff6ff, left border 2px solid #3b82f6 |
 ```
+
 **Detection**: For each interactive or data-dependent component, check for at least 3 states beyond default. If only the default state is documented, flag AP-24.
 
 ---
 
 ### AP-25: Unnamed Principles
+
 **Description**: Describing what the system does technically without naming the design principle behind the decision.
+
 **Bad Example**:
 ```markdown
 ## Shadows
 The system uses blue-tinted shadows with rgba(50,50,93,0.25) instead of
 standard black shadows.
 ```
+
 **Why It's Wrong**: The observation is correct but unmemorable. Without a name, the principle cannot be referenced in code reviews, design critiques, or component discussions. It becomes a floating fact instead of a system concept.
+
 **Correct Approach**:
 ```markdown
 ## Shadows
@@ -648,18 +786,23 @@ navy (`rgba(50,50,93,0.25)`), creating shadows that feel integrated with the
 palette rather than generically applied.
 ```
 Name the principle in bold on first use. Reference it by name in subsequent sections.
+
 **Detection**: Check the atmosphere, shadow, typography, and color sections for bold-formatted principle names. If no section contains a named principle, flag AP-25.
 
 ---
 
 ### AP-26: Convention Assumption
+
 **Description**: Documenting a system's choices without contrasting them with the typical approach, leaving the reader unable to understand what makes this system distinctive.
+
 **Bad Example**:
 ```markdown
 ## Typography
 Headlines use weight 300 at 48px with -2.4px letter-spacing.
 ```
+
 **Why It's Wrong**: The reader has no frame of reference. They do not know that weight 300 for headlines is unusual (most systems use 600-700), or that -2.4px letter-spacing is extreme (most systems use -0.5px to -1px). Without the contrast, the distinctive choices feel like arbitrary parameters.
+
 **Correct Approach**:
 ```markdown
 ## Typography
@@ -670,12 +813,15 @@ aggressive than the typical -0.5px to -1px, creating text that feels
 compressed and infrastructure-like.
 ```
 State the convention, then state how this system departs from it.
+
 **Detection**: Check for comparative language ("unlike", "where most", "rather than", "instead of", "the conventional") in the atmosphere and typography sections. If none appears in a document with distinctive choices, flag AP-26.
 
 ---
 
 ### AP-27: Frequency Ignorance
+
 **Description**: Documenting colors, shadows, or radius values without indicating which ones dominate the system and which are rare exceptions.
+
 **Bad Example**:
 ```markdown
 ## Colors
@@ -684,7 +830,9 @@ State the convention, then state how this system departs from it.
 - #fafafa — surface
 - #e5e7eb — border
 ```
+
 **Why It's Wrong**: This flat list implies all four colors have equal importance. In reality, `#171717` may appear on 62% of text elements while `#5e6ad2` appears on only 3%. Without frequency, a developer might use the accent color as freely as the text color, breaking the system's restraint.
+
 **Correct Approach**:
 ```markdown
 ## Colors
@@ -694,12 +842,15 @@ State the convention, then state how this system departs from it.
 - #5e6ad2 — accent [rare: 3% of elements, reserved for interactive states]
 ```
 Frequency data transforms a color list into a usage strategy.
+
 **Detection**: Check the color section for frequency indicators (percentage, rank, tier like dominant/common/rare, or usage count). If no color has frequency data, flag AP-27.
 
 ---
 
 ### AP-28: Emoji in Formal Brand
+
 **Description**: Including emoji in copy guidelines, empty states, or error messages for a brand whose tone is formal, institutional, or conservative.
+
 **Bad Example**:
 ```markdown
 ## Content Voice
@@ -708,7 +859,9 @@ Frequency data transforms a color list into a usage strategy.
 - Empty: "No projects yet ✨ Create your first one!"
 ```
 *(For a B2B financial services platform)*
+
 **Why It's Wrong**: Emoji in a financial services context undermines the institutional trust the brand requires. The extracted UI text contained zero emoji, but the LLM added them from training data defaults.
+
 **Correct Approach**:
 ```markdown
 ## Content Voice
@@ -718,18 +871,29 @@ Frequency data transforms a color list into a usage strategy.
 - Empty: "No projects found. Create a new project to get started."
 ```
 Match the emoji policy to the brand's observed behavior. If the source contains no emoji, the output must contain no emoji.
+
 **Detection**: If the brand is classified as formal/institutional and the document contains emoji in copy examples, flag AP-28. Also flag if the extracted source text contains zero emoji but the output introduces them.
 
 ---
 
+### AP-29: Interpretive Fabrication
+
+No prose asserts a relationship, cause, consistency, or named principle absent from `tokens.json`. Canonical failures: "gradient-as-depth replaces shadow elevation" (zero shadow/gradient tokens supporting it) and "focus indicators are consistent" (no captured focus styles). Every interpretive claim cites a token or is labeled `[INFERRED]`; an empty section is stamped ABSENT, never filled.
+
+---
+
 ### AP-30: Frequency Dump (v3)
+
 **Description**: Printing raw frequency or usage-count data in the output prose or tables ("border 9685, text 4258", "appears on 62% of elements", "47 occurrences").
+
 **Bad Example**:
 ```markdown
 - `#171717` — text color [appears 9685 times, 62% of all text]
 - `#5e6ad2` — accent [appears 312 times]
 ```
+
 **Why It's Wrong**: In the v3 Style Reference, frequency DECIDES prominence and role — it determines which colour is ordered first and which gets a usage guard — but it is an internal decision input, never displayed. A reader of a ship-ready handoff needs the role, not the tally. Raw counts read as extractor exhaust, not a design document.
+
 **Correct Approach**:
 ```markdown
 | Name | Value | Token | Role |
@@ -738,12 +902,15 @@ Match the emoji policy to the brand's observed behavior. If the source contains 
 | Voltage | `#5e6ad2` | `--color-voltage` | Interactive elements only |
 ```
 Express frequency as ROLE and ordering: the dominant colour is "primary text", the rare one carries an "interactive elements only" guard.
+
 **Detection**: Flag any number that is a count or percentage of usage (e.g. `\d{3,}` next to a colour, `\d+%` of elements, "N occurrences"). Frequency figures do not belong in the output.
 
 ---
 
 ### AP-31: Placeholder Labels (div / Variant-N) (v3)
+
 **Description**: Carrying the extractor's raw DOM tags ("div", "span") or auto-indexed labels ("Variant-1", "Color 2") into the named Style Reference.
+
 **Bad Example**:
 ```markdown
 ### Variant-1
@@ -752,7 +919,9 @@ Express frequency as ROLE and ordering: the dominant colour is "primary text", t
 ### Variant-2
 **Role:** another div
 ```
+
 **Why It's Wrong**: "Variant-1" and "div" are extractor internals, not design names. A v3 Style Reference is a named handoff: every component is named by function and every type role is semantic. Placeholder labels make the doc unusable as a reference and signal the agent stopped at transcription.
+
 **Correct Approach**:
 ```markdown
 ### Primary CTA
@@ -762,36 +931,46 @@ Express frequency as ROLE and ordering: the dominant colour is "primary text", t
 **Role:** Low-emphasis inline action — `#2564eb` text, no fill.
 ```
 Name components by function (Primary CTA, Secondary Button, Ghost Link, Nav Header, Card, Badge, Footer). Map type levels onto semantic roles (caption/body/heading/display) by ascending size, never the raw tag. If a variant cannot be characterized, fold it into the nearest named component.
+
 **Detection**: Flag any component heading or type role matching `Variant-?\d`, `Color ?\d`, or a bare HTML tag name (`div`, `span`, `p`) used as a label.
 
 ---
 
 ### AP-32: Value Invention from a Vague Token (v3)
+
 **Description**: Concretizing a vague or relative token value into a specific absolute one the tokens never stated — most often turning `100%` into `100rem`, or an unset value into a guessed default.
+
 **Bad Example**:
 ```markdown
 - Page max-width: 100rem
 ```
 *(tokens.maxContentWidth is `100%`)*
+
 **Why It's Wrong**: `100%` and `100rem` are different layout behaviors. Inventing the concrete value silently changes the design. In v3 this class is structurally prevented for the pre-rendered sections (the formatters emit the verbatim token), so any invented value appears in the AI's prose — exactly where the FACTS block should have been copied. `validate.ts checkQuickStartFidelity` also fails when Quick Start `--page-max-width` disagrees with `tokens.maxContentWidth`.
+
 **Correct Approach**:
 ```markdown
 - Page max-width: 100% (full-bleed; no fixed maximum)
 ```
 Copy the token verbatim, including relative or percentage units. If a value is vague, say what it is — never resolve the ambiguity by guessing an absolute.
+
 **Detection**: Compare every value in the AI-written prose against the FACTS block and pre-rendered sections. Any absolute value (px/rem) where the token is relative (`%`, `auto`, `none`) is invention.
 
 ---
 
 ### AP-33: Extractor-Internal CSS Vars (v3)
+
 **Description**: Leaking the extractor's primitive variable names (`--_color-primitives---neutral--1400`, `--_spacing--raw--12`) into the Token column instead of deriving a clean `--color-<slug>` from the assigned name.
+
 **Bad Example**:
 ```markdown
 | Name | Value | Token |
 |------|-------|-------|
 | Ink | `#121613` | `--_color-primitives---neutral--1400` |
 ```
+
 **Why It's Wrong**: The `--_color-primitives` vars are internal scaffolding with a leading underscore and machine-generated suffixes. They are ugly, unstable, and meaningless to a consumer. The Quick Start re-uses the Token column slugs, so a leaked primitive var propagates into the shipped CSS.
+
 **Correct Approach**:
 ```markdown
 | Name | Value | Token |
@@ -799,11 +978,12 @@ Copy the token verbatim, including relative or percentage units. If a value is v
 | Obsidian Ink | `#121613` | `--color-obsidian-ink` |
 ```
 Derive `--color-<kebab-name>` from the evocative Name. The pre-rendered Colors table already does this; the anti-pattern only appears if a value table is hand-authored against the rule.
+
 **Detection**: Flag any token slug beginning with `--_` or containing `primitives`, `raw`, or a numeric primitive suffix.
 
 ---
 
-## 2. SUMMARY CHECKLIST
+## 3. SUMMARY CHECKLIST
 
 Use this checklist when reviewing a generated DESIGN.md:
 

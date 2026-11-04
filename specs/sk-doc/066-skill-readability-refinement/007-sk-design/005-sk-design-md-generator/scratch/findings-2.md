@@ -1,0 +1,31 @@
+### .skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md:24 | 4 | The overview opens with the first role definition (`### primary`), so it has no Purpose or When to Use orientation. | Insert after line 24: `### Purpose\n\nGive each extracted color one semantic role, so the palette a Style Reference publishes can be read as a decision rather than a swatch list.\n\n### When to Use\n\n- Assigning roles to a raw color inventory\n- Choosing between two plausible roles for one color\n- Ordering the palette for the DESIGN.md color section`
+- [P1] .skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md:249 | 1 | The decision rule contradicts itself: the bold label says “Assign the more specific role,” but the same sentence assigns `primary` and calls it “the broader role.” | Replace `Assign the more specific role.` with `Assign the broader role.` so the label matches the example and parenthetical.
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/color-role-taxonomy.md:224-241 | 6 | The grouping-order section (3) sits between assignment priority (2) and ambiguity resolution (4), so the presentation rule is read before the assignment rule that resolves a tie. | Move lines 224-241 to after line 253; renumber the moved `## 3. RECOMMENDED GROUPING ORDER` to `## 4.` and `## 4. AMBIGUITY RESOLUTION` to `## 3.`
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md:24 | 4 | The overview opens with the first component definition (`### Button`), so it has no Purpose or When to Use orientation. | Insert after line 24: `### Purpose\n\nGive every element on a captured page one component name and one documentation shape, so the components section of a DESIGN.md stays comparable across surfaces.\n\n### When to Use\n\n- Classifying an extracted element inventory\n- Deciding whether an element is a standard component or a distinctive one\n- Recording the states and the Use: line for a component entry`
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md:324-328 | 5 | The skip gate “When NOT to Create a Distinctive Component Entry” comes after the documentation steps it governs (314-322), so a reader can document a minor decoration before learning it should not become an entry. | Move lines 324-328 to immediately before line 314.
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md:473 | 1 | A full-sentence instruction is formatted as an H3, so it renders as a section heading and enters the document outline. | Remove the leading `### ` so the line becomes body text; keep the sentence unchanged.
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/component-taxonomy.md:300-312 | 7 | Each distinctive-pattern paragraph packs three mechanisms: what the pattern is, how to identify it, and what to document. | Split each of lines 300, 302, 304, 306, 308, 310 and 312 into a bold pattern name followed by `- **What it is:**`, `- **Identify by:**` and `- **Document:**` bullets, keeping every existing sentence under the matching label.
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md
+- [P1] .skilled/skills/sk-design/sk-design-md-generator/references/creation-contract.md:150 | 5 | The trust rule for reference material sits after the acquisition order (124-130) and the grounding record (134-148) it governs, so a reader can treat external evidence as authoritative before learning it is untrusted. | Move line 150 to immediately before line 124.
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md:17 | 1 | The README template’s HVR block bans semicolons, and this sentence joins two independent clauses with one. | Replace `Style Reference; this layer` with `Style Reference. This layer`.
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md:25 | 1 | The same HVR ban is broken by a semicolon, and the second sentence joins two independent clauses with a comma. | Replace `six dials; the first posture` with `six dials. The first posture`, and `a surface expresses, it never authors` with `a surface expresses. It never authors`.
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/README.md:28-31 | 1 | Four inline lists use an Oxford comma, which the README template’s HVR block bans. | Drop the comma before “and” in each: line 28 `Doherty, and more` → `Doherty and more`; line 29 `type, and neutral` → `type and neutral`; line 30 `motion, and state` → `motion and state`; line 31 `restraint, and writing` → `restraint and writing`.
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/anti-slop-principles.md
+- clean
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/cognitive-laws.md
+- clean
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md:14-16 | 3 | The H1 is followed immediately by `## 1. OVERVIEW`; the file has no intro after the title. | Insert after line 14: `Open this when a capture leaves you unsure whether a surface’s choices were made or inherited.`
+- [P2] .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-principles-digest.md:18 | 4 | The overview’s only paragraph is unlabeled, so the section does not open with Purpose and When to Use. | Insert `### Purpose` before line 18, and after line 18 insert: `### When to Use\n\n- Reading a captured surface for intent before recording its tokens\n- Naming the move behind a hero, a structure, motion, or copy choice\n- Deciding whether a captured choice is a signature move or a default`
+
+### .skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/design-token-vocabulary.md
+- clean

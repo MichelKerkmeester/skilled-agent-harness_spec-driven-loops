@@ -9,12 +9,20 @@ trigger_phrases:
   - "consultant scenario matrix"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Quadrant
 
+Open this when two independent axes, not a ranking, carry the argument.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a two-axis judgment readable: each axis is named in one word, and every item sits where its two values put it.
+
+### When to Use
 
 **Best for:** prioritization (Impact × Effort), positioning (Reach × Frequency), portfolio maps, 2×2 decision frames.
 
@@ -22,7 +30,10 @@ version: 1.2.1.0
 
 ## 2. LAYOUT CONVENTIONS
 - 2×2 grid. Axis lines: 1px ink cross through the center.
-- **Axis labels: Jobs-minimal.** One single word at each arrow tip — no glyphs baked into the label (no `↑` / `→` / `←` / `↓`), no parentheticals, no "HIGH / LOW" modifiers. Geist Mono 9px regular weight, tracked 0.18em, uppercase. Flank the arrow tips — never sit labels on top of the axis line. Shorten the arrow enough (~60–80px inside the viewBox edge) to leave breathing room for the labels beyond the tips.
+- **Axis labels: Jobs-minimal.** One single word at each arrow tip.
+  - No glyphs baked into the label (no `↑` / `→` / `←` / `↓`), no parentheticals, no "HIGH / LOW" modifiers.
+  - Geist Mono 9px regular weight, tracked 0.18em, uppercase.
+  - Flank the arrow tips; never sit labels on top of the axis line. Shorten the arrow enough (~60–80px inside the viewBox edge) to leave breathing room for the labels beyond the tips.
 - Never label at the midpoint.
 - Items: small labeled dots (`r=4`) positioned in the quadrants. Labels 8–10px away; don't let labels cross axis lines.
 - Coral on the "do first" item (typically top-right).
@@ -38,10 +49,8 @@ version: 1.2.1.0
 ---
 
 ## 4. EXAMPLES
-- `assets/diagrams/quadrant.html` — minimal light
-- `assets/diagrams/quadrant-dark.html` — minimal dark
-- `assets/diagrams/quadrant-full.html` — full editorial
-- `assets/diagrams/quadrant-consultant.html` — consultant special (see below)
+- `assets/diagrams/quadrant.html`: the canonical rendered example: content ideas on Impact × Effort.
+- `assets/diagrams/quadrant-consultant.html`: the consultant special: Workplace 2030 on Remote × AI automation (see below).
 
 ---
 

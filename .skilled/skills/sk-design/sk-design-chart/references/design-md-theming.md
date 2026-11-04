@@ -8,12 +8,28 @@ trigger_phrases:
   - "design-md chart delivery"
 importance_tier: normal
 contextType: reference
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # Theming a chart from DESIGN.md
 
+Open this when a chart has to wear a measured site's look, or when a themed delivery's palette, corners and provenance have to be checked against the reference it came from.
+
+---
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Apply one locally available v3 `DESIGN.md` to a copy of an existing chart form, with the palette gates and a provenance record intact.
+
+### When to Use
+
+- A request names a local `DESIGN.md`, a measured site's look or another v3 Style Reference.
+- A `design-md` delivery's provenance, palette or corners have to be checked.
+- A `--default` delivery has to be reproduced or explained.
+
+### Boundaries
 
 `DESIGN.md` is a style reference, not a chart form. The chart packet applies one locally available
 v3 reference to a copy of an existing form; it does not extract a site, open a URL or change the
@@ -23,21 +39,21 @@ stock palette. Extraction belongs to `sk-design-md-generator`.
 
 ## 2. THE COMMAND
 
+The `DESIGN.md` input must be a local file. A URL is refused. The output directory is created only after every chosen form has a complete derived palette and both theme validations have passed. There is no force option.
+
 ```bash
 node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs \
   path/to/DESIGN.md --forms grouped-bars,daily-line --out scratch/themed
 ```
 
-Use `--all` instead of `--forms` to copy every form. `--scheme light|dark|both` selects which
-ground receives the reference: `light` derives the light ground and keeps the stock dark chrome,
-`dark` derives the dark ground and keeps the stock light chrome, and `both` derives both when the
-reference declares dark support. If a reference is light-only, its dark half is the stock dark
-chrome with series re-derived against it. `--tokens tokens.json` supplies the optional sibling
-token inventory explicitly; otherwise a sibling `tokens.json` is used when present.
+- Use `--all` instead of `--forms` to copy every form.
+- `--scheme light|dark|both` selects which ground receives the reference: `light` derives the light ground and keeps the stock dark chrome, `dark` derives the dark ground and keeps the stock light chrome, and `both` derives both when the reference declares dark support. If a reference is light-only, its dark half is the stock dark chrome with series re-derived against it.
+- `--tokens tokens.json` supplies the optional sibling token inventory explicitly; otherwise a sibling `tokens.json` is used when present.
 
-The input must be a local file. A URL is refused. The output directory is created only after every
-chosen form has a complete derived palette and both theme validations have passed. There is no
-force option.
+An ordered form (`bullet`, `calendar-grid`, `heat-matrix`, `progress-single`) paints a single-hue
+magnitude ramp with step and end gates of its own. A colour table does not supply such a ramp, so
+the script never themes an ordered form: naming one is refused, and `--all` skips it with a note.
+Those forms keep the stock ordered system inside an otherwise themed set.
 
 ---
 
@@ -76,7 +92,7 @@ the series are re-derived against that ground. No colour is borrowed from the th
 systems to fill a missing chromatic role.
 
 The corner ladder uses the largest measured radius that does not exceed each stock rung. A rung
-with no measured value below its ceiling becomes `0px`; it never grows a corner beyond the stock
+with no measured value below its ceiling keeps the corpus value; it never grows a corner beyond the stock
 ladder. The measured primary typeface precedes its substitute stack in every body declaration, and every declaration that already names a monospace face takes the reference's mono stack; the choice is by what the declaration is, not by where it sits. A
 dedicated mono typeface is used when the reference supplies one; otherwise the primary stack is
 used for the mono declarations as well.
@@ -87,12 +103,7 @@ warm grey out of the series ladder while letting a muted brand hue in.
 
 ---
 
-## 5. ORDERED FORMS AND THE DEFAULT REFERENCE
-
-An ordered form (`bullet`, `calendar-grid`, `heat-matrix`, `progress-single`) paints a single-hue
-magnitude ramp with step and end gates of its own. A colour table does not supply such a ramp, so
-the script never themes an ordered form: naming one is refused, and `--all` skips it with a note.
-Those forms keep the stock ordered system inside an otherwise themed set.
+## 5. THE DEFAULT REFERENCE
 
 When a request names no Style Reference, `--default` themes from
 `assets/style-reference/evilcharts/DESIGN.md`, the one reference this packet carries beside its

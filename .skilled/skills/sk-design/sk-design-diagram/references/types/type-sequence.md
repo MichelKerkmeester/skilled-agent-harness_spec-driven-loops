@@ -9,14 +9,27 @@ trigger_phrases:
   - "combined fragment alt opt loop"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Sequence
 
+Open this before drawing a multi-actor exchange: the message table and branch frames decide whether the call order is readable.
+
 ## 1. OVERVIEW
 
-**Best for:** request/response flows, protocol exchanges, multi-actor interactions over time, API call traces, incident reconstructions, auth/token refresh paths with branching.
+### Purpose
+
+Sets the grammar an exchange over time is drawn against, so the reader can tell who holds control, which kind each arrow is, and which branch a message belongs to.
+
+### When to Use
+
+- Request/response flows
+- Protocol exchanges
+- Multi-actor interactions over time
+- API call traces
+- Incident reconstructions
+- Auth/token refresh paths with branching
 
 ---
 
@@ -32,7 +45,23 @@ version: 1.2.1.0
 
 ---
 
-## 3. MESSAGE KINDS
+## 3. LIFELINE PRIMITIVE
+```svg
+<line x1="CX" y1="TOP" x2="CX" y2="BOTTOM"
+      stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
+```
+
+---
+
+## 4. ACTIVATION BAR PRIMITIVE
+```svg
+<rect x="CX-4" y="TOP" width="8" height="H"
+      fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
+```
+
+---
+
+## 5. MESSAGE KINDS
 
 | Kind | Stroke | Marker | When |
 |---|---|---|---|
@@ -55,7 +84,7 @@ Dark mode: stroke `#bfc0c0` (muted on dark paper). Do not fill the open marker �
 
 ---
 
-## 4. COMBINED FRAGMENTS (`alt` / `opt` / `loop`)
+## 6. COMBINED FRAGMENTS (`alt` / `opt` / `loop`)
 
 Use a rectangular **frame** that spans only the lifelines participating in the branch. Operator label is Geist Mono, uppercase, in a small tab at the top-left of the frame. Time still flows top→down inside the frame.
 
@@ -105,12 +134,12 @@ Dark mode: frame fill `rgba(245,245,245,0.04)`, stroke `rgba(245,245,245,0.22)`,
 - Coral stays on **one** headline success message across the whole diagram (usually the happy-path return inside the first `alt` region, or the final success outside a loop). Do not coral both `alt` branches.
 
 ### Out of scope (do not invent)
-- `par`, `critical`, `break`, `ref`, and other UML operators — second PR if needed.
+- `par`, `critical`, `break`, `ref`, and other UML operators.
 - Participant create/destroy, found/lost messages, duration timing bars.
 
 ---
 
-## 5. COMPLEXITY BUDGET (SEQUENCE-SPECIFIC)
+## 7. COMPLEXITY BUDGET (SEQUENCE-SPECIFIC)
 - Max lifelines: 5 (same as SKILL.md §3 complexity budget).
 - Max messages (arrows): 12.
 - Max combined fragments: 1 (hard default); 2 only if each is a single-region `opt`/`loop`.
@@ -119,22 +148,6 @@ Dark mode: frame fill `rgba(245,245,245,0.04)`, stroke `rgba(245,245,245,0.22)`,
 - Max coral elements: 2 (prefer 1 for fragment diagrams).
 
 If you exceed, split: overview (happy path) + detail (failure / refresh path).
-
----
-
-## 6. LIFELINE PRIMITIVE
-```svg
-<line x1="CX" y1="TOP" x2="CX" y2="BOTTOM"
-      stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="3,3"/>
-```
-
----
-
-## 7. ACTIVATION BAR PRIMITIVE
-```svg
-<rect x="CX-4" y="TOP" width="8" height="H"
-      fill="rgba(45,49,66,0.06)" stroke="#4f5d75" stroke-width="0.8"/>
-```
 
 ---
 

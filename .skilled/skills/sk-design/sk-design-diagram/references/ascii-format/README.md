@@ -9,7 +9,7 @@ trigger_phrases:
   - "flowchart reference map"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Create-Flowchart References
@@ -45,6 +45,3 @@ Load the file that matches the current task:
 - `../../scripts/validate-flowchart.sh` - Packet-local validator and actual threshold source
 - `../../assets/ascii-patterns/*` - Six pattern assets, one per workflow shape
 
----
-
-*End of create-flowchart reference route-map: depth lives in the three single-concern files above.*

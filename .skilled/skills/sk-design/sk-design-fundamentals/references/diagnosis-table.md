@@ -9,7 +9,7 @@ trigger_phrases:
   - "make this look less amateur"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Diagnosing Existing UI
@@ -20,15 +20,19 @@ Complaints about UI are almost always vague. Each vague symptom maps to a small 
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-A complaint is a symptom, not a diagnosis. Find the mechanical cause before changing anything, or the change is a guess dressed as a decision.
+A named cause and a concrete fix for a vague complaint, so every change is a decision rather than a guess.
 
 ### When to Use
 
 - The task is *improve this*, not *build this*.
 - Someone says the UI "looks off", "feels cheap", "looks amateur", "feels cluttered", "feels plain", or "feels unfinished".
 - A design review needs a specific finding rather than an impression.
+
+### Core Principle
+
+A complaint is a symptom, not a diagnosis. Find the mechanical cause before changing anything, or the change is a guess dressed as a decision.
 
 ### How to Read the Tables
 

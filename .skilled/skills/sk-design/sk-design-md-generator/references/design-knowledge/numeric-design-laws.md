@@ -7,7 +7,7 @@ trigger_phrases:
   - "contrast motion spacing type thresholds"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Numeric Design Laws
@@ -24,7 +24,7 @@ Give one stable, citable row per numeric threshold instead of re-deriving contra
 
 ### Usage
 
-Cite a row by `law_id` when a finding or observation about an extracted surface depends on a numeric threshold. Values are craft targets, not hard gates in this skill — a captured surface may legitimately differ; the row explains what "on target" means.
+Cite a row by `law_id` when a finding or observation about an extracted surface depends on a numeric threshold — a contrast pair, a motion band, a spacing step, a type ratio. Values are craft targets, not hard gates in this skill — a captured surface may legitimately differ; the row explains what "on target" means. The values give a Style Reference honest, comparable numbers instead of vague adjectives.
 
 ### Reading Targets, Not Authoring Instructions
 
@@ -36,7 +36,7 @@ Every row here describes a surface that **already exists**. None of them tells a
 | `spacing-scale` | Note whether a captured value resolves to a baseline step | Use the full 16-step scale, where no two neighbours sit closer than about 25% |
 | The three `motion-*` bands | Describe the timing a captured surface uses | Bands split by kind: 120-180ms direct feedback, 180-260ms state change, up to 500ms layout transition |
 
-A measured ratio is an observation, never an instruction to generate the next size by multiplication. When both skills are in play, this document reports and `sk-design` decides; where a surface has already been measured, its measured values outrank `sk-design`'s defaults. The authoring side states the same reconciliation from its own direction in `sk-design/references/motion-principles.md` Section 5 and `sk-design/SKILL.md` Section 7.
+A measured ratio is an observation, never an instruction to generate the next size by multiplication. When both skills are in play, this document reports and `sk-design` decides; where a surface has already been measured, its measured values outrank `sk-design`'s defaults. The authoring side states the same reconciliation from its own direction in `sk-design/sk-design-fundamentals/references/motion-principles.md` Section 5 and `sk-design/sk-design-fundamentals/SKILL.md` Section 7. Do not cite a row as a reason to change a design. That is the authoring direction, and it belongs to `sk-design`.
 
 ---
 
@@ -56,11 +56,3 @@ A measured ratio is an observation, never an instruction to generate the next si
 | type-modular-ratio | 1.2 for dense Product; 1.25-1.333 for expressive Brand | The ratio sets role rhythm after roles are named; not a license for viewport-scaled type, and not an instruction to author a scale by multiplication (see Section 1). |
 | type-body-size | body text at least 16px, sitting near 16px | Body size must still work with measure and line height; size alone does not prove readability. |
 | neutral-chroma | neutral tint C 0.005-0.015 toward the brand hue | Tiny chroma keeps neutrals branded without turning surfaces into accent colors. |
-
----
-
-## 3. HOW THIS SKILL USES IT
-
-Cite a row by `law_id` when a measured observation about an extracted surface depends on a threshold — a contrast pair, a motion band, a spacing step, a type ratio. The values give a Style Reference honest, comparable numbers instead of vague adjectives.
-
-Do not cite a row as a reason to change a design. That is the authoring direction, and it belongs to `sk-design`.

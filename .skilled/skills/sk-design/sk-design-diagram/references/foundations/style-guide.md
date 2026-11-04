@@ -11,7 +11,7 @@ trigger_phrases:
   - "terminal skin palette"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.13
+version: 1.2.1.0
 ---
 
 # Diagram Style Guide
@@ -21,6 +21,16 @@ A semantic token reference for diagram colors, typography, strokes, radii, and s
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+One file holds every skin decision, so a diagram resolves a role name instead of carrying a value.
+
+### When to Use
+
+- A type reference or a drawing needs the value behind a semantic role.
+- A project needs a brand palette, a dark variant or the terminal skin.
+- A chart needs a non-focal series color.
 
 ### Core Principle
 
@@ -45,14 +55,14 @@ Every token is referred to by **semantic role**, not by its hex value. Type refe
 | `accent-tint` | Fill for accent-bordered boxes | `rgba(235,108,54,0.08)` | carried by channel |
 | `link` | HTTP/API calls, external arrows | `#2e5aa8` | `#6a95d8` |
 
-The dark skin defines five roles — `paper`, `ink`, `muted`, `accent`, `link` — and no others. A role
-marked *light only* has no dark value and no dark form draws one. A translucent treatment marked
-*carried by channel* needs no dark role either: both applicators match such a value by its channels
-and re-emit it at whatever alpha the drawing chose, so a dark repaint moves every one of them.
+The dark skin defines five roles — `paper`, `ink`, `muted`, `accent`, `link` — and no others:
+
+- A role marked *light only* has no dark value, and no dark form draws one.
+- A translucent treatment marked *carried by channel* needs no dark role either: both applicators match such a value by its channels and re-emit it at whatever alpha the drawing chose, so a dark repaint moves every one of them.
 
 > **Brand palette source:** this skin maps to a five-color brand palette — `jet-black #2d3142`, `silver #bfc0c0`, `white-smoke #f5f5f5`, `atomic-tangerine #eb6c36`, `blue-slate #4f5d75`. The `soft`, `rule`, and `link` tokens are derived (lighter slate, ink-at-opacity, and a saturated variant in the blue-slate hue family) to cover roles the brand palette doesn't name directly.
 
-> **Note:** The example files under `assets/` carry the current role values above; what they do not yet do is read them from one source. Thirty-two of thirty-four type their hex values inline, which a later phase repaints from [derivation-record.md](derivation-record.md).
+> **Note:** The example files under `assets/` carry the current role values above; none reads them from one source. Thirty-two of thirty-four type their hex values inline, and any repaint draws them from [derivation-record.md](derivation-record.md).
 
 #### Inversion rule (light → dark)
 

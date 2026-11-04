@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # sk-design-chart
@@ -35,12 +35,6 @@ version: 0.23.1.0
 
 ## 2. OVERVIEW
 
-### Why This Packet Exists
-
-Charts written freehand are the ones that break. The axis labels overlap at the third data point, the legend wraps under a narrow viewport, the palette runs out of distinguishable colors at series six. None of that shows up in a check. It shows up when someone opens the file, and by then the chart has already been sent to somebody.
-
-A form file that already renders has had those problems solved once. Copying it and swapping the data keeps the solution and changes only the part that should change. That is the whole method, and it is why this packet is organized around a corpus rather than around instructions for drawing.
-
 ### What It Does
 
 You describe the comparison a reader needs to make. The catalog in `references/catalog.md` turns that comparison into one row, and the row names the file that draws it. You copy that file, swap its data block and apply one colour system. A validator then proves the corpus still renders.
@@ -49,12 +43,18 @@ When a request names a local v3 `DESIGN.md`, or passes `--default` for the carri
 reference in the style library, `scripts/apply-design-md.cjs` derives the chart role
 palette, typeface stacks and corner ladder from its documented tables. The script reuses the
 corpus gates, refuses to write on a failure, and places a hash-bearing provenance comment in both
-theme blocks. Site extraction remains the job of `sk-design-md-generator`; this packet applies the
+theme blocks. Site extraction remains the job of `sk-design-md-generator`. This packet applies the
 reference it receives.
 
 The visual register is shared by the corpus: a 16px semibold title, a muted 14px description, a two-row footer, bare axes with 12px tabular ticks, a horizontal dashed grid, measured bar and line geometry, positioned HTML tooltip cards and keyed legend chips. Each template accepts `?scheme=light` or `?scheme=dark` and sets `data-scheme` before it paints, so a capture can pin a scheme the host machine does not have.
 
 One form is one file, so there is no gallery page to lift a block out of. The packet holds no per-request logic. It holds a corpus and the rules for picking from it.
+
+### Why This Packet Exists
+
+Charts written freehand are the ones that break. The axis labels overlap at the third data point, the legend wraps under a narrow viewport, the palette runs out of distinguishable colors at series six. None of that shows up in a check. It shows up when someone opens the file, and by then the chart has already been sent to somebody.
+
+A form file that already renders has had those problems solved once. Copying it and swapping the data keeps the solution and changes only the part that should change. That is the whole method, and it is why this packet is organized around a corpus rather than around instructions for drawing.
 
 ### Why It Matters
 
@@ -83,6 +83,7 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 
 | Path | What it holds |
 |---|---|
+| [`README.md`](./README.md) | This file: the packet overview and navigation |
 | [`SKILL.md`](./SKILL.md) | The runtime contract: when to use the packet, the workflow, the rules |
 | [`ROUTER.md`](./ROUTER.md) | The machine router: intent model, resource domains and the format-resolution rule |
 | [`references/`](./references/) | The catalog, the colour systems and the template contract |
@@ -92,6 +93,7 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 | [`scripts/`](./scripts/) | The corpus validator, shared gate arithmetic and the local `DESIGN.md` applicator |
 | [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
 | [`changelog/`](./changelog/) | One file per release, named `v[version].md` |
+| [`screenshots/`](./screenshots/) | One PNG per template and example, mirroring the source layout, so a form can be judged without opening a browser |
 
 ---
 
@@ -110,25 +112,14 @@ That is a constraint rather than a preference. This repository is MIT and public
 | Corpus | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs` | `RESULT: PASSED` |
 | Design reference | `node .skilled/skills/sk-design/sk-design-chart/scripts/apply-design-md.cjs <DESIGN.md> --forms <a,b> --out <dir>` | `RESULT: PASSED` and deterministic themed copies |
 | Outside delivery | `node .skilled/skills/sk-design/sk-design-chart/scripts/check-corpus.cjs --extra <dir>` | `RESULT: PASSED` with `design-md` provenance and gates checked |
-| Mutation suite | `node --test scripts/tests/` | Every check family is exercised by a case or named with the reason it needs a browser |
+| Mutation suite | `node --test .skilled/skills/sk-design/sk-design-chart/scripts/tests/` | Every check family is exercised by a case or named with the reason it needs a browser |
 | Package shape | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/sk-design/sk-design-chart --check --strict` | `Result: PASS` |
 | Hub shape | `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-design` | Zero invariant failures |
-| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py README.md` | Zero hard blockers |
+| Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-design/sk-design-chart/README.md` | Zero hard blockers |
 
 ---
 
-## 7. RELATED DOCUMENTS
-
-| Document | Purpose |
-|---|---|
-| [`SKILL.md`](./SKILL.md) | The runtime contract and the template-first workflow |
-| [`references/README.md`](./references/README.md) | The reference index |
-| [`scripts/README.md`](./scripts/README.md) | What the corpus validator checks |
-| [`../SKILL.md`](../SKILL.md) | The `sk-design` hub that routes here |
-| [`ROUTER.md`](./ROUTER.md) | The machine router: intent map, resource map and loading levels |
-| [`../sk-design-diagram/README.md`](../sk-design-diagram/README.md) | The structural-visual packet across the boundary |
-
-## SCREENSHOTS
+## 7. SCREENSHOTS
 
 Every template and example in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
@@ -150,3 +141,16 @@ The colour scheme follows the host machine. Chrome ignores the scheme flags in
 headless capture, so a regenerated set matches whichever theme the operator's
 system is set to. Both themes are valid corpus output and each is validated on its
 own, so regenerate on the machine whose theme you want committed.
+
+---
+
+## 8. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | The runtime contract and the template-first workflow |
+| [`references/README.md`](./references/README.md) | The reference index |
+| [`scripts/README.md`](./scripts/README.md) | What the corpus validator checks |
+| [`../SKILL.md`](../SKILL.md) | The `sk-design` hub that routes here |
+| [`ROUTER.md`](./ROUTER.md) | The machine router: intent map, resource map and loading levels |
+| [`../sk-design-diagram/README.md`](../sk-design-diagram/README.md) | The structural-visual packet across the boundary |

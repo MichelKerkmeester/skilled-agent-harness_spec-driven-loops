@@ -9,7 +9,7 @@ trigger_phrases:
   - "marginalia annotation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # Annotation Callout (italic-serif aside)
@@ -20,7 +20,14 @@ Editorial callouts pair italic Instrument Serif text with a dashed Bézier leade
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Think marginalia: *"structure IS the index"*, *"no imports, no configuration"*. The combination of italic + serif signals "editorial voice" against the diagram's sans/mono body.
+
+### When to Use
+
+- A diagram needs an editorial aside that its labels cannot carry.
+- A detail needs pointing at without adding a node or an arrow.
 
 ### Grammar
 

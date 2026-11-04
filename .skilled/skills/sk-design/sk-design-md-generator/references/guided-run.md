@@ -7,7 +7,7 @@ trigger_phrases:
   - "preflight extract write prompt validate"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Guided Run Wrapper
@@ -21,6 +21,12 @@ The guided run wrapper reduces command friction while preserving the existing ex
 ### Purpose
 
 Reduce command friction across the extract, write-prompt, validate, and report phases without ever auto-authoring `DESIGN.md` itself.
+
+### When to Use
+
+- Running the extract, write-prompt, validate and report phases in one pass.
+- Checking what the wrapper will refuse to do before trusting it with a run.
+- Resuming after the wrapper stops at prompt generation.
 
 ### Core Principle
 

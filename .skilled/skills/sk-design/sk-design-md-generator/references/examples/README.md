@@ -4,10 +4,12 @@ description: "Gold-standard DESIGN.md outputs and their writing notes, kept as l
 trigger_phrases:
   - "design md exemplars"
   - "style reference output examples"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Examples: Output Exemplars, Not Skill Reference Docs
+
+Open an exemplar when you want to see a finished Style Reference end to end, and read its writing notes for the measured data behind each choice.
 
 ---
 
@@ -19,7 +21,10 @@ This directory holds gold-standard `DESIGN.md` outputs (`linear/`, `stripe/`, `s
 
 ## 2. DOCUMENTED EXEMPTION
 
-The four `{brand}/DESIGN.md` files and their `{brand}/writing-notes.md` companions are **literal exemplars of the v3 Style Reference output format**, not agent-facing workflow documentation. Each `DESIGN.md` intentionally mirrors the exact structure specified by [`../design-md-format.md`](../design-md-format.md), starting with `# <Brand>, Style Reference`, not an H1 + `## 1. OVERVIEW`: because that structure is the thing being demonstrated. Rewriting them to the `skill-reference-template.md` shape (numbered ALL-CAPS H2s, an `## 1. OVERVIEW` section) would destroy their purpose: they exist to be studied verbatim as what a passing DESIGN.md looks like. The paired `writing-notes.md` files are short editorial annotations on that specific example and inherit the same exemption for the same reason.
+- The four `{brand}/DESIGN.md` files and their `{brand}/writing-notes.md` companions are **literal exemplars of the v3 Style Reference output format**, not agent-facing workflow documentation.
+- Each `DESIGN.md` intentionally mirrors the exact structure specified by [`../design-md-format.md`](../design-md-format.md), starting with `# <Brand>, Style Reference`, not an H1 + `## 1. OVERVIEW`: because that structure is the thing being demonstrated.
+- Rewriting them to the `skill-reference-template.md` shape (numbered ALL-CAPS H2s, an `## 1. OVERVIEW` section) would destroy their purpose: they exist to be studied verbatim as what a passing DESIGN.md looks like.
+- The paired `writing-notes.md` files are short editorial annotations on that specific example and inherit the same exemption for the same reason.
 
 **What is still enforced on these 8 files:** the 5-field frontmatter block (`title`, `description`, `trigger_phrases`, `importance_tier`, `contextType`, `version`) is a universal parser/advisor contract for anything under `references/`, independent of body content: so `contextType` must still be a valid enum value (`general`, not `reference`) even though the body structure is exempt.
 
@@ -32,5 +37,6 @@ The four `{brand}/DESIGN.md` files and their `{brand}/writing-notes.md` companio
 | File | Role |
 |---|---|
 | `linear/DESIGN.md`, `stripe/DESIGN.md`, `supabase/DESIGN.md`, `vercel/DESIGN.md` | Exempt, literal output exemplars |
+| `linear/tokens.json`, `stripe/tokens.json`, `supabase/tokens.json`, `vercel/tokens.json` | Measured input each exemplar was regenerated from |
 | `linear/writing-notes.md`, `stripe/writing-notes.md`, `supabase/writing-notes.md`, `vercel/writing-notes.md` | Exempt: editorial notes on the paired exemplar |
 | `editorial-exemplar.md` | Conformant: agent guidance, follows the reference template |

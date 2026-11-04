@@ -9,12 +9,20 @@ trigger_phrases:
   - "drop off annotation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Pyramid / Funnel
 
+Open this when rank or conversion is the message and a bar chart would flatten it.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a ranked stack honest: layer widths carry the drop, one coral layer names the stake, and the orientation tells the reader whether to read up or down.
+
+### When to Use
 
 **Best for:** hierarchy of needs, prioritization ranks, value pyramids, conversion funnels, content importance stacks.
 
@@ -52,6 +60,4 @@ Don't mix orientations on one diagram.
 ---
 
 ## 5. EXAMPLES
-- `assets/diagrams/pyramid.html` — minimal light
-- `assets/diagrams/pyramid-dark.html` — minimal dark
-- `assets/diagrams/pyramid-full.html` — full editorial
+- `assets/diagrams/pyramid.html`: the canonical rendered example: a four-layer content pyramid, apex focal, with yearly-volume annotations.

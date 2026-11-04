@@ -7,12 +7,14 @@ trigger_phrases:
   - "design register checklist"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Register Card
 
 A one-page card for resolving the Brand versus Product posture of a surface before recording its Style Reference.
+
+---
 
 ## 1. OVERVIEW
 

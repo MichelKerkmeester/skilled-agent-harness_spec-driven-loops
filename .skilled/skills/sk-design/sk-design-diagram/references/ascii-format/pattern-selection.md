@@ -9,7 +9,7 @@ trigger_phrases:
   - "large flowchart split signals"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.11
+version: 1.2.1.0
 ---
 
 # Pattern Selection and Splitting
@@ -20,7 +20,14 @@ Choosing the closest pattern by workflow shape, and recognizing when a diagram s
 
 ## 1. OVERVIEW
 
-This file extends the pattern table in `../../SKILL.md` §3 with best-fit and avoid-when detail for each of the six workflow-shape patterns, plus the signals that mean a diagram should be split into more than one figure.
+### Purpose
+
+Choosing by workflow shape narrows six patterns to the one that fits, so the diagram starts from a shape that already matches its job.
+
+### When to Use
+
+- Choosing which of the six pattern assets to copy.
+- A diagram has outgrown one screen and may need splitting.
 
 ---
 

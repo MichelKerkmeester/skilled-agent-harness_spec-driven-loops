@@ -9,12 +9,20 @@ trigger_phrases:
   - "shared hub state"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Loop
 
+Open this when the last step feeds the first and the diagram has to show that it does.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a reinforcing cycle reproducible: equal stations on one circle, exactly one hub, and dashed write-backs that show where state accumulates.
+
+### When to Use
 
 **Best for:** reinforcing cycles, flywheels, feedback loops, and operating loops — anything where the last step feeds the first and a shared hub accumulates state. Use Loop when the reader must see both motions at once: work advances clockwise around the ring, while each pass writes durable state back to one common center.
 
@@ -76,7 +84,7 @@ station_x(k)        = station_center_x(k) - station_w/2
 station_y(k)        = station_center_y(k) - station_h/2
 ```
 
-Thus station 1 sits at the top, and increasing `k` moves clockwise. Round station rectangles to the nearest 4px grid point after computing the ideal geometry; preserve symmetry when rounding paired stations. Keep ring-circle intersection points to three decimal places so every arc remains on the same circle.
+Thus station 0 sits at the top, and increasing `k` moves clockwise. Round station rectangles to the nearest 4px grid point after computing the ideal geometry; preserve symmetry when rounding paired stations. Keep ring-circle intersection points to three decimal places so every arc remains on the same circle.
 
 ### 3.2 Solid ring-flow endpoints
 
@@ -234,6 +242,5 @@ The semantic relationship stays unchanged in dark mode: one `ink`-filled hub, on
 
 ## 9. EXAMPLES
 
-- `assets/diagrams/loop.html` — minimal light: six-station self-improving operating loop.
-- `assets/diagrams/loop-dark.html` — the same geometry under the dark token inversion.
-- `assets/diagrams/loop-full.html` — editorial page with the flagship loop, three summary cards, and colophon.
+- `assets/diagrams/loop.html`: the canonical rendered example: six-station self-improving operating loop.
+- `assets/diagrams/loop-terminal.html`: the same six-station loop in the fixed terminal skin.

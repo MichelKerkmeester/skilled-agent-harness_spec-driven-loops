@@ -7,21 +7,33 @@ trigger_phrases:
   - "diagram smart router"
 importance_tier: "normal"
 contextType: "reference"
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Diagram Router Pseudocode
 
-This is the reference implementation of the routing rules in [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) §3 (MACHINE ROUTER). The rules there are the contract; this is one way to hold them, kept whole here so the skill contract does not carry a fifth of its bytes as code.
+The whole router in one piece, so a route can be followed from a request to the files it loads without leaving the page.
 
 ---
 
 ## 1. OVERVIEW
 
-Four pieces carry the whole router: the intent model that scores a request, the resource map that
-answers each winning intent, the load levels that say how much a run brings in, and the UNKNOWN
-fallback for a request that scores nothing. Read them in that order and the route a request takes is
-one pass down the file.
+### Purpose
+
+The rules in [`../../ROUTER.md#3-machine-router`](../../ROUTER.md#3-machine-router) §3 (MACHINE ROUTER) are the contract; this file is the reference implementation, one way to hold them, kept whole here so the skill contract does not carry a fifth of its bytes as code.
+
+### When to Use
+
+Read it when the routing rules have to be followed as working code.
+
+Four pieces carry the whole router:
+
+- the intent model that scores a request
+- the resource map that answers each winning intent
+- the load levels that say how much a run brings in
+- the UNKNOWN fallback for a request that scores nothing
+
+Read them in that order and the route a request takes is one pass down the file.
 
 ---
 

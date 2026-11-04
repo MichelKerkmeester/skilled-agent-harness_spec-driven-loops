@@ -9,7 +9,7 @@ trigger_phrases:
   - "why does this feel overwhelming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # UX Laws for Authoring
@@ -20,9 +20,9 @@ The constraints a human brain and hand impose on an interface. Each one turns in
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Hierarchy decides what the eye reaches first. These laws decide what should be on the screen at all, how it is grouped, and how long it may take to respond.
+Gives each structural choice a named law behind it, so the decision can be defended.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ Hierarchy decides what the eye reaches first. These laws decide what should be o
 - A screen "feels overwhelming" and the hierarchy fixes did not resolve it.
 - Sizing interactive targets, or deciding where a control belongs.
 - Setting a response-time budget for an interaction that hits the network.
+
+### Core Principle
+
+Hierarchy decides what the eye reaches first. These laws decide what should be on the screen at all, how it is grouped, and how long it may take to respond.
 
 ### Boundary With The Sibling Skill
 

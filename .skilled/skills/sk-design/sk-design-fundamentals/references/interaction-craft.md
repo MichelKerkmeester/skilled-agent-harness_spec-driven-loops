@@ -9,7 +9,7 @@ trigger_phrases:
   - "interface feels janky"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Interaction Craft
@@ -20,9 +20,9 @@ The details that separate an interface that looks right from one that feels righ
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Visual systems decide how an interface looks. These decide how it behaves under a real cursor, a real thumb, a real keyboard, and a real network. A layout can be perfectly scaled and still feel broken.
+Gives a build the behavioral checks a visual system leaves out.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ Visual systems decide how an interface looks. These decide how it behaves under 
 - Reviewing UI code rather than a static design.
 - The interface "feels janky", "feels slow", or misbehaves on a phone.
 - Keyboard or screen-reader behavior needs to be correct, not merely present.
+
+### Core Principle
+
+Visual systems decide how an interface looks. These decide how it behaves under a real cursor, a real thumb, a real keyboard, and a real network. A layout can be perfectly scaled and still feel broken.
 
 ### Source
 
@@ -62,7 +66,7 @@ Adapted from Rauno Freiberg's Web Interface Guidelines (<https://interfaces.raun
 - Disable `pointer-events` on decorative elements such as glows and gradients.
 - Interactive elements in a vertical or horizontal list must have **no dead areas between them**. Increase their `padding` rather than adding margin between them, so every pixel between two targets belongs to one of them.
 
-Minimum target size is contested across sources: WCAG 2.5.5 asks for 44 by 44px, while the Laws-of-UX ruleset in [`motion-principles.md`](motion-principles.md) uses 32px as the floor. Use 44px for anything a thumb operates and treat 32px as the absolute minimum for a dense pointer-driven UI. Expand the hit area with padding or a negative-inset pseudo-element rather than by growing the visual box.
+Minimum target size is contested across sources: WCAG 2.5.5 asks for 44 by 44px, while the Laws-of-UX ruleset in [`ux-laws.md`](ux-laws.md) uses 32px as the floor. Use 44px for anything a thumb operates and treat 32px as the absolute minimum for a dense pointer-driven UI. Expand the hit area with padding or a negative-inset pseudo-element rather than by growing the visual box.
 
 ---
 

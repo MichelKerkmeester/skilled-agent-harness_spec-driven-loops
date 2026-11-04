@@ -9,7 +9,7 @@ trigger_phrases:
   - "design review findings"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # UI Review Checklist
@@ -20,15 +20,19 @@ An audit pass over UI code rather than a rendered picture. Every finding names a
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Read the code before assessing it. A review that reports a problem without a line number and a concrete fix is an opinion, not a finding.
+Gives a UI review a severity order and a report a developer can act on.
 
 ### When to Use
 
 - Reviewing a component, a page, or a pull request that touches UI.
 - A design review that must produce actionable items rather than impressions.
 - Checking accessibility before shipping.
+
+### Core Principle
+
+Read the code before assessing it. A review that reports a problem without a line number and a concrete fix is an opinion, not a finding.
 
 ### How It Differs From Diagnosis
 
@@ -100,7 +104,7 @@ Fix before merge. Each row breaks the interface for someone.
 
 ### Color and contrast
 
-- Contrast below the minimums in Sections 3 and 4.
+- Contrast below the minimums in Section 3.
 - Grey text on a colored background.
 - Shades generated at runtime with `lighten()` or `darken()`.
 - Dark mode inconsistencies: a mechanically inverted ramp, accents that were not desaturated, text a shade too bright.

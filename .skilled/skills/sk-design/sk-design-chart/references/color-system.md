@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 0.23.0.19
+version: 0.23.1.0
 ---
 
 # Chart Colour Systems
@@ -37,9 +37,17 @@ Every role holds two values, one per ground. A file paints the light set by defa
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Three built-in systems exist. A fourth identifier, `design-md`, is a request-time adapter for a
 local v3 Style Reference rather than a fourth semantic encoding. Pick one built-in system per
 stock delivery, or use the adapter with its provenance and gates.
+
+### When to Use
+
+- Before a delivery picks its palette, and whenever a request asks for more categories than a system carries.
+- When a row's `system` cell has to be settled against the definitions in section 2.
+- When applying a local v3 `DESIGN.md` or reviewing a provenance-gated delivery.
 
 ---
 
@@ -59,6 +67,20 @@ form's existing one.
 
 Start at `neutral`. Reach for another only when the data has the property that system encodes. A categorical palette on ordered data throws away the ordering, and an ordered ramp on unordered categories invents one. `design-md` is selected by the presence of the local reference, not by a new data meaning.
 
+### Two names for one system
+
+The second column exists because two vocabularies name these three built-in systems and both are
+load-bearing. The id is what a file declares in its meta tag and what a catalog row carries. The
+`encodes` value is a separate field in the palette source, and the contrast gates in section 5 and
+the enforced list in section 6 are written against it rather than against the id, because what a
+gate holds depends on what the colour means and not on what the system is called. They map one to
+one, in the order above. A failure message quotes whichever of the two the rule it came from reads,
+so the mapping is written here rather than inferred from a message.
+
+`neutral` used to be described in this table as encoding nothing, which contradicted both the
+palette source and the rest of its own row. Lightness is colour, and ranking by it is what
+`importance` names.
+
 ### What the shadcn comparison kept
 
 The shadcn comparison measured a much tighter categorical light-theme set than the standalone
@@ -74,20 +96,6 @@ The transferable part is semantic indirection: a named series owns a palette tok
 key, and a mark reaches that token through the class the key declares. That keeps the palette
 roles here while making a per-key colour change one auditable edit in the chart's series block.
 [SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132]
-
-### Two names for one system
-
-The second column exists because two vocabularies name these three built-in systems and both are
-load-bearing. The id is what a file declares in its meta tag and what a catalog row carries. The
-`encodes` value is a separate field in the palette source, and the contrast gates in section 5 and
-the enforced list in section 6 are written against it rather than against the id, because what a
-gate holds depends on what the colour means and not on what the system is called. They map one to
-one, in the order above. A failure message quotes whichever of the two the rule it came from reads,
-so the mapping is written here rather than inferred from a message.
-
-`neutral` used to be described in this table as encoding nothing, which contradicted both the
-palette source and the rest of its own row. Lightness is colour, and ranking by it is what
-`importance` names.
 
 ### How to settle a row against this table
 
@@ -192,7 +200,7 @@ roles, and keeps the measured face before the substitute stack. It never fetches
 remote resource. If the table cannot supply four chromatic values that clear the series gates, the
 script names the shortfall and writes nothing.
 
-## Where the values come from
+### Where the values come from
 
 Since v0.18.0.0 the stock values are the evilcharts Style Reference: a white ground with a near-black
 ink, a warmed near-black ground for dark, one flame hue that carries every first series, and a grey

@@ -1,0 +1,7 @@
+VERDICT: PASS
+
+All 27 in-scope findings were applied with the prescribed text. The ten mechanically lost lines are the intended edits: the two repo-root command-path fixes, the ROUTER reflow into four bullets, the catalog and `design-md-theming` overview rewrites, the `0px` → corpus-value correction, the §5 rename with the ordered-form gate moved into §2, the unreachable pointer-record removal, and the 19/20 count corrections. I verified the counts directly: 19 templates declare `present: false`, and 20 carry `data-chart-tooltip` with 20 `tooltip` rows in the per-form table. The `radiusLadder()` code returns the stock value, so the corrected corner rule is accurate.
+
+Verification ran clean on the changed files: `validate_document.py` reports zero render warnings on all eight changed documents, `package_skill.py --check --strict` prints `Result: PASS`, `check-corpus.cjs` prints `RESULT: PASSED`, the mutation suite is 88/88, `hvr_scan.py` reports 0 hard blockers, and the screenshot check is 32/32. All headings and section numbers cited by `inbound-anchors.txt` are unchanged.
+
+One justified deferral: the `DESIGN.md` P1. Its fix requires changing `apply-design-md.cjs`'s `section()` and re-pinning the sha256 in `palettes.json`, both outside `scope.txt`; a partial edit would break the parser and the corpus check. It remains the sole validator failure. The package check’s one warning is the now-stale `render-known-debt` entry for this skill, also outside scope.

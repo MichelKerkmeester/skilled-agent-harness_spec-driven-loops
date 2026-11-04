@@ -9,12 +9,20 @@ trigger_phrases:
   - "role routing map"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Org Chart / Responsibility Map
 
+Open this when the reader's question is who takes the work, not which box reports to which.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes ownership legible: one front door is marked, pods and owners take fixed node treatments, and coverage gaps are drawn as gaps instead of left out.
+
+### When to Use
 
 **Best for:** human teams, agent teams, support escalation maps, role ownership, routing maps, and any hierarchy where the reader needs to know *who owns what* rather than just parent → child structure.
 
@@ -65,6 +73,4 @@ Use **Org Chart** instead of **Tree** when the nodes are people, agents, teams, 
 ---
 
 ## 6. EXAMPLES
-- `assets/diagrams/org-chart.html` — minimal light
-- `assets/diagrams/org-chart-dark.html` — minimal dark
-- `assets/diagrams/org-chart-full.html` — full editorial
+- `assets/diagrams/org-chart.html`: the canonical rendered example: an agent-team responsibility map with one front door, four pods and specialist owners.

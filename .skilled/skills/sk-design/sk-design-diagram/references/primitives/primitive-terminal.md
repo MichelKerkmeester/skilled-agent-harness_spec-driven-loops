@@ -9,7 +9,7 @@ trigger_phrases:
   - "terminal accent one hue"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # Terminal Window (CLI-chrome variant)
@@ -20,9 +20,25 @@ Optional full-page skin that wraps any diagram in a fake terminal window — tit
 
 ## 1. OVERVIEW
 
-Use for dev-tool announcements, CLI-product posts, and technical social cards where a screenshot needs to read as "terminal," not "editorial doc."
+### Purpose
+
+Keeps the skin identical across posts: nine fixed tokens with no brand inheritance, so a terminal card always reads as the same tool.
 
 This is a **second, fixed skin** — see [style-guide.md § Terminal skin](../foundations/style-guide.md) for the token table. It does not inherit from `onboarding.md` brand tokens and isn't part of the light/dark inversion rule; every terminal example uses the same nine tokens regardless of the host site's brand.
+
+### When to Use
+
+Use for dev-tool announcements, CLI-product posts, and technical social cards where a screenshot needs to read as "terminal," not "editorial doc."
+
+- Dev-tool / CLI-product launch posts (npm package, CLI flag, terminal-based workflow).
+- Technical social cards where "this is a tool for engineers" is part of the message.
+- Screenshots meant to pop in a dark-mode-heavy feed (X, Discord, dev blogs).
+
+### When Not to Use
+
+- Editorial / long-form posts — pair with the default light or full-editorial variant instead.
+- Brand-matched output from `onboarding.md` — terminal is a fixed skin, not brand-tokenized. Don't try to reconcile the two.
+- Any diagram where the audience isn't developer-coded to read `$`/`#`/titlebar-dots as chrome rather than content.
 
 ### Grammar
 
@@ -83,14 +99,3 @@ Three 10px circles, macOS-style. The **1-accent rule caps the color use here too
 - One accent only. If a diagram needs a second focal element, use `terminal-ink` (white) for emphasis via weight/size, not a second color.
 - Background dot-grid pattern (if used) stays `rgba(255,255,255,0.06–0.08)` — barely visible texture, not a visual competitor to the titlebar chrome.
 
-### When to use
-
-- Dev-tool / CLI-product launch posts (npm package, CLI flag, terminal-based workflow).
-- Technical social cards where "this is a tool for engineers" is part of the message.
-- Screenshots meant to pop in a dark-mode-heavy feed (X, Discord, dev blogs).
-
-### When not to use
-
-- Editorial / long-form posts — pair with the default light or full-editorial variant instead.
-- Brand-matched output from `onboarding.md` — terminal is a fixed skin, not brand-tokenized. Don't try to reconcile the two.
-- Any diagram where the audience isn't developer-coded to read `$`/`#`/titlebar-dots as chrome rather than content.

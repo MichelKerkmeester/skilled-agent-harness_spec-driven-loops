@@ -8,7 +8,7 @@ trigger_phrases:
   - "design serves the product"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Brand-vs-Product Operating Register
@@ -44,11 +44,13 @@ A surface takes one of two postures:
 
 A mixed product has both postures: the marketing surface is Brand, the app shell is Product. Read the register per surface, not per project.
 
+When the surface is unlabeled and internal, Product is the safer read. Brand is the read only when the surface is clearly the thing being sold.
+
 ---
 
 ## 3. THE SIX DIALS
 
-The register sets these six. When the surface is unlabeled and internal, Product is the safer read. Brand is the read only when the surface is clearly the thing being sold.
+The register sets these six.
 
 | Dial | Brand (design IS the product) | Product (design SERVES the product) |
 |---|---|---|

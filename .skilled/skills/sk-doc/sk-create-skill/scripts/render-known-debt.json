@@ -1,25 +1,6 @@
 {
   "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding.",
   "debt": {
-    "sk-design/sk-design-chart": {
-      "findings": 1,
-      "codes": [
-        "render_h2_numbering"
-      ]
-    },
-    "sk-design/sk-design-diagram": {
-      "findings": 35,
-      "codes": [
-        "render_bare_url",
-        "render_h2_numbering"
-      ]
-    },
-    "sk-design/sk-design-md-generator": {
-      "findings": 69,
-      "codes": [
-        "render_bold_label_join"
-      ]
-    },
     "sk-doc/sk-create-command": {
       "findings": 2,
       "codes": [

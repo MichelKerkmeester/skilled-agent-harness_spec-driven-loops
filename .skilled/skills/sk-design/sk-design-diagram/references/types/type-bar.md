@@ -10,12 +10,20 @@ trigger_phrases:
   - "focal bar accent"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Bar / Column Chart
 
+Open this when the reader has to compare values across categories, not trace a trend.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Turns a quantity comparison into a single message: a capped bar count, one focal bar, and an axis that never distorts magnitude.
+
+### When to Use
 
 **Best for:** comparing discrete quantities across categories or time intervals — sprint velocity, monthly revenue, feature adoption, cohort counts. Use when each category has a single numeric value and the comparison between bars is the primary message.
 
@@ -49,7 +57,14 @@ Focal bar: replace fill with `rgba(235,108,54,0.12)`, stroke with `#eb6c36`, lab
 
 ---
 
-## 3. ANTI-PATTERNS
+## 3. VARIANTS
+
+- **Grouped bars:** two bars per category, side by side. Use `accent` for the primary series and `series-1` for the secondary. Max 2 groups.
+- **Stacked bars:** segments stacked to total. Use `accent` for the focal segment; muted tints for others. Document the total at the top of each stack.
+
+---
+
+## 4. ANTI-PATTERNS
 
 - More than 8 bars without grouping (illegible at normal scale).
 - Truncated y-axis (not starting at 0) — distorts the magnitude comparison.
@@ -59,15 +74,6 @@ Focal bar: replace fill with `rgba(235,108,54,0.12)`, stroke with `#eb6c36`, lab
 
 ---
 
-## 4. VARIANTS
-
-- **Grouped bars:** two bars per category, side by side. Use `accent` for the primary series and `series-1` for the secondary. Max 2 groups.
-- **Stacked bars:** segments stacked to total. Use `accent` for the focal segment; muted tints for others. Document the total at the top of each stack.
-
----
-
 ## 5. EXAMPLES
 
-- `assets/diagrams/bar.html` — minimal light
-- `assets/diagrams/bar-dark.html` — minimal dark
-- `assets/diagrams/bar-full.html` — full editorial
+- `assets/diagrams/bar.html`: the canonical rendered example.

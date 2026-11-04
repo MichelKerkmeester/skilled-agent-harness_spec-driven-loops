@@ -9,10 +9,12 @@ trigger_phrases:
   - "where do the colours come from"
   - "add a style reference"
 contextType: general
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # assets/style-reference
+
+Read this before adding a visual language, or before pointing the applicator at one that already exists. You get the four files a language needs and the reference this skill ships with.
 
 ---
 

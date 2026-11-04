@@ -9,7 +9,7 @@ trigger_phrases:
   - "how to style a destructive button"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Visual Hierarchy
@@ -20,9 +20,9 @@ The technique that does the most visible work. `SKILL.md` names its four rules; 
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-A design looks designed because things are ranked, not because they are styled. When everything competes, the interface reads as noise no matter how good the individual values are.
+Gives every element a rank, so the eye lands where the design intends.
 
 ### When to Use
 
@@ -31,6 +31,10 @@ A design looks designed because things are ranked, not because they are styled. 
 - Deciding how to style an action, especially a destructive one.
 - Data reads like a database dump.
 - An icon or a border is fighting the text next to it.
+
+### Core Principle
+
+A design looks designed because things are ranked, not because they are styled. When everything competes, the interface reads as noise no matter how good the individual values are.
 
 ### The Three Tiers
 

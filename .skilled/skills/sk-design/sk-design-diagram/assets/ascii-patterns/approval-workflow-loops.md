@@ -7,7 +7,7 @@ trigger_phrases:
   - "multi reviewer escalation flow"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
+version: 1.2.1.0
 ---
 
 # Approval Workflow with Loops - Multiple Reviewers and Revision Cycles
@@ -18,11 +18,26 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Lets a reader copy a proven multi-reviewer layout with loop-backs instead of inventing revision notation from scratch.
+
+### When to Use
+
 Use this asset when documenting approval workflows that can loop through revisions before final sign-off.
+
+- Document approval workflows
+- Content review processes
+- Quality assurance flows
+- Change request workflows
+- Contract review processes
+- Design approval flows
+- Code review processes
+- Multi-stakeholder approvals
 
 ---
 
-## Use Case: Marketing Content Approval Process
+## 2. USE CASE: MARKETING CONTENT APPROVAL PROCESS
 
 ```
 ╭──────────────────────────────────────────────────────────────╮
@@ -329,7 +344,7 @@ Use this asset when documenting approval workflows that can loop through revisio
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Multi-stage approval** - 3 distinct review stages
 - **Loop-back mechanisms** - Revision cycles with iteration tracking
@@ -341,7 +356,9 @@ Use this asset when documenting approval workflows that can loop through revisio
 - **Parallel skip paths** - Optional reviews can be bypassed
 - **Final validation gate** - Comprehensive checklist before publish
 
-## Review Stages
+---
+
+## 4. REVIEW STAGES
 
 1. **Editorial (Stage 1)**
    - Grammar, style, brand voice
@@ -359,30 +376,25 @@ Use this asset when documenting approval workflows that can loop through revisio
    - High priority when issues found
    - Revision Count: 3
 
-## Loop-Back Points
+---
+
+## 5. LOOP-BACK POINTS
 
 - **After Editorial** → Writer revises → Back to Editorial
 - **After Marketing** → Writer updates → Back to Marketing
 - **After Legal** → Writer fixes → Back to Legal (priority)
 
-## Escalation Triggers
+---
+
+## 6. ESCALATION TRIGGERS
 
 - Major scope changes → VP Marketing review
 - Complete rewrite needed → New document cycle
 - Legal non-compliance → Priority revision
 
-## When to Use This Pattern
+---
 
-- Document approval workflows
-- Content review processes
-- Quality assurance flows
-- Change request workflows
-- Contract review processes
-- Design approval flows
-- Code review processes
-- Multi-stakeholder approvals
-
-## Design Principles Applied
+## 7. DESIGN PRINCIPLES APPLIED
 
 1. **Clear Stage Separation** - Each review phase distinct
 2. **Iteration Visibility** - Revision counts shown
@@ -393,7 +405,9 @@ Use this asset when documenting approval workflows that can loop through revisio
 7. **Time Tracking** - Duration estimates per stage
 8. **Complete Coverage** - All approval paths shown
 
-## Typical Timeline
+---
+
+## 8. TYPICAL TIMELINE
 
 - **Fast Track** (no revisions): 2 days
 - **Standard** (1-2 revisions): 3-4 days  

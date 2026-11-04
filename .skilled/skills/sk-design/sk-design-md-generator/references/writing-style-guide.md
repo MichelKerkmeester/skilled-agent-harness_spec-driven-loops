@@ -12,7 +12,7 @@ trigger_phrases:
   - information density
 importance_tier: normal
 contextType: general
-version: 1.0.0.6
+version: 1.0.1.0
 ---
 # DESIGN.md Writing Style Guide
 
@@ -503,29 +503,7 @@ The v3 section set and where the prose effort goes. Pre-rendered sections are pa
 
 ---
 
-## 14. FINAL QUALITY GATE
-
-Before publishing a Style Reference, run these checks:
-
-- [ ] Tagline passes the "could this describe three other sites?" test -- NO
-- [ ] Zero banned words in descriptive prose
-- [ ] Intro paragraph (4-6 sentences) has every claim mapped to a real value
-- [ ] Colours are NAMED evocatively; every name maps to a `--color-<slug>` token; no `--_color-primitives` var leaked
-- [ ] Components are NAMED by function (Primary CTA, Card, Badge) — no "Variant-N" or "div"
-- [ ] Values are embedded in prose (not standalone facts) in narrative sections
-- [ ] Values are standalone and scannable in the pre-rendered tables and component specs
-- [ ] Every Do/Don't cites a concrete value and reads as an instruction
-- [ ] Every agent prompt is self-contained (copy-paste ready, no doc lookups)
-- [ ] No transition phrases ("let's look at," "in this section")
-- [ ] No frequency dumps in prose — frequency decides prominence, it is never printed
-- [ ] Elevation is honest: "flat" stated plainly when 0 shadows, never dressed up as "gradient-as-depth"
-- [ ] No false SYSTEM asserted (no "focus is consistent" when the data says otherwise)
-- [ ] Pre-rendered sections (Colors, Spacing & Shapes, Surfaces, Quick Start) pasted UNCHANGED
-- [ ] Information density: no sentence survives the deletion test without losing information
-
----
-
-## 15. COMPARATIVE FRAMING PATTERN
+## 14. COMPARATIVE FRAMING PATTERN
 
 Comparative framing is useful ONLY when it compares elements WITHIN this system using extracted values. Do NOT compare to "most systems", "convention", or "the typical approach" -- `tokens.json` carries no data about other systems, so those claims are fabrication. (This pattern previously produced ungrounded "unlike most systems" sentences; keep comparisons intra-system.)
 
@@ -585,15 +563,15 @@ GOOD: "Where most design systems give buttons solid backgrounds and obvious affo
 
 ---
 
-## 16. NAMED PRINCIPLE PATTERN
+## 15. NAMED PRINCIPLE PATTERN
 
 Name a design decision ONLY when extracted tokens back it (cite the value). A named principle without backing data is fabrication -- this pattern previously produced "gradient-as-depth" from a site with zero shadow tokens. When the data supports no distinctive principle, omit the name; do not invent one to fill the section.
 
 ### Naming formula
 
-**Pattern A:** [adjective] + [noun]
-**Pattern B:** [technique]-as-[metaphor]
-**Pattern C:** [quality] + [domain]
+- **Pattern A:** [adjective] + [noun]
+- **Pattern B:** [technique]-as-[metaphor]
+- **Pattern C:** [quality] + [domain]
 
 ### 10+ examples across design domains
 
@@ -630,7 +608,7 @@ Later: "The card shadow follows the **chromatic depth** principle established in
 
 ---
 
-## 17. FREQUENCY IS A DECISION INPUT, NEVER DISPLAYED
+## 16. FREQUENCY IS A DECISION INPUT, NEVER DISPLAYED
 
 Frequency DECIDES prominence and role — which colour is the primary, which is a rare accent, which radius is the default. It is never PRINTED. The v3 Style Reference shows no counts, no percentages, no "appears 9685 times" narration. Frequency informs the ordering and the role clauses; it never becomes a sentence.
 
@@ -663,7 +641,7 @@ An absence can still be stated — as a fact about the system, never as a freque
 
 ---
 
-## 18. INTENT NARRATION PATTERN
+## 17. INTENT NARRATION PATTERN
 
 Intent narration bridges the gap between WHAT a system does and WHY it does it. Every design decision is a choice among alternatives; intent narration names the road not taken.
 
@@ -693,7 +671,7 @@ Ask: "Does this sentence tell me something I could not infer from looking at the
 
 ---
 
-## 19. BRAND VOICE DETECTION PATTERN
+## 18. BRAND VOICE DETECTION PATTERN
 
 When the extracted data includes `sampleTexts` from tokens.json, UI text from buttons, headings, and labels, or microcopy from forms and errors, these are signals of the brand's content voice.
 
@@ -748,7 +726,7 @@ In the DESIGN.md Content & Voice section:
 
 ---
 
-## 20. SELF-CONTAINMENT CHECKLIST (Agent Prompt Guide)
+## 19. SELF-CONTAINMENT CHECKLIST (Agent Prompt Guide)
 
 Every agent prompt must be fully self-contained. The test: "Can an AI agent copy-paste this prompt and build the component with zero lookups into the rest of the DESIGN.md?"
 
@@ -776,11 +754,33 @@ Every agent prompt must be fully self-contained. The test: "Can an AI agent copy
 
 ### Failure examples and fixes
 
-**FAILS**: "Create a button with the primary brand color" -- which color?
-**PASSES**: "Create a button with background `#5e6ad2`, text `#ffffff`"
+- **FAILS**: "Create a button with the primary brand color" -- which color?
+- **PASSES**: "Create a button with background `#5e6ad2`, text `#ffffff`"
 
-**FAILS**: "Use the system font at heading size" -- which font, which size?
-**PASSES**: "Use Inter at 32px weight 600 line-height 1.2 letter-spacing -0.96px"
+- **FAILS**: "Use the system font at heading size" -- which font, which size?
+- **PASSES**: "Use Inter at 32px weight 600 line-height 1.2 letter-spacing -0.96px"
 
-**FAILS**: "Add the standard card shadow" -- what is standard?
-**PASSES**: "Add shadow `0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)`"
+- **FAILS**: "Add the standard card shadow" -- what is standard?
+- **PASSES**: "Add shadow `0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.08)`"
+
+---
+
+## 20. FINAL QUALITY GATE
+
+Before publishing a Style Reference, run these checks:
+
+- [ ] Tagline passes the "could this describe three other sites?" test -- NO
+- [ ] Zero banned words in descriptive prose
+- [ ] Intro paragraph (4-6 sentences) has every claim mapped to a real value
+- [ ] Colours are NAMED evocatively; every name maps to a `--color-<slug>` token; no `--_color-primitives` var leaked
+- [ ] Components are NAMED by function (Primary CTA, Card, Badge) — no "Variant-N" or "div"
+- [ ] Values are embedded in prose (not standalone facts) in narrative sections
+- [ ] Values are standalone and scannable in the pre-rendered tables and component specs
+- [ ] Every Do/Don't cites a concrete value and reads as an instruction
+- [ ] Every agent prompt is self-contained (copy-paste ready, no doc lookups)
+- [ ] No transition phrases ("let's look at," "in this section")
+- [ ] No frequency dumps in prose — frequency decides prominence, it is never printed
+- [ ] Elevation is honest: "flat" stated plainly when 0 shadows, never dressed up as "gradient-as-depth"
+- [ ] No false SYSTEM asserted (no "focus is consistent" when the data says otherwise)
+- [ ] Pre-rendered sections (Colors, Spacing & Shapes, Surfaces, Quick Start) pasted UNCHANGED
+- [ ] Information density: no sentence survives the deletion test without losing information

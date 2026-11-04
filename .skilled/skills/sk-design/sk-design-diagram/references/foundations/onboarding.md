@@ -10,7 +10,7 @@ trigger_phrases:
   - "map tokens to semantic roles"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.7
+version: 1.2.1.0
 ---
 
 # Style Guide Onboarding
@@ -63,7 +63,7 @@ Ask the user for the site URL. Fetching the page is performed by the calling AI 
 
 ### Step 2 — extract colors and fonts
 
-### Colors
+#### Colors
 
 Parse the rendered CSS and screenshot:
 
@@ -76,7 +76,7 @@ Parse the rendered CSS and screenshot:
 
 Prefer CSS custom properties when the site exposes them (`:root { --accent: …; }`). Otherwise pull via rendered `getComputedStyle` samples or a color-histogram pass over the screenshot.
 
-### Fonts
+#### Fonts
 
 Read the rendered `font-family` stack of:
 

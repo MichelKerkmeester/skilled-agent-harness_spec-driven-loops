@@ -9,12 +9,20 @@ trigger_phrases:
   - "point cloud chart"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Scatter Plot
 
+Open this when the question is whether two measures move together, and one outlier may be the answer.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Keeps both values honest on one canvas: no bubble area, no fitted line unless the trend is obvious, and labels only for the focal point and a couple of outliers.
+
+### When to Use
 
 **Best for:** correlation and distribution — two continuous variables plotted against each other. Use when the relationship (or lack of one) between variables is the message, or when you need to identify clusters, outliers, and high/low performers.
 
@@ -56,6 +64,4 @@ version: 1.2.1.0
 
 ## 4. EXAMPLES
 
-- `assets/diagrams/scatter.html` — minimal light
-- `assets/diagrams/scatter-dark.html` — minimal dark
-- `assets/diagrams/scatter-full.html` — full editorial
+- `assets/diagrams/scatter.html`: the canonical rendered example: deploy frequency vs. lead time across 12 teams.

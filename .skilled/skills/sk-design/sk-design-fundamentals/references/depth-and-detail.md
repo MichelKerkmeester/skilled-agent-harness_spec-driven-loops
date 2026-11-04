@@ -9,7 +9,7 @@ trigger_phrases:
   - "text over photos readable"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Depth and Detail Techniques
@@ -20,9 +20,9 @@ The techniques that turn a correctly-scaled layout into something that looks fin
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Borrow the real-world cue and stop. Depth comes from mimicking one light source consistently, not from chasing photorealism.
+A surface where every raised, inset and layered element reads at a glance, and no type or image detail looks accidental.
 
 ### When to Use
 
@@ -31,6 +31,10 @@ Borrow the real-world cue and stop. Depth comes from mimicking one light source 
 - Typography looks subtly wrong at the detail level: mixed sizes on a line, all-caps labels, headline tracking.
 - A component looks generic and nobody can say why.
 - Images, screenshots, icons or user-uploaded content are breaking the layout.
+
+### Core Principle
+
+Borrow the real-world cue and stop. Depth comes from mimicking one light source consistently, not from chasing photorealism.
 
 ### Prerequisites
 

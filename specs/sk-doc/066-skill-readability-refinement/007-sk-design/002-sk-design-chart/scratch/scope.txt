@@ -1,0 +1,10 @@
+.skilled/skills/sk-design/sk-design-chart/README.md
+.skilled/skills/sk-design/sk-design-chart/ROUTER.md
+.skilled/skills/sk-design/sk-design-chart/SKILL.md
+.skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md
+.skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md
+.skilled/skills/sk-design/sk-design-chart/references/README.md
+.skilled/skills/sk-design/sk-design-chart/references/catalog.md
+.skilled/skills/sk-design/sk-design-chart/references/color-system.md
+.skilled/skills/sk-design/sk-design-chart/references/design-md-theming.md
+.skilled/skills/sk-design/sk-design-chart/references/template-contract.md

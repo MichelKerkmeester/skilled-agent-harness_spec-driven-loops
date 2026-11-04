@@ -9,25 +9,41 @@ trigger_phrases:
   - "decision breakdown"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Tree / Hierarchy
 
+Open this when a structure has levels and the reader must see which node owns which without tracing diagonals.
+
 ## 1. OVERVIEW
 
-**Best for:** org charts, dependency trees, taxonomy, file trees, decision breakdowns, skill trees.
+### Purpose
+
+Sets the grammar a hierarchy is drawn against, so every level and parent-child link stays readable at a glance.
+
+### When to Use
+
+- Org charts
+- Dependency trees
+- Taxonomy
+- File trees
+- Decision breakdowns
+- Skill trees
 
 ---
 
 ## 2. LAYOUT CONVENTIONS
 - Root at top, children fan out below (or root at left, children to right).
+- Draw connectors before nodes.
 - Nodes are small labeled rectangles (`rx=6`), Geist 12px 600 name + optional Geist Mono 9px sublabel. Width 120–180px, height 40–52px.
-- **Connectors are orthogonal (elbow-style), never diagonal.** Parent drops a short vertical line, then a horizontal bus connects siblings, then each child has a short vertical drop into its top edge. 1px muted stroke.
+- **Connectors are orthogonal (elbow-style), never diagonal.** 1px muted stroke.
+  1. Parent drops a short vertical line.
+  2. A horizontal bus connects siblings.
+  3. Each child has a short vertical drop into its top edge.
 - Leaf indicator: thinner stroke (0.8) or different fill — OR let terminal position do the work.
 - Max depth: 4 (root + 3 tiers). Max breadth per level: 5.
 - Coral on **one** node: root OR critical leaf. Not both.
-- Draw connectors before nodes.
 
 ---
 

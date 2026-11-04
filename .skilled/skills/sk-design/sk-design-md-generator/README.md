@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # sk-design-md-generator
@@ -38,10 +38,28 @@ AI agents invent colors, guess font sizes, approximate shadows and round spacing
 The skill ships an embedded Playwright crawler that runs a three-phase pipeline:
 
 - **Extract.** Crawls the target URL across five responsive viewports, collects every computed CSS value, clusters them with OKLCH delta-E and classifies each token by temporal stability (L1 permanent through L4 content).
-- **Write.** Produces a v3 **Style Reference** `DESIGN.md`. The value-bearing token sections (`Tokens - Colors`, `Tokens - Spacing & Shapes`, `Surfaces` and the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`. The AI authors the prose sections (intro, `Tokens - Typography`, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands). Every value it writes comes from a pre-rendered section or the FACTS block of locked values, so it never invents or concretizes a number.
+- **Write.** Produces a v3 **Style Reference** `DESIGN.md`.
+  - The value-bearing token sections (`Tokens - Colors`, `Tokens - Spacing & Shapes`, `Surfaces` and the Quick Start CSS + Tailwind) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and assembled by `backend/scripts/build-write-prompt.ts`.
+  - The AI authors the prose sections (intro, `Tokens - Typography`, Components, Do's and Don'ts, Elevation, Imagery, Layout, Agent Prompt Guide, Similar Brands).
+  - Every value it writes comes from a pre-rendered section or the FACTS block of locked values, so it never invents or concretizes a number.
 - **Validate.** Checks hex accuracy, the v3 section set and a Quick-Start fidelity check.
 
 A fourth optional phase renders HTML previews and visual-diff reports.
+
+### When To Use This Skill
+
+Reach for this skill when you need to extract a live website's real CSS into a `DESIGN.md`. Use it for:
+
+- Building a hallucination-proof design reference for AI agents.
+- Re-extracting after a redesign.
+- Validating an existing `DESIGN.md` against its source tokens.
+
+Skip it in these situations:
+
+- You are **inventing** a new design direction (palette, type scale, anti-default critique). That is `sk-design`. This skill captures what exists. That skill creates what does not.
+- The source is a Figma file (`mcp-figma`).
+- The need is a screenshot or a visual preview (`mcp-chrome-devtools`).
+- The URL is not publicly accessible or cannot render JavaScript.
 
 ### The Cardinal Rule
 
@@ -58,7 +76,21 @@ Every value in `DESIGN.md` traces back to a token in `tokens.json`. No estimatio
 
 ### The Authoring Boundary
 
-A value can have one of four origins: measured (read off the page and present in `tokens.json`), brief-provided (supplied by the user, not the page), inferred (a grounded characterization of a measured value) or absent (never captured). Only measured values enter the token tables. They enter unlabeled, so an unlabeled value is a promise it was measured. Brief-provided values stay in prose as a stated intent. Inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on. Absent values are stamped or omitted rather than backfilled. [`references/authoring-boundary.md`](./references/authoring-boundary.md) draws this line in full. [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability. Authoring a design from a brief alone, with no live site to measure, is forward-authoring and it stays out of scope for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to the sibling authoring skill `sk-design`, never satisfied by loosening fidelity here.
+A value can have one of four origins:
+
+- **Measured**: read off the page and present in `tokens.json`.
+- **Brief-provided**: supplied by the user, not the page.
+- **Inferred**: a grounded characterization of a measured value.
+- **Absent**: never captured.
+
+- Only measured values enter the token tables, unlabeled, so an unlabeled value is a promise it was measured.
+- Brief-provided values stay in prose as a stated intent.
+- Inferred claims carry an `[INFERRED]` marker and cite the measured token they rest on.
+- Absent values are stamped or omitted rather than backfilled.
+
+[`references/authoring-boundary.md`](./references/authoring-boundary.md) draws this line in full. [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) is the fill-in card that sorts each value before writing. Both are boundary documentation, not new capability.
+
+Authoring a design from a brief alone, with no live site to measure, is forward-authoring and it stays out of scope for this mode. This skill captures an existing surface. A brief-only request is a different contract routed to the sibling authoring skill `sk-design`, never satisfied by loosening fidelity here.
 
 ---
 
@@ -99,7 +131,10 @@ Expected: zero hex mismatches, all required v3 sections present and the Quick-St
 
 ### The Schema and Study Layer
 
-The generator resolves section requiredness, capability groups, semantic roles, formatter emission, prompt instructions and validation from one versioned `V3_SCHEMA`. Corpus signals can inform advisory strata, but they cannot change locked target facts and cannot downgrade target, schema, provenance or output failures. The optional STUDY step queries bounded cards, hydrates one generation-bound bundle and transforms it into inert structural observations before WRITE. Instruction-like content and source-specific literals are removed. Exact-value and normalized-span leak checks run at the draft boundary. Any hit discards the draft before a production retry without STUDY. Authority remains user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output.
+- **One schema.** The generator resolves section requiredness, capability groups, semantic roles, formatter emission, prompt instructions and validation from one versioned `V3_SCHEMA`.
+- **Corpus limits.** Corpus signals can inform advisory strata, but they cannot change locked target facts and cannot downgrade target, schema, provenance or output failures.
+- **Bounded study.** The optional STUDY step queries bounded cards, hydrates one generation-bound bundle and transforms it into inert structural observations before WRITE. Instruction-like content and source-specific literals are removed. Exact-value and normalized-span leak checks run at the draft boundary. Any hit discards the draft before a production retry without STUDY.
+- **Authority order.** Authority remains user brief and owned system, selected-mode judgment, target evidence and deterministic checks, corpus reference evidence, then transport output.
 
 ### The Three-Phase Pipeline
 
@@ -185,26 +220,11 @@ npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/pre
 
 ## 5. INTEGRATION & NAVIGATION
 
-### When To Use This Skill
-
-Reach for this skill when you need to extract a live website's real CSS into a `DESIGN.md`. Use it for:
-
-- Building a hallucination-proof design reference for AI agents.
-- Re-extracting after a redesign.
-- Validating an existing `DESIGN.md` against its source tokens.
-
-Skip it in these situations:
-
-- You are **inventing** a new design direction (palette, type scale, anti-default critique). That is `interface`. This skill captures what exists. That skill creates what does not.
-- The source is a Figma file (`mcp-figma`).
-- The need is a screenshot or a visual preview (`mcp-chrome-devtools`).
-- The URL is not publicly accessible or cannot render JavaScript.
-
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
-| `interface` | The design-judgment sibling. It invents new direction. This skill provides the measured ground truth it consumes. |
+| `sk-design` | The design-judgment sibling. It invents new direction. This skill provides the measured ground truth it consumes. |
 | `sk-code` | Consumes `DESIGN.md` as the implementation contract. The hallucination-proof source of truth for colors, fonts, spacing, shadows and radii. |
 | `mcp-figma` | Extracts from Figma Desktop, not live URLs. Use when the source is a Figma file. |
 | `mcp-chrome-devtools` | Browser inspection and visual preview. Not a structured extraction tool. |
@@ -241,9 +261,9 @@ A: You guide it, but you don't type the values. Phase 2 (write) is the AI agent'
 
 A: Run `validate.ts` standalone. It checks hex accuracy against `tokens.json`, the v3 Style Reference section set and the Quick-Start fidelity check (every Quick Start hex traces to tokens, with `--page-max-width` matching tokens). No re-extraction needed.
 
-**Q: How does this relate to `interface`?**
+**Q: How does this relate to `sk-design`?**
 
-A: This skill captures what exists on a live site. `interface` invents new direction. When an extraction feeds into designing new UI, load `interface` for the judgment and this skill for the ground truth.
+A: This skill captures what exists on a live site. `sk-design` invents new direction. When an extraction feeds into designing new UI, load `sk-design` for the judgment and this skill for the ground truth.
 
 ---
 

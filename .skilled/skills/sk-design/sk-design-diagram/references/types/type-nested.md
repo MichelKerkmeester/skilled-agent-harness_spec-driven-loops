@@ -9,24 +9,32 @@ trigger_phrases:
   - "containment ring hierarchy"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Nested Containment
 
+Open this when the question is what contains what, not what connects to what.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes depth readable as distance: inset padding and stroke strength step from a faint outer ring to a coral inner one, so the innermost box is unmistakably the subject.
+
+### When to Use
 
 **Best for:** hierarchy through containment — scope boundaries, CLAUDE.md cascade, trust zones, folder nesting, blast radius. Outer = broader, inner = more specific.
 
 ---
 
 ## 2. LAYOUT CONVENTIONS
-- 3–5 rounded rectangles (`rx=8`), nested with consistent inset padding (24–32px horizontal, 32–36px vertical recommended).
+- 3–5 rounded rectangles (`rx=8`), six at the outside; nest with consistent inset padding (24–32px horizontal, 32–36px vertical recommended).
 - Each level labeled at the top-left in Geist Mono eyebrow style (7–8px, letter-spacing 0.14em). Labels sit on a paper-colored mask rect over the ring's top border.
 - Stroke hierarchy: outer rings faint (`rgba(..,0.30–0.45)`), progressing to muted, to ink, to coral at the innermost focal.
 - Fills step up in opacity from outer to inner: `rgba(..,0.015)` → `rgba(..,0.025)` → accent-tint on the innermost.
 - Optional file-icon glyph (folded-corner rect) inside each level hints at scope content.
-- Italic Instrument Serif callouts (see `primitive-annotation.md`) — 1–2 max.
+- Italic Instrument Serif callouts (see [`primitive-annotation.md`](../primitives/primitive-annotation.md)) — 1–2 max.
 
 ---
 
@@ -39,6 +47,4 @@ version: 1.2.1.0
 ---
 
 ## 4. EXAMPLES
-- `assets/diagrams/nested.html` — minimal light
-- `assets/diagrams/nested-dark.html` — minimal dark
-- `assets/diagrams/nested-full.html` — full editorial
+- `assets/diagrams/nested.html`: the canonical rendered example: the CLAUDE.md hierarchy in five nested rings, innermost focal.

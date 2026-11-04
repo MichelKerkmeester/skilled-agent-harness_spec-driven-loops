@@ -1,6 +1,6 @@
 ---
 title: DESIGN.md Style Reference Format
-version: 1.0.0.4
+version: 1.0.1.0
 description: "The authoritative Style Reference section specification: named colour tokens, semantic type scale, named components, conditional measured Motion, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start — every value verbatim from tokens.json."
 trigger_phrases:
   - design md format specification
@@ -89,7 +89,7 @@ Rendered verbatim in the output as `## Tokens — Colors`. A table, most-promine
 - **Value:** 6-digit lowercase hex, verbatim. Gradients render their full
   `linear-gradient(...)` value.
 - **Token:** `--color-<kebab-name>` derived from the Name. NEVER the extractor's internal
-  var. (The Quick Start §16 re-uses these exact slugs.)
+  var. (The Quick Start §15 re-uses these exact slugs.)
 - **Role:** where it is used (grounded in the measured usage) + one characterizing
   clause. No frequency numbers. For a supporting accent, add a usage guard
   ("Do not promote it to the primary CTA color").

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/007-sk-design/004-sk-design-fundamentals",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/007-sk-design/004-sk-design-fundamentals",
+  "parent_id": "sk-doc/066-skill-readability-refinement/007-sk-design",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk design fundamentals",
+      "phase 4 sk design fundamentals",
+      "sk design fundamentals plan",
+      "sk design fundamentals tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "sk design fundamentals implementation summary"
+    ],
+    "key_topics": [
+      "design",
+      "fundamentals",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/README.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md",
+      ".skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md",
+      "scratch/run.log"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "token-starter-set.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-procedure.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth-and-detail.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagnosis-table.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "hierarchy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md",
+        "source": "derived"
+      },
+      {
+        "name": "interaction-craft.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-principles.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "ux-laws.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "run.log",
+        "kind": "file",
+        "path": "scratch/run.log",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `sk-design-fundamentals` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:38Z",
+    "last_save_at": "2026-11-04T19:28:44.026Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e5111bf2282ebf1c8bcd556717b1db4cb55e6137109334eee99c081be3205ad3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3b5daca9e6b0255b1ec2ebf50aadee976c99d569ab7585db19a1ce639fbf439f",
+      "plan.md": "5654ef0ff70d0c9db07cbde7a9d131685417f41039fcbc236b5a6b72dda81c5b",
+      "tasks.md": "ba57ed876bf1dc5fe7cbcb576e84cfbcbc03af120e2bf0af399ff7bd9120a717",
+      "implementation-summary.md": "1853517ac983927746f9a19778bc1598c823668d55f32bd3c9cf641329e51c99"
+    },
+    "last_active_at": null
+  }
+}

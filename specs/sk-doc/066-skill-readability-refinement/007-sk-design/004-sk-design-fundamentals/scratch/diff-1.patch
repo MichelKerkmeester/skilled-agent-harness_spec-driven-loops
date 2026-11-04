@@ -1,0 +1,496 @@
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/README.md b/.skilled/skills/sk-design/sk-design-fundamentals/README.md
+index 5868b604937..490a6f128de 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/README.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/README.md
+@@ -23,7 +23,7 @@ Most interfaces built by people who do not consider themselves designers fail th
+ |---|---|
+ | **Use it for** | Deciding UI values and behavior when building, fixing or reviewing an interface. |
+ | **Invoke with** | "make this look better", "looks off", "spacing scale", "color palette", "focus ring", "animation duration", "design review". |
+-| **Works on** | Any web or app surface: a component, a screen, a described complaint, or a set of files. |
++| **Works on** | Any laid-out surface: screen UI, slide decks, printed layouts, document layouts, a component, a described complaint, or a set of files. |
+ | **Produces** | Concrete values and CSS with the reason each was chosen, or severity-tiered review findings with file, line and fix. |
+ 
+ ---
+@@ -36,9 +36,9 @@ Visual design gets treated as talent, so people who do not have it guess. Guessi
+ 
+ ### What It Does
+ 
+-The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the four hierarchy rules that do most of the visible work. `references/hierarchy.md` carries the full method. Seven references carry the rest: hierarchy technique, palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, and a WCAG-cited review checklist.
++The skill decides values and behavior for a surface. `SKILL.md` holds the scales themselves, the procedure for working, and the four hierarchy rules that do most of the visible work. `references/hierarchy.md` carries the full method. Seven references carry the rest: palette construction, a symptom-to-fix table for existing UI, depth and typography technique, interaction craft, motion principles, UX laws, and a WCAG-cited review checklist.
+ 
+-It is the authoring counterpart to `sk-design-md-generator`, which measures a live site's real CSS into a Style Reference. That skill reads a surface; this one writes one. When a measured reference exists, its values win.
++It is the authoring counterpart to `sk-design-md-generator`, which measures a live site's real CSS into a Style Reference. That skill reads a surface and this one writes one. When a measured reference exists, its values win.
+ 
+ ### Why It Matters
+ 
+@@ -71,7 +71,7 @@ The skill distills four public sources into one operating model, kept in the ord
+ cat .skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
+ ```
+ 
+-The scales in Section 3 are the always-loaded part; everything else loads on intent.
++The scales in Section 3 are the always-loaded part. Everything else loads on intent.
+ 
+ **Step 2: Take the token file.**
+ 
+@@ -137,7 +137,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
+ 
+ | Skill | Relationship |
+ |---|---|
+-| `sk-design-md-generator` | Measures an existing surface into a Style Reference. Its measured values outrank this skill's defaults; both skills state the boundary. |
++| `sk-design-md-generator` | Measures an existing surface into a Style Reference. Its measured values outrank this skill's defaults, and both skills state the boundary. |
+ | `sk-code` | Implements the values this skill decides. |
+ | `system-spec-kit` | Owns packet documentation and continuity when the work is tracked. |
+ 
+@@ -149,7 +149,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
+ |---|---|---|
+ | Suggested values conflict with the project's tokens | The project has an established system this skill does not know about | Point the skill at the token file. An established system outranks these defaults. |
+ | A color cannot reach 4.5:1 | The brand color is too light for its role | Use one of the two escape hatches in `references/color-system.md`, or escalate the brand color as an operator decision. |
+-| A fix makes another element fail contrast | De-emphasizing a competitor pushed its text below the minimum | Re-run the contrast check after every hierarchy change; the hard rules apply after the fix, not only before it. |
++| A fix makes another element fail contrast | De-emphasizing a competitor pushed its text below the minimum | Re-run the contrast check after every hierarchy change, because the hard rules apply after the fix, not only before it. |
+ | Motion guidance seems contradictory | Sources use different ceilings for different kinds of motion | See `references/motion-principles.md` Section 5, which separates feedback, state change and layout transition. |
+ 
+ ---
+@@ -197,3 +197,5 @@ A: That skill measures what a live site already does. This one decides what a su
+ | [`references/review-checklist.md`](./references/review-checklist.md) | The severity-tiered WCAG and visual review pass |
+ | [`assets/tokens.css`](./assets/tokens.css) | Every scale as contrast-verified CSS custom properties |
+ | [`assets/token-starter-set.md`](./assets/token-starter-set.md) | What is in the token file and how to retune it |
++| [`changelog/`](./changelog/) | One file per release, named v[version].md |
++| [`manual-testing-playbook/`](./manual-testing-playbook/) | Operator scenarios for the packet |
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md b/.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md
+index 4b62b930849..aac3d78e997 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/ROUTER.md
+@@ -20,7 +20,22 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name a value to decide or a surface to judge against values. That is a font size, spacing step, padding, colour, shadow, radius or duration, or a palette, shade ramp or token set built from scratch. It is also an input, menu, tooltip or dialog that needs focus, keyboard and touch behavior, an animation to add or retune, a UI review that has to return findings rather than impressions, or a vague complaint such as *looks off*, *feels cheap* or *cluttered* about UI that already exists. It routes to three resource families: the scales and hard rules that stay in `SKILL.md` and load on every invocation, one reference per routed intent under `references/`, and the two copy-in assets under `assets/`, `tokens.css` and `token-starter-set.md`, which load only on explicit request. A request that resolves to **improve** loads `references/diagnosis-table.md` first, a **review** loads `references/review-checklist.md`, and something new under **build** loads `references/build-procedure.md`.
++Requests reach this skill when they name a value to decide or a surface to judge against values:
++
++- a font size, spacing step, padding, colour, shadow, radius or duration
++- a palette, shade ramp or token set built from scratch
++- an input, menu, tooltip or dialog that needs focus, keyboard and touch behavior
++- an animation to add or retune
++- a UI review that has to return findings rather than impressions
++- a vague complaint such as *looks off*, *feels cheap* or *cluttered* about UI that already exists
++
++It routes to three resource families:
++
++- the scales and hard rules that stay in `SKILL.md` and load on every invocation
++- one reference per routed intent under `references/`
++- the copy-in assets under `assets/`: `tokens.css`, which loads only on explicit request, and `token-starter-set.md`, which also loads with a palette request
++
++A request that resolves to **improve** loads `references/diagnosis-table.md` first, a **review** loads `references/review-checklist.md`, and something new under **build** loads `references/build-procedure.md`.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -41,7 +56,7 @@ Ten intents, one per `INTENT_MODEL` key the machine router scores, and each bull
+ - **`DEPTH`** fires on "shadow", "drop shadow", "elevation", "depth", "raised", "inset", "typeface", "letter-spacing", "image", "photo" or "grid". It loads `references/depth-and-detail.md`.
+ - **`UX_LAWS`** fires on "too many options", "overwhelming", "cognitive load", "fitts", "hick", "miller", "doherty", "progressive disclosure", "feels slow" or "onboarding". It loads `references/ux-laws.md`.
+ - **`PROCEDURE`** fires on "where do i start", "design a new", "from scratch", "grayscale", "wireframe", "mockup", "how much white space" or "which value". It loads `references/build-procedure.md`.
+-- **`SCALES`** fires on "spacing", "font size", "type scale", "padding", "border radius", "line-height" or "font weight", and is the intent a request that scores nothing falls back to. It loads nothing at level `MINIMAL`: the scales stay in `SKILL.md` Section 3, so no extra reference is needed.
++- **`SCALES`** fires on "spacing", "font size", "type scale", "padding", "border radius", "line-height" or "font weight". It loads nothing at level `MINIMAL` when its keywords fire: the scales stay in `SKILL.md` Section 3, so no extra reference is needed. A request that scores nothing is reported as `UNKNOWN_FALLBACK` with the checklist below, starting from `references/diagnosis-table.md`.
+ 
+ ---
+ 
+@@ -97,8 +112,8 @@ assets/       copy-paste starting values
+ | Level | When to Load | Resources |
+ | ----------- | ------------------------ | ---------------------------- |
+ | ALWAYS | Every skill invocation | The scales and hard rules in `SKILL.md`, and this `ROUTER.md` |
+-| CONDITIONAL | If intent signals match | `build-procedure.md`, `diagnosis-table.md`, `hierarchy.md`, `color-system.md`, `depth-and-detail.md`, `interaction-craft.md`, `motion-principles.md`, `ux-laws.md`, `review-checklist.md` |
+-| ON_DEMAND | Only on explicit request | `assets/tokens.css`, `assets/token-starter-set.md` |
++| CONDITIONAL | If intent signals match | `build-procedure.md`, `diagnosis-table.md`, `hierarchy.md`, `color-system.md`, `depth-and-detail.md`, `interaction-craft.md`, `motion-principles.md`, `ux-laws.md`, `review-checklist.md`, `assets/token-starter-set.md` |
++| ON_DEMAND | Only on explicit request | `assets/tokens.css` |
+ 
+ ### Smart Router Pseudocode
+ 
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md b/.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
+index cd80a5cab4c..f7fec6178af 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/SKILL.md
+@@ -35,7 +35,7 @@ The single biggest cause of amateur-looking UI is picking values ad hoc — 17px
+ - Reviewing UI code for accessibility and visual quality, with findings rather than impressions.
+ - Improving UI that already exists, especially against a vague complaint.
+ 
+-**Keyword Triggers**: the routing vocabulary is the keyword comment above the title; it is the single list, so it is not restated here.
++**Keyword Triggers**: the routing vocabulary is the intent model in [`ROUTER.md`](./ROUTER.md) Section 2; it is the single list, so it is not restated here.
+ 
+ ### Use Cases
+ 
+@@ -61,7 +61,7 @@ The request is **build**, **improve** or **review**, and that split decides whic
+ The scales and hard rules in this file load on every invocation.
+ An improve task loads `references/diagnosis-table.md` first, a review loads `references/review-checklist.md`, and something new loads `references/build-procedure.md`.
+ A request naming one property needs only its scale; *"make this look designed"* also needs the hierarchy technique in Section 3.
+-The two assets load only on explicit request.
++`tokens.css` loads only on explicit request, and `token-starter-set.md` also loads with a palette request.
+ 
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+@@ -187,7 +187,15 @@ up to 500ms layout transition: modal, drawer, accordion
+ 
+ ### The Procedure
+ 
+-Seven steps govern the order of work on something new: start from a feature rather than a layout, work in **grayscale first**, treat low-fidelity artifacts as disposable, build the smallest useful version, **choose each value by elimination** against its two neighbours on the scale, start with too much white space and trim, and design at about 400px before relaxing to a large screen.
++Seven steps govern the order of work on something new:
++
++1. Start from a feature rather than a layout.
++2. Work in **grayscale first**.
++3. Treat low-fidelity artifacts as disposable.
++4. Build the smallest useful version.
++5. **Choose each value by elimination** against its two neighbours on the scale.
++6. Start with too much white space and trim.
++7. Design at about 400px before relaxing to a large screen.
+ 
+ Full steps with their reasoning: [`references/build-procedure.md`](references/build-procedure.md). Load it when starting something new; a value question does not need it.
+ 
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md b/.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md
+index 0700ef59fb9..826647a0323 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md
+@@ -19,9 +19,9 @@ version: 1.0.0.0
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Copy it in and retune the hues. Re-deriving the scales from prose wastes the work already done and reintroduces the ad hoc values the system exists to eliminate.
++A project that starts from decided values instead of ad hoc ones, with components pointing at roles rather than raw ramps.
+ 
+ ### When to Use
+ 
+@@ -29,6 +29,14 @@ Copy it in and retune the hues. Re-deriving the scales from prose wastes the wor
+ - Adding a token layer to a codebase that currently hardcodes values.
+ - Needing a worked example of a ramp that already satisfies the saturation and contrast rules.
+ 
++### Usage
++
++Copy `tokens.css` into the project's styles, then follow Section 5 to retune the hues. Components reference the semantic roles, never the raw ramps.
++
++### Core Principle
++
++Copy it in and retune the hues. Re-deriving the scales from prose wastes the work already done and reintroduces the ad hoc values the system exists to eliminate.
++
+ ### What It Is Not
+ 
+ It is not a theme, a component library, or a brand. It is the decisions, made once, with the hues chosen to be replaced.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md
+index 72059a2af5b..c88b356d305 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/build-procedure.md
+@@ -20,9 +20,9 @@ Seven steps for designing something that does not exist yet. They govern the ord
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Most bad interfaces come from designing in the wrong order: the shell before the feature, color before hierarchy, the desktop before the phone. Fixing the order removes most of the work.
++The order of work for something new, so the shell, the colour and the desktop are not decided before the feature, the hierarchy and the phone.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ Most bad interfaces come from designing in the wrong order: the shell before the
+ - Deciding how much white space something needs.
+ - Choosing between two adjacent values on a scale.
+ 
++### Core Principle
++
++Most bad interfaces come from designing in the wrong order: the shell before the feature, color before hierarchy, the desktop before the phone. Fixing the order removes most of the work.
++
+ ### When Not to Use
+ 
+ Improving something that exists already. That is [`diagnosis-table.md`](diagnosis-table.md), which starts from the complaint instead.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md
+index c370d5a2be0..dff443ac28d 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/color-system.md
+@@ -20,9 +20,9 @@ The scales in `SKILL.md` say *what* to define. This says how to pick the values,
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-A palette is built once, from the edges inward, and adjusted by eye. The moment new shades get added outside the system, there is no system.
++A palette whose values are chosen by eye inside a system, with saturation raised at both ends and every text pair verified against its contrast minimum.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ A palette is built once, from the edges inward, and adjusted by eye. The moment
+ - A color fails contrast and raising lightness is making it worse.
+ - Greys look flat, or the palest and darkest shades have drifted toward neutral.
+ 
++### Core Principle
++
++A palette is built once, from the edges inward, and adjusted by eye. The moment new shades get added outside the system, there is no system.
++
+ ### Prerequisites
+ 
+ The shade-count and naming rules — 8 to 10 greys, 5 to 10 shades per primary and accent, named `100` through `900` with base `500` — are in `SKILL.md` Section 3. This document assumes them.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md
+index a7de8920140..23c1f297e51 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/depth-and-detail.md
+@@ -20,9 +20,9 @@ The techniques that turn a correctly-scaled layout into something that looks fin
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Borrow the real-world cue and stop. Depth comes from mimicking one light source consistently, not from chasing photorealism.
++A surface where every raised, inset and layered element reads at a glance, and no type or image detail looks accidental.
+ 
+ ### When to Use
+ 
+@@ -32,6 +32,10 @@ Borrow the real-world cue and stop. Depth comes from mimicking one light source
+ - A component looks generic and nobody can say why.
+ - Images, screenshots, icons or user-uploaded content are breaking the layout.
+ 
++### Core Principle
++
++Borrow the real-world cue and stop. Depth comes from mimicking one light source consistently, not from chasing photorealism.
++
+ ### Prerequisites
+ 
+ The default five-elevation shadow scale is in `SKILL.md` Section 3. Section 3 of this document gives the refined two-part alternative. The two are parallel systems — never mix them in one project.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md
+index de2d7a39a70..e7266a9417c 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/diagnosis-table.md
+@@ -20,9 +20,9 @@ Complaints about UI are almost always vague. Each vague symptom maps to a small
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-A complaint is a symptom, not a diagnosis. Find the mechanical cause before changing anything, or the change is a guess dressed as a decision.
++A named cause and a concrete fix for a vague complaint, so every change is a decision rather than a guess.
+ 
+ ### When to Use
+ 
+@@ -30,6 +30,10 @@ A complaint is a symptom, not a diagnosis. Find the mechanical cause before chan
+ - Someone says the UI "looks off", "feels cheap", "looks amateur", "feels cluttered", "feels plain", or "feels unfinished".
+ - A design review needs a specific finding rather than an impression.
+ 
++### Core Principle
++
++A complaint is a symptom, not a diagnosis. Find the mechanical cause before changing anything, or the change is a guess dressed as a decision.
++
+ ### How to Read the Tables
+ 
+ Work down the tables in order. Section 2 holds the causes that account for most of the damage; Sections 3 through 6 hold the narrower ones. Match the symptom in the left column, confirm the cause in the middle column, then apply the fix.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md
+index 8f2f525937a..da0818169d7 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/hierarchy.md
+@@ -20,9 +20,9 @@ The technique that does the most visible work. `SKILL.md` names its four rules;
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-A design looks designed because things are ranked, not because they are styled. When everything competes, the interface reads as noise no matter how good the individual values are.
++Gives every element a rank, so the eye lands where the design intends.
+ 
+ ### When to Use
+ 
+@@ -32,6 +32,10 @@ A design looks designed because things are ranked, not because they are styled.
+ - Data reads like a database dump.
+ - An icon or a border is fighting the text next to it.
+ 
++### Core Principle
++
++A design looks designed because things are ranked, not because they are styled. When everything competes, the interface reads as noise no matter how good the individual values are.
++
+ ### The Three Tiers
+ 
+ Everything on screen sits in a pyramid: **primary**, **secondary**, **tertiary**. Assign every element to a tier before styling any of them. An element that cannot be assigned is usually one that should not be on the screen.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md
+index 4fc26f0e15c..c1147f2afe7 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/interaction-craft.md
+@@ -20,9 +20,9 @@ The details that separate an interface that looks right from one that feels righ
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Visual systems decide how an interface looks. These decide how it behaves under a real cursor, a real thumb, a real keyboard, and a real network. A layout can be perfectly scaled and still feel broken.
++Gives a build the behavioral checks a visual system leaves out.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ Visual systems decide how an interface looks. These decide how it behaves under
+ - The interface "feels janky", "feels slow", or misbehaves on a phone.
+ - Keyboard or screen-reader behavior needs to be correct, not merely present.
+ 
++### Core Principle
++
++Visual systems decide how an interface looks. These decide how it behaves under a real cursor, a real thumb, a real keyboard, and a real network. A layout can be perfectly scaled and still feel broken.
++
+ ### Source
+ 
+ Adapted from Rauno Freiberg's Web Interface Guidelines (<https://interfaces.rauno.me/>). Grouped and cross-linked here to the visual systems in `SKILL.md`; the wording is restated, not copied.
+@@ -62,7 +66,7 @@ Adapted from Rauno Freiberg's Web Interface Guidelines (<https://interfaces.raun
+ - Disable `pointer-events` on decorative elements such as glows and gradients.
+ - Interactive elements in a vertical or horizontal list must have **no dead areas between them**. Increase their `padding` rather than adding margin between them, so every pixel between two targets belongs to one of them.
+ 
+-Minimum target size is contested across sources: WCAG 2.5.5 asks for 44 by 44px, while the Laws-of-UX ruleset in [`motion-principles.md`](motion-principles.md) uses 32px as the floor. Use 44px for anything a thumb operates and treat 32px as the absolute minimum for a dense pointer-driven UI. Expand the hit area with padding or a negative-inset pseudo-element rather than by growing the visual box.
++Minimum target size is contested across sources: WCAG 2.5.5 asks for 44 by 44px, while the Laws-of-UX ruleset in [`ux-laws.md`](ux-laws.md) uses 32px as the floor. Use 44px for anything a thumb operates and treat 32px as the absolute minimum for a dense pointer-driven UI. Expand the hit area with padding or a negative-inset pseudo-element rather than by growing the visual box.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md
+index df6658da6e6..dde6e6fc809 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/motion-principles.md
+@@ -20,9 +20,9 @@ Motion is communication, not decoration. The twelve principles say what motion s
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Great animation is invisible. Users do not think "nice ease-out curve" — they think "this feels good", and they cannot say why. Motion that draws attention to itself has failed.
++Gives motion a defensible set of values and the judgment for choosing between them.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ Great animation is invisible. Users do not think "nice ease-out curve" — they
+ - Deciding whether something should animate at all.
+ - Motion feels sluggish, chaotic, or cartoonish and the cause is unclear.
+ 
++### Core Principle
++
++Great animation is invisible. Users do not think "nice ease-out curve" — they think "this feels good", and they cannot say why. Motion that draws attention to itself has failed.
++
+ ### Sources
+ 
+ The twelve principles are Disney's, codified in the 1930s and adapted to interfaces by Raphael Salaja (<https://userinterface.wiki>). The enforceable rules in Section 4 are that adaptation's timing, easing, physics and staging ruleset, restated here with their values intact.
+@@ -121,6 +125,22 @@ The sum of the other eleven, applied with care. Appeal is the difference between
+ 
+ These are checkable in a diff. Grouped by what they govern.
+ 
++### When not to animate
++
++- High-frequency interactions — a search input reacting to every keystroke.
++- Keyboard navigation. Focus movement is instant; use `:focus-visible` styling, not a motion component.
++- Context menu entrances.
++- Theme switches, which must suppress transitions entirely for the duration of the swap.
++
++### Reduced motion
++
++- Honour the user's reduced-motion setting on every animation that moves content.
++- On the web, that is the `prefers-reduced-motion: reduce` media query.
++- On native, it is the platform setting, iOS Reduce Motion or Android Remove animations, read through the platform accessibility API.
++- Under reduced motion, replace movement with an instant change or a short opacity fade.
++- Keep essential feedback such as progress and a state change.
++- Never auto-play motion.
++
+ ### Timing
+ 
+ | Rule | Value |
+@@ -161,17 +181,6 @@ When a gesture ends, pass the input velocity into the spring so the release pres
+ - Dim modal and dialog backgrounds rather than using a transparent overlay; a transparent scrim does not isolate anything.
+ - Animated elements need explicit `z-index`. Tooltips and overlays without one render behind content and break the layering.
+ 
+-### When not to animate
+-
+-- High-frequency interactions — a search input reacting to every keystroke.
+-- Keyboard navigation. Focus movement is instant; use `:focus-visible` styling, not a motion component.
+-- Context menu entrances.
+-- Theme switches, which must suppress transitions entirely for the duration of the swap.
+-
+-### Reduced motion
+-
+-Honour the user's reduced-motion setting on every animation that moves content. On the web that is the `prefers-reduced-motion: reduce` media query. On native it is the platform setting, iOS Reduce Motion or Android Remove animations, read through the platform accessibility API. Under reduced motion, replace movement with an instant change or a short opacity fade, keep essential feedback such as progress and a state change, and never auto-play motion.
+-
+ ---
+ 
+ ## 5. RECONCILING THE DURATION GUIDANCE
+@@ -186,6 +195,8 @@ Three sources give three ceilings, and the disagreement is real rather than a ro
+ 
+ They are measuring different things. The 200ms figure is about *direct feedback* — the response to a press or hover, where any perceptible lag reads as unresponsiveness. The 300ms ceiling is about *user-initiated state changes*, which are allowed slightly more room because something visibly changed. The 300 to 500ms band covers *layout transitions* such as a drawer or modal, which are not blocking a further input.
+ 
++The consistency rule outranks all of these. A single value reused everywhere beats a perfectly-tuned value used once.
++
+ Use this resolution:
+ 
+ - **Direct feedback** — press, hover, tap: 120 to 180ms. Never above 200ms.
+@@ -193,8 +204,6 @@ Use this resolution:
+ - **Layout transition** — modal, drawer, accordion: up to 500ms, and only when it is not blocking the next input.
+ - **One earned entrance** per surface may run 500 to 800ms. Repeated page-load choreography is not earned.
+ 
+-The consistency rule outranks all of these. A single value reused everywhere beats a perfectly-tuned value used once.
+-
+ ---
+ 
+ ## 6. REFERENCES AND RELATED RESOURCES
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md
+index a58be073f00..053a2fa8cf7 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/review-checklist.md
+@@ -20,9 +20,9 @@ An audit pass over UI code rather than a rendered picture. Every finding names a
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Read the code before assessing it. A review that reports a problem without a line number and a concrete fix is an opinion, not a finding.
++Gives a UI review a severity order and a report a developer can act on.
+ 
+ ### When to Use
+ 
+@@ -30,6 +30,10 @@ Read the code before assessing it. A review that reports a problem without a lin
+ - A design review that must produce actionable items rather than impressions.
+ - Checking accessibility before shipping.
+ 
++### Core Principle
++
++Read the code before assessing it. A review that reports a problem without a line number and a concrete fix is an opinion, not a finding.
++
+ ### How It Differs From Diagnosis
+ 
+ [`diagnosis-table.md`](diagnosis-table.md) starts from a **complaint** and works back to a cause. This starts from the **code** and works forward to findings, whether or not anyone has complained. Use both on a substantial review: the checklist catches what nobody noticed, the diagnosis table explains what somebody did.
+@@ -100,7 +104,7 @@ Fix before merge. Each row breaks the interface for someone.
+ 
+ ### Color and contrast
+ 
+-- Contrast below the minimums in Sections 3 and 4.
++- Contrast below the minimums in Section 3.
+ - Grey text on a colored background.
+ - Shades generated at runtime with `lighten()` or `darken()`.
+ - Dark mode inconsistencies: a mechanically inverted ramp, accents that were not desaturated, text a shade too bright.
+diff --git a/.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md b/.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md
+index 44925d99bdd..95fa073f7bd 100644
+--- a/.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md
++++ b/.skilled/skills/sk-design/sk-design-fundamentals/references/ux-laws.md
+@@ -20,9 +20,9 @@ The constraints a human brain and hand impose on an interface. Each one turns in
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Hierarchy decides what the eye reaches first. These laws decide what should be on the screen at all, how it is grouped, and how long it may take to respond.
++Gives each structural choice a named law behind it, so the decision can be defended.
+ 
+ ### When to Use
+ 
+@@ -31,6 +31,10 @@ Hierarchy decides what the eye reaches first. These laws decide what should be o
+ - Sizing interactive targets, or deciding where a control belongs.
+ - Setting a response-time budget for an interaction that hits the network.
+ 
++### Core Principle
++
++Hierarchy decides what the eye reaches first. These laws decide what should be on the screen at all, how it is grouped, and how long it may take to respond.
++
+ ### Boundary With The Sibling Skill
+ 
+ `sk-design-md-generator/references/design-knowledge/cognitive-laws.md` covers eight of these same laws as **reading** vocabulary: it cites a law to explain why a captured surface reads the way it does. This document is the **authoring** direction — the same laws stated as decisions to make. Where both name a law, they agree; only the direction differs.

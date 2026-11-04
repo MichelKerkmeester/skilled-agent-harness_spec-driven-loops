@@ -7,7 +7,7 @@ trigger_phrases:
   - "concurrent branch pipeline"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
+version: 1.2.1.0
 ---
 
 # Parallel Execution Example - Simultaneous Tasks with Synchronization
@@ -18,11 +18,24 @@ Demonstrates multiple tasks running simultaneously with synchronization points.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Lets a reader copy a proven fan-out and join layout instead of inventing synchronization notation from scratch.
+
+### When to Use
+
 Use this asset when documenting workflows that split into concurrent branches and later join at a synchronization point.
+
+- CI/CD pipelines
+- Multi-stage testing
+- Parallel data processing
+- Concurrent API calls
+- Distributed computing tasks
+- Multi-environment deployments
 
 ---
 
-## Use Case: Deployment Pipeline with Parallel Tests
+## 2. USE CASE: DEPLOYMENT PIPELINE WITH PARALLEL TESTS
 
 ```
 ╭────────────────────────────────────────────────────────╮
@@ -185,7 +198,7 @@ Use this asset when documenting workflows that split into concurrent branches an
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Parallel blocks**: Multiple tests running simultaneously
 - **Synchronization points**: Waiting for all parallel tasks
@@ -195,11 +208,3 @@ Use this asset when documenting workflows that split into concurrent branches an
 - **Detailed timing**: Duration for each phase
 - **Error handling**: Rollback and failure paths
 
-## When to Use This Pattern
-
-- CI/CD pipelines
-- Multi-stage testing
-- Parallel data processing
-- Concurrent API calls
-- Distributed computing tasks
-- Multi-environment deployments

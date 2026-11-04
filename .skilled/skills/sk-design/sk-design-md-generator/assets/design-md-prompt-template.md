@@ -8,7 +8,7 @@ trigger_phrases:
   - "design md generation prompt"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.0.0.7
+version: 1.0.1.0
 ---
 
 # DESIGN.md Write-Phase Prompt Template
@@ -25,7 +25,7 @@ The WRITE phase used to be where hallucination risk was highest: an agent readin
 
 ### Usage
 
-**Run the builder first (mandatory).** Run `npx ts-node backend/scripts/build-write-prompt.ts <TOKENS_JSON_PATH>`. It pre-renders the deterministic value sections (`## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start`) directly from the tokens via `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters), and emits a FACTS block (type scale, shadow/gradient/dark-mode/focus honesty) for the prose sections. Its output IS the prompt: paste the PRE-RENDERED sections into the doc UNCHANGED, never rewriting a value, a colour name, a token slug, or the Quick Start, and write only the prose sections it asks for.
+**Run the builder first (mandatory).** Run `npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/build-write-prompt.ts <TOKENS_JSON_PATH>`. It pre-renders the deterministic value sections (`## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, and `## Quick Start`) directly from the tokens via `backend/scripts/formatters-v3.ts` (a hue+lightness colour-namer and emitters), and emits a FACTS block (type scale, shadow/gradient/dark-mode/focus honesty) for the prose sections. Its output IS the prompt: paste the PRE-RENDERED sections into the doc UNCHANGED, never rewriting a value, a colour name, a token slug, or the Quick Start, and write only the prose sections it asks for.
 
 Then fill the three placeholders (`<DOMAIN>`, `<TOKENS_JSON_PATH>`, `<DESIGN_MD_PATH>`) and hand the prompt below to the writing agent. Load `references/design-md-format.md` (the section spec) and `references/writing-style-guide.md` (voice) alongside it.
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "stagger and overshoot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Motion Principles
@@ -20,9 +20,9 @@ Motion is communication, not decoration. The twelve principles say what motion s
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Great animation is invisible. Users do not think "nice ease-out curve" — they think "this feels good", and they cannot say why. Motion that draws attention to itself has failed.
+Gives motion a defensible set of values and the judgment for choosing between them.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ Great animation is invisible. Users do not think "nice ease-out curve" — they 
 - Choosing between a spring and an easing curve.
 - Deciding whether something should animate at all.
 - Motion feels sluggish, chaotic, or cartoonish and the cause is unclear.
+
+### Core Principle
+
+Great animation is invisible. Users do not think "nice ease-out curve" — they think "this feels good", and they cannot say why. Motion that draws attention to itself has failed.
 
 ### Sources
 
@@ -121,6 +125,22 @@ The sum of the other eleven, applied with care. Appeal is the difference between
 
 These are checkable in a diff. Grouped by what they govern.
 
+### When not to animate
+
+- High-frequency interactions — a search input reacting to every keystroke.
+- Keyboard navigation. Focus movement is instant; use `:focus-visible` styling, not a motion component.
+- Context menu entrances.
+- Theme switches, which must suppress transitions entirely for the duration of the swap.
+
+### Reduced motion
+
+- Honour the user's reduced-motion setting on every animation that moves content.
+- On the web, that is the `prefers-reduced-motion: reduce` media query.
+- On native, it is the platform setting, iOS Reduce Motion or Android Remove animations, read through the platform accessibility API.
+- Under reduced motion, replace movement with an instant change or a short opacity fade.
+- Keep essential feedback such as progress and a state change.
+- Never auto-play motion.
+
 ### Timing
 
 | Rule | Value |
@@ -161,17 +181,6 @@ When a gesture ends, pass the input velocity into the spring so the release pres
 - Dim modal and dialog backgrounds rather than using a transparent overlay; a transparent scrim does not isolate anything.
 - Animated elements need explicit `z-index`. Tooltips and overlays without one render behind content and break the layering.
 
-### When not to animate
-
-- High-frequency interactions — a search input reacting to every keystroke.
-- Keyboard navigation. Focus movement is instant; use `:focus-visible` styling, not a motion component.
-- Context menu entrances.
-- Theme switches, which must suppress transitions entirely for the duration of the swap.
-
-### Reduced motion
-
-Honour the user's reduced-motion setting on every animation that moves content. On the web that is the `prefers-reduced-motion: reduce` media query. On native it is the platform setting, iOS Reduce Motion or Android Remove animations, read through the platform accessibility API. Under reduced motion, replace movement with an instant change or a short opacity fade, keep essential feedback such as progress and a state change, and never auto-play motion.
-
 ---
 
 ## 5. RECONCILING THE DURATION GUIDANCE
@@ -186,14 +195,14 @@ Three sources give three ceilings, and the disagreement is real rather than a ro
 
 They are measuring different things. The 200ms figure is about *direct feedback* — the response to a press or hover, where any perceptible lag reads as unresponsiveness. The 300ms ceiling is about *user-initiated state changes*, which are allowed slightly more room because something visibly changed. The 300 to 500ms band covers *layout transitions* such as a drawer or modal, which are not blocking a further input.
 
+The consistency rule outranks all of these. A single value reused everywhere beats a perfectly-tuned value used once.
+
 Use this resolution:
 
 - **Direct feedback** — press, hover, tap: 120 to 180ms. Never above 200ms.
 - **State change** — toggle, dropdown, tooltip, tab: 180 to 260ms. Never above 300ms.
 - **Layout transition** — modal, drawer, accordion: up to 500ms, and only when it is not blocking the next input.
 - **One earned entrance** per surface may run 500 to 800ms. Repeated page-load choreography is not earned.
-
-The consistency rule outranks all of these. A single value reused everywhere beats a perfectly-tuned value used once.
 
 ---
 

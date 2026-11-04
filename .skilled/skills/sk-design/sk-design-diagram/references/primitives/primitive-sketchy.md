@@ -9,7 +9,7 @@ trigger_phrases:
   - "editorial sketch register"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.6
+version: 1.2.1.0
 ---
 
 # Sketchy Filter (hand-drawn variant)
@@ -20,7 +20,22 @@ Optional displacement filter that wobbles every stroke and edge slightly — tur
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Gives a diagram the look of a working sketch without costing label legibility.
+
+### When to Use
+
 Use when the diagram accompanies an essay rather than technical docs.
+
+- Essay / blog post / newsletter where the diagram is the hero of a narrative page.
+- "Working sketch" register, showing something is mid-thought, not final architecture.
+
+### When Not to Use
+
+- Technical documentation (precision matters).
+- Diagrams with dense labels or tight alignments (filter reads as noise).
+- Dark variants: wobble reads as artifact on dark backgrounds. Test first.
 
 ### Grammar
 
@@ -54,13 +69,3 @@ Use when the diagram accompanies an essay rather than technical docs.
 
 Filter shapes, NOT text. Displacement-mapped text becomes illegible. Structure your SVG so text is in a sibling group outside the filtered group.
 
-### When to use
-
-- Essay / blog post / newsletter where the diagram is the hero of a narrative page.
-- "Working sketch" register — showing something is mid-thought, not final architecture.
-
-### When not to use
-
-- Technical documentation (precision matters).
-- Diagrams with dense labels or tight alignments (filter reads as noise).
-- Dark variants — wobble reads as artifact on dark backgrounds. Test first.

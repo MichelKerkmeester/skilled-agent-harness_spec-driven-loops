@@ -9,12 +9,20 @@ trigger_phrases:
   - "pre platform tooling"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # IT current-state
 
+Open this when the cost of the current setup still has to be shown, before anyone is asked to fund its replacement.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Produces a before-picture a stakeholder can agree with: the legacy landscape in zones, its pain-points flagged, and every hand-off named.
+
+### When to Use
 
 **Best for:** documenting the *before* picture of a modernization proposal — the legacy IT landscape grouped by phase or department (Collection → Processing → Dissemination, or Frontend / Backend / Storage, or Survey → Analysts → Reports), with pain-points flagged, file-based hand-offs labelled (CSV / Excel / Email / Copy), and pre-platform tooling visible. The companion to `type-dp-integration.md`: this type shows the gap that a data-platform proposal is going to close.
 
@@ -380,7 +388,7 @@ Before emitting SVG, verify **every** item:
 1. Eyebrow + title + subtitle present at canonical y-positions (24 / 36 / 52); body padding 32 px.
 2. 2..4 zones; each has its uppercase label at the top-left of its zone box, on a paper-masked break in the border.
 3. Every component has `id`, `name`. `sub`, `icon`, `kind`, `color` are optional.
-4. ≤ 2 components with `kind: focal`; focal styling auto-applied (accent fill 7 %, accent stroke 1.4, italic line-1 sub).
+4. ≤ 2 components with `kind: focal`; focal styling auto-applied (accent fill 7 %, accent stroke 1.4, accent line-1 sub).
 5. Every connector exits the right (or bottom) of source and enters the top (or left) of destination; rounded right-angle Q-bezier `r=8` at every bend; marker triangle visibly touches the destination rectangle edge.
 6. Connector labels sit at the **start** of the connector (not mid-segment) and are offset **perpendicular** to the line (5 px gap above for horizontal segments, 6 px gap to the right for vertical segments) — never overlapping the stroke. Paper-fill mask kept behind text; icon (when `icon:` is set) sits left of text inside the same mask.
 7. ≤ 3 custom-colored components; none on focal.

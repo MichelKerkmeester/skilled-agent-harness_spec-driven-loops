@@ -7,12 +7,18 @@ trigger_phrases:
   - "diagram palette origin"
 importance_tier: normal
 contextType: reference
-version: 1.2.0.4
+version: 1.2.1.0
 ---
 
 # Origin of this Style Reference
 
 **This reference was written from the packet's own palette, not measured from an external product.**
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
 
 That distinction matters and is stated first because the sibling chart packet carries a reference of
 the opposite kind: a copy of a real component library, whose `origin.md` records the repository it
@@ -27,14 +33,23 @@ That is the property the checker holds. It is not evidence that the mapping rule
 reference measured from a real product exercises them properly, and the second reference a user
 brings is the real test.
 
-## What it declares
+### When to Use
+
+- Deciding whether a theme drawn from this reference was measured or written.
+- Changing `DESIGN.md` or `diagram-palette.json`, since the palette, not this file, is the source the corpus is generated from.
+
+---
+
+## 2. WHAT IT DECLARES
 
 Every role of all three skins, each carrying the value the token source holds today. The `Token`
 column names the diagram role directly, which is what lets a derivation be exact rather than
 inferred: a reference that names our roles is used as written, and a reference that does not is
 mapped by the selection rules in `references/design-md-theming.md`.
 
-## Pinned
+---
+
+## 3. PINNED
 
 | File | sha256 |
 |------|--------|

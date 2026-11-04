@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-design-diagram
@@ -33,6 +33,10 @@ A generic AI-drawn diagram is easy to spot: dark mode with a cyan glow, identica
 ### What It Does
 
 `sk-design-diagram` picks the right one of 27 diagram types for what's being shown, loads that type's layout conventions and complexity budget, draws against the shared design system in `references/foundations/style-guide.md`, and runs the `SKILL.md` §6 SUCCESS CRITERIA gate before handoff. It also redraws an existing draw.io or Mermaid source, extracting the structural content only, never the source's coordinates, colors, or renderer layout, at a chosen format, size, detail level, and audience. It produces standalone `.html` diagrams for the `html-svg` format, or a plain markdown flowchart for the `ascii-markdown` format: the two formats live in this one packet; the earlier separate `sk-create-flowchart` skill has been fully deprecated and removed.
+
+### When To Use This Skill
+
+Reach for `sk-design-diagram` when a reader will learn more from a visual than from prose, a table, or a bulleted list. Pick `--output-format html-svg` for a standalone HTML/SVG artifact, or `--output-format ascii-markdown` when the deliverable is an ASCII flowchart embedded directly in a markdown document: both output formats live in this one packet. Skip it entirely when a short bullet list or a 3-column table already says the same thing.
 
 ### The 27 Diagram Types
 
@@ -75,7 +79,13 @@ Each prints the same structural digest shape: nodes, edges, containers, hubs, an
 
 ## 4. HOW IT WORKS
 
-Every build follows the same order. Detect the request shape, generate, import, or export. For generate, run the style-guide gate on the first diagram in a new project, load the matching `references/types/type-<name>.md`, and draw against the shared design tokens and that type's complexity budget. For import, route by source extension to `references/import-export/import-drawio.md` or `references/import-export/import-mermaid.md`, extract the structural IR with the matching script, set the four output dials (format, size, detail, audience), and redraw: never invent a component to fill a layout: never silently drop one. For export, extract the `<svg>` node and emit PNG and/or SVG; export is always manual: never automatic. Every path ends at the same taste gate before delivery.
+Every build follows the same order. Detect the request shape, generate, import, or export.
+
+- **Generate:** run the style-guide gate on the first diagram in a new project, load the matching `references/types/type-<name>.md`, and draw against the shared design tokens and that type's complexity budget.
+- **Import:** route by source extension to `references/import-export/import-drawio.md` or `references/import-export/import-mermaid.md`, extract the structural IR with the matching script, set the four output dials (format, size, detail, audience), and redraw: never invent a component to fill a layout: never silently drop one.
+- **Export:** extract the `<svg>` node and emit PNG and/or SVG; export is always manual: never automatic.
+
+Every path ends at the same taste gate before delivery.
 
 ### Key Concept: The Taste Gate Is Not Optional Polish
 
@@ -85,16 +95,12 @@ Every build follows the same order. Detect the request shape, generate, import, 
 
 ## 5. INTEGRATION & NAVIGATION
 
-### When To Use This Skill
-
-Reach for `sk-design-diagram` when a reader will learn more from a visual than from prose, a table, or a bulleted list. Pick `--output-format html-svg` for a standalone HTML/SVG artifact, or `--output-format ascii-markdown` when the deliverable is an ASCII flowchart embedded directly in a markdown document: both output formats live in this one packet. Skip it entirely when a short bullet list or a 3-column table already says the same thing.
-
 ### Related Skills
 
-| Skill | Relationship |
+| Skill or scope boundary | Relationship |
 |---|---|
 | `create-quality-control` | Audits or scores an existing document. `sk-design-diagram` is for authoring a new diagram artifact. |
-| Application / product UI | `sk-design-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
+| Application / product UI work | `sk-design-diagram` is scoped to standalone technical/product diagrams, not application interfaces. |
 
 ---
 
@@ -140,20 +146,7 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 ---
 
-## 9. RELATED DOCUMENTS
-
-| Document | Purpose |
-|---|---|
-| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system and taste gate |
-| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
-| [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Design tokens: the single source of truth for colors, typography, and spacing |
-| [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four import/export dials: format, size, detail, audience |
-| [`references/import-export/import-drawio.md`](./references/import-export/import-drawio.md) | draw.io redraw procedure |
-| [`references/import-export/import-mermaid.md`](./references/import-export/import-mermaid.md) | Mermaid redraw procedure |
-| [`references/import-export/export.md`](./references/import-export/export.md) | PNG/SVG export procedure |
-| [`references/types/type-architecture.md`](./references/types/type-architecture.md) | Example of a per-type layout-convention reference |
-
-## SCREENSHOTS
+## 9. SCREENSHOTS
 
 Every form in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
@@ -175,3 +168,19 @@ The colour scheme follows the host machine. Chrome ignores the scheme flags in
 headless capture, so a regenerated set matches whichever theme the operator's
 system is set to. Both themes are valid corpus output and each is validated on its
 own, so regenerate on the machine whose theme you want committed.
+
+---
+
+## 10. RELATED DOCUMENTS
+
+| Document | Purpose |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Authoritative packet contract, design system and taste gate |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+| [`references/foundations/style-guide.md`](./references/foundations/style-guide.md) | Design tokens: the single source of truth for colors, typography, and spacing |
+| [`references/foundations/output-spec.md`](./references/foundations/output-spec.md) | The four import/export dials: format, size, detail, audience |
+| [`references/import-export/import-drawio.md`](./references/import-export/import-drawio.md) | draw.io redraw procedure |
+| [`references/import-export/import-mermaid.md`](./references/import-export/import-mermaid.md) | Mermaid redraw procedure |
+| [`references/import-export/export.md`](./references/import-export/export.md) | PNG/SVG export procedure |
+| [`references/types/type-architecture.md`](./references/types/type-architecture.md) | Example of a per-type layout-convention reference |
+

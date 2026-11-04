@@ -8,7 +8,7 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 0.23.0.16
+version: 0.23.1.0
 ---
 
 # Chart Catalog
@@ -19,7 +19,15 @@ Read this before writing anything. It turns the comparison a reader needs into o
 
 ## 1. OVERVIEW
 
-Every row below points at a template that renders. When no row answers the question in front of you, that is a gap to report rather than a chart to improvise. A freehand chart is what the template-first rule exists to prevent.
+### Purpose
+
+Turn the comparison a reader needs to make into one chart form and the file that draws it. Every row below points at a template that renders.
+
+### When to Use
+
+- Before writing anything: this is the first file to load.
+- When two rows answer the same question and the data shape decides between them.
+- When no row answers the question, to report the gap rather than improvise. A freehand chart is what the template-first rule exists to prevent.
 
 ---
 

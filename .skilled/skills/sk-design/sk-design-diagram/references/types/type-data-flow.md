@@ -10,12 +10,20 @@ trigger_phrases:
   - "cross role handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Data Flow
 
+Open this when a pipeline diagram has to name the role behind every step, not just the tool.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Makes a role-scoped pipeline reproducible: one inputs schema, deterministic geometry, and arrow styles bound to topology.
+
+### When to Use
 
 **Best for:** visualising how data moves through a pipeline *across organisational roles* — who initiates, who processes, who publishes, and who consumes. The canonical use case is a multi-role data platform (Admin → Engineers → Scientists → Consumers) with 4–6 process steps. Use when the reader needs to understand **who does what at each stage**, not just the technical components.
 
@@ -383,9 +391,4 @@ Above 4 lanes or 6 steps: split into two diagrams (e.g., ingestion pipeline / an
 
 ## 13. EXAMPLES
 
-- `assets/diagrams/data-flow.html` — minimal light (the platform, 4-role × 5-step: Admin, Engineers, Scientists, Consumers). Gallery default.
-- `assets/diagrams/data-flow-dark.html` — same, dark skin.
-- `assets/diagrams/data-flow-full.html` — same, editorial-card frame.
-- `assets/diagrams/data-flow-extended.html` — exercises §5 color override: Access Control node in rust-red (governance), Clean & Stage node in slate-blue (data quality). Focal accent on Analyze step + Explore & Model node + anon-data arrow unchanged.
-- `assets/diagrams/data-flow-extended-dark.html` — extended pattern, dark skin.
-- `assets/diagrams/data-flow-extended-full.html` — extended pattern, editorial-card frame.
+- `assets/diagrams/data-flow.html`: the canonical rendered example: the platform, 4-role × 5-step (Admin, Engineers, Scientists, Consumers).

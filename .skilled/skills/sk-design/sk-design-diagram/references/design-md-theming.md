@@ -9,7 +9,7 @@ trigger_phrases:
   - "terminal skin reference gate"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.4
+version: 1.2.1.0
 ---
 
 # Theming a diagram from DESIGN.md
@@ -70,10 +70,11 @@ node .skilled/skills/sk-design/sk-design-diagram/scripts/apply-design-md.cjs \
 | `--all` | Every form in `assets/diagrams/`. |
 | `--out <dir>` | Where the copies are written. Required; the directory is created after every gate has passed. |
 
-There is no force option. A URL is refused by name rather than fetched, and an URL as the first
-argument is refused before anything else is parsed. A `--forms` list may not be combined with
-`--all`. Writing inside `assets/diagrams/` is refused: the stock forms are immutable, and this
-script only ever writes copies.
+- There is no force option.
+- A URL is refused by name rather than fetched, and an URL as the first argument is refused before anything else is parsed.
+- A `--forms` list may not be combined with `--all`.
+- Writing inside `assets/diagrams/` is refused: the stock forms are immutable, and this script only ever writes copies.
+- A form that already carries `system=<id>` is refused by name; theming is applied to a stock form.
 
 A sibling `tokens.json` beside the reference is read when present, for its `darkMode` support flag
 only; no flag passes it explicitly, because a reference that carries one carries it beside itself.
@@ -157,6 +158,22 @@ and the tier-two rules stay the answer for a reference that has not.
 `isChromatic` (saturation ≥ 24%) and "lightest/darkest" are the same primitives the chart sibling
 applies to a parsed `Colors` table; both grounds are picked independently from the same row pool.
 
+### The gates a selection must clear
+
+Thresholds are read from `diagram-palette.json` on every run; the colour arithmetic is the same
+module the corpus checker uses, so one transfer curve and one rounding produce both results.
+
+- `textOnPaper` (4.5:1) applies to `ink`, `muted` and `soft` — the roles that may carry text.
+- `markOnPaper` (3.0:1) applies to `accent` and every other gated role against its own ground.
+- `accentAgainstInk` (1.5:1) applies to `accent` against the skin's `ink`.
+- The token source's `ungated` list, its structure roles (`paper`, `page`, a second paper tone,
+  terminal `soft`) and its non-hex composed roles are not measured: `backend-fill`, `bar`,
+  `border`, `high-level-chevron`, `page`, `rule`, `rule-solid` and `series-1..5` sit in that list.
+- A value under its gate is excused only when the skin, the role and the measured ratio all match a
+  recorded departure. Three are recorded: the light accent at 2.863:1, the light `soft` at 3.48:1
+  and the terminal `soft` at 2.76:1. A themed value that lands on one of those measurements would be
+  excused the same way; a themed accent that misses the mark gate is refused instead.
+
 | Role | Skin(s) | Tier-two selection | Fallback when none can fill it |
 | --- | --- | --- | --- |
 | `paper` | light | Lightest row naming a background, surface, canvas, ground, panel or fill | Never fails — the lightest row of the table |
@@ -202,20 +219,6 @@ prevent: a delivery that claims a dark register the reference never described.
 ---
 
 ## 7. GATES BEFORE WRITING
-
-Thresholds are read from `diagram-palette.json` on every run; the colour arithmetic is the same
-module the corpus checker uses, so one transfer curve and one rounding produce both results.
-
-- `textOnPaper` (4.5:1) applies to `ink`, `muted` and `soft` — the roles that may carry text.
-- `markOnPaper` (3.0:1) applies to `accent` and every other gated role against its own ground.
-- `accentAgainstInk` (1.5:1) applies to `accent` against the skin's `ink`.
-- The token source's `ungated` list, its structure roles (`paper`, `page`, a second paper tone,
-  terminal `soft`) and its non-hex composed roles are not measured: `backend-fill`, `bar`,
-  `border`, `high-level-chevron`, `page`, `rule`, `rule-solid` and `series-1..5` sit in that list.
-- A value under its gate is excused only when the skin, the role and the measured ratio all match a
-  recorded departure. Three are recorded: the light accent at 2.863:1, the light `soft` at 3.48:1
-  and the terminal `soft` at 2.76:1. A themed value that lands on one of those measurements would be
-  excused the same way; a themed accent that misses the mark gate is refused instead.
 
 Every selected form's full palette is derived and gated in memory before any file is written. One
 failure anywhere aborts the whole run:
@@ -264,8 +267,6 @@ values are the file's own has nothing to vouch for. That is also what makes the 
 observable — `--default` writes the stock bytes because the carried reference is the corpus's own
 palette written down, not because a comparison was loosened. The rule is per block: a reference that
 repaints one skin and not another stamps only the block it changed.
-
-A form that already carries `system=<id>` is refused by name; theming is applied to a stock form.
 
 ---
 

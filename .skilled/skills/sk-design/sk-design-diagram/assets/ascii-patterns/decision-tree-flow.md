@@ -7,7 +7,7 @@ trigger_phrases:
   - "order processing flow example"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
+version: 1.2.1.0
 ---
 
 # Decision Tree Flow Example - Complex Branching and Conditional Logic
@@ -18,11 +18,26 @@ Complex decision tree with multiple branches and conditional logic.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Lets a reader copy a proven branching layout instead of inventing branch, retry, and terminal notation from scratch.
+
+### When to Use
+
 Use this asset when documenting conditional workflows with explicit branch labels, retries, and terminal outcomes.
+
+- E-commerce order flows
+- Multi-criteria evaluation systems
+- Complex approval workflows
+- Error handling with retry logic
+- Customer service routing
+- Product configuration flows
+- Conditional business processes
+- Risk assessment workflows
 
 ---
 
-## Use Case: E-commerce Order Processing System
+## 2. USE CASE: E-COMMERCE ORDER PROCESSING SYSTEM
 
 ```
 ╭──────────────────────────────────────────────────────────────╮
@@ -268,7 +283,7 @@ Use this asset when documenting conditional workflows with explicit branch label
 
 ---
 
-## Key Features Demonstrated
+## 3. KEY FEATURES DEMONSTRATED
 
 - **Multiple decision points** - 8 different conditional branches
 - **Nested decisions** - Decisions within decision outcomes
@@ -279,7 +294,9 @@ Use this asset when documenting conditional workflows with explicit branch label
 - **Complex convergence** - Multiple paths merging back to main flow
 - **Clear labeling** - All decision outcomes explicitly labeled
 
-## Decision Points Covered
+---
+
+## 4. DECISION POINTS COVERED
 
 1. **Payment Method Validation** - Valid/Invalid
 2. **Inventory Check** - Available/Out of Stock
@@ -292,18 +309,9 @@ Use this asset when documenting conditional workflows with explicit branch label
 9. **Payment Processing** - Success/Failed
 10. **Retry Logic** - Success/Final Failure
 
-## When to Use This Pattern
+---
 
-- E-commerce order flows
-- Multi-criteria evaluation systems
-- Complex approval workflows
-- Error handling with retry logic
-- Customer service routing
-- Product configuration flows
-- Conditional business processes
-- Risk assessment workflows
-
-## Design Principles Applied
+## 5. DESIGN PRINCIPLES APPLIED
 
 1. **Clear Decision Labels** - Every branch explicitly labeled
 2. **Consistent Spacing** - Easy to follow visually

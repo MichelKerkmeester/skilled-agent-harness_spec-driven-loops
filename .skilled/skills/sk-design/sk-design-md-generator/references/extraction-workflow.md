@@ -9,7 +9,7 @@ trigger_phrases:
   - "design extraction handoff"
 importance_tier: "important"
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Extraction Workflow
@@ -24,15 +24,15 @@ Operational guide for running the three-phase pipeline in this framework and han
 
 Cover how the embedded `backend/` runs here: the exact invocations, where output lands, the rule that makes the output trustworthy, and who consumes it. The deep format and voice rules live in `references/`; this doc is the operating layer above them.
 
-### Core Principle
-
-A `DESIGN.md` is only useful because it is hallucination-proof. That property holds only if every value traces back to `tokens.json` - validate before trusting.
-
 ### When to Use
 
 - Running a full extraction (URL to validated `DESIGN.md`).
 - Deciding crawl depth, interaction capture, or output paths.
 - Handing a finished `DESIGN.md` to `sk-code` or `interface`.
+
+### Core Principle
+
+A `DESIGN.md` is only useful because it is hallucination-proof. That property holds only if every value traces back to `tokens.json` - validate before trusting.
 
 ---
 
@@ -40,15 +40,21 @@ A `DESIGN.md` is only useful because it is hallucination-proof. That property ho
 
 You MUST complete each phase before proceeding to the next; VALIDATE and REPORT can also run standalone on an existing pair.
 
-**Script inventory.** The embedded `backend/scripts/` directory contains 20 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
+**Script inventory.** The embedded `backend/scripts/` directory contains 28 TypeScript modules. The primary entry points are `extract.ts` (Phase 1), `build-write-prompt.ts` (Phase 2 doc-as-view: pre-renders the v3 Tokens — Colors / Spacing & Shapes / Surfaces / Quick Start sections and a FACTS block), `validate.ts` (Phase 3, v3-schema-aware with a Quick-Start fidelity check), `report-gen.ts`, and `preview-gen.ts` (Phase 4). `formatters-v3.ts` holds the deterministic v3 emitters — the hue+lightness colour namer, Tokens — Colors, Spacing & Shapes, Surfaces, and Quick Start renderers (every value verbatim from tokens) — that `build-write-prompt.ts` calls. The remaining modules are internal pipeline stages called by the orchestrator.
 
 #### Phase 1: EXTRACT
 
 **Actions**:
+
+**Crawl shape.**
+
+- `--fast` means 5 pages at 8 concurrency.
+- Interaction capture (hover/focus/active states) runs by **default**, including under `--fast`; drop `--fast` (or set `--max-pages 10`) for a deeper crawl.
+- To opt out of interaction capture pass `--no-interaction`, or `--fast-no-interaction` for a fast crawl that also skips it (the old `--fast` behavior).
+
 1. Run from the **repo root** (a one-time `cd .skilled/skills/sk-design/sk-design-md-generator/backend && npm install && npx playwright install chromium` handles setup): `npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/extract.ts <url> --fast --output specs/<track>/<packet>/output`. `extract.ts` refuses any `--output` that resolves inside the skill, so the relative spec-folder path must resolve from the repo root.
 2. Playwright crawls five viewports and writes `<--output>/tokens.json` plus screenshots and an extraction report.
-3. `--fast` means 5 pages at 8 concurrency. Interaction capture (hover/focus/active states) runs by **default**, including under `--fast`; drop `--fast` (or set `--max-pages 10`) for a deeper crawl. To opt out of interaction capture pass `--no-interaction`, or `--fast-no-interaction` for a fast crawl that also skips it (the old `--fast` behavior).
-4. Per-page async accessibility is captured alongside the crawl: page language, skip-link presence, tab order, alt-text coverage, and reduced-motion support populate the a11y tokens.
+3. Per-page async accessibility is captured alongside the crawl: page language, skip-link presence, tab order, alt-text coverage, and reduced-motion support populate the a11y tokens.
 
 **Validation**: `tokens_emitted`
 

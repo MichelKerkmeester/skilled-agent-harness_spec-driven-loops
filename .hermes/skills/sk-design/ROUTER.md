@@ -48,11 +48,13 @@ because they load different ones.
 
 ## 3. MACHINE-READABLE ROUTER (replay / benchmark source)
 
-The single machine-readable projection of the intent model above. The prose is the human-facing
-contract; this block is the byte-for-byte source the deterministic router-replay parses. Keep them in
-sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here. Every
-`RESOURCE_MAP` path resolves on disk and is registered in `leaf-manifest.json`, so each dual-reads to
-a canonical typed pair.
+The single machine-readable projection of the intent model above.
+
+- The prose is the human-facing contract; this block is the byte-for-byte source the deterministic
+  router-replay parses.
+- Keep them in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
+- Every `RESOURCE_MAP` path resolves on disk and is registered in `leaf-manifest.json`, so each
+  dual-reads to a canonical typed pair.
 
 ```python
 # No always-loaded preamble: a design request loads only the selected mode's
@@ -111,16 +113,15 @@ RESOURCE_MAP = {
   registry named the mode, not from here.
 - Load what a row resolves and nothing more; a resource already in context is not re-read.
 - No keyword match is the hub's UNKNOWN fallback: report the gap and confirm the target mode before
-  loading anything. An intent that matches nothing here is a gap to report, not a reason to load
-  everything.
+  loading anything.
 
 ---
 
 ## 5. MACHINE ROUTER
 
-The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits
-last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and
-`RESOURCE_MAP` block in section 3 stays the only replay source.
+The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short
+routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares
+no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 >

@@ -9,7 +9,7 @@ trigger_phrases:
   - "how much white space"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Build Procedure
@@ -20,9 +20,9 @@ Seven steps for designing something that does not exist yet. They govern the ord
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Most bad interfaces come from designing in the wrong order: the shell before the feature, color before hierarchy, the desktop before the phone. Fixing the order removes most of the work.
+The order of work for something new, so the shell, the colour and the desktop are not decided before the feature, the hierarchy and the phone.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ Most bad interfaces come from designing in the wrong order: the shell before the
 - Stuck on a layout decision that will not resolve.
 - Deciding how much white space something needs.
 - Choosing between two adjacent values on a scale.
+
+### Core Principle
+
+Most bad interfaces come from designing in the wrong order: the shell before the feature, color before hierarchy, the desktop before the phone. Fixing the order removes most of the work.
 
 ### When Not to Use
 

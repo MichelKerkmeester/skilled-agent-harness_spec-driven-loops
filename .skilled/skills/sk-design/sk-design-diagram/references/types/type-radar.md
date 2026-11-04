@@ -9,12 +9,20 @@ trigger_phrases:
   - "normalized axis scoring"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Radar / Spider
 
+Open this when a table of scores buries the comparison a reader is trying to make.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Keeps the comparison readable as shape: one normalized scale, concentric rings, and dots only on the focal series.
+
+### When to Use
 
 **Best for:** comparing 3–5 entities across 3–5 quantitative criteria on a single normalized 0–N scale. Capability matrices, product or backend evaluations, framework/team scorecards. Where a comparison table starts running out of horizontal room, radar makes the shape of each option legible at a glance.
 
@@ -101,6 +109,4 @@ The skill's "1-focal" rule still holds: `accent` is reserved for the focal serie
 
 ## 6. EXAMPLES
 
-- `assets/diagrams/radar.html` — minimal light. 4 storage backends × 5 workload dimensions, MinIO focal.
-- `assets/diagrams/radar-dark.html` — minimal dark, same data.
-- `assets/diagrams/radar-full.html` — full editorial: container framing + 4 cards (one per backend) with varied widths + footer.
+- `assets/diagrams/radar.html`: the canonical rendered example: 4 storage backends × 5 workload dimensions, MinIO focal.
