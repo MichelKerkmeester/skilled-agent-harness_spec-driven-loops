@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/001-hub-and-shared"
+    packet_pointer: "sk-doc/066-skill-readability-refinement/008-sk-doc/001-hub-and-shared"
     last_updated_at: "2026-11-04T07:16:41Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

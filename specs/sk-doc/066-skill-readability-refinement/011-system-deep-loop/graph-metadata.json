@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/011-system-deep-loop",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/011-system-deep-loop",
+  "parent_id": "sk-doc/066-skill-readability-refinement",
+  "children_ids": [
+    "sk-doc/066-skill-readability-refinement/011-system-deep-loop/001-hub-and-shared",
+    "sk-doc/066-skill-readability-refinement/011-system-deep-loop/002-deep-ai-council",
+    "sk-doc/066-skill-readability-refinement/011-system-deep-loop/003-deep-research",
+    "sk-doc/066-skill-readability-refinement/011-system-deep-loop/004-deep-review"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system deep loop",
+      "phase 11 system deep loop",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "system",
+      "deep",
+      "loop",
+      "phase",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding",
+      "yourvaluehere"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-hub-and-shared/goal.md",
+      "002-deep-ai-council/goal.md",
+      "003-deep-research/goal.md",
+      "004-deep-review/goal.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "created_at": "2026-11-04T07:15:58Z",
+    "last_save_at": "2026-11-04T08:11:20.566Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:a3d8db484d318b7909967857aa94ed4664475ac983ccb2d3ba3aed028333bd22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "943eaeb86efba69393d551ca642b9743734a1be2631777e3a98525e65a5a6dc9"
+    },
+    "last_active_at": null
+  }
+}

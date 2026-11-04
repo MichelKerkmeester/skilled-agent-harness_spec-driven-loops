@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-sk-create-manual-testing-playbook"
+    packet_pointer: "sk-doc/066-skill-readability-refinement/008-sk-doc/010-sk-create-manual-testing-playbook"
     last_updated_at: "2026-11-04T07:16:46Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

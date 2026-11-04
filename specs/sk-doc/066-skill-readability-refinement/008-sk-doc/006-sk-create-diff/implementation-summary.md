@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/006-sk-create-diff"
+    packet_pointer: "sk-doc/066-skill-readability-refinement/008-sk-doc/006-sk-create-diff"
     last_updated_at: "2026-11-04T07:16:44Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

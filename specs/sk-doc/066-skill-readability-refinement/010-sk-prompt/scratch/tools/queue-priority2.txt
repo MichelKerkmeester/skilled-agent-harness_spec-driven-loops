@@ -1,0 +1,1 @@
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/011-sk-create-quality-control .skilled/skills/sk-doc/sk-create-quality-control mode repair

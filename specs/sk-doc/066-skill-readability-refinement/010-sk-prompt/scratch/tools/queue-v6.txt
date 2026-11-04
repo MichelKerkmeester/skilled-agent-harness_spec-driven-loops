@@ -1,0 +1,22 @@
+specs/sk-doc/066-skill-readability-refinement/001-cli-classifier/001-hub-and-shared .skilled/skills/cli-classifier hub repair
+specs/sk-doc/066-skill-readability-refinement/001-cli-classifier/002-cli-jev .skilled/skills/cli-classifier/cli-jev mode repair
+specs/sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/001-hub-and-shared .skilled/skills/cli-external-orchestration hub repair
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/001-hub-and-shared .skilled/skills/sk-doc hub
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/002-sk-create-agent .skilled/skills/sk-doc/sk-create-agent mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/003-sk-create-benchmark .skilled/skills/sk-doc/sk-create-benchmark mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/004-sk-create-changelog .skilled/skills/sk-doc/sk-create-changelog mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/005-sk-create-command .skilled/skills/sk-doc/sk-create-command mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/006-sk-create-diff .skilled/skills/sk-doc/sk-create-diff mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/007-sk-create-feature-catalog .skilled/skills/sk-doc/sk-create-feature-catalog mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/008-sk-create-frontmatter .skilled/skills/sk-doc/sk-create-frontmatter mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/009-sk-create-goal .skilled/skills/sk-doc/sk-create-goal mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/010-sk-create-manual-testing-playbook .skilled/skills/sk-doc/sk-create-manual-testing-playbook mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/011-sk-create-quality-control .skilled/skills/sk-doc/sk-create-quality-control mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/012-sk-create-readme .skilled/skills/sk-doc/sk-create-readme mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/013-sk-create-repo-rule .skilled/skills/sk-doc/sk-create-repo-rule mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/014-sk-create-skill .skilled/skills/sk-doc/sk-create-skill mode
+specs/sk-doc/066-skill-readability-refinement/008-sk-doc/015-sk-create-with-human-voice .skilled/skills/sk-doc/sk-create-with-human-voice mode
+specs/sk-doc/066-skill-readability-refinement/011-system-deep-loop/001-hub-and-shared .skilled/skills/system-deep-loop hub
+specs/sk-doc/066-skill-readability-refinement/011-system-deep-loop/002-deep-ai-council .skilled/skills/system-deep-loop/deep-ai-council mode
+specs/sk-doc/066-skill-readability-refinement/011-system-deep-loop/003-deep-research .skilled/skills/system-deep-loop/deep-research mode
+specs/sk-doc/066-skill-readability-refinement/011-system-deep-loop/004-deep-review .skilled/skills/system-deep-loop/deep-review mode

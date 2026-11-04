@@ -51,7 +51,7 @@
       "spec.md",
       "goal.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
-      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive.sh",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive-v3.sh",
       "001-cli-classifier/goal.md",
       "002-cli-external-orchestration/goal.md",
       "003-cli-orca/goal.md",
@@ -65,7 +65,8 @@
       "011-system-deep-loop/goal.md",
       "012-system-skill-advisor/goal.md",
       "013-system-spec-kit/goal.md",
-      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt"
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+      "010-sk-prompt/scratch/tools/queue-v3.txt"
     ],
     "entities": [
       {
@@ -87,15 +88,21 @@
         "source": "derived"
       },
       {
-        "name": "drive.sh",
+        "name": "drive-v3.sh",
         "kind": "script",
-        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive.sh",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive-v3.sh",
         "source": "derived"
       },
       {
         "name": "leaves.txt",
         "kind": "file",
         "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/leaves.txt",
+        "source": "derived"
+      },
+      {
+        "name": "queue-v3.txt",
+        "kind": "file",
+        "path": "010-sk-prompt/scratch/tools/queue-v3.txt",
         "source": "derived"
       },
       {
@@ -147,34 +154,34 @@
         "source": "derived"
       },
       {
+        "name": "The Hermes",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "no",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "changelog",
+        "name": "scope",
         "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
     "created_at": "2026-11-04T07:15:52Z",
-    "last_save_at": "2026-11-04T08:10:48.500Z",
+    "last_save_at": "2026-11-04T19:54:05.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:53ca3dad5cf4e31ae5632377feca577384035f70e062420007fb82709a93b20b",
+    "source_fingerprint": "sha256:089a9246ba07073a5c1e94cf3da8450ba107c26816ad1a4dded88f1fa3554d87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7ff2eb607607e5baf282c9246bbb71dac407cda07db72cf5c2a74a518acaf405"

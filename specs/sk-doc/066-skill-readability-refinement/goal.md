@@ -44,9 +44,9 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Luna 6 xhigh fast on `cli-codex`, read-only, audits and reviews; DeepSeek V4.1 Flash high on `cli-pi` (`llmgateway/deepseek-v4.1-flash-1017`) fixes. A quota or rate-limit stop halts the run for the operator, and a GPT model never moves to another provider |
+| D1 | Executors are `cli-opencode`, `cli-pi` and `cli-codex` only, never Devin. DeepSeek V4.1 Flash max on `cli-opencode` (`opencode-go/deepseek-v4.1-flash#max`) audits and reviews, with scope writes undone; high on `cli-pi` (`llmgateway/deepseek-v4.1-flash-1017`) fixes; `cli-codex` Luna may audit or review. A quota stop halts for the operator |
 | D2 | Form only: text moves, splits and is reformatted, and every claim survives. Changelogs, playbooks, feature catalogs, benchmarks and tests stay out of scope |
-| D3 | Each leaf runs through `specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive.sh` (audit, fix, at most three Luna reviews); a leaf that ends without a pass is fixed by hand and reviewed by Luna again |
+| D3 | Each leaf runs through `specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive-v3.sh` (audit, fix, at most three reviews); a leaf that ends without a pass is fixed by hand and reviewed again |
 | D4 | The orchestrator reads each skill's diff itself before committing; a review pass alone closes nothing |
 | D5 | Work stays in worktree 315: one commit per skill with changelog, version bump and Hermes mirror sync, and no push or merge without an operator instruction |
 
@@ -110,11 +110,30 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Goal authored | Done | `check-goal.cjs` run at authoring |
+| Goal authored | Done | `check-goal.cjs` 5/5, `packet_budget=ok` at 3,922 chars |
+| 010-sk-prompt | Done | `9d45a6a72c`; 22 findings, 3 rounds, gate 2 to 0 warnings |
+| 004-mcp-code-mode | Done | `a9868c9c3f` and `b5da55d327`; 39 findings, debt entry of 27 removed, route tests 101/101 |
+| 003-cli-orca | Done | `134e8e967c`; v3 rerun passed review 1, one README paragraph restored by hand; leaf record corrected in `0a9a03e58b` |
+| 012-system-skill-advisor | Done | `16e06ed2c6`; v3 unresolved after 3 rounds, hand fixes, repair review 6 passed; debt entry removed |
+| 009-sk-git | Done | `6cf4b3726c` and `fb19bc8490`; repair review 7 passed, ten intros restored, section 8b renumbered to 9 with every inbound reference, debt entry removed |
+| 013-system-spec-kit | Done | `f4a7b163a8` and `8885314f91`; review 3 passed, 37 intros and two dropped claims restored, the auto-mode contract numbered with its section 2 kept, debt entry removed |
+| Executor amendment | Done | Operator moved audits and reviews off Codex to DeepSeek on 2026-11-04 after the Codex usage limit; D1 and D3 amended |
+| Remaining 53 leaves | Queued | Codex usage limit hit at 10:42 on 2026-11-04, reset reported at 1:22 PM. Run stopped per D1; resume queue `010-sk-prompt/scratch/tools/queue-v3.txt` waits for the operator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Criteria source | The Level 1 children carry no `acceptance-criteria.md`, so the criteria come from each `spec.md` success criteria and the parent phase handoff table |
+| Form-only exceptions | Stale facts checked against the repository are corrected, not kept: the mcp-code-mode tool catalog lists 13 manuals, not 10, and names the generator that exists |
+| Stop guard | A quota phrase in a codex log is not a stop: the logs echo the docs read. `drive.sh` now stops only on a failed step |
+| Mirror parity | The Hermes parity gate checks the whole working tree, so per-skill commits use `SPECKIT_SKIP_MIRROR_PARITY=1` after a full sync, with only that skill's mirror staged |
+| Route manifests | A SKILL.md byte change, a version bump included, can stale another hub's manifest: mcp-code-mode stales mcp-tooling. Refresh after the last edit, and run `close-gates.sh` before each commit |
+| Review gap | Luna passed diffs that dropped claims: an ADR-001 provenance line, "historical" qualifiers, a real incident turned hypothetical, a scale threshold, frontmatter descriptions, edited code blocks. Rubric item 9 was narrowed and frontmatter frozen. `run-leaf-v2.sh` restores frontmatter and code blocks after every fix, and hands each review the lost-line and changed-intro evidence |
+| Citations | Source citations are provenance: the rubric keeps them verbatim, and `citations.py` reports any missing one to each review and to `close-gates.sh` |
+| Leaf reruns | system-skill-advisor was reset to HEAD and rerun on v2 rather than fixed by hand; cli-orca and sk-git get v2 repair runs. Their first attempts are kept in each leaf's `scratch/` |
+| Mirror lag | The doc-version-bump hook raises ROUTER.md versions during a skill's commit, after the Hermes sync, so each mirror lagged one version line. `0a9a03e58b` caught up cli-orca, mcp-code-mode and system-skill-advisor; each later skill gets a resync after its commit |
+| Leaf-doc executors | `gen-leaf-docs.py` named Luna after D1 moved audits and reviews to DeepSeek; fixed in `0a9a03e58b`, cli-orca and system-skill-advisor regenerated |
+| False stop | `drive-v3.sh` scanned a leaf's whole `run.log`, so a no-verdict review from an earlier sk-git attempt flagged a stop at 12:18 and 48 leaves skipped. `drive-v4.sh` scans only the lines its own run appends; the skipped leaves rerun from `queue-v4.txt`, and the false flag is kept as `scratch/STOP.false-stale-log-*` |
+| Executor amendment 2 | On 2026-11-04 the operator limited executors to `cli-opencode`, `cli-pi` and `cli-codex` and confirmed every mode stays in scope, cli-devin included. D1 now names the three CLIs and allows `cli-codex` Luna to audit or review again |
 <!-- /ANCHOR:log -->
