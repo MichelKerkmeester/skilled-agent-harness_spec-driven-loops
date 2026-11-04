@@ -9,7 +9,7 @@ trigger_phrases:
   - "jev judgment dispatch"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # Jev Integration Patterns
@@ -24,9 +24,9 @@ Four shipped ways to turn one typed Jev value into a decision.
 
 Jev returns one typed value. Every pattern below is a way of turning that value into a decision without letting the judgment outrank the caller's own rules. The command shapes are the pinned contract from `references/cli-reference.md`; the discipline is the hub's `transport-axis` rule that a transport pairs with a workflow before any effecting operation.
 
-### Usage
+### When to Use
 
-Pick the pattern by what the caller does with the answer. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level and section 5 batches several questions. Section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
+Open this reference when deciding how a caller should use a Jev value. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level, section 5 batches several questions, section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "jev state input"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # Jev CLI Reference
@@ -22,11 +22,11 @@ The pinned `jev` command contract, read from source and probed live against `jev
 
 ### Purpose
 
-The binary is the authority. Every claim below was read from the vendored source at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
+The binary is the authority. Every claim below was read from the vendored source at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that source and are re-probed after any version change.
 
-### Usage
+### When to Use
 
-Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and the behaviors that look like bugs but are not.
+Open this reference when building a `jev` command or checking accepted inputs, outputs or exit behavior. Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and behaviors that look like bugs but are not.
 
 ---
 
@@ -90,7 +90,7 @@ exit 2 once a response exists.
 
 `-s/--state` accepts three forms, resolved in this order by `read_text()`:
 
-| Form | Meaning | Live evidence |
+| Form | Meaning | Evidence |
 |---|---|---|
 | `-s 'text'` | The literal state string | exit 3 at the credential check, i.e. reached the request |
 | `-s @path` | Read the file at `path` | **LIVE** `-s @…/absent.txt` → exit 2, `{"ok": false, "error": "cannot read state file: …"}` |

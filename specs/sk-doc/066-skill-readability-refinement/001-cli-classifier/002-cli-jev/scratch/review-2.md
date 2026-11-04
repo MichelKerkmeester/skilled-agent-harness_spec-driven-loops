@@ -1,0 +1,7 @@
+VERDICT: FIX
+
+- [P2] `.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md:162` | 9 | The replacement drops the pin-time qualifier and widens default-model uncertainty to include `custom`; the original limits it to `vercel` and `openrouter`. | Replace the section body with:
+
+  > At pin time, no provider credential existed in this workspace. The provider-reachability claims below were therefore source-read only, and the packet did not spend the operator’s quota guessing. An operator credential for `official` has since been stored. `jev auth test` printed `{"ok": true, "valid": true, "model": "jev-1.13.0"}`, and one judgment per type returned the documented shapes: `noul` `0.95`, a `choice` key from the submitted set, and a `score` position. The `official` response body is observed.
+  >
+  > The response bodies of `vercel`, `openrouter` and `custom`, including per-provider translation behavior that only a call can show, remain unconfirmed. Whether `vercel` and `openrouter` accept their pinned default model ids today also remains unconfirmed; `official` answered with `jev-1.13.0`. Rate limits, quota and per-call latency require provider measurements. Claims that depend on unverified behavior remain marked **Source contract** rather than **Command result**.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "typesafe jev mcp"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # Jev MCP Server
@@ -24,13 +24,18 @@ The `jev-mcp` stdio server and the operator step that connects it to an MCP host
 
 `jev-mcp` ships in the same installation as `jev` — there is no optional extra to enable. This packet documents the server and the operator step that connects it. **No repository MCP config is modified by this packet**: the CLI is the hub's dispatch surface, and an MCP host is the operator's choice.
 
-### Usage
+### When to Use
 
-Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step, and section 7 says when the CLI is the better surface.
+Open this reference when deciding whether a host should use the MCP server or the CLI, or when a host needs to pass Jev state. Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step. Section 7 says when the CLI is the better surface.
 
 ---
 
 ## 2. STARTING THE SERVER
+
+**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
+hand-started server writes them into the transcript while answering nothing. The packet declares
+this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
+looks healthy and produces no usable output.
 
 ```bash
 jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
@@ -38,11 +43,6 @@ jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
 
 `command -v jev-mcp` is the availability check. Diagnostics go to stderr, so `JEV_MCP_LOG_LEVEL`
 (default `WARNING`) controls them without polluting stdout.
-
-**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
-hand-started server writes them into the transcript while answering nothing. The packet declares
-this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
-looks healthy and produces no usable output.
 
 ---
 
@@ -87,14 +87,10 @@ dispatch surface for this hub: the convenience forms are CLI-only.
 
 ## 5. PROVIDER RESOLUTION
 
-The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`,
-then `official`. An invalid `JEV_PROVIDER` fails before any provider access with a tool error
-(`invalid JEV_PROVIDER: <value>`), and every `CliError` is translated into an MCP tool error rather
-than a protocol failure — so a host sees `official API key is not stored; run: jev auth set
---provider official` as a tool-level error, not a broken server.
-
-The credential store is shared with the CLI: authenticating once with `jev auth set` makes both
-surfaces work.
+- **Resolution order.** The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`, then `official`.
+- **Invalid `JEV_PROVIDER`.** It fails before any provider access with a tool error (`invalid JEV_PROVIDER: <value>`).
+- **`CliError` translation.** Every `CliError` is translated into an MCP tool error rather than a protocol failure — so a host sees `official API key is not stored; run: jev auth set --provider official` as a tool-level error, not a broken server.
+- **Shared credential store.** The credential store is shared with the CLI: authenticating once with `jev auth set` makes both surfaces work.
 
 ---
 

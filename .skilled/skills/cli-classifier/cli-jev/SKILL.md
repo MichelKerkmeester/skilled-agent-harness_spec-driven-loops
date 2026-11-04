@@ -2,7 +2,7 @@
 name: cli-jev
 description: "TypeSafe Jev CLI transport for typed judgments: noul probabilities, choice selections, ordered scores, and batched run requests."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 0.1.9.0
+version: 0.1.10.0
 ---
 
 # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch
@@ -16,10 +16,6 @@ Orchestrate `jev` for decisions a script can consume: a yes/no probability, one 
 options, an ordered level, or several typed answers in one request. Jev returns a small
 machine-readable object where prose generation would return a paragraph, which makes it the right
 tool when the caller needs a value to branch on rather than text to read.
-
-**Core principle**: send only the state the judgment needs, choose the narrowest question type that
-answers the question, read the exit code before the payload, and keep every consequence behind the
-caller's own authorization.
 
 ---
 
@@ -54,9 +50,13 @@ caller's own authorization.
 
 ## 2. SMART ROUTING
 
-The `cli-classifier` hub routes a typed judgment here: the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call, and the hub's `cli-jev` transport mode selects this packet.
-A judgment is a value the caller branches on, so a request that wants prose, an edit or a test belongs to a workflow mode instead.
-The hub root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub router rather than in this file.
+The `cli-classifier` hub routes a typed judgment here:
+the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call,
+and the hub's `cli-jev` transport mode selects this packet.
+A judgment is a value the caller branches on,
+so a request that wants prose, an edit or a test belongs to a workflow mode instead.
+The hub root `ROUTER.md` names this packet's first leaves,
+so leaf selection stays in the hub router rather than in this file.
 `command -v jev` decides whether the route exists, and `jev auth status` decides whether a judgment is possible.
 Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
 
@@ -117,18 +117,12 @@ route that named Pi the failure prints exactly one line and then runs the CLI:
 | credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
 | backend: `classify()` throws or errors, or the answer cannot be read as the submitted question | `skip: pi transport unavailable (backend), using jev CLI` |
 
-The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer
-is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`,
-`answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and
-`output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and
-exit code 0. A caller keeps its parsing. No retry runs inside the transport. A failed preflight on the
-automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on
-either route. Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON
-object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the
-`text` key came closer to them than the earlier `request` key. Every outcome also names the route that answered as
-`transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when
-Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or
-`null` when neither names one.
+- **Call signature.** The call is `runtime.classify(model, context, { signal })` under the caller's own timeout.
+- **Answer shape.** Its answer is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`, `answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and `output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and exit code 0. A caller keeps its parsing.
+- **Retry.** No retry runs inside the transport.
+- **Fallback.** A failed preflight on the automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on either route.
+- **State wrapping.** Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the `text` key came closer to them than the earlier `request` key.
+- **Response metadata.** Every outcome also names the route that answered as `transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or `null` when neither names one.
 
 **Credentials stay in Pi's store.** The transport calls `ModelRuntime.create()` and lets Pi resolve its
 own credential. It reads no `.env`, prints no environment variable and copies no key into Pi's options.
@@ -254,11 +248,8 @@ the process exit code carries the class.
 
 ### Evidence Base
 
-- Contract pin: `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
-  with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
-- Vendored source: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`
-  (read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP
-  contract).
+- Contract pin: `jev-cli` 0.6.2, recorded in `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`, with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
+- Vendored source: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`, read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP contract.
 
 ---
 
@@ -282,11 +273,9 @@ another packet.
 
 ### Hub Integration
 
-`cli-jev` is the packet of mode `cli-jev` in the `cli-classifier` hub and its only registered mode today. A future classifier backend joins the same parent hub as a new mode with its own packet. It is declared in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
-`mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
-like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
-leaf set; the hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps
-this mode's judgment, question, provider and MCP intents to its leaves.
+`cli-jev` is registered in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension. It has `mutatesWorkspace: false`, with `Write`, `Edit` and `Task` forbidden. `hub-router.json` carries its intent signal and `leaf-manifest.json` its leaf set. The hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps this mode's judgment, question, provider and MCP intents to its leaves.
+
+The packet is the `cli-jev` mode of the `cli-classifier` hub and its only registered mode today, and it routes by hub membership like every other mode. A future classifier backend joins the same parent hub as a new mode with its own packet.
 
 ### Not a Deep-Loop Executor
 

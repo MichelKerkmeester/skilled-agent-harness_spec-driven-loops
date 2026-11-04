@@ -1,0 +1,313 @@
+diff --git a/.skilled/skills/cli-classifier/cli-jev/README.md b/.skilled/skills/cli-classifier/cli-jev/README.md
+index 61771a1e905..51c884eace8 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/README.md
++++ b/.skilled/skills/cli-classifier/cli-jev/README.md
+@@ -98,6 +98,7 @@ cli-jev/
+   SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
+   ROUTER.md                            # Machine router: intent map, resource map and loading levels
+   README.md                            # this file
++  hard-rules.json                      # the eight rules the dispatch engine enforces
+   references/                          # deep-dive docs loaded by intent
+     cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
+     providers-and-models.md             # the four providers, key variables, endpoints, translation
+@@ -116,6 +117,7 @@ cli-jev/
+ | `SKILL.md` | The routing contract: activation triggers, dispatch shape, eight hard rules |
+ | `ROUTER.md` | Machine router: intent map, resource map and loading levels |
+ | `README.md` | This front page: what the packet is, how it dispatches, what it cannot do |
++| `hard-rules.json` | The eight rules the dispatch engine enforces |
+ | `references/cli-reference.md` | Every subcommand, flag, input form, exit code and output shape |
+ | `references/providers-and-models.md` | The four providers, their key variables, endpoints and translation behavior |
+ | `references/integration-patterns.md` | The shipped judgment patterns: gate, triage, branch and batch |
+@@ -124,13 +126,6 @@ cli-jev/
+ 
+ ---
+ 
+-## 6. PROVENANCE
++## 6. CONTRACT BASIS
+ 
+-The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback:
+-`uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command,
+-output and exit status) or **SOURCE** (read from the vendored tree at
+-`specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated
+-call was made: the workspace holds no Jev provider key, so the live response body of each provider
+-remains unconfirmed and is tagged as such rather than asserted.
+-
+-Source packet: `specs/cli-classifier/001-cli-jev-creation/`.
++The contract targets `jev-cli` 0.6.2, installed with `uv tool install jev-cli` and removed with `uv tool uninstall jev-cli`. Every claim in the references is tagged **LIVE** (observed command, output and exit status) or **SOURCE** (read from the vendored Jev CLI source). No authenticated call was made at pin time; [`references/providers-and-models.md`](./references/providers-and-models.md) section 8 records the authenticated `official` call made since, and the response bodies of the other providers remain unconfirmed and are tagged as such rather than asserted. The vendored Jev CLI tree defines the CLI contract in `src/jev_cli/__init__.py` and the MCP contract in `src/jev_cli/mcp_server.py`.
+diff --git a/.skilled/skills/cli-classifier/cli-jev/ROUTER.md b/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
+index e8739f30763..271dddd3e25 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
++++ b/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
+@@ -13,8 +13,8 @@ skill_pointer: SKILL.md
+ 
+ # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch Router
+ 
+-The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
+-link that points here; this file holds the declaration a reader parses to decide what loads.
++Open this router when a Jev request needs its CLI, question-shaping, provider or MCP resources
++selected.
+ 
+ ---
+ 
+@@ -33,6 +33,9 @@ The router answers one question: given a request, which skill-local resources lo
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+ loads before an intent selects it.
+ 
++The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
++link that points here; this file holds the declaration a reader parses to decide what loads.
++
+ ---
+ 
+ ## 2. INTENT MODEL
+diff --git a/.skilled/skills/cli-classifier/cli-jev/SKILL.md b/.skilled/skills/cli-classifier/cli-jev/SKILL.md
+index fa9a11af587..fa1f4b378ac 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/SKILL.md
++++ b/.skilled/skills/cli-classifier/cli-jev/SKILL.md
+@@ -17,10 +17,6 @@ options, an ordered level, or several typed answers in one request. Jev returns
+ machine-readable object where prose generation would return a paragraph, which makes it the right
+ tool when the caller needs a value to branch on rather than text to read.
+ 
+-**Core principle**: send only the state the judgment needs, choose the narrowest question type that
+-answers the question, read the exit code before the payload, and keep every consequence behind the
+-caller's own authorization.
+-
+ ---
+ 
+ ## 1. WHEN TO USE
+@@ -54,9 +50,13 @@ caller's own authorization.
+ 
+ ## 2. SMART ROUTING
+ 
+-The `cli-classifier` hub routes a typed judgment here: the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call, and the hub's `cli-jev` transport mode selects this packet.
+-A judgment is a value the caller branches on, so a request that wants prose, an edit or a test belongs to a workflow mode instead.
+-The hub root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub router rather than in this file.
++The `cli-classifier` hub routes a typed judgment here:
++the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call,
++and the hub's `cli-jev` transport mode selects this packet.
++A judgment is a value the caller branches on,
++so a request that wants prose, an edit or a test belongs to a workflow mode instead.
++The hub root `ROUTER.md` names this packet's first leaves,
++so leaf selection stays in the hub router rather than in this file.
+ `command -v jev` decides whether the route exists, and `jev auth status` decides whether a judgment is possible.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+@@ -117,18 +117,12 @@ route that named Pi the failure prints exactly one line and then runs the CLI:
+ | credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
+ | backend: `classify()` throws or errors, or the answer cannot be read as the submitted question | `skip: pi transport unavailable (backend), using jev CLI` |
+ 
+-The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer
+-is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`,
+-`answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and
+-`output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and
+-exit code 0. A caller keeps its parsing. No retry runs inside the transport. A failed preflight on the
+-automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on
+-either route. Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON
+-object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the
+-`text` key came closer to them than the earlier `request` key. Every outcome also names the route that answered as
+-`transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when
+-Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or
+-`null` when neither names one.
++- **Call signature.** The call is `runtime.classify(model, context, { signal })` under the caller's own timeout.
++- **Answer shape.** Its answer is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`, `answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and `output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and exit code 0. A caller keeps its parsing.
++- **Exit and retry behavior.** No retry runs inside the transport.
++- **Fallback.** A failed preflight on the automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on either route.
++- **State wrapping.** Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the `text` key came closer to them than the earlier `request` key.
++- **Response metadata.** Every outcome also names the route that answered as `transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or `null` when neither names one.
+ 
+ **Credentials stay in Pi's store.** The transport calls `ModelRuntime.create()` and lets Pi resolve its
+ own credential. It reads no `.env`, prints no environment variable and copies no key into Pi's options.
+@@ -254,11 +248,8 @@ the process exit code carries the class.
+ 
+ ### Evidence Base
+ 
+-- Contract pin: `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
+-  with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
+-- Vendored source: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`
+-  (read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP
+-  contract).
++- Contract pin: `jev-cli` 0.6.2, recorded in `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`, with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
++- Vendored source: the read-only Jev CLI tree; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP contract.
+ 
+ ---
+ 
+@@ -282,11 +273,9 @@ another packet.
+ 
+ ### Hub Integration
+ 
+-`cli-jev` is the packet of mode `cli-jev` in the `cli-classifier` hub and its only registered mode today. A future classifier backend joins the same parent hub as a new mode with its own packet. It is declared in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
+-`mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
+-like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
+-leaf set; the hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps
+-this mode's judgment, question, provider and MCP intents to its leaves.
++`cli-jev` is registered in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension. It has `mutatesWorkspace: false`, with `Write`, `Edit` and `Task` forbidden. `hub-router.json` carries its intent signal and `leaf-manifest.json` its leaf set. The hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps this mode's judgment, question, provider and MCP intents to its leaves.
++
++The packet is the `cli-jev` mode of the `cli-classifier` hub and its only registered mode today, and it routes by hub membership like every other mode. A future classifier backend joins the same parent hub as a new mode with its own packet.
+ 
+ ### Not a Deep-Loop Executor
+ 
+@@ -313,7 +302,7 @@ judgment gets one from a workflow executor and reads the result.
+ 
+ ## 8. REFERENCES AND RELATED RESOURCES
+ 
+-- Upstream project: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/README.md`.
++- Upstream project: the vendored Jev CLI project README.
+ - Upstream bundled skill: the same tree's `skills/jev-cli/SKILL.md` — the vendor's own guidance,
+   which this packet supersedes for repo dispatch behavior.
+ - Hub router: `hub-router.json`; stage-two control map: `ROUTER.md`; registry: `mode-registry.json`.
+diff --git a/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md b/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
+index 9f7b3190feb..e7607f72029 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
++++ b/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
+@@ -26,6 +26,8 @@ A jev call is two inputs and one output. The state is what the model reads; the
+ 
+ ### Usage
+ 
++Before working through Sections 2 to 6, skip the call if the repository can answer the question, no consequence follows, the caller seeks permission or the state cannot be sent. Section 7 gives the reasons.
++
+ Work through sections 2 to 6 in order before a call: pick the type, scope the state, write the question, write the criteria and check the call. Section 7 lists when not to ask at all.
+ 
+ ---
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md b/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
+index 0e17f6cfeaa..af5d7c15200 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
+@@ -22,11 +22,11 @@ The pinned `jev` command contract, read from source and probed live against `jev
+ 
+ ### Purpose
+ 
+-The binary is the authority. Every claim below was read from the vendored source at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
++The binary is the authority. Every claim below was read from the vendored Jev CLI source and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that source and are re-probed after any version change.
+ 
+-### Usage
++### When to Use
+ 
+-Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and the behaviors that look like bugs but are not.
++Open this reference when building a `jev` command or checking accepted inputs, outputs or exit behavior. Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and behaviors that look like bugs but are not.
+ 
+ ---
+ 
+@@ -90,7 +90,7 @@ exit 2 once a response exists.
+ 
+ `-s/--state` accepts three forms, resolved in this order by `read_text()`:
+ 
+-| Form | Meaning | Live evidence |
++| Form | Meaning | Evidence |
+ |---|---|---|
+ | `-s 'text'` | The literal state string | exit 3 at the credential check, i.e. reached the request |
+ | `-s @path` | Read the file at `path` | **LIVE** `-s @…/absent.txt` → exit 2, `{"ok": false, "error": "cannot read state file: …"}` |
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md b/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
+index d88d21a0ad4..3ae34bf2441 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
+@@ -24,9 +24,9 @@ Four shipped ways to turn one typed Jev value into a decision.
+ 
+ Jev returns one typed value. Every pattern below is a way of turning that value into a decision without letting the judgment outrank the caller's own rules. The command shapes are the pinned contract from `references/cli-reference.md`; the discipline is the hub's `transport-axis` rule that a transport pairs with a workflow before any effecting operation.
+ 
+-### Usage
++### When to Use
+ 
+-Pick the pattern by what the caller does with the answer. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level and section 5 batches several questions. Section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
++Open this reference when deciding how a caller should use a Jev value. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level, section 5 batches several questions, section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md b/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
+index 9eb221a2a1b..2e5be71e52c 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
+@@ -24,14 +24,19 @@ The `jev-mcp` stdio server and the operator step that connects it to an MCP host
+ 
+ `jev-mcp` ships in the same installation as `jev` — there is no optional extra to enable. This packet documents the server and the operator step that connects it. **No repository MCP config is modified by this packet**: the CLI is the hub's dispatch surface, and an MCP host is the operator's choice.
+ 
+-### Usage
++### When to Use
+ 
+-Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step, and section 7 says when the CLI is the better surface.
++Open this reference when deciding whether a host should use the MCP server or the CLI, or when a host needs to pass Jev state. Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step. Section 7 says when the CLI is the better surface.
+ 
+ ---
+ 
+ ## 2. STARTING THE SERVER
+ 
++**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
++hand-started server writes them into the transcript while answering nothing. The packet declares
++this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
++looks healthy and produces no usable output.
++
+ ```bash
+ jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
+ ```
+@@ -39,11 +44,6 @@ jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
+ `command -v jev-mcp` is the availability check. Diagnostics go to stderr, so `JEV_MCP_LOG_LEVEL`
+ (default `WARNING`) controls them without polluting stdout.
+ 
+-**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
+-hand-started server writes them into the transcript while answering nothing. The packet declares
+-this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
+-looks healthy and produces no usable output.
+-
+ ---
+ 
+ ## 3. THE TOOL SURFACE
+@@ -87,14 +87,10 @@ dispatch surface for this hub: the convenience forms are CLI-only.
+ 
+ ## 5. PROVIDER RESOLUTION
+ 
+-The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`,
+-then `official`. An invalid `JEV_PROVIDER` fails before any provider access with a tool error
+-(`invalid JEV_PROVIDER: <value>`), and every `CliError` is translated into an MCP tool error rather
+-than a protocol failure — so a host sees `official API key is not stored; run: jev auth set
+---provider official` as a tool-level error, not a broken server.
+-
+-The credential store is shared with the CLI: authenticating once with `jev auth set` makes both
+-surfaces work.
++- **Resolution order.** The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`, then `official`.
++- **Invalid `JEV_PROVIDER`.** It fails before any provider access with a tool error (`invalid JEV_PROVIDER: <value>`).
++- **`CliError` translation.** Every `CliError` is translated into an MCP tool error rather than a protocol failure — so a host sees `official API key is not stored; run: jev auth set --provider official` as a tool-level error, not a broken server.
++- **Shared credential store.** The credential store is shared with the CLI: authenticating once with `jev auth set` makes both surfaces work.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md b/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
+index 5233e28e38a..e8f392dc088 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
+@@ -22,11 +22,11 @@ The four Jev providers, their keys, endpoints and default models at `jev-cli` 0.
+ 
+ ### Purpose
+ 
+-Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made: every provider-reachability claim below is **SOURCE** unless it says otherwise, and the one live check that was run is marked **LIVE**.
++Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made at pin time, and section 8 records the authenticated `official` call made since. Every other provider-reachability claim below is **SOURCE** unless it says otherwise, and each live check is marked **LIVE**.
+ 
+-### Usage
++### When to Use
+ 
+-Start at the provider table in section 2. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider and section 8 separates confirmed claims from unconfirmed ones.
++Open this reference when selecting a provider or model, or checking how keys and requests are resolved. Section 2 gives the provider table. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider, and section 8 states the provider evidence boundary.
+ 
+ ---
+ 
+@@ -157,20 +157,8 @@ jev auth set --provider <name>             # store one; masked prompt, or pipe i
+ 
+ ---
+ 
+-## 8. CONFIRMED AND STILL UNCONFIRMED
++## 8. PROVIDER EVIDENCE BOUNDARY
+ 
+-At pin time the following were source-read only, because no provider credential existed in this
+-workspace and the packet does not spend the operator's quota guessing. An operator credential for
+-`official` has since been stored, so the `official` half of the first two is now observed rather
+-than inferred: `jev auth test` printed `{"ok": true, "valid": true, "model": "jev-1.13.0"}`, and
+-one judgment per type returned the documented shapes (`noul` `0.95`, a `choice` key from the
+-submitted set, a `score` position). What remains unconfirmed, and is still tagged wherever it
+-appears:
++At pin time, no provider credential existed in this workspace. The provider-reachability claims below were therefore source-read only, and the packet did not spend the operator's quota guessing. An operator credential for `official` has since been stored. `jev auth test` printed `{"ok": true, "valid": true, "model": "jev-1.13.0"}`, and one judgment per type returned the documented shapes: `noul` `0.95`, a `choice` key from the submitted set, and a `score` position. The `official` response body is observed.
+ 
+-- The live response body of `vercel`, `openrouter` and `custom`, including any per-provider
+-  translation behavior that only a call can show. The `official` body is observed; these are not.
+-- Whether `vercel` and `openrouter` accept their pinned default model ids today. `official` answered
+-  with `jev-1.13.0`.
+-- Any rate limit, quota or per-call latency figure.
+-
+-Every later claim that depends on these is tagged unconfirmed rather than restated.
++The response bodies of `vercel`, `openrouter` and `custom`, including per-provider translation behavior that only a call can show, remain unconfirmed. Whether `vercel` and `openrouter` accept their pinned default model ids today also remains unconfirmed; `official` answered with `jev-1.13.0`. Rate limits, quota and per-call latency require provider measurements. Claims that depend on unverified behavior remain marked **SOURCE** rather than **LIVE**.

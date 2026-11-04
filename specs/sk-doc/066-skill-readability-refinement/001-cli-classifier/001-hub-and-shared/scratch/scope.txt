@@ -1,0 +1,5 @@
+.skilled/skills/cli-classifier/README.md
+.skilled/skills/cli-classifier/ROUTER.md
+.skilled/skills/cli-classifier/SKILL.md
+.skilled/skills/cli-classifier/shared/README.md
+.skilled/skills/cli-classifier/shared/scripts/README.md

@@ -1,0 +1,2 @@
+VERDICT: FIX
+- [P2] .skilled/skills/cli-classifier/README.md:109 | 9 | The migration-history sentence remains in the current-state README; the patch does not move it to the changelog entry for the transport’s move to mode `cli-jev`. | Replace the paragraph with: “Releases live in `changelog/` with one file per release, named `v[version].md`.” Move this sentence verbatim to `.skilled/skills/cli-classifier/changelog/v0.4.0.0.md`: “`v0.1.0.0` and `v0.2.0.0` are the Jev hub's own releases from before it became mode `cli-jev` here.”

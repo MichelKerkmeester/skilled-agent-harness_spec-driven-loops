@@ -13,8 +13,8 @@ skill_pointer: SKILL.md
 
 # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch Router
 
-The machine router for [`SKILL.md`](../../../.skilled/skills/cli-classifier/cli-jev/SKILL.md). `SKILL.md` keeps the short routing prose and the
-link that points here; this file holds the declaration a reader parses to decide what loads.
+Open this router when a Jev request needs its CLI, question-shaping, provider or MCP resources
+selected.
 
 ---
 
@@ -32,6 +32,9 @@ them explicitly.
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
 loads before an intent selects it.
+
+The machine router for [`SKILL.md`](../../../.skilled/skills/cli-classifier/cli-jev/SKILL.md). `SKILL.md` keeps the short routing prose and the
+link that points here; this file holds the declaration a reader parses to decide what loads.
 
 ---
 

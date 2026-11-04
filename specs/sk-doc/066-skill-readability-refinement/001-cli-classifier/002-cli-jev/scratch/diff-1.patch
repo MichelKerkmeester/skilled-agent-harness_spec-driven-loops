@@ -1,0 +1,544 @@
+diff --git a/.skilled/skills/cli-classifier/cli-jev/README.md b/.skilled/skills/cli-classifier/cli-jev/README.md
+index 61771a1e905..168f44c2660 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/README.md
++++ b/.skilled/skills/cli-classifier/cli-jev/README.md
+@@ -17,9 +17,7 @@ version: 0.1.2.0
+ 
+ # cli-jev
+ 
+-> The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: "transport"`. Jev reads
+-> state, prints a typed judgment, and exits; it edits nothing and runs nothing. Pair it with a
+-> workflow mode whenever the judgment feeds an action.
++Open this packet when a script needs a typed Jev judgment it can compare or branch on.
+ 
+ ---
+ 
+@@ -39,6 +37,10 @@ task, and conducts no session. It answers one narrow question about the state it
+ what `transport` means in this hub, and it is the reason the mode is registered with
+ `mutatesWorkspace: false` and with `Write`, `Edit` and `Task` forbidden.
+ 
++The packet of mode `cli-jev` in the `cli-classifier` hub, a `packetKind: "transport"`. Jev reads
++state, prints a typed judgment, and exits; it edits nothing and runs nothing. Pair it with a
++workflow mode whenever the judgment feeds an action.
++
+ ---
+ 
+ ## 2. THE FOUR PRIMITIVES
+@@ -98,6 +100,7 @@ cli-jev/
+   SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
+   ROUTER.md                            # Machine router: intent map, resource map and loading levels
+   README.md                            # this file
++  hard-rules.json                      # the eight rules the dispatch engine enforces
+   references/                          # deep-dive docs loaded by intent
+     cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
+     providers-and-models.md             # the four providers, key variables, endpoints, translation
+@@ -124,13 +127,6 @@ cli-jev/
+ 
+ ---
+ 
+-## 6. PROVENANCE
+-
+-The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback:
+-`uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command,
+-output and exit status) or **SOURCE** (read from the vendored tree at
+-`specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated
+-call was made: the workspace holds no Jev provider key, so the live response body of each provider
+-remains unconfirmed and is tagged as such rather than asserted.
++## 6. CONTRACT BASIS
+ 
+-Source packet: `specs/cli-classifier/001-cli-jev-creation/`.
++The contract targets `jev-cli` 0.6.2, installed with `uv tool install jev-cli` and removed with `uv tool uninstall jev-cli`. The reference pages distinguish command-observed behavior from behavior read from the vendored source. Probe records for the matrix and surface checks accompany the contract. The pages make no provider-reachability claims without an authenticated response. The vendored Jev CLI tree defines the CLI contract in `src/jev_cli/__init__.py` and the MCP contract in `src/jev_cli/mcp_server.py`.
+diff --git a/.skilled/skills/cli-classifier/cli-jev/ROUTER.md b/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
+index e8739f30763..203a7d06762 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
++++ b/.skilled/skills/cli-classifier/cli-jev/ROUTER.md
+@@ -13,8 +13,7 @@ skill_pointer: SKILL.md
+ 
+ # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch Router
+ 
+-The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
+-link that points here; this file holds the declaration a reader parses to decide what loads.
++Open this router when a Jev request needs its CLI, question-shaping, provider or MCP resources selected.
+ 
+ ---
+ 
+@@ -33,6 +32,9 @@ The router answers one question: given a request, which skill-local resources lo
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+ loads before an intent selects it.
+ 
++The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
++link that points here; this file holds the declaration a reader parses to decide what loads.
++
+ ---
+ 
+ ## 2. INTENT MODEL
+diff --git a/.skilled/skills/cli-classifier/cli-jev/SKILL.md b/.skilled/skills/cli-classifier/cli-jev/SKILL.md
+index fa9a11af587..74912c0e258 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/SKILL.md
++++ b/.skilled/skills/cli-classifier/cli-jev/SKILL.md
+@@ -7,19 +7,7 @@ version: 0.1.9.0
+ 
+ # TypeSafe Jev CLI Transport - Typed Judgments for Dispatch
+ 
+-> **Transport, not executor.** `cli-jev` is the packet of the hub's `cli-jev` transport mode: it bridges
+-> the `jev` CLI and its judgment contract. Jev reads state, prints a typed judgment, and exits. It has
+-> no file tools, no loop and no lineage, so it never mutates this workspace and never completes a task
+-> on its own. Pair it with a workflow mode whenever the judgment feeds an edit.
+-
+-Orchestrate `jev` for decisions a script can consume: a yes/no probability, one key from explicit
+-options, an ordered level, or several typed answers in one request. Jev returns a small
+-machine-readable object where prose generation would return a paragraph, which makes it the right
+-tool when the caller needs a value to branch on rather than text to read.
+-
+-**Core principle**: send only the state the judgment needs, choose the narrowest question type that
+-answers the question, read the exit code before the payload, and keep every consequence behind the
+-caller's own authorization.
++Use this packet when a caller needs a typed Jev value to branch on before a workflow acts.
+ 
+ ---
+ 
+@@ -54,9 +42,13 @@ caller's own authorization.
+ 
+ ## 2. SMART ROUTING
+ 
+-The `cli-classifier` hub routes a typed judgment here: the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call, and the hub's `cli-jev` transport mode selects this packet.
+-A judgment is a value the caller branches on, so a request that wants prose, an edit or a test belongs to a workflow mode instead.
+-The hub root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub router rather than in this file.
++The `cli-classifier` hub routes a typed judgment here:
++the request needs a probability, one key from explicit options, an ordered score position, or several keyed answers in one call,
++and the hub's `cli-jev` transport mode selects this packet.
++A judgment is a value the caller branches on,
++so a request that wants prose, an edit or a test belongs to a workflow mode instead.
++The hub root `ROUTER.md` names this packet's first leaves,
++so leaf selection stays in the hub router rather than in this file.
+ `command -v jev` decides whether the route exists, and `jev auth status` decides whether a judgment is possible.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+@@ -117,18 +109,12 @@ route that named Pi the failure prints exactly one line and then runs the CLI:
+ | credential: `getAvailableOfType('classifier', piProvider)` lists the mapped `classifierId` | `skip: pi transport unavailable (credential), using jev CLI` |
+ | backend: `classify()` throws or errors, or the answer cannot be read as the submitted question | `skip: pi transport unavailable (backend), using jev CLI` |
+ 
+-The call is `runtime.classify(model, context, { signal })` under the caller's own timeout, and its answer
+-is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`,
+-`answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and
+-`output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and
+-exit code 0. A caller keeps its parsing. No retry runs inside the transport. A failed preflight on the
+-automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on
+-either route. Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON
+-object while the CLI sends the bare string. Measured against the CLI's answers on recorded rows, the
+-`text` key came closer to them than the earlier `request` key. Every outcome also names the route that answered as
+-`transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when
+-Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or
+-`null` when neither names one.
++- **Call signature.** The call is `runtime.classify(model, context, { signal })` under the caller's own timeout.
++- **Answer shape.** Its answer is written back on stdout in the CLI's shape: `answers.answer.choice` with `answers.answer.probabilities`, `answers.answer.noul` as a probability, a top-level `model`, `usage` with `input_tokens` and `output_tokens` when Pi reports token counts, compact JSON with a trailing newline, and exit code 0. A caller keeps its parsing.
++- **Exit and retry behavior.** No retry runs inside the transport.
++- **Fallback.** A failed preflight on the automatic route falls back to the CLI with no line, and a failure after the gates pass falls back on either route.
++- **State wrapping.** Pi receives the stdin text as `state: { text: <stdin> }`, because its state must be a JSON object while the CLI sends the bare string.
++- **Response metadata.** Every outcome also names the route that answered as `transport` and the model that answered as `model`, which is `<provider>/<model>` from Pi's result when Pi answered, such as `typesafe/jev-latest`, the `model` field the CLI printed when the CLI answered, or `null` when neither names one.
+ 
+ **Credentials stay in Pi's store.** The transport calls `ModelRuntime.create()` and lets Pi resolve its
+ own credential. It reads no `.env`, prints no environment variable and copies no key into Pi's options.
+@@ -254,11 +240,8 @@ the process exit code carries the class.
+ 
+ ### Evidence Base
+ 
+-- Contract pin: `specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md`,
+-  with the captured probes beside it at `scratch/probe-matrix.txt` and `scratch/probe-surface.txt`.
+-- Vendored source: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`
+-  (read-only; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP
+-  contract).
++- Contract pin: `jev-cli` 0.6.2, with probe records for matrix and surface checks.
++- Vendored source: the read-only Jev CLI tree; `src/jev_cli/__init__.py` is the CLI contract and `src/jev_cli/mcp_server.py` the MCP contract.
+ 
+ ---
+ 
+@@ -282,11 +265,9 @@ another packet.
+ 
+ ### Hub Integration
+ 
+-`cli-jev` is the packet of mode `cli-jev` in the `cli-classifier` hub and its only registered mode today. A future classifier backend joins the same parent hub as a new mode with its own packet. It is declared in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension,
+-`mutatesWorkspace: false`, forbidding `Write`, `Edit` and `Task`, and it routes by hub membership
+-like every other mode. `hub-router.json` carries its intent signal and `leaf-manifest.json` its
+-leaf set; the hub's `ROUTER.md` is the stage-two surface router, `router_state: active`, and maps
+-this mode's judgment, question, provider and MCP intents to its leaves.
++`cli-jev` is registered in `mode-registry.json` as `packetKind: "transport"` under the `transport-axis` extension. It has `mutatesWorkspace: false`, with `Write`, `Edit` and `Task` forbidden. `hub-router.json` carries its intent signal and `leaf-manifest.json` its leaf set. The hub's `ROUTER.md` maps this mode's judgment, question, provider and MCP intents to its leaves.
++
++The packet is the `cli-jev` mode of the `cli-classifier` hub, and it routes by hub membership like every other mode.
+ 
+ ### Not a Deep-Loop Executor
+ 
+@@ -313,7 +294,7 @@ judgment gets one from a workflow executor and reads the result.
+ 
+ ## 8. REFERENCES AND RELATED RESOURCES
+ 
+-- Upstream project: `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/README.md`.
++- Upstream project: the vendored Jev CLI project README.
+ - Upstream bundled skill: the same tree's `skills/jev-cli/SKILL.md` — the vendor's own guidance,
+   which this packet supersedes for repo dispatch behavior.
+ - Hub router: `hub-router.json`; stage-two control map: `ROUTER.md`; registry: `mode-registry.json`.
+diff --git a/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md b/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
+index 9f7b3190feb..e7607f72029 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
++++ b/.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
+@@ -26,6 +26,8 @@ A jev call is two inputs and one output. The state is what the model reads; the
+ 
+ ### Usage
+ 
++Before working through Sections 2 to 6, skip the call if the repository can answer the question, no consequence follows, the caller seeks permission or the state cannot be sent. Section 7 gives the reasons.
++
+ Work through sections 2 to 6 in order before a call: pick the type, scope the state, write the question, write the criteria and check the call. Section 7 lists when not to ask at all.
+ 
+ ---
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md b/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
+index 0e17f6cfeaa..2dbeb06c67b 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
+@@ -14,7 +14,7 @@ version: 0.1.1.0
+ 
+ # Jev CLI Reference
+ 
+-The pinned `jev` command contract, read from source and probed live against `jev 0.6.2`.
++Open this reference when you need to form a `jev` command or interpret its payload and exit code.
+ 
+ ---
+ 
+@@ -22,23 +22,23 @@ The pinned `jev` command contract, read from source and probed live against `jev
+ 
+ ### Purpose
+ 
+-The binary is the authority. Every claim below was read from the vendored source at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/src/jev_cli/__init__.py` and then probed live against `jev 0.6.2`. Claims marked **LIVE** carry an observed command, output and exit status; claims marked **SOURCE** are read from that file and are re-probed after any version change.
++The binary is the authority. Every claim below was read from the vendored Jev CLI source and then probed live against `jev 0.6.2`. Claims marked **Command result** carry an observed command, output and exit status; claims marked **Source contract** are read from that source and are re-probed after any version change.
+ 
+-### Usage
++### When to Use
+ 
+-Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and the behaviors that look like bugs but are not.
++Open this reference when building a `jev` command or checking accepted inputs, outputs or exit behavior. Sections 2 to 9 cover invocation, subcommands, shared flags, state input, question shapes, exit codes, authentication commands and behaviors that look like bugs but are not.
+ 
+ ---
+ 
+ ## 2. INVOCATION
+ 
+ ```bash
+-jev --version          # LIVE → stdout "jev 0.6.2", exit 0
+-jev --help             # LIVE → subcommands: auth, install-skills, noul, choice, score, run
++jev --version          # Command result: stdout "jev 0.6.2", exit 0
++jev --help             # Command result: subcommands: auth, install-skills, noul, choice, score, run
+ ```
+ 
+ `jev` takes exactly one subcommand and has no bare-question form. An unrecognized subcommand is an
+-argparse failure: **LIVE** `jev judge -q 'Is it?'` → exit 2, usage text on stderr listing the six
++argparse failure: **Command result** `jev judge -q 'Is it?'` → exit 2, usage text on stderr listing the six
+ valid choices.
+ 
+ ---
+@@ -56,8 +56,8 @@ valid choices.
+ | `score` | Score against ordered levels | `-q/--question`, `-l/--level` (repeatable) |
+ | `run` | Send a complete request JSON for batched questions | positional `request` |
+ 
+-**SOURCE**: `auth` and `install-skills` take no shared flags; `auth set|test` accept `--provider`,
+-`auth status` accepts it too but only reads. **SOURCE**: `install-skills` refuses to overwrite a
++**Source contract**: `auth` and `install-skills` take no shared flags; `auth set|test` accept `--provider`,
++`auth status` accepts it too but only reads. **Source contract**: `install-skills` refuses to overwrite a
+ skill directory it does not own, recognized by its `.jev-cli-managed` marker.
+ 
+ ---
+@@ -73,14 +73,14 @@ skill directory it does not own, recognized by its `.jev-cli-managed` marker.
+ | `--value` | Prints only the primary answer value |
+ | `--endpoint URL` | Overrides the provider endpoint; **hidden from `--help`** |
+ 
+-**LIVE**: `jev noul --help` and `jev run --help` both list `--provider`, `--model`, `--json-state`,
+-`--pretty`, `--value` — and neither lists `--endpoint`. **SOURCE**: the flag is registered with
++**Command result**: `jev noul --help` and `jev run --help` both list `--provider`, `--model`, `--json-state`,
++`--pretty`, `--value` — and neither lists `--endpoint`. **Source contract**: the flag is registered with
+ `argparse.SUPPRESS`, and `provider_endpoint()` returns the override for *any* provider before it
+ consults the provider table, so `official` can be redirected with a trusted proxy.
+ 
+-`--value` is accepted syntactically by `run` and rejected semantically. **LIVE**: with a valid
++`--value` is accepted syntactically by `run` and rejected semantically. **Command result**: with a valid
+ request on stdin and no key, both `jev run -` and `jev run - --value` exit 3 with the credential
+-error, because the value check runs on the parsed answer *after* the API call. **SOURCE**:
++error, because the value check runs on the parsed answer *after* the API call. **Source contract**:
+ `primary_value()` raises `CliError("--value is available only for noul, choice, and score")` with
+ exit 2 once a response exists.
+ 
+@@ -93,15 +93,15 @@ exit 2 once a response exists.
+ | Form | Meaning | Live evidence |
+ |---|---|---|
+ | `-s 'text'` | The literal state string | exit 3 at the credential check, i.e. reached the request |
+-| `-s @path` | Read the file at `path` | **LIVE** `-s @…/absent.txt` → exit 2, `{"ok": false, "error": "cannot read state file: …"}` |
+-| `-s -` | Read stdin to EOF | **LIVE** exit 3, i.e. stdin was consumed without error |
++| `-s @path` | Read the file at `path` | **Command result** `-s @…/absent.txt` → exit 2, `{"ok": false, "error": "cannot read state file: …"}` |
++| `-s -` | Read stdin to EOF | **Command result** exit 3, i.e. stdin was consumed without error |
+ | `-s` omitted | Read stdin to EOF | Same path; the default |
+-| nothing on a TTY | Refused | **SOURCE** `CliError("state is required as an argument, @file, or stdin")`, exit 2 |
++| nothing on a TTY | Refused | **Source contract** `CliError("state is required as an argument, @file, or stdin")`, exit 2 |
+ 
+-`--json-state` parses the resolved text as JSON. **LIVE**: `-s 'not json' --json-state` → exit 2,
++`--json-state` parses the resolved text as JSON. **Command result**: `-s 'not json' --json-state` → exit 2,
+ `{"ok": false, "error": "invalid JSON state: Expecting value: …"}`.
+ 
+-`run` takes the request as a positional instead: a path, or `-` for stdin. **LIVE**: `run -` with a
++`run` takes the request as a positional instead: a path, or `-` for stdin. **Command result**: `run -` with a
+ valid object exits 3 at the credential check; `run -` with `{"state":"x"}` exits 2 with
+ `{"ok": false, "error": "request must be an object containing state and questions"}`.
+ 
+@@ -109,7 +109,7 @@ valid object exits 3 at the credential check; `run -` with `{"state":"x"}` exits
+ 
+ ## 6. QUESTION SHAPES
+ 
+-Each subcommand builds the same System One request. **SOURCE** `question_request()`:
++Each subcommand builds the same System One request. **Source contract** `question_request()`:
+ 
+ ```json
+ {
+@@ -125,7 +125,7 @@ Each subcommand builds the same System One request. **SOURCE** `question_request
+ level descriptions in ascending order. `run` sends the caller's object unchanged, adding `model`
+ only when absent.
+ 
+-The answer is read at `result["answers"]["<question name>"]["<type>"]`. **SOURCE**
++The answer is read at `result["answers"]["<question name>"]["<type>"]`. **Source contract**
+ `primary_value()`:
+ 
+ | Type | Primary value | Range |
+@@ -134,7 +134,7 @@ The answer is read at `result["answers"]["<question name>"]["<type>"]`. **SOURCE
+ | `choice` | `answers.answer.choice` | one of the submitted keys, verbatim |
+ | `score` | `answers.answer.score` | zero-based position; may be fractional |
+ 
+-**SOURCE**: the vendor's own test suite asserts a fractional score of `1.5`, so callers must not
++**Source contract**: the vendor's own test suite asserts a fractional score of `1.5`, so callers must not
+ assume an integer.
+ 
+ Cardinality differs by surface and this is a real trap:
+@@ -144,8 +144,8 @@ Cardinality differs by surface and this is a real trap:
+ | CLI | Accepted; the request is sent | Accepted; the request is sent |
+ | `jev-mcp` | Refused before any request | Refused before any request |
+ 
+-**LIVE**: `jev choice -q 'Which?' -s x -o 'only=The only option'` → exit 3 at the credential check,
+-i.e. the CLI built and attempted the request. **SOURCE**: the MCP tool raises
++**Command result**: `jev choice -q 'Which?' -s x -o 'only=The only option'` → exit 3 at the credential check,
++i.e. the CLI built and attempted the request. **Source contract**: the MCP tool raises
+ `ToolError("choice requires an options map with at least two entries")` and
+ `ToolError("score requires a levels list with at least two entries")`.
+ 
+@@ -155,12 +155,12 @@ i.e. the CLI built and attempted the request. **SOURCE**: the MCP tool raises
+ 
+ | Exit | Class | Emitted when | Evidence |
+ |---|---|---|---|
+-| 0 | Success | A judgment printed | **LIVE** `jev --version` → 0 |
+-| 1 | Unexpected response | Non-object payload, unknown keys, or an HTTP status outside the mapped classes | **SOURCE** `CliError(..., 1)` and the `KeyError`/`TypeError` handler |
+-| 2 | Usage | Bad flags, unreadable state file, malformed JSON, `--value` with a non-judgment subcommand, `custom` without an endpoint, invalid `JEV_PROVIDER` | **LIVE** `-s @absent`, `custom` without endpoint, `--json-state` on bad JSON, missing `-q`, bad `JEV_PROVIDER`, `{"state":"x"}` on `run` — all exit 2 |
+-| 3 | Credential | No stored key, an empty key, an invalid credential file, or HTTP 401/403 | **LIVE** `auth status`, `auth test`, and every judgment subcommand with no key → exit 3 |
+-| 4 | Transport | HTTP 429/500/502/503/504, a connection failure, or a timeout | **LIVE** with a sentinel key against `http://127.0.0.1:9/v1/systemone` → exit 4, `{"ok": false, "error": "API connection failed: … Connection refused"}` |
+-| 130 | Interrupted | `KeyboardInterrupt` | **SOURCE** `except KeyboardInterrupt` |
++| 0 | Success | A judgment printed | **Command result** `jev --version` → 0 |
++| 1 | Unexpected response | Non-object payload, unknown keys, or an HTTP status outside the mapped classes | **Source contract** `CliError(..., 1)` and the `KeyError`/`TypeError` handler |
++| 2 | Usage | Bad flags, unreadable state file, malformed JSON, `--value` with a non-judgment subcommand, `custom` without an endpoint, invalid `JEV_PROVIDER` | **Command result** `-s @absent`, `custom` without endpoint, `--json-state` on bad JSON, missing `-q`, bad `JEV_PROVIDER`, `{"state":"x"}` on `run` — all exit 2 |
++| 3 | Credential | No stored key, an empty key, an invalid credential file, or HTTP 401/403 | **Command result** `auth status`, `auth test`, and every judgment subcommand with no key → exit 3 |
++| 4 | Transport | HTTP 429/500/502/503/504, a connection failure, or a timeout | **Command result** with a sentinel key against `http://127.0.0.1:9/v1/systemone` → exit 4, `{"ok": false, "error": "API connection failed: … Connection refused"}` |
++| 130 | Interrupted | `KeyboardInterrupt` | **Source contract** `except KeyboardInterrupt` |
+ 
+ Errors print one JSON object on **stderr** — `{"ok": false, "error": "<message>"}` — and leave
+ stdout empty. A caller parsing stdout alone therefore sees nothing on every failure, which is the
+@@ -171,12 +171,12 @@ shape that makes exit-code handling mandatory.
+ ## 8. AUTHENTICATION COMMANDS
+ 
+ ```bash
+-jev auth status     # LIVE, no key → exit 3, {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
+-jev auth test       # LIVE, no key → exit 3, the same object; it never distinguishes stored from valid
+-jev auth set        # SOURCE: masked prompt on a TTY, plain stdin read otherwise
++jev auth status     # Command result: no key → exit 3, {"ok": false, "error": "official API key is not stored; run: jev auth set --provider official"}
++jev auth test       # Command result: no key → exit 3, the same object; it never distinguishes stored from valid
++jev auth set        # Source contract: masked prompt on a TTY, plain stdin read otherwise
+ ```
+ 
+-**SOURCE**: `auth status` prints `{"ok": true, "stored": true, "store": "<path>"}` when a key
++**Source contract**: `auth status` prints `{"ok": true, "stored": true, "store": "<path>"}` when a key
+ resolves, and `auth test` prints `{"ok": true, "valid": true, "model": "<model>"}` after a live call.
+ Neither prints the key. On a TTY, `auth set` echoes one asterisk per character and restores the
+ terminal on exit; piped input is read with `.strip()`.
+@@ -187,7 +187,7 @@ terminal on exit; piped input is read with `.strip()`.
+ 
+ - **`auth status` exits 3 rather than reporting an unset key.** A missing credential is a failure,
+   and the caller's move differs from a judgment's, so it is an error path by design.
+-- **A `custom` endpoint is validated before the key.** **LIVE**: with `--provider custom` and no
++- **A `custom` endpoint is validated before the key.** **Command result**: with `--provider custom` and no
+   endpoint the exit is 2, and with an endpoint but no key it is 3. Order: endpoint, then key, then
+   request.
+ - **Both `-s -` and an omitted `-s` read stdin.** There is no "no state" form on a non-TTY.
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md b/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
+index d88d21a0ad4..abf57b1de8a 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
+@@ -14,7 +14,7 @@ version: 0.1.0.2
+ 
+ # Jev Integration Patterns
+ 
+-Four shipped ways to turn one typed Jev value into a decision.
++Choose this reference when a caller has a typed Jev answer and needs a gate, triage, ordered branch or batch pattern.
+ 
+ ---
+ 
+@@ -24,9 +24,9 @@ Four shipped ways to turn one typed Jev value into a decision.
+ 
+ Jev returns one typed value. Every pattern below is a way of turning that value into a decision without letting the judgment outrank the caller's own rules. The command shapes are the pinned contract from `references/cli-reference.md`; the discipline is the hub's `transport-axis` rule that a transport pairs with a workflow before any effecting operation.
+ 
+-### Usage
++### When to Use
+ 
+-Pick the pattern by what the caller does with the answer. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level and section 5 batches several questions. Section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
++Open this reference when deciding how a caller should use a Jev value. Section 2 gates on a threshold, section 3 triages, section 4 branches on an ordered level, section 5 batches several questions, section 6 lists what not to do and section 7 shows where a pattern sits in a dispatch.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md b/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
+index 9eb221a2a1b..aeed8781131 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
+@@ -14,7 +14,7 @@ version: 0.1.0.2
+ 
+ # Jev MCP Server
+ 
+-The `jev-mcp` stdio server and the operator step that connects it to an MCP host.
++Open this guide when deciding whether to connect a host to `jev-mcp` or when checking how a host passes state.
+ 
+ ---
+ 
+@@ -24,14 +24,19 @@ The `jev-mcp` stdio server and the operator step that connects it to an MCP host
+ 
+ `jev-mcp` ships in the same installation as `jev` — there is no optional extra to enable. This packet documents the server and the operator step that connects it. **No repository MCP config is modified by this packet**: the CLI is the hub's dispatch surface, and an MCP host is the operator's choice.
+ 
+-### Usage
++### When to Use
+ 
+-Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step, and section 7 says when the CLI is the better surface.
++Open this reference when deciding whether a host should use the MCP server or the CLI, or when a host needs to pass Jev state. Sections 2 to 4 cover starting the server, its tool surface and how state travels. Sections 5 and 6 cover provider resolution and the operator step. Section 7 says when the CLI is the better surface.
+ 
+ ---
+ 
+ ## 2. STARTING THE SERVER
+ 
++**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
++hand-started server writes them into the transcript while answering nothing. The packet declares
++this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
++looks healthy and produces no usable output.
++
+ ```bash
+ jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
+ ```
+@@ -39,16 +44,11 @@ jev-mcp          # speaks MCP over stdio; stdout carries protocol frames only
+ `command -v jev-mcp` is the availability check. Diagnostics go to stderr, so `JEV_MCP_LOG_LEVEL`
+ (default `WARNING`) controls them without polluting stdout.
+ 
+-**Never run it from a shell you are also reading.** Its stdout is a stream of JSON-RPC frames, and a
+-hand-started server writes them into the transcript while answering nothing. The packet declares
+-this as a warning-level hard rule (`jev-mcp-host-only`), because the failure is silent — the process
+-looks healthy and produces no usable output.
+-
+ ---
+ 
+ ## 3. THE TOOL SURFACE
+ 
+-The server advertises exactly four tools. **LIVE** probe: a stdio handshake answers `initialize`
++The server advertises exactly four tools. A stdio handshake answers `initialize`
+ with `serverInfo.name = "jev"`, `version = "0.6.2"`, protocol `2025-06-18`, then `tools/list`
+ returns:
+ 
+@@ -87,14 +87,10 @@ dispatch surface for this hub: the convenience forms are CLI-only.
+ 
+ ## 5. PROVIDER RESOLUTION
+ 
+-The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`,
+-then `official`. An invalid `JEV_PROVIDER` fails before any provider access with a tool error
+-(`invalid JEV_PROVIDER: <value>`), and every `CliError` is translated into an MCP tool error rather
+-than a protocol failure — so a host sees `official API key is not stored; run: jev auth set
+---provider official` as a tool-level error, not a broken server.
+-
+-The credential store is shared with the CLI: authenticating once with `jev auth set` makes both
+-surfaces work.
++- **Resolution order.** The server resolves the provider exactly as the CLI does: the tool argument, then `JEV_PROVIDER`, then `official`.
++- **Invalid `JEV_PROVIDER`.** It fails before any provider access with a tool error (`invalid JEV_PROVIDER: <value>`).
++- **`CliError` translation.** Every `CliError` is translated into an MCP tool error rather than a protocol failure — so a host sees `official API key is not stored; run: jev auth set --provider official` as a tool-level error, not a broken server.
++- **Shared credential store.** The credential store is shared with the CLI: authenticating once with `jev auth set` makes both surfaces work.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md b/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
+index 5233e28e38a..0435a7262d2 100644
+--- a/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
++++ b/.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md
+@@ -14,7 +14,7 @@ version: 0.1.0.2
+ 
+ # Jev Providers and Models
+ 
+-The four Jev providers, their keys, endpoints and default models at `jev-cli` 0.6.2.
++Open this reference when a Jev call needs a provider, key or model choice.
+ 
+ ---
+ 
+@@ -22,11 +22,11 @@ The four Jev providers, their keys, endpoints and default models at `jev-cli` 0.
+ 
+ ### Purpose
+ 
+-Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made: every provider-reachability claim below is **SOURCE** unless it says otherwise, and the one live check that was run is marked **LIVE**.
++Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made: every provider-reachability claim below is **Source contract** unless it says otherwise, and the one live check that was run is marked **Command result**.
+ 
+-### Usage
++### When to Use
+ 
+-Start at the provider table in section 2. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider and section 8 separates confirmed claims from unconfirmed ones.
++Open this reference when selecting a provider or model, or checking how keys and requests are resolved. Section 2 gives the provider table. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider, and section 8 states the provider evidence boundary.
+ 
+ ---
+ 
+@@ -39,7 +39,7 @@ Start at the provider table in section 2. Sections 3 to 6 cover key resolution,
+ | OpenRouter | `openrouter` | `OPENROUTER_API_KEY` | `https://openrouter.ai/api/alpha/decisions` | `typesafe/jev-1.13` |
+ | Jev-compatible proxy | `custom` | `JEV_API_KEY` | `--endpoint` or `JEV_ENDPOINT`; **required** | `JEV_MODEL` or `jev-latest` |
+ 
+-The default provider is `JEV_PROVIDER` when set, otherwise `official`. **LIVE**:
++The default provider is `JEV_PROVIDER` when set, otherwise `official`. **Command result**:
+ `JEV_PROVIDER=nope jev noul …` → exit 2, `{"ok": false, "error": "invalid JEV_PROVIDER: nope"}` —
+ the value is validated before any provider access.
+ 
+@@ -66,7 +66,7 @@ For the selected provider, `api_key()` resolves in this order:
+ 3. For `official` only, the legacy top-level `api_key` member.
+ 
+ A miss raises exit 3 with `"<provider> API key is not stored; run: jev auth set --provider
+-<provider>"`. **LIVE** with every provider key variable cleared, `jev noul …`, `jev choice …`,
++<provider>"`. **Command result** with every provider key variable cleared, `jev noul …`, `jev choice …`,
+ `jev score …`, `jev run -` and `jev auth status` all exit 3 with that exact object on stderr and
+ nothing on stdout. An empty stored value is a separate exit-3 error (`stored <provider> API key is
+ empty`), and an unparseable credential file is a third (`stored credential file is invalid;
+@@ -114,7 +114,7 @@ is a credential question:
+ 
+ So the reachable paths are: an official `TYPESAFE_API_KEY`, a `vercel` `AI_GATEWAY_API_KEY`, an
+ `openrouter` `OPENROUTER_API_KEY`, or a `custom` endpoint that implements the System One contract
+-and issues its own `JEV_API_KEY`. **LIVE** on the `custom` path: with `--provider custom` and no
++and issues its own `JEV_API_KEY`. **Command result** on the `custom` path: with `--provider custom` and no
+ endpoint the process exits 2 before any request, and with an endpoint but no key it exits 3 — so the
+ endpoint override is accepted and a wrong endpoint cannot be mistaken for a missing key.
+ 
+@@ -157,20 +157,6 @@ jev auth set --provider <name>             # store one; masked prompt, or pipe i
+ 
+ ---
+ 
+-## 8. CONFIRMED AND STILL UNCONFIRMED
++## 8. PROVIDER EVIDENCE BOUNDARY
+ 
+-At pin time the following were source-read only, because no provider credential existed in this
+-workspace and the packet does not spend the operator's quota guessing. An operator credential for
+-`official` has since been stored, so the `official` half of the first two is now observed rather
+-than inferred: `jev auth test` printed `{"ok": true, "valid": true, "model": "jev-1.13.0"}`, and
+-one judgment per type returned the documented shapes (`noul` `0.95`, a `choice` key from the
+-submitted set, a `score` position). What remains unconfirmed, and is still tagged wherever it
+-appears:
+-
+-- The live response body of `vercel`, `openrouter` and `custom`, including any per-provider
+-  translation behavior that only a call can show. The `official` body is observed; these are not.
+-- Whether `vercel` and `openrouter` accept their pinned default model ids today. `official` answered
+-  with `jev-1.13.0`.
+-- Any rate limit, quota or per-call latency figure.
+-
+-Every later claim that depends on these is tagged unconfirmed rather than restated.
++The `official` provider returned model `jev-1.13.0` in `jev auth test` and returned one judgment per type in the documented shapes. The `vercel`, `openrouter` and `custom` response bodies and default-model acceptance require authenticated calls. Rate limits, quota and per-call latency require provider measurements.

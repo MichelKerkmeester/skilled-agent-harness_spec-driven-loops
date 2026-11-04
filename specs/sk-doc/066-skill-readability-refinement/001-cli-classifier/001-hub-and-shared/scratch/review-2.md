@@ -1,0 +1,4 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/cli-classifier/README.md:109 | 9 | The historical sentence remains in the README instead of the existing changelog entry. | Replace the paragraph with: `Releases live in \`changelog/\` with one file per release, named \`v[version].md\`.` Add to the existing `changelog/v0.4.0.0.md` entry: `The v0.1.0.0 and v0.2.0.0 releases were the Jev hub's own releases before it became mode cli-jev in cli-classifier.`
+- [P2] .skilled/skills/cli-classifier/SKILL.md:78 | 9 | The patch changes an existing fenced tree comment beyond the finding’s requested prose edit; existing code blocks must remain unchanged. | Restore the line exactly: `ROUTER.md                     # stage-two surface router, active`

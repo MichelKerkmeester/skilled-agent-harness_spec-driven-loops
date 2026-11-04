@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # cli-jev
@@ -98,6 +98,7 @@ cli-jev/
   SKILL.md                             # the contract: when to use, dispatch shape, eight hard rules
   ROUTER.md                            # Machine router: intent map, resource map and loading levels
   README.md                            # this file
+  hard-rules.json                      # the eight rules the dispatch engine enforces
   references/                          # deep-dive docs loaded by intent
     cli-reference.md                   # subcommands, flags, input forms, exit codes, output shapes
     providers-and-models.md             # the four providers, key variables, endpoints, translation
@@ -116,6 +117,7 @@ cli-jev/
 | `SKILL.md` | The routing contract: activation triggers, dispatch shape, eight hard rules |
 | `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `README.md` | This front page: what the packet is, how it dispatches, what it cannot do |
+| `hard-rules.json` | The eight rules the dispatch engine enforces |
 | `references/cli-reference.md` | Every subcommand, flag, input form, exit code and output shape |
 | `references/providers-and-models.md` | The four providers, their key variables, endpoints and translation behavior |
 | `references/integration-patterns.md` | The shipped judgment patterns: gate, triage, branch and batch |
@@ -124,13 +126,8 @@ cli-jev/
 
 ---
 
-## 6. PROVENANCE
+## 6. CONTRACT BASIS
 
-The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback:
-`uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command,
-output and exit status) or **SOURCE** (read from the vendored tree at
-`specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated
-call was made: the workspace holds no Jev provider key, so the live response body of each provider
-remains unconfirmed and is tagged as such rather than asserted.
+The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback: `uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command, output and exit status) or **SOURCE** (read from the vendored tree at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated call was made at pin time; [`references/providers-and-models.md`](./references/providers-and-models.md) section 8 records the authenticated `official` call made since, and the response bodies of the other providers remain unconfirmed and are tagged as such rather than asserted. The vendored Jev CLI tree defines the CLI contract in `src/jev_cli/__init__.py` and the MCP contract in `src/jev_cli/mcp_server.py`.
 
 Source packet: `specs/cli-classifier/001-cli-jev-creation/`.

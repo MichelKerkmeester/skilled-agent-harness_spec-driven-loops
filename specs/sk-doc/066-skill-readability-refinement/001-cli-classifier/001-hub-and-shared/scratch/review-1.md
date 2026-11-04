@@ -1,0 +1,4 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/cli-classifier/README.md:109 | 9 | The current-state README still includes migration history. | Replace the paragraph with: “Releases live in `changelog/` with one file per release, named `v[version].md`.” Add to `changelog/v0.4.0.0.md`: “The Jev hub’s `v0.1.0.0` and `v0.2.0.0` releases predate the transport joining `cli-classifier` as mode `cli-jev`.”
+- [P2] .skilled/skills/cli-classifier/SKILL.md:78 | 9 | The layout example still includes the status label `active` in the body. | Replace `ROUTER.md # stage-two surface router, active` with `ROUTER.md # stage-two surface router`.

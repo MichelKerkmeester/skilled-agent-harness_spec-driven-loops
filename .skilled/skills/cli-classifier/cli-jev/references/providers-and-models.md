@@ -9,7 +9,7 @@ trigger_phrases:
   - "jev vercel openrouter"
 importance_tier: "important"
 contextType: "reference"
-version: 0.1.0.2
+version: 0.1.1.0
 ---
 
 # Jev Providers and Models
@@ -22,11 +22,11 @@ The four Jev providers, their keys, endpoints and default models at `jev-cli` 0.
 
 ### Purpose
 
-Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made: every provider-reachability claim below is **SOURCE** unless it says otherwise, and the one live check that was run is marked **LIVE**.
+Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. No authenticated call was made at pin time, and section 8 records the authenticated `official` call made since. Every other provider-reachability claim below is **SOURCE** unless it says otherwise, and each live check is marked **LIVE**.
 
-### Usage
+### When to Use
 
-Start at the provider table in section 2. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider and section 8 separates confirmed claims from unconfirmed ones.
+Open this reference when selecting a provider or model, or checking how keys and requests are resolved. Section 2 gives the provider table. Sections 3 to 6 cover key resolution, request translation, the `custom` provider and model selection. Section 7 shows how to verify a provider, and section 8 states the provider evidence boundary.
 
 ---
 

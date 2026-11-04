@@ -1,0 +1,2 @@
+.skilled/skills/cli-classifier/SKILL.md:158: render_h2_numbering: Unnumbered H2 "RELATED RESOURCES" among numbered peers; number every section.
+files=5 render_warnings=1 invalid=0

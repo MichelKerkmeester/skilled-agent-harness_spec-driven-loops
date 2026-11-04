@@ -4,7 +4,7 @@ description: "Packet-shared, workflow-layer helpers for cli-classifier that are 
 trigger_phrases:
   - "cli-classifier shared tier"
   - "classifier shared helpers"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # cli-classifier shared tier
@@ -14,11 +14,15 @@ version: 1.0.0.0
 `shared/` holds packet-shared, workflow-layer helpers that are deliberately non-discoverable: it is
 not a packet, carries no `graph-metadata.json`, and never appears in `mode-registry.json`.
 
-It ships three helpers under `scripts/`. `jev-transport.mjs` answers a jev `choice` or `noul` question
-through Pi's classifier runtime or the `jev` CLI, `jev-features.mjs` holds the shared master and
-per-feature switches plus the credential check every measured feature asks before it runs, and
-`scorer-report.mjs` holds the report pieces the classifier scorers share. Callers in sk-doc,
-system-deep-loop, `.skilled/hooks/` and this hub's `benchmark/` import them. `scripts/README.md`
+Use this folder when a packet needs shared transport, feature-gate or scorer-report helpers.
+
+It ships three helpers under `scripts/`:
+
+- `jev-transport.mjs` answers a jev `choice` or `noul` question through Pi's classifier runtime or the `jev` CLI.
+- `jev-features.mjs` holds the shared master and per-feature switches plus the credential check every measured feature asks before it runs.
+- `scorer-report.mjs` holds the report pieces the classifier scorers share.
+
+Callers in sk-doc, system-deep-loop, `.skilled/hooks/` and this hub's `benchmark/` import them. `scripts/README.md`
 describes all three modules.
 
 ---
@@ -42,3 +46,10 @@ shared/
 
 Anything a future packet needs in common goes here with its own README, and stays out of the
 two-axis packet model by design.
+
+---
+
+## 3. RELATED
+
+- [`cli-classifier hub`](../README.md)
+- [`Shared helper scripts`](./scripts/README.md)

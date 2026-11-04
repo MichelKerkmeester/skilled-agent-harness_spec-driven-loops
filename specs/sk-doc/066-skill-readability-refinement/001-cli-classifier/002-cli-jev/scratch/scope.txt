@@ -1,0 +1,8 @@
+.skilled/skills/cli-classifier/cli-jev/README.md
+.skilled/skills/cli-classifier/cli-jev/ROUTER.md
+.skilled/skills/cli-classifier/cli-jev/SKILL.md
+.skilled/skills/cli-classifier/cli-jev/assets/question-shaping-card.md
+.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md
+.skilled/skills/cli-classifier/cli-jev/references/integration-patterns.md
+.skilled/skills/cli-classifier/cli-jev/references/mcp-server.md
+.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md

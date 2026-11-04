@@ -5,14 +5,12 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.8.3.0
+version: 0.8.4.0
 ---
 
 # cli-classifier
 
 > One skill identity for typed classifier judgments. The hub holds `cli-jev` for hosted Jev today; a future classifier joins as a new mode with its own packet.
-
-Each transport defines how to check its backend and return a typed judgment. The current mode, `cli-jev`, answers through the `jev` CLI with a stored key. The parent hub stays ready for another classifier mode without changing its public identity.
 
 ---
 
@@ -20,7 +18,6 @@ Each transport defines how to check its backend and return a typed judgment. The
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Typed judgments from the hosted Jev service; future classifiers can have their own modes |
 | **Invoke with** | A request that names Jev, `cli-jev` or its `cli-usage` alias. The advisor resolves the hub |
 | **Routes to** | The current mode `cli-jev` (packet `cli-jev`), through `mode-registry.json` and `hub-router.json` |
 | **Produces** | One typed Jev value, with an exit code that names the outcome |
@@ -29,9 +26,13 @@ Each transport defines how to check its backend and return a typed judgment. The
 
 ## 2. OVERVIEW
 
-### What It Does
+### Purpose
 
-`cli-classifier` is one public advisor identity over its registered transport packets. Today, its only `packetKind: "transport"` mode is `cli-jev`, which bridges the `jev` CLI and MCP surface. The hub holds no packet-local logic. `mode-registry.json` resolves the mode, and `leaf-manifest.json` inventories its leaves. A future classifier backend joins as a new mode with a packet of its own.
+`cli-classifier` is one public advisor identity over its registered transport packets. Today, its only `packetKind: "transport"` mode is `cli-jev`, which bridges the `jev` CLI and MCP surface. Each transport defines how to check its backend and return a typed judgment. The current mode, `cli-jev`, answers through the `jev` CLI with a stored key. The hub holds no packet-local logic. `mode-registry.json` resolves the mode, and `leaf-manifest.json` inventories its leaves. A future classifier backend joins as a new mode with a packet of its own, and the parent hub stays ready for it without changing its public identity.
+
+### When to Use
+
+Use it for typed judgments from the hosted Jev service. Future classifiers can have their own modes.
 
 ### Why It Matters
 
@@ -63,7 +64,11 @@ Without `jev`, the hub reports mode `cli-jev` as unavailable instead of guessing
 
 ### Features That Run When a Key Is Stored
 
-Once `jev auth status` passes, two features ask Jev on their own. Each one beat the best rule without a model in a measured run, and each asks the question it was measured with. `shared/scripts/jev-features.mjs` decides whether one runs.
+Once `jev auth status` passes, two features ask Jev on their own:
+
+- Each one beat the best rule without a model in a measured run.
+- Each asks the question it was measured with.
+- `shared/scripts/jev-features.mjs` decides whether one runs.
 
 | Feature | Where it runs | Turn it off |
 |---|---|---|

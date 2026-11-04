@@ -1,0 +1,11 @@
+VERDICT: FIX
+
+- [P1] `.skilled/skills/cli-classifier/cli-jev/references/providers-and-models.md:25` | 4 | The overview says no authenticated call was made, but Section 8 records an authenticated `official` call. | Replace the paragraph with: “Read from `src/jev_cli/__init__.py` (`PROVIDERS`, `provider_endpoint()`, `provider_model()`, `provider_request()`, `normalize_response()`) at `jev-cli` 0.6.2 and confirmed live where a probe could reach the branch without a credential. The authenticated `official` response and one judgment per type are recorded in Section 8; provider-reachability claims for `vercel`, `openrouter` and `custom` remain **Source contract** unless stated otherwise. Claims marked **Command result** carry an observed command, output and exit status; claims marked **Source contract** are read from that source and are re-probed after any version change.”
+
+- [P2] `.skilled/skills/cli-classifier/cli-jev/README.md:103` | 8 | The inserted tree row edits a fenced block, which the review instructions require to remain exact. | Remove the inserted `hard-rules.json` line from the fenced tree; retain the `hard-rules.json` row in the file table.
+
+- [P2] `.skilled/skills/cli-classifier/cli-jev/references/cli-reference.md:36` | 9 | The evidence-label rewrite changes comments inside a fenced code block, which the review instructions require to remain exact. | Restore the original lines verbatim: `jev --version          # LIVE → stdout "jev 0.6.2", exit 0` and `jev --help             # LIVE → subcommands: auth, install-skills, noul, choice, score, run`. Skip the label rewrite inside this code block.
+
+- [P2] `.skilled/skills/cli-classifier/cli-jev/SKILL.md:268` | 9 | The replacement drops the claims that the hub router is the active stage-two surface router. | Replace “The hub's `ROUTER.md` maps this mode's judgment, question, provider and MCP intents to its leaves.” with: “The hub's `ROUTER.md` is the active stage-two surface router and maps this mode's judgment, question, provider and MCP intents to its leaves.”
+
+- [P2] `.skilled/skills/cli-classifier/cli-jev/SKILL.md:130` | 9 | The body contains the prohibited “in this packet” phrase. | Replace “Nothing in this packet decides what to do with it.” with: “The caller decides what to do with the answer.”

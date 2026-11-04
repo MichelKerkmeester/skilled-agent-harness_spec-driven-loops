@@ -2,7 +2,7 @@
 name: cli-classifier
 description: "Routes typed classifier judgment requests to the hosted Jev transport via mode-registry.json; future classifiers join as modes."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.8.6.0
+version: 0.8.7.0
 ---
 
 <!-- Keywords: cli-classifier, cli-jev, cli-usage, jev, typed judgment, jev-mcp, hosted classifier, noul, jev choice, jev score -->
@@ -155,7 +155,7 @@ The injection screen runs that measured question as an advisory on Claude Code, 
 
 ---
 
-## RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - `manual-testing-playbook/manual-testing-playbook.md` - the hub's operator-facing scenario index.
 - `cli-jev/manual-testing-playbook/manual-testing-playbook.md` - the `cli-jev` transport's own scenario index.
