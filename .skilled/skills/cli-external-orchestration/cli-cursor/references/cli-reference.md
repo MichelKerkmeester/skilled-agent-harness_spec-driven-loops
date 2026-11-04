@@ -10,7 +10,7 @@ trigger_phrases:
   - "cursor session resume"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.13
+version: 1.4.1.0
 ---
 
 # Cursor CLI - Complete Command Reference
@@ -21,13 +21,9 @@ Comprehensive reference for all Cursor CLI commands, flags, models, configuratio
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces a 29-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
-
 ### Purpose
 
-Provide a comprehensive, single-source reference for all Cursor CLI commands, flags, models, configuration options, and troubleshooting guidance.
+Be the single source a dispatcher checks before running Cursor, so every option a run depends on, the enforced model allowlist included, is looked up rather than remembered.
 
 ### When to Use
 
@@ -37,13 +33,17 @@ Provide a comprehensive, single-source reference for all Cursor CLI commands, fl
 - Selecting the right model or execution mode for a task
 - Understanding the shared editor-config surface before a dispatch
 
+### Core Principle
+
+Cursor CLI (`cursor-agent`) is a terminal-based AI coding agent from Cursor, distinct from the Cursor editor but sharing its entire config surface. It dispatches non-interactively via `-p`; this skill defaults dispatch to `composer-2.5` (Cursor's own model) and enforces a 29-id allowlist — Cursor's own `auto` router is deliberately excluded (§5). Unlike sibling CLIs, Cursor has no `--reasoning-effort` flag and no `model[effort=...]` bracket support — effort tiers are baked into the model id itself.
+
 ### Key Sources
 
 | Source | URL |
 |--------|-----|
-| **Docs** | https://cursor.com/docs/cli/overview |
-| **Install** | https://cursor.com/install |
-| **Account** | https://cursor.com |
+| **Docs** | [Cursor CLI docs](https://cursor.com/docs/cli/overview) |
+| **Install** | [Install script](https://cursor.com/install) |
+| **Account** | [Cursor account](https://cursor.com) |
 
 ---
 
@@ -243,7 +243,12 @@ Cursor CLI reads project rules from multiple sources, applied automatically: `.c
 
 ## 9. MCP INTEGRATION
 
-`cursor-agent mcp` subcommands: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`. Config file: `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (user) — "the CLI uses the same configuration as the editor". Precedence: project → global → nested. `enable <id>` is an operator trust mutation; a configured but unapproved server is a manual-playbook SKIP with blocker `MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`. `--approve-mcps` auto-approves all configured servers for a dispatch, not for this trust-state inspection. Cursor CLI is an MCP *client* only — it discovers and uses configured servers; there is no documented mode of it acting as an MCP server itself.
+`cursor-agent mcp` subcommands: `login <id>`, `list`, `list-tools <id>`, `enable <id>`, `disable <id>`.
+
+- **Config files.** `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (user) — "the CLI uses the same configuration as the editor". Precedence: project → global → nested.
+- **Trust mutation.** `enable <id>` is an operator trust mutation. A configured but unapproved server is a manual-playbook SKIP with blocker `MCP server is configured but not approved; operator must run cursor-agent mcp enable <id> outside playbook`.
+- **Per-dispatch approval.** `--approve-mcps` auto-approves all configured servers for a dispatch, not for this trust-state inspection.
+- **Client only.** Cursor CLI is an MCP *client* only — it discovers and uses configured servers; there is no documented mode of it acting as an MCP server itself.
 
 ---
 

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/007-cli-opencode",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/007-cli-opencode",
+  "parent_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli opencode",
+      "phase 7 cli opencode",
+      "cli opencode plan",
+      "cli opencode tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli opencode implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "opencode",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-budget.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md",
+        "source": "derived"
+      },
+      {
+        "name": "destructive-scope-violations.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-and-versions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "permissions-matrix.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/cli-external-orchestration/cli-opencode` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:24Z",
+    "last_save_at": "2026-11-04T17:19:34.636Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:39ad9756a802e2769abde38033cdae2fc3386a136811d7bf4e067c75ea55b5b1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b1248b5d10798eb052531070e2a6e348dc5829717c6e6be5412f896f199a62f1",
+      "plan.md": "4308af92809b6b6da5b84e193f9a5c0682501d19bca8be4393a66c22b62cb1aa",
+      "tasks.md": "ffdbc06f07444765b14f98d068bcffbee66e0ee6688c55d6b02619979419e74a",
+      "implementation-summary.md": "5810eb40a82f5cd0f2de59b8371631989db8b859f2950f0696d3fe8709c8a20b"
+    },
+    "last_active_at": null
+  }
+}

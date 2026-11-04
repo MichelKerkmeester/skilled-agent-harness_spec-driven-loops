@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi resource loader"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # Pi Native Skills and Extensions
@@ -20,10 +20,6 @@ Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-o
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Pi's own resource model (skills, prompt templates, extensions) is a separate consumer contract from this repository's own skill system. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only; the local contract pin and phases 012/013 are the authority for live observations.
-
 ### Purpose
 
 Separates Pi-native skill/prompt-template/extension discovery from this repo's own OpenCode skill packet, and tracks which of those surfaces have moved from documented-only to live-confirmed.
@@ -33,6 +29,10 @@ Separates Pi-native skill/prompt-template/extension discovery from this repo's o
 - Deciding whether a claim about Pi's resource discovery is backed by a live test or only by Pi's own documentation
 - Checking whether prompt templates or extensions are safe to treat as confirmed before relying on them
 - Planning the remaining native-skill-discovery verification work
+
+### Core Principle
+
+Pi's own resource model (skills, prompt templates, extensions) is a separate consumer contract from this repository's own skill system. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only; the local contract pin and phases 012/013 are the authority for live observations.
 
 ---
 

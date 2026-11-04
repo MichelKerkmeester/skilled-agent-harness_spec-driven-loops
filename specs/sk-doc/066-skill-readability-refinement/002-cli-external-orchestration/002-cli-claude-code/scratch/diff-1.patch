@@ -1,0 +1,585 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+index 378cf0609c0..41e9180ecbe 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+@@ -30,12 +30,6 @@ version: 1.5.1.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial or skips the capability. Auth handling and model selection become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value.
+-
+-This skill standardizes the dispatch and guards against self-invocation, so the caller never builds its own CLI wrapper. It runs an auth pre-flight before the first call.
+-
+ ### What It Does
+ 
+ cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
+@@ -44,6 +38,12 @@ The default dispatch is `claude -p "<prompt>" --model claude-sonnet-5-5 --output
+ 
+ It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders and session continuity. cli-claude-code dispatches to Claude Code and hands the result back to the caller.
+ 
++### Why This Skill Exists
++
++A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial or skips the capability. Auth handling and model selection become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value.
++
++This skill standardizes the dispatch and guards against self-invocation, so the caller never builds its own CLI wrapper. It runs an auth pre-flight before the first call.
++
+ ### The Agent Roster
+ 
+ The skill routes to a roster of specialized `.claude/agents/*.md` definitions with `--agent <name>`. Each agent covers one delegation target.
+@@ -74,7 +74,15 @@ command -v claude
+ 
+ If nothing prints, install it with `npm install -g @anthropic-ai/claude-code`.
+ 
+-**Step 2: Run the default dispatch.**
++**Step 2: Confirm the OAuth session.**
++
++```bash
++claude auth status
++```
++
++If it reports no session, run `claude auth login` (or `claude setup-token` for CI/CD) before dispatching. cli-claude-code uses the Claude subscription OAuth only, never an API key.
++
++**Step 3: Run the default dispatch.**
+ 
+ ```bash
+ claude -p "Explain the dependency injection in src/app.ts" \
+@@ -85,7 +93,7 @@ claude -p "Explain the dependency injection in src/app.ts" \
+ 
+ You get a plain-text explanation scoped to the file you named, ending with a cost summary line.
+ 
+-**Step 3: Reach for deep reasoning when the task earns it.**
++**Step 4: Reach for deep reasoning when the task earns it.**
+ 
+ ```bash
+ claude -p "Analyze the trade-offs between microservices and a monolith for this project" \
+@@ -97,7 +105,7 @@ claude -p "Analyze the trade-offs between microservices and a monolith for this
+ 
+ You get an extended-thinking analysis that weighs alternatives before it commits.
+ 
+-**Step 4: Get schema-validated JSON for a pipeline.**
++**Step 5: Get schema-validated JSON for a pipeline.**
+ 
+ ```bash
+ claude -p "Analyze src/utils.ts and return function signatures" \
+@@ -155,6 +163,7 @@ cli-claude-code/
+ +-- SKILL.md                      # Runtime instructions, dispatch rules and the full rule set
+ +-- ROUTER.md                     # Section 3: machine router, intent map, resource map and loading levels
+ +-- README.md                     # Overview and navigation front page
+++-- hard-rules.json               # Dispatch preflight rules: stdin redirect and permission-mode risk
+ +-- assets/                       # Dispatch-time prompt resources
+ |   +-- prompt-quality-card.md    # Fast-path prompt discipline, the framework table and CLEAR check
+ |   `-- prompt-templates.md       # Copy-paste prompt templates per task
+@@ -181,6 +190,7 @@ cli-claude-code/
+ | `references/providers-and-models.md` | Single-source catalog of Anthropic model ids, the default pin and the `--effort` mapping |
+ | `assets/prompt-quality-card.md` | Fast-path prompt discipline, the framework table and CLEAR check, always loaded |
+ | `assets/prompt-templates.md` | Copy-paste prompt templates per task |
++| `hard-rules.json` | Dispatch preflight rules: stdin redirect and non-interactive permission-mode risk |
+ 
+ ---
+ 
+@@ -214,6 +224,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ |---|---|
+ | `sk-code` | Owns code standards and verification. cli-claude-code dispatches the work, sk-code governs the quality of what comes back. |
+ | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Claude Code session back into the caller's spec folder. |
++
+ ---
+ 
+ ## 7. TROUBLESHOOTING
+@@ -260,8 +271,8 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ | Check | How to run it |
+ |---|---|
+ | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/README.md --type readme` reports zero issues |
+-| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` |
+-| Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth |
++| Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md`. Expect `"valid": true` and zero blocking errors |
++| Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth. Each scenario meets its recorded expected result |
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md
+index f925028088f..81eb4814691 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md
+@@ -32,7 +32,10 @@ Orchestrate Anthropic's Claude Code CLI from external AI assistants (OpenCode, C
+ 
+ ### When NOT to Use
+ 
+-- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation. Run the work natively instead: dispatch a subagent with the Agent tool. Its `model` parameter picks the model, and it takes no effort setting. A subagent runs at the session's effort level unless its agent definition sets `effort` (`low`, `medium`, `high`, `xhigh` or `max`), so a definition is needed only for a level different from the session's, such as `~/.claude/agents/opus-xhigh.md`. A new or edited definition loads within seconds, with no restart. Source: the `effort` row of the frontmatter table at https://code.claude.com/docs/en/sub-agents; where this summary and that page differ, the page wins.
++- **You ARE Claude Code already.** If your runtime is Claude Code (detection signal: `$CLAUDECODE` env var set, `claude` in process ancestry, or `~/.claude/state/<id>/lock` present), this skill refuses to load. Self-invocation creates a circular dispatch loop and burns tokens for no value. The cli-X family is exclusively for cross-AI delegation.
++  - **Run the work natively instead.** Dispatch a subagent with the Agent tool. Its `model` parameter picks the model, and it takes no effort setting.
++  - **Effort comes from the session.** A subagent runs at the session's effort level unless its agent definition sets `effort` (`low`, `medium`, `high`, `xhigh` or `max`), so a definition is needed only for a level different from the session's, such as `~/.claude/agents/opus-xhigh.md`. A new or edited definition loads within seconds, with no restart.
++  - **Source:** the `effort` row of the frontmatter table at [code.claude.com/docs/en/sub-agents](https://code.claude.com/docs/en/sub-agents); where this summary and that page differ, the page wins.
+ - Simple, quick tasks where CLI overhead is not worth it.
+ - Tasks requiring interactive terminal UI (use `claude` directly instead).
+ - Context already loaded and understood by the calling AI.
+@@ -138,13 +141,15 @@ Route to a specialized `.claude/agents/*.md` agent with `--agent <name>` when th
+ |-----------|-------|
+ | Codebase exploration | `context` (add `--permission-mode plan`) |
+ | Systematic debugging | `debug` |
+-| Session state capture | `handover` |
+-| Multi-agent coordination | `orchestrate` |
+-| Evidence gathering | `research` |
++| Code implementation | `code` (orchestrator-only) |
++| Multi-agent coordination | `orchestrate` (add `--permission-mode plan`) |
++| Single-iteration research | `deep-research` (command-owned) |
++| Single-iteration review | `deep-review` (command-owned) |
+ | Code review / audit | `review` (add `--permission-mode plan`) |
+-| Spec documentation | `speckit` |
+ | Multi-strategy planning | `ai-council` (add `--permission-mode plan`) |
+-| Documentation generation | `write` |
++| Documentation generation | `markdown` |
++| Prompt packages | `prompt-improver` (command-owned) |
++| Design values and measurement | `design` |
+ 
+ ### Dispatch-Critical Gotchas
+ 
+@@ -235,7 +240,7 @@ When the calling AI needs to preserve session context from a Claude Code CLI del
+ The continuity writer is the last step; nothing is handed to an index.
+ Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md).
+ 
+-Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](./assets/prompt-templates.md) §11.
++Claude-Code-specific Memory Epilogue template: see [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
+ 
+ Example invocation:
+ ```bash
+@@ -249,9 +254,10 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ ### Core References
+ 
+ - [cli-reference.md](./references/cli-reference.md) - Complete CLI flags, commands, models, authentication, and configuration
++- [providers-and-models.md](./references/providers-and-models.md) - Anthropic model ids, the default pin and the `--effort` mapping
+ - [integration-patterns.md](./references/integration-patterns.md) - Cross-AI orchestration patterns (reversed: external AI conducts, Claude Code executes)
+ - [claude-tools.md](./references/claude-tools.md) - Unique capabilities and comparison with OpenCode
+-- [agent-delegation.md](./references/agent-delegation.md) - 9 agent roster, routing table, and invocation patterns
++- [agent-delegation.md](./references/agent-delegation.md) - 11 agent roster, routing table, and invocation patterns
+ 
+ ### Templates and Assets
+ 
+@@ -287,7 +293,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ 
+ ### Skill Quality
+ 
+-- All 9 sections present with proper anchor comments.
++- All 8 numbered H2 sections present with `---` separators.
+ - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
+ - Reference files provide deep-dive content without duplication.
+ 
+@@ -312,4 +318,4 @@ Key integrations:
+ 
+ The router discovers reference, asset, and script docs dynamically. The hub [`ROUTER.md`](../ROUTER.md) names the two leaves a Claude Code dispatch starts from, and the `ALWAYS` tier in [`ROUTER.md`](./ROUTER.md) names the baseline. Load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+ 
+-Related skills: `cli-opencode` for sandboxed OpenAI perspective, `cli-opencode` for full OpenCode runtime dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.
++Related skills: `cli-codex` for sandboxed OpenAI perspective, `cli-opencode` for full OpenCode runtime dispatch, `sk-code` for code-quality contracts, `mcp-code-mode` for external MCP work, and `system-spec-kit` for packet handback.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md
+index f04f20381e6..51c738b50e3 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md
+@@ -71,4 +71,6 @@ Claude Code escalation example: if the task would otherwise need a long `claude
+ 
+ ## 6. RELATED RESOURCES
+ 
+--> ../../../sk-prompt/assets/cli-prompt-quality-card.md · ./prompt-templates.md · ../SKILL.md
++- [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) - The delegated framework table and CLEAR check
++- [prompt-templates.md](./prompt-templates.md) - Copy-paste dispatch templates for this executor
++- [SKILL.md](../SKILL.md) - Runtime rules that apply this card
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md
+index 1b883842f9f..642bd4a227e 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md
+@@ -476,7 +476,7 @@ All placeholders used across templates in this file:
+ 
+ ---
+ 
+-## 12. RELATED RESOURCES
++## 12. REFERENCE LINKS
+ 
+ ### Parent
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md
+index d671a9fd35f..cdcabd5fcab 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md
+@@ -14,19 +14,15 @@ version: 1.5.0.22
+ 
+ # Claude Code Agent Delegation Reference
+ 
+-Routing reference for delegating tasks from external AI assistants to specialized Claude Code CLI agents.
++Reach for this when a task needs a named Claude Code agent instead of a bare `claude -p` prompt, and pick the flags that keep that hand-off read-only or scoped.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI decides WHAT to do, Claude Code decides HOW to do it within the delegated scope.
+-
+ ### Purpose
+ 
+-Documents the active Claude Code agents in `.skilled/agents/` and how external AI assistants orchestrate them. The calling AI (OpenCode, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
++Documents the active Claude Code agents in `.claude/agents/` and how external AI assistants orchestrate them. The calling AI (OpenCode, Copilot, etc.) acts as the **conductor** (planner, validator, integrator) while Claude Code executes targeted tasks through its agent system.
+ 
+ ### When to Use
+ 
+@@ -36,6 +32,10 @@ Documents the active Claude Code agents in `.skilled/agents/` and how external A
+ - Fresh-perspective debugging after the calling AI's attempts fail via Task-tool dispatch to `@debug`
+ - Codebase exploration in read-only mode via `@context`
+ 
++### Core Principle
++
++The calling AI decides WHAT to do, Claude Code decides HOW to do it within the delegated scope.
++
+ ---
+ 
+ ## 2. ORCHESTRATION MODEL
+@@ -65,7 +65,7 @@ External AI (CONDUCTOR)
+ 
+ ### Invocation Pattern
+ 
+-Claude Code agents are routed using the `--agent` flag with an agent name. Agent definitions live in `.skilled/agents/<name>.md` files. For read-only tasks, combine with `--permission-mode plan`.
++Claude Code agents are routed using the `--agent` flag with an agent name. Agent definitions live in `.claude/agents/<name>.md` files. For read-only tasks, combine with `--permission-mode plan`.
+ 
+ ```bash
+ # Agent-based delegation (non-interactive)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md
+index 164870b0af7..179a7f959e9 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md
+@@ -15,16 +15,12 @@ version: 1.5.2.0
+ 
+ # Claude Code CLI Built-in Tools Reference
+ 
+-Reference for all Claude Code CLI capabilities, highlighting unique features and comparison with OpenCode.
++Reach for this when you have to justify a delegation: each capability is set beside what the calling AI would have to build itself to match it.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Delegate to Claude Code CLI for capabilities other AIs lack natively, especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
+-
+ ### Purpose
+ 
+ Covers all built-in capabilities of Claude Code CLI, highlights what is unique compared to other CLIs, and provides a comparison table for task routing decisions.
+@@ -36,6 +32,10 @@ Covers all built-in capabilities of Claude Code CLI, highlights what is unique c
+ - Mapping calling AI capabilities to Claude Code equivalents
+ - Leveraging Claude Code-exclusive features (extended thinking, --json-schema, --permission-mode plan)
+ 
++### Core Principle
++
++Delegate to Claude Code CLI for capabilities other AIs lack natively, especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
++
+ ---
+ 
+ ## 2. UNIQUE CAPABILITIES
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md
+index 1f2ee061e87..8446114404c 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md
+@@ -16,16 +16,12 @@ version: 1.5.0.9
+ 
+ # Claude Code CLI - Complete Command Reference
+ 
+-Comprehensive reference for all Claude Code CLI commands, flags, models, configuration, and troubleshooting.
++Open this at dispatch time, when the command has to be right the first time: the tables answer what a switch does and what a failed run means.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Claude Code is Anthropic's official CLI for Claude, providing terminal-based AI coding assistance powered by Claude models (Opus, Sonnet, Haiku). It offers deep reasoning via extended thinking, surgical code editing, schema-validated structured output, agent delegation, and persistent memory — all from the command line.
+-
+ ### Purpose
+ 
+ Provide a comprehensive, single-source reference for all Claude Code CLI commands, flags, models, configuration options, permission modes, and troubleshooting guidance for external AI assistants delegating tasks.
+@@ -38,12 +34,16 @@ Provide a comprehensive, single-source reference for all Claude Code CLI command
+ - Selecting the right model and permission mode for a task
+ - Understanding output formats and structured output options
+ 
++### Core Principle
++
++Claude Code is Anthropic's official CLI for Claude, providing terminal-based AI coding assistance powered by Claude models (Opus, Sonnet, Haiku). It offers deep reasoning via extended thinking, surgical code editing, schema-validated structured output, agent delegation, and persistent memory — all from the command line.
++
+ ### Key Sources
+ 
+ | Source | URL |
+ |--------|-----|
+-| **Repository** | https://github.com/anthropics/claude-code |
+-| **Documentation** | https://docs.anthropic.com/en/docs/claude-code |
++| **Repository** | [anthropics/claude-code](https://github.com/anthropics/claude-code) |
++| **Documentation** | [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) |
+ | **License** | Proprietary (Anthropic) |
+ | **Runtime** | Node.js 18+ |
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md
+index ebd86b9619b..c534838bb81 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md
+@@ -21,10 +21,6 @@ Proven patterns for orchestrating Claude Code CLI from external AI sessions (Ope
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-opencode and cli-claude-code skills where Claude Code conducts. Here, Claude Code is the executor.
+-
+ ### Purpose
+ 
+ Each pattern documented here includes the rationale, implementation template, and practical considerations for combining an external AI with Claude Code CLI effectively.
+@@ -38,12 +34,22 @@ Each pattern documented here includes the rationale, implementation template, an
+ - Cost-controlled execution with `--max-budget-usd`
+ - Read-only exploration with guaranteed safety via `--permission-mode plan`
+ 
++### Core Principle
++
++The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-opencode and cli-claude-code skills where Claude Code conducts. Here, Claude Code is the executor.
++
+ ---
+ 
+ ## 2. GENERATE-REVIEW-FIX CYCLE
+ 
+ **The most reliable cross-AI pattern.** The calling AI generates, Claude Code reviews, the calling AI fixes.
+ 
++### When to Use
++
++- Code generation tasks where a second perspective catches edge cases
++- Security-sensitive code where independent review adds confidence
++- Architecture decisions that benefit from adversarial review
++
+ ### Flow
+ 
+ ```
+@@ -62,12 +68,6 @@ claude -p "Review @/tmp/generated.ts for bugs, security issues, and style violat
+ # Step 3: Calling AI reads review, applies fixes to /tmp/generated.ts
+ ```
+ 
+-### When to Use
+-
+-- Code generation tasks where a second perspective catches edge cases
+-- Security-sensitive code where independent review adds confidence
+-- Architecture decisions that benefit from adversarial review
+-
+ ### Considerations
+ 
+ - Use `--permission-mode plan` for the review step (guaranteed read-only)
+@@ -80,6 +80,13 @@ claude -p "Review @/tmp/generated.ts for bugs, security issues, and style violat
+ 
+ **Leverage extended thinking for complex decisions.** Delegate tasks requiring multi-dimensional analysis to Claude Code's Opus model with extended thinking.
+ 
++### When to Use
++
++- Architecture decisions with 4+ competing concerns
++- Algorithm design requiring correctness analysis
++- Root cause analysis where surface-level debugging failed
++- Technical decisions that will be hard to reverse
++
+ ### Flow
+ 
+ ```
+@@ -102,13 +109,6 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste
+   --model claude-opus-5-5 --effort high --agent debug --output-format text 2>&1 > /tmp/rca.md
+ ```
+ 
+-### When to Use
+-
+-- Architecture decisions with 4+ competing concerns
+-- Algorithm design requiring correctness analysis
+-- Root cause analysis where surface-level debugging failed
+-- Technical decisions that will be hard to reverse
+-
+ ### Considerations
+ 
+ - Use `claude-opus-5-5` with `--effort high`, and raise it to `xhigh` or `max` for maximum reasoning depth
+@@ -122,6 +122,13 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste
+ 
+ **Extract structured data from Claude Code for programmatic use.**
+ 
++### When to Use
++
++- Pipeline integration requiring guaranteed JSON structure
++- Batch analysis producing machine-readable results
++- Data extraction that feeds into automated workflows
++- Comparative analysis across multiple files
++
+ ### Implementation
+ 
+ ```bash
+@@ -139,13 +146,6 @@ claude -p "Audit @src/auth/ for security vulnerabilities" \
+   --output-format json 2>&1 > /tmp/audit.json
+ ```
+ 
+-### When to Use
+-
+-- Pipeline integration requiring guaranteed JSON structure
+-- Batch analysis producing machine-readable results
+-- Data extraction that feeds into automated workflows
+-- Comparative analysis across multiple files
+-
+ ### Considerations
+ 
+ - Always specify `--output-format json` alongside `--json-schema`
+@@ -159,6 +159,12 @@ claude -p "Audit @src/auth/ for security vulnerabilities" \
+ 
+ **Run Claude Code tasks in parallel while the calling AI continues working.**
+ 
++### When to Use
++
++- Long-running analysis or generation tasks
++- Parallel processing of independent subtasks
++- Documentation generation while working on code
++
+ ### Implementation
+ 
+ ```bash
+@@ -180,12 +186,6 @@ fi
+ wait $CLAUDE_PID
+ ```
+ 
+-### When to Use
+-
+-- Long-running analysis or generation tasks
+-- Parallel processing of independent subtasks
+-- Documentation generation while working on code
+-
+ ### Considerations
+ 
+ - Always use `--max-budget-usd` for background tasks to prevent runaway costs
+@@ -282,6 +282,12 @@ claude -p "Review this code" \
+ 
+ **Multi-stage validation using Claude Code at different levels.**
+ 
++### When to Use
++
++- Pre-merge quality gates
++- Complex feature development requiring multiple review dimensions
++- Security-sensitive changes requiring independent validation
++
+ ### 5-Stage Pipeline
+ 
+ ```bash
+@@ -304,18 +310,18 @@ claude -p "Analyze @src/feature.ts and suggest comprehensive test cases. Identif
+ # Read all review outputs and make final decision
+ ```
+ 
+-### When to Use
+-
+-- Pre-merge quality gates
+-- Complex feature development requiring multiple review dimensions
+-- Security-sensitive changes requiring independent validation
+-
+ ---
+ 
+ ## 9. CROSS-VALIDATION
+ 
+ **Use multiple AIs to validate the same artifact.**
+ 
++### When to Use
++
++- High-stakes code changes (auth, payments, data handling)
++- Architecture decisions that are hard to reverse
++- Security audits where coverage matters more than speed
++
+ ### Implementation
+ 
+ ```bash
+@@ -333,12 +339,6 @@ OPENCODE_REVIEW=$(opencode run "Review @/tmp/feature.ts for bugs and security is
+ # Compare findings, prioritize issues found by multiple AIs
+ ```
+ 
+-### When to Use
+-
+-- High-stakes code changes (auth, payments, data handling)
+-- Architecture decisions that are hard to reverse
+-- Security audits where coverage matters more than speed
+-
+ ### Considerations
+ 
+ - Cross-validation is expensive (3x cost) — reserve for critical code
+@@ -351,6 +351,12 @@ OPENCODE_REVIEW=$(opencode run "Review @/tmp/feature.ts for bugs and security is
+ 
+ **Continue conversations across invocations.**
+ 
++### When to Use
++
++- Multi-step analysis where each step builds on the previous
++- Iterative refinement of complex outputs
++- Long-running investigations that span multiple invocations
++
+ ### Implementation
+ 
+ ```bash
+@@ -369,12 +375,6 @@ claude -p "Apply the suggested improvements" \
+   --resume "$SESSION_ID" --output-format text 2>&1
+ ```
+ 
+-### When to Use
+-
+-- Multi-step analysis where each step builds on the previous
+-- Iterative refinement of complex outputs
+-- Long-running investigations that span multiple invocations
+-
+ ### Considerations
+ 
+ - `--continue` always continues the most recent session
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md
+index beed28e68fc..4799d3cde99 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md
+@@ -20,14 +20,19 @@ The single catalog of the provider, model ids, defaults, `--effort` thinking lev
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-One place to answer "which model, which effort, how to dispatch" for cli-claude-code. This mode is single-provider (Anthropic) and always reaches a small, fixed roster — so this file IS the catalog, with every model id inline.
++### Purpose
++
++One place to answer "which model, which effort, how to dispatch" for cli-claude-code.
+ 
+ ### When to Use
+ - Choosing a `--model claude-*` id for a `claude -p` dispatch
+ - Mapping a desired reasoning depth onto the `--effort` flag
+ - Recalling the default model and the canonical non-interactive invocation shape
+ 
++### Core Principle
++
++This mode is single-provider (Anthropic) and always reaches a small, fixed roster — so this file IS the catalog, with every model id inline.
++
+ ### Scope
+ This file enumerates the model/effort facts and the dispatch envelope. It does NOT own: the full `claude` flag surface, permission modes, auth pre-flight, and troubleshooting (see [cli-reference.md](./cli-reference.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
+ 
+@@ -74,7 +79,9 @@ claude -p "<prompt>" \
+   2>&1
+ ```
+ 
+-Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`, and raise the effort to `xhigh` or `max` when `high` is not enough. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login`; it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
++- Always append `2>&1` to capture both stdout and stderr.
++- For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`, and raise the effort to `xhigh` or `max` when `high` is not enough.
++- If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login`; it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
+ 
+ **Why Sonnet 5.5 is the default.** It answered a live probe, it is what the `sonnet` alias resolves to, and it keeps the default in the same balanced family as before, so a caller that names no model gets the same cost and depth profile on the current generation. Opus and Fable stay opt-in for work that needs more depth.
+ 
+@@ -98,6 +105,9 @@ cli-claude-code expresses reasoning depth through the **`--effort`** flag. Every
+ 
+ ## 5. HOW TO INVOKE
+ 
++### Self-invocation guard
++A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
++
+ ### Dispatch envelope (child / detached sessions)
+ When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture stderr:
+ 
+@@ -110,9 +120,6 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
+ - `2>&1` — REQUIRED to capture stderr; without it error and warning messages are lost. See [integration-patterns.md](./integration-patterns.md).
+ - `-p` (print) is mandatory for non-interactive dispatch; use `--permission-mode plan` for read-only review/analysis.
+ 
+-### Self-invocation guard
+-A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
+-
+ ### Parallel / fan-out
+ Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub — see §6.
+ 

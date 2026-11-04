@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi validation handback"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.4
+version: 1.5.1.0
 ---
 
 # Pi CLI Integration Patterns
@@ -20,10 +20,6 @@ Confirmed Pi mode behavior is sourced from the [Pi contract pin](../../../../spe
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-The calling AI is the conductor; Pi is the delegated executor. The shared deep-loop runtime owns process construction — this reference never inserts a packet-local shell wrapper between the skill and that runtime.
-
 ### Purpose
 
 Gives the conductor/executor patterns for print, JSON, and RPC dispatch, the validation pipeline and handback format, cross-validation against sibling CLIs, and documented anti-patterns.
@@ -33,6 +29,10 @@ Gives the conductor/executor patterns for print, JSON, and RPC dispatch, the val
 - Composing a Pi dispatch prompt and choosing print, JSON, or RPC mode
 - Building the pre-dispatch contract or the post-dispatch validation pipeline
 - Deciding whether Pi or a sibling CLI should validate the other's output
+
+### Core Principle
+
+The calling AI is the conductor; Pi is the delegated executor. The shared deep-loop runtime owns process construction — this reference never inserts a packet-local shell wrapper between the skill and that runtime.
 
 ---
 

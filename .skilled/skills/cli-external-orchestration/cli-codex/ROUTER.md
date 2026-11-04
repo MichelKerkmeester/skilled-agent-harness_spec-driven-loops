@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-codex routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -21,7 +21,9 @@ link that points here; this file holds the declaration a reader parses to decide
 ## 1. OVERVIEW
 
 Requests reach this skill when the prompt names Codex, the Codex CLI or `codex exec`, when the `cli-external-orchestration` hub's `cli-codex` mode signal selects this packet, and when the ask is a cross-AI second opinion, a diff-aware review, live web research through `codex --search exec`, a codebase architecture walk, parallel or backgrounded generation, or a specialized generation such as a test suite, a code translation or batch docs. A session already running inside Codex never routes here, because the self-invocation guard refuses it.
-The resource families it selects from are the intent-mapped guides under `references/` — the CLI reference, integration patterns, built-in tools, hook contract, agent delegation and provider roster — and the prompt material under `assets/`: the ALWAYS-loaded quality card plus the copy-paste templates.
+The resource families it selects from are:
+- the intent-mapped guides under `references/`: the CLI reference, integration patterns, built-in tools, hook contract, agent delegation and provider roster;
+- the prompt material under `assets/`: the ALWAYS-loaded quality card plus the copy-paste templates.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -96,6 +98,7 @@ if detect_self_invocation():
 | ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
 | CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
 | ON_DEMAND   | Only on explicit request| Extended templates and patterns |
+| ON_DEMAND_KEYWORDS | When a listed phrase appears | The extended reference for that phrase |
 
 ### Smart Router
 

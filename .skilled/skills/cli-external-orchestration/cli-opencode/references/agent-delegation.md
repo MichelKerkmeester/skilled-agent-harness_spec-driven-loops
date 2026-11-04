@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -20,9 +20,16 @@ How cli-opencode routes dispatches to specialized OpenCode agents via the `--age
 
 ## 1. OVERVIEW
 
+### Purpose
+
 OpenCode agents are markdown files under `.opencode/agents/<slug>.md`. Each file's frontmatter pins the model, tool permissions, system prompt, and behavioral constraints. When `opencode run --agent <slug>` is invoked, the dispatched session inherits all of that.
 
 The cli-opencode skill exposes the project's full agent roster. The calling AI selects the right slug based on the task type. The agent then shapes the dispatched session: different model, different tool permissions, different system prompt.
+
+### When to Use
+
+- A dispatch needs a role other than the default agent.
+- The task type picks the slug: codebase exploration, documentation generation, code review, root-cause debugging, or a command-owned research or review loop (§4 maps each to its invocation shape).
 
 ### Discovery commands
 
@@ -45,6 +52,37 @@ This separation of concerns is load-bearing for the cli-opencode skill: the call
 ---
 
 ## 2. ORCHESTRATION MODEL
+
+### Invocation pattern
+
+On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. OpenCode 2.0.32 also accepts `general` and a subagent slug at the top level, but the routing rules in this section still apply there. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
+
+```bash
+# OpenCode 1 only
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --agent <slug> \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>"
+```
+
+```bash
+# OpenCode 2
+cd /repo && opencode run --standalone \
+  --agent <slug> \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt>"
+```
+
+- **Effort:** On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix.
+- **Working directory:** On OpenCode 2 the working directory moves into a `cd`, and a child dispatch needs `--standalone`.
+- **Provider check:** On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`).
+- **Model precedence:** The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2.
+- **Frontmatter effects:** OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32.
+- **Pinned-model test:** No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
 
 ```text
 Calling AI (CONDUCTOR)
@@ -76,32 +114,6 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
   |-- Integrates findings into the parent workflow
   |-- Decides next step (next dispatch, completion, escalation)
 ```
-
-### Invocation pattern
-
-On OpenCode 1, `--agent <slug>` is valid at the top level ONLY for the primary agent `orchestrate` (and `plan`, an OpenCode built-in), never for `general` (rejected, omit `--agent` instead) and never for a subagent slug (`context`, `markdown`, `review`, `debug`, `ai-council`) or a command-owned loop executor (`deep-research`, `deep-review`, `prompt-improver`), all of which route through `--agent orchestrate`'s Task-dispatch or their owning `/deep:*` command (§3-4 below). When `--agent orchestrate` IS used, the flag loads the agent definition from `.opencode/agents/orchestrate.md` (project-local) or the user-level fallback. OpenCode 2.0.32 also accepts `general` and a subagent slug at the top level, but the routing rules in this section still apply there. The dispatch shape pins model, variant, format, and working directory alongside the agent slug:
-
-```bash
-# OpenCode 1 only
-opencode run \
-  --model llmgateway/deepseek-v4.1-flash-1017 \
-  --agent <slug> \
-  --variant max \
-  --format json \
-  --dir /repo \
-  "<prompt>"
-```
-
-```bash
-# OpenCode 2
-cd /repo && opencode run --standalone \
-  --agent <slug> \
-  -m llmgateway/deepseek-v4.1-flash-1017#max \
-  --format json \
-  "<prompt>"
-```
-
-On OpenCode 1, the `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default, and `--variant high` stays the generic effort for non-pinned models. On OpenCode 2 the effort level rides on `-m` as a `#<level>` suffix, the working directory moves into a `cd`, and a child dispatch needs `--standalone`. On this machine, OpenCode 2 lists no `opencode-go` provider, so confirm that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m`, before the first v2 dispatch (a 2.0.32 run used `llmgateway/deepseek-v4.1-flash#max`). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the explicit model flag wins, `--model` on OpenCode 1 or `-m` on OpenCode 2. OpenCode 2.0.32 routes a slug the same way and registers the agent's mode, permissions and temperature from its frontmatter. With the `openai-compatible` provider package, the only one tested, it does not send that temperature to the provider, so an agent's `temperature` has no effect there (OpenCode 1 sends it for a primary agent through the same package). Whether it applies those permissions during a run is unverified on OpenCode 2.0.32. No repo agent pins a model, so whether a pinned model beats `-m` on OpenCode 2.0.32 is untested.
 
 ### Conductor rules
 

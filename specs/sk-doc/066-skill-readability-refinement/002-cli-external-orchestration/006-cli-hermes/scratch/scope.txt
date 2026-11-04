@@ -1,0 +1,12 @@
+.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md
+.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md

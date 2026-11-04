@@ -8,18 +8,32 @@ trigger_phrases:
   - "cursor hook events"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Cursor CLI Hook Contract
+
+Open this file before writing a hook entry, choosing a scope, or trusting a registered event to fire.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Document the hook contract Cursor CLI and the Cursor editor share (registration schema, discovery order, event coverage, response envelope and exit semantics) so an adapter is built against confirmed behavior rather than assumption.
+
+### When to Use
+
+- Writing or reviewing a `.cursor/hooks.json` entry
+- Choosing the scope a hook belongs in
+- Tracing why a hook did or did not fire in a CLI dispatch
+
+### Core Principle
+
 Cursor 1.7+ ships a native hook system, and — unlike every sibling CLI's hooks — Cursor CLI's hooks are **the exact same hooks the Cursor editor uses**, not a CLI-private surface. There is no separate "enable hooks" feature flag to set; the hooks system is native and always active once a `hooks.json` file exists at a discovered location.
 
-This packet ships its own hook adapter layer (`004-cursor-hook-adapter-layer`) and a committed, project-level registration file (`.cursor/hooks.json`, `010-cursor-hooks-live-wiring`). This reference documents the confirmed contract those adapters were built against.
+The skill ships its own hook adapter layer and a committed, project-level registration file (`.cursor/hooks.json`). This reference documents the confirmed contract those adapters were built against.
 
 ---
 
@@ -68,7 +82,7 @@ Because project and user scope are the same files the Cursor **editor** reads, a
 
 Confirmed documented event names: `sessionStart`, `sessionEnd`, `preToolUse`, `postToolUse`, `postToolUseFailure`, `subagentStart`, `subagentStop`, `beforeShellExecution`, `afterShellExecution`, `beforeMCPExecution`, `afterMCPExecution`, `beforeReadFile`, `afterFileEdit`, `beforeSubmitPrompt`, `preCompact`, `stop`, `afterAgentResponse`, `afterAgentThought` (plus Tab-completion and `workspaceOpen` app-lifecycle events that are editor-only, not agent-session events).
 
-A live `~/.cursor/hooks.json` on the reference machine used `beforeSubmitPrompt`, `stop`, `beforeShellExecution`, `beforeMCPExecution`, `sessionStart`, and `sessionEnd` — confirming the schema shape live, though that particular install is user-owned tooling, not this packet's own adapter.
+A live `~/.cursor/hooks.json` on the reference machine used `beforeSubmitPrompt`, `stop`, `beforeShellExecution`, `beforeMCPExecution`, `sessionStart`, and `sessionEnd` — confirming the schema shape live, though that particular install is user-owned tooling, not the skill's own adapter.
 
 ---
 

@@ -1,0 +1,5 @@
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md:44: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md:45: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md:46: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md:18: render_intro_restates_purpose: The intro repeats the Purpose (0.67 token overlap); make the intro a hook.
+files=12 render_warnings=4 invalid=0

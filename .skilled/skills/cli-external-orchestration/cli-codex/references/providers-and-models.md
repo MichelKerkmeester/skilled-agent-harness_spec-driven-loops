@@ -12,7 +12,7 @@ trigger_phrases:
   - "codex exec model reasoning effort"
 importance_tier: normal
 contextType: implementation
-version: 1.9.4.0
+version: 1.9.5.0
 ---
 
 # cli-codex Providers, Models & Invocation
@@ -23,16 +23,21 @@ The single catalog of the provider, model ids, defaults, `model_reasoning_effort
 
 ## 1. OVERVIEW
 
-### Core Principle
-One place to answer "which model, which effort, how to dispatch" for cli-codex. This mode is single-provider (OpenAI via ChatGPT OAuth) — the choice space is one provider, five models, and one effort ladder capped per model.
+### Purpose
+
+One place to answer "which model, which effort, how to dispatch" for cli-codex.
 
 ### When to Use
 - Choosing a `--model` for a `codex exec` dispatch
 - Mapping a desired reasoning effort onto `-c model_reasoning_effort=` for a given model (and staying under its ceiling)
 - Recalling the default model + effort + service tier and the canonical non-interactive invocation shape
 
+### Core Principle
+
+This mode is single-provider (OpenAI via ChatGPT OAuth); the choice space is one provider, five models, and one effort ladder capped per model.
+
 ### Scope
-This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `codex exec` flag surface, sandbox modes, auth pre-flight, or troubleshooting (see [cli-reference.md](./cli-reference.md)), the cross-AI orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
+This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `codex exec` flag surface, sandbox modes, auth pre-flight, or troubleshooting (see [cli-reference.md](./cli-reference.md)), the cross-AI orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see [../SKILL.md](../SKILL.md) §4 Rule 10), or the fan-out / model-enforcement runtime (see §6).
 
 ### Authority pointers
 - Full CLI flags, subcommands, sandbox modes, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
@@ -101,18 +106,26 @@ Per-model ceilings — set the effort within the chosen model's cap:
 | `gpt-6.1-terra` | `ultra` | Callable directly; no dedicated profile |
 | `gpt-6-sol` | `ultra` | `sol-verify` profile pins `xhigh` |
 
-Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
+Selection heuristic:
+
+- Default `gpt-5.5 medium`.
+- Raise to `high` / `xhigh` for architecture, security, and complex planning.
+- Escalate the model when the task wants reasoning past `xhigh`: `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review.
+- Drop to `low` / `minimal` for trivial lookups.
+
+Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort`; see [cli-reference.md](./cli-reference.md) §5.
 
 ---
 
 ## 5. HOW TO INVOKE
 
 ### Canonical dispatch shape
+
+`codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless you add `--sandbox workspace-write` (or `--full-auto`). See [integration-patterns.md](./integration-patterns.md).
+
 ```bash
 codex exec --model gpt-5.5 -c model_reasoning_effort="high" "<prompt>"
 ```
-
-`codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless you add `--sandbox workspace-write` (or `--full-auto`). See [integration-patterns.md](./integration-patterns.md).
 
 ### Dispatch envelope (child / detached sessions)
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:

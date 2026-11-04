@@ -10,7 +10,7 @@ trigger_phrases:
   - "cursor validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.4.0.8
+version: 1.4.1.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Cursor CLI
@@ -20,10 +20,6 @@ Proven patterns for orchestrating Cursor CLI from any AI assistant session.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI acts as the orchestrator (planner, validator, integrator) while Cursor CLI executes targeted tasks. The value comes from combining different model perspectives — including Cursor's own Composer model — not from redundant work.
 
 ### Purpose
 
@@ -35,6 +31,10 @@ Each pattern documented here includes the rationale, implementation template, an
 - You want read-only exploration (`--mode plan`/`--mode ask`) before committing to a write-capable dispatch
 - You want to run parallel AI tasks while the calling AI continues working
 - Complex workflows benefit from structured, multi-stage generation and validation
+
+### Core Principle
+
+The calling AI acts as the orchestrator (planner, validator, integrator) while Cursor CLI executes targeted tasks. The value comes from combining different model perspectives — including Cursor's own Composer model — not from redundant work.
 
 ---
 
@@ -151,6 +151,8 @@ echo "All Cursor tasks complete"
 
 The same class of bug that affects other backgrounded CLI dispatches applies here: when a dispatcher script iterates over lines of input with `while IFS= read -r line; do ... done < input.jsonl` and launches `cursor-agent -p ... &` inside the loop body, the backgrounded process can inherit the loop's stdin and race the `read` command for lines, silently dropping most dispatches.
 
+**Always pair `cursor-agent -p ... &` inside a read-loop with `</dev/null` on the redirection.** Live-verified: a `cursor-agent -p ... </dev/null` dispatch completes normally with no hang, confirming the redirection is safe and does not interfere with the CLI's own operation.
+
 ```bash
 # RISKY: cursor-agent may inherit the loop's stdin
 while IFS= read -r line; do
@@ -164,8 +166,6 @@ while IFS= read -r line; do
   echo "$!" > "pid-$LINE_ID.pid"
 done < input.jsonl
 ```
-
-**Always pair `cursor-agent -p ... &` inside a read-loop with `</dev/null` on the redirection.** Live-verified: a `cursor-agent -p ... </dev/null` dispatch completes normally with no hang, confirming the redirection is safe and does not interfere with the CLI's own operation.
 
 ---
 
@@ -182,7 +182,7 @@ done < input.jsonl
 | Architecture / security analysis at high or extra-high depth | `cursor-grok-4.6-high` / `-xhigh` (or `-fast` siblings), or `glm-5.2-max` | Effort is baked into the id; pick the high or xhigh tier — 4.6's xhigh is the deepest available |
 | Code generation | `composer-2.5`, or `cursor-grok-4.5-medium` / `cursor-grok-4.6-medium` | Balanced for most generation tasks |
 | Trivial lookups | `composer-2.5-fast` | The fast variant is quicker for simple tasks |
-| Task wants a model NOT on this list (e.g. GPT, Claude, Gemini, Kimi via Cursor) | **Not supported by this skill** | Escalate to the user rather than substituting an allowed model silently |
+| Task wants a model NOT on this list (e.g. Claude, Kimi, or a GPT/Gemini tier outside the allowlist) | **Not supported by this skill** | Escalate to the user rather than substituting an allowed model silently |
 
 ### Implementation
 

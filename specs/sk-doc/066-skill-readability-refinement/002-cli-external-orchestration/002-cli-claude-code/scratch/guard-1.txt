@@ -1,0 +1,5 @@
+restored=0
+BLOCK-COUNT .skilled/skills/cli-external-orchestration/cli-claude-code/README.md edited=2 missing=1
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md edited=1
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md edited=1
+code_blocks_changed=2 block_count_mismatch=1 restored

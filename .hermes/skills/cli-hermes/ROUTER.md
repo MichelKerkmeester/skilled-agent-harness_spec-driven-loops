@@ -48,18 +48,9 @@ loads before an intent selects it.
 The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
 reader finds it. This section is the last in the file, and it holds the only pseudocode.
 
-The routing detail the short summary leaves out: the fan-out model fallback, the prerequisite probes, the self-invocation guard, the loading levels, the intent map and the call sequence.
+The routing detail the short summary leaves out: the fan-out model fallback, the self-invocation guard, the prerequisite probes, the loading levels, the intent map and the call sequence.
 
 > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
-
-### Prerequisite Detection
-
-Run both probes before every dispatch. Do not build a command when the first fails; surface the second's result to the operator when it shows no provider.
-
-~~~bash
-command -v hermes || echo "Not installed. See https://github.com/NousResearch/hermes-agent"
-hermes config get providers.llmgateway.base_url </dev/null
-~~~
 
 ### Self-Invocation Guard
 
@@ -84,6 +75,15 @@ if detect_self_invocation():
         "Self-invocation refused: this agent is already running inside Hermes. "
         "Use Hermes's own delegate_task, or a sibling cli-* skill from a different runtime."
     )
+```
+
+### Prerequisite Detection
+
+Run both probes before every dispatch. Do not build a command when the first fails; surface the second's result to the operator when it shows no provider.
+
+```bash
+command -v hermes || echo "Not installed. See https://github.com/NousResearch/hermes-agent"
+hermes config get providers.llmgateway.base_url </dev/null
 ```
 
 ### Resource Loading Levels
@@ -141,4 +141,11 @@ UNKNOWN_FALLBACK_CHECKLIST = [
 
 ### Call Sequence
 
-The call sequence is `route_hermes_resources(task)`, whose helper bodies `discover_markdown_resources()`, `_guard_in_skill()`, `load_if_available()`, `score_intents()`, `select_intents()` and `get_routing_key()` are written once in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) with `<PROVIDER>` set to `hermes`.
+The call sequence is `route_hermes_resources(task)`. Its helper bodies are written once in [`shared-smart-router.md`](../../../.skilled/skills/system-spec-kit/references/cli/shared-smart-router.md) with `<PROVIDER>` set to `hermes`:
+
+- `discover_markdown_resources()`
+- `_guard_in_skill()`
+- `load_if_available()`
+- `score_intents()`
+- `select_intents()`
+- `get_routing_key()`

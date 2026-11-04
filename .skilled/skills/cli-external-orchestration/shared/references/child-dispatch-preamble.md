@@ -8,17 +8,27 @@ trigger_phrases:
   - "pre-resolve gate for a dispatched worker"
 importance_tier: important
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # Child Dispatch Preamble
 
+Use this preamble before dispatching a child that may reach a gate it cannot answer at runtime.
+
+---
+
 ## 1. OVERVIEW
+
+### Purpose
 
 A dispatched worker reads this repository's `AGENTS.md` at startup, the same as any other
 session, and obeys the gates in it. One of those gates stops before the first write to ask the
 operator a documentation-scope question. Nobody is at a prompt, so no answer arrives, and the
 dispatch ends having written nothing.
+
+### When to Use
+
+Use it before dispatching a child whose instructions require an answer from a human.
 
 ---
 
@@ -75,15 +85,17 @@ that finishes both exit zero.
 The spec-folder question is the instance that bites most often, not the only one. Any
 instruction that tells a session to stop and ask becomes a silent hang in a dispatched child.
 
-Before dispatching, ask which gates the child will read, and pre-resolve every one that
-expects an answer from a human. Give the answer in the prompt rather than the permission to
-skip it, so the child proceeds on a decision you made rather than on its own judgment.
+1. Before dispatching, ask which gates the child will read.
+2. Pre-resolve every one that expects an answer from a human.
+3. Give the answer in the prompt rather than the permission to skip it, so the child proceeds on a decision you made rather than on its own judgment.
 
 Halt rules fail the same way. `AGENTS.md` tells a session to halt when an edit reports
-"string not found". An interactive session halts and the operator steps in; a child halts and
-writes nothing, usually over an anchor that went stale when the file changed under it. The
-block's retry line turns that halt into a re-read, and three failures on one file is still the
-point where the child stops.
+"string not found".
+
+- An interactive session halts and the operator steps in; a child halts and writes nothing,
+  usually over an anchor that went stale when the file changed under it.
+- The block's retry line turns that halt into a re-read.
+- Three failures on one file is still the point where the child stops.
 
 ---
 
@@ -95,10 +107,13 @@ It does not look like a failure.
 - A transcript ending in a politely formatted question with lettered options
 - Zero files written
 
-An orchestrator that checks the exit status concludes the work is done. Verify that the
-artifacts exist on disk, and grep the transcript for the question itself. Exit status has been
-observed wrong in both directions: a dispatch that asked and wrote nothing exits zero, and a
-dispatch that wrote everything then hit a provider capacity error exits one.
+An orchestrator that checks the exit status concludes the work is done.
+
+- [ ] Verify that the artifacts exist on disk.
+- [ ] Grep the transcript for the question itself.
+
+Exit status has been observed wrong in both directions: a dispatch that asked and wrote nothing
+exits zero, and a dispatch that wrote everything then hit a provider capacity error exits one.
 
 ---
 

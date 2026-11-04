@@ -9,18 +9,30 @@ trigger_phrases:
   - "cursor mcp.json hooks.json rules"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.1
+version: 1.4.1.0
 ---
 
 # Cursor CLI Shared Editor Config Surface
+
+Open this file when a dispatch must behave the same on every machine, or when an orchestrated run surprises you with editor-configured hooks, MCP servers or rules.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Make the shared config surface visible before it changes a dispatch result, and name the flags that narrow what a dispatch can see.
+
+### When to Use
+
+- Deciding whether a dispatch can rely on the operator's editor configuration
+- Planning isolation for an unattended dispatch
+- Tracing a dispatch that behaved differently from the same prompt on another machine
+
 ### Core Principle
 
-Every sibling CLI in this hub keeps a tool-private config namespace: Codex reads `.codex/`, Claude Code reads `.claude/`, OpenCode reads `.opencode/`. **Cursor CLI is the one exception.** It reads the exact same config files the Cursor **editor** reads — there is no CLI-private config directory. This is the single biggest architectural difference between `cli-cursor` and its siblings, and it shapes both this packet's hook-adapter design (`004-cursor-hook-adapter-layer`, a later phase) and any dispatch-isolation decision.
+Every sibling CLI in this hub keeps a tool-private config namespace: Codex reads `.codex/`, Claude Code reads `.claude/`, OpenCode reads `.opencode/`. **Cursor CLI is the one exception.** It reads the exact same config files the Cursor **editor** reads — there is no CLI-private config directory. This is the single biggest architectural difference between `cli-cursor` and its siblings, and it shapes both the skill's hook-adapter design and any dispatch-isolation decision.
 
 ### Why This Matters for Orchestrated Delegation
 
@@ -78,16 +90,16 @@ Every sibling CLI's dispatch is, by construction, isolated from the operator's o
 
 ### Open Question — Not Yet Resolved
 
-Whether a dispatched `cursor-agent` should carry an explicit `--workspace`/config-isolation flag combination so it does not silently inherit the operator's shared `~/.cursor/` hooks/MCP/rules is an open question, deferred to the dispatch-command finalization (tracked in `030-cli-cursor-creation/spec.md` §4 and this phase's own `spec.md` §12). This reference documents the mitigation flags that exist; it does not assert a specific isolation policy has been decided or implemented, because none has as of this packet's authoring.
+Whether a dispatched `cursor-agent` should carry an explicit `--workspace`/config-isolation flag combination so it does not silently inherit the operator's shared `~/.cursor/` hooks/MCP/rules is an open question, deferred to the dispatch-command finalization. This reference documents the mitigation flags that exist; it does not assert a specific isolation policy has been decided or implemented, because none had been when this reference was written.
 
 ---
 
-## 5. PRACTICAL GUIDANCE FOR THIS PACKET'S DELEGATIONS
+## 5. PRACTICAL GUIDANCE FOR DISPATCHES
 
 1. **Assume shared state by default.** Do not assume a dispatched `cursor-agent -p` session starts from a clean slate the way a dispatched `codex exec` or `claude -p` does.
 2. **Do not silently rely on the operator's hooks firing.** Since hook delivery under the CLI is not yet confirmed per-event (`hook-contract.md` §7), never assume a shared hook will guard a dispatch the way it might guard the operator's interactive editor session.
 3. **Do not re-inject `AGENTS.md`/`CLAUDE.md` content into delegation prompts.** Cursor CLI already reads them automatically; duplicating that content wastes tokens and risks drift between the injected copy and the live file.
-4. **Treat MCP servers as shared, not dispatch-scoped.** A dispatched task using `--approve-mcps` approves whatever is configured in the (shared) `mcp.json` — the operator's editor session and this packet's dispatch draw from the same server list.
+4. **Treat MCP servers as shared, not dispatch-scoped.** A dispatched task using `--approve-mcps` approves whatever is configured in the (shared) `mcp.json` — the operator's editor session and an orchestrated dispatch draw from the same server list.
 
 ---
 

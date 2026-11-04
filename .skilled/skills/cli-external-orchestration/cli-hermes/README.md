@@ -7,7 +7,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "nous hermes"
   - "hermes chat"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # cli-hermes
@@ -24,7 +24,12 @@ The packet owns three things: the routing contract, the availability and provide
 
 Two traits separate Hermes from the six sibling runtimes, and both shape how you use this mode.
 
-**Hermes has no agent flag.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. A persona therefore reaches a session two ways at once: the generator mirrors each shared agent as the preloadable skill `agent-<name>`, which carries the whole text, and an environment variable names it so the repo plugin binds it for the session. Inlining the persona at the top of the prompt stays the fallback for a run without the plugin or the mirror, which keeps every dispatch `{persona + task}` and never a bare task.
+**Hermes has no agent flag.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. A persona therefore reaches a session two ways at once:
+
+- The generator mirrors each shared agent as the preloadable skill `agent-<name>`, which carries the whole text.
+- An environment variable names it, so the repo plugin binds it for the session.
+
+Inlining the persona at the top of the prompt stays the fallback for a run without the plugin or the mirror, which keeps every dispatch `{persona + task}` and never a bare task.
 
 **Its repo surface is narrow on purpose.** Hermes reads exactly two things from a project's `.hermes/` folder, `skills/` after a trust grant and `plugins/` behind an opt-in variable. The provider block, shell hooks and MCP servers are user-level config in `~/.hermes/config.yaml` and no repo file can carry them, so they appear here as operator steps.
 
@@ -37,7 +42,7 @@ Two traits separate Hermes from the six sibling runtimes, and both shape how you
 | Model roster | Closed at five ids: `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `minimax-m3` and `qwen3.8-max` |
 | Provider | `llmgateway`, an operator-declared custom provider block |
 | Agents directory | None. Personas are inlined into the prompt |
-| Repo surface | `.hermes/skills/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |
+| Repo surface | `.hermes/skills/`, `.hermes/agents/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |
 
 ---
 
@@ -102,6 +107,7 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 +-- SKILL.md                    # Hard rules, dispatch shape, gotchas
 +-- ROUTER.md                   # Machine router: intent map, resource map and loading levels
 +-- README.md                   # This file
++-- hard-rules.json             # Dispatch preflight checks read beside SKILL.md
 +-- references/                 # CLI, providers, tools, patterns, delegation, hooks, MCP
 +-- assets/                     # Prompt quality card and prompt templates
 +-- manual-testing-playbook/    # Playbook root, symlinked into .hermes/
@@ -129,6 +135,10 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
 | `references/mcp-policy.md` | Operator steps for MCP and deny-by-default per tool |
 | `assets/prompt-quality-card.md` | Thin delegator to the canonical prompt-models card |
 | `assets/prompt-templates.md` | Write, read-only, generation and fan-out scaffolds |
+| `hard-rules.json` | Dispatch preflight checks read beside `SKILL.md` |
+| `manual-testing-playbook/` | Playbook root, symlinked into `.hermes/` |
+| `benchmark/` | Benchmark index for playbook-derived reports |
+| `changelog/` | Packet-local changelog |
 | `feature-catalog/feature-catalog.md` | Canonical current-state inventory for the shipped surface |
 | `feature-catalog/dispatch-guards/` | Hard-rule preflight checks and dispatch-shape recognition |
 | `feature-catalog/fanout-dispatch/` | Executor kind, closed roster, run budget and toolset policy |
@@ -143,9 +153,11 @@ The repo-root `.hermes/` folder is the runtime surface Hermes itself reads.
 | `.hermes/skills/<name>/` | One generated markdown-only `SKILL.md` per canonical skill, all 56, naming its canonical directory. Never a symlink: Hermes's static scanner walks everything it reaches, costs ten minutes per session start and quarantines every hub |
 | `.hermes/plugins/repo-guards/` | The hand-authored project plugin bridging the repo's guard cores into Hermes hooks |
 | `.hermes/prompts/*.md` | Generated pointer stubs, one per `.skilled/commands/**` file, named by the flattened command path |
+| `.hermes/agents/` | Whole-directory symlink to `.skilled/agents`; each file is mirrored as the `agent-<name>` skill |
+| `.hermes/manual-testing-playbook/` | Whole-directory symlink to the playbook root in this skill |
 | `.hermes/SYNC.md` | The sync manifest: what derives from `.skilled`, what can drift and how to regenerate it |
 
-There is no `.hermes/agents/`, because Hermes has no flag that loads an agent file.
+There is no Hermes flag that loads an agent file, so `.hermes/agents/` is only the source the `agent-<name>` skills are generated from.
 
 ---
 

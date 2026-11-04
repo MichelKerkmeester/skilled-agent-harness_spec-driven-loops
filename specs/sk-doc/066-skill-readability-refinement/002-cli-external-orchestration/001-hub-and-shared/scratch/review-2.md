@@ -1,0 +1,2 @@
+VERDICT: FIX
+- [P2] .skilled/skills/cli-external-orchestration/SKILL.md:201 | 9 | The applied wording removes `ADR-005` and the failure-mode decision it names, contrary to the rubric’s instruction to retain decision IDs with their decisions. | Replace the bullet with: “The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor. That is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent. Report it rather than working around it.”

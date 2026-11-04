@@ -8,7 +8,7 @@ trigger_phrases:
   - "hermes validation handback"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes CLI Integration Patterns
@@ -17,9 +17,21 @@ How the calling AI integrates Hermes without duplicating the deep-loop executor.
 
 ## 1. OVERVIEW
 
+### Purpose
+
+The calling AI is the conductor; Hermes is the delegated executor.
+
+### When to Use
+
+- Dispatching a write task to Hermes.
+- Running a read-only review through Hermes.
+- Cross-validating a finding against a sibling runtime.
+- Fanning out a research or review lineage.
+- Continuing a Hermes session.
+
 ### Core Principle
 
-The calling AI is the conductor; Hermes is the delegated executor. Every pattern below ends with the conductor reading the exit code, stdout and stderr and verifying the result with the command the prompt named.
+Every pattern below ends with the conductor reading the exit code, stdout and stderr and verifying the result with the command the prompt named.
 
 ---
 
@@ -43,7 +55,12 @@ Dispatch the same brief to Hermes on `glm-5.3-flash` and to a sibling runtime (P
 
 ### Fan-out lineage
 
-Use `--executor=cli-hermes` on `/deep:research` or `/deep:review`. Set the lineage `timeoutSeconds` to 900 or more: the one live research iteration ran 1042 seconds against a 600-second setting and finished only because the runner's ceiling is twice `iterations × timeoutSeconds` (observed 2026-09-14). A lineage may also name MCP servers in `liveTools.mcpServers`; the builder appends them to `-t`. The runtime builds the command, passes the prompt on stdin, applies write containment to the lineage directory, and treats exit 1 as failure. Keep `iterations × timeoutSeconds` under the four-hour lineage ceiling.
+Use `--executor=cli-hermes` on `/deep:research` or `/deep:review`.
+
+- **Timeout:** set the lineage `timeoutSeconds` to 900 or more. The one live research iteration ran 1042 seconds against a 600-second setting and finished only because the runner's ceiling is twice `iterations × timeoutSeconds` (observed 2026-09-14).
+- **MCP servers:** a lineage may also name them in `liveTools.mcpServers`; the builder appends them to `-t`.
+- **Runtime:** builds the command, passes the prompt on stdin, applies write containment to the lineage directory, and treats exit 1 as failure.
+- **Ceiling:** keep `iterations × timeoutSeconds` under the four-hour lineage ceiling.
 
 ### Session continuation
 
@@ -68,4 +85,10 @@ Capture `session_id:` from stderr. A follow-up may resume with `hermes chat --re
 
 ## 4. HANDBACK
 
-Report what ran and what it returned (exit code, stdout head, `session_id:`), what the verification command showed, and which paths changed. A Hermes `COMPLETE` in stdout is a claim about itself until the verification command confirms it.
+Report three things:
+
+- What ran and what it returned (exit code, stdout head, `session_id:`).
+- What the verification command showed.
+- Which paths changed.
+
+A Hermes `COMPLETE` in stdout is a claim about itself until the verification command confirms it.

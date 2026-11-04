@@ -7,7 +7,7 @@ trigger_phrases:
   - "opencode dispatch framework precedence"
 importance_tier: normal
 contextType: planning
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # OpenCode CLI: Prompt Quality Card
@@ -30,7 +30,8 @@ Compose a dispatch prompt by starting from the shared layer (canonical card) and
 
 The 7-framework selection table, the task->framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
+- [`cli-prompt-quality-card.md`](../../../sk-prompt/assets/cli-prompt-quality-card.md) - Framework table, task map and CLEAR check
+- [`patterns-evaluation.md`](../../../sk-prompt/references/patterns-evaluation.md) - Deep theory
 
 ---
 
@@ -38,7 +39,11 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 
 OpenCode dispatches the MiniMax, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
 
-**Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode 2 (recommended) takes the level on the model id (`#<level>`), and OpenCode 1 (fallback) takes the reasoning effort through `--variant`. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
+- **Agent:** Omit `--agent` for all small-model dispatches.
+- **Effort:** OpenCode 2 (recommended) takes the level on the model id (`#<level>`), and OpenCode 1 (fallback) takes the reasoning effort through `--variant`.
+- **MiniMax endpoints:** MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3.
+- **Ambiguity:** Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch.
+- **Guard:** Always include a self-invocation guard signal when the dispatched session could loop back.
 
 ---
 
@@ -52,4 +57,6 @@ OpenCode-specific escalation example: if the task would otherwise need a long `o
 
 ## 5. RELATED RESOURCES
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md`
+- [`cli-prompt-quality-card.md`](../../../sk-prompt/assets/cli-prompt-quality-card.md) - Canonical framework table, task map and CLEAR check
+- [`prompt-templates.md`](./prompt-templates.md) - Copy-paste dispatch templates
+- [`SKILL.md`](../SKILL.md) - Skill entry point and the 2-tier precedence rule

@@ -1,0 +1,4 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-hermes/README.md edited=1
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md edited=1
+code_blocks_changed=2 block_count_mismatch=0 restored

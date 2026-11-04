@@ -8,7 +8,7 @@ trigger_phrases:
   - "devin clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Devin CLI — Prompt Quality Card
@@ -32,7 +32,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card) and
 Two tiers govern how a Devin CLI dispatch prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
 
 **Tier 1 — Fast path (default)**
-Build the prompt directly from the canonical card (`../../../sk-prompt/assets/cli-prompt-quality-card.md`). Select a framework from the table in §2, apply the task-to-framework map in §3, run the CLEAR pre-dispatch check in §4, and dispatch. No additional skill loading required for routine work.
+Build the prompt directly from the canonical card (`../../../sk-prompt/assets/cli-prompt-quality-card.md`). Select a framework from the canonical card's §2 table, apply its §3 task-to-framework map, run its §4 CLEAR pre-dispatch check, and dispatch. No additional skill loading required for routine work.
 
 **Tier 2 — Deep path (escalation)**
 Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 2** trigger applies — the trigger list lives in `../../../sk-prompt/assets/cli-prompt-quality-card.md` under "Tier 2 — Deep path"; do not re-enumerate it here.
@@ -43,7 +43,7 @@ Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inlin
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
+[cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md)  (deep theory: [patterns-evaluation.md](../../../sk-prompt/references/patterns-evaluation.md))
 
 ---
 
@@ -51,10 +51,10 @@ The 7-framework selection table, the task-to-framework map, the pre-planning-den
 
 The 2-tier precedence rule (fast path → deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in §2 above and in `../SKILL.md`.
 
-Devin-specific escalation example: if the task needs a crowded `devin -p` prompt plus explicit `--permission-mode` or subagent-delegation guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Devin CLI. Escalate on any canonical Tier 3 trigger.
+Devin-specific escalation example: if the task needs a crowded `devin -p` prompt plus explicit `--permission-mode` or subagent-delegation guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Devin CLI. Escalate on any canonical Tier 2 trigger.
 
 ---
 
 ## 5. RELATED RESOURCES
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md`
+[cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) · [prompt-templates.md](./prompt-templates.md) · [SKILL.md](../SKILL.md)

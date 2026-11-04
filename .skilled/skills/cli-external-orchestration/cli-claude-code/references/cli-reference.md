@@ -11,7 +11,7 @@ trigger_phrases:
   - "claude code troubleshooting"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # Claude Code CLI - Complete Command Reference
@@ -21,10 +21,6 @@ Comprehensive reference for all Claude Code CLI commands, flags, models, configu
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Claude Code is Anthropic's official CLI for Claude, providing terminal-based AI coding assistance powered by Claude models (Opus, Sonnet, Haiku). It offers deep reasoning via extended thinking, surgical code editing, schema-validated structured output, agent delegation, and persistent memory — all from the command line.
 
 ### Purpose
 
@@ -38,12 +34,16 @@ Provide a comprehensive, single-source reference for all Claude Code CLI command
 - Selecting the right model and permission mode for a task
 - Understanding output formats and structured output options
 
+### Core Principle
+
+Claude Code is Anthropic's official CLI for Claude, providing terminal-based AI coding assistance powered by Claude models (Opus, Sonnet, Haiku). It offers deep reasoning via extended thinking, surgical code editing, schema-validated structured output, agent delegation, and persistent memory — all from the command line.
+
 ### Key Sources
 
 | Source | URL |
 |--------|-----|
-| **Repository** | https://github.com/anthropics/claude-code |
-| **Documentation** | https://docs.anthropic.com/en/docs/claude-code |
+| **Repository** | [anthropics/claude-code](https://github.com/anthropics/claude-code) |
+| **Documentation** | [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code) |
 | **License** | Proprietary (Anthropic) |
 | **Runtime** | Node.js 18+ |
 

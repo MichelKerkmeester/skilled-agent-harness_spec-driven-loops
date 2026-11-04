@@ -1,0 +1,5 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-cursor/README.md edited=1
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md edited=2
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md edited=1
+code_blocks_changed=3 block_count_mismatch=0 restored

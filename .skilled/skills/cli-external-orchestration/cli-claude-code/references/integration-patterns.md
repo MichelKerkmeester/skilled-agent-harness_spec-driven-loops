@@ -10,7 +10,7 @@ trigger_phrases:
   - "orchestrate claude code from external ai"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI
@@ -20,10 +20,6 @@ Proven patterns for orchestrating Claude Code CLI from external AI sessions (Ope
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-opencode and cli-claude-code skills where Claude Code conducts. Here, Claude Code is the executor.
 
 ### Purpose
 
@@ -38,11 +34,21 @@ Each pattern documented here includes the rationale, implementation template, an
 - Cost-controlled execution with `--max-budget-usd`
 - Read-only exploration with guaranteed safety via `--permission-mode plan`
 
+### Core Principle
+
+The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-opencode and cli-claude-code skills where Claude Code conducts. Here, Claude Code is the executor.
+
 ---
 
 ## 2. GENERATE-REVIEW-FIX CYCLE
 
 **The most reliable cross-AI pattern.** The calling AI generates, Claude Code reviews, the calling AI fixes.
+
+### When to Use
+
+- Code generation tasks where a second perspective catches edge cases
+- Security-sensitive code where independent review adds confidence
+- Architecture decisions that benefit from adversarial review
 
 ### Flow
 
@@ -62,12 +68,6 @@ claude -p "Review @/tmp/generated.ts for bugs, security issues, and style violat
 # Step 3: Calling AI reads review, applies fixes to /tmp/generated.ts
 ```
 
-### When to Use
-
-- Code generation tasks where a second perspective catches edge cases
-- Security-sensitive code where independent review adds confidence
-- Architecture decisions that benefit from adversarial review
-
 ### Considerations
 
 - Use `--permission-mode plan` for the review step (guaranteed read-only)
@@ -79,6 +79,13 @@ claude -p "Review @/tmp/generated.ts for bugs, security issues, and style violat
 ## 3. DEEP REASONING DELEGATION
 
 **Leverage extended thinking for complex decisions.** Delegate tasks requiring multi-dimensional analysis to Claude Code's Opus model with extended thinking.
+
+### When to Use
+
+- Architecture decisions with 4+ competing concerns
+- Algorithm design requiring correctness analysis
+- Root cause analysis where surface-level debugging failed
+- Technical decisions that will be hard to reverse
 
 ### Flow
 
@@ -102,13 +109,6 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste 
   --model claude-opus-5-5 --effort high --agent debug --output-format text 2>&1 > /tmp/rca.md
 ```
 
-### When to Use
-
-- Architecture decisions with 4+ competing concerns
-- Algorithm design requiring correctness analysis
-- Root cause analysis where surface-level debugging failed
-- Technical decisions that will be hard to reverse
-
 ### Considerations
 
 - Use `claude-opus-5-5` with `--effort high`, and raise it to `xhigh` or `max` for maximum reasoning depth
@@ -121,6 +121,13 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste 
 ## 4. STRUCTURED OUTPUT PROCESSING
 
 **Extract structured data from Claude Code for programmatic use.**
+
+### When to Use
+
+- Pipeline integration requiring guaranteed JSON structure
+- Batch analysis producing machine-readable results
+- Data extraction that feeds into automated workflows
+- Comparative analysis across multiple files
 
 ### Implementation
 
@@ -139,13 +146,6 @@ claude -p "Audit @src/auth/ for security vulnerabilities" \
   --output-format json 2>&1 > /tmp/audit.json
 ```
 
-### When to Use
-
-- Pipeline integration requiring guaranteed JSON structure
-- Batch analysis producing machine-readable results
-- Data extraction that feeds into automated workflows
-- Comparative analysis across multiple files
-
 ### Considerations
 
 - Always specify `--output-format json` alongside `--json-schema`
@@ -158,6 +158,12 @@ claude -p "Audit @src/auth/ for security vulnerabilities" \
 ## 5. BACKGROUND EXECUTION
 
 **Run Claude Code tasks in parallel while the calling AI continues working.**
+
+### When to Use
+
+- Long-running analysis or generation tasks
+- Parallel processing of independent subtasks
+- Documentation generation while working on code
 
 ### Implementation
 
@@ -179,12 +185,6 @@ fi
 # Wait for completion
 wait $CLAUDE_PID
 ```
-
-### When to Use
-
-- Long-running analysis or generation tasks
-- Parallel processing of independent subtasks
-- Documentation generation while working on code
 
 ### Considerations
 
@@ -282,6 +282,12 @@ claude -p "Review this code" \
 
 **Multi-stage validation using Claude Code at different levels.**
 
+### When to Use
+
+- Pre-merge quality gates
+- Complex feature development requiring multiple review dimensions
+- Security-sensitive changes requiring independent validation
+
 ### 5-Stage Pipeline
 
 ```bash
@@ -304,17 +310,17 @@ claude -p "Analyze @src/feature.ts and suggest comprehensive test cases. Identif
 # Read all review outputs and make final decision
 ```
 
-### When to Use
-
-- Pre-merge quality gates
-- Complex feature development requiring multiple review dimensions
-- Security-sensitive changes requiring independent validation
-
 ---
 
 ## 9. CROSS-VALIDATION
 
 **Use multiple AIs to validate the same artifact.**
+
+### When to Use
+
+- High-stakes code changes (auth, payments, data handling)
+- Architecture decisions that are hard to reverse
+- Security audits where coverage matters more than speed
 
 ### Implementation
 
@@ -333,12 +339,6 @@ OPENCODE_REVIEW=$(opencode run "Review @/tmp/feature.ts for bugs and security is
 # Compare findings, prioritize issues found by multiple AIs
 ```
 
-### When to Use
-
-- High-stakes code changes (auth, payments, data handling)
-- Architecture decisions that are hard to reverse
-- Security audits where coverage matters more than speed
-
 ### Considerations
 
 - Cross-validation is expensive (3x cost) — reserve for critical code
@@ -350,6 +350,12 @@ OPENCODE_REVIEW=$(opencode run "Review @/tmp/feature.ts for bugs and security is
 ## 10. SESSION CONTINUITY
 
 **Continue conversations across invocations.**
+
+### When to Use
+
+- Multi-step analysis where each step builds on the previous
+- Iterative refinement of complex outputs
+- Long-running investigations that span multiple invocations
 
 ### Implementation
 
@@ -368,12 +374,6 @@ claude -p "Now suggest improvements to the auth flow you identified" \
 claude -p "Apply the suggested improvements" \
   --resume "$SESSION_ID" --output-format text 2>&1
 ```
-
-### When to Use
-
-- Multi-step analysis where each step builds on the previous
-- Iterative refinement of complex outputs
-- Long-running investigations that span multiple invocations
 
 ### Considerations
 

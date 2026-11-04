@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.20.0
+version: 1.4.21.0
 ---
 
 # cli-opencode
@@ -30,15 +30,15 @@ version: 1.4.20.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-An external session that needs the project's whole runtime has no native path to get it. Every plugin and skill, the registered MCP servers, the spec folders and their continuity docs: none of that loads from outside. Hand-building an `opencode run` invocation hits the non-obvious traps. The dispatch hangs at zero percent CPU when stdin stays open. The current OpenCode rejects a top-level `--agent general` without saying why. A caller that is itself OpenCode risks a self-dispatch loop that burns tokens. This skill standardizes the dispatch across the documented use cases and refuses self-invocation.
-
 ### What It Does
 
 cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.0.32) the default dispatch is `cd <repo-root> && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
+
+### Why This Skill Exists
+
+An external session that needs the project's whole runtime has no native path to get it. Every plugin and skill, the registered MCP servers, the spec folders and their continuity docs: none of that loads from outside. Hand-building an `opencode run` invocation hits the non-obvious traps. The dispatch hangs at zero percent CPU when stdin stays open. The current OpenCode rejects a top-level `--agent general` without saying why. A caller that is itself OpenCode risks a self-dispatch loop that burns tokens. This skill standardizes the dispatch across the documented use cases and refuses self-invocation.
 
 ### The Dispatch Surface
 
@@ -62,7 +62,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 command -v opencode2 || command -v opencode
 ```
 
-If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`. On the recommended layout `opencode` is OpenCode 2 and `opencode1` is the OpenCode 1 fallback; a machine with only OpenCode 1 answers to `opencode`.
+If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`. On the recommended layout `opencode` is OpenCode 2 and `opencode1` is the OpenCode 1 fallback. A machine with only OpenCode 1 answers to `opencode`.
 
 **Step 2: Run the provider auth pre-flight.**
 
@@ -160,6 +160,7 @@ cli-opencode/
   SKILL.md                                        # runtime instructions and the full rule set
   ROUTER.md                                       # machine router: intent map, resource map and loading levels
   README.md                                       # this orientation document
+  hard-rules.json                                 # dispatch preflight rules read before a dispatch
   assets/                                         # dispatch templates and permissions-matrix configs
     permissions-matrix.example-packet-local.json  # example matrix: writes confined to the active packet
     permissions-matrix.example-readonly.json      # example matrix: read-only corpus inspection
@@ -175,11 +176,14 @@ cli-opencode/
     cli-reference.md                              # subcommands, flags, provider auth and version drift
     context-budget.md                             # model context windows and the truncation marker
     destructive-scope-violations.md               # the RM-8 incident and the four-layer prevention playbook
+    install-and-versions.md                       # version baselines, side-by-side layout and the capability delta
     integration-patterns.md                       # the use cases, the decision tree and the silent-stdin trap
     opencode-tools.md                             # unique value versus sibling cli-* skills
     permissions-matrix.md                         # matrix schema, resolution semantics and RM-8 replay reasoning
     providers-and-models.md                       # the provider, model and variant-effort roster
     self-invocation-guard.md                      # the layered guard and the parallel-detached exception
+  scripts/                                        # setup helper and its tests
+    opencode-setup.sh                             # builds the v2, side-by-side or v1 layout and reports version resolution
 ```
 
 | File | Role |
@@ -191,6 +195,7 @@ cli-opencode/
 | [`references/cli-reference.md`](./references/cli-reference.md) | Subcommands, flags, provider auth pre-flight and version drift handling |
 | [`references/context-budget.md`](./references/context-budget.md) | Model context windows and the truncation marker for bounded prompts |
 | [`references/destructive-scope-violations.md`](./references/destructive-scope-violations.md) | The RM-8 incident and its four-layer prevention playbook |
+| [`references/install-and-versions.md`](./references/install-and-versions.md) | Version baselines, side-by-side install layout and the capability delta |
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | The use cases, the decision tree and the silent-stdin trap |
 | [`references/opencode-tools.md`](./references/opencode-tools.md) | Unique value versus sibling cli-* skills |
 | [`references/permissions-matrix.md`](./references/permissions-matrix.md) | Matrix schema, resolution semantics and RM-8 replay reasoning |
@@ -202,6 +207,8 @@ cli-opencode/
 | [`assets/permissions-matrix.schema.json`](./assets/permissions-matrix.schema.json) | JSON schema for permissions-matrix configs |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Executor-specific model overrides and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates per use case and agent |
+| [`hard-rules.json`](./hard-rules.json) | Dispatch preflight rules read before a dispatch |
+| [`scripts/opencode-setup.sh`](./scripts/opencode-setup.sh) | Setup helper for the v2, side-by-side and v1 layouts |
 
 ---
 
@@ -271,7 +278,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `llmgateway/deepseek-v4.1-flash-1017` on both versions. On OpenCode 2 (the expected version) the default is `-m llmgateway/deepseek-v4.1-flash-1017#max`, through the same gateway, because v2 lists no `opencode-go` provider unless it is logged in separately. On OpenCode 1 (fallback) that is `--model llmgateway/deepseek-v4.1-flash-1017 --variant max`, through the DevPass LLM Gateway, which fronts the latency-optimized reasoning model at its max thinking tier; the `opencode-go` Go-plan quota is spent, so that route hangs on "Go usage limit exceeded". One provider now serves both versions. Switch to `minimax/MiniMax-M3` for MiniMax Direct or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+A: Default to `llmgateway/deepseek-v4.1-flash-1017` on both versions. On OpenCode 2 (the expected version) the default is `-m llmgateway/deepseek-v4.1-flash-1017#max`, through the same gateway, because v2 lists no `opencode-go` provider unless it is logged in separately. On OpenCode 1 (fallback) that is `--model llmgateway/deepseek-v4.1-flash-1017 --variant max`, through the DevPass LLM Gateway, which fronts the latency-optimized reasoning model at its max thinking tier. The `opencode-go` Go-plan quota is spent, so that route hangs on "Go usage limit exceeded". One provider now serves both versions. Switch to `minimax/MiniMax-M3` for MiniMax Direct or `openai/gpt-6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 

@@ -1,49 +1,6 @@
 {
   "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding.",
   "debt": {
-    "cli-external-orchestration/cli-claude-code": {
-      "findings": 3,
-      "codes": [
-        "render_bare_url",
-        "render_section_order"
-      ]
-    },
-    "cli-external-orchestration/cli-codex": {
-      "findings": 3,
-      "codes": [
-        "render_bare_url",
-        "render_intro_restates_purpose",
-        "render_section_order"
-      ]
-    },
-    "cli-external-orchestration/cli-cursor": {
-      "findings": 4,
-      "codes": [
-        "render_bare_url",
-        "render_intro_restates_purpose"
-      ]
-    },
-    "cli-external-orchestration/cli-devin": {
-      "findings": 4,
-      "codes": [
-        "render_bare_url",
-        "render_intro_restates_purpose",
-        "render_section_order"
-      ]
-    },
-    "cli-external-orchestration/cli-hermes": {
-      "findings": 1,
-      "codes": [
-        "render_h2_numbering"
-      ]
-    },
-    "cli-external-orchestration/cli-opencode": {
-      "findings": 29,
-      "codes": [
-        "render_bare_url",
-        "render_bold_label_join"
-      ]
-    },
     "sk-design/sk-design-chart": {
       "findings": 1,
       "codes": [

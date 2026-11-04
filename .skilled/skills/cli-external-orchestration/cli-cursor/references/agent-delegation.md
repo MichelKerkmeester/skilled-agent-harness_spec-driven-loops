@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor mode ask plan"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.9
+version: 1.4.1.0
 ---
 
 # Cursor Agent Delegation Reference
@@ -19,10 +19,6 @@ Routing reference for delegating tasks to Cursor CLI.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI decides WHAT to do, Cursor CLI decides HOW to do it within the delegated scope.
 
 ### Purpose
 
@@ -34,6 +30,10 @@ Documents how any AI assistant orchestrates Cursor CLI through its execution-mod
 - Cross-AI code review or a Composer-specific second opinion
 - Read-only architecture exploration before committing to a write-capable dispatch
 - Tasks that specifically want Cursor's own subagent/skill system (`~/.cursor/skills-cursor/`) noted for context, though it is editor/CLI-native tooling this packet does not orchestrate directly
+
+### Core Principle
+
+The calling AI decides WHAT to do, Cursor CLI decides HOW to do it within the delegated scope.
 
 ---
 

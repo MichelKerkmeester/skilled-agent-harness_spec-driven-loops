@@ -10,7 +10,7 @@ trigger_phrases:
   - "hermes query-file"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes CLI - Complete Command Reference
@@ -20,6 +20,16 @@ This reference records the Hermes contract as read from the installed source (v0
 Sources: [research synthesis](../../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md), [contract pin](../../../../specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Be the single source a dispatcher checks before running Hermes, so every flag, exit code and approval rule a run depends on is looked up rather than remembered.
+
+### When to Use
+
+- Composing or auditing a `hermes chat` dispatch command
+- Looking up a flag, an exit code or an environment variable
+- Deciding whether a run may write or must stay read-only
 
 Hermes Agent is a Python agent CLI with a large tool surface (terminal, file, search, web, browser, vision, delegation, memory, skills, MCP) and a provider catalog of some forty providers. The binary is `hermes`; `hermes --version` prints the version, install method and install directory. Record the installed version at execution time.
 
@@ -79,7 +89,14 @@ The process ends in a hard exit after flushing, so a late handler cannot flip th
 
 ## 4. APPROVALS AND WRITES
 
-Observed 2026-09-14, correcting the source-read claim the research carried: a headless `chat -q` runs ordinary file writes and commands without any flag. Only a tool call Hermes flags as dangerous (its dangerous-command pattern set, for example `rm -rf <path>`, and a write whose immediate parent directory is `.hermes`) reaches the approval gate, and in single-query mode without `--yolo` that call is blocked with `BLOCKED: Command flagged as dangerous (...) but single-query mode (-q) runs without a user present to approve it`. `--yolo` lifts that gate (`approvals.single_query_mode: approve` in `config.yaml` does the same globally). Hardline floors stay blocked even under `--yolo`. There is no OS sandbox flag; a read-only dispatch is read-only because its `-t` list omits `terminal` and `file`. Terminal backends (docker, ssh, modal and others) are config-level hardening, not per-run flags.
+Observed 2026-09-14, correcting the source-read claim the research carried:
+
+- **Ordinary writes and commands need no flag.** A headless `chat -q` runs them without approval.
+- **Only a flagged call reaches the approval gate.** That covers Hermes's dangerous-command pattern set, for example `rm -rf <path>`, and a write whose immediate parent directory is `.hermes`.
+- **A blocked call says so.** In single-query mode without `--yolo` the call is blocked with `BLOCKED: Command flagged as dangerous (...) but single-query mode (-q) runs without a user present to approve it`.
+- **`--yolo` lifts that gate.** `approvals.single_query_mode: approve` in `config.yaml` does the same globally. Hardline floors stay blocked even under `--yolo`.
+- **There is no OS sandbox flag.** A read-only dispatch is read-only because its `-t` list omits `terminal` and `file`.
+- **Terminal backends** (docker, ssh, modal and others) are config-level hardening, not per-run flags.
 
 ---
 
@@ -125,6 +142,23 @@ Read-only: omit `--yolo`, use `-t file,todo` (Hermes's `search` toolset is web s
 
 ## 8. MANAGEMENT COMMANDS A DISPATCH NEVER RUNS
 
-`hermes skills trust|install|update`, `hermes mcp add|remove`, `hermes plugins install|enable`, `hermes config set`, `hermes import-agent`, `hermes setup`, `hermes update`, `hermes profile create|use`. Each changes the operator's `~/.hermes`. A prompt that needs one stops and reports.
+Never run:
 
-Read-only commands a dispatch may run: `hermes --version`, `hermes status` (which does not show custom providers), `hermes doctor`, `hermes config show|get`, `hermes tools list`, `hermes skills list`, `hermes plugins list`, `hermes mcp list`, `hermes hooks list`, `hermes prompt-size`, always with stdin closed.
+- `hermes skills trust|install|update`
+- `hermes mcp add|remove`
+- `hermes plugins install|enable`
+- `hermes config set`
+- `hermes import-agent`
+- `hermes setup`, `hermes update`
+- `hermes profile create|use`
+
+Each changes the operator's `~/.hermes`. A prompt that needs one stops and reports.
+
+Read-only commands a dispatch may run, always with stdin closed:
+
+- `hermes --version`
+- `hermes status` (which does not show custom providers)
+- `hermes doctor`
+- `hermes config show|get`
+- `hermes tools list`, `hermes skills list`, `hermes plugins list`, `hermes mcp list`, `hermes hooks list`
+- `hermes prompt-size`

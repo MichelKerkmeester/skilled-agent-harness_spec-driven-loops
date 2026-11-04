@@ -10,7 +10,7 @@ trigger_phrases:
   - "claude code plan mode read-only"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Claude Code CLI Built-in Tools Reference
@@ -20,10 +20,6 @@ Reference for all Claude Code CLI capabilities, highlighting unique features and
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Delegate to Claude Code CLI for capabilities other AIs lack natively, especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
 
 ### Purpose
 
@@ -35,6 +31,10 @@ Covers all built-in capabilities of Claude Code CLI, highlights what is unique c
 - Understanding which Claude Code flags and modes to use for different task types
 - Mapping calling AI capabilities to Claude Code equivalents
 - Leveraging Claude Code-exclusive features (extended thinking, --json-schema, --permission-mode plan)
+
+### Core Principle
+
+Delegate to Claude Code CLI for capabilities other AIs lack natively, especially extended thinking for deep reasoning, surgical diff-based code editing, schema-validated structured output, and cost-controlled execution with budget caps.
 
 ---
 

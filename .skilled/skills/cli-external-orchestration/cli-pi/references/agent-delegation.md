@@ -9,7 +9,7 @@ trigger_phrases:
   - "delegate from pi"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.5
+version: 1.5.1.0
 ---
 
 # Pi Agent Delegation Reference
@@ -20,10 +20,6 @@ Pi's core stays small and has no sub-agents, and no community package supplies t
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Pi's 7 built-in tools cover file and shell operations only. Pi has no in-process delegation at all: no built-in sub-agents, and no community package standing in for them any more. Delegation therefore leaves the session as a CLI dispatch, and everything not confirmed by the local pin stays labeled per Pi docs, unconfirmed.
-
 ### Purpose
 
 Distinguishes Pi's built-in tool surface from delegation, and gives the conductor model, request shape, and handback contract for work handed to a child session.
@@ -33,6 +29,10 @@ Distinguishes Pi's built-in tool surface from delegation, and gives the conducto
 - Deciding whether a task needs a Pi built-in tool or a child dispatch
 - Composing the request and handback for a child session
 - Choosing an exploration, review, or implementation child pattern
+
+### Core Principle
+
+Pi's 7 built-in tools cover file and shell operations only. Pi has no in-process delegation at all: no built-in sub-agents, and no community package standing in for them any more. Delegation therefore leaves the session as a CLI dispatch, and everything not confirmed by the local pin stays labeled per Pi docs, unconfirmed.
 
 ---
 

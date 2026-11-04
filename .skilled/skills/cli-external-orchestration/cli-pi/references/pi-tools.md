@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Pi CLI Unique Capabilities
@@ -19,10 +19,6 @@ Reference for the Pi CLI surfaces that have **no analog**, or only a partial ana
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Pi ships a small built-in core plus three first-party resource surfaces (skills, prompt templates, extensions) that other CLIs either lack entirely or only reach through a third-party package or an external hooks-config file. None of this changes `cli-pi`'s `packetKind: "workflow"` classification (`mode-registry.json`) — the packet's default dispatch still runs locally, and writes land in this repo's checkout (`SKILL.md` §7, "Hub Integration").
 
 ### Purpose
 
@@ -34,6 +30,10 @@ Covers Pi capabilities that are exclusive, or meaningfully different in shape, c
 - Understanding why Pi's extension/prompt-template system is first-party where sibling CLIs need a package or a hooks-config file
 - Scoping a dispatch to Pi's minimal built-in tool set via `--tools`
 - Picking a reasoning-effort tier via `--thinking` when the task's model supports it
+
+### Core Principle
+
+Pi ships a small built-in core plus three first-party resource surfaces (skills, prompt templates, extensions) that other CLIs either lack entirely or only reach through a third-party package or an external hooks-config file. None of this changes `cli-pi`'s `packetKind: "workflow"` classification (`mode-registry.json`) — the packet's default dispatch still runs locally, and writes land in this repo's checkout (`SKILL.md` §7, "Hub Integration").
 
 ---
 
@@ -66,7 +66,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
 
 ### What It Is
 
-**Confirmed** (phases 012/015 of this creation packet): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
+**Confirmed** (phases 012/015): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
 
 ### Capabilities
 
@@ -170,7 +170,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
 - A read-only review or any task that must not write files
 - Prefer this over a prompt-only instruction not to edit — the flag is enforced by the CLI, a prompt sentence is not
 
-### When to Reach for a Custom-Provider Model
+### When to Name a Provider-Specific Model
 
 - The task specifically needs a GPT-6 tier (`gpt-6-luna`/`sol`) or GPT-6.1 Terra (`gpt-6.1-terra`) — dispatch through the built-in `openai` provider per the authenticated roster in `cli-reference.md` §13
 - When the task has no model-specific requirement, name `llmgateway/deepseek-v4.1-flash-1017`, the repository default in `.pi/settings.json`, explicitly. Pi's builtin `google` default has no authenticated model here

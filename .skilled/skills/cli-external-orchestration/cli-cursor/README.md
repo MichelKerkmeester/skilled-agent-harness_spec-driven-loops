@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-cursor
@@ -32,7 +32,16 @@ version: 1.4.1.0
 
 ### Why This Skill Exists
 
-A non-Cursor assistant has no built-in way to reach the `cursor-agent` binary. When a task wants Cursor's own Composer model, a read-only plan or ask pass or a second AI opinion, the caller either hand-builds fragile `cursor-agent -p` invocations and picks flags by trial or skips the capability. Two traps make naive dispatch dangerous: `cursor-agent -p` exits `0` even when the account is not authenticated, so an exit-code check reports success on a dispatch that never reached a model. The CLI also shares its config surface with the Cursor editor, so a dispatched session silently inherits editor-level hooks, MCP servers, rules and other configuration. If the calling assistant is itself running inside Cursor CLI, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, runs a text-based auth pre-flight and guards against self-invocation so the caller never builds its own wrapper.
+A non-Cursor assistant has no built-in way to reach the `cursor-agent` binary. When a task wants Cursor's own Composer model, a read-only plan or ask pass or a second AI opinion, the caller either hand-builds fragile `cursor-agent -p` invocations and picks flags by trial or skips the capability.
+
+Two traps make naive dispatch dangerous:
+
+- **The zero exit code.** `cursor-agent -p` exits `0` even when the account is not authenticated, so an exit-code check reports success on a dispatch that never reached a model.
+- **The shared config surface.** The CLI also shares its config surface with the Cursor editor, so a dispatched session silently inherits editor-level hooks, MCP servers, rules and other configuration.
+
+If the calling assistant is itself running inside Cursor CLI, a circular self-dispatch burns tokens for no value.
+
+This skill standardizes the dispatch, runs a text-based auth pre-flight and guards against self-invocation so the caller never builds its own wrapper.
 
 ### What It Does
 
@@ -126,9 +135,20 @@ When any layer matches, the skill returns a refusal and loads nothing. The cli-X
 
 ### Model Selection And Execution Modes
 
-Dispatch is scoped to an enforced 29-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set. **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default: those are Composer's only two tiers; it has no `-max` (1M-context "Max Mode") variant, so there is no Composer Max Mode to dispatch. **Gemini 3.8 Flash High** (`gemini-3.8-flash-high`) is the first Gemini id in the curated scope. **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`), **GPT-5.6 Luna Max** (`gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast`), and **Grok** (4.5's 6 tiers `cursor-grok-4.5-{low,medium,high}[-fast]`, 4.6's 8 tiers `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]` and 4.7's 8 tiers `grok-4.7-{low,medium,high,xhigh}[-fast]`) round out the allowlist. Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+Dispatch is scoped to an enforced 29-id allowlist. Cursor's own `auto` router is deliberately excluded, since it can silently resolve outside the set.
 
-Three execution modes govern how a dispatch behaves: the default agent mode (reads and writes, gated by approval flags), `--mode plan` (read-only planning) and `--mode ask` (read-only Q&A). Approval is a separate axis from the sandbox. `--auto-review` (Smart Auto) auto-runs safe actions and prompts for the rest. `--force` and `--yolo` (Run Everything) never prompt. Omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
+- **Composer** (`composer-2.5` and `composer-2.5-fast`) is Cursor's native model and the skill default. Those are Composer's only two tiers. It has no `-max` (1M-context "Max Mode") variant, so there is no Composer Max Mode to dispatch.
+- **Gemini 3.8 Flash High** (`gemini-3.8-flash-high`) is the first Gemini id in the curated scope.
+- **GLM 5.2** (`glm-5.2-high`, `glm-5.2-max`), **GPT-5.6 Luna Max** (`gpt-5.6-luna-max`, `gpt-5.6-luna-max-fast`), and **Grok** (4.5's 6 tiers `cursor-grok-4.5-{low,medium,high}[-fast]`, 4.6's 8 tiers `cursor-grok-4.6-{low,medium,high,xhigh}[-fast]` and 4.7's 8 tiers `grok-4.7-{low,medium,high,xhigh}[-fast]`) round out the allowlist.
+- **Effort is part of the id.** Effort tiers are baked directly into a model id. There is no `--reasoning-effort` flag. The parameterized `model[effort=...]` bracket some sibling CLIs support is rejected outright by Cursor CLI.
+
+Three execution modes govern how a dispatch behaves:
+
+- The default agent mode (reads and writes, gated by approval flags)
+- `--mode plan` (read-only planning)
+- `--mode ask` (read-only Q&A)
+
+Approval is a separate axis from the sandbox. `--auto-review` (Smart Auto) auto-runs safe actions and prompts for the rest. `--force` and `--yolo` (Run Everything) never prompt. Omitting both leaves Cursor's own default prompt-and-block behavior in place, which cannot proceed unattended.
 
 ### Auth Pre-Flight And Memory Handback
 
@@ -173,6 +193,7 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 | `references/shared-editor-config.md` | The shared `.cursor` editor-config surface and dispatch-isolation implications |
 | `assets/prompt-quality-card.md` | Fast-path prompt framework + CLEAR check, ALWAYS loaded |
 | `assets/prompt-templates.md` | Copy-paste ready prompt templates for common tasks |
+| `hard-rules.json` | Machine-readable hard-rule checks read by the dispatch preflight |
 
 ---
 

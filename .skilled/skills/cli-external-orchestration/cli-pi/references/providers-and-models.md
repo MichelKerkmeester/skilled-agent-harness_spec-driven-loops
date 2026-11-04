@@ -10,8 +10,10 @@ trigger_phrases:
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.5.8.0
+version: 1.5.9.0
 ---
+
+# cli-pi Providers, Models & Invocation
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly. The repository's `.pi/settings.json` does make `llmgateway/deepseek-v4.1-flash-1017` the default of a run that names no model, but that governs only such a run and never a dispatch.
 
@@ -19,16 +21,22 @@ The single catalog of the providers, authenticated model ids, the `--thinking` e
 
 ## 1. OVERVIEW
 
-### Core Principle
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-pi. Unlike the sibling cli modes, cli-pi is a passthrough: it enforces no model allowlist at this layer and bakes no effort tier into any model id — provider, model, and effort are three independent choices per dispatch.
+### Purpose
+
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-pi.
 
 ### When to Use
+
 - Choosing a `--provider <name>` + `--model <pattern>` (or a single `--model provider/id`) for a `pi` dispatch
 - Mapping a desired reasoning effort onto the standalone `--thinking` flag
 - Recalling the authenticated roster and the canonical non-interactive invocation shape
 
+### Core Principle
+
+Unlike the sibling cli modes, cli-pi is a passthrough: it enforces no model allowlist at this layer and bakes no effort tier into any model id — provider, model, and effort are three independent choices per dispatch.
+
 ### Scope
-This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `pi` flag surface, headless-mode contracts, auth/failure handling (see [cli-reference.md](./cli-reference.md)), the conductor/executor orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
+This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `pi` flag surface, headless-mode contracts, auth/failure handling (see [cli-reference.md](./cli-reference.md)), the conductor/executor orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see [prompt-quality-card.md](../assets/prompt-quality-card.md)), or the fan-out / model-enforcement runtime (see §6).
 
 ### Authority pointers
 - Full CLI flags, headless modes, auth pre-flight, model selection → [cli-reference.md](./cli-reference.md) §13
@@ -48,7 +56,7 @@ The table below is the closed roster for cli-pi dispatch, sourced from the machi
 
 ### openai
 
-Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas and GPT-6.1 Terra. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). All three ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms they resolve. Pi's catalog gained `gpt-6.1-terra` only after `pi update --models` on 2026-10-27. Before that refresh, a dispatch warned `Model "gpt-6.1-terra" not found for provider "openai". Using custom model id.` and still answered. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
+Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas and GPT-6.1 Terra. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). All three ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms they resolve. Pi's catalog gained `gpt-6.1-terra` only after `pi update --models` on 2026-10-27. Before that refresh, a dispatch warned `Model "gpt-6.1-terra" not found for provider "openai". Using custom model id.` and still answered.
 
 | Model id | Notes |
 |----------|-------|
@@ -123,7 +131,7 @@ pi -p "<prompt>" \
   --thinking max --mode text --offline </dev/null
 ```
 
-Do not fabricate a default model when composing a cli-pi dispatch. The repository's `.pi/settings.json` default (`llmgateway/deepseek-v4.1-flash-1017`) covers only a run that names no model, so it is not a skill-level default to lean on. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice.
+Do not fabricate a default model when composing a cli-pi dispatch. The repository's `.pi/settings.json` default (`llmgateway/deepseek-v4.1-flash-1017`) covers only a run that names no model, so it is not a skill-level default to lean on. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
 
 ---
 

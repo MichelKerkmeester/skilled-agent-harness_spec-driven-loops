@@ -8,7 +8,7 @@ trigger_phrases:
   - "hermes fan-out template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Hermes CLI Prompt Templates
@@ -82,7 +82,16 @@ The runtime builds the command; the caller supplies the lineage configuration.
   --stop-policy=max-iterations
 ```
 
-The builder emits `chat -Q --oneshot --query-file -` with the prompt on stdin, `--yolo`, `--ignore-rules`, `--source tool`, `--max-turns 200`, `--run-budget` one margin under the lineage timeout, `-t terminal,file,skills,todo` plus `web` per the web-search policy, and `--reasoning max` (the roster's pinned tier). `--worktree` and `-z` never appear.
+The builder emits this shape:
+
+- `chat -Q --oneshot --query-file -`, with the prompt on stdin
+- `--yolo`, `--ignore-rules` and `--source tool`
+- `--max-turns 200`
+- `--run-budget` one margin under the lineage timeout
+- `-t terminal,file,skills,todo`, plus `web` per the web-search policy
+- `--reasoning max`, the roster's pinned tier
+
+`--worktree` and `-z` never appear.
 
 ---
 

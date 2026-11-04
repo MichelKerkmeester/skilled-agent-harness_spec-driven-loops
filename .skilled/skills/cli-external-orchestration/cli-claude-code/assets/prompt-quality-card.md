@@ -8,7 +8,7 @@ trigger_phrases:
   - "claude code prompt precedence rule"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.21
+version: 1.5.1.0
 ---
 
 # Claude Code — Prompt Quality Card
@@ -71,4 +71,6 @@ Claude Code escalation example: if the task would otherwise need a long `claude 
 
 ## 6. RELATED RESOURCES
 
--> ../../../sk-prompt/assets/cli-prompt-quality-card.md · ./prompt-templates.md · ../SKILL.md
+- [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) - The delegated framework table and CLEAR check
+- [prompt-templates.md](./prompt-templates.md) - Copy-paste dispatch templates for this executor
+- [SKILL.md](../SKILL.md) - Runtime rules that apply this card

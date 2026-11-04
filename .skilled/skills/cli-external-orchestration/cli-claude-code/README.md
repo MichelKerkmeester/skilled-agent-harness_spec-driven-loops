@@ -8,7 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # cli-claude-code
@@ -30,12 +30,6 @@ version: 1.5.1.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial or skips the capability. Auth handling and model selection become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value.
-
-This skill standardizes the dispatch and guards against self-invocation, so the caller never builds its own CLI wrapper. It runs an auth pre-flight before the first call.
-
 ### What It Does
 
 cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
@@ -43,6 +37,12 @@ cli-claude-code is the single routing point for external runtimes that need Clau
 The default dispatch is `claude -p "<prompt>" --model claude-sonnet-5-5 --output-format text`. Deep-reasoning work overrides to `claude-opus-5-5 --effort high`. The roster is Sonnet 5.5, Opus 5.5, Haiku 5.5 and Fable 5.1 (the CLI has no Fable 5.5 yet), and each takes all five `--effort` levels: `low`, `medium`, `high`, `xhigh` and `max`.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders and session continuity. cli-claude-code dispatches to Claude Code and hands the result back to the caller.
+
+### Why This Skill Exists
+
+A non-Claude assistant has no built-in way to reach the `claude` binary. When a task wants Anthropic-model strengths, like extended-thinking analysis or `--json-schema` output, the caller either hand-builds fragile `claude -p` invocations and picks flags by trial or skips the capability. Auth handling and model selection become guesswork. Worse, if the calling assistant is itself Claude Code, a circular self-dispatch burns tokens for no value.
+
+This skill standardizes the dispatch and guards against self-invocation, so the caller never builds its own CLI wrapper. It runs an auth pre-flight before the first call.
 
 ### The Agent Roster
 
@@ -74,7 +74,9 @@ command -v claude
 
 If nothing prints, install it with `npm install -g @anthropic-ai/claude-code`.
 
-**Step 2: Run the default dispatch.**
+**Step 2: Confirm the OAuth session.** Run `claude auth status`. If it reports no session, run `claude auth login` (or `claude setup-token` for CI/CD) before dispatching. cli-claude-code uses the Claude subscription OAuth only, never an API key.
+
+**Step 3: Run the default dispatch.**
 
 ```bash
 claude -p "Explain the dependency injection in src/app.ts" \
@@ -85,7 +87,7 @@ claude -p "Explain the dependency injection in src/app.ts" \
 
 You get a plain-text explanation scoped to the file you named, ending with a cost summary line.
 
-**Step 3: Reach for deep reasoning when the task earns it.**
+**Step 4: Reach for deep reasoning when the task earns it.**
 
 ```bash
 claude -p "Analyze the trade-offs between microservices and a monolith for this project" \
@@ -97,7 +99,7 @@ claude -p "Analyze the trade-offs between microservices and a monolith for this 
 
 You get an extended-thinking analysis that weighs alternatives before it commits.
 
-**Step 4: Get schema-validated JSON for a pipeline.**
+**Step 5: Get schema-validated JSON for a pipeline.**
 
 ```bash
 claude -p "Analyze src/utils.ts and return function signatures" \
@@ -181,6 +183,7 @@ cli-claude-code/
 | `references/providers-and-models.md` | Single-source catalog of Anthropic model ids, the default pin and the `--effort` mapping |
 | `assets/prompt-quality-card.md` | Fast-path prompt discipline, the framework table and CLEAR check, always loaded |
 | `assets/prompt-templates.md` | Copy-paste prompt templates per task |
+| `hard-rules.json` | Dispatch preflight rules: stdin redirect and non-interactive permission-mode risk |
 
 ---
 
@@ -214,6 +217,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|
 | `sk-code` | Owns code standards and verification. cli-claude-code dispatches the work, sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Claude Code session back into the caller's spec folder. |
+
 ---
 
 ## 7. TROUBLESHOOTING
@@ -261,7 +265,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/manual-testing-playbook.md` |
-| Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth |
+| Behavior | Run the scenarios under `manual-testing-playbook/<NN>--<topic>/` in a live session with valid Anthropic auth. Each scenario meets its recorded expected result |
 
 ---
 

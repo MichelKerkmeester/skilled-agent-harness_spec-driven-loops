@@ -9,7 +9,7 @@ trigger_phrases:
   - "codex review prompt template"
 importance_tier: normal
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Prompt Templates - Codex CLI
@@ -42,7 +42,7 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 | `--sandbox workspace-write`    | Allow file writes and build commands within workspace                               |
 | `--sandbox danger-full-access` | Full shell access, **requires explicit user approval**                             |
 | `--full-auto`                  | Equivalent to `--ask-for-approval never --sandbox workspace-write`. Non-interactive auto-approval mode for `codex exec`. |
-| `--search`                     | Enable live web browsing during execution                                           |
+| `--search`                     | Enable live web browsing. A top-level flag, so it precedes the subcommand: `codex --search exec …`. |
 | `-i` / `--image`               | Attach an image file as visual input                                                |
 | `@./path`                      | Include file content in prompt                                                      |
 
@@ -536,6 +536,11 @@ All placeholders used across templates in this file:
 | `[session-id]`     | Codex session identifier                    | `abc123def456`                                                 |
 | `[base-branch]`    | Git base branch for diff                    | `main`, `develop`                                              |
 | `[feature-branch]` | Git feature branch for diff                 | `feature/auth`, `fix/login-bug`                                |
+| `[files]`          | Files to stage before a review               | `src/auth.ts`, `src/session.ts`                                |
+| `[feature]`        | Feature the task builds                     | `"OAuth2 PKCE flow"`, `"rate limiter"`                         |
+| `[test-file]`      | Existing test file to compare against the implementation | `src/utils/validator.test.ts`                     |
+| `[source-file]`    | Implementation file the tests cover         | `src/utils/validator.ts`                                       |
+| `[approach]`       | Named pattern to apply                      | `"repository"`, `"sliding-window"`                              |
 
 ### Placeholder Conventions
 
@@ -546,17 +551,59 @@ All placeholders used across templates in this file:
 
 ---
 
-## 12. RELATED RESOURCES
+## 12. REASONING EFFORT SELECTION
 
-### Parent
+All templates dispatch `--model gpt-5.5`. Tune `model_reasoning_effort` to the task.
 
-- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
+### High Reasoning (architecture, security, planning)
 
-### References
+Raise effort to `high` or `xhigh` for tasks that benefit from deeper analysis:
 
-- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
-- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
-- [codex-tools.md](../references/codex-tools.md) - Built-in capabilities (/review, --search, MCP, session management)
+```bash
+# Architecture analysis
+codex exec "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
+  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
+
+# Security audit
+codex exec "Perform a thorough security audit of @./[file]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
+  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
+
+# Complex planning
+codex exec -p ai-council "Design 3 alternative caching strategies for this API. Score each on correctness, maintainability, and performance." \
+  --model gpt-5.5 -c model_reasoning_effort="xhigh" -s read-only
+```
+
+### Medium Reasoning (default: code, review, docs)
+
+`medium` is the skill default. Works for code generation, standard review, implementation, and documentation:
+
+```bash
+# Code generation
+codex exec "Create a [description] in [language]. Requirements: [requirements]. Output complete file." \
+  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+
+# Standard code review
+codex exec "Review @./[file] for bugs, style issues, and edge cases." \
+  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox read-only
+
+# Test generation
+codex exec "Generate comprehensive unit tests for @./[file]." \
+  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+```
+
+### Mixed Effort Workflow
+
+Use `high` for analysis, then `medium` for implementation, the same model at a different depth:
+
+```bash
+# Step 1: Deep analysis at high reasoning
+codex exec "Identify all security vulnerabilities in @./src/auth/" \
+  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only > /tmp/security-findings.txt
+
+# Step 2: Fix at medium reasoning
+codex exec "Fix these security issues: $(cat /tmp/security-findings.txt)" \
+  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+```
 
 ---
 
@@ -681,56 +728,14 @@ Minimum viable payload: include a specific `sessionSummary`, at least one meanin
 
 ---
 
-## 14. REASONING EFFORT SELECTION
+## 14. RELATED RESOURCES
 
-All templates dispatch `--model gpt-5.5`. Tune `model_reasoning_effort` to the task.
+### Parent
 
-### High Reasoning (architecture, security, planning)
+- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
 
-Raise effort to `high` or `xhigh` for tasks that benefit from deeper analysis:
+### References
 
-```bash
-# Architecture analysis
-codex exec "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
-
-# Security audit
-codex exec "Perform a thorough security audit of @./[file]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
-
-# Complex planning
-codex exec -p ai-council "Design 3 alternative caching strategies for this API. Score each on correctness, maintainability, and performance." \
-  --model gpt-5.5 -c model_reasoning_effort="xhigh" -s read-only
-```
-
-### Medium Reasoning (default: code, review, docs)
-
-`medium` is the skill default. Works for code generation, standard review, implementation, and documentation:
-
-```bash
-# Code generation
-codex exec "Create a [description] in [language]. Requirements: [requirements]. Output complete file." \
-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
-
-# Standard code review
-codex exec "Review @./[file] for bugs, style issues, and edge cases." \
-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox read-only
-
-# Test generation
-codex exec "Generate comprehensive unit tests for @./[file]." \
-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
-```
-
-### Mixed Effort Workflow
-
-Use `high` for analysis, then `medium` for implementation, the same model at a different depth:
-
-```bash
-# Step 1: Deep analysis at high reasoning
-codex exec "Identify all security vulnerabilities in @./src/auth/" \
-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only > /tmp/security-findings.txt
-
-# Step 2: Fix at medium reasoning
-codex exec "Fix these security issues: $(cat /tmp/security-findings.txt)" \
-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
-```
+- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
+- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
+- [codex-tools.md](../references/codex-tools.md) - Built-in capabilities (/review, --search, MCP, session management)

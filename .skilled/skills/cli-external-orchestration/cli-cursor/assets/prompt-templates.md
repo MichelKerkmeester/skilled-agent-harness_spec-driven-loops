@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor plan ask template"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.10
+version: 1.4.1.0
 ---
 
 # Prompt Templates - Cursor CLI
@@ -22,6 +22,10 @@ Copy-paste ready prompt templates for common Cursor CLI tasks. Replace `[placeho
 
 This asset provides structured, copy-paste ready prompt templates for invoking Cursor CLI across common development tasks. Each template includes the full command with flags, placeholder variables, and a concrete example.
 
+> **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.6-high`) instead.
+> **Exit code caveat:** `-p` always exits `0`, even on auth failure. Every template below assumes the caller inspects output text, not the exit code.
+> **Enforced allowlist:** `--model` is scoped to 29 ids: `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, 8 Grok 4.7 tiers, `gemini-3.8-flash-high`, `glm-5.2-{high,max}`, `gpt-5.6-luna-{max,max-fast}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
+
 ### Usage
 
 1. Find the template category matching your task
@@ -30,10 +34,6 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
 4. Run in your terminal or via Bash tool
 
 ### Flag Reference
-
-> **Non-existent flags:** `--reasoning-effort` and the parameterized `model[effort=...]` bracket do NOT exist / are rejected outright by Cursor CLI. Select an effort-suffixed model id (e.g. `cursor-grok-4.6-high`) instead.
-> **Exit code caveat:** `-p` always exits `0`, even on auth failure. Every template below assumes the caller inspects output text, not the exit code.
-> **Enforced allowlist:** `--model` is scoped to 29 ids: `composer-2.5`/`composer-2.5-fast`, 6 Grok 4.5 tiers, 8 Grok 4.6 tiers, 8 Grok 4.7 tiers, `gemini-3.8-flash-high`, `glm-5.2-{high,max}`, `gpt-5.6-luna-{max,max-fast}`. `auto` and every other Cursor id are rejected before a command is constructed (SKILL.md §3).
 
 | Flag | Purpose |
 | ---- | ------- |

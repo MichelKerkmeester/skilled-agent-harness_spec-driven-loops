@@ -1,0 +1,11 @@
+.skilled/skills/cli-external-orchestration/cli-codex/README.md
+.skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md

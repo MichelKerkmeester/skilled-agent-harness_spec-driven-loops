@@ -1,0 +1,3 @@
+.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md:60: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md:46: render_h2_numbering: H2 number carries a letter suffix ("3A."); use integers only.
+files=12 render_warnings=2 invalid=0

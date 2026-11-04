@@ -1,0 +1,31 @@
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md:291: render_section_order: "REFERENCES AND RELATED RESOURCES" must be the last H2; it is followed by "SUCCESS CRITERIA".
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:33: render_bold_label_join: Consecutive bold labels "Framework:" and "Calling runtime:" join into one paragraph; separate them or use list
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:99: render_bold_label_join: Consecutive bold labels "Framework:" and "Calling runtime:" join into one paragraph; separate them or use list
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:149: render_bold_label_join: Consecutive bold labels "Framework:" and "Calling runtime:" join into one paragraph; separate them or use list
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:199: render_bold_label_join: Consecutive bold labels "Framework:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:236: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:237: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:287: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:288: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:323: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:324: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:369: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:370: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:419: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:420: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:459: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:460: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:497: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:498: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:662: render_bold_label_join: Consecutive bold labels "Framework:" and "Agent:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md:663: render_bold_label_join: Consecutive bold labels "Agent:" and "Use case:" join into one paragraph; separate them or use list items.
+.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md:45: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:36: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:55: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:165: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:167: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:174: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:215: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:381: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md:426: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=15 render_warnings=30 invalid=0

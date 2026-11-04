@@ -11,7 +11,7 @@ trigger_phrases:
   - "devin tool surface"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.2
+version: 1.4.1.0
 ---
 
 # Devin CLI Built-in Tools Reference
@@ -21,10 +21,6 @@ Reference for all Devin CLI capabilities, highlighting unique features and the 4
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Delegate to Devin CLI for capabilities the calling AI lacks natively — especially `run_subagent` for parallel subagent delegation, `/handoff` for cloud session transfer, multi-model selection, and the OS-level sandbox for autonomous execution.
 
 ### Purpose
 
@@ -36,6 +32,10 @@ Covers all built-in capabilities available in Devin CLI, highlights what is uniq
 - Understanding which Devin tools and permission modes to use for different task types
 - Mapping calling AI capabilities to Devin CLI equivalents
 - Leveraging Devin-exclusive features (subagents, /handoff, multi-model, sandbox)
+
+### Core Principle
+
+Delegate to Devin CLI for capabilities the calling AI lacks natively — especially `run_subagent` for parallel subagent delegation, `/handoff` for cloud session transfer, multi-model selection, and the OS-level sandbox for autonomous execution.
 
 ---
 
@@ -155,6 +155,11 @@ devin -p --model swe-1-6-fast "Fix the typo at line 42"
 - Domain allow/deny lists filter network access
 - Only available with `autonomous` permission mode
 
+**Platform requirements:**
+- macOS: works out of the box via Seatbelt
+- Linux: requires `bwrap` and `socat` (run `devin sandbox setup` for prerequisites)
+- Windows: use WSL 2 (native Windows cannot run the sandbox)
+
 **Usage:**
 
 ```bash
@@ -166,11 +171,6 @@ devin --sandbox -p "Run the test suite and fix any failures" --model adaptive
 - Unattended execution with OS-enforced safety limits
 - Running untrusted or potentially destructive commands safely
 - CI-like validation in an isolated environment
-
-**Platform requirements:**
-- macOS: works out of the box via Seatbelt
-- Linux: requires `bwrap` and `socat` (run `devin sandbox setup` for prerequisites)
-- Windows: use WSL 2 (native Windows cannot run the sandbox)
 
 ---
 

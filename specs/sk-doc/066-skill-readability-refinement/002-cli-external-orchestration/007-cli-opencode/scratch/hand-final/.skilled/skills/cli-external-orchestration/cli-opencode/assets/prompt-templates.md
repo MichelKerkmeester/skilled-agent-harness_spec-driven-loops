@@ -1,0 +1,746 @@
+---
+title: "OpenCode CLI - Prompt Templates"
+description: "Copy-paste ready prompt templates for the three documented use cases plus specialized agent dispatch, parallel detached sessions, ablation suites, worker farms, cross-AI handback, and Memory Epilogue."
+trigger_phrases:
+  - "opencode prompt templates"
+  - "opencode run dispatch template"
+  - "opencode memory epilogue"
+  - "opencode worker farm dispatch"
+  - "opencode ablation suite template"
+  - "minimax dispatch scaffold"
+importance_tier: normal
+contextType: implementation
+version: 1.4.13.0
+---
+
+# OpenCode CLI - Prompt Templates
+
+Copy-paste templates for `opencode run` dispatches. Each template names the use case it serves, the framework it applies, and the canonical invocation shape. Each rendered invocation is shown for OpenCode 2 (recommended, 2.0.32). Its OpenCode 1 (fallback, 1.19.3) form sits beside it. Where a flag has no OpenCode 2 form, the template says so and links `../references/install-and-versions.md`.
+
+> **⚠️ NON-INTERACTIVE DISPATCH RULE:** ANY automation that redirects stdout and/or stderr to files (e.g. `> stdout.log 2> stderr.log`) MUST also redirect stdin from `/dev/null`. opencode v1.14.39 reads stdin at startup, and without explicit closed stdin dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. The hang is unverified on OpenCode 2.0.32 and observed on OpenCode 1, so the redirect stays on both versions. Position: AFTER the prompt argument, BEFORE stdout/stderr redirects. The templates below show foreground patterns (terminal stdout, no redirect, which works as-is). When adapting any of these for automation/background dispatch (`> file 2> file`), append `</dev/null` after the prompt. See `../references/integration-patterns.md` §6 for full failure modes + fix matrix.
+
+## 1. OVERVIEW
+
+### Purpose
+
+The cli-opencode skill ships templates for the three documented use cases (per ADR-002) plus specialized dispatches for agent routing, parallel research, ablation, worker farms, and cross-AI handback. Every template ends with the Memory Epilogue when the calling AI needs to preserve session context.
+
+### Usage
+
+Templates are numbered for cross-reference from `references/integration-patterns.md` and `SKILL.md`.
+
+---
+
+## 2. TEMPLATE 1: EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
+
+- **Framework:** RCAF
+- **Calling runtime:** Claude Code, OpenCode, Copilot, raw shell
+
+```text
+You are dispatching from <calling-runtime> into a fresh OpenCode session via cli-opencode.
+
+Goal: <one-sentence goal>
+
+Context:
+- Spec folder: <path> (pre-approved, skip Gate 3)
+- Plugins / skills required: <list>
+- MCP tools required: <list>
+
+Constraints:
+- <list>
+
+Success criteria:
+- <list>
+
+Budget awareness:
+- Apply `../references/context-budget.md`.
+- When content is cut for context budget, keep the retained span and insert `[... truncated N tokens]`.
+- Treat truncation markers as intentional boundaries. Do not infer missing evidence.
+
+Memory Epilogue:
+At the end of your response, include a structured handback inside delimiters:
+
+<!-- MEMORY_HANDBACK_START -->
+{
+  "specFolder": "<path>",
+  "sessionSummary": "<one-paragraph summary>",
+  "user_prompts": ["<verbatim prompt>"],
+  "observations": ["<key finding 1>", "<key finding 2>"],
+  "recent_context": ["<recent change 1>"],
+  "FILES": [
+    {"path": "<path>", "DESCRIPTION": "<change description>", "ACTION": "<verb>", "MODIFICATION_MAGNITUDE": "<small|medium|large>"}
+  ],
+  "nextSteps": ["<next safe action>"]
+}
+<!-- MEMORY_HANDBACK_END -->
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt-from-template>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt-from-template>" 2>&1
+```
+
+The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass) on both versions, so one provider serves both: OpenCode 2 dispatches `llmgateway/deepseek-v4.1-flash-1017#max`, while OpenCode 1 dispatches it at `--variant max`. Confirm that `opencode models --standalone` lists the `llmgateway/` prefix of the model you pass to `-m` first. `opencode-go` stays a selectable provider, but it is no longer the default, and a typical v2 install lists none, so that route needs its own login first (`opencode providers login opencode-go`) before `-m opencode-go/deepseek-v4.1-flash#max` resolves.
+
+---
+
+## 3. TEMPLATE 2: IN-OPENCODE PARALLEL DETACHED SESSION (USE CASE 2)
+
+- **Framework:** CIDI
+- **Calling runtime:** OpenCode itself (TUI / web / serve / acp)
+
+```text
+You are spawning a parallel detached OpenCode session for <purpose>.
+
+Goal: <one-sentence goal that must mention "parallel detached", "ablation suite", "worker farm", or "share URL">
+
+Context:
+- Spec folder: <path> (pre-approved, skip Gate 3)
+- Iteration N of <total>
+- State file: <path>
+
+Constraints:
+- This session must NOT modify the parent session's state.
+- Write results to <state file path>.
+- Do not pass `--share`: it is a deprecated no-op on OpenCode 1.19.3 and publishes nothing.
+- Do NOT delegate the same prompt back to OpenCode (cycle protection).
+
+Success criteria:
+- <list>
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt-from-template>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --port 4096 \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt-from-template>" 2>&1
+```
+
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+
+For an actual deep-research iteration, do not pass `--agent deep-research` (command-owned, and rejected the same way any other subagent slug is at the top level). Dispatch the real iterative loop via `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet instead. The command owns the packet-local JSONL/strategy/dashboard state that this template's "State file" / "Strategy file" context lines describe. This template's own bash block is for a generic parallel-detached worker, not a raw deep-research iteration.
+
+---
+
+## 4. TEMPLATE 3: CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
+
+- **Framework:** RCAF + TIDD-EC
+- **Calling runtime:** OpenCode, Copilot
+
+```text
+You are dispatching from <calling-runtime> into OpenCode for a spec-kit-specific workflow.
+
+Goal: <one-sentence goal>
+
+Context:
+- Spec folder: <path> (pre-approved, skip Gate 3)
+- Subsystem: <spec-kit | memory | code-graph | advisor>
+- Operation: <save | search | query | scan | validate>
+
+Do's:
+- Load the system-spec-kit skill before any spec-folder write.
+- Route MCP calls through the project's local MCP servers.
+- Cite file:line evidence for every claim.
+
+Don'ts:
+- Do not modify files outside the named spec folder.
+- Do not skip the strict spec-folder validation.
+
+Success criteria:
+- <list>
+
+Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt-from-template>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt-from-template>" 2>&1
+```
+
+---
+
+## 5. TEMPLATE 4: SPECIALIZED AGENT DISPATCH
+
+- **Framework:** RCAF
+- **Use case:** Any (1, 2, or 3)
+
+Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below. `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in), and every other slug routes a different way.
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --agent orchestrate \
+  --format json \
+  "Use the <slug> subagent: <prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --agent orchestrate \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "Use the <slug> subagent: <prompt>" 2>&1
+```
+
+On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unknown slug exits 1.
+
+- **Default / general**: omit `--agent` entirely, and never pass `--agent general` (OpenCode 2.0.32 accepts it, and OpenCode 1 rejects it at the top level, but the default agent covers that case on both).
+- **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
+- **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
+- **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
+- **Command-owned loop executors (never direct `--agent`)**: `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `prompt-improver` (via `/prompt`'s deep-path escalation).
+
+---
+
+## 6. TEMPLATE 5: CODE REVIEW
+
+- **Framework:** TIDD-EC
+- **Agent:** `review`
+- **Use case:** 1 or 3
+
+```text
+As @review:
+
+Task: Review <files> for <issue type>.
+
+Instructions:
+- Cite file:line evidence for every finding.
+- Surface P0 / P1 / P2 separately.
+- Map findings to the closest sk-code baseline check item.
+
+Do's:
+- Apply the project's sk-code baseline.
+- Layer `sk-code` surface-specific evidence selected from codebase signals. Add its code-review mode for findings-first review output.
+
+Don'ts:
+- Do not propose fixes. Leave that for a follow-up dispatch.
+- Do not modify files (READ-ONLY).
+
+Examples: <if available>
+
+Context: Spec folder: <path> (pre-approved, skip Gate 3).
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>" 2>&1
+```
+
+No `--agent` flag. `review` is a subagent, not directly invokable at the top level. The `As @review:` prompt prefix above carries the role instead (or route via `--agent orchestrate` and ask it to dispatch the review subagent).
+
+---
+
+## 7. TEMPLATE 6: ITERATIVE DEEP RESEARCH
+
+- **Framework:** CRISPE
+- **Agent:** `deep-research`, command-owned by `/deep:research`. This template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
+- **Use case:** Command-owned loop, driven by `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet
+
+```text
+Run iteration N of the deep-research loop on packet <packet-id>.
+
+State file: <spec_folder>/research/deep-research-state.jsonl
+Strategy file: <spec_folder>/research/deep-research-strategy.md
+
+Capacity: leaf-agent execution. Single iteration only, no nested dispatches.
+Insight: <what the prior iteration converged on>
+Statement: <hypothesis for this iteration>
+Personality: rigorous, evidence-first, no speculation.
+Experiment: <list of files to read and queries to run>
+```
+
+Do NOT dispatch this shape with a raw `opencode run --agent deep-research`. That flag is command-owned. OpenCode 2.0.32 would accept it but bypass the command that owns the loop, and OpenCode 1 rejects it at the top level the same way any other subagent slug is. Trigger a real iteration by invoking the owning command instead:
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --command deep/research \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>" 2>&1
+```
+
+On OpenCode 2, `--command` has no `run` form (OpenCode 1 only). A registered command runs through the server API (`POST /api/session/{id}/command`). See `../references/install-and-versions.md`.
+
+---
+
+## 8. TEMPLATE 7: ABLATION SUITE
+
+- **Framework:** CIDI
+- **Agent:** `general` or `orchestrate`
+- **Use case:** 2 (parallel detached)
+
+```text
+Spawn a parallel detached session to run an ablation suite on <subsystem>.
+
+Context: <one-paragraph context>
+Instructions:
+- For each ablation in <ablation list>, run <experiment>.
+- Capture results in <state file path>.
+- Compare against the baseline at <baseline path>.
+
+Details:
+- Ablation 1: <description>
+- Ablation 2: <description>
+- ...
+
+Input: <input data path>
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --port 4097 \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>" 2>&1
+```
+
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+
+---
+
+## 9. TEMPLATE 8: WORKER FARM DISPATCH
+
+- **Framework:** CIDI
+- **Agent:** `general`
+- **Use case:** 2 (parallel detached)
+
+Spawn N parallel detached sessions in a loop, each with a distinct port and state file.
+
+```text
+You are worker N of <total> in a parallel farm. Spec folder: <path>.
+
+Goal: <one-sentence goal scoped to your shard>
+
+Constraints:
+- Read input from <input shard path for worker N>.
+- Write output to <output shard path for worker N>.
+- Do NOT touch other workers' state.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+for n in $(seq 1 8); do
+  cd /repo && opencode run --standalone \
+    -m llmgateway/deepseek-v4.1-flash-1017#max \
+    --format json \
+    "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
+done
+wait
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+# Dispatch loop — note the </dev/null redirect (see integration-patterns.md §6)
+for n in $(seq 1 8); do
+  port=$((4100 + n))
+  opencode run \
+    --port "$port" \
+    --model llmgateway/deepseek-v4.1-flash-1017 \
+    --variant max \
+    --format json \
+    --dir /repo \
+    "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
+done
+wait
+```
+
+On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/install-and-versions.md`.
+
+---
+
+## 10. TEMPLATE 9: SPEC-DOC RETRIEVAL VIA OPENCODE
+
+- **Framework:** RCAF
+- **Agent:** `general`
+- **Use case:** 3 (cross-AI handback) or 1 (external runtime)
+
+```text
+Search the project's spec docs for <query>.
+
+Spec folder context: <path> (pre-approved, skip Gate 3).
+
+Action:
+- Run the path-only ripgrep recipe from `system-spec-kit/references/retrieval/retrieval-conventions.md` §2.2, scoped to the spec folder above.
+- Read the frontmatter of each hit and keep the ones whose `importance_tier` is critical or important.
+- Rank what survives with the caller-side tuple in §5 and return the top 5 with their packet pointers.
+- An empty result is a clean no-hit. Say so. Do not guess a nearest match.
+
+Format: structured JSON event stream. Memory Epilogue at the end.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>" 2>&1
+```
+
+---
+
+## 11. TEMPLATE 10: MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
+
+- **Framework:** CRAFT
+- **Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
+- **Use case:** 1 or 3
+
+```text
+Plan the <feature / refactor> using multi-strategy comparison.
+
+Context: <one-paragraph context>
+Role: planning architect. No file modifications.
+Action: generate three distinct strategies, score each across the 5-dimension rubric, synthesize the optimal plan.
+Format: structured JSON plus a summary paragraph.
+Target: an implementation-ready plan that another agent can execute.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --agent orchestrate \
+  --format json \
+  "Dispatch @ai-council: <prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --agent orchestrate \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "Dispatch @ai-council: <prompt>" 2>&1
+```
+
+---
+
+## 12. TEMPLATE 11: DOC GENERATION VIA @WRITE
+
+- **Framework:** RCAF
+- **Agent:** `write`
+- **Use case:** 1
+
+```text
+Generate a <doc type> for <subject>.
+
+Context: Spec folder: <path> (pre-approved, skip Gate 3).
+Action: load the appropriate sk-doc template, fill it, run the DQI score, surface any HIGH issues for manual patching.
+Format: markdown.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd /repo && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --agent markdown \
+  --format json \
+  "<prompt>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --agent markdown \
+  --variant max \
+  --format json \
+  --dir /repo \
+  "<prompt>" 2>&1
+```
+
+---
+
+## 13. TEMPLATE 12: SELF-INVOCATION REFUSAL SURFACE
+
+**Use case:** Refusal path
+
+When the smart router refuses (per ADR-001), the calling AI surfaces this exact message to the operator:
+
+```text
+ERROR: cli-opencode self-invocation refused.
+
+You are already inside OpenCode (signal: <env|ancestry|lockfile> tripped).
+Asking cli-opencode to delegate this exact prompt back to OpenCode would create
+a circular dispatch.
+
+Options:
+1. Use a sibling cli-* skill (cli-claude-code, cli-opencode)
+   to dispatch a different model.
+2. Open a fresh shell session (no OpenCode parent) and re-run from there.
+3. If you wanted a parallel detached session (different session id, separate
+   state directory), restate the request with explicit "parallel detached" /
+   "ablation suite" / "worker farm" / "share URL" keywords, which triggers
+   use case 2 instead of refusal.
+```
+
+This template is NOT an `opencode run` invocation. It is the user-facing message the calling AI prints when the router refuses dispatch.
+
+---
+
+## 14. TEMPLATE 13: MEMORY EPILOGUE (REUSABLE TAIL)
+
+Append this block to any prompt that produces evidence the calling AI wants to write back through `/speckit:save`.
+
+```text
+Memory Epilogue:
+
+At the end of your response, include a structured handback inside delimiters:
+
+<!-- MEMORY_HANDBACK_START -->
+{
+  "specFolder": "<path>",
+  "sessionSummary": "<one-paragraph summary, 2-4 sentences>",
+  "user_prompts": ["<verbatim caller prompt>"],
+  "observations": ["<key finding 1>", "<key finding 2>"],
+  "recent_context": ["<recent change 1>", "<recent change 2>"],
+  "recentContext": [
+    {
+      "request": "<compatibility alias for callers still emitting camelCase>",
+      "learning": "<same semantics as recent_context>"
+    }
+  ],
+  "FILES": [
+    {
+      "path": "<absolute or repo-rooted path>",
+      "DESCRIPTION": "<one sentence describing the change>",
+      "ACTION": "<verb: created | modified | deleted | reviewed>",
+      "MODIFICATION_MAGNITUDE": "<small | medium | large>",
+      "_provenance": "<short cite>"
+    }
+  ],
+  "keyDecisions": ["<decision 1 with rationale>"],
+  "nextSteps": ["<next safe action>", "<follow-up 1>"],
+  "triggerPhrases": ["<phrase 1>", "<phrase 2>"]
+}
+<!-- MEMORY_HANDBACK_END -->
+
+The calling AI extracts this block via regex
+/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/
+and feeds it to generate-context.js.
+```
+
+Valid JSON can still be rejected after normalization. File-backed handbacks skip stateless alignment and `QUALITY_GATE_ABORT`, but thin payloads fail with `INSUFFICIENT_CONTEXT_ABORT` and cross-spec payloads fail with `CONTAMINATION_GATE_ABORT`.
+
+Minimum viable payload: a specific `sessionSummary`, at least one meaningful `recent_context` / `recentContext` entry or equivalent observation, and `FILES` entries with a descriptive `DESCRIPTION`. Add `ACTION`, `MODIFICATION_MAGNITUDE`, and `_provenance` when known.
+
+---
+
+## 15. TEMPLATE 14: MINIMAX TOKEN PLAN (EMPIRICAL DEFAULT, TIDD-EC PLUS DENSE PRE-PLAN)
+
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The MiniMax M2.7 prompt-framework benchmark (real runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. On OpenCode 2, a level rides the model string (`-m provider/model#level`), and whether the MiniMax plan accepts one is unverified on OpenCode 2.0.32. On OpenCode 1, `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
+
+**Invocation**:
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m minimax-coding-plan/MiniMax-M3 \
+  "$(cat prompt.md)" \
+  </dev/null
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model minimax-coding-plan/MiniMax-M3 \
+  --dir "$REPO_ROOT" \
+  "$(cat prompt.md)" \
+  </dev/null
+```
+
+**Prompt scaffold (TIDD-EC + dense pre-plan)**:
+
+```markdown
+## Task
+<one-line goal>
+
+## Instructions
+1. Write a `<pre-plan>` block with 4-5 ordered steps (dense). Each step: input, output, acceptance criterion, verification command.
+2. Write the code in fenced markdown blocks with the file path in a comment on the first line.
+3. End with a `## Verification` list of the exact commands that prove acceptance.
+
+## Do's
+- Stay strictly within the allowed-writes scope.
+- Use only documented/real CLI flags, functions, and files.
+- Satisfy every acceptance criterion exactly.
+
+## Don'ts
+- Do not invent CLI flags, functions, or files.
+- Do not touch files outside scope.
+- Do not replace code with prose disclaimers.
+
+## Examples
+Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a `## Verification` command list.
+
+## Context
+- CWD / active surface / existing files in scope
+- Acceptance criteria (what "done" means)
+```
+
+---
+
+## 16. TEMPLATE 15: DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
+
+- **Framework:** RCAF + sk-design-md-generator Style Reference Manifest
+- **Agent:** `general`, `write`, or a design-capable leaf agent
+- **Use case:** 1 or 3
+
+Use this for delegated UI build or redesign that must match a live source rather than guessing colors, type, spacing, or shadows. The dispatched agent must first load `sk-design-md-generator`, extract a measured Style Reference DESIGN.md from the live source, then build against those measured tokens. `sk-design-md-generator` measures real CSS. It does not invent visual direction or critique design, and new direction is out of scope.
+
+```text
+You are dispatching a design/UI build task through cli-opencode.
+
+Goal: <one-sentence UI build/redesign goal>
+
+Style Reference Manifest:
+- Spec folder: <path> (pre-approved, skip Gate 3)
+- Write scope: <read-only | allowed write paths>
+- Target surface: <page | component | flow>
+- Task type: <build | redesign against a live source>
+- Live source to measure: <URL whose real CSS is the ground truth>
+- Exact files to read:
+  - .skilled/skills/sk-design/sk-design-md-generator/SKILL.md
+  - .skilled/skills/sk-design/sk-design-md-generator/references/extraction-workflow.md
+  - .skilled/skills/sk-design/sk-design-md-generator/references/design-md-format.md
+  - .skilled/skills/sk-design/sk-design-md-generator/references/quality-checklist.md
+  - .skilled/skills/sk-design/sk-design-md-generator/references/sk-code-handoff.md
+
+Instructions:
+1. Load `sk-design-md-generator` and read the exact files before any build decision. If a listed file is missing, report that path as missing and do not substitute memory.
+2. Extract a measured Style Reference DESIGN.md (named color tokens, type scale, components, Surfaces, Elevation, Quick-Start CSS/Tailwind) plus verbatim tokens.json from the live source.
+3. Run the validate step to confirm hex accuracy and section completeness against tokens.json.
+4. Build the UI against the measured tokens, staying inside the write scope. Use every color, type role, spacing, radius, and shadow verbatim from the reference.
+5. Emit the sk-code handoff card before any "ready", "done", or handoff claim.
+
+Required fidelity proof before a ready/handoff claim:
+- LOCKED VALUES: every measured token the build used verbatim, each traced to a source observation.
+- INFERRED VS MEASURED: any value not directly measured, flagged as an OPEN RISK so it is never treated as ground truth.
+- VALIDATION: validate step result (hex accuracy, section completeness) with the pass/fail verdict.
+
+Do's:
+- Treat the measured Style Reference DESIGN.md + tokens.json as the source of truth.
+- Trace every built value to a measured token. Label anything inferred as an OPEN RISK.
+- Re-extract after a source redesign rather than editing tokens from memory.
+
+Don'ts:
+- Do not summarize `sk-design-md-generator` output from memory.
+- Do not invent new palette, type scale, or visual direction. This skill measures, it does not create direction.
+- Do not claim readiness, fidelity, or completion without the validate result and the sk-code handoff card.
+- Do not touch files outside the allowed write scope.
+
+Output:
+1. Measured Style Reference summary (tokens loaded).
+2. Built UI or implementation against the measured tokens.
+3. Validate result (hex accuracy, section completeness).
+4. sk-code handoff card.
+```
+
+```bash
+# OpenCode 2 (recommended, 2.0.32):
+cd "$REPO_ROOT" && opencode run --standalone \
+  -m llmgateway/deepseek-v4.1-flash-1017#max \
+  --format json \
+  "<prompt-from-template>" 2>&1
+```
+
+```bash
+# OpenCode 1 (fallback, 1.19.3):
+opencode run \
+  --model llmgateway/deepseek-v4.1-flash-1017 \
+  --variant max \
+  --format json \
+  --dir "$REPO_ROOT" \
+  "<prompt-from-template>" 2>&1
+```
+
+---
+
+## 17. RELATED RESOURCES
+
+- `../references/cli-reference.md` - Full subcommand and flag reference
+- `../references/integration-patterns.md` - Three use cases and decision tree
+- `../references/agent-delegation.md` - Agent routing matrix
+- `../references/opencode-tools.md` - Unique value props
+- `./prompt-quality-card.md` - Framework selection and CLEAR check
+- `../ROUTER.md` - Smart router pseudocode

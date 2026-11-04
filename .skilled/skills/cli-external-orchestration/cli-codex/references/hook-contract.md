@@ -8,18 +8,31 @@ trigger_phrases:
   - "codex advisor brief"
 importance_tier: important
 contextType: implementation
-version: 1.9.0.24
+version: 1.9.1.0
 ---
 
 # Codex CLI Hook Contract
+
+Open this before wiring a Codex hook or debugging one whose output never reaches the model. It pins the activation flag, registration shape, stdin and stdout contracts, and fail-open exit behavior.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
+Spec Kit uses the native `SessionStart` and `UserPromptSubmit` surfaces to inject startup context and the compact skill-advisor brief.
+
+### When to Use
+
+- Enabling or registering Codex hooks
+- Writing a hook adapter or checking the payload Codex hands it
+- Confirming exit, timeout and fail-open behavior
+- Wiring or repairing the Spec Kit hook scripts
+
+### Core Principle
+
 Codex CLI 0.130.0 exposes native hooks behind the stable `hooks` feature flag.
-Spec Kit uses the native `SessionStart` and `UserPromptSubmit` surfaces
-to inject startup context and the compact skill-advisor brief.
 
 ---
 
@@ -77,6 +90,18 @@ When appending Spec Kit hooks, preserve existing Superset `notify.sh`
 entries. Multiple hooks for one event run concurrently, so hook commands must be
 idempotent and must not rely on registration order.
 
+> Codex runs a project hook only after the operator approves that exact entry.
+> The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
+> `trusted_hash`, and an entry with no approval is skipped without a warning. Because
+> the approval is a hash, a changed entry is likely to need approving again. After a
+> `hooks.json` change, open `/hooks` in an interactive Codex session and approve every
+> entry it lists as needing review.
+
+Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
+The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
+twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
+and keeps Superset and other third-party entries.
+
 ### 3.1 Tool-Level Guard Adapters (Claude / OpenCode parity)
 
 Beyond the session-lifecycle hooks, Codex mirrors the repo's guard hooks as thin
@@ -104,22 +129,10 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
 > The same release hands PostToolUse the shell output as one string where older
 > builds handed `{stdout, stderr}`, so the audit adapter reads either shape.
 
-> Codex runs a project hook only after the operator approves that exact entry.
-> The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
-> `trusted_hash`, and an entry with no approval is skipped without a warning. Because
-> the approval is a hash, a changed entry is likely to need approving again. After a
-> `hooks.json` change, open `/hooks` in an interactive Codex session and approve every
-> entry it lists as needing review.
-
 > Codex has no task-dispatch guard. Its `spawn_agent` call reaches PreToolUse as
 > `collaborationspawn_agent`, but the hook payload carries the spawn `message`
 > encrypted (`gAAAAA...`) beside `task_name` and `fork_turns`, so the guard has no
 > prompt or target to check.
-
-Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
-The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
-twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
-and keeps Superset and other third-party entries.
 
 ---
 
@@ -177,11 +190,9 @@ Use JSON output for model-visible context:
 For `SessionStart`, set `"hookEventName": "SessionStart"` and put startup
 context in `additionalContext`.
 
-Codex also accepts plain stdout for context on injecting events, but JSON is the
-preferred Spec Kit path because it is explicit and testable. Context is recorded
-as a developer-role message in the conversation state. For `SessionStart`, it is
-placed before the first user prompt; for `UserPromptSubmit`, it is placed after
-the submitted user message.
+- Codex also accepts plain stdout for context on injecting events, but JSON is the preferred Spec Kit path because it is explicit and testable.
+- Context is recorded as a developer-role message in the conversation state.
+- Placement follows the event: `SessionStart` puts it before the first user prompt; `UserPromptSubmit` puts it after the submitted user message.
 
 ---
 
@@ -234,5 +245,3 @@ non-empty and start with `Advisor:` on the prompt hook.
 - OpenAI Codex issue evidence for `UserPromptSubmit.additionalContext` becoming
   model-visible developer context:
   `https://github.com/openai/codex/issues/16933`
-- Packet-local synthesis:
-  `<spec-folder>`

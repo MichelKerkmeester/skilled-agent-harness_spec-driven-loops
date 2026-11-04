@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/005-cli-devin",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/005-cli-devin",
+  "parent_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli devin",
+      "phase 5 cli devin",
+      "cli devin plan",
+      "cli devin tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli devin implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "devin",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md",
+      ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      "scratch/run.log",
+      "scratch/approved-blocks.md",
+      "scratch/scope.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "cloud-handoff.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "devin-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "run.log",
+        "kind": "file",
+        "path": "scratch/run.log",
+        "source": "derived"
+      },
+      {
+        "name": "approved-blocks.md",
+        "kind": "doc",
+        "path": "scratch/approved-blocks.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/cli-external-orchestration/cli-devin` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:23Z",
+    "last_save_at": "2026-11-04T17:19:26.955Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a3e5d22bccf3a637a150e74e3658de577bf9594d3cd92c09117cf2ae2ffb5149",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "94f4e81bdc8fbb16da2af14e55862c3e399cf6a9c2077a2ce50b226051a7e77c",
+      "plan.md": "67ea540a7f00e60d01f70e18268b61ce733e6943815227cc64a1b6fe8064011e",
+      "tasks.md": "d4f40e0800e030a76a86108a12d4a0e51628ab672beaf4b90a506dca624233a3",
+      "implementation-summary.md": "03382c60bd0bbf36ed80b2475d8f084826cf38c72a10210016f571958491e6b9"
+    },
+    "last_active_at": null
+  }
+}

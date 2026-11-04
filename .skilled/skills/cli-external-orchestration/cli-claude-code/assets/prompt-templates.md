@@ -9,7 +9,7 @@ trigger_phrases:
   - "claude code test generation prompt"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.26
+version: 1.5.1.0
 ---
 
 # Prompt Templates - Claude Code CLI
@@ -476,7 +476,7 @@ All placeholders used across templates in this file:
 
 ---
 
-## 12. RELATED RESOURCES
+## 12. REFERENCE LINKS
 
 ### Parent
 

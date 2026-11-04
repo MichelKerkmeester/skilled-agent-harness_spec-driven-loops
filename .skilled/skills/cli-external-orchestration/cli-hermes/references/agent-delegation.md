@@ -9,7 +9,7 @@ trigger_phrases:
   - "delegate from hermes"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes Agent Delegation Reference
@@ -17,6 +17,17 @@ version: 1.0.0.0
 This reference prevents a category error: Hermes profiles and `delegate_task` sub-agents are not persona surfaces for this repo's agents.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Records every route a repo persona can take into a Hermes dispatch, and the reason a profile or a `delegate_task` child cannot stand in for one.
+
+### When to Use
+
+- Composing a dispatch that carries a resolved agent persona
+- Deciding whether to preload `agent-<name>` or inline the persona
+- Checking what a `delegate_task` child may and may not do
+- Finding the prompt template for a nested `.skilled/commands` command
 
 ### Core Principle
 
@@ -39,28 +50,37 @@ Resolve the persona from the calling runtime's agent directory (AGENTS.md §9), 
 
 ## 3. COMMANDS
 
-The repo's nested commands under `.skilled/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. The runtime-folder phase generates those templates with a sync script; a dispatch loads the template text into its prompt file.
+The repo's nested commands under `.skilled/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. A sync script generates those templates; a dispatch loads the template text into its prompt file.
 
 ---
 
-## 3A. PERSONA THROUGH THE REPO PLUGIN
+## 4. PERSONA THROUGH THE REPO PLUGIN
 
-`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright). The native-shaped dispatch is `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` with `HERMES_ENABLE_PROJECT_PLUGINS=1`: the skill carries the whole persona and the plugin's persona section binds it for the session. `--ignore-rules` is passed alongside `-s`: a live A/B under the flag showed the preload still reaching the model, so omitting it only bled SOUL.md, memories and session search into the leaf. Inline stays the fallback for a run without the plugin or the mirror.
+`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright).
+
+The native-shaped dispatch pairs:
+
+- `-s agent-<name>`, the skill that carries the whole persona
+- `HERMES_AGENT_PERSONA=<name>`, the name the plugin's persona section binds for the session
+
+`HERMES_ENABLE_PROJECT_PLUGINS=1` must be set for the plugin to load.
+
+`--ignore-rules` is passed alongside `-s`: a live A/B under the flag showed the preload still reaching the model, so omitting it only bled SOUL.md, memories and session search into the leaf. Inline stays the fallback for a run without the plugin or the mirror.
 
 ---
 
-## 4. SKILLS
+## 5. SKILLS
 
 With the repo trusted, Hermes loads the curated per-skill links under `.hermes/skills/<name>` and can preload one with `-s <name>` (observed 2026-09-14: `-s cli-hermes` quoted the packet's first hard rule). A dispatch that needs any other skill names it in the prompt by path, because only linked skills are visible to Hermes and the hub identity does not cross the link.
 
 ---
 
-## 5. `delegate_task` AND THE DELEGATION BOUNDARY
+## 6. `delegate_task` AND THE DELEGATION BOUNDARY
 
 Hermes's own sub-agents are spawned by the `delegation` toolset. A leaf lineage never carries that toolset: a sub-agent spawned inside a lineage runs outside the runner's containment and stack guards. For non-leaf use, the semantics of `delegation.subagent_auto_approve`, child timeouts and flag inheritance are open questions for the contract pin. Because Hermes has in-process delegation, `cli-hermes` is not exempt from the self-presence guards the way `cli-pi` is.
 
 ---
 
-## 6. MCP AND HOOKS AS DELEGATION SURFACES
+## 7. MCP AND HOOKS AS DELEGATION SURFACES
 
 MCP servers are user-level ([mcp-policy.md](./mcp-policy.md)); the repo's guard cores reach a Hermes session through the project plugin ([hook-contract.md](./hook-contract.md)). Neither is a persona surface.

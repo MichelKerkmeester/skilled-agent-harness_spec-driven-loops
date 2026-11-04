@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin cloud handoff template"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Prompt Templates - Devin CLI
@@ -423,19 +423,47 @@ All placeholders used across templates in this file:
 
 ---
 
-## 11. RELATED RESOURCES
+## 11. MODEL SELECTION FOR TEMPLATES
 
-### Parent
+All templates default to `--model adaptive`. Tune the model to the task.
 
-- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
+### Deep Reasoning (architecture, security, planning)
 
-### References
+```bash
+# Architecture analysis with Opus
+devin -p "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
+  --model opus --permission-mode auto
 
-- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
-- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
-- [devin-tools.md](../references/devin-tools.md) - Built-in capabilities (run_subagent, /handoff, MCP, session management)
-- [agent-delegation.md](../references/agent-delegation.md) - Subagent profile roster and custom AGENT.md patterns
-- [cloud-handoff.md](../references/cloud-handoff.md) - /handoff cloud-handoff mechanics and state transfer
+# Security audit with Opus
+devin -p "Perform a thorough security audit of [file-path]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
+  --model opus --permission-mode auto
+```
+
+### Quick Edits (cost-sensitive)
+
+```bash
+# Quick fix with SWE Fast
+devin -p "Fix the typo in the error message at line 42 in [file-path]." \
+  --model swe-1-6-fast --permission-mode accept-edits
+
+# Quick lookup with SWE
+devin -p "List all TODO comments in src/." \
+  --model swe --permission-mode auto
+```
+
+### Mixed Effort Workflow
+
+Use `opus` for analysis, then `adaptive` for implementation:
+
+```bash
+# Step 1: Deep analysis with Opus
+devin -p "Identify all security vulnerabilities in src/auth/" \
+  --model opus --permission-mode auto > /tmp/security-findings.txt
+
+# Step 2: Fix with Adaptive
+devin -p "Fix these security issues: $(cat /tmp/security-findings.txt)" \
+  --model adaptive --permission-mode accept-edits
+```
 
 ---
 
@@ -531,44 +559,16 @@ Structured JSON is the required save path. You can pass the payload via temp fil
 
 ---
 
-## 13. MODEL SELECTION FOR TEMPLATES
+## 13. RELATED RESOURCES
 
-All templates default to `--model adaptive`. Tune the model to the task.
+### Parent
 
-### Deep Reasoning (architecture, security, planning)
+- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
 
-```bash
-# Architecture analysis with Opus
-devin -p "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
-  --model opus --permission-mode auto
+### References
 
-# Security audit with Opus
-devin -p "Perform a thorough security audit of [file-path]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
-  --model opus --permission-mode auto
-```
-
-### Quick Edits (cost-sensitive)
-
-```bash
-# Quick fix with SWE Fast
-devin -p "Fix the typo in the error message at line 42 in [file-path]." \
-  --model swe-1-6-fast --permission-mode accept-edits
-
-# Quick lookup with SWE
-devin -p "List all TODO comments in src/." \
-  --model swe --permission-mode auto
-```
-
-### Mixed Effort Workflow
-
-Use `opus` for analysis, then `adaptive` for implementation:
-
-```bash
-# Step 1: Deep analysis with Opus
-devin -p "Identify all security vulnerabilities in src/auth/" \
-  --model opus --permission-mode auto > /tmp/security-findings.txt
-
-# Step 2: Fix with Adaptive
-devin -p "Fix these security issues: $(cat /tmp/security-findings.txt)" \
-  --model adaptive --permission-mode accept-edits
-```
+- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
+- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
+- [devin-tools.md](../references/devin-tools.md) - Built-in capabilities (run_subagent, /handoff, MCP, session management)
+- [agent-delegation.md](../references/agent-delegation.md) - Subagent profile roster and custom AGENT.md patterns
+- [cloud-handoff.md](../references/cloud-handoff.md) - /handoff cloud-handoff mechanics and state transfer

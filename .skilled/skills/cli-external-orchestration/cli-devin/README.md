@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-devin
@@ -35,9 +35,21 @@ version: 1.4.1.0
 
 A long generation, an independent review, a browser-heavy task or a security audit can drain your context window and bias your own judgment. cli-devin hands such tasks to Cognition's Devin CLI, which runs its own agent in its own context with a model of your choice. The calling AI stays the conductor. The skill exists so a second AI can work on your codebase without you switching runtimes or babysitting a session.
 
+### When To Use This Skill
+
+Use cli-devin when the task benefits from a second AI perspective: an independent code review, a security audit, a generation pass, parallel research or a long-running task that should keep working after you disconnect. Do not use it for quick tasks the calling agent can finish faster, nor for interactive refinement that needs the full-screen REPL (run `devin` directly instead).
+
 ### What It Does
 
-The skill routes a request through the smart router, picks a curated model and a permission mode, then dispatches with `devin -p`. It can delegate to Devin's native subagents through `run_subagent`, move a session to the cloud with `/handoff`, attach MCP servers with `devin mcp add` and continue or resume past sessions with `devin -c` and `devin -r`. Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. ROUTER.md owns the routing contract and SKILL.md the hard rules.
+The skill does five things:
+
+- Routes a request through the smart router, then picks a curated model and a permission mode before dispatching with `devin -p`.
+- Delegates to Devin's native subagents through `run_subagent`.
+- Moves a session to the cloud with `/handoff`.
+- Attaches MCP servers with `devin mcp add`.
+- Continues or resumes past sessions with `devin -c` and `devin -r`.
+
+Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. ROUTER.md owns the routing contract and SKILL.md the hard rules.
 
 ### The Delegation Layer
 
@@ -145,6 +157,7 @@ cli-devin/
 +-- SKILL.md                       # Hard rules and the full rule set
 +-- README.md                      # Overview and navigation front page
 +-- ROUTER.md                      # Machine router: intent map, resource map and loading levels
++-- hard-rules.json                # Hard-rule checks the dispatch preflight reads
 +-- assets/                        # Prompt resources loaded at routing time
 |   +-- prompt-quality-card.md     # Fast-path prompt discipline and the CLEAR check, always loaded
 |   `-- prompt-templates.md        # Copy-paste prompt templates for common tasks
@@ -165,6 +178,7 @@ cli-devin/
 | `SKILL.md` | Hard rules and the full rule set |
 | `ROUTER.md` | Machine router: intent map, resource map and loading levels |
 | `README.md` | Overview and navigation front page |
+| `hard-rules.json` | Hard-rule checks the dispatch preflight reads |
 | `references/agent-delegation.md` | Subagent profile roster, routing table and custom AGENT.md patterns |
 | `references/cli-reference.md` | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting, always loaded |
 | `references/cloud-handoff.md` | `/handoff` mechanics, use cases and state transfer |
@@ -177,10 +191,6 @@ cli-devin/
 ---
 
 ## 6. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Use cli-devin when the task benefits from a second AI perspective: an independent code review, a security audit, a generation pass, parallel research or a long-running task that should keep working after you disconnect. Do not use it for quick tasks the calling agent can finish faster, nor for interactive refinement that needs the full-screen REPL (run `devin` directly instead).
 
 ### Related Skills
 

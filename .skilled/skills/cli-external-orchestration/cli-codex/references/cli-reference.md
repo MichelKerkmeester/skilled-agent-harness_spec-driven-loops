@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex session resume fork"
 importance_tier: important
 contextType: implementation
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Codex CLI - Complete Command Reference
@@ -21,13 +21,9 @@ Comprehensive reference for all Codex CLI commands, flags, models, configuration
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5` — a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-5.5` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 5.5 high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions — all governed by configurable sandbox modes.
-
 ### Purpose
 
-Provide a comprehensive, single-source reference for all Codex CLI commands, flags, models, configuration options, sandbox modes, and troubleshooting guidance.
+Be the single source a dispatcher checks before running Codex, so every option a run depends on, sandbox modes included, is looked up rather than remembered.
 
 ### When to Use
 
@@ -37,11 +33,15 @@ Provide a comprehensive, single-source reference for all Codex CLI commands, fla
 - Configuring agents via `.codex/agents/*.toml`
 - Selecting the right sandbox mode for a task
 
+### Core Principle
+
+Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5`, a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-5.5` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 5.5 high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions, all governed by configurable sandbox modes.
+
 ### Key Sources
 
 | Source | URL |
 |--------|-----|
-| **Repository** | https://github.com/openai/codex |
+| **Repository** | [openai/codex](https://github.com/openai/codex) |
 | **License** | MIT |
 | **Runtime** | Node.js 18+ |
 

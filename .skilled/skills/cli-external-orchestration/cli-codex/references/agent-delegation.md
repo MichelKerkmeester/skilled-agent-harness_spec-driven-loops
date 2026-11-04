@@ -9,7 +9,7 @@ trigger_phrases:
   - "codex agent catalog"
 importance_tier: normal
 contextType: implementation
-version: 1.9.0.19
+version: 1.9.1.0
 ---
 
 # Codex Agent Delegation Reference
@@ -19,10 +19,6 @@ Routing reference for delegating tasks to specialized Codex CLI agents.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI decides WHAT to do, Codex CLI decides HOW to do it within the delegated scope.
 
 ### Purpose
 
@@ -35,6 +31,10 @@ Documents the active Codex agents in `.codex/agents/` and how any AI assistant o
 - Web research via `--search` flag (`@deep-research`)
 - Fresh-perspective debugging after the calling AI's attempts fail (dispatch `@debug` via the Task tool)
 - Multi-agent Codex-side workflows (`@orchestrate`)
+
+### Core Principle
+
+The calling AI decides WHAT to do, Codex CLI decides HOW to do it within the delegated scope.
 
 ---
 

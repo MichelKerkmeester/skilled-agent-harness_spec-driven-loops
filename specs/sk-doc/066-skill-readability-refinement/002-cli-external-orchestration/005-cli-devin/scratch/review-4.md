@@ -1,0 +1,4 @@
+VERDICT: FIX
+- [P2] .skilled/skills/cli-external-orchestration/cli-devin/README.md:159 | 8 | The STRUCTURE tree still omits the root `hard-rules.json` that the dispatch preflight reads, while every other root artifact is listed; the row added at line 180 documents it in the key-file table but leaves the folder index incomplete. | Insert after line 159: `+-- hard-rules.json                # Hard-rule checks the dispatch preflight reads`
+
+All other findings are applied: the 15 LOST lines resolve to reflows, relabels, or corrected cross-references with no claim loss; the `cli-reference.md` intro is the HEAD scope statement, so the hook replacement is correctly skipped; frontmatter and code blocks are unchanged; every changed file reports zero render warnings; and the inbound `prompt-templates.md` §12 reference still resolves.

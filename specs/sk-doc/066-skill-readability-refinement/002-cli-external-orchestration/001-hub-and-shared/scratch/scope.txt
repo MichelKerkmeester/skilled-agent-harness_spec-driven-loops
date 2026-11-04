@@ -1,0 +1,4 @@
+.skilled/skills/cli-external-orchestration/README.md
+.skilled/skills/cli-external-orchestration/ROUTER.md
+.skilled/skills/cli-external-orchestration/SKILL.md
+.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md

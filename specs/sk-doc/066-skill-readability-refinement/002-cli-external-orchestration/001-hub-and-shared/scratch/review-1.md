@@ -1,0 +1,6 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/cli-external-orchestration/README.md:25 | 3 | The first sentence repeats the Overview’s opening purpose, and the hook uses an Oxford comma forbidden by the README template. | Replace the intro with: “The seven modes cover parallel sessions, cloud handoffs and read-only review.”
+- [P2] .skilled/skills/cli-external-orchestration/ROUTER.md:19 | 1 | The router template requires a divider between the intro and `## 1. OVERVIEW`. | Insert the exact line `---` after the intro sentence.
+- [P2] .skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md:16 | 1 | The reference template requires a divider between the hook and `## 1. OVERVIEW`. | Insert the exact line `---` after the intro sentence.
+- [P2] .skilled/skills/cli-external-orchestration/SKILL.md:215 | 9 | The body references “retired” rule docs, leaving an authoring-history note. | Replace the bullet with: “- Constitutional CLI dispatch skill-preload rule: Read the target mode’s `SKILL.md` before composing any dispatch prompt.”

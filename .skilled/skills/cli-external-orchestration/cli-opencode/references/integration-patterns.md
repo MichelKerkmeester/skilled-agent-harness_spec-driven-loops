@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode run hang non-interactive"
 importance_tier: important
 contextType: implementation
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # OpenCode CLI - Integration Patterns
@@ -21,7 +21,11 @@ How cli-opencode positions itself relative to the three sibling cli-* skills, th
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The three sibling cli-* skills exist because their target binaries are external runtimes. Claude Code, OpenCode, Copilot do not own this repo. OpenCode owns this repo. A naive "delegate to opencode" skill makes no sense for an in-OpenCode operator (it would create a circular dispatch).
+
+### When to Use
 
 cli-opencode resolves this by documenting THREE orthogonal use cases. The smart router selects between them based on the calling AI's runtime context.
 
@@ -268,25 +272,16 @@ INPUT: prompt + calling runtime
         v               v
 [CALLING RUNTIME]   [PROMPT KEYWORDS]
         |               |
-   +----+----+    +-----+-----+
-   |         |    |           |
-Anthropic  Other  parallel   self-dispatch
-(Claude    (OpenCode words    only
-Code)      Copilot)        |           |
-   |         |             v           v
-   v         v        USE CASE 2   REFUSE
-USE CASE  [PROJECT     (in-       (cycle —
-1         SUBSYSTEM    OpenCode   surface
-(external NAMED?]      parallel)  ADR-001
-to                      |          error)
-OpenCode)        +------+------+
-                 |             |
-                YES            NO
-                 |             |
-                 v             v
-             USE CASE 3     USE CASE 1
-             (cross-AI      (external
-             handback)      to OpenCode)
+        |               +-- parallel words ......... USE CASE 2 (in-OpenCode parallel)
+        |               +-- self-dispatch only ..... REFUSE (cycle — surface ADR-001 error)
+        |
+        +-- Anthropic (Claude Code) ............... USE CASE 1 (external to OpenCode)
+        +-- Other (OpenCode Copilot)
+                |
+                v
+        [PROJECT SUBSYSTEM NAMED?]
+                +-- YES ........................... USE CASE 3 (cross-AI handback)
+                +-- NO ............................ USE CASE 1 (external to OpenCode)
 ```
 
 ### Refusal message
@@ -419,13 +414,20 @@ The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entry
 
 cli-opencode dispatches that produce evidence for a `/speckit:save` continuity write MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
 
-The full Memory Handback Protocol is shared with cli-claude-code and cli-opencode. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
+The full Memory Handback Protocol is shared with cli-claude-code and cli-opencode. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and save gates apply.
 
 ---
 
 ## 8. SINGLE-DISPATCH DISCIPLINE
 
-**Single-dispatch discipline (operator-gated, session-scoped).** Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-opencode, cli-claude-code). Wait for the work to return, verify outputs exist, then SIGKILL only the dispatch THIS skill started: capture its PID at launch (`opencode run ... & OC_PID=$!`) and kill that captured PID directly plus its own orphan children (`kill -9 "$OC_PID" 2>/dev/null; pkill -9 -P "$OC_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` / `positional_scoring_fallback:app` cleanup. (A backgrounded `opencode run &` is not a process-group leader, so a group kill would miss it. Kill the captured PID directly.) **Kill only the dispatch you started, by captured PID. Never a blanket `pkill -9 -f "opencode run"` pattern (see Rule 5)**, which kills operator-owned sessions too. Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole session at start, and iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently, but still SIGKILL each by its own captured PID as its work returns.
+**Single-dispatch discipline (operator-gated, session-scoped).**
+
+- **Default**: launch ONE cli-* dispatch at a time across the cli-* family (cli-opencode, cli-claude-code). Wait for the work to return, verify outputs exist.
+- **Kill only the dispatch THIS skill started**: capture its PID at launch (`opencode run ... & OC_PID=$!`) and SIGKILL that captured PID directly plus its own orphan children (`kill -9 "$OC_PID" 2>/dev/null; pkill -9 -P "$OC_PID" 2>/dev/null`), then apply the same PID-scoped `gtimeout` / `positional_scoring_fallback:app` cleanup. (A backgrounded `opencode run &` is not a process-group leader, so a group kill would miss it. Kill the captured PID directly.)
+- **Never blanket-kill**: never a blanket `pkill -9 -f "opencode run"` pattern (see Rule 5), which kills operator-owned sessions too.
+- **Before the next dispatch**: only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped.
+- **Deep-flow session** (deep-review / deep-research): the operator authorizes the whole session at start, and iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration confirmation prompt.
+- **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently, but still SIGKILL each by its own captured PID as its work returns.
 
 ---
 

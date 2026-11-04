@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/003-cli-codex",
+  "description": "Phase 3: cli-codex",
+  "keywords": [
+    "phase",
+    "cli-codex"
+  ],
+  "lastUpdated": "2026-11-04T07:16:22.848Z",
+  "specId": "003",
+  "folderSlug": "cli-codex",
+  "parentChain": [
+    "sk-doc",
+    "066-skill-readability-refinement",
+    "002-cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

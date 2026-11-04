@@ -8,7 +8,7 @@ trigger_phrases:
   - "structured json handback"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Memory Handback Protocol (cli-* family)
@@ -68,14 +68,14 @@ Four prompt templates include both `<!-- MEMORY_HANDBACK_START -->` and `<!-- ME
 
 ## 4. PER-SKILL TEMPLATE MAP
 
-The `SKILL.md` citation and the actual template heading do not always match. The table gives both for all seven packets.
+The table gives each packet's `SKILL.md` citation beside the actual template heading, for all seven packets.
 
 | Packet | `SKILL.md` handback reference | `assets/prompt-templates.md` section | Marker pair |
 |---|---|---|---|
-| `cli-claude-code` | §11 | §13 MEMORY EPILOGUE | Both |
+| `cli-claude-code` | §13 | §13 MEMORY EPILOGUE | Both |
 | `cli-codex` | §13 | §13 MEMORY EPILOGUE | Both |
 | `cli-cursor` | File link only; no section number | §8 MEMORY EPILOGUE (HANDBACK) | Neither |
-| `cli-devin` | §13 | §12 MEMORY EPILOGUE | Both |
+| `cli-devin` | §12 | §12 MEMORY EPILOGUE | Both |
 | `cli-hermes` | No Memory Handback Protocol | No handback section | Neither |
 | `cli-opencode` | §14 | §14 TEMPLATE 13: MEMORY EPILOGUE (REUSABLE TAIL) | Both |
 | `cli-pi` | No Memory Handback Protocol; general file link only | §10 STRUCTURED HANDBACK | Neither |

@@ -1,0 +1,11 @@
+.skilled/skills/cli-external-orchestration/cli-devin/README.md
+.skilled/skills/cli-external-orchestration/cli-devin/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md

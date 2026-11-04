@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # cli-pi
@@ -132,6 +132,7 @@ cli-pi/
 | references/native-skills-and-extensions.md | Native resource discovery with confidence labels |
 | references/pi-tools.md | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
 | references/providers-and-models.md | Authenticated provider/model roster and the --thinking effort scale |
+| hard-rules.json | Dispatch preflight hard rules (stdin redirect, availability, offline, provider-qualified model) |
 
 ---
 

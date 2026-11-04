@@ -10,7 +10,7 @@ trigger_phrases:
   - "pi api key"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi CLI - Complete Command Reference
@@ -20,6 +20,18 @@ This reference records the Pi contract observed in the local live pin. It is the
 Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The exact option names below were also checked against the installed pi --help output.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keeps confirmed Pi behavior, observed failure modes and the remaining open questions in one place, so a dispatch is composed from evidence rather than memory.
+
+### When to Use
+
+- Composing or checking a Pi command before dispatch
+- Choosing between print, JSON and RPC output
+- Diagnosing a provider, auth, extension or trust failure
+
+### Runtime Facts
 
 Pi is a terminal coding assistant with read, bash, edit, write, grep, find, and ls tools. The installed runtime version must be recorded from `pi --version` at execution time; the authoring probe returned 0.84.1, while the older contract pin is historical evidence rather than a current version gate. The default config directory was observed as ~/.pi/agent, with PI_CODING_AGENT_DIR as the override. See the local contract pin for historical evidence.
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin session resume continue"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.13
+version: 1.4.1.0
 ---
 
 # Devin CLI - Complete Command Reference
@@ -21,13 +21,9 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates seven families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), GPT-6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
-
 ### Purpose
 
-Provide a comprehensive, single-source reference for all Devin CLI commands, flags, models, configuration options, permission modes, and troubleshooting guidance.
+Be the single source a dispatcher checks before running Devin, so every option a run depends on, permission modes included, is looked up rather than remembered.
 
 ### When to Use
 
@@ -37,12 +33,16 @@ Provide a comprehensive, single-source reference for all Devin CLI commands, fla
 - Configuring subagents via `.devin/agents/[name]/AGENT.md`
 - Selecting the right permission mode for a task
 
+### Core Principle
+
+Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates seven families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), GPT-6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+
 ### Key Sources
 
 | Source | URL |
 |--------|-----|
-| **Documentation** | https://docs.devin.ai/cli |
-| **Web App** | https://app.devin.ai |
+| **Documentation** | [docs.devin.ai/cli](https://docs.devin.ai/cli) |
+| **Web App** | [app.devin.ai](https://app.devin.ai) |
 | **Runtime** | Node.js / native binary |
 | **Version** | 3000.2.17 |
 
@@ -116,6 +116,10 @@ Credentials:
 | `--resume` | `-r` | `[<session-id>]` | Resume a specific session by ID, or select interactively |
 | `--sandbox` | | (none) | Enable OS-level process sandboxing (selects `autonomous` permission mode) |
 | `--prompt-file` | | `<file>` | Load the initial prompt from a file |
+| `--config` | | `<path>` | Configuration file path (override default `~/.config/devin/config.json`) |
+| `--export` | | `[<path>]` | Export conversation to a file after each turn (ATIF format) |
+| `--agent-config` | | `<file>` | Declarative agent configuration file (JSON or YAML) |
+| `--respect-workspace-trust` | | `true`, `false` | Respect workspace trust settings |
 
 > **Verifying a flag value without spending a session.** `--help` under-reports the
 > `--permission-mode` enum, so never conclude a value is invalid because help omits it.
@@ -132,10 +136,6 @@ Credentials:
 > `dangerous`, `yolo`, `bypass`, `autonomous` all accepted; `plan` and `manual`
 > (Claude's modes, not Devin's) rejected. Re-run the probe after a CLI upgrade —
 > `smart` was rejected at 3000.2.17 and is accepted at 3000.6.7.
-| `--config` | | `<path>` | Configuration file path (override default `~/.config/devin/config.json`) |
-| `--export` | | `[<path>]` | Export conversation to a file after each turn (ATIF format) |
-| `--agent-config` | | `<file>` | Declarative agent configuration file (JSON or YAML) |
-| `--respect-workspace-trust` | | `true`, `false` | Respect workspace trust settings |
 
 ### Prompt Syntax
 

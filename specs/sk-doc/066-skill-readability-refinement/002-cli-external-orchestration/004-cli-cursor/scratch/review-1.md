@@ -1,0 +1,11 @@
+VERDICT: FIX
+
+- [P2] `.skilled/skills/cli-external-orchestration/cli-cursor/README.md:195` | 8 | The finding that adds `hard-rules.json` to the STRUCTURE tree cannot land in the fenced `text` block, which the rubric freezes, but the `File | Role` table below the tree also omits the file, so neither README index lists every root file. The sibling `cli-claude-code` README satisfies the same finding through its table row. | Insert after the `assets/prompt-templates.md` row:
+
+  ```markdown
+  | `hard-rules.json` | Machine-readable hard-rule checks read by the dispatch preflight |
+  ```
+
+Justified skips, all for the same frozen-code-block reason that `code_blocks_changed=0` confirms: `README.md:145` (tree line), `assets/prompt-templates.md:187` (spec path inside a `bash` example), `assets/prompt-templates.md:215` (fence info string), and `references/integration-patterns.md:282` (spec path and `T004` inside a `bash` example). The fixer's "all 36 findings applied" therefore does not describe the final state; 32 are applied and these 4 correctly stay at HEAD.
+
+Everything else checks out. The 25 LOST lines are reflows, moves, or prescribed corrections with every claim intact: the README execution-mode and allowlist paragraphs split into bullets, the SKILL allowlist block moved above the invocation it governs with the three `below`→`above` pointers flipped, the SKILL subagent block moved into Cursor Agent Delegation, the reference overviews reordered to Purpose → When to Use → Core Principle, the MCP paragraph bulleted, and the provider table re-sorted and renumbered. The only changed non-empty intro is `cli-reference.md`, and all of its old claims (comprehensive, commands, flags, models, configuration, troubleshooting) remain verbatim in the Purpose on line 26; the new sentence is a supported hook, and the two newly added intros replace empty ones. No code block, block count, frontmatter value or citation changed, all 12 files return zero `render_*` warnings, links resolve, and every inbound section reference (`ROUTER.md#3-machine-router`, SKILL §3/§4, `providers-and-models.md` §2/§5, `shared-editor-config.md` §2/§6, `hook-contract.md` §3/§7) still resolves with H2 order and numbers unchanged. The `shared-editor-config.md` §5 heading rename has no inbound anchor.

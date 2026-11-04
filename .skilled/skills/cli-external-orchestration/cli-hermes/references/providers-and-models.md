@@ -9,8 +9,10 @@ trigger_phrases:
   - "hermes roster"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
+
+# cli-hermes Providers, Models & Invocation
 
 The single catalog of the provider, the model ids, the reasoning lever and the dispatch shape the cli-hermes mode can reach. Hermes is a multi-provider pass-through with a catalog of some forty providers; this mode deliberately reaches one of them.
 
@@ -18,15 +20,19 @@ The single catalog of the provider, the model ids, the reasoning lever and the d
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at five ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes.
 
 ### When to Use
 
 - Choosing the `--provider` and `--model` pair for a `hermes chat` dispatch.
 - Mapping a reasoning effort onto `--reasoning`.
 - Configuring, as the operator, the provider block Hermes needs.
+
+### Core Principle
+
+The roster is closed at five ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
 
 ---
 
@@ -41,7 +47,7 @@ providers:
     key_env: LLMGATEWAY_API_KEY
 ```
 
-The key itself lives in `~/.hermes/.env` or the shell; it never appears in a prompt, a repo file, or this packet. This is an operator step: no dispatch, plugin or repo file writes it. The field names were confirmed live on 2026-09-14 (`hermes config set providers.llmgateway.base_url ...` and `.key_env`); the shape above follows Hermes's `custom` provider convention (source-read: `cli-config.yaml.example`, `hermes_cli/config_providers.py`).
+The key itself lives in `~/.hermes/.env` or the shell; it never appears in a prompt, a repo file, or this skill's files. This is an operator step: no dispatch, plugin or repo file writes it. The field names were confirmed live on 2026-09-14 (`hermes config set providers.llmgateway.base_url ...` and `.key_env`); the shape above follows Hermes's `custom` provider convention (source-read: `cli-config.yaml.example`, `hermes_cli/config_providers.py`).
 
 Other credential kinds on this machine do not transfer: Hermes keeps its own OAuth sessions in `~/.hermes/auth.json`, and its Codex import reads `~/.codex/auth.json` once at login rather than sharing it. A Codex OAuth import is a possible second provider later; it is not on this roster.
 
@@ -59,13 +65,16 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
 
 Every id is a bare gateway literal. A provider-prefixed form (`llmgateway/deepseek-v4.1-flash`) is Pi's selector shape, not Hermes's, and the fan-out rejects it. Enforcement: `HERMES_SUPPORTED_MODELS` and `isHermesModelAllowed` in `executor-config.ts`, byte-mirrored as `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`; no `auto` default exists.
 
-To add a model: amend the packet's spec (`071-cli-hermes-creation`), then `HERMES_SUPPORTED_MODELS`, its mirror, this table and the changelog, in that order.
+To add a model: amend the mode's spec, then `HERMES_SUPPORTED_MODELS`, its mirror, this table and the changelog, in that order.
 
 ---
 
 ## 4. REASONING LEVELS
 
-`--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map. Every Flash-family roster model is a reasoning model the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out. A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
+- **Accepted set:** `--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map.
+- **Fan-out pin:** every Flash-family roster model is a reasoning model the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out.
+
+A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
 
 | Model | Level | Result |
 |---|---|---|

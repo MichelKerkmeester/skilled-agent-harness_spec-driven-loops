@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex image input"
 importance_tier: normal
 contextType: implementation
-version: 1.9.3.0
+version: 1.9.4.0
 ---
 
 # Codex CLI Built-in Tools Reference
@@ -20,10 +20,6 @@ Reference for all Codex CLI capabilities, highlighting unique features and Claud
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-Delegate to Codex CLI for capabilities Claude Code lacks natively — especially `/review` for diff-aware code review workflows, `--search` for live web browsing, and session management (resume, fork) for multi-turn task continuity.
 
 ### Purpose
 
@@ -35,6 +31,10 @@ Covers all built-in capabilities available in Codex CLI, highlights what is uniq
 - Understanding which Codex flags and modes to use for different task types
 - Mapping Claude Code capabilities to Codex CLI equivalents
 - Leveraging Codex-exclusive features (/review workflow, --search, MCP, session management)
+
+### Core Principle
+
+Delegate to Codex CLI for capabilities Claude Code lacks natively, especially `/review` for diff-aware code review workflows, `--search` for live web browsing, and session management (resume, fork) for multi-turn task continuity.
 
 ---
 

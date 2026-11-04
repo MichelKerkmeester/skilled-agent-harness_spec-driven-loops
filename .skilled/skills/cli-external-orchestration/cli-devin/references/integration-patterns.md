@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin cloud handoff integration"
 importance_tier: normal
 contextType: planning
-version: 1.4.0.2
+version: 1.4.1.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Devin CLI
@@ -20,10 +20,6 @@ Proven patterns for orchestrating Devin CLI from any AI assistant session.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI acts as the orchestrator (planner, validator, integrator) while Devin CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Devin's multi-model surface, subagent delegation, and cloud handoff — not from redundant work.
 
 ### Purpose
 
@@ -37,6 +33,10 @@ Each pattern documented here includes the rationale, implementation template, an
 - Complex workflows benefit from structured, multi-stage generation and validation
 - You need to offload long-running tasks to a cloud VM with browser and shell access
 - You want cross-AI validation from a Cognition-backed model
+
+### Core Principle
+
+The calling AI acts as the orchestrator (planner, validator, integrator) while Devin CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Devin's multi-model surface, subagent delegation, and cloud handoff — not from redundant work.
 
 ---
 
@@ -199,6 +199,8 @@ When a dispatcher script iterates over lines of input with `while IFS= read -r l
 
 **Root cause:** `devin -p` inherits the script's stdin by default. Each backgrounded devin process reads from the same file descriptor and races with the `read` command for lines.
 
+**Always pair `devin -p ... &` inside a read-loop with `</dev/null` on the redirection.**
+
 ```bash
 # BAD: devin inherits the loop's stdin, drains input.jsonl after iteration ~3
 while IFS= read -r line; do
@@ -212,8 +214,6 @@ while IFS= read -r line; do
   echo "$!" > "pid-$LINE_ID.pid"
 done < input.jsonl
 ```
-
-**Always pair `devin -p ... &` inside a read-loop with `</dev/null` on the redirection.**
 
 ---
 

@@ -1,0 +1,411 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/README.md b/.skilled/skills/cli-external-orchestration/cli-pi/README.md
+index 02ec66a618d..8ca79e79999 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/README.md
+@@ -132,6 +132,7 @@ cli-pi/
+ | references/native-skills-and-extensions.md | Native resource discovery with confidence labels |
+ | references/pi-tools.md | Capabilities with no sibling analog (RPC, native extensions/prompts, tool surface) |
+ | references/providers-and-models.md | Authenticated provider/model roster and the --thinking effort scale |
++| hard-rules.json | Dispatch preflight hard rules (stdin redirect, availability, offline, provider-qualified model) |
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md b/.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md
+index 0816cadce8e..1726b243f49 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md
+@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name Pi, pi.dev or the Pi coding agent, ask for a headless dispatch, a JSON event stream, an RPC client or an independent second opinion, or concern Pi-native skills, prompt templates, extensions and packages. It routes to two skill-local families: the seven `references/` packets that carry the CLI contract, the provider and model roster, the tool surface, the delegation boundary and the native discovery surfaces, and the two `assets/` scaffolds that carry the prompt-quality card and the print, JSON, RPC, review and generation templates. The ALWAYS level loads `references/cli-reference.md` and `assets/prompt-quality-card.md` before an intent selects anything else, and `command -v pi` decides whether the route exists at all.
++Requests reach this skill when they name Pi, pi.dev or the Pi coding agent, ask for a headless dispatch, a JSON event stream, an RPC client or an independent second opinion, or concern Pi-native skills, prompt templates, extensions and packages.
++
++It routes to two skill-local families:
++
++- The seven `references/` packets that carry the CLI contract, the provider and model roster, the tool surface, the delegation boundary and the native discovery surfaces.
++- The two `assets/` scaffolds that carry the prompt-quality card and the print, JSON, RPC, review and generation templates.
++
++The ALWAYS level loads `references/cli-reference.md` and `assets/prompt-quality-card.md` before an intent selects anything else, and `command -v pi` decides whether the route exists at all.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -67,7 +74,7 @@ The pinned contract confirms the binary version used for the contract run and th
+ |---|---|---|
+ | ALWAYS | Every Pi route | references/cli-reference.md, assets/prompt-quality-card.md |
+ | CONDITIONAL | Task names the matching surface | One or more intent-mapped references |
+-| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, native-skills-and-extensions.md, mcp-and-third-party-packages.md |
++| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, references/native-skills-and-extensions.md, references/mcp-and-third-party-packages.md |
+ 
+ ### Smart Router
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
+index 2e41ed550c0..74788f2895d 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
+@@ -48,6 +48,7 @@ The `cli-external-orchestration` hub routes a Pi dispatch here: the request name
+ `hub-router.json` scores that request, the winning `workflowMode` is `cli-pi`, and the hub loads this `SKILL.md` first.
+ The hub root `ROUTER.md` names this packet's first leaves, so leaf selection stays in the hub router rather than in this file.
+ `command -v pi` decides whether the route exists at all, and the probe runs before every dispatch.
++It loads `references/cli-reference.md` and `assets/prompt-quality-card.md` first on every run, before any intent selection.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+ ---
+@@ -70,6 +71,28 @@ To add a model, amend the roster first, in the spec packet and in `PI_SUPPORTED_
+ 
+ The pinned contract confirms that headless Pi uses print mode, that JSON mode emits JSONL events, and that RPC mode is a persistent JSONL protocol. These are different contracts. Do not treat RPC as a one-shot print invocation. See [cli-reference.md](./references/cli-reference.md) and [integration-patterns.md](./references/integration-patterns.md).
+ 
++### Dispatch-Critical Gotchas
++
++The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
++
++- **Redirect stdin on every non-interactive dispatch: `</dev/null`.** Without it `pi -p` inherits the
++  parent terminal's stdin and hangs indefinitely, emitting **nothing at all** — not a partial answer,
++  not an error. Because print mode buffers until completion, an empty log is also what a working
++  dispatch looks like mid-run, so the deadlock is indistinguishable from a slow model and has been
++  mistaken for one for over an hour. The sibling `cli-opencode` packet carries the same rule for
++  `opencode run`; it applies here for exactly the same reason.
++- **`--offline` is required for any automated or CI dispatch.** `pi --verbose` without `--offline` hung for over two minutes with no reachable network path in the pinned contract's live probe. Any non-interactive dispatch through this packet must pass `--offline` explicitly rather than rely on a fast failure.
++- **The exit code is never an availability or auth signal.** An identical unauthenticated `pi -p` dispatch returned exit `0` on the first run and exit `1` on every subsequent run in the pinned contract. Every guard in this packet checks output text (`No API key found...`), never exit code.
++- **An invalid `.pi/extensions/*.ts` fails the whole session, not just that extension.** The pinned contract confirmed Pi validates extensions must export a factory function; a broken one blocks the entire dispatch with `Extension does not export a valid factory function` rather than skipping it with a warning.
++- **The default provider is `google`, not Anthropic.** `pi --help` documents `--provider <name> (default: google)`. Do not assume an Anthropic-first default when you compose a dispatch that omits `--provider`.
++  This repository's `.pi/settings.json` overrides that builtin: `defaultProvider` is `llmgateway` and `defaultModel` is `deepseek-v4.1-flash-1017`, so a run naming no model goes there rather than to `google`.
++- **`pi install`/`pi list` require `--approve` to see or modify project-local package config.** Without it, both commands behave as if no packages exist, even when one is installed — the trust gate applies to reads, not only writes.
++- **The operator's global Pi packages load in a dispatched child, and pi-blackhole compacts it mid-run.** pi-blackhole's config (`~/.pi/agent/pi-blackhole/pi-blackhole-config.json`) auto-compacts at `compactAfterTokens`, 272,000 here, with `midRunCompaction: "resume"`.
++  The compaction replaces everything the child has read with a structural summary, so a child still reading when it fires starts reading again and can loop without ever editing.
++  Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction.
++  The deep-loop fan-out's cli-pi environment filter passes this one variable through, so a value exported in the shell that runs the fan-out reaches every Pi child, and any variable outside the filter's list is still stripped.
++  Pi's own compaction is off in `.pi/settings.json`, so the child keeps its model's full context window.
++
+ ### Dispatch Lifecycle
+ 
+ 1. Verify the binary with command -v pi.
+@@ -121,28 +144,6 @@ reports token counts, `result.usage` carries them with their cost.
+ 
+ The caller remains responsible for task scope, files, acceptance criteria, and verification. Use the prompt templates as scaffolds, not as a substitute for reading the target mode's skill contract. Pass an established spec folder to a non-interactive child when the parent workflow requires it.
+ 
+-### Dispatch-Critical Gotchas
+-
+-The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
+-
+-- **Redirect stdin on every non-interactive dispatch: `</dev/null`.** Without it `pi -p` inherits the
+-  parent terminal's stdin and hangs indefinitely, emitting **nothing at all** — not a partial answer,
+-  not an error. Because print mode buffers until completion, an empty log is also what a working
+-  dispatch looks like mid-run, so the deadlock is indistinguishable from a slow model and has been
+-  mistaken for one for over an hour. The sibling `cli-opencode` packet carries the same rule for
+-  `opencode run`; it applies here for exactly the same reason.
+-- **`--offline` is required for any automated or CI dispatch.** `pi --verbose` without `--offline` hung for over two minutes with no reachable network path in the pinned contract's live probe. Any non-interactive dispatch through this packet must pass `--offline` explicitly rather than rely on a fast failure.
+-- **The exit code is never an availability or auth signal.** An identical unauthenticated `pi -p` dispatch returned exit `0` on the first run and exit `1` on every subsequent run in the pinned contract. Every guard in this packet checks output text (`No API key found...`), never exit code.
+-- **An invalid `.pi/extensions/*.ts` fails the whole session, not just that extension.** The pinned contract confirmed Pi validates extensions must export a factory function; a broken one blocks the entire dispatch with `Extension does not export a valid factory function` rather than skipping it with a warning.
+-- **The default provider is `google`, not Anthropic.** `pi --help` documents `--provider <name> (default: google)`. Do not assume an Anthropic-first default when you compose a dispatch that omits `--provider`.
+-  This repository's `.pi/settings.json` overrides that builtin: `defaultProvider` is `llmgateway` and `defaultModel` is `deepseek-v4.1-flash-1017`, so a run naming no model goes there rather than to `google`.
+-- **`pi install`/`pi list` require `--approve` to see or modify project-local package config.** Without it, both commands behave as if no packages exist, even when one is installed — the trust gate applies to reads, not only writes.
+-- **The operator's global Pi packages load in a dispatched child, and pi-blackhole compacts it mid-run.** pi-blackhole's config (`~/.pi/agent/pi-blackhole/pi-blackhole-config.json`) auto-compacts at `compactAfterTokens`, 272,000 here, with `midRunCompaction: "resume"`.
+-  The compaction replaces everything the child has read with a structural summary, so a child still reading when it fires starts reading again and can loop without ever editing.
+-  Set `PI_BLACKHOLE_PASSIVE=true` in the child's environment, which the package documents as switching off its background workers and its auto-compaction.
+-  The deep-loop fan-out's cli-pi environment filter passes this one variable through, so a value exported in the shell that runs the fan-out reaches every Pi child, and any variable outside the filter's list is still stripped.
+-  Pi's own compaction is off in `.pi/settings.json`, so the child keeps its model's full context window.
+-
+ ---
+ 
+ ## 4. RULES
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md
+index 8626aa14afb..f0e168c830b 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md
+@@ -224,4 +224,4 @@ unknowns: [unknown or none]
+ 
+ Confirmed flags and observed failure behavior: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+ 
+-Native prompt-template and extension discovery are confirmed for the project-local surfaces this repo actually populates (phases 012/013). Full precedence across every documented discovery location, and native skill discovery specifically, remain per Pi docs, unconfirmed. Read [native-skills-and-extensions.md](../references/native-skills-and-extensions.md) before relying on those surfaces.
++Native prompt-template and extension discovery are confirmed for the project-local surfaces this repo actually populates. Full precedence across every documented discovery location, and native skill discovery specifically, remain per Pi docs, unconfirmed. Read [native-skills-and-extensions.md](../references/native-skills-and-extensions.md) before relying on those surfaces.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md
+index 3ce670e9a6e..ea42ae683e3 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md
+@@ -20,10 +20,6 @@ Pi's core stays small and has no sub-agents, and no community package supplies t
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Pi's 7 built-in tools cover file and shell operations only. Pi has no in-process delegation at all: no built-in sub-agents, and no community package standing in for them any more. Delegation therefore leaves the session as a CLI dispatch, and everything not confirmed by the local pin stays labeled per Pi docs, unconfirmed.
+-
+ ### Purpose
+ 
+ Distinguishes Pi's built-in tool surface from delegation, and gives the conductor model, request shape, and handback contract for work handed to a child session.
+@@ -34,6 +30,10 @@ Distinguishes Pi's built-in tool surface from delegation, and gives the conducto
+ - Composing the request and handback for a child session
+ - Choosing an exploration, review, or implementation child pattern
+ 
++### Core Principle
++
++Pi's 7 built-in tools cover file and shell operations only. Pi has no in-process delegation at all: no built-in sub-agents, and no community package standing in for them any more. Delegation therefore leaves the session as a CLI dispatch, and everything not confirmed by the local pin stays labeled per Pi docs, unconfirmed.
++
+ ---
+ 
+ ## 2. CORE BOUNDARY
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md
+index 215f8bacf3c..dbff18d7398 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md
+@@ -21,6 +21,18 @@ Source of confirmed behavior: [Pi contract pin](../../../../specs/cli-external-o
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keeps confirmed Pi behavior, observed failure modes and the remaining open questions in one place, so a dispatch is composed from evidence rather than memory.
++
++### When to Use
++
++- Composing or checking a Pi command before dispatch
++- Choosing between print, JSON and RPC output
++- Diagnosing a provider, auth, extension or trust failure
++
++### Runtime Facts
++
+ Pi is a terminal coding assistant with read, bash, edit, write, grep, find, and ls tools. The installed runtime version must be recorded from `pi --version` at execution time; the authoring probe returned 0.84.1, while the older contract pin is historical evidence rather than a current version gate. The default config directory was observed as ~/.pi/agent, with PI_CODING_AGENT_DIR as the override. See the local contract pin for historical evidence.
+ 
+ This packet separates three headless contracts:
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md
+index e7412849ace..121e03572d4 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md
+@@ -14,16 +14,12 @@ version: 1.5.0.4
+ 
+ # Pi CLI Integration Patterns
+ 
+-This reference describes how the calling AI should integrate Pi without duplicating the deep-loop executor.
++Open this file when a Pi dispatch needs to hold up after the process exits: the mode fits its consumer, one adapter owns the process, and the returned work carries evidence a reviewer can check.
+ 
+ Confirmed Pi mode behavior is sourced from the [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The patterns below are orchestration guidance built around that contract.
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI is the conductor; Pi is the delegated executor. The shared deep-loop runtime owns process construction — this reference never inserts a packet-local shell wrapper between the skill and that runtime.
+-
+ ### Purpose
+ 
+ Gives the conductor/executor patterns for print, JSON, and RPC dispatch, the validation pipeline and handback format, cross-validation against sibling CLIs, and documented anti-patterns.
+@@ -34,6 +30,10 @@ Gives the conductor/executor patterns for print, JSON, and RPC dispatch, the val
+ - Building the pre-dispatch contract or the post-dispatch validation pipeline
+ - Deciding whether Pi or a sibling CLI should validate the other's output
+ 
++### Core Principle
++
++The calling AI is the conductor; Pi is the delegated executor. The shared deep-loop runtime owns process construction — this reference never inserts a packet-local shell wrapper between the skill and that runtime.
++
+ ---
+ 
+ ## 2. CONDUCTOR AND EXECUTOR
+@@ -167,7 +167,7 @@ Continuation rules:
+ 
+ ## 9. NATIVE RESOURCE HANDOFF
+ 
+-Prompt templates are confirmed (phases 012/013): `.pi/prompts/*.md` mirrors all 36 canonical commands, and argument substitution live-verified in a real session. Skill discovery remains per Pi docs, unconfirmed — full path-precedence across every documented location, and whether nested hub packets flatten, still needs a credentialed live session. See [native-skills-and-extensions.md](./native-skills-and-extensions.md) §4/§8 for the current confirmed-vs-open boundary.
++Prompt templates are confirmed: `.pi/prompts/*.md` mirrors all 36 canonical commands, and argument substitution live-verified in a real session. Skill discovery remains per Pi docs, unconfirmed — full path-precedence across every documented location, and whether nested hub packets flatten, still needs a credentialed live session. See [native-skills-and-extensions.md](./native-skills-and-extensions.md) §4/§8 for the current confirmed-vs-open boundary.
+ 
+ When a task needs native resources:
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md
+index 4aa613d8e09..664df715c47 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md
+@@ -20,10 +20,6 @@ Phase 007 confirmed pi-mcp-extension's stdio transport live. It did not live-ver
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Pi's core stays intentionally small; MCP is a third-party package (`pi-mcp-extension`), not a built-in Pi feature. A package's README is not a Pi CLI contract.
+-
+ ### Purpose
+ 
+ Separates confirmed first-party Pi behavior from community-package behavior, and tracks which transports and install paths have moved from documented-only to live-confirmed.
+@@ -33,6 +29,10 @@ Separates confirmed first-party Pi behavior from community-package behavior, and
+ - A request names MCP, pi-mcp-extension, stdio, streamable HTTP, SSE, or package installation
+ - Deciding whether a package claim is confirmed by the local pin or only by the package's own docs
+ 
++### Core Principle
++
++Pi's core stays intentionally small; MCP is a third-party package (`pi-mcp-extension`), not a built-in Pi feature. A package's README is not a Pi CLI contract.
++
+ ---
+ 
+ ## 2. FIRST-PARTY BOUNDARY
+@@ -53,6 +53,15 @@ Therefore:
+ 
+ pi-mcp-extension is a community package, not a first-party Pi feature. Its package page is separate from the Pi CLI contract: [Pi package page](https://pi.dev/packages/pi-mcp-extension).
+ 
++Treat the package as optional and untrusted until:
++
++1. The exact version is pinned.
++2. The source is reviewed.
++3. The project trust decision is explicit.
++4. The config path is isolated.
++5. A harmless server is tested.
++6. Startup and shutdown are observed.
++
+ **Confirmed (phase 007):** the install verb below was run live and the package was installed into `.pi/settings.json`'s `packages` array. Phase 007 confirmed `pi-mcp-extension`'s own install only.
+ 
+ ~~~bash
+@@ -63,15 +72,6 @@ pi install npm:pi-mcp-extension
+ 
+ Per Pi docs, unconfirmed: streamable HTTP and SSE transport, and the package's documented global-vs-project config-override precedence. Neither has been live-tested in this packet.
+ 
+-Treat the package as optional and untrusted until:
+-
+-1. The exact version is pinned.
+-2. The source is reviewed.
+-3. The project trust decision is explicit.
+-4. The config path is isolated.
+-5. A harmless server is tested.
+-6. Startup and shutdown are observed.
+-
+ ---
+ 
+ ## 4. MCP TRANSPORT DECISION
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md
+index 09f782c01ef..aa1ec52286a 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md
+@@ -20,10 +20,6 @@ Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-o
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Pi's own resource model (skills, prompt templates, extensions) is a separate consumer contract from this repository's own skill system. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only; the local contract pin and phases 012/013 are the authority for live observations.
+-
+ ### Purpose
+ 
+ Separates Pi-native skill/prompt-template/extension discovery from this repo's own OpenCode skill packet, and tracks which of those surfaces have moved from documented-only to live-confirmed.
+@@ -34,6 +30,10 @@ Separates Pi-native skill/prompt-template/extension discovery from this repo's o
+ - Checking whether prompt templates or extensions are safe to treat as confirmed before relying on them
+ - Planning the remaining native-skill-discovery verification work
+ 
++### Core Principle
++
++Pi's own resource model (skills, prompt templates, extensions) is a separate consumer contract from this repository's own skill system. Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only; the local contract pin and phases 012/013 are the authority for live observations.
++
+ ---
+ 
+ ## 2. NATIVE SKILLS
+@@ -131,13 +131,7 @@ Treat package resource loading as a trust boundary:
+ 
+ ## 8. DISCOVERY VERIFICATION PLAN
+ 
+-Done (phases 012/013):
+-
+-- ~~Create one uniquely named prompt template.~~ 36 real prompt templates built and `--check`-verified in sync.
+-- ~~Add one valid extension and one invalid extension.~~ 6 valid extensions built and live-loaded without a startup error; the prior phase's invalid-extension probe already confirmed the fail-closed startup path.
+-- ~~Start Pi in print mode.~~ Live-executed for the prompt/agent/extension load checks above.
+-
+-Still open — needs a credentialed provider session:
++Not yet confirmed — needs a credentialed provider session:
+ 
+ 1. Create one uniquely named skill at each candidate location (global, project, package, settings, explicit CLI path).
+ 2. Record which slash commands appear in a live session and confirm precedence when the same name exists at more than one location.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md
+index d478c7f5621..95de1411d46 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md
+@@ -20,10 +20,6 @@ Reference for the Pi CLI surfaces that have **no analog**, or only a partial ana
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Pi ships a small built-in core plus three first-party resource surfaces (skills, prompt templates, extensions) that other CLIs either lack entirely or only reach through a third-party package or an external hooks-config file. None of this changes `cli-pi`'s `packetKind: "workflow"` classification (`mode-registry.json`) — the packet's default dispatch still runs locally, and writes land in this repo's checkout (`SKILL.md` §7, "Hub Integration").
+-
+ ### Purpose
+ 
+ Covers Pi capabilities that are exclusive, or meaningfully different in shape, compared to the other 5 CLI executors this hub dispatches, so the calling AI can route a task to Pi specifically for one of these surfaces rather than by habit.
+@@ -35,6 +31,10 @@ Covers Pi capabilities that are exclusive, or meaningfully different in shape, c
+ - Scoping a dispatch to Pi's minimal built-in tool set via `--tools`
+ - Picking a reasoning-effort tier via `--thinking` when the task's model supports it
+ 
++### Core Principle
++
++Pi ships a small built-in core plus three first-party resource surfaces (skills, prompt templates, extensions) that other CLIs either lack entirely or only reach through a third-party package or an external hooks-config file. None of this changes `cli-pi`'s `packetKind: "workflow"` classification (`mode-registry.json`) — the packet's default dispatch still runs locally, and writes land in this repo's checkout (`SKILL.md` §7, "Hub Integration").
++
+ ---
+ 
+ ## 2. PERSISTENT BIDIRECTIONAL RPC (`--mode rpc`)
+@@ -66,7 +66,7 @@ None of the other 5 CLI executors in this hub expose an equivalent persistent, b
+ 
+ ### What It Is
+ 
+-**Confirmed** (phases 012/015 of this creation packet): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
++**Confirmed** (phases 012/015): Pi auto-discovers `.pi/extensions/*.ts` files with no settings-file registration required. This repo has 11 real extension files: 6 guard-core bridges (`spec-gate-enforce`, `spec-gate-classify`, `dispatch-preflight-lint`, `dispatch-audit`, `post-edit-quality`, `mcp-route-guard`) plus 5 session-lifecycle bridges (`session-start-context`, `session-start-advisories`, `session-stop-context`, `prompt-advisor`, `session-compact-context`), each a plain `ExtensionFactory` registering via `pi.on(event, handler)`. The extension API's lifecycle-event surface (33 named events including block-capable `tool_call`) is confirmed via a direct read of the installed package's `types.d.ts`, and live firing was traced end to end against an authenticated provider — `session_start`, `session_shutdown(quit)`, the `input` transform chain, `tool_call`, and `tool_result` all fired with side-effect evidence (playbook scenario PI-020). Only `session_compact` remains untraced (it fires solely in long interactive sessions); see [native-skills-and-extensions.md](./native-skills-and-extensions.md) §5 for the confidence boundary.
+ 
+ ### Capabilities
+ 
+@@ -170,7 +170,7 @@ Devin's built-in surface is materially larger (file ops, shell, fetch, `run_suba
+ - A read-only review or any task that must not write files
+ - Prefer this over a prompt-only instruction not to edit — the flag is enforced by the CLI, a prompt sentence is not
+ 
+-### When to Reach for a Custom-Provider Model
++### When to Name a Provider-Specific Model
+ 
+ - The task specifically needs a GPT-6 tier (`gpt-6-luna`/`sol`) or GPT-6.1 Terra (`gpt-6.1-terra`) — dispatch through the built-in `openai` provider per the authenticated roster in `cli-reference.md` §13
+ - When the task has no model-specific requirement, name `llmgateway/deepseek-v4.1-flash-1017`, the repository default in `.pi/settings.json`, explicitly. Pi's builtin `google` default has no authenticated model here
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md
+index d7ce2db6a20..fb7a673be74 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md
+@@ -13,22 +13,30 @@ contextType: implementation
+ version: 1.5.8.0
+ ---
+ 
++# cli-pi Providers, Models & Invocation
++
+ The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly. The repository's `.pi/settings.json` does make `llmgateway/deepseek-v4.1-flash-1017` the default of a run that names no model, but that governs only such a run and never a dispatch.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-One place to answer "which provider, which model, which effort, how to dispatch" for cli-pi. Unlike the sibling cli modes, cli-pi is a passthrough: it enforces no model allowlist at this layer and bakes no effort tier into any model id — provider, model, and effort are three independent choices per dispatch.
++### Purpose
++
++One place to answer "which provider, which model, which effort, how to dispatch" for cli-pi.
+ 
+ ### When to Use
++
+ - Choosing a `--provider <name>` + `--model <pattern>` (or a single `--model provider/id`) for a `pi` dispatch
+ - Mapping a desired reasoning effort onto the standalone `--thinking` flag
+ - Recalling the authenticated roster and the canonical non-interactive invocation shape
+ 
++### Core Principle
++
++Unlike the sibling cli modes, cli-pi is a passthrough: it enforces no model allowlist at this layer and bakes no effort tier into any model id — provider, model, and effort are three independent choices per dispatch.
++
+ ### Scope
+-This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `pi` flag surface, headless-mode contracts, auth/failure handling (see [cli-reference.md](./cli-reference.md)), the conductor/executor orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
++This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `pi` flag surface, headless-mode contracts, auth/failure handling (see [cli-reference.md](./cli-reference.md)), the conductor/executor orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft, or the fan-out / model-enforcement runtime (see §6).
+ 
+ ### Authority pointers
+ - Full CLI flags, headless modes, auth pre-flight, model selection → [cli-reference.md](./cli-reference.md) §13
+@@ -48,7 +56,7 @@ The table below is the closed roster for cli-pi dispatch, sourced from the machi
+ 
+ ### openai
+ 
+-Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas and GPT-6.1 Terra. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). All three ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms they resolve. Pi's catalog gained `gpt-6.1-terra` only after `pi update --models` on 2026-10-27. Before that refresh, a dispatch warned `Model "gpt-6.1-terra" not found for provider "openai". Using custom model id.` and still answered. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
++Pi's built-in provider for the ChatGPT sign-in, carrying the GPT-6 personas and GPT-6.1 Terra. See the effort cross-map in §4. Pi 1.0 lists this sign-in under `openai`. The `openai-codex` name earlier Pi versions used is gone, and a dispatch to it now fails with "No API key found for openai-codex" (checked 2026-10-04 on Pi 1.0.2, where `openai/gpt-6-luna` answered). Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). All three ids come from Pi's own model catalog (`~/.pi/agent/models-store.json`), so `.pi/models.json` defines no `openai` models, and `pi --list-models gpt-6` confirms they resolve. Pi's catalog gained `gpt-6.1-terra` only after `pi update --models` on 2026-10-27. Before that refresh, a dispatch warned `Model "gpt-6.1-terra" not found for provider "openai". Using custom model id.` and still answered.
+ 
+ | Model id | Notes |
+ |----------|-------|
+@@ -123,7 +131,7 @@ pi -p "<prompt>" \
+   --thinking max --mode text --offline </dev/null
+ ```
+ 
+-Do not fabricate a default model when composing a cli-pi dispatch. The repository's `.pi/settings.json` default (`llmgateway/deepseek-v4.1-flash-1017`) covers only a run that names no model, so it is not a skill-level default to lean on. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice.
++Do not fabricate a default model when composing a cli-pi dispatch. The repository's `.pi/settings.json` default (`llmgateway/deepseek-v4.1-flash-1017`) covers only a run that names no model, so it is not a skill-level default to lean on. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice. Since 2026-10-22 the pi-blackhole worker model is `llmgateway/deepseek-v4.1-flash-1017` at `high`, and Pi's own default model is that same DevPass DeepSeek route.
+ 
+ ---
+ 

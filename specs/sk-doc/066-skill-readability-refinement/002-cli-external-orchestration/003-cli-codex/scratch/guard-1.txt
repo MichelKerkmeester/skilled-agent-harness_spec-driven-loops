@@ -1,0 +1,3 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md edited=1
+code_blocks_changed=1 block_count_mismatch=0 restored

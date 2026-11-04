@@ -1,0 +1,10 @@
+.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/claude-tools.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/providers-and-models.md

@@ -8,7 +8,7 @@ trigger_phrases:
   - "cli dispatch resource map"
 importance_tier: important
 contextType: general
-version: 1.7.6.0
+version: 1.7.7.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -16,7 +16,13 @@ skill_pointer: SKILL.md
 
 # cli-external-orchestration Surface Router — per-mode leaf sets
 
+Use this router when a selected executor's first-slice resources are unclear.
+
+---
+
 ## 1. OVERVIEW
+
+### Purpose
 
 This is cli-external-orchestration's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub
@@ -32,6 +38,10 @@ the canonical `(workflowMode, leafResourceId)` pair at the one contract boundary
 Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub never
 emits leaf paths, and this router never re-decides the mode.
+
+### When to Use
+
+Open this router after mode selection, when the request's CLI-dispatch intent must be mapped to the packet-local leaf resources the mode loads.
 
 ---
 
@@ -153,7 +163,7 @@ RESOURCE_MAP = {
 
 ## 5. MACHINE ROUTER
 
-The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+The hub's detailed routing prose lives here so the skill body can keep a short routing summary and a pointer to this file. This section is last, after the stage-two map above, and declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 remains the only replay source.
 
 > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
 > ```bash

@@ -10,7 +10,7 @@ trigger_phrases:
   - "codex validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.9.0.18
+version: 1.9.1.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Codex CLI
@@ -20,10 +20,6 @@ Proven patterns for orchestrating Codex CLI from any AI assistant session.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI acts as the orchestrator (planner, validator, integrator) while Codex CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Codex's sandbox-controlled execution, not from redundant work.
 
 ### Purpose
 
@@ -36,6 +32,10 @@ Each pattern documented here includes the rationale, implementation template, an
 - You want to run parallel AI tasks while the calling AI continues working
 - Complex workflows benefit from structured, multi-stage generation and validation
 - You need controlled file modification with sandbox-enforced safety boundaries
+
+### Core Principle
+
+The calling AI acts as the orchestrator (planner, validator, integrator) while Codex CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Codex's sandbox-controlled execution, not from redundant work.
 
 ---
 
@@ -132,6 +132,31 @@ jq '.issues' /tmp/analysis.json
 - Extracting metrics, function signatures, or dependency lists
 - Feeding Codex analysis into the calling AI's decision logic
 - Building automated pipelines that branch on structured output
+
+### Echoed-Transcript Parsing When Capturing `codex exec` Output
+
+When you capture a `codex exec` transcript to a file and later parse it for structured output (a fenced JSON block, a verdict line, etc.), remember the transcript contains **three copies** of any marker your prompt mentions:
+
+1. the **echoed prompt** itself, including any output-format template you embedded, with its literal placeholders
+2. the model's streamed answer
+3. the CLI **reprinting the final message** at the end
+
+**Symptom:** A parser that extracts text *between* the first and last marker concatenates all three blocks into invalid JSON (so your finding count comes out 0), and a global `grep` for a verdict/status line matches the **instruction line in the echoed prompt** (which usually lists every possible value), so you record the wrong one.
+
+**Root cause:** `codex exec` echoes the full prompt and reprints its last message; any template token you put in the prompt reappears verbatim in the captured output.
+
+```bash
+# BAD: between-markers awk spans the echoed template + answer + reprint
+awk '/^===BLOCK===$/{f=1;next} /^===END===$/{f=0} f{print}' transcript.md   # → invalid JSON
+grep -oE 'Verdict: (PASS|FAIL)' transcript.md | tail -1                      # → matches echoed instruction
+
+# GOOD: collect EVERY fenced block, parse each independently, drop the
+# placeholder echo (e.g. severity == "P0|P1|P2"), dedup, derive status from
+# what survives. (Reference implementation: the run_review.sh driver under
+# specs/.../123-deep-loop-parallel-fanout/008-deep-review/review/.)
+```
+
+**Better still:** have codex write structured output with `-o lastmessage.txt`, or use a unique non-template sentinel the prompt never quotes. And always inspect one real captured transcript before trusting any count derived from it.
 
 ---
 
@@ -245,32 +270,11 @@ done < input.jsonl
 
 **Always pair `codex exec ... &` inside a read-loop with `</dev/null` on the redirection.** This is independent of whether codex itself uses stdin — the issue is shared FD consumption, not a feature.
 
-### Echoed-Transcript Parsing When Capturing `codex exec` Output
-
-When you capture a `codex exec` transcript to a file and later parse it for structured output (a fenced JSON block, a verdict line, etc.), remember the transcript contains **three copies** of any marker your prompt mentions: (1) the **echoed prompt** itself — including any output-format template you embedded, with its literal placeholders; (2) the model's streamed answer; (3) the CLI **reprinting the final message** at the end.
-
-**Symptom:** A parser that extracts text *between* the first and last marker concatenates all three blocks into invalid JSON (so your finding count comes out 0), and a global `grep` for a verdict/status line matches the **instruction line in the echoed prompt** (which usually lists every possible value), so you record the wrong one.
-
-**Root cause:** `codex exec` echoes the full prompt and reprints its last message; any template token you put in the prompt reappears verbatim in the captured output.
-
-```bash
-# BAD: between-markers awk spans the echoed template + answer + reprint
-awk '/^===BLOCK===$/{f=1;next} /^===END===$/{f=0} f{print}' transcript.md   # → invalid JSON
-grep -oE 'Verdict: (PASS|FAIL)' transcript.md | tail -1                      # → matches echoed instruction
-
-# GOOD: collect EVERY fenced block, parse each independently, drop the
-# placeholder echo (e.g. severity == "P0|P1|P2"), dedup, derive status from
-# what survives. (Reference implementation: the run_review.sh driver under
-# specs/.../123-deep-loop-parallel-fanout/008-deep-review/review/.)
-```
-
-**Better still:** have codex write structured output with `-o lastmessage.txt`, or use a unique non-template sentinel the prompt never quotes. And always inspect one real captured transcript before trusting any count derived from it.
-
 ---
 
 ## 5. MODEL SELECTION STRATEGY
 
-**Codex CLI supports 2 models. Choose based on task type.**
+**Codex CLI dispatches `gpt-5.5` by default. Choose reasoning effort by task type.**
 
 ### Decision Matrix
 

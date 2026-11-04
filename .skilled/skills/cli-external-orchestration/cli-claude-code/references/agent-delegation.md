@@ -9,7 +9,7 @@ trigger_phrases:
   - "conductor executor agent model"
 importance_tier: normal
 contextType: implementation
-version: 1.5.0.22
+version: 1.5.1.0
 ---
 
 # Claude Code Agent Delegation Reference
@@ -19,10 +19,6 @@ Routing reference for delegating tasks from external AI assistants to specialize
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI decides WHAT to do, Claude Code decides HOW to do it within the delegated scope.
 
 ### Purpose
 
@@ -35,6 +31,10 @@ Documents the active Claude Code agents in `.skilled/agents/` and how external A
 - Deep reasoning and extended thinking via `@ai-council`
 - Fresh-perspective debugging after the calling AI's attempts fail via Task-tool dispatch to `@debug`
 - Codebase exploration in read-only mode via `@context`
+
+### Core Principle
+
+The calling AI decides WHAT to do, Claude Code decides HOW to do it within the delegated scope.
 
 ---
 

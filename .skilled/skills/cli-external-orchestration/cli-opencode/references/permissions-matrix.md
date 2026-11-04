@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 replay walkthrough"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-opencode permissions matrix
@@ -134,7 +134,7 @@ Core intent:
 | `read` on `**` | allow | Implementation needs evidence from the whole repo. |
 | `write`/`edit` on the approved packet docs | allow | Packet docs are the approved continuity scope. |
 | `write`/`edit` on the packet schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
-| `edit` on `cli-opencode/SKILL.md` | allow | The packet updates only the relevant ALWAYS entry. |
+| `edit` on `cli-opencode/SKILL.md` | allow | Only the relevant ALWAYS entry is in scope. |
 | `execute` on read-only shell commands | allow | Search and inspection stay usable. |
 | `execute` on destructive commands | deny | RM-8 prevention. |
 | `write`, `edit`, `delete` on `**` | deny | Anything outside the explicit approved packet paths blocks. |
@@ -293,30 +293,7 @@ the only active control, whether or not a matrix is configured.
 
 ---
 
-## 9. MIGRATION CHECKLIST
-
-Use this checklist when authoring a matrix ahead of the gate being wired into
-dispatch. Authoring a matrix does not add protection today — see the status
-note at the top of this document — so keep applying the four-layer prose
-mitigation regardless of whether a matrix exists.
-
-- Identify the dispatch mode: read-only, packet-local, or repo-wide `.skilled`.
-- Choose the closest example matrix.
-- Replace broad prose permissions with explicit `rules[]` entries.
-- Keep `read` broad only when the task genuinely needs corpus evidence.
-- Write allow rules before the broad deny rules if they have identical globs.
-- Prefer narrow file globs over directory-wide globs.
-- Add explicit `Exec(<cmd>)` allows for every shell command the task requires.
-- Add explicit denies for `rm`, `mv`, `cp`, package managers, `node`, `python*`,
-  `sed -i*`, and any project-specific destructive command.
-- Validate with `npx ajv validate -s permissions-matrix.schema.json -d <matrix>`.
-- Run a dry replay with representative denied writes before dispatch.
-- Keep applying the four-layer prose mitigation whether or not a matrix is
-  authored — the gate does not enforce it until wired into dispatch.
-
----
-
-## 10. `**` GLOB SMELL WARNING
+## 9. `**` GLOB SMELL WARNING
 
 `**` is sometimes necessary as a final deny or broad read allow. It is a smell
 when used as a broad write or edit allow.
@@ -338,6 +315,29 @@ The gate's matching logic logs broad-glob warnings as a smoke check when
 invoked — today that means during its own unit tests, not during a live
 dispatch. A future CI lint can turn the smell into a blocking rule if the
 team wants enforcement.
+
+---
+
+## 10. MIGRATION CHECKLIST
+
+Use this checklist when authoring a matrix ahead of the gate being wired into
+dispatch. Authoring a matrix does not add protection today — see the status
+note at the top of this document — so keep applying the four-layer prose
+mitigation regardless of whether a matrix exists.
+
+- Identify the dispatch mode: read-only, packet-local, or repo-wide `.skilled`.
+- Choose the closest example matrix.
+- Replace broad prose permissions with explicit `rules[]` entries.
+- Keep `read` broad only when the task genuinely needs corpus evidence.
+- Write allow rules before the broad deny rules if they have identical globs.
+- Prefer narrow file globs over directory-wide globs.
+- Add explicit `Exec(<cmd>)` allows for every shell command the task requires.
+- Add explicit denies for `rm`, `mv`, `cp`, package managers, `node`, `python*`,
+  `sed -i*`, and any project-specific destructive command.
+- Validate with `npx ajv validate -s permissions-matrix.schema.json -d <matrix>`.
+- Run a dry replay with representative denied writes before dispatch.
+- Keep applying the four-layer prose mitigation whether or not a matrix is
+  authored — the gate does not enforce it until wired into dispatch.
 
 ---
 

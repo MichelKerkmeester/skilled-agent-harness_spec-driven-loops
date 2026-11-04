@@ -8,7 +8,7 @@ trigger_phrases:
   - "hermes code mode server"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Hermes MCP Policy
@@ -17,13 +17,25 @@ Hermes hosts MCP servers, but only from the operator's configuration. This is a 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 MCP servers reach a Hermes session only from the operator's user-level configuration; this reference records that boundary, the one operator step, the deny-by-default posture and what a dispatch may assume.
+
+### When to Use
+
+- Working out whether a server is reachable from a Hermes dispatch at all.
+- Adding the repo's code-mode server as the operator.
+- Locking a newly added server down to the tools one task needs.
 
 ---
 
 ## 2. WHERE MCP LIVES
 
-`mcp_servers:` is read from `~/.hermes/config.yaml` only (source-read: `hermes_cli/mcp_config.py`). `hermes mcp add|remove|list|test|configure` manage it; `hermes tools list|disable|enable` toggle tools with `server:tool` notation. `--safe-mode` disables all MCP servers for a run, and the `chat` path waits for MCP cold start before its first tool snapshot, so a configured server adds startup latency to every dispatch.
+- **Config source:** `mcp_servers:` is read from `~/.hermes/config.yaml` only (source-read: `hermes_cli/mcp_config.py`).
+- **Server management:** `hermes mcp add|remove|list|test|configure` manage it.
+- **Tool toggles:** `hermes tools list|disable|enable`, with `server:tool` notation.
+- **Per-run off switch:** `--safe-mode` disables all MCP servers for a run.
+- **Cold start:** the `chat` path waits for MCP cold start before its first tool snapshot, so a configured server adds startup latency to every dispatch.
 
 ---
 
@@ -31,12 +43,20 @@ MCP servers reach a Hermes session only from the operator's user-level configura
 
 To reach the repo's code-mode server from Hermes, the operator runs, once:
 
+A dispatch never runs these.
+
 ```bash
 printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .skilled/bin/mcp-code-mode-launcher.cjs
 hermes mcp list
 ```
 
-Observed 2026-09-14: `--args` must be the last option, the command connects and discovers seven tools, and the "Enable all tools?" prompt needs an answer on stdin (a closed stdin cancels the add). A dispatch never runs these. A session reaches the server only when its name appears in the `-t` list (`-t search,todo,code_mode`).
+Observed 2026-09-14:
+
+- `--args` must be the last option.
+- The command connects and discovers seven tools.
+- The "Enable all tools?" prompt needs an answer on stdin; a closed stdin cancels the add.
+
+A session reaches the server only when its name appears in the `-t` list (`-t search,todo,code_mode`).
 
 ---
 

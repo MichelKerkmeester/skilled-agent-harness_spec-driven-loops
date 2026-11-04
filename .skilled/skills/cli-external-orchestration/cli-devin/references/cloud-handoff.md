@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin browser workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.1
+version: 1.4.1.0
 ---
 
 # Devin Cloud Handoff Reference
@@ -20,10 +20,6 @@ Complete reference for the `/handoff` command and cloud Devin session mechanics.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-When a task outgrows the local terminal — or you want Devin to keep working while you step away — the `/handoff` command transfers the current session to a cloud Devin session. The cloud session gets its own VM with a shell, browser, and full repo access, so it can keep going after you close your laptop.
 
 ### Purpose
 
@@ -43,6 +39,10 @@ Documents the `/handoff` command mechanics, use cases, state transfer, and integ
 - Tasks requiring interactive approval prompts (cloud sessions are less interactive)
 - Tasks involving sensitive data without confirming cloud session isolation
 - Tasks where the local environment has specific dependencies not available in the cloud VM
+
+### Core Principle
+
+When a task outgrows the local terminal — or you want Devin to keep working while you step away — the `/handoff` command transfers the current session to a cloud Devin session. The cloud session gets its own VM with a shell, browser, and full repo access, so it can keep going after you close your laptop.
 
 ---
 

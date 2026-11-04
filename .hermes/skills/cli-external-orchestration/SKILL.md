@@ -2,7 +2,7 @@
 name: cli-external-orchestration
 description: "Parent hub for external CLI dispatch: routes to seven workflow modes through mode-registry.json; dispatches by workflowMode."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.7.12.0
+version: 1.7.13.0
 metadata:
   family: cli
 ---
@@ -19,8 +19,6 @@ metadata:
 One skill, seven workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
 Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
 This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
-
-**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
 
 ---
 
@@ -161,6 +159,8 @@ cli-external-orchestration/
 - `description.json` owns advisor-facing summary fields.
 - `graph-metadata.json` owns the one skill-graph identity node for the whole hub (`family: cli`).
 
+**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
+
 ### Recursion Guards Stay Packet-Local
 
 Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based. The hub's routing layer does not affect it.
@@ -203,7 +203,7 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
 
 - A packet cannot be classified as `workflow` or `transport` (every current mode is one of the two; a future mode may be neither — if it is read-only evidence it is a surface, and this hub would then need the surface-axis extension too).
 - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
-- The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor — that is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent; report it rather than working around it.
+- The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor. That is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent. Report it rather than working around it.
 
 ---
 
@@ -217,5 +217,5 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
 - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-hermes/SKILL.md`.
 - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
 - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
-- Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.
+- Constitutional CLI dispatch skill-preload rule: Read the target mode's `SKILL.md` before composing any dispatch prompt.
 - Persona-injection contract (canonical): `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection" — every mode attaches the resolved agent persona on dispatch.

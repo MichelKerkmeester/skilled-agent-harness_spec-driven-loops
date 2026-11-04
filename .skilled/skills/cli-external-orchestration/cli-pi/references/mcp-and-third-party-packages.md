@@ -9,7 +9,7 @@ trigger_phrases:
   - "pi stdio"
 importance_tier: important
 contextType: implementation
-version: 1.5.0.7
+version: 1.5.1.0
 ---
 
 # Pi MCP and Third-Party Packages
@@ -20,10 +20,6 @@ Phase 007 confirmed pi-mcp-extension's stdio transport live. It did not live-ver
 
 ## 1. OVERVIEW
 
-### Core Principle
-
-Pi's core stays intentionally small; MCP is a third-party package (`pi-mcp-extension`), not a built-in Pi feature. A package's README is not a Pi CLI contract.
-
 ### Purpose
 
 Separates confirmed first-party Pi behavior from community-package behavior, and tracks which transports and install paths have moved from documented-only to live-confirmed.
@@ -32,6 +28,10 @@ Separates confirmed first-party Pi behavior from community-package behavior, and
 
 - A request names MCP, pi-mcp-extension, stdio, streamable HTTP, SSE, or package installation
 - Deciding whether a package claim is confirmed by the local pin or only by the package's own docs
+
+### Core Principle
+
+Pi's core stays intentionally small; MCP is a third-party package (`pi-mcp-extension`), not a built-in Pi feature. A package's README is not a Pi CLI contract.
 
 ---
 
@@ -53,6 +53,15 @@ Therefore:
 
 pi-mcp-extension is a community package, not a first-party Pi feature. Its package page is separate from the Pi CLI contract: [Pi package page](https://pi.dev/packages/pi-mcp-extension).
 
+Treat the package as optional and untrusted until:
+
+1. The exact version is pinned.
+2. The source is reviewed.
+3. The project trust decision is explicit.
+4. The config path is isolated.
+5. A harmless server is tested.
+6. Startup and shutdown are observed.
+
 **Confirmed (phase 007):** the install verb below was run live and the package was installed into `.pi/settings.json`'s `packages` array. Phase 007 confirmed `pi-mcp-extension`'s own install only.
 
 ~~~bash
@@ -62,15 +71,6 @@ pi install npm:pi-mcp-extension
 **Confirmed (phase 007):** `.pi/mcp.json`'s stdio-transport config shape (`{command, args, env, transport: "stdio", lifecycle}`) connects live. A `pi --offline --approve` session showed `sequential_thinking` and `system-spec-memory` both connected, with `system-spec-memory`'s full real tool surface present (`memory_context`, `session_resume`, `memory_save`, `memory_delete`, etc.). That observation is a dated transport record: `system-spec-memory` has since been retired, so reproduce the check against a server the current `.pi/mcp.json` still registers. Other configured servers in that same file failed to connect in the test environment for an unrelated, already-diagnosed reason (a missing built TypeScript toolchain in that specific worktree, confirmed present in the main tree) — not a stdio-transport limitation.
 
 Per Pi docs, unconfirmed: streamable HTTP and SSE transport, and the package's documented global-vs-project config-override precedence. Neither has been live-tested in this packet.
-
-Treat the package as optional and untrusted until:
-
-1. The exact version is pinned.
-2. The source is reviewed.
-3. The project trust decision is explicit.
-4. The config path is isolated.
-5. A harmless server is tested.
-6. Startup and shutdown are observed.
 
 ---
 

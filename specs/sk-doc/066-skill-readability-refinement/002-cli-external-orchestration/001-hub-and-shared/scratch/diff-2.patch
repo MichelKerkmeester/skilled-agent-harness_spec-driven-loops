@@ -1,0 +1,210 @@
+diff --git a/.skilled/skills/cli-external-orchestration/README.md b/.skilled/skills/cli-external-orchestration/README.md
+index e6e1da89cf..bd257ac1f5 100644
+--- a/.skilled/skills/cli-external-orchestration/README.md
++++ b/.skilled/skills/cli-external-orchestration/README.md
+@@ -22,7 +22,7 @@ version: 1.7.8.0
+ 
+ # cli-external-orchestration
+ 
+-> Cross-AI work means more than one external CLI runtime on your machine. This hub routes each coding, review, research or delegation request to the CLI that fits it best, dispatched as a nested workflow packet under one advisor identity.
++> The seven modes cover parallel sessions, cloud handoffs and read-only review.
+ 
+ ---
+ 
+@@ -39,10 +39,14 @@ version: 1.7.8.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Hub Exists
++### Purpose
+ 
+ Your machine runs more than one external AI runtime, each with its own CLI and its own failure modes. Picking one by habit is guesswork: the session runs, but it may not fit the task. The hub makes the choice deliberate. One advisor identity reads the request and picks the external CLI that fits it best. Then it dispatches the matching workflow packet.
+ 
++### When to Use
++
++Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding, a guarded headless Pi run or a quiet oneshot Hermes dispatch. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
++
+ ### What It Does
+ 
+ The hub holds no packet-local logic. Every request routes to exactly one of seven nested workflow packets through `hub-router.json` and `mode-registry.json`. The hub itself keeps just its `SKILL.md`, `ROUTER.md` and the registry files. Each mode packet keeps its own contract, references, playbook and changelog.
+@@ -67,6 +71,8 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
+ 
+ **Step 2: Dispatch the mode that fits the request.**
+ 
++When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`.
++
+ | Mode | Example prompt |
+ |---|---|
+ | `cli-opencode` | `Run this task through opencode run with the deepseek provider.` |
+@@ -77,7 +83,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
+ | `cli-pi` | `Use cli-pi for a guarded headless JSON-event review.` |
+ | `cli-hermes` | `Use cli-hermes for a quiet oneshot Hermes review through the LLM Gateway.` |
+ 
+-**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
++**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
+ 
+ ---
+ 
+@@ -85,7 +91,11 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
+ 
+ ### The Routing Chain
+ 
+-Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface. The registry also carries the advisor routing fields. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` as an `orderedBundle`. `defaultMode` is `null`: genuinely unclear or contradictory intent defers to disambiguation instead of defaulting silently.
++1. Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface.
++2. The registry also carries the advisor routing fields.
++3. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode.
++4. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` as an `orderedBundle`.
++5. `defaultMode` is `null`: genuinely unclear or contradictory intent defers to disambiguation instead of defaulting silently.
+ 
+ ### The Guard Rails
+ 
+@@ -100,10 +110,6 @@ Four behaviors keep dispatch honest:
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Hub
+-
+-Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding, a guarded headless Pi run or a quiet oneshot Hermes dispatch. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+diff --git a/.skilled/skills/cli-external-orchestration/ROUTER.md b/.skilled/skills/cli-external-orchestration/ROUTER.md
+index e2baf35002..7847e7acc7 100644
+--- a/.skilled/skills/cli-external-orchestration/ROUTER.md
++++ b/.skilled/skills/cli-external-orchestration/ROUTER.md
+@@ -16,6 +16,10 @@ skill_pointer: SKILL.md
+ 
+ # cli-external-orchestration Surface Router — per-mode leaf sets
+ 
++Use this router when a selected executor's first-slice resources are unclear.
++
++---
++
+ ## 1. OVERVIEW
+ 
+ This is cli-external-orchestration's second-layer (surface) router, first-class at the hub root
+@@ -153,7 +157,7 @@ RESOURCE_MAP = {
+ 
+ ## 5. MACHINE ROUTER
+ 
+-The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
++The hub's detailed routing prose lives here so the skill body can keep a short routing summary and a pointer to this file. This section is last, after the stage-two map above, and declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 remains the only replay source.
+ 
+ > **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+ > ```bash
+diff --git a/.skilled/skills/cli-external-orchestration/SKILL.md b/.skilled/skills/cli-external-orchestration/SKILL.md
+index b026ce57ca..60c163e220 100644
+--- a/.skilled/skills/cli-external-orchestration/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/SKILL.md
+@@ -12,10 +12,6 @@ metadata:
+ # CLI External Dispatch Hub (cli-external-orchestration)
+ 
+ One skill, seven workflow modes, and one shared `family: cli` identity. `cli-external-orchestration` is the public, advisor-routable home for every external CLI dispatch orchestrator in this repo.
+-Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`.
+-This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
+-
+-**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
+ 
+ ---
+ 
+@@ -156,8 +152,12 @@ cli-external-orchestration/
+ - `description.json` owns advisor-facing summary fields.
+ - `graph-metadata.json` owns the one skill-graph identity node for the whole hub (`family: cli`).
+ 
++**Version authority.** This file's `version` frontmatter is the hub's release version and matches the newest entry under `changelog/`; `description.json`, `mode-registry.json` and `hub-router.json` carry the same value, so every hub-root JSON routing file states the same release; `ROUTER.md` keeps its own document version.
++
+ ### Recursion Guards Stay Packet-Local
+ 
++This hub holds NO per-mode logic. Each mode keeps its own dispatch contract, recursion bounds, and hard rules in its packet. The hub routes by `workflowMode`.
++
+ Each mode's guard is runtime-signal-based (env var / process ancestry / lockfile or a documented heuristic), not path-based. The hub's routing layer does not affect it.
+ Two asymmetries are deliberate and preserved:
+ - `cli-opencode` carries a parallel-detached carve-out that `cli-claude-code` intentionally does not.
+@@ -198,7 +198,7 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
+ 
+ - A packet cannot be classified as `workflow` or `transport` (every current mode is one of the two; a future mode may be neither — if it is read-only evidence it is a surface, and this hub would then need the surface-axis extension too).
+ - Router signals, vocabulary classes, and registry modes cannot be made bidirectionally consistent.
+-- The executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` itself instead of a real executor — that is the exact silent-misroute failure mode ADR-005 rewrote the scorer to prevent; report it rather than working around it.
++- If the executor-delegation scorer resolves a delegation prompt to `cli-external-orchestration` rather than a real executor, report the silent-misroute failure instead of working around it.
+ 
+ ---
+ 
+@@ -212,5 +212,5 @@ The layers that bound a spawn chain, fan-out lineage and dispatch stack apply to
+ - Workflow packets: `cli-opencode/SKILL.md`, `cli-claude-code/SKILL.md`, `cli-codex/SKILL.md`, `cli-cursor/SKILL.md`, `cli-devin/SKILL.md`, `cli-pi/SKILL.md`, `cli-hermes/SKILL.md`.
+ - Per-mode provider/model/invocation catalogs: each mode's `references/providers-and-models.md` is the dedicated single-source index of that mode's providers, model ids, personas/effort tiers, and dispatch shapes.
+ - Executor-delegation scorer (hub-aware, sources from this hub's registry): `../system-skill-advisor/runtime/lib/scorer/executor-delegation.ts`.
+-- Constitutional CLI dispatch skill-preload rule: the retired constitutional rule docs.
++- Constitutional CLI dispatch skill-preload rule: Read the target mode's `SKILL.md` before composing any dispatch prompt.
+ - Persona-injection contract (canonical): `../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection" — every mode attaches the resolved agent persona on dispatch.
+diff --git a/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md b/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
+index 27b2e184df..b103fcdd48 100644
+--- a/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
++++ b/.skilled/skills/cli-external-orchestration/shared/references/child-dispatch-preamble.md
+@@ -13,13 +13,23 @@ version: 1.4.2.0
+ 
+ # Child Dispatch Preamble
+ 
++Use this preamble before dispatching a child that may reach a gate it cannot answer at runtime.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ A dispatched worker reads this repository's `AGENTS.md` at startup, the same as any other
+ session, and obeys the gates in it. One of those gates stops before the first write to ask the
+ operator a documentation-scope question. Nobody is at a prompt, so no answer arrives, and the
+ dispatch ends having written nothing.
+ 
++### When to Use
++
++Use it before dispatching a child whose instructions require an answer from a human.
++
+ ---
+ 
+ ## 2. WHY SETTING THE ENVIRONMENT VARIABLE IS NOT ENOUGH
+@@ -75,15 +85,17 @@ that finishes both exit zero.
+ The spec-folder question is the instance that bites most often, not the only one. Any
+ instruction that tells a session to stop and ask becomes a silent hang in a dispatched child.
+ 
+-Before dispatching, ask which gates the child will read, and pre-resolve every one that
+-expects an answer from a human. Give the answer in the prompt rather than the permission to
+-skip it, so the child proceeds on a decision you made rather than on its own judgment.
++1. Before dispatching, ask which gates the child will read.
++2. Pre-resolve every one that expects an answer from a human.
++3. Give the answer in the prompt rather than the permission to skip it, so the child proceeds on a decision you made rather than on its own judgment.
+ 
+ Halt rules fail the same way. `AGENTS.md` tells a session to halt when an edit reports
+-"string not found". An interactive session halts and the operator steps in; a child halts and
+-writes nothing, usually over an anchor that went stale when the file changed under it. The
+-block's retry line turns that halt into a re-read, and three failures on one file is still the
+-point where the child stops.
++"string not found".
++
++- An interactive session halts and the operator steps in; a child halts and writes nothing,
++  usually over an anchor that went stale when the file changed under it.
++- The block's retry line turns that halt into a re-read.
++- Three failures on one file is still the point where the child stops.
+ 
+ ---
+ 
+@@ -95,10 +107,13 @@ It does not look like a failure.
+ - A transcript ending in a politely formatted question with lettered options
+ - Zero files written
+ 
+-An orchestrator that checks the exit status concludes the work is done. Verify that the
+-artifacts exist on disk, and grep the transcript for the question itself. Exit status has been
+-observed wrong in both directions: a dispatch that asked and wrote nothing exits zero, and a
+-dispatch that wrote everything then hit a provider capacity error exits one.
++An orchestrator that checks the exit status concludes the work is done.
++
++- [ ] Verify that the artifacts exist on disk.
++- [ ] Grep the transcript for the question itself.
++
++Exit status has been observed wrong in both directions: a dispatch that asked and wrote nothing
++exits zero, and a dispatch that wrote everything then hit a provider capacity error exits one.
+ 
+ ---
+ 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "claude opus sonnet haiku dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # cli-claude-code Providers, Models & Invocation
@@ -20,13 +20,18 @@ The single catalog of the provider, model ids, defaults, `--effort` thinking lev
 
 ## 1. OVERVIEW
 
-### Core Principle
-One place to answer "which model, which effort, how to dispatch" for cli-claude-code. This mode is single-provider (Anthropic) and always reaches a small, fixed roster — so this file IS the catalog, with every model id inline.
+### Purpose
+
+One place to answer "which model, which effort, how to dispatch" for cli-claude-code.
 
 ### When to Use
 - Choosing a `--model claude-*` id for a `claude -p` dispatch
 - Mapping a desired reasoning depth onto the `--effort` flag
 - Recalling the default model and the canonical non-interactive invocation shape
+
+### Core Principle
+
+This mode is single-provider (Anthropic) and always reaches a small, fixed roster — so this file IS the catalog, with every model id inline.
 
 ### Scope
 This file enumerates the model/effort facts and the dispatch envelope. It does NOT own: the full `claude` flag surface, permission modes, auth pre-flight, and troubleshooting (see [cli-reference.md](./cli-reference.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
@@ -74,7 +79,9 @@ claude -p "<prompt>" \
   2>&1
 ```
 
-Always append `2>&1` to capture both stdout and stderr. For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`, and raise the effort to `xhigh` or `max` when `high` is not enough. If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login`; it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
+- Always append `2>&1` to capture both stdout and stderr.
+- For deep-reasoning work, override with `--model claude-opus-5-5 --effort high`, and raise the effort to `xhigh` or `max` when `high` is not enough.
+- If Claude Code is not authenticated, the mode ASKS the operator to run `claude auth login`; it never substitutes an API key or a different model. See the OAuth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3 and the SKILL's "Provider Auth Pre-Flight".
 
 **Why Sonnet 5.5 is the default.** It answered a live probe, it is what the `sonnet` alias resolves to, and it keeps the default in the same balanced family as before, so a caller that names no model gets the same cost and depth profile on the current generation. Opus and Fable stay opt-in for work that needs more depth.
 
@@ -98,6 +105,9 @@ cli-claude-code expresses reasoning depth through the **`--effort`** flag. Every
 
 ## 5. HOW TO INVOKE
 
+### Self-invocation guard
+A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
+
 ### Dispatch envelope (child / detached sessions)
 When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and capture stderr:
 
@@ -109,9 +119,6 @@ SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 claude -p "<prompt>" \
 - `SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1` — neutralizes the spec-gate for a bound child worker so it does not stall on an interactive Gate-3 answer, and marks the run as an orchestrated sub-session so the worktree wrapper exec's in place rather than allocating its own worktree. See [../SKILL.md](../SKILL.md) §4 Rule 13.
 - `2>&1` — REQUIRED to capture stderr; without it error and warning messages are lost. See [integration-patterns.md](./integration-patterns.md).
 - `-p` (print) is mandatory for non-interactive dispatch; use `--permission-mode plan` for read-only review/analysis.
-
-### Self-invocation guard
-A `claude -p` dispatch must never run from inside a Claude Code session (a `$CLAUDECODE`-set, `claude`-in-ancestry, or state-lock signal) — that is a circular self-invocation. The guard is inline in [../ROUTER.md](../ROUTER.md) §3 "Self-Invocation Guard".
 
 ### Parallel / fan-out
 Multi-lineage parallel dispatch is driven by `fanout-run.cjs`, which lives outside this hub — see §6.

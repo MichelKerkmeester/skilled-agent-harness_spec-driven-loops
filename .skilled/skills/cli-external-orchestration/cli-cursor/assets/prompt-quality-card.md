@@ -8,7 +8,7 @@ trigger_phrases:
   - "cursor clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.7
+version: 1.4.1.0
 ---
 
 # Cursor CLI — Prompt Quality Card
@@ -32,7 +32,7 @@ This card is the Cursor CLI fast-path prompt-quality reference; it delegates the
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
+See [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) for the shared layer (deep theory: [patterns-evaluation.md](../../../sk-prompt/references/patterns-evaluation.md)).
 
 ---
 
@@ -53,10 +53,12 @@ These are mechanical facts about how Cursor CLI receives and processes a prompt 
 
 The 2-tier precedence rule (fast path -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
 
-Cursor-specific escalation example: if the task needs a prompt disambiguating execution mode (default vs. `--mode plan`/`--mode ask`) plus explicit model-id selection across Cursor's wide roster, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Cursor CLI. Escalate on any canonical Tier 3 trigger.
+Cursor-specific escalation example: if the task needs a prompt disambiguating execution mode (default vs. `--mode plan`/`--mode ask`) plus explicit model-id selection across Cursor's wide roster, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Cursor CLI. Escalate on any canonical Tier 2 trigger.
 
 ---
 
 ## 5. RELATED RESOURCES
 
--> `../../../sk-prompt/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md`
+- [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) - Canonical framework table, task map, density notes and CLEAR check.
+- [prompt-templates.md](./prompt-templates.md) - Copy-paste Cursor dispatch prompts that consume this card.
+- [SKILL.md](../SKILL.md) - Dispatch rules that make loading this card mandatory.

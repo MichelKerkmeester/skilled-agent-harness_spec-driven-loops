@@ -10,7 +10,7 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.13.0
+version: 1.4.14.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -21,7 +21,11 @@ Copy-paste templates for `opencode run` dispatches. Each template names the use 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The cli-opencode skill ships templates for the three documented use cases (per ADR-002) plus specialized dispatches for agent routing, parallel research, ablation, worker farms, and cross-AI handback. Every template ends with the Memory Epilogue when the calling AI needs to preserve session context.
+
+### Usage
 
 Templates are numbered for cross-reference from `references/integration-patterns.md` and `SKILL.md`.
 
@@ -29,8 +33,8 @@ Templates are numbered for cross-reference from `references/integration-patterns
 
 ## 2. TEMPLATE 1: EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
 
-**Framework:** RCAF
-**Calling runtime:** Claude Code, OpenCode, Copilot, raw shell
+- **Framework:** RCAF
+- **Calling runtime:** Claude Code, OpenCode, Copilot, raw shell
 
 ```text
 You are dispatching from <calling-runtime> into a fresh OpenCode session via cli-opencode.
@@ -95,8 +99,8 @@ The default model is `llmgateway/deepseek-v4.1-flash-1017` (LLM Gateway, DevPass
 
 ## 3. TEMPLATE 2: IN-OPENCODE PARALLEL DETACHED SESSION (USE CASE 2)
 
-**Framework:** CIDI
-**Calling runtime:** OpenCode itself (TUI / web / serve / acp)
+- **Framework:** CIDI
+- **Calling runtime:** OpenCode itself (TUI / web / serve / acp)
 
 ```text
 You are spawning a parallel detached OpenCode session for <purpose>.
@@ -145,8 +149,8 @@ For an actual deep-research iteration, do not pass `--agent deep-research` (comm
 
 ## 4. TEMPLATE 3: CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
 
-**Framework:** RCAF + TIDD-EC
-**Calling runtime:** OpenCode, Copilot
+- **Framework:** RCAF + TIDD-EC
+- **Calling runtime:** OpenCode, Copilot
 
 ```text
 You are dispatching from <calling-runtime> into OpenCode for a spec-kit-specific workflow.
@@ -195,8 +199,8 @@ opencode run \
 
 ## 5. TEMPLATE 4: SPECIALIZED AGENT DISPATCH
 
-**Framework:** RCAF
-**Use case:** Any (1, 2, or 3)
+- **Framework:** RCAF
+- **Use case:** Any (1, 2, or 3)
 
 Dispatch a task to a specific agent slug. See `../references/agent-delegation.md` for the full routing matrix and the primary/subagent/command-owned dispatch classes below. `<slug>` in this template's bash block is valid ONLY for `orchestrate` (or `plan`, an OpenCode built-in), and every other slug routes a different way.
 
@@ -232,9 +236,9 @@ On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unkn
 
 ## 6. TEMPLATE 5: CODE REVIEW
 
-**Framework:** TIDD-EC
-**Agent:** `review`
-**Use case:** 1 or 3
+- **Framework:** TIDD-EC
+- **Agent:** `review`
+- **Use case:** 1 or 3
 
 ```text
 As @review:
@@ -283,9 +287,9 @@ No `--agent` flag. `review` is a subagent, not directly invokable at the top lev
 
 ## 7. TEMPLATE 6: ITERATIVE DEEP RESEARCH
 
-**Framework:** CRISPE
-**Agent:** `deep-research`, command-owned by `/deep:research`. This template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
-**Use case:** Command-owned loop, driven by `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet
+- **Framework:** CRISPE
+- **Agent:** `deep-research`, command-owned by `/deep:research`. This template documents the shape of ONE iteration's context, not a copy-paste raw dispatch
+- **Use case:** Command-owned loop, driven by `/deep:research` (or `/deep:research:auto`) against a pre-bound spec packet
 
 ```text
 Run iteration N of the deep-research loop on packet <packet-id>.
@@ -319,9 +323,9 @@ On OpenCode 2, `--command` has no `run` form (OpenCode 1 only). A registered com
 
 ## 8. TEMPLATE 7: ABLATION SUITE
 
-**Framework:** CIDI
-**Agent:** `general` or `orchestrate`
-**Use case:** 2 (parallel detached)
+- **Framework:** CIDI
+- **Agent:** `general` or `orchestrate`
+- **Use case:** 2 (parallel detached)
 
 ```text
 Spawn a parallel detached session to run an ablation suite on <subsystem>.
@@ -365,9 +369,9 @@ On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/
 
 ## 9. TEMPLATE 8: WORKER FARM DISPATCH
 
-**Framework:** CIDI
-**Agent:** `general`
-**Use case:** 2 (parallel detached)
+- **Framework:** CIDI
+- **Agent:** `general`
+- **Use case:** 2 (parallel detached)
 
 Spawn N parallel detached sessions in a loop, each with a distinct port and state file.
 
@@ -415,9 +419,9 @@ On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `../references/
 
 ## 10. TEMPLATE 9: SPEC-DOC RETRIEVAL VIA OPENCODE
 
-**Framework:** RCAF
-**Agent:** `general`
-**Use case:** 3 (cross-AI handback) or 1 (external runtime)
+- **Framework:** RCAF
+- **Agent:** `general`
+- **Use case:** 3 (cross-AI handback) or 1 (external runtime)
 
 ```text
 Search the project's spec docs for <query>.
@@ -455,9 +459,9 @@ opencode run \
 
 ## 11. TEMPLATE 10: MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
 
-**Framework:** CRAFT
-**Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
-**Use case:** 1 or 3
+- **Framework:** CRAFT
+- **Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
+- **Use case:** 1 or 3
 
 ```text
 Plan the <feature / refactor> using multi-strategy comparison.
@@ -493,9 +497,9 @@ opencode run \
 
 ## 12. TEMPLATE 11: DOC GENERATION VIA @WRITE
 
-**Framework:** RCAF
-**Agent:** `write`
-**Use case:** 1
+- **Framework:** RCAF
+- **Agent:** `write`
+- **Use case:** 1
 
 ```text
 Generate a <doc type> for <subject>.
@@ -604,7 +608,7 @@ Minimum viable payload: a specific `sessionSummary`, at least one meaningful `re
 
 ## 15. TEMPLATE 14: MINIMAX TOKEN PLAN (EMPIRICAL DEFAULT, TIDD-EC PLUS DENSE PRE-PLAN)
 
-**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. On OpenCode 2, a level rides the model string (`-m provider/model#level`), and whether the MiniMax plan accepts one is unverified on OpenCode 2.0.32. On OpenCode 1, `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3` (pay-per-token alternative `minimax/MiniMax-M3` via the Direct API). The MiniMax M2.7 prompt-framework benchmark (real runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework plus **dense** pre-planning wins (RCAF plus medium is the fallback), so carry this contract forward to M3 until re-benchmarked. On OpenCode 2, a level rides the model string (`-m provider/model#level`), and whether the MiniMax plan accepts one is unverified on OpenCode 2.0.32. On OpenCode 1, `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
 
 **Invocation**:
 
@@ -658,9 +662,9 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 
 ## 16. TEMPLATE 15: DESIGN/UI BUILD DISPATCH (MEASURED STYLE REFERENCE)
 
-**Framework:** RCAF + sk-design-md-generator Style Reference Manifest
-**Agent:** `general`, `write`, or a design-capable leaf agent
-**Use case:** 1 or 3
+- **Framework:** RCAF + sk-design-md-generator Style Reference Manifest
+- **Agent:** `general`, `write`, or a design-capable leaf agent
+- **Use case:** 1 or 3
 
 Use this for delegated UI build or redesign that must match a live source rather than guessing colors, type, spacing, or shadows. The dispatched agent must first load `sk-design-md-generator`, extract a measured Style Reference DESIGN.md from the live source, then build against those measured tokens. `sk-design-md-generator` measures real CSS. It does not invent visual direction or critique design, and new direction is out of scope.
 

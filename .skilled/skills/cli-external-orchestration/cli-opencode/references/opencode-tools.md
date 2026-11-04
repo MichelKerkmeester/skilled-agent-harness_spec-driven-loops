@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode vs sibling cli skills"
 importance_tier: normal
 contextType: general
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # OpenCode CLI - Unique Capabilities
@@ -20,7 +20,9 @@ What `opencode run` brings that the sibling cli-* dispatches do not. Each capabi
 
 ## 1. OVERVIEW
 
-The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, and no MCP tools unless the calling AI manually attaches files or pastes context.
+### Purpose
+
+The sibling cli-* skills (cli-claude-code, cli-codex) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, and no MCP tools unless the calling AI manually attaches files or pastes context.
 
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
@@ -31,6 +33,14 @@ The sibling cli-* skills (cli-claude-code, cli-opencode) dispatch a raw model or
 5. The project's spec folders and their continuity docs
 
 The cli-opencode skill exists because no sibling provides this. It is the bridge between an external AI and the full plugin / skill / MCP runtime this repo defines.
+
+### When to Use
+
+- A dispatch needs the project's plugin, skill or MCP runtime (§2)
+- The task needs a parallel detached session (§3)
+- The calling AI must parse a structured event stream instead of prose (§4)
+- The dispatch must run as a named agent definition (§5)
+- The dispatch must target another repository's runtime (§6)
 
 **Verified versions.** Verified against OpenCode 1.19.3 and 2.0.32 on 2026-10-19. Loads and runs on both, with a documented capability delta. Later versions are unsupported until re-verified. The delta is in [`install-and-versions.md`](./install-and-versions.md).
 
@@ -95,6 +105,8 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 - An independent state directory (no shared `messages.jsonl`)
 - The same plugin / skill / MCP runtime as the parent
 
+The skill's smart router gates this use case behind ADR-001's self-invocation signal. When the signal trips AND the prompt explicitly names a parallel detached session, the router permits the dispatch. Otherwise it refuses (see `./integration-patterns.md` for the full decision tree).
+
 ### Invocation shape
 
 ```bash
@@ -110,8 +122,6 @@ opencode run \
 ```
 
 On OpenCode 2, `--port` has no `run` form (OpenCode 1 only). See `./install-and-versions.md`.
-
-The skill's smart router gates this use case behind ADR-001's self-invocation signal. When the signal trips AND the prompt explicitly names a parallel detached session, the router permits the dispatch. Otherwise it refuses (see `./integration-patterns.md` for the full decision tree).
 
 ---
 
@@ -170,7 +180,7 @@ The `--agent <slug>` flag loads an agent definition from `.opencode/agents/<slug
 
 ### Why it matters
 
-Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-opencode's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter: its own routing decisions, its own tool permissions, its own constraints.
+Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` flag, cli-codex's `-p <profile>` flag) only see the calling AI's perspective. cli-opencode dispatches into a session where the calling AI's prompt is shaped by the agent's frontmatter: its own routing decisions, its own tool permissions, its own constraints.
 
 ### Invocation shape
 

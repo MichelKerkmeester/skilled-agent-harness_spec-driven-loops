@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/004-cli-cursor",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration/004-cli-cursor",
+  "parent_id": "sk-doc/066-skill-readability-refinement/002-cli-external-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli cursor",
+      "phase 4 cli cursor",
+      "cli cursor plan",
+      "cli cursor tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "cli cursor implementation summary"
+    ],
+    "key_topics": [
+      "cli",
+      "cursor",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/ROUTER.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
+      ".skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md",
+      "scratch/run.log",
+      "scratch/scope.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-templates.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-delegation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "integration-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "shared-editor-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "run.log",
+        "kind": "file",
+        "path": "scratch/run.log",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of the `.skilled/skills/cli-external-orchestration/cli-cursor` mode were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:16:22Z",
+    "last_save_at": "2026-11-04T17:19:22.497Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7251ca3835cd067769c0a369b65a9db2802d1f6cbe38f9326e0b0d2d7dc31188",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f50e5520b8ec4c8428d27926f9239d591622d3afc68790edba9190a7ffd4fb18",
+      "plan.md": "cb4a2a6cd93a62a9932e78afc7d282accc4eb73cfbe784205dec1f71f6015f5f",
+      "tasks.md": "2f9806b954a684ae4937718c7e9fd57a09d9d3284055e7f0284d27e34dfa7be2",
+      "implementation-summary.md": "6cac44d9fae737c45e4c89685c68cf181abd9115def91d991c236bb11c40cd1c"
+    },
+    "last_active_at": null
+  }
+}

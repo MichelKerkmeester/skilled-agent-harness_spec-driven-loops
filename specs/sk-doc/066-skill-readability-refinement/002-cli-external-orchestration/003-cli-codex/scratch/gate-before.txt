@@ -1,0 +1,4 @@
+.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md:549: render_section_order: "RELATED RESOURCES" must be the last H2; it is followed by "MEMORY EPILOGUE".
+.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md:44: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md:18: render_intro_restates_purpose: The intro repeats the Purpose (0.60 token overlap); make the intro a hook.
+files=11 render_warnings=3 invalid=0

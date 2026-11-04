@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes repo-guards plugin"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Hermes Hook Contract
@@ -18,13 +18,26 @@ Hermes has two hook surfaces. One is the operator's; one the repo can carry.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Hermes keeps shell hooks in the operator's user-level config and reads a repo plugin from `.hermes/plugins/`. This reference records both surfaces and the plugin hook map that carries the repo's guard cores into a Hermes session.
+
+### When to Use
+
+- Deciding whether a guard belongs in a shell hook or the project plugin.
+- Checking which hook each repo guard core runs on.
+- Validating the plugin after a guard core changes.
 
 ---
 
 ## 2. SHELL HOOKS (USER-LEVEL)
 
-Shell-script hooks are declared under `hooks:` in `~/.hermes/config.yaml`, gated by a per-command consent allowlist at `~/.hermes/shell-hooks-allowlist.json`, and inspected with `hermes hooks list|test|doctor`. `--accept-hooks` or `HERMES_ACCEPT_HOOKS=1` bypasses the consent prompt on a headless run, and `hermes -z` sets it automatically.
+Shell-script hooks:
+
+- **Declared:** under `hooks:` in `~/.hermes/config.yaml`.
+- **Gated:** by a per-command consent allowlist at `~/.hermes/shell-hooks-allowlist.json`.
+- **Inspected:** with `hermes hooks list|test|doctor`.
+- **Bypassed:** on a headless run by `--accept-hooks` or `HERMES_ACCEPT_HOOKS=1`; `hermes -z` sets it automatically.
 
 The repo cannot declare these. None is configured on this machine (observed 2026-09-14: `hooks:` absent, `~/.hermes/hooks/` empty). A dispatch never passes `--accept-hooks` unless the operator declared hooks and asked for it.
 
@@ -32,7 +45,11 @@ The repo cannot declare these. None is configured on this machine (observed 2026
 
 ## 3. PROJECT PLUGIN (REPO-CARRIABLE)
 
-Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The hook-and-plugin phase builds `.hermes/plugins/repo-guards/`, which re-implements nothing: each hook shells out to the existing `.mjs` or `.sh` core under `.skilled/hooks/` and maps its result to Hermes's block-or-continue contract, failing open on a core error as the `.pi/extensions/` adapters do.
+Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The plugin at `.hermes/plugins/repo-guards/` re-implements nothing:
+
+- Each hook shells out to the existing `.mjs` or `.sh` core under `.skilled/hooks/`.
+- It maps the core's result to Hermes's block-or-continue contract.
+- It fails open on a core error, as the `.pi/extensions/` adapters do.
 
 | Hermes hook | Repo guard core | Effect |
 |---|---|---|

@@ -11,7 +11,7 @@ trigger_phrases:
   - "install opencode v2 and v1"
 importance_tier: important
 contextType: implementation
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # OpenCode CLI - Install and Version Layouts
@@ -24,21 +24,7 @@ How to put OpenCode 2.1.4 on a machine, optionally alongside OpenCode 1.19.4 as 
 
 ### Purpose
 
-This reference is the skill's install guidance. OpenCode 2 is the version this repository expects and recommends; OpenCode 1 is a backwards-compatible fallback kept only because not every user has updated yet. A dispatch needs a known binary, and the two supported majors are separate npm packages that both claim the name `opencode`. What follows is the layouts that work, the helper that builds them, and the facts that decide which version answers a bare `opencode`.
-
-### Claim Labels
-
-Claims in the prose carry one of three labels. The layout table in section 3 summarises the sections below it, whose claims are labelled there.
-
-| Label | Meaning |
-|-------|---------|
-| `[confirmed]` | Observed on this machine on 2026-10-18 with the command named in the sentence. |
-| `[documented]` | Stated by a named source: the official v2 docs at https://opencode.ai/v2/docs/, the launcher comment in `~/.local/bin/opencode1`, the CLI's own `--help` output, or the npm registry. |
-| `[unknown]` | Not probed. Treat it as open and do not plan around it. |
-
-### The Fact Behind Every Collision
-
-Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin` returns `{ opencode: 'bin/opencode.exe' }` and `npm view @opencode/cli bin` returns `{ opencode: 'bin/opencode.exe', opencode2: 'bin/opencode.exe' }`]. One prefix therefore cannot hold both versions under that name. v2 is the expected version, so it keeps the name `opencode`, and v1 is the one that moves: side by side it answers only to the `opencode1` launcher. The second v2 name, `opencode2`, is retired in that layout.
+This reference is the skill's install guidance. OpenCode 2 is the version this repository expects and recommends; OpenCode 1 is a backwards-compatible fallback kept only because not every user has updated yet. A dispatch needs a known binary, and the two supported majors are separate npm packages that both claim the name `opencode`.
 
 ### When to Use
 
@@ -47,12 +33,26 @@ Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin
 - Deciding whether Homebrew, mise or a second npm prefix is the right channel
 - Working out why a bare `opencode` runs the version you did not expect
 
+### Claim Labels
+
+Claims in the prose carry one of three labels. The layout table in section 3 summarises the sections below it, whose claims are labelled there.
+
+| Label | Meaning |
+|-------|---------|
+| `[confirmed]` | Observed on this machine on 2026-10-18 with the command named in the sentence. |
+| `[documented]` | Stated by a named source: the official v2 docs at [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/), the launcher comment in `~/.local/bin/opencode1`, the CLI's own `--help` output, or the npm registry. |
+| `[unknown]` | Not probed. Treat it as open and do not plan around it. |
+
+### The Fact Behind Every Collision
+
+Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin` returns `{ opencode: 'bin/opencode.exe' }` and `npm view @opencode/cli bin` returns `{ opencode: 'bin/opencode.exe', opencode2: 'bin/opencode.exe' }`]. One prefix therefore cannot hold both versions under that name. v2 is the expected version, so it keeps the name `opencode`, and v1 is the one that moves: side by side it answers only to the `opencode1` launcher. The second v2 name, `opencode2`, is retired in that layout.
+
 ### Key Sources
 
 | Source | What it gives you |
 |--------|-------------------|
 | `~/.local/bin/opencode1` | The v1 launcher that keeps the two databases apart |
-| https://opencode.ai/v2/docs/ | The official v2 install channels and the v2 platform docs |
+| [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/) | The official v2 install channels and the v2 platform docs |
 | `../scripts/opencode-setup.sh` | The helper that builds any of the three layouts |
 | `./cli-reference.md` | Subcommands, `run` flags and the version-drift section |
 
@@ -162,16 +162,16 @@ Every mode is idempotent, and every step prints its rollback line. The helper ne
 
 ### Official v2 Channels
 
-The official v2 channels as of 2026-10-18 [documented: https://opencode.ai/v2/docs/].
+The official v2 channels as of 2026-10-18 [documented: [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/)].
 
-The v2 binary is named `opencode`, the same as v1's [documented: https://opencode.ai/v2/docs/], so none of these channels solves side-by-side on its own. The `opencode1` launcher is still required.
+The v2 binary is named `opencode`, the same as v1's [documented: [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/)], so none of these channels solves side-by-side on its own. The `opencode1` launcher is still required.
 
 - `curl -fsSL https://opencode.ai/v2/install | bash`
 - `brew install anomalyco/tap/opencode-v2`
 - `npm install -g @opencode/cli`
 - bun, pnpm, yarn and Vite+ install paths
 - AUR package `opencode-beta`
-- `mise use -g opencode`. mise 2026.10.9 and later install OpenCode 2 under the name `opencode`, while older mise versions install OpenCode 1 [documented: https://opencode.ai/v2/docs/]. A mise upgrade alone can therefore move a user from v1 to v2 with no explicit choice, so pin the version when you need to stay on v1.
+- `mise use -g opencode`. mise 2026.10.9 and later install OpenCode 2 under the name `opencode`, while older mise versions install OpenCode 1 [documented: [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/)]. A mise upgrade alone can therefore move a user from v1 to v2 with no explicit choice, so pin the version when you need to stay on v1.
 
 ### Homebrew Is v2-Only and Exclusive
 
@@ -212,7 +212,7 @@ OPENCODE_DB=/tmp/probe.db opencode1 run ...
 
 ### The Config Directory Is Shared
 
-Both versions read `~/.config/opencode`, and there is no per-version config directory [confirmed: the directory holds one `opencode.jsonc`, one `plugins/` tree and one `service.json`, with no version-suffixed sibling]. A key written for one version is live on the other immediately [documented: https://opencode.ai/v2/docs/, which puts the global config at `~/.config/opencode/opencode.json(c)`]. Nothing isolates them.
+Both versions read `~/.config/opencode`, and there is no per-version config directory [confirmed: the directory holds one `opencode.jsonc`, one `plugins/` tree and one `service.json`, with no version-suffixed sibling]. A key written for one version is live on the other immediately [documented: [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/), which puts the global config at `~/.config/opencode/opencode.json(c)`]. Nothing isolates them.
 
 That has two consequences you cannot design around:
 
@@ -378,7 +378,7 @@ Whether the v2 background service outlives the uninstall was not probed [unknown
 
 ### Never Delete the Config Directory
 
-`~/.config/opencode` is shared by both versions [documented: https://opencode.ai/v2/docs/, which puts the global config at `~/.config/opencode/opencode.json(c)`]. Never delete it as post-uninstall cleanup. Both versions read it, so removing it breaks whichever one remains.
+`~/.config/opencode` is shared by both versions [documented: [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/), which puts the global config at `~/.config/opencode/opencode.json(c)`]. Never delete it as post-uninstall cleanup. Both versions read it, so removing it breaks whichever one remains.
 
 ---
 
@@ -423,4 +423,4 @@ These constraints survive every layout. Plan around them rather than trying to f
 - [`./cli-reference.md`](./cli-reference.md) for the subcommand map, the `run` flag surface and the version-drift section
 - [`./providers-and-models.md`](./providers-and-models.md) for the provider roster and the per-provider variant map
 - [`../scripts/opencode-setup.sh`](../scripts/opencode-setup.sh) for the `v2`, `both`, `v1` and `check` modes
-- https://opencode.ai/v2/docs/ for the official v2 channels and the v2 platform documentation
+- [https://opencode.ai/v2/docs/](https://opencode.ai/v2/docs/) for the official v2 channels and the v2 platform documentation

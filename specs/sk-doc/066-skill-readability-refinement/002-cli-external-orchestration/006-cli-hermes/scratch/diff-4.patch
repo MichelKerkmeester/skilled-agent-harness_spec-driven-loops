@@ -1,0 +1,558 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/README.md b/.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+index b8236f8a466..fe9aa15060b 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/README.md
+@@ -24,7 +24,12 @@ The packet owns three things: the routing contract, the availability and provide
+ 
+ Two traits separate Hermes from the six sibling runtimes, and both shape how you use this mode.
+ 
+-**Hermes has no agent flag.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. A persona therefore reaches a session two ways at once: the generator mirrors each shared agent as the preloadable skill `agent-<name>`, which carries the whole text, and an environment variable names it so the repo plugin binds it for the session. Inlining the persona at the top of the prompt stays the fallback for a run without the plugin or the mirror, which keeps every dispatch `{persona + task}` and never a bare task.
++**Hermes has no agent flag.** Its profiles are whole-home islands and its sub-agents receive a goal and context rather than a file, so there is nothing to point at. A persona therefore reaches a session two ways at once:
++
++- The generator mirrors each shared agent as the preloadable skill `agent-<name>`, which carries the whole text.
++- An environment variable names it, so the repo plugin binds it for the session.
++
++Inlining the persona at the top of the prompt stays the fallback for a run without the plugin or the mirror, which keeps every dispatch `{persona + task}` and never a bare task.
+ 
+ **Its repo surface is narrow on purpose.** Hermes reads exactly two things from a project's `.hermes/` folder, `skills/` after a trust grant and `plugins/` behind an opt-in variable. The provider block, shell hooks and MCP servers are user-level config in `~/.hermes/config.yaml` and no repo file can carry them, so they appear here as operator steps.
+ 
+@@ -37,7 +42,7 @@ Two traits separate Hermes from the six sibling runtimes, and both shape how you
+ | Model roster | Closed at five ids: `deepseek-v4.1-flash-1017`, `deepseek-v4.1-flash`, `glm-5.3-flash`, `minimax-m3` and `qwen3.8-max` |
+ | Provider | `llmgateway`, an operator-declared custom provider block |
+ | Agents directory | None. Personas are inlined into the prompt |
+-| Repo surface | `.hermes/skills/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |
++| Repo surface | `.hermes/skills/`, `.hermes/agents/`, `.hermes/plugins/repo-guards/`, `.hermes/prompts/`, `.hermes/SYNC.md` |
+ 
+ ---
+ 
+@@ -102,6 +107,7 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
+ +-- SKILL.md                    # Hard rules, dispatch shape, gotchas
+ +-- ROUTER.md                   # Machine router: intent map, resource map and loading levels
+ +-- README.md                   # This file
+++-- hard-rules.json             # Dispatch preflight checks read beside SKILL.md
+ +-- references/                 # CLI, providers, tools, patterns, delegation, hooks, MCP
+ +-- assets/                     # Prompt quality card and prompt templates
+ +-- manual-testing-playbook/    # Playbook root, symlinked into .hermes/
+@@ -129,6 +135,10 @@ The rule that follows: a dispatch given a write or terminal toolset passes `--yo
+ | `references/mcp-policy.md` | Operator steps for MCP and deny-by-default per tool |
+ | `assets/prompt-quality-card.md` | Thin delegator to the canonical prompt-models card |
+ | `assets/prompt-templates.md` | Write, read-only, generation and fan-out scaffolds |
++| `hard-rules.json` | Dispatch preflight checks read beside `SKILL.md` |
++| `manual-testing-playbook/` | Playbook root, symlinked into `.hermes/` |
++| `benchmark/` | Benchmark index for playbook-derived reports |
++| `changelog/` | Packet-local changelog |
+ | `feature-catalog/feature-catalog.md` | Canonical current-state inventory for the shipped surface |
+ | `feature-catalog/dispatch-guards/` | Hard-rule preflight checks and dispatch-shape recognition |
+ | `feature-catalog/fanout-dispatch/` | Executor kind, closed roster, run budget and toolset policy |
+@@ -143,9 +153,11 @@ The repo-root `.hermes/` folder is the runtime surface Hermes itself reads.
+ | `.hermes/skills/<name>/` | One generated markdown-only `SKILL.md` per canonical skill, all 56, naming its canonical directory. Never a symlink: Hermes's static scanner walks everything it reaches, costs ten minutes per session start and quarantines every hub |
+ | `.hermes/plugins/repo-guards/` | The hand-authored project plugin bridging the repo's guard cores into Hermes hooks |
+ | `.hermes/prompts/*.md` | Generated pointer stubs, one per `.skilled/commands/**` file, named by the flattened command path |
++| `.hermes/agents/` | Whole-directory symlink to `.skilled/agents`; each file is mirrored as the `agent-<name>` skill |
++| `.hermes/manual-testing-playbook/` | Whole-directory symlink to the playbook root in this skill |
+ | `.hermes/SYNC.md` | The sync manifest: what derives from `.skilled`, what can drift and how to regenerate it |
+ 
+-There is no `.hermes/agents/`, because Hermes has no flag that loads an agent file.
++There is no Hermes flag that loads an agent file, so `.hermes/agents/` is only the source the `agent-<name>` skills are generated from.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md b/.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md
+index a50eda7baf4..42894e1996f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/ROUTER.md
+@@ -48,19 +48,10 @@ loads before an intent selects it.
+ The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+ reader finds it. This section is the last in the file, and it holds the only pseudocode.
+ 
+-The routing detail the short summary leaves out: the fan-out model fallback, the prerequisite probes, the self-invocation guard, the loading levels, the intent map and the call sequence.
++The routing detail the short summary leaves out: the fan-out model fallback, the self-invocation guard, the prerequisite probes, the loading levels, the intent map and the call sequence.
+ 
+ > **Fan-out fallback:** a deep-loop lineage that pins no model runs **DeepSeek V4.1 Flash**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
+ 
+-### Prerequisite Detection
+-
+-Run both probes before every dispatch. Do not build a command when the first fails; surface the second's result to the operator when it shows no provider.
+-
+-~~~bash
+-command -v hermes || echo "Not installed. See https://github.com/NousResearch/hermes-agent"
+-hermes config get providers.llmgateway.base_url </dev/null
+-~~~
+-
+ ### Self-Invocation Guard
+ 
+ ```python
+@@ -86,6 +77,15 @@ if detect_self_invocation():
+     )
+ ```
+ 
++### Prerequisite Detection
++
++Run both probes before every dispatch. Do not build a command when the first fails; surface the second's result to the operator when it shows no provider.
++
++```bash
++command -v hermes || echo "Not installed. See https://github.com/NousResearch/hermes-agent"
++hermes config get providers.llmgateway.base_url </dev/null
++```
++
+ ### Resource Loading Levels
+ 
+ | Level | Load when | Resources |
+@@ -141,4 +141,11 @@ UNKNOWN_FALLBACK_CHECKLIST = [
+ 
+ ### Call Sequence
+ 
+-The call sequence is `route_hermes_resources(task)`, whose helper bodies `discover_markdown_resources()`, `_guard_in_skill()`, `load_if_available()`, `score_intents()`, `select_intents()` and `get_routing_key()` are written once in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) with `<PROVIDER>` set to `hermes`.
++The call sequence is `route_hermes_resources(task)`. Its helper bodies are written once in [`shared-smart-router.md`](../../system-spec-kit/references/cli/shared-smart-router.md) with `<PROVIDER>` set to `hermes`:
++
++- `discover_markdown_resources()`
++- `_guard_in_skill()`
++- `load_if_available()`
++- `score_intents()`
++- `select_intents()`
++- `get_routing_key()`
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md
+index 3107f904d96..bb488485673 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/SKILL.md
+@@ -17,12 +17,11 @@ version: 1.0.11.0
+ 
+ Orchestrate Hermes Agent (Nous Research's open-source, Python-based agent CLI) for quiet oneshot
+ coding dispatch, cross-AI validation, and model routing through the operator's LLM Gateway
+-provider. The evidence base is the phase 001 research synthesis and, once recorded, the live
+-contract pin:
++provider. The evidence base is the research synthesis and the live contract pin:
+ [research synthesis](../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md),
+ [contract pin](../../../specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
+-Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and
+-await the pin.
++Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and stay
++unconfirmed until a live run records otherwise.
+ 
+ **Core principle**: use Hermes for what its surface offers, delegate research and review lineages to the shared
+ deep-loop runtime, validate the returned output, and keep the calling AI as conductor.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md b/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md
+index fd248a2cdd2..93d97919f47 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md
+@@ -19,8 +19,16 @@ This is a thin delegator. The canonical prompt-models packet owns the framework
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This card is the Hermes-specific layer over the canonical prompt-quality card: framework choice and quality checks stay canonical, and only the mechanics of a safe Hermes dispatch live here.
+ 
++### When to Use
++
++- Composing or reviewing any Hermes dispatch prompt
++- Checking a prompt for the Hermes mechanics the canonical card does not carry
++- Resolving which tier of the two-tier precedence rule applies
++
+ ---
+ 
+ ## 2. CANONICAL SOURCE
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md
+index 5174f59d7ca..2c848b9f8cf 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-templates.md
+@@ -82,7 +82,16 @@ The runtime builds the command; the caller supplies the lineage configuration.
+   --stop-policy=max-iterations
+ ```
+ 
+-The builder emits `chat -Q --oneshot --query-file -` with the prompt on stdin, `--yolo`, `--ignore-rules`, `--source tool`, `--max-turns 200`, `--run-budget` one margin under the lineage timeout, `-t terminal,file,skills,todo` plus `web` per the web-search policy, and `--reasoning max` (the roster's pinned tier). `--worktree` and `-z` never appear.
++The builder emits this shape:
++
++- `chat -Q --oneshot --query-file -`, with the prompt on stdin
++- `--yolo`, `--ignore-rules` and `--source tool`
++- `--max-turns 200`
++- `--run-budget` one margin under the lineage timeout
++- `-t terminal,file,skills,todo`, plus `web` per the web-search policy
++- `--reasoning max`, the roster's pinned tier
++
++`--worktree` and `-z` never appear.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md
+index 03f375fceb6..91ba21a6050 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/agent-delegation.md
+@@ -18,6 +18,17 @@ This reference prevents a category error: Hermes profiles and `delegate_task` su
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Records every route a repo persona can take into a Hermes dispatch, and the reason a profile or a `delegate_task` child cannot stand in for one.
++
++### When to Use
++
++- Composing a dispatch that carries a resolved agent persona
++- Deciding whether to preload `agent-<name>` or inline the persona
++- Checking what a `delegate_task` child may and may not do
++- Finding the prompt template for a nested `.skilled/commands` command
++
+ ### Core Principle
+ 
+ The repo's agents (`.skilled/agents/*.md`, the authored source) reach a Hermes dispatch only inside the prompt. Hermes has no flag that loads an agent file, its profiles are whole-home islands, and `delegate_task` children receive a goal and context, never an agent definition.
+@@ -39,28 +50,37 @@ Resolve the persona from the calling runtime's agent directory (AGENTS.md §9),
+ 
+ ## 3. COMMANDS
+ 
+-The repo's nested commands under `.skilled/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. The runtime-folder phase generates those templates with a sync script; a dispatch loads the template text into its prompt file.
++The repo's nested commands under `.skilled/commands/**` have no Hermes equivalent: Hermes has no workflow engine and its slash commands are its own. The cli-pi precedent applies: flatten each command into a prompt template under `.hermes/prompts/` and carry it with `--query-file`. A sync script generates those templates; a dispatch loads the template text into its prompt file.
+ 
+ ---
+ 
+-## 3A. PERSONA THROUGH THE REPO PLUGIN
++## 4. PERSONA THROUGH THE REPO PLUGIN
++
++`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright).
++
++The native-shaped dispatch pairs:
++
++- `-s agent-<name>`, the skill that carries the whole persona
++- `HERMES_AGENT_PERSONA=<name>`, the name the plugin's persona section binds for the session
++
++`HERMES_ENABLE_PROJECT_PLUGINS=1` must be set for the plugin to load.
+ 
+-`.hermes/agents/` links the shared runtime-neutral agent files, and `sync-skills-hermes.cjs` mirrors each as the preloadable skill `agent-<name>` because Hermes has no agent flag and caps a plugin prompt section at 4000 characters (a 22k persona in a section was skipped outright). The native-shaped dispatch is `-s agent-<name>` plus `HERMES_AGENT_PERSONA=<name>` with `HERMES_ENABLE_PROJECT_PLUGINS=1`: the skill carries the whole persona and the plugin's persona section binds it for the session. `--ignore-rules` is passed alongside `-s`: a live A/B under the flag showed the preload still reaching the model, so omitting it only bled SOUL.md, memories and session search into the leaf. Inline stays the fallback for a run without the plugin or the mirror.
++`--ignore-rules` is passed alongside `-s`: a live A/B under the flag showed the preload still reaching the model, so omitting it only bled SOUL.md, memories and session search into the leaf. Inline stays the fallback for a run without the plugin or the mirror.
+ 
+ ---
+ 
+-## 4. SKILLS
++## 5. SKILLS
+ 
+ With the repo trusted, Hermes loads the curated per-skill links under `.hermes/skills/<name>` and can preload one with `-s <name>` (observed 2026-09-14: `-s cli-hermes` quoted the packet's first hard rule). A dispatch that needs any other skill names it in the prompt by path, because only linked skills are visible to Hermes and the hub identity does not cross the link.
+ 
+ ---
+ 
+-## 5. `delegate_task` AND THE DELEGATION BOUNDARY
++## 6. `delegate_task` AND THE DELEGATION BOUNDARY
+ 
+ Hermes's own sub-agents are spawned by the `delegation` toolset. A leaf lineage never carries that toolset: a sub-agent spawned inside a lineage runs outside the runner's containment and stack guards. For non-leaf use, the semantics of `delegation.subagent_auto_approve`, child timeouts and flag inheritance are open questions for the contract pin. Because Hermes has in-process delegation, `cli-hermes` is not exempt from the self-presence guards the way `cli-pi` is.
+ 
+ ---
+ 
+-## 6. MCP AND HOOKS AS DELEGATION SURFACES
++## 7. MCP AND HOOKS AS DELEGATION SURFACES
+ 
+ MCP servers are user-level ([mcp-policy.md](./mcp-policy.md)); the repo's guard cores reach a Hermes session through the project plugin ([hook-contract.md](./hook-contract.md)). Neither is a persona surface.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md
+index 2e71e8329f7..84dfb911969 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/cli-reference.md
+@@ -21,6 +21,16 @@ Sources: [research synthesis](../../../../specs/cli-external-orchestration/071-c
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Be the single source a dispatcher checks before running Hermes, so every flag, exit code and approval rule a run depends on is looked up rather than remembered.
++
++### When to Use
++
++- Composing or auditing a `hermes chat` dispatch command
++- Looking up a flag, an exit code or an environment variable
++- Deciding whether a run may write or must stay read-only
++
+ Hermes Agent is a Python agent CLI with a large tool surface (terminal, file, search, web, browser, vision, delegation, memory, skills, MCP) and a provider catalog of some forty providers. The binary is `hermes`; `hermes --version` prints the version, install method and install directory. Record the installed version at execution time.
+ 
+ Hermes has three headless forms, and only one is auditable:
+@@ -79,7 +89,14 @@ The process ends in a hard exit after flushing, so a late handler cannot flip th
+ 
+ ## 4. APPROVALS AND WRITES
+ 
+-Observed 2026-09-14, correcting the source-read claim the research carried: a headless `chat -q` runs ordinary file writes and commands without any flag. Only a tool call Hermes flags as dangerous (its dangerous-command pattern set, for example `rm -rf <path>`, and a write whose immediate parent directory is `.hermes`) reaches the approval gate, and in single-query mode without `--yolo` that call is blocked with `BLOCKED: Command flagged as dangerous (...) but single-query mode (-q) runs without a user present to approve it`. `--yolo` lifts that gate (`approvals.single_query_mode: approve` in `config.yaml` does the same globally). Hardline floors stay blocked even under `--yolo`. There is no OS sandbox flag; a read-only dispatch is read-only because its `-t` list omits `terminal` and `file`. Terminal backends (docker, ssh, modal and others) are config-level hardening, not per-run flags.
++Observed 2026-09-14, correcting the source-read claim the research carried:
++
++- **Ordinary writes and commands need no flag.** A headless `chat -q` runs them without approval.
++- **Only a flagged call reaches the approval gate.** That covers Hermes's dangerous-command pattern set, for example `rm -rf <path>`, and a write whose immediate parent directory is `.hermes`.
++- **A blocked call says so.** In single-query mode without `--yolo` the call is blocked with `BLOCKED: Command flagged as dangerous (...) but single-query mode (-q) runs without a user present to approve it`.
++- **`--yolo` lifts that gate.** `approvals.single_query_mode: approve` in `config.yaml` does the same globally. Hardline floors stay blocked even under `--yolo`.
++- **There is no OS sandbox flag.** A read-only dispatch is read-only because its `-t` list omits `terminal` and `file`.
++- **Terminal backends** (docker, ssh, modal and others) are config-level hardening, not per-run flags.
+ 
+ ---
+ 
+@@ -125,6 +142,23 @@ Read-only: omit `--yolo`, use `-t file,todo` (Hermes's `search` toolset is web s
+ 
+ ## 8. MANAGEMENT COMMANDS A DISPATCH NEVER RUNS
+ 
+-`hermes skills trust|install|update`, `hermes mcp add|remove`, `hermes plugins install|enable`, `hermes config set`, `hermes import-agent`, `hermes setup`, `hermes update`, `hermes profile create|use`. Each changes the operator's `~/.hermes`. A prompt that needs one stops and reports.
++Never run:
++
++- `hermes skills trust|install|update`
++- `hermes mcp add|remove`
++- `hermes plugins install|enable`
++- `hermes config set`
++- `hermes import-agent`
++- `hermes setup`, `hermes update`
++- `hermes profile create|use`
++
++Each changes the operator's `~/.hermes`. A prompt that needs one stops and reports.
++
++Read-only commands a dispatch may run, always with stdin closed:
+ 
+-Read-only commands a dispatch may run: `hermes --version`, `hermes status` (which does not show custom providers), `hermes doctor`, `hermes config show|get`, `hermes tools list`, `hermes skills list`, `hermes plugins list`, `hermes mcp list`, `hermes hooks list`, `hermes prompt-size`, always with stdin closed.
++- `hermes --version`
++- `hermes status` (which does not show custom providers)
++- `hermes doctor`
++- `hermes config show|get`
++- `hermes tools list`, `hermes skills list`, `hermes plugins list`, `hermes mcp list`, `hermes hooks list`
++- `hermes prompt-size`
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md
+index 08a844802cf..dda8392fe8a 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/hermes-tools.md
+@@ -20,6 +20,17 @@ Reference for the Hermes surfaces that differ from `cli-codex`, `cli-claude-code
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Give a dispatcher the Hermes surfaces that behave unlike every sibling, so it knows what a leaf may rely on and what stays an operator step.
++
++### When to Use
++
++- Choosing the `-t` toolset list for a leaf
++- Checking whether a project skill or plugin will load
++- Planning a write that lands inside `.hermes/`
++- Deciding whether MCP, hooks or profiles can ship in the repo
++
+ ### Core Principle
+ 
+ Hermes exposes more of its surface through named toolsets and user-level configuration than any sibling, and it reads a repo's `.hermes/` folder for exactly two things: skills and plugins. Knowing which is which decides what a dispatch may rely on and what stays an operator step.
+@@ -52,7 +63,9 @@ Hermes's stock roster enables `delegation` and `memory`, which is why every disp
+ 
+ Hermes loads project skills from `./.hermes/skills` and `./.agents/skills`, resolved from the nearest project root, but only after `hermes skills trust` has recorded the root in `skills.trusted_project_dirs` of the **user-level** config. The repo cannot carry the grant.
+ 
+-- Every project skill directory is **scanned in full at session start** by Hermes's static scanner, and a symlinked directory is walked like a real one: observed 2026-09-14, the whole-tree link ran the scanner for over ten minutes and quarantined every hub, and a single linked skill directory (`cli-hermes`) was quarantined on 37 findings from its references and scripts. The repo therefore ships `.hermes/skills/<name>/SKILL.md` as generated markdown-only copies of all 56 canonical `SKILL.md` files plus `agent-<name>` copies of the 12 shared agents (`sync-skills-hermes.cjs`), each naming its canonical source; a session starts in about 17 seconds and `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes` and `system-spec-kit`). `hermes skills list` enumerates the loadable copies as `local` rows, 61 of the 68 on 2026-09-15; the earlier "no project rows" reading was an artifact of the symlink design, under which every skill was quarantined and therefore excluded from the index.
++- Every project skill directory is **scanned in full at session start** by Hermes's static scanner, and a symlinked directory is walked like a real one: observed 2026-09-14, the whole-tree link ran the scanner for over ten minutes and quarantined every hub, and a single linked skill directory (`cli-hermes`) was quarantined on 37 findings from its references and scripts.
++- The repo therefore ships `.hermes/skills/<name>/SKILL.md` as generated markdown-only copies of all 56 canonical `SKILL.md` files plus `agent-<name>` copies of the 12 shared agents (`sync-skills-hermes.cjs`), each naming its canonical source; a session starts in about 17 seconds and `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes` and `system-spec-kit`).
++- `hermes skills list` enumerates the loadable copies as `local` rows, 61 of the 68 on 2026-09-15; the earlier "no project rows" reading was an artifact of the symlink design, under which every skill was quarantined and therefore excluded from the index.
+ - All 174 files pass Hermes's hard validator (name, description, body, name matches directory). Every description exceeds the 60-character listing budget and is truncated with an ellipsis; loading is unaffected, routing signal is.
+ - Never use per-file symlinks either: the scanner flags a symlink resolving outside a skill directory as a critical traversal, and quarantine is per skill directory and fail-closed. Six of the copies (`cli-cursor`, `cli-devin`, `cli-opencode`, `deep-research`, `mcp-aside-devtools`, `sk-create-repo-rule`) are quarantined on prose patterns in their own text. A quarantine is total: the skill leaves the index, the listing and `skill_view`, and `-s <name>` fails with `Unknown skill(s): <name>` and exit 1 (observed 2026-09-15 on `cli-opencode`). Hermes has no configuration knob for it, so a quarantined skill reaches a dispatch only by having its text named in the prompt.
+ - `hermes skills list` reports the load result: a `local` row means the copy loaded, its absence means the scanner quarantined it. A live session with `-s <name>` quoting the skill remains the stronger proof, because the listing does not show what reached the model.
+@@ -85,4 +98,4 @@ The curator, gateway, cron, kanban, voice and desktop subsystems are off by defa
+ 
+ ## 8. WHAT HERMES CANNOT CARRY IN THE REPO
+ 
+-Config (`config.yaml`), shell hooks and their consent allowlist, MCP servers (`mcp_servers:`), the provider block and the trust grant. Each is an operator step documented in this packet; a dispatch never performs one.
++Config (`config.yaml`), shell hooks and their consent allowlist, MCP servers (`mcp_servers:`), the provider block and the trust grant. Each is an operator step this skill documents; a dispatch never performs one.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md
+index beab633c98c..ff630e8c86f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/hook-contract.md
+@@ -18,13 +18,26 @@ Hermes has two hook surfaces. One is the operator's; one the repo can carry.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Hermes keeps shell hooks in the operator's user-level config and reads a repo plugin from `.hermes/plugins/`. This reference records both surfaces and the plugin hook map that carries the repo's guard cores into a Hermes session.
+ 
++### When to Use
++
++- Deciding whether a guard belongs in a shell hook or the project plugin.
++- Checking which hook each repo guard core runs on.
++- Validating the plugin after a guard core changes.
++
+ ---
+ 
+ ## 2. SHELL HOOKS (USER-LEVEL)
+ 
+-Shell-script hooks are declared under `hooks:` in `~/.hermes/config.yaml`, gated by a per-command consent allowlist at `~/.hermes/shell-hooks-allowlist.json`, and inspected with `hermes hooks list|test|doctor`. `--accept-hooks` or `HERMES_ACCEPT_HOOKS=1` bypasses the consent prompt on a headless run, and `hermes -z` sets it automatically.
++Shell-script hooks:
++
++- **Declared:** under `hooks:` in `~/.hermes/config.yaml`.
++- **Gated:** by a per-command consent allowlist at `~/.hermes/shell-hooks-allowlist.json`.
++- **Inspected:** with `hermes hooks list|test|doctor`.
++- **Bypassed:** on a headless run by `--accept-hooks` or `HERMES_ACCEPT_HOOKS=1`; `hermes -z` sets it automatically.
+ 
+ The repo cannot declare these. None is configured on this machine (observed 2026-09-14: `hooks:` absent, `~/.hermes/hooks/` empty). A dispatch never passes `--accept-hooks` unless the operator declared hooks and asked for it.
+ 
+@@ -32,7 +45,11 @@ The repo cannot declare these. None is configured on this machine (observed 2026
+ 
+ ## 3. PROJECT PLUGIN (REPO-CARRIABLE)
+ 
+-Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The hook-and-plugin phase builds `.hermes/plugins/repo-guards/`, which re-implements nothing: each hook shells out to the existing `.mjs` or `.sh` core under `.skilled/hooks/` and maps its result to Hermes's block-or-continue contract, failing open on a core error as the `.pi/extensions/` adapters do.
++Native plugins load from `./.hermes/plugins/<name>/` when `HERMES_ENABLE_PROJECT_PLUGINS` is set, and their hook list covers every guard core this repo runs (source-read: `hermes_cli/plugins.py`). The plugin at `.hermes/plugins/repo-guards/` re-implements nothing:
++
++- Each hook shells out to the existing `.mjs` or `.sh` core under `.skilled/hooks/`.
++- It maps the core's result to Hermes's block-or-continue contract.
++- It fails open on a core error, as the `.pi/extensions/` adapters do.
+ 
+ | Hermes hook | Repo guard core | Effect |
+ |---|---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md
+index e62680b5b7f..5897a1271db 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/integration-patterns.md
+@@ -17,9 +17,21 @@ How the calling AI integrates Hermes without duplicating the deep-loop executor.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++The calling AI is the conductor; Hermes is the delegated executor.
++
++### When to Use
++
++- Dispatching a write task to Hermes.
++- Running a read-only review through Hermes.
++- Cross-validating a finding against a sibling runtime.
++- Fanning out a research or review lineage.
++- Continuing a Hermes session.
++
+ ### Core Principle
+ 
+-The calling AI is the conductor; Hermes is the delegated executor. Every pattern below ends with the conductor reading the exit code, stdout and stderr and verifying the result with the command the prompt named.
++Every pattern below ends with the conductor reading the exit code, stdout and stderr and verifying the result with the command the prompt named.
+ 
+ ---
+ 
+@@ -43,7 +55,12 @@ Dispatch the same brief to Hermes on `glm-5.3-flash` and to a sibling runtime (P
+ 
+ ### Fan-out lineage
+ 
+-Use `--executor=cli-hermes` on `/deep:research` or `/deep:review`. Set the lineage `timeoutSeconds` to 900 or more: the one live research iteration ran 1042 seconds against a 600-second setting and finished only because the runner's ceiling is twice `iterations × timeoutSeconds` (observed 2026-09-14). A lineage may also name MCP servers in `liveTools.mcpServers`; the builder appends them to `-t`. The runtime builds the command, passes the prompt on stdin, applies write containment to the lineage directory, and treats exit 1 as failure. Keep `iterations × timeoutSeconds` under the four-hour lineage ceiling.
++Use `--executor=cli-hermes` on `/deep:research` or `/deep:review`.
++
++- **Timeout:** set the lineage `timeoutSeconds` to 900 or more. The one live research iteration ran 1042 seconds against a 600-second setting and finished only because the runner's ceiling is twice `iterations × timeoutSeconds` (observed 2026-09-14).
++- **MCP servers:** a lineage may also name them in `liveTools.mcpServers`; the builder appends them to `-t`.
++- **Runtime:** builds the command, passes the prompt on stdin, applies write containment to the lineage directory, and treats exit 1 as failure.
++- **Ceiling:** keep `iterations × timeoutSeconds` under the four-hour lineage ceiling.
+ 
+ ### Session continuation
+ 
+@@ -68,4 +85,10 @@ Capture `session_id:` from stderr. A follow-up may resume with `hermes chat --re
+ 
+ ## 4. HANDBACK
+ 
+-Report what ran and what it returned (exit code, stdout head, `session_id:`), what the verification command showed, and which paths changed. A Hermes `COMPLETE` in stdout is a claim about itself until the verification command confirms it.
++Report three things:
++
++- What ran and what it returned (exit code, stdout head, `session_id:`).
++- What the verification command showed.
++- Which paths changed.
++
++A Hermes `COMPLETE` in stdout is a claim about itself until the verification command confirms it.
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md
+index 0adbb6cde2f..b98be2dfbd1 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/mcp-policy.md
+@@ -17,13 +17,25 @@ Hermes hosts MCP servers, but only from the operator's configuration. This is a
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ MCP servers reach a Hermes session only from the operator's user-level configuration; this reference records that boundary, the one operator step, the deny-by-default posture and what a dispatch may assume.
+ 
++### When to Use
++
++- Working out whether a server is reachable from a Hermes dispatch at all.
++- Adding the repo's code-mode server as the operator.
++- Locking a newly added server down to the tools one task needs.
++
+ ---
+ 
+ ## 2. WHERE MCP LIVES
+ 
+-`mcp_servers:` is read from `~/.hermes/config.yaml` only (source-read: `hermes_cli/mcp_config.py`). `hermes mcp add|remove|list|test|configure` manage it; `hermes tools list|disable|enable` toggle tools with `server:tool` notation. `--safe-mode` disables all MCP servers for a run, and the `chat` path waits for MCP cold start before its first tool snapshot, so a configured server adds startup latency to every dispatch.
++- **Config source:** `mcp_servers:` is read from `~/.hermes/config.yaml` only (source-read: `hermes_cli/mcp_config.py`).
++- **Server management:** `hermes mcp add|remove|list|test|configure` manage it.
++- **Tool toggles:** `hermes tools list|disable|enable`, with `server:tool` notation.
++- **Per-run off switch:** `--safe-mode` disables all MCP servers for a run.
++- **Cold start:** the `chat` path waits for MCP cold start before its first tool snapshot, so a configured server adds startup latency to every dispatch.
+ 
+ ---
+ 
+@@ -31,12 +43,20 @@ MCP servers reach a Hermes session only from the operator's user-level configura
+ 
+ To reach the repo's code-mode server from Hermes, the operator runs, once:
+ 
++A dispatch never runs these.
++
+ ```bash
+ printf 'Y\n' | hermes mcp add code_mode --command node --env UTCP_CONFIG_FILE=.utcp_config.json --args .skilled/bin/mcp-code-mode-launcher.cjs
+ hermes mcp list
+ ```
+ 
+-Observed 2026-09-14: `--args` must be the last option, the command connects and discovers seven tools, and the "Enable all tools?" prompt needs an answer on stdin (a closed stdin cancels the add). A dispatch never runs these. A session reaches the server only when its name appears in the `-t` list (`-t search,todo,code_mode`).
++Observed 2026-09-14:
++
++- `--args` must be the last option.
++- The command connects and discovers seven tools.
++- The "Enable all tools?" prompt needs an answer on stdin; a closed stdin cancels the add.
++
++A session reaches the server only when its name appears in the `-t` list (`-t search,todo,code_mode`).
+ 
+ ---
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md
+index ab8183fad8b..4dd2c419ece 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-hermes/references/providers-and-models.md
+@@ -12,15 +12,17 @@ contextType: implementation
+ version: 1.0.3.0
+ ---
+ 
++# cli-hermes Providers, Models & Invocation
++
+ The single catalog of the provider, the model ids, the reasoning lever and the dispatch shape the cli-hermes mode can reach. Hermes is a multi-provider pass-through with a catalog of some forty providers; this mode deliberately reaches one of them.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes. The roster is closed at five ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
++One place to answer "which provider, which model, which effort, how to dispatch" for cli-hermes.
+ 
+ ### When to Use
+ 
+@@ -28,6 +30,10 @@ One place to answer "which provider, which model, which effort, how to dispatch"
+ - Mapping a reasoning effort onto `--reasoning`.
+ - Configuring, as the operator, the provider block Hermes needs.
+ 
++### Core Principle
++
++The roster is closed at five ids so generic provider routing cannot broaden dispatch, and the provider is the one whose credential the operator already holds for the other runtimes.
++
+ ---
+ 
+ ## 2. THE PROVIDER CONTRACT
+@@ -41,7 +47,7 @@ providers:
+     key_env: LLMGATEWAY_API_KEY
+ ```
+ 
+-The key itself lives in `~/.hermes/.env` or the shell; it never appears in a prompt, a repo file, or this packet. This is an operator step: no dispatch, plugin or repo file writes it. The field names were confirmed live on 2026-09-14 (`hermes config set providers.llmgateway.base_url ...` and `.key_env`); the shape above follows Hermes's `custom` provider convention (source-read: `cli-config.yaml.example`, `hermes_cli/config_providers.py`).
++The key itself lives in `~/.hermes/.env` or the shell; it never appears in a prompt, a repo file, or this skill's files. This is an operator step: no dispatch, plugin or repo file writes it. The field names were confirmed live on 2026-09-14 (`hermes config set providers.llmgateway.base_url ...` and `.key_env`); the shape above follows Hermes's `custom` provider convention (source-read: `cli-config.yaml.example`, `hermes_cli/config_providers.py`).
+ 
+ Other credential kinds on this machine do not transfer: Hermes keeps its own OAuth sessions in `~/.hermes/auth.json`, and its Codex import reads `~/.codex/auth.json` once at login rather than sharing it. A Codex OAuth import is a possible second provider later; it is not on this roster.
+ 
+@@ -59,13 +65,16 @@ Other credential kinds on this machine do not transfer: Hermes keeps its own OAu
+ 
+ Every id is a bare gateway literal. A provider-prefixed form (`llmgateway/deepseek-v4.1-flash`) is Pi's selector shape, not Hermes's, and the fan-out rejects it. Enforcement: `HERMES_SUPPORTED_MODELS` and `isHermesModelAllowed` in `executor-config.ts`, byte-mirrored as `HERMES_ALLOWED_MODELS` in `fanout-run.cjs`; no `auto` default exists.
+ 
+-To add a model: amend the packet's spec (`071-cli-hermes-creation`), then `HERMES_SUPPORTED_MODELS`, its mirror, this table and the changelog, in that order.
++To add a model: amend the mode's spec, then `HERMES_SUPPORTED_MODELS`, its mirror, this table and the changelog, in that order.
+ 
+ ---
+ 
+ ## 4. REASONING LEVELS
+ 
+-`--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map. Every Flash-family roster model is a reasoning model the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out. A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
++- **Accepted set:** `--reasoning` accepts `none minimal low medium high xhigh max ultra`, the same set as the runtime's `REASONING_EFFORTS`, so the builder forwards the effort without a map.
++- **Fan-out pin:** every Flash-family roster model is a reasoning model the runtime pins to `max` (`isFlashMaxPinnedModel`); a lower requested effort never reaches Hermes from the fan-out.
++
++A direct dispatch may pass any level; observed 2026-09-14 through the gateway:
+ 
+ | Model | Level | Result |
+ |---|---|---|

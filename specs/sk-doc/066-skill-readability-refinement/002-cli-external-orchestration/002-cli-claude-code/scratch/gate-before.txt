@@ -1,0 +1,5 @@
+.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md:35: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md:479: render_section_order: "RELATED RESOURCES" must be the last H2; it is followed by "MEMORY EPILOGUE".
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md:45: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md:46: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+files=10 render_warnings=4 invalid=0

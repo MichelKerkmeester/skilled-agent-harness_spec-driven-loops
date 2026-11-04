@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-pi routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name Pi, pi.dev or the Pi coding agent, ask for a headless dispatch, a JSON event stream, an RPC client or an independent second opinion, or concern Pi-native skills, prompt templates, extensions and packages. It routes to two skill-local families: the seven `references/` packets that carry the CLI contract, the provider and model roster, the tool surface, the delegation boundary and the native discovery surfaces, and the two `assets/` scaffolds that carry the prompt-quality card and the print, JSON, RPC, review and generation templates. The ALWAYS level loads `references/cli-reference.md` and `assets/prompt-quality-card.md` before an intent selects anything else, and `command -v pi` decides whether the route exists at all.
+Requests reach this skill when they name Pi, pi.dev or the Pi coding agent, ask for a headless dispatch, a JSON event stream, an RPC client or an independent second opinion, or concern Pi-native skills, prompt templates, extensions and packages.
+
+It routes to two skill-local families:
+
+- The seven `references/` packets that carry the CLI contract, the provider and model roster, the tool surface, the delegation boundary and the native discovery surfaces.
+- The two `assets/` scaffolds that carry the prompt-quality card and the print, JSON, RPC, review and generation templates.
+
+The ALWAYS level loads `references/cli-reference.md` and `assets/prompt-quality-card.md` before an intent selects anything else, and `command -v pi` decides whether the route exists at all.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -67,7 +74,7 @@ The pinned contract confirms the binary version used for the contract run and th
 |---|---|---|
 | ALWAYS | Every Pi route | references/cli-reference.md, assets/prompt-quality-card.md |
 | CONDITIONAL | Task names the matching surface | One or more intent-mapped references |
-| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, native-skills-and-extensions.md, mcp-and-third-party-packages.md |
+| ON_DEMAND | The operator asks for templates or package detail | assets/prompt-templates.md, references/native-skills-and-extensions.md, references/mcp-and-third-party-packages.md |
 
 ### Smart Router
 

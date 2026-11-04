@@ -9,7 +9,7 @@ trigger_phrases:
   - "hermes write guard"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Hermes CLI Unique Capabilities
@@ -19,6 +19,17 @@ Reference for the Hermes surfaces that differ from `cli-codex`, `cli-claude-code
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Give a dispatcher the Hermes surfaces that behave unlike every sibling, so it knows what a leaf may rely on and what stays an operator step.
+
+### When to Use
+
+- Choosing the `-t` toolset list for a leaf
+- Checking whether a project skill or plugin will load
+- Planning a write that lands inside `.hermes/`
+- Deciding whether MCP, hooks or profiles can ship in the repo
 
 ### Core Principle
 
@@ -52,7 +63,9 @@ Hermes's stock roster enables `delegation` and `memory`, which is why every disp
 
 Hermes loads project skills from `./.hermes/skills` and `./.agents/skills`, resolved from the nearest project root, but only after `hermes skills trust` has recorded the root in `skills.trusted_project_dirs` of the **user-level** config. The repo cannot carry the grant.
 
-- Every project skill directory is **scanned in full at session start** by Hermes's static scanner, and a symlinked directory is walked like a real one: observed 2026-09-14, the whole-tree link ran the scanner for over ten minutes and quarantined every hub, and a single linked skill directory (`cli-hermes`) was quarantined on 37 findings from its references and scripts. The repo therefore ships `.hermes/skills/<name>/SKILL.md` as generated markdown-only copies of all 56 canonical `SKILL.md` files plus `agent-<name>` copies of the 12 shared agents (`sync-skills-hermes.cjs`), each naming its canonical source; a session starts in about 17 seconds and `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes` and `system-spec-kit`). `hermes skills list` enumerates the loadable copies as `local` rows, 61 of the 68 on 2026-09-15; the earlier "no project rows" reading was an artifact of the symlink design, under which every skill was quarantined and therefore excluded from the index.
+- Every project skill directory is **scanned in full at session start** by Hermes's static scanner, and a symlinked directory is walked like a real one: observed 2026-09-14, the whole-tree link ran the scanner for over ten minutes and quarantined every hub, and a single linked skill directory (`cli-hermes`) was quarantined on 37 findings from its references and scripts.
+- The repo therefore ships `.hermes/skills/<name>/SKILL.md` as generated markdown-only copies of all 56 canonical `SKILL.md` files plus `agent-<name>` copies of the 12 shared agents (`sync-skills-hermes.cjs`), each naming its canonical source; a session starts in about 17 seconds and `-s <name>` preloads any of them (verified live for `sk-git`, `cli-hermes` and `system-spec-kit`).
+- `hermes skills list` enumerates the loadable copies as `local` rows, 61 of the 68 on 2026-09-15; the earlier "no project rows" reading was an artifact of the symlink design, under which every skill was quarantined and therefore excluded from the index.
 - All 174 files pass Hermes's hard validator (name, description, body, name matches directory). Every description exceeds the 60-character listing budget and is truncated with an ellipsis; loading is unaffected, routing signal is.
 - Never use per-file symlinks either: the scanner flags a symlink resolving outside a skill directory as a critical traversal, and quarantine is per skill directory and fail-closed. Six of the copies (`cli-cursor`, `cli-devin`, `cli-opencode`, `deep-research`, `mcp-aside-devtools`, `sk-create-repo-rule`) are quarantined on prose patterns in their own text. A quarantine is total: the skill leaves the index, the listing and `skill_view`, and `-s <name>` fails with `Unknown skill(s): <name>` and exit 1 (observed 2026-09-15 on `cli-opencode`). Hermes has no configuration knob for it, so a quarantined skill reaches a dispatch only by having its text named in the prompt.
 - `hermes skills list` reports the load result: a `local` row means the copy loaded, its absence means the scanner quarantined it. A live session with `-s <name>` quoting the skill remains the stronger proof, because the listing does not show what reached the model.
@@ -85,4 +98,4 @@ The curator, gateway, cron, kanban, voice and desktop subsystems are off by defa
 
 ## 8. WHAT HERMES CANNOT CARRY IN THE REPO
 
-Config (`config.yaml`), shell hooks and their consent allowlist, MCP servers (`mcp_servers:`), the provider block and the trust grant. Each is an operator step documented in this packet; a dispatch never performs one.
+Config (`config.yaml`), shell hooks and their consent allowlist, MCP servers (`mcp_servers:`), the provider block and the trust grant. Each is an operator step this skill documents; a dispatch never performs one.

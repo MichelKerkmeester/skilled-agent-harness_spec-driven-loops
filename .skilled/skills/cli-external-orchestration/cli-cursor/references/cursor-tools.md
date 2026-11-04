@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor unique surfaces"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Cursor CLI Unique Capabilities
@@ -20,9 +20,9 @@ Reference for the Cursor CLI surfaces that have **no analog** in `cli-codex`, `c
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Cursor CLI ships several capabilities that go beyond "run a prompt against a model": native git worktree isolation, a private cloud execution worker, a plugin marketplace, and Cursor's own subagent/skill system. None of these change `cli-cursor`'s `packetKind: "workflow"` classification (see `030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md` ADR-001) — the packet's default dispatch still runs locally and writes land in this repo's checkout. These surfaces are documented here as deliberate, user-invoked escape hatches.
+Cursor CLI ships several capabilities that go beyond "run a prompt against a model": native git worktree isolation, a private cloud execution worker, a plugin marketplace, and Cursor's own subagent/skill system. These surfaces are documented here as deliberate, user-invoked escape hatches.
 
 ### When to Use
 
@@ -30,6 +30,10 @@ Cursor CLI ships several capabilities that go beyond "run a prompt against a mod
 - The operator explicitly wants Cursor to run agents in a remote/cloud environment rather than locally
 - The operator wants to discover or manage Cursor plugins
 - A task needs an MCP server Cursor is already configured to use
+
+### Core Principle
+
+None of these change `cli-cursor`'s `packetKind: "workflow"` classification (see `030-cli-cursor-creation/003-cli-cursor-skill-packet/decision-record.md` ADR-001) — the packet's default dispatch still runs locally and writes land in this repo's checkout.
 
 ---
 
@@ -41,7 +45,7 @@ Cursor CLI ships several capabilities that go beyond "run a prompt against a mod
 
 ### Why It's Out of Scope for Orchestrated Dispatch
 
-This repo already manages its own numbered-worktree discipline via `sk-git` (owner-scoped branches, `.worktrees/{NNNN}-{owner}-{slug}` directories). A dispatched `cursor-agent` inside a deep-loop fan-out lineage already runs inside that lineage's own isolated directory — passing `-w` on top would create a SECOND, Cursor-native worktree nested inside or alongside the first, doubling isolation in a way the runtime does not expect and has not been built to reconcile. The deep-loop executor adapter (`buildCursorLineageCommand`, added in the executor-support phase of this creation packet) never passes `-w`.
+This repo already manages its own numbered-worktree discipline via `sk-git` (owner-scoped branches, `.worktrees/{NNNN}-{owner}-{slug}` directories). A dispatched `cursor-agent` inside a deep-loop fan-out lineage already runs inside that lineage's own isolated directory — passing `-w` on top would create a SECOND, Cursor-native worktree nested inside or alongside the first, doubling isolation in a way the runtime does not expect and has not been built to reconcile. The deep-loop executor adapter (`buildCursorLineageCommand`) never passes `-w`.
 
 ### When an Operator Might Use It Directly
 

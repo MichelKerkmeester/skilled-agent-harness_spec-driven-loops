@@ -1,7 +1,7 @@
 ---
 title: "CO-023 -- Prompt templates inventory (15 templates)"
 description: "This scenario validates the prompt templates inventory for `CO-023`. It focuses on confirming the canonical 15 templates documented in assets/prompt-templates.md are loadable and structurally complete."
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # CO-023 -- Prompt templates inventory (15 templates)
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates the Prompt templates inventory for `CO-023`. It focuses on confirming the cli-opencode `assets/prompt-templates.md` ships exactly the documented 15 templates (per the file's overview and SKILL.md §5 `prompt-templates.md` entry) and each template includes the documented framework tag, target use case, prompt body and invocation shape.
+This scenario validates the Prompt templates inventory for `CO-023`. It focuses on confirming the cli-opencode `assets/prompt-templates.md` ships exactly the documented 15 templates (per the file's overview and SKILL.md §7 `prompt-templates.md` entry) and each template includes the documented framework tag, target use case, prompt body and invocation shape.
 
 ### Why This Matters
 
@@ -67,7 +67,7 @@ For each template, optionally validate the Framework tag matches the prompt_qual
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | §5 references list (`prompt-templates.md`, 15 templates) |
+| `../../SKILL.md` | §7 references list (`prompt-templates.md`, 15 templates) |
 | `../../assets/prompt-templates.md` | §1 OVERVIEW + numbered templates 1-15 + RELATED RESOURCES |
 
 ---

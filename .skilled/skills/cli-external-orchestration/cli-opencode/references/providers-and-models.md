@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode minimax llmgateway gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.4.17.0
+version: 1.4.18.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -20,13 +20,19 @@ The single catalog of the providers, model ids, defaults, the reasoning-effort l
 
 ## 1. OVERVIEW
 
-### Core Principle
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-opencode. This mode is the multi-provider master, reaching more providers than any other cli mode.
+### Purpose
+
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-opencode.
 
 ### When to Use
+
 - Choosing a `--model provider/model-id` for an `opencode run` dispatch
 - Mapping a desired reasoning effort onto the model id on OpenCode 2, the recommended target (`-m provider/model#<level>`), or onto the `--variant` flag on the OpenCode 1 fallback, for a given provider.
 - Recalling the default model and the canonical non-interactive invocation shape
+
+### Core Principle
+
+This mode is the multi-provider master, reaching more providers than any other cli mode.
 
 ### Scope
 This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `opencode run` flag surface and auth pre-flight decision trees (see [cli-reference.md](./cli-reference.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).

@@ -1,0 +1,685 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/README.md b/.skilled/skills/cli-external-orchestration/cli-codex/README.md
+index 9978d755621..3bc2fdbd995 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/README.md
+@@ -52,6 +52,10 @@ It does not write application code or manage spec folders. `sk-code` owns code s
+ | **Agent delegation** | the repo-local `.codex/agents/` roster through `[agents.<name>]` config entries |
+ | **Cross-model validation** | a second OpenAI model opinion on code quality, routed with a `--model` override |
+ 
++### When To Use This Skill
++
++Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
++
+ ---
+ 
+ ## 3. QUICK START
+@@ -106,7 +110,11 @@ You get a structured review of the latest commit's diff, scoped to the focus are
+ 
+ ### The Dispatch Lifecycle
+ 
+-The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox. The shared deep-loop runtime constructs and runs the `codex exec` process. Codex returns the result. The caller validates and integrates it. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
++1. The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox.
++2. The shared deep-loop runtime constructs and runs the `codex exec` process.
++3. Codex returns the result.
++4. The caller validates and integrates it.
++5. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
+ 
+ ### The Two Silent Traps
+ 
+@@ -142,6 +150,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
+ | `prompt-improver` | Dispatch-ready prompt packages | `--sandbox read-only` |
+ | `review` | Code review and security audit | `--sandbox read-only` |
+ | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
++| `design` | Design values, Style Reference measurement, charts and diagrams | `--sandbox workspace-write` |
+ 
+ `gpt-5.5` at `medium` is the skill default. Five GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
+ 
+@@ -157,7 +166,8 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
+ 
+ ### Auth Pre-Flight And Memory Handback
+ 
+-cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
++- **Auth pre-flight:** cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key.
++- **Memory handback:** When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
+ 
+ ---
+ 
+@@ -196,15 +206,12 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
+ | `references/providers-and-models.md` | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
+ | `assets/prompt-quality-card.md` | Fast-path prompt discipline and the CLEAR check |
+ | `assets/prompt-templates.md` | Copy-paste prompt templates for common tasks |
++| `hard-rules.json` | Dispatch preflight hard rules (stdin redirect, codex availability) |
+ 
+ ---
+ 
+ ## 6. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
+-
+ ### Sibling Boundaries
+ 
+ The cli-X skills each dispatch to a different provider and never overlap.
+@@ -227,6 +234,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ |---|---|
+ | `sk-code` | Owns code standards and verification. cli-codex dispatches the work, sk-code governs the quality of what comes back. |
+ | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Codex session back into the caller's spec folder. |
++
+ ---
+ 
+ ## 7. TROUBLESHOOTING
+@@ -291,6 +299,6 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
+ | [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
+ | [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit startup wiring |
+-| [`references/agent-delegation.md`](./references/agent-delegation.md) | Profile roster, routing table and invocation patterns |
++| [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster, routing table and invocation patterns |
+ | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
+ | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md b/.skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md
+index c1d44fcb800..eff98aa0dd1 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/ROUTER.md
+@@ -21,7 +21,9 @@ link that points here; this file holds the declaration a reader parses to decide
+ ## 1. OVERVIEW
+ 
+ Requests reach this skill when the prompt names Codex, the Codex CLI or `codex exec`, when the `cli-external-orchestration` hub's `cli-codex` mode signal selects this packet, and when the ask is a cross-AI second opinion, a diff-aware review, live web research through `codex --search exec`, a codebase architecture walk, parallel or backgrounded generation, or a specialized generation such as a test suite, a code translation or batch docs. A session already running inside Codex never routes here, because the self-invocation guard refuses it.
+-The resource families it selects from are the intent-mapped guides under `references/` — the CLI reference, integration patterns, built-in tools, hook contract, agent delegation and provider roster — and the prompt material under `assets/`: the ALWAYS-loaded quality card plus the copy-paste templates.
++The resource families it selects from are:
++- the intent-mapped guides under `references/`: the CLI reference, integration patterns, built-in tools, hook contract, agent delegation and provider roster;
++- the prompt material under `assets/`: the ALWAYS-loaded quality card plus the copy-paste templates.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -96,6 +98,7 @@ if detect_self_invocation():
+ | ALWAYS      | Every skill invocation  | `references/cli-reference.md`, `assets/prompt-quality-card.md` |
+ | CONDITIONAL | If intent signals match | Intent-mapped reference docs   |
+ | ON_DEMAND   | Only on explicit request| Extended templates and patterns |
++| ON_DEMAND_KEYWORDS | When a listed phrase appears | The extended reference for that phrase |
+ 
+ ### Smart Router
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+index 31ecc74efe2..5c7c6053c07 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md
+@@ -48,6 +48,8 @@ The hub [`ROUTER.md`](../ROUTER.md) names the two leaves a dispatch starts from.
+ Inside this packet the `ALWAYS` tier loads first: `references/cli-reference.md` for the subcommands, flags and sandbox modes, and `assets/prompt-quality-card.md` for the fast-path prompt framework.
+ Intent-mapped references load after those, one set per intent.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
++Keep every path inside this skill folder, and load a file only when it exists.
++When nothing matches, report `UNKNOWN_FALLBACK` with the checklist from the machine router instead of guessing.
+ 
+ ---
+ 
+@@ -153,7 +155,7 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
+ 
+ ### Dispatch-Critical Gotchas
+ 
+-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Five gotchas that break a dispatch, or make a child misreport its result, and must be honored at routing time:
++The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Five gotchas break a dispatch or make a child misreport its result. Honor them at routing time:
+ 
+ - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write`; for headless no-prompt execution use top-level `-a never` before `exec` or `-c approval_policy=never`.
+ - **`--search` is a top-level flag, not an `exec` flag.** Enable live web search as `codex --search exec …`, because it precedes the subcommand.
+@@ -266,6 +268,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ - [codex-tools.md](./references/codex-tools.md) - Built-in capabilities documentation (/review, --search, MCP, session management)
+ - [hook-contract.md](./references/hook-contract.md) - Native hook contract and Spec Kit startup/advisor wiring
+ - [agent-delegation.md](./references/agent-delegation.md) - Codex agent roster, routing table, and invocation patterns
++- [providers-and-models.md](./references/providers-and-models.md) - Single-source catalog of the OpenAI provider, the model roster and the effort ladder
+ 
+ ### Templates and Assets
+ 
+@@ -301,7 +304,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ 
+ ### Skill Quality
+ 
+-- All 9 sections present with proper anchor comments.
++- All 8 sections present with integer numbering.
+ - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
+ - Reference files provide deep-dive content without duplication.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md b/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md
+index c3e4928a13d..dd70406ce32 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md
+@@ -31,24 +31,24 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
+ 
+ The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
+ 
+--> `../../../sk-prompt/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
++- [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) (deep theory: [patterns-evaluation.md](../../../sk-prompt/references/patterns-evaluation.md))
+ 
+ ---
+ 
+ ## 3. CODEX MODEL OVERRIDES
+ 
+-No per-model overrides today. Codex CLI dispatches only `gpt-5.5`; reasoning effort is tuned via `-c model_reasoning_effort` (see SKILL.md §3). No profiled small model is dispatched through this executor.
++No per-model overrides are recorded here. Codex CLI dispatches `gpt-5.5` by default; reasoning effort is tuned via `-c model_reasoning_effort` (see SKILL.md §3). No profiled small model is dispatched through this executor.
+ 
+ ---
+ 
+ ## 4. DELEGATION / PRECEDENCE
+ 
+-The 2-tier precedence rule (fast path -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
++The 2-tier precedence rule (fast path -> deep path) is canonical in [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) and restated in [SKILL.md](../SKILL.md).
+ 
+-Codex-specific escalation example: if the task needs a crowded `codex exec` prompt plus explicit `-c service_tier="fast"` or sandbox guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Codex CLI. Escalate on any canonical Tier 3 trigger.
++Codex-specific escalation example: if the task needs a crowded `codex exec` prompt plus explicit `-c service_tier="fast"` or sandbox guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Codex CLI. Escalate on any canonical Tier 2 trigger.
+ 
+ ---
+ 
+ ## 5. RELATED RESOURCES
+ 
+--> `../../../sk-prompt/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md`
++- [cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) · [prompt-templates.md](./prompt-templates.md) · [SKILL.md](../SKILL.md)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md
+index 22a4abfde28..320450dc01b 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/assets/prompt-templates.md
+@@ -42,7 +42,7 @@ This asset provides structured, copy-paste ready prompt templates for invoking C
+ | `--sandbox workspace-write`    | Allow file writes and build commands within workspace                               |
+ | `--sandbox danger-full-access` | Full shell access, **requires explicit user approval**                             |
+ | `--full-auto`                  | Equivalent to `--ask-for-approval never --sandbox workspace-write`. Non-interactive auto-approval mode for `codex exec`. |
+-| `--search`                     | Enable live web browsing during execution                                           |
++| `--search`                     | Enable live web browsing. A top-level flag, so it precedes the subcommand: `codex --search exec …`. |
+ | `-i` / `--image`               | Attach an image file as visual input                                                |
+ | `@./path`                      | Include file content in prompt                                                      |
+ 
+@@ -536,6 +536,11 @@ All placeholders used across templates in this file:
+ | `[session-id]`     | Codex session identifier                    | `abc123def456`                                                 |
+ | `[base-branch]`    | Git base branch for diff                    | `main`, `develop`                                              |
+ | `[feature-branch]` | Git feature branch for diff                 | `feature/auth`, `fix/login-bug`                                |
++| `[files]`          | Files to stage before a review               | `src/auth.ts`, `src/session.ts`                                |
++| `[feature]`        | Feature the task builds                     | `"OAuth2 PKCE flow"`, `"rate limiter"`                         |
++| `[test-file]`      | Existing test file to compare against the implementation | `src/utils/validator.test.ts`                     |
++| `[source-file]`    | Implementation file the tests cover         | `src/utils/validator.ts`                                       |
++| `[approach]`       | Named pattern to apply                      | `"repository"`, `"sliding-window"`                              |
+ 
+ ### Placeholder Conventions
+ 
+@@ -546,17 +551,59 @@ All placeholders used across templates in this file:
+ 
+ ---
+ 
+-## 12. RELATED RESOURCES
++## 12. REASONING EFFORT SELECTION
+ 
+-### Parent
++All templates dispatch `--model gpt-5.5`. Tune `model_reasoning_effort` to the task.
+ 
+-- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
++### High Reasoning (architecture, security, planning)
+ 
+-### References
++Raise effort to `high` or `xhigh` for tasks that benefit from deeper analysis:
+ 
+-- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
+-- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
+-- [codex-tools.md](../references/codex-tools.md) - Built-in capabilities (/review, --search, MCP, session management)
++```bash
++# Architecture analysis
++codex exec "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
++  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
++
++# Security audit
++codex exec "Perform a thorough security audit of @./[file]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
++  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
++
++# Complex planning
++codex exec -p ai-council "Design 3 alternative caching strategies for this API. Score each on correctness, maintainability, and performance." \
++  --model gpt-5.5 -c model_reasoning_effort="xhigh" -s read-only
++```
++
++### Medium Reasoning (default: code, review, docs)
++
++`medium` is the skill default. Works for code generation, standard review, implementation, and documentation:
++
++```bash
++# Code generation
++codex exec "Create a [description] in [language]. Requirements: [requirements]. Output complete file." \
++  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
++
++# Standard code review
++codex exec "Review @./[file] for bugs, style issues, and edge cases." \
++  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox read-only
++
++# Test generation
++codex exec "Generate comprehensive unit tests for @./[file]." \
++  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
++```
++
++### Mixed Effort Workflow
++
++Use `high` for analysis, then `medium` for implementation, the same model at a different depth:
++
++```bash
++# Step 1: Deep analysis at high reasoning
++codex exec "Identify all security vulnerabilities in @./src/auth/" \
++  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only > /tmp/security-findings.txt
++
++# Step 2: Fix at medium reasoning
++codex exec "Fix these security issues: $(cat /tmp/security-findings.txt)" \
++  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
++```
+ 
+ ---
+ 
+@@ -681,56 +728,14 @@ Minimum viable payload: include a specific `sessionSummary`, at least one meanin
+ 
+ ---
+ 
+-## 14. REASONING EFFORT SELECTION
++## 14. RELATED RESOURCES
+ 
+-All templates dispatch `--model gpt-5.5`. Tune `model_reasoning_effort` to the task.
+-
+-### High Reasoning (architecture, security, planning)
+-
+-Raise effort to `high` or `xhigh` for tasks that benefit from deeper analysis:
+-
+-```bash
+-# Architecture analysis
+-codex exec "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
+-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
+-
+-# Security audit
+-codex exec "Perform a thorough security audit of @./[file]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
+-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only
+-
+-# Complex planning
+-codex exec -p ai-council "Design 3 alternative caching strategies for this API. Score each on correctness, maintainability, and performance." \
+-  --model gpt-5.5 -c model_reasoning_effort="xhigh" -s read-only
+-```
+-
+-### Medium Reasoning (default: code, review, docs)
+-
+-`medium` is the skill default. Works for code generation, standard review, implementation, and documentation:
+-
+-```bash
+-# Code generation
+-codex exec "Create a [description] in [language]. Requirements: [requirements]. Output complete file." \
+-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+-
+-# Standard code review
+-codex exec "Review @./[file] for bugs, style issues, and edge cases." \
+-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox read-only
+-
+-# Test generation
+-codex exec "Generate comprehensive unit tests for @./[file]." \
+-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+-```
+-
+-### Mixed Effort Workflow
++### Parent
+ 
+-Use `high` for analysis, then `medium` for implementation, the same model at a different depth:
++- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
+ 
+-```bash
+-# Step 1: Deep analysis at high reasoning
+-codex exec "Identify all security vulnerabilities in @./src/auth/" \
+-  --model gpt-5.5 -c model_reasoning_effort="high" --sandbox read-only > /tmp/security-findings.txt
++### References
+ 
+-# Step 2: Fix at medium reasoning
+-codex exec "Fix these security issues: $(cat /tmp/security-findings.txt)" \
+-  --model gpt-5.5 -c model_reasoning_effort="medium" --sandbox workspace-write
+-```
++- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
++- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
++- [codex-tools.md](../references/codex-tools.md) - Built-in capabilities (/review, --search, MCP, session management)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md
+index 6005669dccf..3028faae892 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/agent-delegation.md
+@@ -14,16 +14,12 @@ version: 1.9.0.19
+ 
+ # Codex Agent Delegation Reference
+ 
+-Routing reference for delegating tasks to specialized Codex CLI agents.
++Open it when a task needs a Codex agent with its own sandbox and reasoning settings rather than a plain prompt.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI decides WHAT to do, Codex CLI decides HOW to do it within the delegated scope.
+-
+ ### Purpose
+ 
+ Documents the active Codex agents in `.codex/agents/` and how any AI assistant orchestrates them. The calling AI acts as the **conductor** (planner, validator, integrator) while Codex CLI executes targeted tasks through its agent system.
+@@ -36,6 +32,10 @@ Documents the active Codex agents in `.codex/agents/` and how any AI assistant o
+ - Fresh-perspective debugging after the calling AI's attempts fail (dispatch `@debug` via the Task tool)
+ - Multi-agent Codex-side workflows (`@orchestrate`)
+ 
++### Core Principle
++
++The calling AI decides WHAT to do, Codex CLI decides HOW to do it within the delegated scope.
++
+ ---
+ 
+ ## 2. ORCHESTRATION MODEL
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md
+index 1759c4faf8e..517be853c29 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/cli-reference.md
+@@ -15,16 +15,12 @@ version: 1.9.1.0
+ 
+ # Codex CLI - Complete Command Reference
+ 
+-Comprehensive reference for all Codex CLI commands, flags, models, configuration, and troubleshooting.
++Open it when a dispatch has to be exact, and look up the flag, the profile path or the sandbox mode instead of guessing.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5` — a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-5.5` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 5.5 high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions — all governed by configurable sandbox modes.
+-
+ ### Purpose
+ 
+ Provide a comprehensive, single-source reference for all Codex CLI commands, flags, models, configuration options, sandbox modes, and troubleshooting guidance.
+@@ -37,11 +33,15 @@ Provide a comprehensive, single-source reference for all Codex CLI commands, fla
+ - Configuring agents via `.codex/agents/*.toml`
+ - Selecting the right sandbox mode for a task
+ 
++### Core Principle
++
++Codex CLI is OpenAI's terminal-based AI coding agent powered by `gpt-5.5`, a balanced model used across code generation, review, architecture analysis, and research. The skill dispatches `gpt-5.5` at `medium` reasoning on the `fast` service tier by default; users can override reasoning effort (e.g. "Use gpt 5.5 high fast"). It provides direct access to OpenAI's capabilities from the command line, including code generation, file manipulation, shell execution, web browsing, and multi-turn sessions, all governed by configurable sandbox modes.
++
+ ### Key Sources
+ 
+ | Source | URL |
+ |--------|-----|
+-| **Repository** | https://github.com/openai/codex |
++| **Repository** | [openai/codex](https://github.com/openai/codex) |
+ | **License** | MIT |
+ | **Runtime** | Node.js 18+ |
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md
+index 20be2acf662..2bc58de4ce2 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/codex-tools.md
+@@ -15,16 +15,12 @@ version: 1.9.3.0
+ 
+ # Codex CLI Built-in Tools Reference
+ 
+-Reference for all Codex CLI capabilities, highlighting unique features and Claude Code equivalents.
++Open it when a task turns on a Codex-only surface, such as a diff-aware review or a live web lookup, and you need the exact invocation.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Delegate to Codex CLI for capabilities Claude Code lacks natively — especially `/review` for diff-aware code review workflows, `--search` for live web browsing, and session management (resume, fork) for multi-turn task continuity.
+-
+ ### Purpose
+ 
+ Covers all built-in capabilities available in Codex CLI, highlights what is unique compared to Claude Code, and provides a comparison table for task routing decisions.
+@@ -36,6 +32,10 @@ Covers all built-in capabilities available in Codex CLI, highlights what is uniq
+ - Mapping Claude Code capabilities to Codex CLI equivalents
+ - Leveraging Codex-exclusive features (/review workflow, --search, MCP, session management)
+ 
++### Core Principle
++
++Delegate to Codex CLI for capabilities Claude Code lacks natively, especially `/review` for diff-aware code review workflows, `--search` for live web browsing, and session management (resume, fork) for multi-turn task continuity.
++
+ ---
+ 
+ ## 2. UNIQUE CAPABILITIES (NOT IN CLAUDE CODE)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md
+index 18e11960516..55ceb65e9bf 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/hook-contract.md
+@@ -13,13 +13,26 @@ version: 1.9.0.24
+ 
+ # Codex CLI Hook Contract
+ 
++Open this before wiring a Codex hook or debugging one whose output never reaches the model. It pins the activation flag, registration shape, stdin and stdout contracts, and fail-open exit behavior.
++
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Spec Kit uses the native `SessionStart` and `UserPromptSubmit` surfaces to inject startup context and the compact skill-advisor brief.
++
++### When to Use
++
++- Enabling or registering Codex hooks
++- Writing a hook adapter or checking the payload Codex hands it
++- Confirming exit, timeout and fail-open behavior
++- Wiring or repairing the Spec Kit hook scripts
++
++### Core Principle
++
+ Codex CLI 0.130.0 exposes native hooks behind the stable `hooks` feature flag.
+-Spec Kit uses the native `SessionStart` and `UserPromptSubmit` surfaces
+-to inject startup context and the compact skill-advisor brief.
+ 
+ ---
+ 
+@@ -77,6 +90,18 @@ When appending Spec Kit hooks, preserve existing Superset `notify.sh`
+ entries. Multiple hooks for one event run concurrently, so hook commands must be
+ idempotent and must not rely on registration order.
+ 
++> Codex runs a project hook only after the operator approves that exact entry.
++> The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
++> `trusted_hash`, and an entry with no approval is skipped without a warning. Because
++> the approval is a hash, a changed entry is likely to need approving again. After a
++> `hooks.json` change, open `/hooks` in an interactive Codex session and approve every
++> entry it lists as needing review.
++
++Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
++The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
++twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
++and keeps Superset and other third-party entries.
++
+ ### 3.1 Tool-Level Guard Adapters (Claude / OpenCode parity)
+ 
+ Beyond the session-lifecycle hooks, Codex mirrors the repo's guard hooks as thin
+@@ -104,23 +129,11 @@ emit `hookSpecificOutput.permissionDecision: "deny"`, which Codex honors.
+ > The same release hands PostToolUse the shell output as one string where older
+ > builds handed `{stdout, stderr}`, so the audit adapter reads either shape.
+ 
+-> Codex runs a project hook only after the operator approves that exact entry.
+-> The approval is stored in `~/.codex/config.toml` under `[hooks.state."..."]` as a
+-> `trusted_hash`, and an entry with no approval is skipped without a warning. Because
+-> the approval is a hash, a changed entry is likely to need approving again. After a
+-> `hooks.json` change, open `/hooks` in an interactive Codex session and approve every
+-> entry it lists as needing review.
+-
+ > Codex has no task-dispatch guard. Its `spawn_agent` call reaches PreToolUse as
+ > `collaborationspawn_agent`, but the hook payload carries the spawn `message`
+ > encrypted (`gAAAAA...`) beside `task_name` and `fork_turns`, so the guard has no
+ > prompt or target to check.
+ 
+-Codex loads the full repo hook set (lifecycle and guards) from `.codex/hooks.json`.
+-The user-global `~/.codex/hooks.json` must hold no copy of it, or every hook runs
+-twice. `.skilled/bin/install-codex-hooks.mjs` removes such copies, backs up first,
+-and keeps Superset and other third-party entries.
+-
+ ---
+ 
+ ## 4. EVENT INPUTS
+@@ -177,11 +190,9 @@ Use JSON output for model-visible context:
+ For `SessionStart`, set `"hookEventName": "SessionStart"` and put startup
+ context in `additionalContext`.
+ 
+-Codex also accepts plain stdout for context on injecting events, but JSON is the
+-preferred Spec Kit path because it is explicit and testable. Context is recorded
+-as a developer-role message in the conversation state. For `SessionStart`, it is
+-placed before the first user prompt; for `UserPromptSubmit`, it is placed after
+-the submitted user message.
++- Codex also accepts plain stdout for context on injecting events, but JSON is the preferred Spec Kit path because it is explicit and testable.
++- Context is recorded as a developer-role message in the conversation state.
++- Placement follows the event: `SessionStart` puts it before the first user prompt; `UserPromptSubmit` puts it after the submitted user message.
+ 
+ ---
+ 
+@@ -234,5 +245,3 @@ non-empty and start with `Advisor:` on the prompt hook.
+ - OpenAI Codex issue evidence for `UserPromptSubmit.additionalContext` becoming
+   model-visible developer context:
+   `https://github.com/openai/codex/issues/16933`
+-- Packet-local synthesis:
+-  `<spec-folder>`
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md
+index 204924443ff..0dc390cc831 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md
+@@ -21,10 +21,6 @@ Proven patterns for orchestrating Codex CLI from any AI assistant session.
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI acts as the orchestrator (planner, validator, integrator) while Codex CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Codex's sandbox-controlled execution, not from redundant work.
+-
+ ### Purpose
+ 
+ Each pattern documented here includes the rationale, implementation template, and practical considerations for combining the calling AI with Codex CLI effectively.
+@@ -37,6 +33,10 @@ Each pattern documented here includes the rationale, implementation template, an
+ - Complex workflows benefit from structured, multi-stage generation and validation
+ - You need controlled file modification with sandbox-enforced safety boundaries
+ 
++### Core Principle
++
++The calling AI acts as the orchestrator (planner, validator, integrator) while Codex CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Codex's sandbox-controlled execution, not from redundant work.
++
+ ---
+ 
+ ## 2. GENERATE-REVIEW-FIX CYCLE
+@@ -133,6 +133,31 @@ jq '.issues' /tmp/analysis.json
+ - Feeding Codex analysis into the calling AI's decision logic
+ - Building automated pipelines that branch on structured output
+ 
++### Echoed-Transcript Parsing When Capturing `codex exec` Output
++
++When you capture a `codex exec` transcript to a file and later parse it for structured output (a fenced JSON block, a verdict line, etc.), remember the transcript contains **three copies** of any marker your prompt mentions:
++
++1. the **echoed prompt** itself, including any output-format template you embedded, with its literal placeholders
++2. the model's streamed answer
++3. the CLI **reprinting the final message** at the end
++
++**Symptom:** A parser that extracts text *between* the first and last marker concatenates all three blocks into invalid JSON (so your finding count comes out 0), and a global `grep` for a verdict/status line matches the **instruction line in the echoed prompt** (which usually lists every possible value), so you record the wrong one.
++
++**Root cause:** `codex exec` echoes the full prompt and reprints its last message; any template token you put in the prompt reappears verbatim in the captured output.
++
++```bash
++# BAD: between-markers awk spans the echoed template + answer + reprint
++awk '/^===BLOCK===$/{f=1;next} /^===END===$/{f=0} f{print}' transcript.md   # → invalid JSON
++grep -oE 'Verdict: (PASS|FAIL)' transcript.md | tail -1                      # → matches echoed instruction
++
++# GOOD: collect EVERY fenced block, parse each independently, drop the
++# placeholder echo (e.g. severity == "P0|P1|P2"), dedup, derive status from
++# what survives. (Reference implementation: the run_review.sh driver under
++# specs/.../123-deep-loop-parallel-fanout/008-deep-review/review/.)
++```
++
++**Better still:** have codex write structured output with `-o lastmessage.txt`, or use a unique non-template sentinel the prompt never quotes. And always inspect one real captured transcript before trusting any count derived from it.
++
+ ---
+ 
+ ## 4. BACKGROUND EXECUTION
+@@ -245,32 +270,11 @@ done < input.jsonl
+ 
+ **Always pair `codex exec ... &` inside a read-loop with `</dev/null` on the redirection.** This is independent of whether codex itself uses stdin — the issue is shared FD consumption, not a feature.
+ 
+-### Echoed-Transcript Parsing When Capturing `codex exec` Output
+-
+-When you capture a `codex exec` transcript to a file and later parse it for structured output (a fenced JSON block, a verdict line, etc.), remember the transcript contains **three copies** of any marker your prompt mentions: (1) the **echoed prompt** itself — including any output-format template you embedded, with its literal placeholders; (2) the model's streamed answer; (3) the CLI **reprinting the final message** at the end.
+-
+-**Symptom:** A parser that extracts text *between* the first and last marker concatenates all three blocks into invalid JSON (so your finding count comes out 0), and a global `grep` for a verdict/status line matches the **instruction line in the echoed prompt** (which usually lists every possible value), so you record the wrong one.
+-
+-**Root cause:** `codex exec` echoes the full prompt and reprints its last message; any template token you put in the prompt reappears verbatim in the captured output.
+-
+-```bash
+-# BAD: between-markers awk spans the echoed template + answer + reprint
+-awk '/^===BLOCK===$/{f=1;next} /^===END===$/{f=0} f{print}' transcript.md   # → invalid JSON
+-grep -oE 'Verdict: (PASS|FAIL)' transcript.md | tail -1                      # → matches echoed instruction
+-
+-# GOOD: collect EVERY fenced block, parse each independently, drop the
+-# placeholder echo (e.g. severity == "P0|P1|P2"), dedup, derive status from
+-# what survives. (Reference implementation: the run_review.sh driver under
+-# specs/.../123-deep-loop-parallel-fanout/008-deep-review/review/.)
+-```
+-
+-**Better still:** have codex write structured output with `-o lastmessage.txt`, or use a unique non-template sentinel the prompt never quotes. And always inspect one real captured transcript before trusting any count derived from it.
+-
+ ---
+ 
+ ## 5. MODEL SELECTION STRATEGY
+ 
+-**Codex CLI supports 2 models. Choose based on task type.**
++**Codex CLI dispatches `gpt-5.5` by default. Choose reasoning effort by task type.**
+ 
+ ### Decision Matrix
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md
+index cfb025242ec..cdd9d3fdea2 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/references/providers-and-models.md
+@@ -23,16 +23,21 @@ The single catalog of the provider, model ids, defaults, `model_reasoning_effort
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-One place to answer "which model, which effort, how to dispatch" for cli-codex. This mode is single-provider (OpenAI via ChatGPT OAuth) — the choice space is one provider, five models, and one effort ladder capped per model.
++### Purpose
++
++One place to answer "which model, which effort, how to dispatch" for cli-codex.
+ 
+ ### When to Use
+ - Choosing a `--model` for a `codex exec` dispatch
+ - Mapping a desired reasoning effort onto `-c model_reasoning_effort=` for a given model (and staying under its ceiling)
+ - Recalling the default model + effort + service tier and the canonical non-interactive invocation shape
+ 
++### Core Principle
++
++This mode is single-provider (OpenAI via ChatGPT OAuth); the choice space is one provider, five models, and one effort ladder capped per model.
++
+ ### Scope
+-This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `codex exec` flag surface, sandbox modes, auth pre-flight, or troubleshooting (see [cli-reference.md](./cli-reference.md)), the cross-AI orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
++This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `codex exec` flag surface, sandbox modes, auth pre-flight, or troubleshooting (see [cli-reference.md](./cli-reference.md)), the cross-AI orchestration patterns (see [integration-patterns.md](./integration-patterns.md)), per-model prompt-craft (see [../SKILL.md](../SKILL.md) §4 Rule 10), or the fan-out / model-enforcement runtime (see §6).
+ 
+ ### Authority pointers
+ - Full CLI flags, subcommands, sandbox modes, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
+@@ -101,19 +106,27 @@ Per-model ceilings — set the effort within the chosen model's cap:
+ | `gpt-6.1-terra` | `ultra` | Callable directly; no dedicated profile |
+ | `gpt-6-sol` | `ultra` | `sol-verify` profile pins `xhigh` |
+ 
+-Selection heuristic: default `gpt-5.5 medium`; raise to `high` / `xhigh` for architecture, security, and complex planning; escalate the model when the task wants reasoning past `xhigh` — `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review; drop to `low` / `minimal` for trivial lookups. Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort` — see [cli-reference.md](./cli-reference.md) §5.
++Selection heuristic:
++
++- Default `gpt-5.5 medium`.
++- Raise to `high` / `xhigh` for architecture, security, and complex planning.
++- Escalate the model when the task wants reasoning past `xhigh`: `gpt-6-luna max` for implementation, `gpt-6-sol xhigh` / `ultra` for verification and review.
++- Drop to `low` / `minimal` for trivial lookups.
++
++Effort can also live in `config.toml`, a `[profiles.<name>]` block, or `plan_mode_reasoning_effort`; see [cli-reference.md](./cli-reference.md) §5.
+ 
+ ---
+ 
+ ## 5. HOW TO INVOKE
+ 
+ ### Canonical dispatch shape
++
++`codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless you add `--sandbox workspace-write` (or `--full-auto`). See [integration-patterns.md](./integration-patterns.md).
++
+ ```bash
+ codex exec --model gpt-5.5 -c model_reasoning_effort="high" "<prompt>"
+ ```
+ 
+-`codex exec` defaults to `--sandbox read-only`, so file-modification tasks silently no-op unless you add `--sandbox workspace-write` (or `--full-auto`). See [integration-patterns.md](./integration-patterns.md).
+-
+ ### Dispatch envelope (child / detached sessions)
+ When dispatching as a non-interactive child (spec-gate-neutralized worker), prefix the shared env and terminate stdin:
+ 

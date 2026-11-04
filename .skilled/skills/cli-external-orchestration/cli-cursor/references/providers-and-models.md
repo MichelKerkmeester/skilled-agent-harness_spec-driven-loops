@@ -9,7 +9,7 @@ trigger_phrases:
   - "cursor grok glm effort suffix"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # cli-cursor Providers, Models & Invocation
@@ -20,16 +20,20 @@ The single catalog of the provider, model ids, defaults, effort lever, and dispa
 
 ## 1. OVERVIEW
 
-### Core Principle
-One place to answer "which provider, which model, which effort, how to dispatch" for cli-cursor. This mode reaches exactly one backing provider — Cursor — and is deliberately narrow: dispatch is scoped to a hard-enforced 29-id allowlist, and Cursor's own `auto` router is excluded.
+### Purpose
+
+This file enumerates the provider, model, effort and dispatch-envelope facts a cli-cursor dispatch needs.
 
 ### When to Use
 - Choosing a `--model <id>` for a `cursor-agent -p` dispatch from within the enforced allowlist
 - Selecting a reasoning-effort tier (there is no `--effort` flag — the tier is baked into the id suffix)
 - Recalling the default model and the canonical non-interactive invocation shape
 
-### Scope
-This file enumerates the provider/model/effort facts and the dispatch envelope. It does NOT own: the full `cursor-agent` flag surface, auth pre-flight, workspace-trust, and troubleshooting (see [cli-reference.md](./cli-reference.md)), the orchestration/dispatch patterns (see [integration-patterns.md](./integration-patterns.md)), or the runtime allowlist enforcement (see §6).
+### Core Principle
+One place to answer "which provider, which model, which effort, how to dispatch" for cli-cursor. This mode reaches exactly one backing provider — Cursor — and is deliberately narrow: dispatch is scoped to a hard-enforced 29-id allowlist, and Cursor's own `auto` router is excluded.
+
+### Boundaries
+This file does NOT own: the full `cursor-agent` flag surface, auth pre-flight, workspace-trust, and troubleshooting (see [cli-reference.md](./cli-reference.md)), the orchestration/dispatch patterns (see [integration-patterns.md](./integration-patterns.md)), or the runtime allowlist enforcement (see §6).
 
 ### Authority pointers
 - Full CLI flags, subcommands, auth pre-flight, troubleshooting → [cli-reference.md](./cli-reference.md)
@@ -64,11 +68,11 @@ Sorted alphabetically by model id, not grouped by family.
 | 14 | `cursor-grok-4.6-medium-fast` | Grok 4.6 (via Cursor) | — | Medium tier, low-latency `-fast` variant |
 | 15 | `cursor-grok-4.6-xhigh` | Grok 4.6 (via Cursor) | — | Extra-high thinking tier — new in 4.6; 4.5 has no xhigh tier |
 | 16 | `cursor-grok-4.6-xhigh-fast` | Grok 4.6 (via Cursor) | — | Extra-high tier, low-latency `-fast` variant — new in 4.6 |
-| 17 | `glm-5.2-high` | GLM 5.2 (via Cursor) | — | Z.AI GLM 5.2, High tier |
-| 18 | `glm-5.2-max` | GLM 5.2 (via Cursor) | — | Z.AI GLM 5.2, Max (paid) tier |
-| 19 | `gpt-5.6-luna-max` | GPT-5.6 Luna (via Cursor) | — | Max thinking tier; first GPT-5.6 persona in the allowlist |
-| 20 | `gpt-5.6-luna-max-fast` | GPT-5.6 Luna (via Cursor) | — | Max tier, low-latency `-fast` variant |
-| 21 | `gemini-3.8-flash-high` | Gemini 3.8 (via Cursor) | — | Google Gemini 3.8 Flash, High thinking tier; Cursor displays it as "Gemini 3.8 Flash" — the tier lives in the id suffix |
+| 17 | `gemini-3.8-flash-high` | Gemini 3.8 (via Cursor) | — | Google Gemini 3.8 Flash, High thinking tier; Cursor displays it as "Gemini 3.8 Flash" — the tier lives in the id suffix |
+| 18 | `glm-5.2-high` | GLM 5.2 (via Cursor) | — | Z.AI GLM 5.2, High tier |
+| 19 | `glm-5.2-max` | GLM 5.2 (via Cursor) | — | Z.AI GLM 5.2, Max (paid) tier |
+| 20 | `gpt-5.6-luna-max` | GPT-5.6 Luna (via Cursor) | — | Max thinking tier; first GPT-5.6 persona in the allowlist |
+| 21 | `gpt-5.6-luna-max-fast` | GPT-5.6 Luna (via Cursor) | — | Max tier, low-latency `-fast` variant |
 | 22 | `grok-4.7-high` | Grok 4.7 (via Cursor) | — | High thinking tier. Cursor lists the Grok 4.7 ids without the `cursor-` prefix the 4.5 and 4.6 ids carry |
 | 23 | `grok-4.7-high-fast` | Grok 4.7 (via Cursor) | — | High tier, low-latency `-fast` variant |
 | 24 | `grok-4.7-low` | Grok 4.7 (via Cursor) | — | xAI Grok 4.7, low thinking tier |

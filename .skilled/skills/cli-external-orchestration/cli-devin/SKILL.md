@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI executor for Cognition-backed coding, cloud handoff, subagent delegation, and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.12.0
+version: 1.4.13.0
 ---
 
 # Devin CLI Orchestrator - Cross-AI Task Delegation
@@ -135,8 +135,6 @@ devin -p \
 | User says | Resolve to |
 |-----------|------------|
 | (nothing specified) | `--model swe-2-max --permission-mode dangerous` |
-
-> **Fan-out fallback:** a deep-loop lineage that pins no model runs **SWE 2 Max**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 | "Use glm" / "Use glm high" | `--model glm-5-2 --permission-mode dangerous` |
 | "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
 | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
@@ -144,6 +142,8 @@ devin -p \
 | "Use swe max" | `--model swe-2-max --permission-mode dangerous` |
 | "Use glm accept-edits" | `--model glm-5-2 --permission-mode accept-edits` |
 | "Use autonomous sandbox" | `--sandbox --permission-mode autonomous` |
+
+> **Fan-out fallback:** a deep-loop lineage that pins no model runs **SWE 2 Max**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
 
 Honor the dimensions the user names. Otherwise the model stays `swe` and the permission mode stays `dangerous`.
 
@@ -320,7 +320,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 
 When the calling AI needs to preserve session context from a Devin CLI delegation, run the canonical procedure: extract the `MEMORY_HANDBACK` section, build structured JSON, scrub secrets, then invoke `generate-context.js` via `--stdin`/`--json`/temp-file.
 
-The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
+The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §12.
 
 ```bash
 printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
@@ -337,6 +337,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 - [devin-tools.md](./references/devin-tools.md) - Built-in capabilities documentation (run_subagent, /handoff, MCP, session management, Fetch)
 - [agent-delegation.md](./references/agent-delegation.md) - Subagent profile roster, routing table, and invocation patterns
 - [cloud-handoff.md](./references/cloud-handoff.md) - /handoff cloud-handoff mechanics, use cases, and state transfer
+- [providers-and-models.md](./references/providers-and-models.md) - Curated model families, aliases and defaults
 - [manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) - 20-scenario Devin-native manual validation package
 
 ### Templates and Assets
@@ -374,7 +375,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
 
 ### Skill Quality
 
-- All 9 sections present with proper anchor comments.
+- All 8 sections present with the required H2 headings.
 - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
 - Reference files provide deep-dive content without duplication.
 

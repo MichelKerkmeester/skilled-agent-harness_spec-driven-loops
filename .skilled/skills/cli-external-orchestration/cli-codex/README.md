@@ -9,7 +9,7 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.2.0
+version: 1.9.3.0
 ---
 
 # cli-codex
@@ -51,6 +51,10 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | **Live web research** | the `codex --search exec` flag for answers sourced from current web results |
 | **Agent delegation** | the repo-local `.codex/agents/` roster through `[agents.<name>]` config entries |
 | **Cross-model validation** | a second OpenAI model opinion on code quality, routed with a `--model` override |
+
+### When To Use This Skill
+
+Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
 
 ---
 
@@ -106,7 +110,11 @@ You get a structured review of the latest commit's diff, scoped to the focus are
 
 ### The Dispatch Lifecycle
 
-The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox. The shared deep-loop runtime constructs and runs the `codex exec` process. Codex returns the result. The caller validates and integrates it. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
+1. The calling AI composes a prompt with the right model, reasoning effort, service tier and sandbox.
+2. The shared deep-loop runtime constructs and runs the `codex exec` process.
+3. Codex returns the result.
+4. The caller validates and integrates it.
+5. The packet owns routing and availability checks. `system-deep-loop/runtime/scripts/fanout-run.cjs` owns execution.
 
 ### The Two Silent Traps
 
@@ -142,6 +150,7 @@ Route to a specialized Codex agent through the repo-local agent surface. `.codex
 | `prompt-improver` | Dispatch-ready prompt packages | `--sandbox read-only` |
 | `review` | Code review and security audit | `--sandbox read-only` |
 | `ai-council` | Multi-strategy planning | `--sandbox read-only` |
+| `design` | Design values, Style Reference measurement, charts and diagrams | `--sandbox workspace-write` |
 
 `gpt-5.5` at `medium` is the skill default. Five GPT models are available on the `fast` tier via `--model`: `gpt-5.5`, `gpt-6-luna`, `gpt-5.6-terra`, `gpt-6.1-terra` and `gpt-6-sol`. Reasoning effort is set with `-c model_reasoning_effort="<level>"` across `none`, `minimal`, `low`, `medium` (default), `high`, `xhigh`, `max` and `ultra`. There is no `--reasoning-effort` flag. Each model has an effort ceiling:
 
@@ -157,7 +166,8 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
 
 ### Auth Pre-Flight And Memory Handback
 
-cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key. When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
+- **Auth pre-flight:** cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch the skill checks whether `codex login` has been completed. If it has not, it surfaces `codex login` and waits rather than dispatching. It does not use an OpenAI API key.
+- **Memory handback:** When the caller needs to keep a Codex session's context, a 7-step Memory Handback extracts it and persists it through `generate-context.js`. The full procedure lives in `system-spec-kit/references/cli/memory-handback.md`.
 
 ---
 
@@ -196,14 +206,11 @@ cli-codex authenticates through ChatGPT OAuth only. Before the first dispatch th
 | `references/providers-and-models.md` | Single-source catalog of the OpenAI provider, the model roster and the effort ladder |
 | `assets/prompt-quality-card.md` | Fast-path prompt discipline and the CLEAR check |
 | `assets/prompt-templates.md` | Copy-paste prompt templates for common tasks |
+| `hard-rules.json` | Dispatch preflight hard rules (stdin redirect, codex availability) |
 
 ---
 
 ## 6. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for cli-codex when a task benefits from sandboxed file operations, live web search via `--search`, the diff-aware review subcommand or a second-AI opinion on code quality. Reach for it too when you want to offload generation to a sandboxed runtime while you keep conducting. Skip it for simple tasks the caller can answer directly and for interactive terminal work where `codex` itself is the right tool. Deep extended-thinking analysis belongs to `cli-claude-code` instead.
 
 ### Sibling Boundaries
 
@@ -227,6 +234,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 |---|---|
 | `sk-code` | Owns code standards and verification. cli-codex dispatches the work, sk-code governs the quality of what comes back. |
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Codex session back into the caller's spec folder. |
+
 ---
 
 ## 7. TROUBLESHOOTING
@@ -291,6 +299,6 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 | [`references/integration-patterns.md`](./references/integration-patterns.md) | Cross-AI orchestration patterns and workflows |
 | [`references/codex-tools.md`](./references/codex-tools.md) | Built-in capabilities: the review subcommand, `--search`, MCP and sessions |
 | [`references/hook-contract.md`](./references/hook-contract.md) | Native hook contract and Spec Kit startup wiring |
-| [`references/agent-delegation.md`](./references/agent-delegation.md) | Profile roster, routing table and invocation patterns |
+| [`references/agent-delegation.md`](./references/agent-delegation.md) | Agent roster, routing table and invocation patterns |
 | [`assets/prompt-quality-card.md`](./assets/prompt-quality-card.md) | Fast-path prompt discipline and the CLEAR check |
 | [`assets/prompt-templates.md`](./assets/prompt-templates.md) | Copy-paste prompt templates for common tasks |

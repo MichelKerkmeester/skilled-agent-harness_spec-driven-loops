@@ -1,0 +1,572 @@
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/README.md b/.skilled/skills/cli-external-orchestration/cli-devin/README.md
+index 148d11c9502..0afad4fa6f6 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/README.md
+@@ -35,9 +35,21 @@ version: 1.4.1.0
+ 
+ A long generation, an independent review, a browser-heavy task or a security audit can drain your context window and bias your own judgment. cli-devin hands such tasks to Cognition's Devin CLI, which runs its own agent in its own context with a model of your choice. The calling AI stays the conductor. The skill exists so a second AI can work on your codebase without you switching runtimes or babysitting a session.
+ 
++### When To Use This Skill
++
++Use cli-devin when the task benefits from a second AI perspective: an independent code review, a security audit, a generation pass, parallel research or a long-running task that should keep working after you disconnect. Do not use it for quick tasks the calling agent can finish faster, nor for interactive refinement that needs the full-screen REPL (run `devin` directly instead).
++
+ ### What It Does
+ 
+-The skill routes a request through the smart router, picks a curated model and a permission mode, then dispatches with `devin -p`. It can delegate to Devin's native subagents through `run_subagent`, move a session to the cloud with `/handoff`, attach MCP servers with `devin mcp add` and continue or resume past sessions with `devin -c` and `devin -r`. Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. ROUTER.md owns the routing contract and SKILL.md the hard rules.
++The skill does five things:
++
++- Routes a request through the smart router, then picks a curated model and a permission mode before dispatching with `devin -p`.
++- Delegates to Devin's native subagents through `run_subagent`.
++- Moves a session to the cloud with `/handoff`.
++- Attaches MCP servers with `devin mcp add`.
++- Continues or resumes past sessions with `devin -c` and `devin -r`.
++
++Orchestrated dispatches run through the shared deep-loop runtime, which is the single execution adapter for this skill. Direct `devin -p` snippets in this README are operator reference and manual-testing examples. ROUTER.md owns the routing contract and SKILL.md the hard rules.
+ 
+ ### The Delegation Layer
+ 
+@@ -165,6 +177,7 @@ cli-devin/
+ | `SKILL.md` | Hard rules and the full rule set |
+ | `ROUTER.md` | Machine router: intent map, resource map and loading levels |
+ | `README.md` | Overview and navigation front page |
++| `hard-rules.json` | Hard-rule checks the dispatch preflight reads |
+ | `references/agent-delegation.md` | Subagent profile roster, routing table and custom AGENT.md patterns |
+ | `references/cli-reference.md` | CLI subcommands, flags, permission modes, auth pre-flight and troubleshooting, always loaded |
+ | `references/cloud-handoff.md` | `/handoff` mechanics, use cases and state transfer |
+@@ -178,10 +191,6 @@ cli-devin/
+ 
+ ## 6. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Use cli-devin when the task benefits from a second AI perspective: an independent code review, a security audit, a generation pass, parallel research or a long-running task that should keep working after you disconnect. Do not use it for quick tasks the calling agent can finish faster, nor for interactive refinement that needs the full-screen REPL (run `devin` directly instead).
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md b/.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md
+index ef807fcd2fb..34f09435254 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/SKILL.md
+@@ -135,8 +135,6 @@ devin -p \
+ | User says | Resolve to |
+ |-----------|------------|
+ | (nothing specified) | `--model swe-2-max --permission-mode dangerous` |
+-
+-> **Fan-out fallback:** a deep-loop lineage that pins no model runs **SWE 2 Max**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
+ | "Use glm" / "Use glm high" | `--model glm-5-2 --permission-mode dangerous` |
+ | "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
+ | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
+@@ -145,6 +143,8 @@ devin -p \
+ | "Use glm accept-edits" | `--model glm-5-2 --permission-mode accept-edits` |
+ | "Use autonomous sandbox" | `--sandbox --permission-mode autonomous` |
+ 
++> **Fan-out fallback:** a deep-loop lineage that pins no model runs **SWE 2 Max**. The family is named here on purpose, without a version or an effort tier, so this line does not go stale when the family ships a point release; the runner resolves the current id. A drift test keeps the two in the same family.
++
+ Honor the dimensions the user names. Otherwise the model stays `swe` and the permission mode stays `dangerous`.
+ 
+ ### Model Selection
+@@ -320,7 +320,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
+ 
+ When the calling AI needs to preserve session context from a Devin CLI delegation, run the canonical procedure: extract the `MEMORY_HANDBACK` section, build structured JSON, scrub secrets, then invoke `generate-context.js` via `--stdin`/`--json`/temp-file.
+ 
+-The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §13.
++The continuity writer is the last step; nothing is handed to an index. Full procedure and caveats: [`system-spec-kit/references/cli/memory-handback.md`](../../system-spec-kit/references/cli/memory-handback.md). Devin-specific Memory Epilogue template: [assets/prompt-templates.md](./assets/prompt-templates.md) §12.
+ 
+ ```bash
+ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin [spec-folder]
+@@ -337,6 +337,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ - [devin-tools.md](./references/devin-tools.md) - Built-in capabilities documentation (run_subagent, /handoff, MCP, session management, Fetch)
+ - [agent-delegation.md](./references/agent-delegation.md) - Subagent profile roster, routing table, and invocation patterns
+ - [cloud-handoff.md](./references/cloud-handoff.md) - /handoff cloud-handoff mechanics, use cases, and state transfer
++- [providers-and-models.md](./references/providers-and-models.md) - Curated model families, aliases and defaults
+ - [manual-testing-playbook.md](./manual-testing-playbook/manual-testing-playbook.md) - 20-scenario Devin-native manual validation package
+ 
+ ### Templates and Assets
+@@ -374,7 +375,7 @@ printf '%s' "$JSON_PAYLOAD" | node .skilled/skills/system-spec-kit/runtime/cli/d
+ 
+ ### Skill Quality
+ 
+-- All 9 sections present with proper anchor comments.
++- All 8 sections present with the required H2 headings.
+ - Smart routing covers all intent signals with UNKNOWN_FALLBACK.
+ - Reference files provide deep-dive content without duplication.
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md b/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md
+index 7a5c6f64862..0f81290bfde 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md
+@@ -32,7 +32,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card) and
+ Two tiers govern how a Devin CLI dispatch prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
+ 
+ **Tier 1 — Fast path (default)**
+-Build the prompt directly from the canonical card (`../../../sk-prompt/assets/cli-prompt-quality-card.md`). Select a framework from the table in §2, apply the task-to-framework map in §3, run the CLEAR pre-dispatch check in §4, and dispatch. No additional skill loading required for routine work.
++Build the prompt directly from the canonical card (`../../../sk-prompt/assets/cli-prompt-quality-card.md`). Select a framework from the canonical card's §2 table, apply its §3 task-to-framework map, run its §4 CLEAR pre-dispatch check, and dispatch. No additional skill loading required for routine work.
+ 
+ **Tier 2 — Deep path (escalation)**
+ Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 2** trigger applies — the trigger list lives in `../../../sk-prompt/assets/cli-prompt-quality-card.md` under "Tier 2 — Deep path"; do not re-enumerate it here.
+@@ -43,7 +43,7 @@ Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inlin
+ 
+ The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
+ 
+--> `../../../sk-prompt/assets/cli-prompt-quality-card.md`  (deep theory: `../../../sk-prompt/references/patterns-evaluation.md`)
++[cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md)  (deep theory: [patterns-evaluation.md](../../../sk-prompt/references/patterns-evaluation.md))
+ 
+ ---
+ 
+@@ -51,10 +51,10 @@ The 7-framework selection table, the task-to-framework map, the pre-planning-den
+ 
+ The 2-tier precedence rule (fast path → deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in §2 above and in `../SKILL.md`.
+ 
+-Devin-specific escalation example: if the task needs a crowded `devin -p` prompt plus explicit `--permission-mode` or subagent-delegation guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Devin CLI. Escalate on any canonical Tier 3 trigger.
++Devin-specific escalation example: if the task needs a crowded `devin -p` prompt plus explicit `--permission-mode` or subagent-delegation guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Devin CLI. Escalate on any canonical Tier 2 trigger.
+ 
+ ---
+ 
+ ## 5. RELATED RESOURCES
+ 
+--> `../../../sk-prompt/assets/cli-prompt-quality-card.md` · `./prompt-templates.md` · `../SKILL.md`
++[cli-prompt-quality-card.md](../../../sk-prompt/assets/cli-prompt-quality-card.md) · [prompt-templates.md](./prompt-templates.md) · [SKILL.md](../SKILL.md)
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md b/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md
+index c935197b6d3..61e0c99a3be 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/assets/prompt-templates.md
+@@ -423,19 +423,47 @@ All placeholders used across templates in this file:
+ 
+ ---
+ 
+-## 11. RELATED RESOURCES
++## 11. MODEL SELECTION FOR TEMPLATES
+ 
+-### Parent
++All templates default to `--model adaptive`. Tune the model to the task.
+ 
+-- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
++### Deep Reasoning (architecture, security, planning)
+ 
+-### References
++```bash
++# Architecture analysis with Opus
++devin -p "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
++  --model opus --permission-mode auto
+ 
+-- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
+-- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
+-- [devin-tools.md](../references/devin-tools.md) - Built-in capabilities (run_subagent, /handoff, MCP, session management)
+-- [agent-delegation.md](../references/agent-delegation.md) - Subagent profile roster and custom AGENT.md patterns
+-- [cloud-handoff.md](../references/cloud-handoff.md) - /handoff cloud-handoff mechanics and state transfer
++# Security audit with Opus
++devin -p "Perform a thorough security audit of [file-path]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
++  --model opus --permission-mode auto
++```
++
++### Quick Edits (cost-sensitive)
++
++```bash
++# Quick fix with SWE Fast
++devin -p "Fix the typo in the error message at line 42 in [file-path]." \
++  --model swe-1-6-fast --permission-mode accept-edits
++
++# Quick lookup with SWE
++devin -p "List all TODO comments in src/." \
++  --model swe --permission-mode auto
++```
++
++### Mixed Effort Workflow
++
++Use `opus` for analysis, then `adaptive` for implementation:
++
++```bash
++# Step 1: Deep analysis with Opus
++devin -p "Identify all security vulnerabilities in src/auth/" \
++  --model opus --permission-mode auto > /tmp/security-findings.txt
++
++# Step 2: Fix with Adaptive
++devin -p "Fix these security issues: $(cat /tmp/security-findings.txt)" \
++  --model adaptive --permission-mode accept-edits
++```
+ 
+ ---
+ 
+@@ -531,44 +559,16 @@ Structured JSON is the required save path. You can pass the payload via temp fil
+ 
+ ---
+ 
+-## 13. MODEL SELECTION FOR TEMPLATES
++## 13. RELATED RESOURCES
+ 
+-All templates default to `--model adaptive`. Tune the model to the task.
+-
+-### Deep Reasoning (architecture, security, planning)
+-
+-```bash
+-# Architecture analysis with Opus
+-devin -p "Analyze the architecture of this project. Identify coupling issues, circular dependencies, and scalability concerns." \
+-  --model opus --permission-mode auto
+-
+-# Security audit with Opus
+-devin -p "Perform a thorough security audit of [file-path]. Check OWASP Top 10, auth bypasses, injection vectors, and cryptographic weaknesses." \
+-  --model opus --permission-mode auto
+-```
+-
+-### Quick Edits (cost-sensitive)
+-
+-```bash
+-# Quick fix with SWE Fast
+-devin -p "Fix the typo in the error message at line 42 in [file-path]." \
+-  --model swe-1-6-fast --permission-mode accept-edits
+-
+-# Quick lookup with SWE
+-devin -p "List all TODO comments in src/." \
+-  --model swe --permission-mode auto
+-```
+-
+-### Mixed Effort Workflow
++### Parent
+ 
+-Use `opus` for analysis, then `adaptive` for implementation:
++- [SKILL.md](../SKILL.md) - Main skill instructions and invocation patterns
+ 
+-```bash
+-# Step 1: Deep analysis with Opus
+-devin -p "Identify all security vulnerabilities in src/auth/" \
+-  --model opus --permission-mode auto > /tmp/security-findings.txt
++### References
+ 
+-# Step 2: Fix with Adaptive
+-devin -p "Fix these security issues: $(cat /tmp/security-findings.txt)" \
+-  --model adaptive --permission-mode accept-edits
+-```
++- [cli-reference.md](../references/cli-reference.md) - Complete CLI subcommand and flag reference
++- [integration-patterns.md](../references/integration-patterns.md) - Cross-AI orchestration patterns
++- [devin-tools.md](../references/devin-tools.md) - Built-in capabilities (run_subagent, /handoff, MCP, session management)
++- [agent-delegation.md](../references/agent-delegation.md) - Subagent profile roster and custom AGENT.md patterns
++- [cloud-handoff.md](../references/cloud-handoff.md) - /handoff cloud-handoff mechanics and state transfer
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md
+index d942da77b55..15354312774 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/agent-delegation.md
+@@ -21,10 +21,6 @@ Routing reference for delegating tasks to Devin CLI's subagent system.
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI decides WHAT to do, Devin CLI decides HOW to do it within the delegated scope. Devin's `run_subagent` tool spawns independent workers that share tools and codebase context with the parent but operate in their own conversation chain — they do not inherit the parent's conversation history.
+-
+ ### Purpose
+ 
+ Documents Devin's subagent system and how any AI assistant orchestrates it. The calling AI acts as the **conductor** (planner, validator, integrator) while Devin CLI executes targeted tasks through its subagent profiles.
+@@ -38,6 +34,10 @@ Documents Devin's subagent system and how any AI assistant orchestrates it. The
+ - Custom specialized workers defined in `.devin/agents/[name]/AGENT.md`
+ - Fresh-perspective debugging after the calling AI's attempts fail
+ 
++### Core Principle
++
++The calling AI decides WHAT to do, Devin CLI decides HOW to do it within the delegated scope. Devin's `run_subagent` tool spawns independent workers that share tools and codebase context with the parent but operate in their own conversation chain — they do not inherit the parent's conversation history.
++
+ ---
+ 
+ ## 2. ORCHESTRATION MODEL
+@@ -417,11 +417,11 @@ fi
+ 
+ ## 10. INSTALLED-VERSION PROBES
+ 
+-Live probe records moved here from SKILL.md, which keeps only the conclusions.
++Live probe records for the installed version, which SKILL.md summarizes as conclusions.
+ 
+ ### Skills and Rules Discovery
+ 
+-The installed Devin CLI discovers repository skills and rules that are already present; this phase does not add adapters for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
++The installed Devin CLI discovers repository skills and rules that are already present; cli-devin adds no adapter for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
+ 
+ ```text
+   /sk-doc [user,model] (./.skilled/skills/sk-doc)
+@@ -437,7 +437,7 @@ The installed Devin CLI discovers repository skills and rules that are already p
+   /sk-design-md-generator [user,model] (./.skilled/skills/sk-design/sk-design-md-generator)
+ ```
+ 
+-The phase's live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.skilled/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
++The live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.skilled/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
+ 
+ The live `devin rules list` output was:
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md
+index aa17d4f6ad3..ebaa59b9a5d 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/cli-reference.md
+@@ -21,13 +21,9 @@ Comprehensive reference for all Devin CLI commands, flags, models, configuration
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates seven families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), GPT-6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
+-
+ ### Purpose
+ 
+-Provide a comprehensive, single-source reference for all Devin CLI commands, flags, models, configuration options, permission modes, and troubleshooting guidance.
++Be the single source a dispatcher checks before running Devin, so every option a run depends on, permission modes included, is looked up rather than remembered.
+ 
+ ### When to Use
+ 
+@@ -37,12 +33,16 @@ Provide a comprehensive, single-source reference for all Devin CLI commands, fla
+ - Configuring subagents via `.devin/agents/[name]/AGENT.md`
+ - Selecting the right permission mode for a task
+ 
++### Core Principle
++
++Devin CLI is Cognition's terminal-based AI coding agent — a fast, minimal agent that lives both in the terminal and in the cloud. It fronts a broad multi-model surface; this skill curates seven families in scope — DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max), GPT-6 (Luna Max), Grok (4.5 and 4.6), and SWE-2 (full catalog: [providers-and-models.md](./providers-and-models.md)). Devin's native Adaptive model router and its full 48-family roster remain available via `devin models list` but are out of this skill's curated scope. The skill dispatches `swe` (alias → `swe-2`) at `accept-edits` permission mode by default; users can override the model and mode. It provides direct access to multi-model coding, subagent delegation, cloud handoff, MCP integration, and session management — all governed by configurable permission modes.
++
+ ### Key Sources
+ 
+ | Source | URL |
+ |--------|-----|
+-| **Documentation** | https://docs.devin.ai/cli |
+-| **Web App** | https://app.devin.ai |
++| **Documentation** | [docs.devin.ai/cli](https://docs.devin.ai/cli) |
++| **Web App** | [app.devin.ai](https://app.devin.ai) |
+ | **Runtime** | Node.js / native binary |
+ | **Version** | 3000.2.17 |
+ 
+@@ -116,6 +116,10 @@ Credentials:
+ | `--resume` | `-r` | `[<session-id>]` | Resume a specific session by ID, or select interactively |
+ | `--sandbox` | | (none) | Enable OS-level process sandboxing (selects `autonomous` permission mode) |
+ | `--prompt-file` | | `<file>` | Load the initial prompt from a file |
++| `--config` | | `<path>` | Configuration file path (override default `~/.config/devin/config.json`) |
++| `--export` | | `[<path>]` | Export conversation to a file after each turn (ATIF format) |
++| `--agent-config` | | `<file>` | Declarative agent configuration file (JSON or YAML) |
++| `--respect-workspace-trust` | | `true`, `false` | Respect workspace trust settings |
+ 
+ > **Verifying a flag value without spending a session.** `--help` under-reports the
+ > `--permission-mode` enum, so never conclude a value is invalid because help omits it.
+@@ -132,10 +136,6 @@ Credentials:
+ > `dangerous`, `yolo`, `bypass`, `autonomous` all accepted; `plan` and `manual`
+ > (Claude's modes, not Devin's) rejected. Re-run the probe after a CLI upgrade —
+ > `smart` was rejected at 3000.2.17 and is accepted at 3000.6.7.
+-| `--config` | | `<path>` | Configuration file path (override default `~/.config/devin/config.json`) |
+-| `--export` | | `[<path>]` | Export conversation to a file after each turn (ATIF format) |
+-| `--agent-config` | | `<file>` | Declarative agent configuration file (JSON or YAML) |
+-| `--respect-workspace-trust` | | `true`, `false` | Respect workspace trust settings |
+ 
+ ### Prompt Syntax
+ 
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md
+index 7075bda963d..2f5b80cbf64 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/cloud-handoff.md
+@@ -21,10 +21,6 @@ Complete reference for the `/handoff` command and cloud Devin session mechanics.
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-When a task outgrows the local terminal — or you want Devin to keep working while you step away — the `/handoff` command transfers the current session to a cloud Devin session. The cloud session gets its own VM with a shell, browser, and full repo access, so it can keep going after you close your laptop.
+-
+ ### Purpose
+ 
+ Documents the `/handoff` command mechanics, use cases, state transfer, and integration patterns for offloading work from the local Devin CLI to a cloud Devin session.
+@@ -44,6 +40,10 @@ Documents the `/handoff` command mechanics, use cases, state transfer, and integ
+ - Tasks involving sensitive data without confirming cloud session isolation
+ - Tasks where the local environment has specific dependencies not available in the cloud VM
+ 
++### Core Principle
++
++When a task outgrows the local terminal — or you want Devin to keep working while you step away — the `/handoff` command transfers the current session to a cloud Devin session. The cloud session gets its own VM with a shell, browser, and full repo access, so it can keep going after you close your laptop.
++
+ ---
+ 
+ ## 2. HANDOFF MECHANICS
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md
+index 249c33ef500..4505640e929 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/devin-tools.md
+@@ -22,10 +22,6 @@ Reference for all Devin CLI capabilities, highlighting unique features and the 4
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-Delegate to Devin CLI for capabilities the calling AI lacks natively — especially `run_subagent` for parallel subagent delegation, `/handoff` for cloud session transfer, multi-model selection, and the OS-level sandbox for autonomous execution.
+-
+ ### Purpose
+ 
+ Covers all built-in capabilities available in Devin CLI, highlights what is unique compared to other CLI executors, and provides the 4-tier permission model for task routing decisions.
+@@ -37,6 +33,10 @@ Covers all built-in capabilities available in Devin CLI, highlights what is uniq
+ - Mapping calling AI capabilities to Devin CLI equivalents
+ - Leveraging Devin-exclusive features (subagents, /handoff, multi-model, sandbox)
+ 
++### Core Principle
++
++Delegate to Devin CLI for capabilities the calling AI lacks natively — especially `run_subagent` for parallel subagent delegation, `/handoff` for cloud session transfer, multi-model selection, and the OS-level sandbox for autonomous execution.
++
+ ---
+ 
+ ## 2. UNIQUE CAPABILITIES
+@@ -155,6 +155,11 @@ devin -p --model swe-1-6-fast "Fix the typo at line 42"
+ - Domain allow/deny lists filter network access
+ - Only available with `autonomous` permission mode
+ 
++**Platform requirements:**
++- macOS: works out of the box via Seatbelt
++- Linux: requires `bwrap` and `socat` (run `devin sandbox setup` for prerequisites)
++- Windows: use WSL 2 (native Windows cannot run the sandbox)
++
+ **Usage:**
+ 
+ ```bash
+@@ -167,11 +172,6 @@ devin --sandbox -p "Run the test suite and fix any failures" --model adaptive
+ - Running untrusted or potentially destructive commands safely
+ - CI-like validation in an isolated environment
+ 
+-**Platform requirements:**
+-- macOS: works out of the box via Seatbelt
+-- Linux: requires `bwrap` and `socat` (run `devin sandbox setup` for prerequisites)
+-- Windows: use WSL 2 (native Windows cannot run the sandbox)
+-
+ ---
+ 
+ ## 3. STANDARD TOOLS
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md
+index 08c36cab22f..79ffc3bf610 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md
+@@ -21,10 +21,6 @@ Proven patterns for orchestrating Devin CLI from any AI assistant session.
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-
+-The calling AI acts as the orchestrator (planner, validator, integrator) while Devin CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Devin's multi-model surface, subagent delegation, and cloud handoff — not from redundant work.
+-
+ ### Purpose
+ 
+ Each pattern documented here includes the rationale, implementation template, and practical considerations for combining the calling AI with Devin CLI effectively. Devin is the 5th executor kind in the cli-* family alongside cli-codex (OpenAI), cli-claude-code (Anthropic), cli-opencode (OpenCode), and cli-cursor (Cursor).
+@@ -38,6 +34,10 @@ Each pattern documented here includes the rationale, implementation template, an
+ - You need to offload long-running tasks to a cloud VM with browser and shell access
+ - You want cross-AI validation from a Cognition-backed model
+ 
++### Core Principle
++
++The calling AI acts as the orchestrator (planner, validator, integrator) while Devin CLI executes targeted tasks. The value comes from combining different model perspectives and leveraging Devin's multi-model surface, subagent delegation, and cloud handoff — not from redundant work.
++
+ ---
+ 
+ ## 2. GENERATE-REVIEW-FIX CYCLE
+@@ -199,6 +199,8 @@ When a dispatcher script iterates over lines of input with `while IFS= read -r l
+ 
+ **Root cause:** `devin -p` inherits the script's stdin by default. Each backgrounded devin process reads from the same file descriptor and races with the `read` command for lines.
+ 
++**Always pair `devin -p ... &` inside a read-loop with `</dev/null` on the redirection.**
++
+ ```bash
+ # BAD: devin inherits the loop's stdin, drains input.jsonl after iteration ~3
+ while IFS= read -r line; do
+@@ -213,8 +215,6 @@ while IFS= read -r line; do
+ done < input.jsonl
+ ```
+ 
+-**Always pair `devin -p ... &` inside a read-loop with `</dev/null` on the redirection.**
+-
+ ---
+ 
+ ## 5. MODEL SELECTION STRATEGY
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md b/.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md
+index 0ae4cb3d375..1bc74b79a9f 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md
+@@ -21,16 +21,21 @@ The single catalog of the models, aliases, defaults, permission-mode lever, and
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
+-One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI**, a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the families kept in scope for cli-devin: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only), Grok, and SWE-1.7. Gemini 3.8 Flash High was retired from this route on 2026-09-06 (see the note below).
++### Purpose
++
++One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin.
+ 
+ ### When to Use
+ - Choosing a `--model <alias>` for a `devin -p` dispatch
+ - Mapping desired autonomy onto the `--permission-mode` lever (Devin has no headless reasoning-effort flag)
+ - Recalling the default model and the canonical non-interactive invocation shape
+ 
++### Core Principle
++
++This mode is backed by **Cognition's Devin CLI**, a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the families kept in scope for cli-devin: DeepSeek, GLM-5.2, GPT-5.6 (Luna Max only), Grok, and SWE-1.7. Gemini 3.8 Flash High was retired from this route on 2026-09-06 (see the note below).
++
+ ### Scope
+-This file enumerates the model/alias/default facts and the dispatch envelope. It does NOT own: the full `devin` flag surface, auth pre-flight, session and troubleshooting tables (see [cli-reference.md](./cli-reference.md)), per-model prompt-craft (see §6), or the fan-out / model-enforcement runtime (see §6).
++This file enumerates the model/alias/default facts and the dispatch envelope. It does NOT own: the full `devin` flag surface, auth pre-flight, session and troubleshooting tables (see [cli-reference.md](./cli-reference.md)), per-model prompt-craft (see [../SKILL.md](../SKILL.md) §4 Rule 10), or the fan-out / model-enforcement runtime (see §6).
+ 
+ ### Authority pointers
+ - Full CLI flags, subcommands, auth pre-flight, permission modes, troubleshooting → [cli-reference.md](./cli-reference.md)
+@@ -52,31 +57,36 @@ Alphabetical by family, then by model uid within each family.
+ | DeepSeek V4 Flash | `deepseek-v4-flash-max` | 1M | V4 Flash, Max thinking tier (added 2026-08-14) |
+ | DeepSeek V4.1 Flash | `deepseek-v4-1-flash-high` | 1M | V4.1 Flash, High thinking tier. A separate family from V4 Flash, not a rename |
+ | DeepSeek V4.1 Flash | `deepseek-v4-1-flash-max` | 1M | V4.1 Flash, Max thinking tier |
+-| GLM-5.3 Flash | `glm-5-3-flash-high` | 1M | GLM-5.3 Flash, High thinking tier |
+-| GLM-5.3 Flash | `glm-5-3-flash-max` | 1M | GLM-5.3 Flash, Max thinking tier |
+ | GLM-5.2 | `glm-5-2` | 200K | High, free tier |
+ | GLM-5.2 | `glm-5-2-1m` | 1M | High, 1M context |
+ | GLM-5.2 | `glm-5-2-max` | 200K | Max (paid) |
+ | GLM-5.2 | `glm-5-2-max-1m` | 1M | Max, 1M context |
+ | GLM-5.2 | `glm-5-2-none` | 200K | Reasoning disabled |
+ | GLM-5.2 | `glm-5-2-none-1m` | 1M | Reasoning disabled, 1M context |
++| GLM-5.3 Flash | `glm-5-3-flash-high` | 1M | GLM-5.3 Flash, High thinking tier |
++| GLM-5.3 Flash | `glm-5-3-flash-max` | 1M | GLM-5.3 Flash, Max thinking tier |
+ | GPT-5.6 Luna | `gpt-5-6-luna-max` | 1M | Luna Max thinking, the cheapest GPT-5.6 persona (added 2026-08-14) |
+ | GPT-5.6 Luna | `gpt-5-6-luna-max-priority` | 1M | Luna Max, Fast: `-priority` is Devin's Fast suffix (added 2026-08-14) |
+ | GPT-6 Luna | `gpt-6-luna-max` | 1M | GPT-6 Luna Max thinking, a separate family from GPT-5.6 Luna (added 2026-09-24) |
+ | GPT-6 Luna | `gpt-6-luna-max-priority` | 1M | GPT-6 Luna Max, Fast (added 2026-09-24) |
+ | SWE-1.7 | `swe-1-7` | 262K | Max effort, free (beta) |
+-| SWE-2 | `swe-2-max` | 262K | Max effort, free. The `swe` alias resolves to this family |
+-| SWE-2 | `swe-2-high` | 262K | High effort, free |
+-| SWE-2 | `swe-2-medium` | 262K | Medium effort, free |
+ | SWE-1.7 | `swe-1-7-lightning` | 203K | Lightning speed tier (beta) |
+ | SWE-1.7 | `swe-1-7-medium` | 262K | Medium effort, free (beta) |
++| SWE-2 | `swe-2-high` | 262K | High effort, free |
++| SWE-2 | `swe-2-max` | 262K | Max effort, free. The `swe` alias resolves to this family |
++| SWE-2 | `swe-2-medium` | 262K | Medium effort, free |
+ 
+ ### Notes on the roster
+ - Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias resolves to the SWE-2 family. Pin the exact uid in scripts for predictability.
+ - **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` (the Max thinking tier of the DeepSeek V4 Flash family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
+ - **GPT-6 Luna Max joins (2026-09-24).** `gpt-6-luna-max` and `gpt-6-luna-max-priority` were confirmed verbatim in the live `devin models list` on devin 3000.11.1, which lists GPT-6 Luna and GPT-5.6 Luna as separate families, so the GPT-5.6 pair stays. `gpt-6-luna-max-priority` is dispatch-tested: a direct `devin -p` call returned a live reply at exit 0. `gpt-6-luna-max` is list-verified only.
+-- **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max`. On devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking. cli-pi passes `--thinking max`. On OpenCode 1 the same pin is `--variant max`. On OpenCode 2 it rides on the model id instead (`-m provider/model#max`), so a v2 reader confirms that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
++- **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max`. On devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag; their fan-out builders pin `deepseek-v4-flash` to max thinking:
++  - cli-pi passes `--thinking max`.
++  - On OpenCode 1 the same pin is `--variant max`.
++  - On OpenCode 2 it rides on the model id instead (`-m provider/model#max`), so a v2 reader confirms that `opencode models --standalone` lists the `<provider>/` prefix of the model you pass to `-m` first.
++
+ **Gemini 3.8 Flash High retired from cli-devin (2026-09-06).** The uid `gemini-3-8-flash-high` was in scope from 2026-08-15 and is now rejected by the fan-out allowlist: Devin bills it at twice the 3.7 rate and a single two-iteration research pass exhausted the daily quota. Gemini 3.8 Flash High stays reachable through the cursor route. Do not dispatch it through Devin.
++
+ - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled. `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
+ - This is a curated subset. Devin's full 48-family roster (Claude, GPT, other Gemini, Kimi, older SWE, Fusion pairings, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
+ - Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
+@@ -93,6 +103,8 @@ Dispatch this mode's default without opening any other file:
+ | Default permission mode | `--permission-mode accept-edits` |
+ | Prompt separator | `--` before the print-mode prompt (required) |
+ 
++If Devin is not authenticated (`devin auth status` not "logged in"), the mode ASKS the operator to run `devin auth login`. It never substitutes a different auth method or a model the user did not approve. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3.
++
+ ```bash
+ devin -p \
+   --model swe \
+@@ -101,8 +113,6 @@ devin -p \
+   "<prompt>"
+ ```
+ 
+-If Devin is not authenticated (`devin auth status` not "logged in"), the mode ASKS the operator to run `devin auth login`. It never substitutes a different auth method or a model the user did not approve. See the auth pre-flight decision tree in [cli-reference.md](./cli-reference.md) §3.
+-
+ ---
+ 
+ ## 4. REASONING-EFFORT / THINKING LEVER
+@@ -127,7 +137,7 @@ cli-devin has **no headless reasoning-effort flag**. There is no `--variant` (Op
+ 
+ `--sandbox` is orthogonal containment, not a fifth permission mode. It enables Devin's OS sandboxing and does not select an additional `--permission-mode` value. Combine it with one of the four modes above when containment is required. This separation matches the live `devin --help` surface.
+ 
+-**2. Model thinking level, interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`deepseek-v4-flash-max` or `gpt-5-6-luna-max` for deep/max reasoning, `glm-5-2-max` for strong generation, and `swe-1-7-lightning` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`. The Max thinking tier is baked into the uid (`…-max`). The Fast speed tier is the `-priority` suffix (e.g. `gpt-5-6-luna-max-priority`), not a separate flag.
++**2. Model thinking level, interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`), or switch the interactive model with `/model <name>` / `Alt+T`. For non-interactive `-p` dispatch, choose the depth by picking the model instead: `deepseek-v4-flash-max` or `gpt-5-6-luna-max` for deep/max reasoning, `glm-5-2-max` for strong generation, and `swe-1-7-lightning` for minimal. The Max thinking tier is baked into the uid (`…-max`). The Fast speed tier is the `-priority` suffix (e.g. `gpt-5-6-luna-max-priority`), not a separate flag.
+ 
+ ---
+ 

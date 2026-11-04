@@ -10,7 +10,7 @@ trigger_phrases:
   - "devin agent.md profile"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.1
+version: 1.4.1.0
 ---
 
 # Devin Subagent Delegation Reference
@@ -20,10 +20,6 @@ Routing reference for delegating tasks to Devin CLI's subagent system.
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-The calling AI decides WHAT to do, Devin CLI decides HOW to do it within the delegated scope. Devin's `run_subagent` tool spawns independent workers that share tools and codebase context with the parent but operate in their own conversation chain — they do not inherit the parent's conversation history.
 
 ### Purpose
 
@@ -37,6 +33,10 @@ Documents Devin's subagent system and how any AI assistant orchestrates it. The 
 - Code changes via `subagent_general` (runs on parent's model)
 - Custom specialized workers defined in `.devin/agents/[name]/AGENT.md`
 - Fresh-perspective debugging after the calling AI's attempts fail
+
+### Core Principle
+
+The calling AI decides WHAT to do, Devin CLI decides HOW to do it within the delegated scope. Devin's `run_subagent` tool spawns independent workers that share tools and codebase context with the parent but operate in their own conversation chain — they do not inherit the parent's conversation history.
 
 ---
 
@@ -417,11 +417,11 @@ fi
 
 ## 10. INSTALLED-VERSION PROBES
 
-Live probe records moved here from SKILL.md, which keeps only the conclusions.
+Live probe records for the installed version, which SKILL.md summarizes as conclusions.
 
 ### Skills and Rules Discovery
 
-The installed Devin CLI discovers repository skills and rules that are already present; this phase does not add adapters for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
+The installed Devin CLI discovers repository skills and rules that are already present; cli-devin adds no adapter for either mechanism. On Devin `3000.2.17`, the live `devin skills list` output included these repo-local packets:
 
 ```text
   /sk-doc [user,model] (./.skilled/skills/sk-doc)
@@ -437,7 +437,7 @@ The installed Devin CLI discovers repository skills and rules that are already p
   /sk-design-md-generator [user,model] (./.skilled/skills/sk-design/sk-design-md-generator)
 ```
 
-The phase's live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.skilled/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
+The live context records Devin as discovering 13 top-level skill packets. The rerun in this checkout printed the 12 concrete `./.skilled/skills/*` paths above, plus the external `devin-cli` packet and the empty-path `declarative-repo-setup` entry; the output is preserved here rather than inventing a filesystem path for the thirteenth local packet.
 
 The live `devin rules list` output was:
 

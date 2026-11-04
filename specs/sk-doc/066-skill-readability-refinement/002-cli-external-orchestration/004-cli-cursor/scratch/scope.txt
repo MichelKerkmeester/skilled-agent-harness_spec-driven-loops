@@ -1,0 +1,12 @@
+.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+.skilled/skills/cli-external-orchestration/cli-cursor/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-cursor/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/cursor-tools.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/hook-contract.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md
+.skilled/skills/cli-external-orchestration/cli-cursor/references/shared-editor-config.md

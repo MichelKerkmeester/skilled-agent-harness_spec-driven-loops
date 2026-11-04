@@ -10,7 +10,7 @@ trigger_phrases:
   - "opencode version drift"
 importance_tier: important
 contextType: implementation
-version: 1.4.26.0
+version: 1.4.27.0
 ---
 
 # OpenCode CLI - Complete Command Reference
@@ -20,10 +20,6 @@ Comprehensive reference for the OpenCode CLI binary, every subcommand the cli-op
 ---
 
 ## 1. OVERVIEW
-
-### Core Principle
-
-OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, OpenCode, Copilot, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, and MCP runtime.
 
 ### Purpose
 
@@ -37,12 +33,16 @@ Provide a single-source reference for the OpenCode CLI surface: every subcommand
 - Troubleshooting a failed `opencode run` invocation
 - Confirming the self-invocation guard signal against the live binary
 
+### Core Principle
+
+OpenCode is the framework that owns this repository. The same binary that hosts the operator's TUI session also accepts non-interactive invocations through `opencode run`. The cli-opencode skill calls `opencode run` from external runtimes (Claude Code, OpenCode, Copilot, raw shell) so the calling AI can dispatch a task into a fresh OpenCode session that loads the full plugin, skill, and MCP runtime.
+
 ### Key Sources
 
 | Source | URL |
 |--------|-----|
 | **Binary** | `opencode` for OpenCode 2, the recommended target; side by side, the OpenCode 1 fallback is `opencode1`, and a v1-only machine names it `opencode`. With no `OPENCODE_BIN`, resolution takes the first `opencode2` anywhere on `PATH` and only falls back to the first `opencode` in `PATH` order when none exists |
-| **Repository** | https://github.com/sst/opencode |
+| **Repository** | [sst/opencode](https://github.com/sst/opencode) |
 | **Version baseline** | OpenCode 2 (recommended): 2.1.4 |
 | **Version baseline** | OpenCode 1 (fallback): 1.19.4 |
 | **Runtime** | Node.js 18+ for the npm install path or the standalone binary on macOS |

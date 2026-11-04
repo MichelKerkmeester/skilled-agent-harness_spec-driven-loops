@@ -1,0 +1,62 @@
+---
+title: OpenCode CLI — Prompt Quality Card
+description: Fast-path prompt discipline for OpenCode CLI dispatches; frameworks and CLEAR are canonical in sk-prompt.
+trigger_phrases:
+  - "opencode prompt quality card"
+  - "opencode model overrides"
+  - "opencode dispatch framework precedence"
+importance_tier: normal
+contextType: planning
+version: 1.4.3.0
+---
+
+# OpenCode CLI: Prompt Quality Card
+
+Fast-path dispatch discipline for `opencode run` prompts. The 7-framework table, task-to-framework map, pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are owned by the canonical card. Do not inline them here.
+
+## 1. OVERVIEW
+
+### Purpose
+
+This card is the OpenCode CLI fast-path prompt-quality reference. It delegates the framework table + CLEAR check to the canonical card and records only the OpenCode-specific precedence rule.
+
+### Usage
+
+Compose a dispatch prompt by starting from the shared layer (canonical card) and following the precedence rule.
+
+---
+
+## 2. SHARED LAYER (DELEGATED, DO NOT INLINE)
+
+The 7-framework selection table, the task->framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
+
+- [`cli-prompt-quality-card.md`](../../../sk-prompt/assets/cli-prompt-quality-card.md) - Framework table, task map and CLEAR check
+- [`patterns-evaluation.md`](../../../sk-prompt/references/patterns-evaluation.md) - Deep theory
+
+---
+
+## 3. OPENCODE SMALL-MODEL DISPATCH
+
+OpenCode dispatches the MiniMax, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card. There are no per-model prompt-craft profiles.
+
+- **Agent:** Omit `--agent` for all small-model dispatches.
+- **Effort:** OpenCode 2 (recommended) takes the level on the model id (`#<level>`), and OpenCode 1 (fallback) takes the reasoning effort through `--variant`.
+- **MiniMax endpoints:** MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3.
+- **Ambiguity:** Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path. Resolve before dispatch.
+- **Guard:** Always include a self-invocation guard signal when the dispatched session could loop back.
+
+---
+
+## 4. DELEGATION / PRECEDENCE
+
+The 2-tier precedence rule (fast path -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
+
+OpenCode-specific escalation example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first, then pass that result to OpenCode.
+
+---
+
+## 5. RELATED RESOURCES
+
+- [`cli-prompt-quality-card.md`](../../../sk-prompt/assets/cli-prompt-quality-card.md) - Canonical framework table, task map and CLEAR check
+- [`prompt-templates.md`](./prompt-templates.md) - Copy-paste dispatch templates
+- [`SKILL.md`](../SKILL.md) - Skill entry point and the 2-tier precedence rule

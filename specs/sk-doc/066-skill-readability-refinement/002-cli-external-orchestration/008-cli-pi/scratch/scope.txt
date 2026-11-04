@@ -1,0 +1,12 @@
+.skilled/skills/cli-external-orchestration/cli-pi/README.md
+.skilled/skills/cli-external-orchestration/cli-pi/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-pi/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-pi/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/mcp-and-third-party-packages.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/pi-tools.md
+.skilled/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md

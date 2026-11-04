@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.7.8.0
+version: 1.7.9.0
 ---
 
 # cli-external-orchestration
@@ -39,9 +39,13 @@ version: 1.7.8.0
 
 ## 2. OVERVIEW
 
-### Why This Hub Exists
+### Purpose
 
 Your machine runs more than one external AI runtime, each with its own CLI and its own failure modes. Picking one by habit is guesswork: the session runs, but it may not fit the task. The hub makes the choice deliberate. One advisor identity reads the request and picks the external CLI that fits it best. Then it dispatches the matching workflow packet.
+
+### When to Use
+
+Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding, a guarded headless Pi run or a quiet oneshot Hermes dispatch. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
 
 ### What It Does
 
@@ -67,6 +71,8 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 
 **Step 2: Dispatch the mode that fits the request.**
 
+When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`.
+
 | Mode | Example prompt |
 |---|---|
 | `cli-opencode` | `Run this task through opencode run with the deepseek provider.` |
@@ -77,7 +83,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 | `cli-pi` | `Use cli-pi for a guarded headless JSON-event review.` |
 | `cli-hermes` | `Use cli-hermes for a quiet oneshot Hermes review through the LLM Gateway.` |
 
-**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. When a request names several modes at once, the `tieBreak` order runs them as an `orderedBundle`. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
+**Step 3: Confirm the dispatch.** The session runs under the target CLI and its writes land in this repo's workspace. Read the mode's `SKILL.md` for its exact dispatch contract before relying on the result.
 
 ---
 
@@ -85,7 +91,11 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 
 ### The Routing Chain
 
-Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface. The registry also carries the advisor routing fields. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` as an `orderedBundle`. `defaultMode` is `null`: genuinely unclear or contradictory intent defers to disambiguation instead of defaulting silently.
+1. Routing reads `hub-router.json` for signals and vocabulary classes, then `mode-registry.json` for packet identity and tool surface.
+2. The registry also carries the advisor routing fields.
+3. The hub's root `ROUTER.md` then maps the request's dispatch intent to the exact leaf resources the selected mode loads (stage two); the hub never emits leaf paths and the surface router never re-decides the mode.
+4. When a request names several modes at once, `routerPolicy.tieBreak` orders `cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`, `cli-pi` and `cli-hermes` as an `orderedBundle`.
+5. `defaultMode` is `null`: genuinely unclear or contradictory intent defers to disambiguation instead of defaulting silently.
 
 ### The Guard Rails
 
@@ -99,10 +109,6 @@ Four behaviors keep dispatch honest:
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Hub
-
-Use the hub when a request belongs to an external CLI runtime: full-runtime OpenCode work, an Anthropic-backed second opinion, an OpenAI-backed review and research pass, Composer's view on a diff, Cognition-backed cloud coding, a guarded headless Pi run or a quiet oneshot Hermes dispatch. If the request is about code inside this repo, the hub dispatches the session and `sk-code` owns the work inside it. If the request is about documentation, `sk-doc` handles it directly and this hub does not write docs.
 
 ### Related Skills
 

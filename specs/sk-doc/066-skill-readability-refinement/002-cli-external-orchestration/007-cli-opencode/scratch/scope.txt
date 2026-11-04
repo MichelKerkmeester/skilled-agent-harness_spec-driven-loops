@@ -1,0 +1,15 @@
+.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+.skilled/skills/cli-external-orchestration/cli-opencode/ROUTER.md
+.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-quality-card.md
+.skilled/skills/cli-external-orchestration/cli-opencode/assets/prompt-templates.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/agent-delegation.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/context-budget.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/destructive-scope-violations.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/install-and-versions.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/integration-patterns.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/opencode-tools.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md
+.skilled/skills/cli-external-orchestration/cli-opencode/references/self-invocation-guard.md

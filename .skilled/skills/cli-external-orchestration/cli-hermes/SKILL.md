@@ -2,7 +2,7 @@
 name: cli-hermes
 description: "Hermes Agent CLI executor for quiet oneshot coding dispatch, LLM Gateway model routing and cross-AI validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.11.0
+version: 1.0.12.0
 ---
 
 # Hermes Agent CLI Orchestrator - Cross-AI Task Delegation
@@ -17,12 +17,12 @@ version: 1.0.11.0
 
 Orchestrate Hermes Agent (Nous Research's open-source, Python-based agent CLI) for quiet oneshot
 coding dispatch, cross-AI validation, and model routing through the operator's LLM Gateway
-provider. The evidence base is the phase 001 research synthesis and, once recorded, the live
-contract pin:
+provider. The evidence base is the research synthesis and the live contract pin:
 [research synthesis](../../../specs/cli-external-orchestration/071-cli-hermes-creation/001-deep-research/research/research.md),
 [contract pin](../../../specs/cli-external-orchestration/071-cli-hermes-creation/002-hermes-contract-pin/implementation-summary.md).
-Claims marked **source-read, unconfirmed** come from the installed Hermes source (v0.21.1) and
-await the pin.
+The pin moved the claims it tested from source-read to observed. Claims still marked **source-read,
+unconfirmed** come from the installed Hermes source (v0.21.1) and stay unconfirmed until a live run
+records them.
 
 **Core principle**: use Hermes for what its surface offers, delegate research and review lineages to the shared
 deep-loop runtime, validate the returned output, and keep the calling AI as conductor.
