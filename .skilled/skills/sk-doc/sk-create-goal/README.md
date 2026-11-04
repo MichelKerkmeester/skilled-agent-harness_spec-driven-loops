@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # sk-create-goal
@@ -146,7 +146,7 @@ The packet path is required and never inferred from conversation history or open
 
 ## 8. MANUAL TESTING PLAYBOOK
 
-[`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds nine deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
+[`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds ten deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
 
 | Scenario file | Behavior under test |
 |---|---|
@@ -155,6 +155,7 @@ The packet path is required and never inferred from conversation history or open
 | `add-goal-to-packet-without-goal.md` | The retrofit operation on a packet with no goal |
 | `cut-over-budget-parent.md` | An over-budget parent is cut without losing a criterion |
 | `refuse-leftover-placeholder.md` | The checker fails a goal that keeps template text |
+| `refuse-leftover-placeholder-conversation.md` | An unresolved decision fails first and passes once the operator supplies it on a later turn |
 | `detect-unbound-phase.md` | The checker fails a parent missing a binding row |
 | `resend-parent-after-child-change.md` | A child change that amends the parent prints the updated slice |
 | `route-session-goal-away.md` | A session-goal request writes no goal file |
@@ -170,9 +171,9 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 |---|---|---|
 | Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (5/5 checks)`, exit 0 |
 | Budget and slices | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the `chat_slice` printed |
-| Checker, lint and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 53`, `fail 0`, including template parity with `goal.md.tmpl` |
+| Checker, lint and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 32`, `fail 0`, including template parity with `goal.md.tmpl` |
 | Criteria lint | `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` | Per-rule counts and `scratch_excluded=`, exit 0 |
-| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=9 ... violations=0` |
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=10 ... violations=0` |
 
 ---
 
@@ -181,6 +182,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | The workflow contract, the rules and the ownership boundaries |
+| [`ROUTER.md`](./ROUTER.md) | The intent model, the pre-write routing decisions and the machine router |
 | [`references/parent-and-nested-goals.md`](./references/parent-and-nested-goals.md) | The top-level, phase-parent, child, retrofit, phase-add and amend workflows |
 | [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs, voice and frontmatter |
 | [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, ordered cuts and the runtime handoff matrix |
@@ -189,7 +191,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 | [`assets/goal-phase-child-template.md`](./assets/goal-phase-child-template.md) | The blank for a phase child |
 | [`assets/goal-exemplars.md`](./assets/goal-exemplars.md) | Cited goal excerpts with rubric outcomes |
 | [`scripts/README.md`](./scripts/README.md) | The checker, the criteria lint, their tests and fixtures |
-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The nine operator scenarios and the run-record contract |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The ten operator scenarios and the run-record contract |
 | [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) | The system-spec-kit source the three templates copy |
 | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |
 | [Goal hooks README](../../../hooks/goal/README.md) | The runtime goal ownership and session-state boundary |

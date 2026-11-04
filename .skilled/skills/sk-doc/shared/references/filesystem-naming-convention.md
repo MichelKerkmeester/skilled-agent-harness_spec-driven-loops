@@ -8,14 +8,24 @@ trigger_phrases:
   - "snake_case exemption boundary"
 importance_tier: important
 contextType: general
-version: 2.1.0.5
+version: 2.1.1.0
 ---
 
 # Filesystem Naming Convention - Kebab-Case Canon
 
+Read this before you name a file, a directory or a script, and before you decide that an existing name may stay.
+
+---
+
 ## 1. OVERVIEW
 
+### Purpose
+
 Kebab-case (hyphens) is the sole canonical form for in-scope filesystem names across the repository. This document is the single source of truth for the rule, its exemptions, and the boundary between a filesystem name and a code identifier.
+
+### When to Use
+
+Use it when you create or rename an in-scope file or directory, when a name looks like a Python package or a tool-mandated file, and when a validator or reviewer questions the form.
 
 ---
 

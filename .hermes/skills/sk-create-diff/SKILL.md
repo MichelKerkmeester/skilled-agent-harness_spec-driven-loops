@@ -175,7 +175,7 @@ State the tier to the user; never present a low-fidelity comparison as complete.
 - Never add packet-local `graph-metadata.json` or `description.json`.
 - Never send document content off-machine or fetch a remote resource into the report.
 
-### ⚠️ ESCALATE
+### ⚠️ ESCALATE IF
 
 - When a PDF has no text layer (appears scanned) — the comparison would be empty; OCR is out of scope.
 - When the document format is unsupported and no explicit pre-extracted pair can be provided.
@@ -218,18 +218,7 @@ The task is successful when:
 
 ---
 
-## 9. RELATED RESOURCES
-
-- `references/README.md` — reference route-map (capabilities/fidelity, workflow, CLI reference, accessibility contract, worked example).
-- `feature-catalog/feature-catalog.md` — canonical inventory of this mode's capabilities.
-- `manual-testing-playbook/manual-testing-playbook.md` — operator-facing manual validation scenarios.
-- `assets/fixtures/` — a runnable before/after worked example.
-- `../shared/` — shared sk-doc quality standards and document validator.
-- Engine and mode design: `.opencode/specs/sk-doc/016-create-diff-mode/` (parent spec, phase `006-opencode-skill-and-accessibility`, research synthesis in `001-research-and-requirements/research/research.md`).
-
----
-
-## 10. REFERENCES
+## 9. REFERENCES
 
 - `scripts/create_diff.py` — the comparison engine (extraction, diff, snapshots, report).
 - `scripts/validate_report.py` — report safety/self-containment validator.
@@ -238,3 +227,14 @@ The task is successful when:
 - `references/workflow.md` — baseline-capture, explicit-pair, and snapshot lifecycle.
 - `references/accessibility-contract.md` — the report's accessibility guarantees.
 - `references/worked-example.md` — an end-to-end walkthrough using the shipped fixtures.
+
+---
+
+## 10. RELATED RESOURCES
+
+- `references/README.md` — reference route-map (capabilities/fidelity, workflow, CLI reference, accessibility contract, worked example).
+- `feature-catalog/feature-catalog.md` — canonical inventory of this mode's capabilities.
+- `manual-testing-playbook/manual-testing-playbook.md` — operator-facing manual validation scenarios.
+- `assets/fixtures/` — a runnable before/after worked example.
+- `../shared/` — shared sk-doc quality standards and document validator.
+- Engine and mode design: `specs/sk-doc/z_archive/016-create-diff-mode/` (parent spec, phase `006-opencode-skill-and-accessibility`, research synthesis in `001-research-and-requirements/research/research.md`).

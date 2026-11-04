@@ -8,12 +8,23 @@ trigger_phrases:
   - "create-diff flags"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # CLI reference
 
+Use this when a command needs an exact flag, or when a non-zero exit has to become a message a user can act on.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+The complete command surface of `scripts/create_diff.py`: every subcommand, flag, JSON summary shape and exit code.
+
+### When to Use
+
+- Looking up a subcommand or flag before running the engine.
+- Mapping a non-zero exit onto the failure it reports.
 
 Engine: `scripts/create_diff.py` (run with `python3`). All paths are relative to where you run it; the engine never writes to a source document.
 
@@ -79,12 +90,12 @@ python3 create_diff.py status [<file>] [--state-dir DIR] [--json]
 
 Remove stored baselines.
 
+With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to preview.
+
 ```bash
 python3 create_diff.py cleanup \
   [--file F] [--older-than DAYS] [--state-dir DIR] [--dry-run]
 ```
-
-With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to preview.
 
 ---
 

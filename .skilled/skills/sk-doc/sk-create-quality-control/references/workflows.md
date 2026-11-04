@@ -8,7 +8,7 @@ trigger_phrases:
   - "mode one document quality"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Document Quality Workflows - Execution Modes
@@ -19,20 +19,33 @@ The four execution modes and how to pick one. `SKILL.md` §3 Step 1 owns mode se
 
 ## 1. OVERVIEW
 
-### What Are Workflows?
+### Purpose
 
 Workflows define the execution patterns and operational modes for the markdown documentation workflow. These workflows orchestrate structure checks, AI-assisted review, and (when desired) content improvement.
 
-**Core Purpose**:
 - **Mode selection** - Four execution modes for different use cases
 - **Validation workflow** - Post-operation and pre-submission validation patterns
 - **Phase orchestration** - Sequential or independent phase execution
 - **Error handling** - Graceful degradation with clear error messages
 
+### When to Use
+
+- Auditing an existing SKILL/README/knowledge doc → Report-only audit
+- Answering "is this ready to ship" → Structure validation
+- Improving an existing README → Content optimization
+- Assessing a whole doc set → Batch snapshot
+
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
-**Scope Note**: This reference covers create-quality-control runs only. For other documentation work, see:
-Other documentation workflows are separate packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [diagrams and flowcharts](../../../sk-design/sk-design-diagram/README.md), [READMEs](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
+**Scope Note**: This reference covers create-quality-control runs only. Other documentation workflows are separate packets rather than numbered modes in this reference:
+
+- [skill creation](../../sk-create-skill/references/README.md)
+- [diagrams and flowcharts](../../../sk-design/sk-design-diagram/README.md)
+- [READMEs](../../sk-create-readme/references/README.md)
+- [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md)
+- [feature catalogs](../../sk-create-feature-catalog/references/README.md)
+
+Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
 
 The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
 
@@ -51,17 +64,11 @@ The playbook workflow assumes a root directory playbook plus required per-featur
 | **Content optimization** | 2 | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
 | **Batch snapshot** | 1 (JSON only) | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` per file | Assessing several docs at once, no changes | Per-file JSON report for another agent |
 
-**Mode selection**:
-- Auditing an existing SKILL/README/knowledge doc → Report-only audit
-- Answering "is this ready to ship" → Structure validation
-- Improving an existing README → Content optimization
-- Assessing a whole doc set → Batch snapshot
-
 ---
 
 ## 3. WHERE THE REST LIVES
 
-The validation sequence, enforcement prompts, phase chaining, worked examples, and batch recipes moved to single-concern siblings so this file stays focused on modes:
+The validation sequence, enforcement prompts, phase chaining, worked examples, and batch recipes live in single-concern siblings, so this file stays focused on modes:
 
 | Need | Reference |
 | --- | --- |
@@ -78,6 +85,7 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
 - [validation-and-enforcement.md](./validation-and-enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
 - [workflow-examples.md](./workflow-examples.md) - Worked command examples and batch processing
 - [optimization.md](./optimization.md) - Content transformation procedure
+- [transformation-patterns.md](./transformation-patterns.md) - The 16-pattern before/after catalog
 - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
 - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
 - [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference

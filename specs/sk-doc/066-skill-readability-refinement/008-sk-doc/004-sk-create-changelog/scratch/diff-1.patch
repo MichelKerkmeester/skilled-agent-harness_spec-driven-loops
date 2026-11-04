@@ -1,0 +1,171 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/README.md b/.skilled/skills/sk-doc/sk-create-changelog/README.md
+index f90886c39b..e8097df66c 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/README.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/README.md
+@@ -26,14 +26,14 @@ version: 1.3.2.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-A changelog entry can go wrong in three ways. It lands in the wrong place, as when a change is filed under the wrong component. It carries the wrong version, because a four-part bump (`major.minor.patch.build`) was miscalculated or an existing file blocks the write. Or it buries the one change a reader cares about under every task that shipped. A fixed workflow and a narrative format that keeps only what the reader needs prevent all three.
+-
+ ### What It Does
+ 
+ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolves the source to a global component, calculates the version, writes the entry in the compact or expanded v4 narrative format and checks voice and structure before writing. Every global entry opens with the search metadata a spec document carries, so Gate 1 and `/speckit:search` find it by component and version. With `--release` it also tags the version and publishes the GitHub release, and `sk-git` owns the branch, commit and PR work around it.
+ 
++### Why This Skill Exists
++
++A changelog entry can go wrong in three ways. It lands in the wrong place, as when a change is filed under the wrong component. It carries the wrong version, because a four-part bump (`major.minor.patch.build`) was miscalculated or an existing file blocks the write. Or it buries the one change a reader cares about under every task that shipped. A fixed workflow and a narrative format that keeps only what the reader needs prevent all three.
++
+ ---
+ 
+ ## 3. QUICK START
+@@ -124,7 +124,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+-| Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the summary first, the spec-folder blockquote when sourced from a spec, the sections its tier requires and upgrade guidance |
++| Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the required frontmatter keys are present, at least one trigger phrase is declared and a version file names its version in a phrase. The tier sections, the spec-folder line and the upgrade guidance are checked by hand against `SKILL.md` section 9 |
+ | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
+ | Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path. An extended `skilled` entry keeps its version |
+ 
+@@ -135,6 +135,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Runtime instructions, the seven-step workflow and the versioning and topology rules |
++| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+ | [`assets/changelog-template.md`](assets/changelog-template.md) | Canonical entry format and the rules for what goes in |
+ | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
+ | [`references/worked-examples.md`](./references/worked-examples.md) | Fully written global entries and a note on deprecated packet-local files |
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/SKILL.md b/.skilled/skills/sk-doc/sk-create-changelog/SKILL.md
+index d021aa5430..b8c84077c5 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/SKILL.md
+@@ -31,7 +31,7 @@ Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changel
+ ### When NOT to Use
+ 
+ 1. A release plan with no file output.
+-2. A README (`create-readme`), agent, command, benchmark, flowchart, feature catalog, manual testing playbook or skill. Each has its own `create-*` packet.
++2. A README (`create-readme`), agent, command, benchmark, feature catalog, manual testing playbook or skill. Each has its own `create-*` packet. A flowchart or any other diagram belongs to the `sk-design` hub (`/design:diagram`), which this hub does not register a packet for.
+ 3. Auditing, scoring or optimizing an existing changelog (`create-quality-control`).
+ 4. A source too ambiguous to resolve to a spec folder, a component hint or recent git history.
+ 5. Branch, commit or PR work and release mechanics beyond `--release`, which `sk-git` owns. The tag and GitHub release run in the command YAMLs' release step (section 8), and only for the `skilled` release line.
+@@ -69,7 +69,7 @@ Global output lives under `.skilled/changelog/`. Versions read `v{MAJOR}.{MINOR}
+ 
+ ---
+ 
+-## 4. HOW IT WORKS (HOW_IT_WORKS): CHANGELOG OUTPUT MODES
++## 4. HOW IT WORKS: CHANGELOG OUTPUT MODES
+ 
+ ### Global Component Changelog
+ 
+@@ -104,7 +104,7 @@ The contract in one pass:
+ 1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
+ 2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
+ 3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items and `## Upgrade Notes`.
+-4. A spec-folder blockquote, `> Spec folder: `{path}` (Level {N})`, when the release has a spec folder.
++4. A spec-folder blockquote, ``> Spec folder: `{path}` (Level {N})``, when the release has a spec folder.
+ 5. Content chosen by reader impact and each fact said once. No file, test or schema tables unless the numbers are the story.
+ 
+ When a source such as an older command snippet conflicts with the template, follow the template, write the narrative format and record the mismatch rather than inventing a hybrid.
+@@ -184,15 +184,15 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
+ 3. **Determine version.** Do these in order:
+    - List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on).
+    - List the version entries on the upstream branch with `git ls-tree`, which reads the branch's upstream, else `origin/main`.
+-   - Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version.
+-   - Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge.
+-   - Without a reachable upstream, number locally and say so in the report.
+    For the `skilled` release line with at least one entry, first check the highest entry for a release tag with `git ls-remote --exit-code --tags origin refs/tags/v{latest}`:
+    - Exit 2 means no tag, so that release is still open. Extend that entry wherever it sits instead of numbering a new one, keep its version and skip the bump.
+    - A bump the operator chose is not applied, and the report says so, and says that tagging the open release first starts a new one.
+    - When the open entry exists only upstream, stop and ask for a merge or rebase first.
+    - Any exit other than 0 or 2 means the check failed, so number a new entry and say so rather than risk editing a release that already shipped.
+    Every other component numbers a new entry.
++   - Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version.
++   - Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge.
++   - Without a reachable upstream, number locally and say so in the report.
+ 4. **Generate content.** Read `assets/changelog-template.md`, then:
+    - Write the frontmatter block per the Frontmatter Contract in section 5.
+    - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
+@@ -276,8 +276,6 @@ Structural checks complement it:
+ - no `**Problem:**`/`**Fix:**` labels.
+ - inline `**Breaking:**` markers.
+ 
+-Packet-local files are deprecated, so no new one is validated here. `validate_document.py` still checks the existing ones under `specs/**/changelog/`.
+-
+ After writing, run the shared markdown checks:
+ 
+ ```bash
+@@ -287,6 +285,8 @@ python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <written-file
+ 
+ If validation fails, fix the blocking issues or report the exact blocker and command output.
+ 
++Packet-local files are deprecated, so no new one is validated here. `validate_document.py` still checks the existing ones under `specs/**/changelog/`.
++
+ ---
+ 
+ ## 10. RULES
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md b/.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md
+index cac02d087e..d1918ce62a 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md
+@@ -22,6 +22,12 @@ Where a changelog goes, and the edge cases around placement, back-dating, source
+ 
+ Mode detection and component resolution are authoritative in [../SKILL.md](../SKILL.md) section 6. This file carries the placement table and the edge cases around it.
+ 
++**When to Use**:
++
++- Deciding where a new entry belongs, global or packet-local.
++- Resolving a hub folder or a phase child to the component it touched.
++- Handling back-dating, a source-format conflict or the optional GitHub release.
++
+ ---
+ 
+ ## 2. OUTPUT-MODE PLACEMENT
+@@ -38,7 +44,10 @@ Every new entry is global. The packet-local rows record where existing files sit
+ 
+ ## 3. HUB VERSUS PACKET PLACEMENT
+ 
+-A changelog for the users of a component goes global. Spec packets no longer get their own changelog, so a packet's completed work, a phase child included, goes into the global entry for the component it touched. The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it. For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
++- A changelog for the users of a component goes global.
++- Spec packets no longer get their own changelog, so a packet's completed work, a phase child included, goes into the global entry for the component it touched.
++- The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it.
++- For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md b/.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md
+index a174c53e00..d1c5314dbf 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md
+@@ -22,6 +22,12 @@ Concrete four-part version choices and edge distinctions for global component ch
+ 
+ Version bumps apply only to global component changelogs. Packet-local nested changelogs are deprecated, and the existing ones were never versioned this way. This file adds examples to the bump table and auto-detection order in [../SKILL.md](../SKILL.md) section 4, which stay authoritative.
+ 
++**When to Use**:
++
++- The SKILL.md bump table is not concrete enough for the change in hand.
++- A large change risks being called major when it is not breaking.
++- You are writing a component's first entry, or extending an open `skilled` release.
++
+ ---
+ 
+ ## 2. BUMP DECISION TABLE
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md b/.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md
+index 0e4acdaf56..7253764e99 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md
+@@ -22,6 +22,12 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the
+ 
+ These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the full expanded shape, read the canonical exemplar, `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
+ 
++**When to Use**:
++
++- Modeling a new global entry on a filled-in example rather than a blank template.
++- Checking what the selection rules leave out of a compact entry.
++- Seeing how an expanded section reads before writing one.
++
+ ---
+ 
+ ## 2. COMPACT GLOBAL ENTRY

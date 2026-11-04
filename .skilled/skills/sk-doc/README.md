@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.9.0
+version: 2.3.10.0
 ---
 
 # sk-doc
@@ -49,9 +49,29 @@ sk-doc makes structure the first gate so these problems never reach production. 
 
 ### What It Does
 
-sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation. Its sk-create-with-human-voice packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed. Its sk-create-goal packet authors a spec packet's `goal.md` from a template for its kind and checks the result against the goal contract before handing over the chat slice.
+sk-doc is the single specialist for documentation and OpenCode components. It covers these surfaces:
+
+- **Document quality.** Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content.
+- **Scaffolding and packaging.** It scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships.
+- **Benchmarks.** It authors benchmark packages with deterministic conformance inputs for peer adapters.
+- **Diagrams and inventories.** It builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it.
+- **Document diff.** Its `sk-create-diff` packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.
+- **Human voice.** Its `sk-create-with-human-voice` packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
+- **Goal authoring.** Its `sk-create-goal` packet authors a spec packet's `goal.md` from a template for its kind and checks the result against the goal contract before handing over the chat slice.
 
 It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle together with memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
+
+### When To Use This Skill
+
+Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
+
+You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
+
+Skip sk-doc when the task belongs to a neighbor:
+
+- Code changes route to `sk-code`.
+- Spec-folder lifecycle operations route to `system-spec-kit`.
+- Git workflow orchestration routes to `sk-git`.
 
 ### The Type-Aware Enforcement Layer
 
@@ -121,23 +141,19 @@ The four bands tell you where you stand:
 
 ### Scripts Versus AI
 
-The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
+The scripts own the deterministic work:
+
+- `extract_structure.py` parses, measures, checks and reports.
+- `validate_document.py` gates format at the exit-code level.
+- `init_skill.py` scaffolds a directory.
+- `package_skill.py` validates and bundles.
+- `quick_validate.py` runs fast naming and frontmatter checks.
+
+The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
-
-You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
-
-Skip sk-doc when the task belongs to a neighbor:
-
-- Code changes route to `sk-code`.
-- Spec-folder lifecycle operations route to `system-spec-kit`.
-- Git workflow orchestration routes to `sk-git`.
 
 ### Related Skills
 

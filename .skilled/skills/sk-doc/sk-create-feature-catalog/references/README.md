@@ -9,7 +9,7 @@ trigger_phrases:
   - "create feature catalog reference index"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
 # Create Feature Catalog - References
@@ -38,7 +38,7 @@ Load the file that matches the current task:
 | Concern | Reference | Load When |
 | --- | --- | --- |
 | **The workflow and rules**: when to create, package shape, the numbered creation workflow, root-catalog and per-feature requirements, playbook boundary, ALWAYS/NEVER/ESCALATE | [../SKILL.md](../SKILL.md) | Authoring or restructuring any catalog: this is the primary contract, read it first |
-| **A worked real-world example**: an annotated walkthrough of the shipped `system-spec-kit/feature-catalog/` package: root-catalog anatomy and a real per-feature file, section by section | [examples.md](examples.md) | Modeling a new catalog on a proven layout, or checking what a good root entry and per-feature file actually look like |
+| **A worked real-world example**: an annotated walkthrough of the shipped `system-skill-advisor/feature-catalog/` package: root-catalog anatomy and a real per-feature file, section by section | [examples.md](examples.md) | Modeling a new catalog on a proven layout, or checking what a good root entry and per-feature file actually look like |
 | **Deep-dive pitfalls**: the recurring catalog defects with worked before/after fixes, plus the template-versus-reference split | [common-pitfalls.md](common-pitfalls.md) | A catalog drifts toward roadmap, loses source anchors, breaks slugs, or reads as a wall of prose; reviewing a freshly authored catalog |
 
 ---
@@ -64,4 +64,4 @@ Load the file that matches the current task:
 
 ### Live example
 
-- `.skilled/skills/system-spec-kit/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)
+- `.skilled/skills/system-skill-advisor/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)

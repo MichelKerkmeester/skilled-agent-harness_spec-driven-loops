@@ -8,14 +8,25 @@ trigger_phrases:
   - "pdf extractor dependency"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Capabilities & fidelity tiers
 
+Reach for this before quoting a tier to a user, so the claim matches what the extractor can actually read.
+
 ## 1. OVERVIEW
 
-A diff is only as trustworthy as the extraction behind it. `create-diff` tells the user what tier a comparison is at, so a limited result is never mistaken for a complete one. Run `python3 ../scripts/create_diff.py capabilities` (from the packet dir) to see the live matrix and which PDF extractor, if any, is available.
+### Purpose
+
+A diff is only as trustworthy as the extraction behind it. `create-diff` tells the user what tier a comparison is at, so a limited result is never mistaken for a complete one.
+
+### When to Use
+
+- Describing what a comparison can and cannot see, before the result is trusted.
+- Checking which format, extension or byte sequence the engine refuses.
+
+Run `python3 ../scripts/create_diff.py capabilities` (from the packet dir) to see the live matrix and which PDF extractor, if any, is available.
 
 ---
 
@@ -40,7 +51,10 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
 | docx | `.docx` | `text` | paragraph and table text, heading-styled paragraphs | run formatting, styles, images, comments, tracked changes |
 | pdf | `.pdf` | `text*` | extracted text layer | layout, fonts, images; scanned/image-only pages |
 
-Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
+- Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected.
+- Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report.
+- An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way.
+- A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
 
 ---
 
@@ -64,4 +78,16 @@ A PDF with no text layer (a scan/image) extracts to empty text. The engine detec
 
 ## 6. NORMALIZATION
 
-Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.
+Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits:
+
+- Unicode NFC.
+- `\r\n`/`\r` → `\n`.
+- Trailing whitespace stripped per line.
+
+Text is then split into logical lines:
+
+- An empty file is zero lines (not one phantom blank line).
+- A single trailing newline is not treated as an extra blank line, so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit.
+- Interior blank lines are preserved.
+
+Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.

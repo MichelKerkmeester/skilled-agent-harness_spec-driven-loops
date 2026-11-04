@@ -9,7 +9,7 @@ trigger_phrases:
   - "conversation script schema"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Manual Testing Playbook Conversation Scenarios
@@ -20,9 +20,13 @@ This reference defines the closed script format for conversation scenarios in a 
 
 ## 1. OVERVIEW
 
-Write a conversation scenario when the behavior depends on multiple prompts, scripted answers, runtime actions, or state checks across a session. One prompt is enough when a single request and its result capture the full behavior. The ordered decision rule, the runtime requirements and the cost of each style live in `SKILL.md` §6, Choosing the Scenario Style.
+### Purpose
 
 The script is one fenced `json conversation` block in section 3 of the scenario file. The block is the source of truth for the conversation turns.
+
+### When to Use
+
+Write a conversation scenario when the behavior depends on multiple prompts, scripted answers, runtime actions, or state checks across a session. One prompt is enough when a single request and its result capture the full behavior. The ordered decision rule, the runtime requirements and the cost of each style live in `SKILL.md` §6, Choosing the Scenario Style.
 
 ---
 
@@ -124,6 +128,7 @@ The raw pane slice and `history.txt` exist when the check runs, so a check can r
 - Compaction followed by a send is two turns: one turn with `action: compact` and its check, then a turn with the send.
 - A turn with neither `send` nor `action` is check-only. The first turn holding one of those fields must be a `send`.
 - The validator checks the block but never runs `setup` or `check` commands.
+- Checks must only read state. Nothing may write under `$CONVERSATION_REPO_ROOT`.
 - Never match a model reply with `grep -x` or `grep -Fx` on `screen.txt`. Runtime prefixes prevent an exact line match: Claude replies start with `⏺ `, Codex with `• `, Pi with ` ● `, Devin with a leading space and OpenCode with five spaces. Use `grep -F` with a distinctive marker.
 - `screen.txt` shows a visible 50-row pane that retains earlier turns and the current turn's echoed send. Inspect only text after that turn's echoed send by using the `awk` pattern in [the session resume example](../../../../skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md), or check a marker the model can learn only by reading a file. Never put the expected marker in a `send`.
 - A check can read the turn's evidence from `$CONVERSATION_TURN_DIR`. The raw pane slice in `raw-pane.log` and the full plain-text scrollback in `history.txt` both exist before the check runs. `history.txt` is the right file to search for text that a long reply may have scrolled off the 50-row `screen.txt`. `raw-pane.log` carries terminal escape codes between words, so a plain `grep` on it is unreliable.
@@ -132,7 +137,6 @@ The raw pane slice and `history.txt` exist when the check runs, so a check can r
 - Do not coach the behavior under test. Each `send` must be the plain user request. Do not tell the model to ask a question, pause, refuse or name which tool it used.
 - A question's `match` regular expression must identify the question asked and must not match any text in the echoed `send`.
 - If a required precondition is missing, such as a fixture, credential, tool or network access, setup must exit with status `77` and print a one-line reason to skip the runtime. Its first non-empty output line is the blocker. A check can exit `77` to skip its turn.
-- Checks must only read state. Nothing may write under `$CONVERSATION_REPO_ROOT`.
 
 ---
 
@@ -150,7 +154,12 @@ Exit status `0` means every runtime passed or skipped. Exit status `1` means at 
 
 Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
 
-The runner sets `CONVERSATION_RUNTIME`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` (the runtime's evidence folder) and `CONVERSATION_TURN_DIR` (the turn's evidence folder) for each `check` command. A check defaults to 60 seconds. Set `CONVERSATION_CHECK_TIMEOUT_MS` to override that bound. An overrun fails as `CHECK_TIMEOUT`. Each `setup` command has 120 seconds. An overrun refuses the run as `SETUP_TIMEOUT`. Exit 77 skips the runtime with its first non-empty output line as the blocker. The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand. `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
+- The runner sets `CONVERSATION_RUNTIME`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` (the runtime's evidence folder) and `CONVERSATION_TURN_DIR` (the turn's evidence folder) for each `check` command.
+- A check defaults to 60 seconds. Set `CONVERSATION_CHECK_TIMEOUT_MS` to override that bound. An overrun fails as `CHECK_TIMEOUT`.
+- Each `setup` command has 120 seconds. An overrun refuses the run as `SETUP_TIMEOUT`.
+- Exit 77 skips the runtime with its first non-empty output line as the blocker.
+- The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand.
+- `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
 
 Use `--seed N` to replay random delays declared as `[min, max]`. The runner records the seed in `result.json`. Use `--overwrite` to replace existing per-runtime evidence folders. Without it, the runner refuses a non-empty runtime folder.
 

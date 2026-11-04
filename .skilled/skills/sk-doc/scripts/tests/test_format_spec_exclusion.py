@@ -34,3 +34,25 @@ def test_format_spec_and_samples_are_skipped():
 def test_sibling_in_examples_folder_is_still_validated():
     path = GENERATOR / "examples/stripe/writing-notes.md"
     assert should_exclude_path(str(path)) == (False, None)
+
+
+SKILLS = REPO / ".skilled/skills/sk-design"
+
+
+def test_mode_style_references_are_skipped():
+    for path in (
+        SKILLS / "sk-design-chart/assets/style-reference/evilcharts/DESIGN.md",
+        SKILLS / "sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md",
+    ):
+        skipped, reason = should_exclude_path(str(path))
+        assert skipped is True, path
+        assert reason.startswith("Style Reference")
+
+
+def test_style_reference_siblings_and_library_bundles_are_still_validated():
+    for path in (
+        SKILLS / "sk-design-chart/assets/style-reference/README.md",
+        SKILLS / "sk-design-chart/assets/style-reference/evilcharts/origin.md",
+        SKILLS / "sk-design-md-generator/styles/library/bundles/depot/DESIGN.md",
+    ):
+        assert should_exclude_path(str(path)) == (False, None), path

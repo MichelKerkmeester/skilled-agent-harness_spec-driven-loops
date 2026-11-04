@@ -20,7 +20,18 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when a document needs a frontmatter block and its class's field set is unclear, when a validator rejected a block and named a field rather than a fix, when a `description` is over budget, when a four-part `version` needs deriving or reconciling against a changelog anchor, or when someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for. It routes to two resource families: `assets/frontmatter-templates.md`, the field reference and per-class templates that load on every path, and `references/frontmatter-versioning.md`, which is conditional on the question being about `version`, its derivation or the corpus gate.
+Requests reach this skill when:
+
+- A document needs a frontmatter block and its class's field set is unclear.
+- A validator rejected a block and named a field rather than a fix.
+- A `description` is over budget.
+- A four-part `version` needs deriving or reconciling against a changelog anchor.
+- Someone asks what `trigger_phrases`, `importance_tier` or `contextType` are for.
+
+It routes to two resource families:
+
+- `assets/frontmatter-templates.md`, the field reference and per-class templates that load on every path.
+- `references/frontmatter-versioning.md`, which is conditional on the question being about `version`, its derivation or the corpus gate.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

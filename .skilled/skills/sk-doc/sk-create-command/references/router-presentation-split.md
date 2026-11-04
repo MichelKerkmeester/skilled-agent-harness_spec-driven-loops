@@ -9,7 +9,7 @@ trigger_phrases:
   - "behavior preserving command split"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # Command Creation - Router / Presentation Split
@@ -20,7 +20,14 @@ Depth for SKILL.md Step 11. The split exists so routing behavior and visible wor
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference expands the router/presentation separation named in SKILL.md Step 11: what the router owns, what the presentation asset owns, the mechanical before/after transformation, and the rule that a split must never change behavior.
+
+### When to Use
+
+- Refactoring a mode-based command into a thin router plus a presentation asset
+- Checking that a split preserved routing, gates, modes, and `allowed-tools`
 
 ---
 
@@ -43,7 +50,13 @@ This reference expands the router/presentation separation named in SKILL.md Step
 
 ---
 
-## 3. BEFORE / AFTER TRANSFORMATION
+## 3. BEHAVIOR-PRESERVING RULE
+
+Moving display text into the presentation asset must not change routing semantics, required inputs, confirmation behavior, or tool permissions. A presentation split is a relocation of wording, never a semantic change. If a refactor would alter routing, gates, modes, or `allowed-tools`, it is no longer a split — treat it as a behavior change and surface it explicitly.
+
+---
+
+## 4. BEFORE / AFTER TRANSFORMATION
 
 Move display wording out of the router and replace it with a pointer to the presentation asset.
 
@@ -70,12 +83,6 @@ If no mode suffix is present, load `assets/review-packet-presentation.txt` and s
 
 Result templates and next-step wording live only in `assets/review-packet-presentation.txt`.
 ```
-
----
-
-## 4. BEHAVIOR-PRESERVING RULE
-
-Moving display text into the presentation asset must not change routing semantics, required inputs, confirmation behavior, or tool permissions. A presentation split is a relocation of wording, never a semantic change. If a refactor would alter routing, gates, modes, or `allowed-tools`, it is no longer a split — treat it as a behavior change and surface it explicitly.
 
 ---
 

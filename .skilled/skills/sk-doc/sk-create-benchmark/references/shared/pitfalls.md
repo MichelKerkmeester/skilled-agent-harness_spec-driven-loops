@@ -9,7 +9,7 @@ trigger_phrases:
   - "benchmark re-run mistake"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.6
+version: 1.5.1.0
 ---
 
 # Benchmark Folder Common Pitfalls
@@ -20,7 +20,13 @@ The mistakes that most often make a skill-local benchmark folder drift from its 
 
 ## 1. OVERVIEW
 
-Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case-studies.md](case-studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../SKILL.md`](../../SKILL.md) §7.
+Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case-studies.md](case-studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../../SKILL.md`](../../SKILL.md) §7.
+
+### When to Use
+
+- Reviewing a drafted `benchmark-report.md` or benchmark folder.
+- A promoted report no longer matches the packet it came from.
+- A re-run or retirement is about to change an existing folder.
 
 ---
 
@@ -38,4 +44,4 @@ Each row names a mistake, why it breaks the skill-local surface, and the correct
 
 ---
 
-*See [case-studies.md](case-studies.md) for adoptions that avoided these mistakes, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow and rules.*
+*See [case-studies.md](case-studies.md) for adoptions that avoided these mistakes, and [`../../SKILL.md`](../../SKILL.md) for the authoritative workflow and rules.*

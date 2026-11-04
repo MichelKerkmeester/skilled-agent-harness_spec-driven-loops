@@ -1,0 +1,10 @@
+.skilled/skills/sk-doc/ROUTER.md:37: render_setext_underline: A setext underline follows a paragraph line; add a blank line above the divider.
+.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md:358: render_bold_label_join: Consecutive bold labels "Emphasis:" and "Key Sections:" join into one paragraph; separate them or use list ite
+.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md:367: render_bold_label_join: Consecutive bold labels "Emphasis:" and "Key Sections:" join into one paragraph; separate them or use list ite
+.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md:376: render_bold_label_join: Consecutive bold labels "Emphasis:" and "Key Sections:" join into one paragraph; separate them or use list ite
+.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md:385: render_bold_label_join: Consecutive bold labels "Emphasis:" and "Key Sections:" join into one paragraph; separate them or use list ite
+.skilled/skills/sk-doc/shared/references/quick-reference.md:152: render_bold_label_join: Consecutive bold labels "Issue" and "Fix" join into one paragraph; separate them or use list items.
+.skilled/skills/sk-doc/shared/references/quick-reference.md:155: render_bold_label_join: Consecutive bold labels "Issue" and "Fix" join into one paragraph; separate them or use list items.
+.skilled/skills/sk-doc/shared/references/quick-reference.md:158: render_bold_label_join: Consecutive bold labels "Issue" and "Fix" join into one paragraph; separate them or use list items.
+.skilled/skills/sk-doc/shared/references/quick-reference.md:161: render_bold_label_join: Consecutive bold labels "Issue" and "Fix" join into one paragraph; separate them or use list items.
+files=11 render_warnings=9 invalid=0

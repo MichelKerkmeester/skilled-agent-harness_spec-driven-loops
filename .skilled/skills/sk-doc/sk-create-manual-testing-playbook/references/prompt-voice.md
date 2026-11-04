@@ -9,7 +9,7 @@ trigger_phrases:
   - "real user request baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # Manual Testing Playbook Prompt Voice - Natural-Human vs RCAF
@@ -20,9 +20,18 @@ The full decision for which voice the canonical `Prompt:` field uses in a scenar
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The canonical `Prompt:` field defaults to **natural-human voice** - how a real user would phrase the request to an AI in conversation. The RCAF (Role-Context-Action-Format) wrapper is the exception, reserved for when the actor IS an AI orchestrator.
 
-**Core Principle**: When in doubt, prefer natural-human. RCAF is the exception, natural is the default.
+### When to Use
+
+- Choosing or reviewing the `Prompt:` voice for a scenario.
+- Deciding whether the RCAF wrapper applies.
+
+### Core Principle
+
+When in doubt, prefer natural-human. RCAF is the exception, natural is the default.
 
 RCAF wrapper shape:
 
@@ -45,6 +54,8 @@ As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPU
 
 ## 3. VOICE GUIDELINES
 
+The `Real user request:` field is always natural-human regardless of which voice the canonical `Prompt:` field uses; it serves as the voice reference baseline.
+
 **Natural-human prompts**:
 
 - Imperative or interrogative ("Review this PR for security issues", "Why is this test flaky?", "Help me start an OAuth feature").
@@ -56,8 +67,6 @@ As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPU
 
 - Keep the canonical structure: `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.`
 - The Role must be an AI orchestrator role (e.g., "external-AI conductor", "git safety reviewer", "validation operator"), NOT a generic human role like "developer" or "engineer".
-
-The `Real user request:` field is always natural-human regardless of which voice the canonical `Prompt:` field uses; it serves as the voice reference baseline.
 
 ---
 

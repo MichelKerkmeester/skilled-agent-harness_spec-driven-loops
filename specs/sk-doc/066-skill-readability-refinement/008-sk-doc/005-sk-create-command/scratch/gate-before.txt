@@ -1,0 +1,3 @@
+.skilled/skills/sk-doc/sk-create-command/assets/command-template.md:1193: render_bold_label_join: Consecutive bold labels "Use when" and "Skip when" join into one paragraph; separate them or use list items.
+.skilled/skills/sk-doc/sk-create-command/assets/command-template.md:1238: render_section_order: "RELATED RESOURCES" must be the last H2; it is followed by "COMMAND CONTRACT".
+files=11 render_warnings=2 invalid=0

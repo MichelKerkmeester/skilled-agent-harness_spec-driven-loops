@@ -1,0 +1,5 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md edited=1
+code_blocks_changed=3 block_count_mismatch=0 restored

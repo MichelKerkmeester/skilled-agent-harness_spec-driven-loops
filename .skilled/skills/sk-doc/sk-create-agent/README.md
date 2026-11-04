@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-agent
@@ -26,13 +26,13 @@ version: 1.0.2.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-Two runtimes read agent frontmatter differently. Neither warns you when you get it wrong. OpenCode enforces the `permission:` object and quietly ignores a bare `tools:` key. Claude Code enforces only `tools:` and ignores `permission:` outright. Skip `tools:` entirely in a Claude Code agent and it inherits the parent session's full tool set, the opposite of what a scoped persona needs. Add the standing question of whether a task even needs a named persona instead of a skill or a command. A hand-rolled agent file drifts from the contract fast.
-
 ### What It Does
 
 create-agent is the `sk-doc` workflow behind `/create:agent`. It decides whether an agent is the right component, places the file in the active runtime directory and writes the runtime-correct frontmatter schema with least-authority permissions. It requires a hard boundary section, a core workflow, explicit output verification and an anti-patterns table before the file ships. It does not own reusable domain knowledge or slash-command entry points. Those live in `create-skill` and `create-command`.
+
+### Why This Skill Exists
+
+Two runtimes read agent frontmatter differently. Neither warns you when you get it wrong. OpenCode enforces the `permission:` object and quietly ignores a bare `tools:` key. Claude Code enforces only `tools:` and ignores `permission:` outright. Skip `tools:` entirely in a Claude Code agent and it inherits the parent session's full tool set, the opposite of what a scoped persona needs. Add the standing question of whether a task even needs a named persona instead of a skill or a command. A hand-rolled agent file drifts from the contract fast.
 
 ### The Agent File Capability Layer
 
@@ -144,6 +144,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, component-choice rule and the full creation workflow |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/agent-template.md`](./assets/agent-template.md) | Canonical scaffold: frontmatter, boundaries, workflow, verification, anti-patterns |
 | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
 | [`references/agent-vs-skill-vs-command.md`](./references/agent-vs-skill-vs-command.md) | The full component-choice decision, when the call is close |

@@ -1,0 +1,498 @@
+diff --git a/.skilled/skills/sk-doc/README.md b/.skilled/skills/sk-doc/README.md
+index 6400d39cba2..1d5512c7a04 100644
+--- a/.skilled/skills/sk-doc/README.md
++++ b/.skilled/skills/sk-doc/README.md
+@@ -49,10 +49,30 @@ sk-doc makes structure the first gate so these problems never reach production.
+ 
+ ### What It Does
+ 
+-sk-doc is the single specialist for documentation and OpenCode components. Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content. Beyond quality enforcement it scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships. It authors benchmark packages with deterministic conformance inputs for peer adapters, then builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it. Its sk-create-diff packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation. Its sk-create-with-human-voice packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed. Its sk-create-goal packet authors a spec packet's `goal.md` from a template for its kind and checks the result against the goal contract before handing over the chat slice.
++sk-doc is the single specialist for documentation and OpenCode components. It covers these surfaces:
++
++- **Document quality.** Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content.
++- **Scaffolding and packaging.** It scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships.
++- **Benchmarks.** It authors benchmark packages with deterministic conformance inputs for peer adapters.
++- **Diagrams and inventories.** It builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it.
++- **Document diff.** Its `sk-create-diff` packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.
++- **Human voice.** Its `sk-create-with-human-voice` packet applies the Human Voice Rules to prose: a scope gate that names what a voice edit may not touch, a scanner that parses the standard at run time rather than carrying a copy, a judgment pass no scanner can perform, and a re-scan that proves the rewrite landed.
++- **Goal authoring.** Its `sk-create-goal` packet authors a spec packet's `goal.md` from a template for its kind and checks the result against the goal contract before handing over the chat slice.
+ 
+ It does not own code or spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns the spec-folder lifecycle together with memory and continuity. The two skills touch markdown but do not overlap: sk-doc judges document quality and system-spec-kit enforces the spec-packet contract.
+ 
++### When To Use This Skill
++
++Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
++
++You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
++
++Skip sk-doc when the task belongs to a neighbor:
++
++- Code changes route to `sk-code`.
++- Spec-folder lifecycle operations route to `system-spec-kit`.
++- Git workflow orchestration routes to `sk-git`.
++
+ ### The Type-Aware Enforcement Layer
+ 
+ The validator reads the file path and content shape, then applies the matching enforcement level automatically. The detected type decides the strictness.
+@@ -121,23 +141,19 @@ The four bands tell you where you stand:
+ 
+ ### Scripts Versus AI
+ 
+-The scripts own the deterministic work. `extract_structure.py` parses, measures, checks and reports. `validate_document.py` gates format at the exit-code level. `init_skill.py` scaffolds a directory. `package_skill.py` validates and bundles. `quick_validate.py` runs fast naming and frontmatter checks. The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
++The scripts own the deterministic work:
+ 
+----
++- `extract_structure.py` parses, measures, checks and reports.
++- `validate_document.py` gates format at the exit-code level.
++- `init_skill.py` scaffolds a directory.
++- `package_skill.py` validates and bundles.
++- `quick_validate.py` runs fast naming and frontmatter checks.
+ 
+-## 5. INTEGRATION & NAVIGATION
+-
+-### When To Use This Skill
+-
+-Reach for sk-doc when you create or edit a markdown document, when you scaffold a skill, an agent, a command or another OpenCode component and when you need a quality gate before publishing. Use it when you build a feature catalog, a testing playbook, a flowchart, a changelog, a spec packet goal or a before/after diff of an edited document. Use it too when a document's DQI score drops and you need to know what to fix and why.
+-
+-You reach it through thirteen `/create:*` commands: `/create:agent`, `/create:skill`, `/create:skill-parent`, `/create:command`, `/create:feature-catalog`, `/create:manual-testing-playbook`, `/create:benchmark`, `/create:readme`, `/create:changelog`, `/create:diff`, `/create:repo-rule`, `/create:with-human-voice` and `/create:goal`. The `@markdown` agent handles template-first documentation authoring for these and other markdown targets.
++The AI owns the quality judgment: it reads the JSON, evaluates content depth and clarity, scores style against the Human Voice Rules and writes the recommendations. The split keeps the metrics repeatable and the judgment human-sounding. The Node scripts get their one dependency, `@spec-kit/shared`, from the `package.json` at the skill root, which sits there rather than under `scripts/` so that both `scripts/` and `shared/scripts/` can resolve it.
+ 
+-Skip sk-doc when the task belongs to a neighbor:
++---
+ 
+-- Code changes route to `sk-code`.
+-- Spec-folder lifecycle operations route to `system-spec-kit`.
+-- Git workflow orchestration routes to `sk-git`.
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+diff --git a/.skilled/skills/sk-doc/ROUTER.md b/.skilled/skills/sk-doc/ROUTER.md
+index 7e451281101..2e645f9181c 100644
+--- a/.skilled/skills/sk-doc/ROUTER.md
++++ b/.skilled/skills/sk-doc/ROUTER.md
+@@ -15,6 +15,10 @@ skill_pointer: SKILL.md
+ 
+ # sk-doc Surface Router — per-intent leaf sets
+ 
++The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the link that points here; this file holds the declaration a reader parses to decide what loads.
++
++---
++
+ ## 1. OVERVIEW
+ 
+ This is sk-doc's second-layer (surface) router, first-class at the hub root as
+@@ -34,6 +38,13 @@ enumerates the whole hub.
+ Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
+ router picks the LEAVES within it. The two layers stay separate — the hub never
+ emits leaf paths, and this router never re-decides the mode.
++
++> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
++> ```bash
++> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
++> ```
++> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
++
+ ---
+ 
+ ## 2. INTENT MODEL
+@@ -421,17 +432,11 @@ RESOURCE_MAP = {
+ 
+ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+ 
+-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+-> ```bash
+-> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
+-> ```
+-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
+-
+ ### Surface Router — per-intent leaf sets
+ 
+ Stage 2 of routing lives in section 3 of this file.
+ It defines three things:
+-- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, flowcharts, the human-voice pass, playbooks, feature catalogs, READMEs, changelogs, benchmarks, diffs, packet goals, repo rules, and the explicit full-toolkit intent.
++- The per-intent leaf model: document quality, optimization, skill creation, parent-hub creation, agent creation, command creation, the paired agent-plus-command lane, the human-voice pass, playbooks, playbook conversations, feature catalogs, READMEs, changelogs, benchmarks, diffs, frontmatter, packet goals, repo rules, and the explicit full-toolkit intent.
+ - The machine-readable `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
+ - The how-to-read rules: a dominant intent gives one leaf set, near-tied intents give a deduped union, and no keyword match gives the hub UNKNOWN fallback, never a silent default.
+ 
+diff --git a/.skilled/skills/sk-doc/shared/README.md b/.skilled/skills/sk-doc/shared/README.md
+index 4217ce70c16..647e946b871 100644
+--- a/.skilled/skills/sk-doc/shared/README.md
++++ b/.skilled/skills/sk-doc/shared/README.md
+@@ -10,13 +10,17 @@ version: 1.0.0.0
+ 
+ # sk-doc/shared - cross-packet backbone
+ 
++> Open this file before you add a resource to `shared/` or point a packet at one.
++
++---
++
+ ## 1. OVERVIEW
+ 
+ `shared/` holds the parts of `sk-doc` that more than one workflow packet needs: the document validators and naming guards (`scripts/`), the standards every packet writes against (`references/`), and the templates and machine-readable rule files those validators read (`assets/`).
+ 
+ A resource earns a place here by having consumers in two or more packets. A resource with exactly one consumer belongs inside that packet.
+ 
+-Nothing here is separately discoverable: `shared/` carries no `graph-metadata.json` and no `description.json`, because it is not a skill and the advisor never routes to it. Requests reach these files through the owning packet, or through the hub `ROUTER.md` `RESOURCE_MAP`, which addresses five of them by a `shared/...` disk path declared in `leaf-aliases.json`.
++Nothing here is separately discoverable: `shared/` carries no `graph-metadata.json` and no `description.json`, because it is not a skill and the advisor never routes to it. Requests reach these files through the owning packet, or through the hub `ROUTER.md` `RESOURCE_MAP`, which addresses the `shared/` files that `leaf-aliases.json` declares with a `shared/...` disk path.
+ 
+ ---
+ 
+@@ -24,8 +28,8 @@ Nothing here is separately discoverable: `shared/` carries no `graph-metadata.js
+ 
+ | Directory | Contents |
+ |-----------|----------|
+-| [`references/`](references/) | Standards: core structural rules, validation and DQI scoring, the kebab-case filesystem canon, the frontmatter versioning standard, the evergreen packet-id rule, and the hub quick reference. The Human Voice Rules are not here: they have one consumer packet and live at [`../sk-create-with-human-voice/references/hvr-rules.md`](../sk-create-with-human-voice/references/hvr-rules.md). |
+-| [`assets/`](assets/) | Templates and rule data: changelog and frontmatter and llms.txt templates, plus `template-rules.json` and `skill-contract.json`, which are read by code rather than by a reader. |
++| [`references/`](references/) | Standards: core structural rules, validation and DQI scoring, the kebab-case filesystem canon, the evergreen packet-id rule, and the hub quick reference. The Human Voice Rules are not here: they have one consumer packet and live at [`../sk-create-with-human-voice/references/hvr-rules.md`](../sk-create-with-human-voice/references/hvr-rules.md). |
++| [`assets/`](assets/) | Templates and rule data: the llms.txt templates, plus `template-rules.json` and `skill-contract.json`, which are read by code rather than by a reader. |
+ | [`scripts/`](scripts/README.md) | Validators, naming guards, the frontmatter versioning engine and the semantic rename toolchain. |
+ 
+ ---
+@@ -43,5 +47,5 @@ The one exception is `scripts/`. Six entries under `sk-doc/scripts/` are facade
+ ## 4. RELATED
+ 
+ - [`../ROUTER.md`](../ROUTER.md) - maps an authoring intent to the leaf resources a mode loads, including the `shared/...` aliases.
+-- [`../leaf-aliases.json`](../leaf-aliases.json) - the six alias entries the router addresses as packet-local leaves, five of them `shared/` paths.
++- [`../leaf-aliases.json`](../leaf-aliases.json) - the alias entries the router addresses as packet-local leaves, including the `shared/` paths.
+ - [`scripts/README.md`](scripts/README.md) - per-script purpose and the commands to run them.
+diff --git a/.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md b/.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md
+index ef39a185bba..a7c658f2784 100644
+--- a/.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md
++++ b/.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md
+@@ -19,7 +19,7 @@ Templates for creating llms.txt files that provide AI assistants with project co
+ 
+ ## 1. OVERVIEW
+ 
+-### What Is llms.txt?
++### Purpose
+ 
+ **llms.txt** is a standardized markdown file that provides AI assistants with essential project context. It acts as a curated entry point, helping LLMs quickly understand what a project does, how it's organized, and where to find key documentation.
+ 
+@@ -35,6 +35,10 @@ The format follows the [llmstxt.org](https://llmstxt.org/) specification, which
+ - llms.txt = Structured index optimized for AI consumption
+ - README = Human-readable introduction and getting started guide
+ 
++### When to Use
++
++Use these templates and patterns when generating llms.txt files for different project types!
++
+ ### Core Characteristics
+ 
+ | Characteristic | Description |
+@@ -355,6 +359,7 @@ When both exist, prefer markdown over rendered HTML:
+ ### Libraries/Packages
+ 
+ **Emphasis:** API Reference, Examples
++
+ **Key Sections:**
+ - DOCUMENTATION (concepts, getting started)
+ - API REFERENCE (module documentation)
+@@ -364,6 +369,7 @@ When both exist, prefer markdown over rendered HTML:
+ ### CLI Tools
+ 
+ **Emphasis:** Commands, Configuration
++
+ **Key Sections:**
+ - GETTING STARTED (installation, quickstart)
+ - COMMANDS (individual command docs)
+@@ -373,6 +379,7 @@ When both exist, prefer markdown over rendered HTML:
+ ### Web Frameworks
+ 
+ **Emphasis:** Guides, Integrations
++
+ **Key Sections:**
+ - DOCUMENTATION (routing, data, rendering)
+ - GUIDES (auth, deployment, testing)
+@@ -382,6 +389,7 @@ When both exist, prefer markdown over rendered HTML:
+ ### AI Agent Skills
+ 
+ **Emphasis:** Reference Materials, Capabilities
++
+ **Key Sections:**
+ - DOCUMENTATION (README, SKILL.md)
+ - REFERENCE MATERIALS (patterns, standards)
+@@ -855,7 +863,3 @@ Add sections:
+ 
+ ### External
+ - [llmstxt.org](https://llmstxt.org/) - Official specification
+-
+----
+-
+-Use these templates and patterns when generating llms.txt files for different project types!
+diff --git a/.skilled/skills/sk-doc/shared/references/core-standards.md b/.skilled/skills/sk-doc/shared/references/core-standards.md
+index a4c71254346..0652f177c0d 100644
+--- a/.skilled/skills/sk-doc/shared/references/core-standards.md
++++ b/.skilled/skills/sk-doc/shared/references/core-standards.md
+@@ -19,7 +19,7 @@ Filename conventions, document type detection, and structural validation rules f
+ 
+ ## 1. OVERVIEW
+ 
+-### What Are Core Standards?
++### Purpose
+ 
+ Core standards define the structural foundation for all OpenCode skill documentation. These standards ensure consistency, machine-readability, and quality across all documentation types through enforced conventions.
+ 
+@@ -32,6 +32,10 @@ Core standards define the structural foundation for all OpenCode skill documenta
+ 
+ This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
+ 
++### When to Use
++
++Use this reference when you write or review a markdown document and need the file-naming, type-detection or structural rule a validator enforces.
++
+ ---
+ 
+ ## 2. FILENAME CONVENTIONS
+@@ -90,9 +94,7 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
+ | Spec | Loose | Optional | Optional | ❌ Never | No |
+ | Generic | Flexible | Optional | Optional | ❌ Never | No |
+ 
+-`validate_document.py --type` accepts `readme`, `code_folder`, `skill`, `reference`, `asset`,
+-`agent`, `command`, `install_guide`, `security_policy`, `spec`, `changelog`, `playbook`, `playbook_feature` and
+-`feature_catalog`. There is no `llmstxt` type and `template-rules.json` declares none, so an
++`validate_document.py --type` accepts `readme`, `code_folder` (alias `code-folder`), `skill`, `reference`, `asset`, `agent`, `command`, `install_guide`, `security_policy`, `skill_router`, `spec`, `changelog`, `playbook`, `playbook_feature`, `feature_catalog` and `benchmark_companion`. There is no `llmstxt` type and `template-rules.json` declares none, so an
+ `llms.txt` is an authoring target governed by
+ [llmstxt-templates.md](../assets/llmstxt-templates.md), not a validator-enforced document class.
+ Authoring rules for it live in §7. A file named exactly `SECURITY.md` auto-detects as `security_policy`, which requires an Overview first and a Reporting A Vulnerability section.
+diff --git a/.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md b/.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md
+index 91d541d3bd0..9687e1831a5 100644
+--- a/.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md
++++ b/.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md
+@@ -19,9 +19,9 @@ Evergreen documents describe the current runtime, not the packet history that pr
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Packet numbers rot — feature names and source anchors don't.
++The rule keeps shipped documentation true after the packet that produced it is renumbered, archived or consolidated.
+ 
+ ### When to Use
+ 
+@@ -35,6 +35,10 @@ Apply this rule whenever you author or edit any document that describes shipped
+ 
+ Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md`) — those ARE the packet record and naturally reference their own packet ID.
+ 
++### Core Principle
++
++Packet numbers rot — feature names and source anchors don't.
++
+ ### Prerequisites
+ 
+ - Read [core-standards.md](./core-standards.md) for document type rules.
+diff --git a/.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md b/.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md
+index d8e4846bb05..0e36325d07a 100644
+--- a/.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md
++++ b/.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md
+@@ -13,10 +13,20 @@ version: 2.1.0.5
+ 
+ # Filesystem Naming Convention - Kebab-Case Canon
+ 
++Read this before you name a file, a directory or a script, and before you decide that an existing name may stay.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Kebab-case (hyphens) is the sole canonical form for in-scope filesystem names across the repository. This document is the single source of truth for the rule, its exemptions, and the boundary between a filesystem name and a code identifier.
+ 
++### When to Use
++
++Use it when you create or rename an in-scope file or directory, when a name looks like a Python package or a tool-mandated file, and when a validator or reviewer questions the form.
++
+ ---
+ 
+ ## 2. THE RULE
+diff --git a/.skilled/skills/sk-doc/shared/references/quick-reference.md b/.skilled/skills/sk-doc/shared/references/quick-reference.md
+index 97cdc7ef9eb..111337f600c 100644
+--- a/.skilled/skills/sk-doc/shared/references/quick-reference.md
++++ b/.skilled/skills/sk-doc/shared/references/quick-reference.md
+@@ -19,6 +19,19 @@ Commands, quality gates, and patterns at a glance.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Keep the validator command, the enforcement level and the scoring band for any sk-doc document on one screen, so a check runs without loading a full standard.
++
++### When to Use
++
++- Before delivering a document, when you need the validator command.
++- When a document type needs its enforcement level.
++- When a DQI score needs its band and point breakdown.
++- When a check fails and you want the matching quick fix.
++
++### Quick Commands
++
+ **README Format Validation** (MANDATORY before delivery):
+ ```bash
+ scripts/validate_document.py document.md
+@@ -148,17 +161,17 @@ python scripts/package_skill.py skill-path        # Package skill
+ 
+ ## 6. COMMON ISSUES - QUICK FIXES
+ 
+-**Issue**: Checklist failures in JSON output
+-**Fix**: Review specific failures, address structural issues first
++- **Issue**: Checklist failures in JSON output
++- **Fix**: Review specific failures, address structural issues first
+ 
+-**Issue**: Low content quality rating from AI
+-**Fix**: Answer "How do I..." questions, add practical examples
++- **Issue**: Low content quality rating from AI
++- **Fix**: Answer "How do I..." questions, add practical examples
+ 
+-**Issue**: Style compliance issues
+-**Fix**: All H2 must be ALL CAPS, --- separators between H2
++- **Issue**: Style compliance issues
++- **Fix**: All H2 must be ALL CAPS, --- separators between H2
+ 
+-**Issue**: Frontmatter issues detected
+-**Fix**: Keep description on single line, use [Tool1, Tool2] array format
++- **Issue**: Frontmatter issues detected
++- **Fix**: Keep description on single line, use [Tool1, Tool2] array format
+ 
+ ---
+ 
+@@ -259,16 +272,16 @@ active resource map.
+ **Reference**
+ `sk-create-manual-testing-playbook/references/README.md`
+ 
+-### Template
++#### Template
+ `sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`
+ 
+-### Playbook Layout
++#### Playbook Layout
+ | File | Content |
+ |------|---------|
+ | `manual-testing-playbook.md` | Root directory playbook, integrated review/orchestration guidance, summary blocks, and cross-references |
+ | `category-name/*.md` | Required per-feature scenario files referenced from the root playbook (bare descriptive slug; the root playbook owns display order) |
+ 
+-### Quick Steps
++#### Quick Steps
+ 1. **Plan categories** → Define ID prefixes (e.g., CCC, MCP, CFG)
+ 2. **Create directory** → `{SKILL_PATH}/manual-testing-playbook/`
+ 3. **Copy scaffolds** → Fill the main playbook and per-feature file scaffolds from the template
+@@ -294,6 +307,7 @@ Validation note: the current validator checks the root playbook and does not rec
+ - [references/README.md](../../sk-create-readme/references/README.md) - README creation standards and workflow
+ - [references/README.md](../../sk-create-feature-catalog/references/README.md) - Feature catalog standards and workflow
+ - [references/README.md](../../sk-create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
++- [SKILL.md](../../SKILL.md) - Complete sk-doc documentation and workflow map
+ 
+ ### Templates
+ - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
+@@ -312,7 +326,3 @@ Validation note: the current validator checks the root playbook and does not rec
+ ### External Resources
+ - [llms.txt specification](https://llmstxt.org/) - Official llms.txt spec
+ - [CommonMark](https://spec.commonmark.org/) - Markdown specification
+-
+----
+-
+-**For complete documentation**: See [SKILL.md](../../SKILL.md)
+diff --git a/.skilled/skills/sk-doc/shared/references/validation.md b/.skilled/skills/sk-doc/shared/references/validation.md
+index 559c77b9af0..e60b4d441af 100644
+--- a/.skilled/skills/sk-doc/shared/references/validation.md
++++ b/.skilled/skills/sk-doc/shared/references/validation.md
+@@ -19,7 +19,7 @@ Quality gates, DQI scoring, and script-assisted AI analysis for markdown documen
+ 
+ ## 1. OVERVIEW
+ 
+-### What Is Validation?
++### Purpose
+ 
+ Validation provides a comprehensive quality assessment framework for markdown documentation. The `extract_structure.py` script parses documents into structured JSON; AI uses this data to evaluate quality across structure, content, and style dimensions.
+ 
+@@ -33,6 +33,12 @@ Validation provides a comprehensive quality assessment framework for markdown do
+ 
+ This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
+ 
++### When to Use
++
++- Before delivery, when a document must clear its type's gate.
++- When a JSON report needs its score, band or checklist failure read.
++- When a low score needs an order for the fixes.
++
+ ### Core Principle
+ 
+ **"Measure what matters, gate what guarantees quality"** - Structure ensures validity, Content ensures AI-friendliness, Style ensures consistency. AI evaluates all dimensions based on `extract_structure.py` output.
+@@ -45,6 +51,8 @@ This reference provides deep-dive technical guidance on qualitative assessment,
+ 
+ ### Stage 1: Format Validation (validate_document.py)
+ 
++**MANDATORY**: Run `validate_document.py` before delivery. Exit code 0 required.
++
+ **Pre-delivery format checks with blocking errors:**
+ 
+ ```bash
+@@ -64,8 +72,6 @@ python scripts/validate_document.py document.md
+ - `--fix --dry-run` - Preview fixes without applying
+ - `--type readme|skill|reference|asset|agent` - Explicit document type
+ 
+-**MANDATORY**: Run `validate_document.py` before delivery. Exit code 0 required.
+-
+ ### Stage 2: Quality Assessment (extract_structure.py)
+ 
+ **Validation uses `extract_structure.py` to parse documents, then AI evaluates:**
+diff --git a/.skilled/skills/sk-doc/shared/scripts/README.md b/.skilled/skills/sk-doc/shared/scripts/README.md
+index 93c86a23709..d8a889491b4 100644
+--- a/.skilled/skills/sk-doc/shared/scripts/README.md
++++ b/.skilled/skills/sk-doc/shared/scripts/README.md
+@@ -6,11 +6,27 @@ version: 1.0.1.0
+ 
+ # Shared Scripts
+ 
++> Reach for this index before you edit a validator or trust a citation count. Each row names the file that owns the job.
++
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-`shared/scripts/` holds the validators and helpers every `/create:*` command and CI gate in `sk-doc` builds on, rather than each command reimplementing its own copy. `validate_document.py` is the floor template validator invoked by every other package's README and document checks. The naming guards, the frontmatter versioning engine and the semantic rename toolchain are grouped here because they apply repo-wide, not to one command's output.
++### Purpose
++
++Give every `/create:*` command and CI gate in `sk-doc` one shared set of validators and helpers, so each rule is enforced from a single copy.
++
++### When to Use
++
++- Before changing a validator or a naming guard that other packets call.
++- When a CI check fails and you need the script that owns the rule.
++- When a rename, citation or version report needs the tool that produces it.
++
++### What Lives Here
++
++- **Folder role.** `shared/scripts/` holds the validators and helpers every `/create:*` command and CI gate in `sk-doc` builds on, rather than each command reimplementing its own copy.
++- **Template floor.** `validate_document.py` is the floor template validator invoked by every other package's README and document checks.
++- **Repo-wide guards.** The naming guards, the frontmatter versioning engine and the semantic rename toolchain are grouped here because they apply repo-wide, not to one command's output.
+ 
+ ---
+ 
+@@ -23,7 +39,9 @@ version: 1.0.1.0
+ | `quick_validate.py` | Validates a `SKILL.md`'s frontmatter: required fields, name format, description budget and no placeholders. |
+ | `frontmatter-version.mjs` | Computes, applies or verifies the 4-part `version` frontmatter field across in-scope skill docs. |
+ | `cite-drift-scan.mjs` | Counts the `<path>.<ext>:<line>` citations in the prose of every tracked doc in a corpus at HEAD, prints per-group, per-family and total counts by class plus the dead citations, and makes zero model calls by default. `--corpus skills` (the default) scans `.skilled/skills/**/*.md` grouped by skill, `--corpus specs` scans `specs/**/*.md` grouped by track and skips any path with a `z_archive` folder, and `--corpus all` scans both. The classes are `in_range` and `past_end` for a path that resolves as written, `moved_in_range` and `moved_past_end` for one that resolves only through `cite-drift-redirects.json`, `basename_only` for a unique basename match no rename backs, then `ambiguous`, `unresolved` and `refused`. `dead` stays `past_end` plus a tracked target missing from the worktree, so a moved citation never counts as dead. `--moved` adds one `cite moved:` line per moved citation naming its new path, which `/doctor:speckit` reads for its drift summary; without it the output is unchanged. `--draw --seed <n>` works on the skills corpus only and writes 40 rows (20 live, 20 constructed) to `cite-drift-labels.jsonl`, the default labels file beside the script, and `--labels <file>` names another. `--jev` needs `--out <dir>` and measures the backend against two fixed comparators; `--advise <doc>...` checks only those documents' citations, stays silent without a stored Jev credential and always exits 0. Both run from `classifier-cite-drift-scan.mjs` and the host re-exports them. |
++| `cite-drift-labels.jsonl` | Default labels file for `cite-drift-scan.mjs --draw`: 40 rows, 20 live and 20 constructed, written beside the script. `--labels <file>` names another. |
+ | `classifier-cite-drift-scan.mjs` | The classifier half of the scan: the pinned Jev gate, the measured arm, the scoring and verdict helpers that feed its column, the backend process helpers, and the advisory check `validate_document.py` runs. The host imports these and never gets imported back. |
++| `cite-drift-gate.mjs` | Pull-request gate over the skills corpus: resolves every prose `path:line` citation at the head and in a base worktree, and fails only on an unresolved or past-end citation the base does not have. `--base <ref>` selects the base; exit 0 = no new broken citation, 1 = at least one new broken citation, 2 = bad invocation or git failure. |
+ | `cite-drift-redirects.json` | Directory-prefix redirect rules (`from` to `to`) that `cite-drift-scan.mjs` tries once a citation's direct candidates are untracked, most specific prefix first, hop by hop for a path renamed in stages. Each rule carries the rename `records` that back it and their `agreement`, and survives only with at least 50 records and 95% agreement. `source` names the commit and the `git log -M --diff-filter=R --name-status --format= HEAD` listing it was derived from with `deriveRedirects` in the scanner, which rebuilds it from a fresh listing. |
+ | `check-frontmatter-versions.sh` | Thin CI/pre-commit wrapper that execs `frontmatter-version.mjs gate`. |
+ | `naming_root_resolver.py` | Canonical-only resolver for the `feature-catalog` and `manual-testing-playbook` root directory names. Fails closed on a legacy underscore alias. |
+@@ -45,6 +63,7 @@ version: 1.0.1.0
+ | `rename_engine_core.py` | Plans, applies and rolls back semantic filesystem renames. Requires a reviewed plan and two independent disposable-fixture opt-ins to mutate. |
+ | `rename_tooling_fixture_harness.py` | CLI that runs the semantic-rename fixture corpus against disposable Git repositories only. |
+ | `rename_tooling_fixture_core.py` | Core harness that runs rename and reference-checker scenarios from declarative fixture data, never touching the real worktree. |
++| `git_env.py` | Strips git repository and config redirectors (`GIT_DIR`, `GIT_WORK_TREE`, `GIT_CONFIG*` and the rest) from a subprocess environment, so the rename tools that isolate a fixture repo write there rather than to the real worktree. |
+ 
+ ---
+ 
+@@ -65,6 +84,6 @@ Expected result: `validate_document.py` exits 0 on a valid document, 1 on blocki
+ 
+ ## 4. RELATED
+ 
+-- [`README.md`](../README.md)
++- [`README.md`](../README.md) - The shared-folder overview that routes to references, assets and these scripts.
+ - [`sk-create-readme/scripts/audit_readmes.py`](../../sk-create-readme/scripts/audit_readmes.py), the fleet-wide README auditor this validator underlies.
+ - [`sk-create-feature-catalog/scripts/validate_catalog_package.py`](../../sk-create-feature-catalog/scripts/validate_catalog_package.py), a package-level validator built on `validate_document.py`.

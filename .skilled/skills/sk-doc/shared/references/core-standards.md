@@ -8,7 +8,7 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 2.2.2.0
+version: 2.2.3.0
 ---
 
 # Core Standards - Structure and Validation Rules
@@ -19,7 +19,7 @@ Filename conventions, document type detection, and structural validation rules f
 
 ## 1. OVERVIEW
 
-### What Are Core Standards?
+### Purpose
 
 Core standards define the structural foundation for all OpenCode skill documentation. These standards ensure consistency, machine-readability, and quality across all documentation types through enforced conventions.
 
@@ -31,6 +31,10 @@ Core standards define the structural foundation for all OpenCode skill documenta
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 
 This reference provides deep-dive technical guidance on structure validation, document type detection, and quality enforcement.
+
+### When to Use
+
+Use this reference when you write or review a markdown document and need the file-naming, type-detection or structural rule a validator enforces.
 
 ---
 
@@ -90,9 +94,7 @@ Numbered documents such as `NNN-name.md` use hyphens by default and conform to t
 | Spec | Loose | Optional | Optional | ❌ Never | No |
 | Generic | Flexible | Optional | Optional | ❌ Never | No |
 
-`validate_document.py --type` accepts `readme`, `code_folder`, `skill`, `reference`, `asset`,
-`agent`, `command`, `install_guide`, `security_policy`, `spec`, `changelog`, `playbook`, `playbook_feature` and
-`feature_catalog`. There is no `llmstxt` type and `template-rules.json` declares none, so an
+`validate_document.py --type` accepts `readme`, `code_folder` (alias `code-folder`), `skill`, `reference`, `asset`, `agent`, `command`, `install_guide`, `security_policy`, `skill_router`, `spec`, `changelog`, `playbook`, `playbook_feature`, `feature_catalog` and `benchmark_companion`. There is no `llmstxt` type and `template-rules.json` declares none, so an
 `llms.txt` is an authoring target governed by
 [llmstxt-templates.md](../assets/llmstxt-templates.md), not a validator-enforced document class.
 Authoring rules for it live in §7. A file named exactly `SECURITY.md` auto-detects as `security_policy`, which requires an Overview first and a Reporting A Vulnerability section.

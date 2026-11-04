@@ -9,7 +9,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Changelog Worked Examples
@@ -21,6 +21,12 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 ## 1. OVERVIEW
 
 These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the full expanded shape, read the canonical exemplar, `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
+
+**When to Use**:
+
+- Modeling a new global entry on a filled-in example rather than a blank template.
+- Checking what the selection rules leave out of a compact entry.
+- Seeing how an expanded section reads before writing one.
 
 ---
 

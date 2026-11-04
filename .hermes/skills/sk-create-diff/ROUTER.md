@@ -52,7 +52,7 @@ The routing detail that does not fit the short summary: the intent bullets, the 
 
 This packet ships a flat `references/` route-map and worked-example fixtures under `assets/`; there are no `references/<key>/` or `assets/<key>/` subdirectories to infer. Routing is intent-based:
 
-- If the request clearly asks for a before/after document review, route here and pick the workflow shape in section 3 (automatic baseline vs. explicit pair).
+- If the request clearly asks for a before/after document review, route here and pick the workflow shape in [`SKILL.md` §3](../../../.skilled/skills/sk-doc/sk-create-diff/SKILL.md) (automatic baseline vs. explicit pair).
 - If the target document, baseline state, or output path is unclear, use `UNKNOWN_FALLBACK`: confirm the document, whether a baseline exists, and the report path before acting.
 - If a referenced resource is missing, do not invent a path — use the nearest guidance in `references/README.md` and report the gap.
 - Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.

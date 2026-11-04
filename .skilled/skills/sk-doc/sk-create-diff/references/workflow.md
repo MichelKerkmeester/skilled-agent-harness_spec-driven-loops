@@ -8,16 +8,33 @@ trigger_phrases:
   - "snapshot cleanup lifecycle"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Workflow: baseline, comparison, and lifecycle
 
+Reach for this reference before a document changes, or when both versions are already in hand and the baseline is missing.
+
 ## 1. OVERVIEW
+
+### Purpose
+
+Give every review a real before-state, so a change is judged against what the document actually said.
+
+### When to Use
+
+- You control the moment before an edit and want the engine to hold the baseline.
+- No baseline exists, or you are comparing two arbitrary versions.
+- One review needs to cover multiple files.
+- You need to inspect or prune stored baselines.
+
+### Core Principle
 
 The core invariant: **capture the baseline before the edit.** A before/after review needs a real before-state, and once a file is overwritten the original is gone. `create-diff` never mutates the source — capture copies it into a local store.
 
-## Automatic flow (snapshot-backed)
+---
+
+## 2. AUTOMATIC FLOW (SNAPSHOT-BACKED)
 
 Best when you control the moment before an edit (e.g. an AI is about to modify a document).
 
@@ -33,7 +50,9 @@ python3 ../scripts/create_diff.py compare path/to/doc.md --report review.html
 
 `compare` uses the file's **latest** snapshot as the "before" and the current file as the "after". If no snapshot exists it exits `4` and tells you to snapshot first or use the explicit pair.
 
-## Explicit-pair flow (fallback)
+---
+
+## 3. EXPLICIT-PAIR FLOW (FALLBACK)
 
 Best when there is no baseline, when comparing two arbitrary versions, or when the automatic store is unavailable or unwanted.
 
@@ -46,7 +65,9 @@ python3 ../scripts/create_diff.py compare-pair \
 
 No stored state is read or written. `--label-before`/`--label-after` set the names shown in the report (default: the file names).
 
-## Pre-composed aggregate pairs
+---
+
+## 4. PRE-COMPOSED AGGREGATE PAIRS
 
 When one review needs to cover multiple files, compose one before document and
 one after document with the same ordered, unique file markers:
@@ -70,13 +91,34 @@ fall back to ordinary document text instead of producing partial file chrome.
 This is a pre-composed input format, not native directory comparison or repeated
 multi-file CLI arguments.
 
-## Where snapshots live
+---
 
-Baselines are stored under a `.create-diff/` directory in the current working directory (override with `--state-dir DIR`). Each source path gets its own subdirectory keyed by a hash of its absolute path, containing the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256. Writes are atomic (temp file + rename); the source is only ever read.
+## 5. AFTER GENERATING A REPORT
+
+Always validate the report before handing it off:
+
+```bash
+python3 ../scripts/validate_report.py review.html
+```
+
+Then report the change summary and the report path. If the source file changed during the run, something is wrong — comparison must be read-only against the source.
+
+---
+
+## 6. WHERE SNAPSHOTS LIVE
+
+Baselines are stored under a `.create-diff/` directory in the current working directory (override with `--state-dir DIR`).
+
+- Each source path gets its own subdirectory, keyed by a hash of its absolute path.
+- That subdirectory holds the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256.
+- Writes are atomic (temp file + rename).
+- The source is only ever read.
 
 Add `.create-diff/` to `.gitignore` if you run this inside a repository — it is local scratch state, not a deliverable.
 
-## Lifecycle
+---
+
+## 7. LIFECYCLE
 
 ```bash
 # What baselines exist (all, or for one file)
@@ -89,13 +131,3 @@ python3 ../scripts/create_diff.py cleanup --older-than 14
 ```
 
 `cleanup` with no `--older-than` removes all matching snapshots; scope it with `--file` and preview with `--dry-run`.
-
-## After generating a report
-
-Always validate the report before handing it off:
-
-```bash
-python3 ../scripts/validate_report.py review.html
-```
-
-Then report the change summary and the report path. If the source file changed during the run, something is wrong — comparison must be read-only against the source.

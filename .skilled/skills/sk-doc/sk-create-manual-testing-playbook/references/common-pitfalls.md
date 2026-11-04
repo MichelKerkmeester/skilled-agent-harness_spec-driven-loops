@@ -9,7 +9,7 @@ trigger_phrases:
   - "overloaded root summary"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # Manual Testing Playbook Common Pitfalls
@@ -20,9 +20,18 @@ The recurring defects that degrade a manual testing playbook package, why each o
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Most playbook defects come from splitting package truth across sidecar files, desynchronizing prompt fields, or overloading the root summary with execution detail that belongs in the per-feature file. Each row below pairs the mistake with why it breaks the package and the correct fix.
 
-**Core Principle**: One canonical truth per scenario - shared policy in the root, execution truth in the per-feature file, and nothing duplicated between them.
+### When to Use
+
+- Reviewing a drafted playbook for defects.
+- Diagnosing a package that splits truth or desyncs prompts.
+
+### Core Principle
+
+One canonical truth per scenario - shared policy in the root, execution truth in the per-feature file, and nothing duplicated between them.
 
 ---
 

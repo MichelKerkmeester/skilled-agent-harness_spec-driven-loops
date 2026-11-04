@@ -33,7 +33,7 @@ loads before an intent selects it.
 - **GOAL_AUTHORING** — "top-level goal / phase-parent goal / nested phase-child goal / retrofit an existing packet / add a phase / amend the parent" requests load `references/parent-and-nested-goals.md` and follow the workflow for that goal kind.
 - **CONTENT_STANDARDS** — every authoring or revision request also loads `references/authoring-standards.md`, `assets/goal-exemplars.md` and the template for the goal's kind: `assets/goal-top-level-template.md`, `assets/goal-phase-parent-template.md` or `assets/goal-phase-child-template.md`.
 - **BUDGET_AND_HANDOFF** — "budget / 4,000 characters / cut order / chat slice / resend the parent" requests load `references/budget-and-handoff.md`, which also carries the projection distinction and the runtime matrix.
-- **UNKNOWN_FALLBACK** — a request whose resources match no intent loads `references/parent-and-nested-goals.md` as the workflow default and reports `UNKNOWN_FALLBACK` with the disambiguation checklist instead of guessing a family.
+- **UNKNOWN_FALLBACK** — a request whose resources match no intent loads `references/parent-and-nested-goals.md` as the workflow default and reports `UNKNOWN_FALLBACK` instead of guessing a family.
 
 ---
 
@@ -41,8 +41,6 @@ loads before an intent selects it.
 
 The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
 reader finds it. This section is the last in the file, and it holds the only pseudocode.
-
-The packet's pre-write routing decisions, its resource discovery and fallback rule, and the router block that encodes them.
 
 ### Pre-Write Routing Decisions
 

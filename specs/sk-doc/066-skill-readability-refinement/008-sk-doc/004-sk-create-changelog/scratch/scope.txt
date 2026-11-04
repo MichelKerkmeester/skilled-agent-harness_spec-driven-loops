@@ -1,0 +1,8 @@
+.skilled/skills/sk-doc/sk-create-changelog/README.md
+.skilled/skills/sk-doc/sk-create-changelog/ROUTER.md
+.skilled/skills/sk-doc/sk-create-changelog/SKILL.md
+.skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
+.skilled/skills/sk-doc/sk-create-changelog/references/README.md
+.skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md
+.skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md
+.skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md

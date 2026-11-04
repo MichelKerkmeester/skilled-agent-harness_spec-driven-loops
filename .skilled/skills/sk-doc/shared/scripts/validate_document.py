@@ -250,6 +250,14 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
     if any(normalized.endswith('/' + suffix) for suffix in FORMAT_SPEC_FILES):
         return True, "Format spec: its section numbers are the DESIGN.md format's ids"
 
+    # A mode's Style Reference is DESIGN.md format output: its scripts find each
+    # section by its literal heading and some pin the file's hash, so a numbered
+    # overview would break the reader. Only assets/style-reference/<name>/DESIGN.md
+    # matches, so a style-library bundle or a sibling README is still validated.
+    if len(folders) >= 3 and folders[-3:-1] == ['assets', 'style-reference'] \
+            and normalized.rsplit('/', 1)[-1] == 'DESIGN.md':
+        return True, "Style Reference: DESIGN.md format output, read by heading text"
+
     return False, None
 
 

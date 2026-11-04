@@ -9,7 +9,7 @@ trigger_phrases:
   - "benchmark adoption examples"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.18
+version: 1.5.1.0
 ---
 
 # Benchmark Creation Reference Map
@@ -66,8 +66,8 @@ Two worked examples are written up in [`case-studies.md`](case-studies.md): a te
 ### Related sk-doc references
 
 - [`create-readme references`](../../../sk-create-readme/references/README.md): README authoring conventions used by `benchmarks/README.md`
-- [`global/core-standards.md`](../../../shared/references/core-standards.md): cross-document standards including ANCHOR conventions
-- [`global/evergreen-packet-id-rule.md`](../../../shared/references/evergreen-packet-id-rule.md): evergreen rule for runtime docs; benchmark reports follow it via `source.md` cross-link rather than inline packet IDs
+- [`core-standards.md`](../../../shared/references/core-standards.md): cross-document standards including ANCHOR conventions
+- [`evergreen-packet-id-rule.md`](../../../shared/references/evergreen-packet-id-rule.md): evergreen rule for runtime docs; benchmark reports follow it via `source.md` cross-link rather than inline packet IDs
 
 ---
 

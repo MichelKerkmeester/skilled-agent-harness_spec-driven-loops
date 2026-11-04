@@ -8,14 +8,24 @@ trigger_phrases:
   - "before after report example"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Worked example
 
+Follow it once before pointing the engine at a document you care about, so the report shape holds no surprises.
+
 ## 1. OVERVIEW
 
+### Purpose
+
 An end-to-end run using the shipped fixtures (`../assets/fixtures/`). Two versions of an onboarding guide: the "after" rewrites a sentence, expands two bullets, adds a section, and extends a line.
+
+### When to Use
+
+- Before a first real review, to see the summary line and the two views.
+- To check what the summary line's additions, changes and unchanged counts are telling you.
+- To copy a working `compare-pair` or `snapshot`/`compare` invocation.
 
 ---
 

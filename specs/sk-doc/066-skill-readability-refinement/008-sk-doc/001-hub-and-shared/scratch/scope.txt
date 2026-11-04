@@ -1,0 +1,11 @@
+.skilled/skills/sk-doc/README.md
+.skilled/skills/sk-doc/ROUTER.md
+.skilled/skills/sk-doc/SKILL.md
+.skilled/skills/sk-doc/shared/README.md
+.skilled/skills/sk-doc/shared/assets/llmstxt-templates.md
+.skilled/skills/sk-doc/shared/references/core-standards.md
+.skilled/skills/sk-doc/shared/references/evergreen-packet-id-rule.md
+.skilled/skills/sk-doc/shared/references/filesystem-naming-convention.md
+.skilled/skills/sk-doc/shared/references/quick-reference.md
+.skilled/skills/sk-doc/shared/references/validation.md
+.skilled/skills/sk-doc/shared/scripts/README.md

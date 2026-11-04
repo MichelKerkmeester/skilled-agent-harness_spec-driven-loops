@@ -9,7 +9,7 @@ trigger_phrases:
   - "command allowed-tools mistake"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Command Creation - Component Choice and Common Pitfalls
@@ -20,7 +20,14 @@ The first pitfall is building a command at all when a skill or agent fits better
 
 ## 1. OVERVIEW
 
-This reference guards two failure modes: choosing the wrong component (a command when a skill or agent fits better) and the recurring command-authoring defects: missing gates, over-broad tools, dashboards in routers, and multiline descriptions. Decide the component first, then check the draft against the mistakes table.
+### Purpose
+
+This reference guards two failure modes: the wrong component and the recurring command-authoring defects. A draft that passes this check is the right component, gates its required input, lists only the tools it needs, keeps `description` on one line, and leaves display wording to the presentation asset.
+
+### When to Use
+
+- Before drafting, to confirm the workflow belongs in a command rather than a skill or an agent
+- After drafting, to review the draft against the mistakes table
 
 ---
 

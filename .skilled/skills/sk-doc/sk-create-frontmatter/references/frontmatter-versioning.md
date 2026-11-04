@@ -9,7 +9,7 @@ trigger_phrases:
   - "4-part version format"
 importance_tier: important
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Frontmatter Versioning Standard
@@ -18,7 +18,17 @@ Every skill doc carries a 4-part `version: X.Y.Z.W` field in its frontmatter. On
 
 ---
 
-## 1. OVERVIEW AND SCOPE
+## 1. OVERVIEW
+
+### Purpose
+
+One derivation rule for the 4-part `version`, so the number means the same thing on any skill doc and the commit gate can tell when it must go up.
+
+### When to Use
+
+- Before authoring, raising or reconciling a `version` on a skill doc.
+- When a commit gate or `verify` reports a missing, malformed or mismatched version.
+- When deciding whether a document class carries a `version` at all.
 
 ### In scope (MUST carry `version`)
 

@@ -10,7 +10,7 @@ trigger_phrases:
   - "testing playbook pitfalls"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Manual Testing Playbook Creation - Reference Map
@@ -61,5 +61,3 @@ Load the file that matches the current task:
 - [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution-mode reference
 
 ---
-
-*End of Manual Testing Playbook Creation reference map - the executable workflow lives in [`../SKILL.md`](../SKILL.md).*

@@ -8,7 +8,7 @@ trigger_phrases:
   - "benchmark report structure example"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.8
+version: 1.5.1.0
 ---
 
 # Benchmark Report Worked Example
@@ -19,7 +19,12 @@ A miniature rendering of the `benchmark-report.md` shape, so you can see the str
 
 ## 1. OVERVIEW
 
-The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../../SKILL.md) §5. The full fillable scaffold, with every section and placeholder, is [`../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
+The fixed ten-section contract and the report style rules live in [`../../SKILL.md`](../../SKILL.md) §5. The full fillable scaffold, with every section and placeholder, is [`../../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
+
+### When to Use
+
+- Authoring a `benchmark-report.md` and you want the section pattern before filling the template.
+- Checking how sections 1 to 3 read in a finished report.
 
 ---
 
@@ -91,4 +96,4 @@ Retrieval pipeline = <pipeline-description>. Toggle via `<config-flag>=true|fals
 
 ## 3. SECTIONS 4 TO 10
 
-Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) for all ten sections rendered with fill-in placeholders.
+Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) for all ten sections rendered with fill-in placeholders.

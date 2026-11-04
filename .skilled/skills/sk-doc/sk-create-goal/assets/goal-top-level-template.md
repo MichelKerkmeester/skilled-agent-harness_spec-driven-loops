@@ -8,7 +8,7 @@ trigger_phrases:
   - "retrofit goal template"
 importance_tier: important
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Top-Level Goal Template
@@ -68,6 +68,7 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
 **Objective:** [One sentence naming the outcome this packet delivers, taken from its spec.md purpose. Not how, not progress.]
 
@@ -86,6 +87,7 @@ Frozen choices. Changing one is an amendment.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] [A check answered by an exit code, a count or a named artifact]
 - [ ] [Another check that needs no other file to answer]
@@ -96,6 +98,7 @@ Frozen choices. Changing one is an amendment.
 
 <!-- ANCHOR:log -->
 ## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations

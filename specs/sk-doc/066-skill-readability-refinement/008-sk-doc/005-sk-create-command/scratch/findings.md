@@ -1,0 +1,78 @@
+### .skilled/skills/sk-doc/sk-create-command/README.md
+- [P1] .skilled/skills/sk-doc/sk-create-command/README.md:144 | 1 | Run from the repository root, this command validates the root `README.md`, not this file; I ran it and it returned `"file_path": "README.md"` with `"valid": true`, so the row reports a false pass. | Replace the command with `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-command/README.md --type readme`.
+- [P2] .skilled/skills/sk-doc/sk-create-command/README.md:75 | 7 | One paragraph carries five mechanisms: path resolution, read-first, type classification, frontmatter authoring and the tool list. | Replace line 75 with: `- **Resolve the invocation path first.** \`.skilled/commands/<command>.md\` becomes \`/<command>\`, while \`.skilled/commands/<namespace>/<action>.md\` becomes \`/<namespace>:<action>\`.` / `- **Read any existing command completely before editing it**, then check nearby commands in the same namespace so structure and vocabulary match the family.` / `- **Classify the command type from the table in \`SKILL.md\`.**` / `- **Author the frontmatter first**, starting with a single-line \`description\`. Add an \`argument-hint\` when input is expected.` / `- **Keep \`allowed-tools\` at least privilege**, listing only the tools the command actually calls.`
+- [P2] .skilled/skills/sk-doc/sk-create-command/README.md:155 | 8 | The Related Documents table omits `ROUTER.md` and two of the four reference files, so the machine router, `argument-hints-and-modes.md` and `common-pitfalls.md` are unreachable from the README. | Insert after line 155: `| [\`ROUTER.md\`](./ROUTER.md) | Machine router: intent model, router resilience rules and the resource loading sequence |`. Insert after line 161: `| [\`references/argument-hints-and-modes.md\`](./references/argument-hints-and-modes.md) | Argument-hint design patterns, \`:auto\`/\`:confirm\` mode design and frontmatter budget tips |` and `| [\`references/common-pitfalls.md\`](./references/common-pitfalls.md) | Command vs skill vs agent selection and the recurring command-authoring mistakes |`.
+
+### .skilled/skills/sk-doc/sk-create-command/ROUTER.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/ROUTER.md:23 | 7 | The single paragraph packs the whole trigger list and both resource families into two ~60-word sentences. | Replace line 23 with: `Requests reach this skill when they ask to:` + bullets `create an OpenCode slash command`, `refactor a command into a thin router plus an owned presentation asset`, `add or repair \`argument-hint\` and \`allowed-tools\``, `design \`$ARGUMENTS\` handling or \`:auto\` and \`:confirm\` mode routing`, `author a namespace command`, `check whether a workflow should be a command rather than a skill, agent or one-off task`; then `It routes to two resource families:` + `- \`references/\`: the flat single-concern files, where \`references/README.md\` is both the route map and the fallback when the command purpose or component surface is unclear.` + `- \`assets/\`: this packet's command templates, where \`command-template.md\`, \`command-router-template.md\` and \`command-presentation-template.md\` carry the skeletons and \`command-contract.json\` the machine-readable family contract.`
+
+### .skilled/skills/sk-doc/sk-create-command/SKILL.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/SKILL.md:285 | 5 | The loader-gating trust rule, that frontmatter authorizes the tools and any dispatched agent, sits at the end of Step 9 after the Step 6 frontmatter work it governs. | Move line 285 to after line 194.
+- [P2] .skilled/skills/sk-doc/sk-create-command/SKILL.md:414 | 1 | RULES uses plain `Always:` / `Never:` / `Escalate if:` lead-ins instead of the template's required H3 subsections `ALWAYS`, `NEVER`, `ESCALATE IF` (`skill-md-template.md` lines 254-264 and 759). | Replace line 414 with `### ALWAYS`, line 428 with `### NEVER`, and line 440 with `### ESCALATE IF`.
+
+### .skilled/skills/sk-doc/sk-create-command/assets/command-presentation-template.md
+- clean
+
+### .skilled/skills/sk-doc/sk-create-command/assets/command-router-template.md
+- clean
+
+### .skilled/skills/sk-doc/sk-create-command/assets/command-template.md
+- [P1] .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:69 | 1 | The location tree names `.skilled/command/`, which does not exist; every path in this packet uses `.skilled/commands/`, so a copied tree lands where OpenCode does not look. | Change `└── command/` to `└── commands/`.
+- [P1] .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:201 | 6 | The section-order table puts `Mandatory Gate` at order 1 and `Title + Purpose` at order 2, contradicting the rule at line 395 and the minimal example at lines 212-249, which place the gate after the H1 and purpose line. | Swap the two rows to: `| 1     | **Title + Purpose** | Yes              | What the command does               |` and `| 2     | **Mandatory Gate**  | If required args | Prevent context inference           |`.
+- [P1] .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:1238 | 10 | `RELATED RESOURCES` is followed by `COMMAND CONTRACT`, so it is not the last H2; `validate_document.py` reports `render_section_order` here. | Move lines 1236-1247 (the divider plus the related block) to the end of the file after line 1279; renumber the moved heading to `## 20.` and `## 20. COMMAND CONTRACT` to `## 19.`.
+- [P2] .skilled/skills/sk-doc/sk-create-command/assets/command-template.md:1193 | 2 | `**Use when**` and `**Skip when**` are consecutive bold-label lines, so they render as one paragraph; `validate_document.py` reports `render_bold_label_join`. | Replace lines 1192-1193 with: `- **Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.` and `- **Skip when**: Simple single-action commands, sequential workflows.`.
+
+### .skilled/skills/sk-doc/sk-create-command/references/README.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/README.md:23 | 1 | The overview's first sentence repeats the intro's routing-hub/map claim almost verbatim, which the reference template's intro-versus-OVERVIEW warning forbids. | Replace line 23 with: `Every piece of overflow, the fully worked split example, how to separate a router from its presentation, how to design argument hints and \`:auto\`/\`:confirm\` modes, and the mistakes to avoid, lives in its own focused file. Open only the one the current task needs.`
+
+### .skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md
+- clean
+
+### .skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md:23 | 4 | The OVERVIEW is a single paragraph with no Purpose or When to Use subsection, and its first sentence nests two failure modes and four defect examples behind two colons; the reference template's overview opens with Purpose and When to Use. | Replace line 23 with:
+
+  ```markdown
+  ### Purpose
+
+  This reference guards two failure modes: the wrong component and the recurring command-authoring defects. A draft that passes this check is the right component, gates its required input, lists only the tools it needs, keeps `description` on one line, and leaves display wording to the presentation asset.
+
+  ### When to Use
+
+  - Before drafting, to confirm the workflow belongs in a command rather than a skill or an agent
+  - After drafting, to review the draft against the mistakes table
+  ```
+
+### .skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md:23 | 4 | The OVERVIEW is one contents sentence that lists what the file covers; it states neither the outcome nor when to open the file, and it has no Purpose or When to Use subsection. | Replace line 23 with:
+
+  ```markdown
+  ### Purpose
+
+  This reference expands the router/presentation separation named in SKILL.md Step 11: what the router owns, what the presentation asset owns, the mechanical before/after transformation, and the rule that a split must never change behavior.
+
+  ### When to Use
+
+  - Refactoring a mode-based command into a thin router plus a presentation asset
+  - Checking that a split preserved routing, gates, modes, and `allowed-tools`
+  ```
+
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md:76 | 5 | The behavior-preserving trust rule sits in section 4, after the before/after transformation in section 3 that it governs, so a reader can perform the split before learning the constraint. | Move the `## 4. BEHAVIOR-PRESERVING RULE` block (current lines 74-79) to before the divider above `## 3. BEFORE / AFTER TRANSFORMATION` (current line 44); renumber the moved heading to `## 3.` and the current `## 3.` to `## 4.`.
+
+### .skilled/skills/sk-doc/sk-create-command/references/worked-example.md
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/worked-example.md:17 | 3 | The intro runs to three sentences and ends with a pure pointer, "This file shows what the finished output package looks like so you can model the shape"; the reference template caps the intro at two short sentences and the intro rule rejects pointer sentences. | Replace line 17 with: `A concrete end-to-end example of a mode-based namespace command. \`sk-create-command/SKILL.md\` owns the numbered workflow.`
+
+- [P2] .skilled/skills/sk-doc/sk-create-command/references/worked-example.md:23 | 4 | The OVERVIEW states the Purpose and the illustrative-only trust rule but has no When to Use subsection, so the reader is not told which task sends them here. | Replace line 23 with:
+
+  ```markdown
+  ### Purpose
+
+  This reference is a single worked example: the canonical command file contract and its invariants, then a full mode-based split showing both the router `.md` and its presentation `.txt`.
+
+  ### When to Use
+
+  - Modeling the output package shape for a mode-based namespace command
+  - Seeing the router and presentation contract applied end to end
+
+  **Illustrative only:** this is overflow for SKILL.md Steps 5 and 11; model the shape and do not treat `/review:packet` as a live command.
+  ```
+

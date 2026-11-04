@@ -9,18 +9,24 @@ trigger_phrases:
   - "agent common mistakes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.5
+version: 1.0.1.0
 ---
 
 # Common Agent-Creation Pitfalls
 
-The mistakes that most often make an agent file fail to resolve, exceed its contract, or bloat over time. Each pairs the reason it breaks with the correct fix. `SKILL.md` § RULES states these as NEVER lines; this file explains the *why* and the remedy.
+The mistakes that most often make an agent file fail to resolve, exceed its contract, or bloat over time. Each pairs the reason it breaks with the correct fix.
 
 ---
 
 ## 1. OVERVIEW
 
-Agent files fail in a small, predictable set of ways: the component should not have been an agent at all, the file lands in the wrong runtime directory, identity fields drift apart, permissions over-grant, or the body absorbs guidance that belongs in a skill. Catch these before validation rather than after.
+Agent files fail in a small, predictable set of ways: the component should not have been an agent at all, the file lands in the wrong runtime directory, identity fields drift apart, permissions over-grant, or the body absorbs guidance that belongs in a skill. Catch these before validation rather than after. `SKILL.md` § RULES states these as NEVER lines; this file explains the *why* and the remedy.
+
+**When to Use**:
+
+- Reviewing a draft agent before it ships.
+- An agent fails to resolve, over-permits, or bloats over time.
+- Validation flags a structural defect and you want the cause and the fix.
 
 **Core Principle**: Most agent defects are authority and placement defects — scope and location first, prose second.
 

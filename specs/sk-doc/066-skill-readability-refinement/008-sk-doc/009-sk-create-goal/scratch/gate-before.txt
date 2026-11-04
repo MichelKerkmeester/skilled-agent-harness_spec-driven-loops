@@ -1,0 +1,2 @@
+.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md:18: render_overview_heading: The first H2 compounds OVERVIEW with "AND SOURCE CHECK"; name it OVERVIEW and move the topic into a subsection
+files=10 render_warnings=1 invalid=0

@@ -1,0 +1,4 @@
+restored .skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md
+restored .skilled/skills/sk-doc/sk-create-quality-control/references/README.md
+restored=2
+code_blocks_changed=0 block_count_mismatch=0

@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # create-benchmark
@@ -70,7 +70,18 @@ Expected: zero blocking issues once the ten required sections are filled in.
 
 ## 4. HOW IT WORKS
 
-The flagship family, MCP promotion, runs a fixed sequence. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion. Confirm the target skill actually has `mcp-server/`. Create or update the benchmarks index. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date. Copy the source artifacts starting with the aggregate CSV. Write `benchmark-report.md` from the fixed ten-section structure. Write `source.md` as a lean wayfinding pointer back to the spec packet. Update the README index row. Validate.
+The flagship family, MCP promotion, runs a fixed sequence.
+
+1. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands.
+2. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion.
+3. Confirm the target skill actually has `mcp-server/`.
+4. Create or update the benchmarks index.
+5. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date.
+6. Copy the source artifacts starting with the aggregate CSV.
+7. Write `benchmark-report.md` from the fixed ten-section structure.
+8. Write `source.md` as a lean wayfinding pointer back to the spec packet.
+9. Update the README index row.
+10. Validate.
 
 Behavior benchmarks follow the same authoring-not-running shape. The family's package layout is documented in its own `SKILL.md` section (9) and its own guide under `references/`.
 
@@ -84,7 +95,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
 
 ### When To Use This Skill
 
-Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a hub needs its `benchmark/README.md` index established or updated.
+Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a consuming skill needs its `mcp-server/benchmarks/README.md` index established or updated.
 
 Skip it when the benchmark is still in-flight, is a single unreplayable data point or the real ask is a release note (`create-changelog`) or an audit of benchmark markdown that already exists (`create-quality-control`).
 
@@ -152,5 +163,5 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 allow-ref benchmark-report.md | the report this packet authors into a consuming skill's dated benchmark folder, so it is never a file in this packet
 allow-ref mcp-server/benchmarks/ | the tree inside the consuming skill a promotion writes into, relative to that skill rather than to this one
 allow-ref benchmark-YYYY-MM-DD/ | the dated folder a run creates at execution time, so its name carries the run's date
-allow-ref benchmark/README.md | the index a consuming skill keeps beside its own benchmark reports, so the folder is that skill's
+allow-ref mcp-server/benchmarks/README.md | the index a consuming skill keeps beside its own benchmark reports, so the folder is that skill's
 -->

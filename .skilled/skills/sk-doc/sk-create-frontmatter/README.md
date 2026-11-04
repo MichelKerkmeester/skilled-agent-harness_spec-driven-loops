@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # create-frontmatter
@@ -35,7 +35,13 @@ version: 1.0.5.0
 
 ### Why This Skill Exists
 
-Frontmatter is small and it is load-bearing. The advisor routes on `trigger_phrases`. Discovery drops a skill whose `description` pushes the project over a shared character budget, and it drops it silently. A missing `version` fails a corpus gate. None of that is visible in the document body, so a wrong block looks like a working document right up until something stops finding it.
+Frontmatter is small and it is load-bearing.
+
+- The advisor routes on `trigger_phrases`.
+- Discovery drops a skill whose `description` pushes the project over a shared character budget, and it drops it silently.
+- A missing `version` fails a corpus gate.
+
+None of that is visible in the document body, so a wrong block looks like a working document right up until something stops finding it.
 
 Six modes in this hub emit frontmatter and every one of their templates defers to the same specification. Until now that specification sat in the hub's shared tier, which is the right reach and the wrong ownership. Shared means anyone may read it. It also meant nobody was accountable for it, so it drifted from the validators that enforce it and no single mode could be asked to fix that.
 
@@ -101,7 +107,13 @@ Gating each commit on its own per-file added-plus-deleted line count removes bot
 
 Descriptions share one project-wide allowance. Go over it and the longest entries are dropped from auto-discovery. Nothing errors and nothing warns at the point of failure. The skill simply stops being found.
 
-That is why the trim rules are specific rather than a suggestion to be brief. Drop product and stack enumerations, drop marketing prose, and keep the skill name, the primary verb, the domain noun and the mode suffixes, because those last ones are what the advisor matches on. A description trimmed by deleting the routing tokens is under budget and no longer routes.
+That is why the trim rules are specific rather than a suggestion to be brief.
+
+- Drop product and stack enumerations.
+- Drop marketing prose.
+- Keep the skill name, the primary verb, the domain noun and the mode suffixes, because those last ones are what the advisor matches on.
+
+A description trimmed by deleting the routing tokens is under budget and no longer routes.
 
 ---
 

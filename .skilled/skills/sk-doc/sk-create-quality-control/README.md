@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-quality-control
@@ -31,6 +31,10 @@ version: 1.0.1.0
 ### Why This Skill Exists
 
 A document either reads well to the person who wrote it or it does not. A self-assessment is not evidence. Without a scoring pass, "looks fine to me" is the only quality bar a README or `SKILL.md` ever clears. A document can then ship with missing frontmatter, a broken section order, a misdetected document type or robotic AI-pattern prose that nobody catches until an operator hits it mid-task. Fixing that blind, by rewriting on instinct, risks changing product claims or policy text that nobody actually asked to touch.
+
+### When To Use This Skill
+
+Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document does not exist yet (that is a creation packet's job) or when the fix is a one-character typo that does not need a scoring pass.
 
 ### What It Does
 
@@ -62,7 +66,11 @@ Expected: zero blocking issues before the document counts as ready.
 
 ## 4. HOW IT WORKS
 
-Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it. Classify findings in order, blocking structural failures first, then warnings, then recommendations and only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
+1. Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs.
+2. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it.
+3. Classify findings in order: blocking structural failures first, then warnings, then recommendations. Only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them.
+4. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations.
+5. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
 
 ### Key Concept: DQI Is Read, Never Guessed
 
@@ -70,15 +78,23 @@ The DQI score always comes from running `extract_structure.py` against the real 
 
 ### Enforcement Fixes
 
-The three structural failures this packet fixes most often are missing frontmatter, sections out of the required order and a required section that is simply absent. Each fix follows the same shape: identify the gap against the detected document type, apply the minimal correction rather than a rewrite, then re-run validation and extraction to confirm the fix actually landed. When the missing content needs source evidence that is not in the workspace, the packet escalates instead of inventing it.
+The three structural failures this packet fixes most often are:
+
+- Missing frontmatter.
+- Sections out of the required order.
+- A required section that is simply absent.
+
+Each fix follows the same shape:
+
+1. Identify the gap against the detected document type.
+2. Apply the minimal correction rather than a rewrite.
+3. Re-run validation and extraction to confirm the fix actually landed.
+
+When the missing content needs source evidence that is not in the workspace, the packet escalates instead of inventing it.
 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document does not exist yet (that is a creation packet's job) or when the fix is a one-character typo that does not need a scoring pass.
 
 ### Related Skills
 

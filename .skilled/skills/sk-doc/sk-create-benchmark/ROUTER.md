@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-create-benchmark routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -54,6 +54,10 @@ Route to the right family before authoring. The **OWNS** column is what this pac
 ### Routing Decision
 
 Route by the table. Never change lane-local scoring.
+
+### Family Boundary
+
+This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.
 
 ### Smart Router Pseudocode
 
@@ -120,7 +124,3 @@ def route_benchmark_request(request):
         load_if_available(path, inventory, loaded, seen)
     return {"routing_key": routing_key, "resources": loaded}
 ```
-
-### Family Boundary
-
-This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.

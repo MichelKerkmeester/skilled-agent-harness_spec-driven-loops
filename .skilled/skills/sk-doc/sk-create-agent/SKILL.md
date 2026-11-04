@@ -42,13 +42,17 @@ Use another `sk-doc` packet when:
 
 ## 2. SMART ROUTING
 
-The `sk-doc` hub routes runtime-persona work here: a request to create or update one agent file, and the hub's `sk-create-agent` signal selects this packet.
-Stay in this packet only when the artifact is a concrete runtime agent file whose authority boundary no existing agent already covers; a skill, a command or an existing agent answers the rest.
+The `sk-doc` hub routes runtime-persona work here: a request to create or update one agent file.
+The hub's `sk-create-agent` signal selects this packet.
+Stay in this packet only when the artifact is a concrete runtime agent file whose authority boundary no existing agent already covers.
+A skill, a command or an existing agent answers the rest.
 
-`references/README.md` is the route map, and the fallback when the component or runtime is unclear.
+`references/README.md` is the route map.
+It is also the fallback when the component or runtime is unclear.
 A resolved request loads this packet's flat references and assets first, with `assets/agent-template.md` as the scaffold.
 
-Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources.
+Open only the matched files.
 
 ---
 
@@ -150,7 +154,12 @@ Start from `assets/agent-template.md` when creating a new agent. At minimum, a p
 6. Anti-patterns section that names failure modes.
 7. Related resources section with real supporting paths.
 
-Boundary variants: LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths; LEAF read-only agents deny nested dispatch and all file mutation; orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it; command-driven or machine-validated agents may need input/scope gates before workflow steps.
+Boundary variants:
+
+- LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths.
+- LEAF read-only agents deny nested dispatch and all file mutation.
+- Orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it.
+- Command-driven or machine-validated agents may need input/scope gates before workflow steps.
 
 ### Sanctioned Section-Vocabulary Dialects
 

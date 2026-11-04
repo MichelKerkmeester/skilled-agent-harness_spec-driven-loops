@@ -1,0 +1,8 @@
+.skilled/skills/sk-doc/sk-create-agent/README.md
+.skilled/skills/sk-doc/sk-create-agent/ROUTER.md
+.skilled/skills/sk-doc/sk-create-agent/SKILL.md
+.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+.skilled/skills/sk-doc/sk-create-agent/references/README.md
+.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md
+.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md
+.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md

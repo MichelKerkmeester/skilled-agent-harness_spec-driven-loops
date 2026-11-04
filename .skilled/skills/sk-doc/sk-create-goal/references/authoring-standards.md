@@ -8,14 +8,26 @@ trigger_phrases:
   - "goal log and voice"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Goal Authoring Standards
 
+Open this while a goal is being drafted or reviewed: each rule names the failure it prevents and the question that settles it.
+
+---
+
 ## 1. OVERVIEW
 
+### Purpose
+
 The goal template defines the structure. These checks ask whether an authored goal states its purpose and records fixed choices. They also give a reader a way to judge completion. The [Human Voice Rules](../../sk-create-with-human-voice/references/hvr-rules.md) govern the prose.
+
+### When to Use
+
+- Writing or revising a packet `goal.md`.
+- Deciding whether a completion criterion is self-contained.
+- Reviewing a goal before it is handed to an operator.
 
 ---
 

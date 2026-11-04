@@ -4,14 +4,23 @@ description: "Route-map for the create-diff overflow references: which single-co
 trigger_phrases:
   - "create-diff references"
   - "create-diff route map"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # create-diff, reference route-map
 
+Each concern has exactly one file, so a reader can stop after the row that answers the question.
+
 ## 1. OVERVIEW
 
-Overflow guidance beyond `SKILL.md`, split into single-concern files. Load the one that matches the concern; do not load everything by default.
+### Purpose
+
+Overflow guidance beyond `SKILL.md`, split into single-concern files.
+
+### When to Use
+
+- A question is narrower than the `SKILL.md` workflow and one concern needs the depth a single file carries.
+- You are choosing a reference: load the one that matches the concern, not everything by default.
 
 | Concern | File |
 | --- | --- |

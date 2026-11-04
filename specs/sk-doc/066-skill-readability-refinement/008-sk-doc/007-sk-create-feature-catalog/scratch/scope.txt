@@ -1,0 +1,8 @@
+.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/references/README.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md
+.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md

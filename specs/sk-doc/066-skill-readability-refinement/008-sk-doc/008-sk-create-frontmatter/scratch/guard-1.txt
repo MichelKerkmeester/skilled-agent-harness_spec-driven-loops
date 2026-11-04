@@ -1,0 +1,3 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md edited=11
+code_blocks_changed=1 block_count_mismatch=0 restored

@@ -9,7 +9,7 @@ trigger_phrases:
   - "template versus reference split"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.6
+version: 1.0.1.0
 ---
 
 # Feature Catalog Common Pitfalls
@@ -72,7 +72,7 @@ A feature catalog fails quietly. Structure validation passes, links resolve, and
 
 **Why it breaks**: Long unbroken prose has no navigation anchors, so readers cannot scan to the aspect they need, and the section becomes write-only.
 
-**Fix**: Once the section exceeds three paragraphs, break it into H3 sub-headings — `### Core Behavior`, `### Configuration`, `### Edge Cases`, `### Async & Safety`. Short sections stay plain prose; the rule triggers only on length. The live `unified-context-retrieval-memorycontext.md` file shows this applied well.
+**Fix**: Once the section exceeds three paragraphs, break it into H3 sub-headings — `### Core Behavior`, `### Configuration`, `### Edge Cases`, `### Async & Safety`. Short sections stay plain prose; the rule triggers only on length. The live `cli-surface/skill-advisor-cli.md` file in the `system-skill-advisor` catalog shows this applied well.
 
 ### Missing trigger_phrases in frontmatter
 
@@ -95,7 +95,7 @@ trigger_phrases:
 
 The packet ships two kinds of authoring aids, and using the wrong one for the wrong question wastes effort:
 
-- Use the **templates** in `../assets/feature-catalog/` to scaffold the actual files — the empty root-catalog and per-feature shapes, their frontmatter blocks, and their publishing checklists.
+- Use the **templates** in `../assets/` to scaffold the actual files — the empty root-catalog and per-feature shapes, their frontmatter blocks, and their publishing checklists.
 - Use the **references** here (and the primary contract in `SKILL.md`) to decide *what belongs where*: which claims live in the root versus the per-feature file, how to keep slugs stable, and how to keep the package aligned with current standards.
 
 In short: templates answer "what does the file look like?"; `SKILL.md` and these references answer "what should it say and why?". Scaffold from the template, then judge the content against the contract.

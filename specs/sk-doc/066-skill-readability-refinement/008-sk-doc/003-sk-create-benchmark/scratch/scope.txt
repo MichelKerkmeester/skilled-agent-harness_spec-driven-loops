@@ -1,0 +1,13 @@
+.skilled/skills/sk-doc/sk-create-benchmark/README.md
+.skilled/skills/sk-doc/sk-create-benchmark/ROUTER.md
+.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
+.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md
+.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
+.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md
+.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md
+.skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md
+.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
+.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md

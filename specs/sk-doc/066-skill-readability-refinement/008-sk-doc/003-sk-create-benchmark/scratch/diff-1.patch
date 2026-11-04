@@ -1,0 +1,316 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/README.md b/.skilled/skills/sk-doc/sk-create-benchmark/README.md
+index 24d2770772c..697a45f4f8c 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/README.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/README.md
+@@ -70,7 +70,18 @@ Expected: zero blocking issues once the ten required sections are filled in.
+ 
+ ## 4. HOW IT WORKS
+ 
+-The flagship family, MCP promotion, runs a fixed sequence. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion. Confirm the target skill actually has `mcp-server/`. Create or update the benchmarks index. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date. Copy the source artifacts starting with the aggregate CSV. Write `benchmark-report.md` from the fixed ten-section structure. Write `source.md` as a lean wayfinding pointer back to the spec packet. Update the README index row. Validate.
++The flagship family, MCP promotion, runs a fixed sequence.
++
++1. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands.
++2. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion.
++3. Confirm the target skill actually has `mcp-server/`.
++4. Create or update the benchmarks index.
++5. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date.
++6. Copy the source artifacts starting with the aggregate CSV.
++7. Write `benchmark-report.md` from the fixed ten-section structure.
++8. Write `source.md` as a lean wayfinding pointer back to the spec packet.
++9. Update the README index row.
++10. Validate.
+ 
+ Behavior benchmarks follow the same authoring-not-running shape. The family's package layout is documented in its own `SKILL.md` section (9) and its own guide under `references/`.
+ 
+@@ -84,7 +95,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
+ 
+ ### When To Use This Skill
+ 
+-Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a hub needs its `benchmark/README.md` index established or updated.
++Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a consuming skill needs its `mcp-server/benchmarks/README.md` index established or updated.
+ 
+ Skip it when the benchmark is still in-flight, is a single unreplayable data point or the real ask is a release note (`create-changelog`) or an audit of benchmark markdown that already exists (`create-quality-control`).
+ 
+@@ -152,5 +163,5 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
+ allow-ref benchmark-report.md | the report this packet authors into a consuming skill's dated benchmark folder, so it is never a file in this packet
+ allow-ref mcp-server/benchmarks/ | the tree inside the consuming skill a promotion writes into, relative to that skill rather than to this one
+ allow-ref benchmark-YYYY-MM-DD/ | the dated folder a run creates at execution time, so its name carries the run's date
+-allow-ref benchmark/README.md | the index a consuming skill keeps beside its own benchmark reports, so the folder is that skill's
++allow-ref mcp-server/benchmarks/README.md | the index a consuming skill keeps beside its own benchmark reports, so the folder is that skill's
+ -->
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/ROUTER.md b/.skilled/skills/sk-doc/sk-create-benchmark/ROUTER.md
+index a3372ca4498..2244738feac 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/ROUTER.md
+@@ -55,6 +55,10 @@ Route to the right family before authoring. The **OWNS** column is what this pac
+ 
+ Route by the table. Never change lane-local scoring.
+ 
++### Family Boundary
++
++This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.
++
+ ### Smart Router Pseudocode
+ 
+ Benchmark families are runtime keys. Use canonical `discover_markdown_resources()` and
+@@ -120,7 +124,3 @@ def route_benchmark_request(request):
+         load_if_available(path, inventory, loaded, seen)
+     return {"routing_key": routing_key, "resources": loaded}
+ ```
+-
+-### Family Boundary
+-
+-This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md b/.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
+index c8fb79ccaab..7c59dfe1bf1 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
+@@ -25,7 +25,7 @@ Use this packet to author completed benchmark evidence or benchmark inputs into
+ - **MCP promotion** (on-disk `shared`; §3-8) — promote a completed MCP benchmark from a spec packet: author the ten-section `benchmark-report.md` and `source.md`, copy `results.csv`, applicable `per-probe.jsonl` and runtime sidecars into a dated folder, then update `benchmarks/README.md`.
+ - **Behavior benchmark** (§9) — author or extend a deep-loop mode's index, `<PREFIX>-NNN-<slug>.md` scenario contracts, baseline, and entry-surface/clarity matrix. Fixed prefixes are `research` (RSB), `review` (RVB), and `ai-council` (ACB); declare a new mode's prefix in the index OVERVIEW.
+ 
+-Keyword triggers: `benchmark-report.md`, `source.md`, `mcp-server/benchmarks`; `behavior benchmark`, `behavior-benchmark.md`, `behavior_benchmark`, `scenario contract`, `benchmark/README.md`, `run-label folder`, `benchmark package`
++Keyword triggers: `benchmark-report.md`, `source.md`, `mcp-server/benchmarks`; `behavior benchmark`, `behavior-benchmark.md`, `behavior_benchmark`, `scenario contract`, `benchmarks/README.md`, `run-label folder`, `benchmark package`
+ 
+ ### Adoption Gate (MCP promotion)
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md b/.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
+index a537e54291c..a884e9af061 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
+@@ -111,15 +111,18 @@ Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COU
+ The runner is
+ [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs),
+ invoked per cell as one run of one scenario contract against one executor, with
+-the scenario's `fixture` absorbing all writes for the run. Checkpoint and
+-delegation-evidence extraction, the no-progress watchdog, scoring, and
+-classification are owned by that runner. Results are emitted as result JSON whose
+-`schemaVersion` echoes each scenario's contract: `1` for the schema-v1 core
+-scenarios, `2` for scenarios that declare `"schema_version": 2` (adding the
+-`postconditions`, `directDispatch`, and `boundary` result sections). Run
+-evidence, meaning transcripts, result JSONs and scorecards, lands
+-in the **spec packet phase that executed the round** and never inside this package.
+-a result cited from this index must point to its evidence in that executing phase.
++the scenario's `fixture` absorbing all writes for the run.
++
++- **Owned by the runner:** checkpoint and delegation-evidence extraction, the
++  no-progress watchdog, scoring, and classification.
++- **Result schema:** results are emitted as result JSON whose `schemaVersion`
++  echoes each scenario's contract: `1` for the schema-v1 core scenarios, `2` for
++  scenarios that declare `"schema_version": 2` (adding the `postconditions`,
++  `directDispatch`, and `boundary` result sections).
++- **Evidence location:** run evidence, meaning transcripts, result JSONs and
++  scorecards, lands in the **spec packet phase that executed the round** and
++  never inside this package. A result cited from this index must point to its
++  evidence in that executing phase.
+ 
+ **Fixtures and configs are provisioned by the executing round, not shipped in this
+ package** (the package holds the contract, the packet holds the proof). Each
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md b/.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
+index 019002390ad..753ed212d69 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
+@@ -19,7 +19,7 @@ authoring path end to end and points at the three templates and the normative
+ framework. It does NOT restate the measurement contract: the five-dimension
+ rubric, terminal buckets, budget formula, entry-surface and clarity enums, and the
+ per-package ID-prefix table live once in
+-[`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).
++[`../../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).
+ Where this guide and that framework diverge, the framework prevails.
+ 
+ ---
+@@ -38,9 +38,17 @@ Each behavior benchmark is carried by exactly one deep-loop mode-packet, at
+ Sibling modes each carry their own package; they share the framework, the runner,
+ and the scoring so results stay comparable across modes.
+ 
++### When to Use
++
++- You are authoring a `<mode>/behavior-benchmark/` package: its index, scenario contracts, and baseline.
++- You are extending an existing package with a new scenario cell.
++- You need the scenario-matrix design, package layout, naming rules, or validation steps.
++
++If the task is promoting MCP numbers, use the MCP-promotion path in `../SKILL.md`. If the task is specifying executor behavior for a deep-loop mode, use this guide.
++
+ ### How it differs from an MCP promotion benchmark
+ 
+-The other benchmark family this packet authors — see [`../SKILL.md`](../../SKILL.md)
++The other benchmark family this packet authors — see [`../../SKILL.md`](../../SKILL.md)
+ sections 3 through 8 — promotes a completed MCP retrieval or runtime bake-off into
+ a consuming skill's `mcp-server/benchmarks/` folder with a ten-section
+ `benchmark-report.md`. The two families are distinct and must not be conflated:
+@@ -53,9 +61,6 @@ a consuming skill's `mcp-server/benchmarks/` folder with a ten-section
+ | Governing contract | The report contract in `../SKILL.md` | The shared `framework.md` |
+ | Evidence location | The dated folder is the curated surface; audit trail in the spec packet | The package holds the contract; run evidence lands in the executing spec-packet phase |
+ 
+-If the task is promoting MCP numbers, use the MCP-promotion path in `../SKILL.md`.
+-If the task is specifying executor behavior for a deep-loop mode, use this guide.
+-
+ ---
+ 
+ ## 2. PACKAGE LAYOUT
+@@ -75,9 +80,9 @@ Author this shape inside the owning deep-loop mode-packet:
+ 
+ | File | Required | Template |
+ | --- | --- | --- |
+-| `behavior-benchmark.md` | Yes | [`../assets/behavior-benchmark/behavior-benchmark-index-template.md`](../../assets/behavior-benchmark/behavior-benchmark-index-template.md) |
+-| `scenarios/<PREFIX>-NNN-<slug>.md` | One per scenario | [`../assets/behavior-benchmark/behavior-benchmark-scenario-template.md`](../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md) |
+-| `baselines/claude-baseline.md` | Yes | [`../assets/behavior-benchmark/behavior-benchmark-baseline-template.md`](../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md) |
++| `behavior-benchmark.md` | Yes | [`../../assets/behavior-benchmark/behavior-benchmark-index-template.md`](../../assets/behavior-benchmark/behavior-benchmark-index-template.md) |
++| `scenarios/<PREFIX>-NNN-<slug>.md` | One per scenario | [`../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md`](../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md) |
++| `baselines/claude-baseline.md` | Yes | [`../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md`](../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md) |
+ 
+ Fixtures, lane-configs, transcripts, result JSONs, and scorecards are NOT shipped
+ in this package. The executing spec-packet phase provisions the fixtures and holds
+@@ -109,7 +114,7 @@ reference until its owning rename phase.
+ Complete these steps in order.
+ 
+ 1. **Read the framework.** Load
+-   [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md)
++   [`../../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md)
+    in full: the scenario contract schema, the five-dimension rubric, the terminal
+    buckets, the budget formula, and the ID-prefix table. It is the authority for
+    every field the scenario template leaves as a placeholder.
+@@ -129,14 +134,14 @@ Complete these steps in order.
+    sections, and delete the availability blockquote unless the invocation surface
+    is planned-but-not-built.
+ 6. **Write one scenario file per row.** Copy the scenario template per row, then
+-   keep exactly ONE of its two JSON blocks: the schema-v1 core for the
+-   research/review/ai-council/context packages, or the schema-v2 block
+-   (`"schema_version": 2` with `command_topology`, direct-dispatch targets,
+-   `postconditions`, and `boundary`) for command, direct-tool/plugin, and
+-   the block you are not using. The remaining fenced
+-   json block is the machine contract the runner parses; keep its field order. Fill
+-   Rationale, Pass shape, and Failure modes as scoring context. Keep every row in
+-   the index table and its scenario file in exact sync.
++   keep exactly ONE of its two JSON blocks:
++   - the schema-v1 core for the research/review/ai-council/context packages, or
++   - the schema-v2 block (`"schema_version": 2` with `command_topology`, direct-dispatch targets, `postconditions`, and `boundary`) for command, direct-tool/plugin, and conformance families that need direct-dispatch targets, postcondition probes, or a fixture boundary.
++
++   Delete the block you are not using. The remaining fenced json block is the
++   machine contract the runner parses; keep its field order. Fill Rationale,
++   Pass shape, and Failure modes as scoring context. Keep every row in the index
++   table and its scenario file in exact sync.
+ 7. **Write the baseline.** Copy the baseline template to
+    `baselines/claude-baseline.md`. Ship every cell `pending` / `not_captured` if no
+    Claude leg has run — that is a legitimate ship state, but it is never quotable
+@@ -212,14 +217,14 @@ isolates, and any axis intentionally left out with its reason.
+ 
+ | File | Purpose |
+ | --- | --- |
+-| [`../assets/behavior-benchmark/behavior-benchmark-index-template.md`](../../assets/behavior-benchmark/behavior-benchmark-index-template.md) | Scaffold for the `behavior-benchmark.md` package index |
+-| [`../assets/behavior-benchmark/behavior-benchmark-scenario-template.md`](../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md) | Scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract |
+-| [`../assets/behavior-benchmark/behavior-benchmark-baseline-template.md`](../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md) | Scaffold for `baselines/claude-baseline.md` |
++| [`../../assets/behavior-benchmark/behavior-benchmark-index-template.md`](../../assets/behavior-benchmark/behavior-benchmark-index-template.md) | Scaffold for the `behavior-benchmark.md` package index |
++| [`../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md`](../../assets/behavior-benchmark/behavior-benchmark-scenario-template.md) | Scaffold for one `<PREFIX>-NNN-<slug>.md` scenario contract |
++| [`../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md`](../../assets/behavior-benchmark/behavior-benchmark-baseline-template.md) | Scaffold for `baselines/claude-baseline.md` |
+ 
+ ### Normative contract and runner
+ 
+-- [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the single-source measurement contract: scenario schema, five-dimension rubric, terminal buckets, budget formula, ID-prefix table.
+-- [`../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs`](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
++- [`../../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md) — the single-source measurement contract: scenario schema, five-dimension rubric, terminal buckets, budget formula, ID-prefix table.
++- [`../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs`](../../../../system-deep-loop/shared/behavior-benchmark/behavior-bench-run.cjs) — the runner that extracts checkpoints and delegation evidence, scores, and classifies each cell.
+ 
+ ### Worked reference package
+ 
+@@ -227,4 +232,4 @@ isolates, and any axis intentionally left out with its reason.
+ 
+ ---
+ 
+-*End of behavior benchmark authoring guide — the normative measurement contract lives in [`../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).*
++*End of behavior benchmark authoring guide — the normative measurement contract lives in [`../../../../system-deep-loop/shared/behavior-benchmark/framework.md`](../../../../system-deep-loop/shared/behavior-benchmark/framework.md).*
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md
+index de232b96388..8590ae13d3b 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/README.md
+@@ -66,8 +66,8 @@ Two worked examples are written up in [`case-studies.md`](case-studies.md): a te
+ ### Related sk-doc references
+ 
+ - [`create-readme references`](../../../sk-create-readme/references/README.md): README authoring conventions used by `benchmarks/README.md`
+-- [`global/core-standards.md`](../../../shared/references/core-standards.md): cross-document standards including ANCHOR conventions
+-- [`global/evergreen-packet-id-rule.md`](../../../shared/references/evergreen-packet-id-rule.md): evergreen rule for runtime docs; benchmark reports follow it via `source.md` cross-link rather than inline packet IDs
++- [`core-standards.md`](../../../shared/references/core-standards.md): cross-document standards including ANCHOR conventions
++- [`evergreen-packet-id-rule.md`](../../../shared/references/evergreen-packet-id-rule.md): evergreen rule for runtime docs; benchmark reports follow it via `source.md` cross-link rather than inline packet IDs
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
+index 1b23ed80823..7c2c12cc9d8 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
+@@ -22,6 +22,11 @@ Two adoptions teach the format from opposite ends: one promoted into a live skil
+ 
+ Each case study records what triggered the adoption decision, the load-bearing insight the folder had to surface, and the lesson for the next author. Case study 1 is a clean promotion backed by many ADRs; case study 2 is a correctly-formatted run that was deliberately never promoted because its headline was a single-run signal. Neither folder is on disk any more, so both read as narrative. The lesson outlives the artifact, which is itself worth noticing when you decide what to write down.
+ 
++### When to Use
++
++- Modeling a new benchmark folder on an adoption that worked.
++- Deciding whether a provisional run is ready to promote or should stay archived.
++
+ ---
+ 
+ ## 2. CASE STUDY 1: TEXT-EMBEDDER BAKE-OFF (May 17, 2026)
+@@ -42,7 +47,7 @@ The bake-off compared six text embedders against a deterministic paraphrase-reca
+ 
+ Path: `.opencode/specs/z-future/code-graph-and-cocoindex/backup/mcp-coco-index/mcp-server/benchmarks/benchmark-2026-05-18/`
+ 
+-This bake-off belonged to an experimental `mcp-coco-index` server, not a live shipped skill. The run stayed provisional and the server was parked, so the folder now lives under `specs/z-future/` rather than in a skill tree. It is preserved here as a teaching example of a correctly-formatted but deliberately un-promoted run.
++This bake-off belonged to an experimental `mcp-coco-index` server, not a live shipped skill. The run stayed provisional and the server was parked, so the folder lived under `specs/z-future/` rather than in a skill tree. It is preserved here as a teaching example of a correctly-formatted but deliberately un-promoted run.
+ 
+ The bake-off compared five code-tuned embedders against an 18-pair paraphrased fixture. One skipped on Apple Silicon because of an xformers requirement. The leading candidate was ahead by two net pairs over the current default (four unique wins minus two unique losses). No promotion into a live skill shipped on May 18 because the lead was a single-run signal requiring a 3-run confirmation.
+ 
+@@ -59,4 +64,4 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
+ 
+ ---
+ 
+-*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow.*
++*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../../SKILL.md`](../../SKILL.md) for the authoritative workflow.*
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
+index b30fb2a5b2a..0abc29334b6 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
+@@ -20,7 +20,13 @@ The mistakes that most often make a skill-local benchmark folder drift from its
+ 
+ ## 1. OVERVIEW
+ 
+-Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case-studies.md](case-studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../SKILL.md`](../../SKILL.md) §7.
++Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case-studies.md](case-studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../../SKILL.md`](../../SKILL.md) §7.
++
++### When to Use
++
++- Reviewing a drafted `benchmark-report.md` or benchmark folder.
++- A promoted report no longer matches the packet it came from.
++- A re-run or retirement is about to change an existing folder.
+ 
+ ---
+ 
+@@ -38,4 +44,4 @@ Each row names a mistake, why it breaks the skill-local surface, and the correct
+ 
+ ---
+ 
+-*See [case-studies.md](case-studies.md) for adoptions that avoided these mistakes, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow and rules.*
++*See [case-studies.md](case-studies.md) for adoptions that avoided these mistakes, and [`../../SKILL.md`](../../SKILL.md) for the authoritative workflow and rules.*
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
+index 71bc44aad12..b445f4261c4 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
+@@ -19,7 +19,12 @@ A miniature rendering of the `benchmark-report.md` shape, so you can see the str
+ 
+ ## 1. OVERVIEW
+ 
+-The fixed ten-section contract and the report style rules live in [`../SKILL.md`](../../SKILL.md) §5. The full fillable scaffold, with every section and placeholder, is [`../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
++The fixed ten-section contract and the report style rules live in [`../../SKILL.md`](../../SKILL.md) §5. The full fillable scaffold, with every section and placeholder, is [`../../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) — copy that to author a real report. This file shows sections 1 to 3 in pattern so the shape is legible at a glance.
++
++### When to Use
++
++- Authoring a `benchmark-report.md` and you want the section pattern before filling the template.
++- Checking how sections 1 to 3 read in a finished report.
+ 
+ ---
+ 
+@@ -91,4 +96,4 @@ Retrieval pipeline = <pipeline-description>. Toggle via `<config-flag>=true|fals
+ 
+ ## 3. SECTIONS 4 TO 10
+ 
+-Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) for all ten sections rendered with fill-in placeholders.
++Subsequent sections follow the same pattern: H2 numbered headers, ALL CAPS section names, tables for data, code blocks for verbatim commands. Each section gets its own slug; keep slugs stable across revisions so deep links keep working. See [`../../assets/shared/benchmark-report-template.md`](../../assets/shared/benchmark-report-template.md) for all ten sections rendered with fill-in placeholders.

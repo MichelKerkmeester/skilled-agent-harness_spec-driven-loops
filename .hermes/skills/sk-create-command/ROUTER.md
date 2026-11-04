@@ -20,7 +20,19 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they ask to create an OpenCode slash command, refactor a command into a thin router plus an owned presentation asset, add or repair `argument-hint` and `allowed-tools`, design `$ARGUMENTS` handling or `:auto` and `:confirm` mode routing, author a namespace command, or check whether a workflow should be a command rather than a skill, agent or one-off task. It routes to two resource families: the flat single-concern files under `references/`, where `references/README.md` is both the route map and the fallback when the command purpose or component surface is unclear, and this packet's command templates under `assets/`, where `command-template.md`, `command-router-template.md` and `command-presentation-template.md` carry the skeletons and `command-contract.json` the machine-readable family contract.
+Requests reach this skill when they ask to:
+
+- create an OpenCode slash command
+- refactor a command into a thin router plus an owned presentation asset
+- add or repair `argument-hint` and `allowed-tools`
+- design `$ARGUMENTS` handling or `:auto` and `:confirm` mode routing
+- author a namespace command
+- check whether a workflow should be a command rather than a skill, agent or one-off task
+
+It routes to two resource families:
+
+- `references/`: the flat single-concern files, where `references/README.md` is both the route map and the fallback when the command purpose or component surface is unclear.
+- `assets/`: this packet's command templates, where `command-template.md`, `command-router-template.md` and `command-presentation-template.md` carry the skeletons and `command-contract.json` the machine-readable family contract.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

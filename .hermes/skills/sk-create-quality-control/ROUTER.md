@@ -11,7 +11,7 @@ router_state: active
 skill_pointer: SKILL.md
 ---
 
-# Doc Quality (quality) Router
+# Create Quality Control Router
 
 The machine router for [`SKILL.md`](../../../.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md). `SKILL.md` keeps the short routing prose and the
 link that points here; this file holds the declaration a reader parses to decide what loads.
@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-The `sk-doc` hub routes existing-document quality work here: a request to validate, score, audit or optimize an existing markdown file, whose vocabulary is `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget` and `trim`, selects this packet, while a request to author a new artifact belongs to the matching `create-*` packet instead. It routes to two resource families: the single-concern references under `references/`, which start at `references/README.md`, the route map every run reads first, and carry the four execution modes, the optimization procedure, the 16 transformation patterns with their before/after examples, the validation touchpoints and the worked batch examples, and the shared `sk-doc` scripts and standards the workflow runs, `../shared/scripts/extract_structure.py`, `../shared/scripts/validate_document.py`, `../shared/scripts/quick_validate.py` and `../shared/scripts/check_authored_name_kebab.py` for the structure, validation and naming evidence, with `../shared/references/validation.md` and `../sk-create-with-human-voice/references/hvr-rules.md` for the DQI bands and the voice rules. `references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
+The `sk-doc` hub routes existing-document quality work here: a request to validate, score, audit or optimize an existing markdown file selects this packet, while a request to author a new artifact belongs to the matching `create-*` packet instead. The vocabulary is `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget` and `trim`.
+
+It routes to two resource families:
+
+- **Skill-local references** under `references/` start at `references/README.md`, the route map every run reads first, and carry the four execution modes, the optimization procedure, the 16 transformation patterns with their before/after examples, the validation touchpoints and the worked batch examples.
+- **Shared `sk-doc` scripts and standards** the workflow runs: `../shared/scripts/extract_structure.py`, `../shared/scripts/validate_document.py`, `../shared/scripts/quick_validate.py` and `../shared/scripts/check_authored_name_kebab.py` for the structure, validation and naming evidence, with `../shared/references/validation.md` and `../sk-create-with-human-voice/references/hvr-rules.md` for the DQI bands and the voice rules.
+
+`references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -52,7 +59,7 @@ This is an independently invokable nested workflow packet under `sk-doc`. It own
 
 For this flat-reference packet, the canonical resilient router discovers resources at call
 time, guards and loads only what exists, scores the four audit/execution intents documented
-in WHEN TO USE, and returns a disambiguation checklist rather than silently loading nothing:
+in the intent model above, and returns a disambiguation checklist rather than silently loading nothing:
 
 ```python
 from pathlib import Path

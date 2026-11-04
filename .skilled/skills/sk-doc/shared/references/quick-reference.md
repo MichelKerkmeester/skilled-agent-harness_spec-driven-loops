@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gates at a glance"
 importance_tier: normal
 contextType: general
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Markdown Optimizer - Quick Reference
@@ -18,6 +18,19 @@ Commands, quality gates, and patterns at a glance.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Keep the validator command, the enforcement level and the scoring band for any sk-doc document on one screen, so a check runs without loading a full standard.
+
+### When to Use
+
+- Before delivering a document, when you need the validator command.
+- When a document type needs its enforcement level.
+- When a DQI score needs its band and point breakdown.
+- When a check fails and you want the matching quick fix.
+
+### Quick Commands
 
 **README Format Validation** (MANDATORY before delivery):
 ```bash
@@ -148,17 +161,17 @@ python scripts/package_skill.py skill-path        # Package skill
 
 ## 6. COMMON ISSUES - QUICK FIXES
 
-**Issue**: Checklist failures in JSON output
-**Fix**: Review specific failures, address structural issues first
+- **Issue**: Checklist failures in JSON output
+- **Fix**: Review specific failures, address structural issues first
 
-**Issue**: Low content quality rating from AI
-**Fix**: Answer "How do I..." questions, add practical examples
+- **Issue**: Low content quality rating from AI
+- **Fix**: Answer "How do I..." questions, add practical examples
 
-**Issue**: Style compliance issues
-**Fix**: All H2 must be ALL CAPS, --- separators between H2
+- **Issue**: Style compliance issues
+- **Fix**: All H2 must be ALL CAPS, --- separators between H2
 
-**Issue**: Frontmatter issues detected
-**Fix**: Keep description on single line, use [Tool1, Tool2] array format
+- **Issue**: Frontmatter issues detected
+- **Fix**: Keep description on single line, use [Tool1, Tool2] array format
 
 ---
 
@@ -259,16 +272,16 @@ active resource map.
 **Reference**
 `sk-create-manual-testing-playbook/references/README.md`
 
-### Template
+#### Template
 `sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md`
 
-### Playbook Layout
+#### Playbook Layout
 | File | Content |
 |------|---------|
 | `manual-testing-playbook.md` | Root directory playbook, integrated review/orchestration guidance, summary blocks, and cross-references |
 | `category-name/*.md` | Required per-feature scenario files referenced from the root playbook (bare descriptive slug; the root playbook owns display order) |
 
-### Quick Steps
+#### Quick Steps
 1. **Plan categories** → Define ID prefixes (e.g., CCC, MCP, CFG)
 2. **Create directory** → `{SKILL_PATH}/manual-testing-playbook/`
 3. **Copy scaffolds** → Fill the main playbook and per-feature file scaffolds from the template
@@ -294,6 +307,7 @@ Validation note: the current validator checks the root playbook and does not rec
 - [references/README.md](../../sk-create-readme/references/README.md) - README creation standards and workflow
 - [references/README.md](../../sk-create-feature-catalog/references/README.md) - Feature catalog standards and workflow
 - [references/README.md](../../sk-create-manual-testing-playbook/references/README.md) - Playbook standards and workflow
+- [SKILL.md](../../SKILL.md) - Complete sk-doc documentation and workflow map
 
 ### Templates
 - [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - SKILL.md file templates
@@ -312,7 +326,3 @@ Validation note: the current validator checks the root playbook and does not rec
 ### External Resources
 - [llms.txt specification](https://llmstxt.org/) - Official llms.txt spec
 - [CommonMark](https://spec.commonmark.org/) - Markdown specification
-
----
-
-**For complete documentation**: See [SKILL.md](../../SKILL.md)

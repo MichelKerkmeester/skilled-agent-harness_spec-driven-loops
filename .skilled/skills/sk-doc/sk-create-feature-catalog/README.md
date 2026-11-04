@@ -4,7 +4,7 @@ description: "Author canonical feature-inventory packages, a root catalog plus o
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-feature-catalog
@@ -29,6 +29,10 @@ version: 1.0.2.0
 ### Why This Skill Exists
 
 A README can describe five features honestly. Once a system has thirty, a flat bullet list stops being trustworthy: entries go stale and nobody can tell which claim still matches the code. Different docs disagree about what a feature is even called. create-feature-catalog exists so a large feature surface gets one canonical, navigable inventory instead of scattered, drifting summaries: a root catalog for orientation and a stable per-feature file behind each entry that ties the claim back to a real source file and a real test.
+
+### When To Use This Skill
+
+Reach for create-feature-catalog when a feature surface is too large for a README to stay accurate or when multiple docs need one stable source of truth for feature names. A manual testing playbook or spec that needs a canonical list cross-references the catalog. Skip it when the system only has a handful of features (a README already covers that) or when the product is too volatile for a maintained catalog to stay trustworthy.
 
 ### What It Does
 
@@ -73,7 +77,13 @@ Passes when the file carries its required sections and a Validation And Tests ta
 
 ## 4. HOW IT WORKS
 
-Authoring runs in a fixed order because names have to stabilize before prose does. Read the target system's docs, source files, tests and existing README material first. Decide the category taxonomy and lock feature names and slugs before writing descriptions, renaming a published slug later breaks every link that points at it. Build the root catalog from `assets/feature-catalog-template.md`, create one kebab-case category folder per root section, then create one per-feature file per entry from `assets/feature-catalog-snippet-template.md`, each with an implementation source table and a validation/test anchor table. Run shared validation on the root and every leaf, then manually check that every root entry has exactly one matching per-feature file and every link resolves.
+Authoring runs in a fixed order because names have to stabilize before prose does.
+
+1. Read the target system's docs, source files, tests and existing README material.
+2. Decide the category taxonomy and lock feature names and slugs before writing descriptions, because renaming a published slug later breaks every link that points at it.
+3. Build the root catalog from `assets/feature-catalog-template.md`, then create one kebab-case category folder per root section.
+4. Create one per-feature file per entry from `assets/feature-catalog-snippet-template.md`, each with an implementation source table and a validation/test anchor table.
+5. Run shared validation on the root and every leaf, then manually check that every root entry has exactly one matching per-feature file and every link resolves.
 
 ### Key Concept: Root Catalog vs. Per-Feature File
 
@@ -82,10 +92,6 @@ The root catalog and the per-feature files answer different questions on purpose
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for create-feature-catalog when a feature surface is too large for a README to stay accurate or when multiple docs need one stable source of truth for feature names. A manual testing playbook or spec that needs a canonical list cross-references the catalog. Skip it when the system only has a handful of features (a README already covers that) or when the product is too volatile for a maintained catalog to stay trustworthy.
 
 ### Related Skills
 
@@ -132,7 +138,8 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 | Root catalog structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md` passes |
 | Per-feature leaf structure | Same command against `<target-skill>/feature-catalog/<category-name>/feature-name.md`, checks the Validation And Tests table |
 | New-content naming guard | `python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>` |
-| Manual review | Root-entry to feature-file parity, cross-file links and source-anchor accuracy (not machine-checked) |
+| Package-level checks | `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package <package-id>` reports root/leaf bijection, source-file existence and validation taxonomy |
+| Manual review | Cross-file links and source-anchor accuracy (not machine-checked) |
 
 ---
 
@@ -147,6 +154,8 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring catalog defects with worked fixes |
 | [`assets/feature-catalog-template.md`](./assets/feature-catalog-template.md) | Root catalog scaffold |
 | [`assets/feature-catalog-snippet-template.md`](./assets/feature-catalog-snippet-template.md) | Per-feature file scaffold |
+| [`scripts/validate_catalog_package.py`](./scripts/validate_catalog_package.py) | Package-level validator: root/leaf bijection, source-file existence and validation taxonomy |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator playbook for package shape, parity, source anchors and current-state wording |
 
 <!-- readme-check
 allow-ref feature-catalog/feature-catalog.md | the root catalog a run writes into the skill it inventories, so the folder is that skill's rather than this packet's

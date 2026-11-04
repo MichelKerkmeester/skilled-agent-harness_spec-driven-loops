@@ -9,15 +9,27 @@ trigger_phrases:
   - "parent goal amendment"
 importance_tier: important
 contextType: implementation
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 # Parent and Nested Goal Authoring
 
+Open this before drafting any packet goal, especially when the phase map and the folders on disk might disagree.
+
 ---
 
-## 1. OVERVIEW AND SOURCE CHECK
+## 1. OVERVIEW
 
-Use these workflows only after the packet and its phase structure exist. Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
+### Purpose
+
+Draft or revise a packet goal from the packet's own sources, following the workflow for its kind.
+
+### When to Use
+
+Use these workflows only after the packet and its phase structure exist.
+
+### Source Check
+
+Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
 
 Classify the target before writing. A top-level packet has its own specification and no parent packet spec. A phase parent has direct numbered phase-child folders. A nested child has a parent folder that contains `spec.md`.
 

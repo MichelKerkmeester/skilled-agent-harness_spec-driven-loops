@@ -116,7 +116,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 - [`goal-exemplars.md`](assets/goal-exemplars.md) records cited pass and failure examples.
 - [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) and [`goal-phase-child-template.md`](assets/goal-phase-child-template.md) are the blanks each goal kind is filled from.
 - [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) is the system-spec-kit source the three templates copy.
-- [`scripts/README.md`](scripts/README.md) describes the checker, the advisory criteria lint, its scorer and their tests.
+- [`scripts/README.md`](scripts/README.md) describes the checker, the advisory criteria lint and their tests.
 - [`goal-set-string-playbook.md`](../../system-spec-kit/references/workflows/goal-set-string-playbook.md) documents the objective set string a runtime binds and when a changed goal is resent. The budget, the cut order and what a goal sent in chat contains are in `budget-and-handoff.md`.
 - [`goal hooks README`](../../../hooks/goal/README.md) documents the runtime session-state boundary.
 - [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) prints a packet's file-derived slices without binding a session.

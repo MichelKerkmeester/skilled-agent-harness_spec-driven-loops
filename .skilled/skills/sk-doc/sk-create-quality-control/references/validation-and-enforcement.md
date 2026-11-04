@@ -8,7 +8,7 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.12
+version: 1.0.1.0
 ---
 
 # Validation and Enforcement Operations
@@ -21,7 +21,15 @@ For execution modes see [workflows.md](./workflows.md). For worked command recip
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This file covers how a create-quality-control run validates and enforces standards: the validation touchpoints, the enforcement approval-prompt wording, how the phases chain together, and what to check when a run breaks.
+
+### When to Use
+
+- A validation step needs its manual sequence, blocking behavior or script confirmed.
+- An enforcement prompt needs the wording to surface to the user.
+- A run breaks and the failure needs a diagnosis.
 
 ---
 
@@ -218,7 +226,7 @@ Phase 3: AI provides recommendations
 
 ---
 
-## RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [workflows.md](./workflows.md) - Four execution modes and mode selection
 - [workflow-examples.md](./workflow-examples.md) - Worked command examples and batch processing

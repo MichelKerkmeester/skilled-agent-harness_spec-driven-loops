@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior scenario table template"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.11
+version: 1.5.1.0
 ---
 
 # Behavior Benchmark Index Template
@@ -111,15 +111,18 @@ Entry-surface coverage: {{E1_COUNT_AND_CELLS}}, {{E2_COUNT_AND_CELLS}}, {{E3_COU
 The runner is
 [../../shared/behavior-benchmark/behavior-bench-run.cjs](../../shared/behavior-benchmark/behavior-bench-run.cjs),
 invoked per cell as one run of one scenario contract against one executor, with
-the scenario's `fixture` absorbing all writes for the run. Checkpoint and
-delegation-evidence extraction, the no-progress watchdog, scoring, and
-classification are owned by that runner. Results are emitted as result JSON whose
-`schemaVersion` echoes each scenario's contract: `1` for the schema-v1 core
-scenarios, `2` for scenarios that declare `"schema_version": 2` (adding the
-`postconditions`, `directDispatch`, and `boundary` result sections). Run
-evidence, meaning transcripts, result JSONs and scorecards, lands
-in the **spec packet phase that executed the round** and never inside this package.
-a result cited from this index must point to its evidence in that executing phase.
+the scenario's `fixture` absorbing all writes for the run.
+
+- **Owned by the runner:** checkpoint and delegation-evidence extraction, the
+  no-progress watchdog, scoring, and classification.
+- **Result schema:** results are emitted as result JSON whose `schemaVersion`
+  echoes each scenario's contract: `1` for the schema-v1 core scenarios, `2` for
+  scenarios that declare `"schema_version": 2` (adding the `postconditions`,
+  `directDispatch`, and `boundary` result sections).
+- **Evidence location:** run evidence, meaning transcripts, result JSONs and
+  scorecards, lands in the **spec packet phase that executed the round** and
+  never inside this package. A result cited from this index must point to its
+  evidence in that executing phase.
 
 **Fixtures and configs are provisioned by the executing round, not shipped in this
 package** (the package holds the contract, the packet holds the proof). Each

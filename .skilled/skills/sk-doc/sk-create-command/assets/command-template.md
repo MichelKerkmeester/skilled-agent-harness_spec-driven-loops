@@ -8,7 +8,7 @@ trigger_phrases:
   - "argument hint patterns"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Command Template - OpenCode Slash Commands
@@ -1189,8 +1189,8 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 | **Orchestrator** | `opus`   | Task understanding, dispatch, verification, synthesis |
 | **Workers**      | `sonnet` | Fast parallel exploration, hypothesis generation      |
 
-**Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.
-**Skip when**: Simple single-action commands, sequential workflows.
+- **Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.
+- **Skip when**: Simple single-action commands, sequential workflows.
 
 ---
 
@@ -1235,20 +1235,7 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
 
 ---
 
-## 19. RELATED RESOURCES
-
-### Templates
-- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
-- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - If converting to skill
-
-### Standards
-- [core-standards.md](../../shared/references/core-standards.md) - Document type rules
-- [validation.md](../../shared/references/validation.md) - Quality scoring
-- [command-contract.json](command-contract.json) / [command-contract.schema.json](command-contract.schema.json) - Machine-readable behavioral contract and its schema
-
----
-
-## 20. COMMAND CONTRACT
+## 19. COMMAND CONTRACT
 
 Behavioral truth per family, meaning topology, input and gate owner, execution targets, mode matrix,
 owned assets, presentation ownership with typed exceptions, destructive policy, timeout bounds,
@@ -1277,3 +1264,16 @@ hand-maintained list. A single family entry validates as one `familyContract`:
   "invocation_aliases": ["/<ns>:<action>"]
 }
 ```
+
+---
+
+## 20. RELATED RESOURCES
+
+### Templates
+- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
+- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - If converting to skill
+
+### Standards
+- [core-standards.md](../../shared/references/core-standards.md) - Document type rules
+- [validation.md](../../shared/references/validation.md) - Quality scoring
+- [command-contract.json](command-contract.json) / [command-contract.schema.json](command-contract.schema.json) - Machine-readable behavioral contract and its schema

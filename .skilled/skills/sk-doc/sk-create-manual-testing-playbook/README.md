@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-manual-testing-playbook
@@ -33,6 +33,10 @@ version: 1.0.2.0
 When a skill ships, the only proof it works is a checklist row someone wrote at the last minute that nobody can rerun. Automated tests cover internals, not what an operator sees when they type a real prompt at a real CLI. A release decision depends on structured evidence, but a bullet list is often the only artifact, so two operators run "the same" test and reach two different verdicts. The prompt, the command and the pass bar were never pinned down. Writing fifteen near-identical scenario write-ups by hand also just doesn't happen, so testing scope quietly shrinks to whatever fits in a paragraph.
 
 The skill exists to replace that memory-based proof with a package a different operator or a different agent can rerun and reach the same verdict on.
+
+### When To Use This Skill
+
+Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
 
 ### What It Does
 
@@ -83,7 +87,19 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
 
 ## 4. HOW IT WORKS
 
-Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order and feature ID counts before delivery. The operator validator warns when a prompt copy disagrees.
+1. Confirm the target skill or system, its feature set and whether a feature catalog already exists.
+2. Decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else.
+3. Create the root file from `assets/manual-testing-playbook-template.md`.
+4. Create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`.
+5. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions.
+6. Fill each scenario contract with the nine required fields from The Scenario Contract.
+7. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists.
+8. Note explicitly when no catalog entry exists.
+9. Isolate destructive scenarios behind clear preconditions and a recovery path.
+10. Validate the root document with the shared validator.
+11. Manually spot-check per-feature frontmatter, section order and feature ID counts before delivery.
+
+The operator validator warns when a prompt copy disagrees.
 
 ### Key Concept: Prompt Synchronization
 
@@ -96,10 +112,6 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
 
 ### Related Skills
 

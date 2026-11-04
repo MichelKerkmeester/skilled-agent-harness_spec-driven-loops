@@ -7,10 +7,10 @@ trigger_phrases:
   - "optimization workflows index"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
-# Doc-Quality References
+# Create Quality Control References
 
 Route map over the `create-quality-control` reference set. The operating logic lives in [`../SKILL.md`](../SKILL.md) (primary); these references are single-concern overflow: worked examples, exhaustive detail, and templates loaded on demand. Open only the file the current task needs.
 
@@ -18,7 +18,7 @@ Route map over the `create-quality-control` reference set. The operating logic l
 
 ## 1. OVERVIEW
 
-This file is the reference route map for the `create-quality-control` packet: it indexes five single-concern reference files, execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog, so each loads only when the current task needs its depth.
+This file is the reference route map for the `create-quality-control` packet. It indexes five single-concern reference files, one per concern: execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog. Each loads only when the current task needs its depth.
 
 ---
 
@@ -28,7 +28,7 @@ Load the file that matches the current task:
 
 | Concern | Reference | Load When |
 | --- | --- | --- |
-| **Execution modes**: the four modes (script-assisted review, structure checks, content optimization, audit snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
+| **Execution modes**: the four modes (report-only audit, structure validation, content optimization, batch snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
 | **Validation & enforcement operations**: validation touchpoints, enforcement approval-prompt templates, phase chaining, troubleshooting | [validation-and-enforcement.md](./validation-and-enforcement.md) | Wording an enforcement prompt, sequencing validation manually, or a run breaks |
 | **Worked examples & batch**: copy-paste command recipes and multi-file/batch processing | [workflow-examples.md](./workflow-examples.md) | Needing a starting command for a common run, or processing many docs at once |
 | **Optimization procedure**: quality heuristics, analysis workflow, README priority strategy, snippet checklist, iteration loop | [optimization.md](./optimization.md) | The user asked to improve/optimize an existing doc for AI-friendliness |

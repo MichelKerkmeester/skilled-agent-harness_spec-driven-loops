@@ -1,0 +1,6 @@
+.skilled/skills/sk-doc/sk-create-frontmatter/README.md
+.skilled/skills/sk-doc/sk-create-frontmatter/ROUTER.md
+.skilled/skills/sk-doc/sk-create-frontmatter/SKILL.md
+.skilled/skills/sk-doc/sk-create-frontmatter/assets/frontmatter-templates.md
+.skilled/skills/sk-doc/sk-create-frontmatter/references/README.md
+.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md

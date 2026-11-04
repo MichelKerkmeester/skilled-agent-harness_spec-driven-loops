@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # create-diff
@@ -33,6 +33,20 @@ Not everything you edit lives in Git. An AI or a person edits a Markdown spec, a
 ### What It Does
 
 create-diff captures a baseline snapshot of a document before an edit happens, then compares the current file against that snapshot or an explicit second file and renders one self-contained HTML report you can open offline. The engine ships as `scripts/create_diff.py` and reads Markdown, plain text, HTML, DOCX and text-layer PDF. It does not touch code or Git-tracked files: that boundary belongs to `sk-git`. It does not audit a single document on its own either, since comparing two states is the point. `create-quality-control` handles single-document scoring.
+
+### When To Use This Skill
+
+Use create-diff when:
+
+- An AI or a person edited a document outside Git and you need proof of what changed.
+- You want a baseline captured before a risky edit.
+- A pre-composed multi-file bundle needs its transitions to stay visible in review.
+
+Skip it when:
+
+- The files are code or already tracked in Git (`sk-git` owns that).
+- The comparison is visual or pixel-level (out of scope: create-diff compares extracted text only).
+- You are scoring a single document with no second state to compare (`create-quality-control` owns that).
 
 ### The Format Fidelity Layer
 
@@ -87,7 +101,12 @@ Prints `PASS` when the report is safe and self-contained.
 
 ## 4. HOW IT WORKS
 
-The lifecycle has one hard invariant: the baseline has to exist before the edit happens. `snapshot` copies the current file into a local `.create-diff/` store without altering the source. Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report. When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`. Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
+The lifecycle has one hard invariant: the baseline has to exist before the edit happens.
+
+- `snapshot` copies the current file into a local `.create-diff/` store without altering the source.
+- Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report.
+- When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`.
+- Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
 
 ### Key Concept: Aggregate File Boundaries
 
@@ -96,10 +115,6 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for create-diff when an AI or a person edited a document outside Git and you need proof of what changed, when you want a baseline captured before a risky edit or when a pre-composed multi-file bundle needs its transitions to stay visible in review. Skip it for code or anything already tracked in Git (`sk-git` owns that). Skip it for visual or pixel-level comparison (out of scope: create-diff compares extracted text only). Skip it for scoring a single document with no second state to compare (`create-quality-control` owns that).
 
 ### Related Skills
 
@@ -164,6 +179,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 | [`references/capabilities-and-fidelity.md`](./references/capabilities-and-fidelity.md) | Format support matrix and fidelity tiers |
 | [`references/workflow.md`](./references/workflow.md) | Baseline, explicit-pair and snapshot lifecycle |
 | [`references/accessibility-contract.md`](./references/accessibility-contract.md) | The report's accessibility guarantees |
+| [`references/worked-example.md`](./references/worked-example.md) | End-to-end walkthrough using the shipped fixtures |
 | [`assets/fixtures/README.md`](./assets/fixtures/README.md) | Runnable before/after worked example |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Canonical capability inventory |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator-facing validation scenarios |

@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick validate batch"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # Workflow Examples and Batch Processing
@@ -21,11 +21,20 @@ For execution modes see [workflows.md](./workflows.md). For the validation seque
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This file collects copy-paste command recipes for the create-quality-control workflow: single-file worked examples (new SKILL creation, README optimization, pre-commit validation) plus multi-file and batch-processing recipes.
+
+### When to Use
+
+- A run needs a starting command for a common single-file task.
+- Several documents need batch extraction or validation.
 
 ---
 
 ## 2. COMMON WORKFLOW EXAMPLES
+
+> This packet audits existing documents only and never creates an artifact. `create-skill` owns step 1; this packet joins at the first validation command.
 
 **Example 1: New SKILL Creation**
 ```bash
@@ -92,7 +101,7 @@ done
 
 ---
 
-## RELATED RESOURCES
+## 4. RELATED RESOURCES
 
 - [workflows.md](./workflows.md) - Four execution modes and mode selection
 - [validation-and-enforcement.md](./validation-and-enforcement.md) - Validation touchpoints, enforcement prompts, troubleshooting

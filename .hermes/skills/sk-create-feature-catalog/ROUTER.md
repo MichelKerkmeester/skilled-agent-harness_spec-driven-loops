@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when the `sk-doc` hub routes a current-state feature inventory here: the request names a feature catalog, a feature inventory, a catalog package or `/create:feature-catalog`, and the hub's `sk-create-feature-catalog` mode signal selects this packet, which it does only when the feature surface is too large for a trustworthy README summary and other docs need one stable list of feature names and links. It routes to two resource families: the scaffolds under `assets/`, where `assets/feature-catalog-template.md` builds the root catalog and `assets/feature-catalog-snippet-template.md` builds each per-feature file, and the overflow references under `references/`, where `references/README.md` is the route map, `references/examples.md` carries the worked live-catalog walkthrough and `references/common-pitfalls.md` the deep-dive pitfalls. `references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
+Requests reach this skill when the `sk-doc` hub routes a current-state feature inventory here: the request names a feature catalog, a feature inventory, a catalog package or `/create:feature-catalog`, and the hub's `sk-create-feature-catalog` mode signal selects this packet, which it does only when the feature surface is too large for a trustworthy README summary and other docs need one stable list of feature names and links.
+
+It routes to two resource families:
+
+- **Scaffolds** under `assets/`: `assets/feature-catalog-template.md` builds the root catalog, and `assets/feature-catalog-snippet-template.md` builds each per-feature file.
+- **Overflow references** under `references/`: `references/README.md` is the route map, `references/examples.md` carries the worked live-catalog walkthrough, and `references/common-pitfalls.md` carries the deep-dive pitfalls.
+
+`references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

@@ -1,0 +1,4 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md edited=2
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md edited=1
+code_blocks_changed=2 block_count_mismatch=0 restored

@@ -1,0 +1,206 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/README.md b/.skilled/skills/sk-doc/sk-create-goal/README.md
+index 8c1df739e01..f51527b4483 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/README.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/README.md
+@@ -146,7 +146,7 @@ The packet path is required and never inferred from conversation history or open
+ 
+ ## 8. MANUAL TESTING PLAYBOOK
+ 
+-[`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds nine deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
++[`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds ten deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
+ 
+ | Scenario file | Behavior under test |
+ |---|---|
+@@ -155,6 +155,7 @@ The packet path is required and never inferred from conversation history or open
+ | `add-goal-to-packet-without-goal.md` | The retrofit operation on a packet with no goal |
+ | `cut-over-budget-parent.md` | An over-budget parent is cut without losing a criterion |
+ | `refuse-leftover-placeholder.md` | The checker fails a goal that keeps template text |
++| `refuse-leftover-placeholder-conversation.md` | An unresolved decision fails first and passes once the operator supplies it on a later turn |
+ | `detect-unbound-phase.md` | The checker fails a parent missing a binding row |
+ | `resend-parent-after-child-change.md` | A child change that amends the parent prints the updated slice |
+ | `route-session-goal-away.md` | A session-goal request writes no goal file |
+@@ -170,9 +171,9 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that
+ |---|---|---|
+ | Goal conformance | `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs <packet>` | `RESULT: PASSED (5/5 checks)`, exit 0 |
+ | Budget and slices | `node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace "$PWD"` | `packet_budget=ok` and the `chat_slice` printed |
+-| Checker, lint and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | `pass 53`, `fail 0`, including template parity with `goal.md.tmpl` |
++| Checker, lint and template tests | `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` | Exit 0 with every test passing, template parity with `goal.md.tmpl` included |
+ | Criteria lint | `node .skilled/skills/sk-doc/sk-create-goal/scripts/lint-goal-criteria.cjs --all` | Per-rule counts and `scratch_excluded=`, exit 0 |
+-| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=9 ... violations=0` |
++| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-goal/manual-testing-playbook` | `PASS ... scenarios=10 ... violations=0` |
+ 
+ ---
+ 
+@@ -181,6 +182,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | The workflow contract, the rules and the ownership boundaries |
++| [`ROUTER.md`](./ROUTER.md) | The intent model, the pre-write routing decisions and the machine router |
+ | [`references/parent-and-nested-goals.md`](./references/parent-and-nested-goals.md) | The top-level, phase-parent, child, retrofit, phase-add and amend workflows |
+ | [`references/authoring-standards.md`](./references/authoring-standards.md) | Reader checks for objectives, decisions, criteria, logs, voice and frontmatter |
+ | [`references/budget-and-handoff.md`](./references/budget-and-handoff.md) | Durable budget measurement, ordered cuts and the runtime handoff matrix |
+@@ -189,7 +191,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that
+ | [`assets/goal-phase-child-template.md`](./assets/goal-phase-child-template.md) | The blank for a phase child |
+ | [`assets/goal-exemplars.md`](./assets/goal-exemplars.md) | Cited goal excerpts with rubric outcomes |
+ | [`scripts/README.md`](./scripts/README.md) | The checker, the criteria lint, their tests and fixtures |
+-| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The nine operator scenarios and the run-record contract |
++| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | The ten operator scenarios and the run-record contract |
+ | [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) | The system-spec-kit source the three templates copy |
+ | [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) | The session-free printer for a packet's goal slices |
+ | [Goal hooks README](../../../hooks/goal/README.md) | The runtime goal ownership and session-state boundary |
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/ROUTER.md b/.skilled/skills/sk-doc/sk-create-goal/ROUTER.md
+index eb7311148a5..70213153353 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/ROUTER.md
+@@ -33,7 +33,7 @@ loads before an intent selects it.
+ - **GOAL_AUTHORING** — "top-level goal / phase-parent goal / nested phase-child goal / retrofit an existing packet / add a phase / amend the parent" requests load `references/parent-and-nested-goals.md` and follow the workflow for that goal kind.
+ - **CONTENT_STANDARDS** — every authoring or revision request also loads `references/authoring-standards.md`, `assets/goal-exemplars.md` and the template for the goal's kind: `assets/goal-top-level-template.md`, `assets/goal-phase-parent-template.md` or `assets/goal-phase-child-template.md`.
+ - **BUDGET_AND_HANDOFF** — "budget / 4,000 characters / cut order / chat slice / resend the parent" requests load `references/budget-and-handoff.md`, which also carries the projection distinction and the runtime matrix.
+-- **UNKNOWN_FALLBACK** — a request whose resources match no intent loads `references/parent-and-nested-goals.md` as the workflow default and reports `UNKNOWN_FALLBACK` with the disambiguation checklist instead of guessing a family.
++- **UNKNOWN_FALLBACK** — a request whose resources match no intent loads `references/parent-and-nested-goals.md` as the workflow default and reports `UNKNOWN_FALLBACK` instead of guessing a family.
+ 
+ ---
+ 
+@@ -42,8 +42,6 @@ loads before an intent selects it.
+ The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+ reader finds it. This section is the last in the file, and it holds the only pseudocode.
+ 
+-The packet's pre-write routing decisions, its resource discovery and fallback rule, and the router block that encodes them.
+-
+ ### Pre-Write Routing Decisions
+ 
+ Run these four decisions before writing:
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/SKILL.md b/.skilled/skills/sk-doc/sk-create-goal/SKILL.md
+index 1388c5d9b6e..d9d74b70ec4 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/SKILL.md
+@@ -116,7 +116,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ - [`goal-exemplars.md`](assets/goal-exemplars.md) records cited pass and failure examples.
+ - [`goal-top-level-template.md`](assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](assets/goal-phase-parent-template.md) and [`goal-phase-child-template.md`](assets/goal-phase-child-template.md) are the blanks each goal kind is filled from.
+ - [`goal.md.tmpl`](../../system-spec-kit/templates/addons/goal.md.tmpl) is the system-spec-kit source the three templates copy.
+-- [`scripts/README.md`](scripts/README.md) describes the checker, the advisory criteria lint, its scorer and their tests.
++- [`scripts/README.md`](scripts/README.md) describes the checker, the advisory criteria lint and their tests.
+ - [`goal-set-string-playbook.md`](../../system-spec-kit/references/workflows/goal-set-string-playbook.md) documents the objective set string a runtime binds and when a changed goal is resent. The budget, the cut order and what a goal sent in chat contains are in `budget-and-handoff.md`.
+ - [`goal hooks README`](../../../hooks/goal/README.md) documents the runtime session-state boundary.
+ - [`goal.cjs`](../../../hooks/goal/bin/goal.cjs) prints a packet's file-derived slices without binding a session.
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md b/.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
+index b564cc15062..22694216136 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
+@@ -12,10 +12,18 @@ version: 1.0.1.0
+ 
+ # Goal Exemplars
+ 
++Settle a drafting question against a classified example when the rule wording alone does not decide it.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ These excerpts show how the authoring rubric classifies goal text. Each quote stays here so the example remains readable if its source moves. The cited line identifies the original passage.
+ 
++### Usage
++
+ The rubric labels the named check as FAIL or PASS. The positive example passes the objective check only. Its classification does not claim that every part of its goal passes every standard.
+ 
+ ---
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md b/.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md
+index 82990701adc..6e30a5c97ef 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md
+@@ -13,10 +13,22 @@ version: 1.0.0.0
+ 
+ # Goal Authoring Standards
+ 
++Open this while a goal is being drafted or reviewed: each rule names the failure it prevents and the question that settles it.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ The goal template defines the structure. These checks ask whether an authored goal states its purpose and records fixed choices. They also give a reader a way to judge completion. The [Human Voice Rules](../../sk-create-with-human-voice/references/hvr-rules.md) govern the prose.
+ 
++### When to Use
++
++- Writing or revising a packet `goal.md`.
++- Deciding whether a completion criterion is self-contained.
++- Reviewing a goal before it is handed to an operator.
++
+ ---
+ 
+ ## 2. OBJECTIVE
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md b/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+index 6ecb5fa8b66..bf5021d32bf 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+@@ -12,14 +12,26 @@ version: 1.1.1.0
+ ---
+ # Goal Budget and Handoff
+ 
++Open this reference when a goal is at or near the 4,000-character cap, or before a parent goal's chat slice goes to an operator.
++
++---
++
+ ## 1. OVERVIEW
+ 
+-Use the packet report to check a top-level goal or phase parent. Keep every completion criterion when cutting an over-budget parent. Section 2 is the one rule for which goals carry the cap, section 3 the one full cut order and section 4 the one full rule for what a parent goal sent in chat contains. Other documents point here rather than restating them.
++### Purpose
++
++Use the packet report to check a top-level goal or phase parent. Keep every completion criterion when cutting an over-budget parent.
++
++### When to Use
++
++Open section 2 for the one rule on which goals carry the cap, section 3 for the one full cut order and section 4 for the one full rule on what a parent goal sent in chat contains. Other documents point here rather than restating them.
+ 
+ ---
+ 
+ ## 2. MEASURE THE DURABLE SLICE
+ 
++The cap applies to a top-level packet and to any folder that is itself a phase parent, meaning it has phase children or its `spec.md` declares the phase level, even when that folder sits inside another packet. Only a phase child that is not itself a phase parent is exempt, and its packet report reads `packet_budget=unknown`. `goal.cjs packet`, `check-goal.cjs` and `validate.sh` draw this same line. An applicable goal can also report `unknown` if the budget manifest is missing or invalid. Treat that result as unverified and resolve the manifest issue before judging the goal. ([budget resolution, lines 288 to 307](../../../../hooks/goal/lib/goal-slice.cjs) and [applicability and state, lines 400 to 415](../../../../hooks/goal/lib/goal-slice.cjs))
++
+ Run this command from the repository root:
+ 
+ ```bash
+@@ -30,8 +42,6 @@ Replace the placeholders with the packet path and repository root. Read `packet_
+ 
+ The packet command prints the count and budget state with the other packet fields. ([packet output, lines 205 to 218](../../../../hooks/goal/bin/goal.cjs)) The shared module measures the durable slice from the frontmatter boundary to the log anchor. ([slice measurement, lines 57 to 68](../../../../hooks/goal/lib/goal-slice.cjs))
+ 
+-The cap applies to a top-level packet and to any folder that is itself a phase parent, meaning it has phase children or its `spec.md` declares the phase level, even when that folder sits inside another packet. Only a phase child that is not itself a phase parent is exempt, and its packet report reads `packet_budget=unknown`. `goal.cjs packet`, `check-goal.cjs` and `validate.sh` draw this same line. An applicable goal can also report `unknown` if the budget manifest is missing or invalid. Treat that result as unverified and resolve the manifest issue before judging the goal. ([budget resolution, lines 288 to 307](../../../../hooks/goal/lib/goal-slice.cjs) and [applicability and state, lines 400 to 415](../../../../hooks/goal/lib/goal-slice.cjs))
+-
+ ---
+ 
+ ## 3. CUT IN THIS ORDER
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md b/.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md
+index 5506ccf8988..f7d77476bdd 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md
+@@ -13,11 +13,23 @@ version: 1.2.0.0
+ ---
+ # Parent and Nested Goal Authoring
+ 
++Open this before drafting any packet goal, especially when the phase map and the folders on disk might disagree.
++
+ ---
+ 
+-## 1. OVERVIEW AND SOURCE CHECK
++## 1. OVERVIEW
++
++### Purpose
++
++Draft or revise a packet goal from the packet's own sources, following the workflow for its kind.
++
++### When to Use
++
++Use these workflows only after the packet and its phase structure exist.
++
++### Source Check
+ 
+-Use these workflows only after the packet and its phase structure exist. Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
++Read [`authoring-standards.md`](authoring-standards.md) and [`goal-exemplars.md`](../assets/goal-exemplars.md) before drafting. Start from the template for the goal's kind: [`goal-top-level-template.md`](../assets/goal-top-level-template.md), [`goal-phase-parent-template.md`](../assets/goal-phase-parent-template.md) or [`goal-phase-child-template.md`](../assets/goal-phase-child-template.md). Each is a checked copy of system-spec-kit's [goal template](../../../system-spec-kit/templates/addons/goal.md.tmpl), which owns the file structure.
+ 
+ Classify the target before writing. A top-level packet has its own specification and no parent packet spec. A phase parent has direct numbered phase-child folders. A nested child has a parent folder that contains `spec.md`.
+ 

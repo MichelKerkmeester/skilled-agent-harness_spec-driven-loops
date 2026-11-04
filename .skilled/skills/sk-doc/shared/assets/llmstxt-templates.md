@@ -8,7 +8,7 @@ trigger_phrases:
   - "curated documentation entry point"
 importance_tier: normal
 contextType: general
-version: 2.1.0.19
+version: 2.1.1.0
 ---
 
 # llms.txt Templates - Document Type Reference
@@ -19,7 +19,7 @@ Templates for creating llms.txt files that provide AI assistants with project co
 
 ## 1. OVERVIEW
 
-### What Is llms.txt?
+### Purpose
 
 **llms.txt** is a standardized markdown file that provides AI assistants with essential project context. It acts as a curated entry point, helping LLMs quickly understand what a project does, how it's organized, and where to find key documentation.
 
@@ -34,6 +34,10 @@ The format follows the [llmstxt.org](https://llmstxt.org/) specification, which 
 **Key Difference from README**:
 - llms.txt = Structured index optimized for AI consumption
 - README = Human-readable introduction and getting started guide
+
+### When to Use
+
+Use these templates and patterns when generating llms.txt files for different project types!
 
 ### Core Characteristics
 
@@ -355,6 +359,7 @@ When both exist, prefer markdown over rendered HTML:
 ### Libraries/Packages
 
 **Emphasis:** API Reference, Examples
+
 **Key Sections:**
 - DOCUMENTATION (concepts, getting started)
 - API REFERENCE (module documentation)
@@ -364,6 +369,7 @@ When both exist, prefer markdown over rendered HTML:
 ### CLI Tools
 
 **Emphasis:** Commands, Configuration
+
 **Key Sections:**
 - GETTING STARTED (installation, quickstart)
 - COMMANDS (individual command docs)
@@ -373,6 +379,7 @@ When both exist, prefer markdown over rendered HTML:
 ### Web Frameworks
 
 **Emphasis:** Guides, Integrations
+
 **Key Sections:**
 - DOCUMENTATION (routing, data, rendering)
 - GUIDES (auth, deployment, testing)
@@ -382,6 +389,7 @@ When both exist, prefer markdown over rendered HTML:
 ### AI Agent Skills
 
 **Emphasis:** Reference Materials, Capabilities
+
 **Key Sections:**
 - DOCUMENTATION (README, SKILL.md)
 - REFERENCE MATERIALS (patterns, standards)
@@ -855,7 +863,3 @@ Add sections:
 
 ### External
 - [llmstxt.org](https://llmstxt.org/) - Official specification
-
----
-
-Use these templates and patterns when generating llms.txt files for different project types!

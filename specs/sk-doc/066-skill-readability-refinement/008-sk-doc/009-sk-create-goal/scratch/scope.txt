@@ -1,0 +1,10 @@
+.skilled/skills/sk-doc/sk-create-goal/README.md
+.skilled/skills/sk-doc/sk-create-goal/ROUTER.md
+.skilled/skills/sk-doc/sk-create-goal/SKILL.md
+.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md
+.skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md
+.skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md
+.skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md
+.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md
+.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md

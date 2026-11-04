@@ -8,7 +8,7 @@ trigger_phrases:
   - "transformation patterns markdown"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.29
+version: 1.0.1.0
 ---
 
 # Optimization Procedure - AI-Friendly Docs
@@ -19,7 +19,7 @@ The procedure for converting reference-style documentation into question-answeri
 
 ## 1. OVERVIEW
 
-### What Is Optimization?
+### Purpose
 
 Optimization transforms documentation from reference-style to question-answering format, making it highly AI-friendly through systematic application of 16 proven transformation patterns.
 
@@ -28,6 +28,11 @@ Optimization transforms documentation from reference-style to question-answering
 - **Question coverage** - Answer 15-20 common developer questions
 - **Code completeness** - Runnable, standalone examples with imports
 - **Metadata removal** - Strip non-instructional content
+
+### When to Use
+
+- The user explicitly asks to improve or optimize an existing document.
+- Structure extraction shows weak question coverage, formatting or initialization.
 
 > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
 

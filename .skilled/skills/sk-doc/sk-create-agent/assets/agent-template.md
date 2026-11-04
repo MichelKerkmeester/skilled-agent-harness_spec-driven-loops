@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.0.51
+version: 1.0.1.0
 ---
 
 # Agent Template - Specialist Agent Structure
@@ -97,6 +97,8 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 Decision rule: authoring for `.skilled/agents/` emits `permission:` (never bare `tools:`), and authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
 
+The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing or ambiguous names rather than converting them after the frontmatter and path diverge.
+
 ### Field Reference
 
 | Field | Type | Required | Description |
@@ -109,8 +111,6 @@ Decision rule: authoring for `.skilled/agents/` emits `permission:` (never bare 
 | `mcpServers` | list | No | Explicit MCP servers available to the agent, for example `[system_skill_advisor, code_mode]` |
 
 ### Mode Reference
-
-The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing or ambiguous names rather than converting them after the frontmatter and path diverge.
 
 | Mode | Use Case | Typical `task` Permission |
 | --- | --- | --- |

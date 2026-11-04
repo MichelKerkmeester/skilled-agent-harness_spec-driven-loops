@@ -9,7 +9,7 @@ trigger_phrases:
   - "system-spec-kit playbook example"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Manual Testing Playbook Reference Implementations
@@ -20,9 +20,18 @@ Shipped playbook content models to study, plus the scaffold templates that seed 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The fastest way to author a correct playbook is to model it on one that already ships and validates. The reference implementations below are live packages built to the current contract; the templates are the scaffolds to copy from.
 
-**Core Principle**: Model a new package on a shipped, validating playbook rather than authoring the structure from scratch.
+### When to Use
+
+- Seeding a new canonical package from a scaffold.
+- Studying a shipped, validating package before writing your own.
+
+### Core Principle
+
+Model a new package on a shipped, validating playbook rather than authoring the structure from scratch.
 
 ---
 

@@ -1,0 +1,3 @@
+VERDICT: FIX
+
+- [P1] .skilled/skills/sk-doc/sk-create-goal/README.md:174 | 1 | The row replaced the concrete expected output with a pass criterion, so the number the finding corrected is gone rather than corrected, and the parity clause is still unproven: `node --test .skilled/skills/sk-doc/sk-create-goal/scripts/tests/` reports `tests 32`, `pass 29`, `fail 3`, with the three failures in the template-parity tests against `goal.md.tmpl`. | Restore the fixed `<!-- FILL: ... -->` lines from `goal.md.tmpl` into the three asset template blocks (3, 4 and 3 lines), then replace the third cell with: `` `pass 32`, `fail 0`, including template parity with `goal.md.tmpl` ``.

@@ -1,0 +1,4 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md edited=4
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md edited=1
+code_blocks_changed=2 block_count_mismatch=0 restored

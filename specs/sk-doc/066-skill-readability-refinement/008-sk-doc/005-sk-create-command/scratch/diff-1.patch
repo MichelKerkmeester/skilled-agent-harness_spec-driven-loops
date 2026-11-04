@@ -1,0 +1,289 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-command/README.md b/.skilled/skills/sk-doc/sk-create-command/README.md
+index 519480ff9bd..098a1efca23 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/README.md
++++ b/.skilled/skills/sk-doc/sk-create-command/README.md
+@@ -72,7 +72,11 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
+ 
+ ## 4. HOW IT WORKS
+ 
+-Resolve the invocation path first. `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Read any existing command completely before editing it, then check nearby commands in the same namespace so structure and vocabulary match the family. Classify the command type from the table in `SKILL.md`, then author the frontmatter first, starting with a single-line `description`. Add an `argument-hint` when input is expected. Keep `allowed-tools` at least privilege, listing only the tools the command actually calls.
++- **Resolve the invocation path first.** `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
++- **Read any existing command completely before editing it**, then check nearby commands in the same namespace so structure and vocabulary match the family.
++- **Classify the command type from the table in `SKILL.md`.**
++- **Author the frontmatter first**, starting with a single-line `description`. Add an `argument-hint` when input is expected.
++- **Keep `allowed-tools` at least privilege**, listing only the tools the command actually calls.
+ 
+ If `argument-hint` carries a required argument, the mandatory gate goes after the H1 and its purpose line, before mode routing, asset loading and every workflow step. It checks whether `$ARGUMENTS` is empty, stops immediately when required input is missing, asks a specific question and waits. It never infers missing input from context, screenshots, conversation history or open files.
+ 
+@@ -141,7 +145,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` | `✅ VALID` with no blocking errors |
++| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-command/README.md --type readme` | `✅ VALID` with no blocking errors |
+ | Filename discipline | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <command-file>` | Filename stem is valid kebab-case |
+ | Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <command-file> --type command` | `✅ VALID` with no blocking errors |
+ | Structure extraction | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <command-file>` | Section list matches the expected command shape |
+@@ -153,9 +157,13 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Runtime instructions, command-type classification and the full 13-step creation workflow |
++| [`ROUTER.md`](./ROUTER.md) | Machine router: intent model, router resilience rules and the resource loading sequence |
+ | [`assets/command-template.md`](./assets/command-template.md) | Command type templates, gates, dispatch patterns and the validation checklist |
+ | [`assets/command-router-template.md`](./assets/command-router-template.md) | Canonical numbered router skeleton with variant call-outs |
+ | [`assets/command-presentation-template.md`](./assets/command-presentation-template.md) | Full presentation asset skeleton for split command families |
+ | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
+ | [`references/worked-example.md`](./references/worked-example.md) | A fully worked split command, router plus presentation |
+ | [`references/router-presentation-split.md`](./references/router-presentation-split.md) | The router/presentation ownership boundary and split transformation |
++| [`references/argument-hints-and-modes.md`](./references/argument-hints-and-modes.md) | Argument-hint design patterns, `:auto`/`:confirm` mode design and frontmatter budget tips |
++| [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Command vs skill vs agent selection and the recurring command-authoring mistakes |
++| [`assets/command-contract.json`](./assets/command-contract.json) / [`assets/command-contract.schema.json`](./assets/command-contract.schema.json) | Machine-readable behavioral contract for the command families and its schema |
+diff --git a/.skilled/skills/sk-doc/sk-create-command/ROUTER.md b/.skilled/skills/sk-doc/sk-create-command/ROUTER.md
+index bca2ed4bff7..c3d7cad5eab 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-command/ROUTER.md
+@@ -20,7 +20,19 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they ask to create an OpenCode slash command, refactor a command into a thin router plus an owned presentation asset, add or repair `argument-hint` and `allowed-tools`, design `$ARGUMENTS` handling or `:auto` and `:confirm` mode routing, author a namespace command, or check whether a workflow should be a command rather than a skill, agent or one-off task. It routes to two resource families: the flat single-concern files under `references/`, where `references/README.md` is both the route map and the fallback when the command purpose or component surface is unclear, and this packet's command templates under `assets/`, where `command-template.md`, `command-router-template.md` and `command-presentation-template.md` carry the skeletons and `command-contract.json` the machine-readable family contract.
++Requests reach this skill when they ask to:
++
++- create an OpenCode slash command
++- refactor a command into a thin router plus an owned presentation asset
++- add or repair `argument-hint` and `allowed-tools`
++- design `$ARGUMENTS` handling or `:auto` and `:confirm` mode routing
++- author a namespace command
++- check whether a workflow should be a command rather than a skill, agent or one-off task
++
++It routes to two resource families:
++
++- `references/`: the flat single-concern files, where `references/README.md` is both the route map and the fallback when the command purpose or component surface is unclear.
++- `assets/`: this packet's command templates, where `command-template.md`, `command-router-template.md` and `command-presentation-template.md` carry the skeletons and `command-contract.json` the machine-readable family contract.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/sk-doc/sk-create-command/SKILL.md b/.skilled/skills/sk-doc/sk-create-command/SKILL.md
+index b3d1ed7b1d5..0ddb4586c00 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-command/SKILL.md
+@@ -193,6 +193,8 @@ Rules:
+ - For MCP tools in `allowed-tools`, use fully qualified names such as `mcp__<server>__<tool>`.
+ - Bare tool names such as `advisor_recommend` belong in prose only, not `allowed-tools`.
+ 
++**Loader gating.** Frontmatter is the load gate: `allowed-tools` authorizes exactly the tools and MCP surfaces a command may use, and any agent the router dispatches must both be admitted by that gate and resolve to a real agent definition in the active runtime's agent directory. Do not dispatch a handle the frontmatter does not admit or that does not exist.
++
+ ### Step 7: Add Mandatory Input Gates
+ 
+ If `argument-hint` contains any required `<argument>`, add the mandatory gate after the H1 and its purpose line, before mode routing, asset loading and every workflow step.
+@@ -282,8 +284,6 @@ Then define one handler section per action. Show example routing in a table so f
+ 
+ **Argument-echo deprecation.** Do not end a command with a bare `User request: $ARGUMENTS` line. The command already receives `$ARGUMENTS`. Echoing it verbatim adds no routing behavior and duplicates the argument surface the router resolves. Resolve arguments in the router body. The validator warns on the raw-echo idiom.
+ 
+-**Loader gating.** Frontmatter is the load gate: `allowed-tools` authorizes exactly the tools and MCP surfaces a command may use, and any agent the router dispatches must both be admitted by that gate and resolve to a real agent definition in the active runtime's agent directory. Do not dispatch a handle the frontmatter does not admit or that does not exist.
+-
+ ### Step 10: Implement Mode Routing When Needed
+ 
+ For commands supporting `:auto` and `:confirm`, document mode detection:
+@@ -411,7 +411,7 @@ Exit code `0` from the authored-name checker and `validate_document.py` is requi
+ 
+ ## 4. RULES
+ 
+-Always:
++### ALWAYS
+ 
+ 1. Read existing target files before editing.
+ 2. Use the smallest command type that fits the workflow.
+@@ -425,7 +425,7 @@ Always:
+ 10. Validate with shared create-quality-control scripts before delivery.
+ 11. Keep this nested packet free of `graph-metadata.json`.
+ 
+-Never:
++### NEVER
+ 
+ 1. Never create a command for one-off work that does not need reuse.
+ 2. Never skip mandatory gates for required arguments.
+@@ -437,7 +437,7 @@ Never:
+ 8. Never add advisor identity metadata inside this nested packet.
+ 9. Never claim structural validity without running validation or stating it was not run.
+ 
+-Escalate if:
++### ESCALATE IF
+ 
+ 1. The command name, namespace, or invocation contract is unclear.
+ 2. Required arguments cannot be safely defaulted.
+diff --git a/.skilled/skills/sk-doc/sk-create-command/assets/command-template.md b/.skilled/skills/sk-doc/sk-create-command/assets/command-template.md
+index c37ec85a7d1..2d141939fef 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/assets/command-template.md
++++ b/.skilled/skills/sk-doc/sk-create-command/assets/command-template.md
+@@ -198,8 +198,8 @@ Start Here
+ | Order | Section             | Required         | Purpose                             |
+ | ----- | ------------------- | ---------------- | ----------------------------------- |
+ | 0     | **Frontmatter**     | Yes              | Metadata (description, args, tools) |
+-| 1     | **Mandatory Gate**  | If required args | Prevent context inference           |
+-| 2     | **Title + Purpose** | Yes              | What the command does               |
++| 1     | **Title + Purpose** | Yes              | What the command does               |
++| 2     | **Mandatory Gate**  | If required args | Prevent context inference           |
+ | 3     | **Contract**        | Recommended      | Inputs/outputs specification        |
+ | 4     | **Instructions**    | Yes              | Step-by-step execution              |
+ | 5     | **Examples**        | Recommended      | Usage demonstrations                |
+@@ -1189,8 +1189,8 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
+ | **Orchestrator** | `opus`   | Task understanding, dispatch, verification, synthesis |
+ | **Workers**      | `sonnet` | Fast parallel exploration, hypothesis generation      |
+ 
+-**Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.
+-**Skip when**: Simple single-action commands, sequential workflows.
++- **Use when**: Parallel codebase exploration, multi-aspect analysis, complex planning.
++- **Skip when**: Simple single-action commands, sequential workflows.
+ 
+ ---
+ 
+@@ -1235,20 +1235,7 @@ OPUS ORCHESTRATOR → Dispatches → SONNET WORKERS (parallel)
+ 
+ ---
+ 
+-## 19. RELATED RESOURCES
+-
+-### Templates
+-- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
+-- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - If converting to skill
+-
+-### Standards
+-- [core-standards.md](../../shared/references/core-standards.md) - Document type rules
+-- [validation.md](../../shared/references/validation.md) - Quality scoring
+-- [command-contract.json](command-contract.json) / [command-contract.schema.json](command-contract.schema.json) - Machine-readable behavioral contract and its schema
+-
+----
+-
+-## 20. COMMAND CONTRACT
++## 19. COMMAND CONTRACT
+ 
+ Behavioral truth per family, meaning topology, input and gate owner, execution targets, mode matrix,
+ owned assets, presentation ownership with typed exceptions, destructive policy, timeout bounds,
+@@ -1277,3 +1264,16 @@ hand-maintained list. A single family entry validates as one `familyContract`:
+   "invocation_aliases": ["/<ns>:<action>"]
+ }
+ ```
++
++---
++
++## 20. RELATED RESOURCES
++
++### Templates
++- [frontmatter-templates.md](../../sk-create-frontmatter/assets/frontmatter-templates.md) - Frontmatter by document type
++- [skill-md-template.md](../../sk-create-skill/assets/skill/skill-md-template.md) - If converting to skill
++
++### Standards
++- [core-standards.md](../../shared/references/core-standards.md) - Document type rules
++- [validation.md](../../shared/references/validation.md) - Quality scoring
++- [command-contract.json](command-contract.json) / [command-contract.schema.json](command-contract.schema.json) - Machine-readable behavioral contract and its schema
+diff --git a/.skilled/skills/sk-doc/sk-create-command/references/README.md b/.skilled/skills/sk-doc/sk-create-command/references/README.md
+index 87c53cc1219..534bb7014e3 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-command/references/README.md
+@@ -20,7 +20,7 @@ Routing hub for the command-creation overflow set. `sk-create-command/SKILL.md`
+ 
+ ## 1. OVERVIEW
+ 
+-This file is a thin index over the command-creation reference set. Every piece of overflow, the fully worked split example, how to separate a router from its presentation, how to design argument hints and `:auto`/`:confirm` modes, and the mistakes to avoid, lives in its own focused file. Open only the one the current task needs.
++Every piece of overflow, the fully worked split example, how to separate a router from its presentation, how to design argument hints and `:auto`/`:confirm` modes, and the mistakes to avoid, lives in its own focused file. Open only the one the current task needs.
+ 
+ **Core principle**: Commands are executable entry points. Keep reusable doctrine in skills, long display language in presentation assets, and runtime role boundaries in agents. These references are examples and edge cases, never a replacement for the SKILL.md workflow.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md b/.skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md
+index 442fe77ae0a..427dbd913b8 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-command/references/common-pitfalls.md
+@@ -20,7 +20,14 @@ The first pitfall is building a command at all when a skill or agent fits better
+ 
+ ## 1. OVERVIEW
+ 
+-This reference guards two failure modes: choosing the wrong component (a command when a skill or agent fits better) and the recurring command-authoring defects: missing gates, over-broad tools, dashboards in routers, and multiline descriptions. Decide the component first, then check the draft against the mistakes table.
++### Purpose
++
++This reference guards two failure modes: the wrong component and the recurring command-authoring defects. A draft that passes this check is the right component, gates its required input, lists only the tools it needs, keeps `description` on one line, and leaves display wording to the presentation asset.
++
++### When to Use
++
++- Before drafting, to confirm the workflow belongs in a command rather than a skill or an agent
++- After drafting, to review the draft against the mistakes table
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md b/.skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+index 22bae85f46d..e76aec44287 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
++++ b/.skilled/skills/sk-doc/sk-create-command/references/router-presentation-split.md
+@@ -20,8 +20,15 @@ Depth for SKILL.md Step 11. The split exists so routing behavior and visible wor
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This reference expands the router/presentation separation named in SKILL.md Step 11: what the router owns, what the presentation asset owns, the mechanical before/after transformation, and the rule that a split must never change behavior.
+ 
++### When to Use
++
++- Refactoring a mode-based command into a thin router plus a presentation asset
++- Checking that a split preserved routing, gates, modes, and `allowed-tools`
++
+ ---
+ 
+ ## 2. WHAT EACH SIDE OWNS
+@@ -43,7 +50,13 @@ This reference expands the router/presentation separation named in SKILL.md Step
+ 
+ ---
+ 
+-## 3. BEFORE / AFTER TRANSFORMATION
++## 3. BEHAVIOR-PRESERVING RULE
++
++Moving display text into the presentation asset must not change routing semantics, required inputs, confirmation behavior, or tool permissions. A presentation split is a relocation of wording, never a semantic change. If a refactor would alter routing, gates, modes, or `allowed-tools`, it is no longer a split — treat it as a behavior change and surface it explicitly.
++
++---
++
++## 4. BEFORE / AFTER TRANSFORMATION
+ 
+ Move display wording out of the router and replace it with a pointer to the presentation asset.
+ 
+@@ -73,12 +86,6 @@ Result templates and next-step wording live only in `assets/review-packet-presen
+ 
+ ---
+ 
+-## 4. BEHAVIOR-PRESERVING RULE
+-
+-Moving display text into the presentation asset must not change routing semantics, required inputs, confirmation behavior, or tool permissions. A presentation split is a relocation of wording, never a semantic change. If a refactor would alter routing, gates, modes, or `allowed-tools`, it is no longer a split — treat it as a behavior change and surface it explicitly.
+-
+----
+-
+ ## 5. RELATED RESOURCES
+ 
+ - [README.md](README.md) - command-creation reference map
+diff --git a/.skilled/skills/sk-doc/sk-create-command/references/worked-example.md b/.skilled/skills/sk-doc/sk-create-command/references/worked-example.md
+index 4d0374ce9b3..f7f053ac394 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/references/worked-example.md
++++ b/.skilled/skills/sk-doc/sk-create-command/references/worked-example.md
+@@ -14,13 +14,22 @@ version: 1.0.2.0
+ 
+ # Command Creation - Worked Split Example
+ 
+-A concrete end-to-end example of a mode-based namespace command. `sk-create-command/SKILL.md` owns the numbered workflow. This file shows what the finished output package looks like so you can model the shape.
++A concrete end-to-end example of a mode-based namespace command. `sk-create-command/SKILL.md` owns the numbered workflow.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-This reference is a single worked example: the canonical command file contract and its invariants, then a full mode-based split showing both the router `.md` and its presentation `.txt`. It is illustrative overflow for SKILL.md Steps 5 and 11 (model the shape, do not treat `/review:packet` as a live command).
++### Purpose
++
++This reference is a single worked example: the canonical command file contract and its invariants, then a full mode-based split showing both the router `.md` and its presentation `.txt`.
++
++### When to Use
++
++- Modeling the output package shape for a mode-based namespace command
++- Seeing the router and presentation contract applied end to end
++
++**Illustrative only:** this is overflow for SKILL.md Steps 5 and 11; model the shape and do not treat `/review:packet` as a live command.
+ 
+ ---
+ 

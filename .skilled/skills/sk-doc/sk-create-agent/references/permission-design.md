@@ -9,7 +9,7 @@ trigger_phrases:
   - "deprecated tools frontmatter agent"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.4
+version: 1.0.1.0
 ---
 
 # Agent Frontmatter and Permission Design
@@ -22,11 +22,17 @@ Depth for the frontmatter block. `SKILL.md` shows the canonical YAML and the cor
 
 Frontmatter is the enforceable part of an agent. Prose describes intent; the `permission:` object decides what the runtime will actually let the agent do. Over-granting here is the most common way an agent quietly exceeds its contract, so permission choices should be justified by the role, not by convenience.
 
+**When to Use**:
+
+- Choosing `mode` for a new agent.
+- Scoping a `permission` value and justifying every `allow`.
+- Deciding whether a `tools:` list still belongs in the file.
+
 **Core Principle**: Default to the least authority that still lets the role do its job, then justify every `allow` against the role description.
 
 ---
 
-## 2. MODE SELECTION
+## 2. MODE AND TEMPERATURE SELECTION
 
 - `mode` must be one of `subagent`, `agent`, or `all`.
 - Use `subagent` for specialists dispatched by an orchestrator — the common case.

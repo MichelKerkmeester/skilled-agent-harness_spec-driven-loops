@@ -1,38 +1,6 @@
 {
   "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding.",
   "debt": {
-    "sk-doc/sk-create-command": {
-      "findings": 2,
-      "codes": [
-        "render_bold_label_join",
-        "render_section_order"
-      ]
-    },
-    "sk-doc/sk-create-diff": {
-      "findings": 10,
-      "codes": [
-        "render_h2_numbering"
-      ]
-    },
-    "sk-doc/sk-create-frontmatter": {
-      "findings": 1,
-      "codes": [
-        "render_overview_heading"
-      ]
-    },
-    "sk-doc/sk-create-goal": {
-      "findings": 1,
-      "codes": [
-        "render_overview_heading"
-      ]
-    },
-    "sk-doc/sk-create-quality-control": {
-      "findings": 31,
-      "codes": [
-        "render_bold_label_join",
-        "render_h2_numbering"
-      ]
-    },
     "system-deep-loop/deep-ai-council": {
       "findings": 6,
       "codes": [

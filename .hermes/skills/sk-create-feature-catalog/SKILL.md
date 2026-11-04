@@ -58,6 +58,7 @@ It creates a catalog only when the surface is too large for a trustworthy README
 
 `references/README.md` is the fallback route map, and authoring starts from `assets/feature-catalog-template.md` for the root catalog and `assets/feature-catalog-snippet-template.md` for each per-feature file.
 Read [`ROUTER.md`](../../../.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md) before selecting skill-local resources; open only the matched files.
+When nothing matches, report `UNKNOWN_FALLBACK` with the router's disambiguation checklist.
 
 ---
 

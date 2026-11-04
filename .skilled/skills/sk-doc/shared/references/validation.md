@@ -8,7 +8,7 @@ trigger_phrases:
   - "validation quality dimensions"
 importance_tier: important
 contextType: general
-version: 2.1.0.31
+version: 2.1.1.0
 ---
 
 # Validation - Quality Assessment and Gates
@@ -19,7 +19,7 @@ Quality gates, DQI scoring, and script-assisted AI analysis for markdown documen
 
 ## 1. OVERVIEW
 
-### What Is Validation?
+### Purpose
 
 Validation provides a comprehensive quality assessment framework for markdown documentation. The `extract_structure.py` script parses documents into structured JSON; AI uses this data to evaluate quality across structure, content, and style dimensions.
 
@@ -33,6 +33,12 @@ Validation provides a comprehensive quality assessment framework for markdown do
 
 This reference provides deep-dive technical guidance on qualitative assessment, quality gates, and interpretation patterns.
 
+### When to Use
+
+- Before delivery, when a document must clear its type's gate.
+- When a JSON report needs its score, band or checklist failure read.
+- When a low score needs an order for the fixes.
+
 ### Core Principle
 
 **"Measure what matters, gate what guarantees quality"** - Structure ensures validity, Content ensures AI-friendliness, Style ensures consistency. AI evaluates all dimensions based on `extract_structure.py` output.
@@ -44,6 +50,8 @@ This reference provides deep-dive technical guidance on qualitative assessment, 
 **Two-stage validation pipeline:**
 
 ### Stage 1: Format Validation (validate_document.py)
+
+**MANDATORY**: Run `validate_document.py` before delivery. Exit code 0 required.
 
 **Pre-delivery format checks with blocking errors:**
 
@@ -63,8 +71,6 @@ python scripts/validate_document.py document.md
 - `--fix` - Apply auto-fixes for safe issues
 - `--fix --dry-run` - Preview fixes without applying
 - `--type readme|skill|reference|asset|agent` - Explicit document type
-
-**MANDATORY**: Run `validate_document.py` before delivery. Exit code 0 required.
 
 ### Stage 2: Quality Assessment (extract_structure.py)
 

@@ -1,0 +1,336 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
+index 0bff8419c4b..4731e3cac57 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
+@@ -34,6 +34,10 @@ When a skill ships, the only proof it works is a checklist row someone wrote at
+ 
+ The skill exists to replace that memory-based proof with a package a different operator or a different agent can rerun and reach the same verdict on.
+ 
++### When To Use This Skill
++
++Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
++
+ ### What It Does
+ 
+ `create-manual-testing-playbook` authors a `manual-testing-playbook/` package: one root `manual-testing-playbook.md` that holds shared policy, review protocol and orchestration guidance, plus one file per feature scenario with the exact prompt, the exact command sequence, expected signals, evidence to capture and a binary pass or fail bar. Every scenario is deterministic enough that a different operator or a different agent reproduces the same result. The canonical entry point is `/create:manual-testing-playbook`. If the ask is a capability inventory instead of executable scenarios, that is `create-feature-catalog`. If the ask is to audit or score a playbook that already exists, that is `create-quality-control`.
+@@ -83,7 +87,19 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
+ 
+ ## 4. HOW IT WORKS
+ 
+-Confirm the target skill or system, its feature set and whether a feature catalog already exists, then decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else. Create the root file from `assets/manual-testing-playbook-template.md`, then create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions and fill each scenario contract with the nine required fields from The Scenario Contract. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists. Note explicitly when no catalog entry exists. Isolate destructive scenarios behind clear preconditions and a recovery path. Validate the root document with the shared validator, then manually spot-check per-feature frontmatter, section order and feature ID counts before delivery. The operator validator warns when a prompt copy disagrees.
++1. Confirm the target skill or system, its feature set and whether a feature catalog already exists.
++2. Decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else.
++3. Create the root file from `assets/manual-testing-playbook-template.md`.
++4. Create one per-feature file per ID, starting single-prompt files from `assets/manual-testing-playbook-snippet-template.md` and conversation files from `assets/manual-testing-playbook-conversation-snippet-template.md`.
++5. Write root package policy (review protocol, evidence rules, orchestration guidance) before scenario-specific exceptions.
++6. Fill each scenario contract with the nine required fields from The Scenario Contract.
++7. Link root category summaries to every per-feature file and to a matching feature-catalog entry when one exists.
++8. Note explicitly when no catalog entry exists.
++9. Isolate destructive scenarios behind clear preconditions and a recovery path.
++10. Validate the root document with the shared validator.
++11. Manually spot-check per-feature frontmatter, section order and feature ID counts before delivery.
++
++The operator validator warns when a prompt copy disagrees.
+ 
+ ### Key Concept: Prompt Synchronization
+ 
+@@ -97,10 +113,6 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for this packet when five or more distinct features need manual validation, when a release decision depends on structured evidence rather than a memory of "it worked last time" or when multiple operators or agents need to run the same scenarios and get comparable results. Skip it when test steps fit cleanly in a spec-folder `checklist.md` row, the feature is one-off or experimental or automated tests already cover the only meaningful acceptance criteria.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md
+index 40916abab44..dd7a54e334b 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md
+@@ -265,6 +265,35 @@ Authoring sequence matters:
+ 
+ ## 6. SCENARIO DESIGN RULES
+ 
++### Choosing the Scenario Style
++
++Every scenario file uses one of two styles. Pick the style for each scenario before you write its execution truth. This section is the single home of that choice. The command workflow, the router and the references point here.
++
++- **Single prompt.** The operator sends the Exact Prompt once, reads the answer and judges it against the Expected Signals. The operator collects the evidence by hand.
++- **Conversation.** Section 3 carries one `json conversation` block. The shared runner plays each turn into a live runtime session. It answers the runtime's questions, restarts or compacts the session and runs a shell check after every turn. The Exact Prompt is the first turn's `send`, and the Exact Command Sequence is the runner command. The style changes how the scenario runs, not the file's shape.
++
++Apply these questions in order and stop at the first yes:
++
++1. Does the verdict need a person's judgment, such as tone, document quality or whether an explanation is correct? Write a single prompt.
++2. Does the behavior need more than one exchange? That means the runtime asks a question back, an answer must change what happens next or state must survive a restart or a compaction. Write a conversation.
++3. Must the behavior hold on several runtimes, or does the scenario gate a release as a repeatable regression check? Write a conversation, provided a shell command can decide every turn.
++4. Otherwise write a single prompt.
++
++Question 1 comes first because a conversation turn passes only when its check exits 0. When a multi-turn behavior also needs a judged verdict, script the turns a check can decide, and leave the judged part to the operator in the Pass/Fail Criteria, read from that turn's `screen.txt`.
++
++A conversation also needs a runtime the runner drives (`claude-code`, `opencode`, `codex`, `pi` or `devin`), tmux, that runtime installed and logged in and quota to spend. One pass of the runner's own six-turn scenario on all five runtimes took about 11 minutes. The write sandbox needs macOS. Elsewhere the run records `sandbox: unavailable` and the subject runs unsandboxed. When any of these is missing, write a single prompt, or keep the conversation and record `SKIP` with the missing piece as its blocker.
++
++A conversation catches failures that a single exchange never reaches. The runner's own live passes caught a start-up dialog that redrew before it settled (`LAUNCH_TIMEOUT`), a check that failed on one runtime only because of letter case, a spent usage limit (`QUOTA_EXHAUSTED`) and another process writing into the repository during the run (`REPO_CHANGED`). A single prompt costs no runner setup and works with any runtime, so keep it for routing checks, one command's output and anything a reader must judge.
++
++The script is one fenced `json conversation` block under a `### Conversation Script` heading in section 3. See [conversation-scenarios.md](references/conversation-scenarios.md) for the block schema and turn rules. Play a script into a live runtime with the shared runner, from the repository root:
++
++```bash
++node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs \
++  --scenario <scenario.md> --runtime <id[,id...]> --scratch <dir outside the repository> --out <evidence dir>
++```
++
++It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it.
++
+ ### Determinism
+ 
+ Each scenario must be reproducible by another operator. Include exact prompts, exact command sequences, observable expected signals, captured evidence, and binary pass/fail criteria.
+@@ -334,40 +363,11 @@ These fields must agree:
+ 
+ Do not ship unsynchronized prompt fields. `scripts/validate-playbook-package.cjs` reports each copy that disagrees with the contract as a `PROMPT_UNSYNCED` warning. Quotes, backticks, emphasis and spacing are presentation and are ignored. Any difference in the words is reported.
+ 
+-### Choosing the Scenario Style
+-
+-Every scenario file uses one of two styles. Pick the style for each scenario before you write its execution truth. This section is the single home of that choice. The command workflow, the router and the references point here.
+-
+-- **Single prompt.** The operator sends the Exact Prompt once, reads the answer and judges it against the Expected Signals. The operator collects the evidence by hand.
+-- **Conversation.** Section 3 carries one `json conversation` block. The shared runner plays each turn into a live runtime session. It answers the runtime's questions, restarts or compacts the session and runs a shell check after every turn. The Exact Prompt is the first turn's `send`, and the Exact Command Sequence is the runner command. The style changes how the scenario runs, not the file's shape.
+-
+-Apply these questions in order and stop at the first yes:
+-
+-1. Does the verdict need a person's judgment, such as tone, document quality or whether an explanation is correct? Write a single prompt.
+-2. Does the behavior need more than one exchange? That means the runtime asks a question back, an answer must change what happens next or state must survive a restart or a compaction. Write a conversation.
+-3. Must the behavior hold on several runtimes, or does the scenario gate a release as a repeatable regression check? Write a conversation, provided a shell command can decide every turn.
+-4. Otherwise write a single prompt.
+-
+-Question 1 comes first because a conversation turn passes only when its check exits 0. When a multi-turn behavior also needs a judged verdict, script the turns a check can decide, and leave the judged part to the operator in the Pass/Fail Criteria, read from that turn's `screen.txt`.
+-
+-A conversation also needs a runtime the runner drives (`claude-code`, `opencode`, `codex`, `pi` or `devin`), tmux, that runtime installed and logged in and quota to spend. One pass of the runner's own six-turn scenario on all five runtimes took about 11 minutes. The write sandbox needs macOS. Elsewhere the run records `sandbox: unavailable` and the subject runs unsandboxed. When any of these is missing, write a single prompt, or keep the conversation and record `SKIP` with the missing piece as its blocker.
+-
+-A conversation catches failures that a single exchange never reaches. The runner's own live passes caught a start-up dialog that redrew before it settled (`LAUNCH_TIMEOUT`), a check that failed on one runtime only because of letter case, a spent usage limit (`QUOTA_EXHAUSTED`) and another process writing into the repository during the run (`REPO_CHANGED`). A single prompt costs no runner setup and works with any runtime, so keep it for routing checks, one command's output and anything a reader must judge.
+-
+-The script is one fenced `json conversation` block under a `### Conversation Script` heading in section 3. See [conversation-scenarios.md](references/conversation-scenarios.md) for the block schema and turn rules. Play a script into a live runtime with the shared runner, from the repository root:
+-
+-```bash
+-node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs \
+-  --scenario <scenario.md> --runtime <id[,id...]> --scratch <dir outside the repository> --out <evidence dir>
+-```
+-
+-It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it.
+-
+ ---
+ 
+ ## 7. VALIDATION AND RELEASE GATES
+ 
+-### Automated Checks
++### Shared Document Validation
+ 
+ Run shared validation on the root playbook before delivery from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.skilled/skills/system-spec-kit`):
+ 
+@@ -390,7 +390,7 @@ Also check:
+ - Feature-catalog links, when referenced.
+ - The operator validator reports parser findings for a malformed `json conversation` block as `CONVERSATION_SCRIPT_INVALID`, naming the field path.
+ 
+-### Automated Checks
++### Operator Contract Validator
+ 
+ Run the operator-contract validator from the repository root:
+ 
+@@ -416,12 +416,28 @@ every allowlisted root is still discovered, so a root cannot quietly leave enfor
+ renamed or moved. Fix a failing package rather than removing its line.
+ 
+ The command validates the operator-scenario contract, not the routing-gold contract. It walks every non-excluded
+-scenario tree and checks, per feature: five-section ordering; `title`, `description`, and four-part `version`
+-frontmatter; Feature ID; operator/orchestrator prompt; exact command sequence; expected signals; evidence;
+-pass/fail criteria; failure triage; root-playbook link; allowed verdicts; filename/category shape; unique IDs;
+-root-index bijection; local links; evergreen truth; and placeholder exclusion. Conditional checks cover a realistic
+-user request when user intent is explicitly being clarified, an exact prompt when a scenario table is present,
+-and a feature-catalog link when catalog applicability is declared.
++scenario tree and checks, per feature:
++
++- Five-section ordering.
++- `title`, `description` and four-part `version` frontmatter.
++- Feature ID.
++- Operator or orchestrator prompt.
++- Exact command sequence.
++- Expected signals.
++- Evidence.
++- Pass/fail criteria.
++- Failure triage.
++- Root-playbook link.
++- Allowed verdicts.
++- Filename and category shape.
++- Unique IDs.
++- Root-index bijection.
++- Local links.
++- Evergreen truth.
++- Placeholder exclusion.
++
++Conditional checks cover a realistic user request when user intent is explicitly being clarified, an exact prompt
++when a scenario table is present, and a feature-catalog link when catalog applicability is declared.
+ 
+ The validator derives scenario and category counts at run time. A root's hand-typed census is reported as a warning,
+ including a mismatch, so documentation repair remains separate from enforcement. Existing measured packages are
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
+index a7343dad6b9..3d472f7692b 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
+@@ -23,8 +23,6 @@ Per-feature conversation scenario files for split manual testing playbooks. Use
+ 
+ ## 1. OVERVIEW
+ 
+-Use this template for a multi-turn conversation scenario. Use `manual-testing-playbook-snippet-template.md` for a single-prompt scenario.
+-
+ Each feature file is the canonical home for full conversation scenario execution detail. The root `manual-testing-playbook.md` stays readable by summarizing the feature and linking here, while the feature file carries the realistic user-testing context, orchestration process, 9-column test row, structured source references and concise metadata. The file shape should mirror the Feature Catalog snippet pattern so operators can move between the catalog and the playbook without relearning the document structure.
+ 
+ **Required uses**:
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
+index 013f00b29c9..977cedbaa02 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
+@@ -61,5 +61,3 @@ Load the file that matches the current task:
+ - [workflows.md](../../sk-create-quality-control/references/workflows.md) - Execution-mode reference
+ 
+ ---
+-
+-*End of Manual Testing Playbook Creation reference map - the executable workflow lives in [`../SKILL.md`](../SKILL.md).*
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md
+index 271fcf7e70b..b991a290bb5 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md
+@@ -20,9 +20,18 @@ The recurring defects that degrade a manual testing playbook package, why each o
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Most playbook defects come from splitting package truth across sidecar files, desynchronizing prompt fields, or overloading the root summary with execution detail that belongs in the per-feature file. Each row below pairs the mistake with why it breaks the package and the correct fix.
+ 
+-**Core Principle**: One canonical truth per scenario - shared policy in the root, execution truth in the per-feature file, and nothing duplicated between them.
++### When to Use
++
++- Reviewing a drafted playbook for defects.
++- Diagnosing a package that splits truth or desyncs prompts.
++
++### Core Principle
++
++One canonical truth per scenario - shared policy in the root, execution truth in the per-feature file, and nothing duplicated between them.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
+index ddd24949375..85d998ab6a2 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
+@@ -20,10 +20,14 @@ This reference defines the closed script format for conversation scenarios in a
+ 
+ ## 1. OVERVIEW
+ 
+-Write a conversation scenario when the behavior depends on multiple prompts, scripted answers, runtime actions, or state checks across a session. One prompt is enough when a single request and its result capture the full behavior. The ordered decision rule, the runtime requirements and the cost of each style live in `SKILL.md` §6, Choosing the Scenario Style.
++### Purpose
+ 
+ The script is one fenced `json conversation` block in section 3 of the scenario file. The block is the source of truth for the conversation turns.
+ 
++### When to Use
++
++Write a conversation scenario when the behavior depends on multiple prompts, scripted answers, runtime actions, or state checks across a session. One prompt is enough when a single request and its result capture the full behavior. The ordered decision rule, the runtime requirements and the cost of each style live in `SKILL.md` §6, Choosing the Scenario Style.
++
+ ---
+ 
+ ## 2. ROLES
+@@ -124,6 +128,7 @@ The raw pane slice and `history.txt` exist when the check runs, so a check can r
+ - Compaction followed by a send is two turns: one turn with `action: compact` and its check, then a turn with the send.
+ - A turn with neither `send` nor `action` is check-only. The first turn holding one of those fields must be a `send`.
+ - The validator checks the block but never runs `setup` or `check` commands.
++- Checks must only read state. Nothing may write under `$CONVERSATION_REPO_ROOT`.
+ - Never match a model reply with `grep -x` or `grep -Fx` on `screen.txt`. Runtime prefixes prevent an exact line match: Claude replies start with `⏺ `, Codex with `• `, Pi with ` ● `, Devin with a leading space and OpenCode with five spaces. Use `grep -F` with a distinctive marker.
+ - `screen.txt` shows a visible 50-row pane that retains earlier turns and the current turn's echoed send. Inspect only text after that turn's echoed send by using the `awk` pattern in [the session resume example](../../../../skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/session-continuity/resume-specific-session-by-id-conversation.md), or check a marker the model can learn only by reading a file. Never put the expected marker in a `send`.
+ - A check can read the turn's evidence from `$CONVERSATION_TURN_DIR`. The raw pane slice in `raw-pane.log` and the full plain-text scrollback in `history.txt` both exist before the check runs. `history.txt` is the right file to search for text that a long reply may have scrolled off the 50-row `screen.txt`. `raw-pane.log` carries terminal escape codes between words, so a plain `grep` on it is unreliable.
+@@ -132,7 +137,6 @@ The raw pane slice and `history.txt` exist when the check runs, so a check can r
+ - Do not coach the behavior under test. Each `send` must be the plain user request. Do not tell the model to ask a question, pause, refuse or name which tool it used.
+ - A question's `match` regular expression must identify the question asked and must not match any text in the echoed `send`.
+ - If a required precondition is missing, such as a fixture, credential, tool or network access, setup must exit with status `77` and print a one-line reason to skip the runtime. Its first non-empty output line is the blocker. A check can exit `77` to skip its turn.
+-- Checks must only read state. Nothing may write under `$CONVERSATION_REPO_ROOT`.
+ 
+ ---
+ 
+@@ -150,7 +154,12 @@ Exit status `0` means every runtime passed or skipped. Exit status `1` means at
+ 
+ Each runtime folder contains `result.json`, `actions.jsonl`, `raw-pane.log`, `setup.log`, `repo-before.txt`, `repo-after.txt` and `checkpoints.tsv`. Each turn folder contains `screen.txt`, `history.txt`, its `raw-pane.log` slice, one `question-N.txt` file per detected question and `check.txt`. The evidence root contains `matrix.md`, with one verdict and evidence path per requested runtime.
+ 
+-The runner sets `CONVERSATION_RUNTIME`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` (the runtime's evidence folder) and `CONVERSATION_TURN_DIR` (the turn's evidence folder) for each `check` command. A check defaults to 60 seconds. Set `CONVERSATION_CHECK_TIMEOUT_MS` to override that bound. An overrun fails as `CHECK_TIMEOUT`. Each `setup` command has 120 seconds. An overrun refuses the run as `SETUP_TIMEOUT`. Exit 77 skips the runtime with its first non-empty output line as the blocker. The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand. `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
++- The runner sets `CONVERSATION_RUNTIME`, `CONVERSATION_REPO_ROOT`, `CONVERSATION_RUN_DIR` (the runtime's evidence folder) and `CONVERSATION_TURN_DIR` (the turn's evidence folder) for each `check` command.
++- A check defaults to 60 seconds. Set `CONVERSATION_CHECK_TIMEOUT_MS` to override that bound. An overrun fails as `CHECK_TIMEOUT`.
++- Each `setup` command has 120 seconds. An overrun refuses the run as `SETUP_TIMEOUT`.
++- Exit 77 skips the runtime with its first non-empty output line as the blocker.
++- The runner sets `CONVERSATION_REPO_ROOT` and `CONVERSATION_RUNTIME` for every `setup` command too, so setup can copy project files from the repository without any variable set by hand.
++- `CONVERSATION_REPO_ROOT` is the repository the run snapshots, which `--repo-root` can point at a worktree.
+ 
+ Use `--seed N` to replay random delays declared as `[min, max]`. The runner records the seed in `result.json`. Use `--overwrite` to replace existing per-runtime evidence folders. Without it, the runner refuses a non-empty runtime folder.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md
+index 5ec10b28b3a..890f84cdcbf 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md
+@@ -20,9 +20,18 @@ Shipped playbook content models to study, plus the scaffold templates that seed
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ The fastest way to author a correct playbook is to model it on one that already ships and validates. The reference implementations below are live packages built to the current contract; the templates are the scaffolds to copy from.
+ 
+-**Core Principle**: Model a new package on a shipped, validating playbook rather than authoring the structure from scratch.
++### When to Use
++
++- Seeding a new canonical package from a scaffold.
++- Studying a shipped, validating package before writing your own.
++
++### Core Principle
++
++Model a new package on a shipped, validating playbook rather than authoring the structure from scratch.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md
+index 6c0dcbd2685..7ed98ce537d 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md
+@@ -20,9 +20,18 @@ The full decision for which voice the canonical `Prompt:` field uses in a scenar
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ The canonical `Prompt:` field defaults to **natural-human voice** - how a real user would phrase the request to an AI in conversation. The RCAF (Role-Context-Action-Format) wrapper is the exception, reserved for when the actor IS an AI orchestrator.
+ 
+-**Core Principle**: When in doubt, prefer natural-human. RCAF is the exception, natural is the default.
++### When to Use
++
++- Choosing or reviewing the `Prompt:` voice for a scenario.
++- Deciding whether the RCAF wrapper applies.
++
++### Core Principle
++
++When in doubt, prefer natural-human. RCAF is the exception, natural is the default.
+ 
+ RCAF wrapper shape:
+ 
+@@ -45,6 +54,8 @@ As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPU
+ 
+ ## 3. VOICE GUIDELINES
+ 
++The `Real user request:` field is always natural-human regardless of which voice the canonical `Prompt:` field uses; it serves as the voice reference baseline.
++
+ **Natural-human prompts**:
+ 
+ - Imperative or interrogative ("Review this PR for security issues", "Why is this test flaky?", "Help me start an OAuth feature").
+@@ -57,8 +68,6 @@ As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPU
+ - Keep the canonical structure: `As a {ROLE}, {ACTION} against {TARGET}. Verify {EXPECTED_OUTCOME}. Return {OUTPUT_FORMAT}.`
+ - The Role must be an AI orchestrator role (e.g., "external-AI conductor", "git safety reviewer", "validation operator"), NOT a generic human role like "developer" or "engineer".
+ 
+-The `Real user request:` field is always natural-human regardless of which voice the canonical `Prompt:` field uses; it serves as the voice reference baseline.
+-
+ ---
+ 
+ ## 4. RELATED RESOURCES

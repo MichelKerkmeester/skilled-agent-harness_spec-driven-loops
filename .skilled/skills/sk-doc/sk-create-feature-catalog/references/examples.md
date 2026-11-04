@@ -9,7 +9,7 @@ trigger_phrases:
   - "worked feature catalog"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # Feature Catalog Examples - Live Catalog Walkthrough
@@ -20,9 +20,9 @@ A section-by-section reading of a real, shipped feature catalog so a new catalog
 
 ## 1. OVERVIEW
 
-The packet `SKILL.md` states the contract. This reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.skilled/skills/system-skill-advisor/feature-catalog/`: 42 features across 7 group folders, every claim carrying a real source and test path.
+The packet `SKILL.md` states the contract. This reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.skilled/skills/system-skill-advisor/feature-catalog/`: 45 features across 7 group folders, every claim carrying a real source and test path.
 
-Read this alongside the two scaffolds in `../assets/feature-catalog/`. The templates give you the empty shape. This walkthrough shows the shape filled in well.
+Read this alongside the two scaffolds in `../assets/`. The templates give you the empty shape. This walkthrough shows the shape filled in well.
 
 ---
 

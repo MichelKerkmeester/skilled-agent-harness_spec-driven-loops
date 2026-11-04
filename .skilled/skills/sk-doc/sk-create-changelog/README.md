@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # create-changelog
@@ -26,13 +26,13 @@ version: 1.3.2.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-A changelog entry can go wrong in three ways. It lands in the wrong place, as when a change is filed under the wrong component. It carries the wrong version, because a four-part bump (`major.minor.patch.build`) was miscalculated or an existing file blocks the write. Or it buries the one change a reader cares about under every task that shipped. A fixed workflow and a narrative format that keeps only what the reader needs prevent all three.
-
 ### What It Does
 
 create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolves the source to a global component, calculates the version, writes the entry in the compact or expanded v4 narrative format and checks voice and structure before writing. Every global entry opens with the search metadata a spec document carries, so Gate 1 and `/speckit:search` find it by component and version. With `--release` it also tags the version and publishes the GitHub release, and `sk-git` owns the branch, commit and PR work around it.
+
+### Why This Skill Exists
+
+A changelog entry can go wrong in three ways. It lands in the wrong place, as when a change is filed under the wrong component. It carries the wrong version, because a four-part bump (`major.minor.patch.build`) was miscalculated or an existing file blocks the write. Or it buries the one change a reader cares about under every task that shipped. A fixed workflow and a narrative format that keeps only what the reader needs prevent all three.
 
 ---
 
@@ -124,7 +124,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the summary first, the spec-folder blockquote when sourced from a spec, the sections its tier requires and upgrade guidance |
+| Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the required frontmatter keys are present, at least one trigger phrase is declared and a version file names its version in a phrase. The summary-first order, the tier sections, the spec-folder line when sourced from a spec and the upgrade guidance are checked by hand against `SKILL.md` section 9 |
 | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
 | Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path. An extended `skilled` entry keeps its version |
 
@@ -135,6 +135,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, the seven-step workflow and the versioning and topology rules |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
 | [`assets/changelog-template.md`](assets/changelog-template.md) | Canonical entry format and the rules for what goes in |
 | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
 | [`references/worked-examples.md`](./references/worked-examples.md) | Fully written global entries and a note on deprecated packet-local files |

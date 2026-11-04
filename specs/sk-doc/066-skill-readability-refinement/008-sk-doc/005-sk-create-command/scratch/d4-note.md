@@ -1,0 +1,3 @@
+The diff read found one change of meaning, fixed by hand: the command template's Common Sections table had swapped its order rows, putting Title + Purpose at 1 and the Mandatory Gate at 2. The table states the order a command is written in, so HEAD's order, the gate first, is back.
+
+Everything else moved: the worked example's "so you can model the shape" is its first When to Use bullet, and the README's README-structure check now names the packet README by its full path. The template's Command Contract moves ahead of Related Resources, sections 19 and 20, and the router-presentation split puts its behavior-preserving rule, section 3, before the before-and-after transformation; no file cites those sections by number.

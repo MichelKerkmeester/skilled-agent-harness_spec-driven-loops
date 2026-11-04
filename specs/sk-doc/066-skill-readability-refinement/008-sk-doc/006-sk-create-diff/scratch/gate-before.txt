@@ -1,0 +1,12 @@
+.skilled/skills/sk-doc/sk-create-diff/SKILL.md:216: render_section_order: "RELATED RESOURCES" must be the last H2; it is followed by "REFERENCES".
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md:20: render_h2_numbering: Unnumbered H2 "Self-containment (validated)" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md:27: render_h2_numbering: Unnumbered H2 "Accessibility" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md:38: render_h2_numbering: Unnumbered H2 "Views" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md:45: render_h2_numbering: Unnumbered H2 "What is not guaranteed" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:20: render_h2_numbering: Unnumbered H2 "Automatic flow (snapshot-backed)" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:36: render_h2_numbering: Unnumbered H2 "Explicit-pair flow (fallback)" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:49: render_h2_numbering: Unnumbered H2 "Pre-composed aggregate pairs" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:73: render_h2_numbering: Unnumbered H2 "Where snapshots live" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:79: render_h2_numbering: Unnumbered H2 "Lifecycle" among numbered peers; number every section.
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md:93: render_h2_numbering: Unnumbered H2 "After generating a report" among numbered peers; number every section.
+files=9 render_warnings=11 invalid=0

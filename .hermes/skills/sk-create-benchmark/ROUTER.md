@@ -55,6 +55,10 @@ Route to the right family before authoring. The **OWNS** column is what this pac
 
 Route by the table. Never change lane-local scoring.
 
+### Family Boundary
+
+This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.
+
 ### Smart Router Pseudocode
 
 Benchmark families are runtime keys. Use canonical `discover_markdown_resources()` and
@@ -120,7 +124,3 @@ def route_benchmark_request(request):
         load_if_available(path, inventory, loaded, seen)
     return {"routing_key": routing_key, "resources": loaded}
 ```
-
-### Family Boundary
-
-This packet owns authoring, not measurement contracts: rubrics, renderers, scorers, and evaluator/verdict contracts stay lane-local. The advisor identity lives at the `sk-doc` root; never add packet-local `graph-metadata.json`.

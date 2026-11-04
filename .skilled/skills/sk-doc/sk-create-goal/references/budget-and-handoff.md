@@ -8,17 +8,29 @@ trigger_phrases:
   - "objective slice"
 importance_tier: important
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 # Goal Budget and Handoff
 
+Open this reference when a goal is at or near the 4,000-character cap, or before a parent goal's chat slice goes to an operator.
+
+---
+
 ## 1. OVERVIEW
 
-Use the packet report to check a top-level goal or phase parent. Keep every completion criterion when cutting an over-budget parent. Section 2 is the one rule for which goals carry the cap, section 3 the one full cut order and section 4 the one full rule for what a parent goal sent in chat contains. Other documents point here rather than restating them.
+### Purpose
+
+Use the packet report to check a top-level goal or phase parent. Keep every completion criterion when cutting an over-budget parent.
+
+### When to Use
+
+Open section 2 for the one rule on which goals carry the cap, section 3 for the one full cut order and section 4 for the one full rule on what a parent goal sent in chat contains. Other documents point here rather than restating them.
 
 ---
 
 ## 2. MEASURE THE DURABLE SLICE
+
+The cap applies to a top-level packet and to any folder that is itself a phase parent, meaning it has phase children or its `spec.md` declares the phase level, even when that folder sits inside another packet. Only a phase child that is not itself a phase parent is exempt, and its packet report reads `packet_budget=unknown`. `goal.cjs packet`, `check-goal.cjs` and `validate.sh` draw this same line. An applicable goal can also report `unknown` if the budget manifest is missing or invalid. Treat that result as unverified and resolve the manifest issue before judging the goal. ([budget resolution, lines 288 to 307](../../../../hooks/goal/lib/goal-slice.cjs) and [applicability and state, lines 400 to 415](../../../../hooks/goal/lib/goal-slice.cjs))
 
 Run this command from the repository root:
 
@@ -29,8 +41,6 @@ node .skilled/hooks/goal/bin/goal.cjs packet <packet> --workspace <repo root>
 Replace the placeholders with the packet path and repository root. Read `packet_durable_chars` and `packet_budget` in the output. The count covers text after the closing frontmatter fence and before the log anchor. Anchors and comments inside that range count. The manifest sets the limit to 4,000 characters for top-level packets and phase parents. A count of 4,000 is within budget. A larger count reports `packet_budget=over`. ([manifest, lines 24 to 28](../../../system-spec-kit/templates/spec-kit-docs.json))
 
 The packet command prints the count and budget state with the other packet fields. ([packet output, lines 205 to 218](../../../../hooks/goal/bin/goal.cjs)) The shared module measures the durable slice from the frontmatter boundary to the log anchor. ([slice measurement, lines 57 to 68](../../../../hooks/goal/lib/goal-slice.cjs))
-
-The cap applies to a top-level packet and to any folder that is itself a phase parent, meaning it has phase children or its `spec.md` declares the phase level, even when that folder sits inside another packet. Only a phase child that is not itself a phase parent is exempt, and its packet report reads `packet_budget=unknown`. `goal.cjs packet`, `check-goal.cjs` and `validate.sh` draw this same line. An applicable goal can also report `unknown` if the budget manifest is missing or invalid. Treat that result as unverified and resolve the manifest issue before judging the goal. ([budget resolution, lines 288 to 307](../../../../hooks/goal/lib/goal-slice.cjs) and [applicability and state, lines 400 to 415](../../../../hooks/goal/lib/goal-slice.cjs))
 
 ---
 

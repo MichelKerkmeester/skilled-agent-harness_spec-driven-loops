@@ -198,6 +198,8 @@ Rules:
 - For MCP tools in `allowed-tools`, use fully qualified names such as `mcp__<server>__<tool>`.
 - Bare tool names such as `advisor_recommend` belong in prose only, not `allowed-tools`.
 
+**Loader gating.** Frontmatter is the load gate: `allowed-tools` authorizes exactly the tools and MCP surfaces a command may use, and any agent the router dispatches must both be admitted by that gate and resolve to a real agent definition in the active runtime's agent directory. Do not dispatch a handle the frontmatter does not admit or that does not exist.
+
 ### Step 7: Add Mandatory Input Gates
 
 If `argument-hint` contains any required `<argument>`, add the mandatory gate after the H1 and its purpose line, before mode routing, asset loading and every workflow step.
@@ -286,8 +288,6 @@ Route by:
 Then define one handler section per action. Show example routing in a table so future maintainers can verify behavior quickly.
 
 **Argument-echo deprecation.** Do not end a command with a bare `User request: $ARGUMENTS` line. The command already receives `$ARGUMENTS`. Echoing it verbatim adds no routing behavior and duplicates the argument surface the router resolves. Resolve arguments in the router body. The validator warns on the raw-echo idiom.
-
-**Loader gating.** Frontmatter is the load gate: `allowed-tools` authorizes exactly the tools and MCP surfaces a command may use, and any agent the router dispatches must both be admitted by that gate and resolve to a real agent definition in the active runtime's agent directory. Do not dispatch a handle the frontmatter does not admit or that does not exist.
 
 ### Step 10: Implement Mode Routing When Needed
 
@@ -416,7 +416,7 @@ Exit code `0` from the authored-name checker and `validate_document.py` is requi
 
 ## 4. RULES
 
-Always:
+### ALWAYS
 
 1. Read existing target files before editing.
 2. Use the smallest command type that fits the workflow.
@@ -430,7 +430,7 @@ Always:
 10. Validate with shared create-quality-control scripts before delivery.
 11. Keep this nested packet free of `graph-metadata.json`.
 
-Never:
+### NEVER
 
 1. Never create a command for one-off work that does not need reuse.
 2. Never skip mandatory gates for required arguments.
@@ -442,7 +442,7 @@ Never:
 8. Never add advisor identity metadata inside this nested packet.
 9. Never claim structural validity without running validation or stating it was not run.
 
-Escalate if:
+### ESCALATE IF
 
 1. The command name, namespace, or invocation contract is unclear.
 2. Required arguments cannot be safely defaulted.

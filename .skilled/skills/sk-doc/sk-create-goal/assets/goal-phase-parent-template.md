@@ -8,7 +8,7 @@ trigger_phrases:
   - "phase-add binding row"
 importance_tier: important
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Phase-Parent Goal Template
@@ -69,6 +69,7 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
+<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
 **Objective:** [One sentence naming the outcome all phases deliver together. Not how, not progress, no per-phase detail.]
 
@@ -87,6 +88,7 @@ Frozen choices. Changing one is an amendment.
 
 <!-- ANCHOR:binding -->
 ## 2. BINDING
+<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
@@ -107,6 +109,7 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
+<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
 - [ ] [A packet-level check answered by an exit code, a count or a named artifact]
 - [ ] [Another check that needs no other file to answer]
@@ -117,6 +120,7 @@ string, not these files.
 
 <!-- ANCHOR:log -->
 ## 4. LOG
+<!-- FILL: Record each step with its command output. Keep this table current. GOOD: T001 Done. `ls logs/archive | wc -l` printed 3. WEAK: Progress is good. -->
 
 Everything below is VOLATILE. It is not part of the directive, it is not copied
 into the objective, and it is expected to grow. Progress, evidence, deviations

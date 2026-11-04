@@ -1,0 +1,149 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
+index 974a5aa23f5..9d302bd2617 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
+@@ -30,6 +30,10 @@ version: 1.0.2.0
+ 
+ A README can describe five features honestly. Once a system has thirty, a flat bullet list stops being trustworthy: entries go stale and nobody can tell which claim still matches the code. Different docs disagree about what a feature is even called. create-feature-catalog exists so a large feature surface gets one canonical, navigable inventory instead of scattered, drifting summaries: a root catalog for orientation and a stable per-feature file behind each entry that ties the claim back to a real source file and a real test.
+ 
++### When To Use This Skill
++
++Reach for create-feature-catalog when a feature surface is too large for a README to stay accurate or when multiple docs need one stable source of truth for feature names. A manual testing playbook or spec that needs a canonical list cross-references the catalog. Skip it when the system only has a handful of features (a README already covers that) or when the product is too volatile for a maintained catalog to stay trustworthy.
++
+ ### What It Does
+ 
+ create-feature-catalog authors a `feature-catalog/` package: a root `feature-catalog.md` that lists capabilities by category in numbered sections and one per-feature file per root entry carrying the implementation truth in source tables and validation anchors behind a current-state description. The root catalog stays inventory-first and never grows into a scenario matrix. That boundary belongs to `create-manual-testing-playbook`, which documents how to validate the behavior this catalog says exists.
+@@ -73,7 +77,13 @@ Passes when the file carries its required sections and a Validation And Tests ta
+ 
+ ## 4. HOW IT WORKS
+ 
+-Authoring runs in a fixed order because names have to stabilize before prose does. Read the target system's docs, source files, tests and existing README material first. Decide the category taxonomy and lock feature names and slugs before writing descriptions, renaming a published slug later breaks every link that points at it. Build the root catalog from `assets/feature-catalog-template.md`, create one kebab-case category folder per root section, then create one per-feature file per entry from `assets/feature-catalog-snippet-template.md`, each with an implementation source table and a validation/test anchor table. Run shared validation on the root and every leaf, then manually check that every root entry has exactly one matching per-feature file and every link resolves.
++Authoring runs in a fixed order because names have to stabilize before prose does.
++
++1. Read the target system's docs, source files, tests and existing README material.
++2. Decide the category taxonomy and lock feature names and slugs before writing descriptions, because renaming a published slug later breaks every link that points at it.
++3. Build the root catalog from `assets/feature-catalog-template.md`, then create one kebab-case category folder per root section.
++4. Create one per-feature file per entry from `assets/feature-catalog-snippet-template.md`, each with an implementation source table and a validation/test anchor table.
++5. Run shared validation on the root and every leaf, then manually check that every root entry has exactly one matching per-feature file and every link resolves.
+ 
+ ### Key Concept: Root Catalog vs. Per-Feature File
+ 
+@@ -83,10 +93,6 @@ The root catalog and the per-feature files answer different questions on purpose
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for create-feature-catalog when a feature surface is too large for a README to stay accurate or when multiple docs need one stable source of truth for feature names. A manual testing playbook or spec that needs a canonical list cross-references the catalog. Skip it when the system only has a handful of features (a README already covers that) or when the product is too volatile for a maintained catalog to stay trustworthy.
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+@@ -132,7 +138,8 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
+ | Root catalog structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py <target-skill>/feature-catalog/feature-catalog.md` passes |
+ | Per-feature leaf structure | Same command against `<target-skill>/feature-catalog/<category-name>/feature-name.md`, checks the Validation And Tests table |
+ | New-content naming guard | `python3 .skilled/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py <new-content-staging-root>` |
+-| Manual review | Root-entry to feature-file parity, cross-file links and source-anchor accuracy (not machine-checked) |
++| Package-level checks | `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package <package-id>` reports root/leaf bijection, source-file existence and validation taxonomy |
++| Manual review | Cross-file links and source-anchor accuracy (not machine-checked) |
+ 
+ ---
+ 
+@@ -147,6 +154,8 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
+ | [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Recurring catalog defects with worked fixes |
+ | [`assets/feature-catalog-template.md`](./assets/feature-catalog-template.md) | Root catalog scaffold |
+ | [`assets/feature-catalog-snippet-template.md`](./assets/feature-catalog-snippet-template.md) | Per-feature file scaffold |
++| [`scripts/validate_catalog_package.py`](./scripts/validate_catalog_package.py) | Package-level validator: root/leaf bijection, source-file existence and validation taxonomy |
++| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator playbook for package shape, parity, source anchors and current-state wording |
+ 
+ <!-- readme-check
+ allow-ref feature-catalog/feature-catalog.md | the root catalog a run writes into the skill it inventories, so the folder is that skill's rather than this packet's
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md
+index 6933a63fb37..c33903a2463 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/ROUTER.md
+@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when the `sk-doc` hub routes a current-state feature inventory here: the request names a feature catalog, a feature inventory, a catalog package or `/create:feature-catalog`, and the hub's `sk-create-feature-catalog` mode signal selects this packet, which it does only when the feature surface is too large for a trustworthy README summary and other docs need one stable list of feature names and links. It routes to two resource families: the scaffolds under `assets/`, where `assets/feature-catalog-template.md` builds the root catalog and `assets/feature-catalog-snippet-template.md` builds each per-feature file, and the overflow references under `references/`, where `references/README.md` is the route map, `references/examples.md` carries the worked live-catalog walkthrough and `references/common-pitfalls.md` the deep-dive pitfalls. `references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
++Requests reach this skill when the `sk-doc` hub routes a current-state feature inventory here: the request names a feature catalog, a feature inventory, a catalog package or `/create:feature-catalog`, and the hub's `sk-create-feature-catalog` mode signal selects this packet, which it does only when the feature surface is too large for a trustworthy README summary and other docs need one stable list of feature names and links.
++
++It routes to two resource families:
++
++- **Scaffolds** under `assets/`: `assets/feature-catalog-template.md` builds the root catalog, and `assets/feature-catalog-snippet-template.md` builds each per-feature file.
++- **Overflow references** under `references/`: `references/README.md` is the route map, `references/examples.md` carries the worked live-catalog walkthrough, and `references/common-pitfalls.md` carries the deep-dive pitfalls.
++
++`references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md
+index 9faccbab814..d4bdd669a5b 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md
+@@ -53,6 +53,7 @@ It creates a catalog only when the surface is too large for a trustworthy README
+ 
+ `references/README.md` is the fallback route map, and authoring starts from `assets/feature-catalog-template.md` for the root catalog and `assets/feature-catalog-snippet-template.md` for each per-feature file.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
++When nothing matches, report `UNKNOWN_FALLBACK` with the router's disambiguation checklist.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/README.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/README.md
+index 5b3d3cdb6a3..b26ab280c28 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/README.md
+@@ -38,7 +38,7 @@ Load the file that matches the current task:
+ | Concern | Reference | Load When |
+ | --- | --- | --- |
+ | **The workflow and rules**: when to create, package shape, the numbered creation workflow, root-catalog and per-feature requirements, playbook boundary, ALWAYS/NEVER/ESCALATE | [../SKILL.md](../SKILL.md) | Authoring or restructuring any catalog: this is the primary contract, read it first |
+-| **A worked real-world example**: an annotated walkthrough of the shipped `system-spec-kit/feature-catalog/` package: root-catalog anatomy and a real per-feature file, section by section | [examples.md](examples.md) | Modeling a new catalog on a proven layout, or checking what a good root entry and per-feature file actually look like |
++| **A worked real-world example**: an annotated walkthrough of the shipped `system-skill-advisor/feature-catalog/` package: root-catalog anatomy and a real per-feature file, section by section | [examples.md](examples.md) | Modeling a new catalog on a proven layout, or checking what a good root entry and per-feature file actually look like |
+ | **Deep-dive pitfalls**: the recurring catalog defects with worked before/after fixes, plus the template-versus-reference split | [common-pitfalls.md](common-pitfalls.md) | A catalog drifts toward roadmap, loses source anchors, breaks slugs, or reads as a wall of prose; reviewing a freshly authored catalog |
+ 
+ ---
+@@ -64,4 +64,4 @@ Load the file that matches the current task:
+ 
+ ### Live example
+ 
+-- `.skilled/skills/system-spec-kit/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)
++- `.skilled/skills/system-skill-advisor/feature-catalog/` - the shipped catalog walked through in [examples.md](examples.md)
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md
+index 35cd553b821..cf85c051030 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md
+@@ -72,7 +72,7 @@ A feature catalog fails quietly. Structure validation passes, links resolve, and
+ 
+ **Why it breaks**: Long unbroken prose has no navigation anchors, so readers cannot scan to the aspect they need, and the section becomes write-only.
+ 
+-**Fix**: Once the section exceeds three paragraphs, break it into H3 sub-headings — `### Core Behavior`, `### Configuration`, `### Edge Cases`, `### Async & Safety`. Short sections stay plain prose; the rule triggers only on length. The live `unified-context-retrieval-memorycontext.md` file shows this applied well.
++**Fix**: Once the section exceeds three paragraphs, break it into H3 sub-headings — `### Core Behavior`, `### Configuration`, `### Edge Cases`, `### Async & Safety`. Short sections stay plain prose; the rule triggers only on length. The live `cli-surface/skill-advisor-cli.md` file in the `system-skill-advisor` catalog shows this applied well.
+ 
+ ### Missing trigger_phrases in frontmatter
+ 
+@@ -95,7 +95,7 @@ trigger_phrases:
+ 
+ The packet ships two kinds of authoring aids, and using the wrong one for the wrong question wastes effort:
+ 
+-- Use the **templates** in `../assets/feature-catalog/` to scaffold the actual files — the empty root-catalog and per-feature shapes, their frontmatter blocks, and their publishing checklists.
++- Use the **templates** in `../assets/` to scaffold the actual files — the empty root-catalog and per-feature shapes, their frontmatter blocks, and their publishing checklists.
+ - Use the **references** here (and the primary contract in `SKILL.md`) to decide *what belongs where*: which claims live in the root versus the per-feature file, how to keep slugs stable, and how to keep the package aligned with current standards.
+ 
+ In short: templates answer "what does the file look like?"; `SKILL.md` and these references answer "what should it say and why?". Scaffold from the template, then judge the content against the contract.
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md
+index 48615d3f491..dff1844e55c 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md
+@@ -20,9 +20,9 @@ A section-by-section reading of a real, shipped feature catalog so a new catalog
+ 
+ ## 1. OVERVIEW
+ 
+-The packet `SKILL.md` states the contract. This reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.skilled/skills/system-skill-advisor/feature-catalog/`: 42 features across 7 group folders, every claim carrying a real source and test path.
++The packet `SKILL.md` states the contract. This reference shows a working instance of its content model. Everything below is drawn from the live catalog at `.skilled/skills/system-skill-advisor/feature-catalog/`: 45 features across 7 group folders, every claim carrying a real source and test path.
+ 
+-Read this alongside the two scaffolds in `../assets/feature-catalog/`. The templates give you the empty shape. This walkthrough shows the shape filled in well.
++Read this alongside the two scaffolds in `../assets/`. The templates give you the empty shape. This walkthrough shows the shape filled in well.
+ 
+ ---
+ 

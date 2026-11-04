@@ -9,7 +9,7 @@ trigger_phrases:
   - "auto confirm command modes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.7
+version: 1.0.1.0
 ---
 
 # Command Creation Reference Map
@@ -20,7 +20,7 @@ Routing hub for the command-creation overflow set. `sk-create-command/SKILL.md` 
 
 ## 1. OVERVIEW
 
-This file is a thin index over the command-creation reference set. Every piece of overflow, the fully worked split example, how to separate a router from its presentation, how to design argument hints and `:auto`/`:confirm` modes, and the mistakes to avoid, lives in its own focused file. Open only the one the current task needs.
+Every piece of overflow, the fully worked split example, how to separate a router from its presentation, how to design argument hints and `:auto`/`:confirm` modes, and the mistakes to avoid, lives in its own focused file. Open only the one the current task needs.
 
 **Core principle**: Commands are executable entry points. Keep reusable doctrine in skills, long display language in presentation assets, and runtime role boundaries in agents. These references are examples and edge cases, never a replacement for the SKILL.md workflow.
 

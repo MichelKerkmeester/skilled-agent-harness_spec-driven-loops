@@ -4,7 +4,7 @@ description: "Turns a repeatable workflow into a validated OpenCode slash comman
 trigger_phrases:
   - "create command"
   - "slash command"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # create-command
@@ -72,7 +72,11 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
 
 ## 4. HOW IT WORKS
 
-Resolve the invocation path first. `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`. Read any existing command completely before editing it, then check nearby commands in the same namespace so structure and vocabulary match the family. Classify the command type from the table in `SKILL.md`, then author the frontmatter first, starting with a single-line `description`. Add an `argument-hint` when input is expected. Keep `allowed-tools` at least privilege, listing only the tools the command actually calls.
+- **Resolve the invocation path first.** `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
+- **Read any existing command completely before editing it**, then check nearby commands in the same namespace so structure and vocabulary match the family.
+- **Classify the command type from the table in `SKILL.md`.**
+- **Author the frontmatter first**, starting with a single-line `description`. Add an `argument-hint` when input is expected.
+- **Keep `allowed-tools` at least privilege**, listing only the tools the command actually calls.
 
 If `argument-hint` carries a required argument, the mandatory gate goes after the H1 and its purpose line, before mode routing, asset loading and every workflow step. It checks whether `$ARGUMENTS` is empty, stops immediately when required input is missing, asks a specific question and waits. It never infers missing input from context, screenshots, conversation history or open files.
 
@@ -141,7 +145,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
-| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme` | `✅ VALID` with no blocking errors |
+| README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-command/README.md --type readme` | `✅ VALID` with no blocking errors |
 | Filename discipline | `python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <command-file>` | Filename stem is valid kebab-case |
 | Document structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <command-file> --type command` | `✅ VALID` with no blocking errors |
 | Structure extraction | `python3 .skilled/skills/sk-doc/scripts/extract_structure.py <command-file>` | Section list matches the expected command shape |
@@ -153,9 +157,13 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
 | Document | Purpose |
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime instructions, command-type classification and the full 13-step creation workflow |
+| [`ROUTER.md`](./ROUTER.md) | Machine router: intent model, router resilience rules and the resource loading sequence |
 | [`assets/command-template.md`](./assets/command-template.md) | Command type templates, gates, dispatch patterns and the validation checklist |
 | [`assets/command-router-template.md`](./assets/command-router-template.md) | Canonical numbered router skeleton with variant call-outs |
 | [`assets/command-presentation-template.md`](./assets/command-presentation-template.md) | Full presentation asset skeleton for split command families |
 | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
 | [`references/worked-example.md`](./references/worked-example.md) | A fully worked split command, router plus presentation |
 | [`references/router-presentation-split.md`](./references/router-presentation-split.md) | The router/presentation ownership boundary and split transformation |
+| [`references/argument-hints-and-modes.md`](./references/argument-hints-and-modes.md) | Argument-hint design patterns, `:auto`/`:confirm` mode design and frontmatter budget tips |
+| [`references/common-pitfalls.md`](./references/common-pitfalls.md) | Command vs skill vs agent selection and the recurring command-authoring mistakes |
+| [`assets/command-contract.json`](./assets/command-contract.json) / [`assets/command-contract.schema.json`](./assets/command-contract.schema.json) | Machine-readable behavioral contract for the command families and its schema |

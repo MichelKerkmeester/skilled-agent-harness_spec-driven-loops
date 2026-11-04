@@ -1,0 +1,9 @@
+.skilled/skills/sk-doc/sk-create-diff/README.md
+.skilled/skills/sk-doc/sk-create-diff/ROUTER.md
+.skilled/skills/sk-doc/sk-create-diff/SKILL.md
+.skilled/skills/sk-doc/sk-create-diff/references/README.md
+.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
+.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
+.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md
+.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md
+.skilled/skills/sk-doc/sk-create-diff/references/workflow.md

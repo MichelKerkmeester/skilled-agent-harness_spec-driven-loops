@@ -10,7 +10,7 @@ version: 1.0.8.0
 > skill without scanning the canonical directory. Read `references/`, `assets/` and `scripts/`
 > from the canonical path above.
 
-# Doc Quality (quality)
+# Create Quality Control
 
 `create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
 

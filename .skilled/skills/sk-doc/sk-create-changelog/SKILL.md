@@ -31,7 +31,7 @@ Keyword triggers: `create changelog`, `/create:changelog`, `changelog`, `changel
 ### When NOT to Use
 
 1. A release plan with no file output.
-2. A README (`create-readme`), agent, command, benchmark, flowchart, feature catalog, manual testing playbook or skill. Each has its own `create-*` packet.
+2. A README (`create-readme`), agent, command, benchmark, feature catalog, manual testing playbook or skill. Each has its own `create-*` packet. A flowchart or any other diagram belongs to the `sk-design` hub (`/design:diagram`), which this hub does not register a packet for.
 3. Auditing, scoring or optimizing an existing changelog (`create-quality-control`).
 4. A source too ambiguous to resolve to a spec folder, a component hint or recent git history.
 5. Branch, commit or PR work and release mechanics beyond `--release`, which `sk-git` owns. The tag and GitHub release run in the command YAMLs' release step (section 8), and only for the `skilled` release line.
@@ -69,7 +69,7 @@ Global output lives under `.skilled/changelog/`. Versions read `v{MAJOR}.{MINOR}
 
 ---
 
-## 4. HOW IT WORKS (HOW_IT_WORKS): CHANGELOG OUTPUT MODES
+## 4. HOW IT WORKS: CHANGELOG OUTPUT MODES
 
 ### Global Component Changelog
 
@@ -104,7 +104,7 @@ The contract in one pass:
 1. Frontmatter first, then an optional editorial title H1, then the summary narrative. No version header, backlink or version-date line.
 2. Compact under 10 reader-visible changes when the release is neither major nor breaking: summary, `## What's New at a Glance` and `## Upgrade`, with `## Why This Release` only when the summary does not say why.
 3. Expanded for 10 or more changes, a major bump or any breaking change: opening narrative, `## Why This Release`, `## What's New at a Glance`, topical H2 sections with benefit-led H4 items and `## Upgrade Notes`.
-4. A spec-folder blockquote, `> Spec folder: `{path}` (Level {N})`, when the release has a spec folder.
+4. A spec-folder blockquote, ``> Spec folder: `{path}` (Level {N})``, when the release has a spec folder.
 5. Content chosen by reader impact and each fact said once. No file, test or schema tables unless the numbers are the story.
 
 When a source such as an older command snippet conflicts with the template, follow the template, write the narrative format and record the mismatch rather than inventing a hybrid.
@@ -184,15 +184,15 @@ python3 .skilled/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <comp
 3. **Determine version.** Do these in order:
    - List the `v*.md` entries in the target folder and in its generation folders (`v1+/`, `v2+/` and so on).
    - List the version entries on the upstream branch with `git ls-tree`, which reads the branch's upstream, else `origin/main`.
-   - Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version.
-   - Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge.
-   - Without a reachable upstream, number locally and say so in the report.
    For the `skilled` release line with at least one entry, first check the highest entry for a release tag with `git ls-remote --exit-code --tags origin refs/tags/v{latest}`:
    - Exit 2 means no tag, so that release is still open. Extend that entry wherever it sits instead of numbering a new one, keep its version and skip the bump.
    - A bump the operator chose is not applied, and the report says so, and says that tagging the open release first starts a new one.
    - When the open entry exists only upstream, stop and ask for a merge or rebase first.
    - Any exit other than 0 or 2 means the check failed, so number a new entry and say so rather than risk editing a release that already shipped.
    Every other component numbers a new entry.
+   - Start from the highest of the local and upstream `vX.Y.Z.B` versions, choose the bump (section 4) and calculate the next version.
+   - Increment the build segment while the file exists locally or upstream, because two branches numbering from their own checkout pick the same version and collide at merge.
+   - Without a reachable upstream, number locally and say so in the report.
 4. **Generate content.** Read `assets/changelog-template.md`, then:
    - Write the frontmatter block per the Frontmatter Contract in section 5.
    - Choose the content before writing it (template section 3). List what changed, keep what the reader would notice, act on or decide differently about, merge items with the same effect and drop the housekeeping.
@@ -276,8 +276,6 @@ Structural checks complement it:
 - no `**Problem:**`/`**Fix:**` labels.
 - inline `**Breaking:**` markers.
 
-Packet-local files are deprecated, so no new one is validated here. `validate_document.py` still checks the existing ones under `specs/**/changelog/`.
-
 After writing, run the shared markdown checks:
 
 ```bash
@@ -286,6 +284,8 @@ python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <written-file
 ```
 
 If validation fails, fix the blocking issues or report the exact blocker and command output.
+
+Packet-local files are deprecated, so no new one is validated here. `validate_document.py` still checks the existing ones under `specs/**/changelog/`.
 
 ---
 

@@ -265,6 +265,35 @@ Authoring sequence matters:
 
 ## 6. SCENARIO DESIGN RULES
 
+### Choosing the Scenario Style
+
+Every scenario file uses one of two styles. Pick the style for each scenario before you write its execution truth. This section is the single home of that choice. The command workflow, the router and the references point here.
+
+- **Single prompt.** The operator sends the Exact Prompt once, reads the answer and judges it against the Expected Signals. The operator collects the evidence by hand.
+- **Conversation.** Section 3 carries one `json conversation` block. The shared runner plays each turn into a live runtime session. It answers the runtime's questions, restarts or compacts the session and runs a shell check after every turn. The Exact Prompt is the first turn's `send`, and the Exact Command Sequence is the runner command. The style changes how the scenario runs, not the file's shape.
+
+Apply these questions in order and stop at the first yes:
+
+1. Does the verdict need a person's judgment, such as tone, document quality or whether an explanation is correct? Write a single prompt.
+2. Does the behavior need more than one exchange? That means the runtime asks a question back, an answer must change what happens next or state must survive a restart or a compaction. Write a conversation.
+3. Must the behavior hold on several runtimes, or does the scenario gate a release as a repeatable regression check? Write a conversation, provided a shell command can decide every turn.
+4. Otherwise write a single prompt.
+
+Question 1 comes first because a conversation turn passes only when its check exits 0. When a multi-turn behavior also needs a judged verdict, script the turns a check can decide, and leave the judged part to the operator in the Pass/Fail Criteria, read from that turn's `screen.txt`.
+
+A conversation also needs a runtime the runner drives (`claude-code`, `opencode`, `codex`, `pi` or `devin`), tmux, that runtime installed and logged in and quota to spend. One pass of the runner's own six-turn scenario on all five runtimes took about 11 minutes. The write sandbox needs macOS. Elsewhere the run records `sandbox: unavailable` and the subject runs unsandboxed. When any of these is missing, write a single prompt, or keep the conversation and record `SKIP` with the missing piece as its blocker.
+
+A conversation catches failures that a single exchange never reaches. The runner's own live passes caught a start-up dialog that redrew before it settled (`LAUNCH_TIMEOUT`), a check that failed on one runtime only because of letter case, a spent usage limit (`QUOTA_EXHAUSTED`) and another process writing into the repository during the run (`REPO_CHANGED`). A single prompt costs no runner setup and works with any runtime, so keep it for routing checks, one command's output and anything a reader must judge.
+
+The script is one fenced `json conversation` block under a `### Conversation Script` heading in section 3. See [conversation-scenarios.md](references/conversation-scenarios.md) for the block schema and turn rules. Play a script into a live runtime with the shared runner, from the repository root:
+
+```bash
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs \
+  --scenario <scenario.md> --runtime <id[,id...]> --scratch <dir outside the repository> --out <evidence dir>
+```
+
+It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it.
+
 ### Determinism
 
 Each scenario must be reproducible by another operator. Include exact prompts, exact command sequences, observable expected signals, captured evidence, and binary pass/fail criteria.
@@ -334,40 +363,11 @@ These fields must agree:
 
 Do not ship unsynchronized prompt fields. `scripts/validate-playbook-package.cjs` reports each copy that disagrees with the contract as a `PROMPT_UNSYNCED` warning. Quotes, backticks, emphasis and spacing are presentation and are ignored. Any difference in the words is reported.
 
-### Choosing the Scenario Style
-
-Every scenario file uses one of two styles. Pick the style for each scenario before you write its execution truth. This section is the single home of that choice. The command workflow, the router and the references point here.
-
-- **Single prompt.** The operator sends the Exact Prompt once, reads the answer and judges it against the Expected Signals. The operator collects the evidence by hand.
-- **Conversation.** Section 3 carries one `json conversation` block. The shared runner plays each turn into a live runtime session. It answers the runtime's questions, restarts or compacts the session and runs a shell check after every turn. The Exact Prompt is the first turn's `send`, and the Exact Command Sequence is the runner command. The style changes how the scenario runs, not the file's shape.
-
-Apply these questions in order and stop at the first yes:
-
-1. Does the verdict need a person's judgment, such as tone, document quality or whether an explanation is correct? Write a single prompt.
-2. Does the behavior need more than one exchange? That means the runtime asks a question back, an answer must change what happens next or state must survive a restart or a compaction. Write a conversation.
-3. Must the behavior hold on several runtimes, or does the scenario gate a release as a repeatable regression check? Write a conversation, provided a shell command can decide every turn.
-4. Otherwise write a single prompt.
-
-Question 1 comes first because a conversation turn passes only when its check exits 0. When a multi-turn behavior also needs a judged verdict, script the turns a check can decide, and leave the judged part to the operator in the Pass/Fail Criteria, read from that turn's `screen.txt`.
-
-A conversation also needs a runtime the runner drives (`claude-code`, `opencode`, `codex`, `pi` or `devin`), tmux, that runtime installed and logged in and quota to spend. One pass of the runner's own six-turn scenario on all five runtimes took about 11 minutes. The write sandbox needs macOS. Elsewhere the run records `sandbox: unavailable` and the subject runs unsandboxed. When any of these is missing, write a single prompt, or keep the conversation and record `SKIP` with the missing piece as its blocker.
-
-A conversation catches failures that a single exchange never reaches. The runner's own live passes caught a start-up dialog that redrew before it settled (`LAUNCH_TIMEOUT`), a check that failed on one runtime only because of letter case, a spent usage limit (`QUOTA_EXHAUSTED`) and another process writing into the repository during the run (`REPO_CHANGED`). A single prompt costs no runner setup and works with any runtime, so keep it for routing checks, one command's output and anything a reader must judge.
-
-The script is one fenced `json conversation` block under a `### Conversation Script` heading in section 3. See [conversation-scenarios.md](references/conversation-scenarios.md) for the block schema and turn rules. Play a script into a live runtime with the shared runner, from the repository root:
-
-```bash
-node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs \
-  --scenario <scenario.md> --runtime <id[,id...]> --scratch <dir outside the repository> --out <evidence dir>
-```
-
-It writes one PASS, FAIL or SKIP row per runtime to `<evidence dir>/matrix.md`, with the evidence for each beside it.
-
 ---
 
 ## 7. VALIDATION AND RELEASE GATES
 
-### Automated Checks
+### Shared Document Validation
 
 Run shared validation on the root playbook before delivery from the repo root (replace `<SKILL_PATH>` with the target skill directory, e.g. `.skilled/skills/system-spec-kit`):
 
@@ -390,7 +390,7 @@ Also check:
 - Feature-catalog links, when referenced.
 - The operator validator reports parser findings for a malformed `json conversation` block as `CONVERSATION_SCRIPT_INVALID`, naming the field path.
 
-### Automated Checks
+### Operator Contract Validator
 
 Run the operator-contract validator from the repository root:
 
@@ -416,12 +416,28 @@ every allowlisted root is still discovered, so a root cannot quietly leave enfor
 renamed or moved. Fix a failing package rather than removing its line.
 
 The command validates the operator-scenario contract, not the routing-gold contract. It walks every non-excluded
-scenario tree and checks, per feature: five-section ordering; `title`, `description`, and four-part `version`
-frontmatter; Feature ID; operator/orchestrator prompt; exact command sequence; expected signals; evidence;
-pass/fail criteria; failure triage; root-playbook link; allowed verdicts; filename/category shape; unique IDs;
-root-index bijection; local links; evergreen truth; and placeholder exclusion. Conditional checks cover a realistic
-user request when user intent is explicitly being clarified, an exact prompt when a scenario table is present,
-and a feature-catalog link when catalog applicability is declared.
+scenario tree and checks, per feature:
+
+- Five-section ordering.
+- `title`, `description` and four-part `version` frontmatter.
+- Feature ID.
+- Operator or orchestrator prompt.
+- Exact command sequence.
+- Expected signals.
+- Evidence.
+- Pass/fail criteria.
+- Failure triage.
+- Root-playbook link.
+- Allowed verdicts.
+- Filename and category shape.
+- Unique IDs.
+- Root-index bijection.
+- Local links.
+- Evergreen truth.
+- Placeholder exclusion.
+
+Conditional checks cover a realistic user request when user intent is explicitly being clarified, an exact prompt
+when a scenario table is present, and a feature-catalog link when catalog applicability is declared.
 
 The validator derives scenario and category counts at run time. A root's hand-typed census is reported as a warning,
 including a mismatch, so documentation repair remains separate from enforcement. Existing measured packages are

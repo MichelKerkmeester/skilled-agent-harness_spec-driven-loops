@@ -8,7 +8,7 @@ trigger_phrases:
   - "16 optimization patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.6
+version: 1.0.1.0
 ---
 
 # Transformation Pattern Catalog
@@ -21,14 +21,23 @@ For the surrounding procedure (heuristics, analysis workflow, README strategy, i
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This file is the worked-example catalog for the 16 transformation patterns that convert reference-style documentation into question-answering format — each entry pairs a before/after code sample with its impact and effort rating.
+
+### When to Use
+
+- You need the exact before/after transform shape for a pattern, not just its name.
+- `SKILL.md` §4 Step 3 sent you here to apply a specific pattern.
 
 ---
 
-## Pattern 1: API Reference → Usage Example
+## 2. THE 16 PATTERNS
 
-**Impact**: High
-**Effort**: Medium
+### Pattern 1: API Reference → Usage Example
+
+- **Impact**: High
+- **Effort**: Medium
 
 **Before**:
 ```
@@ -38,7 +47,7 @@ Returns: bool
 ```
 
 **After**:
-```
+````markdown
 Authenticating Your Client
 ```python
 from library import Client
@@ -47,12 +56,12 @@ client = Client(api_key="your_key")
 if client.authenticate():
     print("Authenticated!")
 ```
-```
+````
 
-## Pattern 2: Import-Only → Complete Setup
+### Pattern 2: Import-Only → Complete Setup
 
-**Impact**: High
-**Effort**: Low
+- **Impact**: High
+- **Effort**: Low
 
 **Before**:
 ```python
@@ -60,7 +69,7 @@ from library import Client, Query
 ```
 
 **After**:
-```
+````markdown
 Quick Start
 ```python
 # Install: pip install library
@@ -71,12 +80,12 @@ response = client.query("SELECT * FROM data")
 for row in response:
     print(row)
 ```
-```
+````
 
-## Pattern 3: Multiple Small → One Comprehensive
+### Pattern 3: Multiple Small → One Comprehensive
 
-**Impact**: Medium
-**Effort**: Medium
+- **Impact**: Medium
+- **Effort**: Medium
 
 **Before** (3 separate snippets):
 ```python
@@ -102,10 +111,10 @@ for row in result:
 client.close()
 ```
 
-## Pattern 4: Remove Metadata
+### Pattern 4: Remove Metadata
 
-**Impact**: Low
-**Effort**: Low
+- **Impact**: Low
+- **Effort**: Low
 
 **Delete entirely**:
 - Project directory structures
@@ -113,10 +122,10 @@ client.close()
 - Academic citations
 - Contributor lists (move to CONTRIBUTORS.md)
 
-## Pattern 5: Add Error Handling
+### Pattern 5: Add Error Handling
 
-**Impact**: Medium
-**Effort**: Medium
+- **Impact**: Medium
+- **Effort**: Medium
 
 **Enhance existing examples**:
 ```python
@@ -131,10 +140,10 @@ finally:
     client.close()
 ```
 
-## Pattern 6: Combine Installation + First Usage
+### Pattern 6: Combine Installation + First Usage
 
-**Impact**: High
-**Effort**: Low
+- **Impact**: High
+- **Effort**: Low
 
 **Never show installation alone** - always include immediate usage:
 ```python
@@ -147,10 +156,10 @@ result = client.get_data()
 print(result)
 ```
 
-## Pattern 7: Add Configuration Examples
+### Pattern 7: Add Configuration Examples
 
-**Impact**: Medium
-**Effort**: Low
+- **Impact**: Medium
+- **Effort**: Low
 
 **Show common config scenarios**:
 ```python
@@ -170,10 +179,10 @@ client = Client(
 )
 ```
 
-## Pattern 8: Demonstrate OAuth/Auth Patterns
+### Pattern 8: Demonstrate OAuth/Auth Patterns
 
-**Impact**: High (auth-heavy docs)
-**Effort**: High
+- **Impact**: High (auth-heavy docs)
+- **Effort**: High
 
 **Complete auth flow**:
 ```python
@@ -185,10 +194,10 @@ tokens = client.exchange_code(auth_code)
 client.connect()
 ```
 
-## Pattern 9: Show Batch/Bulk Operations
+### Pattern 9: Show Batch/Bulk Operations
 
-**Impact**: Medium
-**Effort**: Medium
+- **Impact**: Medium
+- **Effort**: Medium
 
 **Performance-optimized patterns**:
 ```python
@@ -201,10 +210,10 @@ result = client.batch_insert("users", users)
 print(f"Inserted {result.count} users")
 ```
 
-## Pattern 10: Add Testing Examples
+### Pattern 10: Add Testing Examples
 
-**Impact**: Low-Medium
-**Effort**: Medium
+- **Impact**: Low-Medium
+- **Effort**: Medium
 
 **Show how to test code using library**:
 ```python
@@ -217,10 +226,10 @@ class TestClient(unittest.TestCase):
         self.assertTrue(client.connect())
 ```
 
-## Pattern 11: Provide Advanced Use Cases
+### Pattern 11: Provide Advanced Use Cases
 
-**Impact**: High
-**Effort**: High
+- **Impact**: High
+- **Effort**: High
 
 **Complex real-world scenarios**:
 ```python
@@ -231,10 +240,10 @@ for chunk in client.query_stream("SELECT * FROM large_table"):
     # Process incrementally, avoid memory issues
 ```
 
-## Pattern 12: Add Integration Examples
+### Pattern 12: Add Integration Examples
 
-**Impact**: Medium-High
-**Effort**: Medium
+- **Impact**: Medium-High
+- **Effort**: Medium
 
 **Show integration with popular tools**:
 ```python
@@ -248,10 +257,10 @@ df = pd.DataFrame(data)
 print(df.head())
 ```
 
-## Pattern 13: Clarify Common Pitfalls
+### Pattern 13: Clarify Common Pitfalls
 
-**Impact**: Medium
-**Effort**: Low
+- **Impact**: Medium
+- **Effort**: Low
 
 **Prevent common mistakes**:
 ```python
@@ -268,10 +277,10 @@ data = client.query("SELECT *")
 client.close()
 ```
 
-## Pattern 14: Add Output Examples
+### Pattern 14: Add Output Examples
 
-**Impact**: Low
-**Effort**: Low
+- **Impact**: Low
+- **Effort**: Low
 
 **Show expected results**:
 ```python
@@ -280,17 +289,17 @@ print(response)
 # Output: {'id': 123, 'name': 'Alice', 'email': 'alice@example.com'}
 ```
 
-## Pattern 15: Consolidate Duplicates
+### Pattern 15: Consolidate Duplicates
 
-**Impact**: Medium
-**Effort**: Low
+- **Impact**: Medium
+- **Effort**: Low
 
 **Merge similar examples** - if 3 examples show nearly identical patterns, keep 1 comprehensive version.
 
-## Pattern 16: Fix Formatting
+### Pattern 16: Fix Formatting
 
-**Impact**: Low
-**Effort**: Low
+- **Impact**: Low
+- **Effort**: Low
 
 **Ensure all code blocks**:
 - Have language tags: ` ```python ` not ` ``` `
@@ -300,7 +309,7 @@ print(response)
 
 ---
 
-## RELATED RESOURCES
+## 3. RELATED RESOURCES
 
 - [optimization.md](./optimization.md) - Optimization procedure, quality heuristics, README strategy, and the snippet quality checklist that verifies the output of these patterns
 - [README.md](./README.md) - create-quality-control reference route map

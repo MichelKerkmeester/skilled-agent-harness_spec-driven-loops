@@ -1,0 +1,2 @@
+.skilled/skills/sk-doc/sk-create-frontmatter/references/frontmatter-versioning.md:21: render_overview_heading: The first H2 compounds OVERVIEW with "AND SCOPE"; name it OVERVIEW and move the topic into a subsection.
+files=6 render_warnings=1 invalid=0

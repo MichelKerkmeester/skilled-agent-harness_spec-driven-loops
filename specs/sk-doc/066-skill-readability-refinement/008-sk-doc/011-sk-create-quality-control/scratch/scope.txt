@@ -1,0 +1,9 @@
+.skilled/skills/sk-doc/sk-create-quality-control/README.md
+.skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md
+.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/README.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md

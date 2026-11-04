@@ -7,14 +7,22 @@ trigger_phrases:
   - "goal objective failures"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Goal Exemplars
 
+Settle a drafting question against a classified example when the rule wording alone does not decide it.
+
+---
+
 ## 1. OVERVIEW
 
+### Purpose
+
 These excerpts show how the authoring rubric classifies goal text. Each quote stays here so the example remains readable if its source moves. The cited line identifies the original passage.
+
+### Usage
 
 The rubric labels the named check as FAIL or PASS. The positive example passes the objective check only. Its classification does not claim that every part of its goal passes every standard.
 

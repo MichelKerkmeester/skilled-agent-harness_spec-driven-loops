@@ -1,0 +1,168 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/README.md b/.skilled/skills/sk-doc/sk-create-agent/README.md
+index 6d30cbb34f7..14f19444dd1 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/README.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/README.md
+@@ -26,14 +26,14 @@ version: 1.0.2.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-Two runtimes read agent frontmatter differently. Neither warns you when you get it wrong. OpenCode enforces the `permission:` object and quietly ignores a bare `tools:` key. Claude Code enforces only `tools:` and ignores `permission:` outright. Skip `tools:` entirely in a Claude Code agent and it inherits the parent session's full tool set, the opposite of what a scoped persona needs. Add the standing question of whether a task even needs a named persona instead of a skill or a command. A hand-rolled agent file drifts from the contract fast.
+-
+ ### What It Does
+ 
+ create-agent is the `sk-doc` workflow behind `/create:agent`. It decides whether an agent is the right component, places the file in the active runtime directory and writes the runtime-correct frontmatter schema with least-authority permissions. It requires a hard boundary section, a core workflow, explicit output verification and an anti-patterns table before the file ships. It does not own reusable domain knowledge or slash-command entry points. Those live in `create-skill` and `create-command`.
+ 
++### Why This Skill Exists
++
++Two runtimes read agent frontmatter differently. Neither warns you when you get it wrong. OpenCode enforces the `permission:` object and quietly ignores a bare `tools:` key. Claude Code enforces only `tools:` and ignores `permission:` outright. Skip `tools:` entirely in a Claude Code agent and it inherits the parent session's full tool set, the opposite of what a scoped persona needs. Add the standing question of whether a task even needs a named persona instead of a skill or a command. A hand-rolled agent file drifts from the contract fast.
++
+ ### The Agent File Capability Layer
+ 
+ | Capability | What the skill knows how to operate |
+@@ -144,6 +144,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
+ | Document | Purpose |
+ |---|---|
+ | [`SKILL.md`](./SKILL.md) | Runtime instructions, component-choice rule and the full creation workflow |
++| [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and loading levels |
+ | [`assets/agent-template.md`](./assets/agent-template.md) | Canonical scaffold: frontmatter, boundaries, workflow, verification, anti-patterns |
+ | [`references/README.md`](./references/README.md) | Overflow route map for deeper detail |
+ | [`references/agent-vs-skill-vs-command.md`](./references/agent-vs-skill-vs-command.md) | The full component-choice decision, when the call is close |
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/SKILL.md b/.skilled/skills/sk-doc/sk-create-agent/SKILL.md
+index 5aa91b1d7db..3237ad0204e 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/SKILL.md
+@@ -42,13 +42,17 @@ Use another `sk-doc` packet when:
+ 
+ ## 2. SMART ROUTING
+ 
+-The `sk-doc` hub routes runtime-persona work here: a request to create or update one agent file, and the hub's `sk-create-agent` signal selects this packet.
+-Stay in this packet only when the artifact is a concrete runtime agent file whose authority boundary no existing agent already covers; a skill, a command or an existing agent answers the rest.
++The `sk-doc` hub routes runtime-persona work here: a request to create or update one agent file.
++The hub's `sk-create-agent` signal selects this packet.
++Stay in this packet only when the artifact is a concrete runtime agent file whose authority boundary no existing agent already covers.
++A skill, a command or an existing agent answers the rest.
+ 
+-`references/README.md` is the route map, and the fallback when the component or runtime is unclear.
++`references/README.md` is the route map.
++It is also the fallback when the component or runtime is unclear.
+ A resolved request loads this packet's flat references and assets first, with `assets/agent-template.md` as the scaffold.
+ 
+-Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
++Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources.
++Open only the matched files.
+ 
+ ---
+ 
+@@ -150,7 +154,12 @@ Start from `assets/agent-template.md` when creating a new agent. At minimum, a p
+ 6. Anti-patterns section that names failure modes.
+ 7. Related resources section with real supporting paths.
+ 
+-Boundary variants: LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths; LEAF read-only agents deny nested dispatch and all file mutation; orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it; command-driven or machine-validated agents may need input/scope gates before workflow steps.
++Boundary variants:
++
++- LEAF write-capable agents deny nested sub-agent dispatch and restrict mutation to explicitly scoped paths.
++- LEAF read-only agents deny nested dispatch and all file mutation.
++- Orchestrators may dispatch only when orchestration is their explicit authority and `task` permission allows it.
++- Command-driven or machine-validated agents may need input/scope gates before workflow steps.
+ 
+ ### Sanctioned Section-Vocabulary Dialects
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md b/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+index b5143b84190..b3cf16f1bc3 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+@@ -15,8 +15,6 @@ version: 1.0.0.51
+ 
+ > Template for creating OpenCode agent files with current production frontmatter, permission boundaries, dispatch rules, and grep-checkable orchestration contracts.
+ 
+-Last Updated: 2026-05-03 (post-063 alignment)
+-
+ ---
+ 
+ ## 1. OVERVIEW
+@@ -97,6 +95,8 @@ tools: Read, Write, Edit, Bash, Grep, Glob
+ 
+ Decision rule: authoring for `.skilled/agents/` emits `permission:` (never bare `tools:`), and authoring for `.claude/agents/` emits `tools:` (never `permission:`). Map the `permission:` allow-set to the `tools:` list by including only the tools set to `allow`/`ask` and dropping the ones set to `deny`.
+ 
++The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing or ambiguous names rather than converting them after the frontmatter and path diverge.
++
+ ### Field Reference
+ 
+ | Field | Type | Required | Description |
+@@ -110,8 +110,6 @@ Decision rule: authoring for `.skilled/agents/` emits `permission:` (never bare
+ 
+ ### Mode Reference
+ 
+-The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Reject underscore-bearing or ambiguous names rather than converting them after the frontmatter and path diverge.
+-
+ | Mode | Use Case | Typical `task` Permission |
+ | --- | --- | --- |
+ | `subagent` | Specialist dispatched by another agent or command | `deny` |
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md b/.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md
+index 4405d075c4c..3c6fa6b1c4b 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md
+@@ -22,6 +22,12 @@ Deep detail for the component-choice decision. `SKILL.md` states the rule inline
+ 
+ Choose the component type before authoring anything. An agent answers *who* should do the work, a skill answers *how* the work should be done, and a command answers *how a user should trigger* the workflow. Picking wrong produces either a bloated agent that should have been a skill, or a skill that quietly needs runtime authority it can never hold.
+ 
++**When to Use**:
++
++- You are choosing a component type before authoring anything.
++- A request could plausibly become an agent, a skill or a command.
++- An existing component feels too heavy or too thin for the job it carries.
++
+ **Core Principle**: Create an agent only when the role needs authority and tool policy. Put reusable knowledge and templates in skills, not in agents.
+ 
+ ---
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md b/.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md
+index d2ca22d5e12..024a47ccc5b 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md
+@@ -14,13 +14,19 @@ version: 1.0.0.5
+ 
+ # Common Agent-Creation Pitfalls
+ 
+-The mistakes that most often make an agent file fail to resolve, exceed its contract, or bloat over time. Each pairs the reason it breaks with the correct fix. `SKILL.md` § RULES states these as NEVER lines; this file explains the *why* and the remedy.
++The mistakes that most often make an agent file fail to resolve, exceed its contract, or bloat over time. Each pairs the reason it breaks with the correct fix.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
+-Agent files fail in a small, predictable set of ways: the component should not have been an agent at all, the file lands in the wrong runtime directory, identity fields drift apart, permissions over-grant, or the body absorbs guidance that belongs in a skill. Catch these before validation rather than after.
++Agent files fail in a small, predictable set of ways: the component should not have been an agent at all, the file lands in the wrong runtime directory, identity fields drift apart, permissions over-grant, or the body absorbs guidance that belongs in a skill. Catch these before validation rather than after. `SKILL.md` § RULES states these as NEVER lines; this file explains the *why* and the remedy.
++
++**When to Use**:
++
++- Reviewing a draft agent before it ships.
++- An agent fails to resolve, over-permits, or bloats over time.
++- Validation flags a structural defect and you want the cause and the fix.
+ 
+ **Core Principle**: Most agent defects are authority and placement defects — scope and location first, prose second.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md b/.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md
+index 91b5baf7cb7..b0ba0ffd389 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/references/permission-design.md
+@@ -22,11 +22,17 @@ Depth for the frontmatter block. `SKILL.md` shows the canonical YAML and the cor
+ 
+ Frontmatter is the enforceable part of an agent. Prose describes intent; the `permission:` object decides what the runtime will actually let the agent do. Over-granting here is the most common way an agent quietly exceeds its contract, so permission choices should be justified by the role, not by convenience.
+ 
++**When to Use**:
++
++- Choosing `mode` for a new agent.
++- Scoping a `permission` value and justifying every `allow`.
++- Deciding whether a `tools:` list still belongs in the file.
++
+ **Core Principle**: Default to the least authority that still lets the role do its job, then justify every `allow` against the role description.
+ 
+ ---
+ 
+-## 2. MODE SELECTION
++## 2. MODE AND TEMPERATURE SELECTION
+ 
+ - `mode` must be one of `subagent`, `agent`, or `all`.
+ - Use `subagent` for specialists dispatched by an orchestrator — the common case.

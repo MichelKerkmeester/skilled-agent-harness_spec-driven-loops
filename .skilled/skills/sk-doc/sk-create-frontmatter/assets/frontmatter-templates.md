@@ -9,7 +9,7 @@ trigger_phrases:
   - "five field frontmatter block"
 importance_tier: important
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # YAML Frontmatter Templates - Document Type Reference
@@ -19,6 +19,14 @@ Templates and validation rules for YAML frontmatter by document type.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+One block shape per document class, so a field one class requires is not one another class forbids.
+
+### Usage
+
+Name the document class, copy its template from Section 4, then check the result against Section 5.
 
 ### What Is YAML Frontmatter?
 
@@ -104,6 +112,37 @@ Level 3: Field Format
 
 ## 2. WHEN TO ADD FRONTMATTER
 
+### Decision Framework
+
+```
+Is this document invoked programmatically?
+├─► YES
+│   │
+│   ├─► Is it a SKILL.md?
+│   │   └─► Add frontmatter: name, description, allowed-tools
+│   │
+│   └─► Is it a Command?
+│       └─► Add frontmatter: description, argument-hint, allowed-tools
+│
+└─► NO
+    │
+    ├─► Is it a skill reference/asset (.skilled/skills/*/references/ or assets/)?
+    │   └─► Add the 5-field block: title, description, trigger_phrases,
+    │       importance_tier, contextType (READMEs exempt)
+    │
+    ├─► Is it a Knowledge file outside skill folders?
+    │   └─► Remove frontmatter if present
+    │
+    ├─► Is it a document under specs/?
+    │   └─► Keep the block system-spec-kit's template emits, since that skill owns it
+    │
+    └─► Is it a README?
+        ├─► Beside a SKILL.md? → Add title, description, trigger_phrases,
+        │                        version (Section 4)
+        └─► Elsewhere? → Optional, add a block only for discoverability,
+                         with version: 1.0.0.0
+```
+
 ### Add Frontmatter When
 
 **Programmatic Interface Needed**:
@@ -148,37 +187,6 @@ Spec-folder documents are not in this group. They carry frontmatter and `system-
 - Adds confusion about document purpose
 
 **Exception for skill references and assets**: docs under `.skilled/skills/*/references/` and `.skilled/skills/*/assets/` are NOT frontmatter-free knowledge files. They carry the full 5-field block (see the Skill Reference/Asset entry above and the template in Section 4). Skill and folder `README.md` files are exempt.
-
-### Decision Framework
-
-```
-Is this document invoked programmatically?
-├─► YES
-│   │
-│   ├─► Is it a SKILL.md?
-│   │   └─► Add frontmatter: name, description, allowed-tools
-│   │
-│   └─► Is it a Command?
-│       └─► Add frontmatter: description, argument-hint, allowed-tools
-│
-└─► NO
-    │
-    ├─► Is it a skill reference/asset (.skilled/skills/*/references/ or assets/)?
-    │   └─► Add the 5-field block: title, description, trigger_phrases,
-    │       importance_tier, contextType (READMEs exempt)
-    │
-    ├─► Is it a Knowledge file outside skill folders?
-    │   └─► Remove frontmatter if present
-    │
-    ├─► Is it a document under specs/?
-    │   └─► Keep the block system-spec-kit's template emits, since that skill owns it
-    │
-    └─► Is it a README?
-        ├─► Beside a SKILL.md? → Add title, description, trigger_phrases,
-        │                        version (Section 4)
-        └─► Elsewhere? → Optional, add a block only for discoverability,
-                         with version: 1.0.0.0
-```
 
 ### Frontmatter Field Summary
 
@@ -271,7 +279,7 @@ The Claude Code harness imposes two limits that authors don't see directly:
 | Per-item hard cap | **1,536 chars** | Claude Code internal limit (combined `description` + `when_to_use`) |
 | Project soft-ceiling | **6,400 chars** | Total of all project descriptions, leaving ~1,600-char headroom for Claude Code built-ins, user-level skills and plugin skills under the default `SLASH_COMMAND_TOOL_CHAR_BUDGET = 8000` |
 
-The 8,000-char failure point does not move with the ceiling, and an operator with skill-heavy plugins has less headroom than this. When the combined total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (Packet 083 had to trim 36 descriptions because the project had grown to ~10,050 chars and 15 skills were dropped.)
+The 8,000-char failure point does not move with the ceiling, and an operator with skill-heavy plugins has less headroom than this. When the combined total exceeds the 8,000-char default, Claude Code **silently drops** the longest descriptions from its available-skills list. Skills stay invocable explicitly, but the model can no longer auto-suggest them. (The project had to trim 36 descriptions once it had grown to ~10,050 chars, and 15 skills were dropped.)
 
 **Trim style, what to DROP**:
 - Product enumerations (`ClickUp/Notion/Figma/Chrome…`)
@@ -288,7 +296,7 @@ The 8,000-char failure point does not move with the ceiling, and an operator wit
 
 **Stack-agnostic phrasing** (project rule): never enumerate specific stacks (Webflow / Go / Next.js / Python frameworks…) in skill descriptions. The smart router detects the active stack at dispatch time. Baking stacks into the description ages poorly and consumes routing-keyword budget that should go to the verb + domain noun.
 
-**Before/after example** (sk-code, packet 083, 545 → 125 chars):
+**Before/after example** (sk-code, 545 → 125 chars):
 
 ```yaml
 # Before (545 chars): enumerated stacks + library lists + marketing prose
@@ -377,9 +385,9 @@ model: opus
 | `trigger_phrases` | YAML block list | 3-8 distinctive lowercase multi-word phrases drawn from the doc's content |
 | `importance_tier` | Enum | `constitutional` \| `critical` \| `important` \| `normal` \| `temporary` \| `deprecated`. Default `normal`, with `important` only for formal contract/invariant docs. Listed aliases such as `high` are legal |
 | `contextType` | Enum | `planning` \| `research` \| `implementation` \| `general`. Listed aliases such as `review` or `reference` are legal |
+| `version` | `X.Y.Z.W` | Required, 4-part, inserted as the last key in the block, `1.0.0.0` on a new doc and raised on a body change per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 
 Both lists, with their aliases, live in this mode's `assets/frontmatter-values.json`, which spec docs and skill docs share. Write a canonical value in new docs. A value outside the file fails the skill-advisor checker and warns in `validate_document.py` and spec-kit's `validate.sh`.
-| `version` | `X.Y.Z.W` | Required, 4-part, inserted as the last key in the block, `1.0.0.0` on a new doc and raised on a body change per [frontmatter-versioning.md](../references/frontmatter-versioning.md) |
 
 **Trigger phrase quality**:
 ```yaml
@@ -478,7 +486,10 @@ version: 1.0.0.0
 ---
 ```
 
-Verify with `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means. Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block. And it walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
+Verify with `.skilled/skills/system-skill-advisor/runtime/scripts/check-skill-doc-frontmatter.sh`. Two things about that checker decide what a green run means:
+
+- Its default `--shape` mode fails only a document that carries a partial block, so a file with `title` and `description` alone, or with no block at all, passes. Pass `--coverage` to require the full block.
+- It walks `references/` and `assets/` directly under each top-level skill folder only, so the docs of a nested mode packet are never read by it. For those, `package_skill.py --check --strict` on the packet is the gate that reaches the block.
 
 ### Skill README Frontmatter Template
 
@@ -1166,8 +1177,13 @@ Document type?
 | **Testing Playbook** | ❌ Not used (uses `title`) | ✅ Required | ❌ N/A | ❌ N/A |
 | **Agent** | ✅ Required | ✅ Required | ❌ N/A | ❌ N/A (uses `permission:` or `tools:`) |
 
-Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType`. See Section 3.
-Changelog entries also require `trigger_phrases`, `importance_tier` and `contextType`. Feature catalogs additionally require `trigger_phrases` and `version`. Testing playbooks require `title` and `version`. Agents require the authority key their own runtime reads, and carry no `version`. Section 4 has all three.
+- Skill references/assets additionally require `trigger_phrases` (3-8), `importance_tier`, and `contextType`. See Section 3.
+- Changelog entries also require `trigger_phrases`, `importance_tier` and `contextType`.
+- Feature catalogs additionally require `trigger_phrases` and `version`.
+- Testing playbooks require `title` and `version`.
+- Agents require the authority key their own runtime reads, and carry no `version`.
+
+Section 4 has all three.
 
 ### Common Mistakes
 

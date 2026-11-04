@@ -1,0 +1,11 @@
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/ROUTER.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/README.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/common-pitfalls.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/conversation-scenarios.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/examples.md
+.skilled/skills/sk-doc/sk-create-manual-testing-playbook/references/prompt-voice.md

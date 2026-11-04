@@ -1,0 +1,440 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/README.md b/.skilled/skills/sk-doc/sk-create-diff/README.md
+index 44719e767de..bad869e66c2 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/README.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/README.md
+@@ -34,6 +34,20 @@ Not everything you edit lives in Git. An AI or a person edits a Markdown spec, a
+ 
+ create-diff captures a baseline snapshot of a document before an edit happens, then compares the current file against that snapshot or an explicit second file and renders one self-contained HTML report you can open offline. The engine ships as `scripts/create_diff.py` and reads Markdown, plain text, HTML, DOCX and text-layer PDF. It does not touch code or Git-tracked files: that boundary belongs to `sk-git`. It does not audit a single document on its own either, since comparing two states is the point. `create-quality-control` handles single-document scoring.
+ 
++### When To Use This Skill
++
++Use create-diff when:
++
++- An AI or a person edited a document outside Git and you need proof of what changed.
++- You want a baseline captured before a risky edit.
++- A pre-composed multi-file bundle needs its transitions to stay visible in review.
++
++Skip it when:
++
++- The files are code or already tracked in Git (`sk-git` owns that).
++- The comparison is visual or pixel-level (out of scope: create-diff compares extracted text only).
++- You are scoring a single document with no second state to compare (`create-quality-control` owns that).
++
+ ### The Format Fidelity Layer
+ 
+ Every comparison runs at a stated fidelity tier so a limited result is never mistaken for a complete one. The engine extracts what a format can honestly give:
+@@ -87,7 +101,12 @@ Prints `PASS` when the report is safe and self-contained.
+ 
+ ## 4. HOW IT WORKS
+ 
+-The lifecycle has one hard invariant: the baseline has to exist before the edit happens. `snapshot` copies the current file into a local `.create-diff/` store without altering the source. Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report. When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`. Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
++The lifecycle has one hard invariant: the baseline has to exist before the edit happens.
++
++- `snapshot` copies the current file into a local `.create-diff/` store without altering the source.
++- Once the edit is done, `compare` diffs the live file against its latest stored baseline and writes the report.
++- When no baseline exists or you already have two explicit versions, `compare-pair` skips the store entirely and diffs `--before` against `--after`.
++- Either path ends the same way: a deterministic line-and-word diff, run through a format-aware extractor and rendered into one inlined-CSS HTML file with no scripts and no network calls.
+ 
+ ### Key Concept: Aggregate File Boundaries
+ 
+@@ -97,10 +116,6 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for create-diff when an AI or a person edited a document outside Git and you need proof of what changed, when you want a baseline captured before a risky edit or when a pre-composed multi-file bundle needs its transitions to stay visible in review. Skip it for code or anything already tracked in Git (`sk-git` owns that). Skip it for visual or pixel-level comparison (out of scope: create-diff compares extracted text only). Skip it for scoring a single document with no second state to compare (`create-quality-control` owns that).
+-
+ ### Related Skills
+ 
+ | Skill | Relationship |
+@@ -164,6 +179,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
+ | [`references/capabilities-and-fidelity.md`](./references/capabilities-and-fidelity.md) | Format support matrix and fidelity tiers |
+ | [`references/workflow.md`](./references/workflow.md) | Baseline, explicit-pair and snapshot lifecycle |
+ | [`references/accessibility-contract.md`](./references/accessibility-contract.md) | The report's accessibility guarantees |
++| [`references/worked-example.md`](./references/worked-example.md) | End-to-end walkthrough using the shipped fixtures |
+ | [`assets/fixtures/README.md`](./assets/fixtures/README.md) | Runnable before/after worked example |
+ | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Canonical capability inventory |
+ | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator-facing validation scenarios |
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/ROUTER.md b/.skilled/skills/sk-doc/sk-create-diff/ROUTER.md
+index de9b57c95b4..28720e2f9ef 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/ROUTER.md
+@@ -52,7 +52,7 @@ The routing detail that does not fit the short summary: the intent bullets, the
+ 
+ This packet ships a flat `references/` route-map and worked-example fixtures under `assets/`; there are no `references/<key>/` or `assets/<key>/` subdirectories to infer. Routing is intent-based:
+ 
+-- If the request clearly asks for a before/after document review, route here and pick the workflow shape in section 3 (automatic baseline vs. explicit pair).
++- If the request clearly asks for a before/after document review, route here and pick the workflow shape in [`SKILL.md` §3](./SKILL.md) (automatic baseline vs. explicit pair).
+ - If the target document, baseline state, or output path is unclear, use `UNKNOWN_FALLBACK`: confirm the document, whether a baseline exists, and the report path before acting.
+ - If a referenced resource is missing, do not invent a path — use the nearest guidance in `references/README.md` and report the gap.
+ - Do not hijack routing from functional siblings when the intent is not clearly a document before/after review.
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/SKILL.md b/.skilled/skills/sk-doc/sk-create-diff/SKILL.md
+index aef269f69eb..40978832062 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/SKILL.md
+@@ -170,7 +170,7 @@ State the tier to the user; never present a low-fidelity comparison as complete.
+ - Never add packet-local `graph-metadata.json` or `description.json`.
+ - Never send document content off-machine or fetch a remote resource into the report.
+ 
+-### ⚠️ ESCALATE
++### ⚠️ ESCALATE IF
+ 
+ - When a PDF has no text layer (appears scanned) — the comparison would be empty; OCR is out of scope.
+ - When the document format is unsupported and no explicit pre-extracted pair can be provided.
+@@ -213,18 +213,7 @@ The task is successful when:
+ 
+ ---
+ 
+-## 9. RELATED RESOURCES
+-
+-- `references/README.md` — reference route-map (capabilities/fidelity, workflow, CLI reference, accessibility contract, worked example).
+-- `feature-catalog/feature-catalog.md` — canonical inventory of this mode's capabilities.
+-- `manual-testing-playbook/manual-testing-playbook.md` — operator-facing manual validation scenarios.
+-- `assets/fixtures/` — a runnable before/after worked example.
+-- `../shared/` — shared sk-doc quality standards and document validator.
+-- Engine and mode design: `.opencode/specs/sk-doc/016-create-diff-mode/` (parent spec, phase `006-opencode-skill-and-accessibility`, research synthesis in `001-research-and-requirements/research/research.md`).
+-
+----
+-
+-## 10. REFERENCES
++## 9. REFERENCES
+ 
+ - `scripts/create_diff.py` — the comparison engine (extraction, diff, snapshots, report).
+ - `scripts/validate_report.py` — report safety/self-containment validator.
+@@ -233,3 +222,13 @@ The task is successful when:
+ - `references/workflow.md` — baseline-capture, explicit-pair, and snapshot lifecycle.
+ - `references/accessibility-contract.md` — the report's accessibility guarantees.
+ - `references/worked-example.md` — an end-to-end walkthrough using the shipped fixtures.
++
++---
++
++## 10. RELATED RESOURCES
++
++- `references/README.md` — reference route-map (capabilities/fidelity, workflow, CLI reference, accessibility contract, worked example).
++- `feature-catalog/feature-catalog.md` — canonical inventory of this mode's capabilities.
++- `manual-testing-playbook/manual-testing-playbook.md` — operator-facing manual validation scenarios.
++- `assets/fixtures/` — a runnable before/after worked example.
++- `../shared/` — shared sk-doc quality standards and document validator.
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/README.md b/.skilled/skills/sk-doc/sk-create-diff/references/README.md
+index ef87011dbf6..476fcfc5394 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/README.md
+@@ -9,9 +9,18 @@ version: 1.0.0.0
+ 
+ # create-diff, reference route-map
+ 
++Each concern has exactly one file, so a reader can stop after the row that answers the question.
++
+ ## 1. OVERVIEW
+ 
+-Overflow guidance beyond `SKILL.md`, split into single-concern files. Load the one that matches the concern; do not load everything by default.
++### Purpose
++
++Overflow guidance beyond `SKILL.md`, split into single-concern files.
++
++### When to Use
++
++- A question is narrower than the `SKILL.md` workflow and one concern needs the depth a single file carries.
++- You are choosing a reference: load the one that matches the concern, not everything by default.
+ 
+ | Concern | File |
+ | --- | --- |
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md b/.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
+index 1d61d796d7a..ae9f3b8e74c 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/accessibility-contract.md
+@@ -13,35 +13,58 @@ version: 1.1.0.6
+ 
+ # Report accessibility & self-containment contract
+ 
++Open this when a review asks what the generated HTML guarantees with scripting off, or before changing anything the validator checks.
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ The report is meant to be reviewable by everyone, from `file://`, forever, with no dependencies. `scripts/validate_report.py` enforces the safety half of this; the guarantees below describe the whole contract.
+ 
+-## Self-containment (validated)
++### When to Use
++
++- Checking a report against the guarantees a reviewer exercises: scripting disabled, offline, keyboard-only or colour-blind.
++- Confirming what `scripts/validate_report.py` enforces before trusting a `PASS`.
++
++---
++
++## 2. SELF-CONTAINMENT (VALIDATED)
+ 
+ - Single HTML file. All CSS is inlined in one `<style>` block; there are no external stylesheets, fonts, scripts, or images.
+ - **Zero JavaScript.** No `<script>` tags and no inline event handlers (`onclick=`, etc.). The report is fully usable with scripting disabled.
+ - **No network.** No remote `href`/`src`. A restrictive Content-Security-Policy meta tag (`default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'`) blocks any accidental request even if the file is opened in a browser.
+ - **Escaped content.** Every piece of source-document text is HTML-escaped, so a document containing markup (or a hostile `<script>`/`onerror=`) is shown as inert text, never executed.
+ 
+-## Accessibility
++---
++
++## 3. ACCESSIBILITY
+ 
+ - `<html lang="en">`, semantic landmarks (`<header>`, `<main>`, `<section>` with `aria-labelledby`), and a single `<h1>`.
+ - A "Skip to differences" link as the first focusable element.
+ - The change summary is a real `<table>` with row headers (`<th scope="row">`); the diff is a `<table>` with column headers.
+ - **Colour is never the only signal.** Added lines carry a `+`, removed lines a `−`, in a dedicated marker column with an `aria-label` ("added"/"removed"). Word-level changes use `<mark>` with a non-colour decoration in addition to the background tint — inline additions are underlined and inline removals are struck through — so the exact changed substring stays distinguishable for colour-blind users and in monochrome, not only in forced-colours mode.
+ - Contrast targets WCAG AA in both light and dark themes (`prefers-color-scheme`), using `color-scheme: light dark`.
+-- Relative units govern typography and content/column sizing so browser zoom and text scaling work (the 4px spacing scale, hairline borders, and radii use fixed pixel tokens). In the **unified** view, content wraps (`overflow-wrap: anywhere`) so the page itself never scrolls sideways. The **side-by-side** view keeps its two code columns aligned inside a scoped `overflow-x: auto` container that is given a `min-width`, so on a narrow viewport that diff region actually scrolls horizontally instead of collapsing the columns — while the surrounding page (header, summary, legend, footer) still reflows and never forces the whole document to scroll. That scroll container is keyboard-operable: it is a labelled `role="region"` with `tabindex="0"` and a visible focus ring, so a keyboard-only user can focus and scroll it.
++- Relative units govern typography and content/column sizing so browser zoom and text scaling work (the 4px spacing scale, hairline borders, and radii use fixed pixel tokens).
++- In the **unified** view, content wraps (`overflow-wrap: anywhere`) so the page itself never scrolls sideways.
++- The **side-by-side** view keeps its two code columns aligned inside a scoped `overflow-x: auto` container that is given a `min-width`, so on a narrow viewport that diff region actually scrolls horizontally instead of collapsing the columns — while the surrounding page (header, summary, legend, footer) still reflows and never forces the whole document to scroll.
++- That scroll container is keyboard-operable: it is a labelled `role="region"` with `tabindex="0"` and a visible focus ring, so a keyboard-only user can focus and scroll it.
+ - Long runs of unchanged lines are collapsed to a labelled "N unchanged lines" row to keep the report scannable.
+-- In validated aggregate reports, every file transition remains visible as a full-width table row group. `START FILE` is the strongest transition, `END FILE` explicitly closes the group, and both include the escaped path as visible text so color is never the only signal. Every file after the first receives a 32px canvas-colored spacer row marked `aria-hidden="true"`; that gap also masks the frame edges at its sides, so it reads as open whitespace without adding empty navigation to the accessibility tree. Boundary rows also reset Markdown section context, preventing a heading from one file from labelling changes in the next.
++- In validated aggregate reports, every file transition remains visible as a full-width table row group.
++- `START FILE` is the strongest transition, `END FILE` explicitly closes the group, and both include the escaped path as visible text so color is never the only signal.
++- Every file after the first receives a 32px canvas-colored spacer row marked `aria-hidden="true"`; that gap also masks the frame edges at its sides, so it reads as open whitespace without adding empty navigation to the accessibility tree.
++- Boundary rows also reset Markdown section context, preventing a heading from one file from labelling changes in the next.
++
++---
+ 
+-## Views
++## 4. VIEWS
+ 
+ - **Unified** (default): old/new line numbers, a marker column, and content in one column.
+ - **Side-by-side** (`--view side-by-side`): before and after in two columns, each with its own line numbers. The two-column grid is held in a scoped horizontal-scroll region so columns stay aligned rather than wrapping into each other on narrow viewports.
+ 
+ Both views share the same summary, fidelity notes, and legend.
+ 
+-## What is not guaranteed
++---
++
++## 5. WHAT IS NOT GUARANTEED
+ 
+ The report reflects the extraction tier (see `capabilities-and-fidelity.md`). For `text`/`text*` formats it shows textual change only; it does not claim to show formatting, layout, or tracked-change fidelity, and says so in the "Fidelity notes" section.
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md b/.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
+index eb51f4ecf6b..6ade1956df1 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/capabilities-and-fidelity.md
+@@ -13,9 +13,20 @@ version: 1.1.1.0
+ 
+ # Capabilities & fidelity tiers
+ 
++Reach for this before quoting a tier to a user, so the claim matches what the extractor can actually read.
++
+ ## 1. OVERVIEW
+ 
+-A diff is only as trustworthy as the extraction behind it. `create-diff` tells the user what tier a comparison is at, so a limited result is never mistaken for a complete one. Run `python3 ../scripts/create_diff.py capabilities` (from the packet dir) to see the live matrix and which PDF extractor, if any, is available.
++### Purpose
++
++A diff is only as trustworthy as the extraction behind it. `create-diff` tells the user what tier a comparison is at, so a limited result is never mistaken for a complete one.
++
++### When to Use
++
++- Describing what a comparison can and cannot see, before the result is trusted.
++- Checking which format, extension or byte sequence the engine refuses.
++
++Run `python3 ../scripts/create_diff.py capabilities` (from the packet dir) to see the live matrix and which PDF extractor, if any, is available.
+ 
+ ---
+ 
+@@ -40,7 +51,10 @@ A diff is only as trustworthy as the extraction behind it. `create-diff` tells t
+ | docx | `.docx` | `text` | paragraph and table text, heading-styled paragraphs | run formatting, styles, images, comments, tracked changes |
+ | pdf | `.pdf` | `text*` | extracted text layer | layout, fonts, images; scanned/image-only pages |
+ 
+-Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected. Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report. An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way. A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
++- Unknown *text-like* extensions are treated as plain text, and the report carries a fidelity warning saying so, so the assumption can be corrected.
++- Known binary or unsupported extensions — spreadsheets, presentations, images, and archives (`.xlsx`, `.pptx`, `.png`, `.zip`, …) — are refused with exit `3` rather than raw-byte "text"-diffed into a meaningless report.
++- An *unknown* extension whose first 8 KB contains a NUL byte is treated as binary and refused the same way.
++- A file that is not valid UTF-8 is likewise refused with exit `3` rather than decoded with replacement characters (`�`): silent replacement can make two files that differ only in undecodable bytes look identical, hiding a real difference.
+ 
+ ---
+ 
+@@ -64,4 +78,16 @@ A PDF with no text layer (a scan/image) extracts to empty text. The engine detec
+ 
+ ## 6. NORMALIZATION
+ 
+-Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits: Unicode NFC, `\r\n`/`\r` → `\n`, and trailing whitespace stripped per line. Text is then split into logical lines: an empty file is zero lines (not one phantom blank line), and a single trailing newline is not treated as an extra blank line — so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit. Interior blank lines are preserved. Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.
++Before diffing, both sides are canonicalized so incidental encoding differences are not reported as edits:
++
++- Unicode NFC.
++- `\r\n`/`\r` → `\n`.
++- Trailing whitespace stripped per line.
++
++Text is then split into logical lines:
++
++- An empty file is zero lines (not one phantom blank line).
++- A single trailing newline is not treated as an extra blank line, so an empty-vs-content diff reads as a pure addition and a trailing-newline-only change is not reported as a spurious edit.
++- Interior blank lines are preserved.
++
++Markdown headings/sections are parsed but are not currently rendered into the report, and never change the text comparison.
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md b/.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md
+index fecb83b7f32..1528d57c10f 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/cli-reference.md
+@@ -13,8 +13,19 @@ version: 1.1.1.0
+ 
+ # CLI reference
+ 
++Use this when a command needs an exact flag, or when a non-zero exit has to become a message a user can act on.
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++The complete command surface of `scripts/create_diff.py`: every subcommand, flag, JSON summary shape and exit code.
++
++### When to Use
++
++- Looking up a subcommand or flag before running the engine.
++- Mapping a non-zero exit onto the failure it reports.
++
+ Engine: `scripts/create_diff.py` (run with `python3`). All paths are relative to where you run it; the engine never writes to a source document.
+ 
+ ---
+@@ -79,13 +90,13 @@ python3 create_diff.py status [<file>] [--state-dir DIR] [--json]
+ 
+ Remove stored baselines.
+ 
++With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to preview.
++
+ ```bash
+ python3 create_diff.py cleanup \
+   [--file F] [--older-than DAYS] [--state-dir DIR] [--dry-run]
+ ```
+ 
+-With no `--older-than`, all matching snapshots are removed. Use `--dry-run` to preview.
+-
+ ---
+ 
+ ## 8. FLAGS
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md b/.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md
+index 14c7acb4ca2..1f664fbe75a 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/worked-example.md
+@@ -13,10 +13,20 @@ version: 1.1.1.0
+ 
+ # Worked example
+ 
++Follow it once before pointing the engine at a document you care about, so the report shape holds no surprises.
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ An end-to-end run using the shipped fixtures (`../assets/fixtures/`). Two versions of an onboarding guide: the "after" rewrites a sentence, expands two bullets, adds a section, and extends a line.
+ 
++### When to Use
++
++- Before a first real review, to see the summary line and the two views.
++- To check what the summary line's additions, changes and unchanged counts are telling you.
++- To copy a working `compare-pair` or `snapshot`/`compare` invocation.
++
+ ---
+ 
+ ## 2. EXPLICIT-PAIR COMPARISON
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/references/workflow.md b/.skilled/skills/sk-doc/sk-create-diff/references/workflow.md
+index 7da4fed35cc..8ba3bedac57 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/references/workflow.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/references/workflow.md
+@@ -13,11 +13,28 @@ version: 1.1.1.0
+ 
+ # Workflow: baseline, comparison, and lifecycle
+ 
++Reach for this reference before a document changes, or when both versions are already in hand and the baseline is missing.
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Give every review a real before-state, so a change is judged against what the document actually said.
++
++### When to Use
++
++- You control the moment before an edit and want the engine to hold the baseline.
++- No baseline exists, or you are comparing two arbitrary versions.
++- One review needs to cover multiple files.
++- You need to inspect or prune stored baselines.
++
++### Core Principle
++
+ The core invariant: **capture the baseline before the edit.** A before/after review needs a real before-state, and once a file is overwritten the original is gone. `create-diff` never mutates the source — capture copies it into a local store.
+ 
+-## Automatic flow (snapshot-backed)
++---
++
++## 2. AUTOMATIC FLOW (SNAPSHOT-BACKED)
+ 
+ Best when you control the moment before an edit (e.g. an AI is about to modify a document).
+ 
+@@ -33,7 +50,9 @@ python3 ../scripts/create_diff.py compare path/to/doc.md --report review.html
+ 
+ `compare` uses the file's **latest** snapshot as the "before" and the current file as the "after". If no snapshot exists it exits `4` and tells you to snapshot first or use the explicit pair.
+ 
+-## Explicit-pair flow (fallback)
++---
++
++## 3. EXPLICIT-PAIR FLOW (FALLBACK)
+ 
+ Best when there is no baseline, when comparing two arbitrary versions, or when the automatic store is unavailable or unwanted.
+ 
+@@ -46,7 +65,9 @@ python3 ../scripts/create_diff.py compare-pair \
+ 
+ No stored state is read or written. `--label-before`/`--label-after` set the names shown in the report (default: the file names).
+ 
+-## Pre-composed aggregate pairs
++---
++
++## 4. PRE-COMPOSED AGGREGATE PAIRS
+ 
+ When one review needs to cover multiple files, compose one before document and
+ one after document with the same ordered, unique file markers:
+@@ -70,13 +91,34 @@ fall back to ordinary document text instead of producing partial file chrome.
+ This is a pre-composed input format, not native directory comparison or repeated
+ multi-file CLI arguments.
+ 
+-## Where snapshots live
++---
+ 
+-Baselines are stored under a `.create-diff/` directory in the current working directory (override with `--state-dir DIR`). Each source path gets its own subdirectory keyed by a hash of its absolute path, containing the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256. Writes are atomic (temp file + rename); the source is only ever read.
++## 5. AFTER GENERATING A REPORT
++
++Always validate the report before handing it off:
++
++```bash
++python3 ../scripts/validate_report.py review.html
++```
++
++Then report the change summary and the report path. If the source file changed during the run, something is wrong — comparison must be read-only against the source.
++
++---
++
++## 6. WHERE SNAPSHOTS LIVE
++
++Baselines are stored under a `.create-diff/` directory in the current working directory (override with `--state-dir DIR`).
++
++- Each source path gets its own subdirectory, keyed by a hash of its absolute path.
++- That subdirectory holds the copied blobs plus a `manifest.json` recording capture time, size, and SHA-256.
++- Writes are atomic (temp file + rename).
++- The source is only ever read.
+ 
+ Add `.create-diff/` to `.gitignore` if you run this inside a repository — it is local scratch state, not a deliverable.
+ 
+-## Lifecycle
++---
++
++## 7. LIFECYCLE
+ 
+ ```bash
+ # What baselines exist (all, or for one file)
+@@ -89,13 +131,3 @@ python3 ../scripts/create_diff.py cleanup --older-than 14
+ ```
+ 
+ `cleanup` with no `--older-than` removes all matching snapshots; scope it with `--file` and preview with `--dry-run`.
+-
+-## After generating a report
+-
+-Always validate the report before handing it off:
+-
+-```bash
+-python3 ../scripts/validate_report.py review.html
+-```
+-
+-Then report the change summary and the report path. If the source file changed during the run, something is wrong — comparison must be read-only against the source.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog back dating"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Changelog Topology and Edge Cases
@@ -21,6 +21,12 @@ Where a changelog goes, and the edge cases around placement, back-dating, source
 ## 1. OVERVIEW
 
 Mode detection and component resolution are authoritative in [../SKILL.md](../SKILL.md) section 6. This file carries the placement table and the edge cases around it.
+
+**When to Use**:
+
+- Deciding where a new entry belongs, global or packet-local.
+- Resolving a hub folder or a phase child to the component it touched.
+- Handling back-dating, a source-format conflict or the optional GitHub release.
 
 ---
 
@@ -38,7 +44,10 @@ Every new entry is global. The packet-local rows record where existing files sit
 
 ## 3. HUB VERSUS PACKET PLACEMENT
 
-A changelog for the users of a component goes global. Spec packets no longer get their own changelog, so a packet's completed work, a phase child included, goes into the global entry for the component it touched. The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it. For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
+- A changelog for the users of a component goes global.
+- Spec packets no longer get their own changelog, so a packet's completed work, a phase child included, goes into the global entry for the component it touched.
+- The folders under `.skilled/changelog/` are plain component names, except `skilled`, the framework release line, which the workflow writes to only when the operator names it.
+- For ties between components, or no match at all, follow the selection rules in SKILL.md section 6 rather than guessing a folder.
 
 ---
 

@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 version: 1.0.8.0
 ---
 
-# Doc Quality (quality)
+# Create Quality Control
 
 `create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
 

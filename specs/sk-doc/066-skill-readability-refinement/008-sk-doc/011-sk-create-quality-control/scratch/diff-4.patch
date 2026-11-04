@@ -1,0 +1,568 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/README.md b/.skilled/skills/sk-doc/sk-create-quality-control/README.md
+index fcc02199c93..55001766455 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/README.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/README.md
+@@ -32,6 +32,10 @@ version: 1.0.1.0
+ 
+ A document either reads well to the person who wrote it or it does not. A self-assessment is not evidence. Without a scoring pass, "looks fine to me" is the only quality bar a README or `SKILL.md` ever clears. A document can then ship with missing frontmatter, a broken section order, a misdetected document type or robotic AI-pattern prose that nobody catches until an operator hits it mid-task. Fixing that blind, by rewriting on instinct, risks changing product claims or policy text that nobody actually asked to touch.
+ 
++### When To Use This Skill
++
++Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document does not exist yet (that is a creation packet's job) or when the fix is a one-character typo that does not need a scoring pass.
++
+ ### What It Does
+ 
+ `create-quality-control` reads a markdown file and runs it through structure extraction to get a Document Quality Index score with its quality band. It classifies what it finds into blocking/warning/recommendation tiers before applying Human Voice Rules on top. The audit is report-only by default: it tells you where the document stands and why. Only when edits are explicitly requested does it touch the file, staying scoped to that one document. It never creates a new artifact. For that, route to the matching creation packet (`create-readme`, `create-skill` and the rest).
+@@ -62,7 +66,11 @@ Expected: zero blocking issues before the document counts as ready.
+ 
+ ## 4. HOW IT WORKS
+ 
+-Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it. Classify findings in order, blocking structural failures first, then warnings, then recommendations and only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
++1. Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs.
++2. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it.
++3. Classify findings in order: blocking structural failures first, then warnings, then recommendations. Only then apply an HVR voice review, since HVR is a pass after structural issues are understood, not a substitute for finding them.
++4. Report findings in the fixed shape: document path and type, DQI score and band, filename-case signal, blocking issues, warnings, HVR issues and recommendations.
++5. When edits are explicitly requested, audit the current state for weak patterns, map the document against likely developer questions, apply only the transformation patterns the observed gaps call for, edit narrowly without expanding scope, then re-run `validate_document.py` and `extract_structure.py` to confirm the post-edit DQI and checklist state.
+ 
+ ### Key Concept: DQI Is Read, Never Guessed
+ 
+@@ -70,15 +78,23 @@ The DQI score always comes from running `extract_structure.py` against the real
+ 
+ ### Enforcement Fixes
+ 
+-The three structural failures this packet fixes most often are missing frontmatter, sections out of the required order and a required section that is simply absent. Each fix follows the same shape: identify the gap against the detected document type, apply the minimal correction rather than a rewrite, then re-run validation and extraction to confirm the fix actually landed. When the missing content needs source evidence that is not in the workspace, the packet escalates instead of inventing it.
++The three structural failures this packet fixes most often are:
+ 
+----
++- Missing frontmatter.
++- Sections out of the required order.
++- A required section that is simply absent.
+ 
+-## 5. INTEGRATION & NAVIGATION
++Each fix follows the same shape:
+ 
+-### When To Use This Skill
++1. Identify the gap against the detected document type.
++2. Apply the minimal correction rather than a rewrite.
++3. Re-run validation and extraction to confirm the fix actually landed.
+ 
+-Reach for this packet when a document needs to clear a real quality gate before publishing, when a document "feels off" but nobody has run a structural check on it, when someone asks to optimize or rewrite an existing document for AI-friendliness or when a document needs re-validation after another packet finished authoring it. Skip it when the document does not exist yet (that is a creation packet's job) or when the fix is a one-character typo that does not need a scoring pass.
++When the missing content needs source evidence that is not in the workspace, the packet escalates instead of inventing it.
++
++---
++
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md b/.skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md
+index e046860f394..b839a0d7fc3 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/ROUTER.md
+@@ -11,7 +11,7 @@ router_state: active
+ skill_pointer: SKILL.md
+ ---
+ 
+-# Doc Quality (quality) Router
++# Create Quality Control Router
+ 
+ The machine router for [`SKILL.md`](./SKILL.md). `SKILL.md` keeps the short routing prose and the
+ link that points here; this file holds the declaration a reader parses to decide what loads.
+@@ -20,7 +20,14 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-The `sk-doc` hub routes existing-document quality work here: a request to validate, score, audit or optimize an existing markdown file, whose vocabulary is `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget` and `trim`, selects this packet, while a request to author a new artifact belongs to the matching `create-*` packet instead. It routes to two resource families: the single-concern references under `references/`, which start at `references/README.md`, the route map every run reads first, and carry the four execution modes, the optimization procedure, the 16 transformation patterns with their before/after examples, the validation touchpoints and the worked batch examples, and the shared `sk-doc` scripts and standards the workflow runs, `../shared/scripts/extract_structure.py`, `../shared/scripts/validate_document.py`, `../shared/scripts/quick_validate.py` and `../shared/scripts/check_authored_name_kebab.py` for the structure, validation and naming evidence, with `../shared/references/validation.md` and `../sk-create-with-human-voice/references/hvr-rules.md` for the DQI bands and the voice rules. `references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
++The `sk-doc` hub routes existing-document quality work here: a request to validate, score, audit or optimize an existing markdown file selects this packet, while a request to author a new artifact belongs to the matching `create-*` packet instead. The vocabulary is `doc quality`, `/doc:quality`, `audit documentation quality`, `document audit`, `validate a document`, `validate markdown`, `validation rules`, `score this document`, `optimize this doc`, `DQI`, `AI-friendly documentation`, `extract structure`, `quality bar`, `flag`, `model's budget` and `trim`.
++
++It routes to two resource families:
++
++- **Skill-local references** under `references/` start at `references/README.md`, the route map every run reads first, and carry the four execution modes, the optimization procedure, the 16 transformation patterns with their before/after examples, the validation touchpoints and the worked batch examples.
++- **Shared `sk-doc` scripts and standards** the workflow runs: `../shared/scripts/extract_structure.py`, `../shared/scripts/validate_document.py`, `../shared/scripts/quick_validate.py` and `../shared/scripts/check_authored_name_kebab.py` for the structure, validation and naming evidence, with `../shared/references/validation.md` and `../sk-create-with-human-voice/references/hvr-rules.md` for the DQI bands and the voice rules.
++
++`references/README.md` is the default resource and the fallback suggestion, and no other resource loads without an intent that selects it.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -52,7 +59,7 @@ This is an independently invokable nested workflow packet under `sk-doc`. It own
+ 
+ For this flat-reference packet, the canonical resilient router discovers resources at call
+ time, guards and loads only what exists, scores the four audit/execution intents documented
+-in WHEN TO USE, and returns a disambiguation checklist rather than silently loading nothing:
++in the intent model above, and returns a disambiguation checklist rather than silently loading nothing:
+ 
+ ```python
+ from pathlib import Path
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md b/.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md
+index 5e9c0f7b842..a37e6cea7d6 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/SKILL.md
+@@ -5,7 +5,7 @@ allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+ version: 1.0.8.0
+ ---
+ 
+-# Doc Quality (quality)
++# Create Quality Control
+ 
+ `create-quality-control` is the existing-document audit and optimization workflow packet of the `sk-doc` family. It evaluates markdown, extracts structure, computes Document Quality Index evidence, applies Human Voice Rules, and, only when explicitly requested, edits the same target document to improve structure, clarity and AI-friendliness.
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/README.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/README.md
+index 31fc5e23e2d..19310e34324 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/README.md
+@@ -10,7 +10,7 @@ contextType: implementation
+ version: 1.0.0.9
+ ---
+ 
+-# Doc-Quality References
++# Create Quality Control References
+ 
+ Route map over the `create-quality-control` reference set. The operating logic lives in [`../SKILL.md`](../SKILL.md) (primary); these references are single-concern overflow: worked examples, exhaustive detail, and templates loaded on demand. Open only the file the current task needs.
+ 
+@@ -18,7 +18,7 @@ Route map over the `create-quality-control` reference set. The operating logic l
+ 
+ ## 1. OVERVIEW
+ 
+-This file is the reference route map for the `create-quality-control` packet: it indexes five single-concern reference files, execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog, so each loads only when the current task needs its depth.
++This file is the reference route map for the `create-quality-control` packet. It indexes five single-concern reference files, one per concern: execution modes, validation and enforcement, worked examples, optimization procedure, and the transformation pattern catalog. Each loads only when the current task needs its depth.
+ 
+ ---
+ 
+@@ -28,7 +28,7 @@ Load the file that matches the current task:
+ 
+ | Concern | Reference | Load When |
+ | --- | --- | --- |
+-| **Execution modes**: the four modes (script-assisted review, structure checks, content optimization, audit snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
++| **Execution modes**: the four modes (report-only audit, structure validation, content optimization, batch snapshot) and how to pick one | [workflows.md](./workflows.md) | Choosing how to run a create-quality-control pass, or mapping a mode to its scripts/phases/output |
+ | **Validation & enforcement operations**: validation touchpoints, enforcement approval-prompt templates, phase chaining, troubleshooting | [validation-and-enforcement.md](./validation-and-enforcement.md) | Wording an enforcement prompt, sequencing validation manually, or a run breaks |
+ | **Worked examples & batch**: copy-paste command recipes and multi-file/batch processing | [workflow-examples.md](./workflow-examples.md) | Needing a starting command for a common run, or processing many docs at once |
+ | **Optimization procedure**: quality heuristics, analysis workflow, README priority strategy, snippet checklist, iteration loop | [optimization.md](./optimization.md) | The user asked to improve/optimize an existing doc for AI-friendliness |
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md
+index ee24f18245d..72be5378a5f 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/optimization.md
+@@ -19,7 +19,7 @@ The procedure for converting reference-style documentation into question-answeri
+ 
+ ## 1. OVERVIEW
+ 
+-### What Is Optimization?
++### Purpose
+ 
+ Optimization transforms documentation from reference-style to question-answering format, making it highly AI-friendly through systematic application of 16 proven transformation patterns.
+ 
+@@ -29,6 +29,11 @@ Optimization transforms documentation from reference-style to question-answering
+ - **Code completeness** - Runnable, standalone examples with imports
+ - **Metadata removal** - Strip non-instructional content
+ 
++### When to Use
++
++- The user explicitly asks to improve or optimize an existing document.
++- Structure extraction shows weak question coverage, formatting or initialization.
++
+ > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
+ 
+ ### Core Principle
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+index e8b8e2511b9..40b56b11e3f 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/transformation-patterns.md
+@@ -21,14 +21,23 @@ For the surrounding procedure (heuristics, analysis workflow, README strategy, i
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This file is the worked-example catalog for the 16 transformation patterns that convert reference-style documentation into question-answering format — each entry pairs a before/after code sample with its impact and effort rating.
+ 
++### When to Use
++
++- You need the exact before/after transform shape for a pattern, not just its name.
++- `SKILL.md` §4 Step 3 sent you here to apply a specific pattern.
++
+ ---
+ 
+-## Pattern 1: API Reference → Usage Example
++## 2. THE 16 PATTERNS
++
++### Pattern 1: API Reference → Usage Example
+ 
+-**Impact**: High
+-**Effort**: Medium
++- **Impact**: High
++- **Effort**: Medium
+ 
+ **Before**:
+ ```
+@@ -38,7 +47,7 @@ Returns: bool
+ ```
+ 
+ **After**:
+-```
++````markdown
+ Authenticating Your Client
+ ```python
+ from library import Client
+@@ -47,12 +56,12 @@ client = Client(api_key="your_key")
+ if client.authenticate():
+     print("Authenticated!")
+ ```
+-```
++````
+ 
+-## Pattern 2: Import-Only → Complete Setup
++### Pattern 2: Import-Only → Complete Setup
+ 
+-**Impact**: High
+-**Effort**: Low
++- **Impact**: High
++- **Effort**: Low
+ 
+ **Before**:
+ ```python
+@@ -60,7 +69,7 @@ from library import Client, Query
+ ```
+ 
+ **After**:
+-```
++````markdown
+ Quick Start
+ ```python
+ # Install: pip install library
+@@ -71,12 +80,12 @@ response = client.query("SELECT * FROM data")
+ for row in response:
+     print(row)
+ ```
+-```
++````
+ 
+-## Pattern 3: Multiple Small → One Comprehensive
++### Pattern 3: Multiple Small → One Comprehensive
+ 
+-**Impact**: Medium
+-**Effort**: Medium
++- **Impact**: Medium
++- **Effort**: Medium
+ 
+ **Before** (3 separate snippets):
+ ```python
+@@ -102,10 +111,10 @@ for row in result:
+ client.close()
+ ```
+ 
+-## Pattern 4: Remove Metadata
++### Pattern 4: Remove Metadata
+ 
+-**Impact**: Low
+-**Effort**: Low
++- **Impact**: Low
++- **Effort**: Low
+ 
+ **Delete entirely**:
+ - Project directory structures
+@@ -113,10 +122,10 @@ client.close()
+ - Academic citations
+ - Contributor lists (move to CONTRIBUTORS.md)
+ 
+-## Pattern 5: Add Error Handling
++### Pattern 5: Add Error Handling
+ 
+-**Impact**: Medium
+-**Effort**: Medium
++- **Impact**: Medium
++- **Effort**: Medium
+ 
+ **Enhance existing examples**:
+ ```python
+@@ -131,10 +140,10 @@ finally:
+     client.close()
+ ```
+ 
+-## Pattern 6: Combine Installation + First Usage
++### Pattern 6: Combine Installation + First Usage
+ 
+-**Impact**: High
+-**Effort**: Low
++- **Impact**: High
++- **Effort**: Low
+ 
+ **Never show installation alone** - always include immediate usage:
+ ```python
+@@ -147,10 +156,10 @@ result = client.get_data()
+ print(result)
+ ```
+ 
+-## Pattern 7: Add Configuration Examples
++### Pattern 7: Add Configuration Examples
+ 
+-**Impact**: Medium
+-**Effort**: Low
++- **Impact**: Medium
++- **Effort**: Low
+ 
+ **Show common config scenarios**:
+ ```python
+@@ -170,10 +179,10 @@ client = Client(
+ )
+ ```
+ 
+-## Pattern 8: Demonstrate OAuth/Auth Patterns
++### Pattern 8: Demonstrate OAuth/Auth Patterns
+ 
+-**Impact**: High (auth-heavy docs)
+-**Effort**: High
++- **Impact**: High (auth-heavy docs)
++- **Effort**: High
+ 
+ **Complete auth flow**:
+ ```python
+@@ -185,10 +194,10 @@ tokens = client.exchange_code(auth_code)
+ client.connect()
+ ```
+ 
+-## Pattern 9: Show Batch/Bulk Operations
++### Pattern 9: Show Batch/Bulk Operations
+ 
+-**Impact**: Medium
+-**Effort**: Medium
++- **Impact**: Medium
++- **Effort**: Medium
+ 
+ **Performance-optimized patterns**:
+ ```python
+@@ -201,10 +210,10 @@ result = client.batch_insert("users", users)
+ print(f"Inserted {result.count} users")
+ ```
+ 
+-## Pattern 10: Add Testing Examples
++### Pattern 10: Add Testing Examples
+ 
+-**Impact**: Low-Medium
+-**Effort**: Medium
++- **Impact**: Low-Medium
++- **Effort**: Medium
+ 
+ **Show how to test code using library**:
+ ```python
+@@ -217,10 +226,10 @@ class TestClient(unittest.TestCase):
+         self.assertTrue(client.connect())
+ ```
+ 
+-## Pattern 11: Provide Advanced Use Cases
++### Pattern 11: Provide Advanced Use Cases
+ 
+-**Impact**: High
+-**Effort**: High
++- **Impact**: High
++- **Effort**: High
+ 
+ **Complex real-world scenarios**:
+ ```python
+@@ -231,10 +240,10 @@ for chunk in client.query_stream("SELECT * FROM large_table"):
+     # Process incrementally, avoid memory issues
+ ```
+ 
+-## Pattern 12: Add Integration Examples
++### Pattern 12: Add Integration Examples
+ 
+-**Impact**: Medium-High
+-**Effort**: Medium
++- **Impact**: Medium-High
++- **Effort**: Medium
+ 
+ **Show integration with popular tools**:
+ ```python
+@@ -248,10 +257,10 @@ df = pd.DataFrame(data)
+ print(df.head())
+ ```
+ 
+-## Pattern 13: Clarify Common Pitfalls
++### Pattern 13: Clarify Common Pitfalls
+ 
+-**Impact**: Medium
+-**Effort**: Low
++- **Impact**: Medium
++- **Effort**: Low
+ 
+ **Prevent common mistakes**:
+ ```python
+@@ -268,10 +277,10 @@ data = client.query("SELECT *")
+ client.close()
+ ```
+ 
+-## Pattern 14: Add Output Examples
++### Pattern 14: Add Output Examples
+ 
+-**Impact**: Low
+-**Effort**: Low
++- **Impact**: Low
++- **Effort**: Low
+ 
+ **Show expected results**:
+ ```python
+@@ -280,17 +289,17 @@ print(response)
+ # Output: {'id': 123, 'name': 'Alice', 'email': 'alice@example.com'}
+ ```
+ 
+-## Pattern 15: Consolidate Duplicates
++### Pattern 15: Consolidate Duplicates
+ 
+-**Impact**: Medium
+-**Effort**: Low
++- **Impact**: Medium
++- **Effort**: Low
+ 
+ **Merge similar examples** - if 3 examples show nearly identical patterns, keep 1 comprehensive version.
+ 
+-## Pattern 16: Fix Formatting
++### Pattern 16: Fix Formatting
+ 
+-**Impact**: Low
+-**Effort**: Low
++- **Impact**: Low
++- **Effort**: Low
+ 
+ **Ensure all code blocks**:
+ - Have language tags: ` ```python ` not ` ``` `
+@@ -300,7 +309,7 @@ print(response)
+ 
+ ---
+ 
+-## RELATED RESOURCES
++## 3. RELATED RESOURCES
+ 
+ - [optimization.md](./optimization.md) - Optimization procedure, quality heuristics, README strategy, and the snippet quality checklist that verifies the output of these patterns
+ - [README.md](./README.md) - create-quality-control reference route map
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+index 4bbc02f18ea..ae617356c45 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md
+@@ -21,8 +21,16 @@ For execution modes see [workflows.md](./workflows.md). For worked command recip
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This file covers how a create-quality-control run validates and enforces standards: the validation touchpoints, the enforcement approval-prompt wording, how the phases chain together, and what to check when a run breaks.
+ 
++### When to Use
++
++- A validation step needs its manual sequence, blocking behavior or script confirmed.
++- An enforcement prompt needs the wording to surface to the user.
++- A run breaks and the failure needs a diagnosis.
++
+ ---
+ 
+ ## 2. VALIDATION INTEGRATION
+@@ -218,7 +226,7 @@ Phase 3: AI provides recommendations
+ 
+ ---
+ 
+-## RELATED RESOURCES
++## 6. RELATED RESOURCES
+ 
+ - [workflows.md](./workflows.md) - Four execution modes and mode selection
+ - [workflow-examples.md](./workflow-examples.md) - Worked command examples and batch processing
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+index a8a70d0d6a6..3bca8f21ab6 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/workflow-examples.md
+@@ -21,12 +21,21 @@ For execution modes see [workflows.md](./workflows.md). For the validation seque
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This file collects copy-paste command recipes for the create-quality-control workflow: single-file worked examples (new SKILL creation, README optimization, pre-commit validation) plus multi-file and batch-processing recipes.
+ 
++### When to Use
++
++- A run needs a starting command for a common single-file task.
++- Several documents need batch extraction or validation.
++
+ ---
+ 
+ ## 2. COMMON WORKFLOW EXAMPLES
+ 
++> This packet audits existing documents only and never creates an artifact. `create-skill` owns step 1; this packet joins at the first validation command.
++
+ **Example 1: New SKILL Creation**
+ ```bash
+ # Run every command from the repository root.
+@@ -92,7 +101,7 @@ done
+ 
+ ---
+ 
+-## RELATED RESOURCES
++## 4. RELATED RESOURCES
+ 
+ - [workflows.md](./workflows.md) - Four execution modes and mode selection
+ - [validation-and-enforcement.md](./validation-and-enforcement.md) - Validation touchpoints, enforcement prompts, troubleshooting
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md b/.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md
+index 08e863276db..f4f54d55491 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/references/workflows.md
+@@ -19,20 +19,33 @@ The four execution modes and how to pick one. `SKILL.md` §3 Step 1 owns mode se
+ 
+ ## 1. OVERVIEW
+ 
+-### What Are Workflows?
++### Purpose
+ 
+ Workflows define the execution patterns and operational modes for the markdown documentation workflow. These workflows orchestrate structure checks, AI-assisted review, and (when desired) content improvement.
+ 
+-**Core Purpose**:
+ - **Mode selection** - Four execution modes for different use cases
+ - **Validation workflow** - Post-operation and pre-submission validation patterns
+ - **Phase orchestration** - Sequential or independent phase execution
+ - **Error handling** - Graceful degradation with clear error messages
+ 
++### When to Use
++
++- Auditing an existing SKILL/README/knowledge doc → Report-only audit
++- Answering "is this ready to ship" → Structure validation
++- Improving an existing README → Content optimization
++- Assessing a whole doc set → Batch snapshot
++
+ > **📍 Context**: This is a Level 3 reference file (loaded on-demand). For the complete progressive disclosure architecture, see [skill_creation/overview.md § Skill Structure System](../../sk-create-skill/references/shared/overview.md#3-skill-structure-system).
+ 
+-**Scope Note**: This reference covers create-quality-control runs only. For other documentation work, see:
+-Other documentation workflows are separate packets rather than numbered modes in this reference: [skill creation](../../sk-create-skill/references/README.md), [diagrams and flowcharts](../../../sk-design/sk-design-diagram/README.md), [READMEs](../../sk-create-readme/references/README.md), [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md), and [feature catalogs](../../sk-create-feature-catalog/references/README.md). Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
++**Scope Note**: This reference covers create-quality-control runs only. Other documentation workflows are separate packets rather than numbered modes in this reference:
++
++- [skill creation](../../sk-create-skill/references/README.md)
++- [diagrams and flowcharts](../../../sk-design/sk-design-diagram/README.md)
++- [READMEs](../../sk-create-readme/references/README.md)
++- [manual testing playbooks](../../sk-create-manual-testing-playbook/references/README.md)
++- [feature catalogs](../../sk-create-feature-catalog/references/README.md)
++
++Benchmarks, changelogs, diffs, and the quality-control packet are likewise selected through `mode-registry.json`.
+ 
+ The playbook workflow assumes a root directory playbook plus required per-feature files in category folders at the playbook root. Current validation remains root-doc focused and does not recurse into those category folders.
+ 
+@@ -51,17 +64,11 @@ The playbook workflow assumes a root directory playbook plus required per-featur
+ | **Content optimization** | 2 | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` + AI eval | Improve existing docs for AI | Recommendations for clarity + AI-friendliness |
+ | **Batch snapshot** | 1 (JSON only) | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py` per file | Assessing several docs at once, no changes | Per-file JSON report for another agent |
+ 
+-**Mode selection**:
+-- Auditing an existing SKILL/README/knowledge doc → Report-only audit
+-- Answering "is this ready to ship" → Structure validation
+-- Improving an existing README → Content optimization
+-- Assessing a whole doc set → Batch snapshot
+-
+ ---
+ 
+ ## 3. WHERE THE REST LIVES
+ 
+-The validation sequence, enforcement prompts, phase chaining, worked examples, and batch recipes moved to single-concern siblings so this file stays focused on modes:
++The validation sequence, enforcement prompts, phase chaining, worked examples, and batch recipes live in single-concern siblings, so this file stays focused on modes:
+ 
+ | Need | Reference |
+ | --- | --- |
+@@ -78,6 +85,7 @@ The validation sequence, enforcement prompts, phase chaining, worked examples, a
+ - [validation-and-enforcement.md](./validation-and-enforcement.md) - Validation, enforcement prompts, phase chaining, troubleshooting
+ - [workflow-examples.md](./workflow-examples.md) - Worked command examples and batch processing
+ - [optimization.md](./optimization.md) - Content transformation procedure
++- [transformation-patterns.md](./transformation-patterns.md) - The 16-pattern before/after catalog
+ - [core-standards.md](../../shared/references/core-standards.md) - Document type rules and structural requirements
+ - [validation.md](../../shared/references/validation.md) - Quality scoring and validation workflows
+ - [quick-reference.md](../../shared/references/quick-reference.md) - Quick command reference

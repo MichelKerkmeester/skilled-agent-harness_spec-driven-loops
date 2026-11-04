@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature names over packet ids"
 importance_tier: important
 contextType: general
-version: 2.1.0.16
+version: 2.1.1.0
 ---
 
 # Evergreen Packet ID Rule
@@ -19,9 +19,9 @@ Evergreen documents describe the current runtime, not the packet history that pr
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Packet numbers rot — feature names and source anchors don't.
+The rule keeps shipped documentation true after the packet that produced it is renumbered, archived or consolidated.
 
 ### When to Use
 
@@ -34,6 +34,10 @@ Apply this rule whenever you author or edit any document that describes shipped 
 - Configuration references: `ENV-REFERENCE.md`, `INSTALL-GUIDE.md`
 
 Skip this rule for spec-local docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`, `decision-record.md`, `handover.md`, `research-report.md`, `audit-findings.md`, `migration-plan.md`) — those ARE the packet record and naturally reference their own packet ID.
+
+### Core Principle
+
+Packet numbers rot — feature names and source anchors don't.
 
 ### Prerequisites
 

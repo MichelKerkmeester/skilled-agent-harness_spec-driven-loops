@@ -9,7 +9,7 @@ trigger_phrases:
   - "provisional benchmark promotion"
 importance_tier: normal
 contextType: reference
-version: 1.5.0.7
+version: 1.5.1.0
 ---
 
 # Benchmark Adoption Case Studies
@@ -21,6 +21,11 @@ Two adoptions teach the format from opposite ends: one promoted into a live skil
 ## 1. OVERVIEW
 
 Each case study records what triggered the adoption decision, the load-bearing insight the folder had to surface, and the lesson for the next author. Case study 1 is a clean promotion backed by many ADRs; case study 2 is a correctly-formatted run that was deliberately never promoted because its headline was a single-run signal. Neither folder is on disk any more, so both read as narrative. The lesson outlives the artifact, which is itself worth noticing when you decide what to write down.
+
+### When to Use
+
+- Modeling a new benchmark folder on an adoption that worked.
+- Deciding whether a provisional run is ready to promote or should stay archived.
 
 ---
 
@@ -42,7 +47,7 @@ The bake-off compared six text embedders against a deterministic paraphrase-reca
 
 Path: `.opencode/specs/z-future/code-graph-and-cocoindex/backup/mcp-coco-index/mcp-server/benchmarks/benchmark-2026-05-18/`
 
-This bake-off belonged to an experimental `mcp-coco-index` server, not a live shipped skill. The run stayed provisional and the server was parked, so the folder now lives under `specs/z-future/` rather than in a skill tree. It is preserved here as a teaching example of a correctly-formatted but deliberately un-promoted run.
+This bake-off belonged to an experimental `mcp-coco-index` server, not a live shipped skill. The run stayed provisional and the server was parked, so the folder lived under `specs/z-future/` rather than in a skill tree. It is preserved here as a teaching example of a correctly-formatted but deliberately un-promoted run.
 
 The bake-off compared five code-tuned embedders against an 18-pair paraphrased fixture. One skipped on Apple Silicon because of an xformers requirement. The leading candidate was ahead by two net pairs over the current default (four unique wins minus two unique losses). No promotion into a live skill shipped on May 18 because the lead was a single-run signal requiring a 3-run confirmation.
 
@@ -59,4 +64,4 @@ The bake-off compared five code-tuned embedders against an 18-pair paraphrased f
 
 ---
 
-*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../SKILL.md`](../../SKILL.md) for the authoritative workflow.*
+*See [pitfalls.md](pitfalls.md) for the common mistakes these adoptions avoided, and [`../../SKILL.md`](../../SKILL.md) for the authoritative workflow.*

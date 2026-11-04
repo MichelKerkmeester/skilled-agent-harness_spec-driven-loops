@@ -1,0 +1,1 @@
+.skilled/skills/sk-doc/sk-create-command/SKILL.md: numbered-section or line references (keep section numbers and the cited lines in place, or update each) at .skilled/skills/sk-doc/ROUTER.md:433, AGENTS.md:216
