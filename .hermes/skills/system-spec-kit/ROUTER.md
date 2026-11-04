@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.4.0
+version: 1.0.5.0
 router_state: active
 skill_pointer: SKILL.md
 ---
