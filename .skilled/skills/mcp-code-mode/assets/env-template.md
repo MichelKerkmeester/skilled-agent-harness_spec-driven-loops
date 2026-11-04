@@ -9,7 +9,7 @@ trigger_phrases:
   - "api token rotation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Environment Variables Template
@@ -484,4 +484,5 @@ call_tool_chain({
 - [naming-convention.md](../references/naming-convention.md) - Tool naming conventions and patterns for Code Mode
 
 - **Template Version**: 1.0.0
+- **Last Updated**: 2025-01-23
 - **Compatibility**: Code Mode UTCP v1.x
