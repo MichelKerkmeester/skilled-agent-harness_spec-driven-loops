@@ -1,0 +1,29 @@
+.skilled/skills/mcp-code-mode/SKILL.md:133: render_bold_label_join: Consecutive bold labels "These discovery methods ONLY work for Code Mode tools in `.utcp_config.json`" and "Th
+.skilled/skills/mcp-code-mode/assets/config-template.md:238: render_bold_label_join: Consecutive bold labels "Features" and "Authentication" join into one paragraph; separate them or use list ite
+.skilled/skills/mcp-code-mode/assets/config-template.md:239: render_bold_label_join: Consecutive bold labels "Authentication" and "Transport" join into one paragraph; separate them or use list it
+.skilled/skills/mcp-code-mode/assets/config-template.md:264: render_bold_label_join: Consecutive bold labels "Features" and "Authentication" join into one paragraph; separate them or use list ite
+.skilled/skills/mcp-code-mode/assets/config-template.md:265: render_bold_label_join: Consecutive bold labels "Authentication" and "Package" join into one paragraph; separate them or use list item
+.skilled/skills/mcp-code-mode/assets/config-template.md:289: render_bold_label_join: Consecutive bold labels "Features" and "Authentication" join into one paragraph; separate them or use list ite
+.skilled/skills/mcp-code-mode/assets/config-template.md:290: render_bold_label_join: Consecutive bold labels "Authentication" and "Package" join into one paragraph; separate them or use list item
+.skilled/skills/mcp-code-mode/assets/config-template.md:314: render_bold_label_join: Consecutive bold labels "Features" and "Authentication" join into one paragraph; separate them or use list ite
+.skilled/skills/mcp-code-mode/assets/config-template.md:315: render_bold_label_join: Consecutive bold labels "Authentication" and "Package" join into one paragraph; separate them or use list item
+.skilled/skills/mcp-code-mode/assets/config-template.md:337: render_bold_label_join: Consecutive bold labels "Features" and "Authentication" join into one paragraph; separate them or use list ite
+.skilled/skills/mcp-code-mode/assets/config-template.md:338: render_bold_label_join: Consecutive bold labels "Authentication" and "Multiple Instances" join into one paragraph; separate them or us
+.skilled/skills/mcp-code-mode/assets/config-template.md:339: render_bold_label_join: Consecutive bold labels "Multiple Instances" and "Package" join into one paragraph; separate them or use list 
+.skilled/skills/mcp-code-mode/assets/config-template.md:457: render_bold_label_join: Consecutive bold labels "Template Version" and "Last Updated" join into one paragraph; separate them or use li
+.skilled/skills/mcp-code-mode/assets/config-template.md:458: render_bold_label_join: Consecutive bold labels "Last Updated" and "Compatibility" join into one paragraph; separate them or use list 
+.skilled/skills/mcp-code-mode/assets/env-template.md:483: render_bold_label_join: Consecutive bold labels "Template Version" and "Last Updated" join into one paragraph; separate them or use li
+.skilled/skills/mcp-code-mode/assets/env-template.md:484: render_bold_label_join: Consecutive bold labels "Last Updated" and "Compatibility" join into one paragraph; separate them or use list 
+.skilled/skills/mcp-code-mode/assets/env-template.md:122: render_bare_url: Bare URL outside a link target; wrap it as [title](url).
+.skilled/skills/mcp-code-mode/assets/env-template.md:189: render_h2_numbering: Unnumbered H2 "CRITICAL: Variable Naming Convention" among numbered peers; number every section.
+.skilled/skills/mcp-code-mode/references/architecture.md:468: render_bold_label_join: Consecutive bold labels "Before:" and "After:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:469: render_bold_label_join: Consecutive bold labels "After:" and "Savings:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:474: render_bold_label_join: Consecutive bold labels "Before:" and "After:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:475: render_bold_label_join: Consecutive bold labels "After:" and "Improvement:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:480: render_bold_label_join: Consecutive bold labels "Before:" and "After:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:481: render_bold_label_join: Consecutive bold labels "After:" and "Benefit:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:486: render_bold_label_join: Consecutive bold labels "Before:" and "After:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:487: render_bold_label_join: Consecutive bold labels "After:" and "Benefit:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:492: render_bold_label_join: Consecutive bold labels "Before:" and "After:" join into one paragraph; separate them or use list items.
+.skilled/skills/mcp-code-mode/references/architecture.md:493: render_bold_label_join: Consecutive bold labels "After:" and "Benefit:" join into one paragraph; separate them or use list items.
+files=10 render_warnings=28 invalid=0

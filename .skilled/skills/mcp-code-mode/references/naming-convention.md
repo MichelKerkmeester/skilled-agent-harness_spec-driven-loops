@@ -9,7 +9,7 @@ trigger_phrases:
   - "namespace dot notation"
 importance_tier: important
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Tool Naming Convention - Complete Guide
@@ -19,6 +19,14 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+This reference defines how a manual name and tool name form a callable Code Mode name.
+
+### When to Use
+
+Use it when deriving a tool call or diagnosing a naming error.
 
 ### Core Pattern
 

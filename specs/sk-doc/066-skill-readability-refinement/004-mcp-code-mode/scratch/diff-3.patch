@@ -1,0 +1,673 @@
+diff --git a/.skilled/skills/mcp-code-mode/README.md b/.skilled/skills/mcp-code-mode/README.md
+index 7595a9039ca..45b0ae842b4 100644
+--- a/.skilled/skills/mcp-code-mode/README.md
++++ b/.skilled/skills/mcp-code-mode/README.md
+@@ -12,7 +12,7 @@ version: 1.0.2.0
+ 
+ # mcp-code-mode
+ 
+-> Reach every external MCP tool you have registered through one TypeScript execution, with schemas discovered on demand so the context stays flat no matter how many servers you add.
++> Use this README to decide whether Code Mode fits an external MCP request.
+ 
+ ---
+ 
+@@ -29,12 +29,18 @@ version: 1.0.2.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
++### Purpose
+ 
+ Native MCP loads every tool schema into the context window before the agent does anything. With a few dozen tools across several servers, that is a large fixed tax on every turn and it grows with each server you add. The agent pays for tool definitions it will never call on this turn. A multi-step flow across two or three services also means several separate tool round-trips. At roughly 47 tools the traditional approach consumes about 141,000 tokens before any real work begins, hitting the practical wall somewhere around two or three MCP servers.
+ 
+ Code Mode replaces that upfront load with progressive disclosure. The AI sees only the Code Mode meta-tools and discovers tool schemas on demand, so the context stays flat at about 1,600 tokens no matter how many servers are configured. A whole multi-tool workflow runs in one TypeScript execution with state held in local variables, saving the round trips and the re-parsing cost between steps.
+ 
++### When to Use
++
++Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
++
++Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
++
+ ### What It Does
+ 
+ Code Mode is the execution engine the `mcp-tooling` modes build on. It wraps every external MCP tool behind a single `call_tool_chain` call that runs TypeScript in a sandboxed V8 isolate. You search for tools with `search_tools`, confirm the callable signature with `tool_info`, write your tool calls inside a `call_tool_chain({ code: "..." })` block and return structured results. The four core tools are `search_tools`, `list_tools`, `tool_info` and `call_tool_chain`. Auxiliary runtime tools such as `register_manual` and `get_required_keys_for_tool` handle dynamic server registration and credential checks, keeping the context about 98% smaller than a full upfront schema load.
+@@ -110,9 +116,16 @@ call_tool_chain({
+ 
+ ### The Four Core Tools
+ 
+-`search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible. `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix. `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code. `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
++- `search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible.
++- `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix.
++- `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code.
++- `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
++
++Three auxiliary tools support dynamic server management.
+ 
+-Three auxiliary tools support dynamic server management. `register_manual` adds an MCP server at runtime without a restart and `deregister_manual` removes one. `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
++- `register_manual` adds an MCP server at runtime without a restart.
++- `deregister_manual` removes one.
++- `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
+ 
+ ### Progressive Disclosure
+ 
+@@ -138,12 +151,6 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
+ 
+ ## 5. INTEGRATION & NAVIGATION
+ 
+-### When To Use This Skill
+-
+-Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
+-
+-Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
+-
+ ### Related Skills
+ 
+ The three MCP tool skills below are among the eight modes the `mcp-tooling` parent hub dispatches via `mcp-tooling/mode-registry.json`. Each one consumes Code Mode as an MCP transport.
+diff --git a/.skilled/skills/mcp-code-mode/ROUTER.md b/.skilled/skills/mcp-code-mode/ROUTER.md
+index 42544bf03ea..6bf5c1271b5 100644
+--- a/.skilled/skills/mcp-code-mode/ROUTER.md
++++ b/.skilled/skills/mcp-code-mode/ROUTER.md
+@@ -20,11 +20,27 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when a prompt names an MCP tool or an external service such as ClickUp, Notion, Figma, MyService or Chrome DevTools, asks for a multi-tool workflow, external API access or browser automation, or reports a Code Mode symptom: a tool not found, a manual-name prefix mistake, an unprefixed environment variable, or a `.utcp_config.json` that fails to load. A native file, search, shell or continuity request goes to the runtime's own tools instead, and a run that scores no intent returns `UNKNOWN_FALLBACK` with a disambiguation checklist rather than a silent default. It routes to two resource families: `references/` holds the naming convention, the configuration guide, the tool catalog, the workflow examples and the architecture notes, and `assets/` holds the config and env templates a setup route loads.
++### Purpose
+ 
+-The router answers one question: given a request, which skill-local resources load, in what order, and
+-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+-loads before an intent selects it.
++The router answers one question: given a request, which skill-local resources load, in what order, and what happens when nothing matches. Every path below stays inside this skill folder, and no resource loads before an intent selects it.
++
++### When to Use
++
++Requests reach this skill when:
++
++- a prompt names an MCP tool or an external service such as ClickUp, Notion, Figma, MyService or Chrome DevTools
++- the request asks for a multi-tool workflow, external API access or browser automation
++- the prompt reports a Code Mode symptom: a tool not found, a manual-name prefix mistake, an unprefixed environment variable, or a `.utcp_config.json` that fails to load
++
++Exclusions and fallback:
++
++- a native file, search, shell or continuity request goes to the runtime's own tools instead
++- a run that scores no intent returns `UNKNOWN_FALLBACK` with a disambiguation checklist rather than a silent default
++
++Resource families:
++
++- `references/` holds the naming convention, the configuration guide, the tool catalog, the workflow examples and the architecture notes
++- `assets/` holds the config and env templates a setup route loads
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-code-mode/SKILL.md b/.skilled/skills/mcp-code-mode/SKILL.md
+index ab240679d88..8954a261695 100644
+--- a/.skilled/skills/mcp-code-mode/SKILL.md
++++ b/.skilled/skills/mcp-code-mode/SKILL.md
+@@ -47,10 +47,13 @@ Execute TypeScript code with direct access to 200+ MCP tools through progressive
+ 
+ ## 2. SMART ROUTING
+ 
+-`mcp-code-mode` is a standalone skill with one workflow mode, so a request that names an MCP tool, an external service, a multi-tool workflow or a browser automation need selects it.
+-A native file, search, shell or continuity request goes to the runtime's own tools instead, and a Code Mode call there exhausts context for nothing.
++`mcp-code-mode` is a standalone skill with one workflow mode.
++A request that names an MCP tool, an external service, a multi-tool workflow or a browser automation need selects it.
++A native file, search, shell or continuity request goes to the runtime's own tools instead,
++and a Code Mode call there exhausts context for nothing.
+ 
+-`references/workflows.md` is the default quick reference and loads first on every run, then the reference page the matched intent maps to loads next.
++`references/workflows.md` is the default quick reference and loads first on every run,
++then the reference page the matched intent maps to loads next.
+ A run that matches no intent returns `UNKNOWN_FALLBACK` with the disambiguation checklist there rather than guessing.
+ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.
+ 
+@@ -129,8 +132,8 @@ Full multi-tool examples live in [references/workflows.md](references/workflows.
+ 
+ ### How to Discover Available Code Mode Tools
+ 
+-**These discovery methods ONLY work for Code Mode tools in `.utcp_config.json`**
+-**They show only Code Mode manuals — never a natively registered MCP server**
++- **These discovery methods ONLY work for Code Mode tools in `.utcp_config.json`**
++- **They show only Code Mode manuals, never a natively registered MCP server**
+ 
+ **Step 1: Check Configuration**
+ ```typescript
+diff --git a/.skilled/skills/mcp-code-mode/assets/config-template.md b/.skilled/skills/mcp-code-mode/assets/config-template.md
+index 275ae3d13ce..ec837be0046 100644
+--- a/.skilled/skills/mcp-code-mode/assets/config-template.md
++++ b/.skilled/skills/mcp-code-mode/assets/config-template.md
+@@ -14,7 +14,7 @@ version: 1.0.0.11
+ 
+ # Configuration Template
+ 
+-Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured MCP servers.
++Open this asset when adding or changing entries in `manual_call_templates`.
+ 
+ ---
+ 
+@@ -24,6 +24,10 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
+ 
+ Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for MyService, ClickUp, Figma, Notion, and Chrome DevTools.
+ 
++### When to Use
++
++Use this template when creating or updating the project-root `.utcp_config.json`.
++
+ ### Usage
+ 
+ Copy this template to `.utcp_config.json` in your project root, then customize the `manual_call_templates` array with your desired MCP servers. Reference credentials using `${VARIABLE_NAME}` syntax.
+@@ -234,9 +238,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
+ }
+ ```
+ 
+-**Features**: 40+ tools for sites, collections, pages, CMS items
+-**Authentication**: Handled by MyService's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via MyService's web interface. Credentials are managed server-side - no local token storage required.
+-**Transport**: `stdio` (standard input/output)
++- **Features**: 40+ tools for sites, collections, pages, CMS items
++- **Authentication**: Handled by MyService's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via MyService's web interface. Credentials are managed server-side - no local token storage required.
++- **Transport**: `stdio` (standard input/output)
+ 
+ ### ClickUp
+ 
+@@ -260,9 +264,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
+ }
+ ```
+ 
+-**Features**: 20+ tools for tasks, lists, workspaces
+-**Authentication**: Requires `clickup_CLICKUP_API_KEY` and `clickup_CLICKUP_TEAM_ID` in .env (prefixed with the manual name)
+-**Package**: `@taazkareem/clickup-mcp-server` (installed on-demand via npx)
++- **Features**: 20+ tools for tasks, lists, workspaces
++- **Authentication**: Requires `clickup_CLICKUP_API_KEY` and `clickup_CLICKUP_TEAM_ID` in .env (prefixed with the manual name)
++- **Package**: `@taazkareem/clickup-mcp-server` (installed on-demand via npx)
+ 
+ ### Figma
+ 
+@@ -285,9 +289,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
+ }
+ ```
+ 
+-**Features**: 18 tools for files, comments, images, components, styles
+-**Authentication**: Requires `figma_FIGMA_API_KEY` in .env (prefixed with the manual name)
+-**Package**: `figma-developer-mcp` (Framelink third-party)
++- **Features**: 18 tools for files, comments, images, components, styles
++- **Authentication**: Requires `figma_FIGMA_API_KEY` in .env (prefixed with the manual name)
++- **Package**: `figma-developer-mcp` (Framelink third-party)
+ 
+ ### Notion
+ 
+@@ -310,9 +314,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
+ }
+ ```
+ 
+-**Features**: 20+ tools for pages, databases, blocks
+-**Authentication**: Requires `notion_NOTION_TOKEN` in .env (prefixed with the manual name)
+-**Package**: `@modelcontextprotocol/server-notion` (official MCP server)
++- **Features**: 20+ tools for pages, databases, blocks
++- **Authentication**: Requires `notion_NOTION_TOKEN` in .env (prefixed with the manual name)
++- **Package**: `@modelcontextprotocol/server-notion` (official MCP server)
+ 
+ ### Chrome DevTools (Multiple Instances)
+ 
+@@ -333,10 +337,10 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
+ }
+ ```
+ 
+-**Features**: 26 tools per instance (navigation, interaction, inspection)
+-**Authentication**: No credentials needed
+-**Multiple Instances**: Use unique names (`chrome_devtools_1`, `chrome_devtools_2`) for parallel browser sessions
+-**Package**: `chrome-devtools-mcp@latest` (always use latest version)
++- **Features**: 26 tools per instance (navigation, interaction, inspection)
++- **Authentication**: No credentials needed
++- **Multiple Instances**: Use unique names (`chrome_devtools_1`, `chrome_devtools_2`) for parallel browser sessions
++- **Package**: `chrome-devtools-mcp@latest` (always use latest version)
+ 
+ ---
+ 
+@@ -453,6 +457,5 @@ GITHUB_TOKEN=ghp_your_token_here
+ - [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
+ - [tool-catalog.md](../references/tool-catalog.md) - Complete catalog of available MCP tools by server
+ 
+-**Template Version**: 1.0.0
+-**Last Updated**: 2025-01-23
+-**Compatibility**: Code Mode UTCP v1.x
++- **Template Version**: 1.0.0
++- **Compatibility**: Code Mode UTCP v1.x
+diff --git a/.skilled/skills/mcp-code-mode/assets/env-template.md b/.skilled/skills/mcp-code-mode/assets/env-template.md
+index e4f7057fa22..caf43bfc457 100644
+--- a/.skilled/skills/mcp-code-mode/assets/env-template.md
++++ b/.skilled/skills/mcp-code-mode/assets/env-template.md
+@@ -14,7 +14,7 @@ version: 1.0.0.10
+ 
+ # Environment Variables Template
+ 
+-Copy-ready `.env` template for Code Mode UTCP authentication with all supported MCP servers.
++Open this asset when creating or updating the project-root `.env` file for Code Mode.
+ 
+ ---
+ 
+@@ -24,6 +24,10 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported
+ 
+ Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, MyService, and Chrome DevTools MCP servers.
+ 
++### When to Use
++
++Use this template when creating the project-root `.env` for Code Mode.
++
+ ### Usage
+ 
+ Copy this template to `.env` in your project root, then replace placeholder values with your actual credentials. Never commit `.env` to version control - add it to `.gitignore` immediately.
+@@ -119,7 +123,7 @@ figma_FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
+ - `notion_NOTION_TOKEN` - Integration token for Notion API (prefixed)
+ 
+ **How to Obtain:**
+-1. Go to https://www.notion.so/my-integrations
++1. Go to [Notion integrations](https://www.notion.so/my-integrations)
+ 2. Click "New integration"
+ 3. Configure integration settings
+ 4. Copy the "Internal Integration Token"
+@@ -186,7 +190,7 @@ myservice_MYSERVICE_API_TOKEN=your_myservice_api_token_here
+ 
+ ---
+ 
+-## CRITICAL: Variable Naming Convention
++## 4. CRITICAL: VARIABLE NAMING CONVENTION
+ 
+ ### Code Mode Prefixes All Environment Variables
+ 
+@@ -237,7 +241,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
+ 
+ ---
+ 
+-## 4. SECURITY BEST PRACTICES
++## 5. SECURITY BEST PRACTICES
+ 
+ ### .gitignore Configuration
+ 
+@@ -287,7 +291,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
+ 
+ ---
+ 
+-## 5. CONFIGURATION REFERENCE
++## 6. CONFIGURATION REFERENCE
+ 
+ ### Variable Syntax in .utcp_config.json
+ 
+@@ -351,7 +355,7 @@ export CLICKUP_TEAM_ID=12345
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 7. TROUBLESHOOTING
+ 
+ ### Variable Not Found Error
+ 
+@@ -396,7 +400,7 @@ Error: Access denied to resource
+ 
+ ---
+ 
+-## 7. TEMPLATE CUSTOMIZATION
++## 8. TEMPLATE CUSTOMIZATION
+ 
+ ### Adding New MCP Server Credentials
+ 
+@@ -442,7 +446,7 @@ Then reference in `.utcp_config.json`:
+ 
+ ---
+ 
+-## 8. VALIDATION CHECKLIST
++## 9. VALIDATION CHECKLIST
+ 
+ **Before using Code Mode, verify:**
+ 
+@@ -470,7 +474,7 @@ call_tool_chain({
+ 
+ ---
+ 
+-## 9. RELATED RESOURCES
++## 10. RELATED RESOURCES
+ 
+ ### Templates
+ - [config-template.md](./config-template.md) - Complete .utcp_config.json configuration template
+@@ -479,6 +483,5 @@ call_tool_chain({
+ - [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
+ - [naming-convention.md](../references/naming-convention.md) - Tool naming conventions and patterns for Code Mode
+ 
+-**Template Version**: 1.0.0
+-**Last Updated**: 2025-01-23
+-**Compatibility**: Code Mode UTCP v1.x
++- **Template Version**: 1.0.0
++- **Compatibility**: Code Mode UTCP v1.x
+diff --git a/.skilled/skills/mcp-code-mode/references/architecture.md b/.skilled/skills/mcp-code-mode/references/architecture.md
+index f236986e3f5..5faa44ac69b 100644
+--- a/.skilled/skills/mcp-code-mode/references/architecture.md
++++ b/.skilled/skills/mcp-code-mode/references/architecture.md
+@@ -20,10 +20,14 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
+ 
+ ## 1. OVERVIEW
+ 
+-### What is Code Mode UTCP?
++### Purpose
+ 
+ **Code Mode UTCP** is an MCP orchestration layer that executes TypeScript code with direct access to multiple MCP servers, eliminating traditional tool-calling overhead through progressive disclosure.
+ 
++### When to Use
++
++Use this reference when comparing token costs or tracing a call through the V8 isolate.
++
+ **Key innovation:** Instead of exposing 200+ tools directly to AI agents, Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
+ 
+ ---
+@@ -464,33 +468,33 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
+ 
+ ### 1. Context Efficiency
+ 
+-**Before:** 141,000 tokens for 47 tools
+-**After:** 1,600 tokens for 200+ tools
+-**Savings:** 98.7%
++- **Before:** 141,000 tokens for 47 tools
++- **After:** 1,600 tokens for 200+ tools
++- **Savings:** 98.7%
+ 
+ ### 2. Execution Speed
+ 
+-**Before:** 15+ API round trips for multi-tool workflow
+-**After:** 1 execution (internally calls multiple tools)
+-**Improvement:** 5× faster
++- **Before:** 15+ API round trips for multi-tool workflow
++- **After:** 1 execution (internally calls multiple tools)
++- **Improvement:** 5× faster
+ 
+ ### 3. State Management
+ 
+-**Before:** Manual state tracking across AI context
+-**After:** Automatic state persistence in V8 sandbox
+-**Benefit:** Natural data flow between operations
++- **Before:** Manual state tracking across AI context
++- **After:** Automatic state persistence in V8 sandbox
++- **Benefit:** Natural data flow between operations
+ 
+ ### 4. Error Handling
+ 
+-**Before:** Error handling in AI layer (complex)
+-**After:** Built-in try/catch in TypeScript
+-**Benefit:** Robust, familiar error patterns
++- **Before:** Error handling in AI layer (complex)
++- **After:** Built-in try/catch in TypeScript
++- **Benefit:** Robust, familiar error patterns
+ 
+ ### 5. Developer Experience
+ 
+-**Before:** Multiple tool calls, context switching, manual orchestration
+-**After:** Single TypeScript workflow, natural programming
+-**Benefit:** Faster development, fewer bugs
++- **Before:** Multiple tool calls, context switching, manual orchestration
++- **After:** Single TypeScript workflow, natural programming
++- **Benefit:** Faster development, fewer bugs
+ 
+ ---
+ 
+diff --git a/.skilled/skills/mcp-code-mode/references/configuration.md b/.skilled/skills/mcp-code-mode/references/configuration.md
+index c8e70e21d60..290be0ea861 100644
+--- a/.skilled/skills/mcp-code-mode/references/configuration.md
++++ b/.skilled/skills/mcp-code-mode/references/configuration.md
+@@ -20,6 +20,14 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++This guide shows how Code Mode uses server definitions and credentials from `.utcp_config.json` and `.env`.
++
++### When to Use
++
++Use it when setting up or changing either file.
++
+ ### Required Files
+ 
+ **Two files required:**
+diff --git a/.skilled/skills/mcp-code-mode/references/naming-convention.md b/.skilled/skills/mcp-code-mode/references/naming-convention.md
+index 1afeb2e94e9..dbb648aad0b 100644
+--- a/.skilled/skills/mcp-code-mode/references/naming-convention.md
++++ b/.skilled/skills/mcp-code-mode/references/naming-convention.md
+@@ -20,6 +20,14 @@ Master the critical naming pattern to avoid the #1 most common Code Mode error.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++This reference defines how a manual name and tool name form a callable Code Mode name.
++
++### When to Use
++
++Use it when deriving a tool call or diagnosing a naming error.
++
+ ### Core Pattern
+ 
+ ```typescript
+diff --git a/.skilled/skills/mcp-code-mode/references/tool-catalog.md b/.skilled/skills/mcp-code-mode/references/tool-catalog.md
+index 39053224805..5b9948b65cf 100644
+--- a/.skilled/skills/mcp-code-mode/references/tool-catalog.md
++++ b/.skilled/skills/mcp-code-mode/references/tool-catalog.md
+@@ -14,14 +14,31 @@ version: 1.0.1.0
+ 
+ # Tool Catalog - Configured MCP Manuals
+ 
++Open this reference when a Code Mode task needs the live callable tools for a configured manual.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++This reference lists the MCP manuals configured for Code Mode and explains how to discover callable tools and schemas in the live session.
++
++### When to Use
++
++- When you need the configured manual list for a Code Mode task.
++- When a workflow needs a configured manual's live callable names or schemas.
++
++### Core Principle
++
+ Code Mode does not maintain a hand-counted static tool inventory. The configured manual names below are the current wiring surface; callable names and schemas must be discovered from the live session.
+ 
+ ---
+ 
+ ## 2. RUNTIME DISCOVERY
+ 
++Use the exact tool name returned by `list_tools()` or `search_tools()`. Call `tool_info()` before composing a new workflow so parameter names and output envelopes come from the live schema.
++
+ ```typescript
+ const matches = await search_tools({
+   task_description: "the user's task",
+@@ -34,13 +51,15 @@ const info = await tool_info({
+ });
+ ```
+ 
+-Use the exact tool name returned by `list_tools()` or `search_tools()`. Call `tool_info()` before composing a new workflow so parameter names and output envelopes come from the live schema.
+-
+ ---
+ 
+ ## 3. CONFIGURED MANUALS
+ 
+-The current `.utcp_config.json` contains these ten manual names:
++- This table names manuals, not tools.
++- A manual may be disabled, unauthenticated, or changed between sessions.
++- Discovery is authoritative for the callable inventory.
++
++The current `.utcp_config.json` contains these thirteen manual names:
+ 
+ | Manual name | Role |
+ |---|---|
+@@ -51,15 +70,19 @@ The current `.utcp_config.json` contains these ten manual names:
+ | `figma` | Figma MCP |
+ | `github` | GitHub MCP |
+ | `gitkraken` | GitKraken MCP |
++| `magnific` | Magnific MCP |
+ | `refero` | Refero design-research transport |
+ | `mobbin` | Mobbin design-research transport |
+-
+-This table names manuals, not tools. A manual may be disabled, unauthenticated, or changed between sessions; discovery is authoritative for the callable inventory.
++| `notion` | Notion MCP |
++| `obsidian` | Obsidian MCP |
++| `webflow` | Webflow MCP |
+ 
+ ---
+ 
+ ## 4. CALLING CONTRACT
+ 
++Do not infer a tool from a service label, a remembered catalog, or a similarly named manual. If discovery does not return a callable, stop and report the missing or unavailable manual.
++
+ The TypeScript namespace is derived from the manual and tool name returned by discovery. For example, the confirmed Mobbin callable is:
+ 
+ ```typescript
+@@ -73,17 +96,18 @@ const result = await mobbin.mobbin_search_screens({
+ });
+ ```
+ 
+-Do not infer a tool from a service label, a remembered catalog, or a similarly named manual. If discovery does not return a callable, stop and report the missing or unavailable manual.
+-
+ ---
+ 
+ ## 5. CONFIGURATION AUTHORITY
+ 
+-The configured manual list is sourced from `.utcp_config.json`. The generated Code Mode `leaf-manifest.json` owns which catalog and workflow resources are routable. The live MCP session owns tool names, schemas, authentication state, and availability.
++- The configured manual list is sourced from `.utcp_config.json`.
++- The generated Code Mode `leaf-manifest.json` owns which catalog and workflow resources are routable.
++- The live MCP session owns tool names, schemas, authentication state, and availability.
++
++The command below checks resource-manifest currency; it does not replace runtime tool discovery.
+ 
+ ```bash
+ node .skilled/skills/mcp-code-mode/scripts/generate-leaf-manifest.cjs \
+   --check .skilled/skills/mcp-code-mode
+ ```
+ 
+-The command above checks resource-manifest currency; it does not replace runtime tool discovery.
+diff --git a/.skilled/skills/mcp-code-mode/references/workflows.md b/.skilled/skills/mcp-code-mode/references/workflows.md
+index 52f827a0791..cb7504ed6a8 100644
+--- a/.skilled/skills/mcp-code-mode/references/workflows.md
++++ b/.skilled/skills/mcp-code-mode/references/workflows.md
+@@ -14,14 +14,31 @@ version: 1.0.1.0
+ 
+ # Workflow Examples - Discovery-First MCP Patterns
+ 
++Open this reference when a tool result may affect the next call or the success report.
++
++---
++
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++This reference provides discovery-first patterns for MCP calls, validation, error handling, and state persistence.
++
++### When to Use
++
++- When a tool result may affect the next call or the success report.
++- When planning dependent calls, parallel reads, partial-success handling, or timeouts.
++
++### Core Principle
++
+ The configured manuals are fixed in `.utcp_config.json`; callable tools are not. Every workflow therefore discovers the manual and tool schema before calling it.
+ 
+ ---
+ 
+ ## 2. DISCOVER, INSPECT, CALL
+ 
++Use the returned schema to replace the placeholder arguments before execution. The exact namespace is part of the discovered contract; do not derive it from an old example.
++
+ ```typescript
+ const candidates = await search_tools({
+   task_description: "the requested operation",
+@@ -39,12 +56,12 @@ const result = await call_tool_chain({
+ });
+ ```
+ 
+-Use the returned schema to replace the placeholder arguments before execution. The exact namespace is part of the discovered contract; do not derive it from an old example.
+-
+ ---
+ 
+ ## 3. ENUMERATE A MANUAL
+ 
++The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). A zero-result enumeration is an availability or authentication signal, not evidence that a guessed namespace is correct.
++
+ ```typescript
+ const allTools = await list_tools();
+ const manualName = "<configured manual name>";
+@@ -53,12 +70,12 @@ const manualTools = allTools.tools.filter((tool) => tool.startsWith(`${manualNam
+ return manualTools.map((tool) => tool.name ?? tool);
+ ```
+ 
+-The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). A zero-result enumeration is an availability or authentication signal, not evidence that a guessed namespace is correct.
+-
+ ---
+ 
+ ## 4. CONFIRMED MOBBIN SEARCH
+ 
++The Mobbin packet documents `search_screens`, `search_flows`, and `search_sections`; re-confirm all three with `tool_info()` in a fresh session.
++
+ This is the concrete example for the currently confirmed three-tool Mobbin surface:
+ 
+ ```typescript
+@@ -78,12 +95,12 @@ const result = await call_tool_chain({
+ });
+ ```
+ 
+-The Mobbin packet documents `search_screens`, `search_flows`, and `search_sections`; re-confirm all three with `tool_info()` in a fresh session.
+-
+ ---
+ 
+ ## 5. SEQUENTIAL CHAIN WITH VALIDATION
+ 
++Keep dependent operations in one chain when the second call consumes the first result. Inspect both envelopes before reporting success.
++
+ ```typescript
+ const first = await call_tool_chain({
+   code: `const result = await <discovered_manual>.<discovered_tool>({}); return result;`
+@@ -100,12 +117,12 @@ const second = await call_tool_chain({
+ return { first, second };
+ ```
+ 
+-Keep dependent operations in one chain when the second call consumes the first result. Inspect both envelopes before reporting success.
+-
+ ---
+ 
+ ## 6. PARALLEL READ-ONLY WORK
+ 
++Use parallel execution only for independent reads. Do not parallelize mutations, and do not hide a failed branch inside a successful aggregate.
++
+ ```typescript
+ const [left, right] = await Promise.all([
+   call_tool_chain({ code: `return await <manual>.<read_tool>({});` }),
+@@ -115,12 +132,12 @@ const [left, right] = await Promise.all([
+ return { left, right };
+ ```
+ 
+-Use parallel execution only for independent reads. Do not parallelize mutations, and do not hide a failed branch inside a successful aggregate.
+-
+ ---
+ 
+ ## 7. ERROR AND PARTIAL-SUCCESS HANDLING
+ 
++Report partial success explicitly. A successful call does not prove that a sibling call, manual, or authentication path is healthy.
++
+ ```typescript
+ const outcomes = await Promise.allSettled([
+   call_tool_chain({ code: `return await <manual>.<first_read>({});` }),
+@@ -133,13 +150,13 @@ return {
+ };
+ ```
+ 
+-Report partial success explicitly. A successful call does not prove that a sibling call, manual, or authentication path is healthy.
+-
+ ---
+ 
+ ## 8. STATE AND TIMEOUTS
+ 
+-Keep intermediate data in local variables inside one `call_tool_chain` execution. Use a timeout appropriate to the number and size of calls, and return a bounded summary rather than dumping large tool responses into logs.
++- Keep intermediate data in local variables inside one `call_tool_chain` execution.
++- Use a timeout appropriate to the number and size of calls.
++- Return a bounded summary rather than dumping large tool responses into logs.
+ 
+ ```typescript
+ await call_tool_chain({

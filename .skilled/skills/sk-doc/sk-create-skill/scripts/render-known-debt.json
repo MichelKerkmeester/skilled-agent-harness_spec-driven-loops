@@ -44,14 +44,6 @@
         "render_bold_label_join"
       ]
     },
-    "mcp-code-mode": {
-      "findings": 27,
-      "codes": [
-        "render_bare_url",
-        "render_bold_label_join",
-        "render_h2_numbering"
-      ]
-    },
     "mcp-tooling/mcp-aside-devtools": {
       "findings": 24,
       "codes": [

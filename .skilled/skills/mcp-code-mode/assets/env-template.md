@@ -9,7 +9,7 @@ trigger_phrases:
   - "api token rotation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.10
+version: 1.0.1.0
 ---
 
 # Environment Variables Template
@@ -23,6 +23,10 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 ### Purpose
 
 Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, MyService, and Chrome DevTools MCP servers.
+
+### When to Use
+
+Use this template when creating the project-root `.env` for Code Mode.
 
 ### Usage
 
@@ -119,7 +123,7 @@ figma_FIGMA_API_KEY=figd_abcdefghijklmnopqrstuvwxyz1234567890
 - `notion_NOTION_TOKEN` - Integration token for Notion API (prefixed)
 
 **How to Obtain:**
-1. Go to https://www.notion.so/my-integrations
+1. Go to [Notion integrations](https://www.notion.so/my-integrations)
 2. Click "New integration"
 3. Configure integration settings
 4. Copy the "Internal Integration Token"
@@ -186,7 +190,7 @@ myservice_MYSERVICE_API_TOKEN=your_myservice_api_token_here
 
 ---
 
-## CRITICAL: Variable Naming Convention
+## 4. CRITICAL: VARIABLE NAMING CONVENTION
 
 ### Code Mode Prefixes All Environment Variables
 
@@ -237,7 +241,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
-## 4. SECURITY BEST PRACTICES
+## 5. SECURITY BEST PRACTICES
 
 ### .gitignore Configuration
 
@@ -287,7 +291,7 @@ grep '_FIGMA_API_KEY' .env    # Should show: figma_FIGMA_API_KEY=...
 
 ---
 
-## 5. CONFIGURATION REFERENCE
+## 6. CONFIGURATION REFERENCE
 
 ### Variable Syntax in .utcp_config.json
 
@@ -351,7 +355,7 @@ export CLICKUP_TEAM_ID=12345
 
 ---
 
-## 6. TROUBLESHOOTING
+## 7. TROUBLESHOOTING
 
 ### Variable Not Found Error
 
@@ -396,7 +400,7 @@ Error: Access denied to resource
 
 ---
 
-## 7. TEMPLATE CUSTOMIZATION
+## 8. TEMPLATE CUSTOMIZATION
 
 ### Adding New MCP Server Credentials
 
@@ -442,7 +446,7 @@ Then reference in `.utcp_config.json`:
 
 ---
 
-## 8. VALIDATION CHECKLIST
+## 9. VALIDATION CHECKLIST
 
 **Before using Code Mode, verify:**
 
@@ -470,7 +474,7 @@ call_tool_chain({
 
 ---
 
-## 9. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 ### Templates
 - [config-template.md](./config-template.md) - Complete .utcp_config.json configuration template
@@ -479,6 +483,5 @@ call_tool_chain({
 - [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
 - [naming-convention.md](../references/naming-convention.md) - Tool naming conventions and patterns for Code Mode
 
-**Template Version**: 1.0.0
-**Last Updated**: 2025-01-23
-**Compatibility**: Code Mode UTCP v1.x
+- **Template Version**: 1.0.0
+- **Compatibility**: Code Mode UTCP v1.x

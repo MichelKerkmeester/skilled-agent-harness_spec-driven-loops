@@ -9,18 +9,35 @@ trigger_phrases:
   - "sandbox state persistence"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Workflow Examples - Discovery-First MCP Patterns
 
+Open this reference when a tool result may affect the next call or the success report.
+
+---
+
 ## 1. OVERVIEW
+
+### Purpose
+
+This reference provides discovery-first patterns for MCP calls, validation, error handling, and state persistence.
+
+### When to Use
+
+- When a tool result may affect the next call or the success report.
+- When planning dependent calls, parallel reads, partial-success handling, or timeouts.
+
+### Core Principle
 
 The configured manuals are fixed in `.utcp_config.json`; callable tools are not. Every workflow therefore discovers the manual and tool schema before calling it.
 
 ---
 
 ## 2. DISCOVER, INSPECT, CALL
+
+Use the returned schema to replace the placeholder arguments before execution. The exact namespace is part of the discovered contract; do not derive it from an old example.
 
 ```typescript
 const candidates = await search_tools({
@@ -39,11 +56,11 @@ const result = await call_tool_chain({
 });
 ```
 
-Use the returned schema to replace the placeholder arguments before execution. The exact namespace is part of the discovered contract; do not derive it from an old example.
-
 ---
 
 ## 3. ENUMERATE A MANUAL
+
+The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). A zero-result enumeration is an availability or authentication signal, not evidence that a guessed namespace is correct.
 
 ```typescript
 const allTools = await list_tools();
@@ -53,11 +70,11 @@ const manualTools = allTools.tools.filter((tool) => tool.startsWith(`${manualNam
 return manualTools.map((tool) => tool.name ?? tool);
 ```
 
-The configured manual names are listed in [tool-catalog.md](./tool-catalog.md). A zero-result enumeration is an availability or authentication signal, not evidence that a guessed namespace is correct.
-
 ---
 
 ## 4. CONFIRMED MOBBIN SEARCH
+
+The Mobbin packet documents `search_screens`, `search_flows`, and `search_sections`; re-confirm all three with `tool_info()` in a fresh session.
 
 This is the concrete example for the currently confirmed three-tool Mobbin surface:
 
@@ -78,11 +95,11 @@ const result = await call_tool_chain({
 });
 ```
 
-The Mobbin packet documents `search_screens`, `search_flows`, and `search_sections`; re-confirm all three with `tool_info()` in a fresh session.
-
 ---
 
 ## 5. SEQUENTIAL CHAIN WITH VALIDATION
+
+Keep dependent operations in one chain when the second call consumes the first result. Inspect both envelopes before reporting success.
 
 ```typescript
 const first = await call_tool_chain({
@@ -100,11 +117,11 @@ const second = await call_tool_chain({
 return { first, second };
 ```
 
-Keep dependent operations in one chain when the second call consumes the first result. Inspect both envelopes before reporting success.
-
 ---
 
 ## 6. PARALLEL READ-ONLY WORK
+
+Use parallel execution only for independent reads. Do not parallelize mutations, and do not hide a failed branch inside a successful aggregate.
 
 ```typescript
 const [left, right] = await Promise.all([
@@ -115,11 +132,11 @@ const [left, right] = await Promise.all([
 return { left, right };
 ```
 
-Use parallel execution only for independent reads. Do not parallelize mutations, and do not hide a failed branch inside a successful aggregate.
-
 ---
 
 ## 7. ERROR AND PARTIAL-SUCCESS HANDLING
+
+Report partial success explicitly. A successful call does not prove that a sibling call, manual, or authentication path is healthy.
 
 ```typescript
 const outcomes = await Promise.allSettled([
@@ -133,13 +150,13 @@ return {
 };
 ```
 
-Report partial success explicitly. A successful call does not prove that a sibling call, manual, or authentication path is healthy.
-
 ---
 
 ## 8. STATE AND TIMEOUTS
 
-Keep intermediate data in local variables inside one `call_tool_chain` execution. Use a timeout appropriate to the number and size of calls, and return a bounded summary rather than dumping large tool responses into logs.
+- Keep intermediate data in local variables inside one `call_tool_chain` execution.
+- Use a timeout appropriate to the number and size of calls.
+- Return a bounded summary rather than dumping large tool responses into logs.
 
 ```typescript
 await call_tool_chain({

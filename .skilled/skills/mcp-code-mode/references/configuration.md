@@ -9,7 +9,7 @@ trigger_phrases:
   - "tool search strategy config"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.9
+version: 1.0.1.0
 ---
 
 # Configuration Guide - .utcp_config.json and Environment Setup
@@ -19,6 +19,14 @@ Set up Code Mode UTCP with MCP servers, environment variables, and credentials.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+This guide shows how Code Mode uses server definitions and credentials from `.utcp_config.json` and `.env`.
+
+### When to Use
+
+Use it when setting up or changing either file.
 
 ### Required Files
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "code mode token savings"
 importance_tier: normal
 contextType: general
-version: 1.0.0.12
+version: 1.0.1.0
 ---
 
 # System Architecture - Code Mode UTCP
@@ -20,9 +20,13 @@ Understand how Code Mode UTCP achieves 98.7% token savings while providing acces
 
 ## 1. OVERVIEW
 
-### What is Code Mode UTCP?
+### Purpose
 
 **Code Mode UTCP** is an MCP orchestration layer that executes TypeScript code with direct access to multiple MCP servers, eliminating traditional tool-calling overhead through progressive disclosure.
+
+### When to Use
+
+Use this reference when comparing token costs or tracing a call through the V8 isolate.
 
 **Key innovation:** Instead of exposing 200+ tools directly to AI agents, Code Mode provides a single execution environment where tools are accessed programmatically and loaded on-demand.
 
@@ -464,33 +468,33 @@ Usable?    ✅      ✅      ✅     ✅      ✅      ✅
 
 ### 1. Context Efficiency
 
-**Before:** 141,000 tokens for 47 tools
-**After:** 1,600 tokens for 200+ tools
-**Savings:** 98.7%
+- **Before:** 141,000 tokens for 47 tools
+- **After:** 1,600 tokens for 200+ tools
+- **Savings:** 98.7%
 
 ### 2. Execution Speed
 
-**Before:** 15+ API round trips for multi-tool workflow
-**After:** 1 execution (internally calls multiple tools)
-**Improvement:** 5× faster
+- **Before:** 15+ API round trips for multi-tool workflow
+- **After:** 1 execution (internally calls multiple tools)
+- **Improvement:** 5× faster
 
 ### 3. State Management
 
-**Before:** Manual state tracking across AI context
-**After:** Automatic state persistence in V8 sandbox
-**Benefit:** Natural data flow between operations
+- **Before:** Manual state tracking across AI context
+- **After:** Automatic state persistence in V8 sandbox
+- **Benefit:** Natural data flow between operations
 
 ### 4. Error Handling
 
-**Before:** Error handling in AI layer (complex)
-**After:** Built-in try/catch in TypeScript
-**Benefit:** Robust, familiar error patterns
+- **Before:** Error handling in AI layer (complex)
+- **After:** Built-in try/catch in TypeScript
+- **Benefit:** Robust, familiar error patterns
 
 ### 5. Developer Experience
 
-**Before:** Multiple tool calls, context switching, manual orchestration
-**After:** Single TypeScript workflow, natural programming
-**Benefit:** Faster development, fewer bugs
+- **Before:** Multiple tool calls, context switching, manual orchestration
+- **After:** Single TypeScript workflow, natural programming
+- **Benefit:** Faster development, fewer bugs
 
 ---
 

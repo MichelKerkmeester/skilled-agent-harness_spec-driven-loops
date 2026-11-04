@@ -6,7 +6,7 @@ trigger_phrases:
   - "mcp-code-mode routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,11 +20,27 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when a prompt names an MCP tool or an external service such as ClickUp, Notion, Figma, MyService or Chrome DevTools, asks for a multi-tool workflow, external API access or browser automation, or reports a Code Mode symptom: a tool not found, a manual-name prefix mistake, an unprefixed environment variable, or a `.utcp_config.json` that fails to load. A native file, search, shell or continuity request goes to the runtime's own tools instead, and a run that scores no intent returns `UNKNOWN_FALLBACK` with a disambiguation checklist rather than a silent default. It routes to two resource families: `references/` holds the naming convention, the configuration guide, the tool catalog, the workflow examples and the architecture notes, and `assets/` holds the config and env templates a setup route loads.
+### Purpose
 
-The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
-loads before an intent selects it.
+The router answers one question: given a request, which skill-local resources load, in what order, and what happens when nothing matches. Every path below stays inside this skill folder, and no resource loads before an intent selects it.
+
+### When to Use
+
+Requests reach this skill when:
+
+- a prompt names an MCP tool or an external service such as ClickUp, Notion, Figma, MyService or Chrome DevTools
+- the request asks for a multi-tool workflow, external API access or browser automation
+- the prompt reports a Code Mode symptom: a tool not found, a manual-name prefix mistake, an unprefixed environment variable, or a `.utcp_config.json` that fails to load
+
+Exclusions and fallback:
+
+- a native file, search, shell or continuity request goes to the runtime's own tools instead
+- a run that scores no intent returns `UNKNOWN_FALLBACK` with a disambiguation checklist rather than a silent default
+
+Resource families:
+
+- `references/` holds the naming convention, the configuration guide, the tool catalog, the workflow examples and the architecture notes
+- `assets/` holds the config and env templates a setup route loads
 
 ---
 

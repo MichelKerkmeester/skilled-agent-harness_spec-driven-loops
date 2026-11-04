@@ -1,0 +1,2 @@
+VERDICT: FIX
+- [P1] .skilled/skills/mcp-code-mode/SKILL.md:136 | 2 | The second statement differs from the finding’s required exact text: the em dash became a comma. | Replace with: `- **They show only Code Mode manuals — never a natively registered MCP server**`

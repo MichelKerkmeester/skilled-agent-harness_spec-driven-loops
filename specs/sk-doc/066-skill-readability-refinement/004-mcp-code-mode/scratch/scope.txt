@@ -1,0 +1,10 @@
+.skilled/skills/mcp-code-mode/README.md
+.skilled/skills/mcp-code-mode/ROUTER.md
+.skilled/skills/mcp-code-mode/SKILL.md
+.skilled/skills/mcp-code-mode/assets/config-template.md
+.skilled/skills/mcp-code-mode/assets/env-template.md
+.skilled/skills/mcp-code-mode/references/architecture.md
+.skilled/skills/mcp-code-mode/references/configuration.md
+.skilled/skills/mcp-code-mode/references/naming-convention.md
+.skilled/skills/mcp-code-mode/references/tool-catalog.md
+.skilled/skills/mcp-code-mode/references/workflows.md

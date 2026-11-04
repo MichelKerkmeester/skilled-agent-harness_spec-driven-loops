@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # mcp-code-mode
@@ -29,11 +29,17 @@ version: 1.0.2.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
+### Purpose
 
 Native MCP loads every tool schema into the context window before the agent does anything. With a few dozen tools across several servers, that is a large fixed tax on every turn and it grows with each server you add. The agent pays for tool definitions it will never call on this turn. A multi-step flow across two or three services also means several separate tool round-trips. At roughly 47 tools the traditional approach consumes about 141,000 tokens before any real work begins, hitting the practical wall somewhere around two or three MCP servers.
 
 Code Mode replaces that upfront load with progressive disclosure. The AI sees only the Code Mode meta-tools and discovers tool schemas on demand, so the context stays flat at about 1,600 tokens no matter how many servers are configured. A whole multi-tool workflow runs in one TypeScript execution with state held in local variables, saving the round trips and the re-parsing cost between steps.
+
+### When to Use
+
+Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
+
+Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
 
 ### What It Does
 
@@ -110,9 +116,16 @@ call_tool_chain({
 
 ### The Four Core Tools
 
-`search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible. `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix. `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code. `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
+- `search_tools({ task_description, limit? })` finds registered tools by a natural-language task description. It returns tool names and short descriptions only, keeping the token cost negligible.
+- `list_tools()` returns every registered Code Mode tool name. Use it when you need the full inventory or want to group tools by manual prefix.
+- `tool_info({ tool_name })` returns the exact callable TypeScript signature for one tool. Always call it before writing parameterised execution code.
+- `call_tool_chain({ code, timeout?, max_output_size? })` executes a TypeScript block that calls the tools and returns structured state. It returns `{ success, result, logs }` where `logs` captures every `console.log` output from inside the block, or `{ success: false, error }` when the call itself fails.
 
-Three auxiliary tools support dynamic server management. `register_manual` adds an MCP server at runtime without a restart and `deregister_manual` removes one. `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
+Three auxiliary tools support dynamic server management.
+
+- `register_manual` adds an MCP server at runtime without a restart.
+- `deregister_manual` removes one.
+- `get_required_keys_for_tool` reports the prefixed environment variable keys a tool needs before you call it.
 
 ### Progressive Disclosure
 
@@ -137,12 +150,6 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for Code Mode whenever you need to call an external MCP tool: ClickUp for task management, Figma for design files, MyService for CMS operations, Notion for documentation, Chrome DevTools for browser automation or any other server registered in `.utcp_config.json`. Reach for it too when you need to chain several of those tools into a single workflow.
-
-Skip Code Mode for native MCP tools a runtime registers directly, for local file operations (Read, Write, Edit, Grep, Glob, Bash) and for any first-class tool the active runtime already exposes directly. Calling native tools through Code Mode adds overhead without giving you access to them, because Code Mode only sees what is in `.utcp_config.json`.
 
 ### Related Skills
 

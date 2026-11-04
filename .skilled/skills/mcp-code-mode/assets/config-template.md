@@ -9,7 +9,7 @@ trigger_phrases:
   - "manual call templates array"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.11
+version: 1.0.1.0
 ---
 
 # Configuration Template
@@ -23,6 +23,10 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
 ### Purpose
 
 Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for MyService, ClickUp, Figma, Notion, and Chrome DevTools.
+
+### When to Use
+
+Use this template when creating or updating the project-root `.utcp_config.json`.
 
 ### Usage
 
@@ -234,9 +238,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 40+ tools for sites, collections, pages, CMS items
-**Authentication**: Handled by MyService's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via MyService's web interface. Credentials are managed server-side - no local token storage required.
-**Transport**: `stdio` (standard input/output)
+- **Features**: 40+ tools for sites, collections, pages, CMS items
+- **Authentication**: Handled by MyService's remote MCP server via browser OAuth flow. When first connecting, you'll be prompted to authenticate via MyService's web interface. Credentials are managed server-side - no local token storage required.
+- **Transport**: `stdio` (standard input/output)
 
 ### ClickUp
 
@@ -260,9 +264,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 20+ tools for tasks, lists, workspaces
-**Authentication**: Requires `clickup_CLICKUP_API_KEY` and `clickup_CLICKUP_TEAM_ID` in .env (prefixed with the manual name)
-**Package**: `@taazkareem/clickup-mcp-server` (installed on-demand via npx)
+- **Features**: 20+ tools for tasks, lists, workspaces
+- **Authentication**: Requires `clickup_CLICKUP_API_KEY` and `clickup_CLICKUP_TEAM_ID` in .env (prefixed with the manual name)
+- **Package**: `@taazkareem/clickup-mcp-server` (installed on-demand via npx)
 
 ### Figma
 
@@ -285,9 +289,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 18 tools for files, comments, images, components, styles
-**Authentication**: Requires `figma_FIGMA_API_KEY` in .env (prefixed with the manual name)
-**Package**: `figma-developer-mcp` (Framelink third-party)
+- **Features**: 18 tools for files, comments, images, components, styles
+- **Authentication**: Requires `figma_FIGMA_API_KEY` in .env (prefixed with the manual name)
+- **Package**: `figma-developer-mcp` (Framelink third-party)
 
 ### Notion
 
@@ -310,9 +314,9 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 20+ tools for pages, databases, blocks
-**Authentication**: Requires `notion_NOTION_TOKEN` in .env (prefixed with the manual name)
-**Package**: `@modelcontextprotocol/server-notion` (official MCP server)
+- **Features**: 20+ tools for pages, databases, blocks
+- **Authentication**: Requires `notion_NOTION_TOKEN` in .env (prefixed with the manual name)
+- **Package**: `@modelcontextprotocol/server-notion` (official MCP server)
 
 ### Chrome DevTools (Multiple Instances)
 
@@ -333,10 +337,10 @@ Copy this template to `.utcp_config.json` in your project root, then customize t
 }
 ```
 
-**Features**: 26 tools per instance (navigation, interaction, inspection)
-**Authentication**: No credentials needed
-**Multiple Instances**: Use unique names (`chrome_devtools_1`, `chrome_devtools_2`) for parallel browser sessions
-**Package**: `chrome-devtools-mcp@latest` (always use latest version)
+- **Features**: 26 tools per instance (navigation, interaction, inspection)
+- **Authentication**: No credentials needed
+- **Multiple Instances**: Use unique names (`chrome_devtools_1`, `chrome_devtools_2`) for parallel browser sessions
+- **Package**: `chrome-devtools-mcp@latest` (always use latest version)
 
 ---
 
@@ -453,6 +457,5 @@ GITHUB_TOKEN=ghp_your_token_here
 - [configuration.md](../references/configuration.md) - Comprehensive configuration guide for Code Mode UTCP
 - [tool-catalog.md](../references/tool-catalog.md) - Complete catalog of available MCP tools by server
 
-**Template Version**: 1.0.0
-**Last Updated**: 2025-01-23
-**Compatibility**: Code Mode UTCP v1.x
+- **Template Version**: 1.0.0
+- **Compatibility**: Code Mode UTCP v1.x
