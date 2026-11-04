@@ -20,7 +20,8 @@
     "sk-doc/062-readme-validation-debt",
     "sk-doc/063-opencode-native-surfaces",
     "sk-doc/064-reference-template-debt",
-    "sk-doc/065-conversation-playbook-scenarios"
+    "sk-doc/065-conversation-playbook-scenarios",
+    "sk-doc/066-skill-readability-refinement"
   ],
   "manual": {
     "depends_on": [],
