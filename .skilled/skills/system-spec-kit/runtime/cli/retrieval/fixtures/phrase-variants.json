@@ -1,5 +1,5 @@
 {
-  "manifestHash": "df45f516ed5605389e39676a24d59eca93dbf01684dac4ffb73e1d74b6f592d2",
+  "manifestHash": "eb2739b9eb76529d64c1d2e8d56ee2844f4db2195c9d7ff4d1e76605ef633ed4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19056,6 +19056,9 @@
     ],
     "ci surface precedence decision": [
       "ci surface precedence decision"
+    ],
+    "ci surface routing section": [
+      "CI surface routing section"
     ],
     "ci switch": [
       "ci switch"
@@ -49720,6 +49723,9 @@
     "frontend reference restructure": [
       "frontend reference restructure"
     ],
+    "frontend routing section order": [
+      "frontend routing section order"
+    ],
     "frontend stack overrides": [
       "frontend stack overrides"
     ],
@@ -56103,6 +56109,9 @@
     ],
     "hub router schema": [
       "hub router schema"
+    ],
+    "hub router section order": [
+      "hub router section order"
     ],
     "hub router target": [
       "hub-router target"
@@ -76660,6 +76669,9 @@
     "phase 10 post fix research": [
       "phase 10 post fix research"
     ],
+    "phase 10 reference readability research": [
+      "phase 10 reference readability research"
+    ],
     "phase 10 review remediation": [
       "phase 10 review remediation"
     ],
@@ -85495,6 +85507,9 @@
     "reference artifact verification": [
       "reference artifact verification"
     ],
+    "reference body skeleton": [
+      "reference body skeleton"
+    ],
     "reference census before deletion": [
       "reference census before deletion"
     ],
@@ -85527,6 +85542,21 @@
     ],
     "reference levels headline claims": [
       "reference levels headline claims"
+    ],
+    "reference readability research": [
+      "reference readability research"
+    ],
+    "reference readability research acceptance criteria": [
+      "reference readability research acceptance criteria"
+    ],
+    "reference readability research implementation summary": [
+      "reference readability research implementation summary"
+    ],
+    "reference readability research plan": [
+      "reference readability research plan"
+    ],
+    "reference readability research tasks": [
+      "reference readability research tasks"
     ],
     "reference restructure": [
       "reference restructure"
@@ -87950,6 +87980,9 @@
     ],
     "rename surface taxonomy": [
       "rename surface taxonomy"
+    ],
+    "render checks in the document validator": [
+      "render checks in the document validator"
     ],
     "render contract probe harness artifact": [
       "render contract probe harness artifact"
@@ -91067,6 +91100,9 @@
     "review drift remediation tasks": [
       "review drift remediation tasks"
     ],
+    "review efficiency gates section": [
+      "review efficiency gates section"
+    ],
     "review event routing decision": [
       "review event routing decision"
     ],
@@ -93481,6 +93517,9 @@
     "runnable series parent recipe": [
       "runnable series parent recipe"
     ],
+    "runner contract overview": [
+      "runner contract overview"
+    ],
     "runner gaps plan": [
       "runner gaps plan"
     ],
@@ -94251,6 +94290,9 @@
     ],
     "rust quick reference": [
       "rust quick reference"
+    ],
+    "rust reference purpose": [
+      "Rust reference purpose"
     ],
     "rust registration touchpoints outcome": [
       "rust registration touchpoints outcome"
@@ -98845,6 +98887,9 @@
     "sk code 3 10 0 0": [
       "sk-code 3.10.0.0"
     ],
+    "sk code 3 10 1 0": [
+      "sk-code 3.10.1.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -99097,6 +99142,9 @@
     "sk code ci 1 1 13 0": [
       "sk-code-ci 1.1.13.0"
     ],
+    "sk code ci 1 1 14 0": [
+      "sk-code-ci 1.1.14.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -99184,6 +99232,9 @@
     ],
     "sk code ci v1 1 13 0": [
       "sk-code-ci v1.1.13.0"
+    ],
+    "sk code ci v1 1 14 0": [
+      "sk-code-ci v1.1.14.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -99386,6 +99437,9 @@
     "sk code frontend 1 0 2 0": [
       "sk-code-frontend 1.0.2.0"
     ],
+    "sk code frontend 1 0 3 0": [
+      "sk-code-frontend 1.0.3.0"
+    ],
     "sk code frontend build plan": [
       "sk-code-frontend build plan"
     ],
@@ -99403,6 +99457,9 @@
     ],
     "sk code frontend v1 0 2 0": [
       "sk-code-frontend v1.0.2.0"
+    ],
+    "sk code frontend v1 0 3 0": [
+      "sk-code-frontend v1.0.3.0"
     ],
     "sk code frontmatter alignment": [
       "sk-code frontmatter alignment"
@@ -99793,6 +99850,9 @@
     "sk code quality 1 13 16 0": [
       "sk-code-quality 1.13.16.0"
     ],
+    "sk code quality 1 13 17 0": [
+      "sk-code-quality 1.13.17.0"
+    ],
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
@@ -99931,6 +99991,9 @@
     "sk code quality v1 13 16 0": [
       "sk-code-quality v1.13.16.0"
     ],
+    "sk code quality v1 13 17 0": [
+      "sk-code-quality v1.13.17.0"
+    ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
     ],
@@ -99999,6 +100062,9 @@
     ],
     "sk code reference integrity summary": [
       "sk-code reference integrity summary"
+    ],
+    "sk code reference layout audit": [
+      "sk-code reference layout audit"
     ],
     "sk code reference repair tasks": [
       "sk-code reference repair tasks"
@@ -100101,6 +100167,9 @@
     ],
     "sk code review 1 9 14 0": [
       "sk-code-review 1.9.14.0"
+    ],
+    "sk code review 1 9 15 0": [
+      "sk-code-review 1.9.15.0"
     ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
@@ -100236,6 +100305,9 @@
     ],
     "sk code review v1 9 14 0": [
       "sk-code-review v1.9.14.0"
+    ],
+    "sk code review v1 9 15 0": [
+      "sk-code-review v1.9.15.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -100420,6 +100492,9 @@
     "sk code skilled 2 1 16 0": [
       "sk-code-skilled 2.1.16.0"
     ],
+    "sk code skilled 2 1 17 0": [
+      "sk-code-skilled 2.1.17.0"
+    ],
     "sk code skilled 2 1 2 0": [
       "sk-code-skilled 2.1.2.0"
     ],
@@ -100581,6 +100656,9 @@
     ],
     "sk code skilled v2 1 16 0": [
       "sk-code-skilled v2.1.16.0"
+    ],
+    "sk code skilled v2 1 17 0": [
+      "sk-code-skilled v2.1.17.0"
     ],
     "sk code skilled v2 1 2 0": [
       "sk-code-skilled v2.1.2.0"
@@ -100746,6 +100824,9 @@
     ],
     "sk code v3 10 0 0": [
       "sk-code v3.10.0.0"
+    ],
+    "sk code v3 10 1 0": [
+      "sk-code v3.10.1.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
@@ -102004,6 +102085,9 @@
     "sk create skill 1 10 1 0": [
       "sk-create-skill 1.10.1.0"
     ],
+    "sk create skill 1 11 0 0": [
+      "sk-create-skill 1.11.0.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -102091,6 +102175,9 @@
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
+    "sk create skill reference quality": [
+      "sk-create-skill reference quality"
+    ],
     "sk create skill router": [
       "sk-create-skill router"
     ],
@@ -102108,6 +102195,9 @@
     ],
     "sk create skill v1 10 1 0": [
       "sk-create-skill v1.10.1.0"
+    ],
+    "sk create skill v1 11 0 0": [
+      "sk-create-skill v1.11.0.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -103039,6 +103129,9 @@
     "sk doc 2 3 9 0": [
       "sk-doc 2.3.9.0"
     ],
+    "sk doc 2 4 0 0": [
+      "sk-doc 2.4.0.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -103467,6 +103560,9 @@
     ],
     "sk doc v2 3 9 0": [
       "sk-doc v2.3.9.0"
+    ],
+    "sk doc v2 4 0 0": [
+      "sk-doc v2.4.0.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

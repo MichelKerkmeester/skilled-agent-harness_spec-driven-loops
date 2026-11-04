@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7307,
-    "ok": 16672,
+    "missing-frontmatter": 7314,
+    "ok": 16688,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27527,
+  "documentsScanned": 27550,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "df45f516ed5605389e39676a24d59eca93dbf01684dac4ffb73e1d74b6f592d2",
+  "manifestHash": "eb2739b9eb76529d64c1d2e8d56ee2844f4db2195c9d7ff4d1e76605ef633ed4",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40524,
+      "ok": 40556,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -28788,6 +28788,42 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-list-labels.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-placeholder-labels.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-router-related-before-machine.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-setext-contexts.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-shared-support-triple.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-urls.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
       "reason": "no opening frontmatter delimiter"
@@ -40458,6 +40494,12 @@
       "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/sk-code/015-quality-agnostic-gate/006-measurement/evidence/transcripts/CQ-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -72019,6 +72061,14 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/scratch",
       "reason": "excluded directory"
     },
     {

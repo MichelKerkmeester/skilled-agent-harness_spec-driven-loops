@@ -1,5 +1,5 @@
 {
-  "corpusHash": "128c7d434fb10118a1b02a04817c607cd9eb289f698f4cb54f242072cf8fa269",
+  "corpusHash": "2365452f9ae2953bcfd99264a7d555ea94ca1ec18c193cb163c87dbaadbc65c0",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27527,
+  "includedPathCount": 27550,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2831,6 +2831,7 @@
     ".skilled/skills/sk-code/changelog/v3.0.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.1.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.10.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.10.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -2920,6 +2921,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.11.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.12.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.13.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -2947,6 +2949,7 @@
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.0.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.1.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.2.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
@@ -2995,6 +2998,7 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.14.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.15.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.16.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.17.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
@@ -3090,6 +3094,7 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.12.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.13.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.14.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.15.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -3209,6 +3214,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.15.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.16.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.17.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.4.0.md",
@@ -6314,6 +6320,7 @@
     ".skilled/skills/sk-doc/changelog/v2.3.7.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.8.0.md",
     ".skilled/skills/sk-doc/changelog/v2.3.9.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6391,6 +6398,15 @@
     ".skilled/skills/sk-doc/scripts/tests/missing-emojis.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-sections.md",
     ".skilled/skills/sk-doc/scripts/tests/missing-toc.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-list-labels.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-placeholder-labels.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-router-related-before-machine.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-setext-contexts.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-shared-support-triple.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/negative-urls.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/web-cascade-and-selectors.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/web-markup-and-css.md",
+    ".skilled/skills/sk-doc/scripts/tests/render/web-performance-and-loading.md",
     ".skilled/skills/sk-doc/scripts/tests/security-policy-no-reporting/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/security-policy/SECURITY.md",
     ".skilled/skills/sk-doc/scripts/tests/single-dash-anchors.md",
@@ -6822,6 +6838,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.1.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.10.1.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.11.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md",
@@ -13436,6 +13453,12 @@
     "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/plan.md",
     "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/spec.md",
     "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/tasks.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/acceptance-criteria.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/implementation-summary.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/plan.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/research.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/spec.md",
+    "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/tasks.md",
     "specs/sk-code/018-frontend-upstream-proposals/goal.md",
     "specs/sk-code/018-frontend-upstream-proposals/spec.md",
     "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/001-source-inventory-and-placement/acceptance-criteria.md",
@@ -27558,7 +27581,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "df45f516ed5605389e39676a24d59eca93dbf01684dac4ffb73e1d74b6f592d2",
+  "manifestHash": "eb2739b9eb76529d64c1d2e8d56ee2844f4db2195c9d7ff4d1e76605ef633ed4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30854,6 +30877,14 @@
     },
     {
       "path": "specs/sk-code/018-frontend-upstream-proposals/009-reference-restructure/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/018-frontend-upstream-proposals/010-reference-readability-research/scratch",
       "reason": "excluded directory"
     },
     {
