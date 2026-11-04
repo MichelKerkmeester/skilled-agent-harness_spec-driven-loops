@@ -1,0 +1,3 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/cli-orca/references/orca-skills/orchestration.md:37 | 7 | The ordered guide-loading paths omit the bundled stub’s `--help` step. | Append after item 3: `4. Use the selected executable's --help for commands or flags the guide does not cover. If skills get is unknown, explain that updating Orca restores the guide, use --help for read-only discovery and do not guess unsupported commands (snapshot: skills/orchestration/SKILL.md, Load the version-matched guide before running Orca commands).`

@@ -9,12 +9,12 @@ trigger_phrases:
   - "orca recipe setup"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill - Per-Workspace Environments
 
-Local reference for the official `orca-per-workspace-env` skill. The upstream file is a discovery stub: it declares when to engage, then loads the version-matched guide from the Orca executable used for the session, because the real flags live in the binary. Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`. This is the heaviest of the eight official skills, so a local task that only needs a worktree should not route here.
+Local reference for the official `orca-per-workspace-env` skill. The upstream file is a discovery stub: it declares when to engage, then loads the version-matched guide from the Orca executable used for the session, because the real flags live in the binary. Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`.
 
 ---
 
@@ -30,6 +30,8 @@ ORCA skills get orca-per-workspace-env
 
 Inside the lifecycle scripts the `ORCA` placeholder does not apply, because `orca serve` written there runs on the remote machine's own binary (guide: skill-guides/orca-per-workspace-env.md, header note).
 
+The guide carries five conditional references, `provider-vercel.md`, `ssh-host.md`, `docker-ssh.md`, `windows-scripts.md` and `failure-modes.md`, under a read-at-the-gate protocol: run `ORCA skills get orca-per-workspace-env --reference references/<file>.md` at the gate that needs it and read only that document, with `--references` listing the names, rather than reading them up front. If `--reference` is rejected, run `ORCA skills get orca-per-workspace-env --full` once and read only the named section (guide: skill-guides/orca-per-workspace-env.md, Conditional references).
+
 ---
 
 ## 2. AUTONOMY ENVELOPE
@@ -42,7 +44,20 @@ The guide fixes what the agent may do without asking again and where it must sto
 - Never create an Orca workspace except for the optional step-10 test the user asked for. Do not create Git commits unless asked.
 - Preserve actionable provider errors and the failing command. Redact secrets and clean up resources created by a failed step.
 
-The setup workflow runs in a fixed order driven with the user. A `[CHECKPOINT]` label marks a step the autonomy envelope stops for: inspect the repo, interview the user up front without picking choices for them, check prerequisites, scaffold the scripts and state file, build the base snapshot (paid and slow), authenticate the agent (interactive), wire the recipe so `orca.yaml` points create, suspend, resume and destroy at the scripts, dry-run the doctor, run the live `--provision` self-test, then optionally run the workspace test only if asked. The auth snapshot boots from the base snapshot, and `create` boots from the authenticated snapshot it produces (guide: skill-guides/orca-per-workspace-env.md, Setup workflow).
+The setup workflow runs in a fixed order driven with the user. A `[CHECKPOINT]` label marks a step the autonomy envelope stops for:
+
+1. Inspect the repo.
+2. Interview the user up front without picking choices for them.
+3. Check prerequisites.
+4. Scaffold the scripts and state file.
+5. Build the base snapshot (paid and slow).
+6. Authenticate the agent (interactive).
+7. Wire the recipe so `orca.yaml` points create, suspend, resume and destroy at the scripts.
+8. Dry-run the doctor.
+9. Run the live `--provision` self-test.
+10. Then optionally run the workspace test only if asked.
+
+The auth snapshot boots from the base snapshot, and `create` boots from the authenticated snapshot it produces (guide: skill-guides/orca-per-workspace-env.md, Setup workflow).
 
 ---
 
@@ -70,8 +85,6 @@ Snapshot rules (guide: skill-guides/orca-per-workspace-env.md, Base snapshot):
 The free gate is clear only with no `fail` and no `warn`. A `warn` keeps `ok: true`, so `ok` alone proves nothing. Resolve each `warn`, or say why it is accepted, before spending money on `--provision` (guide: skill-guides/orca-per-workspace-env.md, Doctor).
 
 `--provision`, or its synonym `--connect`, runs the recipe end to end: `create`, validation of the returned JSON, then `destroy`, so nothing is left running as long as `destroy` works. Run it as a loop: read the `provisionTranscript` in the failed result, fix the script, re-run, until `ok` is `true`, without waiting for the user to paste errors. The self-test sees only what the scripts print, so confirm separately that the state file holds an authenticated `snapshotId` and that `destroy` is implemented and tested. With `destroy: none` the self-test tears nothing down and cleanup is by hand (guide: skill-guides/orca-per-workspace-env.md, Doctor).
-
-The guide carries five conditional references, `provider-vercel.md`, `ssh-host.md`, `docker-ssh.md`, `windows-scripts.md` and `failure-modes.md`, under a read-at-the-gate protocol: run `ORCA skills get orca-per-workspace-env --reference references/<file>.md` at the gate that needs it and read only that document, with `--references` listing the names, rather than reading them up front. If `--reference` is rejected, run `ORCA skills get orca-per-workspace-env --full` once and read only the named section (guide: skill-guides/orca-per-workspace-env.md, Conditional references).
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca terminal receipt"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Orca CLI Troubleshooting
@@ -20,15 +20,28 @@ Fail-closed recovery map for Orca CLI failures. Every recovery path preserves th
 
 ## 1. OVERVIEW
 
+### Purpose
+
+This reference maps each Orca failure state to the single action allowed before escalation and to the point where the lane stops.
+
+### When to Use
+
 Use this reference whenever an Orca command fails, times out or returns a blocked or unverifiable state. Use it before deciding whether a failure may be replayed, must be escalated or must stop the lane. It pairs with [`orca-cli-reference.md`](./orca-cli-reference.md), which holds the commands whose error codes appear here.
 
-Core principle: recovery never silently switches executables, resends an untracked prompt or disguises a denial as success. Keep the original JSON or text result, the exit status, the selected executable and the guide version with any escalation. Redact credentials, tokens, private page content and sensitive terminal output, but never redact away the error code that explains the recovery.
+### Core Principle
+
+Recovery never silently switches executables, resends an untracked prompt or disguises a denial as success.
+
+- Keep the original JSON or text result, the exit status, the selected executable and the guide version with any escalation.
+- Redact credentials, tokens, private page content and sensitive terminal output, but never redact away the error code that explains the recovery.
 
 ---
 
 ## 2. SYMPTOM TABLE
 
 First check means the cheapest observation that separates the causes. Next check names what to run once the first check narrows the field. Safe action is the only recovery attempt allowed before escalation. Stop when the safe action cannot produce a verified result.
+
+Each recovery attempt in the table below must be bracketed by evidence. Before the attempt, capture the original structured result or text output, the exit status, the selected executable and the guide version. After the attempt, capture the same four plus the command replayed, so an escalation shows both the failure and the attempted recovery.
 
 | Symptom | First check | Next check | Safe action | When to stop |
 |---|---|---|---|---|
@@ -43,8 +56,6 @@ First check means the cheapest observation that separates the causes. Next check
 | A worktree archive hook fails | Whether removal returned `worktree_archive_hook_failed` | Whether the hook exited non-zero or ended unverifiable | Preserve the archive result and stop the removal | `--force` does not bypass the failure. Only the documented failed-hook override together with the hook flag proceeds and must be reported. Ask before using it (ancestor troubleshooting, router contract: SKILL.md) |
 | A sharing or publishing permission is denied | Which code returned: `artifact_sharing_disabled`, `agent_skill_sharing_disabled` or `agent_skill_sharing_busy` | Whether the busy code, which waits, is distinguished from the disabled codes, which never change | Tell the operator which setting to enable or deliver the file locally if they decline. Wait before retrying on `agent_skill_sharing_busy` | There is no CLI or RPC way to grant the permissions. A denied share fails before any upload, so never retry with different credentials (guide: skill-guides/orca-cli.md, reference: skill-guides/orca-cli/references/publishing.md) |
 | A bulk terminal close cannot be confirmed | Whether the result is `unverifiable` | Whether the host could confirm every PTY stopped | Report the result as unverified to the operator | Never report the processes as exited and never retry against another host (guide: skill-guides/orca-cli.md) |
-
-Each recovery attempt above must be bracketed by evidence. Before the attempt, capture the original structured result or text output, the exit status, the selected executable and the guide version. After the attempt, capture the same four plus the command replayed, so an escalation shows both the failure and the attempted recovery.
 
 ---
 

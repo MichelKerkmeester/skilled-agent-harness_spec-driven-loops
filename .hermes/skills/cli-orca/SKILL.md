@@ -2,7 +2,7 @@
 name: cli-orca
 description: "Route Orca CLI work: worktrees, terminals, browser, automations, handoffs, artifacts, and the eight official Orca skills."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.1.7.0
+version: 0.1.8.0
 user-invocable: true
 ---
 
@@ -207,7 +207,7 @@ Require explicit authorization for mutating or destructive work. Keep the archiv
 
 ---
 
-## 5. REFERENCES AND RELATED RESOURCES
+## 5. REFERENCES
 
 | Resource | Contents |
 |----------|----------|
@@ -222,21 +222,17 @@ Require explicit authorization for mutating or destructive work. Keep the archiv
 | [`manual-testing-playbook/manual-testing-playbook.md`](../../../.skilled/skills/cli-orca/manual-testing-playbook/manual-testing-playbook.md) | Live safety matrix and routing fixtures, including the negative holdouts |
 | [`changelog/v0.1.0.0.md`](../../../.skilled/skills/cli-orca/changelog/v0.1.0.0.md) | Release history, including the extraction from the mcp-tooling hub |
 
-### Related Resources
-
-| Skill | Relationship |
-|-------|--------------|
-| [`sk-git`](../../../.skilled/skills/sk-git/SKILL.md) | Owns generic git worktrees, branches and commits. Hand off when the request carries no Orca qualifier. |
-| [`mcp-tooling`](../../../.skilled/skills/mcp-tooling/SKILL.md) | Former parent hub. Routes the MCP tool bridges and no longer declares an Orca mode. |
-| [`cli-external-orchestration`](../../../.skilled/skills/cli-external-orchestration/SKILL.md) | Owns cross-AI CLI dispatch. A different surface from the official `orchestration` skill, which is Orca-specific. |
-| [`system-skill-advisor`](../../../.skilled/skills/system-skill-advisor/SKILL.md) | Scores this skill's activation signal. Routing changes here need a fresh advisor ingest. |
-| [`sk-doc`](../../../.skilled/skills/sk-doc/SKILL.md) | Owns the create-skill contract plus the catalog and playbook package shapes this skill follows. |
-
 ---
 
 ## 6. SUCCESS CRITERIA
 
-The task is ready to report when the resolved executable and the guide command are recorded, the structured result and exit status were inspected, every mutation gate was authorized, browser artifacts were independently checked, and any unsupported capability was reported as unknown instead of being guessed.
+The task is ready to report when:
+
+- The resolved executable and the guide command are recorded.
+- The structured result and exit status were inspected.
+- Every mutation gate was authorized.
+- Browser artifacts were independently checked.
+- Any unsupported capability was reported as unknown instead of being guessed.
 
 ---
 
@@ -246,3 +242,15 @@ The task is ready to report when the resolved executable and the guide command a
 - `mcp-chrome-devtools` keeps Chrome and CDP inspection, and `mcp-aside-devtools` keeps generic agentic browser work.
 - The official `orchestration` skill keeps supervised multi-agent coordination, while this skill keeps the lightweight terminal prompts and full handoffs.
 - The installed Orca guide stays authoritative for version-sensitive command detail, and the snapshot assets stay authoritative for upstream wording.
+
+---
+
+## 8. RELATED RESOURCES
+
+| Skill | Relationship |
+|-------|--------------|
+| [`sk-git`](../../../.skilled/skills/sk-git/SKILL.md) | Owns generic git worktrees, branches and commits. Hand off when the request carries no Orca qualifier. |
+| [`mcp-tooling`](../../../.skilled/skills/mcp-tooling/SKILL.md) | Former parent hub. Routes the MCP tool bridges and no longer declares an Orca mode. |
+| [`cli-external-orchestration`](../../../.skilled/skills/cli-external-orchestration/SKILL.md) | Owns cross-AI CLI dispatch. A different surface from the official `orchestration` skill, which is Orca-specific. |
+| [`system-skill-advisor`](../../../.skilled/skills/system-skill-advisor/SKILL.md) | Scores this skill's activation signal. Routing changes here need a fresh advisor ingest. |
+| [`sk-doc`](../../../.skilled/skills/sk-doc/SKILL.md) | Owns the create-skill contract plus the catalog and playbook package shapes this skill follows. |

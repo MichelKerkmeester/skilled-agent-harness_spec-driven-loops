@@ -1,0 +1,3 @@
+VERDICT: FIX
+
+- [P2] .skilled/skills/cli-orca/assets/PROVENANCE.md:73 | 9 | Section 4 still records verification status and authoring history (“Both checks pass for all eight files”; “The copies were verified, not assumed”). | Replace the paragraph with: “To verify a snapshot, compare each `assets/<skill>.txt` byte for byte against its snapshot source using `cmp`, then compare its sha256 against the manifest's `exactSha256` field.”

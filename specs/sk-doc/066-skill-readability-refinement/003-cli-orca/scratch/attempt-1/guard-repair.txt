@@ -1,0 +1,18 @@
+restored .skilled/skills/cli-orca/assets/PROVENANCE.md
+restored .skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md
+restored .skilled/skills/cli-orca/references/orca-cli-reference.md
+restored .skilled/skills/cli-orca/references/orca-skills/computer-use.md
+restored .skilled/skills/cli-orca/references/orca-skills/linear-tickets.md
+restored .skilled/skills/cli-orca/references/orca-skills/orca-cli.md
+restored .skilled/skills/cli-orca/references/orca-skills/orca-emulator-android.md
+restored .skilled/skills/cli-orca/references/orca-skills/orca-emulator.md
+restored .skilled/skills/cli-orca/references/orca-skills/orca-linear.md
+restored .skilled/skills/cli-orca/references/orca-skills/orca-per-workspace-env.md
+restored .skilled/skills/cli-orca/references/orca-skills/orchestration.md
+restored .skilled/skills/cli-orca/references/orca-skills/overview.md
+restored .skilled/skills/cli-orca/references/session-and-runtime.md
+restored .skilled/skills/cli-orca/references/troubleshooting.md
+restored=14
+BLOCK-COUNT .skilled/skills/cli-orca/README.md edited=1 missing=0
+BLOCK-CHANGED .skilled/skills/cli-orca/references/orca-cli-reference.md edited=2
+code_blocks_changed=1 block_count_mismatch=1 restored

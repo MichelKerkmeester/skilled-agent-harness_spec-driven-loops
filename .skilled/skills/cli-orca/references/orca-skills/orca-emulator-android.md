@@ -8,7 +8,7 @@ trigger_phrases:
   - "adb orca"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill - Orca Emulator (Android)
@@ -68,9 +68,21 @@ The Android-only verbs and the shared operations table document these commands a
 - `ORCA emulator exec --command "getprop ro.build.version.sdk" --json` runs a raw adb shell command.
 - `ORCA emulator kill --json` stops the helper and leaves the device booted. `ORCA emulator shutdown --json` stops the helper and shuts the device down.
 
-Targeting: `attach` or opening the emulator pane makes one device active per worktree and unqualified commands target it. `--device <serial>`, such as `emulator-5554`, comes from `ORCA emulator devices` and an AVD name resolves only once that AVD is booted. `--emulator <id>` is an alternative spelling of `--device`, resolved through the same lookup. `--worktree id:<fullWorktreeId>` or `--worktree active` overrides worktree scoping, where the full id is the exact `<repo-id>::<path>` value returned by `ORCA worktree list --json` and a bare repo id is not valid. `ORCA emulator devices` is global and lists every backend, while the other verbs route to the backend that owns the resolved device (guide: skill-guides/orca-emulator-android.md, Targeting).
+**Targeting** (guide: skill-guides/orca-emulator-android.md, Targeting):
 
-The guide's constraints: all coordinates are normalized 0..1 with a top-left origin, never pixels. Orca scales them to the device's live resolution. Prefer `tap` over `gesture` for a single tap. `type` uses `adb shell input text`, so it is US-ASCII only with spaces handled and newlines not. Use the app UI directly for unicode-heavy input. `gesture` is a straight swipe between the first and last point, which fits scrolling and swiping but not a true multi-touch path. Run `kill` when done, because a helper left running holds the device until Orca quits (guide: skill-guides/orca-emulator-android.md, Constraints).
+- `attach` or opening the emulator pane makes one device active per worktree and unqualified commands target it.
+- `--device <serial>`, such as `emulator-5554`, comes from `ORCA emulator devices` and an AVD name resolves only once that AVD is booted.
+- `--emulator <id>` is an alternative spelling of `--device`, resolved through the same lookup.
+- `--worktree id:<fullWorktreeId>` or `--worktree active` overrides worktree scoping, where the full id is the exact `<repo-id>::<path>` value returned by `ORCA worktree list --json` and a bare repo id is not valid.
+- `ORCA emulator devices` is global and lists every backend, while the other verbs route to the backend that owns the resolved device.
+
+**Constraints** (guide: skill-guides/orca-emulator-android.md, Constraints):
+
+- All coordinates are normalized 0..1 with a top-left origin, never pixels. Orca scales them to the device's live resolution.
+- Prefer `tap` over `gesture` for a single tap.
+- `type` uses `adb shell input text`, so it is US-ASCII only with spaces handled and newlines not. Use the app UI directly for unicode-heavy input.
+- `gesture` is a straight swipe between the first and last point, which fits scrolling and swiping but not a true multi-touch path.
+- Run `kill` when done, because a helper left running holds the device until Orca quits.
 
 ---
 
@@ -85,5 +97,8 @@ The guide's constraints: all coordinates are normalized 0..1 with a top-left ori
 
 ## 5. RELATED RESOURCES
 
-- `orca-emulator` for iOS simulators. `orca-cli` for terminals, worktrees and the built-in browser. `computer-use` for desktop UI outside the emulator (guide: skill-guides/orca-emulator-android.md, see-also).
+- Sibling skills (guide: skill-guides/orca-emulator-android.md, see-also):
+  - `orca-emulator` for iOS simulators.
+  - `orca-cli` for terminals, worktrees and the built-in browser.
+  - `computer-use` for desktop UI outside the emulator.
 - The version-matched guide served by the binary is authoritative for flags: load it with `ORCA skills get orca-emulator-android` (snapshot: skills/orca-emulator-android/SKILL.md, guide-loading section).

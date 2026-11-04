@@ -7,7 +7,7 @@ trigger_phrases:
   - "package digest orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill Snapshots - Provenance
@@ -18,7 +18,15 @@ Verbatim `SKILL.md` snapshots of the eight official Orca Agent Skills, vendored 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Each `assets/<skill-name>.txt` file holds the unmodified `SKILL.md` of one official Orca Agent Skill, copied from the vendored `orca-main` source tree recorded below. The snapshot exists because the official files are hybrid discovery stubs whose real flags live in the installed binary, and a local skill that paraphrases them would drift. The records in this directory let a future maintainer prove which upstream revision each file came from.
+
+### When to Use
+
+Use this record when verifying the source, release revision or digest of a bundled snapshot.
+
+### Why the Snapshots Use .txt
 
 The `.txt` extension is deliberate. The files are byte-for-byte upstream copies, and the repository's skill-doc contracts require every `.md` under `references/` or `assets/` to carry its own frontmatter block with a four-part `version`. An upstream file cannot satisfy that without being edited, so the snapshots stay out of that scope by extension and keep their bytes.
 

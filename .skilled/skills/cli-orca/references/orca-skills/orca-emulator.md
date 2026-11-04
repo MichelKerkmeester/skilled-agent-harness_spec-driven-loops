@@ -8,7 +8,7 @@ trigger_phrases:
   - "orca simulator evidence"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill - Orca Emulator (iOS)
@@ -64,9 +64,23 @@ The operations table documents these verbs and constraints (guide: skill-guides/
 - `ORCA emulator exec --command "ca-debug blended on" --json` passes a raw serve-sim subcommand string without a `serve-sim` prefix.
 - `ORCA emulator kill --json` stops the helper and leaves the device booted. `ORCA emulator shutdown --json` stops the helper and shuts the simulator device down.
 
-Targeting: `attach` or opening the emulator pane makes one device active per worktree and unqualified commands target it. `--device "iPhone 16 Pro"` or `--device <udid>` selects a device from `list` or `devices`. `--emulator <id>` is an alternative spelling resolved through the same lookup. `--worktree id:<fullWorktreeId>` or `--worktree active` overrides worktree scoping, where the full id is the exact `<repo-id>::<path>` value returned by `ORCA worktree list --json` and a bare repo id is not valid. With no active session an unqualified command fails with `emulator_no_active`, so attach or open the pane and retry (guide: skill-guides/orca-emulator.md, Targeting).
+**Targeting** (guide: skill-guides/orca-emulator.md, Targeting):
 
-The guide's constraints: all coordinates are normalized 0..1 with a top-left origin, never pixels. An `ax` element is tapped at its frame center, `x + width / 2` and `y + height / 2`. Prefer `tap` over `gesture` for a single tap, because a separate gesture begin and end pair can be interpreted as a long press due to WebSocket overhead. `type` errors on unsupported characters rather than degrading. The pane and the CLI share one stream and one helper, so closing the pane can stop the stream. Run `kill` when done, because a helper left running holds the device until Orca quits. The iOS backend drives private simulator APIs, so an Xcode update can change its behavior (guide: skill-guides/orca-emulator.md, Constraints).
+- `attach` or opening the emulator pane makes one device active per worktree and unqualified commands target it.
+- `--device "iPhone 16 Pro"` or `--device <udid>` selects a device from `list` or `devices`.
+- `--emulator <id>` is an alternative spelling resolved through the same lookup.
+- `--worktree id:<fullWorktreeId>` or `--worktree active` overrides worktree scoping, where the full id is the exact `<repo-id>::<path>` value returned by `ORCA worktree list --json` and a bare repo id is not valid.
+- With no active session an unqualified command fails with `emulator_no_active`, so attach or open the pane and retry.
+
+**Constraints** (guide: skill-guides/orca-emulator.md, Constraints):
+
+- All coordinates are normalized 0..1 with a top-left origin, never pixels.
+- An `ax` element is tapped at its frame center, `x + width / 2` and `y + height / 2`.
+- Prefer `tap` over `gesture` for a single tap, because a separate gesture begin and end pair can be interpreted as a long press due to WebSocket overhead.
+- `type` errors on unsupported characters rather than degrading.
+- The pane and the CLI share one stream and one helper, so closing the pane can stop the stream.
+- Run `kill` when done, because a helper left running holds the device until Orca quits.
+- The iOS backend drives private simulator APIs, so an Xcode update can change its behavior.
 
 ---
 
@@ -81,5 +95,8 @@ The guide's constraints: all coordinates are normalized 0..1 with a top-left ori
 
 ## 5. RELATED RESOURCES
 
-- `orca-emulator-android` for Android devices. `orca-cli` for terminals, worktrees and the built-in browser. `computer-use` for desktop UI outside the simulator (guide: skill-guides/orca-emulator.md, see-also).
+- Sibling skills (guide: skill-guides/orca-emulator.md, see-also):
+  - `orca-emulator-android` for Android devices.
+  - `orca-cli` for terminals, worktrees and the built-in browser.
+  - `computer-use` for desktop UI outside the simulator.
 - The version-matched guide served by the binary is authoritative for flags: load it with `ORCA skills get orca-emulator` (snapshot: skills/orca-emulator/SKILL.md, guide-loading section).

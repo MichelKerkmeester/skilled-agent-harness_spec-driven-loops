@@ -9,22 +9,39 @@ trigger_phrases:
   - "orca accessibility tree clicks"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Computer Use
 
-Local reference for the official `computer-use` skill. The upstream file is a discovery stub: it declares when to engage, then loads the version-matched guide from the Orca executable used for the session, because the real flags live in the binary. Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`.
+The upstream file is a discovery stub: it declares when to engage, then loads the version-matched guide from the Orca executable used for the session, because the real flags live in the binary. Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 `computer-use` declares that it drives the GUI of a visible local app window through `orca computer`, covering the accessibility tree, clicks, typing, menus, dialogs and screenshots. It applies to native apps and to external browser windows such as Chrome, Edge or Safari as well as webviews (snapshot: skills/computer-use/SKILL.md, frontmatter).
+
+### When to Use
 
 The stub and guide both state the same priority order: prefer a programmatic path (shell, filesystem, git, HTTP, existing CLIs) whenever it can complete the task, and use this skill only when a visible window needs GUI control those cannot reach (snapshot: skills/computer-use/SKILL.md, frontmatter description). The guide restates this in its opening paragraph (guide: skill-guides/computer-use.md, opening paragraph).
 
-The guide adds the working surface at a high level: command families for capabilities and permissions checks, app and window listing, accessibility-tree state reads, clicks (including modifier chords and right or middle buttons), semantic value setting, typing, single keys and modifier hotkeys, pasting, scrolling and drag. It also covers window-scoped coordinates and screenshot outputs (guide: skill-guides/computer-use.md, Commands, Action Rules and Screenshots sections). The flag detail lives in the version-matched guide loaded from the binary with:
+### Guide Surface
+
+The guide adds the working surface at a high level:
+
+- command families for capabilities and permissions checks
+- app and window listing and accessibility-tree state reads
+- clicks, including modifier chords and right or middle buttons
+- semantic value setting, typing, single keys and modifier hotkeys
+- pasting, scrolling and drag
+- window-scoped coordinates and screenshot outputs
+
+(guide: skill-guides/computer-use.md, Commands, Action Rules and Screenshots sections)
+
+The flag detail lives in the version-matched guide loaded from the binary with:
 
 ```text
 ORCA skills get computer-use

@@ -9,24 +9,32 @@ trigger_phrases:
   - "orca browser commands"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Orca CLI Reference
 
-The command family map behind the cli-orca router. It records the executable resolution order, the command families the Orca surface exposes, representative calls per family, the worktree address form and the JSON conventions the receipts follow. The installed Orca binary is versioned, so the guide it serves outranks anything written here. Never infer a command or flag the installed guide does not show.
+Open this before an Orca command whose flags the installed guide has not yet confirmed. The installed Orca binary is versioned, so the guide it serves outranks anything written here, and no command or flag should be inferred that the installed guide does not show.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference is an operating aid, not a flag inventory. Use it to pick the right family for a request, to copy a known-good call shape and to know which claims are deliberately not established locally. The version-matched guide and the local registry read outrank this file when they disagree.
+
+It records the executable resolution order, the command families the Orca surface exposes, representative calls per family, the worktree address form and the JSON conventions the receipts follow.
+
+### When to Use
 
 - Preparing the preflight before any version-sensitive command.
 - Choosing the family and call shape a request needs.
 - Checking what this reference deliberately does not claim.
 
-Core principle: every command and flag here comes from a cited source. Where a source does not establish something, this reference says it is unknown instead of guessing.
+### Core Principle
+
+Every command and flag here comes from a cited source. Where a source does not establish something, this reference says it is unknown instead of guessing.
 
 ---
 
@@ -216,7 +224,7 @@ The handoff is done when the new worktree id and agent handle are reported and t
 ## 7. DELIBERATELY UNKNOWN HERE
 
 - Any flag the local research could not ground is unknown here. This reference carries family purposes and representative calls only, never a flag inventory. Resolve the executable, load `orca skills get orca-cli --full` or the matching `--reference references/<file>.md` and treat the installed guide and `--help` as the only flag authority (router contract: SKILL.md).
-- The Orca native MCP command: the command registry inspected for the prior Orca packet, version 1.4.205, contained no command named `mcp` and no dedicated Orca browser automation family beyond the generic browser and session commands (ancestor observation). Official documentation may describe Orca app integrations, but no native MCP surface is claimed here until a separate live callable inspection proves one (router contract: SKILL.md).
+- The Orca native MCP command: the command registry inspected at version 1.4.205 contained no command named `mcp` and no dedicated Orca browser automation family beyond the generic browser and session commands (ancestor observation). Official documentation may describe Orca app integrations, but no native MCP surface is claimed here until a separate live callable inspection proves one (router contract: SKILL.md).
 - The guide and its stub name no version flag. The preflight `--version` line is the router contract's evidence capture. The headless server reference documents `orca-ide --version` as printing the Orca build (research return, executable resolution section).
 
 ---

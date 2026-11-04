@@ -6,7 +6,7 @@ trigger_phrases:
   - "cli-orca routing"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,10 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-An Orca-qualified multi-word phrase reaches cli-orca: `orca worktree` or `managed worktree`, `orca terminal` or `paired terminal`, `orca browser` or `orca embedded browser`, `orca automation`, `orca artifacts` or `orca skills`, a named official Orca skill that the request also places in Orca, and the runtime failure states of a stopped runtime, a missing executable, a guide mismatch or an ambiguous send. The router picks from the worktree, terminal, browser, automation and official-skill reference families, and from the recovery lane when a failure signal selects it, while a bare `orca` token, an `OpenOrca` model label and generic worktree, terminal or browser vocabulary select nothing. A request that belongs to `sk-git`, `mcp-chrome-devtools`, `mcp-aside-devtools`, the official `orchestration` skill or `cli-cursor` is handed to that owner rather than loading a local file.
+- **Signals that reach cli-orca**: `orca worktree` or `managed worktree`, `orca terminal` or `paired terminal`, `orca browser` or `orca embedded browser`, `orca automation`, `orca artifacts` or `orca skills`, a named official Orca skill that the request also places in Orca, and the runtime failure states of a stopped runtime, a missing executable, a guide mismatch or an ambiguous send.
+- **Resource families**: the worktree, terminal, browser, automation and official-skill reference families, and the recovery lane when a failure signal selects it.
+- **Signals that select nothing**: a bare `orca` token, an `OpenOrca` model label and generic worktree, terminal or browser vocabulary.
+- **Foreign owners**: a request that belongs to `sk-git`, `mcp-chrome-devtools`, `mcp-aside-devtools`, the official `orchestration` skill or `cli-cursor` is handed to that owner rather than loading a local file.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

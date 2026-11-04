@@ -9,12 +9,12 @@ trigger_phrases:
   - "install official orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skills - Overview
 
-Local index of the eight official Orca Agent Skills. Orca publishes each skill as a short discovery stub that tells an agent when to engage Orca and how to load the version-matched guide from the running binary, because the real command flags live in the binary (snapshot: docs/site/content/docs/cli/skills.mdx). Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`. This skill keeps one authored reference per official skill under `references/orca-skills/` plus a verbatim snapshot of every stub as `assets/<name>.txt`.
+Local index of the eight official Orca Agent Skills. Snapshot paths cited below resolve under `specs/cli-orca/002-consolidate-official-orca-skills/context/orca-main/`. This skill keeps one authored reference per official skill under `references/orca-skills/` plus a verbatim snapshot of every stub as `assets/<name>.txt`.
 
 ## 1. OVERVIEW
 
@@ -114,4 +114,12 @@ Notes behind the matrix:
 
 ## 7. PROVENANCE AND SNAPSHOTS
 
-Every stub's exact upstream wording is stored as `assets/<name>.txt`, with the `.txt` extension so the files stay byte identical to upstream and outside the markdown frontmatter contracts (assets/PROVENANCE.md). Each snapshot file is pinned by release revision and digest in the vendored manifests under the snapshot tree at `resources/skills/`, where `current-manifest.json` records the current `releaseRevision`, `packageDigest`, `gitTreeSha` and `exactSha256` per skill, `snapshot-registry.json` carries the per-revision history and `release-mapping.json` maps app versions onto revisions (assets/PROVENANCE.md, Snapshot source and Per-skill release records). The copies were verified byte for byte with `cmp` and by sha256 against the manifest's `exactSha256`, and all eight checks pass (assets/PROVENANCE.md, Verification). `PROVENANCE.md` also records the refresh procedure for a newer snapshot and says to record a mismatch instead of guessing when a snapshot file cannot be matched to a manifest entry (assets/PROVENANCE.md, Maintenance).
+Every stub's exact upstream wording is stored as `assets/<name>.txt`, with the `.txt` extension so the files stay byte identical to upstream and outside the markdown frontmatter contracts (assets/PROVENANCE.md). Each snapshot file is pinned by release revision and digest in the vendored manifests under the snapshot tree at `resources/skills/` (assets/PROVENANCE.md, Snapshot source and Per-skill release records):
+
+- `current-manifest.json` records the current `releaseRevision`, `packageDigest`, `gitTreeSha` and `exactSha256` per skill.
+- `snapshot-registry.json` carries the per-revision history.
+- `release-mapping.json` maps app versions onto revisions.
+
+The copies were verified byte for byte with `cmp` and by sha256 against the manifest's `exactSha256`, and all eight checks pass (assets/PROVENANCE.md, Verification).
+
+`PROVENANCE.md` also records the refresh procedure for a newer snapshot and says to record a mismatch instead of guessing when a snapshot file cannot be matched to a manifest entry (assets/PROVENANCE.md, Maintenance).

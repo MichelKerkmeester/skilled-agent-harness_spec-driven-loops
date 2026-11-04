@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca cli resolution"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Orca Session and Runtime Boundaries
@@ -120,7 +120,13 @@ Terminal input has more than one state. A text-plus-Enter agent prompt returns a
 
 Waiting. Use `terminal wait --for tui-idle` with `--timeout-ms` to gate sends to agent CLIs. Send only when the result reports `wait.satisfied: true`. A timed-out wait still prints a normal result, so read `wait.satisfied` rather than the fact that something printed. On `satisfied: false`, re-run the wait once with a larger `--timeout-ms`. If it stays unsatisfied, report the work as not started and do not send (guide: `skill-guides/orca-cli.md`).
 
-Confirmed shutdown. Close one known handle with `terminal close --terminal <handle>`. A bulk close with `terminal close --worktree <selector> --all` is successful only when the execution host confirms every PTY stopped. An `unverifiable` result means the host could not confirm every PTY. Preserve that status, do not report the processes as exited and do not retry against another host as a substitute for evidence. Use workspace Sleep when terminals and agent sessions should resume later. `terminal stop` is legacy plumbing and should not be used in new agent workflows (guide: `skill-guides/orca-cli.md`).
+**Confirmed shutdown** (guide: `skill-guides/orca-cli.md`):
+
+- Close one known handle with `terminal close --terminal <handle>`.
+- A bulk close with `terminal close --worktree <selector> --all` is successful only when the execution host confirms every PTY stopped.
+- An `unverifiable` result means the host could not confirm every PTY. Preserve that status, do not report the processes as exited and do not retry against another host as a substitute for evidence.
+- Use workspace Sleep when terminals and agent sessions should resume later.
+- `terminal stop` is legacy plumbing and should not be used in new agent workflows.
 
 ---
 

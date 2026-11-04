@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca embedded browser"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Official Orca Skill - Orca CLI
@@ -28,7 +28,10 @@ The stub body states its own mechanism: "This discovery stub loads the version-m
 ORCA skills get orca-cli
 ```
 
-Prefer `--json`. Use the executable's `--help` for commands or flags the guide does not cover. If a command reports that Orca is not running, start it with `ORCA open --json` and retry. If `skills get` is unknown, explain that updating Orca restores the guide and do not guess unsupported commands (snapshot: skills/orca-cli/SKILL.md, Load the version-matched guide before running Orca commands).
+- Prefer `--json`.
+- Use the executable's `--help` for commands or flags the guide does not cover.
+- If a command reports that Orca is not running, start it with `ORCA open --json` and retry.
+- If `skills get` is unknown, explain that updating Orca restores the guide and do not guess unsupported commands (snapshot: skills/orca-cli/SKILL.md, Load the version-matched guide before running Orca commands).
 
 ---
 

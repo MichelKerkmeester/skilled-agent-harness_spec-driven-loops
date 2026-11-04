@@ -1,0 +1,17 @@
+.skilled/skills/cli-orca/README.md
+.skilled/skills/cli-orca/ROUTER.md
+.skilled/skills/cli-orca/SKILL.md
+.skilled/skills/cli-orca/assets/PROVENANCE.md
+.skilled/skills/cli-orca/references/mutation-and-browser-boundaries.md
+.skilled/skills/cli-orca/references/orca-cli-reference.md
+.skilled/skills/cli-orca/references/orca-skills/computer-use.md
+.skilled/skills/cli-orca/references/orca-skills/linear-tickets.md
+.skilled/skills/cli-orca/references/orca-skills/orca-cli.md
+.skilled/skills/cli-orca/references/orca-skills/orca-emulator-android.md
+.skilled/skills/cli-orca/references/orca-skills/orca-emulator.md
+.skilled/skills/cli-orca/references/orca-skills/orca-linear.md
+.skilled/skills/cli-orca/references/orca-skills/orca-per-workspace-env.md
+.skilled/skills/cli-orca/references/orca-skills/orchestration.md
+.skilled/skills/cli-orca/references/orca-skills/overview.md
+.skilled/skills/cli-orca/references/session-and-runtime.md
+.skilled/skills/cli-orca/references/troubleshooting.md
