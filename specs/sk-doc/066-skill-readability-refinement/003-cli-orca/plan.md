@@ -23,10 +23,10 @@ contextType: "general"
 | **Language/Stack** | Markdown |
 | **Framework** | sk-doc templates and render checks |
 | **Storage** | None |
-| **Testing** | `scope-gate.py`, Luna review rounds |
+| **Testing** | `scope-gate.py`, DeepSeek review rounds |
 
 ### Overview
-`run-leaf.sh` lists the scope, records the gate, sends Luna each chunk of up to eight files, hands the findings to DeepSeek, and loops Luna's diff review until it passes or three rounds end.
+`run-leaf-v3.sh` lists the scope, records the gate, sends the DeepSeek auditor each chunk of up to eight files, hands the findings to DeepSeek, and loops the diff review until it passes or three rounds end.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -51,14 +51,14 @@ contextType: "general"
 ## 3. ARCHITECTURE
 
 ### Pattern
-Two-family review loop: one model reads, another writes, the first re-reads.
+Read, write, re-read loop: DeepSeek V4.1 Flash max reads and re-reads through opencode-go, and DeepSeek V4.1 Flash high writes through llmgateway.
 
 ### Key Components
-- **Luna 6 xhigh fast (`cli-codex`, read-only)**: writes `scratch/findings*.md` and `scratch/review-N.md`
-- **DeepSeek V4.1 Flash high (`cli-pi`, DevPass)**: applies the findings, logs `scratch/fix-N.log`
+- **DeepSeek V4.1 Flash max (`cli-opencode`, scope writes undone)**: writes `scratch/findings*.md` and `scratch/review-N.md`
+- **DeepSeek V4.1 Flash high (`cli-pi`, llmgateway)**: applies the findings, logs `scratch/fix-N.log`
 
 ### Data Flow
-`scope.txt` to Luna audit to `findings.md` to DeepSeek fix to `diff-N.patch` to Luna review, repeated until `VERDICT: PASS`.
+`scope.txt` to DeepSeek audit to `findings.md` to DeepSeek fix to `diff-N.patch` to DeepSeek review, repeated until `VERDICT: PASS`.
 <!-- /ANCHOR:architecture -->
 
 

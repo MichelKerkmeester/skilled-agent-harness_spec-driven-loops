@@ -72,9 +72,9 @@ files=17 render_warnings=1 invalid=0
 ## 3. SCOPE
 
 ### In Scope
-- Audit each doc against the parent rubric with Luna 6 xhigh on the fast tier, read-only.
+- Audit each doc against the parent rubric with DeepSeek V4.1 Flash max (`cli-opencode`, opencode-go), with any scope write undone.
 - Apply the findings with DeepSeek V4.1 Flash high on the DevPass route.
-- Re-read the diff with Luna until it passes, at most three rounds.
+- Re-read the diff with DeepSeek V4.1 Flash max until it passes, at most three rounds.
 
 ### Out of Scope
 - Changing what a rule, contract or example says - the program refines form only.
@@ -128,7 +128,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: The scope gate prints `render_warnings=0 invalid=0`.
-- **SC-002**: Luna's last review opens `VERDICT: PASS`.
+- **SC-002**: The last review opens `VERDICT: PASS`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -138,8 +138,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | codex Luna and pi DevPass DeepSeek | A step cannot run | On a quota stop, stop and ask; never re-route a GPT model |
-| Risk | A fix changes a claim while moving text | Med | Luna's review checks claims against the diff each round |
+| Dependency | opencode-go and llmgateway DeepSeek | A step cannot run | On a quota stop, stop and ask; never re-route |
+| Risk | A fix changes a claim while moving text | Med | The review checks claims against the diff each round |
 <!-- /ANCHOR:risks -->
 
 ---

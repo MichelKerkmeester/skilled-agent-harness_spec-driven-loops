@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 12: system-skill-advisor"
-description: "Read every in-scope doc of system-skill-advisor for readability, layout and structure, apply the defects found and prove the result with the render checks and a second read."
+description: "Read every in-scope doc of .skilled/skills/system-skill-advisor for readability, layout and structure, apply the defects found and prove the result with the render checks and a second read."
 trigger_phrases:
   - "system skill advisor"
   - "phase 12 system skill advisor"
@@ -35,7 +35,7 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase covers `system-skill-advisor`: 18 docs, listed in `scratch/scope.txt`.
+This phase covers `.skilled/skills/system-skill-advisor`: 18 docs, listed in `scratch/scope.txt`.
 
 **Scope Boundary**: the files in `scratch/scope.txt`. Changelogs, playbooks, feature catalogs, benchmarks and tests stay out.
 
@@ -52,7 +52,7 @@ This phase covers `system-skill-advisor`: 18 docs, listed in `scratch/scope.txt`
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The docs of `system-skill-advisor` were never read as a whole for readability, layout and structure. The render checks reported `files=18 render_warnings=2 invalid=0` before this phase, and they cannot judge order, density or whether an intro is a hook.
+The docs of `.skilled/skills/system-skill-advisor` were never read as a whole for readability, layout and structure. The render checks reported `files=18 render_warnings=2 invalid=0` before this phase, and they cannot judge order, density or whether an intro is a hook.
 
 ### Purpose
 Each doc follows its sk-doc template and the parent rubric, with no claim changed.

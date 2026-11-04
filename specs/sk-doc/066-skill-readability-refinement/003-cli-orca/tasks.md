@@ -40,9 +40,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T003 Audit each chunk with Luna (`scratch/findings.md`). Verify: it holds 44 findings, 3 of them P1.
+- [x] T003 Audit each chunk with DeepSeek max (`scratch/findings.md`). Verify: it holds 44 findings, 3 of them P1.
 - [x] T004 Apply the findings with DeepSeek (`scratch/fix-1.log`). Verify: the log ends `STATUS=OK`.
-- [x] T005 Review the diff with Luna until it passes (`scratch/review-*.md`). Verify: 1 round(s), verdicts PASS.
+- [x] T005 Review the diff with DeepSeek max until it passes (`scratch/review-*.md`). Verify: 1 round(s), verdicts PASS.
 <!-- /ANCHOR:phase-2 -->
 
 ---

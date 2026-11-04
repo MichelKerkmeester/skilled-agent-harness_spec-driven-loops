@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 17 in-scope docs of `.skilled/skills/cli-orca` now follow their sk-doc templates and the parent rubric. Luna listed 44 defects (3 P1), DeepSeek applied them, and Luna re-read the diff until it passed.
+The 17 in-scope docs of `.skilled/skills/cli-orca` now follow their sk-doc templates and the parent rubric. The DeepSeek max audit listed 44 defects (3 P1), DeepSeek applied them, and the review re-read the diff until it passed.
 
 ### 003-cli-orca
 
@@ -79,7 +79,7 @@ Findings are in `scratch/findings.md`, each round's diff in `scratch/diff-N.patc
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-`run-leaf.sh` ran the scope, the gate, the Luna audit, the DeepSeek fix and the Luna review rounds. `scratch/run.log` records each step with its exit.
+`run-leaf-v3.sh` ran the scope, the gate, the DeepSeek max audit, the DeepSeek high fix and the review rounds. `scratch/run.log` records each step with its exit.
 
 The first attempt, kept in `scratch/attempt-1/`, passed its reviews while dropping claims: the snapshot path base in eight references, seven source citations, rewritten citation targets and facts in the intros. It was reset to HEAD and rerun under a rubric that freezes frontmatter, code blocks, citations and factual intros, with DeepSeek V4.1 Flash max auditing and reviewing.
 
@@ -106,7 +106,7 @@ After that run passed, a read of the diff restored one README paragraph by hand:
 |-------|--------|
 | Scope gate before | `files=17 render_warnings=1 invalid=0` |
 | Scope gate after | `files=17 render_warnings=0 invalid=0` |
-| Luna review 1 | VERDICT: PASS |
+| Review 1 | VERDICT: PASS |
 <!-- /ANCHOR:verification -->
 
 ---

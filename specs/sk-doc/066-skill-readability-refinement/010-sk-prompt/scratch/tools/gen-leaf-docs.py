@@ -29,7 +29,7 @@ t = re.sub(r'^description: ".*"$', 'description: "' + desc.replace('"', "'") + '
 meta = re.search(r'<!-- ANCHOR:metadata -->\n(.*?)<!-- /ANCHOR:metadata -->', t, re.S).group(1)
 meta = meta.replace('[YOUR_VALUE_HERE: P0/P1/P2]', 'P1').replace('| **Status** | Draft |', f'| **Status** | {status} |')
 meta = re.sub(r'\| \*\*Branch\*\* \| `[^`]*` \|', '| **Branch** | `worktrees/315-frontend-reference-restructure` |', meta)
-meta = meta.replace('[To be defined during planning]', 'Luna passes the diff and the scope gate prints `render_warnings=0 invalid=0`')
+meta = meta.replace('[To be defined during planning]', 'The DeepSeek review passes the diff and the scope gate prints `render_warnings=0 invalid=0`')
 t = sub_anchor(t, 'metadata', '## 1. METADATA' + meta.split('## 1. METADATA', 1)[1])
 t = sub_anchor(t, 'phase-context', f'''## Phase Context
 
@@ -60,9 +60,9 @@ $ python3 -I {T}/scope-gate.py {O}/scope.txt
 t = sub_anchor(t, 'scope', f'''## 3. SCOPE
 
 ### In Scope
-- Audit each doc against the parent rubric with Luna 6 xhigh on the fast tier, read-only.
+- Audit each doc against the parent rubric with DeepSeek V4.1 Flash max (`cli-opencode`, opencode-go), with any scope write undone.
 - Apply the findings with DeepSeek V4.1 Flash high on the DevPass route.
-- Re-read the diff with Luna until it passes, at most three rounds.
+- Re-read the diff with DeepSeek V4.1 Flash max until it passes, at most three rounds.
 
 ### Out of Scope
 - Changing what a rule, contract or example says - the program refines form only.
@@ -92,14 +92,14 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 t = sub_anchor(t, 'success-criteria', '''## 5. SUCCESS CRITERIA
 
 - **SC-001**: The scope gate prints `render_warnings=0 invalid=0`.
-- **SC-002**: Luna's last review opens `VERDICT: PASS`.
+- **SC-002**: The last review opens `VERDICT: PASS`.
 ''')
 t = sub_anchor(t, 'risks', '''## 6. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | codex Luna and pi DevPass DeepSeek | A step cannot run | On a quota stop, stop and ask; never re-route a GPT model |
-| Risk | A fix changes a claim while moving text | Med | Luna's review checks claims against the diff each round |
+| Dependency | opencode-go and llmgateway DeepSeek | A step cannot run | On a quota stop, stop and ask; never re-route |
+| Risk | A fix changes a claim while moving text | Med | The review checks claims against the diff each round |
 ''')
 t = sub_anchor(t, 'questions', '## 7. OPEN QUESTIONS\n\n- None.\n')
 p.write_text(t)
@@ -115,10 +115,10 @@ t = sub_anchor(t, 'summary', f'''## 1. SUMMARY
 | **Language/Stack** | Markdown |
 | **Framework** | sk-doc templates and render checks |
 | **Storage** | None |
-| **Testing** | `scope-gate.py`, Luna review rounds |
+| **Testing** | `scope-gate.py`, DeepSeek review rounds |
 
 ### Overview
-`run-leaf.sh` lists the scope, records the gate, sends Luna each chunk of up to eight files, hands the findings to DeepSeek, and loops Luna's diff review until it passes or three rounds end.
+`run-leaf-v3.sh` lists the scope, records the gate, sends the DeepSeek auditor each chunk of up to eight files, hands the findings to DeepSeek, and loops the diff review until it passes or three rounds end.
 ''')
 t = sub_anchor(t, 'quality-gates', f'''## 2. QUALITY GATES
 
@@ -135,14 +135,14 @@ t = sub_anchor(t, 'quality-gates', f'''## 2. QUALITY GATES
 t = sub_anchor(t, 'architecture', f'''## 3. ARCHITECTURE
 
 ### Pattern
-Two-family review loop: one model reads, another writes, the first re-reads.
+Read, write, re-read loop: DeepSeek V4.1 Flash max reads and re-reads through opencode-go, and DeepSeek V4.1 Flash high writes through llmgateway.
 
 ### Key Components
-- **Luna 6 xhigh fast (`cli-codex`, read-only)**: writes `scratch/findings*.md` and `scratch/review-N.md`
-- **DeepSeek V4.1 Flash high (`cli-pi`, DevPass)**: applies the findings, logs `scratch/fix-N.log`
+- **DeepSeek V4.1 Flash max (`cli-opencode`, scope writes undone)**: writes `scratch/findings*.md` and `scratch/review-N.md`
+- **DeepSeek V4.1 Flash high (`cli-pi`, llmgateway)**: applies the findings, logs `scratch/fix-N.log`
 
 ### Data Flow
-`scope.txt` to Luna audit to `findings.md` to DeepSeek fix to `diff-N.patch` to Luna review, repeated until `VERDICT: PASS`.
+`scope.txt` to DeepSeek audit to `findings.md` to DeepSeek fix to `diff-N.patch` to DeepSeek review, repeated until `VERDICT: PASS`.
 ''')
 p.write_text(t)
 # tasks.md
@@ -156,9 +156,9 @@ t = sub_anchor(t, 'phase-1', f'''## Phase 1: Setup
 ''')
 t = sub_anchor(t, 'phase-2', f'''## Phase 2: Implementation
 
-- [x] T003 Audit each chunk with Luna (`scratch/findings.md`). Verify: it holds {nf} findings, {np1} of them P1.
+- [x] T003 Audit each chunk with DeepSeek max (`scratch/findings.md`). Verify: it holds {nf} findings, {np1} of them P1.
 {'- [x] T004 Apply the findings with DeepSeek (`scratch/fix-1.log`). Verify: the log ends `STATUS=OK`.' if nf else '- [x] T004 Apply the findings with DeepSeek. Verify: not needed, the audit found no defect.'}
-- [{x}] T005 Review the diff with Luna until it passes (`scratch/review-*.md`). Verify: {rounds} round(s), verdicts {', '.join(v.replace('VERDICT: ', '') for v in verdicts) or 'none needed'}.
+- [{x}] T005 Review the diff with DeepSeek max until it passes (`scratch/review-*.md`). Verify: {rounds} round(s), verdicts {', '.join(v.replace('VERDICT: ', '') for v in verdicts) or 'none needed'}.
 ''')
 t = sub_anchor(t, 'phase-3', f'''## Phase 3: Verification
 
@@ -181,11 +181,11 @@ if p.exists():
     t = t.replace('recent_action: "Initialized Level 1 template"', f'recent_action: "Audited, fixed and reviewed {len(scope)} docs"').replace('next_safe_action: "Replace continuity placeholders"', 'next_safe_action: "None; the phase is closed"' if passed else 'next_safe_action: "Resolve the last review round by hand"').replace('last_updated_by: "template-author"', 'last_updated_by: "claude-opus-5-5"')
     t = re.sub(r'completion_pct: \d+', f'completion_pct: {100 if passed else 80}', t)
     i = t.index('<!-- ANCHOR:what-built -->')
-    vt = '\n'.join(f'| Luna review {n} | {v} |' for n, v in enumerate(verdicts, 1)) or '| Luna review | Not needed: no findings |'
+    vt = '\n'.join(f'| Review {n} | {v} |' for n, v in enumerate(verdicts, 1)) or '| Review | Not needed: no findings |'
     t = t[:i] + f'''<!-- ANCHOR:what-built -->
 ## What Was Built
 
-The {len(scope)} in-scope docs of {label} now follow their sk-doc templates and the parent rubric. Luna listed {nf} defects ({np1} P1), DeepSeek applied them, and Luna re-read the diff until it passed.
+The {len(scope)} in-scope docs of {label} now follow their sk-doc templates and the parent rubric. The DeepSeek max audit listed {nf} defects ({np1} P1), DeepSeek applied them, and the review re-read the diff until it passed.
 
 ### {name}
 
@@ -203,7 +203,7 @@ Findings are in `scratch/findings.md`, each round's diff in `scratch/diff-N.patc
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-`run-leaf.sh` ran the scope, the gate, the Luna audit, the DeepSeek fix and the Luna review rounds. `scratch/run.log` records each step with its exit.
+`run-leaf-v3.sh` ran the scope, the gate, the DeepSeek max audit, the DeepSeek high fix and the review rounds. `scratch/run.log` records each step with its exit.
 <!-- /ANCHOR:how-delivered -->
 
 ---

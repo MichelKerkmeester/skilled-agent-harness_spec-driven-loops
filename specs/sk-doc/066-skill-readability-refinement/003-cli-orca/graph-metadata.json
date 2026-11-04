@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The docs of `.skilled/skills/cli-orca` were never read as a whole for readability, layout and structure",
     "created_at": "2026-11-04T07:15:53Z",
-    "last_save_at": "2026-11-04T11:57:31.532Z",
+    "last_save_at": "2026-11-04T12:03:43.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a35212b53b7e6a883bcd5586895302bc13ff2f8ea5e286c645883359d8c479ef",
+    "source_fingerprint": "sha256:e68229600b23dd24f148fbda20f4eb6383089f5518f861aa0e098674c1522eb8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "82c418e88410bdf205dd3ca5d5d96878aed2b301dd000549fd4b71bce2774d2d",
-      "plan.md": "555c4f0d04cc38ff701372e070bd1f22582f14f8d58c5cb5ada438efb689dffd",
-      "tasks.md": "b392917f759307ba6725b27fa04cd5a14fabcb5bba485f589446cced31fc8ca4",
-      "implementation-summary.md": "962bb4147b31e7ecf83a33e1ef5794e9bbd6bfb22d65fc1af857b6979b95bbc3"
+      "spec.md": "a713dda7a5fd1a7217e754ff53c03fc9fa63dd2477bb8455d2596ea8806bf14e",
+      "plan.md": "e9f118ae139b26eb40ff7b978e0b006f3305e5f924109a0e521c6276eea5661b",
+      "tasks.md": "99d1bb2110d2ed1806b1b86224bd0e99849bd421c0d087c3755fd034973da792",
+      "implementation-summary.md": "698dbe9be9c45f757eef730ce3dcccab164b0c49f93dc0e8dacfe316636848c4"
     },
     "last_active_at": null
   }

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "18 docs of system-skill-advisor audited and refined: 45 findings, 6 review round(s), gate files=18 render_warnings=0 invalid=0."
+description: "18 docs of .skilled/skills/system-skill-advisor audited and refined: 45 findings, 6 review round(s), gate files=18 render_warnings=0 invalid=0."
 trigger_phrases:
   - "system skill advisor implementation summary"
 importance_tier: "normal"
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The 18 in-scope docs of `system-skill-advisor` now follow their sk-doc templates and the parent rubric. The DeepSeek max audit listed 45 defects (2 P1), DeepSeek applied them, and the review re-read the diff until it passed.
+The 18 in-scope docs of `.skilled/skills/system-skill-advisor` now follow their sk-doc templates and the parent rubric. The DeepSeek max audit listed 45 defects (2 P1), DeepSeek applied them, and the review re-read the diff until it passed.
 
 ### 012-system-skill-advisor
 
