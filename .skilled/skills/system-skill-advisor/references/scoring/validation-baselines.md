@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.0.5
+version: 0.8.1.0
 ---
 
 # Validation Baselines + Troubleshooting
@@ -49,14 +49,20 @@ The measurement authority is [`scorer-eval-baseline.json`](../../runtime/scripts
 | Full-corpus top-1 accuracy | 0.7744 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
 | Holdout top-1 accuracy | 0.7361 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
 | UNKNOWN count (full corpus) | 13 | [`scorer-eval-baseline.json`](../../runtime/scripts/routing-accuracy/scorer-eval-baseline.json), captured 2026-07-30 |
-| Python regression suite | measurement unavailable in this packet | `runtime/scripts/skill_advisor_regression.py` |
-| Advisor vitest tests | measurement unavailable in this packet | `runtime/tests/` |
+| Python regression suite | measurement unavailable | `runtime/scripts/skill_advisor_regression.py` |
+| Advisor vitest tests | measurement unavailable | `runtime/tests/` |
 | Watcher idle CPU | 0.031% | `runtime/lib/daemon/watcher.ts` benchmark |
 | Watcher idle RSS | 5.516 MB | same |
 | Cache-hit p95 latency | ~6.989 ms | `runtime/bench/cache-latency.bench.ts` |
 | Uncached p95 latency | ~11.45 ms | same |
 
-**Bounded-delta gate (policy accepted 2026-08-02):** do not regress more than the bounded amount below the baseline captured on **2026-07-30**. Full-corpus top-1 must remain at or above `0.7544` (`0.7744` baseline minus `0.0200`, captured 2026-07-30); holdout top-1 must remain at or above `0.7261` (`0.7361` baseline minus `0.0100`, captured 2026-07-30); UNKNOWN must remain at or below `15` (`13` baseline plus `2`, captured 2026-07-30). The former absolute floors are retired as policy statements; the snapshot JSON and scorer are unchanged.
+**Bounded-delta gate (policy accepted 2026-08-02):** do not regress more than the bounded amount below the baseline captured on **2026-07-30**.
+
+- Full-corpus top-1 must remain at or above `0.7544` (`0.7744` baseline minus `0.0200`, captured 2026-07-30).
+- Holdout top-1 must remain at or above `0.7261` (`0.7361` baseline minus `0.0100`, captured 2026-07-30).
+- UNKNOWN must remain at or below `15` (`13` baseline plus `2`, captured 2026-07-30).
+
+The former absolute floors are retired as policy statements; the snapshot JSON and scorer are unchanged.
 
 ---
 

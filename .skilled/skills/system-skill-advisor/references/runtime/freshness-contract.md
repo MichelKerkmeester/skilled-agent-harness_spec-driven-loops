@@ -8,7 +8,7 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Freshness Contract
@@ -37,7 +37,12 @@ Callers must treat freshness as part of the routing contract, not as diagnostic 
 
 This contract governs **index trust-state freshness** — whether the skill graph the advisor serves is `live`, `stale`, `absent`, or `unavailable` relative to source changes and daemon liveness. That is the daemon's responsibility and it IS refreshed at runtime (rebuild/scan publish a new generation).
 
-Separately, each skill's derived block carries **derived-content author-time freshness** in `graph-metadata.json` `derived.generated_at` — the time the derived metadata was last generated/synced from source. The scorer's age-haircut decays a skill's derived lane by this value. It is **author-time, not runtime**: `advisor_rebuild`/`skill_graph_scan` re-index the existing derived block without re-stamping `generated_at`; only a derived-content change through the sync path re-stamps it. A freshly rebuilt index therefore does NOT reset the derived-content haircut — a skill whose derived metadata is genuinely old stays penalized by design. To refresh derived-content freshness, the derived block must actually be re-synced from source.
+Separately, each skill's derived block carries **derived-content author-time freshness** in `graph-metadata.json` `derived.generated_at`: the time the derived metadata was last generated/synced from source. The scorer's age-haircut decays a skill's derived lane by this value.
+
+- It is **author-time, not runtime**: `advisor_rebuild`/`skill_graph_scan` re-index the existing derived block without re-stamping `generated_at`.
+- Only a derived-content change through the sync path re-stamps it.
+- A freshly rebuilt index therefore does NOT reset the derived-content haircut: a skill whose derived metadata is genuinely old stays penalized by design.
+- To refresh derived-content freshness, the derived block must actually be re-synced from source.
 
 ### Key Sources
 

@@ -2,7 +2,7 @@
 name: system-skill-advisor
 description: Routes non-trivial requests to matching skills through the daemon-backed advisor CLI and stable advisor command ids.
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 0.18.1.0
+version: 0.18.2.0
 trigger_phrases:
   - "skill advisor"
   - "gate 2 routing"
@@ -93,34 +93,37 @@ Exit codes:
 - `69`: protocol/dist mismatch or stale dist.
 - `75`: retryable daemon error.
 
-When the daemon is unreachable, the CLI answers from the local Python scorer and marks the result degraded instead of failing the call.
-`--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines.
-Trust resolution fails closed. A call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied. Mutation commands therefore require the maintainer path.
+- When the daemon is unreachable, the CLI answers from the local Python scorer and marks the result degraded instead of failing the call.
+- `--format jsonl` renders one complete JSON payload on one stdout line. It is not streaming JSON Lines.
+- Trust resolution fails closed. A call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied. Mutation commands therefore require the maintainer path.
 
 **Routing phrases come from `graph-metadata.json`.** The daemon routes from each skill's `graph-metadata.json` using `intent_signals` and `derived.trigger_phrases`.
-The create-skill metadata CI check keeps that file aligned with the skill root.
-The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader.
-The local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value.
-Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`.
-Skill authors change routing vocabulary in `graph-metadata.json`.
+
+- The create-skill metadata CI check keeps that file aligned with the skill root.
+- The `trigger_phrases` and `intent_signals` fields in a skill's `SKILL.md` frontmatter are not read by any runtime routing reader.
+- The local Python scorer's frontmatter cache reads only `name`, `description` and an inline `keywords` value.
+- Reference and asset doc frontmatter `trigger_phrases` feed routing only when `SPECKIT_ADVISOR_DOC_TRIGGERS=true`.
+- Skill authors change routing vocabulary in `graph-metadata.json`.
 
 `advisor_status` reports `indexStaleness` on every successful call and, with `includeEmbeddingsHealth`, an opt-in `embeddingsHealth` covering provider resolution and the local model server.
 
 The advisor implementation, skill-graph library and package-local database live under this skill package, while memory remains focused on memory tools.
 
-**Skill lifecycle: how a new skill becomes routable.** The daemon watcher monitors the skills root itself. It watches that root shallowly, covering top-level directories only. It also watches each known root's identity files.
-When a skill is created while the daemon is warm, the new directory's event goes through the normal debounce into reindex.
-Reindex promotes the root's `SKILL.md`, `ROUTER.md` and `graph-metadata.json` into durable watch targets.
-With no daemon running, the next daemon start ingests the skill through normal discovery.
-Refresh manually at any time with `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
-Deleting a root retires its targets through the same path.
-The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
+**Skill lifecycle: how a new skill becomes routable.**
+
+1. The daemon watcher monitors the skills root itself. It watches that root shallowly, covering top-level directories only. It also watches each known root's identity files.
+2. When a skill is created while the daemon is warm, the new directory's event goes through the normal debounce into reindex.
+3. Reindex promotes the root's `SKILL.md`, `ROUTER.md` and `graph-metadata.json` into durable watch targets.
+4. With no daemon running, the next daemon start ingests the skill through normal discovery.
+5. Refresh manually at any time with `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
+6. Deleting a root retires its targets through the same path.
+7. The authoring-side counterpart (routing-evidence quality and the discovery smoke test) lives in the create-skill workflows.
 
 ---
 
 ## 4. RULES
 
-Always:
+### ALWAYS
 
 - Treat `references/runtime/cli-front-door-contract.md` as the source of truth for command ids, output shape and exit codes.
 - Keep the advisor database under `.skilled/skills/system-skill-advisor/runtime/database/`.
@@ -128,14 +131,14 @@ Always:
 - Preserve prompt-safety boundaries. Advisor metadata and lane attribution must not echo raw prompt text.
 - Keep `runtime/lib/skill-graph/` package-local to `system-skill-advisor`.
 
-Never:
+### NEVER
 
 - Store `skill-graph.sqlite` outside this package. The database is package-local.
 - Let any other runtime or server write the advisor SQLite database.
 - Rename `advisor_*` or `skill_graph_*` public commands as part of documentation work.
 - Move `runtime/lib/skill-graph/` during a doc-only pass.
 
-Escalate if:
+### ESCALATE IF
 
 - A caller requires renamed public tools.
 - The standalone advisor cannot build without a broader shared-runtime extraction.
@@ -147,28 +150,28 @@ Escalate if:
 
 Primary contract:
 
-- `references/runtime/cli-front-door-contract.md`: command ids, output envelope, exit taxonomy and caller obligations.
+- [`references/runtime/cli-front-door-contract.md`](references/runtime/cli-front-door-contract.md): command ids, output envelope, exit taxonomy and caller obligations.
 
 Package references:
 
-- `references/scoring/advisor-scorer.md`: lane attribution, fusion and confidence calibration.
-- `references/scoring/lane-weight-tuning.md`: measured lane-weight change workflow.
-- `references/scoring/validation-baselines.md`: `advisor_validate` baselines and troubleshooting.
-- `references/graph/skill-graph-query-cookbook.md`: worked `skill_graph_query` examples.
-- `references/graph/skill-graph-drift.md`: detect and reconcile SQLite drift from source files.
-- `references/graph/skill-graph-extraction-plan.md`: extraction history and completion record.
-- `references/graph/propagate-enhances.md`: internal `enhances` propagation contract.
-- `references/runtime/standalone-mcp-shape.md`: ADR-001 topology record (historical).
-- `references/runtime/tool-ids-reference.md`: stable public and internal tool ids.
-- `references/runtime/legacy-tool-bridge.md`: historical bridge policy record.
-- `references/runtime/freshness-contract.md`: trust-state vocabulary and caller obligations.
-- `references/runtime/daemon-lease-contract.md`: single-writer daemon lease behavior.
-- `references/config/db-path-policy.md`: package-local SQLite path policy.
-- `hooks/skill-advisor-hook.md`: prompt-time hook behavior.
-- `references/decisions/deferred-decisions.md`: Tier D decision records (F6 deprecation banners).
-- `ARCHITECTURE.md`
-- `runtime/README.md`
-- `runtime/tools/README.md`
+- [`references/scoring/advisor-scorer.md`](references/scoring/advisor-scorer.md): lane attribution, fusion and confidence calibration.
+- [`references/scoring/lane-weight-tuning.md`](references/scoring/lane-weight-tuning.md): measured lane-weight change workflow.
+- [`references/scoring/validation-baselines.md`](references/scoring/validation-baselines.md): `advisor_validate` baselines and troubleshooting.
+- [`references/graph/skill-graph-query-cookbook.md`](references/graph/skill-graph-query-cookbook.md): worked `skill_graph_query` examples.
+- [`references/graph/skill-graph-drift.md`](references/graph/skill-graph-drift.md): detect and reconcile SQLite drift from source files.
+- [`references/graph/skill-graph-extraction-plan.md`](references/graph/skill-graph-extraction-plan.md): extraction history and completion record.
+- [`references/graph/propagate-enhances.md`](references/graph/propagate-enhances.md): internal `enhances` propagation contract.
+- [`references/runtime/standalone-mcp-shape.md`](references/runtime/standalone-mcp-shape.md): ADR-001 topology record (historical).
+- [`references/runtime/tool-ids-reference.md`](references/runtime/tool-ids-reference.md): stable public and internal tool ids.
+- [`references/runtime/legacy-tool-bridge.md`](references/runtime/legacy-tool-bridge.md): historical bridge policy record.
+- [`references/runtime/freshness-contract.md`](references/runtime/freshness-contract.md): trust-state vocabulary and caller obligations.
+- [`references/runtime/daemon-lease-contract.md`](references/runtime/daemon-lease-contract.md): single-writer daemon lease behavior.
+- [`references/config/db-path-policy.md`](references/config/db-path-policy.md): package-local SQLite path policy.
+- [`hooks/skill-advisor-hook.md`](hooks/skill-advisor-hook.md): prompt-time hook behavior.
+- [`references/decisions/deferred-decisions.md`](references/decisions/deferred-decisions.md): Tier D decision records (F6 deprecation banners).
+- [`ARCHITECTURE.md`](ARCHITECTURE.md)
+- [`runtime/README.md`](runtime/README.md)
+- [`runtime/tools/README.md`](runtime/tools/README.md)
 
 ---
 

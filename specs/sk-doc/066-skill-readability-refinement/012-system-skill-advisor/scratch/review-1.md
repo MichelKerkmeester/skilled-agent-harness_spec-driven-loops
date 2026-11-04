@@ -1,0 +1,2 @@
+VERDICT: FIX
+- [P1] .skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md:152 | 9 | The replacement drops the named artifact `implementation-summary.md` and retargets a process instruction to an unspecified "change summary"; a durable packet-artifact name is not a spec path, so the finding should be skipped. | Restore: "Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`."

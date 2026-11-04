@@ -161,12 +161,6 @@
         "render_section_order"
       ]
     },
-    "system-skill-advisor": {
-      "findings": 2,
-      "codes": [
-        "render_intro_restates_purpose"
-      ]
-    },
     "system-spec-kit": {
       "findings": 49,
       "codes": [

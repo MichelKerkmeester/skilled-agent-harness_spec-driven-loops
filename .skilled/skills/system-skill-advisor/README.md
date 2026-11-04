@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.11.0
+version: 0.12.12.0
 ---
 
 # system-skill-advisor
@@ -29,11 +29,15 @@ version: 0.12.11.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
+### Purpose
 
 When a runtime meets an ambiguous prompt, guessing which skill to dispatch silently misroutes work. Guessing also hides the reason, so a bad route cannot be explained or repaired. And hook code that echoes the user prompt into logs creates a privacy problem that scales with every invocation.
 
 The advisor answers the "which skill" question with a calibrated score and an explicit trust state. It redacts raw prompt content from every response, so callers can log routing telemetry without logging what the user asked.
+
+### When to Use
+
+Reach for the advisor when a runtime needs to pick a skill for a non-trivial prompt and guessing is not safe. The advisor answers the question and gets out of the way. It does not own the work the target skill performs.
 
 ### What It Does
 
@@ -96,7 +100,20 @@ node .skilled/bin/skill-advisor.cjs advisor_rebuild --trusted --force true
 
 ### OpenCode Plugin Note
 
-The Skill Advisor bridge plugin injects routing advice at prompt time. Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries. Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks and an atomically advanced high-water mark. When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`). For setup-shaped prompts, no-match and outage fallbacks also name `/doctor:setup`. A repeat in a confirmed session keeps that line and drops the directives. With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed. Full-delivery receipts commit after stdout handoff. A boundary failure poisons older receipts, and unsafe or unavailable durable state stays full. `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery. The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`. Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`. Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`. Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
+The Skill Advisor bridge plugin injects routing advice at prompt time.
+
+- Constant advisor policy is delivered in full on the first proven message and after registered lifecycle boundaries.
+- Route-only repeats require confirmed primitive identity, valid transcript evidence, matching versioned state, stable generation/epoch clocks and an atomically advanced high-water mark.
+- When there is no brief, the plugin and the hooks emit a fallback that opens with one status line (`Advisor: outage (...)`, `Advisor: no skill matched.` or `Advisor: prompt skipped.`).
+- For setup-shaped prompts, no-match and outage fallbacks also name `/doctor:setup`.
+- A repeat in a confirmed session keeps that line and drops the directives.
+- With the opt-in `deduplicateTransforms` on, the plugin decides same-message transform dedup on the full block before lifecycle reduction, so a repeated transform for the same message is suppressed.
+- Full-delivery receipts commit after stdout handoff. A boundary failure poisons older receipts, and unsafe or unavailable durable state stays full.
+- `SPECKIT_DIRECTIVE_LIFECYCLE_DEDUP=0` restores always-full delivery.
+- The separate `/goal` plugin persists a session objective, injects a bounded active-goal block and exposes `opencode_goal` and `opencode_goal_status`.
+- Its command router delegates all state reads and writes to `opencode_goal` and `opencode_goal_status`.
+- Active continuation remains opt-in through `OPENCODE_GOAL_AUTONOMY`.
+- Live OpenCode-run tool invocation is verified: an `opencode serve` run lists `opencode_goal` and `opencode_goal_status` in the session tool set. A live model turn persists per-session state.
 
 ### Doctor Command Routing
 
@@ -174,10 +191,6 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
 ---
 
 ## 5. INTEGRATION & NAVIGATION
-
-### When To Use This Skill
-
-Reach for the advisor when a runtime needs to pick a skill for a non-trivial prompt and guessing is not safe. The advisor answers the question and gets out of the way. It does not own the work the target skill performs.
 
 ### Related Skills
 

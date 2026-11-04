@@ -1,0 +1,3 @@
+VERDICT: FIX
+
+- [P1] .skilled/skills/system-skill-advisor/references/scoring/lane-weight-tuning.md:152 | 9 | The rollback step no longer names `implementation-summary.md`, so the instruction now targets an unspecified "original change summary" and a reader cannot tell which artifact records the rationale. The artifact name carries no path segment, phase number or task number, so rubric 9 does not license dropping it, and removing it changes what the instruction says. | Restore the exact HEAD sentence: "Confirm the baseline numbers return. Document the rollback rationale in the original packet's `implementation-summary.md`."

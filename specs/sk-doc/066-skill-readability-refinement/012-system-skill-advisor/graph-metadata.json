@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/012-system-skill-advisor",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/012-system-skill-advisor",
+  "parent_id": "sk-doc/066-skill-readability-refinement",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "system skill advisor",
+      "phase 12 system skill advisor",
+      "system skill advisor plan",
+      "system skill advisor tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "system skill advisor implementation summary"
+    ],
+    "key_topics": [
+      "system",
+      "skill",
+      "advisor",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      ".skilled/skills/system-skill-advisor/ROUTER.md",
+      ".skilled/skills/system-skill-advisor/SKILL.md",
+      ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
+      ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
+      ".skilled/skills/system-skill-advisor/references/graph/propagate-enhances.md",
+      ".skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md",
+      ".skilled/skills/system-skill-advisor/references/graph/skill-graph-extraction-plan.md",
+      ".skilled/skills/system-skill-advisor/references/graph/skill-graph-query-cookbook.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/daemon-lease-contract.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/legacy-tool-bridge.md",
+      ".skilled/skills/system-skill-advisor/references/runtime/standalone-mcp-shape.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "db-path-policy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/config/db-path-policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deferred-decisions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/decisions/deferred-decisions.md",
+        "source": "derived"
+      },
+      {
+        "name": "propagate-enhances.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/graph/propagate-enhances.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-drift.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-extraction-plan.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/graph/skill-graph-extraction-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-query-cookbook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/graph/skill-graph-query-cookbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-front-door-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "daemon-lease-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/daemon-lease-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "freshness-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/freshness-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-tool-bridge.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/legacy-tool-bridge.md",
+        "source": "derived"
+      },
+      {
+        "name": "standalone-mcp-shape.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/references/runtime/standalone-mcp-shape.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The docs of `system-skill-advisor` were never read as a whole for readability, layout and structure",
+    "created_at": "2026-11-04T07:15:58Z",
+    "last_save_at": "2026-11-04T12:02:04.598Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7dbfc95e94b171b44dd20fdb4b9181634d8445ce0e6f8a1603f0cc76397da611",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd8b1ca05391e970a305eb853b3c9cab82e1140ae1b0236564a47254893e1aa3",
+      "plan.md": "40aa07f8173cac1db641d697c455d0f234c5f94d3fa02dd4ad20f60e9df35fdd",
+      "tasks.md": "cdd93f006cc745d2f81726aee391054a38745ed444ca83602cfe59b87e6d7ae4",
+      "implementation-summary.md": "85d79ee5b5a36dc93ad121aa1595c97369072be6068fd6575d46b759fc92d72d"
+    },
+    "last_active_at": null
+  }
+}

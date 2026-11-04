@@ -7,7 +7,7 @@ trigger_phrases:
   - "single writer lease"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.0.11
+version: 0.8.1.0
 ---
 
 # Daemon Lease Contract
@@ -44,6 +44,8 @@ Only one advisor daemon may hold the workspace lease for a resolved database dir
 
 ### Launcher-Boundary Enforcement
 
+This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environment variable (default `1`/true). When set to `0` or `false`, the launcher logs a warning and continues without exiting (dev override).
+
 The `system-skill-advisor-launcher.cjs` script enforces single-writer semantics at process startup before opening the SQLite skill-graph database. It combines the owner-lease sidecar with the launcher PID lease and bridges secondary clients through `maybeBridgeLeaseHolder` when a live owner already exists:
 
 - If a live owner holds the lease: the launcher tries to bridge this client to the live owner's IPC socket through the session proxy. `LEASE_HELD_BY:<ownerPid>` is now only the fallback diagnostic when bridging is disabled or the socket cannot be used.
@@ -51,8 +53,6 @@ The `system-skill-advisor-launcher.cjs` script enforces single-writer semantics 
 - If the live owner's daemon was launched before the current build, its launcher lease records a `childPid` and a `startedAt` older than `dist/runtime/advisor-server.js`. The launcher recycles that daemon through the same guarded respawn path before bridging, and bridges to it as before when the recycle is skipped, writing no `LEASE_HELD_BY` line. The advisor CLI connects to a live daemon's socket directly, so it makes the same check and starts a launcher to do the recycle. `SPECKIT_BRIDGE_RESPAWN_DISABLED=1` turns the recycle off.
 - If `staleReclaimable === true`: the launcher logs `staleReclaimed: true` and continues normal bootstrap (the existing `acquireSkillGraphLease` call reclaims the lease).
 - If `held === false`: the launcher continues normal bootstrap.
-
-This enforcement is gated by the `SYSTEM_SKILL_ADVISOR_STRICT_SINGLE_WRITER` environment variable (default `1`/true). When set to `0` or `false`, the launcher logs a warning and continues without exiting (dev override).
 
 ### Acquire
 

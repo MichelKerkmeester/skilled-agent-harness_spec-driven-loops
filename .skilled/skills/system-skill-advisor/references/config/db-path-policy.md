@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor database policy"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.0.9
+version: 0.8.1.0
 ---
 
 # System Skill Advisor DB Path Policy
@@ -77,7 +77,9 @@ This separation gives cleaner mutation scope:
 
 ## 4. TEST AND CI OVERRIDE
 
-`SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only. The retired `MK_SKILL_ADVISOR_DB_DIR` name has no read site of its own. It reaches this variable only in a process that runs the env alias bridge (`.skilled/hooks/shared/env-aliases.cjs`) before the read, and only while `SYSTEM_SKILL_ADVISOR_DB_DIR` is unset.
+- `SYSTEM_SKILL_ADVISOR_DB_DIR` is allowed for tests and disposable CI runs only.
+- The retired `MK_SKILL_ADVISOR_DB_DIR` name has no read site of its own.
+- The retired name reaches this variable only in a process that runs the env alias bridge (`.skilled/hooks/shared/env-aliases.cjs`) before the read, and only while `SYSTEM_SKILL_ADVISOR_DB_DIR` is unset.
 
 The override moves these advisor state files and the model server with the database, so a test or CI run keeps them out of the workspace and does not disturb the live advisor:
 
@@ -91,7 +93,9 @@ Production and operator docs should treat the package-local path as the default.
 
 ### Child-process `MEMORY_DB_PATH` pointer
 
-`system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor daemon child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default. A bare ambient `MEMORY_DB_PATH` in the parent process is never honored as an override, whoever set it, since that would silently re-collocate the advisor's embedder-pointer resolution with another package's database and defeat this policy's separation. To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
+- `system-skill-advisor-launcher.cjs`'s `createChildEnv()` sets the advisor daemon child's `MEMORY_DB_PATH` (the env var `@spec-kit/shared/embeddings/factory.ts` reads to resolve which database's `active_embedder_*` pointer to use) explicitly to this policy's package-local `skill-graph.sqlite` path by default.
+- A bare ambient `MEMORY_DB_PATH` in the parent process is never honored as an override, whoever set it, since that would silently re-collocate the advisor's embedder-pointer resolution with another package's database and defeat this policy's separation.
+- To override for tests/CI only, set the dedicated `SYSTEM_SKILL_ADVISOR_MEMORY_DB_PATH` var instead.
 
 ---
 

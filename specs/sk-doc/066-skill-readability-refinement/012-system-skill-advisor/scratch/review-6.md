@@ -1,0 +1,5 @@
+VERDICT: PASS
+
+All 12 LOST lines resolve. The ROUTER, db-path-policy, freshness-contract, lane-weight-tuning and validation-baselines lines were reflowed or split with every sentence, number and qualifier preserved; the `three` → `six` inventory (`runtime/lib/skill-graph/` holds exactly six files), the two `**Done**:` labels, the `measurement unavailable` cells and the `.opencode/specs/` removal are the prescribed fixes. The drift and tool-ids Purpose rewrites are template-driven outcome statements whose original job claims remain verbatim in the unchanged H1 intros. The only changed intro is cli-front-door-contract, empty at HEAD, and its hook adds no claim beyond When to Use.
+
+`validate_document.py` reports zero issues and zero `render_*` warnings on all 18 files; frontmatter, code blocks, block counts and citations are unchanged. ROUTER, SKILL, propagate-enhances, freshness-contract, tool-ids-reference and lane-weight-tuning keep their H2 text, numbers and order, so every numbered inbound reference still resolves, and the extraction-plan inventory now lists every file in its directory. The lane-weight rollback sentence is back to HEAD byte for byte.

@@ -7,7 +7,7 @@ trigger_phrases:
   - "skill graph migration status"
 importance_tier: "normal"
 contextType: "planning"
-version: 0.8.0.7
+version: 0.8.1.0
 ---
 
 # Skill Graph Library Extraction Status
@@ -47,9 +47,12 @@ The `lib/skill-graph/` library resides inside the advisor skill package:
 .skilled/skills/system-skill-advisor/runtime/lib/skill-graph/
 ```
 
-The directory contains three files:
+The directory contains six files:
 
 - `README.md` - Library documentation
+- `bfs-traversal.ts` - Depth-bounded breadth-first graph traversal
+- `doc-frontmatter.ts` - Skill doc frontmatter harvest that feeds doc-level trigger phrases into routing
+- `metadata-sanitizer.ts` - Skill metadata sanitizer that bounds value length and filters instruction-shaped text
 - `skill-graph-db.ts` - SQLite schema initialization and indexer writes
 - `skill-graph-queries.ts` - Prepared relationship queries
 
@@ -77,8 +80,8 @@ No pending extraction work remains. The old cleanup reference is obsolete and SK
 
 The remaining work is purely documentation alignment, not code movement:
 
-- Update [SKILL.md](../../SKILL.md) to state that extraction is complete. **Done**: ARCHITECTURE.md §1 plus §9 plus SKILL.md §4 RULES now describe `lib/skill-graph/` as package-local to system-skill-advisor.
-- Remove the obsolete pending-cleanup reference from any operator or maintainer docs that still cite it. **Done**: the future-work bullet was removed from ARCHITECTURE.md §9.
+- Update [SKILL.md](../../SKILL.md) to state that extraction is complete. ARCHITECTURE.md §1 plus §9 plus SKILL.md §4 RULES now describe `lib/skill-graph/` as package-local to system-skill-advisor.
+- Remove the obsolete pending-cleanup reference from any operator or maintainer docs that still cite it. The future-work bullet is absent from ARCHITECTURE.md §9.
 - Preserve a migration note where helpful so operators reading historical context understand the prior location.
 
 No further refactor is planned for `lib/skill-graph/` itself. Future ownership changes would be tracked as a separate packet with its own ADR and migration plan.

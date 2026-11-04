@@ -20,11 +20,20 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-A request reaches this skill when the work is about skill selection itself: choosing which skill should handle a task, Gate 2 routing, the advisor CLI commands, the prompt-time skill-advisor hook, skill-graph freshness or the standalone advisor package. Selection draws from `references/scoring/`, `references/graph/`, `references/runtime/`, `references/config/` and `references/decisions/`, from `hooks/` for prompt-time hook behavior, and from the `feature-catalog/` and `manual-testing-playbook/` package indexes when the request is a broad browse. The advisor recommends the target skill without absorbing its rules, so `sk-code`, `sk-doc`, `sk-git` and `mcp-code-mode` still own their own work once the recommendation lands.
+### Purpose
 
-The router answers one question: given a request, which skill-local resources load, in what order, and
-what happens when nothing matches. Every path below stays inside this skill folder, and no resource
-loads before an intent selects it.
+The router answers one question: given a request, which skill-local resources load, in what order, and what happens when nothing matches. Every path below stays inside this skill folder, and no resource loads before an intent selects it.
+
+### When to Use
+
+A request reaches this skill when the work is about skill selection itself: choosing which skill should handle a task, Gate 2 routing, the advisor CLI commands, the prompt-time skill-advisor hook, skill-graph freshness or the standalone advisor package.
+
+Selection draws from:
+
+- **References:** `references/scoring/`, `references/graph/`, `references/runtime/`, `references/config/` and `references/decisions/`.
+- **Hooks:** `hooks/` for prompt-time hook behavior.
+- **Package indexes:** the `feature-catalog/` and `manual-testing-playbook/` package indexes, when the request is a broad browse.
+- **Ownership boundary:** the advisor recommends the target skill without absorbing its rules, so `sk-code`, `sk-doc`, `sk-git` and `mcp-code-mode` still own their own work once the recommendation lands.
 
 ---
 
@@ -320,12 +329,13 @@ return {
 - **Ambiguous intent scores:** load the top two intents' exact leaves and disclose the ambiguity instead of picking one silently.
 - **Known intent with no mapped leaf:** return a "no knowledge base found" notice naming the missing intent. Never invent a typed pair for a path outside `leaf-manifest.json`.
 - **Advisor daemon unavailable:** Run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<request>"}' --format json`.
-  The CLI starts the daemon when the socket is cold.
-  If the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded. The brief then renders `Advisor: stale` instead of claiming live.
-  A degraded answer is stale. A missing answer is a fail-open. Prompt-time adapters cap the call with their own timeout and never block the prompt.
-  Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`.
-  Direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`.
-  The full command contract, output envelope, exit taxonomy and stale-build recovery are in [`references/runtime/cli-front-door-contract.md`](../../../.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md).
+  - The CLI starts the daemon when the socket is cold.
+  - If the daemon stays unreachable, the CLI answers from the local Python scorer and marks the result degraded. The brief then renders `Advisor: stale` instead of claiming live.
+  - A degraded answer is stale. A missing answer is a fail-open.
+  - Prompt-time adapters cap the call with their own timeout and never block the prompt.
+  - Operator checks, doctor routes and scripts use the same CLI with `--timeout-ms N`.
+  - Direct callers that need the Python JSON-array shape use `runtime/scripts/skill_advisor.py`.
+  - The full command contract, output envelope, exit taxonomy and stale-build recovery are in [`references/runtime/cli-front-door-contract.md`](../../../.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md).
 
 ### Gate 2 caller guidance
 

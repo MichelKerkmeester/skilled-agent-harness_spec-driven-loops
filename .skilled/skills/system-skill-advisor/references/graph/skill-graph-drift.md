@@ -7,7 +7,7 @@ trigger_phrases:
   - "skill graph rebuild"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Skill Graph Drift Reconciliation
@@ -20,7 +20,7 @@ How to detect plus reconcile drift between the SQLite skill graph state and the 
 
 ### Purpose
 
-Explains how to detect and reconcile drift between SQLite skill graph state and live `graph-metadata.json` source files.
+Keep the SQLite graph the advisor scores from in step with the metadata files it is built from.
 
 ### When to Use
 
@@ -93,6 +93,8 @@ Compare against the daemon's recorded signature stored alongside `runtime/databa
 ---
 
 ## 4. RECONCILIATION
+
+Trust resolution fails closed. A call is untrusted unless `--trusted` or `SYSTEM_SKILL_ADVISOR_CLI_TRUSTED=1` is supplied. Mutation commands therefore require the maintainer path.
 
 ### Standard reconciliation
 

@@ -6,15 +6,26 @@ trigger_phrases:
   - "skill advisor cli commands"
   - "advisor exit codes"
   - "advisor cli output shape"
-version: 0.11.1.0
+version: 0.11.2.0
 importance_tier: "important"
 contextType: "implementation"
 ---
 # Contract: the skill advisor CLI front door
 
+Open this contract when wiring a caller to an advisor capability through the CLI.
+
 ## 1. OVERVIEW
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
+
+### Purpose
+
+Defines the CLI command, argument, output and failure contract callers may rely on.
+
+### When to Use
+
+- Before invoking an advisor capability through the CLI.
+- When deciding how to handle its response or exit code.
 
 > The single entry point for every advisor capability. Callers read this rather than the CLI
 > source. Field names and exit codes here are frozen: a change to either is a breaking change.
@@ -41,6 +52,9 @@ session start so the first real call does not pay daemon start.
 
 Nine, each accepting three spellings: snake case, kebab case and camel case.
 
+The three mutating commands require caller trust; an untrusted caller is
+refused before anything is written.
+
 | Command | Mutates | Required arguments |
 |---------|---------|--------------------|
 | `advisor_recommend` | no | `prompt` |
@@ -54,8 +68,7 @@ Nine, each accepting three spellings: snake case, kebab case and camel case.
 | `skill_graph_propagate_enhances` | **yes** unless `dryRun` | none |
 
 Optional arguments per command come from the tool manifest and are printed by
-`<command> --help`. The three mutating commands require caller trust; an untrusted caller is
-refused before anything is written.
+`<command> --help`.
 
 ---
 

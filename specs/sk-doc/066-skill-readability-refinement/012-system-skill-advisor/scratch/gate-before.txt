@@ -1,0 +1,3 @@
+.skilled/skills/system-skill-advisor/references/graph/skill-graph-drift.md:15: render_intro_restates_purpose: The intro repeats the Purpose (0.73 token overlap); make the intro a hook.
+.skilled/skills/system-skill-advisor/references/runtime/tool-ids-reference.md:16: render_intro_restates_purpose: The intro repeats the Purpose (0.63 token overlap); make the intro a hook.
+files=18 render_warnings=2 invalid=0

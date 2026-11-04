@@ -8,7 +8,7 @@ trigger_phrases:
   - "lane weight sweep"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.11
+version: 0.8.1.0
 ---
 
 # Lane Weight Tuning Guide
@@ -83,7 +83,13 @@ This harness exercises each lane weight individually across a small grid plus re
 
 **Step 3: Make the change.**
 
-Edit `runtime/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`. For experiments, `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`; it requires a daemon restart to apply and suits short-lived experiments only — durable tuning stays a source edit shipped with measured evidence.
+Edit `runtime/lib/scorer/lane-registry.ts:7-19` (live weights) or `lane-registry.ts:32-38` (shadow weights). Keep both sums close to 1.0 to preserve the calibration assumptions in `scoring-constants.ts`.
+
+For experiments:
+
+- `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` is allowlisted through the launcher and read by `lane-registry.ts`.
+- It requires a daemon restart to apply and suits short-lived experiments only.
+- Durable tuning stays a source edit shipped with measured evidence.
 
 **Step 4: Capture the comparison.**
 

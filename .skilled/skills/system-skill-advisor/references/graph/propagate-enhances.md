@@ -7,7 +7,7 @@ trigger_phrases:
   - "enhances edge propagation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.6
+version: 0.8.1.0
 ---
 
 # Skill Graph Propagate Enhances Tool
@@ -50,7 +50,9 @@ Three rules contribute to the composite confidence score with capped maximum con
 | asset-shape | 0.30 | Target has files or assets matching source's `enhance_when` rules |
 | sibling-transitivity | 0.15 | Source enhances B and B has target as a sibling |
 
-Family-inference is the strongest signal and requires at least three existing `enhances` entries before it contributes. Asset-shape inspects the target skill's filesystem layout against the source's declared trigger shape. Sibling-transitivity walks one hop through known sibling links.
+- **Family-inference** is the strongest signal and requires at least three existing `enhances` entries before it contributes.
+- **Asset-shape** inspects the target skill's filesystem layout against the source's declared trigger shape.
+- **Sibling-transitivity** walks one hop through known sibling links.
 
 ---
 
@@ -62,7 +64,8 @@ Three modes control read-write behavior:
 - `propose` - Returns candidates without making any changes. Functionally an alias for `report`.
 - `apply` - Writes selected candidates to source `graph-metadata.json` files.
 
-`apply` mode only writes candidates that are explicitly selected by ID or selected through `applyAllHighConfidence=true` for candidates above `minConfidence` (default 0.75). `dryRun` defaults to true so a fresh `apply` call without explicit `dryRun:false` still produces a no-write preview.
+- `apply` mode only writes candidates that are explicitly selected by ID or selected through `applyAllHighConfidence=true` for candidates above `minConfidence` (default 0.75).
+- `dryRun` defaults to true so a fresh `apply` call without explicit `dryRun:false` still produces a no-write preview.
 
 ---
 
