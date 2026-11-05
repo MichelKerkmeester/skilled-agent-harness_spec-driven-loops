@@ -2,7 +2,7 @@
 name: sk-create-changelog
 description: Author global component changelogs in the v4 narrative style, with placement, versioning, lean content and release notes.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.4.0.0
+version: 1.4.1.0
 ---
 
 # create-changelog
@@ -220,7 +220,7 @@ The voice, structure, omission and length rules live in `assets/changelog-templa
 1. Write for a smart person who is not a developer, and lead with why the release matters.
 2. Keep what the reader would notice or act on. Drop file inventories, test counts, internal labels, process detail and follow-on housekeeping, and compress reverted work to one story sentence or nothing.
 3. Say each fact once, in the section whose job it is.
-4. Bold lead-in sentences on glance bullets, a `({Topical Domain})` tag after each one in an expanded entry, H4 item headings of 2-7 words (10 at most), an `&nbsp;` line before every H2 (the opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no `---` rule in the body and inline `**Breaking:**` markers.
+4. Bold lead-in sentences on glance bullets, a trailing `<!-- section: {Topical Domain} -->` comment on each one in an expanded entry, H4 item headings of 2-7 words (10 at most), an `&nbsp;` line before every H2 (the opening, Why This Release, What's New at a Glance and every later section), nothing between H4 items, no `---` rule in the body and inline `**Breaking:**` markers.
 5. No Oxford commas, em dashes or semicolons, per the Human Voice Rules.
 
 ### Release Notes

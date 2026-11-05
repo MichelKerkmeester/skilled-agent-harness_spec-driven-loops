@@ -6,15 +6,16 @@
     "phase",
     "concise-release-format"
   ],
-  "lastUpdated": "2026-11-05T20:31:25.272Z",
+  "lastUpdated": "2026-11-05T21:47:48.744Z",
   "specId": "005",
   "folderSlug": "concise-release-format",
   "parentChain": [
     "sk-doc",
     "055-changelog-system"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "05-11-26_21-31__deep-research-5-iterations-cli-pi-deepseek-v4-1.md"
+    "05-11-26_21-31__deep-research-5-iterations-cli-pi-deepseek-v4-1.md",
+    "05-11-26_22-47__researched-5-iterations-deepseek-v4-1-flash-max.md"
   ]
 }

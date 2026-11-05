@@ -577,7 +577,7 @@ workflow:
           EXPANDED FORMAT:
             ## Why This Release
             ## What's New at a Glance
-              - **{The theme, stated as a short sentence.}** ({Topical Domain}) {One plain sentence that adds what the bold one does not say.}
+              - **{The theme, stated as a short sentence.}** {One plain sentence that adds what the bold one does not say.} <!-- section: {Topical Domain} -->
               (one bullet per theme, tagged with the topical section it summarizes, in section order)
             ## {Topical Domain}
               #### {Benefit-led heading, usually 2-7 words}

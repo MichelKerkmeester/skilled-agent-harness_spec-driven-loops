@@ -17,6 +17,7 @@
       "concise release format plan",
       "concise release format tasks",
       "concise release format acceptance criteria",
+      "005-concise-release-format operator decisions",
       "concise release format implementation summary",
       "concise release format research",
       "sk-create-changelog concise default",
@@ -34,7 +35,7 @@
       "tasks",
       "acceptance",
       "criteria",
-      "implementation"
+      "005-concise-release-format"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -43,6 +44,7 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
       ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
@@ -57,8 +59,7 @@
       ".skilled/commands/create/assets/create-changelog-confirm.yaml",
       ".skilled/commands/create/assets/create-changelog-presentation.txt",
       ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.0.0.md",
-      ".skilled/skills/sk-doc/changelog/v2.9.5.0.md",
-      ".skilled/skills/sk-doc/SKILL.md"
+      ".skilled/skills/sk-doc/changelog/v2.9.5.0.md"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -198,17 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The changelog template told the writer to copy the 535-line v4.0.0.0 entry and set every ceiling at or above what that entry did, so the expanded format had no file total and no item count",
     "created_at": "2026-11-05T20:05:13Z",
-    "last_save_at": "2026-11-05T21:10:10.400Z",
+    "last_save_at": "2026-11-05T21:47:48.744Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,16 +217,18 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fd05d73be10d650a2f565f18bfa4f9e5a474844259f0d5149b8ff8ffefc5d789",
+    "source_fingerprint": "sha256:ab438a2dedede6953b62f3ca6adb44374019053cb1f45a2a12120ae868379565",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "978caca63763c6b64a863c75e7ef2bf5587d167810ee16f1a0978758807caf47",
       "plan.md": "5ad9c7215ae077479cd0bdc7f0fdc0e0dbe3b293c8cc04102b10eaa6f5519d67",
       "tasks.md": "1c0e6b3d2992b3019f233e738118043f7e7ad46fa968cd68f6491769d8dd6ecb",
-      "implementation-summary.md": "09976d0c1635bf0192b76242ef2a0c22869e2d30f1d5ef1f177e8131de50a0c9",
+      "decision-record.md": "3065133e1d06710e80ea72ffaf787ac2d862b7b6f9150cf6a90c2997f99b002b",
+      "implementation-summary.md": "8a1ac0221602eb5aac92406d9521bce762d7831e76d798e91a4067bb2f509ab6",
       "research/research.md": "693b3d22716b4de8310271b314e1e7cf69a0268d180d6b0c66dd1407c59ebb80"
     },
     "last_active_at": null

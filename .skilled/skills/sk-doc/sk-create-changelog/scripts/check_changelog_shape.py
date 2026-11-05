@@ -15,8 +15,9 @@ Five rules, each an error:
   glance-order  tagged glance bullets follow the order of the sections they name
   spec-line     the spec-folder line carries paths only, never a "(Level N)" label
 
-The order check reads the "(Topical Domain)" tag that follows a glance bullet's
-bold lead-in. An entry whose bullets carry no tag skips it, because without a
+The order check reads the section each glance bullet names, from a trailing
+"<!-- section: Topical Domain -->" comment or a visible "(Topical Domain)" tag
+after its bold lead-in. An entry whose bullets carry no tag skips it, because without a
 tag a bullet does not say which section it summarizes.
 
 Usage: check_changelog_shape.py <entry.md> [<entry.md> ...]
@@ -44,6 +45,14 @@ H2 = re.compile(r"^##\s+(.+?)\s*#*\s*$")
 H4 = re.compile(r"^####\s+\S")
 BULLET = re.compile(r"^[-*]\s+")
 GLANCE_TAG = re.compile(r"^[-*]\s+\*\*.+?\*\*\s*\(([^()]+)\)")
+# The same tag as a trailing comment, which a rendered page and release notes do not show.
+GLANCE_COMMENT_TAG = re.compile(r"<!--\s*section:\s*(.+?)\s*-->\s*$")
+
+
+def glance_tag(line):
+    """Return the section a glance bullet names, from its comment or its visible tag."""
+    match = GLANCE_COMMENT_TAG.search(line) or GLANCE_TAG.match(line)
+    return match.group(1).strip() if match else None
 SPEC_LINE = re.compile(r"^>\s*Spec folders?:", re.IGNORECASE)
 LEVEL_LABEL = re.compile(r"\(\s*Level\b[^)]*\)", re.IGNORECASE)
 
@@ -109,19 +118,18 @@ def is_expanded(shape):
 
 def check_glance_order(shape):
     """Return (violations, skipped) for the tagged-bullet order rule."""
-    tags = [(number, GLANCE_TAG.match(line)) for number, line in shape["glance"]]
-    if not any(match for _, match in tags):
+    tags = [(number, glance_tag(line)) for number, line in shape["glance"]]
+    if not any(name for _, name in tags):
         return [], True
 
     topical = [name for name in shape["h2"] if name.lower() not in FIXED_SECTIONS]
     position = {name.lower(): index for index, name in enumerate(topical)}
     violations = []
     last_index, last_name = -1, None
-    for number, match in tags:
-        if not match:
+    for number, name in tags:
+        if not name:
             violations.append(f"line {number}: the bullet has no section tag, and every other bullet does")
             continue
-        name = match.group(1).strip()
         index = position.get(name.lower())
         if index is None:
             violations.append(f"line {number}: the tag ({name}) names no topical section in this entry")

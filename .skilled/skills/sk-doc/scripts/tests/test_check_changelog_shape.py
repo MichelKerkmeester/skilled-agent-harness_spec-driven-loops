@@ -51,7 +51,7 @@ def body_lines(text):
 def test_the_model_entry_passes_every_rule():
     violations, notes = check_entry(MODEL_ENTRY.read_text(encoding="utf-8"))
     assert violations == []
-    assert notes == ["glance-order skipped: no glance bullet carries a section tag"]
+    assert notes == []
 
 
 def test_file_total_fails_one_line_past_240():
@@ -124,3 +124,32 @@ def test_the_command_line_exits_0_1_and_2(tmp_path):
     assert "[spec-line]" in failed.stdout
     assert run().returncode == 2
     assert run(str(tmp_path / "missing.md")).returncode == 2
+
+
+def test_comment_tags_drive_the_order_rule():
+    sections = [("Alpha", 1), ("Beta", 1)]
+    in_order = ["- **A.** One. <!-- section: Alpha -->", "- **B.** Two. <!-- section: Beta -->"]
+    assert rules(expanded(glance=in_order, sections=sections)) == []
+    reversed_order = list(reversed(in_order))
+    assert rules(expanded(glance=reversed_order, sections=sections)) == ["glance-order"]
+
+
+def test_the_template_ceilings_match_the_checker():
+    """The template's ceiling table and the checker constants must name the same numbers."""
+    import re
+    import check_changelog_shape as shape
+
+    template = (SK_DOC / "sk-create-changelog" / "assets" / "changelog-template.md").read_text(encoding="utf-8")
+
+    def ceiling(row):
+        # The same row name also heads the keep-and-drop table, so take the row whose last cell holds a number.
+        for text in template.splitlines():
+            if text.startswith(f"| {row} |"):
+                numbers = re.findall(r"\d+", text.split("|")[3])
+                if numbers:
+                    return int(numbers[0])
+        raise AssertionError(f"no ceiling row named {row}")
+
+    assert ceiling("Expanded file total") == shape.EXPANDED_MAX_BODY_LINES
+    assert ceiling("Expanded H4 items") == shape.EXPANDED_MAX_H4_ITEMS
+    assert ceiling("What's New at a Glance") == shape.GLANCE_MAX_BULLETS

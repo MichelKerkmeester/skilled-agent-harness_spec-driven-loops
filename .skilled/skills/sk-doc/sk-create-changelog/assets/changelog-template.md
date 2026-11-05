@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.2.0.0
+version: 1.2.1.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -93,7 +93,7 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 ## What's New at a Glance
 
-- **{The theme, as a short sentence.}** ({Topical Domain}) {One plain sentence that adds what the bold one does not say.}
+- **{The theme, as a short sentence.}** {One plain sentence that adds what the bold one does not say.} <!-- section: {Topical Domain} -->
 
 &nbsp;
 
@@ -125,7 +125,7 @@ Include the spec-folder line only when the release has a spec folder.
 **Field guidelines**:
 
 - **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the model entries name `Spec Kit` and `Doctor Commands`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need three to six domains, and eight is the most. Add one past six only when a reader would look for it by name.
-- **`({Topical Domain})` tag.** Each glance bullet names the topical section it summarizes, in parentheses after its bold sentence and spelled as that section's H2, and the bullets follow the order of those sections. A section may go without a glance bullet, but the tagged bullets never run out of order. A compact entry has no topical sections, so its bullets carry no tag.
+- **`<!-- section: {Topical Domain} -->` tag.** Each glance bullet ends with a comment naming the topical section it summarizes, spelled as that section's H2, and the bullets follow the order of those sections. The comment does not show on a rendered page or in the release notes, so the bullet reads as plain text while the shape check can still test the order. A section may go without a glance bullet, but the tagged bullets never run out of order. A compact entry has no topical sections, so its bullets carry no tag.
 - **`{Benefit-led heading}` (H4).** 2-7 words for most headings and 10 at most, stating the gain or the fact. Good: `Specs Move to the Top Level`. Bad: `Improved validation logic`, a numbered item or a sentence-length title.
 - **Separators.** An `&nbsp;` line, a forced blank line, goes before every H2: between the opening and Why This Release, between Why This Release and What's New at a Glance, and between every later section. Nothing separates the H4 items inside one H2, and no `---` rule appears anywhere in the entry body.
 - **`#### Smaller Fixes` (optional H4).** Small fixes a reader would notice, but that need no paragraph of their own, collect into one Smaller Fixes item with one bold-led bullet per fix. It sits last in the section that owns the fixes, and it is the one H4 whose body is a list. Leave it out when no such fix exists, and leave out a fix with no visible effect.

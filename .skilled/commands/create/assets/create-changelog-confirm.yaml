@@ -547,7 +547,7 @@ workflow:
         Generate BODY using selected format:
           COMPACT: summary narrative + at-a-glance bullets with bold lead-in sentences + Upgrade
           EXPANDED: opening narrative + Why This Release + at-a-glance bullets with bold lead-in
-                    sentences and a ({Topical Domain}) tag, in section order + topical H2 sections
+                    sentences and a trailing <!-- section: {Topical Domain} --> comment, in section order + topical H2 sections
                     with H4 benefit-led story items of one paragraph each (two for a breaking
                     change) + an optional Smaller Fixes H4 list last in its section + one sentence
                     in the last body section naming every component with its own entry + Upgrade Notes

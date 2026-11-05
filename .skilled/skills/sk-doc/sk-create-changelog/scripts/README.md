@@ -1,7 +1,7 @@
 ---
 title: "Create Changelog Scripts: changelog shape gate"
 description: "A Python gate that fails a global changelog entry whose length, item count, glance list or spec-folder line breaks the changelog template's ceilings."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Create Changelog Scripts
@@ -22,7 +22,7 @@ An entry is expanded when it carries an H4 item or an `## Upgrade Notes` section
 | `glance-order` | A tagged glance bullet comes before a bullet whose section sits earlier in the body, a tag names no topical section or one bullet lacks the tag the others carry | Expanded |
 | `spec-line` | A `> Spec folder:` line carries a level label such as `(Level 2)` | Both |
 
-The order rule reads the `({Topical Domain})` tag after a bullet's bold sentence, which names a topical H2 exactly as the heading spells it, letter case aside. When no bullet carries a tag the rule is skipped and the output says so, because an untagged bullet does not say which section it summarizes.
+The order rule reads the trailing `<!-- section: {Topical Domain} -->` comment on each bullet, or a visible `({Topical Domain})` tag after its bold sentence. Either one names a topical H2 exactly as the heading spells it, letter case aside. When no bullet carries a tag the rule is skipped and the output says so, because an untagged bullet does not say which section it summarizes.
 
 ---
 

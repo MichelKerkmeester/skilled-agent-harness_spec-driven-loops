@@ -1,6 +1,6 @@
 {
   "baseline_prose_count": 501,
-  "derived_count": 767,
+  "derived_count": 768,
   "directories": [
     ".",
     ".claude/hooks",
@@ -460,6 +460,7 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/references/shared",
     ".skilled/skills/sk-doc/sk-create-changelog",
     ".skilled/skills/sk-doc/sk-create-changelog/references",
+    ".skilled/skills/sk-doc/sk-create-changelog/scripts",
     ".skilled/skills/sk-doc/sk-create-command",
     ".skilled/skills/sk-doc/sk-create-command/references",
     ".skilled/skills/sk-doc/sk-create-diff",
