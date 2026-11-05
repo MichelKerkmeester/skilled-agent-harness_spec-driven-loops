@@ -1,7 +1,7 @@
 ---
 title: "Shared Scripts: cross-command sk-doc validators and naming guards"
 description: "Python and Node utilities shared across every /create:* command: the document template validator, naming guards, frontmatter versioning and the semantic rename/reference toolchain."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Shared Scripts
@@ -36,7 +36,7 @@ Give every `/create:*` command and CI gate in `sk-doc` one shared set of validat
 |------|---------|
 | `validate_document.py` | Validates a markdown document against its type template (readme, skill, reference, asset, agent, command, install_guide, security_policy, spec, changelog), with `--fix` and `--json` modes. Its human report ends with any `cite-drift advisory:` lines from `cite-drift-scan.mjs --advise`, which never change the exit code; `JEV_FEATURE_CITE_DRIFT=0` (older name: `SKDOC_CITE_DRIFT_CHECK=0`) skips them. |
 | `render_exempt.py` | The one reader of the render ledger's `exempt` map and `pinned` list, used by `validate_document.py` and `package_skill.py`. It keeps an entry only when its doc exists and its consumer file names the doc. `--check` lists every bad entry and exits 1 when there is one. `--scan-pinned` lists code that reads a Markdown file by a literal path and always exits 0. |
-| `doc-rewrite-guard.py` | Compares changed Markdown with `--base <ref>` before a form-only rewrite is committed. It exits 1 on a `HARD` finding: changed frontmatter beyond `version`, an edited fenced block, a dropped citation, a removed cited anchor or section, or any edit to an exempt or pinned doc. `ADVISORY` lost lines and intro changes never change the exit code. |
+| `doc-rewrite-guard.py` | Compares changed Markdown with `--base <ref>` before a form-only rewrite is committed. It exits 1 on a `HARD` finding: changed frontmatter beyond `version`, an edited fenced block, a dropped citation, a cited anchor or section that was removed or retitled, or any edit to an exempt or pinned doc. `ADVISORY` lost lines and intro changes never change the exit code. |
 | `extract_structure.py` | Extracts frontmatter, headings, code blocks and metrics from a markdown document as JSON for AI-assisted analysis. |
 | `quick_validate.py` | Validates a `SKILL.md`'s frontmatter: required fields, name format, description budget and no placeholders. |
 | `frontmatter-version.mjs` | Computes, applies or verifies the 4-part `version` frontmatter field across in-scope skill docs. |

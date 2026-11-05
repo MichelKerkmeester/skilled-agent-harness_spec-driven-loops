@@ -71,6 +71,7 @@ LINK_WITH_ANCHOR_RE = re.compile(r'\]\(([^)\s#]*)#([^)\s]+)\)')
 SECTION_REFERENCE_RE = re.compile(r'§\s*(\d+)|[Ss]ection (\d+)')
 INTRO_RE = re.compile(r'^# [^\n]+\n+((?:(?!#|---|<!--)[^\n]+\n?)+)', re.M)
 INLINE_CODE_RE = re.compile(r'`[^`]*`')
+DOC_TOKEN_RE = re.compile(r'[\w./@-]*\.md\b')
 
 # git resolves its repository and config from these in preference to the working
 # directory, so one inherited from the caller would point every read at whichever
@@ -230,18 +231,51 @@ def numbered_sections(text: str) -> Dict[str, str]:
     return found
 
 
-def names_target(path: str, text: str) -> bool:
-    """Return whether a line names the doc strongly enough to be about it.
+def skill_root(path: str) -> str:
+    """Return the skill folder a doc sits in, or its parent folder outside the skills tree."""
+    parts = Path(path).parts
+    if len(parts) > 3 and parts[:2] == ('.skilled', 'skills'):
+        return str(Path(*parts[:3]))
+    return str(Path(path).parent)
 
-    SKILL.md, README.md and ROUTER.md exist in every skill, so a bare name only
-    counts when the line also names the owning folder.
+
+def cited_owners(
+    line: str, linker: str, owners: Sequence[str], tracked: Sequence[str]
+) -> List[str]:
+    """Return the changed docs a line actually cites, resolving each path it names.
+
+    A path is resolved from the citing doc's folder and from the repository top, so
+    it cites only the file it reaches. A bare file name is shorthand for a file the
+    reader can find nearby: it cites a doc in the citing doc's own folder, or the
+    one doc of that name in the citing doc's skill. A name that recurs across
+    skills, such as references/agent-delegation.md, therefore never pins a doc in
+    another skill.
     """
-    name = Path(path).name
-    if name not in text:
-        return False
-    if name not in GENERIC_DOC_NAMES:
-        return True
-    return Path(path).parent.name in text
+    cited: List[str] = []
+    linker_dir = Path(linker).parent
+    for token in DOC_TOKEN_RE.findall(line):
+        name = Path(token).name
+        matching = [owner for owner in owners if Path(owner).name == name]
+        if not matching:
+            continue
+        if '/' in token.strip('./') or token.startswith('../'):
+            reached = {
+                os.path.normpath(str(linker_dir / token)),
+                os.path.normpath(token.lstrip('/')),
+            }
+            cited.extend(owner for owner in matching if os.path.normpath(owner) in reached)
+            continue
+        for owner in matching:
+            if Path(owner).parent == linker_dir:
+                cited.append(owner)
+                continue
+            if name in GENERIC_DOC_NAMES:
+                continue  # Every skill has one, so a bare name says nothing about which.
+            root = skill_root(linker)
+            same_skill = [doc for doc in tracked if Path(doc).name == name and skill_root(doc) == root]
+            if same_skill == [owner]:
+                cited.append(owner)
+    return [owner for owner in dict.fromkeys(cited) if owner != linker]
 
 
 def inbound_anchor_links(root: Path, documents: Sequence[str]) -> Dict[Path, Dict[str, List[str]]]:
@@ -270,7 +304,7 @@ def inbound_anchor_links(root: Path, documents: Sequence[str]) -> Dict[Path, Dic
 def inbound_section_references(
     root: Path, documents: Sequence[str], targets: Dict[str, List[str]]
 ) -> Dict[str, List[Tuple[str, int, Set[str], str]]]:
-    """Return the numbered-section references made to each changed doc's name.
+    """Return the numbered-section references made to each changed doc, keyed by its path.
 
     '<file> §3' names a heading by position rather than by link, so renumbering
     or retitling that heading changes what the citing document points at without
@@ -292,9 +326,8 @@ def inbound_section_references(
             for name, owners in targets.items():
                 if name not in line:
                     continue
-                if not any(owner != relative and names_target(owner, line) for owner in owners):
-                    continue
-                references.setdefault(name, []).append((relative, number, hits, line))
+                for owner in cited_owners(line, relative, owners, documents):
+                    references.setdefault(owner, []).append((relative, number, hits, line))
     return references
 
 
@@ -438,6 +471,7 @@ def check_cited_sections(
     now: str,
     anchor_links: Dict[str, List[str]],
     section_references: Dict[str, List[Tuple[str, int, Set[str], str]]],
+    base: Optional[str] = None,
 ) -> None:
     """Report headings that other docs still point at after this rewrite.
 
@@ -455,9 +489,10 @@ def check_cited_sections(
             f'inbound link #{fragment} from {describe_linkers(linkers)} no longer resolves',
         )
     sections_before, sections_after = numbered_sections(old), numbered_sections(now)
-    for linker, number, hits, text in section_references.get(Path(path).name, []):
-        if linker == path or not names_target(path, text):
+    for linker, number, hits, text in section_references.get(path, []):
+        if linker == path:
             continue
+        corrected = corrected_citations(base, linker, path, sections_before) if base else set()
         for cited in sorted(hits):
             if cited not in sections_before:
                 continue
@@ -467,10 +502,37 @@ def check_cited_sections(
                     f'section {cited} cited by {linker}:{number} is gone',
                 )
             elif sections_before[cited] != sections_after[cited]:
+                if sections_after[cited] in corrected:
+                    continue  # The citing doc was renumbered along with this one.
                 report.hard(
                     'cited-section', path, None,
                     f'section {cited} cited by {linker}:{number} was retitled',
                 )
+
+
+def corrected_citations(base: str, linker: str, path: str, sections_before: Dict[str, str]) -> Set[str]:
+    """Return the section titles the citing doc pointed at, at base, by number.
+
+    A rewrite that renumbers a section and updates its citation in the same change
+    leaves the citation pointing at the same title under a new number. Comparing
+    the title the citation reaches now against the titles it reached at base tells
+    that case apart from a citation left pointing at a different section.
+    """
+    old = base_text(base, linker)
+    if old is None:
+        return set()
+    titles: Set[str] = set()
+    for _, line in numbered_prose_lines(old):
+        if Path(path).name not in line or not SECTION_REFERENCE_RE.search(line):
+            continue
+        if path not in cited_owners(line, linker, [path], [path]):
+            continue
+        stripped = INLINE_CODE_RE.sub('', line)
+        for first, second in SECTION_REFERENCE_RE.findall(stripped):
+            title = sections_before.get(first or second)
+            if title:
+                titles.add(title)
+    return titles
 
 
 def check_lost_lines(report: Report, path: str, old: str, now: str) -> None:
@@ -510,12 +572,13 @@ def check_document(
     now: str,
     anchor_links: Dict[str, List[str]],
     section_references: Dict[str, List[Tuple[str, int, Set[str], str]]],
+    base: Optional[str] = None,
 ) -> None:
     """Run every base comparison for one doc, hard checks first."""
     check_frontmatter(report, path, old, now)
     check_code_blocks(report, path, old, now)
     check_citations(report, path, old, now)
-    check_cited_sections(report, path, old, now, anchor_links, section_references)
+    check_cited_sections(report, path, old, now, anchor_links, section_references, base)
     check_lost_lines(report, path, old, now)
     check_intro(report, path, old, now)
 
@@ -571,7 +634,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             continue  # A doc with no base text kept nothing, so only protection applies.
         check_document(
             report, path, old, read_text(Path(path)),
-            anchor_links.get(Path(path).resolve(), {}), section_references,
+            anchor_links.get(Path(path).resolve(), {}), section_references, base,
         )
 
     print(

@@ -228,6 +228,15 @@ def test_citation_naming_the_wrong_title_is_reported():
     ]
 
 
+def test_citation_through_a_link_or_code_span_is_resolved():
+    assert section_reference_findings("reference-section-reference-linked.md") == [
+        '"[the missing fixture](reference-section-reference-missing.md) §8" points at section 8, '
+        'but reference-section-reference-missing.md has no section 8.',
+        '"`reference-section-reference-missing.md` §9" points at section 9, '
+        'but reference-section-reference-missing.md has no section 9.',
+    ]
+
+
 def test_citation_of_an_unresolvable_file_is_clean():
     assert section_reference_findings("negative-section-reference-unknown-file.md") == []
 

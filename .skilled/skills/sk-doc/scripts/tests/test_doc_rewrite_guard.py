@@ -323,6 +323,56 @@ def test_section_cited_with_a_backticked_file_name_is_seen(repo: Repo) -> None:
     assert "section 1 cited by docs/citer.md:3 was retitled" in result.stdout
 
 
+def test_same_name_in_another_skill_is_not_cited(repo: Repo) -> None:
+    # Each skill keeps its own references/delegation.md, so a citation inside one
+    # skill names that skill's copy, never the one the rewrite touched.
+    repo.write(".skilled/skills/alpha/references/delegation.md", "# Delegation\n\nAlpha.\n\n## 1. Roster\n\nAgents.\n")
+    repo.write(".skilled/skills/beta/references/delegation.md", "# Delegation\n\nBeta.\n\n## 1. Roster\n\nAgents.\n")
+    repo.write(".skilled/skills/beta/SKILL.md", "# Beta\n\nSee `delegation.md` §1 for the roster.\n")
+    repo.commit("two skills")
+    edit(repo, ".skilled/skills/alpha/references/delegation.md", ("## 1. Roster", "## 1. Agents"))
+
+    result = repo.guard("--base", "HEAD")
+
+    assert "cited-section" not in result.stdout, result.stdout
+
+
+def test_path_citation_reaches_only_its_file(repo: Repo) -> None:
+    repo.write("other/guide.md", "# Other\n\nOther guide.\n\n## 1. Overview\n\nText.\n")
+    repo.write("other/citer.md", "# Citer\n\nSee [the guide](../docs/guide.md) §1 for the overview.\n")
+    repo.commit("path citation")
+    edit(repo, "docs/guide.md", ("## 1. Overview", "## 1. Summary"))
+    edit(repo, "other/guide.md", ("## 1. Overview", "## 1. Recap"))
+
+    result = repo.guard("--base", "HEAD")
+
+    assert "HARD cited-section docs/guide.md: section 1 cited by other/citer.md:3 was retitled" in result.stdout
+    assert "cited-section other/guide.md: section 1 cited by other/citer.md" not in result.stdout
+
+
+def test_citation_renumbered_with_its_section_is_not_reported(repo: Repo) -> None:
+    repo.write("docs/manual.md", "# Manual\n\nThe manual.\n\n## 1. Setup\n\nA.\n\n## 2. Troubleshooting\n\nB.\n\n## 3. Support\n\nD.\n")
+    repo.write("docs/pointer.md", "# Pointer\n\nSee `manual.md` §2 for fixes.\n")
+    repo.commit("renumber base")
+    edit(repo, "docs/manual.md", ("## 3. Support", "## 4. Support"), ("## 2. Troubleshooting", "## 2. Caveats\n\nC.\n\n## 3. Troubleshooting"))
+    edit(repo, "docs/pointer.md", ("§2", "§3"))
+
+    result = repo.guard("--base", "HEAD")
+
+    assert "cited-section docs/manual.md" not in result.stdout, result.stdout
+
+
+def test_citation_left_on_a_renumbered_section_is_still_hard(repo: Repo) -> None:
+    repo.write("docs/manual.md", "# Manual\n\nThe manual.\n\n## 1. Setup\n\nA.\n\n## 2. Troubleshooting\n\nB.\n")
+    repo.write("docs/pointer.md", "# Pointer\n\nSee `manual.md` §2 for fixes.\n")
+    repo.commit("stale base")
+    edit(repo, "docs/manual.md", ("## 2. Troubleshooting", "## 2. Caveats\n\nC.\n\n## 3. Troubleshooting"))
+
+    result = repo.guard("--base", "HEAD")
+
+    assert "HARD cited-section docs/manual.md: section 2 cited by docs/pointer.md:3 was retitled" in result.stdout
+
+
 def test_run_from_a_subdirectory_reads_the_same_files(repo: Repo) -> None:
     edit(repo, "docs/guide.md", ("## 1. Overview", "## 1. Summary"))
 

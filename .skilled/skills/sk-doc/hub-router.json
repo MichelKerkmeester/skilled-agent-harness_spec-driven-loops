@@ -1,6 +1,6 @@
 {
   "skill": "sk-doc",
-  "version": "2.9.1.0",
+  "version": "2.9.2.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -216,7 +216,15 @@
         "build a skill",
         "author a skill",
         "scaffold a skill",
-        "/create:skill"
+        "/create:skill",
+        "doc rewrite guard",
+        "doc-rewrite-guard.py",
+        "render ledger",
+        "render-known-debt.json",
+        "exempt from the render checks",
+        "render exempt map",
+        "kept every claim",
+        "kept every original claim"
       ]
     },
     "create-skill-parent-aliases": {

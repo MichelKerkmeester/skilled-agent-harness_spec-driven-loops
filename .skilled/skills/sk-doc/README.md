@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.11.0
+version: 2.3.12.0
 ---
 
 # sk-doc
@@ -51,6 +51,7 @@ sk-doc is the single specialist for documentation and OpenCode components. It co
 
 - **Document quality.** Its core pipeline extracts a document to JSON with a quality score, a pass or fail checklist, a list of violations and the evaluation questions the AI answers, all computed before the AI judges the content.
 - **Scaffolding and packaging.** It scaffolds and packages skills, agents, commands and other OpenCode components, with validation as the gate before any package ships.
+- **Render checks.** Its validator runs sixteen render checks for a doc that Markdown would show differently from how it reads or that opens in the wrong order, and strict packaging fails a skill on any of them. The render ledger records the docs code depends on, and `shared/scripts/doc-rewrite-guard.py` proves a form-only rewrite kept every claim.
 - **Benchmarks.** It authors benchmark packages with deterministic conformance inputs for peer adapters.
 - **Diagrams and inventories.** It builds ASCII flowcharts, feature catalogs that inventory current behavior and manual testing playbooks that prove it.
 - **Document diff.** Its `sk-create-diff` packet compares two versions of a document (text, Markdown, HTML, DOCX or text-PDF) without Git and renders the changes as a self-contained, zero-JavaScript HTML report with section-aware navigation.

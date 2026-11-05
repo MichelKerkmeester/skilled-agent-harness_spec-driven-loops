@@ -773,8 +773,10 @@ _FRONTMATTER_DESCRIPTION = re.compile(r'^description:\s*(.*?)\s*$')
 # A cross-reference to a numbered section: "§8 EXAMPLES", "Section 4", or an
 # optional leading file name such as "loop-state-and-gates.md §3". The title is
 # optional because most prose cites the number alone.
+# The cited file may be written bare, in a code span or as a markdown link,
+# and each form names the same document.
 _SECTION_REFERENCE = re.compile(
-    r'(?:(?P<file>[\w./-]+\.md)\s+)?'
+    r'(?:(?:`(?P<code>[\w./-]+\.md)`|\[[^\]\n]*\]\(<?(?P<link>[^)\s#>]+\.md)>?\)|(?P<file>[\w./-]+\.md))\s+)?'
     r'(?:§\s*|\b[Ss]ection\s+)'
     r'(?P<num>\d+)\b'
     r'(?:\s+(?P<title>[A-Z][A-Z0-9&/-]+(?:\s+[A-Z][A-Z0-9&/-]+)*)(?![a-z]))?'
@@ -1605,7 +1607,7 @@ def _render_section_reference(
         for match in _SECTION_REFERENCE.finditer(line):
             number = match.group('num')
             cited_title = match.group('title')
-            name = match.group('file')
+            name = match.group('file') or match.group('code') or match.group('link')
             if name:
                 if name not in target_titles:
                     target = _resolve_reference_target(name, file_path)

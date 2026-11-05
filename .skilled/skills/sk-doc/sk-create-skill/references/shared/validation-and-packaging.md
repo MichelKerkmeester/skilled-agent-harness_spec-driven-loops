@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Skill Validation and Packaging
@@ -133,7 +133,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
 **What “comprehensive validation” means in this repo**:
 
 - **Structure checklist (script)**: Deterministic checks from `extract_structure.py` (frontmatter, headings, required sections, fenced code blocks).
-- **Render checks (script)**: The deterministic half of content quality. `validate_document.py --json` reports `render_*` warnings for a compound overview heading, an overview that opens without orientation, a joined bold label, a setext underline, a bare URL, a repeated sentence or label, a letter-suffixed H2 number, a related section that is not last, and an intro that restates the Purpose.
+- **Render checks (script)**: The deterministic half of content quality. `validate_document.py --json` reports `render_*` warnings for a compound overview heading, an overview that opens without orientation, a joined bold label, a setext underline, a bare URL, a repeated sentence or label, a letter-suffixed H2 number, a related section that is not last and an intro that restates the Purpose. It also reports an OVERVIEW that does not open with Purpose then When to Use or Usage, H2 numbers with a gap or a repeat, a section citation that names a section the doc does not have, a missing intro, an intro that only points elsewhere and an intro sentence that repeats the description. `package_skill.py --strict` turns every one into an error.
 - **Content quality (AI)**: Judgement based on the extracted JSON + the actual text (clarity, completeness, examples) and on the questions no check answers: whether the intro and the Purpose differ, whether a governing decision precedes the steps it governs, whether an index lists every file of the directory it indexes, whether a status token leaked into the body, and whether a paragraph packs several mechanisms.
 - **Style compliance (AI)**: Judgement against `core-standards.md` (headings format, bullets, emoji rules, consistency).
 
@@ -148,6 +148,20 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
 .skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
 # AI evaluates the JSON output and provides quality assessment
 ```
+
+### Render Ledger and Rewrite Guard
+
+**Purpose**: Handle a render finding that cannot be fixed by editing the doc, and prove a form-only rewrite kept every claim.
+
+The render ledger is `sk-create-skill/scripts/render-known-debt.json`. It holds three records, and `shared/scripts/render_exempt.py` is the one reader for all of them:
+
+- **`debt`**: render findings a skill is allowed to keep, as a finding count and the finding types per skill. It may only shrink. Remove an entry once the skill renders clean, and never add one to excuse a new finding.
+- **`exempt`**: docs whose exact text code depends on, each with its consumer, the code file that reads or generates it. The packager's render check skips an exempt doc, and the validator reports its findings as warnings labelled with that consumer. An entry counts only while its consumer exists and names the doc.
+- **`pinned`**: docs whose exact strings a code check pins, each with that check. Render checks still run on a pinned doc, and the rewrite guard refuses any edit to it, so changing one needs the operator's approval and the pinning check rerun.
+
+Run `python3 .skilled/skills/sk-doc/shared/scripts/render_exempt.py --check` after any ledger edit. It prints each record's count and every entry that does not hold.
+
+Before you commit a form-only rewrite, run `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --base <ref> <paths>` from the repository root. A `HARD` line is a changed claim, code sample, citation or cited section, or an edit to an exempt or pinned doc, and it sets exit code 1. An `ADVISORY` line is a lost line or a changed intro, which a moved line explains and a dropped one does not.
 
 ---
 

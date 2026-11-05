@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.1.0
+version: 2.4.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -39,12 +39,6 @@ Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub never
 emits leaf paths, and this router never re-decides the mode.
 
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
-> ```
-> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
-
 ---
 
 ## 2. INTENT MODEL
@@ -71,6 +65,12 @@ emits leaf paths, and this router never re-decides the mode.
   so a bare "hub router" in an unrelated sentence does not fire it. This is the leaf set for the
   `sk-create-skill-parent` mode, which shares the `sk-create-skill` packet but
   not its leaves: a plain skill request must not pull the hub templates.
+- **render-ledger leaves.** The validation reference that explains the render
+  ledger's debt, exempt and pinned records and the doc rewrite guard, and the
+  maintenance workflow that runs the guard before a rewrite is committed. Fired
+  by "doc rewrite guard / render ledger / render-known-debt.json / exempt from
+  the render checks / kept every claim" requests. It belongs to the
+  `sk-create-skill` mode, which owns the ledger.
 - **agent-creation leaves.** The agent README and agent template a request to
   scaffold an OpenCode agent loads. Fired by "create an agent / new agent /
   agent frontmatter / permission object / @analyze agent" requests.
@@ -170,6 +170,7 @@ INTENT_SIGNALS = {
     "OPTIMIZATION": {"weight": 4, "keywords": ["optimize", "token efficiency", "llms.txt", "llmstxt", "reduce tokens", "fewer tokens", "trim", "compress the doc", "slim down", "model's budget", "machine-readable index", "optimize this doc"]},
     "SKILL_CREATION": {"weight": 4, "keywords": ["sk-skill", "create a new sk", "create sk-", "skill.md scaffold", "skill.md and starter", "resource_map wiring", "new skill", "create a skill", "build a skill", "author a skill", "scaffold a skill", "reusable capability", "reusable helper", "starter reference docs", "new capability", "capability module", "package a capability", "create skill", "skill scaffold", "opencode skill", "package skill", "which json files does a skill need", "skill root metadata contract", "leaf-manifest config aliases required", "/create:skill"]},
     "PARENT_HUB": {"weight": 4, "keywords": ["parent hub", "parent skill", "mode packet", "mode packets", "nested packet", "nested workflow packet", "mode-registry.json", "hub-router.json", "hub versus standalone skill class", "skill hub", "/create:skill-parent"]},
+    "RENDER_LEDGER": {"weight": 4, "keywords": ["doc rewrite guard", "doc-rewrite-guard.py", "rewrite guard", "render ledger", "render-known-debt.json", "exempt from the render checks", "render exempt map", "kept every claim", "kept every original claim"]},
     "AGENT_CREATION": {"weight": 4, "keywords": ["create an agent", "create agent", "new agent", "author an agent", "scaffold an agent", "agent file", "agent persona", "agent frontmatter", "agent template", "permission object", "authority boundary", "@analyze agent", "opencode agent", "claude code agent", "/create:agent"]},
     "COMMAND_CREATION": {"weight": 4, "keywords": ["create a command", "create command", "slash command", "new slash command", "author a command", "scaffold a command", "argument-hint", "allowed-tools", "command template", "router presentation split", "thin router", "presentation contract", "opencode command", "$arguments", "/create:command"]},
     "AGENT_COMMAND": {"weight": 4, "keywords": ["agent and paired", "paired /create"]},
@@ -203,6 +204,10 @@ RESOURCE_MAP = {
         "sk-create-skill/assets/skill/skill-md-template.md",
         "sk-create-skill/assets/skill/skill-readme-template.md",
         "sk-create-skill/assets/skill/skill-reference-template.md"
+    ],
+    "RENDER_LEDGER": [
+        "sk-create-skill/references/shared/validation-and-packaging.md",
+        "sk-create-skill/references/skill/examples-and-maintenance.md"
     ],
     "PARENT_HUB": [
         "sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
@@ -431,6 +436,12 @@ RESOURCE_MAP = {
 ## 5. MACHINE ROUTER
 
 The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode via the compiled router contract first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt "<task>"
+> ```
+> Follow the returned decision — `route` (use its `targets`), `clarify`/`defer` (disambiguate), `reject` (refuse). On a `{"servingAuthority":"legacy"}` sentinel or any error, use the routing below. The front door self-gates on serving-authority. Compiled routing is now the default for `sk-doc`; set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide — the explicit kill-switch.
 
 ### Surface Router — per-intent leaf sets
 

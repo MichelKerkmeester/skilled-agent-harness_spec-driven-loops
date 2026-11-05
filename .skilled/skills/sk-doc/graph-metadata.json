@@ -316,7 +316,14 @@
     "multi-turn conversation script",
     "manual test scenario",
     "json conversation",
-    "conversation runner"
+    "conversation runner",
+    "doc rewrite guard",
+    "rewrite guard",
+    "render ledger",
+    "exempt from the render checks",
+    "render exempt map",
+    "kept every claim",
+    "kept every original claim"
   ],
   "derived": {
     "trigger_phrases": [
@@ -767,6 +774,13 @@
     "multi-turn conversation script",
     "manual test scenario",
     "json conversation",
-    "conversation runner"
+    "conversation runner",
+    "doc rewrite guard",
+    "rewrite guard",
+    "render ledger",
+    "exempt from the render checks",
+    "render exempt map",
+    "kept every claim",
+    "kept every original claim"
   ]
 }

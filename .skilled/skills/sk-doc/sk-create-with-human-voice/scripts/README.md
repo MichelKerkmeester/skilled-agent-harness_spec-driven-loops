@@ -7,7 +7,7 @@ trigger_phrases:
   - "hvr_scan.py"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-create-with-human-voice Scripts
@@ -63,6 +63,6 @@ Run the test with `python3 tests/test_hvr_scan.py` from this directory. Exit 0 a
 `ALL PASS` mean the masking contract holds and both fixture controls still report their
 pinned numbers.
 
-See section 8 of [`../README.md`](../README.md) for the four controls, including the
+See section 7 of [`../README.md`](../README.md) for the four controls, including the
 fail-closed one that proves a renamed section in the standard stops the scan rather than
 silently emptying it.
