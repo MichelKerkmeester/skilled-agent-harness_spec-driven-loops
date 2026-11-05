@@ -13,7 +13,7 @@ expected_resources:
   - references/typescript/quality-standards/tsconfig-and-modules.md
   - references/typescript/quick-reference/template-naming-and-types.md
   - references/typescript/quick-reference/imports-errors-and-tsconfig.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-001: TypeScript standards routing
@@ -113,7 +113,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `TYPESCRIPT` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `TYPESCRIPT` resource set |
 
 ---
 

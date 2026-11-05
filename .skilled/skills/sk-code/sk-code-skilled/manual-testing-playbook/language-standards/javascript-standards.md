@@ -10,7 +10,7 @@ expected_resources:
   - references/javascript/quality-standards/overview-modules-and-docs.md
   - references/javascript/quality-standards/security-testing-and-exemptions.md
   - references/javascript/quick-reference.md
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # OC-010: JavaScript standards routing
@@ -113,7 +113,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `JAVASCRIPT` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `JAVASCRIPT` resource set |
 
 ---
 

@@ -12,7 +12,7 @@ expected_resources:
   - references/shared/code-organization/imports-and-exports.md
   - references/shared/code-organization/directory-and-test-conventions.md
   - references/shared/workflow-guardrails.md
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # OC-011: Shared default tier routing
@@ -126,7 +126,7 @@ Command transcript from steps 1-4 with the replay output; the resolved frontmatt
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `DEFAULT_RESOURCE` block and the intent maps this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2b | The prose claim that every route loads the shared tier first |
+| [SKILL.md](../../SKILL.md) §3 | The prose claim that every route loads the shared tier first |
 | [router-replay-lib.cjs](../../assets/scripts/router-replay-lib.cjs) | Replay that seeds a route with `DEFAULT_RESOURCE` |
 
 ---

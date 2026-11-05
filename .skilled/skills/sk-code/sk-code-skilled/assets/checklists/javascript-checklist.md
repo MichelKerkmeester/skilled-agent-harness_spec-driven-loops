@@ -8,7 +8,7 @@ trigger_phrases:
   - "use strict checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # JavaScript Code Quality Checklist
@@ -114,7 +114,7 @@ semantics; the verifier intentionally skips `.mjs` strict-mode enforcement.
 Surface stale/guard notices via `experimental.chat.system.transform` (bounded
 `output.system` push), a fail-open log file, or a plugin tool — `stderr` only
 behind a default-off debug env flag. Reference: `system-dist-freshness-guard.js`.
-See `quality-standards.md` §10.
+See `../../references/javascript/quality-standards/security-testing-and-exemptions.md` §6.
 
 ---
 
@@ -142,7 +142,7 @@ export default async function ExamplePlugin(ctx, options = {}) {
 ```
 
 **Plugin paths**: Files in `.opencode/plugins/` MUST use ESM (`export default`)
-— see `quality-standards.md` §10 OpenCode Plugin Exemption Tier.
+— see `../../references/javascript/quality-standards/security-testing-and-exemptions.md` §6 SKILLED PLUGIN EXEMPTION TIER.
 
 **Wrong for non-plugin CommonJS utilities**:
 ```javascript

@@ -9,7 +9,7 @@ expected_resources:
   - references/python/style-guide.md
   - references/python/quality-standards.md
   - references/python/quick-reference.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-002: Python standards routing
@@ -109,7 +109,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `PYTHON` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `PYTHON` resource set |
 
 ---
 

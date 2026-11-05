@@ -18,7 +18,7 @@ expected_resources:
   - assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md
   - assets/checklists/rust-checklist/p1-required.md
   - assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OC-007: Code quality gate routing
@@ -120,7 +120,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `CODE_QUALITY` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `CODE_QUALITY` resource set |
 
 ---
 

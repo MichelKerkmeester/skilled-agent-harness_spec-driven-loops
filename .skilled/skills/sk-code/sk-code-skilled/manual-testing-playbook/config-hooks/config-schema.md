@@ -10,7 +10,7 @@ expected_resources:
   - references/config/quality-standards.md
   - references/config/quick-reference.md
   - assets/checklists/config-checklist.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-004: Config schema routing
@@ -110,8 +110,8 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `CONFIG` resource set |
-| [SKILL.md](../../SKILL.md) §3 | The descriptors-are-load-bearing rule this scenario's config resources enforce |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `CONFIG` resource set |
+| [SKILL.md](../../SKILL.md) §4 | The descriptors-are-load-bearing rule this scenario's config resources enforce |
 
 ---
 

@@ -8,7 +8,7 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/shared/alignment-verification-automation.md
   - assets/scripts/README.md
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # OC-008: Verification alignment routing
@@ -142,8 +142,8 @@ PASS lines; the test summary line; the `--explain` JSON.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `VERIFICATION` resource set |
-| [SKILL.md](../../SKILL.md) §3 | The alignment-drift-is-a-verification-gate rule this scenario's resources enforce |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `VERIFICATION` resource set |
+| [SKILL.md](../../SKILL.md) §4 | The alignment-drift-is-a-verification-gate rule this scenario's resources enforce |
 | [verify_alignment_drift.py](../../assets/scripts/verify_alignment_drift.py) | Guard steps 5 and 6 run; `--check-router` adds the dead-route leg and `--fail-on-warn` gates the advisory findings |
 | [verify-router-sync.cjs](../../assets/scripts/verify-router-sync.cjs) | Guard step 7 runs with `--checks 1a,1b,2` |
 | [run-all-drift-guards.sh](../../scripts/run-all-drift-guards.sh) | Single completion-gate entry point over all four guards |

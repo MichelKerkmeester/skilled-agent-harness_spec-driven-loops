@@ -12,7 +12,7 @@ expected_resources:
   - references/shell/quality-standards/validation-security-and-shellcheck.md
   - references/shell/quick-reference/template-variables-and-loops.md
   - references/shell/quick-reference/functions-strings-and-checklist.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-003: Shell standards routing
@@ -112,7 +112,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `SHELL` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `SHELL` resource set |
 
 ---
 

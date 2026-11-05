@@ -7,7 +7,7 @@ expected_surface: SKILLED
 expected_intent: HOOKS
 expected_resources:
   - references/shared/hooks.md
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # OC-005: Hooks wiring routing
@@ -107,7 +107,7 @@ excerpt.
 | File | Role |
 |---|---|
 | [ROUTER.md](../../ROUTER.md) §3 | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../../SKILL.md) §2 | Reference-map prose entry for the `HOOKS` resource set |
+| [SKILL.md](../../SKILL.md) §3 | Reference-map prose entry for the `HOOKS` resource set |
 
 ---
 
