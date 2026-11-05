@@ -6,7 +6,7 @@ trigger_phrases:
   - "drawio extractor"
   - "mermaid extractor"
   - "flowchart validator"
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-design-diagram scripts
@@ -54,6 +54,8 @@ Both print a Markdown digest to stdout by default. Add `--json` for the full IR,
 | `drawio_extract.py` | Decodes raw XML, deflate+base64, and PNG/SVG-embedded `mxfile` draw.io sources into the IR. |
 | `mermaid_extract.py` | Parses `flowchart`/`graph`, `sequenceDiagram`, `stateDiagram-v2`, and `erDiagram` Mermaid text into the IR. |
 | `validate-flowchart.sh` | Checks box-width consistency, connectors, decision labels, nesting depth, and markdown flowchart size. Exit `0` passes, including warning-only runs; exit `1` blocks delivery. |
+| [`families/`](families/README.md) | One module per diagram corpus check, loaded by `check-diagram-corpus.cjs`. |
+| [`tests/`](tests/README.md) | The mutation suite that proves each check family can fail. |
 
 ---
 
@@ -116,4 +118,6 @@ bash scripts/validate-flowchart.sh assets/ascii-patterns/simple-workflow.md
 | [`../ROUTER.md`](../ROUTER.md) | Machine router: request-shape classification, resource domains and loading levels. |
 | [`../references/import-export/import-drawio.md`](../references/import-export/import-drawio.md) | The draw.io redraw procedure this extractor feeds. |
 | [`../references/import-export/import-mermaid.md`](../references/import-export/import-mermaid.md) | The Mermaid redraw procedure this extractor feeds. |
+| [`families/README.md`](families/README.md) | The check family contract and how to add a family. |
+| [`tests/README.md`](tests/README.md) | How the mutation suite runs and how to add a case. |
 | [`../../../sk-code/sk-code-skilled/SKILL.md`](../../../sk-code/sk-code-skilled/SKILL.md) | OpenCode coding standard these scripts conform to. |
