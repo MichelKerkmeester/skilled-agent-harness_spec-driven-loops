@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5d4e42f273fad5c8eebcde9558eaff8f73210fa483d7cd7bab81fb920a5f5941"
       session_id: "sk-design-021-004-review-remediation"
       parent_session_id: null
     completion_pct: 100

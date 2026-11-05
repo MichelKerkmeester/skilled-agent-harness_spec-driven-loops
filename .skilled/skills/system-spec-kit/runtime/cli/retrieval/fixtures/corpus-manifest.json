@@ -1,5 +1,5 @@
 {
-  "corpusHash": "152edb70b358c4697307c59c439093e61472fb4843c0074bf3b38b9a06791de5",
+  "corpusHash": "5b4ced6bd6968fb1be3ada072fd9c485f7172a6bbe72e8e6e8fd225e7e3e9f8c",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27900,
+  "includedPathCount": 27903,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14044,15 +14044,18 @@
     "specs/sk-design/021-deprecate-fundamentals/003-chart-research-cleanup/spec.md",
     "specs/sk-design/021-deprecate-fundamentals/003-chart-research-cleanup/tasks.md",
     "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/acceptance-criteria.md",
+    "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/decision-record.md",
     "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/implementation-summary.md",
     "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/plan.md",
     "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/spec.md",
     "specs/sk-design/021-deprecate-fundamentals/004-review-remediation/tasks.md",
     "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/acceptance-criteria.md",
+    "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/decision-record.md",
     "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/implementation-summary.md",
     "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/plan.md",
     "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/spec.md",
     "specs/sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing/tasks.md",
+    "specs/sk-design/021-deprecate-fundamentals/decision-record.md",
     "specs/sk-design/021-deprecate-fundamentals/spec.md",
     "specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/acceptance-criteria.md",
     "specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/implementation-summary.md",
@@ -27931,7 +27934,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "de66b796a08aadf5ed8c0dcddfceb1fdb563f47604bc8bdc3c76e3a2c80d40ea",
+  "manifestHash": "b646ca049f181ba04fdf75431e61638623fd91d2bba827e48ac2bc8c4b3a79b1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31239,6 +31242,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

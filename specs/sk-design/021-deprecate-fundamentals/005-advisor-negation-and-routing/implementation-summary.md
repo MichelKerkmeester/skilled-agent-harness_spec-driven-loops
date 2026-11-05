@@ -10,17 +10,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing"
-    last_updated_at: "2026-11-05T15:30:00Z"
-    last_updated_by: "markdown"
-    recent_action: "Republished the v4.0.1.0 tag and release on d1c57bb81d"
-    next_safe_action: "None; the phase is complete"
+    last_updated_at: "2026-11-05T16:11:55Z"
+    last_updated_by: "generate-context"
+    recent_action: "Phase closed after the release republish"
+    next_safe_action: "Verify then remove the merged 316 worktree"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts"
+      - ".skilled/changelog/skilled/v4.0.1.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:beeeb93b24c1d2233a69ffcee038fb6c832b9a42324a734a2c2d398e0c6cfa80"
       session_id: "sk-design-021-005-advisor-negation-and-routing"
       parent_session_id: null
-    completion_pct: 75
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

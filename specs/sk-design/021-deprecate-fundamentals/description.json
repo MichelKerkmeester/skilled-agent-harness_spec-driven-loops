@@ -10,12 +10,14 @@
     "same",
     "rules"
   ],
-  "lastUpdated": "2026-11-05T09:22:24.915Z",
+  "lastUpdated": "2026-11-05T16:11:14.912Z",
   "specId": "021",
   "folderSlug": "deprecate-fundamentals",
   "parentChain": [
     "sk-design"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-11-26_17-11__recorded-the-cross-phase-scope-decisions-for-the.md"
+  ]
 }

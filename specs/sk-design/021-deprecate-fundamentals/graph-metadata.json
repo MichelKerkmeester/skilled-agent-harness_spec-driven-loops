@@ -20,7 +20,8 @@
       "deprecate fundamentals phase parent spec",
       "sk-design three modes",
       "sk-code frontend visual values",
-      "chart reference research cleanup"
+      "chart reference research cleanup",
+      "021-deprecate-fundamentals operator decisions"
     ],
     "key_topics": [
       "deprecate",
@@ -36,10 +37,11 @@
       "visual",
       "values"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "decision-record.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
@@ -55,6 +57,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -146,21 +154,60 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Appendix: Verbatim Operator Answers",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Q001",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two design surfaces owned the same rules",
     "created_at": "2026-11-05T08:27:36Z",
-    "last_save_at": "2026-11-05T15:14:52.512Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-05T16:11:55.143Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:79c251ced61f0ff54dbfae7e53314da9217df6b014813204e35b0b0daf5c32ab",
+    "source_fingerprint": "sha256:ab4227cc54434b15b527859a253a0d32bf6fbd68efed1543b9dd845aba59bb61",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b88667b600713da2d1c092f839e64ea3f3274ca10f114aa290143b3023addee1"
+      "spec.md": "b88667b600713da2d1c092f839e64ea3f3274ca10f114aa290143b3023addee1",
+      "decision-record.md": "280d19fd42165a8d8b9c7ddcc526451002b44c0ef9a383d9cb67e7bf28c468e5"
     },
-    "last_active_at": null
+    "last_active_child_id": "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing",
+    "last_active_at": "2026-11-05T16:11:55.143Z"
   }
 }

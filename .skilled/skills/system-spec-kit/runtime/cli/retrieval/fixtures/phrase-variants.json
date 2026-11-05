@@ -1,5 +1,5 @@
 {
-  "manifestHash": "de66b796a08aadf5ed8c0dcddfceb1fdb563f47604bc8bdc3c76e3a2c80d40ea",
+  "manifestHash": "b646ca049f181ba04fdf75431e61638623fd91d2bba827e48ac2bc8c4b3a79b1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1141,6 +1141,9 @@
     "004 retention reducer": [
       "004 retention reducer"
     ],
+    "004 review remediation operator decisions": [
+      "004-review-remediation operator decisions"
+    ],
     "004 runtime and scan changelog index": [
       "004-runtime-and-scan changelog index"
     ],
@@ -1251,6 +1254,9 @@
     ],
     "005 007 pipx repair": [
       "005/007 pipx repair"
+    ],
+    "005 advisor negation and routing operator decisions": [
+      "005-advisor-negation-and-routing operator decisions"
     ],
     "005 advisor setup command": [
       "005-advisor-setup-command"
@@ -4501,6 +4507,9 @@
     ],
     "021 codegraph rpc surface": [
       "021 codegraph rpc surface"
+    ],
+    "021 deprecate fundamentals operator decisions": [
+      "021-deprecate-fundamentals operator decisions"
     ],
     "021 fix sk doc sk code alignment and 3 remaining deferred p2 changelog index": [
       "021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2 changelog index"
