@@ -82,6 +82,7 @@ and findings belong here.
 | Phase 002 review | Fixed | opus-medium on the uncommitted diff over 1fcb6ad54a: VERDICT FIX, 3 P1 and 6 P2. Fixed: renamed docs compare with their old text, indented fences, backticked file names, run from a subdirectory, NUL-separated paths, generic names need their folder, ledger wording for a contract consumer, replay git env. Kept: --scan-pinned finds no literal read, since the code builds its Markdown paths |
 | Guard timing and pinned record | Logged | replay of diff-1.patch: 56 files, 3 hard, 154 advisory in about 1 s; one skill diff (sk-doc over HEAD~4) 3 s; pinned: code-quality-standards.md and review-core.md by check-rule-copies.js, --scan-pinned prints both PINNED-UNSEEN and 0 candidates |
 | Guard timing correction | Logged | after the review fixes the replay reports 56 files, 7 hard, 154 advisory in 0.89 s; the earlier 3 hard predates the indented-fence and backticked-name fixes |
+| Phase 002 commit | Done | 910d874a06, Hermes 60f9e6bac8, index a462c58de8; 399 pytest, node 108/0, route 101/0, 55 strict, leaf_fails=0 |
 
 ### Deviations and findings
 

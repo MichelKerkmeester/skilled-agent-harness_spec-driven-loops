@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The exempt rule has three copies: `validatedocument.py:186-195` and `:253-258` skip all validation with no consumer, `packageskill.py:886-921` skips render only, and the 066 `scope-gate.py` re-implements it",
     "created_at": "2026-11-05T06:39:43Z",
-    "last_save_at": "2026-11-05T10:54:09.101Z",
+    "last_save_at": "2026-11-05T11:04:16.741Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,7 +221,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:012d4bb48e66dba2e11a6aab629528456b23e684a1b567d99b83ee228743bde2",
+    "source_fingerprint": "sha256:6722337fabdeeaa67f6d07420602433614b6b5c6ef34946b2cc2b4db2f809e7d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2392be533ac160d454aa4f1f2d8a479fd3d3a26aa185654196c9dff060fd3b1a",
