@@ -87,7 +87,11 @@ def _smart_routing_body(prose, extra):
 
 def _router_document():
     """Return a sibling ROUTER.md that declares the router in its own section."""
-    return "# Demo Router\n\n## MACHINE ROUTER\n\n" + "\n".join(_router_block()) + "\n"
+    return (
+        "# Demo Router\n\nRoutes demo requests to their resources.\n\n"
+        "## OVERVIEW\n\nThe machine router below picks the resources for each intent.\n\n"
+        "## MACHINE ROUTER\n\n" + "\n".join(_router_block()) + "\n"
+    )
 
 
 def _skill_document(
@@ -157,11 +161,11 @@ def _skill_document(
 
     if router_section:
         body = "\n".join(_router_block()) if section_block else "The router lives here.\n"
-        section_text = "## MACHINE ROUTER\n\n" + body + "\n"
         if section_last:
+            section_text = f"## {len(sections) + 1}. MACHINE ROUTER\n\n" + body + "\n"
             sections.append(section_text)
         else:
-            sections.insert(-1, section_text)
+            sections.insert(-1, "## MACHINE ROUTER\n\n" + body + "\n")
 
     frontmatter = (
         "---\n"
@@ -268,7 +272,7 @@ def test_machine_router_section_in_skill_md_fails_strict(tmp_path):
     # even when the sibling file is there and pointed at.
     skill_path = _write_skill(tmp_path, router_section=True)
     content = (skill_path / "SKILL.md").read_text(encoding="utf-8")
-    expected = _line_number(content, "## MACHINE ROUTER")
+    expected = _line_number(content, ". MACHINE ROUTER")
 
     valid, message, _warnings = PACKAGE_SKILL.validate_skill(skill_path, strict=True)
 
@@ -758,7 +762,7 @@ def test_markers_in_the_inline_appendix_satisfy_the_marker_check(tmp_path):
     # check keeps reading that body until the router moves.
     skill_path = _write_skill(tmp_path, router_section=True)
     content = (skill_path / "SKILL.md").read_text(encoding="utf-8")
-    prose, _, appendix_body = content.partition("## MACHINE ROUTER")
+    prose, _, appendix_body = content.partition(". MACHINE ROUTER")
 
     for marker in PACKAGE_SKILL.SMART_ROUTER_MARKERS:
         assert marker not in prose

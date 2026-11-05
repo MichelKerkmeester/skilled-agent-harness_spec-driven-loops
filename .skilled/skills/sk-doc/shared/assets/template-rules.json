@@ -59,6 +59,7 @@
       "anchorNavigationForbidden": true,
       "h2EmojiRequired": false,
       "h2UppercaseRequired": true,
+      "renderChecks": true,
       "firstSectionName": "overview",
       "lastSectionPattern": "related"
     },

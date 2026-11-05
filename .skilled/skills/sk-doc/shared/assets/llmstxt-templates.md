@@ -8,7 +8,7 @@ trigger_phrases:
   - "curated documentation entry point"
 importance_tier: normal
 contextType: general
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # llms.txt Templates - Document Type Reference
@@ -35,7 +35,7 @@ The format follows the [llmstxt.org](https://llmstxt.org/) specification, which 
 - llms.txt = Structured index optimized for AI consumption
 - README = Human-readable introduction and getting started guide
 
-### When to Use
+### Usage
 
 Use these templates and patterns when generating llms.txt files for different project types!
 

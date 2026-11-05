@@ -578,7 +578,7 @@ def test_package_uses_kebab_archive_root_and_members(tmp_path):
         "importance_tier: normal\n"
         "contextType: general\n"
         "version: 1.0.0.0\n"
-        "---\n\n# Quick Guide\n",
+        "---\n\n# Quick Guide\n\nOpen this for the short path through the demo skill.\n",
         encoding="utf-8",
     )
 

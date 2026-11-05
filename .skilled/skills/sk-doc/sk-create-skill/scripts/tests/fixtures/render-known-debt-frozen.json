@@ -10,19 +10,6 @@
     "system-deep-loop/deep-review/assets/deep-review-strategy.md",
     "system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md"
   ],
-  "stagedCodes": [
-    "render_h2_sequence",
-    "render_overview_subsections",
-    "render_section_reference",
-    "render_intro_missing",
-    "render_intro_pointer",
-    "render_intro_sentence_restates"
-  ],
-  "stagedScopes": [
-    "SKILL.md",
-    "ROUTER.md",
-    "shared/references",
-    "runtime/references",
-    "README.md"
-  ]
+  "stagedCodes": [],
+  "stagedScopes": []
 }

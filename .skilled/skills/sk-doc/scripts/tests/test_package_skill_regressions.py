@@ -200,7 +200,10 @@ _RENDER_JOINED_LABEL_DOC = (
     "# Render Fixture Reference\n\n"
     "A hook paragraph for the render fixture.\n\n"
     "## 1. OVERVIEW\n\n"
+    "### Purpose\n\n"
     "The fixture shows the joined bold label shape.\n\n"
+    "### When to Use\n\n"
+    "Load it in the render check tests.\n\n"
     "## 2. FIELD LIST\n\n"
     "**File**: references/render-fixture.md\n"
     "**Purpose**: Exercise the joined bold label check.\n"
@@ -579,6 +582,9 @@ _STAGED_SCOPE_FILES = {
 }
 
 
+_STAGED_SCOPES = ("SKILL.md", "ROUTER.md", "shared/references", "runtime/references")
+
+
 def _advisory_files(warnings):
     """The files named by the render warnings the stage holds advisory."""
     return {
@@ -588,10 +594,11 @@ def _advisory_files(warnings):
     }
 
 
-def test_staged_render_scopes_stay_advisory_under_strict(tmp_path):
+def test_staged_render_scopes_stay_advisory_under_strict(tmp_path, monkeypatch):
     # The widened scan reads docs the fleet already shaped, so its findings must
     # not turn --strict red before they can be worked off.
     module = _load_module()
+    monkeypatch.setattr(module, "RENDER_STAGED_SCOPES", _STAGED_SCOPES)
     skill_path = _write_render_scope_fixture_skill(tmp_path)
 
     valid, message, warnings = module.validate_skill(skill_path, strict=True)
@@ -604,6 +611,7 @@ def test_staged_render_scopes_stay_advisory_under_strict(tmp_path):
 def test_staged_off_env_enforces_the_staged_scopes(tmp_path, monkeypatch):
     # The opt-out is how a stage is measured before it is retired.
     module = _load_module()
+    monkeypatch.setattr(module, "RENDER_STAGED_SCOPES", _STAGED_SCOPES)
     skill_path = _write_render_scope_fixture_skill(tmp_path)
     monkeypatch.setenv("RENDER_STAGED_OFF", "1")
 
@@ -622,7 +630,7 @@ def test_unstaged_reference_render_finding_still_fails_strict(tmp_path):
 
     assert valid is False
     assert (
-        "render check: references/render-fixture.md:22 "
+        "render check: references/render-fixture.md:28 "
         "Consecutive bold labels" in message
     )
 
@@ -630,7 +638,8 @@ def test_unstaged_reference_render_finding_still_fails_strict(tmp_path):
 def test_staged_render_code_stays_advisory_in_an_enforced_scope(tmp_path, monkeypatch):
     module = _load_module()
     skill_path = _write_render_fixture_skill(tmp_path)
-    staged_code = module.RENDER_STAGED_CODES[0]
+    staged_code = "render_bold_label_join"
+    monkeypatch.setattr(module, "RENDER_STAGED_CODES", (staged_code,))
     finding = {
         "code": staged_code,
         "file": "references/render-fixture.md",

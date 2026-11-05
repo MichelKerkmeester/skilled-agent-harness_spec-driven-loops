@@ -270,29 +270,16 @@ RENDER_CHECK_TYPES = (
 
 # The scopes beyond references/ and assets/ that the render scan reads: a skill's
 # entry point, its router, and the hub reference trees it hands a reader.
-RENDER_SCAN_SCOPES = ('SKILL.md', 'ROUTER.md', 'shared/references', 'runtime/references')
+RENDER_SCAN_SCOPES = ('SKILL.md', 'ROUTER.md', 'README.md', 'shared/references', 'runtime/references')
 
 # Render checking widened past references/ and assets/ after the fleet already
-# carried docs in those shapes, so the codes and scopes below stay advisory under
-# --strict while the findings they carry are worked off. Both sets may only
-# shrink: an entry leaves once its findings are fixed, and the sets empty once the
-# fleet is clear. RENDER_STAGED_OFF=1 enforces every staged finding, which is how
-# a stage is measured before it is retired.
-RENDER_STAGED_CODES = (
-    'render_h2_sequence',
-    'render_overview_subsections',
-    'render_section_reference',
-    'render_intro_missing',
-    'render_intro_pointer',
-    'render_intro_sentence_restates',
-)
-RENDER_STAGED_SCOPES = (
-    'SKILL.md',
-    'ROUTER.md',
-    'shared/references',
-    'runtime/references',
-    'README.md',
-)
+# carried docs in those shapes. A code or scope listed below stays advisory under
+# --strict while its findings are worked off. Both sets may only shrink, and they
+# are empty now that the fleet is clear, so every render finding is enforced.
+# RENDER_STAGED_OFF=1 enforces staged findings, which is how a stage is measured
+# before it is retired.
+RENDER_STAGED_CODES = ()
+RENDER_STAGED_SCOPES = ()
 RENDER_STAGED_OFF_ENV = 'RENDER_STAGED_OFF'
 
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).

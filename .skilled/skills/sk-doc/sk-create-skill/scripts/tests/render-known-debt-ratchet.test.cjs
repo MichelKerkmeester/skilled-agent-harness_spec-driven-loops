@@ -178,10 +178,11 @@ test('a staged code the snapshot does not record is a violation', () => {
 });
 
 test('retiring a staged code is not a violation', () => {
+  // Every stage has retired, so the test stages two codes of its own and drops one.
   const { live, frozen } = loadPair();
-  const shrunk = structuredClone(live);
-  shrunk.stagedCodes = shrunk.stagedCodes.slice(1);
-  assert.equal(shrunk.stagedCodes.length, live.stagedCodes.length - 1, 'the copy must drop exactly one code');
+  const staged = ['render_bold_label_join', 'render_bare_url'];
+  const ceiling = { ...structuredClone(frozen), stagedCodes: staged };
+  const shrunk = { ...structuredClone(live), stagedCodes: staged.slice(1) };
 
-  assert.deepEqual(ledgerViolations(shrunk, frozen), []);
+  assert.deepEqual(ledgerViolations(shrunk, ceiling), []);
 });
