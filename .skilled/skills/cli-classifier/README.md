@@ -5,7 +5,7 @@ trigger_phrases:
   - "cli-classifier hub"
   - "local classifier hub"
   - "jev judgment hub"
-version: 0.8.4.0
+version: 0.8.5.0
 ---
 
 # cli-classifier
@@ -14,17 +14,15 @@ version: 0.8.4.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
 | **Invoke with** | A request that names Jev, `cli-jev` or its `cli-usage` alias. The advisor resolves the hub |
 | **Routes to** | The current mode `cli-jev` (packet `cli-jev`), through `mode-registry.json` and `hub-router.json` |
 | **Produces** | One typed Jev value, with an exit code that names the outcome |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -79,7 +77,7 @@ Once `jev auth status` passes, two features ask Jev on their own:
 
 ---
 
-## 3. MODES AND PACKETS
+## 2. MODES AND PACKETS
 
 The hub registers one mode today. A future classifier is added as a new mode and packet, and the root hub router remains the selection point.
 
@@ -89,7 +87,7 @@ The hub registers one mode today. A future classifier is added as a new mode and
 
 ---
 
-## 4. NAVIGATION
+## 3. NAVIGATION
 
 | File | What it holds | Why it matters |
 |---|---|---|
@@ -104,7 +102,7 @@ The manifest regenerates when packets change, so read it as a snapshot.
 
 ---
 
-## 5. CHANGELOG
+## 4. CHANGELOG
 
 Releases live in `changelog/` with one file per release, named `v[version].md`. `v0.1.0.0` and `v0.2.0.0` are the Jev hub's own releases from before it became mode `cli-jev` here.
 
@@ -127,7 +125,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 | Check | Command | Expected |
 |---|---|---|
