@@ -1,0 +1,1469 @@
+{
+  "sessionId": "2026-11-05T20:09:09Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-what-did-v4-0-1-0-rename-remove-retire-or-add-skills-modes-commands-scripts-path",
+      "inboxId": null,
+      "text": "What did v4.0.1.0 rename, remove, retire or add (skills, modes, commands, scripts, paths), per .skilled/changelog/skilled/v4.0.1.0.md, the per-skill changelogs it names and the git range?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-paths-commands-skills-modes-and-scripts-cited-in-agents-md-no-longer-exist",
+      "inboxId": null,
+      "text": "Which paths, commands, skills, modes and scripts cited in AGENTS.md no longer exist or now point at something renamed or behaving differently?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-paths-commands-and-rule-files-cited-in-repo-rules-md-and-the-13-rule-files",
+      "inboxId": null,
+      "text": "Which paths, commands and rule files cited in REPO RULES.md and the 13 rule files under .skilled/repo-rules/ no longer exist or are stale after v4.0.1.0?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-4-does-v4-0-1-0-add-a-mandatory-behavior-for-example-router-md-per-skill-doctor-co",
+      "inboxId": null,
+      "text": "Does v4.0.1.0 add a mandatory behavior (for example ROUTER.md per skill, doctor commands, decision capture of operator answers, render checks, doc rewrite guard) that AGENTS.md or a repo rule should state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-is-any-rule-in-agents-md-or-the-repo-rules-now-redundant-with-something-a-v4-0-1",
+      "inboxId": null,
+      "text": "Is any rule in AGENTS.md or the repo rules now redundant with something a v4.0.1.0 tool or hook enforces?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-what-did-v4-0-1-0-rename-remove-retire-or-add-skills-modes-commands-scripts-path",
+      "inboxId": null,
+      "text": "What did v4.0.1.0 rename, remove, retire or add (skills, modes, commands, scripts, paths), per .skilled/changelog/skilled/v4.0.1.0.md, the per-skill changelogs it names and the git range?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-paths-commands-skills-modes-and-scripts-cited-in-agents-md-no-longer-exist",
+      "inboxId": null,
+      "text": "Which paths, commands, skills, modes and scripts cited in AGENTS.md no longer exist or now point at something renamed or behaving differently?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-which-paths-commands-and-rule-files-cited-in-repo-rules-md-and-the-13-rule-files",
+      "inboxId": null,
+      "text": "Which paths, commands and rule files cited in REPO RULES.md and the 13 rule files under .skilled/repo-rules/ no longer exist or are stale after v4.0.1.0?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-does-v4-0-1-0-add-a-mandatory-behavior-for-example-router-md-per-skill-doctor-co",
+      "inboxId": null,
+      "text": "Does v4.0.1.0 add a mandatory behavior (for example ROUTER.md per skill, doctor commands, decision capture of operator answers, render checks, doc rewrite guard) that AGENTS.md or a repo rule should state?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-is-any-rule-in-agents-md-or-the-repo-rules-now-redundant-with-something-a-v4-0-1",
+      "inboxId": null,
+      "text": "Is any rule in AGENTS.md or the repo rules now redundant with something a v4.0.1.0 tool or hook enforces?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q4 partially open: whether any remaining v4.0.1.0 addition — conversation playbook scenarios, `/doctor:install`/`symlink`, worker-session nudge removal — warrants a rule statement.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 open: the 13 rule files' own internal citations (section anchors into skills, script paths, gate command names) were not audited beyond `communication-handoff.md` §5 and the hub-routing references.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q5 partially open: the redundancy question was answered only for comment hygiene and the doc rewrite guard.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q4 still open: whether a v4.0.1.0 addition not yet examined — conversation playbook scenarios (`specs/sk-doc/065-conversation-playbook-scenarios`), `/doctor:symlink` and `/doctor:install`, and the worker-session nudge removal — warrants a rule statement, and whether `/doctor:agents-md`'s section manifest now makes any shipped `AGENTS.md` section self-maintaining.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the key-question level. Three carried-forward items stay open as refinements rather than questions: (a) the `AGENTS.md:70` edit's compensating trim is a follow-up decision, not research; (b) `research/research.md` synthesis is unowned while the dispatch allowlist excludes it; (c) iteration 2's note that the gateway projection keeps only seven fields still governs how this packet's own state is read.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None at the key-question level. Three items carry forward as refinements: (a) 13 bytes of headroom at `AGENTS.md:70` is thin enough that the next edit above the last anchor must re-measure, though no trim is owed now; (b) `research/research.md` synthesis remains unowned while the dispatch allowlist excludes it; (c) the `parent-skills-nested-packets.md` §7 table has no routing-shape row, which is `sk-doc`-owned and outside this packet's surface.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`research/research.md` synthesis remains unowned while the dispatch allowlist excludes it.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "`f-iter004-002`'s 89-byte wording now has 13 bytes of headroom against the 16,384-byte delivery",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-7-decision-capture-agents-md-147-151-delegates-save-composition-and-what-the-write",
+      "text": "**Decision capture.** `AGENTS.md:147-151` delegates save composition and \"what the writer touches\" to `save-workflow.md`. That file now specifies the whole behaviour: a `--full-auto` save writes each `operatorDecisions` entry into the packet's `decision-record.md` while a plan-only save writes nothing [SOURCE: .skilled/skills/system-spec-kit/references/memory/save-workflow.md:261], the five runtime sweeps are named [SOURCE: .skilled/skills/system-spec-kit/references/memory/save-workflow.md:262], and the writer matches an existing hand-written record before appending [SOURCE: .skilled/skills/system-spec-kit/references/memory/save-workflow.md:277]. The delegation sentence stays true; no `AGENTS.md` edit.",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-8-doc-rewrite-guard-the-guard-exists-at-skilled-skills-sk-doc-shared-scripts-doc-r",
+      "text": "**Doc rewrite guard.** The guard exists at `.skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py` and the release makes it a pre-commit step for form-only rewrites [SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:196]. It is **not** in the primary pre-commit gate — that hook runs comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint and spec derived-metadata re-mint [SOURCE: .skilled/hooks/git/README.md:18] — so a rule could be argued for. It is reached instead through routing: `sk-doc`'s router carries a `RENDER_LEDGER` intent weighted 4 on keywords `doc rewrite guard`, `doc-rewrite-guard.py`, `kept every claim` [SOURCE: .skilled/skills/sk-doc/ROUTER.md:174], and `AGENTS.md:70` already sends every first `.md` write through `sk-doc`. Adding a second statement to `AGENTS.md` would create the duplication `AGENTS.md:247` explicitly avoids (\"Go to the owner rather than a summary here\").",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-9-render-checks-same-owner-same-route-sixteen-render-checks-fail-strict-packaging-",
+      "text": "**Render checks.** Same owner, same route: sixteen render checks fail strict packaging, and `sk-doc`'s README records them [SOURCE: .skilled/skills/sk-doc/README.md].",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-1-f-iter001-001-p2-agents-md-gate-2-never-names-router-md-the-file-that-now-holds-",
+      "text": "f-iter001-001 (P2) — `AGENTS.md` Gate 2 never names `ROUTER.md`, the file that now holds every skill's routing",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-4-f-iter001-002-p3-no-path-command-or-section-anchor-cited-by-agents-md-is-stale-a",
+      "text": "f-iter001-002 (P3) — No path, command or section anchor cited by `AGENTS.md` is stale after v4.0.1.0",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-5-f-iter001-003-p3-the-four-retirements-and-the-skilled-release-removal-have-no-ex",
+      "text": "f-iter001-003 (P3) — The four retirements and the `.skilled/release` removal have no expression in the rules to delete",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-6-f-iter001-004-p2-candidate-rejected-after-verification-decision-capture-render-c",
+      "text": "f-iter001-004 (P2, candidate rejected after verification) — Decision capture, render checks and the doc rewrite guard are already owned downstream; restating them in `AGENTS.md` would duplicate an owner",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-2-now-routing-means-loading-what-the-router-resolves-under-the-same-loading-rule-a",
+      "text": "now: `Routing means loading what the router resolves, under the same loading rule as Gate 5.`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-1-3-proposed-routing-means-loading-what-the-skill-s-sibling-router-md-resolves-its-s",
+      "text": "proposed: `Routing means loading what the skill's sibling ROUTER.md resolves (its SKILL.md links it in one line), under the same loading rule as Gate 5.`",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:23-196`",
+        "`AGENTS.md:1-302`",
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` (13 files; `skill-hub-routing.md:38,59,61,110`, `communication-handoff.md:145`, `uncertainty-and-honesty.md:134`, `prevent-overengineering.md:90`, `root-cause-and-debugging.md:137`)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:100-194`, `.skilled/skills/system-spec-kit/ROUTER.md:62`",
+        "`.skilled/skills/system-spec-kit/references/workflows/quick-reference.md:233,278`",
+        "`.skilled/skills/system-spec-kit/references/structure/phase-definitions.md:41,134`",
+        "`.skilled/skills/system-spec-kit/references/structure/folder-structure.md:99`",
+        "`.skilled/skills/system-spec-kit/references/validation/validation-rules.md:898`",
+        "`.skilled/skills/system-spec-kit/references/memory/save-workflow.md:261,262,277`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs:19,204`",
+        "`.skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47`",
+        "`.skilled/skills/system-spec-kit/shared/gate-3-classifier.ts:137,151,351`",
+        "`.skilled/skills/sk-doc/ROUTER.md:174`",
+        "`.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md:62`",
+        "`.skilled/hooks/git/README.md` (gate list, comment hygiene)",
+        "`git diff --name-status v4.0.0.16..v4.0.1.0`; `git log --oneline v4.0.0.16..v4.0.1.0 -- AGENTS.md \"REPO RULES.md\"`"
+      ]
+    },
+    {
+      "id": "finding-2-15-skill-hub-routing-md-61-placement-sentence-vs-package-skill-py-strict-the-placem",
+      "text": "**`skill-hub-routing.md:61` placement sentence vs `package_skill.py --strict`.** The *placement half* is now machine-enforced: a skill that keeps its router inside `SKILL.md` fails strict packaging [SOURCE: .skilled/changelog/skilled/v4.0.1.0.md:60], and the checker's own routing-shape rules RS-002/RS-003 state the same invariant [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1420]. The *reachability half* of the section — the two-stage replay — has no check. Keeping the rule costs one sentence and covers the half no tool covers; deleting it would leave the replay undocumented. Keep.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-14-skill-hub-routing-md-vs-12a-router-contract-12b-routing-shape-not-redundant-the-",
+      "text": "**`skill-hub-routing.md` vs `12a-router-contract` / `12b-routing-shape`.** Not redundant. The new checks assert shape and presence (a file exists, a link resolves, a section moved) and the ratchet only lets recorded debt shrink [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2233]. The rule's subject is reachability, which the checks explicitly do not test and cannot: a hub passes every one of them with a mode no request can reach. The rule's opening claim is the one thing a green run still cannot say.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-8-agents-md-section-citations-from-inside-rule-files-every-one-points-at-a-section",
+      "text": "**AGENTS.md section citations from inside rule files.** Every one points at a section that exists and says what the rule claims: §1 PLAN-WORKFLOW LOCK [SOURCE: .skilled/repo-rules/scope-discipline.md:102], §2 gates [SOURCE: .skilled/repo-rules/communication-handoff.md:189], §3 execution behavior and the coverage floor [SOURCE: .skilled/repo-rules/scope-discipline.md:117], §7 escalation [SOURCE: .skilled/repo-rules/communication-decisions.md:101], §10 Operational Mandates [SOURCE: .skilled/repo-rules/delegation-and-orchestration.md:73].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-16-comment-hygiene-already-decided-in-iteration-1-and-unchanged-the-hook-is-bypassa",
+      "text": "**Comment hygiene.** Already decided in iteration 1 and unchanged: the hook is bypassable (`SPECKIT_SKIP_COMMENT_HYGIENE=1`), runs only at commit, and reads only staged code, while `AGENTS.md:32-34` binds every code write [SOURCE: .skilled/hooks/git/README.md:18]. Not redundant.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-7-cross-file-section-anchors-23-of-23-n-citations-between-rule-files-resolve-to-a-",
+      "text": "**Cross-file section anchors.** 23 of 23 `§N` citations between rule files resolve to a real `## N.` heading in the target file. Spot-checked claims hold: `evidence-and-proof.md` §10 is the fabrication section `answer-the-actual-request.md:101` sends the reader to, and `communication.md` §5 is the ordering section `communication-decisions.md:59` cites.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-9-external-references-from-skill-hub-routing-md-parent-skills-nested-packets-md-si",
+      "text": "**External references from `skill-hub-routing.md`.** `parent-skills-nested-packets.md` sits at `.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md` and holds §1 \"OVERVIEW\", §2 \"REGISTRY AND ROUTER CONTRACT\" (the `routingClass` table at line 132, the `ROUTER.md` locations at 42-55 and 79) and §7 \"ADDING A MODE TO AN EXISTING HUB\" with the surface table and the gate commands [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:116]. `skill-root-metadata-contract.md` sits at `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`. `sk-doc` does route to the former [SOURCE: .skilled/skills/sk-doc/SKILL.md:153].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-6-relative-links-0-broken-across-all-13-files-every-file-links-repo-20rules-md-and",
+      "text": "**Relative links.** 0 broken across all 13 files. Every file links `../../REPO%20RULES.md` and it resolves to the root `REPO RULES.md`; the intra-folder links (`evidence-and-proof.md`, `communication.md`, `scope-discipline.md`, and the rest) all resolve.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-10-the-routingclass-vocabulary-the-rule-enumerates-is-current-not-historical-metada",
+      "text": "**The `routingClass` vocabulary** the rule enumerates is current, not historical: `metadata` 56 occurrences, `lexical` 16, `alias-fold` 2, `command-bridge` 1 across `.skilled/skills` (jsonl excluded) [SOURCE: .skilled/repo-rules/skill-hub-routing.md:52].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-11-the-hub-file-pair-the-rule-fires-on-still-exists-for-all-seven-hubs-cli-classifi",
+      "text": "**The hub file pair** the rule fires on still exists for all seven hubs — `cli-classifier`, `mcp-tooling`, `system-deep-loop`, `sk-code`, `sk-design`, `sk-doc`, `cli-external-orchestration` each carry `mode-registry.json` and `hub-router.json` [SOURCE: .skilled/repo-rules/skill-hub-routing.md:36].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-17-the-pre-commit-gate-list-confirms-the-scope-of-what-a-tool-now-enforces-comment-",
+      "text": "**The pre-commit gate list** confirms the scope of what a tool now enforces: comment hygiene, agent-mirror sync, mirror parity, prompt-card sync, MCP mutation-class, compiled-routing re-mint, spec derived-metadata re-mint [SOURCE: .skilled/hooks/git/README.md:18]. No rule in the 13 duplicates any of them.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-12-the-runtime-surfaces-communication-handoff-md-5-names-exist-pi-plugins-md-record",
+      "text": "**The runtime surfaces `communication-handoff.md` §5 names** exist: `.pi/PLUGINS.md` records the `@juicesharp/rpiv-ask-user-question` extension, and `.codex/config.toml` carries the `default_mode_request_user_input` feature the section describes [SOURCE: .skilled/repo-rules/communication-handoff.md:153]. That section is the only place a tool name appears, which `REPO RULES.md:112` asserts.",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-2-12a-router-contract-every-skill-root-and-every-declared-packet-owns-one-router-m",
+      "text": "`12a-router-contract` — every skill root and every declared packet owns one `ROUTER.md` [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:1795].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-3-12b-routing-shape-sibling-router-md-a-relative-pointer-to-it-short-routing-prose",
+      "text": "`12b-routing-shape` — sibling `ROUTER.md`, a relative pointer to it, short routing prose, and no router section left in `SKILL.md`, ratcheted against `routing-shape-known-debt.json` [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2233].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-4-rs-002-machine-router-left-in-skill-md-source-skilled-commands-doctor-scripts-pa",
+      "text": "`RS-002` (machine router left in `SKILL.md`) [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2116], `RS-004` (no sibling `ROUTER.md`) [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2143], `RS-005` (no relative link to it) [SOURCE: .skilled/commands/doctor/scripts/parent-skill-check.cjs:2164].",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-1-f-iter002-001-p3-skill-hub-routing-md-shares-its-subject-with-a-gate-v4-0-1-0-ad",
+      "text": "f-iter002-001 (P3) — `skill-hub-routing.md` shares its subject with a gate v4.0.1.0 added, and names neither the gate nor its codes",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-5-f-iter002-002-p3-no-path-relative-link-or-section-anchor-cited-by-repo-rules-md-",
+      "text": "f-iter002-002 (P3) — No path, relative link or section anchor cited by `REPO RULES.md` or the 13 rule files is stale after v4.0.1.0",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-2-13-f-iter002-003-p3-nothing-in-the-rule-layer-became-redundant-with-a-v4-0-1-0-gate",
+      "text": "f-iter002-003 (P3) — Nothing in the rule layer became redundant with a v4.0.1.0 gate; `skill-hub-routing.md` is the closest call and it survives on what the gates do not assert",
+      "addedAtIteration": 2,
+      "sources": [
+        "`REPO RULES.md:1-114`",
+        "`.skilled/repo-rules/` — all 13 files; `skill-hub-routing.md:1-127` read in full, plus `communication-handoff.md:145-172`, `communication.md`, `communication-decisions.md:59`, `evidence-and-proof.md`, `scope-discipline.md:102,117`, `delegation-and-orchestration.md:73`, `answer-the-actual-request.md:101`, `prevent-overengineering.md`, `blast-radius.md:64`, `root-cause-debugging.md`, `uncertainty-and-honesty.md`, `communication-prose.md`, `answer-the-actual-request.md`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:21-341`",
+        "`.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` (exists)",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs:110,156,1795,1935,2116,2143,2164,2233`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:189,212,1076,1174,1420,1442`",
+        "`.skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs:1-30`",
+        "`.skilled/skills/sk-doc/SKILL.md:153`, `.skilled/skills/sk-doc/ROUTER.md:214,411,457`",
+        "`.skilled/hooks/git/README.md:1-80`",
+        "`.skilled/changelog/skilled/v4.0.1.0.md:56,60`",
+        "`.skilled/bin/compiled-route.cjs`, `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`, `.codex/config.toml`, `.pi/PLUGINS.md`",
+        "`git log --diff-filter=A v4.0.0.16..v4.0.1.0 -- .../lib/root-router-contract.cjs`; `git log --oneline v4.0.0.16..v4.0.1.0 -- '.skilled/skills/**/ROUTER.md'`; `git grep '^#+ [0-9]*\\.\\? *MACHINE ROUTER' v4.0.0.16 -- .skilled/skills` (no output: no `ROUTER.md` existed at that tag)"
+      ]
+    },
+    {
+      "id": "finding-3-9-repo-rules-md-is-never-overwritten-create-router-creates-it-from-the-shipped-row",
+      "text": "**`REPO RULES.md` is never overwritten.** `--create-router` creates it \"from the shipped rows when it is missing\"; no target rewrites an existing one [SOURCE: .skilled/commands/doctor/agents-md.md].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-14-gate-5-s-loading-rule-is-loading-is-a-read-not-a-gate-action-plus-load-every-rul",
+      "text": "**Gate 5's loading rule** is \"Loading is a Read, not a Gate Action\" plus \"LOAD every rule file it names\" [SOURCE: AGENTS.md:97-98]. Saying routing loads \"under the same loading rule as Gate 5\" remains coherent: the load is mandatory, its content stays advisory.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-7-shipped-sections-are-composed-from-the-manifest-s-ordered-section-list-title-1-1",
+      "text": "**Shipped sections** are composed from the manifest's ordered section list — title, §1-§10, then the repository block — and A8 reports any repository content outside the block that matches no shipped section as \"the content a replacement would drop\" [SOURCE: .skilled/commands/doctor/scripts/agents-md-check.cjs]. Live A8: `\"no section outside the block\"`.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-13-the-advisor-treats-the-router-as-part-of-the-skill-its-freshness-signature-inclu",
+      "text": "**The advisor treats the router as part of the skill.** Its freshness signature includes `ROUTER.md`, a router-only change marks the index stale, and the watcher subscribes to it [SOURCE: .skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22], so \"what the skill's sibling `ROUTER.md` resolves\" matches the advisor's model rather than contradicting it.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-repository-block-is-preserved-a7-passes-on-block-148-bytes-4880-bytes-of-hea",
+      "text": "**The repository block** is preserved: A7 passes on `block 148 bytes, 4880 bytes of headroom`, and the note line itself states the contract [SOURCE: AGENTS.md:301].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-12-the-shape-is-universal-all-54-skill-roots-carrying-both-files-mention-router-md-",
+      "text": "**The shape is universal.** All 54 skill roots carrying both files mention `ROUTER.md` in `SKILL.md`. The canonical form is a single relative link: `Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open only the matched files.` [SOURCE: .skilled/skills/system-spec-kit/SKILL.md:96], repeated at [SOURCE: .skilled/skills/system-skill-advisor/SKILL.md:61] and [SOURCE: .skilled/skills/sk-doc/SKILL.md:59].",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-15-routing-means-loading-what-the-skill-s-sibling-router-md-resolves-its-skill-md-c",
+      "text": "`Routing means loading what the skill's sibling ROUTER.md resolves (its SKILL.md carries a relative link to it), under the same loading rule as Gate 5.`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-1-f-iter003-001-p2-v4-0-1-0-enforces-a-16-384-byte-delivery-prefix-on-agents-md-no",
+      "text": "f-iter003-001 (P2) — v4.0.1.0 enforces a 16,384-byte delivery prefix on `AGENTS.md`, no rule states it, and the packet's own `AGENTS.md:70` proposal exceeds it",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-6-f-iter003-002-p3-which-lines-may-an-update-overwrite-already-has-a-machine-answe",
+      "text": "f-iter003-002 (P3) — \"Which lines may an update overwrite\" already has a machine answer; the CLAUDE.md mirror premise is retired, and neither needs a rule",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-10-f-iter003-003-p3-every-remaining-v4-0-1-0-addition-is-already-carried-by-its-own",
+      "text": "f-iter003-003 (P3) — Every remaining v4.0.1.0 addition is already carried by its owner; none needs an `AGENTS.md` or repo-rule statement",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-11-f-iter003-004-p3-iteration-1-s-agents-md-70-wording-is-accurate-in-substance-and",
+      "text": "f-iter003-004 (P3) — Iteration 1's `AGENTS.md:70` wording is accurate in substance and needs one precision fix plus the budget correction",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-16-f-iter003-005-p3-agents-md-s-4-before-3-numbering-is-pre-existing-and-the-manife",
+      "text": "f-iter003-005 (P3) — `AGENTS.md`'s §4-before-§3 numbering is pre-existing, and the manifest now freezes whatever order it declares",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-2-iteration-1-s-proposal-for-agents-md-70-routing-means-loading-what-the-skill-s-s",
+      "text": "Iteration 1's proposal for `AGENTS.md:70` — `Routing means loading what the skill's sibling ROUTER.md resolves (its SKILL.md links it in one line), under the same loading rule as Gate 5.` — is **141 bytes against the 86 the sentence occupies today, a delta of +55**, which moves the last anchor from 16,368 to **16,423, or 39 bytes past the prefix**.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-4-now-repository-owned-doctor-agents-md-keeps-every-line-here-the-sections-above-a",
+      "text": "now: `<!-- Repository-owned. /doctor:agents-md keeps every line here; the sections above are shipped by Skilled. -->`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-5-proposed-appended-to-that-line-edits-above-this-block-must-keep-the-last-pinned-",
+      "text": "proposed, appended to that line: `Edits above this block must keep the last pinned anchor inside the 16384-byte prefix; run /doctor:agents-md check before and after.`",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-3-3-the-minimal-accurate-variant-naming-router-md-and-changing-nothing-else-what-the",
+      "text": "The minimal accurate variant, naming `ROUTER.md` and changing nothing else (`what the router resolves` → `what the skill's sibling ROUTER.md resolves`), is still **+19 bytes → 16,387, three bytes past**.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/changelog/skilled/v4.0.1.0.md:43,60,72,80,90,94,98,102,126,157,182-191`",
+        "`AGENTS.md:7,45,70,93,97-98,117,173,212,289,298-302`",
+        "`REPO RULES.md:1-60`",
+        "`.skilled/repo-rules/answer-the-actual-request.md:55`; all 13 rule files grepped for `nudge`, `frontend`, `playbook`, `scenario`, `package_skill`, `tokens.css`, `CLAUDE`, `16384`, `delivery prefix`",
+        "`.skilled/commands/doctor/agents-md.md` (route contract, flag table)",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`markers`, `budget`, `sections`, `pins`, `derived`)",
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:480-560` (A6 escape, A7 block, A8 unmarked)",
+        "`node .skilled/commands/doctor/scripts/agents-md-check.cjs --json` (live rows A6, A7, A8)",
+        "`.skilled/skills/system-spec-kit/SKILL.md:96`; `.skilled/skills/system-skill-advisor/SKILL.md:61`; `.skilled/skills/sk-doc/SKILL.md:19,57,59,66,80,81,91,130,149`; 54-skill link probe",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.17.24.0.md:22`",
+        "`.skilled/skills/sk-doc/ROUTER.md:99-107`",
+        "`.skilled/skills/sk-code/ROUTER.md:153-165`",
+        "`.skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/run-conversation-scenario.cjs`",
+        "`.skilled/commands/doctor/` and `.opencode/commands/doctor/` inventories",
+        "`git show v4.0.0.16:AGENTS.md` (`## ` headings)"
+      ]
+    },
+    {
+      "id": "finding-4-9-nothing-is-stale-all-three-codes-still-exist-in-the-checker-23-occurrences-of-rs",
+      "text": "**Nothing is stale.** All three codes still exist in the checker (23 occurrences of `RS-002|RS-004|RS-005` in `.skilled/commands/doctor/scripts/parent-skill-check.cjs`), so the rule is not pointing at a retired name.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-rule-s-own-contract-forbids-it-repo-rules-md-4-states-that-skill-hub-routing",
+      "text": "**The rule's own contract forbids it.** `REPO RULES.md` §4 states that `skill-hub-routing.md` \"carries no route-selection guidance: the mechanics stay in the skills, and the rule points at them\" `[SOURCE: REPO RULES.md:98-101]`, and the rule does point: it sends the reader to section 7 of `parent-skills-nested-packets.md` `[SOURCE: .skilled/repo-rules/skill-hub-routing.md:71]` and says \"The commands are in the reference above\" `[SOURCE: .skilled/repo-rules/skill-hub-routing.md:89]`. Putting `RS-002`, `RS-004` and `RS-005` into the rule is precisely the mechanics-in-the-rule duplication the carve-out was written to prevent.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-sentence-is-more-true-than-when-it-was-written-78-says-the-per-hub-gate-asse",
+      "text": "**The sentence is more true than when it was written.** `:78` says the per-hub gate \"asserts only presence, never reachability\" `[SOURCE: .skilled/repo-rules/skill-hub-routing.md:78]`. Checks `12a` and `12b` assert shape — a sibling file exists, a relative pointer exists, no router section remains in `SKILL.md`. Shape is not reachability, so the rule's distinction is exactly the right frame for the gates that appeared. Adding the codes would narrow a general statement into an inventory.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-f-iter003-001-s-sentence-that-phrase-is-the-sole-acknowledgment-the-check-accept",
+      "text": "`f-iter003-001`'s sentence \"That phrase is the sole acknowledgment the check accepts, and it is read from the block only\" is **false on both halves**: no phrase is accepted, and nothing is read from the block.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-1-f-iter004-001-p2-f-iter003-001-s-central-mechanism-is-wrong-the-delivery-prefix-",
+      "text": "f-iter004-001 (P2) — `f-iter003-001`'s central mechanism is wrong: the `delivery prefix` guard reads the canary's stdout, never the repository block, and nothing silences A6",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-5-f-iter004-002-p2-the-proposed-70-wording-does-fit-89-bytes-13-bytes-of-headroom-",
+      "text": "f-iter004-002 (P2) — The proposed `:70` wording does fit: 89 bytes, 13 bytes of headroom, and every repository skill has a sibling `ROUTER.md`",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-6-f-iter004-003-p3-f-iter002-001-is-gate-detail-the-rule-rightly-delegates-no-rule",
+      "text": "f-iter004-003 (P3) — `f-iter002-001` is gate detail the rule rightly delegates; no rule edit, and the residual gap belongs to an `sk-doc` reference outside this packet's surface",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-10-f-iter004-004-p3-no-repo-rules-md-trigger-table-row-should-route-to-a-v4-0-1-0-d",
+      "text": "f-iter004-004 (P3) — No `REPO RULES.md` trigger-table row should route to a v4.0.1.0 doctor command; all four already fire existing rows",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-3-the-design-warning-built-on-it-that-a-rule-teaching-the-escape-by-quoting-the-wo",
+      "text": "The design warning built on it — that a rule teaching the escape by quoting the words into the block \"permanently silences A6\" — is **false**. Writing `delivery prefix` into the repository block has no effect on A6 whatsoever. The warning must be dropped, not softened; keeping it would ship a rule that names a footgun that does not exist.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    },
+    {
+      "id": "finding-4-4-what-survives-from-f-iter003-001-is-the-narrower-still-true-part-the-16-384-byte",
+      "text": "What survives from `f-iter003-001` is the narrower, still-true part: the 16,384-byte delivery prefix is real, it is enforced twice (manifest pins plus canary), it is stated in no rule file, and the live run reports 16,368 of 16,384 `[SOURCE: AGENTS.md:70]`-adjacent headroom from row A6.",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/commands/doctor/scripts/agents-md-check.cjs:411-412,441-444,450,461-464,477-481,490,864-872`",
+        "`.skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:140,425-433,436-448`",
+        "`.skilled/commands/doctor/assets/agents-md-manifest.json` (`root_file`, `budget`, 21 `delivery-anchor` pins, `last_anchor_id`)",
+        "`AGENTS.md:65-72,97-98,298-302`",
+        "`REPO RULES.md:3-6,12-18,20-32,38-52,96-101`",
+        "`.skilled/repo-rules/skill-hub-routing.md:71,78,88-89`",
+        "`.skilled/commands/doctor/agents-md.md:28,34-38`",
+        "`.skilled/commands/doctor/scripts/parent-skill-check.cjs` (23 occurrences of `RS-002|RS-004|RS-005`)",
+        "`.skilled/skills/**` scan, 57 `SKILL.md` roots, 3 without sibling `ROUTER.md` (all under `node_modules/playwright-core`)",
+        "`specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md`, `iteration-003.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-33d97511b32e",
+      "text": "**\"`system-spec-kit` SKILL.md §3\" may have lost its content to the router move.** It did not; §3 keeps \"Retrieval and Continuity\", \"Reranking\" and the declared-loss sentence.",
+      "contentHash": "33d97511b32e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-24f553286bc3",
+      "text": "**`advisor_recommend` looked removed.** `.skilled/agents/code.md` and `.skilled/skills/README.txt` both show the verb `l`, which reads as a rename. The frozen contract settles it the other way: nine commands, each accepting snake, kebab and camel spellings, `advisor_recommend` first in the table [SOURCE: .skilled/skills/system-skill-advisor/references/runtime/cli-front-door-contract.md:47], and the built CLI contains seven occurrences. `AGENTS.md:67` is correct and `l` is a separate short id.",
+      "contentHash": "24f553286bc3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ebd322cd181e",
+      "text": "**`sk-create-goal`'s `references/budget-and-handoff.md` may have moved under `sk-doc`.** It sits at `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md`; `AGENTS.md:155` cites it by skill name, not by path, so the extra folder does not stale the citation.",
+      "contentHash": "ebd322cd181e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4ea13717adfe",
+      "text": "**A doc-rewrite-guard rule is missing from `AGENTS.md`.** Rejected: `sk-doc`'s router owns the intent and Gate 2 already routes there.",
+      "contentHash": "4ea13717adfe",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-be2fee2bdcb3",
+      "text": "**Sweeping the rule files for v4.0.1.0 impact as a first move.** Only two of thirteen files changed in the range — `communication-handoff.md` (4 lines) and `skill-hub-routing.md` (8 lines) — and both changes were themselves router-related. The rules layer is ahead of `AGENTS.md`; a rule sweep on this axis yields nothing until the rules' own internal citations are the target.",
+      "contentHash": "be2fee2bdcb3",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ec23c966826c",
+      "text": "**Treating `.skilled/changelog/skilled/v4.0.1.0.md:27`'s spec-folder list as the change inventory.** It names nine packets and \"smaller packets for the fixes\"; the git range covers 458 commits and 33,921 paths, so the list is a pointer, not an inventory. The named-packet approach cannot substitute for the tree probe.",
+      "contentHash": "ec23c966826c",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f1702536a67e",
+      "text": "**`## MACHINE ROUTER` in `skill-hub-routing.md:61` is stale because real headings are numbered (`## 3. MACHINE ROUTER`).** Not stale. `package_skill.py` extracts heading titles and compares `title == 'MACHINE ROUTER'`, so the number prefix is stripped before comparison [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1174], and its diagnostics print the unnumbered form the rule uses [SOURCE: .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1420]. The rule quotes the heading title, which is the stable identifier.",
+      "contentHash": "f1702536a67e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-f6d5c59e4a85",
+      "text": "**`parent-skills-nested-packets.md` §1-2 did not actually carry the `routingClass` table or the `ROUTER.md` locations.** It does: table at line 132, stage-two file table at 42-55, canonical sentence at 79.",
+      "contentHash": "f6d5c59e4a85",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-314553bc23e6",
+      "text": "**`skill-hub-routing.md` became redundant when the routing shape became gated.** It did not, for the reason in f-iter002-003: shape is not reachability, and the rule's whole point is that distinction.",
+      "contentHash": "314553bc23e6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-adf0ee5e968f",
+      "text": "**Probing relative links with `realpath` on macOS.** It does not exist there, so the probe silently reports every link as broken. Use `os.path.exists(os.path.normpath(os.path.join(dirname, target)))` from Python instead. Recorded so a later iteration does not spend a call rediscovering it.",
+      "contentHash": "adf0ee5e968f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8a8c87ee06c3",
+      "text": "**The rule's §7-covers-the-surface-list citation was off by one section.** It is not; §7 is \"ADDING A MODE TO AN EXISTING HUB\" and holds the 11-row table [SOURCE: .skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md:245].",
+      "contentHash": "8a8c87ee06c3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8f06ac9c397b",
+      "text": "**`/doctor:install` and `/doctor:symlink` need a rule because they mutate a project.** No: the commands own their own plan-then-yes discipline, `blast-radius.md` governs any install, and `AGENTS.md:289` already delegates the inventory.",
+      "contentHash": "8f06ac9c397b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1819455f73fe",
+      "text": "**`AGENTS.md:70`'s proposal is simply wrong.** No: it is substantively right and self-consistent with Gate 5 and the advisor. Only the `one line` parenthetical and the byte budget need correcting.",
+      "contentHash": "1819455f73fe",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-549fac104da0",
+      "text": "**A rule is needed about which lines an update may overwrite.** No: A7/A8 plus the note line own it; the gap is capacity, not ownership.",
+      "contentHash": "549fac104da0",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-cff632de84cb",
+      "text": "**A rule is needed for conversation playbook scenarios.** No: `sk-doc`'s `playbook-conversation` intent already routes the request, and the runner is documented by the skill that ships it [SOURCE: .skilled/skills/sk-doc/ROUTER.md:103].",
+      "contentHash": "cff632de84cb",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-839ad1a2ef6b",
+      "text": "**The `§4`-before-`§3` order was introduced by the manifest.** No: identical order at `v4.0.0.16`.",
+      "contentHash": "839ad1a2ef6b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5b4c1dc1988a",
+      "text": "**The worker-session nudge removal leaves a dangling rule.** No: zero references to a nudge in the rule layer; only an unrelated English use of the word.",
+      "contentHash": "5b4c1dc1988a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-199cbfc8d7c4",
+      "text": "**Treating \"the manifest requires a rule about which lines an update may overwrite\" as a single question.** It splits into ownership (settled by A7/A8) and capacity (unstated, and load-bearing). Asking it as one question would have produced either a duplicated rule or a missed budget.",
+      "contentHash": "199cbfc8d7c4",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-6177442bd5b4",
+      "text": "**`skill-hub-routing.md:78` should name `RS-002` / `RS-004` / `RS-005`.** Rejected: mechanics in the rule, against `REPO RULES.md:98-101`.",
+      "contentHash": "6177442bd5b4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9e80789f7f6f",
+      "text": "**A `delivery prefix` line in the repository block silences A6.** False. `own` is canary stdout screened for `MISSING:` / `BLOCKED:` `[SOURCE: .skilled/commands/doctor/scripts/agents-md-check.cjs:461-463]`; document prose cannot enter it.",
+      "contentHash": "9e80789f7f6f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-bb1ccebc9350",
+      "text": "**A trigger-table row should route to `/doctor:agents-md` or `/doctor:install`.** Rejected: `REPO RULES.md:5-6` and `:18` make the table a rule-file router; the commands already fire rows 42, 44 and 45.",
+      "contentHash": "bb1ccebc9350",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-004a76b0a796",
+      "text": "**Measuring only the variants already on the table.** Iteration 3 tested the two wordings it had and concluded about \"any version\". A budget question has to be answered by measuring the cheapest candidate, not the two most discussed.",
+      "contentHash": "004a76b0a796",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-71bf890bb31a",
+      "text": "**No `ROUTER.md`-naming wording fits the budget.** False at the short end: the 89-byte form lands at 16,371, 13 bytes inside.",
+      "contentHash": "71bf890bb31a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-d8c00cc0337d",
+      "text": "**The canary is silent past the prefix, so A6's fallback is the only signal.** False. The canary emits its own failure containing `delivery prefix` `[SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:428]`, printed as `MISSING:` `[SOURCE: .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js:440]`.",
+      "contentHash": "d8c00cc0337d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f36f7f994c63",
+      "text": "**Treating iteration 3's A6 read as sufficient because it quoted the right file and line.** The citation was correct and the inference from it was inverted — the code was read as parsing the document when it parses a subprocess's stdout. For any row that shells out, the variable's provenance (`output` at `:450`) has to be established before its predicate is interpreted. Recorded because this is the second time in this packet that a correct citation carried a wrong inference.",
+      "contentHash": "f36f7f994c63",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-4b840db8c72f",
+      "text": "**\"A backticked token missing as a repo path is a vanished citation.\"** `@juicesharp/rpiv-ask-user-question`",
+      "contentHash": "4b840db8c72f",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-585f281311d0",
+      "text": "**\"The `.codex/config.toml` change staled the `communication-handoff.md` Codex row.\"** `fa2f8321f8`",
+      "contentHash": "585f281311d0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-63dfede547a6",
+      "text": "**\"The range touched a third rule-layer surface that iterations 1-4 missed.\"** The touch set is",
+      "contentHash": "63dfede547a6",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8f265c1460b7",
+      "text": "**\"The seven named gate scripts changed behavior in this release.\"** All seven return zero commits",
+      "contentHash": "8f265c1460b7",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-9f352bbba85b",
+      "text": "**\"The sibling packets' deferrals hand work to `AGENTS.md` or the repo rules.\"** Both name only",
+      "contentHash": "9f352bbba85b",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 52,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.8,
+    "coverageBySources": {
+      "code": 86,
+      "other": 52
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/agents-md/017-v4-0-1-0-rules-refresh/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
