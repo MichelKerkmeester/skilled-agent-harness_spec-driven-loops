@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f3f9b1c7af163787b23f250d8da63fbf4397bebf281e962d850b4ba81bfcf59a",
+  "manifestHash": "cce1c9ca1fefe6c07a1a65f897530b5041d7a0b0c00456a0bf56c987c59c2389",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12759,6 +12759,9 @@
     "assets color removed": [
       "assets/color removed"
     ],
+    "assets examples render skip": [
+      "assets examples render skip"
+    ],
     "assigned task listing": [
       "assigned task listing"
     ],
@@ -13658,6 +13661,9 @@
     ],
     "bad pattern negative memory": [
       "bad pattern negative memory"
+    ],
+    "badge bare url": [
+      "badge bare url"
     ],
     "bake off harness ccc resolution": [
       "bake-off harness CCC resolution"
@@ -103409,6 +103415,9 @@
     "sk create skill 1 15 0 0": [
       "sk-create-skill 1.15.0.0"
     ],
+    "sk create skill 1 15 1 0": [
+      "sk-create-skill 1.15.1.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -103549,6 +103558,9 @@
     ],
     "sk create skill v1 15 0 0": [
       "sk-create-skill v1.15.0.0"
+    ],
+    "sk create skill v1 15 1 0": [
+      "sk-create-skill v1.15.1.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -104613,6 +104625,9 @@
     "sk doc 2 9 3 0": [
       "sk-doc 2.9.3.0"
     ],
+    "sk doc 2 9 4 0": [
+      "sk-doc 2.9.4.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -105077,6 +105092,9 @@
     ],
     "sk doc v2 9 3 0": [
       "sk-doc v2.9.3.0"
+    ],
+    "sk doc v2 9 4 0": [
+      "sk-doc v2.9.4.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

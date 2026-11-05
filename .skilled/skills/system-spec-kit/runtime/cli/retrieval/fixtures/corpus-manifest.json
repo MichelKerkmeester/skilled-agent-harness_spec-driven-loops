@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a4d17dc47763cc0a000e8abfb2ff4986db0c515d1481f338db59affbfbf85a09",
+  "corpusHash": "45d31d13856e6a57dbc70b2cd824209a1d39931c936fb8786b4a0c1ecdd27201",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28002,
+  "includedPathCount": 28004,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6355,6 +6355,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6922,6 +6923,7 @@
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.13.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.14.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.15.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.15.1.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.3.0.0.md",
     ".skilled/skills/sk-doc/sk-create-skill/changelog/v1.4.0.0.md",
@@ -28033,7 +28035,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f3f9b1c7af163787b23f250d8da63fbf4397bebf281e962d850b4ba81bfcf59a",
+  "manifestHash": "cce1c9ca1fefe6c07a1a65f897530b5041d7a0b0c00456a0bf56c987c59c2389",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
