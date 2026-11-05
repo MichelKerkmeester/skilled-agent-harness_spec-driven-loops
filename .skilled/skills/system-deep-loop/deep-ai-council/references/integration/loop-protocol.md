@@ -8,7 +8,7 @@ trigger_phrases:
   - "council persistence flow"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.5
+version: 1.7.1.0
 ---
 
 # AI Council Loop Protocol
@@ -18,6 +18,16 @@ This reference describes the council loop from packet resolution to persisted pl
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+The phase order a caller follows so a council report and its state land in the packet exactly once.
+
+### When to Use
+
+- Running a round from packet resolution to persisted handoff.
+- Checking what each phase must load before it starts.
+- Recovering a run from disk state instead of conversation memory.
 
 The council loop has four phases:
 
@@ -150,7 +160,11 @@ Required resources:
 - `references/patterns/command-wiring.md`
 - `assets/deep-ai-council-dashboard.md`
 
-Acceptance criteria: `ai-council-state.jsonl` contains a `council_complete` event — not necessarily the final line, since `artifact_written` audit events for the state log itself and each subsequent artifact write typically follow it (see `references/structure/state-format.md` §5.1) — the final report exists, and any failed rounds are preserved under `failed/`.
+Acceptance criteria:
+
+- `ai-council-state.jsonl` contains a `council_complete` event, not necessarily the final line: `artifact_written` audit events for the state log itself and each subsequent artifact write typically follow it (see `references/structure/state-format.md` §5.1).
+- The final report exists.
+- Any failed rounds are preserved under `failed/`.
 
 ---
 

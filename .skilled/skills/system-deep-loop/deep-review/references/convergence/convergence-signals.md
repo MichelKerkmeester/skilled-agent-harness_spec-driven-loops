@@ -8,7 +8,7 @@ trigger_phrases:
   - "review blocked stop"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.3
+version: 1.11.1.0
 ---
 
 # Deep Review Convergence Signals
@@ -19,7 +19,16 @@ This reference names the live stop signals. Use `references/convergence/converge
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Deep-review convergence is a release-readiness decision. The loop stops only when severity-weighted findings stabilize, dimension coverage is complete, quality gates pass, and no P0 override is active.
+
+### When to Use
+
+- Naming the signal that is holding STOP open.
+- Checking whether a new P0 forces another iteration.
+- Confirming the six legal-stop conditions before synthesis.
+- Comparing this loop's threshold with a sibling deep loop.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "council resume semantics"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.0.13
+version: 1.7.1.0
 ---
 
 # AI Council State Format
@@ -18,6 +18,16 @@ version: 1.7.0.13
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Make the event log sufficient to tell an interrupted run from a completed one.
+
+### When to Use
+
+- You are resuming an interrupted council run.
+- You are verifying that a run completed and its artifacts were written.
+- You are adding or changing a state event type.
 
 Every council run MUST include a `council_complete` event once the round completes and convergence is known. Runs that exit before `council_complete` is written are incomplete and should be resumed or rolled back before completion is claimed. `council_complete` is not necessarily the final line in the file: each artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files) appends its own `artifact_written` audit event — see §5.1.
 
@@ -153,7 +163,7 @@ This follows agent body §14 and ADR-001 in the internal design notes.
 
 ---
 
-## 5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)
+### 5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)
 
 v1.2 adds audit events to the same append-only JSONL. Each artifact write records the relative `ai-council/` path, byte count, sha256 checksum, timestamp, optional seat id, and round id.
 
@@ -168,7 +178,7 @@ v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded`
 
 ---
 
-## 5.2 PROGRESS RECORD (v1.3, shared cross-mode)
+### 5.2 PROGRESS RECORD (v1.3, shared cross-mode)
 
 A cross-cutting additive event type shared by all deep-loop modes (council, context, review, research). It provides step-transition liveness: `started`/`completed` pairs around long steps so the no-progress watchdog resets without masking genuine stalls. A progress record is NOT an iteration, a seat return, or a synthesis event — it is purely a liveness signal.
 
@@ -190,6 +200,10 @@ type ProgressRecord = {
 };
 ```
 
+Threshold T derivation:
+
+T is half the watchdog no-progress window. The benchmark runner's watchdog fires after 120s of no new event AND no artifact mtime change, so a progress pair at T=60s resets the timer with a 60s margin for the watchdog to still catch a genuine stall if the step hangs after the `started` record.
+
 Rules:
 
 - Append one `started` record immediately before any step expected to run longer than T without another state-log append or artifact write.
@@ -197,10 +211,6 @@ Rules:
 - Do not emit timer-only heartbeats; every record must correspond to a real step transition.
 - At least one work-anchored field (`progress_delta` > 0 or a non-empty `artifact_path`) must be present on the `completed` record so a consumer can reject a zero-delta no-op pair (GAP-35). A pair with neither is invalid.
 - `progress_delta` is a numeric unit-count (items, seats, bytes, etc.) scoped to the step. `artifact_path` is optional and only present when the transition produced or settled a concrete artifact.
-
-Threshold T derivation:
-
-T is half the watchdog no-progress window. The benchmark runner's watchdog fires after 120s of no new event AND no artifact mtime change, so a progress pair at T=60s resets the timer with a 60s margin for the watchdog to still catch a genuine stall if the step hangs after the `started` record.
 
 Reducer allowlist (GAP-30):
 
@@ -212,7 +222,12 @@ v1 readers must ignore `progress_record` events without error. v1.3 readers use 
 
 ## 6. RESUME SEMANTICS
 
-The last completed event determines the next action. If `round_start` exists without all expected `seat_returned` events, redo or complete that round. If all seats returned but `deliberation_synthesized` is missing, synthesize deliberation. If deliberation exists but `round_end` is missing, close the round. If `council_complete` exists, treat the council as done unless the user requests another round.
+The last completed event determines the next action.
+
+- `round_start` exists without all expected `seat_returned` events: redo or complete that round.
+- All seats returned but `deliberation_synthesized` is missing: synthesize deliberation.
+- Deliberation exists but `round_end` is missing: close the round.
+- `council_complete` exists: treat the council as done unless the user requests another round.
 
 ---
 
@@ -220,7 +235,10 @@ The last completed event determines the next action. If `round_start` exists wit
 
 Per ADR-003, validation is convention-only for v1. Do not add a runtime schema validator unless a follow-on packet proves real drift.
 
-Cross-references:
+---
+
+## 8. CROSS-REFERENCES
+
 - Agent body: `.skilled/agents/ai-council.md` §14
 - Decision context: ADR-001 in internal design notes
 - Decision context: local doctor command ADRs ADR-003 and ADR-004

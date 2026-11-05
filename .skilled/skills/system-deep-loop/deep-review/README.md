@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # deep-review
@@ -30,17 +30,17 @@ version: 1.11.1.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
-
-That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
-
 ### What It Does
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
 It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
+
+### Why This Skill Exists
+
+A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
+
+That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
 
 ### The Dimension Coverage
 

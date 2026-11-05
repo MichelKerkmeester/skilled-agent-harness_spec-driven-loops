@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep-ai-council routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,13 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name `deep-ai-council`, `ai council`, `council deliberation`, `multi-seat planning`, `planning council`, `council convergence`, `council artifacts` or `packet-local ai-council`, and the `system-deep-loop` hub's `ai-council` signal selects this packet. It routes to three resource families: the `references/` doctrine, which starts at `references/integration/quick-reference.md` on every invocation and adds the loop protocol, output schema, scoring, depth-dispatch, failure-handling, anti-pattern, folder-layout, state-format, seat-diversity, convergence, graph-support and findings-registry references as the intent asks for them, plus the `assets/` markdown templates, the `manual-testing-playbook/` operator scenarios and the `scripts/` helpers that are invoked explicitly rather than routed.
+Requests reach this skill when they name `deep-ai-council`, `ai council`, `council deliberation`, `multi-seat planning`, `planning council`, `council convergence`, `council artifacts` or `packet-local ai-council`, and the `system-deep-loop` hub's `ai-council` signal selects this packet. It routes to three resource families:
+
+- The `references/` doctrine, which starts at `references/integration/quick-reference.md` on every invocation and adds the loop protocol, output schema, scoring, depth-dispatch, failure-handling, anti-pattern, folder-layout, state-format, seat-diversity, convergence, graph-support and findings-registry references as the intent asks for them.
+- The `assets/` markdown templates.
+- The `manual-testing-playbook/` operator scenarios.
+
+The `scripts/` helpers are invoked explicitly rather than routed.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource
@@ -83,10 +89,10 @@ assets/*.md
 manual-testing-playbook/**/*.md
 ```
 
-- `references/` contains the quick reference, loop protocol, council state, folder layout, seat diversity, output schema, convergence signals, and caller wiring.
+- `references/` contains the quick reference, loop protocol, graph support, anti-patterns, caller wiring, seat diversity, findings registry, scoring rubric, folder layout, output schema, council state format, depth dispatch, failure handling, convergence signals, and deep mode.
 - `assets/` contains council config, round strategy, dashboard, prompt-pack, and runtime capability templates. Markdown assets are routable; JSON/TMPL assets are operator/runtime inputs.
-- `manual-testing-playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (32 scenarios across 9 categories).
-- `feature-catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (32 entries) — start here for "what does DAC-NNN actually do" lookups.
+- `manual-testing-playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (33 scenarios across 9 categories).
+- `feature-catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (33 entries) — start here for "what does DAC-NNN actually do" lookups.
 - `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and writes through `runtime//scripts/upsert.cjs --loop-type council`, with `--dry-run` for payload inspection).
 
 ### Resource Loading Levels

@@ -8,7 +8,7 @@ trigger_phrases:
   - "derived council graph"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.0.8
+version: 1.7.1.0
 ---
 
 # AI Council Graph Support
@@ -18,6 +18,16 @@ Dedicated council graph support is available as a derived `runtime/` CLI project
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Structural questions about a council run answered from a rebuildable index rather than from a second source of truth.
+
+### When to Use
+
+- Auditing decisions, evidence chains or unresolved disagreements.
+- Checking convergence blockers before a stop is approved.
+- Rebuilding a projection that drifted from the packet artifacts.
 
 The graph is a prompt-safe structural index over council deliberation artifacts. It stores council-specific nodes and edges so synthesis, audit, and convergence checks can answer structural questions without overloading deep-loop research/review graph semantics.
 
@@ -35,14 +45,14 @@ If graph rows disagree with artifacts, the artifacts win and graph rows should b
 
 ## 2. RUNTIME CLI SURFACE
 
+Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `runtime/`.
+
 Dedicated graph operations run through the shared deep-loop runtime scripts with `--loop-type council`:
 
 - `runtime//scripts/upsert.cjs --loop-type council` writes derived nodes and edges.
 - `runtime//scripts/query.cjs --loop-type council` reads unresolved disagreements, evidence chains, decision support, convergence blockers, and hot nodes.
 - `runtime//scripts/status.cjs --loop-type council` reports readiness, counts, schema version, and current signals.
 - `runtime//scripts/convergence.cjs --loop-type council` computes council-specific convergence decisions.
-
-Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `runtime/`.
 
 ---
 
@@ -96,16 +106,18 @@ An empty graph returns `STOP_BLOCKED`, not false-safe success. Critical unresolv
 
 The graph is replayable derived state.
 
+Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
+
 Safe recovery path:
 
 1. Keep `ai-council/**` artifacts unchanged.
 2. Delete or ignore stale `council-graph.sqlite` rows scoped to the affected `specFolder` and `sessionId` only.
-3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`, which reads `ai-council-state.jsonl` and calls the runtime `upsert.cjs --loop-type council` path across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds. Use `--dry-run` to inspect the derived payload without writing.
+3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`.
+   - It reads `ai-council-state.jsonl` and calls the runtime `upsert.cjs --loop-type council` path across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds.
+   - Use `--dry-run` to inspect the derived payload without writing.
 4. Re-run `status.cjs --loop-type council` and `convergence.cjs --loop-type council`.
 
 The council status script reports the bounded cleanup contract in its `recovery` payload so callers do not need to infer whether artifacts or derived rows are authoritative.
-
-Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
 
 ---
 

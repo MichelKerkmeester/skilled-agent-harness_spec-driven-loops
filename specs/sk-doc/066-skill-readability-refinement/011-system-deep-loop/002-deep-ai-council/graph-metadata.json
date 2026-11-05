@@ -36,13 +36,28 @@
       "binding"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md"
     ],
     "entities": [
       {
@@ -76,13 +91,97 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-dashboard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-strategy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-round.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-signals.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-mode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "failure-handling.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-support.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "anti-patterns.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -104,95 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The docs of the `deep-ai-council` mode were never read as a whole for readability, layout and structure",
     "created_at": "2026-11-04T07:16:51Z",
-    "last_save_at": "2026-11-04T19:54:05.286Z",
+    "last_save_at": "2026-11-05T04:32:01.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a5a6559e88621089cfd118438f5f1a6db39080f43a610bd4457c673fa05dbb6a",
+    "source_fingerprint": "sha256:7fbaa199dc0fde0a3cbe715fd14f16b5692645d87fbac5b1b58776846782f75a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8b32991f79cd1da0aa8922996177f3924fca3d9221a9bc088d0ceed99732c105",
-      "plan.md": "3ee4a60ac50ad613f67fc6bee867a564d245694b68d0909f1cd82c70e36e4ae8",
-      "tasks.md": "72423bc1f1352d30980ecd352dc009a8902d6cf9518a12237efbdd3d640ae095",
-      "implementation-summary.md": "d85176a2d0d01d9e2f0e94885313038d51d9e2fdf6782d5261d023de07271a43"
+      "spec.md": "514134f471b9c08fbeb3de6009fd234641ddbb32fee8e8d70c0bc877f44ec334",
+      "plan.md": "e44b23104760b9d4a8789d8703bde69036b965ec8a35344f5013353d27e1ecc2",
+      "tasks.md": "89785730730add49caad1e3368930f75346b5d39b9d9eb7c9945ebc9312fe5b1",
+      "implementation-summary.md": "9e456766a727a698122455e29e6469e33dd61ad1cbc7f133f222294cf7d88f16"
     },
     "last_active_at": null
   }

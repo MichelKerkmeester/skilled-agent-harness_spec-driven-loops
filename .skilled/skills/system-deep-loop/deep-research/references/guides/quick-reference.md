@@ -10,7 +10,7 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.0.26
+version: 1.14.1.0
 ---
 
 # Deep Research Quick Reference
@@ -21,7 +21,17 @@ One-page operator cheat sheet for the autonomous deep research loop.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Lookup surface during runs covering when to invoke the loop, what each phase produces, how convergence is computed, and where live state lives on disk. Defer to the full protocol and convergence references for deep reasoning.
+
+### When to Use
+
+- Before a run, to confirm the command and its parameter defaults.
+- During a run, to follow the iteration checklist and the convergence decision tree.
+- After a run, to read the convergence summary and tune or troubleshoot the next one.
+
+### Key Sources
 
 Operator contract source of truth for this page:
 - command syntax: `.skilled/commands/deep/research.md`
@@ -117,6 +127,8 @@ Operator contract source of truth for this page:
 
 ## 7. CONVERGENCE DECISION TREE
 
+Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.
+
 ```text
 Max iterations reached?
   Yes --> STOP
@@ -144,8 +156,6 @@ Otherwise --> CONTINUE
 | Question Entropy | 0.35 | 1 | answered / total questions >= 0.85 |
 
 **Composite stop threshold:** 0.60 -- weighted stop score must exceed this before quality guards are evaluated.
-
-Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.
 
 ---
 
@@ -220,7 +230,13 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
 
 ---
 
-## 12. RELATED
+## 12. REVIEW MODE
+
+Review mode has been split into a separate skill. See `deep-review/references/protocol/quick-reference.md`.
+
+---
+
+## 13. RELATED
 
 | Resource | Purpose |
 |----------|---------|
@@ -230,9 +246,3 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
 | `generate-context.js` | The continuity writer for the bound spec folder |
 | `references/convergence/convergence-signals.md` | Convergence signal details |
 | `references/state/state-jsonl.md` | JSONL state record details |
-
----
-
-## 13. REVIEW MODE
-
-Review mode has been split into a separate skill. See `deep-review/references/protocol/quick-reference.md`.

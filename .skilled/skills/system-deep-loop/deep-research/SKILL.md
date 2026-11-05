@@ -3,7 +3,7 @@ name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.15.11.0
+version: 1.15.12.0
 ---
 
 # Autonomous Deep Research Loop
@@ -15,18 +15,6 @@ Iterative research protocol with fresh context per iteration, externalized state
 Runtime path resolution: OpenCode/Copilot runtime uses `.opencode/agents/*.md`; Claude runtime uses `.claude/agents/*.md`.
 
 Operator contract precedence for this skill surface (highest first): command entrypoint syntax in `.skilled/commands/deep/research.md`; convergence math in `references/convergence/convergence.md` and the deep-research YAML workflow; runtime agent inventories from the checked-in runtime directories above.
-
-### Convergence Threshold Semantics
-
-**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
-
-**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
-
-**NOT INTERCHANGEABLE with siblings:**
-- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
-
-Carrying threshold expectations across siblings will cause unexpected iteration counts; see this skill's changelog/decision records for the parity research confirming thresholds do not carry across siblings.
 
 ## 1. WHEN TO USE
 
@@ -78,6 +66,18 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 ---
 
 ## 3. HOW IT WORKS
+
+### Convergence Threshold Semantics
+
+**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+
+**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
+
+**NOT INTERCHANGEABLE with siblings:**
+- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
+
+Carrying threshold expectations across siblings will cause unexpected iteration counts; see this skill's changelog/decision records for the parity research confirming thresholds do not carry across siblings.
 
 ### Invocation Contract
 
@@ -226,7 +226,7 @@ Reference-only (documented for future design work, not part of the live executab
 2. **Checkpoint commits** -- per-iteration git commits
 3. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes are used internally by `fanout-run.cjs`; do not write them ad-hoc from within a research session
 
-**Multi-lineage fan-out is SUPPORTED** (not reference-only) via `--executor`/`--executors` flags on the command (see §8 EXAMPLES). Each lineage is an independent full loop in `{artifact_dir}/lineages/{label}/`, converging independently. This is not "wave orchestration"; it is N independent loops.
+**Multi-lineage fan-out is SUPPORTED** (not reference-only) via `--executor`/`--executors` flags on the command. Each lineage is an independent full loop in `{artifact_dir}/lineages/{label}/`, converging independently. This is not "wave orchestration"; it is N independent loops.
 
 ### ⚠️ ESCALATE IF
 

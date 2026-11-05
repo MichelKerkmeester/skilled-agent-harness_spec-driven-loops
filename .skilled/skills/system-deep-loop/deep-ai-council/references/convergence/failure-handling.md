@@ -9,7 +9,7 @@ trigger_phrases:
   - "insufficient vantage diversity"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.8
+version: 1.7.1.0
 ---
 
 # AI Council Failure Handling
@@ -19,6 +19,17 @@ Council failures are first-class planning signals. Record them honestly instead 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+A run whose report, state log and resume path all agree about what failed.
+
+### When to Use
+
+- A seat times out or errors.
+- A round loses quorum, or every seat fails.
+- Seats contradict each other or real external vantages are unavailable.
+- A failed round needs rollback, state-log treatment or a reduced-confidence handoff.
 
 The council is allowed to fail.
 
@@ -162,7 +173,13 @@ Required marker:
 ESCALATION: Contradictory high-confidence council recommendations require user decision.
 ```
 
-The report should include both plans, evidence for each, risk for each, what priority chooses each option, and a recommended user decision question.
+The report should include:
+
+- both plans;
+- evidence for each;
+- risk for each;
+- what priority chooses each option;
+- a recommended user decision question.
 
 ---
 
@@ -197,7 +214,17 @@ Claude Code found...
 
 unless those tools actually ran.
 
-Proceed with lens diversity only when local source evidence is sufficient and missing external vantages do not control the outcome. Escalate when external facts are central, no lens can challenge the default plan, all seats converge without evidence, or the user explicitly required real external AI participation.
+Proceed with lens diversity only when:
+
+- local source evidence is sufficient;
+- missing external vantages do not control the outcome.
+
+Escalate when:
+
+- external facts are central;
+- no lens can challenge the default plan;
+- all seats converge without evidence;
+- the user explicitly required real external AI participation.
 
 ---
 

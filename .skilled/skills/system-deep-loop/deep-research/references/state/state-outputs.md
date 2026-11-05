@@ -10,7 +10,7 @@ trigger_phrases:
   - "spec anchoring output"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.4
+version: 1.14.1.0
 ---
 
 # Deep Research Output Files Reference
@@ -149,11 +149,11 @@ When absent:
 
 ## 7. SPEC ANCHORING OUTPUT
 
+This output path is protocol-owned, not iteration-agent owned.
+
 `references/protocol/spec-check-protocol.md` defines bounded `spec.md` writes:
 
 - acquire `research/.deep-research.lock`;
 - classify `folder_state`;
 - seed or append bounded context during init when allowed;
 - replace exactly one generated findings fence during synthesis.
-
-This output path is protocol-owned, not iteration-agent owned.

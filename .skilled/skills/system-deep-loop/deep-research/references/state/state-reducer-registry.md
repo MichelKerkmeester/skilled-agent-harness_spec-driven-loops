@@ -10,7 +10,7 @@ trigger_phrases:
   - "research dashboard derivation"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # Deep Research Reducer And Registry Reference
@@ -37,6 +37,8 @@ The reducer owns derived state. Manual edits to reducer-managed outputs are temp
 
 ## 2. REDUCER CONTRACT
 
+The reducer must fail closed before writing derived files when JSONL corruption is detected in strict mode.
+
 The workflow reducer:
 
 - reads `deep-research-state.jsonl`, per-iteration deltas, strategy, and iteration markdown;
@@ -47,8 +49,6 @@ The workflow reducer:
 - regenerates the findings registry;
 - regenerates the dashboard;
 - records convergence and blocked-stop summaries.
-
-It must fail closed before writing derived files when JSONL corruption is detected in strict mode.
 
 Under ledger authority the JSONL it reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 7, and `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
 

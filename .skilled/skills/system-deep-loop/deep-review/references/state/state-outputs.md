@@ -8,7 +8,7 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.4
+version: 1.11.1.0
 ---
 
 # Deep Review State Outputs
@@ -19,7 +19,13 @@ This reference explains the files operators read during and after a review loop.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Deep-review outputs are audit artifacts. Iteration agents write evidence, the reducer writes derived state, and synthesis writes the release-readiness report.
+
+### When to Use
+
+Load this when writing or validating a packet output rather than a JSONL record. Use `references/state/state-format.md` for schemas and field-level contracts.
 
 ---
 

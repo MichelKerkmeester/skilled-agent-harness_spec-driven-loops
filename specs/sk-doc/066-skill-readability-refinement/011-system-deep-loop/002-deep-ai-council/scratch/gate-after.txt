@@ -1,0 +1,2 @@
+EXEMPT .skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
+files=21 render_warnings=0 invalid=0 exempt=1

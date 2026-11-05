@@ -9,7 +9,7 @@ trigger_phrases:
   - "research convergence decision order"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.21
+version: 1.14.1.0
 ---
 
 # Convergence Detection Reference
@@ -67,7 +67,12 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
 
 Research pivots are eligible only when the workflow decision is `STOP` and the exact internal reason is `composite_converged` or `all_questions_answered`. The legal-stop and quality gates run before this branch. `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, and `userPaused` are explicitly excluded. Max iterations, pause or cancellation, manual stop, and unrecoverable error therefore never dispatch a pivot Council.
 
-Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic. It does not use an external CLI. The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker. Research candidates come from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent checks of recent findings. A completed pivot restores the selected candidate's focus and returns to the research loop; a failed pivot fails closed to synthesis.
+Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic.
+
+- It does not use an external CLI.
+- The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker.
+- Research candidates come from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent checks of recent findings.
+- A completed pivot restores the selected candidate's focus and returns to the research loop; a failed pivot fails closed to synthesis.
 
 Every pivot dispatches three seats, so a run that pivots has proportionally higher model cost and duration than the same run under `default`, `off`, or `sliding-window`. Pivot evidence is isolated under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, including config, append-only state, three seat artifacts, deliberation, and report. This path is distinct from ordinary planning Council artifacts under a spec packet's `ai-council/**` tree.
 

@@ -1,0 +1,632 @@
+diff --git a/.skilled/skills/system-deep-loop/deep-review/README.md b/.skilled/skills/system-deep-loop/deep-review/README.md
+index 3659b10776d..fee3c3df36c 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/README.md
++++ b/.skilled/skills/system-deep-loop/deep-review/README.md
+@@ -30,18 +30,18 @@ version: 1.11.1.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
+-
+-That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
+-
+ ### What It Does
+ 
+ `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
+ 
+ It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
+ 
++### Why This Skill Exists
++
++A single-pass review reads the diff once and calls it done. The dimension the reviewer was not thinking about that day ships unreviewed. Hold correctness, security, maintainability and spec alignment in one context window and the later dimensions get a worse read than the first. There is no honest stop condition, so you keep re-reading past the point of new findings or stop early and miss a blocker. Spec-versus-code drift goes unnoticed because nobody cross-checks the implementation against the spec on every pass.
++
++That is the whole reason this skill exists. It gives you a review you can release against: a fresh agent per dimension, every finding classified by blocking severity and a stop decision gated on a weighted convergence signal instead of a guess. The command, the reducer and the state files are the means. The verdict at the end is the point.
++
+ ### The Dimension Coverage
+ 
+ | Dimension | What the skill audits |
+diff --git a/.skilled/skills/system-deep-loop/deep-review/ROUTER.md b/.skilled/skills/system-deep-loop/deep-review/ROUTER.md
+index b54b62f69cc..eb2699cf8e7 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/ROUTER.md
++++ b/.skilled/skills/system-deep-loop/deep-review/ROUTER.md
+@@ -20,7 +20,11 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when someone asks for a deep review, a convergence review, an iterative review loop, a release-readiness or pre-release check, a spec-folder audit, or a multi-round code-quality audit whose dimensions feed each other. It routes to three resource families: `references/protocol/` for `quick-reference.md`, which loads first on every invocation, plus the loop protocol, the completion criteria and the state gates; `references/convergence/` for the threshold semantics, the stop signals and the recovery path; and `references/state/` with `assets/` for the state format, the outputs, the reducer registry, the dashboard and the strategy templates.
++Requests reach this skill when someone asks for a deep review, a convergence review, an iterative review loop, a release-readiness or pre-release check, a spec-folder audit, or a multi-round code-quality audit whose dimensions feed each other. It routes to three resource families:
++
++- `references/protocol/` for `quick-reference.md`, which loads first on every invocation, plus the loop protocol, the completion criteria and the state gates.
++- `references/convergence/` for the threshold semantics, the stop signals and the recovery path.
++- `references/state/` with `assets/` for the state format, the outputs, the reducer registry, the dashboard and the strategy templates.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/system-deep-loop/deep-review/SKILL.md b/.skilled/skills/system-deep-loop/deep-review/SKILL.md
+index 28909666a63..1f00b074d9a 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/SKILL.md
++++ b/.skilled/skills/system-deep-loop/deep-review/SKILL.md
+@@ -93,6 +93,10 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ 
+ ## 3. HOW IT WORKS
+ 
++### Architecture
++
++`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop-protocol.md`.
++
+ ### Resource Map Coverage Gate
+ 
+ When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input and does four things:
+@@ -118,10 +122,6 @@ The snapshot holds:
+ Do not create a context-loop report or widen scope beyond the declared target.
+ Use `@context` for quick retrieval, and `/speckit:plan` only when findings require implementation planning.
+ 
+-### Architecture
+-
+-`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop-protocol.md`.
+-
+ ### State Packet Location
+ 
+ The review state packet always lives under the target spec's local `review/` folder.
+@@ -152,7 +152,11 @@ The four primary review dimensions (configured in `assets/review-mode-contract.y
+ 
+ ### Lifecycle + Reducer Contract
+ 
+-Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and `restart`. Required lineage fields include `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`. The reducer consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
++Review mode is lineage-aware.
++
++- **Lifecycle modes:** `new`, `resume`, and `restart`.
++- **Required lineage fields:** `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
++- **Reducer contract:** consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
+ 
+ ### Severity Classification
+ 
+@@ -237,7 +241,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
+ 
+ ### ⛔ NEVER
+ 
+-1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
++1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 9).
+ 2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.
+ 3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle.
+ 4. **Ask the user**, Autonomous execution. The agent makes best-judgment decisions without pausing.
+@@ -263,7 +267,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
+ 
+ ---
+ 
+-## 5. REFERENCES AND RELATED RESOURCES
++## 5. REFERENCES
+ 
+ The router discovers reference, asset and script docs dynamically.
+ Start with these, in order:
+@@ -289,8 +293,6 @@ Detailed contracts:
+ - `references/protocol/completion-criteria.md`: the full loop-completion, quality-gate and validation-success checklist.
+ - `references/state/state-reducer-registry.md`: two-tier content-hash dedup.
+ 
+-Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
+-
+ ---
+ 
+ ## 6. SUCCESS CRITERIA
+@@ -338,3 +340,5 @@ Key integrations:
+ ### Code Graph Integration
+ 
+ The review loop consumes the shared runtime graph and its strict mode-gate validator; packet-specific convergence and state rules remain in this skill.
++
++Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
+diff --git a/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md b/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md
+index a792cd76e8b..f51a564bd9b 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md
++++ b/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md
+@@ -77,7 +77,7 @@ Provides a compact, human-readable summary of the current review session. Serves
+ 
+ | # | Focus | Files | Dimensions | New P0/P1/P2 | Ratio | Status |
+ |---|-------|-------|------------|---------------|-------|--------|
+-| [per iteration from JSONL] |
++| [iteration, from JSONL] | [focus] | [files] | [dimensions] | [P0/P1/P2] | [ratio] | [status] |
+ <!-- MACHINE-OWNED: END -->
+ 
+ ---
+diff --git a/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md b/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
+index 68133f484e1..91c79382697 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
++++ b/.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
+@@ -83,6 +83,10 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
+ [First iteration -- populated after iteration 1 completes]
+ - [Approach]: [Why it worked] (iteration N)
+ 
++### [Category Name] -- PRODUCTIVE (iteration N)
++- What worked: [successful review approaches in this category]
++- Prefer for: [related dimensions where this category may help]
++
+ ---
+ 
+ ## 9. WHAT FAILED
+@@ -99,10 +103,6 @@ Serves as the "persistent brain" for a deep review session. Records which dimens
+ - Why blocked: [root cause of exhaustion]
+ - Do NOT retry: [explicit prohibition]
+ 
+-### [Category Name] -- PRODUCTIVE (iteration N)
+-- What worked: [successful review approaches in this category]
+-- Prefer for: [related dimensions where this category may help]
+-
+ ---
+ 
+ ## 10A. SATURATED / SWEPT DIMENSIONS AND EXPANSION FRONTIER
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md
+index 5e6d315f7db..407ced24fa7 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md
+@@ -13,7 +13,7 @@ version: 1.11.0.3
+ 
+ # Deep Review Convergence Recovery and Reporting
+ 
+-When a review loop stalls or finishes, these contracts take over. This reference covers stuck-recovery strategies, the convergence report format, and graph-aware review convergence.
++When a review loop stalls or finishes, these contracts take over.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md
+index 01f8c784136..865454c92c6 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md
+@@ -19,8 +19,17 @@ This reference names the live stop signals. Use `references/convergence/converge
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Deep-review convergence is a release-readiness decision. The loop stops only when severity-weighted findings stabilize, dimension coverage is complete, quality gates pass, and no P0 override is active.
+ 
++### When to Use
++
++- Naming the signal that is holding STOP open.
++- Checking whether a new P0 forces another iteration.
++- Confirming the legal-stop gate conditions before synthesis.
++- Comparing this loop's threshold with a sibling deep loop.
++
+ ---
+ 
+ ## 2. SIGNALS
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
+index df17dfdce52..de0bb47051a 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
+@@ -198,7 +198,7 @@ if coverage.dimensionCoverage == 1.0 and activeP0 == 0 and activeP1 == 0:
+       return { action: "STOP", stopReason: "converged" }
+ ```
+ 
+-Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
++Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 9-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
+ 
+ ---
+ 
+@@ -342,7 +342,7 @@ Convergence behavior:
+ 
+ #### Integration with Legal-Stop Gate Bundle
+ 
+-The two semantic signals integrate with the existing 5-gate legal-stop bundle (Section 6):
++The two semantic signals integrate with the existing 9-gate legal-stop bundle (Section 6):
+ 
+ 1. **findingStability gate** (existing): The existing `findingStability` gate already evaluates rolling average, MAD noise floor, and novelty ratio. The new `semanticNovelty` signal adds a sub-check:
+    - `semanticNoveltyPlateau`: `semanticNovelty < 0.15` for 2+ consecutive evidence iterations
+@@ -433,11 +433,11 @@ A new critical finding always signals significant remaining work. The 0.50 floor
+ 
+ ## 6. LEGAL-STOP GATE BUNDLE
+ 
+-> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §Section-1 event shape (lines 98-119) mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) was reconciled in `006-gate-model-reconciliation`.
++> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
+ 
+ Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
+ 
+-| Gate (§6 conceptual) | Event-shape name (§Section-1) | Rule | Fail Action |
++| Gate (§6 conceptual) | Event-shape name (§1) | Rule | Fail Action |
+ |------|------|------|-------------|
+ | **findingStability** | `convergenceGate` | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
+ | **dimensionCoverage** | `dimensionCoverageGate` | Every configured review dimension must have been examined at least once, with required traceability coverage stabilized | Block STOP, persist `blockedStop` |
+@@ -577,9 +577,9 @@ Stuck-recovery strategies, the convergence report format, and graph-aware review
+ 
+ ---
+ 
+-## OPTIMIZER-TUNABLE THRESHOLDS
++## 9. OPTIMIZER-TUNABLE THRESHOLDS
+ 
+-The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
++The following convergence thresholds are managed by the offline loop optimizer. Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+ 
+ ### Tunable Fields (Optimizer-Managed)
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md b/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+index aba5b402076..f725816e153 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+@@ -189,7 +189,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
+   - Evidence, scope, and coverage gates pass
+ - Otherwise: `CONTINUE`
+ 
+-If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §Section-1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
++If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+ 
+ - `blockedBy`: array of the failed review gate names
+ - `gateResults`: per-gate pass/fail payloads using the review gate names above
+@@ -273,13 +273,13 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
+ CONSTRAINT: Target files are READ-ONLY -- never modify code under review
+ ```
+ 
+-#### Executor Resolution (spec 018 + 019)
++#### Executor Resolution
+ 
+ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+ 
+-- `native` (spec 018): dispatch `@deep-review` agent with model Opus.
+-- `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
+-- `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
++- `native`: dispatch `@deep-review` agent with model Opus.
++- `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
++- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+ 
+ All branches share:
+ 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).
+@@ -293,9 +293,16 @@ Cross-CLI delegation (a running executor invoking other CLIs via its shell) is d
+ Two containment rules bind every CLI lineage (any `cli-*` executor kind):
+ 
+ - **The lineage is the executor, so it works in-process.** A CLI lineage performs each iteration itself, with its own tools, inside the session the driver already started. The YAML's per-iteration executor dispatch steps are satisfied by the lineage. Spawning a second CLI process for the same iteration is a route violation, not an optimization, and on codex it also fails outright (see `cli-external-orchestration/cli-codex/SKILL.md` Rule 18).
+-- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.** Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it. So the default remedy is preserve. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its review artifacts — its iteration records, and `review-report.md` where it reached synthesis — still settles as complete, carrying `completed_with_containment_advisory`. Restoring is opt-in and safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode. A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture. A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed. One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here. The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
++- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.**
++  - Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it.
++  - So the default remedy is preserve. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its review artifacts — its iteration records, and `review-report.md` where it reached synthesis — still settles as complete, carrying `completed_with_containment_advisory`.
++  - Restoring is opt-in and safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode.
++  - A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture.
++  - A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed.
++  - One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
++  - The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
+ 
+-Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
++Failure handling is unchanged: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+ 
+ **Agent constraints**:
+ - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
+@@ -688,48 +695,7 @@ State-transition rules, error handling, and the review quality gates live in `lo
+ 
+ ---
+ 
+-## 9. RELATED RESOURCES
+-
+-### Shared Protocol Documentation
+-
+-Protocol documents from `deep-research` are cross-referenced, not duplicated:
+-
+-| Document | Path | Purpose |
+-|----------|------|---------|
+-| Loop Protocol (research) | `../deep-research/references/protocol/loop-protocol.md` | Research loop lifecycle (this file adapts Section 9) |
+-| State Format | `../deep-research/references/state/state-format.md` | JSONL, strategy, and config schemas |
+-| Convergence | `../deep-research/references/convergence/convergence.md` | `shouldContinue_review()` (Section 10), stuck recovery, quality guards |
+-
+-### Review-Specific Resources
+-
+-| Resource | Path | Purpose |
+-|----------|------|---------|
+-| Review Contract | `assets/review-mode-contract.yaml` | Single source of truth for dimensions, verdicts, gates, protocols |
+-| Quick Reference | `references/protocol/quick-reference.md` | One-page review cheat sheet |
+-| Strategy Template | `assets/deep-review-strategy.md` | Template for review strategy files |
+-| Config Template | `assets/deep-review-config.json` | Template for review config files |
+-| Dashboard Template | `assets/deep-review-dashboard.md` | Template for auto-generated dashboard |
+-
+-### Workflow Files
+-
+-| Mode | Path |
+-|------|------|
+-| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
+-| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+-
+-### Agent
+-
+-| Agent | Path Pattern | Constraint |
+-|-------|-------------|------------|
+-| `@deep-review` | `{runtime_dir}/deep-review.{ext}` | LEAF-only, no sub-agents, no WebFetch, target files read-only |
+-
+-Runtime paths:
+-- OpenCode / Copilot: `.opencode/agents/deep-review.md`
+-- Claude: `.claude/agents/deep-review.md`
+-
+----
+-
+-## Executor Selection Contract
++## 9. EXECUTOR SELECTION CONTRACT
+ 
+ Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta.
+ 
+@@ -768,3 +734,44 @@ The executor-agnostic iteration prompt lives at `assets/prompt-pack-iteration.md
+ ### Code-Graph Readiness TrustState Surface
+ 
+ On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`. The values `cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
++
++---
++
++## 10. RELATED RESOURCES
++
++### Shared Protocol Documentation
++
++Protocol documents from `deep-research` are cross-referenced, not duplicated:
++
++| Document | Path | Purpose |
++|----------|------|---------|
++| Loop Protocol (research) | `../deep-research/references/protocol/loop-protocol.md` | Research loop lifecycle (this file adapts Section 9) |
++| State Format | `../deep-research/references/state/state-format.md` | JSONL, strategy, and config schemas |
++| Convergence | `../deep-research/references/convergence/convergence.md` | `shouldContinue_review()` (Section 10), stuck recovery, quality guards |
++
++### Review-Specific Resources
++
++| Resource | Path | Purpose |
++|----------|------|---------|
++| Review Contract | `assets/review-mode-contract.yaml` | Single source of truth for dimensions, verdicts, gates, protocols |
++| Quick Reference | `references/protocol/quick-reference.md` | One-page review cheat sheet |
++| Strategy Template | `assets/deep-review-strategy.md` | Template for review strategy files |
++| Config Template | `assets/deep-review-config.json` | Template for review config files |
++| Dashboard Template | `assets/deep-review-dashboard.md` | Template for auto-generated dashboard |
++
++### Workflow Files
++
++| Mode | Path |
++|------|------|
++| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
++| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
++
++### Agent
++
++| Agent | Path Pattern | Constraint |
++|-------|-------------|------------|
++| `@deep-review` | `{runtime_dir}/deep-review.{ext}` | LEAF-only, no sub-agents, no WebFetch, target files read-only |
++
++Runtime paths:
++- OpenCode / Copilot: `.opencode/agents/deep-review.md`
++- Claude: `.claude/agents/deep-review.md`
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md b/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md
+index 8de18d0d840..e1e3d6e67bc 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md
+@@ -13,7 +13,7 @@ version: 1.11.0.3
+ 
+ # Deep Review State Transitions and Quality Gates
+ 
+-This reference defines how a review run moves between states and what must hold before it can stop: the state-transition rules, error handling, and the binary review quality gates.
++Read this before accepting a STOP vote, or when a run has stopped advancing and you need its next legal move.
+ 
+ ---
+ 
+@@ -90,7 +90,7 @@ STOP is only final after convergence and quality gates agree.
+ | Error | Phase | Action |
+ |-------|-------|--------|
+ | Agent dispatch timeout | Loop | Retry once with reduced scope. If second timeout, mark iteration as "timeout" and continue |
+-| State file missing | Init/Loop | Apply state recovery cascade (Section 6) |
++| State file missing | Init/Loop | Apply state recovery cascade in `loop-protocol.md` §6 |
+ | JSONL malformed | Loop | Skip malformed lines, reconstruct from valid entries |
+ | 3+ consecutive failures | Loop | Halt loop, enter synthesis with partial findings |
+ | Agent dispatch failure (API overload, timeout) | Loop | Escalate through recovery tiers in order |
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md b/.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
+index c9972bf0d82..574694ad77b 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
+@@ -168,10 +168,10 @@ Review mode stores its packet under the resolved local review path rooted at `{s
+ Each @deep-review iteration:
+ 1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+ 2. Determine focus dimension from strategy "Next Focus"
+-4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+-5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+-6. Update `deep-review-strategy.md` (findings, coverage, next focus)
+-7. Append iteration record to `deep-review-state.jsonl`
++3. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
++4. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
++5. Update `deep-review-strategy.md` (findings, coverage, next focus)
++6. Append iteration record to `deep-review-state.jsonl`
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md b/.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md
+index 7f6eeab4dc4..cbe8713a237 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md
+@@ -20,7 +20,18 @@ State file schemas for the autonomous deep review loop.
+ 
+ ## 1. OVERVIEW
+ 
+-The deep review loop uses 8 state files under the resolved `{artifact_dir}/` owned by the target spec:
++### Purpose
++
++The review packet is reproduced from disk on every resume, so each file's format, mutability, and fields are pinned here for the reducer, the dashboard, the validator, and the resume path.
++
++### When to Use
++
++- Validating deep-review state files emitted by an iteration or by the reducer.
++- Implementing a state consumer (e.g. dashboard, advisor probe, downstream packet).
++- Debugging JSONL reducer output or auditing schema-version transitions.
++- Authoring fixtures that need to round-trip through the reducer.
++
++The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec:
+ 
+ | File | Format | Mutability |
+ |------|--------|------------|
+@@ -30,6 +41,7 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
+ | `deep-review-strategy.md` | Markdown | Updated each iteration |
+ | `deep-review-dashboard.md` | Markdown | Auto-generated (read-only) |
+ | `.deep-review-pause` | Sentinel | Created/deleted by user |
++| `resource-map.md` | Markdown | Emitted once at synthesis |
+ | `review-report.md` | Markdown | Updated at synthesis |
+ | `iterations/iteration-NNN.md` | Markdown | Write-once |
+ 
+@@ -54,13 +66,6 @@ Example (first run on a child phase): `.../026-graph.../006-continuity-refactor-
+ 
+ Example (subsequent run with prior content for a different target): `003-gate-c-writer-ready/review/003-gate-c-writer-ready-pt-02/` (`pt-NN` allocated as a sibling to the prior content; subfolder name is `{basename(spec_folder)}-pt-{NN}`).
+ 
+-### When to Use
+-
+-- Validating deep-review state files emitted by an iteration or by the reducer.
+-- Implementing a state consumer (e.g. dashboard, advisor probe, downstream packet).
+-- Debugging JSONL reducer output or auditing schema-version transitions.
+-- Authoring fixtures that need to round-trip through the reducer.
+-
+ ---
+ 
+ ## 2. CONFIG FILE (deep-review-config.json)
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md b/.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md
+index 5b08100e6ab..ba0465b573d 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md
+@@ -224,7 +224,7 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
+ }
+ ```
+ 
+-`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §Section-1 for the authoritative shape.
++`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
+ 
+ **Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
+ 
+@@ -462,10 +462,10 @@ Representative v2 record:
+ 
+ | Record Shape | Reader Behavior | Validator Behavior |
+ |--------------|-----------------|--------------------|
+-| v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | Phase D may warn, but must not hard-fail only because v2 fields are absent. |
++| v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | A validator may warn, but must not hard-fail only because v2 fields are absent. |
+ | v2 trivial+skip | Parse v2 applicability, `searchLedger: []` allowed with cited scope proof. | Validate `reviewDepthApplicability.evidenceRefs`, skip ledger-depth requirements. |
+ | v2 standard/complex | Parse v2 fields in addition to v1 required fields. | Enforce v2 shape, ledger linkage, coverage reconciliation, and evidence refs. |
+ 
+-Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
++Reducer, dashboard, and report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until that work ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
+ 
+ ---
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md b/.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md
+index 4f88697fd45..c198745eae1 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md
+@@ -13,14 +13,20 @@ version: 1.11.0.4
+ 
+ # Deep Review State Outputs
+ 
+-This reference explains the files operators read during and after a review loop. Use `references/state/state-format.md` for schemas and field-level contracts.
++Use this file at synthesis time, when you need to know which artifact to read and which copy wins when two of them disagree.
+ 
+ ---
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Deep-review outputs are audit artifacts. Iteration agents write evidence, the reducer writes derived state, and synthesis writes the release-readiness report.
+ 
++### When to Use
++
++Load this when writing or validating a packet output rather than a JSONL record. Use `references/state/state-format.md` for schemas and field-level contracts.
++
+ ---
+ 
+ ## 2. PACKET FILES
+diff --git a/.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md b/.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md
+index 30d0fe9c47c..768234c3864 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md
++++ b/.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md
+@@ -19,7 +19,15 @@ The reducer is the single writer for derived review state. Iteration agents appe
+ 
+ ## 1. OVERVIEW
+ 
+-The reducer turns append-only review evidence into the current findings registry, dashboard, and strategy state. It is the authority for derived outputs, not a second source of truth.
++### Purpose
++
++Keep the findings registry, dashboard, and strategy current by deriving them from append-only evidence under the reducer, never as a second source of truth.
++
++### When to Use
++
++- Deciding which writer owns a derived surface, or whether a hand edit is legitimate.
++- Recovering from corrupt JSONL, or rebuilding derived files that are missing.
++- Checking what a finding must carry before emission, and how duplicate findings collapse.
+ 
+ ---
+ 
+@@ -36,7 +44,10 @@ The reducer turns append-only review evidence into the current findings registry
+ 
+ No agent should hand-edit reducer-owned derived state as the authoritative fix. Repair JSONL or rerun the reducer.
+ 
+-Under ledger authority the JSONL the reducer reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 11, and `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
++Under ledger authority the JSONL the reducer reads is a projection of the ledger, bounded by the registered stems.
++
++- The registered vocabulary and the producer census are in `state-format.md` section 11.
++- `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
+ 
+ ---
+ 
+@@ -54,7 +65,30 @@ Each active finding needs severity, category, file:line evidence, finding class,
+ 
+ ---
+ 
+-## 4. FAIL-CLOSED BEHAVIOR
++## 4. FINDING DEDUPLICATION
++
++The reducer deduplicates findings at synthesis time using a two-tier match.
++
++### Two-Tier Match
++
++1. **PRIMARY: content_hash** = `sha256(file_path + line_range + finding_type + normalized_description_80chars)`
++   - `file_path`: repo-relative path of the finding
++   - `line_range`: e.g., `"42"` or `"42-56"`
++   - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
++   - `normalized_description_80chars`: first 80 characters of the description, whitespace-collapsed and lowercased
++2. **FALLBACK (legacy records): file:line + normalized_title** - applied when one or both records lack a `content_hash`, preserving existing behavior unchanged.
++
++### Synthesis Behavior
++
++When the same `content_hash` appears across iterations from different dimensions, synthesis collapses them to ONE entry with `dimensions: [<all dimensions that emitted it>]` rather than emitting multiple records. Records without `content_hash` fall back to `file:line + normalized_title`; no migration is required for existing JSONL state.
++
++### Emission Requirement
++
++Every finding emitted into the JSONL delta (`findingDetails[]`) MUST include a `content_hash` field computed per the two-tier match. `reduce-state.cjs` reads this field for synthesis dedup.
++
++---
++
++## 5. FAIL-CLOSED BEHAVIOR
+ 
+ The reducer must refuse to publish derived state when JSONL is corrupt in strict mode. That protects dashboards and verdict previews from silently losing findings.
+ 
+@@ -67,7 +101,7 @@ Recovery order:
+ 
+ ---
+ 
+-## 5. RECONSTRUCTION
++## 6. RECONSTRUCTION
+ 
+ When derived files are missing but JSONL and iteration markdown exist:
+ 
+@@ -80,32 +114,10 @@ If JSONL is incomplete but iteration files exist, recovery is manual and must be
+ 
+ ---
+ 
+-## 6. FINDING DEDUPLICATION
+-
+-The reducer deduplicates findings at synthesis time using a two-tier match.
+-
+-### Two-Tier Match
+-
+-1. **PRIMARY: content_hash** = `sha256(file_path + line_range + finding_type + normalized_description_80chars)`
+-   - `file_path`: repo-relative path of the finding
+-   - `line_range`: e.g., `"42"` or `"42-56"`
+-   - `finding_type`: one of `security`, `correctness`, `performance`, `maintainability`, `test_quality`, `contract_safety`, `removal`
+-   - `normalized_description_80chars`: first 80 characters of the description, whitespace-collapsed and lowercased
+-2. **FALLBACK (legacy records): file:line + normalized_title** - applied when one or both records lack a `content_hash`, preserving existing behavior unchanged.
+-
+-### Synthesis Behavior
+-
+-When the same `content_hash` appears across iterations from different dimensions, synthesis collapses them to ONE entry with `dimensions: [<all dimensions that emitted it>]` rather than emitting multiple records. Records without `content_hash` fall back to `file:line + normalized_title`; no migration is required for existing JSONL state.
+-
+-### Emission Requirement
+-
+-Every finding emitted into the JSONL delta (`findingDetails[]`) MUST include a `content_hash` field computed per the two-tier match. `reduce-state.cjs` reads this field for synthesis dedup.
+-
+----
+-
+ ## 7. RELATED RESOURCES
+ 
+ - `scripts/reduce-state.cjs` is the reducer implementation.
+ - `references/state/state-format.md` defines state records.
+ - `references/state/state-outputs.md` defines operator-visible outputs.
+ - `references/convergence/convergence-signals.md` defines STOP fields reducer views display.
++

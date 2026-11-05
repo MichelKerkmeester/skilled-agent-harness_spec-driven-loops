@@ -20,7 +20,11 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when someone asks for a deep review, a convergence review, an iterative review loop, a release-readiness or pre-release check, a spec-folder audit, or a multi-round code-quality audit whose dimensions feed each other. It routes to three resource families: `references/protocol/` for `quick-reference.md`, which loads first on every invocation, plus the loop protocol, the completion criteria and the state gates; `references/convergence/` for the threshold semantics, the stop signals and the recovery path; and `references/state/` with `assets/` for the state format, the outputs, the reducer registry, the dashboard and the strategy templates.
+Requests reach this skill when someone asks for a deep review, a convergence review, an iterative review loop, a release-readiness or pre-release check, a spec-folder audit, or a multi-round code-quality audit whose dimensions feed each other. It routes to three resource families:
+
+- `references/protocol/` for `quick-reference.md`, which loads first on every invocation, plus the loop protocol, the completion criteria and the state gates.
+- `references/convergence/` for the threshold semantics, the stop signals and the recovery path.
+- `references/state/` with `assets/` for the state format, the outputs, the reducer registry, the dashboard and the strategy templates.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

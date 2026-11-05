@@ -8,7 +8,7 @@ trigger_phrases:
   - "council report path"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.0.16
+version: 1.7.1.0
 ---
 
 # AI Council Folder Layout
@@ -18,6 +18,15 @@ Packet-local artifact layout for completed AI Council runs.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Make every file a completed council run leaves behind traceable to the record it holds and the writer that produced it.
+
+### When to Use
+
+- You are starting a council run and need to know what it will write.
+- You are inspecting a completed run and need to find the record for a round, a seat, or a rollback.
 
 **Persistence is mandatory for every council run.** The target packet path is resolved by the agent at §1 Step 0 RESOLVE in `deep-ai-council.md` across all 4 runtime mirrors. When invocation cannot resolve a packet path, the agent HALT-and-ASKs the user for one and does NOT dispatch council seats, so the layout below applies to every completed deliberation.
 
@@ -65,7 +74,10 @@ specs/<track>/<NNN-name>/ai-council/
 
 **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/structure/output-schema.md`.
 
-Cross-references:
+---
+
+## 2. CROSS-REFERENCES
+
 - Agent body: `.skilled/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
 - Council writer library: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`
 - Helper fallback: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`

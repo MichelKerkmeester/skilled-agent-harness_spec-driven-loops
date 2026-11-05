@@ -9,7 +9,7 @@ trigger_phrases:
   - "review iteration file structure"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.29
+version: 1.11.1.0
 ---
 
 # Deep Review State Format
@@ -20,7 +20,18 @@ State file schemas for the autonomous deep review loop.
 
 ## 1. OVERVIEW
 
-The deep review loop uses 8 state files under the resolved `{artifact_dir}/` owned by the target spec:
+### Purpose
+
+The review packet is reproduced from disk on every resume, so each file's format, mutability, and fields are pinned here for the reducer, the dashboard, the validator, and the resume path.
+
+### When to Use
+
+- Validating deep-review state files emitted by an iteration or by the reducer.
+- Implementing a state consumer (e.g. dashboard, advisor probe, downstream packet).
+- Debugging JSONL reducer output or auditing schema-version transitions.
+- Authoring fixtures that need to round-trip through the reducer.
+
+The deep review loop uses 9 state files under the resolved `{artifact_dir}/` owned by the target spec:
 
 | File | Format | Mutability |
 |------|--------|------------|
@@ -30,6 +41,7 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
 | `deep-review-strategy.md` | Markdown | Updated each iteration |
 | `deep-review-dashboard.md` | Markdown | Auto-generated (read-only) |
 | `.deep-review-pause` | Sentinel | Created/deleted by user |
+| `resource-map.md` | Markdown | Emitted once at synthesis unless `resource_map.emit` is false |
 | `review-report.md` | Markdown | Updated at synthesis |
 | `iterations/iteration-NNN.md` | Markdown | Write-once |
 
@@ -53,13 +65,6 @@ The deep review loop uses 8 state files under the resolved `{artifact_dir}/` own
 Example (first run on a child phase): `.../026-graph.../006-continuity-refactor-gates/003-gate-c-writer-ready/` → `003-gate-c-writer-ready/review/` (flat, no subfolder).
 
 Example (subsequent run with prior content for a different target): `003-gate-c-writer-ready/review/003-gate-c-writer-ready-pt-02/` (`pt-NN` allocated as a sibling to the prior content; subfolder name is `{basename(spec_folder)}-pt-{NN}`).
-
-### When to Use
-
-- Validating deep-review state files emitted by an iteration or by the reducer.
-- Implementing a state consumer (e.g. dashboard, advisor probe, downstream packet).
-- Debugging JSONL reducer output or auditing schema-version transitions.
-- Authoring fixtures that need to round-trip through the reducer.
 
 ---
 

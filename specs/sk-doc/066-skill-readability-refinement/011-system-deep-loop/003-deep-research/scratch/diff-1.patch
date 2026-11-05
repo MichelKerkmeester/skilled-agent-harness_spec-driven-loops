@@ -1,0 +1,452 @@
+diff --git a/.skilled/skills/system-deep-loop/deep-research/README.md b/.skilled/skills/system-deep-loop/deep-research/README.md
+index c98949d9e9e..a7aec2788cd 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/README.md
++++ b/.skilled/skills/system-deep-loop/deep-research/README.md
+@@ -38,7 +38,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
+ 
+ `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
+ 
+-It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json); this packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
++It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json). This packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
+ 
+ ---
+ 
+@@ -75,11 +75,20 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
+ 
+ The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
+ 
+-Lifecycle controls now include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
++Lifecycle controls include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
+ 
+ ### Externalized State
+ 
+-All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory. The config file (`deep-research-config.json`) holds settings. The append-only JSONL log (`deep-research-state.jsonl`) records every iteration, event and convergence signal. The strategy file (`deep-research-strategy.md`) tracks focus areas, what worked, what failed and exhausted approaches. The findings registry (`findings-registry.json`) indexes every discovery. The dashboard (`deep-research-dashboard.md`) shows convergence trends. The reducer machine-owns the strategy sections, the registry and the dashboard. The agent writes only iteration files and JSONL records. The workflow owns the canonical `research.md`.
++All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory.
++
++- **Config:** `deep-research-config.json` holds settings.
++- **Log:** the append-only `deep-research-state.jsonl` records every iteration, event and convergence signal.
++- **Strategy:** `deep-research-strategy.md` tracks focus areas, what worked, what failed and exhausted approaches.
++- **Registry:** `findings-registry.json` indexes every discovery.
++- **Dashboard:** `deep-research-dashboard.md` shows convergence trends.
++- **Reducer:** machine-owns the strategy sections, the registry and the dashboard.
++- **Agent:** writes only iteration files and JSONL records.
++- **Workflow:** owns the canonical `research.md`.
+ 
+ Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
+ 
+@@ -202,7 +211,7 @@ Expected output: zero issues reported.
+ | [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
+ | [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
+ | [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
+-| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across OpenCode, Claude and OpenCode executors |
++| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across OpenCode, Copilot and Claude executors |
+ | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer, dashboard generator and convergence evaluator |
+ | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
+ | [`assets/deep-research-config.json`](./assets/deep-research-config.json) | Config template with defaults for max iterations, convergence threshold and executor |
+diff --git a/.skilled/skills/system-deep-loop/deep-research/ROUTER.md b/.skilled/skills/system-deep-loop/deep-research/ROUTER.md
+index 1426bc7b8db..f580c2c0f3d 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/ROUTER.md
++++ b/.skilled/skills/system-deep-loop/deep-research/ROUTER.md
+@@ -20,7 +20,8 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name `autoresearch`, a deep research loop, autonomous or iterative research, a multi-round investigation, a convergence check, a stuck loop, a research state packet or a `spec.md` anchoring question, and the `system-deep-loop` hub's `research` mode selects this packet. It routes to two resource families: the `references/` doctrine, which starts at `references/guides/quick-reference.md` on every invocation and adds the loop protocol, spec anchoring, convergence, state, recovery, runtime-parity and resource-map references, plus the `assets/` markdown templates and prompt assets on explicit request.
++- Requests reach this skill when they name `autoresearch`, a deep research loop, autonomous or iterative research, a multi-round investigation, a convergence check, a stuck loop, a research state packet or a `spec.md` anchoring question. The `system-deep-loop` hub's `research` mode selects this packet.
++- It routes to two resource families. The `references/` doctrine starts at `references/guides/quick-reference.md` on every invocation and adds the loop protocol, spec anchoring, convergence, state, recovery, runtime-parity and resource-map references. The `assets/` markdown templates and prompt assets load on explicit request.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+diff --git a/.skilled/skills/system-deep-loop/deep-research/SKILL.md b/.skilled/skills/system-deep-loop/deep-research/SKILL.md
+index 0cf41dc2593..7737c225910 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/SKILL.md
++++ b/.skilled/skills/system-deep-loop/deep-research/SKILL.md
+@@ -16,18 +16,6 @@ Runtime path resolution: OpenCode/Copilot runtime uses `.opencode/agents/*.md`;
+ 
+ Operator contract precedence for this skill surface (highest first): command entrypoint syntax in `.skilled/commands/deep/research.md`; convergence math in `references/convergence/convergence.md` and the deep-research YAML workflow; runtime agent inventories from the checked-in runtime directories above.
+ 
+-### Convergence Threshold Semantics
+-
+-**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+-
+-**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
+-
+-**NOT INTERCHANGEABLE with siblings:**
+-- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
+-- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
+-
+-Carrying threshold expectations across siblings will cause unexpected iteration counts; see this skill's changelog/decision records for the parity research confirming thresholds do not carry across siblings.
+-
+ ## 1. WHEN TO USE
+ 
+ ### Activation Triggers
+@@ -79,6 +67,18 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ 
+ ## 3. HOW IT WORKS
+ 
++### Convergence Threshold Semantics
++
++**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
++
++**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
++
++**NOT INTERCHANGEABLE with siblings:**
++- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
++- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
++
++Carrying threshold expectations across siblings will cause unexpected iteration counts; see this skill's changelog/decision records for the parity research confirming thresholds do not carry across siblings.
++
+ ### Invocation Contract
+ 
+ This skill is invoked exclusively through `/deep:research:auto` or `/deep:research:confirm` -- the command YAML owns state, dispatch, convergence, and synthesis. Never simulate the loop with ad hoc shell dispatch, nested CLI loops, direct `@deep-research` Task dispatch, `/tmp` prompt files, or state outside the resolved local research packet.
+@@ -226,7 +226,7 @@ Reference-only (documented for future design work, not part of the live executab
+ 2. **Checkpoint commits** -- per-iteration git commits
+ 3. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes are used internally by `fanout-run.cjs`; do not write them ad-hoc from within a research session
+ 
+-**Multi-lineage fan-out is SUPPORTED** (not reference-only) via `--executor`/`--executors` flags on the command (see §8 EXAMPLES). Each lineage is an independent full loop in `{artifact_dir}/lineages/{label}/`, converging independently. This is not "wave orchestration"; it is N independent loops.
++**Multi-lineage fan-out is SUPPORTED** (not reference-only) via `--executor`/`--executors` flags on the command. Each lineage is an independent full loop in `{artifact_dir}/lineages/{label}/`, converging independently. This is not "wave orchestration"; it is N independent loops.
+ 
+ ### ⚠️ ESCALATE IF
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md
+index 86b0d0750d3..6d1a7756962 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md
+@@ -14,7 +14,7 @@ version: 1.14.0.3
+ 
+ # Convergence Recovery Reference
+ 
+-This reference covers what happens after convergence detects no progress, workflow errors, or unrecoverable state problems. The stop contract lives in `convergence.md`.
++When a research run stalls, the recovery ladder runs from retrying one source to state reconstruction and operator escalation. The stop contract lives in `convergence.md`.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md
+index 6289d7d775f..48bec37d1a6 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md
+@@ -16,7 +16,7 @@ version: 1.14.0.3
+ 
+ # Convergence Signals Reference
+ 
+-This reference defines the live deep-research convergence signals. The compact stop contract lives in `convergence.md`.
++Reach for it when a run's STOP decision has to be defended from the raw ratios upward, or when a reported number needs tracing back to the record that produced it. The compact stop contract lives in `convergence.md`.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md
+index 593717159f6..50b4a9d1c31 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md
+@@ -67,7 +67,12 @@ The shared convergence runtime accepts four values. The workflow keeps hard term
+ 
+ Research pivots are eligible only when the workflow decision is `STOP` and the exact internal reason is `composite_converged` or `all_questions_answered`. The legal-stop and quality gates run before this branch. `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `minIterationsNotReached`, `error`, `manualStop`, and `userPaused` are explicitly excluded. Max iterations, pause or cancellation, manual stop, and unrecoverable error therefore never dispatch a pivot Council.
+ 
+-Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic. It does not use an external CLI. The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker. Research candidates come from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent checks of recent findings. A completed pivot restores the selected candidate's focus and returns to the research loop; a failed pivot fails closed to synthesis.
++Each eligible pivot runs one native, in-process Council round with exactly three distinct seats: analytical, critical, and pragmatic.
++
++- It does not use an external CLI.
++- The transaction requires all three seat returns to be parse-valid and at least two seats to materially endorse the same candidate without a high-severity blocker.
++- Research candidates come from persisted adjacent questions, contradiction or verification gaps, missing source classes, alternate evidence methods, and independent checks of recent findings.
++- A completed pivot restores the selected candidate's focus and returns to the research loop; a failed pivot fails closed to synthesis.
+ 
+ Every pivot dispatches three seats, so a run that pivots has proportionally higher model cost and duration than the same run under `default`, `off`, or `sliding-window`. Pivot evidence is isolated under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, including config, append-only state, three seat artifacts, deliberation, and report. This path is distinct from ordinary planning Council artifacts under a spec packet's `ai-council/**` tree.
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md b/.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md
+index eeac1558419..ca1b7754136 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md
+@@ -24,6 +24,10 @@ Canonical runtime parity reference for deep-research mirrors and provider adapta
+ 
+ Canonical runtime contract for `deep-research`. This matrix defines what every runtime mirror must support and what the workflow may adapt per provider. Packet files remain the source of truth; runtime behavior may differ only where this matrix says it may differ.
+ 
++### When to Use
++
++Load this matrix when adding or auditing a runtime mirror, or when deciding whether a provider difference is allowed adaptation or forbidden drift.
++
+ ### Machine-Readable Source of Truth
+ 
+ - Data: `.skilled/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json`
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md b/.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md
+index fc3d4ca2ece..6f6b39850c5 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md
+@@ -21,8 +21,18 @@ One-page operator cheat sheet for the autonomous deep research loop.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Lookup surface during runs covering when to invoke the loop, what each phase produces, how convergence is computed, and where live state lives on disk. Defer to the full protocol and convergence references for deep reasoning.
+ 
++### When to Use
++
++- Before a run, to confirm the command and its parameter defaults.
++- During a run, to follow the iteration checklist and the convergence decision tree.
++- After a run, to read the convergence summary and tune or troubleshoot the next one.
++
++### Key Sources
++
+ Operator contract source of truth for this page:
+ - command syntax: `.skilled/commands/deep/research.md`
+ - convergence stop contract: `references/convergence/convergence.md`, `references/convergence/convergence-signals.md`, and the deep-research YAML workflow
+@@ -117,6 +127,8 @@ Operator contract source of truth for this page:
+ 
+ ## 7. CONVERGENCE DECISION TREE
+ 
++Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.
++
+ ```text
+ Max iterations reached?
+   Yes --> STOP
+@@ -145,8 +157,6 @@ Otherwise --> CONTINUE
+ 
+ **Composite stop threshold:** 0.60 -- weighted stop score must exceed this before quality guards are evaluated.
+ 
+-Quality guards (source diversity, focus alignment, no single-weak-source) must pass before STOP.
+-
+ ---
+ 
+ ## 8. AGENT ITERATION CHECKLIST
+@@ -220,7 +230,13 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
+ 
+ ---
+ 
+-## 12. RELATED
++## 12. REVIEW MODE
++
++Review mode has been split into a separate skill. See `deep-review/references/protocol/quick-reference.md`.
++
++---
++
++## 13. RELATED
+ 
+ | Resource | Purpose |
+ |----------|---------|
+@@ -230,9 +246,3 @@ Signals: RollingAvg=STOP MAD=CONTINUE Entropy=CONTINUE
+ | `generate-context.js` | The continuity writer for the bound spec folder |
+ | `references/convergence/convergence-signals.md` | Convergence signal details |
+ | `references/state/state-jsonl.md` | JSONL state record details |
+-
+----
+-
+-## 13. REVIEW MODE
+-
+-Review mode has been split into a separate skill. See `deep-review/references/protocol/quick-reference.md`.
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md b/.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+index 31b80361759..e388ab9b248 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md
+@@ -163,21 +163,6 @@ Run the convergence algorithm (see convergence.md):
+ - All questions answered? STOP
+ - Otherwise: CONTINUE
+ 
+-#### Step 2c: Quality Guard Check
+-
+-When the convergence algorithm returns STOP:
+-1. Run quality guard checks (see convergence.md §2.4)
+-2. Verify minimum coverage, source diversity, and question resolution thresholds
+-3. If **all guards pass**: proceed with STOP, exit to synthesis
+-4. If **any guard fails**: override decision to CONTINUE
+-   - Log each violation: `{"type":"event","event":"guard_violation","guard":"<name>","iteration":N,"detail":"<reason>"}`
+-   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
+-   - Append failed guard details to strategy.md "Active Risks" section
+-5. The loop continues until BOTH convergence AND quality guards pass simultaneously
+-6. Guard checks apply only to STOP decisions - CONTINUE and STUCK_RECOVERY bypass this step
+-
+-If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
+-
+ #### Step 2a: Check Pause Sentinel
+ 
+ Before dispatching, check for a pause sentinel file:
+@@ -214,6 +199,21 @@ Next focus: {strategy.nextFocus}
+ 
+ This summary is prepended to the dispatch context (Step 3) to ensure the agent has baseline context even if detailed strategy.md reading fails or is incomplete. It serves as a redundant context channel.
+ 
++#### Step 2c: Quality Guard Check
++
++When the convergence algorithm returns STOP:
++1. Run quality guard checks (see convergence.md §2.4)
++2. Verify minimum coverage, source diversity, and question resolution thresholds
++3. If **all guards pass**: proceed with STOP, exit to synthesis
++4. If **any guard fails**: override decision to CONTINUE
++   - Log each violation: `{"type":"event","event":"guard_violation","guard":"<name>","iteration":N,"detail":"<reason>"}`
++   - Persist the blocked legal-stop outcome: `{"type":"event","event":"blocked_stop","mode":"research","run":N,"blockedBy":["<gate>"],"gateResults":{"convergence":{"pass":true,"score":0.0},"keyQuestionCoverage":{"pass":false,"answered":X,"total":Y},"evidenceDensity":{"pass":false,"sources":N},"hotspotSaturation":{"pass":true}},"recoveryStrategy":"<one-line hint>","timestamp":"<ISO8601>","sessionId":"<sid>","generation":G}`
++   - Append failed guard details to strategy.md "Active Risks" section
++5. The loop continues until BOTH convergence AND quality guards pass simultaneously
++6. Guard checks apply only to STOP decisions - CONTINUE and STUCK_RECOVERY bypass this step
++
++If the legal-stop decision tree returns `blocked`, the workflow MUST append the `blocked_stop` JSONL event before continuing. Reducers and dashboards consume the persisted event; they must not infer blocked-stop state solely from prose logs.
++
+ #### Step 2d: Rejected Pattern Cache Check
+ 
+ Before selecting the next-focus, recovery, or ideas-backed candidate for dispatch, read the reducer-owned rejected-pattern cache and promoted ideas backlog from the findings registry.
+@@ -269,13 +269,13 @@ Output: Write findings to {artifact_dir}/iterations/iteration-{NNN}.md
+ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
+ ```
+ 
+-#### Executor Resolution (spec 018 + 019)
++#### Executor Resolution
+ 
+ Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
+ 
+-- `native` (spec 018): dispatch `@deep-research` agent with model Opus.
+-- `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt, which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation catching some violations after the fact. Fetched/reviewed content must be treated as potentially adversarial (untrusted) for prompt-injection purposes.
+-- `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only); we override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
++- `native`: dispatch `@deep-research` agent with model Opus.
++- `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt, which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation catching some violations after the fact. Fetched/reviewed content must be treated as potentially adversarial (untrusted) for prompt-injection purposes.
++- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only); we override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+ 
+ All branches share:
+ 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).
+@@ -289,9 +289,15 @@ Cross-CLI delegation (a running executor invoking other CLIs via its shell) is d
+ Two containment rules bind every CLI lineage (any `cli-*` executor kind):
+ 
+ - **The lineage is the executor, so it works in-process.** A CLI lineage performs each iteration itself, with its own tools, inside the session the driver already started. The YAML's per-iteration executor dispatch steps are satisfied by the lineage. Spawning a second CLI process for the same iteration is a route violation, not an optimization, and on codex it also fails outright (see `cli-external-orchestration/cli-codex/SKILL.md` Rule 18).
+-- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.** Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it. So the default remedy is preserve. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its artifacts still settles as complete, carrying `completed_with_containment_advisory`. Restoring is opt-in and safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode. A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture. A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed. One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here. The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
++- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.**
++  - **Default remedy is preserve.** Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its artifacts still settles as complete, carrying `completed_with_containment_advisory`.
++  - **Restore is opt-in.** Restoring is safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode.
++  - **Contested path.** A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture.
++  - **Earlier quarantine.** A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed.
++  - **Sibling lineage exemption.** One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
++  - **Evidence.** The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
+ 
+-Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
++Failure handling: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+ 
+ The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTrack": "performance"`, `"focusTrack": "security"`). Agents may tag their iteration with this track label for post-hoc grouping and analysis. Track labels are metadata only - the orchestrator does not use them for loop decisions.
+ 
+@@ -306,6 +312,24 @@ After dispatch, the orchestrator monitors the running iteration against budget l
+   3. Continue to the next iteration (do not retry the timed-out iteration)
+ - Budget limits are soft caps - if the agent is actively writing its iteration file when the limit is reached, allow completion
+ 
++#### Step 3b: Direct Mode Fallback (REFERENCE-ONLY)
++
++When agent dispatch fails after the earlier recovery tiers are exhausted:
++
++1. Detect dispatch failure: Task tool timeout, API overload (529), or agent crash
++2. Log event: `{"type":"event","event":"direct_mode","iteration":N,"reason":"dispatch_failure"}`
++3. Orchestrator absorbs the iteration work:
++   - Read state files (JSONL + strategy.md)
++   - Determine focus from strategy "Next Focus"
++   - Execute 3-5 research actions directly
++   - Write `research/iterations/iteration-NNN.md`
++   - Update strategy.md
++   - Record the iteration through the append gateway
++4. Continue loop normally after direct-mode iteration completes
++5. If direct mode also fails, escalate to the final user-escalation tier
++
++**Note**: Direct mode iterations are logged with `"directMode": true` in their JSONL record for diagnostic tracking.
++
+ #### Step 4: Evaluate Results
+ After agent completes:
+ 1. Verify `{artifact_dir}/iterations/iteration-{NNN}.md` was created
+@@ -407,24 +431,6 @@ Before selecting a recovery strategy, classify why progress stalled:
+ 4. Reset stuck counter
+ 5. If recovery iteration also shows no progress: exit to synthesis with gaps documented
+ 
+-### Step 3b: Direct Mode Fallback (REFERENCE-ONLY)
+-
+-When agent dispatch fails after the earlier recovery tiers are exhausted:
+-
+-1. Detect dispatch failure: Task tool timeout, API overload (529), or agent crash
+-2. Log event: `{"type":"event","event":"direct_mode","iteration":N,"reason":"dispatch_failure"}`
+-3. Orchestrator absorbs the iteration work:
+-   - Read state files (JSONL + strategy.md)
+-   - Determine focus from strategy "Next Focus"
+-   - Execute 3-5 research actions directly
+-   - Write `research/iterations/iteration-NNN.md`
+-   - Update strategy.md
+-   - Record the iteration through the append gateway
+-4. Continue loop normally after direct-mode iteration completes
+-5. If direct mode also fails, escalate to the final user-escalation tier
+-
+-**Note**: Direct mode iterations are logged with `"directMode": true` in their JSONL record for diagnostic tracking.
+-
+ ---
+ 
+ ## 4. WAVE ORCHESTRATION PROTOCOL (REFERENCE-ONLY)
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md b/.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md
+index 56a8750734d..7579c89db13 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md
+@@ -26,6 +26,10 @@ Define the bounded `spec.md` integration points for deep-research:
+ - Pre-init seed or context mutation before LOOP starts
+ - Post-synthesis generated-fence write-back before save or cancellation cleanup
+ 
++### When to Use
++
++Load this protocol when a deep-research run will touch `spec.md`: seeding a missing one, adding pre-init context, or writing back after synthesis.
++
+ ### Scope
+ This protocol applies only to deep-research-owned `spec.md` mutations:
+ - Seeded Level 1 `spec.md` creation when no spec exists
+@@ -160,7 +164,17 @@ The workflow writes or replaces exactly one machine-owned fence nested under the
+ 
+ All protocol events reach `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log.
+ 
+-Each spec-protocol row a workflow writes keeps its legacy shape. The append gateway accepts it and stores it as a typed ledger event under one of seven stems: `deep_research.spec_check_result`, `deep_research.spec_seed_created`, `deep_research.spec_preinit_context_added`, `deep_research.spec_preinit_context_deduped`, `deep_research.spec_mutation`, `deep_research.spec_mutation_conflict`, and `deep_research.spec_synthesis_deferred`. The gateway upcasts the row into that stem's payload, and the state log shows the row as written, with the append time as its timestamp.
++Each spec-protocol row a workflow writes keeps its legacy shape. The append gateway accepts it and stores it as a typed ledger event under one of seven stems:
++
++- `deep_research.spec_check_result`
++- `deep_research.spec_seed_created`
++- `deep_research.spec_preinit_context_added`
++- `deep_research.spec_preinit_context_deduped`
++- `deep_research.spec_mutation`
++- `deep_research.spec_mutation_conflict`
++- `deep_research.spec_synthesis_deferred`
++
++The gateway upcasts the row into that stem's payload, and the state log shows the row as written, with the append time as its timestamp.
+ 
+ Every audit payload is typed. At minimum, emit:
+ - `type`
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md b/.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md
+index e4e7a206802..22f316d23f1 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md
+@@ -15,7 +15,7 @@ version: 1.14.0.4
+ 
+ # Deep Research Output Files Reference
+ 
+-This reference covers human-readable packet outputs. JSONL records live in `state-jsonl.md`; reducer ownership lives in `state-reducer-registry.md`.
++Open it before writing an iteration narrative or the final synthesis, so every section the reducer and the operator expect is present. JSONL records live in `state-jsonl.md`; reducer ownership lives in `state-reducer-registry.md`.
+ 
+ ---
+ 
+@@ -149,11 +149,11 @@ When absent:
+ 
+ ## 7. SPEC ANCHORING OUTPUT
+ 
++This output path is protocol-owned, not iteration-agent owned.
++
+ `references/protocol/spec-check-protocol.md` defines bounded `spec.md` writes:
+ 
+ - acquire `research/.deep-research.lock`;
+ - classify `folder_state`;
+ - seed or append bounded context during init when allowed;
+ - replace exactly one generated findings fence during synthesis.
+-
+-This output path is protocol-owned, not iteration-agent owned.
+diff --git a/.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md b/.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md
+index 9863ffafa35..cf12aae95b3 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md
++++ b/.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md
+@@ -37,6 +37,8 @@ The reducer owns derived state. Manual edits to reducer-managed outputs are temp
+ 
+ ## 2. REDUCER CONTRACT
+ 
++The reducer must fail closed before writing derived files when JSONL corruption is detected in strict mode.
++
+ The workflow reducer:
+ 
+ - reads `deep-research-state.jsonl`, per-iteration deltas, strategy, and iteration markdown;
+@@ -48,8 +50,6 @@ The workflow reducer:
+ - regenerates the dashboard;
+ - records convergence and blocked-stop summaries.
+ 
+-It must fail closed before writing derived files when JSONL corruption is detected in strict mode.
+-
+ Under ledger authority the JSONL it reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 7, and `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
+ 
+ ---

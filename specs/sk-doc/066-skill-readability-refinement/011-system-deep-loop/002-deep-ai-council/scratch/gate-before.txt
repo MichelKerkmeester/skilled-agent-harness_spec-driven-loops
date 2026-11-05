@@ -1,0 +1,9 @@
+.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md:216: render_section_order: "REFERENCES AND RELATED RESOURCES" must be the last H2; it is followed by "SUCCESS CRITERIA".
+.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md:21: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md:21: render_overview_orientation: The OVERVIEW opens with a table instead of orienting prose; add Purpose or When to Use first.
+INVALID .skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md: ['Missing required section: overview']
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md:54: render_h2_numbering: Unnumbered H2 "Convergence Threshold Semantics" among numbered peers; number every section.
+.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md:19: render_h2_numbering: Unnumbered H2 "Deep Mode (Iterative Multi-Topic)" among numbered peers; number every section.
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md:156: render_h2_numbering: Unnumbered H2 "5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)" among numbered peers; number every section.
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md:171: render_h2_numbering: Unnumbered H2 "5.2 PROGRESS RECORD (v1.3, shared cross-mode)" among numbered peers; number every section.
+files=21 render_warnings=7 invalid=1

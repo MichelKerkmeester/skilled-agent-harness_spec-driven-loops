@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep-research routing"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,8 @@ link that points here; this file holds the declaration a reader parses to decide
 
 ## 1. OVERVIEW
 
-Requests reach this skill when they name `autoresearch`, a deep research loop, autonomous or iterative research, a multi-round investigation, a convergence check, a stuck loop, a research state packet or a `spec.md` anchoring question, and the `system-deep-loop` hub's `research` mode selects this packet. It routes to two resource families: the `references/` doctrine, which starts at `references/guides/quick-reference.md` on every invocation and adds the loop protocol, spec anchoring, convergence, state, recovery, runtime-parity and resource-map references, plus the `assets/` markdown templates and prompt assets on explicit request.
+- Requests reach this skill when they name `autoresearch`, a deep research loop, autonomous or iterative research, a multi-round investigation, a convergence check, a stuck loop, a research state packet or a `spec.md` anchoring question. The `system-deep-loop` hub's `research` mode selects this packet.
+- It routes to two resource families. The `references/` doctrine starts at `references/guides/quick-reference.md` on every invocation and adds the loop protocol, spec anchoring, convergence, state, recovery, runtime-parity and resource-map references. The `assets/` markdown templates and prompt assets load on explicit request.
 
 The router answers one question: given a request, which skill-local resources load, in what order, and
 what happens when nothing matches. Every path below stays inside this skill folder, and no resource

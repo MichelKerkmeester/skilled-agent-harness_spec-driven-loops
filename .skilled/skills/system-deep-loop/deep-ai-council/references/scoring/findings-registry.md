@@ -8,7 +8,7 @@ trigger_phrases:
   - "registry fingerprint"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.0.3
+version: 1.7.1.0
 ---
 
 # Findings Registry
@@ -19,13 +19,17 @@ The findings registry stores council findings across topics with fingerprint-bas
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Findings persist across topics. Fingerprints prevent duplicates. Locking prevents corruption.
+Keep what the council has already established available to later topics, so a repeated claim is recognised instead of re-argued.
 
 ### When to Use
 
 Use the registry when you need to track findings across multiple topics in a session and retrieve priors for later topics.
+
+### Core Principle
+
+Findings persist across topics. Fingerprints prevent duplicates. Locking prevents corruption.
 
 ### Key Sources
 

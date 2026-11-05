@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # Deep Review Loop Protocol
@@ -189,7 +189,7 @@ Run `shouldContinue_review()` (see `../deep-research/references/convergence/conv
   - Evidence, scope, and coverage gates pass
 - Otherwise: `CONTINUE`
 
-If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §Section-1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
+If convergence math or a hard-stop candidate points to STOP, the workflow must run the review legal-stop decision tree before actually stopping. That decision tree records nine review-specific gates: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate` (see `../convergence/convergence.md` §1 blocked_stop event example for the authoritative shape). The Step 4a claim-adjudication path treats `claimAdjudicationGate` as a hard STOP gate, so the count covers both the convergence decision tree and the adjudication enforcement path. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. If any gate fails, the loop does **not** stop. Instead it emits a first-class `blocked_stop` JSONL event with:
 
 - `blockedBy`: array of the failed review gate names
 - `gateResults`: per-gate pass/fail payloads using the review gate names above
@@ -273,13 +273,13 @@ CONSTRAINT: LEAF agent -- do NOT dispatch sub-agents
 CONSTRAINT: Target files are READ-ONLY -- never modify code under review
 ```
 
-#### Executor Resolution (spec 018 + 019)
+#### Executor Resolution
 
 Before dispatching, the YAML resolves the executor via `parseExecutorConfig` from `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts`. The resolved `config.executor.kind` selects the dispatch branch:
 
-- `native` (spec 018): dispatch `@deep-review` agent with model Opus.
-- `cli-opencode` (spec 018): pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
-- `cli-claude-code` (spec 019): `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
+- `native`: dispatch `@deep-review` agent with model Opus.
+- `cli-opencode`: pipe rendered prompt via stdin to `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y]`. **This grants full OS-level workspace write access.** There is no `--sandbox workspace-write` flag in the live command, and `sandboxMode='read-only'` is NOT currently honored/enforced by opencode (no opencode equivalent exists). The only real containment is (a) the prompt-level "ALLOWED WRITE PATHS" / "BANNED OPERATIONS" contract rendered into the iteration prompt (`assets/prompt-pack-iteration.md.tmpl`), which relies on the model obeying instructions rather than an OS-level sandbox, and (b) post-dispatch validation (`validateIterationOutputs`) catching some violations after the fact. Because review targets are arbitrary code/spec files, they MUST be treated as potentially adversarial content (untrusted) for prompt-injection purposes — the same containment posture as untrusted fetched content in deep-research.
+- `cli-claude-code`: `claude -p "$(cat prompt)" --model X --permission-mode acceptEdits --output-format text` with optional `--effort Y`. Default permission-mode is `plan` (read-only). We override to `acceptEdits` so iteration writes succeed. The inline workflow branches are not the complete schema: `cli-codex` is also an inline branch, while `cli-cursor`, `cli-devin`, `cli-pi`, and `cli-hermes` use the shared fan-out adapters; the executor-kind authority is `runtime/lib/deep-loop/executor-config.ts` (`EXECUTOR_KINDS`).
 
 All branches share:
 1. Pre-dispatch prompt rendering via `renderPromptPack` (writes to `{artifact_dir}/prompts/iteration-{n}.md`).
@@ -293,9 +293,16 @@ Cross-CLI delegation (a running executor invoking other CLIs via its shell) is d
 Two containment rules bind every CLI lineage (any `cli-*` executor kind):
 
 - **The lineage is the executor, so it works in-process.** A CLI lineage performs each iteration itself, with its own tools, inside the session the driver already started. The YAML's per-iteration executor dispatch steps are satisfied by the lineage. Spawning a second CLI process for the same iteration is a route violation, not an optimization, and on codex it also fails outright (see `cli-external-orchestration/cli-codex/SKILL.md` Rule 18).
-- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.** Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it. So the default remedy is preserve. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its review artifacts — its iteration records, and `review-report.md` where it reached synthesis — still settles as complete, carrying `completed_with_containment_advisory`. Restoring is opt-in and safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode. A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture. A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed. One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here. The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
+- **Write containment attributes every new dirty path outside the lineage directory to the lineage, and reports it rather than undoing it.**
+  - Attribution on a shared checkout is a guess: a tracked file changed anywhere in the same checkout during a lineage window looks identical whether the lineage, an operator, or another session wrote it.
+  - So the default remedy is preserve. The file is left byte-for-byte as it stands, the finding is recorded on the status ledger and the observability stream, and a lane that produced its review artifacts — its iteration records, and `review-report.md` where it reached synthesis — still settles as complete, carrying `completed_with_containment_advisory`.
+  - Restoring is opt-in and safe only on a checkout with a single writer; under it a path that was already dirty when the lineage started is put back to its pre-dispatch bytes, never to HEAD, and a path whose baseline could not be captured is preserved regardless. Untracked files are never deleted in either mode.
+  - A path that was already dirty when the lineage started and changed again during it is the one exception to attribution: it has a second writer on record, so under the default remedy it is reported as contested, as a `containment_contested` ledger event and a `containmentContested` field on the lineage output, with a note that the tree shows the bytes changed, not who wrote them. A single-lineage run reports the same path the same way, as a `containment_contested` event in its state log, and the dispatch step prints the paths and the note beside any violations. No quarantine copy, patch or revert is made for it, and its pre-dispatch bytes stay in the baseline capture.
+  - A path the lane itself quarantined on an earlier pass stays the lane's, restore keeps the single-owner reading, and a path that was clean at the baseline is still attributed.
+  - One exemption still applies to attribution: another run's lineage directory under the same top-level packet is treated as that run's own write surface while its loop lock is live, so two lineages can run in sibling phases of one packet at the same time; a directory with no lock, or a stale one, is still attributed here.
+  - The runtime records each finding's diff under the lineage directory at `containment/quarantine/<iteration>[-attempt-<n>]/`, in a `containment-out-of-scope/` subdirectory on the default preserve path and `containment-reverted/` only under restore, where bytes really were rolled back; each pass keeps its own directory so a retry never overwrites an earlier pass's evidence. The pre-dispatch baseline bytes go to `<lineage dir>/containment/baseline/`, so an out-of-scope change stays recoverable either way.
 
-Failure handling remains unchanged from spec 018: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
+Failure handling is unchanged: `schema_mismatch` → conflict event → 3 consecutive failures → `stuck_recovery`.
 
 **Agent constraints**:
 - `@deep-review` is LEAF-only: it cannot dispatch sub-agents
@@ -688,48 +695,7 @@ State-transition rules, error handling, and the review quality gates live in `lo
 
 ---
 
-## 9. RELATED RESOURCES
-
-### Shared Protocol Documentation
-
-Protocol documents from `deep-research` are cross-referenced, not duplicated:
-
-| Document | Path | Purpose |
-|----------|------|---------|
-| Loop Protocol (research) | `../deep-research/references/protocol/loop-protocol.md` | Research loop lifecycle (this file adapts Section 9) |
-| State Format | `../deep-research/references/state/state-format.md` | JSONL, strategy, and config schemas |
-| Convergence | `../deep-research/references/convergence/convergence.md` | `shouldContinue_review()` (Section 10), stuck recovery, quality guards |
-
-### Review-Specific Resources
-
-| Resource | Path | Purpose |
-|----------|------|---------|
-| Review Contract | `assets/review-mode-contract.yaml` | Single source of truth for dimensions, verdicts, gates, protocols |
-| Quick Reference | `references/protocol/quick-reference.md` | One-page review cheat sheet |
-| Strategy Template | `assets/deep-review-strategy.md` | Template for review strategy files |
-| Config Template | `assets/deep-review-config.json` | Template for review config files |
-| Dashboard Template | `assets/deep-review-dashboard.md` | Template for auto-generated dashboard |
-
-### Workflow Files
-
-| Mode | Path |
-|------|------|
-| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
-
-### Agent
-
-| Agent | Path Pattern | Constraint |
-|-------|-------------|------------|
-| `@deep-review` | `{runtime_dir}/deep-review.{ext}` | LEAF-only, no sub-agents, no WebFetch, target files read-only |
-
-Runtime paths:
-- OpenCode / Copilot: `.opencode/agents/deep-review.md`
-- Claude: `.claude/agents/deep-review.md`
-
----
-
-## Executor Selection Contract
+## 9. EXECUTOR SELECTION CONTRACT
 
 Executor settings are owned by the YAML workflow and rendered prompt pack. Do not bypass the workflow by hand-dispatching review iterations; each iteration stays LEAF-only and produces the required markdown plus JSONL delta.
 
@@ -768,3 +734,44 @@ The executor-agnostic iteration prompt lives at `assets/prompt-pack-iteration.md
 ### Code-Graph Readiness TrustState Surface
 
 On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`. The values `cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
+
+---
+
+## 10. RELATED RESOURCES
+
+### Shared Protocol Documentation
+
+Protocol documents from `deep-research` are cross-referenced, not duplicated:
+
+| Document | Path | Purpose |
+|----------|------|---------|
+| Loop Protocol (research) | `../deep-research/references/protocol/loop-protocol.md` | Research loop lifecycle (this file adapts Section 9) |
+| State Format | `../deep-research/references/state/state-format.md` | JSONL, strategy, and config schemas |
+| Convergence | `../deep-research/references/convergence/convergence.md` | `shouldContinue_review()` (Section 10), stuck recovery, quality guards |
+
+### Review-Specific Resources
+
+| Resource | Path | Purpose |
+|----------|------|---------|
+| Review Contract | `assets/review-mode-contract.yaml` | Single source of truth for dimensions, verdicts, gates, protocols |
+| Quick Reference | `references/protocol/quick-reference.md` | One-page review cheat sheet |
+| Strategy Template | `assets/deep-review-strategy.md` | Template for review strategy files |
+| Config Template | `assets/deep-review-config.json` | Template for review config files |
+| Dashboard Template | `assets/deep-review-dashboard.md` | Template for auto-generated dashboard |
+
+### Workflow Files
+
+| Mode | Path |
+|------|------|
+| Auto (unattended) | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
+| Confirm (step-by-step) | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+
+### Agent
+
+| Agent | Path Pattern | Constraint |
+|-------|-------------|------------|
+| `@deep-review` | `{runtime_dir}/deep-review.{ext}` | LEAF-only, no sub-agents, no WebFetch, target files read-only |
+
+Runtime paths:
+- OpenCode / Copilot: `.opencode/agents/deep-review.md`
+- Claude: `.claude/agents/deep-review.md`

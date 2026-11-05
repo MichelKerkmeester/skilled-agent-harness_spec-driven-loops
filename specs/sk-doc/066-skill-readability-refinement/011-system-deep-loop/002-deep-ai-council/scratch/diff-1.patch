@@ -1,0 +1,1079 @@
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/README.md b/.skilled/skills/system-deep-loop/deep-ai-council/README.md
+index b18cef020b1..60eb0dbe900 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/README.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/README.md
+@@ -134,7 +134,7 @@ The council shares the `runtime/` with the other active deep-loop families. The
+ 
+ ### Behavior Benchmark
+ 
+-`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
++`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the deep-loop behavior-benchmarks packet.
+ 
+ ### Related Skills
+ 
+@@ -211,8 +211,16 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence
+ | [`references/patterns/seat-diversity-patterns.md`](./references/patterns/seat-diversity-patterns.md) | The six strategy lenses and task-type-to-lens recommendations |
+ | [`references/structure/folder-layout.md`](./references/structure/folder-layout.md) | Packet-local artifact tree shape and writer ownership |
+ | [`references/structure/state-format.md`](./references/structure/state-format.md) | Append-only JSONL event semantics |
++| [`references/convergence/deep-mode.md`](./references/convergence/deep-mode.md) | Deep-mode session, topic and round hierarchy with state files, cost guards and the runtime dependency |
++| [`references/convergence/failure-handling.md`](./references/convergence/failure-handling.md) | Seat timeout, all-seat failure, contradiction and insufficient-vantage guidance |
++| [`references/patterns/anti-patterns.md`](./references/patterns/anti-patterns.md) | Council quality failure modes, detection cues and recovery actions |
++| [`references/patterns/command-wiring.md`](./references/patterns/command-wiring.md) | Caller-owned post-dispatch persistence patterns |
++| [`references/integration/graph-support.md`](./references/integration/graph-support.md) | Derived council graph boundaries, tool surface and recovery behavior |
++| [`references/scoring/findings-registry.md`](./references/scoring/findings-registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
+ | [`assets/deep-ai-council-strategy.md`](./assets/deep-ai-council-strategy.md) | Round strategy template for seat setup and disagreement tracking |
+ | [`assets/deep-ai-council-config.json`](./assets/deep-ai-council-config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
++| [`assets/deep-ai-council-dashboard.md`](./assets/deep-ai-council-dashboard.md) | Status dashboard template for rounds, seats, convergence and artifact health |
++| [`assets/prompt-pack-round.md`](./assets/prompt-pack-round.md) | Seat prompt template with role, context slots, critique steps and verdict footer |
+ | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Full feature inventory across the nine categories |
+ | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation package with per-feature scenarios |
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md b/.skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md
+index 9e3f726a561..def113aabeb 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/ROUTER.md
+@@ -20,7 +20,13 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this skill when they name `deep-ai-council`, `ai council`, `council deliberation`, `multi-seat planning`, `planning council`, `council convergence`, `council artifacts` or `packet-local ai-council`, and the `system-deep-loop` hub's `ai-council` signal selects this packet. It routes to three resource families: the `references/` doctrine, which starts at `references/integration/quick-reference.md` on every invocation and adds the loop protocol, output schema, scoring, depth-dispatch, failure-handling, anti-pattern, folder-layout, state-format, seat-diversity, convergence, graph-support and findings-registry references as the intent asks for them, plus the `assets/` markdown templates, the `manual-testing-playbook/` operator scenarios and the `scripts/` helpers that are invoked explicitly rather than routed.
++Requests reach this skill when they name `deep-ai-council`, `ai council`, `council deliberation`, `multi-seat planning`, `planning council`, `council convergence`, `council artifacts` or `packet-local ai-council`, and the `system-deep-loop` hub's `ai-council` signal selects this packet. It routes to three resource families:
++
++- The `references/` doctrine, which starts at `references/integration/quick-reference.md` on every invocation and adds the loop protocol, output schema, scoring, depth-dispatch, failure-handling, anti-pattern, folder-layout, state-format, seat-diversity, convergence, graph-support and findings-registry references as the intent asks for them.
++- The `assets/` markdown templates.
++- The `manual-testing-playbook/` operator scenarios.
++
++The `scripts/` helpers are invoked explicitly rather than routed.
+ 
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+@@ -83,10 +89,10 @@ assets/*.md
+ manual-testing-playbook/**/*.md
+ ```
+ 
+-- `references/` contains the quick reference, loop protocol, council state, folder layout, seat diversity, output schema, convergence signals, and caller wiring.
++- `references/` contains the quick reference, loop protocol, graph support, anti-patterns, caller wiring, seat diversity, findings registry, scoring rubric, folder layout, output schema, council state format, depth dispatch, failure handling, convergence signals, and deep mode.
+ - `assets/` contains council config, round strategy, dashboard, prompt-pack, and runtime capability templates. Markdown assets are routable; JSON/TMPL assets are operator/runtime inputs.
+-- `manual-testing-playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (32 scenarios across 9 categories).
+-- `feature-catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (32 entries) — start here for "what does DAC-NNN actually do" lookups.
++- `manual-testing-playbook/` contains operator validation scenarios for routing, deliberation, persistence, convergence, rollback, scope boundaries, council-graph integration, and council-graph value comparison (33 scenarios across 9 categories).
++- `feature-catalog/` mirrors the playbook 1:1 with one user-facing feature entry per scenario (33 entries) — start here for "what does DAC-NNN actually do" lookups.
+ - `scripts/` contains deterministic helpers; scripts are invoked explicitly and are not markdown-routed. Notable entries: `persist-artifacts.cjs` (artifact writer CLI), `replay-graph-from-artifacts.cjs` (DAC-025 derived-projection rebuild — reads `ai-council-state.jsonl` and writes through `runtime//scripts/upsert.cjs --loop-type council`, with `--dry-run` for payload inspection).
+ 
+ ### Resource Loading Levels
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md b/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md
+index 75867ab4f6a..a25f2d4b4cf 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/SKILL.md
+@@ -13,31 +13,7 @@ Planning-only council deliberation with diverse seats, convergence checks, and p
+ 
+ ---
+ 
+-## 1. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
+-
+-The council is **primarily an IN-CLI capability**.
+-When you invoke it from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats.
+-No external dispatch is required for the common case.
+-The active CLI's own model bench supplies the seat diversity for a round. For example:
+-
+-- Opus + Sonnet + Haiku on Claude Code.
+-- gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode.
+-- Direct DeepSeek and OpenAI provider models plus GLM-5.3-Flash through LLM Gateway on OpenCode.
+-
+-**External-CLI dispatch is a SECONDARY, optional mode**, for cases where a different AI vantage adds value (e.g. DeepSeek/Kimi via cli-opencode from inside another runtime).
+-The council resolver accepts `native`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and the `opencode` alias. It rejects `cli-codex` and `cli-claude-code`.
+-External dispatch is invoked via the supported `cli-*` skill family, never directly from this skill.
+-
+-**Both modes obey the one-CLI-per-round invariant** (§5 ALWAYS rule 6):
+-- In-CLI round: all seats use the current runtime's models.
+-- External-CLI round: all seats use ONE supported external CLI (e.g. all `cli-opencode` seats with different reasoning levels, or all `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes` seats with different models).
+-- Cross-CLI deliberation is staged as MULTIPLE rounds (one in-CLI + one external, or two different externals) — never folded into the same round.
+-
+-The default and most common council run is a single in-CLI round. Add external rounds only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested.
+-
+----
+-
+-## 2. WHEN TO USE
++## 1. WHEN TO USE
+ 
+ ### Activation Triggers
+ 
+@@ -48,6 +24,18 @@ Use this skill when a request needs:
+ - Packet-local persistence of council reports, state, seats, deliberations, and rollback evidence.
+ - Recovery, audit, or completion checks for existing council artifacts.
+ 
++### Keyword Triggers
++
++- deep-ai-council
++- ai council
++- council deliberation
++- multi-seat planning
++- planning council
++- council artifacts
++- council convergence
++- council graph
++- packet-local ai-council
++
+ ### Use Cases
+ 
+ ### Council Planning
+@@ -77,21 +65,9 @@ Do not use this skill for:
+ - Single-answer planning where no meaningful strategic disagreement is needed.
+ - Claims that external AI systems participated when they did not actually run.
+ 
+-### Keyword Triggers
+-
+-- deep-ai-council
+-- ai council
+-- council deliberation
+-- multi-seat planning
+-- planning council
+-- council artifacts
+-- council convergence
+-- council graph
+-- packet-local ai-council
+-
+ ---
+ 
+-## 3. SMART ROUTING
++## 2. SMART ROUTING
+ 
+ The `system-deep-loop` hub routes a planning-council request here.
+ `hub-router.json` scores `deep-ai-council`, `ai council`, `planning council` and `council convergence` against the `ai-council` signal.
+@@ -107,6 +83,30 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
+ 
+ ---
+ 
++## 3. OPERATIONAL MODES — IN-CLI (PRIMARY) + EXTERNAL-CLI (SECONDARY)
++
++The council is **primarily an IN-CLI capability**.
++When you invoke it from inside an active runtime (OpenCode, Claude Code, OpenCode), the council deliberates using THAT runtime's own models and reasoning lenses as seats.
++No external dispatch is required for the common case.
++The active CLI's own model bench supplies the seat diversity for a round. For example:
++
++- Opus + Sonnet + Haiku on Claude Code.
++- gpt-5.5 + gpt-5.5-pro + gpt-5.5-xhigh on OpenCode.
++- Direct DeepSeek and OpenAI provider models plus GLM-5.3-Flash through LLM Gateway on OpenCode.
++
++**External-CLI dispatch is a SECONDARY, optional mode**, for cases where a different AI vantage adds value (e.g. DeepSeek/Kimi via cli-opencode from inside another runtime).
++The council resolver accepts `native`, `cli-opencode`, `cli-cursor`, `cli-devin`, `cli-pi` and the `opencode` alias. It rejects `cli-codex` and `cli-claude-code`.
++External dispatch is invoked via the supported `cli-*` skill family, never directly from this skill.
++
++**Both modes obey the one-CLI-per-round invariant** (§5 ALWAYS rule 6):
++- In-CLI round: all seats use the current runtime's models.
++- External-CLI round: all seats use ONE supported external CLI (e.g. all `cli-opencode` seats with different reasoning levels, or all `cli-cursor`, `cli-devin`, `cli-pi`, or `cli-hermes` seats with different models).
++- Cross-CLI deliberation is staged as MULTIPLE rounds (one in-CLI + one external, or two different externals) — never folded into the same round.
++
++The default and most common council run is a single in-CLI round. Add external rounds only when the active runtime cannot supply the required vantage or when explicit cross-AI validation is requested.
++
++---
++
+ ## 4. HOW IT WORKS
+ 
+ ### Council Workflow Overview
+@@ -213,38 +213,7 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/advise-council-com
+ 
+ ---
+ 
+-## 6. REFERENCES AND RELATED RESOURCES
+-
+-Ordered by load priority — most-loaded intent first.
+-
+-- `references/integration/quick-reference.md` - first-touch operator cheat sheet and validation commands (ALWAYS-loaded default).
+-- `references/integration/loop-protocol.md` - end-to-end council workflow from packet resolution to persistence and recovery.
+-- `references/structure/output-schema.md` - markdown report contract parsed by the persistence helper.
+-- `references/scoring/scoring-rubric.md` - five-dimension scoring, adversarial critique, conflict resolution, and attribution rules.
+-- `references/convergence/depth-dispatch.md` - Depth 0 parallel dispatch and Depth 1 sequential inline dispatch rules.
+-- `references/convergence/failure-handling.md` - timeout, all-seat failure, contradiction, insufficient vantage, and rollback-state guidance.
+-- `references/patterns/anti-patterns.md` - council quality failure modes, detection cues, and recovery actions.
+-- `references/structure/folder-layout.md` - packet-local artifact tree and writer ownership.
+-- `references/structure/state-format.md` - append-only JSONL event semantics.
+-- `references/patterns/command-wiring.md` - caller-owned post-dispatch persistence patterns.
+-- `references/patterns/seat-diversity-patterns.md` - seat lens and vantage diversity rules.
+-- `references/convergence/convergence-signals.md` - convergence and escape-hatch rules.
+-- `references/integration/graph-support.md` - derived council graph boundaries, tool surface, and recovery behavior.
+-- `references/convergence/deep-mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the runtime/ dependency.
+-- `references/scoring/findings-registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
+-- `assets/deep-ai-council-strategy.md` - operator-maintained round strategy template.
+-- `assets/deep-ai-council-dashboard.md` - council status dashboard template.
+-- `assets/deep-ai-council-config.json` - run-config template for council sessions.
+-- `assets/prompt-pack-round.md` - council seat prompt-pack template.
+-- `assets/runtime-capabilities.json` - runtime parity and validation matrix.
+-- `manual-testing-playbook/manual-testing-playbook.md` - operator validation scenarios.
+-- `README.md` - human-facing overview.
+-
+-Related skills: `deep-research` for evidence-first investigation vantages and `system-spec-kit` for packet documentation, validation, resume, and memory continuity.
+-
+----
+-
+-## 7. SUCCESS CRITERIA
++## 6. SUCCESS CRITERIA
+ 
+ ### Council Skill Completion Checklist
+ 
+@@ -261,7 +230,7 @@ Council alignment is complete when:
+ - **Structure**: SKILL.md follows sk-doc required section order and frontmatter.
+ - **Routing**: the SMART ROUTING section and its [`ROUTER.md`](./ROUTER.md) router are the only authoritative routing source.
+ - **Reference shape**: reference filenames are snake_case and intro sections are short.
+-- **Playbook coverage**: manual testing package has 32 scenarios across 9 categories.
++- **Playbook coverage**: manual testing package has 33 scenarios across 9 categories.
+ - **Boundary discipline**: graph rows never replace `ai-council/**` artifacts and council seats do not mutate graph storage directly.
+ 
+ ### Validation Success
+@@ -272,7 +241,7 @@ Council alignment is complete when:
+ 
+ ---
+ 
+-## 8. INTEGRATION POINTS
++## 7. INTEGRATION POINTS
+ 
+ ### Validation Workflow Integration
+ 
+@@ -311,3 +280,36 @@ The council is a planning LEAF. It hands recommendations, risk analysis, and pac
+ ### External Tools
+ 
+ No external tools are required. External CLIs may contribute seats only when the caller actually runs them and labels the result accurately.
++
++---
++
++## 8. REFERENCES AND RELATED RESOURCES
++
++Ordered by load priority — most-loaded intent first.
++
++- `references/integration/quick-reference.md` - first-touch operator cheat sheet and validation commands (ALWAYS-loaded default).
++- `references/integration/loop-protocol.md` - end-to-end council workflow from packet resolution to persistence and recovery.
++- `references/structure/output-schema.md` - markdown report contract parsed by the persistence helper.
++- `references/scoring/scoring-rubric.md` - five-dimension scoring, adversarial critique, conflict resolution, and attribution rules.
++- `references/convergence/depth-dispatch.md` - Depth 0 parallel dispatch and Depth 1 sequential inline dispatch rules.
++- `references/convergence/failure-handling.md` - timeout, all-seat failure, contradiction, insufficient vantage, and rollback-state guidance.
++- `references/patterns/anti-patterns.md` - council quality failure modes, detection cues, and recovery actions.
++- `references/structure/folder-layout.md` - packet-local artifact tree and writer ownership.
++- `references/structure/state-format.md` - append-only JSONL event semantics.
++- `references/patterns/command-wiring.md` - caller-owned post-dispatch persistence patterns.
++- `references/patterns/seat-diversity-patterns.md` - seat lens and vantage diversity rules.
++- `references/convergence/convergence-signals.md` - convergence and escape-hatch rules.
++- `references/integration/graph-support.md` - derived council graph boundaries, tool surface, and recovery behavior.
++- `references/convergence/deep-mode.md` - deep-mode session/topic/round hierarchy, state files, cost guards and the runtime/ dependency.
++- `references/scoring/findings-registry.md` - cross-topic findings registry, fingerprint dedup and filesystem locking.
++- `assets/deep-ai-council-strategy.md` - operator-maintained round strategy template.
++- `assets/deep-ai-council-dashboard.md` - council status dashboard template.
++- `assets/deep-ai-council-config.json` - run-config template for council sessions.
++- `assets/prompt-pack-round.md` - council seat prompt-pack template.
++- `assets/runtime-capabilities.json` - runtime parity and validation matrix.
++- `manual-testing-playbook/manual-testing-playbook.md` - operator validation scenarios.
++- `README.md` - human-facing overview.
++
++Related skills: `deep-research` for evidence-first investigation vantages and `system-spec-kit` for packet documentation, validation, resume, and memory continuity.
++
++---
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md b/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md
+index 6b3850c0ca8..77aea99f2e6 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-dashboard.md
+@@ -18,6 +18,14 @@ Use this dashboard to report council status without re-reading every seat output
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++One page of tables that shows where a council run stands, what each seat recommended and which artifacts already exist.
++
++### Usage
++
++Replace each placeholder with the run's values and refresh the status and next action as the run moves.
++
+ | Field | Value |
+ |-------|-------|
+ | Packet | `<spec-folder>` |
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md b/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md
+index 6955873db49..adb96781278 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/assets/deep-ai-council-strategy.md
+@@ -18,6 +18,14 @@ Use this template before and between council rounds. Keep it short enough for ev
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++One brief that gives every seat the same planning boundary, the same mandates and the same list of open disagreements.
++
++### Usage
++
++Fill the rows before the round opens, then update the disagreement and convergence rows between rounds.
++
+ | Field | Value |
+ |-------|-------|
+ | Packet | `<spec-folder>` |
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md b/.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
+index 0dd07905e89..2f18cac035c 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/assets/prompt-pack-round.md
+@@ -15,13 +15,29 @@ version: 1.7.0.3
+ 
+ Resolved route: mode=ai-council; target_agent=plan; execution=multi_topic_session_round; state_source=ai-council/session-state.jsonl; depth_aware=true; do_not_switch_mode=true
+ 
+-## Role
++---
++
++## 1. OVERVIEW
++
++### Purpose
++
++The seat prompt for one council round: the role, the context slots, the critique steps and the verdict footer a seat returns.
++
++### Usage
++
++Fill every `{{placeholder}}` from the round strategy before dispatch, and keep the seat read-only.
++
++---
++
++## 2. ROLE
+ 
+ You are {{seat_name}}, a {{seat_lens}} council seat inside `deep-ai-council`.
+ 
+ You are read-only. Do not create, edit, move, rename, or delete files, and do not run shell commands. Return deliberation text only; the trusted host owns all packet-local persistence.
+ 
+-## Context
++---
++
++## 3. CONTEXT
+ 
+ - Packet: {{spec_folder}}
+ - Topic: {{topic}}
+@@ -32,14 +48,18 @@ You are read-only. Do not create, edit, move, rename, or delete files, and do no
+ - Known disagreements: {{known_disagreements}}
+ - Required output contract: the five seat-local sections and structured footer below. `references/structure/output-schema.md` applies to the synthesized full-council report, not an individual seat.
+ 
+-## Action
++---
++
++## 4. ACTION
+ 
+ 1. State the best plan for this topic and the evidence that supports it.
+ 2. Identify the strongest risk, blocker, or assumption in your own plan.
+ 3. Critique the other active proposal summaries if provided.
+ 4. Return a handoff-ready recommendation with confidence and conditions that would change your view.
+ 
+-## Format
++---
++
++## 5. FORMAT
+ 
+ Return markdown with these sections:
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md
+index 9f0c3240053..ff10f3837c0 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md
+@@ -19,6 +19,15 @@ This reference defines the lightweight v1 convergence signal and the conditions
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++The rule that lets a council round stop with a report, and the signals that block that stop.
++
++### When to Use
++
++- Deciding whether a round may declare convergence and write `council-report.md`
++- Explaining a round that ended without agreement
++
+ Use `two-of-three-agree` for v1. If 2 of 3 seats endorse essentially the same plan and cross-critique produces no new high-severity findings, declare convergence and write `council-report.md`.
+ 
+ Agreement means the seats align on the material plan: implementation order, core risks, dependencies, and acceptance criteria. They do not need identical wording.
+@@ -51,7 +60,7 @@ Cross-references:
+ 
+ ---
+ 
+-## Convergence Threshold Semantics
++## 5. CONVERGENCE THRESHOLD SEMANTICS
+ 
+ **Default:** 0.20 (proposed) on adjudicator-verdict stability across rounds
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md
+index 095ffedae26..11f9993d544 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/deep-mode.md
+@@ -19,14 +19,18 @@ Deep mode organises council work as sessions containing topics which contain rou
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Session contains topics contain rounds. Each level has its own state file and guard checks.
++The container model behind a long council session, with the file and the guard that each level owns.
+ 
+ ### When to Use
+ 
+ Use deep mode when you need multi-topic council sessions with cost controls and state persistence. Use shallow mode for single-topic quick decisions.
+ 
++### Core Principle
++
++Session contains topics contain rounds. Each level has its own state file and guard checks.
++
+ ### Key Sources
+ 
+ - Session orchestration: `scripts/orchestrate-session.cjs`
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md
+index 16a924d7a2e..d4dbf634458 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md
+@@ -16,29 +16,11 @@ version: 1.7.0.13
+ 
+ Depth controls whether a council may launch seats in parallel or must deliberate inline. The goal is useful diversity without illegal nesting.
+ 
+-## Deep Mode (Iterative Multi-Topic)
+-
+-Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
+-
+-Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` or `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
+-
+-Deep mode uses a three-level state hierarchy:
+-
+-```text
+-session
+-  -> topic
+-     -> round
+-```
+-
+-The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
+-
+-Default cost guards are intentionally conservative: `max_rounds_per_topic = 3`, `max_topics_per_session = 5`, `saturation_threshold = 0.20`, and three seats per round. The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
++## 1. OVERVIEW
+ 
+-Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
++### Purpose
+ 
+----
+-
+-## 1. OVERVIEW
++A dispatch contract that keeps council work NDP-compliant at any nesting depth.
+ 
+ The Multi-AI Council uses adaptive dispatch based on invocation depth.
+ 
+@@ -54,7 +36,7 @@ Nested deliberation must not create nested agent dispatch.
+ 
+ Depth dispatch is not about quality level. Depth 1 can still perform rigorous multi-seat deliberation. It simply performs that deliberation inside one context instead of spawning more agents.
+ 
+-Use this reference when:
++### When to Use
+ 
+ - a prompt includes `Depth: 1`;
+ - an orchestrator dispatches `@deep-ai-council`;
+@@ -64,7 +46,36 @@ Use this reference when:
+ 
+ ---
+ 
+-## 2. DEPTH DETECTION
++## 2. DEEP MODE (ITERATIVE MULTI-TOPIC)
++
++Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
++
++Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` or `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
++
++Deep mode uses a three-level state hierarchy:
++
++```text
++session
++  -> topic
++     -> round
++```
++
++The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
++
++Default cost guards are intentionally conservative:
++
++- `max_rounds_per_topic = 3`
++- `max_topics_per_session = 5`
++- `saturation_threshold = 0.20`
++- three seats per round
++
++The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
++
++Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
++
++---
++
++## 3. DEPTH DETECTION
+ 
+ Depth detection happens before DIVERSIFY or DISPATCH.
+ 
+@@ -131,7 +142,7 @@ If depth is unclear:
+ 
+ ---
+ 
+-## 3. DEPTH 0: PARALLEL DISPATCH
++## 4. DEPTH 0: PARALLEL DISPATCH
+ 
+ Depth 0 is the default top-level council mode.
+ 
+@@ -170,7 +181,7 @@ Independence matters because the council needs genuine disagreement before it ca
+ 
+ ---
+ 
+-## 4. DEPTH 1: SEQUENTIAL VIA MCP
++## 5. DEPTH 1: SEQUENTIAL VIA MCP
+ 
+ Depth 1 is the NDP-compliant nested mode.
+ 
+@@ -223,7 +234,7 @@ It is compliant because:
+ 
+ ---
+ 
+-## 5. DECISION RULE FLOWCHART
++## 6. DECISION RULE FLOWCHART
+ 
+ Use this decision rule before dispatch.
+ 
+@@ -239,7 +250,7 @@ Am I dispatched by another agent?
+ 
+ ---
+ 
+-## 6. NO RECURSIVE COUNCILING
++## 7. NO RECURSIVE COUNCILING
+ 
+ Recursive counciling is a hard block.
+ 
+@@ -288,13 +299,13 @@ Dishonest label:
+ cli-opencode agreed with cli-opencode.
+ ```
+ 
+-This also violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.
+-
+ Unless those tools actually ran (and were dispatched as separate rounds).
+ 
++This also violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.
++
+ ---
+ 
+-## 7. CROSS-REFERENCES
++## 8. CROSS-REFERENCES
+ 
+ - Agent body: `.skilled/agents/ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
+ - Caller patterns: `../patterns/command-wiring.md`.
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md
+index 4b29cac8d6a..cdaef7a7b3e 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/convergence/failure-handling.md
+@@ -20,6 +20,17 @@ Council failures are first-class planning signals. Record them honestly instead
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++A run whose report, state log and resume path all agree about what failed.
++
++### When to Use
++
++- A seat times out or errors.
++- A round loses quorum, or every seat fails.
++- Seats contradict each other or real external vantages are unavailable.
++- A failed round needs rollback, state-log treatment or a reduced-confidence handoff.
++
+ The council is allowed to fail.
+ 
+ A failed seat, timeout, unresolved contradiction, or missing external vantage is not an excuse to invent a confident plan. It is evidence that the synthesis must continue with reduced confidence, escalate to the user, or roll back an unsalvageable round.
+@@ -162,7 +173,13 @@ Required marker:
+ ESCALATION: Contradictory high-confidence council recommendations require user decision.
+ ```
+ 
+-The report should include both plans, evidence for each, risk for each, what priority chooses each option, and a recommended user decision question.
++The report should include:
++
++- both plans;
++- evidence for each;
++- risk for each;
++- what priority chooses each option;
++- a recommended user decision question.
+ 
+ ---
+ 
+@@ -197,7 +214,17 @@ Claude Code found...
+ 
+ unless those tools actually ran.
+ 
+-Proceed with lens diversity only when local source evidence is sufficient and missing external vantages do not control the outcome. Escalate when external facts are central, no lens can challenge the default plan, all seats converge without evidence, or the user explicitly required real external AI participation.
++Proceed with lens diversity only when:
++
++- local source evidence is sufficient;
++- missing external vantages do not control the outcome.
++
++Escalate when:
++
++- external facts are central;
++- no lens can challenge the default plan;
++- all seats converge without evidence;
++- the user explicitly required real external AI participation.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md
+index 85ab7bb1398..98ae8166b1e 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/graph-support.md
+@@ -19,6 +19,16 @@ Dedicated council graph support is available as a derived `runtime/` CLI project
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Structural questions about a council run answered from a rebuildable index rather than from a second source of truth.
++
++### When to Use
++
++- Auditing decisions, evidence chains or unresolved disagreements.
++- Checking convergence blockers before a stop is approved.
++- Rebuilding a projection that drifted from the packet artifacts.
++
+ The graph is a prompt-safe structural index over council deliberation artifacts. It stores council-specific nodes and edges so synthesis, audit, and convergence checks can answer structural questions without overloading deep-loop research/review graph semantics.
+ 
+ Authoritative state remains:
+@@ -35,6 +45,8 @@ If graph rows disagree with artifacts, the artifacts win and graph rows should b
+ 
+ ## 2. RUNTIME CLI SURFACE
+ 
++Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `runtime/`.
++
+ Dedicated graph operations run through the shared deep-loop runtime scripts with `--loop-type council`:
+ 
+ - `runtime//scripts/upsert.cjs --loop-type council` writes derived nodes and edges.
+@@ -42,8 +54,6 @@ Dedicated graph operations run through the shared deep-loop runtime scripts with
+ - `runtime//scripts/status.cjs --loop-type council` reports readiness, counts, schema version, and current signals.
+ - `runtime//scripts/convergence.cjs --loop-type council` computes council-specific convergence decisions.
+ 
+-Do not use research/review graph namespaces for council data. Council has its own runtime-owned SQLite projection under `runtime/`.
+-
+ ---
+ 
+ ## 3. NODE AND EDGE MODEL
+@@ -96,17 +106,19 @@ An empty graph returns `STOP_BLOCKED`, not false-safe success. Critical unresolv
+ 
+ The graph is replayable derived state.
+ 
++Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
++
+ Safe recovery path:
+ 
+ 1. Keep `ai-council/**` artifacts unchanged.
+ 2. Delete or ignore stale `council-graph.sqlite` rows scoped to the affected `specFolder` and `sessionId` only.
+-3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`, which reads `ai-council-state.jsonl` and calls the runtime `upsert.cjs --loop-type council` path across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds. Use `--dry-run` to inspect the derived payload without writing.
++3. Replay derived nodes and edges from packet-local artifacts with `scripts/replay-graph-from-artifacts.cjs`.
++   - It reads `ai-council-state.jsonl` and calls the runtime `upsert.cjs --loop-type council` path across the SESSION / ROUND / SEAT / CLAIM / EVIDENCE / DISAGREEMENT / DECISION / RECOMMENDATION node kinds.
++   - Use `--dry-run` to inspect the derived payload without writing.
+ 4. Re-run `status.cjs --loop-type council` and `convergence.cjs --loop-type council`.
+ 
+ The council status script reports the bounded cleanup contract in its `recovery` payload so callers do not need to infer whether artifacts or derived rows are authoritative.
+ 
+-Never rewrite historical `ai-council-state.jsonl` rows to fit the graph.
+-
+ ---
+ 
+ ## 6. CROSS-REFERENCES
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md
+index 59393d27ed8..a0cc7388230 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md
+@@ -19,6 +19,16 @@ This reference describes the council loop from packet resolution to persisted pl
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++The phase order a caller follows so a council report and its state land in the packet exactly once.
++
++### When to Use
++
++- Running a round from packet resolution to persisted handoff.
++- Checking what each phase must load before it starts.
++- Recovering a run from disk state instead of conversation memory.
++
+ The council loop has four phases:
+ 
+ 1. Resolve the packet and run boundary.
+@@ -150,7 +160,11 @@ Required resources:
+ - `references/patterns/command-wiring.md`
+ - `assets/deep-ai-council-dashboard.md`
+ 
+-Acceptance criteria: `ai-council-state.jsonl` contains a `council_complete` event — not necessarily the final line, since `artifact_written` audit events for the state log itself and each subsequent artifact write typically follow it (see `references/structure/state-format.md` §5.1) — the final report exists, and any failed rounds are preserved under `failed/`.
++Acceptance criteria:
++
++- `ai-council-state.jsonl` contains a `council_complete` event, not necessarily the final line: `artifact_written` audit events for the state log itself and each subsequent artifact write typically follow it (see `references/structure/state-format.md` §5.1).
++- The final report exists.
++- Any failed rounds are preserved under `failed/`.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md
+index cf8ba6669f0..a33894abd93 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/integration/quick-reference.md
+@@ -19,6 +19,12 @@ Use this page when you need the council shape, the artifact contract, and the va
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++An operator's shortest path from a planning question to validated, persisted artifacts.
++
++### When to Use
++
+ Use `deep-ai-council` when a plan has meaningful strategic disagreement. The council compares options, forces cross-seat critique, records convergence state, and hands a planning result back to the caller.
+ 
+ Do not use it for implementation, single-answer lookup, or code review. Use `deep-research` for iterative investigation and `deep-review` for iterative code audit.
+@@ -38,7 +44,19 @@ Do not use it for implementation, single-answer lookup, or code review. Use `dee
+ 
+ ---
+ 
+-## 3. COMMANDS
++## 3. STOP AND ESCALATE
++
++Escalate instead of persisting when any of these hold:
++
++- No packet/spec folder is resolved.
++- Required report sections from `references/structure/output-schema.md` are missing.
++- A run claims external AI participation that did not actually happen.
++- Seats disagree on a material blocker after the allowed round count.
++- A caller asks the council itself to modify implementation files or graph storage.
++
++---
++
++## 4. COMMANDS
+ 
+ Persist a captured council report:
+ 
+@@ -62,11 +80,12 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-
+ 
+ ---
+ 
+-## 4. ARTIFACTS
++## 5. ARTIFACTS
+ 
+ | Artifact | Owner | Purpose |
+ |----------|-------|---------|
+ | `ai-council-config.json` | Caller or orchestrator | Current run settings and round limits |
++| `ai-council-strategy.md` | Persistence helper | First-run charter: task framing, selected lenses, executor targets and the convergence rule |
+ | `ai-council-state.jsonl` | Persistence helper | Append-only event log |
+ | `council-report.md` | Council output, caller persisted | Final planning report |
+ | `seats/round-NNN/*.md` | Persistence helper | Per-seat proposals |
+@@ -77,18 +96,6 @@ The packet-local `ai-council/**` tree is authoritative. Derived graph rows are r
+ 
+ ---
+ 
+-## 5. STOP AND ESCALATE
+-
+-Escalate instead of persisting when any of these hold:
+-
+-- No packet/spec folder is resolved.
+-- Required report sections from `references/structure/output-schema.md` are missing.
+-- A run claims external AI participation that did not actually happen.
+-- Seats disagree on a material blocker after the allowed round count.
+-- A caller asks the council itself to modify implementation files or graph storage.
+-
+----
+-
+ ## 6. VALIDATION
+ 
+ ```bash
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md
+index bc8ee912474..1ebf4c00193 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/anti-patterns.md
+@@ -19,6 +19,16 @@ These patterns degrade council quality by replacing deliberation with repetition
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++A council report whose rigor can be checked, not assumed.
++
++### When to Use
++
++- Auditing a council report before accepting its consensus.
++- Diagnosing a run that converged too easily.
++- Repairing a report that lost attribution or simulated labels.
++
+ The AI Council exists to produce better plans through diverse lenses, real critique, scoring, and scoped persistence.
+ 
+ Anti-patterns break that contract. They make the council look rigorous while removing the evidence, disagreement, or boundary discipline that makes it useful.
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md
+index cad511d8c2b..3dc63fbd1ad 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md
+@@ -137,6 +137,7 @@ This is a documentation-only pattern. This pattern does not edit live `/speckit:
+ | `--round NNN` | No | Round number for generated seat and deliberation paths. Defaults to `1`. |
+ | `--strict-output` | No | Omits placeholder optional sections from rendered artifacts. |
+ | `--memory-save-payload-out FILE` | No | Writes a `generate-context.js` compatible JSON payload when the council completes. |
++| `--not-converged` | No | Records convergence:false on the persisted council_complete event when the round ceiling was reached without a converged report |
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md
+index 51c1a17015d..3af238f1b78 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md
+@@ -22,6 +22,16 @@ Each round uses at most 3 seats. The goal is useful disagreement, not more copie
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++A council that earns its extra cost by comparing genuinely different judgments.
++
++### When to Use
++
++- Choosing two or three lenses for a round.
++- Pairing a lens with a vantage target.
++- Sizing a round before dispatch.
++
+ Seat diversity is the council's first quality gate. A council that repeats the same reasoning path three times has spent more compute without gaining more judgment.
+ 
+ | Task Type | Recommended Lenses | Why |
+@@ -53,7 +63,7 @@ Use different strategy lenses for each seat. The temperature values describe the
+ 
+ > **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats - no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
+ >
+-> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §1` Operational Modes and `§5` ALWAYS rule 6 / NEVER rule 5.
++> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §3` Operational Modes and `§5` ALWAYS rule 6 / NEVER rule 5.
+ 
+ Vantage = the CLI whose model bench supplies the round's seats. Each row below is a complete round option:
+ 
+@@ -135,7 +145,8 @@ Analytical + Critical + Pragmatic
+ 
+ ### 2. Vantage Diversity (within a single round)
+ 
+-Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/glm-5.3-flash`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
++- **Within one round**: vantage diversity comes from different models or reasoning levels on the same CLI (for example, on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/glm-5.3-flash`; on `cli-claude-code`: Opus + Haiku).
++- **Across rounds**: cross-CLI diversity is staged as additional rounds, and each round runs on one CLI only.
+ 
+ If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md
+index 441bdb96a7e..5a5a9ad943c 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/findings-registry.md
+@@ -19,14 +19,18 @@ The findings registry stores council findings across topics with fingerprint-bas
+ 
+ ## 1. OVERVIEW
+ 
+-### Core Principle
++### Purpose
+ 
+-Findings persist across topics. Fingerprints prevent duplicates. Locking prevents corruption.
++Keep what the council has already established available to later topics, so a repeated claim is recognised instead of re-argued.
+ 
+ ### When to Use
+ 
+ Use the registry when you need to track findings across multiple topics in a session and retrieve priors for later topics.
+ 
++### Core Principle
++
++Findings persist across topics. Fingerprints prevent duplicates. Locking prevents corruption.
++
+ ### Key Sources
+ 
+ - Registry implementation: `scripts/lib/findings-registry.cjs`
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
+index 40970d04cb0..393e1689b5d 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
+@@ -19,10 +19,14 @@ Use this reference when synthesizing council seats into a scored, attributed pla
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ Subjective picking is the failure mode this rubric prevents.
+ 
+ A AI Council run should not adopt the first plausible plan, the most familiar plan, or the plan with the most confident language. It should score every returned seat against the same planning rubric, run cross-critique when disagreement is close or suspiciously absent, and compose a final plan from supported elements.
+ 
++### When to Use
++
+ This reference applies to planning-only council synthesis.
+ 
+ The council:
+@@ -265,7 +269,10 @@ Use this matrix after scoring and critique.
+ | Strategy timeout/failure | Score remaining seats, note incomplete data |
+ | Simulated external vantage only | Label it as simulated; do not imply external execution |
+ 
+-Close races merge only elements that improve the plan without bloating it. All-low-score rounds escalate for reframing. Timeout rows remain visible as `TIMEOUT (N/A)` and are excluded from scored totals. Simulated external vantages must be labeled as simulated unless the CLI or native agent actually executed.
++- Close races merge only elements that improve the plan without bloating it.
++- All-low-score rounds escalate for reframing.
++- Timeout rows remain visible as `TIMEOUT (N/A)` and are excluded from scored totals.
++- Simulated external vantages must be labeled as simulated unless the CLI or native agent actually executed.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md
+index 2d1ea91f798..4643e01fb4e 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md
+@@ -19,6 +19,15 @@ Packet-local artifact layout for completed AI Council runs.
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Make every file a completed council run leaves behind traceable to the record it holds and the writer that produced it.
++
++### When to Use
++
++- You are starting a council run and need to know what it will write.
++- You are inspecting a completed run and need to find the record for a round, a seat, or a rollback.
++
+ **Persistence is mandatory for every council run.** The target packet path is resolved by the agent at §1 Step 0 RESOLVE in `deep-ai-council.md` across all 4 runtime mirrors. When invocation cannot resolve a packet path, the agent HALT-and-ASKs the user for one and does NOT dispatch council seats, so the layout below applies to every completed deliberation.
+ 
+ The `ai-council/` folder is the packet-local artifact home for `@deep-ai-council` runs. It mirrors the familiar shape of `research/` and `review/`: configuration, strategy, append-only state, per-round evidence, and a final synthesized report.
+@@ -65,7 +74,10 @@ specs/<track>/<NNN-name>/ai-council/
+ 
+ **Schema authority:** the §8 OUTPUT FORMAT shape this layout is derived from is documented at `references/structure/output-schema.md`.
+ 
+-Cross-references:
++---
++
++## 2. CROSS-REFERENCES
++
+ - Agent body: `.skilled/agents/ai-council.md` §12 OUTPUT PROTOCOL (this layout) + §13 INVOCATION CONTRACT + §14 STATE SCHEMA + §16 COUNCIL PERSISTENCE PROTOCOL + §18 ROLLBACK FOR OPERATORS
+ - Council writer library: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`
+ - Helper fallback: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md
+index 9cf7513791f..04d39ccc966 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/output-schema.md
+@@ -18,20 +18,23 @@ Markdown contract for AI Council report sections and the persistence helper pars
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
+ This document is the single source of truth for the `@deep-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
+ 
+-The report remains markdown, not JSON. The helper accepts normal heading variation, extracts the strict-required sections, and degrades gracefully for optional narrative sections.
++### When to Use
+ 
+-Cross-references:
++- You are changing the report sections `@deep-ai-council` must return.
++- You are debugging why `persist-artifacts.cjs` rejected a report or wrote placeholders for optional sections.
+ 
+-- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
+-- Runtime mirror: `.claude/agents/ai-council.md`
+-- Helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
++The report remains markdown, not JSON. The helper accepts normal heading variation, extracts the strict-required sections, and degrades gracefully for optional narrative sections.
+ 
+ ---
+ 
+ ## 2. REQUIREDNESS MATRIX
+ 
++Strict-required means the helper must fail before writing any files. Optional means the helper can still produce a valid artifact tree.
++
+ | Section name | Strict-required | Helper behavior on missing |
+ | --- | --- | --- |
+ | Council Composition | Y | `parseCouncilReport()` returns `ok:false`; CLI exits 1 before writes |
+@@ -49,8 +52,6 @@ Cross-references:
+ | Risks & Mitigations | N | Rendered when present; placeholder or omitted per optional policy |
+ | Planning-Only Boundary | N | Preserved in `council-report.md`; callers still enforce planning-only permissions |
+ 
+-Strict-required means the helper must fail before writing any files. Optional means the helper can still produce a valid artifact tree.
+-
+ ---
+ 
+ ## 3. HEADING ALIASES
+@@ -133,3 +134,11 @@ Changes to this schema require lockstep updates in the same commit:
+ 5. Run the mirror parity test and helper fixture test.
+ 
+ Do not change one surface alone. Split-brain between §8 prose, parser behavior, and fixtures makes persisted council artifacts unreliable.
++
++---
++
++## 7. CROSS-REFERENCES
++
++- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
++- Runtime mirror: `.claude/agents/ai-council.md`
++- Helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md
+index a5f0d3642ae..9fad956a9b2 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md
+@@ -19,6 +19,16 @@ version: 1.7.0.13
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Make the event log sufficient to tell an interrupted run from a completed one.
++
++### When to Use
++
++- You are resuming an interrupted council run.
++- You are verifying that a run completed and its artifacts were written.
++- You are adding or changing a state event type.
++
+ Every council run MUST include a `council_complete` event once the round completes and convergence is known. Runs that exit before `council_complete` is written are incomplete and should be resumed or rolled back before completion is claimed. `council_complete` is not necessarily the final line in the file: each artifact write that follows it (the state log itself, config, strategy, deliberation, report, and seat files) appends its own `artifact_written` audit event — see §5.1.
+ 
+ ```ts
+@@ -153,7 +163,7 @@ This follows agent body §14 and ADR-001 in the internal design notes.
+ 
+ ---
+ 
+-## 5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)
++### 5.1 WORKED EXAMPLE (V1.2 AUDIT TRAIL)
+ 
+ v1.2 adds audit events to the same append-only JSONL. Each artifact write records the relative `ai-council/` path, byte count, sha256 checksum, timestamp, optional seat id, and round id.
+ 
+@@ -168,7 +178,7 @@ v1 readers must ignore `artifact_written`, `rollback`, and `artifact_superseded`
+ 
+ ---
+ 
+-## 5.2 PROGRESS RECORD (v1.3, shared cross-mode)
++### 5.2 PROGRESS RECORD (v1.3, shared cross-mode)
+ 
+ A cross-cutting additive event type shared by all deep-loop modes (council, context, review, research). It provides step-transition liveness: `started`/`completed` pairs around long steps so the no-progress watchdog resets without masking genuine stalls. A progress record is NOT an iteration, a seat return, or a synthesis event — it is purely a liveness signal.
+ 
+@@ -190,6 +200,10 @@ type ProgressRecord = {
+ };
+ ```
+ 
++Threshold T derivation:
++
++T is half the watchdog no-progress window. The benchmark runner's watchdog fires after 120s of no new event AND no artifact mtime change, so a progress pair at T=60s resets the timer with a 60s margin for the watchdog to still catch a genuine stall if the step hangs after the `started` record.
++
+ Rules:
+ 
+ - Append one `started` record immediately before any step expected to run longer than T without another state-log append or artifact write.
+@@ -198,10 +212,6 @@ Rules:
+ - At least one work-anchored field (`progress_delta` > 0 or a non-empty `artifact_path`) must be present on the `completed` record so a consumer can reject a zero-delta no-op pair (GAP-35). A pair with neither is invalid.
+ - `progress_delta` is a numeric unit-count (items, seats, bytes, etc.) scoped to the step. `artifact_path` is optional and only present when the transition produced or settled a concrete artifact.
+ 
+-Threshold T derivation:
+-
+-T is half the watchdog no-progress window. The benchmark runner's watchdog fires after 120s of no new event AND no artifact mtime change, so a progress pair at T=60s resets the timer with a 60s margin for the watchdog to still catch a genuine stall if the step hangs after the `started` record.
+-
+ Reducer allowlist (GAP-30):
+ 
+ Every completion reducer that derives completion from a `*-state.jsonl` uses an explicit allowlist of completion-bearing record types (`iteration`, `event`) and ignores `type:'progress'` / `event:'progress_record'` for completion math. A progress record can never be counted as a completion, an iteration, or a terminal stop. This is enforced by the shared `filterCompletionBearingRecords` helper imported by every reducer.
+@@ -212,7 +222,12 @@ v1 readers must ignore `progress_record` events without error. v1.3 readers use
+ 
+ ## 6. RESUME SEMANTICS
+ 
+-The last completed event determines the next action. If `round_start` exists without all expected `seat_returned` events, redo or complete that round. If all seats returned but `deliberation_synthesized` is missing, synthesize deliberation. If deliberation exists but `round_end` is missing, close the round. If `council_complete` exists, treat the council as done unless the user requests another round.
++The last completed event determines the next action.
++
++- `round_start` exists without all expected `seat_returned` events: redo or complete that round.
++- All seats returned but `deliberation_synthesized` is missing: synthesize deliberation.
++- Deliberation exists but `round_end` is missing: close the round.
++- `council_complete` exists: treat the council as done unless the user requests another round.
+ 
+ ---
+ 
+@@ -220,7 +235,10 @@ The last completed event determines the next action. If `round_start` exists wit
+ 
+ Per ADR-003, validation is convention-only for v1. Do not add a runtime schema validator unless a follow-on packet proves real drift.
+ 
+-Cross-references:
++---
++
++## 8. CROSS-REFERENCES
++
+ - Agent body: `.skilled/agents/ai-council.md` §14
+ - Decision context: ADR-001 in internal design notes
+ - Decision context: local doctor command ADRs ADR-003 and ADR-004

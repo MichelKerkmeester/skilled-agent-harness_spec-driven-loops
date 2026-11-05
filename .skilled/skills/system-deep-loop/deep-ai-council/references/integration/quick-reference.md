@@ -8,7 +8,7 @@ trigger_phrases:
   - "council validation"
 importance_tier: "normal"
 contextType: "general"
-version: 1.7.0.4
+version: 1.7.1.0
 ---
 
 # AI Council Quick Reference
@@ -18,6 +18,12 @@ Use this page when you need the council shape, the artifact contract, and the va
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+An operator's shortest path from a planning question to validated, persisted artifacts.
+
+### When to Use
 
 Use `deep-ai-council` when a plan has meaningful strategic disagreement. The council compares options, forces cross-seat critique, records convergence state, and hands a planning result back to the caller.
 
@@ -38,7 +44,19 @@ Do not use it for implementation, single-answer lookup, or code review. Use `dee
 
 ---
 
-## 3. COMMANDS
+## 3. STOP AND ESCALATE
+
+Escalate instead of persisting when any of these hold:
+
+- No packet/spec folder is resolved.
+- Required report sections from `references/structure/output-schema.md` are missing.
+- A run claims external AI participation that did not actually happen.
+- Seats disagree on a material blocker after the allowed round count.
+- A caller asks the council itself to modify implementation files or graph storage.
+
+---
+
+## 4. COMMANDS
 
 Persist a captured council report:
 
@@ -62,11 +80,12 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-
 
 ---
 
-## 4. ARTIFACTS
+## 5. ARTIFACTS
 
 | Artifact | Owner | Purpose |
 |----------|-------|---------|
 | `ai-council-config.json` | Caller or orchestrator | Current run settings and round limits |
+| `ai-council-strategy.md` | Persistence helper | First-run charter: task framing, selected lenses, executor targets and the convergence rule |
 | `ai-council-state.jsonl` | Persistence helper | Append-only event log |
 | `council-report.md` | Council output, caller persisted | Final planning report |
 | `seats/round-NNN/*.md` | Persistence helper | Per-seat proposals |
@@ -74,18 +93,6 @@ node .skilled/skills/system-deep-loop/deep-ai-council/scripts/replay-graph-from-
 | `failed/round-NNN-*` | Persistence helper | Preserved failed or superseded rounds |
 
 The packet-local `ai-council/**` tree is authoritative. Derived graph rows are rebuildable support, not source of truth.
-
----
-
-## 5. STOP AND ESCALATE
-
-Escalate instead of persisting when any of these hold:
-
-- No packet/spec folder is resolved.
-- Required report sections from `references/structure/output-schema.md` are missing.
-- A run claims external AI participation that did not actually happen.
-- Seats disagree on a material blocker after the allowed round count.
-- A caller asks the council itself to modify implementation files or graph storage.
 
 ---
 

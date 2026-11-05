@@ -7,7 +7,7 @@ trigger_phrases:
   - "persist-artifacts parser contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.0.12
+version: 1.7.1.0
 ---
 
 # AI Council Output Schema
@@ -18,19 +18,22 @@ Markdown contract for AI Council report sections and the persistence helper pars
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This document is the single source of truth for the `@deep-ai-council` §8 OUTPUT FORMAT. The agent body uses §8 to tell the planning LEAF what report to return; `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` uses this contract to parse that report and persist packet-local `ai-council/` artifacts.
 
+### When to Use
+
+- You are changing the report sections `@deep-ai-council` must return.
+- You are debugging why `persist-artifacts.cjs` rejected a report or wrote placeholders for optional sections.
+
 The report remains markdown, not JSON. The helper accepts normal heading variation, extracts the strict-required sections, and degrades gracefully for optional narrative sections.
-
-Cross-references:
-
-- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
-- Runtime mirror: `.claude/agents/ai-council.md`
-- Helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`
 
 ---
 
 ## 2. REQUIREDNESS MATRIX
+
+Strict-required means the helper must fail before writing any files. Optional means the helper can still produce a valid artifact tree.
 
 | Section name | Strict-required | Helper behavior on missing |
 | --- | --- | --- |
@@ -48,8 +51,6 @@ Cross-references:
 | Dropped Alternatives | N | Rendered when present; placeholder or omitted per optional policy |
 | Risks & Mitigations | N | Rendered when present; placeholder or omitted per optional policy |
 | Planning-Only Boundary | N | Preserved in `council-report.md`; callers still enforce planning-only permissions |
-
-Strict-required means the helper must fail before writing any files. Optional means the helper can still produce a valid artifact tree.
 
 ---
 
@@ -133,3 +134,11 @@ Changes to this schema require lockstep updates in the same commit:
 5. Run the mirror parity test and helper fixture test.
 
 Do not change one surface alone. Split-brain between §8 prose, parser behavior, and fixtures makes persisted council artifacts unreliable.
+
+---
+
+## 7. CROSS-REFERENCES
+
+- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
+- Runtime mirror: `.claude/agents/ai-council.md`
+- Helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`

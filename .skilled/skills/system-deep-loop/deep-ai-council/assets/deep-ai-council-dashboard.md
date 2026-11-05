@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep ai council dashboard"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.2
+version: 1.7.1.0
 ---
 
 # Deep AI Council Dashboard
@@ -17,6 +17,14 @@ Use this dashboard to report council status without re-reading every seat output
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+One page of tables that shows where a council run stands, what each seat recommended and which artifacts already exist.
+
+### Usage
+
+Replace each placeholder with the run's values and refresh the status and next action as the run moves.
 
 | Field | Value |
 |-------|-------|

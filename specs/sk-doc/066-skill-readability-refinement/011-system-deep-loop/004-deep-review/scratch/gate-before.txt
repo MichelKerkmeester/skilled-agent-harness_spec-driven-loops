@@ -1,0 +1,8 @@
+.skilled/skills/system-deep-loop/deep-review/SKILL.md:266: render_section_order: "REFERENCES AND RELATED RESOURCES" must be the last H2; it is followed by "SUCCESS CRITERIA".
+.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md:51: render_h2_numbering: H2 number carries a letter suffix ("2A."); use integers only.
+.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md:108: render_h2_numbering: H2 number carries a letter suffix ("10A."); use integers only.
+INVALID .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md: ['Missing required section: overview']
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:580: render_h2_numbering: Unnumbered H2 "OPTIMIZER-TUNABLE THRESHOLDS" among numbered peers; number every section.
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:732: render_h2_numbering: Unnumbered H2 "Executor Selection Contract" among numbered peers; number every section.
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md:691: render_section_order: "RELATED RESOURCES" must be the last H2; it is followed by "Executor Selection Contract".
+files=17 render_warnings=6 invalid=1

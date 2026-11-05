@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 1.8.2.0
+version: 1.8.3.0
 ---
 
 # deep-ai-council
@@ -134,7 +134,7 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 
 ### Behavior Benchmark
 
-`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the `033-deep-loop-behavior-benchmarks` packet.
+`behavior-benchmark/` (ACB scenarios) measures what an executor model actually does at the `/deep:ai-council` command surface under realistic vague/concise prompts: whether it convenes diverse seats (scored on **persisted seat artifacts**, since the common council is in-CLI with no task dispatch), how it presents, whether it stalls, and its latency versus a Claude baseline. Contracts + baselines live here; run evidence and the cross-mode scorecard live in the deep-loop behavior-benchmarks packet.
 
 ### Related Skills
 
@@ -211,8 +211,16 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 | [`references/patterns/seat-diversity-patterns.md`](./references/patterns/seat-diversity-patterns.md) | The six strategy lenses and task-type-to-lens recommendations |
 | [`references/structure/folder-layout.md`](./references/structure/folder-layout.md) | Packet-local artifact tree shape and writer ownership |
 | [`references/structure/state-format.md`](./references/structure/state-format.md) | Append-only JSONL event semantics |
+| [`references/convergence/deep-mode.md`](./references/convergence/deep-mode.md) | Deep-mode session, topic and round hierarchy with state files, cost guards and the runtime dependency |
+| [`references/convergence/failure-handling.md`](./references/convergence/failure-handling.md) | Seat timeout, all-seat failure, contradiction and insufficient-vantage guidance |
+| [`references/patterns/anti-patterns.md`](./references/patterns/anti-patterns.md) | Council quality failure modes, detection cues and recovery actions |
+| [`references/patterns/command-wiring.md`](./references/patterns/command-wiring.md) | Caller-owned post-dispatch persistence patterns |
+| [`references/integration/graph-support.md`](./references/integration/graph-support.md) | Derived council graph boundaries, tool surface and recovery behavior |
+| [`references/scoring/findings-registry.md`](./references/scoring/findings-registry.md) | Cross-topic findings registry, fingerprint dedup and filesystem locking |
 | [`assets/deep-ai-council-strategy.md`](./assets/deep-ai-council-strategy.md) | Round strategy template for seat setup and disagreement tracking |
 | [`assets/deep-ai-council-config.json`](./assets/deep-ai-council-config.json) | Config template with max rounds, anti-convergence floor and fail-closed stop policy |
+| [`assets/deep-ai-council-dashboard.md`](./assets/deep-ai-council-dashboard.md) | Status dashboard template for rounds, seats, convergence and artifact health |
+| [`assets/prompt-pack-round.md`](./assets/prompt-pack-round.md) | Seat prompt template with role, context slots, critique steps and verdict footer |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Full feature inventory across the nine categories |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation package with per-feature scenarios |
 

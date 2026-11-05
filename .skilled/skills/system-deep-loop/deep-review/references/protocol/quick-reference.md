@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.0.16
+version: 1.11.1.0
 ---
 
 # Deep Review Quick Reference
@@ -168,10 +168,10 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 Each @deep-review iteration:
 1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
 2. Determine focus dimension from strategy "Next Focus"
-4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
-5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
-6. Update `deep-review-strategy.md` (findings, coverage, next focus)
-7. Append iteration record to `deep-review-state.jsonl`
+3. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+4. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+5. Update `deep-review-strategy.md` (findings, coverage, next focus)
+6. Append iteration record to `deep-review-state.jsonl`
 
 ---
 

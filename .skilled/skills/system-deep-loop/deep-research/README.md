@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.2.0
+version: 1.14.3.0
 ---
 
 # deep-research
@@ -38,7 +38,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
 
 `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
 
-It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json); this packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
+It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json). This packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
 
 ---
 
@@ -75,11 +75,20 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
-Lifecycle controls now include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
+Lifecycle controls include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
 
 ### Externalized State
 
-All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory. The config file (`deep-research-config.json`) holds settings. The append-only JSONL log (`deep-research-state.jsonl`) records every iteration, event and convergence signal. The strategy file (`deep-research-strategy.md`) tracks focus areas, what worked, what failed and exhausted approaches. The findings registry (`findings-registry.json`) indexes every discovery. The dashboard (`deep-research-dashboard.md`) shows convergence trends. The reducer machine-owns the strategy sections, the registry and the dashboard. The agent writes only iteration files and JSONL records. The workflow owns the canonical `research.md`.
+All continuity lives in packet files under `{spec_folder}/research/`, not in conversation memory.
+
+- **Config:** `deep-research-config.json` holds settings.
+- **Log:** the append-only `deep-research-state.jsonl` records every iteration, event and convergence signal.
+- **Strategy:** `deep-research-strategy.md` tracks focus areas, what worked, what failed and exhausted approaches.
+- **Registry:** `findings-registry.json` indexes every discovery.
+- **Dashboard:** `deep-research-dashboard.md` shows convergence trends.
+- **Reducer:** machine-owns the strategy sections, the registry and the dashboard.
+- **Agent:** writes only iteration files and JSONL records.
+- **Workflow:** owns the canonical `research.md`.
 
 Because state is on disk, a crashed run resumes from the packet files. Use `/deep:research:auto` again and the workflow picks up the active lineage.
 
@@ -202,7 +211,7 @@ Expected output: zero issues reported.
 | [`references/state/state-jsonl.md`](./references/state/state-jsonl.md) | Config, iteration, event, lineage, graph and blocked-stop JSONL record types |
 | [`references/state/state-outputs.md`](./references/state/state-outputs.md) | Strategy, iteration markdown, report, dashboard, resource-map and spec anchoring outputs |
 | [`references/state/state-reducer-registry.md`](./references/state/state-reducer-registry.md) | Reducer ownership, findings registry, validation, reconstruction and file protection |
-| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across OpenCode, Claude and OpenCode executors |
+| [`references/guides/capability-matrix.md`](./references/guides/capability-matrix.md) | Runtime parity source of truth across the OpenCode / Copilot and Claude executors |
 | [`scripts/reduce-state.cjs`](./scripts/reduce-state.cjs) | The agreement-weighted findings reducer, dashboard generator and convergence evaluator |
 | [`scripts/runtime-capabilities.cjs`](./scripts/runtime-capabilities.cjs) | Machine-readable capability lookup for the active runtime |
 | [`assets/deep-research-config.json`](./assets/deep-research-config.json) | Config template with defaults for max iterations, convergence threshold and executor |

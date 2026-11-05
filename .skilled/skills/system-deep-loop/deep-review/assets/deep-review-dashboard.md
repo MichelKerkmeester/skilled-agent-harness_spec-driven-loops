@@ -8,7 +8,7 @@ trigger_phrases:
   - "review coverage trend"
 importance_tier: normal
 contextType: general
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # Deep Review Dashboard - Session Overview
@@ -77,7 +77,7 @@ Provides a compact, human-readable summary of the current review session. Serves
 
 | # | Focus | Files | Dimensions | New P0/P1/P2 | Ratio | Status |
 |---|-------|-------|------------|---------------|-------|--------|
-| [per iteration from JSONL] |
+| [iteration, from JSONL] | [focus] | [files] | [dimensions] | [P0/P1/P2] | [ratio] | [status] |
 <!-- MACHINE-OWNED: END -->
 
 ---

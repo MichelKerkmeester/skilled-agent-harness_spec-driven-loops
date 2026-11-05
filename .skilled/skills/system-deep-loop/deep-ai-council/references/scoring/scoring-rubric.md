@@ -8,7 +8,7 @@ trigger_phrases:
   - "council comparison table"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.8
+version: 1.7.1.0
 ---
 
 # AI Council Scoring Rubric
@@ -19,9 +19,13 @@ Use this reference when synthesizing council seats into a scored, attributed pla
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Subjective picking is the failure mode this rubric prevents.
 
 A AI Council run should not adopt the first plausible plan, the most familiar plan, or the plan with the most confident language. It should score every returned seat against the same planning rubric, run cross-critique when disagreement is close or suspiciously absent, and compose a final plan from supported elements.
+
+### When to Use
 
 This reference applies to planning-only council synthesis.
 
@@ -265,7 +269,10 @@ Use this matrix after scoring and critique.
 | Strategy timeout/failure | Score remaining seats, note incomplete data |
 | Simulated external vantage only | Label it as simulated; do not imply external execution |
 
-Close races merge only elements that improve the plan without bloating it. All-low-score rounds escalate for reframing. Timeout rows remain visible as `TIMEOUT (N/A)` and are excluded from scored totals. Simulated external vantages must be labeled as simulated unless the CLI or native agent actually executed.
+- Close races merge only elements that improve the plan without bloating it.
+- All-low-score rounds escalate for reframing.
+- Timeout rows remain visible as `TIMEOUT (N/A)` and are excluded from scored totals.
+- Simulated external vantages must be labeled as simulated unless the CLI or native agent actually executed.
 
 ---
 

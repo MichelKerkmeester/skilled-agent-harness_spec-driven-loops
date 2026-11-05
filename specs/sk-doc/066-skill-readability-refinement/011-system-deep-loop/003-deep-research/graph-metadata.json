@@ -36,13 +36,28 @@
       "binding"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/findings.md",
+      ".skilled/skills/system-deep-loop/deep-research/README.md",
+      ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-graph.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md",
+      ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md"
     ],
     "entities": [
       {
@@ -76,13 +91,97 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "findings.md",
+        "kind": "doc",
+        "path": "scratch/findings.md",
         "source": "derived"
       },
       {
-        "name": "Status Draft",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-graph.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-recovery.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-reference-only.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-signals.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-matrix.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-snapshot.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -104,95 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Clean Architecture",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "and",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The docs of the `deep-research` mode were never read as a whole for readability, layout and structure",
     "created_at": "2026-11-04T07:16:52Z",
-    "last_save_at": "2026-11-04T19:54:05.285Z",
+    "last_save_at": "2026-11-05T04:32:04.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f9c0e0069d851b46b995b160ba9ddf80c4b4f843750bdcff1e320ba556d46975",
+    "source_fingerprint": "sha256:b5347512d2fc103088acda40f6a86561b299c20b0d86bdad693d6b7c9647e5ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3edf838bbdcbc9712fcdfcf2f7c0bd5f53c5b73b83c7cb5b906229c8768bbbf6",
-      "plan.md": "6b7f781164b91db20e7c81a9f520d56c35a4ad8a2fbfca83afa6dc3ecb509383",
-      "tasks.md": "c28b1a382a8881d93e50f049a60b214e2987adf1e914d9a3c45189d9e521a741",
-      "implementation-summary.md": "159147efdb857961159ab8af428afc8695a70d5fd62e9692b15b6b21ec11b56e"
+      "spec.md": "fd63d5a9c412b49a371738919bc2020466af0cdd6769cdf814d342f243a8e597",
+      "plan.md": "d0254e4993dee2b2cc7221813542aa0ce6e795467a05f2e9897e63c308f098c4",
+      "tasks.md": "b45150cf939195ff5fdd88adcf69d861a21179bbbcb1011b64a459606bb47d9c",
+      "implementation-summary.md": "c96ca7b172d18aa902a20a0b231c01e23ab4a7668c69c3ed8e98c7f28b80eb29"
     },
     "last_active_at": null
   }

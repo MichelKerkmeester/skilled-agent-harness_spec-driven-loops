@@ -8,7 +8,7 @@ trigger_phrases:
   - "council validator graduation"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.12
+version: 1.7.1.0
 ---
 
 # AI Council Convergence Signals
@@ -18,6 +18,15 @@ This reference defines the lightweight v1 convergence signal and the conditions 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+The rule that lets a council round stop with a report, and the signals that block that stop.
+
+### When to Use
+
+- Deciding whether a round may declare convergence and write `council-report.md`
+- Explaining a round that ended without agreement
 
 Use `two-of-three-agree` for v1. If 2 of 3 seats endorse essentially the same plan and cross-critique produces no new high-severity findings, declare convergence and write `council-report.md`.
 
@@ -45,13 +54,9 @@ ADR-001 keeps the convention lightweight. Sophisticated convergence math is non-
 
 State schema and convergence fields are convention-only for v1. If drift appears in real council artifacts, graduate to a typed validator in a follow-on packet.
 
-Cross-references:
-- Agent body: `.skilled/agents/ai-council.md` §16
-- Decision context: local doctor command ADRs ADR-001 and ADR-003
-
 ---
 
-## Convergence Threshold Semantics
+## 5. CONVERGENCE THRESHOLD SEMANTICS
 
 **Default:** 0.20 (proposed) on adjudicator-verdict stability across rounds
 
@@ -62,3 +67,10 @@ Cross-references:
 - `deep-research` uses 0.05 default on newInfoRatio (negative-knowledge emphasis)
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts. See this skill's changelog and decision records for the cross-sibling threshold research and parity invariants that confirm thresholds do not carry across siblings.
+
+---
+
+## 6. CROSS-REFERENCES
+
+- Agent body: `.skilled/agents/ai-council.md` §16
+- Decision context: local doctor command ADRs ADR-001 and ADR-003

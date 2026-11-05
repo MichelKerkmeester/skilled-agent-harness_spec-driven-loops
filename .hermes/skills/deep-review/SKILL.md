@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.13.0
+version: 1.11.14.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 
@@ -98,6 +98,10 @@ Read [`ROUTER.md`](../../../.skilled/skills/system-deep-loop/deep-review/ROUTER.
 
 ## 3. HOW IT WORKS
 
+### Architecture
+
+`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop-protocol.md`.
+
 ### Resource Map Coverage Gate
 
 When `{spec_folder}/resource-map.md` exists at init, deep review treats it as a mandatory audit input and does four things:
@@ -122,10 +126,6 @@ The snapshot holds:
 
 Do not create a context-loop report or widen scope beyond the declared target.
 Use `@context` for quick retrieval, and `/speckit:plan` only when findings require implementation planning.
-
-### Architecture
-
-`/deep:review` owns the loop. The YAML workflow initializes state, dispatches one LEAF review iteration at a time, evaluates convergence, synthesizes `review-report.md`, and saves continuity. The LEAF agent reads state, reviews one dimension, writes `iteration-NNN.md`, updates strategy, and appends JSONL. Full 4-phase lifecycle: `references/protocol/loop-protocol.md`.
 
 ### State Packet Location
 
@@ -157,7 +157,11 @@ The four primary review dimensions (configured in `assets/review-mode-contract.y
 
 ### Lifecycle + Reducer Contract
 
-Review mode is lineage-aware. Supported lifecycle modes are `new`, `resume`, and `restart`. Required lineage fields include `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`. The reducer consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
+Review mode is lineage-aware.
+
+- **Lifecycle modes:** `new`, `resume`, and `restart`.
+- **Required lineage fields:** `sessionId`, `parentSessionId`, `lineageMode`, `generation`, `continuedFromRun`, and `releaseReadinessState`.
+- **Reducer contract:** consumes the latest JSONL delta, the new iteration file, and prior reduced state, then emits finding registry, dashboard metrics, and strategy updates.
 
 ### Severity Classification
 
@@ -242,7 +246,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 ### ⛔ NEVER
 
-1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 14).
+1. **Dispatch sub-agents**, `@deep-review` is LEAF-only. It cannot dispatch additional agents. When dispatch is requested, use the canonical REFUSE wording (ALWAYS rule 9).
 2. **Hold findings in context**, Write everything to iteration files. Context is discarded after each dispatch.
 3. **Exceed TCB**, Target 8-11 tool calls per iteration (max 12). Breadth over depth per cycle.
 4. **Ask the user**, Autonomous execution. The agent makes best-judgment decisions without pausing.
@@ -268,7 +272,7 @@ Executor settings are owned by the YAML workflow and rendered prompt pack -- nev
 
 ---
 
-## 5. REFERENCES AND RELATED RESOURCES
+## 5. REFERENCES
 
 The router discovers reference, asset and script docs dynamically.
 Start with these, in order:
@@ -293,8 +297,6 @@ Detailed contracts:
 - `references/protocol/loop-state-and-gates.md`: state transitions, error handling and STOP-decision gates.
 - `references/protocol/completion-criteria.md`: the full loop-completion, quality-gate and validation-success checklist.
 - `references/state/state-reducer-registry.md`: two-tier content-hash dedup.
-
-Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.
 
 ---
 
@@ -343,3 +345,7 @@ Key integrations:
 ### Code Graph Integration
 
 The review loop consumes the shared runtime graph and its strict mode-gate validator; packet-specific convergence and state rules remain in this skill.
+
+### Related Skills
+
+Related skills: `deep-research` for investigation loops, `sk-code`'s code-review mode for single-pass review doctrine, and `system-spec-kit` for command-owned state and continuity saves.

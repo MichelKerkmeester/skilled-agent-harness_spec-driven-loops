@@ -8,7 +8,7 @@ trigger_phrases:
   - "recursive council"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.7
+version: 1.7.1.0
 ---
 
 # AI Council Anti-Patterns
@@ -18,6 +18,16 @@ These patterns degrade council quality by replacing deliberation with repetition
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+A council report whose rigor can be checked, not assumed.
+
+### When to Use
+
+- Auditing a council report before accepting its consensus.
+- Diagnosing a run that converged too easily.
+- Repairing a report that lost attribution or simulated labels.
 
 The AI Council exists to produce better plans through diverse lenses, real critique, scoring, and scoped persistence.
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "council yaml workflow"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # AI Council Command Wiring
@@ -18,6 +18,16 @@ This reference defines the canonical post-dispatch wiring for callers that run `
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Durable packet artifacts for a returned council report, written by the caller that holds write access.
+
+### When to Use
+
+- A top-level caller dispatches `@deep-ai-council` and needs durable artifacts.
+- `@orchestrate` runs the council as a LEAF.
+- A command YAML or an external CLI playbook owns the persistence step.
 
 `@deep-ai-council` is planning-only. It returns a council report and cannot write, edit, patch, or run shell commands. The dispatching parent owns persistence by invoking `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs` after the report is captured.
 
@@ -137,6 +147,7 @@ This is a documentation-only pattern. This pattern does not edit live `/speckit:
 | `--round NNN` | No | Round number for generated seat and deliberation paths. Defaults to `1`. |
 | `--strict-output` | No | Omits placeholder optional sections from rendered artifacts. |
 | `--memory-save-payload-out FILE` | No | Writes a `generate-context.js` compatible JSON payload when the council completes. |
+| `--not-converged` | No | Records convergence:false on the persisted council_complete event when the round ceiling was reached without a converged report |
 
 ---
 

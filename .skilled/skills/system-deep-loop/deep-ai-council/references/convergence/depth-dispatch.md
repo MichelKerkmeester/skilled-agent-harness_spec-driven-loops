@@ -9,36 +9,20 @@ trigger_phrases:
   - "ndp compliant council"
 importance_tier: "important"
 contextType: "planning"
-version: 1.7.0.13
+version: 1.7.1.0
 ---
 
 # AI Council Depth Dispatch
 
 Depth controls whether a council may launch seats in parallel or must deliberate inline. The goal is useful diversity without illegal nesting.
 
-## Deep Mode (Iterative Multi-Topic)
-
-Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
-
-Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` or `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
-
-Deep mode uses a three-level state hierarchy:
-
-```text
-session
-  -> topic
-     -> round
-```
-
-The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
-
-Default cost guards are intentionally conservative: `max_rounds_per_topic = 3`, `max_topics_per_session = 5`, `saturation_threshold = 0.20`, and three seats per round. The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
-
-Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
-
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+A dispatch contract that keeps council work NDP-compliant at any nesting depth.
 
 The Multi-AI Council uses adaptive dispatch based on invocation depth.
 
@@ -54,7 +38,7 @@ Nested deliberation must not create nested agent dispatch.
 
 Depth dispatch is not about quality level. Depth 1 can still perform rigorous multi-seat deliberation. It simply performs that deliberation inside one context instead of spawning more agents.
 
-Use this reference when:
+### When to Use
 
 - a prompt includes `Depth: 1`;
 - an orchestrator dispatches `@deep-ai-council`;
@@ -64,7 +48,36 @@ Use this reference when:
 
 ---
 
-## 2. DEPTH DETECTION
+## 2. DEEP MODE (ITERATIVE MULTI-TOPIC)
+
+Deep mode is the iterative, multi-topic council workflow exposed through `/deep:ai-council`. It is additive to the existing single-round council behavior: regular `ai-council` runs still produce one planning report and packet-local `ai-council/**` artifacts, while deep mode owns a session loop with topic-by-topic rounds, adjudicator-verdict stability checks, and a session-wide findings registry.
+
+Use `/deep:ai-council:auto` for non-interactive bounded runs when setup answers are pre-bound, and `/deep:ai-council:confirm` when the operator should approve setup, loop, synthesis, and save gates. The command Markdown owns setup resolution and then loads `.skilled/commands/deep/assets/deep-ai-council-auto.yaml` or `.skilled/commands/deep/assets/deep-ai-council-confirm.yaml` for execution.
+
+Deep mode uses a three-level state hierarchy:
+
+```text
+session
+  -> topic
+     -> round
+```
+
+The session stores `council-session.json`, append-only session state, the session-wide findings registry, and `session-report.md`. Each topic stores topic config/state, per-topic reports, and round folders with seat, deliberation, critique, and verdict artifacts. Cross-topic priors move by registry fingerprint, not copied prose.
+
+Default cost guards are intentionally conservative:
+
+- `max_rounds_per_topic = 3`
+- `max_topics_per_session = 5`
+- `saturation_threshold = 0.20`
+- three seats per round
+
+The default upper bound is 45 seat outputs, but stable verdict deltas should stop topics earlier. Operators may tune these values through command setup answers, and `:auto` must surface the computed upper bound before dispatch.
+
+Choose deep mode when the planning problem has multiple separable topics, requires more than one round per topic, or needs auditable convergence/cost controls. Choose single-round council mode when one deliberation report is enough and extra loop machinery would only add cost.
+
+---
+
+## 3. DEPTH DETECTION
 
 Depth detection happens before DIVERSIFY or DISPATCH.
 
@@ -131,7 +144,7 @@ If depth is unclear:
 
 ---
 
-## 3. DEPTH 0: PARALLEL DISPATCH
+## 4. DEPTH 0: PARALLEL DISPATCH
 
 Depth 0 is the default top-level council mode.
 
@@ -170,7 +183,7 @@ Independence matters because the council needs genuine disagreement before it ca
 
 ---
 
-## 4. DEPTH 1: SEQUENTIAL VIA MCP
+## 5. DEPTH 1: SEQUENTIAL VIA MCP
 
 Depth 1 is the NDP-compliant nested mode.
 
@@ -223,7 +236,7 @@ It is compliant because:
 
 ---
 
-## 5. DECISION RULE FLOWCHART
+## 6. DECISION RULE FLOWCHART
 
 Use this decision rule before dispatch.
 
@@ -239,7 +252,7 @@ Am I dispatched by another agent?
 
 ---
 
-## 6. NO RECURSIVE COUNCILING
+## 7. NO RECURSIVE COUNCILING
 
 Recursive counciling is a hard block.
 
@@ -288,13 +301,13 @@ Dishonest label:
 cli-opencode agreed with cli-opencode.
 ```
 
-This also violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.
-
 Unless those tools actually ran (and were dispatched as separate rounds).
+
+This also violates the one-CLI-per-round invariant (these would need to be TWO dedicated rounds, not one). See `SKILL.md §5` ALWAYS rule 6.
 
 ---
 
-## 7. CROSS-REFERENCES
+## 8. CROSS-REFERENCES
 
 - Agent body: `.skilled/agents/ai-council.md` §0 ILLEGAL NESTING and §5 PARALLEL VS SEQUENTIAL.
 - Caller patterns: `../patterns/command-wiring.md`.

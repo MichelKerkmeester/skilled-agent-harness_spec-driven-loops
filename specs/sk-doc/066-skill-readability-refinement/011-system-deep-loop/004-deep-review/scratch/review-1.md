@@ -1,0 +1,2 @@
+VERDICT: FIX
+- [P2] .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md:30 | 4 | The fourth `When to Use` bullet was applied as `- Confirming the legal-stop gate conditions before synthesis.`, dropping the `six` that the finding specifies and that §4 enumerates; §4’s six conditions include the nine-gate bundle as condition 4, so the packet’s nine gates do not contradict the count. | replace `- Confirming the legal-stop gate conditions before synthesis.` with `- Confirming the six legal-stop conditions before synthesis.`

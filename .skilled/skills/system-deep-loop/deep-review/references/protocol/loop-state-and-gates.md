@@ -8,7 +8,7 @@ trigger_phrases:
   - "review iteration status enum"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.3
+version: 1.11.1.0
 ---
 
 # Deep Review State Transitions and Quality Gates
@@ -90,7 +90,7 @@ STOP is only final after convergence and quality gates agree.
 | Error | Phase | Action |
 |-------|-------|--------|
 | Agent dispatch timeout | Loop | Retry once with reduced scope. If second timeout, mark iteration as "timeout" and continue |
-| State file missing | Init/Loop | Apply state recovery cascade (Section 6) |
+| State file missing | Init/Loop | Apply state recovery cascade in `loop-protocol.md` §6 |
 | JSONL malformed | Loop | Skip malformed lines, reconstruct from valid entries |
 | 3+ consecutive failures | Loop | Halt loop, enter synthesis with partial findings |
 | Agent dispatch failure (API overload, timeout) | Loop | Escalate through recovery tiers in order |

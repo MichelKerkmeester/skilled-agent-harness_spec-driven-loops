@@ -8,7 +8,7 @@ trigger_phrases:
   - "review state reconstruction"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.5
+version: 1.11.1.0
 ---
 
 # Deep Review State Reducer And Registry
@@ -19,7 +19,15 @@ The reducer is the single writer for derived review state. Iteration agents appe
 
 ## 1. OVERVIEW
 
-The reducer turns append-only review evidence into the current findings registry, dashboard, and strategy state. It is the authority for derived outputs, not a second source of truth.
+### Purpose
+
+Keep the findings registry, dashboard, and strategy current by deriving them from append-only evidence under the reducer, never as a second source of truth.
+
+### When to Use
+
+- Deciding which writer owns a derived surface, or whether a hand edit is legitimate.
+- Recovering from corrupt JSONL, or rebuilding derived files that are missing.
+- Checking what a finding must carry before emission, and how duplicate findings collapse.
 
 ---
 
@@ -36,7 +44,10 @@ The reducer turns append-only review evidence into the current findings registry
 
 No agent should hand-edit reducer-owned derived state as the authoritative fix. Repair JSONL or rerun the reducer.
 
-Under ledger authority the JSONL the reducer reads is a projection of the ledger, bounded by the registered stems; the registered vocabulary and the producer census are in `state-format.md` section 11, and `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
+Under ledger authority the JSONL the reducer reads is a projection of the ledger, bounded by the registered stems.
+
+- The registered vocabulary and the producer census are in `state-format.md` section 11.
+- `.skilled/skills/system-deep-loop/runtime/scripts/check-ledger-stem-producers.cjs` holds the census to the emitter surface on disk.
 
 ---
 
@@ -54,33 +65,7 @@ Each active finding needs severity, category, file:line evidence, finding class,
 
 ---
 
-## 4. FAIL-CLOSED BEHAVIOR
-
-The reducer must refuse to publish derived state when JSONL is corrupt in strict mode. That protects dashboards and verdict previews from silently losing findings.
-
-Recovery order:
-
-1. Identify the malformed JSONL line.
-2. Repair or remove only the invalid appended record with an audit note.
-3. Re-run the reducer.
-4. Confirm registry and dashboard regenerate from the repaired log.
-
----
-
-## 5. RECONSTRUCTION
-
-When derived files are missing but JSONL and iteration markdown exist:
-
-1. Rebuild the registry from JSONL finding details.
-2. Rebuild dashboard metrics from registry and latest convergence events.
-3. Rebuild strategy from completed dimensions and active findings.
-4. Re-run synthesis only after reducer outputs are consistent.
-
-If JSONL is incomplete but iteration files exist, recovery is manual and must be recorded before release readiness is claimed.
-
----
-
-## 6. FINDING DEDUPLICATION
+## 4. FINDING DEDUPLICATION
 
 The reducer deduplicates findings at synthesis time using a two-tier match.
 
@@ -103,9 +88,36 @@ Every finding emitted into the JSONL delta (`findingDetails[]`) MUST include a `
 
 ---
 
+## 5. FAIL-CLOSED BEHAVIOR
+
+The reducer must refuse to publish derived state when JSONL is corrupt in strict mode. That protects dashboards and verdict previews from silently losing findings.
+
+Recovery order:
+
+1. Identify the malformed JSONL line.
+2. Repair or remove only the invalid appended record with an audit note.
+3. Re-run the reducer.
+4. Confirm registry and dashboard regenerate from the repaired log.
+
+---
+
+## 6. RECONSTRUCTION
+
+When derived files are missing but JSONL and iteration markdown exist:
+
+1. Rebuild the registry from JSONL finding details.
+2. Rebuild dashboard metrics from registry and latest convergence events.
+3. Rebuild strategy from completed dimensions and active findings.
+4. Re-run synthesis only after reducer outputs are consistent.
+
+If JSONL is incomplete but iteration files exist, recovery is manual and must be recorded before release readiness is claimed.
+
+---
+
 ## 7. RELATED RESOURCES
 
 - `scripts/reduce-state.cjs` is the reducer implementation.
 - `references/state/state-format.md` defines state records.
 - `references/state/state-outputs.md` defines operator-visible outputs.
 - `references/convergence/convergence-signals.md` defines STOP fields reducer views display.
+

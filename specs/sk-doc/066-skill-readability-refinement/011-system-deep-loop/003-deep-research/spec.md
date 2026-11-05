@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: deep-research"
-description: "[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
+description: "Read every in-scope doc of the deep-research mode for readability, layout and structure, apply the defects found and prove the result with the render checks and a second read."
 trigger_phrases:
   - "deep research"
   - "phase 3 deep research"
@@ -15,20 +15,19 @@ contextType: "general"
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
-<!-- FILL: Fill every row: level, priority, status, date and branch. Use the real branch name. GOOD: Priority P1. Status Draft. Branch `feat/rotate-logs-keep`. WEAK: Priority TBD. Status maybe. -->
 
 | Field | Value |
 |-------|-------|
 | **Level** | 1 |
-| **Priority** | [YOUR_VALUE_HERE: P0/P1/P2] |
-| **Status** | Draft |
+| **Priority** | P1 |
+| **Status** | Complete |
 | **Created** | 2026-11-04 |
-| **Branch** | `scaffold/003-deep-research` |
+| **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 3 of 4 |
 | **Predecessor** | 002-deep-ai-council |
 | **Successor** | 004-deep-review |
-| **Handoff Criteria** | [To be defined during planning] |
+| **Handoff Criteria** | The DeepSeek review passes the diff and the scope gate prints `render_warnings=0 invalid=0` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -36,35 +35,34 @@ contextType: "general"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 3** of the Refine 011-system-deep-loop specification.
+This phase covers the `deep-research` mode: 19 docs, listed in `scratch/scope.txt`.
 
-**Scope Boundary**: [To be defined during planning]
+**Scope Boundary**: the files in `scratch/scope.txt`. Changelogs, playbooks, feature catalogs, benchmarks and tests stay out.
 
 **Dependencies**:
-- [To be defined during planning]
+- The render checks in `validate_document.py` and the review rubric in the parent `spec.md`.
 
 **Deliverables**:
-- [To be defined during planning]
+- The refined docs, `scratch/findings.md`, the review rounds and `scratch/gate-after.txt`.
 <!-- /ANCHOR:phase-context -->
 
 ---
 
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
-<!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-[YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
+The docs of the `deep-research` mode were never read as a whole for readability, layout and structure. The render checks reported `files=19 render_warnings=4 invalid=0` before this phase, and they cannot judge order, density or whether an intro is a hook.
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Each doc follows its sk-doc template and the parent rubric, with no claim changed.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
-<!-- FILL: Run the command this change affects and paste the command and its verbatim output. Quote every number the spec states about current behavior from this block. Write `N/A:` and a reason when no command applies. GOOD: `bash scripts/rotate-logs.sh` with 10 archives, then `ls logs/archive | wc -l` prints 10. WEAK: The script deletes old logs. -->
 ```text
-[YOUR_VALUE_HERE: command and its verbatim output]
+$ python3 -I specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py specs/sk-doc/066-skill-readability-refinement/011-system-deep-loop/003-deep-research/scratch/scope.txt
+files=19 render_warnings=4 invalid=0
 ```
 <!-- /ANCHOR:measured-behavior -->
 
@@ -72,74 +70,86 @@ This is **Phase 3** of the Refine 011-system-deep-loop specification.
 
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
-<!-- FILL: List three to five things this change does, each starting with a verb. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- [YOUR_VALUE_HERE: Deliverable 1]
-- [YOUR_VALUE_HERE: Deliverable 2]
-- [YOUR_VALUE_HERE: Deliverable 3]
+- Audit each doc against the parent rubric with DeepSeek V4.1 Flash max (`cli-opencode`, opencode-go), with any scope write undone.
+- Apply the findings with DeepSeek V4.1 Flash high on the DevPass route.
+- Re-read the diff with DeepSeek V4.1 Flash max until it passes, at most three rounds.
 
 ### Out of Scope
-- [YOUR_VALUE_HERE: Excluded item 1] - [YOUR_VALUE_HERE: why]
-- [YOUR_VALUE_HERE: Excluded item 2] - [YOUR_VALUE_HERE: why]
+- Changing what a rule, contract or example says - the program refines form only.
+- Headings other files link to - `scratch/inbound-anchors.txt` lists them and they keep their text.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| [YOUR_VALUE_HERE: path/to/file.js] | [YOUR_VALUE_HERE: Modify/Create/Delete] | [YOUR_VALUE_HERE: Brief description] |
+| `.skilled/skills/system-deep-loop/deep-research/README.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/ROUTER.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-graph.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-reference-only.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-signals.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/context-snapshot.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md` | Modify | Readability, layout and structure |
 <!-- /ANCHOR:scope -->
 
 ---
 
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
-<!-- FILL: Write one testable requirement per row. Name the exact command or output. GOOD: With 10 archives, `bash scripts/rotate-logs.sh --keep 3` exits 0 and `ls logs/archive | wc -l` prints 3. WEAK: The option should work well. -->
 REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes the highest REQ id plus one. validate.sh does not link ids between files.
 
 ### P0 - Blockers (MUST complete)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-001 | Every in-scope doc stays valid with no render warning | `scope-gate.py` prints `render_warnings=0 invalid=0` |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-002 | [YOUR_VALUE_HERE: Requirement description] | [YOUR_VALUE_HERE: How to verify it's done] |
+| REQ-002 | A second model family passes the diff | The last `scratch/review-N.md` opens `VERDICT: PASS` |
 <!-- /ANCHOR:requirements -->
 
 ---
 
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
-<!-- FILL: Write one measurable outcome per line. A command can prove it. GOOD: With 10 archives in `logs/archive`, `bash scripts/rotate-logs.sh --keep 3` leaves 3. WEAK: The feature is successful. -->
 
-- **SC-001**: [YOUR_VALUE_HERE: Primary measurable outcome]
-- **SC-002**: [YOUR_VALUE_HERE: Secondary measurable outcome]
+- **SC-001**: The scope gate prints `render_warnings=0 invalid=0`.
+- **SC-002**: The last review opens `VERDICT: PASS`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
 
 <!-- ANCHOR:risks -->
 ## 6. RISKS & DEPENDENCIES
-<!-- FILL: Name one dependency and one risk. Give each a concrete mitigation. GOOD: A script that reads `--keep` with no value could delete every archive. Mitigation: reject a missing value with exit 2 and test it. WEAK: There may be some risk. -->
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | [YOUR_VALUE_HERE: System/API] | [YOUR_VALUE_HERE: What if blocked] | [YOUR_VALUE_HERE: Fallback plan] |
-| Risk | [YOUR_VALUE_HERE: Risk description] | [YOUR_VALUE_HERE: High/Med/Low] | [YOUR_VALUE_HERE: Mitigation strategy] |
+| Dependency | opencode-go and llmgateway DeepSeek | A step cannot run | On a quota stop, stop and ask; never re-route |
+| Risk | A fix changes a claim while moving text | Med | The review checks claims against the diff each round |
 <!-- /ANCHOR:risks -->
 
 ---
 
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
-<!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- [YOUR_VALUE_HERE: Question 1 requiring clarification]
-- [YOUR_VALUE_HERE: Question 2 requiring clarification]
+- None.
 <!-- /ANCHOR:questions -->
 
 ---

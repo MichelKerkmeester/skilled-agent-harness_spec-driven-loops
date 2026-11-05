@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Deep Review State Log Records
@@ -224,7 +224,7 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
 }
 ```
 
-`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §Section-1 for the authoritative shape.
+`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
 
 **Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
 
@@ -462,10 +462,10 @@ Representative v2 record:
 
 | Record Shape | Reader Behavior | Validator Behavior |
 |--------------|-----------------|--------------------|
-| v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | Phase D may warn, but must not hard-fail only because v2 fields are absent. |
+| v1 legacy: discriminator absent or not `2` | Parse as today's iteration record. | A validator may warn, but must not hard-fail only because v2 fields are absent. |
 | v2 trivial+skip | Parse v2 applicability, `searchLedger: []` allowed with cited scope proof. | Validate `reviewDepthApplicability.evidenceRefs`, skip ledger-depth requirements. |
 | v2 standard/complex | Parse v2 fields in addition to v1 required fields. | Enforce v2 shape, ledger linkage, coverage reconciliation, and evidence refs. |
 
-Phase E reducer/dashboard/report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until Phase E ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
+Reducer, dashboard, and report work must preserve and expose `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. Until that work ships, these are contract obligations only. `deep-review-findings-registry.json`, `deep-review-dashboard.md`, and `review-report.md` are not expected to persist them.
 
 ---

@@ -7,7 +7,7 @@ trigger_phrases:
   - "deep ai council strategy"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.2
+version: 1.7.1.0
 ---
 
 # Deep AI Council Strategy
@@ -17,6 +17,14 @@ Use this template before and between council rounds. Keep it short enough for ev
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+One brief that gives every seat the same planning boundary, the same mandates and the same list of open disagreements.
+
+### Usage
+
+Fill the rows before the round opens, then update the disagreement and convergence rows between rounds.
 
 | Field | Value |
 |-------|-------|

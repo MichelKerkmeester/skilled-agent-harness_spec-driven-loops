@@ -1,0 +1,3 @@
+EXEMPT .skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md
+EXEMPT .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
+files=19 render_warnings=0 invalid=0 exempt=2

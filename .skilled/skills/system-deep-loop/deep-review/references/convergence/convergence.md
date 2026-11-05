@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.22
+version: 1.11.1.0
 ---
 
 # Deep Review Convergence
@@ -198,7 +198,7 @@ if coverage.dimensionCoverage == 1.0 and activeP0 == 0 and activeP1 == 0:
       return { action: "STOP", stopReason: "converged" }
 ```
 
-Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 5-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
+Triggers when all 4 dimensions (correctness, security, traceability, maintainability) are covered, no active P0/P1 remains, at least 1 stabilization pass has occurred, and the 9-gate legal-stop bundle passes. If gates fail, the loop records `stopReason=blockedStop` and continues despite full coverage.
 
 ---
 
@@ -342,7 +342,7 @@ Convergence behavior:
 
 #### Integration with Legal-Stop Gate Bundle
 
-The two semantic signals integrate with the existing 5-gate legal-stop bundle (Section 6):
+The two semantic signals integrate with the existing 9-gate legal-stop bundle (Section 6):
 
 1. **findingStability gate** (existing): The existing `findingStability` gate already evaluates rolling average, MAD noise floor, and novelty ratio. The new `semanticNovelty` signal adds a sub-check:
    - `semanticNoveltyPlateau`: `semanticNovelty < 0.15` for 2+ consecutive evidence iterations
@@ -433,11 +433,11 @@ A new critical finding always signals significant remaining work. The 0.50 floor
 
 ## 6. LEGAL-STOP GATE BUNDLE
 
-> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §Section-1 event shape (lines 98-119) mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) was reconciled in `006-gate-model-reconciliation`.
+> **GATE MODEL, two naming conventions mapped to one authoritative set.** The authoritative producer is `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`, which emits **9 gates** with the `Gate` suffix: `convergenceGate` / `dimensionCoverageGate` / `p0ResolutionGate` / `evidenceDensityGate` / `hotspotSaturationGate` / `claimAdjudicationGate` / `fixCompletenessReplayGate` / `candidateCoverageGate` / `graphlessFallbackGate`. The §1 event shape mirrors this set verbatim and the reducer reads those names verbatim, so treat the event shape as authoritative when writing or reading JSONL state. The §6 table below is the high-level conceptual model and uses descriptive names WITHOUT the `Gate` suffix where one reads more naturally (for example `findingStability` maps to `convergenceGate`); each row carries its event-shape name so the mapping is explicit. `candidateCoverageGate` and `graphlessFallbackGate` are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. The gate-model drift cluster (LG-0013, LG-0016, LG-0031, LG-0032) has been reconciled.
 
 Deep review treats STOP as legal only when the full review-specific gate bundle passes together. Convergence math may request STOP, but the workflow must still evaluate these 9 gates and persist a blocked-stop event when any gate fails.
 
-| Gate (§6 conceptual) | Event-shape name (§Section-1) | Rule | Fail Action |
+| Gate (§6 conceptual) | Event-shape name (§1) | Rule | Fail Action |
 |------|------|------|-------------|
 | **findingStability** | `convergenceGate` | Rolling average, MAD noise floor, and novelty ratio must all indicate low-yield review churn | Block STOP, persist `blockedStop` |
 | **dimensionCoverage** | `dimensionCoverageGate` | Every configured review dimension must have been examined at least once, with required traceability coverage stabilized | Block STOP, persist `blockedStop` |
@@ -577,9 +577,9 @@ Stuck-recovery strategies, the convergence report format, and graph-aware review
 
 ---
 
-## OPTIMIZER-TUNABLE THRESHOLDS
+## 9. OPTIMIZER-TUNABLE THRESHOLDS
 
-The following convergence thresholds are managed by the offline loop optimizer (042.004). Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
+The following convergence thresholds are managed by the offline loop optimizer. Changes to these fields are proposed through the optimizer's advisory-only promotion gate and reviewed by humans before adoption.
 
 ### Tunable Fields (Optimizer-Managed)
 

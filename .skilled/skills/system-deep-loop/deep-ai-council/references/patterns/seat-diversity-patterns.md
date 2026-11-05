@@ -11,7 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.2.0
+version: 1.7.3.0
 ---
 
 # AI Council Seat Diversity Patterns
@@ -21,6 +21,16 @@ Each round uses at most 3 seats. The goal is useful disagreement, not more copie
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+A council that earns its extra cost by comparing genuinely different judgments.
+
+### When to Use
+
+- Choosing two or three lenses for a round.
+- Pairing a lens with a vantage target.
+- Sizing a round before dispatch.
 
 Seat diversity is the council's first quality gate. A council that repeats the same reasoning path three times has spent more compute without gaining more judgment.
 
@@ -53,7 +63,7 @@ Use different strategy lenses for each seat. The temperature values describe the
 
 > **Primary mode: in-CLI.** The default council run uses the CURRENT active runtime's own model bench as seats - no external dispatch needed. The "Vantage Target" below names *which CLI's models supply the round's seats*, whether that CLI is the active runtime (in-CLI mode) or an externally-dispatched one (via the `cli-*` skill family).
 >
-> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §1` Operational Modes and `§5` ALWAYS rule 6 / NEVER rule 5.
+> **One-CLI-per-round invariant.** A single round MUST run all its seats through ONE CLI's models. Seat diversity inside a round comes from different models/reasoning lenses on that CLI (and from different strategy lenses). Multiple CLIs in the same deliberation are staged as MULTIPLE rounds, each with its own state event. See `SKILL.md §3` Operational Modes and `§5` ALWAYS rule 6 / NEVER rule 5.
 
 Vantage = the CLI whose model bench supplies the round's seats. Each row below is a complete round option:
 
@@ -135,7 +145,8 @@ Analytical + Critical + Pragmatic
 
 ### 2. Vantage Diversity (within a single round)
 
-Within ONE round, vantage diversity is achieved via DIFFERENT MODELS or REASONING LEVELS on the SAME CLI (e.g. on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/glm-5.3-flash`; on `cli-claude-code`: Opus + Haiku). Across-CLI diversity is staged as ADDITIONAL ROUNDS - each round runs on one CLI only.
+- **Within one round**: vantage diversity comes from different models or reasoning levels on the same CLI (for example, on `cli-opencode`: `deepseek/deepseek-v4-pro --variant high` + `llmgateway/glm-5.3-flash`; on `cli-claude-code`: Opus + Haiku).
+- **Across rounds**: cross-CLI diversity is staged as additional rounds, and each round runs on one CLI only.
 
 If real external vantages are unavailable, preserve lens diversity and label simulated vantages.
 

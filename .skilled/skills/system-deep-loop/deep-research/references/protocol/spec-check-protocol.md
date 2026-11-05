@@ -9,7 +9,7 @@ trigger_phrases:
   - "research spec conflict detection"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.9
+version: 1.14.1.0
 ---
 
 # Spec Check Protocol
@@ -25,6 +25,10 @@ Define the bounded `spec.md` integration points for deep-research:
 - Late-INIT lock acquisition and folder-state detection
 - Pre-init seed or context mutation before LOOP starts
 - Post-synthesis generated-fence write-back before save or cancellation cleanup
+
+### When to Use
+
+Load this protocol when a deep-research run will touch `spec.md`: seeding a missing one, adding pre-init context, or writing back after synthesis.
 
 ### Scope
 This protocol applies only to deep-research-owned `spec.md` mutations:
@@ -160,7 +164,17 @@ The workflow writes or replaces exactly one machine-owned fence nested under the
 
 All protocol events reach `research/deep-research-state.jsonl` through the append gateway, the only way a record reaches the log.
 
-Each spec-protocol row a workflow writes keeps its legacy shape. The append gateway accepts it and stores it as a typed ledger event under one of seven stems: `deep_research.spec_check_result`, `deep_research.spec_seed_created`, `deep_research.spec_preinit_context_added`, `deep_research.spec_preinit_context_deduped`, `deep_research.spec_mutation`, `deep_research.spec_mutation_conflict`, and `deep_research.spec_synthesis_deferred`. The gateway upcasts the row into that stem's payload, and the state log shows the row as written, with the append time as its timestamp.
+Each spec-protocol row a workflow writes keeps its legacy shape. The append gateway accepts it and stores it as a typed ledger event under one of seven stems:
+
+- `deep_research.spec_check_result`
+- `deep_research.spec_seed_created`
+- `deep_research.spec_preinit_context_added`
+- `deep_research.spec_preinit_context_deduped`
+- `deep_research.spec_mutation`
+- `deep_research.spec_mutation_conflict`
+- `deep_research.spec_synthesis_deferred`
+
+The gateway upcasts the row into that stem's payload, and the state log shows the row as written, with the append time as its timestamp.
 
 Every audit payload is typed. At minimum, emit:
 - `type`

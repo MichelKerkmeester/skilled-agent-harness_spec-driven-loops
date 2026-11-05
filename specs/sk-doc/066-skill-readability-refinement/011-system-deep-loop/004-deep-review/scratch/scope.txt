@@ -1,0 +1,17 @@
+.skilled/skills/system-deep-loop/deep-review/README.md
+.skilled/skills/system-deep-loop/deep-review/ROUTER.md
+.skilled/skills/system-deep-loop/deep-review/SKILL.md
+.skilled/skills/system-deep-loop/deep-review/assets/deep-review-dashboard.md
+.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md
+.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-signals.md
+.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-state-and-gates.md
+.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md
+.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md
+.skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md
+.skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md
+.skilled/skills/system-deep-loop/deep-review/references/state/state-reducer-registry.md

@@ -9,7 +9,7 @@ trigger_phrases:
   - "research parity baseline"
 importance_tier: important
 contextType: implementation
-version: 1.14.0.11
+version: 1.14.1.0
 ---
 
 # Runtime Capability Matrix
@@ -23,6 +23,10 @@ Canonical runtime parity reference for deep-research mirrors and provider adapta
 ### Purpose
 
 Canonical runtime contract for `deep-research`. This matrix defines what every runtime mirror must support and what the workflow may adapt per provider. Packet files remain the source of truth; runtime behavior may differ only where this matrix says it may differ.
+
+### When to Use
+
+Load this matrix when adding or auditing a runtime mirror, or when deciding whether a provider difference is allowed adaptation or forbidden drift.
 
 ### Machine-Readable Source of Truth
 

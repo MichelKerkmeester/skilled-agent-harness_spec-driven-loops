@@ -1,0 +1,5 @@
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md:83: render_h2_numbering: H2 number carries a letter suffix ("6A."); use integers only.
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:131: render_h2_numbering: H2 number carries a letter suffix ("10A."); use integers only.
+.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md:143: render_h2_numbering: H2 number carries a letter suffix ("11A."); use integers only.
+.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md:223: render_section_order: "RELATED" must be the last H2; it is followed by "REVIEW MODE".
+files=19 render_warnings=4 invalid=0

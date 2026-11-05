@@ -8,7 +8,7 @@ trigger_phrases:
   - "council cost guards"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.0.3
+version: 1.7.1.0
 ---
 
 # Deep Mode Session Hierarchy
@@ -19,13 +19,17 @@ Deep mode organises council work as sessions containing topics which contain rou
 
 ## 1. OVERVIEW
 
-### Core Principle
+### Purpose
 
-Session contains topics contain rounds. Each level has its own state file and guard checks.
+The container model behind a long council session, with the file and the guard that each level owns.
 
 ### When to Use
 
 Use deep mode when you need multi-topic council sessions with cost controls and state persistence. Use shallow mode for single-topic quick decisions.
+
+### Core Principle
+
+Session contains topics contain rounds. Each level has its own state file and guard checks.
 
 ### Key Sources
 
