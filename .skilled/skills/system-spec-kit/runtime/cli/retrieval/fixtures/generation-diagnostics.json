@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7341,
-    "ok": 17080,
+    "missing-frontmatter": 7342,
+    "ok": 17091,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27969,
+  "documentsScanned": 27981,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6deaf5a134cb0b19730873313885b797fd7cefb0e34f6b4ec20b80c4a279796a",
+  "manifestHash": "97c1471743e56c61c4cba60f1bdde90468ac51e454c0f72ee5b242c10f60f252",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40997,
+      "ok": 41010,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -28970,6 +28970,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-related-commands-before-workflow.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-section-reference-linked.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -73475,6 +73481,10 @@
     },
     {
       "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes/scratch",
       "reason": "excluded directory"
     },
     {

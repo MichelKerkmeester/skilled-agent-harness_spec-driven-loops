@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6deaf5a134cb0b19730873313885b797fd7cefb0e34f6b4ec20b80c4a279796a",
+  "manifestHash": "97c1471743e56c61c4cba60f1bdde90468ac51e454c0f72ee5b242c10f60f252",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20137,6 +20137,9 @@
     "cli classifier 0 8 8 0": [
       "cli-classifier 0.8.8.0"
     ],
+    "cli classifier 0 8 9 0": [
+      "cli-classifier 0.8.9.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -20304,6 +20307,9 @@
     ],
     "cli classifier v0 8 8 0": [
       "cli-classifier v0.8.8.0"
+    ],
+    "cli classifier v0 8 9 0": [
+      "cli-classifier v0.8.9.0"
     ],
     "cli claude code": [
       "cli claude code"
@@ -22692,6 +22698,9 @@
     "cli orca 0 1 1 0": [
       "cli-orca 0.1.1.0"
     ],
+    "cli orca 0 1 10 0": [
+      "cli-orca 0.1.10.0"
+    ],
     "cli orca 0 1 2 0": [
       "cli-orca 0.1.2.0"
     ],
@@ -22798,6 +22807,9 @@
     ],
     "cli orca v0 1 1 0": [
       "cli-orca v0.1.1.0"
+    ],
+    "cli orca v0 1 10 0": [
+      "cli-orca v0.1.10.0"
     ],
     "cli orca v0 1 2 0": [
       "cli-orca v0.1.2.0"
@@ -65295,6 +65307,9 @@
     "mcp tooling 1 9 5 0": [
       "mcp-tooling 1.9.5.0"
     ],
+    "mcp tooling 1 9 6 0": [
+      "mcp-tooling 1.9.6.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -65450,6 +65465,9 @@
     ],
     "mcp tooling v1 9 5 0": [
       "mcp-tooling v1.9.5.0"
+    ],
+    "mcp tooling v1 9 6 0": [
+      "mcp-tooling v1.9.6.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -78079,6 +78097,9 @@
     ],
     "phase 4 agents md pointers": [
       "phase 4 agents md pointers"
+    ],
+    "phase 4 alignment fixes": [
+      "phase 4 alignment fixes"
     ],
     "phase 4 battery misses": [
       "phase 4 battery misses"
@@ -99590,6 +99611,9 @@
     "sk code 3 10 3 0": [
       "sk-code 3.10.3.0"
     ],
+    "sk code 3 10 4 0": [
+      "sk-code 3.10.4.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -101624,6 +101648,9 @@
     "sk code v3 10 3 0": [
       "sk-code v3.10.3.0"
     ],
+    "sk code v3 10 4 0": [
+      "sk-code v3.10.4.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -103417,6 +103444,9 @@
     "sk design 2 0 12 0": [
       "sk-design 2.0.12.0"
     ],
+    "sk design 2 0 13 0": [
+      "sk-design 2.0.13.0"
+    ],
     "sk design 2 0 2 0": [
       "sk-design 2.0.2.0"
     ],
@@ -104108,6 +104138,9 @@
     "sk design v2 0 12 0": [
       "sk-design v2.0.12.0"
     ],
+    "sk design v2 0 13 0": [
+      "sk-design v2.0.13.0"
+    ],
     "sk design v2 0 2 0": [
       "sk-design v2.0.2.0"
     ],
@@ -104311,6 +104344,9 @@
     ],
     "sk doc 2 9 1 0": [
       "sk-doc 2.9.1.0"
+    ],
+    "sk doc 2 9 2 0": [
+      "sk-doc 2.9.2.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -104764,6 +104800,9 @@
     ],
     "sk doc v2 9 1 0": [
       "sk-doc v2.9.1.0"
+    ],
+    "sk doc v2 9 2 0": [
+      "sk-doc v2.9.2.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
