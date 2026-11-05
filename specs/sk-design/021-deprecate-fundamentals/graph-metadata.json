@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals",
+  "spec_folder": "sk-design/021-deprecate-fundamentals",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/021-deprecate-fundamentals/001-frontend-upgrade",
+    "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
+    "sk-design/021-deprecate-fundamentals/003-chart-research-cleanup",
+    "sk-design/021-deprecate-fundamentals/004-review-remediation",
+    "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate fundamentals phase parent spec",
+      "sk-design three modes",
+      "sk-code frontend visual values",
+      "chart reference research cleanup",
+      "021-deprecate-fundamentals operator decisions"
+    ],
+    "key_topics": [
+      "deprecate",
+      "fundamentals",
+      "phase",
+      "parent",
+      "spec",
+      "sk-design",
+      "three",
+      "modes",
+      "sk-code",
+      "frontend",
+      "visual",
+      "values"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+      ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+      ".skilled/skills/sk-design/mode-registry.json",
+      ".skilled/agents/design.md",
+      ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+      ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+      ".skilled/skills/sk-design/sk-design-chart/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-values.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-hierarchy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-motion-and-interaction.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+        "source": "derived"
+      },
+      {
+        "name": "tokens.css",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Appendix: Verbatim Operator Answers",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Q001",
+        "kind": "heading",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two design surfaces owned the same rules",
+    "created_at": "2026-11-05T08:27:36Z",
+    "last_save_at": "2026-11-05T16:11:55.143Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:ab4227cc54434b15b527859a253a0d32bf6fbd68efed1543b9dd845aba59bb61",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b88667b600713da2d1c092f839e64ea3f3274ca10f114aa290143b3023addee1",
+      "decision-record.md": "280d19fd42165a8d8b9c7ddcc526451002b44c0ef9a383d9cb67e7bf28c468e5"
+    },
+    "last_active_child_id": "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing",
+    "last_active_at": "2026-11-05T16:11:55.143Z"
+  }
+}

@@ -3,7 +3,7 @@ name: mcp-figma
 description: "Figma CLI orchestrator: drives figma-ds-cli for terminal Figma design work, with an optional Figma MCP via Code Mode."
 compatibility: Requires Figma Desktop (open with a file), Node.js >=18, and the silships figma-ds-cli on PATH. macOS is the supported baseline; the optional Figma MCP uses this project's Code Mode.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.2.1.0
+version: 1.2.2.0
 user-invocable: true
 ---
 
@@ -229,7 +229,7 @@ Scripts: `scripts/install.sh` (install + verify), `scripts/doctor.sh` (report-on
 
 Examples: [`examples/README.md`](examples/README.md) - safe worked walkthroughs mirroring the playbook scenarios (safe connect + daemon health, read-only inspect/export, optional MCP context pull). They live outside the `references/`/`assets/` discovery roots, so they are linked here rather than auto-loaded by the router.
 
-Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies. When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there.
+Related skills: `sk-design-md-generator` (a measured Style Reference of extracted design tokens, applied whenever a read/export feeds a decision), `sk-code` (adapting exports into an app), `mcp-code-mode` (the optional MCP transport), `mcp-chrome-devtools` (browser preview only), and `system-spec-kit` when packet documentation or memory continuity applies. When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` (`web-visual-values.md`) and decide it there.
 
 A Figma read that feeds code ends at the five-pass check in `.skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md`.
 

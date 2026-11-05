@@ -9,7 +9,7 @@ trigger_phrases:
   - "chart color roles"
 importance_tier: normal
 contextType: reference
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # Chart Colour Systems
@@ -81,21 +81,17 @@ so the mapping is written here rather than inferred from a message.
 palette source and the rest of its own row. Lightness is colour, and ranking by it is what
 `importance` names.
 
-### What the shadcn comparison kept
+### Why the role split stays
 
-The shadcn comparison measured a much tighter categorical light-theme set than the standalone
-one: shadcn light has a 16.0° minimum adjacent hue gap and 1.72:1 minimum own/opposite-ground
-contrast, while standalone categorical light has a 92.9° gap and 3.37:1 minimum own/opposite-ground
-contrast. The dark measurements were 71.1° and 2.92:1/2.15:1 for shadcn, against 96.5° and
-3.38:1/1.72:1 for standalone categorical. The numbers support keeping the standalone role split
-and its existing gates rather than replacing it with a raw five-token ramp; they do not create a
-new CVD or hue threshold here.
-[SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:55-66]
+Keep the standalone role split and its existing gates rather than a raw five-token ramp. The
+standalone categorical light set holds a 92.9° minimum adjacent hue gap and 3.37:1 minimum
+own/opposite-ground contrast. The dark set holds 96.5° and 3.38:1/1.72:1. A tighter five-token
+ramp gives up that separation. These figures describe the current set and do not create a new CVD
+or hue threshold.
 
-The transferable part is semantic indirection: a named series owns a palette token through its
-key, and a mark reaches that token through the class the key declares. That keeps the palette
-roles here while making a per-key colour change one auditable edit in the chart's series block.
-[SOURCE: specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/013-shadcn-reference-research/research/lineages/luna/research.md:123-132]
+A named series owns a palette token through its key, and a mark reaches that token through the
+class the key declares. That keeps the palette roles here while making a per-key colour change one
+auditable edit in the chart's series block.
 
 ### How to settle a row against this table
 

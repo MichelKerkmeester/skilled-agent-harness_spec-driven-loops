@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing",
+  "description": "Phase 5: advisor-negation-and-routing",
+  "keywords": [
+    "phase",
+    "advisor-negation-and-routing"
+  ],
+  "lastUpdated": "2026-11-05T16:11:55.112Z",
+  "specId": "005",
+  "folderSlug": "advisor-negation-and-routing",
+  "parentChain": [
+    "sk-design",
+    "021-deprecate-fundamentals"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-11-26_17-11__phase-005-complete-advisor-negation-fix-two.md"
+  ]
+}

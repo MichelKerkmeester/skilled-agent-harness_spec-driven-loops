@@ -1,7 +1,7 @@
 ---
 title: "sk-code-frontend: Manual Testing Playbook"
 description: "Corpus for the sk-code-frontend surface: the routing-recall scenarios for its web and Figma-check intents, the evidence a run leaves, and the review rules a release reads."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # sk-code-frontend: Manual Testing Playbook
@@ -34,7 +34,7 @@ The hub's router-sync guard replays every scenario here that declares `expected_
 
 | # | Category | Folder | Scenario IDs |
 |---|---|---|---|
-| 1 | Frontend Surface | `frontend-surface/` | frontend-surface-web, frontend-surface-figma-check |
+| 1 | Frontend Surface | `frontend-surface/` | frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values |
 
 ### Scenarios
 
@@ -42,6 +42,7 @@ The hub's router-sync guard replays every scenario here that declares `expected_
 | --- | --- | --- | --- |
 | 1 | frontend-surface-web | FRONTEND_WEB | [frontend-web.md](frontend-surface/frontend-web.md) |
 | 2 | frontend-surface-figma-check | FIGMA_TO_CODE | [figma-check.md](frontend-surface/figma-check.md) |
+| 3 | frontend-surface-visual-values | WEB_VISUAL_VALUES | [visual-values.md](frontend-surface/visual-values.md) |
 
 A **routing** scenario, meaning one that declares `expected_intent` and `expected_resources`, is `PASS` when every path in its `expected_resources` resolves under the packet root, the replayed router selects that intent, and the router emits that path set for the exact prompt. It is `FAIL` when its checks do not hold, and `SKIP` only when a specific sandbox or runtime blocker prevented the run.
 
@@ -146,7 +147,7 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 
 | Wave | Category | Scenarios | Rationale |
 |---|---|---|---|
-| 1 | Frontend Surface | `frontend-surface-web`, `frontend-surface-figma-check` | Both read one router and one replay command, with no fixture to schedule. Run them serially in one session. |
+| 1 | Frontend Surface | `frontend-surface-web`, `frontend-surface-figma-check`, `frontend-surface-visual-values` | All three read one router and one replay command, with no fixture to schedule. Run them serially in one session. |
 
 ### What Belongs In Per-Feature Files
 
@@ -162,9 +163,9 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
-| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` (check `4`) | Replays every packet-level routing scenario against its `expected_resources` | frontend-surface-web, frontend-surface-figma-check |
+| `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` (check `4`) | Replays every packet-level routing scenario against its `expected_resources` | frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values |
 | `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` | Asserts a frontend review prompt bundles `[sk-code-review, sk-code-frontend]` and that near-miss prompts never bundle the surface | frontend-surface-web (the same web surface family, with a different prompt) |
-| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | The `12a-router-contract` and `12b-routing-shape` checks on this packet's `ROUTER.md` | frontend-surface-web, frontend-surface-figma-check (the machine router both read) |
+| `.skilled/commands/doctor/scripts/parent-skill-check.cjs` | The `12a-router-contract` and `12b-routing-shape` checks on this packet's `ROUTER.md` | frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values (the machine router all three read) |
 
 ---
 
@@ -174,5 +175,6 @@ Global verdict logic lives here. The prompt, the expected signals, the commands 
 |---|---|---|---|
 | frontend-surface-web | Web markup and CSS routing | Frontend Surface | [frontend-web](frontend-surface/frontend-web.md) |
 | frontend-surface-figma-check | Figma frame check routing | Frontend Surface | [figma-check](frontend-surface/figma-check.md) |
+| frontend-surface-visual-values | Visual values routing | Frontend Surface | [visual-values](frontend-surface/visual-values.md) |
 
 The routing rows above belong to the entry `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, which records the surface axis and the advisor-invisible surfaces. The reference families behind the scenarios, which are the core, the web layer and the Figma check, have no separate catalog entry, and each scenario's Playbook Sources section says so.

@@ -14,7 +14,7 @@
         "measure this surface"
       ],
       "notOwned": [
-        "deciding what a value should be, which belongs to sk-design-fundamentals"
+        "deciding what a value should be, which belongs to sk-code"
       ]
     },
     "choreography": [
@@ -37,7 +37,7 @@
         "action": "load the presentation contract before showing any setup question or result"
       }
     ],
-    "discriminator": "Owns reading values off a surface that already exists. Deciding what a value should be belongs to sk-design-fundamentals."
+    "discriminator": "Owns reading values off a surface that already exists. Deciding what a value should be belongs to sk-code."
   },
   {
     "command": "/design:diagram",

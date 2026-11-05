@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals/004-review-remediation",
+  "spec_folder": "sk-design/021-deprecate-fundamentals/004-review-remediation",
+  "parent_id": "sk-design/021-deprecate-fundamentals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "deep review findings remediation",
+      "sk-code visual review routing",
+      "sk-design metadata cleanup",
+      "review remediation plan",
+      "deep review findings fix plan",
+      "sk-code routing vocabulary plan",
+      "review remediation tasks",
+      "deep review findings task list",
+      "sk-code routing fix checklist",
+      "review remediation acceptance criteria",
+      "deep review findings criteria"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "deep",
+      "findings",
+      "sk-code",
+      "visual",
+      "routing",
+      "sk-design",
+      "metadata",
+      "cleanup",
+      "plan",
+      "vocabulary"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      ".skilled/skills/sk-design/graph-metadata.json",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/graph-metadata.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-code/manifest.json",
+      ".hermes/skills/sk-code/ROUTER.md",
+      ".hermes/skills/sk-code/SKILL.md",
+      ".hermes/skills/sk-code-frontend/ROUTER.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "canary-cases.v1.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-code/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Repair",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Vocabulary",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A visual-review request still compiles to `sk-code-review` alone, so `web-visual-hierarchy.md` never loads for the reader who asked for a design review",
+    "created_at": "2026-11-05T10:33:15Z",
+    "last_save_at": "2026-11-05T16:11:12.968Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2f8c57967d5000fc30e9c97e3dbab199af2921c8b800399d73889a7effe16ff0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "88ab42d1aafbbe91be7ce33ff7a0f169c4a87b4adb919300f8d7df7b6c28ab7d",
+      "plan.md": "d349a9345a3d5d09ee48c1aa4ff3f45fced9e0a4b94685b379091fc69dd1e33a",
+      "tasks.md": "2796fa85e0224ba125a308b591ba1aa6e065ac2f66f1fb4e578fe1dadecd6237",
+      "decision-record.md": "2638a906a32d9ce4089fd1b1294597108142bde341394cfc7c8a77c849dbc0ca",
+      "implementation-summary.md": "e9b7ffff1dcb6f4332ed73231f4abac98b5770c2a2b8d5dd3bb9499e06819064"
+    },
+    "last_active_at": null
+  }
+}

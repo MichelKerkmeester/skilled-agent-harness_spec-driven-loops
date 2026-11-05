@@ -2,7 +2,7 @@
 name: sk-code
 description: "Implement, debug and verify code: TypeScript, Python, shell, JSON; quality and review workflow modes with stack surface packets."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 3.10.4.0
+version: 3.11.2.0
 metadata:
   family: sk-code
 ---
@@ -46,13 +46,13 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 | Surface | Carries | Packet |
 |---------|---------|--------|
 | **sk-code-ci** | GitHub Actions evidence: trigger, filter, permission, timeout, concurrency and caching rules, the protected set, the intentional message-contract exception and the scaffold templates, with the repository-specific values read from a CI profile. Read-only. | `sk-code/sk-code-ci/` |
-| **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, web layout and accessibility, and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
+| **sk-code-frontend** | Stack-agnostic frontend evidence: web markup and CSS, web layout and accessibility, visual values, visual hierarchy and review, motion and interaction, the `tokens.css` starter tokens and Figma-to-code checks. Read-only. | `sk-code/sk-code-frontend/` |
 | **sk-code-skilled** | System-code evidence: TypeScript/Python/shell/config standards, hooks, alignment verification, authoring checklists. Bundles the implement → debug → verify workflow doctrine (read-only evidence) for the Skilled surface, and the acting agent applies it. | `sk-code/sk-code-skilled/` |
 
 **Surface list.** The hub has exactly three surfaces:
 - SKILLED (`sk-code-skilled`): the native surface for this framework's own code.
 - CI (`sk-code-ci`): the GitHub Actions workflow standards surface.
-- Frontend (`sk-code-frontend`): the stack-agnostic web practice and Figma-to-code surface, bundled from request vocabulary alone.
+- Frontend (`sk-code-frontend`): the stack-agnostic web practice and Figma-to-code surface, with visual values, visual hierarchy and review, and motion and interaction guidance, bundled from request vocabulary alone.
 
 The hub also has two workflow modes: quality (`sk-code-quality`) and review (`sk-code-review`).
 Any other sk-code doc that counts surfaces points to this sentence.
@@ -62,7 +62,7 @@ Any other sk-code doc that counts surfaces points to this sentence.
 - Git workflow, branch, commit, PR, merge, or release work - use `sk-git`.
 - Pure browser inspection or external MCP transport work - use the relevant MCP skill.
 - For a measured Style Reference (design tokens extracted from a live source), use `sk-design-md-generator` first.
-- When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-design-fundamentals` and decide it there.
+- When a request or a frame leaves a visual value open (spacing, type, color, radius, shadow or motion), or a value sits off every token and scale, load `sk-code-frontend` and decide it from its visual-values reference.
 - Backend support primitives in `shared/` - they are consumed by the modes, not invoked as a user workflow.
 
 ---
@@ -117,7 +117,7 @@ sk-code/
   sk-code-quality/       # quality mode packet     (workflow)
   sk-code-review/        # review mode packet      (workflow)
   sk-code-ci/            # GitHub Actions workflow standards packet (read-only evidence; rules, protected set and scaffold templates)
-  sk-code-frontend/      # stack-agnostic web and Figma-to-code evidence packet (read-only)
+  sk-code-frontend/      # stack-agnostic web and Figma-to-code evidence packet (read-only; references/web-visual-values.md, web-visual-hierarchy.md and web-motion-and-interaction.md plus assets/tokens.css)
   sk-code-skilled/      # skilled surface packet (read-only evidence; carries the workflow doctrine)
   shared/                # shared surface-detection router, cross-mode helpers, and the implement/debug/verify workflow doctrine (references/workflow-*.md)
 ```

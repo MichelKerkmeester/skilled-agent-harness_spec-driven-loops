@@ -1,13 +1,13 @@
 ---
 name: sk-design
-description: "Design parent hub. Routes one design identity to the mode that owns the decision, starting with sk-design-fundamentals."
+description: "Design parent hub. Routes one design identity to the mode that owns the artifact: a measured Style Reference, a chart or a diagram."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.0.13.0
+version: 3.0.2.0
 metadata:
   family: sk-design
 ---
 
-<!-- Keywords: design, spacing, padding, typography, colour, contrast, hierarchy, design review, ux laws, design fundamentals -->
+<!-- Keywords: design, style reference, design.md, extract design tokens, chart, diagram, flowchart -->
 
 # Design (parent hub)
 
@@ -18,31 +18,25 @@ decision in front of you and hands over. The work lives in the modes.
 
 ## 1. WHEN TO USE
 
-Use this hub when the question is what a surface should look like, why it looks wrong, or what
-visual artifact answers it: spacing, type, colour, contrast, hierarchy, a review of an existing
-surface against design criteria, a data chart, or a process diagram. The surface can be screen UI, a
-slide deck, a printed page or a document layout.
+Use this hub when the answer is a design artifact: a measured Style Reference of an existing
+surface, a data chart, or a process diagram.
 
 | Mode | Command | Owns | Reach it by asking about |
 |------|---------|------|--------------------------|
-| `sk-design-fundamentals` | routes via aliases | The values a surface is built from, and reviewing a surface against them | spacing, padding, type scale, colour, contrast, hierarchy, design review |
 | `sk-design-md-generator` | `/design:extract` | Measuring an existing surface into a Style Reference, and validating one | extract, design.md, design tokens, from a url |
 | `sk-design-chart` | `/design:chart` | Chart forms: which one answers the question, and building it as a self-contained file | chart, plot, heatmap, bar chart, chart catalog |
 | `sk-design-diagram` | `/design:diagram` | Flowcharts and text diagrams | diagram, flowchart, ascii diagram, mermaid, drawio |
 
-Four modes. Fundamentals and the generator are complements rather than alternatives: one decides values, the other reads values back
-off something that already exists. A request that names an existing surface belongs to the
-generator; a request that asks what a value should be belongs to fundamentals.
+Three modes. The generator reads values back off something that already exists. Chart and diagram
+each build one self-contained canvas.
 
 ### When NOT to Use
 
-- **Measuring a surface that already exists into a written specification.** That is this hub's
-  EXTRACT mode, reached by naming the source; it is not the values path.
+- **Deciding a value or reviewing a screen.** Spacing, type, colour, contrast, hierarchy, motion
+  and visual review belong to `sk-code`, whose frontend surface carries the value scales and the
+  review pass.
 - **Authoring documentation prose.** `sk-doc` owns that, including READMEs, changelogs and playbooks.
-- **Implementing the values once decided.** `sk-code` owns the code that renders them; this hub
-  decides what they should be and never writes the component.
-- **A canvas question that names its own form.** A chart or diagram request goes to its mode
-  directly rather than through the values mode.
+- **Implementing a component.** `sk-code` owns the code that renders it.
 
 ---
 
@@ -52,14 +46,14 @@ Routing runs in two stages.
 Stage one picks a mode from this hub.
 `hub-router.json` is its one authored vocabulary.
 `vocabularyClasses` holds the terms, and `routerSignals` maps each mode to the classes it scores.
-The four modes are `sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart` and `sk-design-diagram`.
+The three modes are `sk-design-md-generator`, `sk-design-chart` and `sk-design-diagram`.
 Stage two maps the chosen mode to its leaves in the root [`ROUTER.md`](./ROUTER.md).
 The two layers stay separate: the hub never emits leaf paths, and the surface router never re-decides the mode.
 The advisor routes every design query to the single identity `sk-design`.
 Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selecting hub resources.
 Resolve the mode with `node .skilled/bin/compiled-route.cjs --hub sk-design --prompt "<task>"`.
 Act on the decision: `route` loads its targets, `clarify` and `defer` ask, `reject` refuses.
-With no signal at all, `routerPolicy.defaultMode` is `sk-design-fundamentals`, so the request lands on the values mode rather than asking.
+With no signal at all, `routerPolicy.defaultMode` is `null`, so the request defers and asks which artifact is wanted.
 
 ---
 
@@ -67,17 +61,17 @@ With no signal at all, `routerPolicy.defaultMode` is `sk-design-fundamentals`, s
 
 ### Terms
 
-- **`workflowMode`**: the public mode key, one of `sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart` or `sk-design-diagram`.
-- **`packetKind`**: `workflow` for all four modes, because this hub has no surface axis.
-- **`backendKind`**: `surface-router` for fundamentals and the generator, which resolve leaves from a reference set, while `template-scaffold` for chart and diagram builds an artifact from a form.
+- **`workflowMode`**: the public mode key, one of `sk-design-md-generator`, `sk-design-chart` or `sk-design-diagram`.
+- **`packetKind`**: `workflow` for all three modes, because this hub has no surface axis.
+- **`backendKind`**: `surface-router` for the generator, which resolves leaves from a reference set, while `template-scaffold` for chart and diagram builds an artifact from a form.
 - **`routingClass`**: `metadata` on every nested mode, so the advisor resolves this hub by membership and holds no entry of its own per mode.
 - **`mode-registry.json`**: what modes exist and what each may touch.
 - **`hub-router.json`**: stage one's signals, vocabulary classes, tie-break and default mode.
 - **`vocabularyClasses`**: the terms stage one matches, with `routerSignals` naming the classes each mode scores.
-- **`tieBreak`**: the `routerPolicy` order that ranks the four modes when scores are close.
-- **`routerPolicy.defaultMode`**: `sk-design-fundamentals`, the mode a request with no signal at all lands on.
+- **`tieBreak`**: the `routerPolicy` order that ranks the three modes when scores are close.
+- **`routerPolicy.defaultMode`**: `null`, so a request with no signal at all defers instead of landing on a mode.
 - **leaf**: a resource a chosen mode loads, counted as a canonical `(workflowMode, leafResourceId)` pair through `leaf-manifest.json`.
-- **`ROUTER.md`**: stage two's `INTENT_SIGNALS` and `RESOURCE_MAP` over the five leaf intents, VALUES, REVIEW, CHART, FLOWCHART and EXTRACT.
+- **`ROUTER.md`**: stage two's `INTENT_SIGNALS` and `RESOURCE_MAP` over the three leaf intents, CHART, FLOWCHART and EXTRACT.
 - **`intent_signals`**: the `graph-metadata.json` field that carries this hub's vocabulary to the advisor, since a `description.json` keyword is documentation and not scored.
 
 ### Layout
@@ -91,7 +85,6 @@ sk-design/
 ├── graph-metadata.json      the only vocabulary the advisor scores
 ├── command-metadata.json    the commands this hub owns, and which mode owns each
 ├── shared/scripts/          tooling both canvas modes use
-├── sk-design-fundamentals/  the values mode, and everything it owns
 ├── sk-design-md-generator/  the extraction mode, its engine and style corpus
 ├── sk-design-chart/         the chart corpus, its checker, gallery and screenshots
 └── sk-design-diagram/       the diagram forms, their validator and screenshots
@@ -143,7 +136,6 @@ green gate all leave a request unable to arrive. Only replaying the request prov
 | `mode-registry.json` | What modes exist, and what each may touch |
 | `hub-router.json` | Signals, vocabulary classes, tie-break |
 | `ROUTER.md` | Stage two: which resources a chosen mode loads |
-| `sk-design-fundamentals/` | The values mode, and everything it owns |
 | `sk-design-md-generator/` | The extraction mode, its engine and its style corpus |
 | `sk-design-chart/` | The chart corpus and its checker |
 | `sk-design-diagram/` | The diagram forms and their validator |

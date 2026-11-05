@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma to code review"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Frontend Practice
@@ -52,15 +52,15 @@ This file does not own:
 8. **Figma is a reference, not a code structure.** A design shows intended appearance and states, while the app's own conventions decide its structure. See the [web boundary](web-markup-and-css.md#1-overview) and [Figma to code](figma-to-code.md).
 9. **Responsive behavior is checked at narrow, medium and wide widths and under zoom.** These checks expose wrapping, overflow and clipping before release. See [web responsive rules](web-markup-and-css.md#5-responsive).
 10. **Assistive-technology checks are part of completion, and non-essential motion respects the user's reduced-motion setting.** They confirm names, order, states and feedback when people do not use the visual layout. See the [web checklist](web-markup-and-css.md#9-pre-completion-checklist).
-11. **Text and controls meet the contrast target set by sk-design-fundamentals on every theme the mode supports.** Contrast remains readable in each supported theme. See [web structure](web-markup-and-css.md#2-structure-and-semantics) and [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md).
+11. **Text and controls meet the contrast target in [web-visual-values.md](web-visual-values.md#v18-contrast-ratios-and-the-two-escape-hatches) on every theme the mode supports.** Contrast remains readable in each supported theme. See [web structure](web-markup-and-css.md#2-structure-and-semantics) and [web visual values](web-visual-values.md).
 
 ---
 
 ## 3. VALUES AND PRECEDENCE
 
-Values come from the project's installed tokens. Report a missing token instead of inventing a value. When the tokens or the frame leave a value open, use [sk-design-fundamentals](../../../sk-design/sk-design-fundamentals/SKILL.md) for guidance.
+Values come from the project's installed tokens. Report a missing token instead of inventing a value. When the tokens or the frame leave a value open, decide it from the scales in [web-visual-values.md](web-visual-values.md).
 
-Use [interaction-craft.md](../../../sk-design/sk-design-fundamentals/references/interaction-craft.md) for interaction detail. This core carries only the shared interaction rules:
+Use [web-motion-and-interaction.md](web-motion-and-interaction.md) for interaction detail. This core carries only the shared interaction rules:
 
 - Make thumb-operated targets 44 px. Keep 32 px as the dense floor.
 - Keep font weight stable across interaction states.
@@ -113,6 +113,14 @@ Load this core, the web layer and the one topic file the change touches. Load a 
 | Accessibility patterns | [web-accessibility-patterns.md](web-accessibility-patterns.md) | Changing a widget pattern, accessible name, focus behavior, live region, browser preference or form validation and error messaging |
 | Performance and loading | [web-performance-and-loading.md](web-performance-and-loading.md) | Changing vitals, resource loading, image delivery, fonts or main-thread work |
 | Internationalization | [web-internationalization.md](web-internationalization.md) | Changing locale, direction, bidirectional text, formatting or translation tolerance |
+
+**Visual topic files**
+
+| Topic | File | Load when |
+|---|---|---|
+| Visual values | [web-visual-values.md](web-visual-values.md) | Choosing a spacing, type, weight, colour, shadow, radius or opacity value, or building a palette or token set |
+| Visual hierarchy and review | [web-visual-hierarchy.md](web-visual-hierarchy.md) | Fixing a screen that looks wrong, starting a new screen, applying UX laws or reviewing a screen's visual quality |
+| Motion and interaction | [web-motion-and-interaction.md](web-motion-and-interaction.md) | Adding or tuning animation, or deciding input, touch, state and feedback behavior |
 
 ---
 

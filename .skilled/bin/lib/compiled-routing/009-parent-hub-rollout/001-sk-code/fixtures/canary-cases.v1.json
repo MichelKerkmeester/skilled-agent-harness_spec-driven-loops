@@ -204,6 +204,57 @@
         ],
         "expectedResources": []
       }
+    },
+    {
+      "id": "visual-values-frontend",
+      "prompt": "what padding should this have",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "visual-review-bundle",
+      "prompt": "design review findings",
+      "riskSlice": "actor:mutating:composite",
+      "certificateFixture": "valid-composite",
+      "expectedAction": "route",
+      "expectedSelectionKind": "surfaceBundle",
+      "expectedModes": [
+        "sk-code-review",
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-review",
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
+    },
+    {
+      "id": "visual-motion-frontend",
+      "prompt": "what animation duration should this dropdown use",
+      "riskSlice": "evidence:nonmutating:single",
+      "expectedAction": "route",
+      "expectedSelectionKind": "single",
+      "expectedModes": [
+        "sk-code-frontend"
+      ],
+      "gold": {
+        "expectedIntents": [
+          "sk-code-frontend"
+        ],
+        "expectedResources": []
+      }
     }
   ],
   "certificateCases": [

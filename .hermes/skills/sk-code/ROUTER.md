@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.18.0
+version: 2.3.19.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -162,9 +162,12 @@ When a request asks about web frontend practice, or a Figma-to-code check, the h
 | `sk-code-frontend/references/web-accessibility-patterns.md` | Accessibility patterns, visible focus, and live regions |
 | `sk-code-frontend/references/web-performance-and-loading.md` | Web font loading and largest contentful paint |
 | `sk-code-frontend/references/web-internationalization.md` | Right-to-left layout and bidirectional text |
+| `sk-code-frontend/references/web-visual-values.md` | Visual value decisions: spacing, type, weight, colour, shadow, radius, opacity, palettes and token sets |
+| `sk-code-frontend/references/web-visual-hierarchy.md` | Visual hierarchy and review: build procedure, symptom-to-fix tables, UX laws and the review pass |
+| `sk-code-frontend/references/web-motion-and-interaction.md` | Motion and interaction: animation, input, touch, focus, performance and feedback rules |
 | `sk-code-frontend/references/figma-to-code.md` | The five-pass check for comparing a built screen with its Figma frame |
 
-The map is the packet's own `RESOURCE_MAP` for the web and Figma-to-code intents, re-prefixed with `sk-code-frontend/`, so the two stay equal there.
+The map is the packet's own `RESOURCE_MAP` for the web, visual and Figma-to-code intents, re-prefixed with `sk-code-frontend/`, so the two stay equal there.
 
 ---
 
@@ -251,9 +254,12 @@ INTENT_SIGNALS = {
     "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
     "WEB_CASCADE":         {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
     "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region"]},
+    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit"]},
     "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
     "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
+    "WEB_VISUAL_VALUES": {"weight": 4, "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "padding", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text"]},
+    "WEB_VISUAL_HIERARCHY": {"weight": 4, "keywords": ["ui looks off", "looks amateur", "feels cluttered", "make this look better", "make this ui look designed", "visual hierarchy", "no visual hierarchy", "nothing draws the eye", "everything competes for attention", "everything looks the same", "emphasize by de-emphasizing", "how to style a destructive button", "this page feels overwhelming", "where do i start designing", "design a new screen from scratch", "how much white space", "why does this look wrong", "does this look right", "critique this design", "design critique", "visual audit", "design review findings", "design review", "review this design", "review this screen", "ux laws", "cognitive load", "progressive disclosure", "empty state design", "look wrong", "looks wrong", "looks off", "visual review", "type hierarchy"]},
+    "WEB_MOTION":        {"weight": 4, "keywords": ["animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "animation", "transition timing", "easing", "hover", "focus-visible", "interaction states"]},
     "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
 }
 
@@ -395,6 +401,20 @@ RESOURCE_MAP = {
         "sk-code-frontend/references/frontend-practice.md",
         "sk-code-frontend/references/web-markup-and-css.md",
         "sk-code-frontend/references/web-internationalization.md",
+    ],
+    "WEB_VISUAL_VALUES": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-visual-values.md",
+    ],
+    "WEB_VISUAL_HIERARCHY": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-visual-hierarchy.md",
+        "sk-code-frontend/references/web-visual-values.md",
+        "sk-code-frontend/references/web-accessibility-patterns.md",
+    ],
+    "WEB_MOTION": [
+        "sk-code-frontend/references/frontend-practice.md",
+        "sk-code-frontend/references/web-motion-and-interaction.md",
     ],
     "FIGMA_TO_CODE": [
         "sk-code-frontend/references/figma-to-code.md",

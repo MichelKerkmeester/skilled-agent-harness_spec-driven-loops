@@ -2,7 +2,7 @@
 name: sk-design-md-generator
 description: "Extracts a live website's real CSS into a v3 Style Reference DESIGN.md via an embedded extract-write-validate pipeline."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 # Design System Extractor (md-generator)
@@ -15,11 +15,11 @@ Deep operational detail lives in [`references/`](references/).
 
 > **Boundary.** This skill is the **extraction and format-fidelity engine** for design references. It captures what already exists.
 >
-> It does not decide values for a surface that does not exist yet; that belongs to the sibling skill `sk-design`.
+> It does not decide values for a surface that does not exist yet. That work belongs to `sk-code-frontend`, which the `sk-code` hub bundles for visual decisions.
 >
 > The transport `mcp-figma` moves design data. This skill produces the authoritative measured reference that transport and downstream implementers (`sk-code`) consume.
 >
-> When both skills apply to the same surface, this reference outranks `sk-design`'s defaults. Where no measurement exists, `sk-design` decides.
+> When both apply to the same surface, this reference outranks `sk-code-frontend`'s defaults. Where no measurement exists, `sk-code-frontend` decides.
 
 ---
 
@@ -53,7 +53,7 @@ Deep operational detail lives in [`references/`](references/).
 - The task is **inventing a new design direction** (palette, type scale, the anti-default critique). That is out of scope — this skill captures measured reality, it does not create new direction.
 - The task is **authoring a Style Reference from a brief alone** with no live site to measure. That is forward-authoring and OUT OF SCOPE for this mode.
   This mode reports what is measurably there.
-  A brief-only request that does not name this mode's artifact uses a different contract. Route it to the sibling authoring skill `sk-design`; never loosen fidelity here to satisfy it.
+  A brief-only request that does not name this mode's artifact uses a different contract. Route it to `sk-code-frontend` through the `sk-code` hub, and never loosen fidelity here to satisfy it.
   `references/authoring-boundary.md` draws the line between measured values and a brief's stated intent.
 - The target is a **Figma file**, not a live website. Use `mcp-figma` to extract from Figma Desktop.
 - The user only wants a **screenshot or visual preview** of a page. Use `mcp-chrome-devtools`.
@@ -193,7 +193,7 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 10. **ALWAYS, on a brief-only request with no live URL, STOP before producing any Style Reference content.**
     The entire response is text only. Choose either:
     - Request the live URL to crawl.
-    - Explicitly state that brief-only authoring is out of scope for this mode, cite `references/authoring-boundary.md` by path, and name the sibling authoring skill `sk-design` as the route.
+    - Explicitly state that brief-only authoring is out of scope for this mode, cite `references/authoring-boundary.md` by path, and name `sk-code-frontend` through the `sk-code` hub as the route.
     Cite both `references/authoring-boundary.md` and `assets/source-of-truth-router-card.md` by file path in the response text. Reading them with a tool call does not replace naming them for the user.
     **NEVER produce a partial or full DESIGN.md artifact as a byproduct of this decision** — no Tokens table, no Surfaces, no Quick Start, even with a disclaimer sentence attached or brief values Origin-labeled.
     A labeled or disclaimed artifact is still forward-authoring. The boundary forbids the artifact itself, not just unlabeled values inside it.
@@ -256,7 +256,7 @@ See `references/extraction-workflow.md` (Section 3) for the full class table, em
 
 - [references/extraction-workflow.md](references/extraction-workflow.md) — The three-phase workflow as it runs in this framework: invocations, output paths, stability classes, and handoff.
 - [references/troubleshooting.md](references/troubleshooting.md) — Failure modes and fixes (Chromium, crawl blocks, dark-mode gaps, validation mismatches).
-- [references/authoring-boundary.md](references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to the sibling authoring skill `sk-design`.
+- [references/authoring-boundary.md](references/authoring-boundary.md) — The line between measured, brief-provided, inferred and absent values, plus the source-of-truth labels that protect the cardinal fidelity rule. States that forward-authoring from a brief with no live site is out of scope and routes to `sk-code-frontend` through the `sk-code` hub.
 - [references/guided-run.md](references/guided-run.md) - Guided wrapper contract and behavior for readiness checks, phase orchestration, smoke runs, stop conditions and operator handoff, without auto-authoring `DESIGN.md`.
 - [references/creation-contract.md](references/creation-contract.md) - Lifecycle, context, grounding, proof, authority and handoff contract for the `/design:extract` command.
 - [references/sk-code-handoff.md](references/sk-code-handoff.md) - Envelope for handing an accepted Style Reference from extraction to `sk-code` implementation.

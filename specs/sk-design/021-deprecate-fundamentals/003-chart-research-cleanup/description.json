@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-design/021-deprecate-fundamentals/003-chart-research-cleanup",
+  "description": "Phase 3: chart-research-cleanup",
+  "keywords": [
+    "phase",
+    "chart-research-cleanup"
+  ],
+  "lastUpdated": "2026-11-05T08:27:38.493Z",
+  "specId": "003",
+  "folderSlug": "chart-research-cleanup",
+  "parentChain": [
+    "sk-design",
+    "021-deprecate-fundamentals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

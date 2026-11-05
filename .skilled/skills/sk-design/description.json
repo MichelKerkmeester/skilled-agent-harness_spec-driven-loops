@@ -1,27 +1,10 @@
 {
   "name": "sk-design",
-  "description": "Design parent hub. One advisor identity routing through mode-registry.json and hub-router.json to four nested workflow packets: sk-design-fundamentals for the values a surface is built from, sk-design-md-generator for measuring an existing surface into a Style Reference, sk-design-chart for chart forms, and sk-design-diagram for flowcharts and text diagrams. Reinstated after the August 2026 deprecation, with a mode count and a shared subject the two-mode hub did not have.",
-  "version": "2.0.13.0",
+  "description": "Design parent hub. One advisor identity routing through mode-registry.json and hub-router.json to three nested workflow packets: sk-design-md-generator for measuring an existing surface into a Style Reference, sk-design-chart for chart forms, and sk-design-diagram for flowcharts and text diagrams.",
+  "version": "3.0.2.0",
   "importance_tier": "important",
   "keywords": [
     "design",
-    "visual design",
-    "spacing",
-    "padding",
-    "typography",
-    "colour",
-    "color",
-    "contrast",
-    "contrast ratio",
-    "accessibility contrast",
-    "layout",
-    "hierarchy",
-    "design decision",
-    "what should this look like",
-    "design review",
-    "ux laws",
-    "design fundamentals",
-    "visual hierarchy",
     "design.md",
     "DESIGN.md",
     "style reference",
@@ -55,8 +38,7 @@
     "chart this data",
     "data visualisation",
     "data visualization",
-    "sk-design-fundamentals",
     "sk-design-md-generator"
   ],
-  "lastUpdated": "2026-09-06"
+  "lastUpdated": "2026-11-05"
 }

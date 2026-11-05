@@ -8,9 +8,10 @@ trigger_phrases:
   - "mcp connection failed"
   - "cupt done wrong status"
   - "team filter slow"
+  - "extra blank line under divider"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.1.0
+version: 1.0.3.0
 ---
 
 # mcp-click-up Troubleshooting Guide
@@ -282,6 +283,16 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 **Cause:** Wrong tool name, or the tool doesn't exist on the real official server (see the verification note at the top of `references/mcp-tools.md`)
 
 **Fix:** Run `tool_info("clickup_official.clickup_official_clickup_{tool_name}")` first to confirm the exact name, the callable form doubles the `clickup_` prefix because the underlying tool names already start with it (e.g. `clickup_official.clickup_official_clickup_create_task`, NOT `clickup_official.clickup_official_create_task`)
+
+---
+
+### Doc page shows an extra blank line under every divider
+
+**Cause:** The page was created or rewritten through the MCP. Every divider the server writes gets an empty line under it, whatever markdown spelling the content uses. Pages built in the ClickUp editor do not have it.
+
+**Diagnosis:** Read the page with `content_format: "text/plain"`. Each `" \n"` line holds a divider with the gap. The `"text/md"` read-back looks the same with or without the gap, so it cannot answer this.
+
+**Fix:** No MCP call removes the gap. Run the program in `references/mcp-tools.md` section 8, "Required after every page write", through `mcp-chrome-devtools`. It deletes the empty line under each divider in the ClickUp editor and proves the page text is unchanged. When it reports `login: true`, ask the user to log in to ClickUp in the DevTools browser window, then run it again.
 
 ---
 

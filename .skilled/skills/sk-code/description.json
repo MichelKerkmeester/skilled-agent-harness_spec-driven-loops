@@ -1,7 +1,7 @@
 {
   "name": "sk-code",
-  "description": "Coding standards, references, and assets for this framework's own system code. Provides surface-aware code-quality patterns, checklists, and verification recipes for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals detect the active stack and load matching standards; unsupported stacks ask for disambiguation. Its surface axis bundles the CI, frontend (web and Figma-to-code) and SKILLED evidence packets.",
-  "version": "3.10.4.0",
+  "description": "Coding standards, references, and assets for this framework's own system code. Provides surface-aware code-quality patterns, checklists, and verification recipes for OpenCode system code (JavaScript, TypeScript, Python, Shell, JSON/JSONC, MCP server code, agents, commands, skills). Smart-routing internals detect the active stack and load matching standards; unsupported stacks ask for disambiguation. Its surface axis bundles the CI, frontend (web, visual values, hierarchy, motion and Figma-to-code) and SKILLED evidence packets.",
+  "version": "3.11.2.0",
   "importance_tier": "high",
   "keywords": [
     "sk-code",
@@ -37,5 +37,5 @@
     "simplification",
     "comment hygiene"
   ],
-  "lastUpdated": "2026-10-10T00:00:00Z"
+  "lastUpdated": "2026-11-05T00:00:00Z"
 }

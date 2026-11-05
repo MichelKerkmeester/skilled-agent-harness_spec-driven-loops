@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
+  "description": "Phase 2: retire-fundamentals",
+  "keywords": [
+    "phase",
+    "retire-fundamentals"
+  ],
+  "lastUpdated": "2026-11-05T08:27:37.804Z",
+  "specId": "002",
+  "folderSlug": "retire-fundamentals",
+  "parentChain": [
+    "sk-design",
+    "021-deprecate-fundamentals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

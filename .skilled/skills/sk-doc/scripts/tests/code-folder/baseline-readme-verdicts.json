@@ -1,5 +1,5 @@
 {
-  "count": 977,
+  "count": 979,
   "mode": "readme",
   "results": [
     {
@@ -4205,6 +4205,16 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
+      "file": ".skilled/skills/sk-design/shared/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
       "file": ".skilled/skills/sk-design/sk-design-chart/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -4226,6 +4236,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-design/sk-design-chart/scripts/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-design/sk-design-chart/scripts/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4475,7 +4495,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/sk-design/sk-design-fundamentals/README.md",
+      "file": ".skilled/skills/sk-design/sk-design-diagram/scripts/families/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4485,17 +4505,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/sk-design/sk-design-fundamentals/benchmark/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/sk-design/sk-design-fundamentals/benchmark/reports/README.md",
+      "file": ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4932,6 +4942,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/package-list-incomplete/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/prose-outside-inventory/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

@@ -195,6 +195,11 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
 };
 
 const WRITE_VERBS = /\b(add|build|change|configure|create|edit|fix|generate|implement|modify|patch|refactor|rename|replace|run|update|write)\b/;
+// A write verb that the prompt negates ("don't write anything back", "do not edit
+// files") forbids the write rather than asking for it, so it must not award a
+// write-surface boost. Both apostrophe forms are matched because prompts arrive
+// with typographic quotes as often as straight ones.
+const NEGATED_WRITE = /\b(?:don['’]t|do not|never|without)\s+(?:\w+\s+){0,2}?(?:add|build|chang|configur|creat|edit|fix|generat|implement|modif|patch|refactor|renam|replac|run|updat|writ|wrot)\w*\b/g;
 // A release request is git work only when the prompt also names a tag. The bare
 // word `release` stays out of sk-git's vocabulary, because an update, a release
 // note or a dependency release is not a git release. A tag counts only as a git
@@ -271,6 +276,12 @@ function maskSlashTargets(text: string, targetPhrases: readonly string[]): strin
   return masked;
 }
 
+// The prompt with every negated write phrase blanked, so a write-surface test
+// sees only the writes the prompt actually asks for.
+function affirmedWriteText(text: string): string {
+  return text.replace(NEGATED_WRITE, (match) => ' '.repeat(match.length));
+}
+
 function targetsOwnDocFile(text: string, skillId: string): boolean {
   if (!WRITE_VERBS.test(text)) return false;
   for (const variant of skillNameVariants(skillId)) {
@@ -311,13 +322,14 @@ export function scoreExplicitLane(
     }
   }
 
-  if (WRITE_VERBS.test(lower) && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
+  const writes = WRITE_VERBS.test(affirmedWriteText(lower));
+  if (writes && /\b(readme|docs|documentation|playbook|taxonomy|markdown|feature_catalog|skill\.md|router\.md)\b/.test(lower)) {
     push(scores, 'sk-doc', 0.7, 'write-doc-surface');
   }
-  if (WRITE_VERBS.test(lower) && /\b(classifier|helper|fixture|json|jsonl|vitest|typescript|python|script|skill_advisor\.py|mcp\.json|commonjs)\b/.test(lower)) {
+  if (writes && /\b(classifier|helper|fixture|json|jsonl|vitest|typescript|python|script|skill_advisor\.py|mcp\.json|commonjs)\b/.test(lower)) {
     push(scores, 'sk-code', 0.7, 'write-system-code-surface');
   }
-  if (WRITE_VERBS.test(lower) && /\b(error classes|trigger gap|reporter|mismatches?|bucket|gate 3)\b/.test(lower)) {
+  if (writes && /\b(error classes|trigger gap|reporter|mismatches?|bucket|gate 3)\b/.test(lower)) {
     push(scores, 'sk-code', 0.6, 'write-routing-tool-surface');
   }
   if (RELEASE_ACTION.test(lower) && TAG_CONTEXT.test(lower)) {

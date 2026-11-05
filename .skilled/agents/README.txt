@@ -22,7 +22,7 @@ Agents:
   debug:            user-invoked fresh-perspective debugger, 5-phase root-cause method, never auto-dispatched
   deep-research:    autonomous deep-research iterations with externalized state
   deep-review:      deep-review iteration agent, one dimension per pass with P0/P1/P2 findings
-  design:           design specialist across two skills: decides UI values via sk-design, measures a live surface into a Style Reference via sk-design-md-generator, LEAF
+  design:           design specialist across two skills: decides UI values from sk-code-frontend's visual references, measures a live surface into a Style Reference via sk-design-md-generator, LEAF
   markdown:         template-first markdown and documentation executor for /create:* commands and spec docs
   orchestrate:      senior multi-agent orchestration, decomposition, delegation and synthesis
   prompt-improver:  prompt-engineering specialist, framework selection and CLEAR validation

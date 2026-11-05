@@ -7,7 +7,7 @@ trigger_phrases:
   - "where the chart palette came from"
 importance_tier: normal
 contextType: reference
-version: 0.23.2.0
+version: 0.23.3.0
 ---
 
 # Origin of this Style Reference
@@ -33,7 +33,7 @@ Records where the evilcharts reference came from, so what was measured and what 
 **Source:** the evilcharts component library, `src/app/globals.css`, its `:root` and `.dark`
 custom-property blocks. Both blocks are carried verbatim beside this file as `source-globals.css`,
 so every converted hex can be checked against the `oklch()` it came from without reaching for the
-library clone, which lives in another packet's research context.
+library itself.
 **Read:** 2026-09-09
 
 ---

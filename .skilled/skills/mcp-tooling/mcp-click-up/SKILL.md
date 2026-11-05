@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.9.0
+version: 1.2.11.0
 ---
 
 # mcp-click-up Skill
@@ -26,6 +26,8 @@ On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task upda
 **Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim.
 
 **Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
+
+**After every doc page write, check the import and remove the divider gaps.** A page the server creates or rewrites shows an empty line under every divider, and no MCP call removes it. Compare the `"text/md"` read-back with what you sent, count the gaps in the `"text/plain"` read-back, then remove them in the ClickUp editor with the program in `references/mcp-tools.md` section 8, "Required after every page write". The approved push covers this, so it needs no second yes. Never report a page delivered while it has gaps or an import diff.
 
 Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invocation patterns).
 

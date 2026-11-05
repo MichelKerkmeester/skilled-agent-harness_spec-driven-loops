@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals/001-frontend-upgrade",
+  "spec_folder": "sk-design/021-deprecate-fundamentals/001-frontend-upgrade",
+  "parent_id": "sk-design/021-deprecate-fundamentals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontend visual values upgrade",
+      "sk-code-frontend visual references",
+      "move design tokens into sk-code",
+      "screen design routing for sk-code",
+      "frontend upgrade plan",
+      "sk-code-frontend value references",
+      "two stage routing for visual values",
+      "frontend upgrade tasks",
+      "sk-code-frontend visual reference tasks",
+      "phase 1 routing checklist",
+      "frontend upgrade acceptance criteria",
+      "sk-code-frontend visual reference criteria"
+    ],
+    "key_topics": [
+      "frontend",
+      "visual",
+      "values",
+      "upgrade",
+      "sk-code-frontend",
+      "references",
+      "move",
+      "design",
+      "tokens",
+      "sk-code",
+      "screen",
+      "routing"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+      ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+      ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/graph-metadata.json",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/sk-code-frontend/README.md",
+      ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-values.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-hierarchy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-motion-and-interaction.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+        "source": "derived"
+      },
+      {
+        "name": "tokens.css",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "frontend-practice.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-markup-and-css.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+        "source": "derived"
+      },
+      {
+        "name": "figma-to-code.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "visual-values.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sk-code frontend surface writes web UI but owns no spacing, type, colour, hierarchy or motion values",
+    "created_at": "2026-11-05T08:27:36Z",
+    "last_save_at": "2026-11-05T11:02:37.471Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a22a2f60dc6aeb0708b41cfd3d96b55c1b5a1b827cc1d5542bd56afa6aa3ddaa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45add8f8b8933fb739c36eb16e08ef86c4593eb37eda52a11ee7cfb9befd6aca",
+      "plan.md": "00fe042064c54bd6dee112b7b568fba9b00e7efbf04353e3c13df6f4b526ef65",
+      "tasks.md": "8a387b5b72a28ab1cd660822a9ce22e1b7cdefc6479664b779e9d6d0020fc93d",
+      "implementation-summary.md": "4d8edccf4e3a049f418d80142c896dd6a41871aa6e059dae705f2a1d47b14275"
+    },
+    "last_active_at": null
+  }
+}

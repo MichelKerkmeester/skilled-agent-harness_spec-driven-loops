@@ -52,37 +52,34 @@ interface PythonRow {
 // pruned as targeted work resolves them, which is the only reason this list ever
 // shrinks — rr-iter3-093 and rr-iter3-145 each left it that way.
 //
-// rr-iter2-020 and rr-iter3-146 are sk-code gold that the native scorer loses
-// to sk-doc by under 0.04 in the pinned regime. rr-iter3-146 only ever left
-// this list under a graph-boosted run: with a live skill graph the daemon
-// still ranks it sk-code, by 0.007. Both are vocabulary bleed between the two
-// hubs and stay here until that is resolved, not hidden by a local graph.
+// rr-iter2-020 is sk-code gold that the native scorer loses to sk-doc by under
+// 0.04 in the pinned regime. It is vocabulary bleed between the two hubs and
+// stays here until that is resolved, not hidden by a local graph.
 //
-// rr-iter3-166 and rr-iter3-182 joined for the same reason and were measured
-// the same way. A hub consolidation added roughly thirty terms to sk-code and
-// restructured the deep-loop modes; nothing was removed, but each term carries
-// less weight once the vocabulary grows, so both prompts lose their gold hub in
-// the pinned regime. With a live skill graph the daemon ranks both correctly,
-// deep-loop over sk-doc by 0.032 and sk-code over sk-git by 0.035, so a real
-// session is unaffected. Adding aliases was tried and moved neither prompt,
-// which is what identifies dilution rather than a missing term as the cause.
+// rr-iter3-166 joined for a related reason and was measured the same way. A hub
+// consolidation added roughly thirty terms to sk-code and restructured the
+// deep-loop modes; nothing was removed, but each term carries less weight once
+// the vocabulary grows, so the prompt loses its gold hub in the pinned regime.
+// With a live skill graph the daemon ranks it correctly, deep-loop over sk-doc
+// by 0.032, so a real session is unaffected. Adding aliases was tried and did
+// not move it, which is what identifies dilution rather than a missing term.
 const ACCEPTED_PARITY_REGRESSION_IDS: string[] = [
   // rr-hub6-204 and rr-hub6-207 left this list: the corpus growth (orchestration/jev
   // skills) let the TS scorer recover both prompts to the Python-correct
   // answer, so they no longer diverge. Conscious removal, reviewed against
   // gold.
+  //
+  // rr-iter3-093 and rr-iter3-182 left this list when sk-code absorbed the
+  // retired sk-design-fundamentals mode and its screen-review vocabulary: the
+  // pinned native scorer now reaches the sk-code gold on both prompts.
+  //
+  // rr-iter3-146 left this list when the explicit lane stopped reading a negated
+  // write ("don't write anything back") as a request to write docs.
   'rr-iter2-020',
   'rr-iter3-092',
-  // rr-iter3-093 rejoined when the sk-prompt description stopped claiming
-  // scoring: the Python reference now reaches its sk-code gold, while the
-  // pinned native scorer misses it as it did before. The native side did not
-  // change, and with a live skill graph the hook scorer keeps the gold.
-  'rr-iter3-093',
   'rr-iter3-097',
   'rr-iter3-099',
-  'rr-iter3-146',
   'rr-iter3-166',
-  'rr-iter3-182',
 ];
 
 function findWorkspaceRoot(): string {
@@ -238,8 +235,8 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
 
     // On the current 195-row corpus, in the pinned no-graph regime above, the
     // Python reference makes 109 gold-correct top-1 calls; the native scorer
-    // preserves 102 of them and diverges only on the reviewed current-state rows
-    // enumerated above, while improving 52 rows the Python reference gets wrong.
+    // preserves 104 of them and diverges only on the reviewed current-state rows
+    // enumerated above, while improving 53 rows the Python reference gets wrong.
     //
     // Both numbers measure the reference, not a target, so they move whenever the
     // labeled corpus, the Python scoring tables, or any skill root's metadata
@@ -259,8 +256,13 @@ describe('027/003 AC-1/AC-2 regression-protection parity and §11 gates', () => 
     // scoring or a single pass, which returns two prompts to their gold in the
     // Python reference; the native scorer keeps one of them. The other is
     // rr-iter3-093, recorded above.
+    // 101 -> 103: the native scorer reaches the sk-code gold on rr-iter3-093
+    // and rr-iter3-182 once sk-code carries the screen-review vocabulary.
+    // pythonCorrect holds at 109 and no new id joins the regression list.
     expect(pythonCorrect).toBe(109);
-    expect(tsAlsoCorrect).toBe(101);
+    // 103 -> 104: a negated write verb no longer awards the sk-doc write-surface
+    // boost, so rr-iter3-146 reaches its sk-code gold.
+    expect(tsAlsoCorrect).toBe(104);
     expect(regressions).toBe(ACCEPTED_PARITY_REGRESSION_IDS.length);
     expect(regressionIds).toEqual(ACCEPTED_PARITY_REGRESSION_IDS);
     expect(tsAbstainsOnPythonCorrect).toBe(0);

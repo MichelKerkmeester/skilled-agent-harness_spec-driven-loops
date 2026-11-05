@@ -10,9 +10,10 @@ trigger_phrases:
   - "bulk create tasks"
   - "clickup webhooks"
   - "mcp tools"
+  - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.4.0
+version: 1.1.6.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -69,7 +70,7 @@ Use the **official MCP** for:
 
 Use **cupt** for daily task work: listing your queue, showing a task, completing it with a dry run, notes, timers and tags (see `cupt-commands.md`).
 
-**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, space-tag definitions, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
+**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, space-tag definitions, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
 
 Two reads survive for things that cannot be edited: `clickup_get_task` with `include: ["checklists"]` returns a task's checklists, and `include: ["dependencies"]` returns its dependencies.
 
@@ -218,6 +219,8 @@ ClickUp's markdown import has three traps, all observed on 2026-10-08:
 - A numbered list that follows a heading restarts at 1, whatever number the source gives. Escape each number (`3\.`) and leave a blank line between items when the numbers matter.
 - A paragraph directly above a `---` divider becomes a heading. Leave a blank line before the divider.
 
+One more trap has no markdown fix: every divider on a page the server writes shows an empty line under it in the ClickUp app. Section 8 covers how to detect it and how to remove it.
+
 This section describes the `clickup_official` manual only. The claude.ai ClickUp connector and the raw ClickUp v2 REST API were not re-checked on 2026-10-08.
 
 ---
@@ -271,16 +274,102 @@ The schema does not describe return shapes. Log the first response of a tool and
     create_page: false,
   });
   const page = await clickup_official.clickup_official_clickup_create_document_page({
-    document_id: doc.id,
+    document_id: doc.document_id,
     name: "What went well",
     content: "- Shipped on time\n- Clear handoffs",
     content_format: "text/md",
   });
-  console.log(JSON.stringify({ doc_id: doc.id, page }));
+  console.log(JSON.stringify({ doc_id: doc.document_id, page_id: page.page_id }));
 })();
 ```
 
+The IDs come back under their own names, checked 2026-11-05: `clickup_create_document` returns `document_id` and `document_url`, `clickup_create_document_page` returns `page_id`, and `clickup_get_document_pages` returns `{ pages: [{ id, name, content, date_updated, ... }] }`.
+
 To change an existing page, read it first with `clickup_get_document_pages`, then call `clickup_update_document_page`. Its default `content_edit_mode` is `replace`, which overwrites the whole page. `append` and `prepend` keep the existing content. In a ClickUp doc URL, the first ID after `/v/dc/` or `/docs/` is the `document_id` and the second is the `page_id`.
+
+### Divider spacing on pages the server writes
+
+Every divider the server writes gets an empty line under it, so a page built from markdown with `* * *` dividers shows a double gap below each one. Observed on 2026-11-05 across 65 pages:
+- It happens on `clickup_create_document_page`, and on `clickup_update_document_page` in `replace` and `append` mode, for every divider spelling: `* * *`, `---`, `***`, `___` and `- - -`. Blank lines around the divider change nothing, and a raw `<hr>` arrives as literal text.
+- A page whose dividers were made in the ClickUp editor keeps them tight, and a `replace` on such a page wrote a new divider tight as well. The gap comes from a page built from nothing, not from the markdown.
+- The markdown read-back cannot show it. `content_format: "text/md"` returns the same `* * *` with blank lines around it either way.
+
+**Detect it with the plain-text read-back.** `clickup_get_document_pages` with `content_format: "text/plain"` returns each divider as a single space. A tight divider runs straight into the next line (`"\n Who gets it"`), and a divider with the gap ends its own line (`"\n \nWho gets it"`). Count gaps with `/(^|\n) \n/g` and tight dividers with `/(^|\n) [^\n]/g`. An image at the end of a page also reads as `" \n"`, so check the text around each hit before calling it a divider.
+
+**The server has no fix.** No markdown spelling and no edit mode writes a tight divider. The fix happens in the ClickUp editor: put the caret on the empty line under the divider and press Delete, the forward delete. The next line moves up and keeps its own format, so a list stays a list and a heading stays a heading.
+
+### Required after every page write
+
+Every `clickup_create_document_page` or `clickup_update_document_page` call ends with this routine, in the same turn, before the push is reported. It belongs to the write the user approved, so it needs no second yes: it removes only empty lines, and step 4 proves the text is unchanged.
+
+1. **Check the import.** Read the page with `content_format: "text/md"` and compare it with the markdown you sent, both normalized: trailing spaces and blank lines dropped, and `[url](url)` unwrapped to the bare URL. A line you sent that is missing from the read-back is an import defect, such as an escaped `\*\*`, a paragraph turned into a heading above a divider, a literal `\[\]` or an auto-linked `.md` name. Fix the content and write the page again before step 2. A bold run that ClickUp re-split around inline code is not a defect.
+2. **Count the gaps.** Read the page with `content_format: "text/plain"` and count `/(^|\n) \n/g`. Zero means the routine is done.
+3. **Remove the gaps.** Run the program below through the `mcp-chrome-devtools` mode. It needs a browser window where the user is logged in to ClickUp. When no browser tool is available, or a page opens on ClickUp's login screen, stop and tell the user the gap count per page and that they need to log in to ClickUp in the DevTools browser window. Run the program once they confirm.
+4. **Report per page:** import diff lines, gaps before, gaps left and whether the text is unchanged. A page with gaps left or changed text is not delivered. Say which, and why.
+
+The program runs steps 1, 3 and 4 for a batch of pages. Fill in the constants and paste it as the `code` of one `mcp__code_mode__call_tool_chain` call. `chrome_devtools_1` is the Chrome DevTools manual in this repository's Code Mode, so use the name your `list_tools()` shows. Keep batches to about ten pages, because each page takes 10 to 20 seconds and a longer call moves to the background. The editor selectors are ClickUp internals as of 2026-11-05 and can change.
+
+```javascript
+(async () => {
+  const WORKSPACE = "WORKSPACE_ID";
+  const DOC = "DOCUMENT_ID";
+  const PAGES = [{ id: "PAGE_ID", sent: "THE MARKDOWN YOU SENT" }];
+  const B = chrome_devtools_1;
+  const read = async (id, format) => (await clickup_official.clickup_official_clickup_get_document_pages(
+    { document_id: DOC, page_ids: [id], content_format: format })).pages[0].content;
+  const norm = (text) => text.split("\n").map((l) => l.replace(/[  ]+$/, ""))
+    .filter((l) => l.trim() !== "").map((l) => l.replace(/\[(https?:[^\]\s]+)\]\(\1\)/g, "$1"));
+  const gaps = (text) => (text.match(/(^|\n) \n/g) || []).length;
+  const sleep = (ms) => B.chrome_devtools_1_evaluate_script(
+    { function: `() => new Promise((r) => setTimeout(() => r(1), ${ms}))` });
+  const number = (result) => { const m = /```json\n(-?\d+)/.exec(result); return m ? Number(m[1]) : -9; };
+  // Returns the number of empty blocks under a divider and puts the caret in the first one.
+  // -1 means no editor on the page, -2 means ClickUp showed its login screen.
+  const PICK = `() => {
+    if (location.pathname.includes("/login")) return -2;
+    const ed = document.querySelector(".ql-editor"); if (!ed) return -1; ed.focus();
+    const empty = [...ed.querySelectorAll(":scope > hr.ql-divider")].map((h) => h.nextElementSibling)
+      .filter((n) => n && n.classList.contains("ql-block") && n.textContent === ""
+        && n.children.length === 1 && n.firstElementChild.tagName === "BR");
+    if (!empty.length) return 0;
+    const sel = window.getSelection(); sel.removeAllRanges();
+    const range = document.createRange(); range.setStart(empty[0], 0); range.collapse(true); sel.addRange(range);
+    return empty.length;
+  }`;
+  const report = [];
+  for (const page of PAGES) {
+    const md = await read(page.id, "text/md");
+    const got = new Set(norm(md));
+    const importDiff = norm(page.sent).filter((line) => !got.has(line));
+    const gapsBefore = gaps(await read(page.id, "text/plain"));
+    let left = gapsBefore, presses = 0, login = false;
+    for (let attempt = 0; left > 0 && attempt < 3; attempt++) {
+      await B.chrome_devtools_1_navigate_page({ type: "url",
+        url: `https://app.clickup.com/${WORKSPACE}/v/dc/${DOC}/${page.id}` });
+      await sleep(6000 + attempt * 2000);
+      let n = number(await B.chrome_devtools_1_evaluate_script({ function: PICK })), stall = 0;
+      if (n === -2) { login = true; break; }
+      while (n > 0 && stall < 3 && presses < 300) {
+        await B.chrome_devtools_1_press_key({ key: "Delete" }); presses++;
+        const m = number(await B.chrome_devtools_1_evaluate_script({ function: PICK }));
+        if (m >= n) { stall++; await sleep(2000); } else { stall = 0; }
+        n = m;
+      }
+      left = Math.max(n, 0);
+    }
+    await sleep(3500);
+    const after = await read(page.id, "text/md");
+    report.push({ page: page.id, login, importDiff, gapsBefore, presses,
+      gapsLeft: gaps(await read(page.id, "text/plain")),
+      textUnchanged: norm(after).join("\n") === norm(md).join("\n") });
+  }
+  console.log(JSON.stringify(report));
+})();
+```
+
+`gapsLeft` counts every `" \n"` line, and an image at the end of a page reads that way too. When `gapsLeft` is 1 and the page ends in an image, check the text around the hit before calling it a divider.
+
+**Prefer `replace` on an existing page.** A page that already has editor-made dividers keeps them tight under `replace`, so the routine finds nothing to remove.
 
 ---
 

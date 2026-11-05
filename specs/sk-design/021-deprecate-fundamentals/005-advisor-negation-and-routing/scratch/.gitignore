@@ -1,0 +1,3 @@
+out-*.jsonl
+err-*.log
+prompt-*.txt

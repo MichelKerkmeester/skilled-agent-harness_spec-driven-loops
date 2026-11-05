@@ -319,9 +319,8 @@ function evaluateCanary(snapshot, input) {
     if (constraints.has('clarify')) {
       decision = clarify(snapshot, built.request, selected.length ? selected : scores.map((entry) => entry.mode));
     } else if (selected.length === 0) {
-      // The hub router's own "none" outcome: no signal at all falls to the
-      // default mode, because this hub declares a values question as the
-      // safe default for an unclear design request.
+      // The hub router's own "none" outcome: with no default mode declared, a
+      // request with no signal defers and asks which artifact is wanted.
       decision = snapshot.routingModel.defaultMode === null
         ? negative('defer', { reason: 'no-match', recovery: [] })
         : route(snapshot, 'single', [snapshot.routingModel.defaultMode]);
