@@ -1669,12 +1669,21 @@ def validate_render_checks(
     doc_type_rules: Dict[str, Any],
     file_path: Optional[Path] = None,
 ) -> List[Dict[str, Any]]:
-    """Run the rendered-shape checks for document types that opt in."""
-    if not doc_type_rules.get('renderChecks', False):
-        return []
+    """Run the rendered-shape checks for document types that opt in.
+
+    The section-citation check runs for every type: a cited section number that
+    no longer exists misleads the reader of a playbook or a catalog as much as
+    one of a reference, while the shape checks encode the templates of the
+    types that opt in. A type that records past state, such as a changelog,
+    sets ``sectionReferenceChecks`` to false so its citations stay as written.
+    """
     lines = content.splitlines()
     fenced = _fenced_line_numbers(content)
     skip = fenced | _frontmatter_line_numbers(lines)
+    if not doc_type_rules.get('renderChecks', False):
+        if not doc_type_rules.get('sectionReferenceChecks', True):
+            return []
+        return _render_section_reference(lines, skip, file_path)
     issues: List[Dict[str, Any]] = []
     issues.extend(_render_bold_label_join(lines, skip))
     issues.extend(_render_setext_underline(lines, skip))

@@ -202,9 +202,9 @@ def test_overview_subsections_out_of_order_are_reported():
     ]
 
 
-def section_reference_findings(name):
+def section_reference_findings(name, doc_type="reference"):
     """The render_section_reference messages of one fixture."""
-    _rc, payload, _types = render_types(name)
+    _rc, payload, _types = render_types(name, doc_type)
     return [
         item["message"]
         for item in payload["warnings"]
@@ -239,6 +239,16 @@ def test_citation_through_a_link_or_code_span_is_resolved():
 
 def test_citation_of_an_unresolvable_file_is_clean():
     assert section_reference_findings("negative-section-reference-unknown-file.md") == []
+
+
+def test_citation_check_runs_for_a_type_without_shape_checks():
+    assert section_reference_findings("reference-section-reference-missing.md", "playbook") == [
+        '"§8 EXAMPLES" points at section 8, but this file has no section 8.',
+    ]
+
+
+def test_changelog_citations_are_not_checked():
+    assert section_reference_findings("reference-section-reference-missing.md", "changelog") == []
 
 
 INTRO_TYPES = (

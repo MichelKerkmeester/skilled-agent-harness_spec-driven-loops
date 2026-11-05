@@ -1,6 +1,6 @@
 ---
 title: "sk-doc: Feature Catalog"
-description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check, the advisory goal-criteria lint and the skill format check that converts a skill in place."
+description: "Current-state inventory for the sk-doc hub, covering its packet-authored, registry-projected routing across fourteen documentation-authoring packets, the default-on compiled-routing fast path that resolves ahead of it, the stage-two leaf route replay with its keep rule, the shared validator's changelog entry check and render checks, the render ledger and rewrite guard, the advisory goal-criteria lint and the skill format check that converts a skill in place."
 trigger_phrases:
   - "sk-doc feature catalog"
   - "sk-doc hub capabilities"
@@ -12,13 +12,15 @@ trigger_phrases:
   - "shared frontmatter value warning"
   - "skill format check and convert"
   - "convert a skill in place"
-last_updated: "2026-10-30"
-version: 2.3.4.0
+  - "render checks"
+  - "render ledger and rewrite guard"
+last_updated: "2026-11-05"
+version: 2.3.5.0
 ---
 
 # sk-doc: Feature Catalog
 
-This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone. The skill format command reads one skill against that same surface, row by row, or reports its gaps against a parent hub, and converts one skill after a plan and a yes.
+This catalog inventories the live `sk-doc` hub surface. The skill advisor routes any documentation- or component-authoring query to the single identity `sk-doc`; the hub resolves one of fifteen workflow modes — spread across fourteen packets, since one packet backs two modes — whose routing vocabulary is authored at the packet and projected into `mode-registry.json`/`hub-router.json` at runtime. A default-on, flag-gated compiled-routing fast path can resolve the same decision ahead of this registry-driven routing without changing what it resolves to. The hub's shared validator also holds every changelog entry to its search metadata. Its render checks flag a doc that reads wrong once rendered, and a render ledger with a rewrite guard covers the docs code depends on and proves a form-only rewrite kept every claim. An advisory lint in `sk-create-goal` flags goal criteria a reader cannot check from the line alone. The skill format command reads one skill against that same surface, row by row, or reports its gaps against a parent hub, and converts one skill after a plan and a yes.
 
 ---
 
@@ -135,6 +137,34 @@ Warns, never blocks, when a document's contextType or importance_tier is outside
 #### Source Files
 
 See [`document-validation/shared-frontmatter-value-warning.md`](document-validation/shared-frontmatter-value-warning.md) for the two keys, the silent cases and source anchors.
+
+### Render Checks
+
+#### Description
+
+Flags a document that validates but reads wrong once rendered, from a joined bold label to a citation of a section that no longer exists, and fails a skill's strict packaging on any finding.
+
+#### Current Reality
+
+`validate_document.py` runs sixteen `render_*` checks and reports each finding as a warning. The shape checks run for the types whose rule sets `renderChecks`. `render_section_reference` runs for every type except changelog and spec, which set `sectionReferenceChecks` to false. `package_skill.py --strict` fails a skill on any render finding in the docs it scans.
+
+#### Source Files
+
+See [`document-validation/render-checks.md`](document-validation/render-checks.md) for the sixteen checks, the type gating and source anchors.
+
+### Render Ledger And Rewrite Guard
+
+#### Description
+
+Records the render findings a doc may keep and the docs code depends on, and proves before commit that a form-only rewrite kept every claim.
+
+#### Current Reality
+
+`render-known-debt.json` holds the `debt`, `exempt` and `pinned` records, and `render_exempt.py --check` reports every entry that does not hold. `doc-rewrite-guard.py --base <ref>` exits 1 on a `HARD` finding, such as an edited code block, a dropped citation, a removed or retitled cited section, or an edit to an exempt or pinned doc.
+
+#### Source Files
+
+See [`document-validation/render-ledger-and-rewrite-guard.md`](document-validation/render-ledger-and-rewrite-guard.md) for the three records, the guard's checks and source anchors.
 
 ---
 

@@ -2,7 +2,7 @@
 name: sk-doc
 description: "Documentation & component authoring hub: skills, agents, commands, READMEs, catalogs, playbooks, changelogs, goals, frontmatter."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 2.9.2.0
+version: 2.9.3.0
 metadata:
   family: sk-util
 ---

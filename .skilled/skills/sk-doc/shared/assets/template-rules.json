@@ -497,7 +497,8 @@
           "importance_tier",
           "contextType"
         ]
-      }
+      },
+      "sectionReferenceChecks": false
     },
     "playbook": {
       "description": "Manual testing playbook files for skill validation, including a root directory page and required per-feature snippet tree",
@@ -548,7 +549,8 @@
       "tocRequired": false,
       "h2DividerRequired": false,
       "h2EmojiRequired": false,
-      "h2UppercaseRequired": false
+      "h2UppercaseRequired": false,
+      "sectionReferenceChecks": false
     },
     "benchmark_companion": {
       "description": "Benchmark report companion files (failed-runs.md, source.md, skill-benchmark-report.md, findings-and-recommendations.md) in a run folder below benchmark/reports/ (<run>/ or <group>/<run>/). Detected by name and position. The report contract and its renderer own their shape, so no section, divider or heading-case rule applies",
