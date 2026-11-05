@@ -1,5 +1,5 @@
 {
-  "manifestHash": "be85d894ef0051f5dd7f51fc8211fb45165253b99a9fe4af08b0fcf423fb8dc2",
+  "manifestHash": "7de74a58aef9f48ff074fbab6445b7c4e9bcc4e66fd3a1472375b9f877ca242a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1317,6 +1317,9 @@
     ],
     "005 code graph fast fail": [
       "005 code graph fast fail"
+    ],
+    "005 concise release format operator decisions": [
+      "005-concise-release-format operator decisions"
     ],
     "005 cross cutting quality changelog": [
       "005-cross-cutting-quality changelog"
@@ -52067,6 +52070,9 @@
     "give each deep loop mode a required content": [
       "give each deep loop mode a required content"
     ],
+    "glance section comment": [
+      "glance section comment"
+    ],
     "glm 5 2 cli devin dispatch": [
       "glm-5.2 cli-devin dispatch"
     ],
@@ -102321,6 +102327,9 @@
     "sk create changelog 1 4 0 0": [
       "sk-create-changelog 1.4.0.0"
     ],
+    "sk create changelog 1 4 1 0": [
+      "sk-create-changelog 1.4.1.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -102416,6 +102425,9 @@
     ],
     "sk create changelog v1 4 0 0": [
       "sk-create-changelog v1.4.0.0"
+    ],
+    "sk create changelog v1 4 1 0": [
+      "sk-create-changelog v1.4.1.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -104670,6 +104682,9 @@
     "sk doc 2 9 5 0": [
       "sk-doc 2.9.5.0"
     ],
+    "sk doc 2 9 6 0": [
+      "sk-doc 2.9.6.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -105140,6 +105155,9 @@
     ],
     "sk doc v2 9 5 0": [
       "sk-doc v2.9.5.0"
+    ],
+    "sk doc v2 9 6 0": [
+      "sk-doc v2.9.6.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

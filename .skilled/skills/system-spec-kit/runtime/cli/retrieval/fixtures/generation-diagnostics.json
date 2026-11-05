@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7360,
-    "ok": 17141,
+    "missing-frontmatter": 7361,
+    "ok": 17144,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28049,
+  "documentsScanned": 28053,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "be85d894ef0051f5dd7f51fc8211fb45165253b99a9fe4af08b0fcf423fb8dc2",
+  "manifestHash": "7de74a58aef9f48ff074fbab6445b7c4e9bcc4e66fd3a1472375b9f877ca242a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41125,
+      "ok": 41131,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -29138,6 +29138,12 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/avoid-version-collision.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

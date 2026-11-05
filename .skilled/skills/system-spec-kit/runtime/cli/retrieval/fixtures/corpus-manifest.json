@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ae7b1560461f670f07fae8f0b2efc7dd9169c05fc83cc5246094b7c81b2771f3",
+  "corpusHash": "a88aa5459d87ae118a47c25eb29c8febb5bf2640484019106349501043159f25",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28049,
+  "includedPathCount": 28053,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6357,6 +6357,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.5.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.6.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6574,6 +6575,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.8.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.9.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -6587,6 +6589,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-global-component.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/topology/route-phase-child-nested.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/avoid-version-collision.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/check-expanded-shape.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/choose-four-part-bump.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/version-and-format/select-canonical-format.md",
     ".skilled/skills/sk-doc/sk-create-changelog/references/README.md",
@@ -14617,6 +14620,7 @@
     "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/spec.md",
     "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/tasks.md",
     "specs/sk-doc/055-changelog-system/005-concise-release-format/acceptance-criteria.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/decision-record.md",
     "specs/sk-doc/055-changelog-system/005-concise-release-format/implementation-summary.md",
     "specs/sk-doc/055-changelog-system/005-concise-release-format/plan.md",
     "specs/sk-doc/055-changelog-system/005-concise-release-format/research/deep-research-dashboard.md",
@@ -28080,7 +28084,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "be85d894ef0051f5dd7f51fc8211fb45165253b99a9fe4af08b0fcf423fb8dc2",
+  "manifestHash": "7de74a58aef9f48ff074fbab6445b7c4e9bcc4e66fd3a1472375b9f877ca242a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
