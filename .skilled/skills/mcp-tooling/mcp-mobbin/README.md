@@ -7,7 +7,7 @@ trigger_phrases:
   - "app design research"
   - "screen examples"
   - "ux flow references"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # mcp-mobbin
@@ -16,7 +16,9 @@ version: 1.1.5.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.1.5.0
 | **Invoke with** | "mobbin", "mobbin mcp", "app design research", "screen examples", "ux flow references" or auto-routing on Mobbin keywords |
 | **Works on** | The hosted Mobbin MCP at `api.mobbin.com/mcp`, bridged by `npx mcp-remote` through the registered `mobbin` Code Mode manual. Needs a paid plan (Pro or higher, Free has no MCP access) and operator browser OAuth. There is no API key |
 | **Produces** | Cited screen evidence: `screens[]` metadata (`app_name`, `mobbin_url`, `image_url`, platform) with ordered inline images and a `failed[]` report, handed to the requesting workflow |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -57,7 +55,7 @@ Live pre-auth discovery confirmed a bounded read-only surface. Each tool covers 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 > The examples below are illustrative. The `mobbin` manual is registered and the callables are discovery-confirmed (2026-07-16 fixture). Each session re-confirms them with `tool_info`. Live calls need an authenticated paid account (Pro or higher).
 
@@ -105,7 +103,7 @@ For a measured Style Reference of real, extracted design tokens, pair `sk-design
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Live Three-Tool Surface
 
@@ -134,7 +132,7 @@ The transport allows breadth while researching: apps, screens, flows and intents
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -151,7 +149,7 @@ The packet is the hub's third transport. Its closest structural sibling is `mcp-
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 > Full symptom, cause and fix detail: [`references/troubleshooting.md`](./references/troubleshooting.md).
 
@@ -167,7 +165,7 @@ The packet is the hub's third transport. Its closest structural sibling is `mcp-
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Do I need a Mobbin API key?**
 
@@ -201,7 +199,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 > Post-registration and live-call checks require an authenticated paid account and are operator-gated. SKIP with a documented blocker is a valid result for those.
 
@@ -216,7 +214,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

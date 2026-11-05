@@ -9,14 +9,16 @@ trigger_phrases:
   - "notion mcp"
   - "figma cli"
   - "mcp tool bridge"
-version: 1.8.6.0
+version: 1.8.7.0
 ---
 
 # mcp-tooling
 
 > One advisor identity routes eight MCP tool bridges through the right workflow packet: five workflow bridges and three read-only design transports.
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -27,10 +29,6 @@ version: 1.8.6.0
 | **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin` |
 | **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
 
----
-
-## 2. OVERVIEW
-
 External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
 
 The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
@@ -39,7 +37,7 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 
 ---
 
-## 3. MODE DIRECTORY
+## 2. MODE DIRECTORY
 
 | Mode | What the hub routes |
 |---|---|
@@ -54,7 +52,7 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
 
 ---
 
-## 4. QUICK START
+## 3. QUICK START
 
 For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
 
@@ -74,7 +72,7 @@ The hub routes a browser/CDP request to Chrome and a generic agentic browser req
 
 ---
 
-## 5. ROUTING AND BOUNDARIES
+## 4. ROUTING AND BOUNDARIES
 
 ### Two-stage routing
 
@@ -100,7 +98,7 @@ Transport packets bridge external tool surfaces and remain `mutatesWorkspace:fal
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 Hub structure and coupled metadata:
 
@@ -129,7 +127,7 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled
 
 ---
 
-## 7. RELATED SKILLS
+## 6. RELATED SKILLS
 
 | Skill | Relationship |
 |---|---|

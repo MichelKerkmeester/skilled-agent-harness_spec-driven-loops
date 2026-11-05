@@ -6,7 +6,7 @@ trigger_phrases:
   - "notion official mcp"
   - "notion manual"
   - "official notion mcp install"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # notion-mcp
@@ -15,18 +15,16 @@ version: 0.1.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Confirming how the official Notion MCP server is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `notion` manual is registered. |
 | **Works on** | `npx -y @notionhq/notion-mcp-server` over stdio (local backend), launched by Code Mode on demand. |
-| **Produces** | 24 page, block, data-source, comment, user, and search tools under the `notion.notion_*` namespace once registered. Unregistered in this environment as of 2026-08-21, see Section 4. |
-
----
-
-## 2. OVERVIEW
+| **Produces** | 24 page, block, data-source, comment, user, and search tools under the `notion.notion_*` namespace once registered. Unregistered in this environment as of 2026-08-21, see Section 3. |
 
 ### Why This Package Exists
 
@@ -53,7 +51,7 @@ Notion is prioritizing the remote MCP and states it "may sunset this local MCP s
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Set credentials.** Create an internal integration in the Notion integrations dashboard, copy its token (prefix `ntn_`), and export it as `NOTION_TOKEN` in the environment Code Mode runs in. Share the target pages and databases with that integration in the Notion UI. See the `notion` entry in `.utcp_config.json` for the exact variable name it interpolates.
 
@@ -63,7 +61,7 @@ Notion is prioritizing the remote MCP and states it "may sunset this local MCP s
 list_tools()
 ```
 
-Expected: entries prefixed `notion.notion_*`. As of 2026-08-21 this returns none in this environment, see Section 4.
+Expected: entries prefixed `notion.notion_*`. As of 2026-08-21 this returns none in this environment, see Section 3.
 
 **Step 3: Confirm a callable name before using it.**
 
@@ -75,7 +73,7 @@ Never hardcode a tool name without confirming it this way first. Notion tool nam
 
 ---
 
-## 4. VERIFICATION
+## 3. VERIFICATION
 
 > **Verification status (2026-08-21):** the `notion` manual is not yet registered in this environment. `NOTION_TOKEN` is unset, and a live `list_tools()` call returns zero `notion.*` entries. The 24 tool names in `../../references/mcp-tools.md` were confirmed verbatim against the official README (`https://raw.githubusercontent.com/makenotion/notion-mcp-server/main/README.md`, fetched 2026-08-21) but have not been runtime-reconfirmed through Code Mode. Re-run `list_tools()` / `tool_info()` once the manual is registered before hardcoding any callable.
 
@@ -86,7 +84,7 @@ Never hardcode a tool name without confirming it this way first. Notion tool nam
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -10,12 +10,12 @@ trigger_phrases:
   - "file layer over ui principle"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # Reference — Plugin operation logic (file-layer model)
 
-The `mcp-obsidian` mode operates Obsidian community plugins by editing the data they read, never by driving their UI. This is the connective principle that makes the per-plugin references usable and the pattern to extend to any future plugin.
+Open this when you are about to change what a plugin shows or computes and need the one rule that makes the per-plugin references work headlessly. It also says how to carry that rule to a plugin that has no reference yet.
 
 ---
 

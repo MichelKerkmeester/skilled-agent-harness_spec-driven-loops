@@ -13,7 +13,7 @@ Notion workspace operations via the **official Notion MCP** (`@notionhq/notion-m
 
 ---
 
-## 0. MARKDOWN + DATA-SOURCE CONTRACT: READ BEFORE ANY NOTION WRITE
+## 1. MARKDOWN + DATA-SOURCE CONTRACT: READ BEFORE ANY NOTION WRITE
 
 Two shape rules cause most Notion write failures:
 
@@ -26,7 +26,7 @@ Markdown round-trip tools (`retrieve-page-markdown` / `update-page-markdown`) re
 
 ---
 
-## 1. WHEN TO USE
+## 2. WHEN TO USE
 
 ### Activation Triggers (explicit user phrases)
 
@@ -51,7 +51,7 @@ Markdown round-trip tools (`retrieve-page-markdown` / `update-page-markdown`) re
 
 ---
 
-## 2. SMART ROUTING
+## 3. SMART ROUTING
 
 The `mcp-tooling` hub routes a Notion request here when the prompt names Notion or one of its surfaces (a page, a database or data source, a property, a relation, a token) and the hub's `mcp-notion` signal selects this packet.
 The router makes two decisions: the official 24-tool MCP carries page, block, data-source, comment, user and search work while direct Notion API calls fill the five gaps, and the backend is the headless local stdio server, with the remote OAuth server only for an interactive session.
@@ -63,7 +63,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ---
 
-## 3. HOW IT WORKS
+## 4. HOW IT WORKS
 
 ### Backend Comparison
 
@@ -134,7 +134,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 ---
 
-## 4. RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -167,7 +167,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 ---
 
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 - [ ] Code Mode `notion["notion_search"]({query})` returns results (empty is valid) — confirms the manual + token work
 - [ ] `list_tools()` shows `notion.notion_*` entries; `tool_info("notion.notion_retrieve-a-page")` resolves a live schema
@@ -178,7 +178,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 ---
 
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 **Gate 2 (Skill Routing):** activates at ≥0.8 confidence for Notion workspace requests. The advisor matches on `notion`, `notion mcp`, `notion database`, `notion data source`, `notion page`, `notion token`.
 
@@ -192,7 +192,7 @@ File uploads, views, non-truncated page property items, and async-task polling e
 
 ---
 
-## 7. QUICK REFERENCE
+## 8. QUICK REFERENCE
 
 ### Notion MCP tool surface (24 tools, 6 domains — confirm names with `tool_info()`)
 
@@ -233,7 +233,7 @@ await call_tool_chain({
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 9. REFERENCES AND RELATED RESOURCES
 
 **Reference Files (load on demand via router):**
 - `references/mcp-tools.md` — the 24-tool catalog by domain + Code Mode invocation

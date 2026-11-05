@@ -8,12 +8,12 @@ trigger_phrases:
   - "figma_figma_api_key env"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.2
+version: 1.0.1.0
 ---
 
 # Figma Code Mode Env Template - prefixed token line
 
-The single prefixed `.env` line that authenticates the OPTIONAL Framelink `figma` MCP through this project's Code Mode.
+Open this when you opt into the Code Mode path that pulls design context from Figma, because that path stays unauthenticated until the token exists in the prefixed form Code Mode expects.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "chrome devtools code mode snapshot"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Chrome DevTools Code Mode Manuals - registered-state snapshot
@@ -22,6 +22,12 @@ Registered-state snapshot of BOTH Chrome DevTools manual entries in this repo's 
 ### Purpose
 
 The MCP fallback path of mcp-chrome-devtools runs through Code Mode: two manuals, `chrome_devtools_1` and `chrome_devtools_2`, each launching the `chrome-devtools-mcp` server over stdio via `npx`. This asset captures the exact registered entries so agents can verify the live config against a known-good snapshot instead of re-deriving (or worse, duplicating) them.
+
+### Usage
+
+- Confirming both entries exist before any MCP browser call
+- Comparing the live `.utcp_config.json` against this known-good snapshot
+- Re-deriving the registered entries instead of duplicating them
 
 ### Provenance and verification contract
 

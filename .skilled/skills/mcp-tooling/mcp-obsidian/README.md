@@ -7,7 +7,7 @@ trigger_phrases:
   - "notesmd-cli"
   - "obsidian mcp"
   - "local rest api"
-version: 0.18.3.0
+version: 0.18.4.0
 ---
 
 # mcp-obsidian
@@ -16,7 +16,9 @@ version: 0.18.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 0.18.3.0
 | **Invoke with** | "obsidian", "notesmd-cli", "obsidian vault", "daily note", "local rest api", a plugin name or an `obsidian_*` MCP operation |
 | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
 | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -55,7 +53,7 @@ That is the whole reason this skill exists. It makes AI use inside Obsidian effe
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install or inspect the headless profile.**
 
@@ -98,7 +96,7 @@ const info = await tool_info("obsidian.obsidian_get_note");
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Router
 
@@ -127,7 +125,7 @@ Obsidian plugins are render layers over plain data. The skill operates the data,
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -143,7 +141,7 @@ Use this mode for an Obsidian vault, a daily note, a note search, a Local REST A
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -160,7 +158,7 @@ Full recovery procedures live in `references/troubleshooting.md`.
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When should I use `notesmd-cli` instead of the official `obsidian` CLI?**
 
@@ -188,7 +186,7 @@ A: It ships reference sets for Health.md and Iconic, plus a general Obsidian the
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The mode-root scripts are the first checks because they separate required headless pieces from optional app-backed pieces.
 
@@ -205,7 +203,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -11,7 +11,7 @@ ClickUp task management via **cupt CLI** (primary) and **official ClickUp MCP** 
 
 ---
 
-## 0. MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
+## 1. MARKDOWN FORMATTING CONTRACT — READ BEFORE ANY CLICKUP WRITE
 
 ClickUp shows plain text literally. Markdown sent through a plain-text path shows up in the ClickUp UI as raw `### Heading`, `**bold**`, and `- [ ]` text. Whenever the content contains ANY markdown syntax, use the markdown-aware parameter for the operation. On the Code Mode manual (`clickup_official`), checked against the server's schema on 2026-10-08:
 
@@ -31,7 +31,7 @@ Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invoca
 
 ---
 
-## 1. WHEN TO USE
+## 2. WHEN TO USE
 
 ### Activation Triggers (explicit user phrases)
 
@@ -59,7 +59,7 @@ Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invoca
 
 ---
 
-## 2. SMART ROUTING
+## 3. SMART ROUTING
 
 The `mcp-tooling` hub routes a ClickUp task request here: the request names `cupt` or `clickup` with a task action, a work queue, time tracking or a ClickUp document, and the hub's `mcp-click-up` mode signal selects this packet.
 
@@ -73,7 +73,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 ---
 
-## 3. HOW IT WORKS
+## 4. HOW IT WORKS
 
 ### Tool Comparison
 
@@ -182,7 +182,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 ---
 
-## 4. RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -214,7 +214,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 ---
 
-## 5. SUCCESS CRITERIA
+## 6. SUCCESS CRITERIA
 
 - [ ] `cupt --version` prints version string
 - [ ] `cupt status` shows workspace name without error
@@ -225,7 +225,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 ---
 
-## 6. INTEGRATION POINTS
+## 7. INTEGRATION POINTS
 
 **Gate 2 (Skill Routing):** This skill activates at ≥0.8 confidence for ClickUp task management requests. The skill advisor matches on: `clickup`, `cupt`, `task management`, `work queue`, `time tracking`, `mark done`.
 
@@ -237,7 +237,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 ---
 
-## 7. QUICK REFERENCE
+## 8. QUICK REFERENCE
 
 ### cupt Command Cheat Sheet
 
@@ -285,7 +285,7 @@ The document tool takes no content. Add text with `clickup_create_document_page`
 
 ---
 
-## 8. REFERENCES AND RELATED RESOURCES
+## 9. REFERENCES AND RELATED RESOURCES
 
 **Reference Files (load on demand via router):**
 - `references/cupt-commands.md` — Full cupt command reference with agent patterns

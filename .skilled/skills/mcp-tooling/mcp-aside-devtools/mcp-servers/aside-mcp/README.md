@@ -6,7 +6,7 @@ trigger_phrases:
   - "aside utcp manual"
   - "register aside mcp"
   - "aside code mode setup"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # aside-mcp
@@ -15,7 +15,9 @@ version: 1.0.0.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.0.0.0
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })`: the `aside` manual is registered; confirm callables via discovery in a fresh Code Mode session first. |
 | **Works on** | `aside mcp` over local stdio, spawned by the client; no URL, port, token, or env credential. |
 | **Produces** | A runtime-discovered tool surface (exactly one `repl` tool on the pinned version `1.26.626.1517`, protocol `2024-11-05`). |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Package Exists
 
@@ -38,7 +36,7 @@ mcp-aside-devtools routes composition work, browser operations chained with othe
 
 ---
 
-## 3. REGISTERED UTCP MANUAL
+## 2. REGISTERED UTCP MANUAL
 
 > **Status: REGISTERED** (2026-07-16). This entry is present in `.utcp_config.json` `manual_call_templates[]`: verify with `jq '.manual_call_templates[] | select(.name == "aside")' .utcp_config.json`, do not re-add it. Post-registration discovery ran 2026-07-16 (fixture: `references/discovery-fixture-2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`.
 
@@ -77,7 +75,7 @@ Register **one** manual. The dual-manual layout (`aside_1`/`aside_2`, mirroring 
 
 ---
 
-## 4. RELATED DOCUMENTS
+## 3. RELATED DOCUMENTS
 
 - [`../../references/mcp-wiring.md`](../../references/mcp-wiring.md): transport, handshake, discovery, and binding detail
 - [`../../references/session-management.md`](../../references/session-management.md): daemon lifecycle and concurrency posture

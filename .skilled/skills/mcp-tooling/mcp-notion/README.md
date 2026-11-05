@@ -7,7 +7,7 @@ trigger_phrases:
   - "notion workspace"
   - "notion database"
   - "notion page"
-version: 0.1.2.0
+version: 0.1.3.0
 ---
 
 # mcp-notion
@@ -16,7 +16,9 @@ version: 0.1.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 0.1.2.0
 | **Invoke with** | "notion", "notion mcp", "notion workspace", "notion database", "notion page" or auto-routing on Notion keywords |
 | **Works on** | Any Notion workspace shared with an internal integration; the local stdio MCP server via `NOTION_TOKEN` for headless and Code Mode work, the remote OAuth MCP for interactive sessions |
 | **Produces** | Created and updated pages, filtered data-source queries, appended blocks, comments and gap operations through one MCP path and one direct-API path |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -54,7 +52,7 @@ Reach for this skill when you need to create, read, update or organize Notion pa
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Provide the integration token.**
 
@@ -90,7 +88,7 @@ The local stdio server runs headless with `NOTION_TOKEN`, which is why Code Mode
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Operation Router
 
@@ -147,7 +145,7 @@ call_tool_chain({
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 The MCP path and the direct API path cover different operation sets by design. Neither is a drop-in for the other. For "create a page" or "query this database with a filter", the official MCP is the right answer. For "upload this file to a page" or "read the full multi-select values that got truncated", only a direct API call will work.
 
@@ -164,7 +162,7 @@ This skill uses only Notion's official MCP server (`@notionhq/notion-mcp-server`
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -179,7 +177,7 @@ This skill uses only Notion's official MCP server (`@notionhq/notion-mcp-server`
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Is there a Notion CLI like ClickUp's `cupt`?**
 
@@ -203,7 +201,7 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -214,7 +212,7 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

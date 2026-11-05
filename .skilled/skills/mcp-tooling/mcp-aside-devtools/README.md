@@ -7,7 +7,7 @@ trigger_phrases:
   - "aside cli"
   - "aside mcp"
   - "browser agent task"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-aside-devtools
@@ -16,7 +16,9 @@ version: 1.1.4.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.1.4.0
 | **Invoke with** | "aside", "aside browser", "AI browser automation", "aside cli", "aside mcp" or auto-routing on browser-agent keywords |
 | **Works on** | macOS (Darwin) arm64/x64 only. The official installer rejects Linux and Windows |
 | **Produces** | Agent-task outcomes, REPL evaluation results, screenshots, PDFs and snapshots, plus discovered MCP tool fixtures |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -57,7 +55,7 @@ The MCP transport belongs to `mcp-code-mode`. This skill consumes Code Mode as a
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install the CLI (macOS only, operator-invoked).**
 
@@ -105,7 +103,7 @@ call_tool_chain(`
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Routing Rule
 
@@ -121,7 +119,7 @@ The agent-task lane (`aside "<task>"`, `aside exec`, `--session <id>` continuati
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -137,7 +135,7 @@ Reach for this skill when browser work should run through the Aside AI browser: 
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -150,7 +148,7 @@ Reach for this skill when browser work should run through the Aside AI browser: 
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When do I use the agent-task lane versus the REPL?**
 
@@ -174,7 +172,7 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows 
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -185,7 +183,7 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -6,7 +6,7 @@ trigger_phrases:
   - "cupt install"
   - "cupt cli"
   - "install cupt"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # clickup-cli (cupt)
@@ -15,7 +15,9 @@ version: 1.0.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.0.2.0
 | **Invoke with** | `bash setup.sh`, then `cupt --version` and `cupt status`. |
 | **Works on** | Python 3.8+ with `pipx` (preferred) or `pip`. |
 | **Produces** | A working `cupt` binary on `PATH`, authenticated against a ClickUp workspace. |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Package Exists
 
@@ -38,7 +36,7 @@ mcp-click-up drives daily ClickUp task operations (listing, completing, time tra
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install.**
 
@@ -69,7 +67,7 @@ Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticate
 
 ---
 
-## 4. TROUBLESHOOTING
+## 3. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -78,7 +76,7 @@ Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticate
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

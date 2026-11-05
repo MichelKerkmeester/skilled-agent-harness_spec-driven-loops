@@ -10,7 +10,7 @@ trigger_phrases:
   - "notion mcp manual not found"
 importance_tier: "normal"
 contextType: "general"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # mcp-notion Troubleshooting Guide
@@ -21,7 +21,15 @@ Diagnostic recipes for the official Notion MCP server and the direct API-gap cal
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Every operation here reaches Notion over the network — there is no offline or filesystem fallback. That makes three things the usual root causes: the token, whether the target object is shared with the integration, and which `Notion-Version` the request pins. The error-code map below routes each symptom to its recipe.
+
+### When to Use
+
+- Matching an observed symptom to its recipe through the error-code map
+- Narrowing a failure to authentication and sharing, rate limiting, API-version mismatch, the data-source-vs-database change or backend configuration
+- Starting with Quick Diagnostics (§3) before jumping to the matching section
 
 | Symptom | HTTP | Section |
 |---|---|---|

@@ -6,7 +6,7 @@ trigger_phrases:
   - "obsidian-mcp-server install"
   - "obsidian manual"
   - "official obsidian mcp install"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # obsidian-mcp
@@ -15,18 +15,16 @@ version: 0.1.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
 | **Use it for** | Confirming how the Obsidian MCP server is configured. There is no local package to install. |
 | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `obsidian` manual is registered. |
 | **Works on** | `npx -y obsidian-mcp-server@latest` (cyanheads, v3.5.0) over stdio, launched by Code Mode on demand. |
-| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 4. |
-
----
-
-## 2. OVERVIEW
+| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 3. |
 
 ### Why This Package Exists
 
@@ -39,7 +37,7 @@ The default server is **`obsidian-mcp-server`** (cyanheads, npm **v3.5.0**). The
 - Obsidian **Local REST API plugin v4.0.0+** enabled, with an API key generated
 - A **running Obsidian app** (the plugin serves the REST API from inside it)
 
-It reads three environment variables (interpolated by the manual, see Section 3):
+It reads three environment variables (interpolated by the manual, see Section 2):
 
 | Variable | Required | Default |
 |---|---|---|
@@ -55,7 +53,7 @@ For filesystem-based access with **no running app and no token**, the headless a
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Prepare the app.** In Obsidian, install and enable the **Local REST API** plugin (v4.0.0+), generate an API key, and keep the app running. Note the base URL (default `http://127.0.0.1:27123`).
 
@@ -85,7 +83,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
 
 ---
 
-## 4. VERIFICATION
+## 3. VERIFICATION
 
 > **Registration note:** the `obsidian` manual is already registered in `.utcp_config.json`, not by this folder. For reference, the registered manual is:
 
@@ -120,7 +118,7 @@ Tools are called via Code Mode `call_tool_chain` as `obsidian.obsidian_<tool>`.
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

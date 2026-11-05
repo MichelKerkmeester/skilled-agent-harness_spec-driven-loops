@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside MCP Wiring
@@ -22,7 +22,7 @@ Launch, discovery, and Code Mode wiring reference for the Aside MCP server.
 
 How the Aside MCP server is launched, what it exposed when live-probed, why the tool inventory must be rediscovered at runtime, and how the registered Code Mode manual is shaped.
 
-### Usage
+### When to Use
 
 Use this reference to verify transport and registration, then rediscover the live tool schema before invocation.
 

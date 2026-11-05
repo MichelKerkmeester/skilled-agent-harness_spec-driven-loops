@@ -7,7 +7,7 @@ trigger_phrases:
   - "bdg"
   - "screenshot"
   - "browser automation"
-version: 1.0.17.0
+version: 1.0.18.0
 ---
 
 # mcp-chrome-devtools
@@ -16,7 +16,9 @@ version: 1.0.17.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.0.17.0
 | **Invoke with** | "chrome devtools", "browser debugging", "bdg", "screenshot" or auto-routing on browser keywords |
 | **Works on** | Chrome, Chromium and Edge through a local browser instance |
 | **Produces** | PNG screenshots, HAR network traces, console logs, DOM query results and CDP responses |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -63,7 +61,7 @@ This skill is not a cross-browser test framework. The CLI targets Chromium-based
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install the CLI.**
 
@@ -109,7 +107,7 @@ The block returns a screenshot and console messages as typed objects.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Routing Rule
 
@@ -163,7 +161,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
 
 ---
 
-## 5. TROUBLESHOOTING
+## 4. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -176,7 +174,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
 
 ---
 
-## 6. FAQ
+## 5. FAQ
 
 **Q: When do I use the CLI versus the MCP path?**
 
@@ -200,7 +198,7 @@ A: Register multiple entries in `.utcp_config.json`, each with its own name such
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 The skill ships a manual testing playbook and three example scripts that double as verification gates.
 
@@ -216,7 +214,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
 
 ---
 
-## 8. RELATED RESOURCES
+## 7. RELATED RESOURCES
 
 ### Related Skills
 

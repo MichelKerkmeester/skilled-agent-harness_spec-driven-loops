@@ -10,7 +10,7 @@ trigger_phrases:
   - "obsidian rest api"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.1.3.0
+version: 0.1.4.0
 ---
 
 # Obsidian MCP Tools Reference
@@ -28,7 +28,11 @@ version: 0.1.3.0
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The Obsidian MCP server is the app-backed surface in mcp-obsidian, used when you want to operate a **running** vault through the Local REST API rather than the filesystem. Confirmed capabilities: read a note, write a note, search notes, manage tags, and delete a note.
+
+### When to Use
 
 Use this reference when:
 - Routing a request to MCP (not the CLI) because a live app + Local REST API is available — see the router in `../ROUTER.md` §3 MACHINE ROUTER

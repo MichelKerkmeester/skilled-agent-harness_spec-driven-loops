@@ -7,7 +7,7 @@ trigger_phrases:
   - "task management"
   - "time tracking"
   - "click up"
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # mcp-click-up
@@ -16,7 +16,9 @@ version: 1.1.4.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.1.4.0
 | **Invoke with** | "clickup", "cupt", "task management", "work queue", "time tracking" or auto-routing on ClickUp keywords |
 | **Works on** | Any ClickUp workspace, cupt uses a Personal API Token, the MCP path signs in with OAuth to the hosted ClickUp server, cupt works offline after `cupt prefetch` |
 | **Produces** | Task completions with status resolution, time logs, tagged queues and structured documents via two operation-routed paths |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -50,7 +48,7 @@ The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install cupt and authenticate.**
 
@@ -104,7 +102,7 @@ The MCP config snippet from `install.sh` is the JSON block to paste. It needs no
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Operation Router
 
@@ -166,7 +164,7 @@ The skill ships two production scripts under `examples/`. Each doubles as an end
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -186,7 +184,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -200,7 +198,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When do I use cupt versus the official MCP?**
 
@@ -224,7 +222,7 @@ A: No. An empty `cupt list` result is valid. Before you escalate, check the tag 
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships a manual testing playbook and two example scripts that double as verification gates.
 
@@ -237,7 +235,7 @@ The skill ships a manual testing playbook and two example scripts that double as
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

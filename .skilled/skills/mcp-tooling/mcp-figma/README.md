@@ -8,7 +8,7 @@ trigger_phrases:
   - "render in figma"
   - "drive figma from the terminal"
   - "figma mcp"
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # mcp-figma
@@ -17,7 +17,9 @@ version: 1.1.8.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.1.8.0
 | **Invoke with** | "figma cli", "figma-ds-cli", "render in figma", "figma tokens", "extract DESIGN.md", "connect to figma", "figma daemon" or auto-routing on Figma CLI keywords |
 | **Works on** | The installed Figma **Desktop** app while it is open with a file, since the CLI drives the live Desktop session over a local daemon. Needs Node.js 18 or newer and the silships `figma-ds-cli` on PATH. macOS is the supported baseline |
 | **Produces** | Rendered frames and components in the open file, design-system tokens and variables, read-only exports (DESIGN.md, PNG, SVG, JSX, CSS, Tailwind, Storybook, a11y audits) and optional design context pulled in through Code Mode |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -51,7 +49,7 @@ This is a CLI-primary surface with an optional MCP, not the reverse. The binary 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 > Examples below are illustrative. Verify exact flags with `figma-ds-cli --help`. Do not run the patched yolo connect mode without explicit consent and a stated rollback.
 
@@ -92,7 +90,7 @@ For authoring, every create, render, token, variable or bind verb changes the op
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### First Step Always
 
@@ -126,7 +124,7 @@ The skill is complete with the CLI alone. When the agent needs to pull design co
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -143,7 +141,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 > Symptoms and fixes below come from the skill contract and research digest. Verify exact command output against your installed version.
 
@@ -160,7 +158,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Do I need a Figma API key?**
 
@@ -184,7 +182,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 > The CLI reachability check requires `figma-ds-cli` installed and Figma Desktop open. The skill ships without vendoring the CLI source.
 
@@ -198,7 +196,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

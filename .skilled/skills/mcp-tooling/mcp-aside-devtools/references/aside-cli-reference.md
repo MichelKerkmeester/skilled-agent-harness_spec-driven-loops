@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside session flag"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside CLI Reference
@@ -20,9 +20,17 @@ Operational reference for the `aside` binary: the natural-language agent-task la
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Aside is an AI browser with a real standalone macOS CLI, not merely an MCP server. The installed binary exposes agent tasks (`aside "<task>"`, `aside exec`), a deterministic Playwright-compatible browser JavaScript REPL (`aside repl`), account management (`aside account ...`), and a local MCP server launcher (`aside mcp`). Subcommands observed on version `1.26.626.1517` are exactly `account`, `exec`, `repl`, and `mcp`.
 
 The command surface is **version-pinned evidence**. Re-capture `aside --version` and `aside --help` (plus per-subcommand `--help`) as fixtures before relying on any flag, and prefer the installed help over documentation examples when they disagree.
+
+### When to Use
+
+- Verifying a command or option against the installed help before relying on a flag
+- Choosing between the agent-task lane and the deterministic REPL lane
+- Checking account selection, provider tiers or boundary rules before writing a call
 
 ---
 

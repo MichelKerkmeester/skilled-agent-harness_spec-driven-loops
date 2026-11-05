@@ -6,7 +6,7 @@ trigger_phrases:
   - "install aside"
   - "aside binary"
   - "aside curl installer"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # aside-cli
@@ -15,7 +15,9 @@ version: 1.0.0.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.0.0.0
 | **Invoke with** | `curl -fsSL https://releases.aside.com/install.sh \| bash`, then `aside --version`. |
 | **Works on** | macOS (Darwin) arm64/aarch64 and x64 ONLY: the installer rejects Linux and Windows. |
 | **Produces** | An `aside` shim at `~/.local/bin/aside` (default), signed in against an Aside account. |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Package Exists
 
@@ -38,7 +36,7 @@ The official installer places the executable/shim at `~/.local/bin/aside` by def
 
 ---
 
-## 3. INSTALL AND VERIFY
+## 2. INSTALL AND VERIFY
 
 ```bash
 # Official installer (macOS only, operator-invoked)
@@ -60,7 +58,7 @@ Or use the wrapper with platform gate and idempotency: `bash ../../scripts/insta
 
 ---
 
-## 4. RELATED DOCUMENTS
+## 3. RELATED DOCUMENTS
 
 - [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md): full install, sign-in, and permission-tier walkthrough
 - [`../../references/aside-cli-reference.md`](../../references/aside-cli-reference.md), verified command surface

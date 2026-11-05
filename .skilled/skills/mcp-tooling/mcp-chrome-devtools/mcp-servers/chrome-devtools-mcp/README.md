@@ -5,7 +5,7 @@ trigger_phrases:
   - "chrome devtools mcp server"
   - "chrome_devtools_1 server"
   - "chrome devtools code mode"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # chrome-devtools-mcp
@@ -14,7 +14,9 @@ version: 1.0.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -22,10 +24,6 @@ version: 1.0.1.0
 | **Invoke with** | Code Mode `call_tool_chain()` with `chrome_devtools_N.chrome_devtools_N_<tool_name>`. |
 | **Works on** | `npx chrome-devtools-mcp` over stdio with `--isolated=true`, launched by Code Mode on demand. |
 | **Produces** | 26 exposed browser tools (navigation, screenshots, console, viewport, clicks, page management) per registered instance. |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Package Exists
 
@@ -37,7 +35,7 @@ Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) ea
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Confirm registration.**
 
@@ -71,7 +69,7 @@ Close pages in a `finally` block so no browser instance leaks.
 
 ---
 
-## 4. TROUBLESHOOTING
+## 3. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -81,7 +79,7 @@ Close pages in a `finally` block so no browser instance leaks.
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

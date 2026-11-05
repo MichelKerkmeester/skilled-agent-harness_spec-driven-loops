@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside concurrency"
 importance_tier: normal
 contextType: reference
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside Session Management
@@ -22,7 +22,7 @@ State, permissions, lifecycle, and concurrency reference for Aside operations.
 
 The state model behind every Aside operation: which layer holds the state, how long it lives, which permissions gate it, and what is safe to run in parallel.
 
-### Usage
+### When to Use
 
 Use this reference to identify the active state layer, permission boundary, and safe concurrency posture before running an Aside operation.
 

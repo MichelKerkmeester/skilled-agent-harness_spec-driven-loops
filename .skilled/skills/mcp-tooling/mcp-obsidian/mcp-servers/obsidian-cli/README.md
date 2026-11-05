@@ -6,7 +6,7 @@ trigger_phrases:
   - "notesmd-cli install"
   - "notesmd cli"
   - "obsidian command line interface"
-version: 0.1.1.0
+version: 0.1.2.0
 ---
 
 # obsidian-cli (notesmd-cli + official obsidian)
@@ -15,7 +15,9 @@ version: 0.1.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 0.1.1.0
 | **Invoke with** | `bash setup.sh`, then `notesmd-cli --help` and (once enabled in-app) `obsidian help`. |
 | **Works on** | macOS/Linux via Homebrew (`notesmd-cli`); Obsidian desktop **v1.12.4+** for the official `obsidian` CLI. |
 | **Produces** | A `notesmd-cli` binary on `PATH` operating on the vault filesystem, plus an optional `obsidian` binary that controls a running Obsidian app. |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Package Exists
 
@@ -47,7 +45,7 @@ The two profiles cover different runtime conditions, and the router picks by whe
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install the headless CLI.**
 
@@ -82,7 +80,7 @@ Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help o
 
 ---
 
-## 4. TROUBLESHOOTING
+## 3. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -93,7 +91,7 @@ Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help o
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

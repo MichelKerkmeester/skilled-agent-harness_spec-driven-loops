@@ -8,12 +8,12 @@ trigger_phrases:
   - "figma mcp env key"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Figma Code Mode Manual - Framelink figma snippet
 
-Paste-ready `.utcp_config.json` manual entry and the matching `.env` note for the OPTIONAL community Framelink `figma` MCP, wired through this project's Code Mode.
+Open this when the agent needs design context out of Figma and the community Framelink server is still unwired. It is the config entry to paste in, together with the `.env` key that server reads.
 
 ---
 

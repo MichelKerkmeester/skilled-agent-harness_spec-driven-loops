@@ -9,7 +9,7 @@ trigger_phrases:
 importance_tier: normal
 contextType: reference
 last_updated: "2026-07-17"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside Online Research Refresh (2026-07-17)
@@ -22,7 +22,7 @@ Dated source snapshot of the public Aside developer surface.
 
 Fresh capture of the public Aside developer documentation, taken 2026-07-17. This is the online-source layer for the initial-release DevTools-parity feature set. The authoritative machine-readable capability envelope remains the live Code Mode discovery fixture ([`discovery-fixture-2026-07-16.json`](discovery-fixture-2026-07-16.json)); the online docs below corroborate the transport, permission, and distribution facts and add the verbatim `mcp.json` wiring. Every claim is tagged CONFIRMED (direct doc quote), INFERRED (reasoned from cited material), or UNKNOWN (not resolvable from the sources).
 
-### Usage
+### When to Use
 
 Use this document as corroborating source evidence, then re-capture the installed CLI and live Code Mode discovery before relying on a command or callable.
 

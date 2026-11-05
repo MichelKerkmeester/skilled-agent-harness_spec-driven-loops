@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin code mode"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mobbin MCP Wiring (via Code Mode)
@@ -20,9 +20,17 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Wiring here means the agent reaches Mobbin's remote, paid, hosted MCP (`https://api.mobbin.com/mcp`) through this project's **Code Mode** transport. The provider is a **hosted remote server over Streamable HTTP** — there is no local package to install; the official repository (`mobbin/mobbin-mcp-server`, manifest identity `com.mobbin/mobbin` v1.0.1) contains registration and metadata artifacts only (README, `mcp.json`, `server.json`, `rules/`, `.cursor-plugin/`). Code Mode consumes stdio; Mobbin speaks remote Streamable HTTP; the `mcp-remote` bridge connects them.
 
 Claims below are tagged **[CONFIRMED]** (read from the cited primary docs, manifests, or live unauthenticated probes at research time, 2026-07-16), **[INFERRED]** (supported but not exercised end-to-end), or **[UNKNOWN]** (requires authenticated access or unpublished provider policy).
+
+### When to Use
+
+- Verifying the registered `mobbin` manual or a fixture-confirmed callable
+- Tracing the `mcp-remote` stdio bridge to the hosted Streamable HTTP endpoint
+- Checking the discovery-first contract before invoking a callable
 
 ---
 

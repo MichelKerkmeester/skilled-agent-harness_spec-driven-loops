@@ -9,7 +9,7 @@ trigger_phrases:
   - "aside mcp handshake failed"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Aside Troubleshooting Guide
@@ -22,7 +22,7 @@ Root-cause reference for diagnosing Aside CLI and MCP failures.
 
 Root-cause taxonomy first, fixes second. Every state below names its distinct signal so failures are never misdiagnosed — in particular, the browser-unbound state is not an auth failure.
 
-### Usage
+### When to Use
 
 Run the quick diagnostics, match the observed signal to the error taxonomy, and apply only the listed recovery path.
 

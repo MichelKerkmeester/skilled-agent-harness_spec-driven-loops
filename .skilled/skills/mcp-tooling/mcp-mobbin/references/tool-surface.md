@@ -9,7 +9,7 @@ trigger_phrases:
   - "mobbin rate limit"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Mobbin Tool Surface
@@ -28,7 +28,7 @@ The live contract for the Mobbin MCP. **Live Code Mode discovery ran 2026-07-16,
 
 The documented-baseline facts below still trace to the official Mobbin skills repository (`mobbin/skills`) and the official Mobbin MCP docs (docs.mobbin.com/mcp).
 
-### Usage
+### When to Use
 
 Use the discovered schemas and workflow constraints as the baseline, then re-confirm the intended callable in the active Code Mode session.
 

@@ -7,7 +7,7 @@ trigger_phrases:
   - "design reference"
   - "ui reference search"
   - "real app screens"
-version: 1.1.5.0
+version: 1.1.6.0
 ---
 
 # mcp-refero
@@ -16,7 +16,9 @@ version: 1.1.5.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.1.5.0
 | **Invoke with** | "refero", "refero mcp", "design reference", "ui reference search", "real app screens" or auto-routing on Refero keywords |
 | **Works on** | The remote Refero MCP at `api.refero.design/mcp`, bridged by `npx mcp-remote` through the `refero` manual already registered in this repo's Code Mode. Needs a Refero Pro (or higher) plan and operator authentication. The Free plan has no MCP access |
 | **Produces** | Cited reference evidence: style records, full style references, screen metadata, screenshots and ordered flow steps, all returned to the requesting workflow, usually paired with `sk-design-md-generator` for a measured Style Reference |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -60,7 +58,7 @@ Styles and screens use UUID strings. Flows use numeric IDs. The two typings are 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 The callable names must be confirmed live with `tool_info` before use. Live calls need an authenticated Pro (or higher) account.
 
@@ -104,7 +102,7 @@ Any design-affecting use pairs with `sk-design-md-generator` for a measured Styl
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Research Funnel
 
@@ -134,7 +132,7 @@ A transport response is untrusted reference evidence. Search rank is not taste. 
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -154,7 +152,7 @@ Skip it when the work is the design judgment itself; this packet stays the trans
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 > Full detail for each failure mode lives in [`references/troubleshooting.md`](./references/troubleshooting.md).
 
@@ -170,7 +168,7 @@ Skip it when the work is the design judgment itself; this packet stays the trans
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Do I need a paid Refero account?**
 
@@ -194,7 +192,7 @@ A: `sk-design-md-generator` provides a measured Style Reference (extracted desig
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 Live-call checks require an authenticated Pro (or higher) account and are operator-gated. SKIP with a documented blocker is a valid result for those.
 
@@ -209,7 +207,7 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
