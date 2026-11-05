@@ -1,5 +1,5 @@
 {
-  "manifestHash": "97c1471743e56c61c4cba60f1bdde90468ac51e454c0f72ee5b242c10f60f252",
+  "manifestHash": "305eec9a482d998518de07cbf7fe5fe667ee7f3feed13c0b3c3d561b173fc826",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40295,6 +40295,9 @@
     "doc quality troubleshooting": [
       "doc quality troubleshooting"
     ],
+    "doc reads wrong once rendered": [
+      "doc reads wrong once rendered"
+    ],
     "doc retrofit": [
       "doc retrofit"
     ],
@@ -75058,6 +75061,9 @@
     "package skill strict gate": [
       "package skill strict gate"
     ],
+    "package skill strict render findings": [
+      "package_skill strict render findings"
+    ],
     "package strict": [
       "package strict"
     ],
@@ -88699,17 +88705,32 @@
     "render exempt loader": [
       "render exempt loader"
     ],
+    "render exempt py check": [
+      "render_exempt.py check"
+    ],
     "render gate evidence": [
       "render gate evidence"
     ],
     "render in figma": [
       "render in figma"
     ],
+    "render known debt json": [
+      "render-known-debt.json"
+    ],
     "render known debt ratchet": [
       "render known-debt ratchet"
     ],
+    "render ledger": [
+      "render ledger"
+    ],
+    "render ledger and rewrite guard": [
+      "render ledger and rewrite guard"
+    ],
     "render prompt": [
       "render prompt"
+    ],
+    "render section reference": [
+      "render_section_reference"
     ],
     "render ts directives": [
       "render.ts directives"
@@ -104348,6 +104369,9 @@
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
+    "sk doc 2 9 3 0": [
+      "sk-doc 2.9.3.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -104803,6 +104827,9 @@
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"
+    ],
+    "sk doc v2 9 3 0": [
+      "sk-doc v2.9.3.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

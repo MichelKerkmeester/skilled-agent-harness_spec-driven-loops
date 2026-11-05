@@ -1,5 +1,5 @@
 {
-  "corpusHash": "db3e1edf1ca4ea03249452ea0131447c41342df28e8f4c132d998ad017f3544b",
+  "corpusHash": "2d3abe8b9eb931483209b5706b0d7bf3533500d31371311e524b4b780af538b6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27981,
+  "includedPathCount": 27984,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6373,10 +6373,13 @@
     ".skilled/skills/sk-doc/changelog/v2.9.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-scan.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/render-checks.md",
+    ".skilled/skills/sk-doc/feature-catalog/document-validation/render-ledger-and-rewrite-guard.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/shared-frontmatter-value-warning.md",
     ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md",
     ".skilled/skills/sk-doc/feature-catalog/packet-authored-registry-routing/leaf-route-replay.md",
@@ -28012,7 +28015,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "97c1471743e56c61c4cba60f1bdde90468ac51e454c0f72ee5b242c10f60f252",
+  "manifestHash": "305eec9a482d998518de07cbf7fe5fe667ee7f3feed13c0b3c3d561b173fc826",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
