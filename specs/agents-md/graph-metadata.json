@@ -19,7 +19,8 @@
     "agents-md/013-thinking-discipline",
     "agents-md/014-communication-rules-consolidation",
     "agents-md/015-router-file-rule-alignment",
-    "agents-md/016-doctor-agents-md"
+    "agents-md/016-doctor-agents-md",
+    "agents-md/017-v4-0-1-0-rules-refresh"
   ],
   "manual": {
     "depends_on": [],
