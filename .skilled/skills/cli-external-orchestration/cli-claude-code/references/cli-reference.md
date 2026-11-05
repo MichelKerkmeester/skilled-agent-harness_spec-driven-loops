@@ -11,12 +11,12 @@ trigger_phrases:
   - "claude code troubleshooting"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Claude Code CLI - Complete Command Reference
 
-Comprehensive reference for all Claude Code CLI commands, flags, models, configuration, and troubleshooting.
+Open this when a Claude Code dispatch needs an option you are not certain about, such as a flag, a permission mode or a usage-limit failure, and look it up rather than guess.
 
 ---
 

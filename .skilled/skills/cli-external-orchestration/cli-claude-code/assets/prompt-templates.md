@@ -9,12 +9,12 @@ trigger_phrases:
   - "claude code test generation prompt"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Prompt Templates - Claude Code CLI
 
-Copy-paste ready prompt templates for common Claude Code CLI tasks. Replace `[placeholders]` with your values.
+Open this when you need a Claude Code command you can run immediately: pick the template that fits the task, swap the bracketed placeholders for your own values and dispatch.
 
 ## 1. OVERVIEW
 

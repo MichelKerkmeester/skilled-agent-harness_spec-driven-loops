@@ -7,7 +7,7 @@ trigger_phrases:
   - "pi.dev cli"
   - "delegate to pi"
   - "pi coding agent"
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # cli-pi
@@ -16,7 +16,9 @@ version: 1.5.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.5.2.0
 | **Invoke with** | "pi cli", "pi agent", "pi.dev cli", "delegate to pi" or "pi coding agent" |
 | **Works on** | An external runtime that can reach the pi binary and the shared deep-loop executor |
 | **Produces** | Validated text, JSONL event output, RPC handback or workspace changes |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -49,7 +47,7 @@ cli-pi probes for the pi binary, selects the requested headless surface and dele
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Verify the CLI is installed.**
 
@@ -77,7 +75,7 @@ JSON mode emits one JSON object per line. For a persistent integration, use pi -
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Conductor Model
 
@@ -93,7 +91,7 @@ The packet's guard is conservative. Process ancestry is checked first, then a .p
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 The packet folder holds the routing contract in [`ROUTER.md`](./ROUTER.md), plus this README and the resources the smart router loads.
 
@@ -136,7 +134,7 @@ cli-pi/
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -164,7 +162,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -177,7 +175,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: Is Pi's RPC mode a JSON version of print mode?**
 
@@ -197,7 +195,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -212,7 +210,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

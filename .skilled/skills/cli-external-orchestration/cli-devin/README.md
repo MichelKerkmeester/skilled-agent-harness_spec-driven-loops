@@ -9,7 +9,7 @@ trigger_phrases:
   - "subagent delegation"
   - "second opinion"
   - "cross-validate"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-devin
@@ -18,7 +18,9 @@ version: 1.4.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -26,10 +28,6 @@ version: 1.4.2.0
 | **Invoke with** | "devin", "cognition", "cloud handoff", "subagent delegation", "second opinion" or "cross-validate", plus the router intent keywords |
 | **Works on** | Any external runtime (Claude Code, Codex, Cursor, OpenCode or raw shell) that can reach the `devin` binary |
 | **Produces** | Code edits, structured reviews, subagent task results, cloud sessions with their own VM and web-enriched research |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -72,7 +70,7 @@ Subagents take a profile, not a model. `subagent_explore` runs on the cheap defa
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Confirm the binary and the login.**
 
@@ -112,7 +110,7 @@ Inside the session, type `/handoff fix the flaky integration tests in CI`. The c
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Smart Router
 
@@ -150,7 +148,7 @@ The skill refuses to load when the calling session is itself running inside Devi
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 cli-devin/
@@ -190,7 +188,7 @@ cli-devin/
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -203,7 +201,7 @@ cli-devin/
 
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -221,7 +219,7 @@ Full recovery procedures live in `references/cli-reference.md` and `references/i
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: When should I dispatch to Devin instead of doing the work myself?**
 
@@ -245,7 +243,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -255,7 +253,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

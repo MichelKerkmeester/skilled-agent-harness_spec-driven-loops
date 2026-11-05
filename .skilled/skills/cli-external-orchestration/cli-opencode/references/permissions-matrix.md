@@ -9,12 +9,12 @@ trigger_phrases:
   - "rm-8 replay walkthrough"
 importance_tier: normal
 contextType: implementation
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-opencode permissions matrix
 
-Structured permissions-matrix schema, resolution semantics, example matrices, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches.
+Open this when you are designing or migrating the allow/deny rules a cli-opencode dispatch should enforce. It carries the schema, the most-specific-glob-wins resolution, worked matrices and the replay walkthrough that shows them resolving.
 
 > **Current wiring status:** `permissions-gate.ts` (`evaluateToolCall`, `evaluatePreDispatchToolCalls`) is built and covered by its own unit tests, but it has zero production callers. No `opencode run` dispatch invokes it today — a loaded `--permissions-matrix <path>` config or recipe field is not enforced by anything in the live dispatch path. Until the gate is wired in, the four-layer prose mitigation (`cli-opencode/SKILL.md` ALWAYS rule 15) is the active protection, not the schema described below.
 

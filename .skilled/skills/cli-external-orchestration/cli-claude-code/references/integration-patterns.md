@@ -10,12 +10,12 @@ trigger_phrases:
   - "orchestrate claude code from external ai"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Cross-AI Orchestration Patterns: External AI + Claude Code CLI
 
-Proven patterns for orchestrating Claude Code CLI from external AI sessions (OpenCode, Copilot, etc.).
+Open this when an outside assistant such as OpenCode or Copilot acts as conductor and Claude Code as executor, and you need a proven wiring for the handoff.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "parallel detached"
   - "cross-ai handback"
   - "share url"
-version: 1.4.21.0
+version: 1.4.22.0
 ---
 
 # cli-opencode
@@ -17,7 +17,9 @@ version: 1.4.21.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.4.21.0
 | **Invoke with** | "delegate to opencode", "opencode run", "parallel detached", "cross-ai handback" or auto-routing on OpenCode keywords |
 | **Works on** | Any external runtime (Claude Code, OpenCode, raw shell) and from inside OpenCode for parallel detached workers |
 | **Produces** | Structured JSON event streams, code changes with full project context, parallel research sessions and cross-AI handback results |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -54,7 +52,7 @@ An external session that needs the project's whole runtime has no native path to
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Verify the CLI is installed.**
 
@@ -115,7 +113,7 @@ The session runs under its own session id in the shared `~/.local/share/opencode
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Dispatch Lifecycle
 
@@ -153,7 +151,7 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 cli-opencode/
@@ -212,7 +210,7 @@ cli-opencode/
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -243,7 +241,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `mcp-code-mode` | Orchestrates external MCP tool calls. The dispatched OpenCode session has MCP tools loaded natively. |
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -258,7 +256,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: What does the full-runtime dispatch buy over a sibling cli-* skill?**
 
@@ -282,7 +280,7 @@ A: Default to `llmgateway/deepseek-v4.1-flash-1017` on both versions. On OpenCod
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, external dispatch, multi-provider routing, agent routing, session continuity, integration patterns, prompt templates, parallel detached sessions and cross-repo or cross-server dispatch.
 
@@ -294,7 +292,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -9,12 +9,12 @@ trigger_phrases:
   - "pi resource loader"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi Native Skills and Extensions
 
-This reference covers Pi's own resource model, which is distinct from this repository's skill system.
+Open this when you need to know which Pi resource surfaces (skills, prompt templates, extensions or packages) actually exist in this repository and which are still documentation-only.
 
 Confidence rule: anything marked **Per Pi docs, unconfirmed** is documentation-only for this packet. The local contract pin is the authority for live observations: [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
 

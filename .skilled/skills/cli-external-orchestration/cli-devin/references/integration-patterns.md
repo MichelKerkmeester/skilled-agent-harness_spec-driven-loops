@@ -10,12 +10,12 @@ trigger_phrases:
   - "devin cloud handoff integration"
 importance_tier: normal
 contextType: planning
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Devin CLI
 
-Proven patterns for orchestrating Devin CLI from any AI assistant session.
+Open this when your assistant drives Devin CLI, the fifth executor kind beside Codex, Claude Code, OpenCode and Cursor, and the handoff wiring needs a proven shape.
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "pi validation handback"
 importance_tier: important
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Pi CLI Integration Patterns
 
-This reference describes how the calling AI should integrate Pi without duplicating the deep-loop executor.
+Open this when the calling AI is about to drive Pi and must do so without duplicating the deep-loop executor.
 
 Confirmed Pi mode behavior is sourced from the [Pi contract pin](../../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md). The patterns below are orchestration guidance built around that contract.
 

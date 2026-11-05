@@ -10,12 +10,12 @@ trigger_phrases:
   - "cursor validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Cursor CLI
 
-Proven patterns for orchestrating Cursor CLI from any AI assistant session.
+Open this when your assistant drives Cursor CLI and the cross-validation, approval or background-run wiring needs a reliable source.
 
 ---
 

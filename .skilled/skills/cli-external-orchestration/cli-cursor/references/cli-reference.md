@@ -10,12 +10,12 @@ trigger_phrases:
   - "cursor session resume"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Cursor CLI - Complete Command Reference
 
-Comprehensive reference for all Cursor CLI commands, flags, models, configuration, and troubleshooting.
+Open this before a Cursor run when you need to confirm an option instead of trusting memory, the enforced model allowlist included.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "code review"
   - "second opinion"
   - "cross-validate"
-version: 1.9.3.0
+version: 1.9.4.0
 ---
 
 # cli-codex
@@ -18,7 +18,9 @@ version: 1.9.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -26,10 +28,6 @@ version: 1.9.3.0
 | **Invoke with** | "codex", "openai", "web search", "second opinion" or auto-routing on Codex keywords |
 | **Works on** | Any external runtime (Claude Code, Copilot, raw shell) that needs to reach the `codex` binary |
 | **Produces** | Code edits in a sandbox, text responses, diff-aware reviews and web-enriched research |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -58,7 +56,7 @@ Reach for cli-codex when a task benefits from sandboxed file operations, live we
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Verify the CLI is installed.**
 
@@ -106,7 +104,7 @@ You get a structured review of the latest commit's diff, scoped to the focus are
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Dispatch Lifecycle
 
@@ -171,7 +169,7 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-codex/
@@ -210,7 +208,7 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### Sibling Boundaries
 
@@ -237,7 +235,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -252,7 +250,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: Why not just call `codex exec` directly from my shell?**
 
@@ -276,7 +274,7 @@ A: Reach for Codex when the task needs sandboxed edits, live web search, a diff-
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, sandbox modes, reasoning effort, agent routing, session continuity, integration patterns, prompt templates and built-in tools.
 
@@ -288,7 +286,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

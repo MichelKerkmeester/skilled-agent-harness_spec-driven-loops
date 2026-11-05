@@ -8,7 +8,7 @@ trigger_phrases:
   - "hermes clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Hermes CLI - Prompt Quality Card
@@ -23,7 +23,7 @@ This is a thin delegator. The canonical prompt-models packet owns the framework 
 
 This card is the Hermes-specific layer over the canonical prompt-quality card: framework choice and quality checks stay canonical, and only the mechanics of a safe Hermes dispatch live here.
 
-### When to Use
+### Usage
 
 - Composing or reviewing any Hermes dispatch prompt
 - Checking a prompt for the Hermes mechanics the canonical card does not carry

@@ -17,7 +17,7 @@ trigger_phrases:
   - "delegate to hermes"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.7.9.0
+version: 1.7.10.0
 ---
 
 # cli-external-orchestration
@@ -26,7 +26,9 @@ version: 1.7.9.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -34,10 +36,6 @@ version: 1.7.9.0
 | **Invoke with** | Gate 2 keyword routing such as "cli dispatch" or "delegate to codex". No mode has a bound slash command (`command: null`) |
 | **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/`, `cli-pi/` or `cli-hermes/` via `mode-registry.json` (all mutating packets, `mutatesWorkspace: true`) |
 | **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes session whose writes land in this repo's workspace. Most modes' guards block a runtime from dispatching itself, and `cli-pi` is the deliberate exception |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -65,7 +63,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Gate 2 keyword routing matches trigger phrases such as "cli dispatch" or "delegate to codex". No slash command exists for any of the seven modes (`command: null`).
 
@@ -87,7 +85,7 @@ When a request names several modes at once, the `tieBreak` order runs them as an
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Routing Chain
 
@@ -108,7 +106,7 @@ Four behaviors keep dispatch honest:
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -123,7 +121,7 @@ Four behaviors keep dispatch honest:
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -132,7 +130,7 @@ Four behaviors keep dispatch honest:
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

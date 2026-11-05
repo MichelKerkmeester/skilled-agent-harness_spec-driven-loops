@@ -8,7 +8,7 @@ trigger_phrases:
   - "extended thinking"
   - "deep reasoning"
   - "anthropic"
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # cli-claude-code
@@ -17,7 +17,9 @@ version: 1.5.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.5.2.0
 | **Invoke with** | "claude code", "delegate to claude", "extended thinking" or auto-routing on Anthropic keywords |
 | **Works on** | Any external runtime (OpenCode, Copilot, raw shell) that needs to reach the `claude` binary |
 | **Produces** | Text or JSON responses, diff-based edits, schema-validated output and agent-delegated analysis |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -64,7 +62,7 @@ The skill routes to a roster of specialized `.claude/agents/*.md` definitions wi
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Verify the CLI is installed.**
 
@@ -112,7 +110,7 @@ You get a JSON object that conforms to the schema you passed, ready to pipe down
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Dispatch Lifecycle
 
@@ -150,7 +148,7 @@ When the caller needs to keep a Claude Code session's context, a 7-step Memory H
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 cli-claude-code/
@@ -187,7 +185,7 @@ cli-claude-code/
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -220,7 +218,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -233,7 +231,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: Why not just call `claude` directly from my shell?**
 
@@ -257,7 +255,7 @@ A: The self-invocation guard detects it (via `$CLAUDECODE`, process ancestry or 
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, permission modes, reasoning and models, agent routing and session continuity.
 
@@ -269,7 +267,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

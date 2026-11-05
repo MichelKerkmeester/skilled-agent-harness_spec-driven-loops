@@ -8,7 +8,7 @@ trigger_phrases:
   - "cursor clear check"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Cursor CLI — Prompt Quality Card
@@ -20,6 +20,12 @@ Fast-path prompt-quality discipline for Cursor CLI dispatches. The 7-framework t
 ### Purpose
 
 This card is the Cursor CLI fast-path prompt-quality reference; it delegates the framework table + CLEAR check to the canonical card and records only confirmed Cursor-dispatch-mechanics addenda plus the precedence rule. Cursor has zero prior empirical dispatch data in this repo — no per-model default asserted here comes from measured Cursor usage, only from the confirmed CLI contract.
+
+### Usage
+
+- Composing or reviewing a Cursor CLI dispatch prompt
+- Checking a prompt for the Cursor dispatch-mechanics the canonical card does not carry
+- Resolving which tier of the precedence rule applies
 
 ### Precedence Rule (state this first, always)
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "composer"
   - "delegate to cursor"
   - "second opinion"
-version: 1.4.2.0
+version: 1.4.3.0
 ---
 
 # cli-cursor
@@ -17,7 +17,9 @@ version: 1.4.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.4.2.0
 | **Invoke with** | "cursor", "cursor agent", "composer", "second opinion" or auto-routing on Cursor keywords |
 | **Works on** | Any external runtime (Claude Code, Codex, raw shell) that needs to reach the `cursor-agent` binary |
 | **Produces** | Code edits in a workspace, text responses and read-only plan or ask analyses |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -61,7 +59,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Verify the CLI is installed.**
 
@@ -109,7 +107,7 @@ You get an analysis with no file writes. `--mode ask` and `--mode plan` are read
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Dispatch Lifecycle
 
@@ -156,7 +154,7 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 
 ---
 
-## 5. STRUCTURE
+## 4. STRUCTURE
 
 ```text
 .skilled/skills/cli-external-orchestration/cli-cursor/
@@ -197,7 +195,7 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or 
 
 ---
 
-## 6. INTEGRATION & NAVIGATION
+## 5. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -227,7 +225,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Cursor session back into the caller's spec folder. |
 ---
 
-## 7. TROUBLESHOOTING
+## 6. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -242,7 +240,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 
 ---
 
-## 8. FAQ
+## 7. FAQ
 
 **Q: Why not just call `cursor-agent -p` directly from my shell?**
 
@@ -266,7 +264,7 @@ A: Reach for Cursor when the task specifically wants Composer, a read-only plan 
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, execution modes, approvals and sandbox, worktree isolation, MCP integration, hooks, session continuity, cloud worker and prompt templates.
 
@@ -279,7 +277,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -10,12 +10,12 @@ trigger_phrases:
   - "codex validation pipeline"
 importance_tier: normal
 contextType: planning
-version: 1.9.1.0
+version: 1.9.2.0
 ---
 
 # Cross-AI Orchestration Patterns: Calling AI + Codex CLI
 
-Proven patterns for orchestrating Codex CLI from any AI assistant session.
+Open this when your assistant drives Codex CLI and you need a handoff, sandbox and validation wiring to follow rather than invent.
 
 ---
 
