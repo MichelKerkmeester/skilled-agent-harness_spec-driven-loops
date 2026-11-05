@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ba6961e196774bbab03f16b81e8fabcbc6e75e780e31e7949457db64e0670ee2",
+  "manifestHash": "a00361c0cb64213f3d646b2d95b61cfd7b3050cd466db3f50c30dff14cfb0467",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -40265,6 +40265,12 @@
     "doc retrofit": [
       "doc retrofit"
     ],
+    "doc rewrite guard": [
+      "doc rewrite guard"
+    ],
+    "doc rewrite guard decision": [
+      "doc rewrite guard decision"
+    ],
     "doc specific prompts": [
       "doc-specific prompts"
     ],
@@ -45440,6 +45446,9 @@
     "exempt and rewrite guard tasks": [
       "exempt and rewrite guard tasks"
     ],
+    "exempt loader decision": [
+      "exempt loader decision"
+    ],
     "exfil audit no querytext": [
       "exfil audit no querytext"
     ],
@@ -49492,6 +49501,9 @@
     ],
     "format size detail audience": [
       "format size detail audience"
+    ],
+    "format spec validator skip": [
+      "format spec validator skip"
     ],
     "format text renderer": [
       "format text renderer"
@@ -80414,8 +80426,14 @@
     "pilot run 2": [
       "pilot run 2"
     ],
+    "pinned docs": [
+      "pinned docs"
+    ],
     "pinned legacy rows": [
       "pinned legacy rows"
+    ],
+    "pinned list decision": [
+      "pinned list decision"
     ],
     "pinned sample regression": [
       "pinned sample regression"
@@ -88611,6 +88629,9 @@
     ],
     "render every gate 3 menu from constants": [
       "render every Gate 3 menu from constants"
+    ],
+    "render exempt loader": [
+      "render exempt loader"
     ],
     "render gate evidence": [
       "render gate evidence"
@@ -103033,6 +103054,9 @@
     "sk create skill 1 12 0 0": [
       "sk-create-skill 1.12.0.0"
     ],
+    "sk create skill 1 13 0 0": [
+      "sk-create-skill 1.13.0.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -103161,6 +103185,9 @@
     ],
     "sk create skill v1 12 0 0": [
       "sk-create-skill v1.12.0.0"
+    ],
+    "sk create skill v1 13 0 0": [
+      "sk-create-skill v1.13.0.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -104201,6 +104228,9 @@
     "sk doc 2 5 0 0": [
       "sk-doc 2.5.0.0"
     ],
+    "sk doc 2 6 0 0": [
+      "sk-doc 2.6.0.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -104638,6 +104668,9 @@
     ],
     "sk doc v2 5 0 0": [
       "sk-doc v2.5.0.0"
+    ],
+    "sk doc v2 6 0 0": [
+      "sk-doc v2.6.0.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
