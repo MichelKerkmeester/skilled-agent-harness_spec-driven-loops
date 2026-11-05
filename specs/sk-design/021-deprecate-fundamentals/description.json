@@ -10,14 +10,15 @@
     "same",
     "rules"
   ],
-  "lastUpdated": "2026-11-05T16:11:14.912Z",
+  "lastUpdated": "2026-11-05T19:28:37.611Z",
   "specId": "021",
   "folderSlug": "deprecate-fundamentals",
   "parentChain": [
     "sk-design"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "05-11-26_17-11__recorded-the-cross-phase-scope-decisions-for-the.md"
+    "05-11-26_17-11__recorded-the-cross-phase-scope-decisions-for-the.md",
+    "05-11-26_20-28__recorded-two-operator-answers-left-unsaved-by.md"
   ]
 }

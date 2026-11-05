@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The explicit lane gives sk-doc a 0.7 write-doc-surface boost whenever a write verb and a doc word co-occur, even when the write is negated",
     "created_at": "2026-11-05T14:07:18Z",
-    "last_save_at": "2026-11-05T16:11:55.112Z",
+    "last_save_at": "2026-11-05T19:28:37.611Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4d862b27001fbe719dfdccd37ca2c0f3ea231dbee020816659c96b215b6e9f95",
+    "source_fingerprint": "sha256:22daefed4eb3dfd41d62ac6cad27c5d34d92d8072d7bfa6e480d5e4d6c32fc23",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e37d70a81fd30dfcea13c1fb66aee9f59cc501fac65276549b14f9c7951d9656",
       "plan.md": "4610f0549879a1b070c99888fd120d7af78a2adfa68332158b4f9d9f822cd08e",
       "tasks.md": "a8e5bcc1732f624bec62d70e980151a562fe1aeca621f539586da974e88f5840",
-      "decision-record.md": "dbb4d02c8745afec70ad1194df7c33dbd6305036fc862e713bd01aed21bc8100",
+      "decision-record.md": "f45e41803060209bbfd9aeba2a18fcc1c135dac3a661342234ed3c0b5e521fb8",
       "implementation-summary.md": "cde9644801dd34b5d4faddaeab07986fd7f67f666565b78a12e1ad24de083397"
     },
     "last_active_at": null

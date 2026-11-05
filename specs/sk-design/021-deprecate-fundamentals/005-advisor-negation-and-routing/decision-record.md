@@ -39,6 +39,8 @@ _memory:
 | Q003 | Update the existing v4.0.1.0 entry with this work and republish its tag rather than opening a new release. | Not stated. | None | REQ-004, T009 |
 | Q004 | Commit the branch work and push the worktree branch to origin. | Not stated. | None | implementation-summary.md |
 | Q005 | Fast-forward main to the branch and recreate the v4.0.1.0 tag and release on the new main head. | Not stated. | None | REQ-004, scratch/facts.md section 4 |
+| Q006 | Have DeepSeek Flash write the four new READMEs. | Not stated. | None | specs/sk-design/021-deprecate-fundamentals |
+| Q007 | Delete the two old smoke-run folders of the local alignment command that still mention sk-design-fundamentals. | Not stated. | None | specs/sk-design/021-deprecate-fundamentals |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -145,6 +147,45 @@ Not yet
 Answer:
 ```text
 Merge to main, then tag
+```
+
+### Q006
+<!-- source: claude:47cfebca-4e20-46c7-be67-6a63e7618084:toolu_01JSoSyhL1iXBsEpsfTzT1Xw:2 -->
+
+Question:
+```text
+Who should write the four READMEs?
+```
+
+Options:
+```text
+DeepSeek Flash (Recommended)
+Me directly
+```
+
+Answer:
+```text
+DeepSeek Flash (Recommended)
+```
+
+### Q007
+<!-- source: claude:47cfebca-4e20-46c7-be67-6a63e7618084:toolu_01YbeEqGC19Y8GdehP9gMFc2:0 -->
+
+Question:
+```text
+The only remaining sk-design-fundamentals mentions are captured output in two old smoke-run folders of your private local-skilled-alignment command (untracked, gitignored, referenced by nothing). What should happen to them?
+```
+
+Options:
+```text
+Keep them (Recommended)
+Delete both folders
+Annotate them
+```
+
+Answer:
+```text
+Delete both folders
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
