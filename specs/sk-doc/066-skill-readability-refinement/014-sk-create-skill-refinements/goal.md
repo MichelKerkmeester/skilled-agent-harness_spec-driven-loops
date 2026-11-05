@@ -104,6 +104,7 @@ and findings belong here.
 | 001-render-checks-and-gate | Pending | not started |
 | 002-exempt-and-rewrite-guard | Pending | waits for 001 |
 | 003-templates-and-fleet | Pending | waits for 002 |
+| 004 alignment fixes | done | recheck 20261105T165214Z-recheck new=0; strict recursive PASSED |
 
 ### Deviations and findings
 

@@ -120,6 +120,7 @@ and findings belong here.
 | Executor amendment | Done | Operator moved audits and reviews off Codex to DeepSeek on 2026-11-04 after the Codex usage limit; D1 and D3 amended |
 | Remaining 53 leaves | Queued | Codex usage limit hit at 10:42 on 2026-11-04, reset reported at 1:22 PM. Run stopped per D1; resume queue `010-sk-prompt/scratch/tools/queue-v3.txt` waits for the operator |
 | Program closeout | Done | all 7 criteria green from final state; main at a5a25d88ef; 9 operator decisions recorded |
+| alignment fixes (014/004) | done | 9 commits 810a75b3aa..eb91879758; recheck new=0, probes 18/18, 014 recursive strict PASSED |
 
 ### Deviations and findings
 

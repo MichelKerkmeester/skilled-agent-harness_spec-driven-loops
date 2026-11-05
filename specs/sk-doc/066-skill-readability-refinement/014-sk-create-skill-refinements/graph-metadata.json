@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate",
     "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
-    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet"
+    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet",
+    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -196,17 +197,17 @@
     ],
     "causal_summary": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check enforces",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-05T13:06:26.677Z",
+    "last_save_at": "2026-11-05T16:57:19.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:312ddbaa2a7cdd9605708f4f4365d935fba5cc5086f8c1f1c96b2f89bf445768",
+    "source_fingerprint": "sha256:ca568b0fe7621228a0e6d621bba6b79b5b900146424fb375d078c1967dae9404",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed05eb7badb14f01a21eb6270ccdcb0416757e33c138654a41970f1d28d7e03d"
+      "spec.md": "64602d4560954ec1a4049b4bf8568a624414d3dc5f34a783b3bd4717a177765b"
     },
     "last_active_child_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet",
     "last_active_at": "2026-11-05T13:06:19.856Z"

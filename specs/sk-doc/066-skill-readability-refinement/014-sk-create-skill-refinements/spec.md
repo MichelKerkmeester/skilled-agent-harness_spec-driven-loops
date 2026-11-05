@@ -116,6 +116,7 @@ Turn the 14 refinements in `scratch/review-report.md` into shipped checks, one s
 | 1 | 001-render-checks-and-gate/ | Validator checks for items 1, 7, 8, 11, 13 and 14, the strict gate (2), the wider scan and CI sweep (3) and the ledger ratchet (4) | Complete |
 | 2 | 002-exempt-and-rewrite-guard/ | One exempt loader with a pinned list (5) and the shipped rewrite guard with its workflow steps (6) | Complete |
 | 3 | 003-templates-and-fleet/ | Template fixes for items 1, 8, 9, 10 and 12, README render checks, then the fleet clean-up under the rewrite guard | Complete |
+| 4 | 004-alignment-fixes/ | Fixes for the findings the local-skilled-alignment run over the whole program upheld, then its recheck | Complete |
 
 ### Phase Transition Rules
 
@@ -130,6 +131,7 @@ Turn the 14 refinements in `scratch/review-report.md` into shipped checks, one s
 |------|-----|----------|--------------|
 | 001-render-checks-and-gate | 002-exempt-and-rewrite-guard | New checks ship with fixtures, the ratchet runs in CI, staged findings print as `render advisory:` warnings, the ledger `debt` is `{}` and every skill passes the strict gate | `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` prints `all sk-doc script tests passed` and the 13-skill strict loop exits 0 |
 | 002-exempt-and-rewrite-guard | 003-templates-and-fleet | One exempt loader serves all callers and `doc-rewrite-guard.py` flags the replayed 066 FIX diff | `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --help` exits 0 and the guard tests pass |
+| 003-templates-and-fleet | 004-alignment-fixes | The fleet passes the strict gate and the alignment run over `1af95fc818..0e88ba257b` has a report | `report.md` and `critic.json` exist in run `20261105T151115Z` |
 <!-- /ANCHOR:phase-map -->
 
 ---

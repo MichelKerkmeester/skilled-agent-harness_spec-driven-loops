@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/004-alignment-fixes",
+  "parent_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment fixes",
+      "phase 4 alignment fixes",
+      "alignment fixes plan",
+      "alignment fixes tasks",
+      "alignment fixes acceptance criteria",
+      "alignment fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "two",
+      "doctor",
+      "test",
+      "suites"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+      ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+      ".skilled/skills/sk-doc/scripts/tests/test_doc_rewrite_guard.py",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/mcp-tooling/ROUTER.md",
+      "shared/scripts/README.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill-convert-transforms.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/lib/sk-skill-convert-transforms.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doc-rewrite-guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_doc_rewrite_guard.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/scripts/tests/test_doc_rewrite_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-shape-parity.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two doctor test suites failed in CI because their fixture routers did not open with OVERVIEW, and `/doctor:sk-skill` converted references whose description restated the intro, which the strict render check fails",
+    "created_at": "2026-11-05T16:15:37Z",
+    "last_save_at": "2026-11-05T16:56:52.213Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:55b3fa4c22ac27ec1e44d8d90c2792d3790c6ed567ac14e24a574f717eb53486",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7b93a41a49e6ae170332b5c3c525ec23cb44a8c0345024a6bfbac9eb6061df9c",
+      "plan.md": "d9e9a7bdf4ece31df84b2d23f315c0fe48d034beeb4cc4b06f5df5d7cdd67418",
+      "tasks.md": "d93935094eedeb992e61917d4d83a9afa201543b0c88e4fbcf1db1c5d084ce87",
+      "implementation-summary.md": "c407b4e87c280bad0877fb7f9b73f1ba13e21231efe3c66c63f68fe2c7ed3b57"
+    },
+    "last_active_at": null
+  }
+}
