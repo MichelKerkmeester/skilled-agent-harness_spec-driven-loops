@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8ef390e6d9b7c4ef17f2dc079bc61ff1f34d2261b7151484be2a518732af7549",
+  "manifestHash": "bc29deb1ef17a0dbe03dcd79c7922002cdc07feb86ae05d7347bb62f5e051ada",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -969,6 +969,9 @@
     ],
     "004 1 1 alignment phase": [
       "004 1:1 alignment phase"
+    ],
+    "004 alignment fixes operator decisions": [
+      "004-alignment-fixes operator decisions"
     ],
     "004 cli fallback envelope and bridge plan": [
       "004-cli-fallback-envelope-and-bridge plan"
