@@ -7,7 +7,7 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.7.0
+version: 0.1.8.0
 ---
 
 # cli-orca
@@ -58,7 +58,7 @@ The package is organized around the four leaf roots declared in `leaf-manifest.c
 - **Reference corpus** -- the four CLI references named by the SKILL.md reference table: `orca-cli-reference.md`, `session-and-runtime.md`, `mutation-and-browser-boundaries.md` and `troubleshooting.md`.
 - **Official skills layer** -- `references/orca-skills/overview.md` with the boundary matrix and install commands, one authored reference per official skill and the flat `assets/<name>.txt` snapshots.
 - **Feature catalog** -- `feature-catalog/feature-catalog.md` inventories the features behind this router. The per-area detail lives in `feature-catalog/orca-skills/official-skill-layer.md`, `feature-catalog/routing/orca-qualified-vocabulary.md`, `feature-catalog/runtime/preflight-and-resolution.md` and `feature-catalog/safety/mutation-and-ownership-boundaries.md`.
-- **Manual testing playbook** -- `manual-testing-playbook/manual-testing-playbook.md` holds the live safety matrix and the routing fixtures, including the negative holdouts. The individual checks are `handoffs/hub-deferral-receipt.md`, `ownership/embedded-browser-boundary.md`, `ownership/official-skill-handoff.md`, `routing/negative-holdouts.md`, `routing/orca-positive-route.md`, `runtime/ambiguous-send-recovery.md`, `runtime/preflight-executable-resolution.md` and `runtime/runtime-stopped-recovery.md`.
+- **Manual testing playbook** -- `manual-testing-playbook/manual-testing-playbook.md` holds the live safety matrix and the routing fixtures, including the negative holdouts. The individual checks are `manual-testing-playbook/handoffs/hub-deferral-receipt.md`, `manual-testing-playbook/ownership/embedded-browser-boundary.md`, `manual-testing-playbook/ownership/official-skill-handoff.md`, `manual-testing-playbook/routing/negative-holdouts.md`, `manual-testing-playbook/routing/orca-positive-route.md`, `manual-testing-playbook/runtime/ambiguous-send-recovery.md`, `manual-testing-playbook/runtime/preflight-executable-resolution.md` and `manual-testing-playbook/runtime/runtime-stopped-recovery.md`.
 - **Provenance asset** -- `assets/PROVENANCE.md` records the snapshot source, the per-skill release revisions and digests, as well as the refresh procedure.
 - **Benchmark evidence** -- `benchmark/reports/` holds the extraction-routing and playbook-post-remediation reports, with `routing-replays.json` and `playbook-verdicts.json` beside them.
 
