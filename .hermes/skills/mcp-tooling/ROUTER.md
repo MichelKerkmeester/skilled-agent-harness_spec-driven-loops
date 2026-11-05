@@ -35,12 +35,6 @@ Routing is two stages: the hub picks the WORKFLOW mode (mode telemetry), this
 router picks the LEAVES within it. The two layers stay separate — the hub never
 emits leaf paths, and this router never re-decides the mode.
 
-> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
-> ```bash
-> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
-> ```
-> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
-
 ---
 
 ## 2. INTENT MODEL
@@ -165,6 +159,12 @@ RESOURCE_MAP = {
 ## 5. MACHINE ROUTER
 
 The hub's detailed routing prose, moved here from `SKILL.md` so the skill body keeps only a short routing summary and a pointer to this file. It sits last, after the stage-two map above, and it declares no map of its own: the `INTENT_SIGNALS` and `RESOURCE_MAP` block in section 3 stays the only replay source.
+
+> **Compiled routing (default-on, flag-gated, additive).** Resolve the mode through the compiled router first:
+> ```bash
+> node .skilled/bin/compiled-route.cjs --hub mcp-tooling --prompt "<task>"
+> ```
+> Follow `route` targets. On `clarify` or `defer`, ask for the missing tool identity. On a `{"servingAuthority":"legacy"}` sentinel or any error, use the legacy hub-router contract. Set `SPECKIT_COMPILED_ROUTING=0` to force legacy routing fleet-wide.
 
 ### Two-Axis Model
 
