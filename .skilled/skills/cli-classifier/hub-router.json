@@ -1,6 +1,6 @@
 {
   "skill": "cli-classifier",
-  "version": "0.8.8.0",
+  "version": "0.8.9.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,

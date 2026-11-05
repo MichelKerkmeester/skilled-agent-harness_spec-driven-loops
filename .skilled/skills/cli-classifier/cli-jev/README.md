@@ -12,7 +12,7 @@ trigger_phrases:
   - "typed judgment transport"
 importance_tier: "important"
 contextType: "general"
-version: 0.1.3.0
+version: 0.1.4.0
 ---
 
 # cli-jev
@@ -128,6 +128,6 @@ cli-jev/
 
 ## 6. CONTRACT BASIS
 
-The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback: `uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command, output and exit status) or **SOURCE** (read from the vendored tree at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated call was made at pin time; [`references/providers-and-models.md`](./references/providers-and-models.md) section 8 records the authenticated `official` call made since, and the response bodies of the other providers remain unconfirmed and are tagged as such rather than asserted. The vendored Jev CLI tree defines the CLI contract in `src/jev_cli/__init__.py` and the MCP contract in `src/jev_cli/mcp_server.py`.
+The contract is pinned against `jev-cli` 0.6.2, installed with `uv tool install jev-cli` (rollback: `uv tool uninstall jev-cli`). Every claim in the references is tagged **LIVE** (observed command, output and exit status) or **SOURCE** (read from the vendored tree at `specs/cli-classifier/001-cli-jev-creation/context/jev-cli-main/`). No authenticated call was made at pin time; [`references/providers-and-models.md`](./references/providers-and-models.md) section 8 records the authenticated `official` call made since, and the response bodies of the other providers remain unconfirmed and are tagged as such rather than asserted.
 
 Source packet: `specs/cli-classifier/001-cli-jev-creation/`.
