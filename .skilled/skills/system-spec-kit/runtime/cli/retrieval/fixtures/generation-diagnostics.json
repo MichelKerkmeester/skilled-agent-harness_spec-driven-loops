@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7314,
-    "ok": 17056,
+    "missing-frontmatter": 7335,
+    "ok": 17058,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27918,
+  "documentsScanned": 27941,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "841d634fc1e635c1a7657daac312b1e6fa084701c02b32caffeedaaf7417d96a",
+  "manifestHash": "ba6961e196774bbab03f16b81e8fabcbc6e75e780e31e7949457db64e0670ee2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40937,
+      "ok": 40944,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -28789,6 +28789,36 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-h2-sequence-gap-and-repeat.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-h2-sequence-in-order.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-hard-break-labels.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-intro-fenced-sample.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-intro-hook.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-list-labels.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -28801,7 +28831,37 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-reference-overview-subsections.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-reference-related-specs-heading.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-reference-unrelated-before-related.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-router-related-before-machine.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-section-reference-match.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-section-reference-unknown-file.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -28820,6 +28880,72 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/sk-doc/scripts/tests/render/negative-urls.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-h2-sub-number.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-intro-missing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-intro-pointer.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-intro-sentence-restates.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-overview-missing-purpose.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-overview-subsection-late.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-overview-subsection-order.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-related-before-notes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-related-commands-before-workflow.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-section-reference-missing.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-doc/scripts/tests/render/reference-section-reference-title-mismatch.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {

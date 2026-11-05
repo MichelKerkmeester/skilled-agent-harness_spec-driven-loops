@@ -1,5 +1,5 @@
 {
-  "manifestHash": "841d634fc1e635c1a7657daac312b1e6fa084701c02b32caffeedaaf7417d96a",
+  "manifestHash": "ba6961e196774bbab03f16b81e8fabcbc6e75e780e31e7949457db64e0670ee2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -88573,6 +88573,12 @@
     "rename surface taxonomy": [
       "rename surface taxonomy"
     ],
+    "render advisory": [
+      "render advisory"
+    ],
+    "render checks": [
+      "render checks"
+    ],
     "render checks and gate": [
       "render checks and gate"
     ],
@@ -88611,6 +88617,9 @@
     ],
     "render in figma": [
       "render in figma"
+    ],
+    "render known debt ratchet": [
+      "render known-debt ratchet"
     ],
     "render prompt": [
       "render prompt"
@@ -103021,6 +103030,9 @@
     "sk create skill 1 11 1 0": [
       "sk-create-skill 1.11.1.0"
     ],
+    "sk create skill 1 12 0 0": [
+      "sk-create-skill 1.12.0.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -103146,6 +103158,9 @@
     ],
     "sk create skill v1 11 1 0": [
       "sk-create-skill v1.11.1.0"
+    ],
+    "sk create skill v1 12 0 0": [
+      "sk-create-skill v1.12.0.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -104183,6 +104198,9 @@
     "sk doc 2 4 1 0": [
       "sk-doc 2.4.1.0"
     ],
+    "sk doc 2 5 0 0": [
+      "sk-doc 2.5.0.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -104617,6 +104635,9 @@
     ],
     "sk doc v2 4 1 0": [
       "sk-doc v2.4.1.0"
+    ],
+    "sk doc v2 5 0 0": [
+      "sk-doc v2.5.0.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
