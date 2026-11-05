@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2dede128e130fb3aa5984b93e3fa20ab6fbc41bcc74e93a2cbc05b1fea91b883",
+  "manifestHash": "149b059d1b8791a1ddb30d410c861e1b8fc620b16532d148da210bb3b33d0ebf",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -33553,6 +33553,9 @@
     "deep ai council 1 8 1 0": [
       "deep-ai-council 1.8.1.0"
     ],
+    "deep ai council 1 8 10 0": [
+      "deep-ai-council 1.8.10.0"
+    ],
     "deep ai council 1 8 2 0": [
       "deep-ai-council 1.8.2.0"
     ],
@@ -33939,6 +33942,9 @@
     ],
     "deep ai council v1 8 1 0": [
       "deep-ai-council v1.8.1.0"
+    ],
+    "deep ai council v1 8 10 0": [
+      "deep-ai-council v1.8.10.0"
     ],
     "deep ai council v1 8 2 0": [
       "deep-ai-council v1.8.2.0"
@@ -35705,6 +35711,9 @@
     "deep research 1 15 11 0": [
       "deep-research 1.15.11.0"
     ],
+    "deep research 1 15 12 0": [
+      "deep-research 1.15.12.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -36400,6 +36409,9 @@
     "deep research v1 15 11 0": [
       "deep-research v1.15.11.0"
     ],
+    "deep research v1 15 12 0": [
+      "deep-research v1.15.12.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -36517,6 +36529,9 @@
     ],
     "deep review 1 11 13 0": [
       "deep-review 1.11.13.0"
+    ],
+    "deep review 1 11 14 0": [
+      "deep-review 1.11.14.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -37276,6 +37291,9 @@
     ],
     "deep review v1 11 13 0": [
       "deep-review v1.11.13.0"
+    ],
+    "deep review v1 11 14 0": [
+      "deep-review v1.11.14.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -77246,6 +77264,9 @@
     "phase 14 results": [
       "phase 14 results"
     ],
+    "phase 14 sk create skill": [
+      "phase 14 sk create skill"
+    ],
     "phase 14 skill authoring ux research": [
       "phase 14 skill authoring ux research"
     ],
@@ -101624,6 +101645,9 @@
     "sk create agent 1 0 6 0": [
       "sk-create-agent 1.0.6.0"
     ],
+    "sk create agent 1 0 7 0": [
+      "sk-create-agent 1.0.7.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -101669,6 +101693,9 @@
     "sk create agent v1 0 6 0": [
       "sk-create-agent v1.0.6.0"
     ],
+    "sk create agent v1 0 7 0": [
+      "sk-create-agent v1.0.7.0"
+    ],
     "sk create benchmark": [
       "sk create benchmark"
     ],
@@ -101704,6 +101731,9 @@
     ],
     "sk create benchmark 1 6 4 0": [
       "sk-create-benchmark 1.6.4.0"
+    ],
+    "sk create benchmark 1 6 5 0": [
+      "sk-create-benchmark 1.6.5.0"
     ],
     "sk create benchmark implementation summary": [
       "sk create benchmark implementation summary"
@@ -101756,6 +101786,9 @@
     "sk create benchmark v1 6 4 0": [
       "sk-create-benchmark v1.6.4.0"
     ],
+    "sk create benchmark v1 6 5 0": [
+      "sk-create-benchmark v1.6.5.0"
+    ],
     "sk create changelog": [
       "sk create changelog"
     ],
@@ -101791,6 +101824,9 @@
     ],
     "sk create changelog 1 3 11 0": [
       "sk-create-changelog 1.3.11.0"
+    ],
+    "sk create changelog 1 3 12 0": [
+      "sk-create-changelog 1.3.12.0"
     ],
     "sk create changelog 1 3 2 0": [
       "sk-create-changelog 1.3.2.0"
@@ -101879,6 +101915,9 @@
     "sk create changelog v1 3 11 0": [
       "sk-create-changelog v1.3.11.0"
     ],
+    "sk create changelog v1 3 12 0": [
+      "sk-create-changelog v1.3.12.0"
+    ],
     "sk create changelog v1 3 2 0": [
       "sk-create-changelog v1.3.2.0"
     ],
@@ -101958,6 +101997,9 @@
     "sk create command 1 0 10 0": [
       "sk-create-command 1.0.10.0"
     ],
+    "sk create command 1 0 11 0": [
+      "sk-create-command 1.0.11.0"
+    ],
     "sk create command 1 0 2 0": [
       "sk-create-command 1.0.2.0"
     ],
@@ -102012,6 +102054,9 @@
     "sk create command v1 0 10 0": [
       "sk-create-command v1.0.10.0"
     ],
+    "sk create command v1 0 11 0": [
+      "sk-create-command v1.0.11.0"
+    ],
     "sk create command v1 0 2 0": [
       "sk-create-command v1.0.2.0"
     ],
@@ -102053,6 +102098,9 @@
     ],
     "sk create diff 1 1 1 0": [
       "sk-create-diff 1.1.1.0"
+    ],
+    "sk create diff 1 1 10 0": [
+      "sk-create-diff 1.1.10.0"
     ],
     "sk create diff 1 1 2 0": [
       "sk-create-diff 1.1.2.0"
@@ -102102,6 +102150,9 @@
     "sk create diff v1 1 1 0": [
       "sk-create-diff v1.1.1.0"
     ],
+    "sk create diff v1 1 10 0": [
+      "sk-create-diff v1.1.10.0"
+    ],
     "sk create diff v1 1 2 0": [
       "sk-create-diff v1.1.2.0"
     ],
@@ -102146,6 +102197,9 @@
     ],
     "sk create feature catalog 1 0 10 0": [
       "sk-create-feature-catalog 1.0.10.0"
+    ],
+    "sk create feature catalog 1 0 11 0": [
+      "sk-create-feature-catalog 1.0.11.0"
     ],
     "sk create feature catalog 1 0 2 0": [
       "sk-create-feature-catalog 1.0.2.0"
@@ -102207,6 +102261,9 @@
     "sk create feature catalog v1 0 10 0": [
       "sk-create-feature-catalog v1.0.10.0"
     ],
+    "sk create feature catalog v1 0 11 0": [
+      "sk-create-feature-catalog v1.0.11.0"
+    ],
     "sk create feature catalog v1 0 2 0": [
       "sk-create-feature-catalog v1.0.2.0"
     ],
@@ -102261,6 +102318,9 @@
     "sk create frontmatter 1 0 8 0": [
       "sk-create-frontmatter 1.0.8.0"
     ],
+    "sk create frontmatter 1 0 9 0": [
+      "sk-create-frontmatter 1.0.9.0"
+    ],
     "sk create frontmatter implementation summary": [
       "sk create frontmatter implementation summary"
     ],
@@ -102312,6 +102372,9 @@
     "sk create frontmatter v1 0 8 0": [
       "sk-create-frontmatter v1.0.8.0"
     ],
+    "sk create frontmatter v1 0 9 0": [
+      "sk-create-frontmatter v1.0.9.0"
+    ],
     "sk create frontmatter value list": [
       "sk-create-frontmatter value list"
     ],
@@ -102345,6 +102408,9 @@
     ],
     "sk create goal 1 4 6 0": [
       "sk-create-goal 1.4.6.0"
+    ],
+    "sk create goal 1 4 7 0": [
+      "sk-create-goal 1.4.7.0"
     ],
     "sk create goal acceptance criteria": [
       "sk-create-goal acceptance criteria"
@@ -102460,6 +102526,9 @@
     "sk create goal v1 4 6 0": [
       "sk-create-goal v1.4.6.0"
     ],
+    "sk create goal v1 4 7 0": [
+      "sk-create-goal v1.4.7.0"
+    ],
     "sk create manual testing playbook": [
       "sk create manual testing playbook"
     ],
@@ -102501,6 +102570,9 @@
     ],
     "sk create manual testing playbook 1 1 0 0": [
       "sk-create-manual-testing-playbook 1.1.0.0"
+    ],
+    "sk create manual testing playbook 1 1 1 0": [
+      "sk-create-manual-testing-playbook 1.1.1.0"
     ],
     "sk create manual testing playbook implementation summary": [
       "sk create manual testing playbook implementation summary"
@@ -102559,6 +102631,9 @@
     "sk create manual testing playbook v1 1 0 0": [
       "sk-create-manual-testing-playbook v1.1.0.0"
     ],
+    "sk create manual testing playbook v1 1 1 0": [
+      "sk-create-manual-testing-playbook v1.1.1.0"
+    ],
     "sk create quality control": [
       "sk create quality control"
     ],
@@ -102591,6 +102666,9 @@
     ],
     "sk create quality control 1 0 8 0": [
       "sk-create-quality-control 1.0.8.0"
+    ],
+    "sk create quality control 1 0 9 0": [
+      "sk-create-quality-control 1.0.9.0"
     ],
     "sk create quality control implementation summary": [
       "sk create quality control implementation summary"
@@ -102640,6 +102718,9 @@
     "sk create quality control v1 0 8 0": [
       "sk-create-quality-control v1.0.8.0"
     ],
+    "sk create quality control v1 0 9 0": [
+      "sk-create-quality-control v1.0.9.0"
+    ],
     "sk create readme": [
       "sk create readme"
     ],
@@ -102663,6 +102744,9 @@
     ],
     "sk create readme 1 3 11 0": [
       "sk-create-readme 1.3.11.0"
+    ],
+    "sk create readme 1 3 12 0": [
+      "sk-create-readme 1.3.12.0"
     ],
     "sk create readme 1 3 2 0": [
       "sk-create-readme 1.3.2.0"
@@ -102733,6 +102817,9 @@
     "sk create readme v1 3 11 0": [
       "sk-create-readme v1.3.11.0"
     ],
+    "sk create readme v1 3 12 0": [
+      "sk-create-readme v1.3.12.0"
+    ],
     "sk create readme v1 3 2 0": [
       "sk-create-readme v1.3.2.0"
     ],
@@ -102799,6 +102886,9 @@
     "sk create repo rule 1 1 6 0": [
       "sk-create-repo-rule 1.1.6.0"
     ],
+    "sk create repo rule 1 1 7 0": [
+      "sk-create-repo-rule 1.1.7.0"
+    ],
     "sk create repo rule conversation plan": [
       "sk create repo rule conversation plan"
     ],
@@ -102850,6 +102940,12 @@
     "sk create repo rule v1 1 6 0": [
       "sk-create-repo-rule v1.1.6.0"
     ],
+    "sk create repo rule v1 1 7 0": [
+      "sk-create-repo-rule v1.1.7.0"
+    ],
+    "sk create skill": [
+      "sk create skill"
+    ],
     "sk create skill 1 0 0 0": [
       "sk-create-skill 1.0.0.0"
     ],
@@ -102864,6 +102960,9 @@
     ],
     "sk create skill 1 11 0 0": [
       "sk-create-skill 1.11.0.0"
+    ],
+    "sk create skill 1 11 1 0": [
+      "sk-create-skill 1.11.1.0"
     ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
@@ -102949,6 +103048,12 @@
     "sk create skill authoring errors": [
       "sk-create-skill authoring errors"
     ],
+    "sk create skill implementation summary": [
+      "sk create skill implementation summary"
+    ],
+    "sk create skill plan": [
+      "sk create skill plan"
+    ],
     "sk create skill playbook": [
       "sk-create-skill playbook"
     ],
@@ -102960,6 +103065,9 @@
     ],
     "sk create skill routing": [
       "sk-create-skill routing"
+    ],
+    "sk create skill tasks": [
+      "sk create skill tasks"
     ],
     "sk create skill v1 0 0 0": [
       "sk-create-skill v1.0.0.0"
@@ -102975,6 +103083,9 @@
     ],
     "sk create skill v1 11 0 0": [
       "sk-create-skill v1.11.0.0"
+    ],
+    "sk create skill v1 11 1 0": [
+      "sk-create-skill v1.11.1.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -103078,6 +103189,9 @@
     "sk create with human voice 1 2 4 0": [
       "sk-create-with-human-voice 1.2.4.0"
     ],
+    "sk create with human voice 1 2 5 0": [
+      "sk-create-with-human-voice 1.2.5.0"
+    ],
     "sk create with human voice implementation summary": [
       "sk create with human voice implementation summary"
     ],
@@ -103110,6 +103224,9 @@
     ],
     "sk create with human voice v1 2 4 0": [
       "sk-create-with-human-voice v1.2.4.0"
+    ],
+    "sk create with human voice v1 2 5 0": [
+      "sk-create-with-human-voice v1.2.5.0"
     ],
     "sk deep research cli codex dispatch": [
       "sk-deep-research cli-codex dispatch"
@@ -104003,6 +104120,9 @@
     "sk doc 2 4 0 0": [
       "sk-doc 2.4.0.0"
     ],
+    "sk doc 2 4 1 0": [
+      "sk-doc 2.4.1.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -104434,6 +104554,9 @@
     ],
     "sk doc v2 4 0 0": [
       "sk-doc v2.4.0.0"
+    ],
+    "sk doc v2 4 1 0": [
+      "sk-doc v2.4.1.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
