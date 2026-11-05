@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Agent Template - Specialist Agent Structure
@@ -21,7 +21,15 @@ Last Updated: 2026-05-03 (post-063 alignment)
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Agents are specialized AI personas with defined authority, tool permissions, and behavioral rules. Unlike skills, which provide reusable knowledge and workflows, agents have runtime identity and permission boundaries.
+
+### Usage
+
+- Copy this template when you are creating an OpenCode agent file.
+- Read When to Create an Agent below before you commit to an agent rather than a skill.
+- Keep the resulting file at or below 600 lines, and move reusable knowledge into a skill or reference file.
 
 ### Key Characteristics
 

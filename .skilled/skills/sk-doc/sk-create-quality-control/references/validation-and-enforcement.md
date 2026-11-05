@@ -8,12 +8,12 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Validation and Enforcement Operations
 
-How a create-quality-control run validates and enforces standards: the validation touchpoints, the enforcement approval prompts, how phases chain, and what to do when a run breaks. `SKILL.md` §3-§5 owns the executable steps; this file is the overflow detail — the manual validation sequence, the approval-prompt wording, the phase-chaining logic, and troubleshooting.
+Open this when a doc-quality run stops and you need to know which validation step to run by hand, what to say in the approval prompt or where the broken phase left off. The executable steps live in `SKILL.md` and this file is the overflow detail.
 
 For execution modes see [workflows.md](./workflows.md). For worked command recipes see [workflow-examples.md](./workflow-examples.md).
 

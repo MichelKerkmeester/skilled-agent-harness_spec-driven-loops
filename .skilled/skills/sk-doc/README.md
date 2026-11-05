@@ -19,7 +19,7 @@ trigger_phrases:
   - "repo rule"
   - "frontmatter contract"
   - "document diff"
-version: 2.3.10.0
+version: 2.3.11.0
 ---
 
 # sk-doc
@@ -28,7 +28,9 @@ version: 2.3.10.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -36,10 +38,6 @@ version: 2.3.10.0
 | **Invoke with** | "create a skill", "validate doc", "conformance benchmark", "readme", "documentation", "flowchart", "create a chart", "create a diagram", "repo rule", "frontmatter contract", "apply human voice", "changelog" or Gate 2 auto-routing on documentation keywords |
 | **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
 | **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -86,7 +84,7 @@ The validator reads the file path and content shape, then applies the matching e
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Gate 2 auto-routing fires on documentation keywords. Otherwise read the skill directly.
 
@@ -114,7 +112,7 @@ Exit 0 means the document is valid and ready to ship. Exit 1 means a blocking fo
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Structure-First Pipeline
 
@@ -153,7 +151,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -165,7 +163,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -176,7 +174,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When do I use sk-doc instead of system-spec-kit? Both touch markdown.**
 
@@ -196,7 +194,7 @@ A: `/create:skill` for a new skill under `.skilled/skills/`. `/create:skill-pare
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships the checks that prove a document is ready.
 
@@ -210,7 +208,7 @@ The skill ships the checks that prove a document is ready.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

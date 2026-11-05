@@ -9,7 +9,7 @@ trigger_phrases:
   - "benchmark re-run mistake"
 importance_tier: normal
 contextType: reference
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Benchmark Folder Common Pitfalls
@@ -19,6 +19,8 @@ The mistakes that most often make a skill-local benchmark folder drift from its 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Each row names a mistake, why it breaks the skill-local surface, and the correct fix. The two case studies in [case-studies.md](case-studies.md) show real adoptions that avoided these traps; the ALWAYS/NEVER rules and authority hierarchy that back them live in [`../../SKILL.md`](../../SKILL.md) §7.
 

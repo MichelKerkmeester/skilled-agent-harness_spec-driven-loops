@@ -8,7 +8,7 @@ trigger_phrases:
   - "scenario execution detail"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 ---
 
 # Manual Testing Playbook Snippet Template
@@ -24,7 +24,11 @@ Per-feature scenario files for split manual testing playbooks. Use this template
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Each feature file is the canonical home for full scenario execution detail. The root `manual-testing-playbook.md` stays readable by summarizing the feature and linking here, while the feature file carries the realistic user-testing context, orchestration process, 9-column test row, structured source references, and concise metadata. The file shape should intentionally mirror the Feature Catalog snippet pattern so operators can move between the catalog and the playbook without relearning the document structure.
+
+### Usage
 
 **Required uses**:
 - One file per feature ID

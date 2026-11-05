@@ -1,7 +1,7 @@
 ---
 title: "FCR-005 -- Leave execution matrices to the playbook"
 description: "This scenario validates the catalog and playbook boundary for FCR-005. The catalog states current behavior and links to manual validation instead of embedding step-by-step scenarios."
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # FCR-005 -- Leave execution matrices to the playbook
@@ -40,11 +40,11 @@ Operators run the exact prompt and command sequence for `FCR-005` and confirm th
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FCR-005 | Leave execution matrices to the playbook | Keep manual test detail outside the catalog | `Review this catalog addition. Keep current behavior and source anchors in the catalog, but move manual command sequences, evidence rules and pass criteria to the matching manual testing playbook.` | 1. `agent: Read SKILL.md section 7 and README.md section 5` -> 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules` -> 3. `agent: Separate current behavior from manual execution detail` -> 4. `agent: State the catalog edit and the playbook link required` | Step 1 states the boundary. Step 2 finds execution-heavy material. Step 3 keeps behavior and anchors in the catalog. Step 4 moves commands, evidence and verdict rules to the playbook | Exact prompt, boundary source, proposed content, separated content decision and required link | PASS if the catalog stays inventory-first and the playbook receives execution detail. FAIL if the catalog retains a scenario matrix or loses the behavior summary | 1. Remove step-by-step instructions from the catalog. 2. Keep source anchors in the leaf. 3. Link the matching playbook scenario |
+| FCR-005 | Leave execution matrices to the playbook | Keep manual test detail outside the catalog | `Review this catalog addition. Keep current behavior and source anchors in the catalog, but move manual command sequences, evidence rules and pass criteria to the matching manual testing playbook.` | 1. `agent: Read SKILL.md section 7 and README.md section 4` -> 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules` -> 3. `agent: Separate current behavior from manual execution detail` -> 4. `agent: State the catalog edit and the playbook link required` | Step 1 states the boundary. Step 2 finds execution-heavy material. Step 3 keeps behavior and anchors in the catalog. Step 4 moves commands, evidence and verdict rules to the playbook | Exact prompt, boundary source, proposed content, separated content decision and required link | PASS if the catalog stays inventory-first and the playbook receives execution detail. FAIL if the catalog retains a scenario matrix or loses the behavior summary | 1. Remove step-by-step instructions from the catalog. 2. Keep source anchors in the leaf. 3. Link the matching playbook scenario |
 
 ### Commands
 
-1. `agent: Read SKILL.md section 7 and README.md section 5`
+1. `agent: Read SKILL.md section 7 and README.md section 4`
 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules`
 3. `agent: Separate current behavior from manual execution detail`
 4. `agent: State the catalog edit and the playbook link required`

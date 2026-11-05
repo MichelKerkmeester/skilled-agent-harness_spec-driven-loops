@@ -11,7 +11,7 @@ trigger_phrases:
   - "rule lifecycle"
 importance_tier: important
 contextType: reference
-version: 1.1.4.0
+version: 1.1.5.0
 ---
 
 # Integration and Lifecycle: Wiring, Revising and Retiring a Rule
@@ -22,11 +22,13 @@ A rule file that nothing points at is inert.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The router's trigger table is the only thing that **loads** one; the pointer from the
 governed `AGENTS.md` section is the only thing that makes it **findable at the moment
 of need**.
 
-**When to Use**:
+### When to Use
 
 - Wiring an accepted rule: the trigger row, the index row and the governed-section pointer.
 - Revising a rule, especially when the firing condition changed.

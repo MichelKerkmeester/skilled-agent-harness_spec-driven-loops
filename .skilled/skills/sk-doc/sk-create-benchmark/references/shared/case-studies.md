@@ -9,7 +9,7 @@ trigger_phrases:
   - "provisional benchmark promotion"
 importance_tier: normal
 contextType: reference
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Benchmark Adoption Case Studies
@@ -19,6 +19,8 @@ Two adoptions teach the format from opposite ends: one promoted into a live skil
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Each case study records what triggered the adoption decision, the load-bearing insight the folder had to surface, and the lesson for the next author. Case study 1 is a clean promotion backed by many ADRs; case study 2 is a correctly-formatted run that was deliberately never promoted because its headline was a single-run signal. Neither folder is on disk any more, so both read as narrative. The lesson outlives the artifact, which is itself worth noticing when you decide what to write down.
 

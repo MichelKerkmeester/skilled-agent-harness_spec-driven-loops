@@ -4,7 +4,7 @@ description: "Turns a finished benchmark run into documentation an operator can 
 trigger_phrases:
   - "benchmark-report.md"
   - "behavior benchmark"
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # create-benchmark
@@ -13,7 +13,9 @@ version: 1.6.5.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.6.5.0
 | **Invoke with** | `/create:benchmark`, "benchmark-report.md", "behavior benchmark" |
 | **Works on** | Completed benchmark runs and bake-offs, plus the input fixtures a benchmark lane needs before it runs |
 | **Produces** | Ten-section benchmark reports, package indexes, machine-contract scenario files. Never a rubric, scorer or runner |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -43,7 +41,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Run `/create:benchmark` or read `ROUTER.md` section 3 to route to a family first.
 
@@ -68,7 +66,7 @@ Expected: zero blocking issues once the ten required sections are filled in.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The flagship family, MCP promotion, runs a fixed sequence.
 
@@ -91,7 +89,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -108,7 +106,7 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -118,7 +116,7 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just drop the benchmark CSV into the skill's README?**
 
@@ -138,7 +136,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -148,7 +146,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

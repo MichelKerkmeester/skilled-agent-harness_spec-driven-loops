@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # create-changelog
@@ -13,7 +13,9 @@ version: 1.3.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.3.3.0
 | **Invoke with** | `/create:changelog`, "create changelog" or a direct read of `SKILL.md` |
 | **Works on** | A spec folder, a component hint or recent git history |
 | **Produces** | A validated entry that search can find, plus a GitHub release for the `skilled` line when asked |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -36,7 +34,7 @@ A changelog entry can go wrong in three ways. It lands in the wrong place, as wh
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Identify the source.** A spec folder, a component name or "recent commits" are all valid starting points.
 
@@ -59,7 +57,7 @@ The scan must report zero hard blockers, meaning no banned punctuation and no ba
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The workflow reads the source, resolves the component, calculates the version, chooses what goes in and writes. It discovers the real folders under `.skilled/changelog/` at run time and picks the primary component by its share of the changed files. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and never overwrites an existing version. The one exception is the `skilled` release line: when its latest entry has no release tag on origin, that release is still open, and new work is folded into its entry instead of opening a second one.
 
@@ -73,7 +71,7 @@ Spec folders no longer get changelogs. A spec folder source, a phase child inclu
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -89,7 +87,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -104,7 +102,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just run `git log --oneline` for a changelog?**
 
@@ -120,7 +118,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -130,7 +128,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

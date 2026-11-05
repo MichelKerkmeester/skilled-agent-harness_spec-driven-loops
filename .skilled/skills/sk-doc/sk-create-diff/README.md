@@ -4,7 +4,7 @@ description: "Local, Git-free before/after review of an edited document, rendere
 trigger_phrases:
   - "before after document review"
   - "document diff report"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # create-diff
@@ -13,7 +13,9 @@ version: 1.1.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.1.3.0
 | **Invoke with** | `python3 scripts/create_diff.py snapshot / compare / compare-pair` or `/create:diff` |
 | **Works on** | One document at a time or a pre-composed multi-file aggregate pair |
 | **Produces** | A single self-contained HTML report with inlined CSS, zero JavaScript, no remote references and no network calls |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -62,7 +60,7 @@ Every comparison runs at a stated fidelity tier so a limited result is never mis
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: capture a baseline before the edit.**
 
@@ -99,7 +97,7 @@ Prints `PASS` when the report is safe and self-contained.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The lifecycle has one hard invariant: the baseline has to exist before the edit happens.
 
@@ -114,7 +112,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -126,7 +124,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -138,7 +136,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit 
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just use `git diff` for this?**
 
@@ -154,11 +152,11 @@ A: There is no text layer to diff, so the comparison would be empty. OCR is out 
 
 **Q: Can I compare more than two files at once?**
 
-A: `compare-pair` accepts one before-document and one after-document, but you can pre-compose either side into a multi-file bundle using the `BEGIN FILE` and `END FILE` markers described in Section 4.
+A: `compare-pair` accepts one before-document and one after-document, but you can pre-compose either side into a multi-file bundle using the `BEGIN FILE` and `END FILE` markers described in Section 3.
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -168,7 +166,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

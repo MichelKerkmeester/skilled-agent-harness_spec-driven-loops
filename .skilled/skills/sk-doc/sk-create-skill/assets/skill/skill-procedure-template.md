@@ -8,7 +8,7 @@ trigger_phrases:
   - "when to use a procedure card"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Procedure Card Templates - Creation Guidelines
@@ -17,9 +17,15 @@ Templates and guidelines for creating private procedure cards: repeatable, selec
 
 ## 1. OVERVIEW
 
-### What Is a Procedure Card
+### Purpose
 
 A procedure card is a private markdown file that adds a repeatable, triggerable PROCESS to an existing skill or mode. It is not a public skill, not a public mode, and does not appear in any advisor routing table. A skill or hub always resolves its public identity first (through its own routing, or a parent hub's `mode-registry.json`). A procedure card is only ever selected AFTER that, from inside the already-chosen skill or mode, by matching the card's own `Trigger` field against the request. A card never grants tool permissions beyond what the owning skill or mode already has.
+
+### Usage
+
+- Creating a private procedure card for a skill or mode.
+- Checking a card draft against the required card structure and naming.
+- Deciding between a procedure card and a plain reference.
 
 ### When to Create a Procedure Card
 

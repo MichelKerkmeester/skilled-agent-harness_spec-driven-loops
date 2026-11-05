@@ -4,7 +4,7 @@ description: "Turns a repeatable workflow into a validated OpenCode slash comman
 trigger_phrases:
   - "create command"
   - "slash command"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-command
@@ -13,7 +13,9 @@ version: 1.0.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.0.2.0
 | **Invoke with** | `/create:command`, "create command" or a direct read of `SKILL.md` |
 | **Works on** | Root and namespace command files, plus router and presentation splits |
 | **Produces** | A validated command file or a router with its presentation asset, with correct frontmatter and gates |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -48,7 +46,7 @@ create-command is the `sk-doc` workflow behind `/create:command`. It decides whe
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Decide the command type.** A one-off task does not need a command. A repeatable, multi-step workflow with defined steps does.
 
@@ -70,7 +68,7 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 - **Resolve the invocation path first.** `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
 - **Read any existing command completely before editing it**, then check nearby commands in the same namespace so structure and vocabulary match the family.
@@ -88,7 +86,7 @@ A mode-based command that supports `:auto` and `:confirm` can outgrow a single f
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -104,7 +102,7 @@ Reach for create-command when a workflow is repeatable and needs `$ARGUMENTS` pa
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -117,7 +115,7 @@ Reach for create-command when a workflow is repeatable and needs `$ARGUMENTS` pa
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just write a skill instead of a command?**
 
@@ -141,7 +139,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -152,7 +150,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

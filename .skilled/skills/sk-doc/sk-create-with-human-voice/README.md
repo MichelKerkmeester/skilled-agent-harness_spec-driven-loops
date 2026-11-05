@@ -10,7 +10,7 @@ trigger_phrases:
   - "voice pass workflow"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-with-human-voice
@@ -19,7 +19,9 @@ version: 1.1.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -29,10 +31,6 @@ version: 1.1.1.0
 | **Produces** | An edited target plus a before and after report, or a report alone |
 | **Owns** | The standard at `references/hvr-rules.md`, and the workflow that applies it |
 | **Does not own** | The document-level audit. Structure, the Document Quality Index and the validators belong to `sk-create-quality-control` |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Mode Exists
 
@@ -60,7 +58,7 @@ and calls this one for the voice finding it reports.
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Decide what the scanner may not touch.** Quotations, code, generated files and
 released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
@@ -84,7 +82,7 @@ its final score has proved nothing.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The scanner parses its term lists out of the standard on every run. Section 6 gives the
 hard blocker words, section 7 the phrase blockers, section 8 the soft deductions and
@@ -112,7 +110,7 @@ candidate. Under-reporting ships the tell.
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Mode
 
@@ -134,7 +132,7 @@ writing.
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -147,7 +145,7 @@ writing.
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why does the standard sit in this packet rather than the hub's shared tier?**
 
@@ -180,7 +178,7 @@ find nothing to mask.
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -194,7 +192,7 @@ Paths are relative to this packet directory.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

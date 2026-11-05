@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill description trim rules"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Common Skill-Creation Pitfalls
@@ -20,9 +20,12 @@ The recurring mistakes that keep skills from triggering, bloat the context windo
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference catalogs the nine pitfalls that most often degrade a skill: from descriptions that are too vague or too bloated to trigger reliably, through second-person voice and platform-specific assumptions, to YAML mistakes, section placement and a router in the wrong place. Each pitfall pairs a wrong example with the corrected form.
 
-**When to Use**:
+### When to Use
+
 - A skill exists but does not trigger when expected
 - SKILL.md is straining the context window
 - Packaging or budget checks are failing

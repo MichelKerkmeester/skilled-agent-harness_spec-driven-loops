@@ -9,7 +9,7 @@ trigger_phrases:
   - "natural writing standards"
 importance_tier: important
 contextType: general
-version: 1.3.0.25
+version: 1.3.1.0
 ---
 
 # Human Voice Rules (HVR) - Writing Standards Reference
@@ -24,7 +24,7 @@ Linguistic standards for all documentation output. These rules eliminate AI-dete
 
 AI-generated text carries tells: em dashes everywhere, three-item lists, hedging language, the same 20 overused words. Readers spot these patterns and trust drops. HVR defines what to aim for and what to avoid.
 
-### Usage
+### When to Use
 
 Apply to all AI-generated documentation: READMEs, implementation summaries, decision records, install guides and spec folder docs.
 

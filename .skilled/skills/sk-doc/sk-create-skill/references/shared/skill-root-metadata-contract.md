@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Skill Root Metadata Contract
@@ -19,9 +19,12 @@ Which root-level metadata JSON files a skill root must, may, and must not carry,
 
 ## 1. OVERVIEW
 
+### Purpose
+
 A skill root carries up to nine metadata JSON files. Which of them apply is not a per-skill preference: it follows from the root's **class**, and the class follows from one authored declaration.
 
-**When to Use**:
+### When to Use
+
 - Creating a new skill or parent hub and deciding which metadata files to write
 - Auditing an existing root, or diagnosing a `ci-skill-root-metadata` failure
 - Deciding whether a metadata file may be generated or must be authored

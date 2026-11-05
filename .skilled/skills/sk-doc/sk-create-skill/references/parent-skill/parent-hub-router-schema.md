@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # Parent Hub Router Schema
@@ -19,6 +19,8 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 `hub-router.json` is the declarative route table for parent skills. The hub `SKILL.md` stays thin: it reads the router policy, scores request language against vocabulary classes, and resolves the selected mode list to packet resources.
 
@@ -30,6 +32,12 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 - `.skilled/bin/compiled-route.cjs --hub <hub> --prompt <text>` replays a parent-hub routing decision against the compiled router (`servingAuthority: legacy` means the hub still routes through `hub-router.json`).
 - `parent-hub-vocab-sync` reads vocabulary ownership so aliases stay attached to the owning mode or surface.
 - `parent-skill-check` check 5 validates router conformance against the registry, class vocabulary, and on-disk resources.
+
+### When to Use
+
+- Reading or authoring a hub's `hub-router.json`.
+- Checking that router signals and vocabulary classes stay in parity with the registry.
+- Tracing how a request becomes a workflow mode plus optional surface evidence.
 
 ---
 

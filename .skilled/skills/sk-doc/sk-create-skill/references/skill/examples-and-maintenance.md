@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Examples and Maintenance
@@ -20,9 +20,12 @@ Concrete example skill layouts to model new skills on, plus the workflow for kee
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference pairs worked example skills with the ongoing maintenance workflow. The examples show how anatomy and bundled resources come together for real skill types; the maintenance section covers when and how to update and version a skill.
 
-**When to Use**:
+### When to Use
+
 - Looking for a concrete layout to model a new skill on
 - Deciding whether an existing skill needs an update
 - Choosing a version bump (major/minor/patch) for a skill change

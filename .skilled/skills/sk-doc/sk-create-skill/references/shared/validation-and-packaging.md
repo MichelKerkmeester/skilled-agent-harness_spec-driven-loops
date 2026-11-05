@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill installation steps"
 importance_tier: normal
 contextType: implementation
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Skill Validation and Packaging
@@ -20,9 +20,12 @@ How to validate a skill before release and package it for distribution, covering
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference covers the two validation tiers a skill passes before release and the distribution steps that follow. Minimal validation is a fast pre-packaging sanity check; comprehensive validation is a full quality pass before distribution.
 
-**When to Use**:
+### When to Use
+
 - Before packaging a skill into a distributable zip
 - Before releasing or sharing a skill
 - When diagnosing why `package_skill.py` rejected a skill

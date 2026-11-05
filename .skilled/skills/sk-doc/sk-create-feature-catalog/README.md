@@ -4,7 +4,7 @@ description: "Author canonical feature-inventory packages, a root catalog plus o
 trigger_phrases:
   - "feature catalog"
   - "feature inventory"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # create-feature-catalog
@@ -13,7 +13,9 @@ version: 1.0.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.0.3.0
 | **Invoke with** | `/create:feature-catalog` or the keywords "feature catalog" and "feature inventory" |
 | **Works on** | A feature surface too large or too cross-referenced for a trustworthy README-only summary |
 | **Produces** | `feature-catalog/feature-catalog.md` plus one per-feature file per root entry, each with source and validation anchors |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -48,7 +46,7 @@ create-feature-catalog authors a `feature-catalog/` package: a root `feature-cat
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: invoke it.**
 
@@ -75,7 +73,7 @@ Passes when the file carries its required sections and a Validation And Tests ta
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Authoring runs in a fixed order because names have to stabilize before prose does.
 
@@ -91,7 +89,7 @@ The root catalog and the per-feature files answer different questions on purpose
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -103,7 +101,7 @@ The root catalog and the per-feature files answer different questions on purpose
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -115,7 +113,7 @@ The root catalog and the per-feature files answer different questions on purpose
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why this instead of just expanding the README?**
 
@@ -131,7 +129,7 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -143,7 +141,7 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

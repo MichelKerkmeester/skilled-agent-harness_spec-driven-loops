@@ -8,12 +8,12 @@ trigger_phrases:
   - "validation quality dimensions"
 importance_tier: important
 contextType: general
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Validation - Quality Assessment and Gates
 
-Quality gates, DQI scoring, and script-assisted AI analysis for markdown documentation.
+Open this when a document must clear its type's gate before delivery and the report hands back a score you have to act on. Scoring is script-assisted: `extract_structure.py` parses the file, the AI judges the parsed evidence, and the band, checklist and fix order follow from that judgement.
 
 ---
 

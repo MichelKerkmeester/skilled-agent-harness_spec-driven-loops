@@ -7,7 +7,7 @@ trigger_phrases:
   - "json conversation placeholder block"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Manual Testing Playbook Conversation Snippet Template
@@ -23,7 +23,11 @@ Per-feature conversation scenario files for split manual testing playbooks. Use 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Each feature file is the canonical home for full conversation scenario execution detail. The root `manual-testing-playbook.md` stays readable by summarizing the feature and linking here, while the feature file carries the realistic user-testing context, orchestration process, 9-column test row, structured source references and concise metadata. The file shape should mirror the Feature Catalog snippet pattern so operators can move between the catalog and the playbook without relearning the document structure.
+
+### Usage
 
 **Required uses**:
 - One file per feature ID

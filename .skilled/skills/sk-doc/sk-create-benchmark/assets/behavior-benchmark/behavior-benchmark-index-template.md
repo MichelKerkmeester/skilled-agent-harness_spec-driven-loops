@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior scenario table template"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Behavior Benchmark Index Template
@@ -44,6 +44,8 @@ is NOT restated here. It lives once in:
 
 ## 1. OVERVIEW
 
+### Purpose
+
 <!-- OPTIONAL availability blockquote: include ONLY when the invocation surface
      (command / LEAF agent) is planned-but-not-built, and delete it once the
      surface ships. Delete this whole blockquote if the surface already exists. -->
@@ -62,6 +64,13 @@ framework's five-dimension rubric and classified into exactly one terminal bucke
 The scenarios do not re-probe generic routing behavior the sibling packages
 already cover. They concentrate on the behaviors **distinctive to `{{MODE}}`**:
 {{ONE_LINE_LIST_OF_THE_DISTINCTIVE_INVARIANTS_OR_BEHAVIORS_WITH_SKILL_MD_OR_REFERENCE_CITES}}.
+
+### Usage
+
+- You are authoring the `behavior-benchmark.md` index for a `{{MODE}}` mode-packet.
+- You need the scenario contracts listed for one mode.
+- You need the shared framework named as the governing measurement contract.
+- You need to report axis coverage for that mode or declare the framework extensions the package adds.
 
 ### Framework extensions this package declares
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "first rule in a repository"
 importance_tier: important
 contextType: reference
-version: 1.1.0.4
+version: 1.1.1.0
 ---
 
 # Repo Rules Router Template
@@ -22,10 +22,18 @@ writing into it.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The router is **not a rule**, and the difference is measured, not stylistic: no
 frontmatter, no `Fires when`, no `The rule`, no self-check, and four numbered sections
 against a rule's six to twelve. It holds no doctrine of its own. Every rule it lists is
 a file, and the router is the index.
+
+### Usage
+
+- `REPO RULES.md` does not exist yet.
+- You are about to write the first rule in a repository.
+- A repository has no trigger table, so no rule can load.
 
 ---
 

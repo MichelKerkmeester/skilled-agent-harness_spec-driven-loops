@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my frontmatter rejected"
 importance_tier: normal
 contextType: general
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # create-frontmatter
@@ -19,7 +19,9 @@ version: 1.0.6.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -28,10 +30,6 @@ version: 1.0.6.0
 | **Works on** | Any document class in the repository, plus the files the version standard puts out of scope |
 | **Produces** | A correct block, a specific fix, or a derived 4-part version |
 | **Does not produce** | The document itself, or a change to a validator |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -65,7 +63,7 @@ Skill manifests carry a name and an allowed-tools list. References and assets ca
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Name the class.** Skill manifest, readme, reference, asset, feature catalog, testing playbook, command, agent or spec doc. Everything else follows from it.
 
@@ -87,7 +85,7 @@ It reports missing fields, a malformed `version`, and a description over its sof
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Two documents carry everything.
 
@@ -117,7 +115,7 @@ A description trimmed by deleting the routing tokens is under budget and no long
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -139,7 +137,7 @@ Skip it when the document body is what needs writing, when a validator needs cha
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -153,7 +151,7 @@ Skip it when the document body is what needs writing, when a validator needs cha
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why does frontmatter get its own mode when it is four lines at the top of a file?**
 
@@ -177,7 +175,7 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -189,7 +187,7 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

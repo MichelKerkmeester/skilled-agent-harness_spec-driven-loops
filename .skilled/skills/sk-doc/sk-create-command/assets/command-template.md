@@ -8,7 +8,7 @@ trigger_phrases:
   - "argument hint patterns"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Command Template - OpenCode Slash Commands
@@ -19,7 +19,7 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 
 ## 1. OVERVIEW
 
-### What Are OpenCode Commands?
+### Purpose
 
 **OpenCode commands** are slash-triggered instructions (e.g., `/speckit:complete`, `/speckit:save`) that automate workflows, enforce patterns, and extend AI agent capabilities. They're markdown files that define structured behavior for specific tasks.
 
@@ -33,6 +33,13 @@ Templates for creating slash commands with proper frontmatter, mandatory gates, 
 **Key Difference from Skills**:
 - Commands = Actionable workflows triggered by `/command-name`
 - Skills = Reference documentation loaded via `Read(".skilled/skills/<skill-name>/SKILL.md")`
+
+### Usage
+
+- When drafting a new slash command that needs frontmatter, mandatory gates and a structured workflow
+- When choosing between a simple command, a workflow command and a mode-based dispatch command
+- When checking where a command file lives or how `$ARGUMENTS` is injected
+- When limiting which tools a command may use
 
 ### Core Characteristics
 

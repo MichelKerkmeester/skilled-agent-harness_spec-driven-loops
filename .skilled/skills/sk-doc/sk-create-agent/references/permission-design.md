@@ -9,7 +9,7 @@ trigger_phrases:
   - "deprecated tools frontmatter agent"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Agent Frontmatter and Permission Design
@@ -20,9 +20,11 @@ Depth for the frontmatter block. `SKILL.md` shows the canonical YAML and the cor
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Frontmatter is the enforceable part of an agent. Prose describes intent; the `permission:` object decides what the runtime will actually let the agent do. Over-granting here is the most common way an agent quietly exceeds its contract, so permission choices should be justified by the role, not by convenience.
 
-**When to Use**:
+### When to Use
 
 - Choosing `mode` for a new agent.
 - Scoping a `permission` value and justifying every `allow`.

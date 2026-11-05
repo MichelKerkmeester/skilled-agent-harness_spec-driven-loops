@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog back dating"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Changelog Topology and Edge Cases
@@ -20,9 +20,11 @@ Where a changelog goes, and the edge cases around placement, back-dating, source
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Mode detection and component resolution are authoritative in [../SKILL.md](../SKILL.md) section 6. This file carries the placement table and the edge cases around it.
 
-**When to Use**:
+### When to Use
 
 - Deciding where a new entry belongs, global or packet-local.
 - Resolving a hub folder or a phase child to the component it touched.

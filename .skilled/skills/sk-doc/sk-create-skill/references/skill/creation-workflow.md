@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # Skill Creation Process
@@ -20,9 +20,12 @@ The step-by-step workflow from concept to packaged skill: understanding, plannin
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference is the core create workflow for a skill. It walks the six ordered steps from understanding the skill's purpose through iterating on real usage and includes the SKILL.md authoring questions and the frontmatter completion contract.
 
-**When to Use**:
+### When to Use
+
 - Creating a brand new skill from scratch
 - Re-scaffolding or substantially rebuilding an existing skill
 - Authoring or correcting a skill's SKILL.md sections and frontmatter

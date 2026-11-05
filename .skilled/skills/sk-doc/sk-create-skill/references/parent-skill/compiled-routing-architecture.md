@@ -9,21 +9,29 @@ trigger_phrases:
   - "default-on hubs cohort"
 importance_tier: important
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Compiled-Routing Architecture For Parent Hubs
 
-The compiled skill router is a closed-cohort, byte-verified fast path that resolves a parent hub's `workflowMode` decision without evaluating the hub's prose smart-router at request time. It exists for exactly the parent hubs that have built and proven a compiled policy against that hub's own legacy routing — no other skill, including any hub `create-skill` scaffolds today, is reachable through it. This reference explains what the router actually serves, the chain from a hub's authored files to a live routing decision, the bar a hub must clear to serve compiled traffic, and the exact boundary of `create-skill --compiled-routing ready` — which mints onboarding evidence, not a working compiled route.
+Open this when you are deciding whether a parent hub may serve compiled routing, or you have just run `create-skill --compiled-routing ready` and need to know what that manifest does and does not prove. Only hubs whose compiled policy has been proven against their own legacy routing are served, through a closed-cohort byte-verified fast path that answers `workflowMode` without reading the hub's prose, and `ready` mints onboarding evidence rather than a working route.
 
 ---
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Two routers coexist for a parent hub:
 
 - The **prose smart-router** — the hub's `SMART ROUTING` section plus its root `ROUTER.md`, read and reasoned over by the acting agent at request time. The section is short prose that points at `ROUTER.md`, not the routing logic itself. Every hub has both, and `create-skill` scaffolds them.
 - The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the seven proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
+
+### When to Use
+
+- Checking whether a parent hub is one of the hubs the compiled router serves.
+- Measuring a hub against the compiled-serving parity bar.
+- Reading the boundary of `create-skill --compiled-routing ready` output.
 
 ### Scope
 

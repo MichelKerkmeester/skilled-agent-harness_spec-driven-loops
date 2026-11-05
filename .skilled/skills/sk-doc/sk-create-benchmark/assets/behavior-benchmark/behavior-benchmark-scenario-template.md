@@ -8,7 +8,7 @@ trigger_phrases:
   - "schema v2 scenario scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.13
+version: 1.5.1.0
 ---
 
 # Behavior Benchmark Scenario Template
@@ -47,6 +47,8 @@ Field definitions and enums are normative in:
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This section documents the scaffold and is NOT part of a shipped scenario. A
 shipped scenario file carries no frontmatter and no `## OVERVIEW` heading: it is
 exactly the region from the `# {{PREFIX}}-{{NNN}}` H1 below down through the
@@ -56,6 +58,13 @@ version you are not authoring, then delete this template's frontmatter, the usag
 comment above, and this Overview. The remaining fenced json block is the machine
 contract the runner parses. The prose below it is scoring context the runner
 never reads.
+
+### Usage
+
+- You are copying this scaffold to `scenarios/<PREFIX>-NNN-<slug>.md`.
+- You are choosing one schema version and deleting the JSON block for the other.
+- You are filling every {{PLACEHOLDER}} in the first fenced json block.
+- You are deleting this template's frontmatter, the usage comment above and this Overview.
 
 ---
 

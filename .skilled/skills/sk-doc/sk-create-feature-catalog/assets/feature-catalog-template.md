@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered category sections"
 importance_tier: normal
 contextType: general
-version: 1.0.0.23
+version: 1.0.1.0
 ---
 
 # Feature Catalog Creation - Templates and Standards
@@ -21,7 +21,15 @@ Templates for creating feature catalogs that combine top-level capability invent
 
 ## 1. OVERVIEW
 
-**Purpose**: Feature catalogs provide a canonical inventory of what a system does today. They organize live capabilities into numbered sections, summarize current behavior in the root document, and point to per-feature reference files for implementation details, tests, and metadata.
+### Purpose
+
+Feature catalogs provide a canonical inventory of what a system does today. They organize live capabilities into numbered sections, summarize current behavior in the root document, and point to per-feature reference files for implementation details, tests, and metadata.
+
+### Usage
+
+- When a skill needs a canonical inventory of what the system does today
+- When live capabilities must be organized into numbered sections and per-feature reference files
+- When each entry must point to implementation details, tests and metadata
 
 **Key Characteristics**:
 - **Inventory-first**: The root catalog acts as the system-level directory and summary surface.

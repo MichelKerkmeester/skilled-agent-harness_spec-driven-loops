@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior baseline provenance"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.10
+version: 1.5.1.0
 ---
 
 # Behavior Benchmark Baseline Template
@@ -45,11 +45,20 @@ The budget formula and the D5 latency-ratio definition are normative in:
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This file carries the Claude reference-leg checkpoints for the {{PREFIX}} scenario
 set: per-scenario setup, first-dispatch, and terminal latencies plus a terminal
 classification. It is the denominator every D5 latency ratio and every provisional
 `budget_ms` is derived from, so an uncaptured cell here is never quotable as
 behavior.
+
+### Usage
+
+- You are authoring `baselines/claude-baseline.md` for a `{{PREFIX}}` scenario set.
+- You need the denominator a D5 latency ratio or a provisional `budget_ms` is derived from.
+- You are recording per-scenario checkpoints before any Claude leg has been captured.
+- A real tTerminal per cell has landed and the scenario `budget_ms` needs recomputing.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "owned assets presentation boundary"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.8
+version: 1.0.1.0
 ---
 
 # Command Router Template
@@ -23,8 +23,12 @@ router carries no inline dashboards, prompts, or result templates.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Copy the skeleton below and fill the placeholders. Use it whenever `create-command`
 Step 11 classifies the command as a router.
+
+### Usage
 
 - **Blocking core (required):** `OWNED ASSETS` and `PRESENTATION BOUNDARY`.
 - **Recommended (non-blocking warnings when absent):** `ROUTER CONTRACT`, `MODE ROUTING`,

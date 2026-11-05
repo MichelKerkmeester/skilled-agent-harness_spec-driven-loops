@@ -8,7 +8,7 @@ trigger_phrases:
   - "retrofit goal template"
 importance_tier: important
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Top-Level Goal Template
@@ -19,7 +19,12 @@ Use this blank for a packet that has no phase children. It is the system-spec-ki
 
 ## 1. OVERVIEW
 
+### Purpose
+
 - **Use it for** the `top-level` operation, a `retrofit` on a packet without phases and an `amend` of such a goal.
+
+### Usage
+
 - **Use a different template** for a packet whose direct children are phase folders, [`goal-phase-parent-template.md`](goal-phase-parent-template.md), and for one of those children, [`goal-phase-child-template.md`](goal-phase-child-template.md).
 - **Budget.** The durable slice holds at most 4,000 characters, measured by `goal.cjs packet`.
 - **How to fill it.** Copy the block between the markers to `<packet>/goal.md`. Replace every bracketed placeholder with text from the packet's own `spec.md` and acceptance criteria, following [`../references/authoring-standards.md`](../references/authoring-standards.md). Remove unused placeholder rows.

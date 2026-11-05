@@ -9,7 +9,7 @@ trigger_phrases:
   - "template versus reference split"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Feature Catalog Common Pitfalls
@@ -20,7 +20,15 @@ The deep-dive companion to the Common Mistakes table in `SKILL.md`. The table na
 
 ## 1. OVERVIEW
 
+### Purpose
+
 A feature catalog fails quietly. Structure validation passes, links resolve, and the package still misleads readers — because the failures are about *content trust*, not markup. The pitfalls below are the ones that erode that trust. Each entry states the symptom, why it breaks reader trust, and the concrete fix.
+
+### When to Use
+
+- During authoring, to recognize a defect before it reaches review
+- During review, when a catalog validates cleanly but still misleads readers
+- When a recurring defect needs its worked fix
 
 ---
 

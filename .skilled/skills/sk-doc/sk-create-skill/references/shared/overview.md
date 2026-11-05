@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # Skill Anatomy and Structure System
@@ -19,6 +19,8 @@ What a skill is, how its files and bundled resources are organized, and how to k
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 Level 3 reference for what a skill *is*: its anatomy, the required `SKILL.md` contract, the optional bundled-resource directories, and the layered-doc structure system that keeps large skills maintainable.
 
@@ -31,6 +33,12 @@ Level 3: Bundled resources (this document) — Loaded as needed
 ```
 
 Skills are modular packages that extend an AI agent with specialized workflows, tool integrations, domain expertise, and bundled resources (scripts, references, assets).
+
+### When to Use
+
+- Finding out what a skill is and which files it carries.
+- Checking the required `SKILL.md` contract.
+- Deciding how to split a large skill into bundled resources and layered docs.
 
 ---
 

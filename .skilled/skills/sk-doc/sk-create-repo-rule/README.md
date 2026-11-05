@@ -10,7 +10,7 @@ trigger_phrases:
   - "why was my rule refused"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # create-repo-rule
@@ -19,7 +19,9 @@ version: 1.1.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -28,10 +30,6 @@ version: 1.1.2.0
 | **Works on** | A described failure, an out-of-date rule or a rule nothing still needs |
 | **Produces** | One rule file, two router rows and a pointer. Or a refusal naming where the content belongs |
 | **Most likely outcome** | A refusal. The four tests decline more than they admit |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -68,7 +66,7 @@ This skill owns all three moves. A create mode that cannot delete produces a set
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Describe the failure, not the file you want.** "We keep forgetting to check X before Y" works better than "add a rule with these sections." You do not need the vocabulary of the rule set.
 
@@ -90,7 +88,7 @@ Sections and dividers match in all nine shipped rules and in the router. The com
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The four decision tests load on every path, including retirement, because "should this exist" and "should this still exist" are the same four questions.
 
@@ -124,7 +122,7 @@ Both orderings answer the same question. What does an interrupted run leave behi
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -143,20 +141,20 @@ Skip it when the request teaches a capability rather than constraining one, when
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
 | Your request was refused and you disagree | Most requests are refused by design, usually on test 1 | Read which test refused it. The destination it names is generally a better home than a new file |
 | A rule was written but never fires | It has a file and no trigger row, or the row describes a topic rather than an action | Check the router for a matching row, then check that the row lists actions you take |
-| The router points at a file that does not exist | A retirement removed the file before the row | Remove the row too, then run the count check in section 8. Rows and files must match |
+| The router points at a file that does not exist | A retirement removed the file before the row | Remove the row too, then run the count check in section 7. Rows and files must match |
 | A trigger phrase reaches the wrong rule | Two rules claim the same phrase | Sweep for duplicates. The set carries 161 phrases with zero collisions, so any duplicate is a defect |
-| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 8. All nine shipped rules fail that document type for this same reason |
+| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 7. All nine shipped rules fail that document type for this same reason |
 | The draft passes every check and still reads as filler | Structure is checkable and it is not the bar | Run the five reader tests in `creation-standards.md`. They need a person, not a script |
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why does it refuse so much?**
 
@@ -184,7 +182,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -195,7 +193,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

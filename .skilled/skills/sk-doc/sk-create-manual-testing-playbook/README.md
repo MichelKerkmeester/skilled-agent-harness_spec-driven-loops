@@ -6,7 +6,7 @@ trigger_phrases:
   - "/create:manual-testing-playbook"
   - "deterministic scenario"
   - "release readiness"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # create-manual-testing-playbook
@@ -15,7 +15,9 @@ version: 1.0.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.0.3.0
 | **Invoke with** | `/create:manual-testing-playbook`, "manual testing playbook", "testing playbook", "release readiness" |
 | **Works on** | Skills and systems that need operator-facing manual validation ahead of a release |
 | **Produces** | One root `manual-testing-playbook.md` index plus one scenario file per feature ID; `scripts/run-conversation-scenario.cjs` plays conversation scenarios into live runtimes |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -60,7 +58,7 @@ The headline strength of this skill is the nine-field contract every per-feature
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Run `/create:manual-testing-playbook`. To read the full contract directly, open `SKILL.md`.
 
@@ -85,7 +83,7 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 1. Confirm the target skill or system, its feature set and whether a feature catalog already exists.
 2. Decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else.
@@ -111,7 +109,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a 
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -123,7 +121,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a 
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -135,7 +133,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a 
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just add rows to a spec-folder `checklist.md`?**
 
@@ -155,7 +153,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -165,7 +163,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -9,7 +9,7 @@ trigger_phrases:
   - "agent decision rule"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Agent vs Skill vs Command
@@ -20,9 +20,11 @@ Deep detail for the component-choice decision. `SKILL.md` states the rule inline
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Choose the component type before authoring anything. An agent answers *who* should do the work, a skill answers *how* the work should be done, and a command answers *how a user should trigger* the workflow. Picking wrong produces either a bloated agent that should have been a skill, or a skill that quietly needs runtime authority it can never hold.
 
-**When to Use**:
+### When to Use
 
 - You are choosing a component type before authoring anything.
 - A request could plausibly become an agent, a skill or a command.

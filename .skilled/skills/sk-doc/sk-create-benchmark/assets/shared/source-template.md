@@ -7,7 +7,7 @@ trigger_phrases:
   - "[BENCHMARK_TOPIC] bake-off source"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.0.13
+version: 1.5.1.0
 ---
 
 # Benchmark Source Pointer Template
@@ -36,9 +36,15 @@ Creation reference: .skilled/skills/sk-doc/sk-create-benchmark/SKILL.md
 
 ## 1. OVERVIEW
 
-### What this file is
+### Purpose
 
 A wayfinding doc. It does not duplicate the spec packet content. It tells you which file in the spec packet to open for which question, so you do not have to scan all evidence files when you only need one.
+
+### Usage
+
+- You are choosing which file in the spec packet to open for one question.
+- You want the audit trail behind a curated benchmark folder.
+- You need methodology details, fixture notes or a per-candidate rollback rationale from the packet.
 
 ### What lives in the spec packet, not here
 

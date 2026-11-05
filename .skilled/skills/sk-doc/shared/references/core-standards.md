@@ -8,12 +8,12 @@ trigger_phrases:
   - "structural validation rules"
 importance_tier: important
 contextType: general
-version: 2.2.3.0
+version: 2.2.4.0
 ---
 
 # Core Standards - Structure and Validation Rules
 
-Filename conventions, document type detection, and structural validation rules for markdown documentation.
+Open this when a validator rejects a markdown file and you need the rule behind the rejection, whether that means renaming a file, fixing frontmatter or reordering sections.
 
 ---
 

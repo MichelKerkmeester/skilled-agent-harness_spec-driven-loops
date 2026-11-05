@@ -8,7 +8,7 @@ trigger_phrases:
   - "goal chat slice"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # sk-create-goal
@@ -17,7 +17,9 @@ version: 1.2.1.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -26,10 +28,6 @@ version: 1.2.1.0
 | **Works on** | An existing spec packet with its own `spec.md` and its own acceptance criteria where the level requires them |
 | **Produces** | One goal filled from the template for its kind and the packet's sources, plus the parent chat slice for the operator |
 | **Never touches** | Session objective state. A request to set, bind or resend a goal goes to the goal hooks |
-
----
-
-## 2. OVERVIEW
 
 ### What The Mode Does
 
@@ -47,7 +45,7 @@ Goal content is derived from the packet's own documents, never from a remembered
 
 ---
 
-## 3. WHEN TO USE
+## 2. WHEN TO USE
 
 ### Use This Mode When
 
@@ -67,7 +65,7 @@ Goal content is derived from the packet's own documents, never from a remembered
 
 ---
 
-## 4. THE SIX OPERATIONS
+## 3. THE SIX OPERATIONS
 
 | Operation | Use it when |
 |---|---|
@@ -82,7 +80,7 @@ An operation that alters a parent decision or criterion amends the parent first,
 
 ---
 
-## 5. HOW IT WORKS
+## 4. HOW IT WORKS
 
 1. **Read the sources.** The packet's own `spec.md` and `acceptance-criteria.md`. For a phase parent, the Phase Documentation Map and every direct phase-child directory. For a nested child, only that child's own documents.
 2. **Route.** File content or session state? What role does the packet play? Does `goal.md` exist? Does a child change force a parent amendment? A session-state request is redirected and nothing is written.
@@ -99,7 +97,7 @@ Cut in the order section 3 of [`budget-and-handoff.md`](references/budget-and-ha
 
 ---
 
-## 6. THE CHECKER
+## 5. THE CHECKER
 
 [`check-goal.cjs`](./scripts/check-goal.cjs) is a read-only conformance check. Run it from the repository root:
 
@@ -132,7 +130,7 @@ Rule 4 flags a phrase such as "the report" whose subject the line never names. R
 
 ---
 
-## 7. THE COMMAND
+## 6. THE COMMAND
 
 `/create:goal` is the entry point, routed through [`goal.md`](../../../commands/create/goal.md):
 
@@ -144,7 +142,7 @@ The packet path is required and never inferred from conversation history or open
 
 ---
 
-## 8. MANUAL TESTING PLAYBOOK
+## 7. MANUAL TESTING PLAYBOOK
 
 [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds ten deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
 
@@ -165,7 +163,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 
 ---
 
-## 9. VERIFICATION
+## 8. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -177,7 +175,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that 
 
 ---
 
-## 10. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 | Document | Purpose |
 |---|---|

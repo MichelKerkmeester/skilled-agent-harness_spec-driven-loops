@@ -9,7 +9,7 @@ trigger_phrases:
   - "what goes in a rule"
 importance_tier: important
 contextType: reference
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Repo Rule Template
@@ -24,6 +24,12 @@ Every instruction here is derived from the shipped corpus, not from taste.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+The blank a generated repo rule is filled from. Every element marked MUST is universal across the shipped corpus.
+
+### Usage
 
 **Before filling anything, run `../references/decision-tests.md`.** Most requests should
 not become a rule, and finding that out after writing one is the expensive order.

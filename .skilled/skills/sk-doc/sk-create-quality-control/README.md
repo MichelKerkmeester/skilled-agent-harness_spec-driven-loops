@@ -6,7 +6,7 @@ trigger_phrases:
   - "/doc:quality"
   - "score this document"
   - "human voice"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # create-quality-control
@@ -15,7 +15,9 @@ version: 1.0.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.0.2.0
 | **Invoke with** | "doc quality", "score this document", "DQI", "HVR" (hub routing only; the packet declares no slash command) |
 | **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
 | **Produces** | A DQI score and band with the blocking/warning/recommendation issue list behind it, plus a targeted edit to that one file only when you ask |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -42,7 +40,7 @@ Reach for this packet when a document needs to clear a real quality gate before 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Ask for a doc-quality audit, score or validation of a named file and `sk-doc` routes here. Read `SKILL.md` directly for the full contract.
 
@@ -64,7 +62,7 @@ Expected: zero blocking issues before the document counts as ready.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 1. Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs.
 2. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it.
@@ -94,7 +92,7 @@ When the missing content needs source evidence that is not in the workspace, the
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -106,7 +104,7 @@ When the missing content needs source evidence that is not in the workspace, the
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -118,7 +116,7 @@ When the missing content needs source evidence that is not in the workspace, the
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why is the audit report-only by default?**
 
@@ -138,7 +136,7 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -148,7 +146,7 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

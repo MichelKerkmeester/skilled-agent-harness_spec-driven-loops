@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # create-skill
@@ -13,7 +13,9 @@ version: 1.2.7.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.2.7.0
 | **Invoke with** | `/create:skill`, `/create:skill-parent`, "new skill", "parent hub" |
 | **Works on** | New skill folders and existing skill or hub packages that need repair or re-validation |
 | **Produces** | `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/` for a skill, a full parent-hub router set for a hub |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -43,7 +41,7 @@ Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter r
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 > Run these commands from the repository root.
 
@@ -74,7 +72,7 @@ Expected: ✅ Successfully packaged <file-count> files to: <output-directory>/<s
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Standalone Path
 
@@ -98,7 +96,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --repo
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -115,7 +113,7 @@ Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an e
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -127,7 +125,7 @@ Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an e
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why two workflow modes in one packet instead of two skills?**
 
@@ -147,7 +145,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 Run every command in this table from the repository root.
 
@@ -160,7 +158,7 @@ Run every command in this table from the repository root.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

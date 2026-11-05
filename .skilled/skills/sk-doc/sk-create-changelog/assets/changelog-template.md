@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -18,13 +18,17 @@ Two narrative formats for global component changelogs and their GitHub release n
 
 ## 1. OVERVIEW
 
-### The Canonical Exemplar
+### Purpose
 
-`.skilled/changelog/skilled/v4.0.0.0.md` is the house style, so read it before writing. It shows the opening narrative, Why This Release, What's New at a Glance, topical H2 sections with benefit-led H4 items, inline Breaking markers and Upgrade Notes. Copy its voice and shape, not its length: it records a major release, and most releases need a fraction of it. Older entries in the same folders predate this style, so do not copy them. When this template and the exemplar disagree on shape, the exemplar wins and the discrepancy is recorded.
+The two-tier narrative format for global component changelogs at `.skilled/changelog/{component}/v{VERSION}.md`, with the selection, voice and length rules that keep a generated release short and readable.
 
 ### Usage
 
 The `/create:changelog` workflow reads this template at step 4. Section 5 picks the format. Packet-local changelogs are deprecated and no longer written (section 7).
+
+### The Canonical Exemplar
+
+`.skilled/changelog/skilled/v4.0.0.0.md` is the house style, so read it before writing. It shows the opening narrative, Why This Release, What's New at a Glance, topical H2 sections with benefit-led H4 items, inline Breaking markers and Upgrade Notes. Copy its voice and shape, not its length: it records a major release, and most releases need a fraction of it. Older entries in the same folders predate this style, so do not copy them. When this template and the exemplar disagree on shape, the exemplar wins and the discrepancy is recorded.
 
 ---
 

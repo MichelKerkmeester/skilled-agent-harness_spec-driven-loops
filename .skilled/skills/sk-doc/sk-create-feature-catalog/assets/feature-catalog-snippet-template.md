@@ -8,7 +8,7 @@ trigger_phrases:
   - "split catalog feature file"
 importance_tier: normal
 contextType: general
-version: 1.0.0.13
+version: 1.0.1.0
 ---
 
 # Feature Catalog Snippet Template
@@ -19,7 +19,11 @@ Per-feature reference files for split feature catalogs. Use this template for th
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Each feature file is the canonical home for detailed current-reality reference material. The root `feature-catalog.md` stays readable by summarizing the feature and linking here, while the per-feature file carries the fuller behavior description, structured source-file references, validation anchors, and concise metadata.
+
+### Usage
 
 | Use this template when | Do NOT use this template for |
 |---|---|

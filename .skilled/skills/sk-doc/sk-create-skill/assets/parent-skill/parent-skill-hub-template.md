@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -36,7 +36,7 @@ Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#pr
 
 Give one advisor-routable identity to a family of packets while each packet keeps its own contract.
 
-### When to Use This Template
+### Usage
 
 Use for a family that must keep one public skill identity while routing to multiple packet contracts:
 

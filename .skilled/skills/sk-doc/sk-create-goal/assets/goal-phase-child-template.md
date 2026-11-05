@@ -8,7 +8,7 @@ trigger_phrases:
   - "phase-add child goal"
 importance_tier: important
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Phase-Child Goal Template
@@ -19,7 +19,12 @@ Use this blank for a direct phase child of a phase parent. It is the system-spec
 
 ## 1. OVERVIEW
 
+### Purpose
+
 - **Use it for** the `child` operation, the new child goal in a `phase-add` and a `retrofit` of a child.
+
+### Usage
+
 - **Scaffolded children.** `create.sh --phase --with-goal` already writes this structure into each child. Fill that file with the guidance here instead of pasting a second copy.
 - **Parent first.** Parent decisions bind this phase and are not restated. A change that alters a parent decision or criterion is a parent amendment: make it in the parent first, then resend the parent.
 - **Budget.** A child goal that is not itself a phase parent is exempt from the 4,000-character limit, but keep it short. A child with phase children of its own is a phase parent and carries the cap, as section 2 of [`../references/budget-and-handoff.md`](../references/budget-and-handoff.md) says. The parent's binding row is what points a session here.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "agent common mistakes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Common Agent-Creation Pitfalls
@@ -20,9 +20,11 @@ The mistakes that most often make an agent file fail to resolve, exceed its cont
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Agent files fail in a small, predictable set of ways: the component should not have been an agent at all, the file lands in the wrong runtime directory, identity fields drift apart, permissions over-grant, or the body absorbs guidance that belongs in a skill. Catch these before validation rather than after. `SKILL.md` § RULES states these as NEVER lines; this file explains the *why* and the remedy.
 
-**When to Use**:
+### When to Use
 
 - Reviewing a draft agent before it ships.
 - An agent fails to resolve, over-permits, or bloats over time.

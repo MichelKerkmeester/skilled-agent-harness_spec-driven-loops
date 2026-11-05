@@ -4,7 +4,7 @@ description: "Author current-state folder READMEs from real files, for anyone wr
 trigger_phrases:
   - "create readme"
   - "write a readme"
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # create-readme
@@ -13,7 +13,9 @@ version: 1.1.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.1.2.0
 | **Invoke with** | `/create:readme`, "create readme", "write a readme" |
 | **Works on** | Project, skill, feature, component and source-code folders |
 | **Produces** | A `README.md` in the target folder, or a skill package's `ARCHITECTURE.md` |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -60,7 +58,7 @@ The packet also writes a skill package's `ARCHITECTURE.md` from `assets/architec
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Point it at a folder.**
 
@@ -102,7 +100,7 @@ Expected output is a JSON summary, for example:
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Every run follows one lifecycle no matter which artifact comes out the other end:
 
@@ -117,7 +115,7 @@ The same read-route-draft-validate sequence produces very different documents de
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -129,7 +127,7 @@ The same read-route-draft-validate sequence produces very different documents de
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -140,7 +138,7 @@ The same read-route-draft-validate sequence produces very different documents de
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not use one README template for everything?**
 
@@ -152,7 +150,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | Pass looks like |
 |---|---|---|
@@ -164,7 +162,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -9,7 +9,7 @@ trigger_phrases:
   - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -35,6 +35,8 @@ hub `SKILL.md` used to carry live in the final `## MACHINE ROUTER` section, afte
 
 ## 1. OVERVIEW
 
+### Purpose
+
 State that this is the hub's second-layer (surface) router, first-class at the
 hub root as `ROUTER.md`. `hub-router.json` selects the workflow mode while this
 document maps a request's intent to the exact packet-local leaf resources that
@@ -44,6 +46,12 @@ this router never re-decides the mode). Every `RESOURCE_MAP` path is
 packet-qualified (`<packet>/references|assets/…`) or a shared-alias disk path
 (`shared/…` listed in `leaf-aliases.json`), and both convert to the canonical
 `(workflowMode, leafResourceId)` pair at the one contract boundary.
+
+### Usage
+
+- Authoring the root `ROUTER.md` a parent hub carries at its own root.
+- Choosing between `router_state: active` and `router_state: stage1-only`.
+- Mapping a request's intent to the exact packet-local leaf resources that mode loads.
 
 ---
 

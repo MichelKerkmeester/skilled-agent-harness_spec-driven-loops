@@ -9,7 +9,7 @@ trigger_phrases:
   - "allowed-tools least privilege"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Command Creation - Argument Hints and Modes
@@ -20,7 +20,15 @@ Depth for SKILL.md Steps 6 and 10: the surface where a command declares its inpu
 
 ## 1. OVERVIEW
 
+### Purpose
+
 This reference collects the input-declaration patterns that would bloat the SKILL.md workflow: a catalog of `argument-hint` shapes, the design intent behind `:auto`/`:confirm` modes, and budget-minded frontmatter tips for `description` and `allowed-tools`.
+
+### When to Use
+
+- When writing `argument-hint` for a new command
+- When choosing `:auto` or `:confirm` behavior for a workflow
+- When tightening `description` or `allowed-tools` frontmatter
 
 ---
 

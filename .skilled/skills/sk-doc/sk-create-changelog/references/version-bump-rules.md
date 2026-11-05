@@ -9,7 +9,7 @@ trigger_phrases:
   - "four part semantic version changelog"
 importance_tier: normal
 contextType: implementation
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Changelog Version Bump Rules
@@ -20,9 +20,11 @@ Concrete four-part version choices and edge distinctions for global component ch
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Version bumps apply only to global component changelogs. Packet-local nested changelogs are deprecated, and the existing ones were never versioned this way. This file adds examples to the bump table and auto-detection order in [../SKILL.md](../SKILL.md) section 4, which stay authoritative.
 
-**When to Use**:
+### When to Use
 
 - The SKILL.md bump table is not concrete enough for the change in hand.
 - A large change risks being called major when it is not breaking.

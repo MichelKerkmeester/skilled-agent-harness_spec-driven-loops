@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -20,9 +20,12 @@ Adopters who customized `sk-code` (their stack) or `sk-git` (their conventions) 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to nested workflow-mode packets and read-only surface packets. `sk-git` stayed a single skill. This file is the adopter-facing path for reconciling a customized copy with that split.
 
-**When to Use**:
+### When to Use
+
 - You customized `sk-code` or `sk-git` and a framework update now ships a different shape
 - You are deciding whether a flat skill should become a parent hub
 - You want to keep a customized skill single and avoid a false migration

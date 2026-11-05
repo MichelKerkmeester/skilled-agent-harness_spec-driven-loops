@@ -4,7 +4,7 @@ description: "Scaffolds or updates one runtime agent markdown file with runtime-
 trigger_phrases:
   - "create agent"
   - "agent frontmatter"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # create-agent
@@ -13,7 +13,9 @@ version: 1.0.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.0.3.0
 | **Invoke with** | `/create:agent`, "create agent" or a direct read of `SKILL.md` |
 | **Works on** | Agent files under `.skilled/agents/` or `.claude/agents/` |
 | **Produces** | One validated agent file with runtime-correct frontmatter, boundaries, workflow and verification |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -44,7 +42,7 @@ Two runtimes read agent frontmatter differently. Neither warns you when you get 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Confirm an agent is the right call.** A skill answers how the work should be done. A command answers how a user triggers it. An agent answers who does it, with explicit authority. Only write an agent when you need that third answer.
 
@@ -66,7 +64,7 @@ A clean file reports `✅ VALID: <path>` with `Total issues: 0`.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Start by choosing the component. A skill answers how the work should be done, a command answers how a user triggers it. An agent answers who does it, with explicit authority. Search existing agents for overlap before creating a new one, so you don't end up with two personas covering the same authority. Resolve the runtime directory (`.skilled/agents/` or `.claude/agents/`) and draft frontmatter first, especially `permission` or `tools`. Write the hard boundary section before the general workflow. The boundary comes first on purpose: it states what the agent must never do, nested dispatch, writes outside its scope, before the file describes what it does do, so a reader who only skims the top already knows the limits.
 
@@ -80,7 +78,7 @@ The same role needs two different frontmatter blocks depending on where it lives
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -96,7 +94,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -109,7 +107,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just add another skill instead of an agent?**
 
@@ -129,7 +127,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -139,7 +137,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

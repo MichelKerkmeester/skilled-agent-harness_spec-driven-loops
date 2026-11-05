@@ -10,7 +10,7 @@ trigger_phrases:
   - "reviewing a draft rule"
 importance_tier: important
 contextType: reference
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # Creation Standards: Is This Rule Worth Loading?
@@ -23,11 +23,13 @@ would change their behaviour over.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 These five tests are read out of what the shipped corpus already does. Every one passes
 across the corpus. Each is a question a reviewer answers by reading; none can be automated, and
 that limit is the reason they live here rather than in the structural floor.
 
-**When to Use**:
+### When to Use
 
 - Before finishing a draft rule, once it is shaped like a rule.
 - Reviewing a rule that passes every structural check and still reads as filler.

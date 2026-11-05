@@ -8,7 +8,7 @@ trigger_phrases:
   - "phase-add binding row"
 importance_tier: important
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Phase-Parent Goal Template
@@ -19,7 +19,12 @@ Use this blank for a packet whose direct children are phase folders. It is the s
 
 ## 1. OVERVIEW
 
+### Purpose
+
 - **Use it for** the `phase-parent` operation, a `retrofit` of a parent, a `phase-add` that needs a new binding row and an `amend` of a parent decision or criterion.
+
+### Usage
+
 - **Binding table.** Write one row per direct phase-child directory on disk, in folder order, each pointing at that child's `goal.md`. Compare the rows with the folders before handing off.
 - **Budget.** The durable slice holds at most 4,000 characters, measured by `goal.cjs packet`. Print its `chat_slice` for the operator after every change above the log.
 - **Children** use [`goal-phase-child-template.md`](goal-phase-child-template.md). A packet with no phases uses [`goal-top-level-template.md`](goal-top-level-template.md).

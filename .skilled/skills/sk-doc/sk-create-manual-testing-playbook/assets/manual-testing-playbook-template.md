@@ -8,7 +8,7 @@ trigger_phrases:
   - "playbook root structure"
 importance_tier: normal
 contextType: general
-version: 1.0.0.30
+version: 1.0.1.0
 ---
 
 # Manual Testing Playbook Creation - Templates and Standards
@@ -19,7 +19,15 @@ Templates for creating manual testing playbooks with deterministic scenarios, st
 
 ## 1. OVERVIEW
 
-**Purpose**: Manual testing playbooks provide operator-facing validation matrices for skills. They define deterministic scenarios with realistic user requests, orchestrator execution guidance, exact prompts, command sequences, expected signals, and pass/fail criteria so any operator can execute and grade tests consistently.
+### Purpose
+
+Manual testing playbooks provide operator-facing validation matrices for skills. They define deterministic scenarios with realistic user requests, orchestrator execution guidance, exact prompts, command sequences, expected signals, and pass/fail criteria so any operator can execute and grade tests consistently.
+
+### Usage
+
+- When a skill needs an operator-facing validation matrix
+- When scenarios must carry an exact prompt and an exact command sequence
+- When operators must execute and grade tests consistently
 
 **Key Characteristics**:
 - **Deterministic**: Every scenario has an exact prompt and exact command sequence.
