@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4542cf6e59e9ef5b1851476c04eae46346c55397eeacdeaa134d6e50934f9621",
+  "manifestHash": "bf1b321e3763252f79bcb9442873e2e7a4b934d2ada2243720ae8a3d1fd9e1d1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -23556,6 +23556,24 @@
     "clickup doc contract tasks": [
       "clickup doc contract tasks"
     ],
+    "clickup doc divider gap": [
+      "clickup doc divider gap"
+    ],
+    "clickup doc divider spacing": [
+      "clickup doc divider spacing"
+    ],
+    "clickup doc divider spacing implementation summary": [
+      "clickup doc divider spacing implementation summary"
+    ],
+    "clickup doc divider spacing on api written pages": [
+      "clickup doc divider spacing on api written pages"
+    ],
+    "clickup doc divider spacing plan": [
+      "clickup doc divider spacing plan"
+    ],
+    "clickup doc divider spacing tasks": [
+      "clickup doc divider spacing tasks"
+    ],
     "clickup doc page": [
       "clickup doc page"
     ],
@@ -27614,6 +27632,9 @@
     ],
     "compiled routing directive markers": [
       "compiled routing directive markers"
+    ],
+    "compiled routing directive placement": [
+      "compiled routing directive placement"
     ],
     "compiled routing evidence": [
       "compiled routing evidence"
@@ -45855,6 +45876,9 @@
     "external vs mcp search comparison": [
       "external vs MCP search comparison"
     ],
+    "extra blank line under divider": [
+      "extra blank line under divider"
+    ],
     "extra divider before section 1": [
       "extra divider before section 1"
     ],
@@ -63772,6 +63796,9 @@
     "mcp click up 1 2 1 0": [
       "mcp-click-up 1.2.1.0"
     ],
+    "mcp click up 1 2 10 0": [
+      "mcp-click-up 1.2.10.0"
+    ],
     "mcp click up 1 2 2 0": [
       "mcp-click-up 1.2.2.0"
     ],
@@ -63843,6 +63870,9 @@
     ],
     "mcp click up v1 2 1 0": [
       "mcp-click-up v1.2.1.0"
+    ],
+    "mcp click up v1 2 10 0": [
+      "mcp-click-up v1.2.10.0"
     ],
     "mcp click up v1 2 2 0": [
       "mcp-click-up v1.2.2.0"
@@ -65323,6 +65353,9 @@
     "mcp tooling 1 9 4 0": [
       "mcp-tooling 1.9.4.0"
     ],
+    "mcp tooling 1 9 5 0": [
+      "mcp-tooling 1.9.5.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -65475,6 +65508,9 @@
     ],
     "mcp tooling v1 9 4 0": [
       "mcp-tooling v1.9.4.0"
+    ],
+    "mcp tooling v1 9 5 0": [
+      "mcp-tooling v1.9.5.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -104337,6 +104373,9 @@
     "sk doc 2 4 2 0": [
       "sk-doc 2.4.2.0"
     ],
+    "sk doc 2 4 3 0": [
+      "sk-doc 2.4.3.0"
+    ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
     ],
@@ -104774,6 +104813,9 @@
     ],
     "sk doc v2 4 2 0": [
       "sk-doc v2.4.2.0"
+    ],
+    "sk doc v2 4 3 0": [
+      "sk-doc v2.4.3.0"
     ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"

@@ -6,7 +6,7 @@ trigger_phrases:
   - "drawio extractor"
   - "mermaid extractor"
   - "flowchart validator"
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # sk-design-diagram scripts
@@ -27,7 +27,7 @@ Behavior details (per-type routing rules, the four output dials) live in [`../re
 |---|---:|
 | Code files | 3 |
 | CLI entrypoints | 3 |
-| Test suites | 1 (`scripts/tests/corpus-mutations.test.cjs`, one case per checker family) |
+| Test suites | 1 ([`tests/corpus-mutations.test.cjs`](tests/corpus-mutations.test.cjs), one case per checker family) |
 
 ---
 
@@ -97,7 +97,7 @@ The flowchart validator uses its own two-code delivery contract:
 
 ## 7. VALIDATION / TESTS
 
-`node --test scripts/tests/` runs the standing suite: one mutation case per checker family, each breaking exactly one thing in a copy and expecting that family to say the specific thing its message promises. The suite also asserts its own completeness, so a family added without a case fails the run.
+From the repository root, `node --test .skilled/skills/sk-design/sk-design-diagram/scripts/tests/` runs the standing suite: one mutation case per checker family, each breaking exactly one thing in a copy and expecting that family to say the specific thing its message promises. The suite also asserts its own completeness, so a family added without a case fails the run.
 
 Verify a change compiles and both entrypoints still resolve their exit-code contract:
 

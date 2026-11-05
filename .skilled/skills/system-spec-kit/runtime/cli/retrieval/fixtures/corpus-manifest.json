@@ -1,5 +1,5 @@
 {
-  "corpusHash": "abff097af91f7327301ec4a8d211c5e561aceeb17091498768793be0530e9cb9",
+  "corpusHash": "3d9f369fbe1d6431214a0b1e717c2cedaae0becaeaef7440ebfd381f45f6a9bc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27907,
+  "includedPathCount": 27914,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -2043,6 +2043,7 @@
     ".skilled/skills/mcp-tooling/changelog/v1.9.2.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.3.0.md",
     ".skilled/skills/mcp-tooling/changelog/v1.9.4.0.md",
+    ".skilled/skills/mcp-tooling/changelog/v1.9.5.0.md",
     ".skilled/skills/mcp-tooling/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/mcp-tooling/feature-catalog/feature-catalog.md",
     ".skilled/skills/mcp-tooling/feature-catalog/workflow-vs-transport-routing/workflow-vs-transport-routing.md",
@@ -2228,6 +2229,7 @@
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.1.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.0.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.1.0.md",
+    ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.2.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.3.0.md",
     ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.4.0.md",
@@ -6332,6 +6334,7 @@
     ".skilled/skills/sk-doc/changelog/v2.4.0.0.md",
     ".skilled/skills/sk-doc/changelog/v2.4.1.0.md",
     ".skilled/skills/sk-doc/changelog/v2.4.2.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.4.3.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -11618,6 +11621,10 @@
     "specs/mcp-tooling/025-figma-hosted-from-cli-children/plan.md",
     "specs/mcp-tooling/025-figma-hosted-from-cli-children/spec.md",
     "specs/mcp-tooling/025-figma-hosted-from-cli-children/tasks.md",
+    "specs/mcp-tooling/026-clickup-doc-divider-spacing/implementation-summary.md",
+    "specs/mcp-tooling/026-clickup-doc-divider-spacing/plan.md",
+    "specs/mcp-tooling/026-clickup-doc-divider-spacing/spec.md",
+    "specs/mcp-tooling/026-clickup-doc-divider-spacing/tasks.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/implementation-summary.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/plan.md",
     "specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
@@ -27938,7 +27945,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4542cf6e59e9ef5b1851476c04eae46346c55397eeacdeaa134d6e50934f9621",
+  "manifestHash": "bf1b321e3763252f79bcb9442873e2e7a4b934d2ada2243720ae8a3d1fd9e1d1",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30477,6 +30484,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/026-clickup-doc-divider-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
     },
@@ -31246,6 +31257,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

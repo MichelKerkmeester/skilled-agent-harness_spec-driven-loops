@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7300,
-    "ok": 17059,
+    "ok": 17066,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27907,
+  "documentsScanned": 27914,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "4542cf6e59e9ef5b1851476c04eae46346c55397eeacdeaa134d6e50934f9621",
+  "manifestHash": "bf1b321e3763252f79bcb9442873e2e7a4b934d2ada2243720ae8a3d1fd9e1d1",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40981,
+      "ok": 40995,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -71220,6 +71220,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/mcp-tooling/026-clickup-doc-divider-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/mcp-tooling/z_archive",
       "reason": "excluded directory"
     },
@@ -71989,6 +71993,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {
