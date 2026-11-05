@@ -62,6 +62,7 @@ The hosted server writes every divider with an empty block under it, whatever ma
 | `.skilled/skills/mcp-tooling/mcp-click-up/SKILL.md` | Modified | Contract warning, version 1.2.10.0 |
 | `.skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md` | Created | Release note |
 | `.hermes/skills/mcp-click-up/SKILL.md` | Modified | Regenerated copy |
+| `references/mcp-tools.md`, `SKILL.md`, `references/troubleshooting.md`, `changelog/v1.2.11.0.md` | Modified and Created | Required import check and gap removal, with its program |
 | `mcp-tooling/ROUTER.md`, `sk-doc/ROUTER.md` and their Hermes copies | Modified | Compiled-routing directive back in section 5 |
 | `mcp-tooling` 1.9.5.0 and `sk-doc` 2.4.3.0 release files | Modified and Created | Hub version fields and changelogs |
 <!-- /ANCHOR:what-built -->
@@ -101,6 +102,7 @@ The behavior was measured live first: 13 markdown variants, two edit modes and a
 | `compiled-route.cjs --hub mcp-tooling` with the divider prompt | Routes to `mcp-click-up`, policy hash unchanged |
 | `validate_skill_package.py` on `mcp-tooling` and `sk-doc` | All three legs PASS, including `compiled-ready` |
 | `package_skill.py --check --strict` on both hubs and `mcp-click-up` | PASS |
+| The section 8 program on a gapped scratch page | Logged out: `login: true`, nothing touched. Logged in: 3 gaps to 0, text unchanged. Setext trap: `importDiff` names the swallowed lines |
 | sk-create-skill fleet checks | Leaf manifest, derived freshness, root metadata and playbook topology all exit 0 |
 <!-- /ANCHOR:verification -->
 

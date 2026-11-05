@@ -69,10 +69,11 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 - Correct the section 8 example to read `document_id` and `page_id`, the fields the server returns
 - Record in section 4 that no tool deletes a document or a page
 - Bump the mode to 1.2.10.0 with a changelog entry and regenerate the Hermes copy
+- Make the import check and the gap removal a required routine after every page write, with a Code Mode program that runs both, in `references/mcp-tools.md` section 8 (mode 1.2.11.0)
 - Move the compiled-routing directive in the `mcp-tooling` and `sk-doc` hub `ROUTER.md` files back into `## 5. MACHINE ROUTER`, where `validate_skill_package.py` reads it, and release each hub one patch step
 
 ### Out of Scope
-- A script that runs the editor pass - the DOM selectors are ClickUp internals, and the steps fit in the reference
+- A script file for the editor pass - Code Mode takes the program as inline code, so it lives as a copyable block in the reference
 - Router keyword changes - "doc page" and "document" already route to `references/mcp-tools.md`
 - The Product Owner vendored copy - its own packet pulls this change
 
@@ -108,6 +109,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 |----|-------------|---------------------|
 | REQ-003 | The troubleshooting guide names the symptom and points to the fix | `rg -n 'extra blank line under every divider' references/troubleshooting.md` prints one line |
 | REQ-004 | The changed docs validate and the Hermes copy matches | `validate_document.py` reports 0 issues on the two references and the changelog, and `sync-skills-hermes.cjs --check` prints `PASS` |
+| REQ-006 | Every page write runs the import check and gap removal without a second question | `rg -n 'Required after every page write' references/mcp-tools.md` prints one heading, and the program run on a gapped scratch page reports `gapsLeft: 0` and `textUnchanged: true` |
 | REQ-005 | Both hubs and the mode meet the sk-create-skill package contract | `validate_skill_package.py` passes all three legs on `mcp-tooling` and `sk-doc`, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up` |
 <!-- /ANCHOR:requirements -->
 

@@ -59,6 +59,8 @@ contextType: "general"
 - [x] T010 Check the route (`compiled-route.cjs --hub mcp-tooling`). Verify: the divider prompt routes to `mcp-click-up` with policy hash `360bf02a...`, unchanged.
 - [x] T011 Move the compiled-routing directive back into section 5 and release the hubs (`mcp-tooling/ROUTER.md`, `sk-doc/ROUTER.md`, versions 1.9.5.0 and 2.4.3.0). Verify: `validate_skill_package.py` prints `compiled-ready: PASS` for both hubs, where it printed `Missing directive markers` before.
 - [x] T012 Run the sk-create-skill fleet checks. Verify: `ci-leaf-manifest-freshness`, `ci-skill-derived-freshness`, `ci-skill-root-metadata` and `validate-playbook-topology` exit 0, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up`.
+- [x] T013 Add the required routine and its program (`M/references/mcp-tools.md` 1.1.5.0, `M/SKILL.md` 1.2.11.0, `M/references/troubleshooting.md` 1.0.3.0, `M/changelog/v1.2.11.0.md`). Verify: `node --check` on the extracted program prints nothing and `package_skill.py --check --strict` passes.
+- [x] T014 Run the program on a gapped scratch page (doc `2kyq4d0p-147455`). Verify: the report shows `gapsLeft: 0` and `textUnchanged: true`. Logged out it reported `login: true` and touched nothing. Logged in it reported `gapsBefore: 3`, `presses: 3`, `gapsLeft: 0`, `textUnchanged: true`, `importDiff: []`. A push with a paragraph above a divider reported `importDiff: ["Intro line.", "* * *"]`, the line ClickUp turned into `## Intro line.`
 <!-- /ANCHOR:phase-3 -->
 
 ---

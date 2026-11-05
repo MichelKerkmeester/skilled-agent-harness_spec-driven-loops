@@ -11,7 +11,7 @@ trigger_phrases:
   - "extra blank line under divider"
 importance_tier: "normal"
 contextType: "general"
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # mcp-click-up Troubleshooting Guide
@@ -292,7 +292,7 @@ cat .utcp_config.json | grep -A10 '"clickup_official"'
 
 **Diagnosis:** Read the page with `content_format: "text/plain"`. Each `" \n"` line holds a divider with the gap. The `"text/md"` read-back looks the same with or without the gap, so it cannot answer this.
 
-**Fix:** No MCP call removes the gap. Delete the empty line under each divider in the ClickUp editor, by hand or through `mcp-chrome-devtools` in a logged-in browser. The steps and the check are in `references/mcp-tools.md` section 8, "Divider spacing on pages the server writes".
+**Fix:** No MCP call removes the gap. Run the program in `references/mcp-tools.md` section 8, "Required after every page write", through `mcp-chrome-devtools`. It deletes the empty line under each divider in the ClickUp editor and proves the page text is unchanged. When it reports `login: true`, ask the user to log in to ClickUp in the DevTools browser window, then run it again.
 
 ---
 
