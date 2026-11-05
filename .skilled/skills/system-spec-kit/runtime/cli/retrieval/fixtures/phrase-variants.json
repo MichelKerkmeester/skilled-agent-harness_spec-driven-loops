@@ -1,5 +1,5 @@
 {
-  "manifestHash": "57477b752ab00750b93faf1f43a7468ebee961c6729f733e1fb9e1e3f4ec8b86",
+  "manifestHash": "8ef390e6d9b7c4ef17f2dc079bc61ff1f34d2261b7151484be2a518732af7549",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14282,6 +14282,9 @@
     ],
     "benchmark readme numbered sections": [
       "benchmark readme numbered sections"
+    ],
+    "benchmark readme trigger": [
+      "benchmark readme trigger"
     ],
     "benchmark redesign and remeasure": [
       "benchmark redesign and remeasure"
@@ -38613,9 +38616,6 @@
     ],
     "design generation skill removed": [
       "design-generation skill removed"
-    ],
-    "design hand off values": [
-      "design hand-off values"
     ],
     "design handoffs": [
       "design handoffs"
@@ -70672,9 +70672,6 @@
     "negated write fix": [
       "negated write fix"
     ],
-    "negated write is not a request": [
-      "negated write is not a request"
-    ],
     "negated write routing": [
       "negated write routing"
     ],
@@ -72734,9 +72731,6 @@
     ],
     "one catalog for providers and models": [
       "One Catalog for Providers and Models"
-    ],
-    "one checked mode vocabulary": [
-      "one checked mode vocabulary"
     ],
     "one classifier behind the scans": [
       "one classifier behind the scans"
@@ -76505,9 +76499,6 @@
     ],
     "per profile vector shard split": [
       "per-profile vector shard split"
-    ],
-    "per project decision capture": [
-      "per-project decision capture"
     ],
     "per project decision capture state": [
       "per-project decision capture state"
@@ -81776,9 +81767,6 @@
     ],
     "portable guard cores": [
       "portable guard cores"
-    ],
-    "portable paths and launch agent": [
-      "portable paths and launch agent"
     ],
     "portable shebang sweep": [
       "portable shebang sweep"
@@ -93059,9 +93047,6 @@
     "root governance alignment": [
       "root governance alignment"
     ],
-    "root instruction file doctor": [
-      "root instruction file doctor"
-    ],
     "root instruction files drift": [
       "root instruction files drift"
     ],
@@ -102171,6 +102156,9 @@
     "sk create benchmark 1 6 5 0": [
       "sk-create-benchmark 1.6.5.0"
     ],
+    "sk create benchmark 1 6 6 0": [
+      "sk-create-benchmark 1.6.6.0"
+    ],
     "sk create benchmark implementation summary": [
       "sk create benchmark implementation summary"
     ],
@@ -102224,6 +102212,9 @@
     ],
     "sk create benchmark v1 6 5 0": [
       "sk-create-benchmark v1.6.5.0"
+    ],
+    "sk create benchmark v1 6 6 0": [
+      "sk-create-benchmark v1.6.6.0"
     ],
     "sk create changelog": [
       "sk create changelog"
@@ -107106,9 +107097,6 @@
     ],
     "skill docs missing from index": [
       "skill docs missing from index"
-    ],
-    "skill docs readability pass": [
-      "skill docs readability pass"
     ],
     "skill docs sweep": [
       "skill docs sweep"

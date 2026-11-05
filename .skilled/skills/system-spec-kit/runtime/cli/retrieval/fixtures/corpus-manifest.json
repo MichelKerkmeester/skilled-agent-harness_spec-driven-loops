@@ -1,5 +1,5 @@
 {
-  "corpusHash": "4d7195badd6ef86218a3651dd74b80f1ac4b736dfc03c5faf53c4ce68ffe01e0",
+  "corpusHash": "3150f3e087de948876be9605349a698bc3fc342d0f2458141bdb4dacdc198092",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28000,
+  "includedPathCount": 28001,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6537,6 +6537,7 @@
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.3.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.4.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.5.0.md",
+    ".skilled/skills/sk-doc/sk-create-benchmark/changelog/v1.6.6.0.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/benchmark-families/author-behavior-package.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/leave-in-flight-benchmark.md",
     ".skilled/skills/sk-doc/sk-create-benchmark/manual-testing-playbook/family-routing/promote-mcp-result.md",
@@ -28031,7 +28032,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "57477b752ab00750b93faf1f43a7468ebee961c6729f733e1fb9e1e3f4ec8b86",
+  "manifestHash": "8ef390e6d9b7c4ef17f2dc079bc61ff1f34d2261b7151484be2a518732af7549",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
