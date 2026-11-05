@@ -921,6 +921,7 @@ One advisor identity routing to eight modes through `mode-registry.json`: five w
 
 - **Parent hub for documentation authoring, routed via `mode-registry.json` to fifteen workflow modes across fourteen packets.** Markdown specialist with DQI quality scoring (Structure 40, Content 30, Style 30) plus HVR compliance checking
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation and feature-catalog authoring
+- **Catches docs that read wrong once rendered.** Sixteen render checks flag a joined bold label, a stray setext heading, a bare URL, an OVERVIEW that does not open with Purpose, a broken section citation or an intro that repeats the description, and `package_skill.py --strict` fails a skill on any of them. A rewrite guard, `doc-rewrite-guard.py`, proves a form-only rewrite kept every claim before it is committed
 - **Authors manual testing playbooks** through `sk-create-manual-testing-playbook`. A scenario is a single prompt when a person must judge the result, or a `json conversation` script when the behavior spans turns, question tools, a restart or a compaction. The shared runner plays a script into five runtimes, under a macOS write sandbox, and writes a per-runtime PASS, FAIL or SKIP matrix with evidence
 - **Authors spec packet goals** through `sk-create-goal`: a top-level, phase-parent or phase-child `goal.md` built from a checked template, with top-level and parent goals held to 4,000 characters
 
