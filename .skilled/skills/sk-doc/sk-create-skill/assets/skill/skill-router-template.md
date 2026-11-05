@@ -6,7 +6,7 @@ trigger_phrases:
   - "{{SKILL_NAME}} routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -30,14 +30,14 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-[TODO: Write one bullet per `INTENT_SIGNALS` key: the intent, the phrasing that fires it, and the exact files it loads.]
-
-[TODO: Keep this section and the machine block below in sync. When a row changes here, change the matching map entry.]
-
 A skill may name its intent map `INTENT_MODEL` instead of `INTENT_SIGNALS`, the name this template and the replay
 reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords;
 otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
 its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
+
+[TODO: Write one bullet per `INTENT_SIGNALS` key: the intent, the phrasing that fires it, and the exact files it loads.]
+
+[TODO: Keep this section and the machine block below in sync. When a row changes here, change the matching map entry.]
 
 ---
 

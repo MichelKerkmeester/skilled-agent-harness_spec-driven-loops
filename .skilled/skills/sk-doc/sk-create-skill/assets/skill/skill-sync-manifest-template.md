@@ -8,7 +8,7 @@ trigger_phrases:
   - "mirror drift manifest"
 importance_tier: normal
 contextType: general
-version: 1.2.0.2
+version: 1.2.1.0
 ---
 
 # Runtime Sync Manifest Template
@@ -25,7 +25,12 @@ Every runtime config dir mirrors canonical content through some mix of symlinks,
 
 ### Usage
 
-Copy the fillable scaffold in Section 2 into `<runtime-dir>/SYNC.md`, replace every placeholder with facts verified against the actual tree, remove unused scaffolding and preserve the nine-section order. Cross-link the new manifest from every sibling runtime's RELATED DOCUMENTS row.
+Copy the fillable scaffold in Section 2 into `<runtime-dir>/SYNC.md`, then:
+
+- Replace every placeholder with facts verified against the actual tree.
+- Remove unused scaffolding.
+- Preserve the nine-section order.
+- Cross-link the new manifest from every sibling runtime's RELATED DOCUMENTS row.
 
 Rules the scaffold enforces:
 

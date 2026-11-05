@@ -9,7 +9,7 @@ trigger_phrases:
   - "stage1-only router"
 importance_tier: normal
 contextType: general
-version: 1.2.0.12
+version: 1.2.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -134,7 +134,10 @@ never placeholder intents.
 - One dominant intent routes to one mode's leaf set.
 - Two near-tied intents (within the router's ambiguity delta) route to both leaf sets. The union is deduped by canonical pair.
 - No keyword match is `UNKNOWN_FALLBACK`. Confirm the target artifact and intent before loading anything.
-- `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request. Two workflow modes that share one packet directory (N-to-1 fan-out) resolve from a packet-qualified raw path to whichever mode is bound first. The fan-out twin is an exact leaf duplicate. If a hub must enumerate both twins distinctly, drive that from the manifest, not from raw router strings.
+- `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request.
+- Two workflow modes that share one packet directory (N-to-1 fan-out) resolve from a packet-qualified raw path to whichever mode is bound first.
+- The fan-out twin is an exact leaf duplicate.
+- If a hub must enumerate both twins distinctly, drive that from the manifest, not from raw router strings.
 
 ---
 

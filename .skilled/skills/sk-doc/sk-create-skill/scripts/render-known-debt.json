@@ -1,26 +1,30 @@
 {
-  "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding.",
-  "debt": {
-    "system-deep-loop/deep-ai-council": {
-      "findings": 6,
-      "codes": [
-        "render_h2_numbering",
-        "render_overview_orientation"
-      ]
+  "description": "Skills whose references/ or assets/ docs still raise render findings, keyed by their path under .skilled/skills. Each entry records the finding count and the render finding types the skill was listed with. The check fails the skill if any count grows or a type appears that the entry does not record. Remove an entry when the skill renders clean; never raise one, and never add an entry to excuse a new finding. The exempt map is separate: it lists docs whose exact text code depends on, each with the code file that reads or generates it, and the render check skips them. An exempt entry whose consumer file is gone exempts nothing.",
+  "debt": {},
+  "exempt": {
+    "system-deep-loop/deep-research/assets/deep-research-dashboard.md": {
+      "consumer": "system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "reason": "reduce-state.cjs writes these lettered section headings verbatim and its tests assert them."
     },
-    "system-deep-loop/deep-research": {
-      "findings": 4,
-      "codes": [
-        "render_h2_numbering",
-        "render_section_order"
-      ]
+    "system-deep-loop/deep-research/assets/deep-research-strategy.md": {
+      "consumer": "system-deep-loop/deep-research/scripts/reduce-state.cjs",
+      "reason": "reduce-state.cjs writes these lettered section headings verbatim and its tests assert them."
     },
-    "system-deep-loop/deep-review": {
-      "findings": 5,
-      "codes": [
-        "render_h2_numbering",
-        "render_section_order"
-      ]
+    "system-deep-loop/deep-review/assets/deep-review-dashboard.md": {
+      "consumer": "system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "reason": "reduce-state.cjs writes these lettered section headings verbatim and its tests assert them."
+    },
+    "system-deep-loop/deep-review/assets/deep-review-strategy.md": {
+      "consumer": "system-deep-loop/runtime/scripts/reduce-state.cjs",
+      "reason": "reduce-state.cjs writes these lettered section headings verbatim and its tests assert them."
+    },
+    "system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md": {
+      "consumer": "system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs",
+      "reason": "Generated from review_mode_contract.yaml; the generator owns its sections."
+    },
+    "system-deep-loop/deep-ai-council/assets/prompt-pack-round.md": {
+      "consumer": "system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+      "reason": "Sent whole, minus frontmatter, as every council seat's prompt, so its text is runtime input."
     }
   }
 }

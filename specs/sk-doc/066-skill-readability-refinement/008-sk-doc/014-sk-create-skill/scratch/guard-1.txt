@@ -1,0 +1,8 @@
+restored=0
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/SKILL.md edited=2
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md edited=4
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md edited=1
+BLOCK-CHANGED .skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md edited=4
+code_blocks_changed=6 block_count_mismatch=0 restored

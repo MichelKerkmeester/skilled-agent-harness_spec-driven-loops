@@ -8,7 +8,7 @@ trigger_phrases:
   - "router fallback pattern"
 importance_tier: normal
 contextType: general
-version: 1.2.1.1
+version: 1.2.2.0
 ---
 
 # Skill Smart Router - Resilience Pattern
@@ -23,7 +23,14 @@ Smart routers fail when resource paths drift, reference folders are deleted, sta
 
 ### Usage
 
-Copy the four pseudocode patterns from §2 into the `## MACHINE ROUTER` section of your skill's sibling `ROUTER.md`. That file is the router: `SKILL.md` keeps only smart-routing prose of 8 to 12 non-blank lines and a relative markdown link to the router file, and it never carries a `## MACHINE ROUTER` section of its own. Every skill and every mode packet owns one such file inside its own folder, and the hub root `ROUTER.md` is the hub's own router rather than its packets'. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
+Copy the four pseudocode patterns from §2 into the `## MACHINE ROUTER` section of your skill's sibling `ROUTER.md`.
+
+- That file is the router: `SKILL.md` keeps only smart-routing prose of 8 to 12 non-blank lines and a relative markdown link to the router file, and it never carries a `## MACHINE ROUTER` section of its own.
+- Every skill and every mode packet owns one such file inside its own folder, and the hub root `ROUTER.md` is the hub's own router rather than its packets'.
+- Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide.
+- Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels, and swap only the **discovery + load + fallback** mechanics.
+- Apply the structural safeguards from §4 to every router-driven `load()` call.
+- Audit your draft against §5 Anti-Patterns before merging.
 
 ---
 

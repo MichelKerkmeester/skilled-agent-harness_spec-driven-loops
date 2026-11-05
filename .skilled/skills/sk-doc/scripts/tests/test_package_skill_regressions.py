@@ -356,6 +356,88 @@ def test_render_debt_cannot_cover_a_growing_count(tmp_path, monkeypatch):
     assert "above its known debt" in message
 
 
+def _write_exempt_ledger(tmp_path, consumer):
+    ledger = tmp_path / "render-known-debt.json"
+    ledger.write_text(
+        json.dumps({
+            "debt": {},
+            "exempt": {
+                "render-label-skill/references/render-fixture.md": {
+                    "consumer": consumer,
+                    "reason": "A script writes this doc's text verbatim.",
+                },
+            },
+        }),
+        encoding="utf-8",
+    )
+    return ledger
+
+
+def test_render_exempt_doc_with_live_consumer_passes_strict(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    (skill_path / "scripts").mkdir(exist_ok=True)
+    (skill_path / "scripts" / "writer.cjs").write_text("// writes the fixture\n", encoding="utf-8")
+    ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/writer.cjs")
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is True, message
+    assert not any("render check" in warning for warning in warnings)
+
+
+def test_render_exempt_entry_with_missing_consumer_exempts_nothing(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/gone.cjs")
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False
+    assert "render check" in message
+
+
+def test_render_exempt_skips_only_the_listed_doc(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    (skill_path / "references" / "unlisted-render-fixture.md").write_text(
+        _RENDER_JOINED_LABEL_DOC, encoding="utf-8"
+    )
+    (skill_path / "scripts").mkdir(exist_ok=True)
+    (skill_path / "scripts" / "writer.cjs").write_text("// writes the fixture\n", encoding="utf-8")
+    ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/writer.cjs")
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False
+    assert "unlisted-render-fixture.md" in message
+
+
+def test_render_exempt_rejects_malformed_and_outside_consumers(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    outside = tmp_path.parent / "outside-writer.cjs"
+    outside.write_text("// outside the skills root\n", encoding="utf-8")
+    doc = "render-label-skill/references/render-fixture.md"
+    for entry in (
+        {"consumer": str(outside), "reason": "absolute path"},
+        {"consumer": "../outside-writer.cjs", "reason": "escapes the root"},
+        {"consumer": "render-label-skill/SKILL.md", "reason": "", },
+        {"consumer": "render-label-skill/SKILL.md", "reason": "extra key", "note": "x"},
+    ):
+        ledger = tmp_path / "render-known-debt.json"
+        ledger.write_text(json.dumps({"debt": {}, "exempt": {doc: entry}}), encoding="utf-8")
+        monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+        monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+        valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+        assert valid is False, entry
+        assert "render check" in message
+
+
 def test_resource_frontmatter_flags_missing_five_fields(tmp_path):
     module = _load_module()
     skill_path = _write_valid_skill(tmp_path / "demo-skill")

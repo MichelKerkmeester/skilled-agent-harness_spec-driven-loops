@@ -1,0 +1,1187 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/README.md b/.skilled/skills/sk-doc/sk-create-skill/README.md
+index 63b1d9af8ea..dfb934152fc 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/README.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/README.md
+@@ -26,14 +26,14 @@ version: 1.2.5.0
+ 
+ ## 2. OVERVIEW
+ 
+-### Why This Skill Exists
+-
+-Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter rules, section order, routing pseudocode and validation gates every single time. The drift shows up as skills that skip a required field, use the wrong version format, bury routing logic where the advisor can never find it or miss a validation gate entirely. A parent hub multiplies that risk across a registry, a router and however many nested packets, all of which have to agree with each other or the hub silently misroutes. create-skill exists to scaffold both shapes from vetted templates and then prove the result is valid before anyone calls it done.
+-
+ ### What It Does
+ 
+ create-skill runs one of two workflow modes from a single packet. `create-skill` scaffolds a standalone skill with its own advisor identity, `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`, built with `scripts/init_skill.py` and normalized to this repo's section order. `create-skill-parent` scaffolds a parent hub that dispatches to nested workflow or surface packets, with `mode-registry.json` and `hub-router.json` at the hub root and `graph-metadata.json` only there, never inside a nested packet. Both modes end at the same gate: `scripts/validate_skill_package.py` must exit clean before `scripts/package_skill.py` runs. It does not audit or improve an existing skill's prose quality once the skill already exists and only needs review. That is `create-quality-control`.
+ 
++### Why This Skill Exists
++
++Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter rules, section order, routing pseudocode and validation gates every single time. The drift shows up as skills that skip a required field, use the wrong version format, bury routing logic where the advisor can never find it or miss a validation gate entirely. A parent hub multiplies that risk across a registry, a router and however many nested packets, all of which have to agree with each other or the hub silently misroutes. create-skill exists to scaffold both shapes from vetted templates and then prove the result is valid before anyone calls it done.
++
+ ### The Two Workflow Modes
+ 
+ | Mode | What the skill scaffolds |
+@@ -54,7 +54,7 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
+ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --path .skilled/skills
+ ```
+ 
+-`init_skill.py` creates `my-skill/` with `SKILL.md` and two prepared trees: a `manual-testing-playbook/` corpus index and a `benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and `scripts/` are added by hand as the skill earns them.
++`init_skill.py` creates `my-skill/` with `SKILL.md`, `ROUTER.md` and two prepared trees: a `manual-testing-playbook/` corpus index and a `benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and `scripts/` are added by hand as the skill earns them.
+ 
+ **Step 2: Fill in the real content, then validate.**
+ 
+@@ -70,6 +70,8 @@ Expected output ends with `package_skill.py --check: PASS (exit 0)`.
+ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/<skill-name> <output-directory>
+ ```
+ 
++Expected: ✅ Successfully packaged <file-count> files to: <output-directory>/<skill-name>.zip
++
+ ---
+ 
+ ## 4. HOW IT WORKS
+@@ -147,13 +149,15 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
+ 
+ ## 8. VERIFICATION
+ 
++Run every command in this table from the repository root.
++
+ | Check | How to run it | Pass looks like |
+ |---|---|---|
+ | README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md --type readme` | Reports zero issues |
+-| Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
+-| Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
+-| Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
+-| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 22` and `fail 0` |
++| Package completion | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
++| Strict contract check | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
++| Structure extraction | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
++| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 26` and `fail 0` |
+ 
+ ---
+ 
+@@ -167,7 +171,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
+ | [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
+ | [`assets/skill/skill-router-template.md`](./assets/skill/skill-router-template.md) | Sibling `ROUTER.md` scaffold for a standalone skill or mode packet |
+ | [`assets/parent-skill/parent-skill-hub-template.md`](./assets/parent-skill/parent-skill-hub-template.md) | Parent hub `SKILL.md` scaffold |
+-| [`references/README.md`](./references/README.md) | Route map into the `skill/` and `parent-skill/` reference groups |
++| [`references/README.md`](./references/README.md) | Route map into the `shared/`, `skill/` and `parent-skill/` reference groups |
+ | [`references/skill/upgrading-a-skill-to-v4.md`](./references/skill/upgrading-a-skill-to-v4.md) | Adopter guide: reconcile a customized skill to the v4 parent-hub format |
+ | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
+ | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/ROUTER.md b/.skilled/skills/sk-doc/sk-create-skill/ROUTER.md
+index 9f5ebc2c8ee..a5e6d1dcef6 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/ROUTER.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/ROUTER.md
+@@ -20,12 +20,12 @@ link that points here; this file holds the declaration a reader parses to decide
+ 
+ ## 1. OVERVIEW
+ 
+-Requests reach this packet when they ask to create or rebuild an OpenCode skill under `.skilled/skills/`, to run `/create:skill` for a standalone skill or `/create:skill-parent` for a parent hub, to author or repair a skill package's `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` or `changelog/`, or to validate and package a skill with `scripts/package_skill.py`. Its vocabulary is `create skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `parent hub`, `mode packet`, `nested workflow packet` and `package skill`. It routes to two resource families: the `references/shared/` doctrine and its root-metadata contract, which both modes load first, and the mode's own `references/<key>/` plus `assets/<key>/` trees, where `create-skill` resolves the `skill` key and `create-skill-parent` resolves `parent-skill`.
+-
+ The router answers one question: given a request, which skill-local resources load, in what order, and
+ what happens when nothing matches. Every path below stays inside this skill folder, and no resource
+ loads before an intent selects it.
+ 
++Requests reach this packet when they ask to create or rebuild an OpenCode skill under `.skilled/skills/`, to run `/create:skill` for a standalone skill or `/create:skill-parent` for a parent hub, to author or repair a skill package's `SKILL.md`, `README.md`, `references/`, `assets/`, `scripts/` or `changelog/`, or to validate and package a skill with `scripts/package_skill.py`. Its vocabulary is `create skill`, `new skill`, `skill scaffold`, `SKILL.md scaffold`, `OpenCode skill`, `parent hub`, `mode packet`, `nested workflow packet` and `package skill`. It routes to two resource families: the `references/shared/` doctrine and its root-metadata contract, which both modes load first, and the mode's own `references/<key>/` plus `assets/<key>/` trees, where `create-skill` resolves the `skill` key and `create-skill-parent` resolves `parent-skill`.
++
+ ---
+ 
+ ## 2. INTENT MODEL
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/SKILL.md b/.skilled/skills/sk-doc/sk-create-skill/SKILL.md
+index 2e889ebb4ab..c35bf03613b 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/SKILL.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/SKILL.md
+@@ -100,6 +100,7 @@ Follow these steps in order, skipping only when the target skill already exists
+ ```text
+ skill-name/
+ ├── SKILL.md
++├── ROUTER.md                      # sibling machine router
+ ├── graph-metadata.json
+ ├── leaf-manifest.config.json
+ ├── leaf-scopes.json                # optional: narrows the leaf roots to scopes
+@@ -161,7 +162,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
+    Keep it `stage1-only` until a concrete leaf map is authored.
+    Only then replace `router_state` with `active` and add non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs.
+    Never synthesize placeholder intents.
+-7. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
++7. Create each nested packet with `SKILL.md`, `README.md`, its own `ROUTER.md`, and `changelog/`.
+ 8. Add `references/` and `assets/` to surface packets when they carry evidence material.
+ 9. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
+ 10. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
+@@ -200,6 +201,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
+ ```text
+ parent-hub/
+ ├── SKILL.md
++├── README.md
+ ├── mode-registry.json
+ ├── hub-router.json
+ ├── ROUTER.md                   # stage-two control; stage1-only on a fresh scaffold
+@@ -217,11 +219,13 @@ parent-hub/
+ │       └── <YYYY-MM-DD>--<subject>--<variant>/
+ ├── workflow-packet/
+ │   ├── SKILL.md
++│   ├── ROUTER.md
+ │   ├── README.md
+ │   ├── procedures/       (optional - only if the packet has multiple distinct, triggered procedures)
+ │   └── changelog/
+ └── surface-packet/
+     ├── SKILL.md
++    ├── ROUTER.md
+     ├── README.md
+     ├── references/
+     ├── assets/
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md
+index 7e5e1dd67cd..bd9178e085a 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md
+@@ -32,6 +32,10 @@ Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#pr
+ 
+ ## 1. OVERVIEW
+ 
++### Purpose
++
++Give one advisor-routable identity to a family of packets while each packet keeps its own contract.
++
+ ### When to Use This Template
+ 
+ Use for a family that must keep one public skill identity while routing to multiple packet contracts:
+@@ -91,6 +95,7 @@ Packet-specific sections follow those four.
+ | Scope | File or directory | Required | Purpose |
+ |-------|-------------------|----------|---------|
+ | Hub | `SKILL.md` | Yes | Thin routing entry point with no packet-local logic |
++| Hub | `README.md` | Yes | Human-facing orientation: the pitch, the packet table, the navigation and the validation close |
+ | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
+ | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
+ | Hub | `ROUTER.md` | Yes | Stage-two control document plus the hub's routing prose in a final `## MACHINE ROUTER` section. `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
+@@ -113,7 +118,11 @@ Packet-specific sections follow those four.
+ | Surface packet | `assets/` | Conditional | Add when the packet carries reusable snippets or examples |
+ | Surface packet | `changelog/` | Yes | Real changelog files for the packet |
+ 
+-Packets inside the hub follow the mode-packet shape: a short SMART ROUTING section of 8 to 12 non-blank lines of plain prose, its own `ROUTER.md` beside its `SKILL.md` holding that packet's machine router, and one relative markdown link from the packet's Section 2 to that file. The hub root `ROUTER.md` owns the hub's stage two; each packet's `ROUTER.md` owns the selections that stay inside that packet. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet `SKILL.md` shape and [`skill-router-template.md`](../skill/skill-router-template.md) for its router file.
++Packets inside the hub follow the mode-packet shape. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet `SKILL.md` shape and [`skill-router-template.md`](../skill/skill-router-template.md) for its router file.
++- A short SMART ROUTING section of 8 to 12 non-blank lines of plain prose.
++- Its own `ROUTER.md` beside its `SKILL.md`, holding that packet's machine router.
++- One relative markdown link from the packet's Section 2 to that file.
++- The hub root `ROUTER.md` owns the hub's stage two; each packet's `ROUTER.md` owns the selections that stay inside that packet.
+ 
+ ---
+ 
+@@ -198,6 +207,7 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
+ | Path | Purpose |
+ |---|---|
+ | `[parent-skill-name]/SKILL.md` | Hub instructions |
++| `[parent-skill-name]/README.md` | Hub overview |
+ | `[parent-skill-name]/mode-registry.json` | Packet registry |
+ | `[parent-skill-name]/hub-router.json` | Routing policy |
+ | `[parent-skill-name]/ROUTER.md` | Stage-two control document and the hub's routing prose |
+@@ -209,9 +219,11 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
+ | `[parent-skill-name]/manual-testing-playbook/` | Manual test cases |
+ | `[parent-skill-name]/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
+ | `[parent-skill-name]/[workflow-packet-a]/SKILL.md` | Workflow instructions |
++| `[parent-skill-name]/[workflow-packet-a]/ROUTER.md` | Workflow packet router |
+ | `[parent-skill-name]/[workflow-packet-a]/README.md` | Workflow overview |
+ | `[parent-skill-name]/[workflow-packet-a]/changelog/` | Workflow changelogs |
+ | `[parent-skill-name]/[surface-name]/SKILL.md` | Surface instructions |
++| `[parent-skill-name]/[surface-name]/ROUTER.md` | Surface packet router |
+ | `[parent-skill-name]/[surface-name]/README.md` | Surface overview |
+ | `[parent-skill-name]/[surface-name]/references/` | Surface evidence |
+ | `[parent-skill-name]/[surface-name]/assets/` | Surface assets |
+@@ -221,7 +233,11 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
+ 
+ - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
+ - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
+-- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`, while `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents. Its final `## MACHINE ROUTER` section holds the compiled-routing directive and the fallback checklist, so the hub `SKILL.md` never repeats them.
++- `ROUTER.md` is the stage-two control document.
++  - `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`.
++  - `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one.
++  - Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents.
++  - Its final `## MACHINE ROUTER` section holds the compiled-routing directive and the fallback checklist, so the hub `SKILL.md` never repeats them.
+ - `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
+ - `graph-metadata.json` owns the one skill-graph identity node.
+ 
+@@ -234,6 +250,7 @@ Use top-level `extensions` in `mode-registry.json` only when the hub needs extra
+ - `transform-verbs`: declares verb-transform routing for design-like hubs.
+ - `deprecated-modes`: documents retired modes kept as shims.
+ - `surface-axis`: declares that the hub includes `packetKind: "surface"` packets.
++- `transport-axis`: declares that the hub includes `packetKind: "transport"` packets.
+ 
+ These extensions activate in-place fields. They do not move `advisorRouting` data and do not create a third physical tier.
+ 
+@@ -302,7 +319,7 @@ Before claiming the hub complete:
+ - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
+ - [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`), plus `surfaceBundle` iff surface packets exist, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
+ - [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`. `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
+-- [ ] The hub `SKILL.md` carries no `## MACHINE ROUTER` section, and its Section 2 links to [`ROUTER.md`](./ROUTER.md).
++- [ ] The hub `SKILL.md` carries no `## MACHINE ROUTER` section, and its Section 2 links to `ROUTER.md`.
+ - [ ] The hub `ROUTER.md` ends with a `## MACHINE ROUTER` section carrying the compiled-routing directive and the fallback checklist, after the `MACHINE-READABLE ROUTER` map.
+ - [ ] Every packet owns `ROUTER.md` beside its `SKILL.md`, and the packet's Section 2 links to it.
+ - [ ] `description.json` has the required hub-doctor fields and a four-part version.
+@@ -316,6 +333,7 @@ Before claiming the hub complete:
+ - `parent-skill-registry-template.json` - companion `mode-registry.json` scaffold.
+ - `parent-skill-hub-router-template.json` - companion `hub-router.json` scaffold.
+ - [`parent-skill-root-router-template.md`](./parent-skill-root-router-template.md) - the root `ROUTER.md` stage-two authoring template.
++- [`parent-skill-readme-template.md`](./parent-skill-readme-template.md) - the human-facing README template for the hub.
+ - `parent-skill-description-template.json` - companion `description.json` scaffold.
+ - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
+ - [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md
+index 7156e6315e0..acaf01122e4 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md
+@@ -31,6 +31,11 @@ version: 1.3.1.0
+ 
+ ## 2. OVERVIEW
+ 
++### What It Does
++
++A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
++Use the two example hubs to check structure.
++
+ ### Why This Template Exists
+ 
+ A parent hub routes related packets through one identity. Its README gives people a quick map of modes, files and commands.
+@@ -39,11 +44,6 @@ Use this template to build that map.
+ Use this template when you have a hub folder with packets, a registry and a manifest.
+ It gives you a README structure and stable relative links.
+ 
+-### What It Does
+-
+-A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
+-Use the two example hubs to check structure.
+-
+ ### When To Write A Hub README
+ 
+ Write a README for every parent hub.
+@@ -229,7 +229,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`.
+ Run the sk-doc readme validator on this file:
+ 
+ ```bash
+-python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
++python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/[hub-name]/README.md --type readme
+ ```
+ 
+ [Expected: zero issues. The validator enforces the numbered ALL-CAPS OVERVIEW section.]
+@@ -237,7 +237,7 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type rea
+ Run this check. It passes when it finds no em dashes or semicolons:
+ 
+ ```bash
+-! rg -n '\x{2014}|\x{3B}' README.md
++! rg -n '\x{2014}|\x{3B}' .skilled/skills/[hub-name]/README.md
+ ```
+ 
+ [Keep zero Oxford commas, zero banned words and zero setup phrases in the prose as well. Optional extra: run the parent-skill check to prove the whole hub shape.]
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md
+index 1a1e14fe9c8..780bfcbdef9 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md
+@@ -134,7 +134,10 @@ never placeholder intents.
+ - One dominant intent routes to one mode's leaf set.
+ - Two near-tied intents (within the router's ambiguity delta) route to both leaf sets. The union is deduped by canonical pair.
+ - No keyword match is `UNKNOWN_FALLBACK`. Confirm the target artifact and intent before loading anything.
+-- `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request. Two workflow modes that share one packet directory (N-to-1 fan-out) resolve from a packet-qualified raw path to whichever mode is bound first. The fan-out twin is an exact leaf duplicate. If a hub must enumerate both twins distinctly, drive that from the manifest, not from raw router strings.
++- `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request.
++- Two workflow modes that share one packet directory (N-to-1 fan-out) resolve from a packet-qualified raw path to whichever mode is bound first.
++- The fan-out twin is an exact leaf duplicate.
++- If a hub must enumerate both twins distinctly, drive that from the manifest, not from raw router strings.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md
+index bc0ee9d1346..9b9b36b5d6f 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md
+@@ -93,4 +93,4 @@ This is the hub's only glossary. Its packets link here instead of defining routi
+ 
+ - `README.md`: short operator entry point.
+ - `graph-metadata.json`: hub discovery metadata.
+-- [`description.json`](../../../references/shared/skill-root-metadata-contract.md): hub-doctor metadata.
++- `description.json`: hub-doctor metadata. See `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` for the class-H fields.
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
+index dcdcb87929d..2ce15f22cd1 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md
+@@ -17,19 +17,6 @@ Templates and guidelines for creating asset files in AI agent skills.
+ 
+ ## 1. OVERVIEW
+ 
+-### Location & Naming
+-
+-**Location:** `.skilled/skills/[skill-name]/assets/`
+-
+-**Naming Convention:** kebab-case with the appropriate extension
+-
+-| ✅ Valid Names | ❌ Invalid Names |
+-|---------------|-----------------|
+-| `frontmatter-templates.md` | `FrontmatterTemplates.md` (PascalCase) |
+-| `config-examples.yaml` | `config_examples.yaml` (snake_case) |
+-| `validation-checklist.md` | `ValidationChecklist.MD` (wrong case) |
+-| `emoji-reference.md` | `emojiReference.md` (camelCase) |
+-
+ ### When to Create Assets
+ 
+ **Create an asset file when:**
+@@ -45,6 +32,19 @@ Templates and guidelines for creating asset files in AI agent skills.
+ - Needs to be visible immediately (not progressive disclosure)
+ - Part of core instructions (RULES, WORKFLOW sections)
+ 
++### Location & Naming
++
++**Location:** `.skilled/skills/[skill-name]/assets/`
++
++**Naming Convention:** kebab-case with the appropriate extension
++
++| ✅ Valid Names | ❌ Invalid Names |
++|---------------|-----------------|
++| `frontmatter-templates.md` | `FrontmatterTemplates.md` (PascalCase) |
++| `config-examples.yaml` | `config_examples.yaml` (snake_case) |
++| `validation-checklist.md` | `ValidationChecklist.MD` (wrong case) |
++| `emoji-reference.md` | `emojiReference.md` (camelCase) |
++
+ ---
+ 
+ ## 2. ASSET FILE TYPES
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
+index 7189e05fec7..f165bdb9a1e 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md
+@@ -38,7 +38,7 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
+ - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
+ - **All skills**: Section 2 (SMART ROUTING) is required: 8 to 12 non-blank lines of plain prose
+ 
+-**Target size**: 800-2000 lines for SKILL.md (<5k words total)
++**Target size**: 800-2000 lines total, with SKILL.md under 1000 lines and the rest in bundled resources (<5k words total)
+ 
+ **Examples**:
+ - Simple: Unit test generator, documentation formatter (no bundled resources)
+@@ -142,7 +142,7 @@ version: 1.0.0.0
+ 
+ <!-- Keywords: [KEYWORDS] -->
+ 
+-# [Skill Title - Comprehensive Name]
++\# [Skill Title - Comprehensive Name]
+ 
+ [One-sentence tagline followed by key capabilities overview]
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md
+index 3d4b27b34b5..0b9b1690bba 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md
+@@ -21,6 +21,19 @@ Templates and guidelines for creating private procedure cards: repeatable, selec
+ 
+ A procedure card is a private markdown file that adds a repeatable, triggerable PROCESS to an existing skill or mode. It is not a public skill, not a public mode, and does not appear in any advisor routing table. A skill or hub always resolves its public identity first (through its own routing, or a parent hub's `mode-registry.json`). A procedure card is only ever selected AFTER that, from inside the already-chosen skill or mode, by matching the card's own `Trigger` field against the request. A card never grants tool permissions beyond what the owning skill or mode already has.
+ 
++### When to Create a Procedure Card
++
++**Create a procedure card when:**
++- The skill or mode has multiple distinct, individually-triggered internal procedures, not one dominant workflow.
++- Each procedure needs a strict, lint-able, consistent shape (required fields in a fixed order), not free-form prose.
++- Fine-grained behavior selection matters, but creating N public skills or modes for what is really one skill or mode with N internal procedures would over-fragment the public surface.
++- `SKILL.md`'s `HOW IT WORKS` section would otherwise balloon into several near-duplicate workflow write-ups.
++
++**Keep it a plain reference (`skill-reference-template.md`) instead when:**
++- There is only one dominant workflow, so no selection step is needed.
++- The content is general background knowledge or context, not an actionable process with its own trigger.
++- The content always applies whenever the skill or mode runs, rather than only on a specific request shape.
++
+ ### Location & Naming
+ 
+ **Standalone skill**: `references/procedures/[procedure-name].md`
+@@ -37,19 +50,6 @@ A procedure card is a private markdown file that adds a repeatable, triggerable
+ | `digital-signature-verification.md` | `digital_signature_verification.md` (snake_case) |
+ | `batch-annotation-cleanup.md` | `batchAnnotationCleanup.MD` (wrong case) |
+ 
+-### When to Create a Procedure Card
+-
+-**Create a procedure card when:**
+-- The skill or mode has multiple distinct, individually-triggered internal procedures, not one dominant workflow.
+-- Each procedure needs a strict, lint-able, consistent shape (required fields in a fixed order), not free-form prose.
+-- Fine-grained behavior selection matters, but creating N public skills or modes for what is really one skill or mode with N internal procedures would over-fragment the public surface.
+-- `SKILL.md`'s `HOW IT WORKS` section would otherwise balloon into several near-duplicate workflow write-ups.
+-
+-**Keep it a plain reference (`skill-reference-template.md`) instead when:**
+-- There is only one dominant workflow, so no selection step is needed.
+-- The content is general background knowledge or context, not an actionable process with its own trigger.
+-- The content always applies whenever the skill or mode runs, rather than only on a specific request shape.
+-
+ ---
+ 
+ ## 2. DOCUMENT STRUCTURE
+@@ -227,7 +227,7 @@ Placement:
+ 
+ ### Real-World Implementation
+ 
+-`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has two workflow modes and one transport packet, with procedure cards owned by the workflow packets plus shared coordination cards. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/shared/procedure-card-schema.md` is the schema this template generalizes from.
++`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has four workflow modes, and the `sk-design-md-generator` packet keeps its procedure cards under `procedures/`. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
+ 
+ ### Templates
+ - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates (use when no trigger-based selection is needed)
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+index 3753c19dc54..38cbf4a9ee1 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md
+@@ -122,7 +122,12 @@ Every README this template produces must pass the Human Voice Rules. The full ru
+ 
+ ### Banned Forms
+ 
+-The banned forms are: em dashes (U+2014), semicolons (U+003B), Oxford commas (a comma before the final and or or in a list), the hard-blocker words listed below and forced three-item groups.
++The banned forms are:
++- em dashes (U+2014)
++- semicolons (U+003B)
++- Oxford commas (a comma before the final and or or in a list)
++- the hard-blocker words listed below
++- forced three-item groups
+ 
+ ### Scripted Checks
+ 
+@@ -342,7 +347,7 @@ Pass criteria in full:
+ | 10 | Optional problem context names the reader's current problem and the skill's outcome in two to four short sentences. |
+ | 11 | Skills with more than one step in HOW IT WORKS carry a Mermaid diagram. A single-step utility skill is exempt. |
+ 
+-> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the nine checks above.
++> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the eleven checks above.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
+index 53dbd6e691b..df8053343ea 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md
+@@ -19,6 +19,36 @@ Templates for creating reference files in AI agent skills with deep-dive technic
+ 
+ ## 1. OVERVIEW
+ 
++### What Are AI Agent Skill Reference Files?
++
++Reference files are detailed technical documentation in the `references/` directory that provide deep-dive guidance with **explicit reasoning** - making thought processes visible, showing decision logic, and analyzing root causes.
++
++**Core Purpose**:
++- **Technical depth** - Step-by-step reasoning with rationale
++- **Phased workflows** - Structured processes with validation checkpoints
++- **Pattern libraries** - Before/after examples, comparison tables
++- **Tool integration** - MCP tools, scripts, asset references
++- **Root cause analysis** - Systematic debugging and troubleshooting
++
++**Key Difference from Generic Documentation**:
++- AI agent skills = Actionable workflows with explicit reasoning
++- Generic docs = Information reference without decision logic
++
++### Progressive Disclosure in Skills
++
++```
++Level 1: Metadata (name + description)
++         └─ Always in context (~100 words)
++            ↓
++Level 2: SKILL.md body
++         └─ When skill triggers (<5k words)
++            ↓
++Level 3: Reference files (this document)
++         └─ Loaded as needed (500-3000 lines per file)
++```
++
++**Reference files = Level 3**: Deep technical guidance loaded only when the agent needs specific workflow details.
++
+ ### Location & Naming
+ 
+ **Location:** `.skilled/skills/[skill-name]/references/`
+@@ -37,7 +67,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
+ 
+ ## 2. DOCUMENT STRUCTURE
+ 
+-### Document Structure: Title and Intro
++### Title and Intro
+ 
+ **CRITICAL: The intro after the H1 title must be 1-2 SHORT sentences only.**
+ 
+@@ -65,7 +95,12 @@ version: 1.0.0.0
+ 
+ ```
+ 
+-Every reference file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content. `importance_tier` defaults to `normal`, with `important` only for formal contract docs. `contextType` is one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
++Every reference file carries this full 5-field frontmatter block. The Skill Advisor harvests it as routing signal:
++- 3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content
++- `importance_tier`, which defaults to `normal`, with `important` only for formal contract docs
++- `contextType`, one of `planning|research|implementation|general`
++
++See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
+ 
+ > **WARNING: DO NOT duplicate content between intro and Section 1.**
+ > The intro is a hook. Section 1 provides the details.
+@@ -199,38 +234,6 @@ Atomic commits...  ← DUPLICATED from intro!
+ 
+ ---
+ 
+-### What Are AI Agent Skill Reference Files?
+-
+-Reference files are detailed technical documentation in the `references/` directory that provide deep-dive guidance with **explicit reasoning** - making thought processes visible, showing decision logic, and analyzing root causes.
+-
+-**Core Purpose**:
+-- **Technical depth** - Step-by-step reasoning with rationale
+-- **Phased workflows** - Structured processes with validation checkpoints
+-- **Pattern libraries** - Before/after examples, comparison tables
+-- **Tool integration** - MCP tools, scripts, asset references
+-- **Root cause analysis** - Systematic debugging and troubleshooting
+-
+-**Key Difference from Generic Documentation**:
+-- AI agent skills = Actionable workflows with explicit reasoning
+-- Generic docs = Information reference without decision logic
+-
+-### Progressive Disclosure in Skills
+-
+-```
+-Level 1: Metadata (name + description)
+-         └─ Always in context (~100 words)
+-            ↓
+-Level 2: SKILL.md body
+-         └─ When skill triggers (<5k words)
+-            ↓
+-Level 3: Reference files (this document)
+-         └─ Loaded as needed (500-3000 lines per file)
+-```
+-
+-**Reference files = Level 3**: Deep technical guidance loaded only when the agent needs specific workflow details.
+-
+----
+-
+ ## 3. WHEN TO CREATE REFERENCE FILES
+ 
+ ### Create Reference File When
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md
+index 24c82642144..b0a733af69a 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md
+@@ -30,15 +30,15 @@ loads before an intent selects it.
+ 
+ ## 2. INTENT MODEL
+ 
+-[TODO: Write one bullet per `INTENT_SIGNALS` key: the intent, the phrasing that fires it, and the exact files it loads.]
+-
+-[TODO: Keep this section and the machine block below in sync. When a row changes here, change the matching map entry.]
+-
+ A skill may name its intent map `INTENT_MODEL` instead of `INTENT_SIGNALS`, the name this template and the replay
+ reader both accept. Declaring both is legal only when they mirror each other exactly, in keys and in keywords;
+ otherwise keep one. A router may also route by pseudocode alone with no map at all, which suits a skill that loads
+ its whole reference set on any match, because a hub's map is the one thing this flexibility never relaxes.
+ 
++[TODO: Write one bullet per `INTENT_SIGNALS` key: the intent, the phrasing that fires it, and the exact files it loads.]
++
++[TODO: Keep this section and the machine block below in sync. When a row changes here, change the matching map entry.]
++
+ ---
+ 
+ ## 3. MACHINE ROUTER
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
+index d6258583959..915f3188247 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-smart-router.md
+@@ -23,7 +23,14 @@ Smart routers fail when resource paths drift, reference folders are deleted, sta
+ 
+ ### Usage
+ 
+-Copy the four pseudocode patterns from §2 into the `## MACHINE ROUTER` section of your skill's sibling `ROUTER.md`. That file is the router: `SKILL.md` keeps only smart-routing prose of 8 to 12 non-blank lines and a relative markdown link to the router file, and it never carries a `## MACHINE ROUTER` section of its own. Every skill and every mode packet owns one such file inside its own folder, and the hub root `ROUTER.md` is the hub's own router rather than its packets'. Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide. Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels — only swap the **discovery + load + fallback** mechanics. Apply the structural safeguards from §4 to every router-driven `load()` call. Audit your draft against §5 Anti-Patterns before merging.
++Copy the four pseudocode patterns from §2 into the `## MACHINE ROUTER` section of your skill's sibling `ROUTER.md`.
++
++- That file is the router: `SKILL.md` keeps only smart-routing prose of 8 to 12 non-blank lines and a relative markdown link to the router file, and it never carries a `## MACHINE ROUTER` section of its own.
++- Every skill and every mode packet owns one such file inside its own folder, and the hub root `ROUTER.md` is the hub's own router rather than its packets'.
++- Adapt the routing key (e.g., git remote → project; intent label → workflow; stack marker → tooling; env var → runtime mode) per §3 Generalization Guide.
++- Preserve your skill's domain-specific `INTENT_MODEL`, `RESOURCE_MAP`, and load levels, and swap only the **discovery + load + fallback** mechanics.
++- Apply the structural safeguards from §4 to every router-driven `load()` call.
++- Audit your draft against §5 Anti-Patterns before merging.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md
+index 7f34bf0904e..6a3552a74a1 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-sync-manifest-template.md
+@@ -25,7 +25,12 @@ Every runtime config dir mirrors canonical content through some mix of symlinks,
+ 
+ ### Usage
+ 
+-Copy the fillable scaffold in Section 2 into `<runtime-dir>/SYNC.md`, replace every placeholder with facts verified against the actual tree, remove unused scaffolding and preserve the nine-section order. Cross-link the new manifest from every sibling runtime's RELATED DOCUMENTS row.
++Copy the fillable scaffold in Section 2 into `<runtime-dir>/SYNC.md`, then:
++
++- Replace every placeholder with facts verified against the actual tree.
++- Remove unused scaffolding.
++- Preserve the nine-section order.
++- Cross-link the new manifest from every sibling runtime's RELATED DOCUMENTS row.
+ 
+ Rules the scaffold enforces:
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/README.md b/.skilled/skills/sk-doc/sk-create-skill/references/README.md
+index cd3c2252b8b..4093343e668 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/README.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/README.md
+@@ -43,9 +43,11 @@ Load the file that matches the current task:
+ | **What a skill is**: anatomy, SKILL.md required sections, bundled-resource directories, layered-doc structure system | [overview.md](shared/overview.md) | Orienting on skill structure, or deciding where content belongs (SKILL.md vs references vs assets) |
+ | **The create workflow**: the six ordered steps from concept to packaged skill, SKILL.md authoring questions, frontmatter completion | [creation-workflow.md](skill/creation-workflow.md) | Building a new skill or rebuilding an existing one |
+ | **Validation and packaging**: minimal vs comprehensive validation, distribution checklist, installation | [validation-and-packaging.md](shared/validation-and-packaging.md) | Before packaging, releasing, or diagnosing a rejected skill |
+-| **Common pitfalls**: eight recurring defects (generic/bloated description, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references) | [common-pitfalls.md](shared/common-pitfalls.md) | A skill does not trigger, bloats context, or fails budget checks; reviewing fresh authored skills |
++| **Common pitfalls**: nine recurring defects (generic/bloated description, oversized SKILL.md, missing resources, unclear triggers, second-person voice, platform assumptions, multiline YAML, misplaced references, and a router in the wrong place) | [common-pitfalls.md](shared/common-pitfalls.md) | A skill does not trigger, bloats context, or fails budget checks; reviewing fresh authored skills |
+ | **Examples and maintenance**: worked example skill layouts (PDF editor, brand guidelines, database query) and the update/versioning workflow | [examples-and-maintenance.md](skill/examples-and-maintenance.md) | Modeling a new skill on a proven layout, or maintaining and versioning a shipped skill |
++| **Upgrading a customized skill to v4**: whether a customized `sk-code` or `sk-git` becomes a parent hub or stays a single skill | [upgrading-a-skill-to-v4.md](skill/upgrading-a-skill-to-v4.md) | Reconciling a customized skill with the v4 parent-hub shape, or keeping it single |
+ | **Which root JSON files a skill needs**: the H/S class contract, the registry+router discriminator, required/forbidden/overlay sets, which files are generated versus authored, and the fleet gate that enforces it | [skill-root-metadata-contract.md](shared/skill-root-metadata-contract.md) | Creating any skill root, auditing one, or diagnosing a `ci-skill-root-metadata` failure |
++| **Advisor index handoff**: the shared field vocabulary that create and doctor render after scaffolding or diagnosing a skill root, covering metadata ownership, refresh ownership, the verification-state enum, and branch scope | [advisor-index-handoff.md](shared/advisor-index-handoff.md) | Wiring a create or doctor completion report, or aligning its vocabulary with doctor |
+ | **Parent hubs with nested mode packets**: one advisor identity dispatching to workflow and surface packets through a two-axis `modes[]` registry with `packetKind`, named extensions, required hub-router metadata, and the two-state root `ROUTER.md` control document | [parent-skills-nested-packets.md](parent-skill/parent-skills-nested-packets.md) | Designing or repairing a parent skill, parent hub, mode packet, surface packet, mode registry, hub router, or root router |
+ | **Parent hub router schema**: detailed schema companion for `mode-registry.json`, `hub-router.json`, `packetKind`, `surfaceBundle`, router signals, vocabulary classes, named extensions, and the two-state root `ROUTER.md` contract | [parent-hub-router-schema.md](parent-skill/parent-hub-router-schema.md) | Validating or authoring parent-hub router metadata and two-axis mode declarations |
+ | **Compiled-routing architecture**: which seven hubs the compiled router serves and why, the shadow-child-to-cohort chain, the compiled-serving parity bar, and why a fresh `--compiled-routing ready` manifest is onboarding evidence, not a working compiled route | [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) | Deciding or explaining `--compiled-routing legacy\|ready`, or a parent hub's path toward the compiled router |
+@@ -60,7 +62,9 @@ Load the file that matches the current task:
+ - [skill-root-metadata-contract.md](shared/skill-root-metadata-contract.md) - Which root-level metadata JSON files each skill class must, may, and must not carry
+ - [validation-and-packaging.md](shared/validation-and-packaging.md) - Validation requirements and distribution
+ - [common-pitfalls.md](shared/common-pitfalls.md) - Common skill-creation pitfalls and fixes
++- [advisor-index-handoff.md](shared/advisor-index-handoff.md) - Shared create/doctor vocabulary for advisor metadata, refresh ownership and verification states
+ - [examples-and-maintenance.md](skill/examples-and-maintenance.md) - Example skills and maintenance workflow
++- [upgrading-a-skill-to-v4.md](skill/upgrading-a-skill-to-v4.md) - Adopter guide for reconciling a customized skill with the v4 parent-hub shape
+ - [parent-skills-nested-packets.md](parent-skill/parent-skills-nested-packets.md) - Parent hubs with nested workflow and surface packets
+ - [parent-hub-router-schema.md](parent-skill/parent-hub-router-schema.md) - Parent hub router and two-axis mode schema
+ - [compiled-routing-architecture.md](parent-skill/compiled-routing-architecture.md) - Compiled router scope, shadow-child-to-cohort chain, and the ready-vs-compiled-serving boundary
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+index f9aff594194..f286589a8ab 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md
+@@ -14,7 +14,7 @@ version: 1.2.2.0
+ 
+ # Compiled-Routing Architecture For Parent Hubs
+ 
+-The compiled skill router is a closed-cohort, byte-verified fast path that resolves a parent hub's `workflowMode` decision without evaluating the hub's prose smart-router at request time. It exists for exactly the parent hubs that have built and proven a compiled policy against that hub's own legacy routing — no other skill, including any hub `create-skill` scaffolds today, is reachable through it. This reference explains what the router actually serves, the chain from a hub's authored files to a live routing decision, the bar a hub must clear to serve compiled traffic, and the exact boundary of `create-skill --compiled-routing ready` — which mints onboarding evidence, not a working compiled route.
++The compiled skill router is a closed-cohort, byte-verified fast path that resolves a parent hub's `workflowMode` decision without evaluating the hub's prose smart-router at request time. It exists for exactly the parent hubs that have built and proven a compiled policy against that hub's own legacy routing — no other skill, including any hub `create-skill` scaffolds today, is reachable through it.
+ 
+ ---
+ 
+@@ -23,7 +23,7 @@ The compiled skill router is a closed-cohort, byte-verified fast path that resol
+ Two routers coexist for a parent hub:
+ 
+ - The **prose smart-router** — the hub's `SMART ROUTING` section plus its root `ROUTER.md`, read and reasoned over by the acting agent at request time. The section is short prose that points at `ROUTER.md`, not the routing logic itself. Every hub has both, and `create-skill` scaffolds them.
+-- The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the five proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
++- The **compiled router** — a precompiled decision table over a hub's `hub-router.json` + `mode-registry.json`, evaluated by a small deterministic engine instead of prose reasoning. It only serves the seven proven hubs in Section 2, is flag-gated (`SPECKIT_COMPILED_ROUTING`) and cohort-gated (`DEFAULT_ON_HUBS`), additive on top of the prose router, and fails closed to it on any gap, error, or ineligible hub.
+ 
+ ### Scope
+ 
+@@ -33,7 +33,7 @@ Two routers coexist for a parent hub:
+ 
+ ## 2. WHICH SKILLS THE ROUTER SERVES
+ 
+-The compiled router serves exactly **five parent hubs**, enumerated as `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`:
++The compiled router serves exactly **seven parent hubs**, enumerated as `HUB_CHILD` in `.skilled/bin/lib/compiled-routing/014-runtime-engine/lib/compiled-route.cjs`:
+ 
+ | Hub | Shadow-child |
+ | --- | --- |
+@@ -41,7 +41,9 @@ The compiled router serves exactly **five parent hubs**, enumerated as `HUB_CHIL
+ | `system-deep-loop` | `009-parent-hub-rollout/002-system-deep-loop` |
+ | `mcp-tooling` | `009-parent-hub-rollout/003-mcp-tooling` |
+ | `cli-external-orchestration` | `009-parent-hub-rollout/004-cli-external-orchestration` |
++| `cli-classifier` | `009-parent-hub-rollout/008-cli-classifier` |
+ | `sk-doc` | `009-parent-hub-rollout/007-sk-doc` |
++| `sk-design` | `009-parent-hub-rollout/009-sk-design` |
+ 
+ This same hub set is independently pinned in `.skilled/bin/lib/compiled-routing/serving-closure.manifest.json`, the promoted runtime's own inventory of every file the compiled router is allowed to depend on.
+ 
+@@ -54,7 +56,7 @@ The router only ever selects **within** an already-identified hub — which of t
+ 
+ A compiled-serving hub's routing decision passes through four layers on disk, in this order:
+ 
+-1. **Shadow-child engine** — `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/`, holding that hub's own `lib/registry-compiler.cjs` (compiles the hub's `hub-router.json` + `mode-registry.json` + `SKILL.md` into a policy snapshot), `lib/router.cjs` or `lib/canary-router.cjs` (evaluates a prompt against that snapshot), and `fixtures/canary-cases.v1.json` (the hub's own scenario set). Each hub's compiler is hand-built and hand-sized to that hub's real vocabulary — line counts range from 351 (`cli-external-orchestration`) to 698 (`system-deep-loop`); there is no one-size-fits-all compiler.
++1. **Shadow-child engine** — `.skilled/bin/lib/compiled-routing/009-parent-hub-rollout/00N-<hub>/`, holding that hub's own `lib/registry-compiler.cjs` (compiles the hub's `hub-router.json` + `mode-registry.json` + `SKILL.md` into a policy snapshot), `lib/router.cjs` or `lib/canary-router.cjs` (evaluates a prompt against that snapshot), and `fixtures/canary-cases.v1.json` (the hub's own scenario set). Each hub's compiler is hand-built and hand-sized to that hub's real vocabulary — line counts range from 384 (`cli-external-orchestration`) to 682 (`system-deep-loop`); there is no one-size-fits-all compiler.
+ 2. **Activation manifest** — `.../013-live-activation/activation/<hub>/manifest.json`: `{schemaVersion, selectedPolicy: {effectivePolicyHash, generation}, servingAuthority, shadowOnly}`. `servingAuthority` is the per-hub switch between `"legacy"` and `"compiled"`.
+ 3. **Resolver** — `.../014-runtime-engine/lib/resolve.cjs`. Serves the compiled decision for a hub only when **both** hold: the runtime flag `SPECKIT_COMPILED_ROUTING` permits it (forced to `1`, or unset/default with the hub listed in `DEFAULT_ON_HUBS`), **and** that hub's manifest reads `servingAuthority: "compiled"`. Any other case, or any error resolving the route, returns `null` and the caller falls back to the prose router. `SPECKIT_COMPILED_ROUTING=0` is the explicit fleet-wide kill-switch.
+ 4. **Front door** — `.skilled/bin/compiled-route.cjs --hub <hub> --prompt "<task>"`. This is the literal command a compiled-serving hub's `SKILL.md` directive invokes; it delegates to the resolver and prints either the compiled decision or a `{"servingAuthority":"legacy"}` sentinel, never throwing into the routing path.
+@@ -69,7 +71,7 @@ A hub earns the **`compiled-serving`** verdict when its compiled decision matche
+ 
+ The bar for any new hub changed with the harness that replaced it. `.skilled/bin/compiled-route-admission.cjs` runs each hub's compiled decision against the routing gold its playbook already authors: the expected workflow mode and leaf resources, where every gold mode must be routed and negative, `UNKNOWN` or `defer` gold counts any compiled route as a failure. A `clarify` counts as a non-route. A hub outside the default-on cohort must also meet the coverage floors: at least one scored scenario for every declared workflow mode, and at least one negative or `defer` scenario. The admitted hubs get the same coverage measurement as a report. CI runs the check warn-only in the Routing Registry Drift Guard workflow.
+ 
+-Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the five hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
++Only a `compiled-serving` hub may be added to `DEFAULT_ON_HUBS` — the per-hub cohort the resolver consults when the flag is unset. As of this reference, the seven hubs in Section 2 carry that verdict and are in the cohort (verify directly in `014-runtime-engine/lib/resolve.cjs`).
+ 
+ **A naming collision worth knowing:** `compiled-route-status.cjs` (a live per-hub probe, distinct from the retired Lane C harness) emits its own `causeCode: 'compiled-serving'` meaning "this hub is being served compiled right now, under the current flag and manifest." That is a request-time gate check, not a coverage judgment — a hub can hold the Lane C parity verdict `compiled-serving` while the live probe reports something else entirely, for example if the flag is forced off. Section 6 depends on keeping these two apart.
+ 
+@@ -84,7 +86,7 @@ For a hub to go from "just scaffolded" to genuinely compiled-serving, in order:
+ 3. **Re-mint the activation manifest** to the shadow-child's fresh hash, flipping `servingAuthority` to `"compiled"` (still reversible: flipping it back, or the fleet kill-switch, restores legacy byte-for-byte). Activation and the flip both run the admission check for the hub and refuse anything short of `pass`, and both refuse while the advisor scorer has changed since its last freeze. The freeze is stale today, so no hub can be flipped until it is renewed.
+ 4. **Join `DEFAULT_ON_HUBS`** in `014-runtime-engine/lib/resolve.cjs` so the hub serves compiled by default once the flag is unset, not only when forced on.
+ 
+-**This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are hardcoded, frozen tables owned by the runtime-engine phase, not derived from any manifest or scaffold output. A hub absent from `HUB_CHILD` always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add a sixth hub to this cohort, and does not attempt to.
++**This whole path is outside `create-skill`'s authority.** `HUB_CHILD` and `DEFAULT_ON_HUBS` are hardcoded, frozen tables owned by the runtime-engine phase, not derived from any manifest or scaffold output. A hub absent from `HUB_CHILD` always falls back to legacy, by construction, no matter what its manifest says — `create-skill` cannot add another hub to this cohort, and does not attempt to.
+ 
+ ---
+ 
+@@ -102,7 +104,7 @@ What this proves: the hub's own router files are internally self-consistent and
+ | --- | --- | --- |
+ | Engine | No shadow-child directory exists yet | Hand-built under `009-parent-hub-rollout/00N-<hub>/`, registered in `HUB_CHILD` |
+ | Manifest | `servingAuthority: "legacy"`, `shadowOnly: true` | `servingAuthority: "compiled"`, re-minted to the shadow-child hash |
+-| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the five admitted hubs; the admission check in Section 4 for a new hub |
++| Coverage proof | None — no scenarios were evaluated | Parity with legacy for the seven admitted hubs; the admission check in Section 4 for a new hub |
+ | Runtime effect | None; the front door always returns the legacy sentinel for this hub | Live, once the hub also joins `DEFAULT_ON_HUBS` (or the flag is forced on) |
+ | Owned by | `create-skill` | The hub's own coverage build-out, then the runtime-engine cohort change (Section 5) |
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md
+index cf762ef4144..ce7b49ceba8 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md
+@@ -35,7 +35,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
+ 
+ ## 2. FILE SHAPE
+ 
+-`hub-router.json` has four top-level fields:
++`hub-router.json` has five top-level fields:
+ 
+ ```json
+ {
+@@ -295,7 +295,7 @@ If the next-ranked mode is within `routerPolicy.ambiguityDelta` of the winner, t
+ 
+ All resource paths must be hub-root-relative and packet-qualified.
+ 
+-| Good | Problem if omitted |
++| Good | Why it works |
+ | --- | --- |
+ | `sk-code-review/SKILL.md` | The router can load the selected packet contract directly. |
+ | `sk-code-ci/references/workflow-verify.md` | Surface evidence stays under the owning surface packet. |
+@@ -336,7 +336,17 @@ It validates:
+ 
+ Treat check 5 warnings as schema drift. The parent hub may still route during migration, but the published contract is the shape above.
+ 
+-`parent-skill-check` check 12 is the enforcement point for the `ROUTER.md` contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, the root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code. The gate runs for a hub root, a standalone skill root and every mode packet a hub declares, and its messages name the skill it checked. A standalone skill or a packet declares `router_state: active`, because `stage1-only` is a hub state with no mode registry to stage against, and it is held to the maps it declares rather than to the hub's pair. Three deliberate patterns are open to it and closed to a hub: it may name its intent map `INTENT_MODEL`, or declare both intent names, in which case the two must mirror each other in keys and keywords; it may route by pseudocode alone with no map at all, which suits a skill that loads its whole reference set on any match; and its `RESOURCE_MAP` may omit a key, or map it to an empty list, only when `NO_LOAD_INTENTS` names that key. A markdown file at the router's own root, which no leaf manifest lists, is routable when `ROOT_RESOURCES` declares it and a `RESOURCE_MAP` entry references it, because such a file must exist in the router's own folder. [skill-router-template.md](../../assets/skill/skill-router-template.md) is the authored form of this paragraph.
++`parent-skill-check` check 12 is the enforcement point for the `ROUTER.md` contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, the root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code. The gate runs for a hub root, a standalone skill root and every mode packet a hub declares, and its messages name the skill it checked.
++
++A standalone skill or a packet declares `router_state: active`, because `stage1-only` is a hub state with no mode registry to stage against, and it is held to the maps it declares rather than to the hub's pair.
++
++Three deliberate patterns are open to it and closed to a hub:
++
++- It may name its intent map `INTENT_MODEL`, or declare both intent names, in which case the two must mirror each other in keys and keywords.
++- It may route by pseudocode alone with no map at all, which suits a skill that loads its whole reference set on any match.
++- Its `RESOURCE_MAP` may omit a key, or map it to an empty list, only when `NO_LOAD_INTENTS` names that key.
++
++A markdown file at the router's own root, which no leaf manifest lists, is routable when `ROOT_RESOURCES` declares it and a `RESOURCE_MAP` entry references it, because such a file must exist in the router's own folder. [skill-router-template.md](../../assets/skill/skill-router-template.md) is the authored form of this paragraph.
+ 
+ ---
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md
+index 903e62d8716..3d2717a675f 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md
+@@ -92,7 +92,7 @@ Optional per-mode fields (declare, don't infer — never derive an extension-onl
+ | `command` | The bound `/slash` command for the mode; `null` when the mode has no dedicated command. | sk-doc, sk-design, deep-loop |
+ | `agent` | The leaf agent a runtime-loop mode dispatches. | deep-loop |
+ | `artifactRoot` | Where a mode's generated artifacts are rooted. | deep-loop |
+-| `proceduresPath` | Path to a mode's procedure cards. | sk-design |
++| `proceduresPath` | Path to a mode's procedure cards. | None declared (sk-design keeps its card under `sk-design-md-generator/procedures/`) |
+ 
+ Surface packet constraints:
+ 
+@@ -195,7 +195,7 @@ A hub with no extensions is the pure two-tier core. Add only the extension neede
+ | Hub | Packet axis | Runtime loop | Advisor projection | Transform verbs | Deprecated modes | Notes |
+ | --- | --- | --- | --- | --- | --- | --- |
+ | `sk-code` | Declares the surface axis: workflow modes resolve code lifecycle steps and surface packets provide read-only evidence (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`). | No runtime-loop extension; workflows are direct code modes, not convergence loops. | None; each mode uses `metadata` and the advisor routes the single `sk-code` identity. | None. | None. | Canonical live example for `mode-registry.json` plus `hub-router.json`; every packet, surface included, has its own router signal entry. |
+-| `sk-design` | Four workflow modes (`sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart`, `sk-design-diagram`); no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. The hub was decommissioned into two standalone skills in August 2026 and reinstated with four modes in September; `sk-prompt`, which briefly held this row, is a standalone root. | No runtime-loop extension; fundamentals uses the shared reference base, the md-generator mode runs its extraction backend, and the chart and diagram modes generate self-contained artefacts. | None; all modes use `metadata` under the single `sk-design` identity, so their vocabulary reaches the advisor only through the hub's `graph-metadata.json` `intent_signals`. | Declares transform-verb semantics: phrasing decides whether a mode applies a visual move or audits whether it should happen. | None; what `016` retired stays retired. | Transform-verbs example. |
++| `sk-design` | Four workflow modes (`sk-design-fundamentals`, `sk-design-md-generator`, `sk-design-chart`, `sk-design-diagram`); no surface packets. This row is an illustrative snapshot; consult the live registry for current mode names. The hub was decommissioned into two standalone skills in August 2026 and reinstated with four modes in September; `sk-prompt`, which briefly held this row, is a standalone root. | No runtime-loop extension; fundamentals uses the shared reference base, the md-generator mode runs its extraction backend, and the chart and diagram modes generate self-contained artefacts. | None; all modes use `metadata` under the single `sk-design` identity, so their vocabulary reaches the advisor only through the hub's `graph-metadata.json` `intent_signals`. | None. | None; the retired design modes stay retired. | No-extension workflow-only example. |
+ | `system-deep-loop` | Workflow-only active modes; no surface packets. | Declares runtime-loop semantics for research, review, and council modes. | Required for lexical and alias-fold modes; hardcoded advisor projection maps stay drift-guarded against the registry. | None. | None declared (`deprecatedModes: []`); the retired standalone context loop survives only as an advisor comment, not a registry deprecation. | Extension-heavy example: runtime-loop and advisor-projection semantics. |
+ | `sk-doc` | Workflow-only; no surface axis, zero named extensions. Several workflowModes may multiplex onto one packet (N modes → 1 packet) when that packet's `SKILL.md` declares each mode. | No runtime-loop extension. | None; all modes use `metadata` under the single `sk-doc` identity. | None. | None. | Workflow-only, zero-extension example — the pure two-tier core scaffolded by this doctrine. |
+ 
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md b/.skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md
+index 24fa7b936dc..f360afa8735 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md
+@@ -20,12 +20,12 @@ The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doct
+ 
+ ## 1. OVERVIEW
+ 
+-**Core Principle**: One vocabulary, not one formatter. Create and doctor are separate prompt-asset workflows with genuinely different result shapes (create reports a scaffold; doctor reports a mutating, phase-gated diagnostic run) — see `research.md` Theme F1/F2 in `035-create-doctor-skill-advisor-alignment/001-research/`. What must stay identical across both is the field names, the metadata-ownership statements, and the verification-state enum below, not the surrounding prose or layout.
+-
+ **When to Use**:
+ - Wiring a create or doctor workflow asset's completion/report section (A5 in `002-core-alignment-fixes/plan.md`)
+ - Writing a contract test that pins the shared vocabulary across adapters (A6)
+-- Deciding whether a given create branch renders the full handoff or the narrow leaf-freshness signal only (§4)
++- Deciding whether a given create branch renders the full handoff or the narrow leaf-freshness signal only (§6)
++
++**Core Principle**: One vocabulary, not one formatter. Create and doctor are separate prompt-asset workflows with genuinely different result shapes (create reports a scaffold; doctor reports a mutating, phase-gated diagnostic run) — see `research.md` Theme F1/F2 in `035-create-doctor-skill-advisor-alignment/001-research/`. What must stay identical across both is the field names, the metadata-ownership statements, and the verification-state enum below, not the surrounding prose or layout.
+ 
+ > **Advisor refresh is always operator-owned.** No `/create:*` or `/doctor:*` workflow calls `skill_graph_scan` or `advisor_rebuild` as a side effect of scaffolding or diagnosing a skill. Every workflow that touches a skill root reports refresh status as `NOT RUN` and prints the exact command the operator would run — never chains it automatically (research.md Theme B1/B7, "Questions Answered").
+ >
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md b/.skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md
+index a6db0a50976..e9256e89297 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md
+@@ -22,14 +22,14 @@ The recurring mistakes that keep skills from triggering, bloat the context windo
+ 
+ This reference catalogs the nine pitfalls that most often degrade a skill: from descriptions that are too vague or too bloated to trigger reliably, through second-person voice and platform-specific assumptions, to YAML mistakes, section placement and a router in the wrong place. Each pitfall pairs a wrong example with the corrected form.
+ 
+-**Core Principle**: Most failed skills fail at the description and the section boundaries — fix those first.
+-
+ **When to Use**:
+ - A skill exists but does not trigger when expected
+ - SKILL.md is straining the context window
+ - Packaging or budget checks are failing
+ - Reviewing a freshly authored skill for common defects
+ 
++**Core Principle**: Most failed skills fail at the description and the section boundaries — fix those first.
++
+ > **Note on examples below**: illustrative SKILL.md headings inside the fenced examples are written `\##` (not `##`) so the section-numbering validator — which scans `## N.` lines regardless of code fences — does not count them as this document's own sections. Drop the leading `\` when copying a heading into a real SKILL.md.
+ 
+ ---
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md b/.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md
+index 87d42847ca9..3bab7af1ef6 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md
+@@ -86,6 +86,11 @@ The content directories shown here are optional, but root metadata is not; use t
+ Validation reminder:
+ - `scripts/package_skill.py` fails if `REFERENCES` is missing and no approved combined heading variant is present.
+ 
++**Recommended Sections**:
++6. SUCCESS CRITERIA
++7. INTEGRATION POINTS
++8. RELATED RESOURCES
++
+ ### README.md Guidance
+ 
+ Create `README.md` when the skill needs human-facing orientation beyond runtime routing. Use [skill-readme-template.md](../../assets/skill/skill-readme-template.md) for skill package READMEs rather than the generic folder README template.
+@@ -100,11 +105,6 @@ Keep boundaries clear:
+ - `README.md` is the human orientation and navigation surface.
+ - Long conceptual depth belongs in focused `references/` files.
+ 
+-**Recommended Sections**:
+-6. SUCCESS CRITERIA
+-7. INTEGRATION POINTS
+-8. RELATED RESOURCES
+-
+ ### Routing Authority Standard
+ 
+ The machine router is the authoritative routing source. It sits in the sibling `ROUTER.md`, in a final `## MACHINE ROUTER` section that is the last H2 of that file. Section 2 of `SKILL.md` stays short prose that links to it. Do not maintain separate use-case routing tables.
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md b/.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
+index 0fa8ec86b66..c88b0fa1093 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md
+@@ -21,13 +21,13 @@ Which root-level metadata JSON files a skill root must, may, and must not carry,
+ 
+ A skill root carries up to nine metadata JSON files. Which of them apply is not a per-skill preference: it follows from the root's **class**, and the class follows from one authored declaration.
+ 
+-**Core Principle**: Classify first, then check. A root's class is decided by an authored declaration, never by a generated artifact.
+-
+ **When to Use**:
+ - Creating a new skill or parent hub and deciding which metadata files to write
+ - Auditing an existing root, or diagnosing a `ci-skill-root-metadata` failure
+ - Deciding whether a metadata file may be generated or must be authored
+ 
++**Core Principle**: Classify first, then check. A root's class is decided by an authored declaration, never by a generated artifact.
++
+ > **Not the spec-folder schema.** `description.json` and `graph-metadata.json` also exist under `.opencode/specs/` under a completely separate continuity schema. The two are never the same file and never interchangeable. This contract governs `.skilled/skills/<root>/` only, and the gate never scans the spec tree.
+ 
+ ---
+@@ -78,7 +78,7 @@ No production consumer reads a skill-root `description.json`. The advisor ingest
+ 
+ ### Why `command-metadata.json` is hub-optional
+ 
+-A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the standard was set in `sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification`.
++A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the metadata JSON unification change set established that standard.
+ 
+ When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.skilled/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
+ 
+@@ -134,8 +134,18 @@ Beyond presence and forbidden files, the gate enforces:
+ - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
+ - **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
+ - **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
+-- **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row names its checklist file in `file`, a relative `.md` path inside the skill root, and scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot. A row carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included. Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word. A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
+-- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings. `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays. A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename. An `intent_signals` entry no router declares is hand-curated: it never appears in `intent_signals_generated`, so it is never an orphan. A phrase a router does declare is recorded on the hub's first `--write`, so a later router rename prunes it unless `intent_signals_keep` pins it. A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
++- **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row:
++  - names its checklist file in `file`, a relative `.md` path inside the skill root
++  - scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot.
++  - carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included
++- Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word.
++- A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
++- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings.
++  - `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays.
++  - A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename.
++  - An `intent_signals` entry no router declares is hand-curated: it never appears in `intent_signals_generated`, so it is never an orphan.
++  - A phrase a router does declare is recorded on the hub's first `--write`, so a later router rename prunes it unless `intent_signals_keep` pins it.
++  - A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
+ 
+ ### Violation codes
+ 
+@@ -164,7 +174,7 @@ The gate also prints one non-failing note, `INTENT_SIGNALS_TRIGGER_RECONCILIATIO
+ 
+ ## 6. ADDING A ROOT
+ 
+-**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix below and does not affect class-H classification.
++**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix above and does not affect class-H classification.
+ 
+ **A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Add `leaf-scopes.json` only when a configured leaf root must be narrowed to a subtree or a named set of docs. Run `--fix` to generate the manifest and the alias projection.
+ 
+@@ -172,7 +182,7 @@ A standalone root therefore needs exactly one authored metadata file beyond iden
+ 
+ ### Templates
+ 
+-Every authored file except `leaf-scopes.json` has a scaffold under `create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
++Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
+ 
+ | File | Class | Template |
+ | --- | --- | --- |
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md b/.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md
+index 4d85201d2cc..eeb1e6e03c9 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md
+@@ -22,18 +22,18 @@ How to validate a skill before release and package it for distribution, covering
+ 
+ This reference covers the two validation tiers a skill passes before release and the distribution steps that follow. Minimal validation is a fast pre-packaging sanity check; comprehensive validation is a full quality pass before distribution.
+ 
+-**Core Principle**: Validate before you package, and package before you distribute.
+-
+ **When to Use**:
+ - Before packaging a skill into a distributable zip
+ - Before releasing or sharing a skill
+ - When diagnosing why `package_skill.py` rejected a skill
+ 
++**Core Principle**: Validate before you package, and package before you distribute.
++
+ **Key Sources**:
+-- `scripts/quick_validate.py` - minimal frontmatter sanity check
+-- `scripts/extract_structure.py` - structure checklist for comprehensive validation
+-- `scripts/validate_skill_package.py` - completion gate: classifies the root from its registry/router pair (rejecting a half-declared pair as unclassified), runs the parent-hub root checks, and wraps `package_skill.py --check`; standalone class conformance is enforced by the fleet gate `ci-skill-root-metadata.cjs`
+-- `scripts/package_skill.py` - validation plus packaging
++- `.skilled/skills/sk-doc/shared/scripts/quick_validate.py` - minimal frontmatter sanity check
++- `.skilled/skills/sk-doc/shared/scripts/extract_structure.py` - structure checklist for comprehensive validation
++- `.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py` - completion gate: classifies the root from its registry/router pair (rejecting a half-declared pair as unclassified), runs the parent-hub root checks, and wraps `package_skill.py --check`; standalone class conformance is enforced by the fleet gate `ci-skill-root-metadata.cjs`
++- `.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` - validation plus packaging
+ 
+ ---
+ 
+@@ -44,15 +44,15 @@ This reference covers the two validation tiers a skill passes before release and
+ **Purpose**: Authoritative pre-completion gate. Run before claiming a skill is done. It delegates the package check, detects standalone versus parent roots from the coupled registry/router declaration, and fails an unclassified root rather than guessing its class.
+ 
+ ```bash
+-scripts/validate_skill_package.py <path/to/skill>
++.skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path/to/skill>
+ ```
+ 
+ ### Package Check (package_skill.py --check)
+ 
+-**Purpose**: Authoritative pre-completion gate. Run before claiming a skill is done.
++**Purpose**: The package validator the completion gate delegates to. Run it directly when you want the package checks without the standalone-versus-parent classification.
+ 
+ ```bash
+-scripts/package_skill.py <path/to/skill> --check
++.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py <path/to/skill> --check
+ ```
+ 
+ `--check` validates without packaging. It hard-fails on:
+@@ -79,9 +79,22 @@ Five codes report a violation:
+ - `RS-004`: a skill or mode packet has no sibling `ROUTER.md` in its own folder, or its real path leaves that folder.
+ - `RS-005`: `SKILL.md` carries no relative markdown link to `./ROUTER.md`, or the link does not resolve on disk.
+ 
+-A machine router block is a fenced block, or an unfenced run of lines such as an indented one, that holds `INTENT_SIGNALS =`, `RESOURCE_MAP =`, `UNKNOWN_FALLBACK_CHECKLIST =`, `def discover_markdown_resources` or `def _guard_in_skill`. A fence closes only on a run of the same character at least as long as the one that opened it. A `MACHINE ROUTER` section is an H2 heading that matches `## [N. ]MACHINE ROUTER` outside a fence. The heading alone is the finding, with or without a block below it, so a skill that kept only the prose still fails RS-002. A router block with no section around it reports the same code, because it declares routing in the same file.
++A machine router **block** is a fenced block, or an unfenced run of lines such as an indented one, that holds one of these markers:
++- `INTENT_SIGNALS =`
++- `RESOURCE_MAP =`
++- `UNKNOWN_FALLBACK_CHECKLIST =`
++- `def discover_markdown_resources`
++- `def _guard_in_skill`
++
++A fence closes only on a run of the same character at least as long as the one that opened it. A `MACHINE ROUTER` **section** is an H2 heading that matches `## [N. ]MACHINE ROUTER` outside a fence. The heading alone is the finding, with or without a block below it, so a skill that kept only the prose still fails RS-002. A router block with no section around it reports the same code, because it declares routing in the same file.
+ 
+-`--strict` promotes all five to errors. Known debt lives in `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`). A folder outside that root is never debt. Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and `machineBlocks` counts the RS-002 findings the entry tolerates, one per leftover section or stray block. A listed skill fails when its line count, word count or number of RS-002 findings grows past the record, or when it shows a code the entry does not record. An entry in any other form is ignored. Remove the entry once the skill is migrated. `/create:skill-parent` applies the same rule as `parent-skill-check.cjs` check `12b-routing-shape`.
++`--strict` promotes all five to errors. Known debt lives in `.skilled/skills/sk-doc/sk-create-skill/scripts/routing-shape-known-debt.json`, keyed by the skill's path relative to `.skilled/skills` (for example `sk-code/sk-code-review`).
++- A folder outside that root is never debt.
++- Each entry records `{"lines", "words", "machineBlocks", "codes"}`, and `machineBlocks` counts the RS-002 findings the entry tolerates, one per leftover section or stray block.
++- A listed skill fails when its line count, word count or number of RS-002 findings grows past the record, or when it shows a code the entry does not record.
++- An entry in any other form is ignored.
++- Remove the entry once the skill is migrated.
++- `/create:skill-parent` applies the same rule as `parent-skill-check.cjs` check `12b-routing-shape`.
+ 
+ ### Fleet Class Gate (ci-skill-root-metadata.cjs)
+ 
+@@ -129,7 +142,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs -
+ 
+ **Command**:
+ ```bash
+-scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
++.skilled/skills/sk-doc/shared/scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
+ # AI evaluates the JSON output and provides quality assessment
+ ```
+ 
+@@ -141,7 +154,7 @@ scripts/extract_structure.py .skilled/skills/my-skill/SKILL.md
+ 
+ **Command**:
+ ```bash
+-scripts/package_skill.py <path/to/skill> <output-directory>
++.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py <path/to/skill> <output-directory>
+ ```
+ 
+ **Output**: A zip whose filename and archive root match the hyphenated skill folder name. Packaging runs the strict generated-path check before writing the archive.
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md b/.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md
+index b643a872308..9b197dc9a54 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md
+@@ -22,13 +22,13 @@ The step-by-step workflow from concept to packaged skill: understanding, plannin
+ 
+ This reference is the core create workflow for a skill. It walks the six ordered steps from understanding the skill's purpose through iterating on real usage and includes the SKILL.md authoring questions and the frontmatter completion contract.
+ 
+-**Core Principle**: Build the skill for another AI agent instance to use. Favor information that is beneficial and non-obvious.
+-
+ **When to Use**:
+ - Creating a brand new skill from scratch
+ - Re-scaffolding or substantially rebuilding an existing skill
+ - Authoring or correcting a skill's SKILL.md sections and frontmatter
+ 
++**Core Principle**: Build the skill for another AI agent instance to use. Favor information that is beneficial and non-obvious.
++
+ **Key Sources**:
+ - `scripts/init_skill.py` - scaffolds the skill directory
+ - `scripts/package_skill.py` - validates and packages the skill
+@@ -119,13 +119,13 @@ User: Convert documentation to question-answering format, remove metadata.
+ scripts/init_skill.py <skill-name> --path <output-directory>
+ ```
+ 
+-**Default path**: If `--path` not specified, creates in current directory.
++**Required flag**: `--path` names the parent directory the skill folder is created under. The script exits with an error when it is omitted.
+ 
+ **Script Actions**:
+ 1. Creates skill directory at specified path
+ 2. Generates SKILL.md template with proper frontmatter and TODO placeholders
+-3. Creates example resource directories: `scripts/`, `references/`, `assets/`
+-4. Adds example files that can be customized or deleted
++3. Scaffolds `manual-testing-playbook/` and `benchmark/reports/` with their indexes
++4. Writes `graph-metadata.json` and `leaf-manifest.config.json`, then runs the class gate to generate `leaf-manifest.json` and `leaf-aliases.json`
+ 
+ **Generated SKILL.md**: `init_skill.py` creates a starter SKILL.md and a sibling `ROUTER.md`. Normalize SKILL.md to the required section order: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES and REFERENCES.
+ Add recommended sections as the skill needs them. Keep SMART ROUTING to 8 to 12 lines of prose.
+@@ -136,15 +136,17 @@ Put the seeded router pseudocode in `ROUTER.md` under a final `## MACHINE ROUTER
+ **Example Usage**:
+ ```bash
+ # Create skill in .skilled/skills/ directory
+-scripts/init_skill.py markdown-optimizer --path .skilled/skill
++scripts/init_skill.py markdown-optimizer --path .skilled/skills
+ 
+ # Creates:
+ # .skilled/skills/markdown-optimizer/
+ # ├── SKILL.md (with TODO placeholders and a link to ./ROUTER.md)
+ # ├── ROUTER.md (the seeded machine router)
+-# ├── scripts/example_script.py
+-# ├── references/example-reference.md
+-# └── assets/example-asset.txt
++# ├── graph-metadata.json
++# ├── leaf-manifest.config.json
++# ├── leaf-manifest.json and leaf-aliases.json (generated by the class gate)
++# ├── manual-testing-playbook/manual-testing-playbook.md
++# └── benchmark/README.md and benchmark/reports/README.md
+ ```
+ 
+ ### Step 4: Edit the Skill (~10-15 min)
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md b/.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md
+index 15497ad6cfe..18cc076e909 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md
+@@ -22,13 +22,13 @@ Concrete example skill layouts to model new skills on, plus the workflow for kee
+ 
+ This reference pairs worked example skills with the ongoing maintenance workflow. The examples show how anatomy and bundled resources come together for real skill types; the maintenance section covers when and how to update and version a skill.
+ 
+-**Core Principle**: A skill is never "done" — model new skills on proven layouts, then iterate from real usage.
+-
+ **When to Use**:
+ - Looking for a concrete layout to model a new skill on
+ - Deciding whether an existing skill needs an update
+ - Choosing a version bump (major/minor/patch) for a skill change
+ 
++**Core Principle**: A skill is never "done" — model new skills on proven layouts, then iterate from real usage.
++
+ **Key Sources**:
+ - [overview.md](../shared/overview.md) - skill anatomy these examples instantiate
+ - [creation-workflow.md](./creation-workflow.md) - the create process that produces them
+@@ -45,6 +45,7 @@ This reference pairs worked example skills with the ongoing maintenance workflow
+ ```
+ pdf-editor/
+ ├── SKILL.md
++├── ROUTER.md
+ ├── scripts/
+ │   ├── rotate_pdf.py
+ │   ├── crop_pdf.py
+@@ -73,6 +74,7 @@ pdf-editor/
+ ```
+ brand-guidelines/
+ ├── SKILL.md
++├── ROUTER.md
+ ├── assets/
+ │   ├── logo.png
+ │   ├── logo-dark.png
+@@ -101,6 +103,7 @@ brand-guidelines/
+ ```
+ database-query/
+ ├── SKILL.md
++├── ROUTER.md
+ └── references/
+     ├── schema.md
+     └── common-queries.md
+@@ -124,6 +127,7 @@ database-query/
+ ```
+ pdf-editor/
+ ├── SKILL.md
++├── ROUTER.md
+ ├── scripts/
+ │   ├── rotate_pdf.py
+ │   ├── crop_pdf.py
+@@ -143,7 +147,7 @@ pdf-editor/
+ - `references/procedures/digital-signature-verification.md` - private card
+ - `references/procedures/batch-annotation-cleanup.md` - private card
+ 
+-**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has two workflow modes and one transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. The shared schema lives at `sk-design/shared/procedure-card-schema.md`.
++**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has four workflow modes and no transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
+ 
+ ---
+ 
+@@ -178,7 +182,11 @@ pdf-editor/
+ 
+ **Bump the release version**:
+ 
+-Bump with `/create:changelog`, which writes the changelog entry and sets the new version in every carrier the skill root already has: SKILL.md, and for a hub description.json, hub-router.json and mode-registry.json. README.md and a hub ROUTER.md keep their own document versions. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
++Bump with `/create:changelog`. It writes the changelog entry and sets the new version in every carrier the skill root already has:
++- SKILL.md
++- for a hub, description.json, hub-router.json and mode-registry.json
++
++README.md and a hub ROUTER.md keep their own document versions. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
+ 
+ ```yaml
+ ---
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md b/.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md
+index 31e1282039a..444452d9aa3 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md
+@@ -22,14 +22,14 @@ Adopters who customized `sk-code` (their stack) or `sk-git` (their conventions)
+ 
+ v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to nested workflow-mode packets and read-only surface packets. `sk-git` stayed a single skill. This file is the adopter-facing path for reconciling a customized copy with that split.
+ 
+-**Core Principle**: Convert a skill into a parent hub only when it has two or more distinct jobs. Keep it single when it has one job. You may also drop the repo's parent `sk-code` and keep your own single skill.
+-
+ **When to Use**:
+ - You customized `sk-code` or `sk-git` and a framework update now ships a different shape
+ - You are deciding whether a flat skill should become a parent hub
+ - You want to keep a customized skill single and avoid a false migration
+ - You have a single skill in a plain or older Skilled shape, and you want it converted in place so it passes the format gate
+ 
++**Core Principle**: Convert a skill into a parent hub only when it has two or more distinct jobs. Keep it single when it has one job. You may also drop the repo's parent `sk-code` and keep your own single skill.
++
+ **When not to Use**:
+ - You are creating a brand-new skill from scratch. Use `/create:skill` or `/create:skill-parent` directly. See [creation-workflow.md](creation-workflow.md) and [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md)
+ - You are only scoring or editing prose in an existing skill. Use `create-quality-control`
+@@ -95,7 +95,11 @@ Keep it single if git work stays one job (worktree, commit, finish under one con
+ 
+ ## 4. CONVERT A SINGLE SKILL INTO A PARENT HUB
+ 
+-Use existing tooling only. `/create:skill-parent` is the scaffold. `create` will not write on top of an occupied folder (`requires_existing_skill: false`). There is no in-place `--convert` flag here, because converting a skill into a hub is a scaffold-then-move, not an edit. A single skill does convert through `/doctor:sk-skill convert`, in place when it is an older Skilled skill and as a staged new root when it is a plain one, and that command refuses a hub candidate so a skill that really holds two jobs lands here.
++Use existing tooling only.
++- `/create:skill-parent` is the scaffold.
++- `create` will not write on top of an occupied folder (`requires_existing_skill: false`).
++- There is no in-place `--convert` flag here, because converting a skill into a hub is a scaffold-then-move, not an edit.
++- A single skill does convert through `/doctor:sk-skill convert`, in place when it is an older Skilled skill and as a staged new root when it is a plain one, and that command refuses a hub candidate so a skill that really holds two jobs lands here.
+ 
+ The command requires `@markdown` for template-first generation. Restart with that prefix if the self-check blocks.
+ 
+@@ -199,7 +203,14 @@ Stay on class S when the skill still has one job.
+ 
+ A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
+ 
+-**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes. It adds the four-part `version`, writes an `allowed-tools` list only after you approve the list its plan proposes, moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing. A plain skill is staged under its own name as a new root once you approve at least eight intent phrases, and the workflow proves the reshaped prose kept every original body line. The write stops and restores the pre-edit bytes when the parsed router would come out different. Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
++**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes.
++- It adds the four-part `version`.
++- It writes an `allowed-tools` list only after you approve the list its plan proposes.
++- It moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing.
++- It stages a plain skill under its own name as a new root once you approve at least eight intent phrases, and the workflow proves the reshaped prose kept every original body line.
++- It stops and restores the pre-edit bytes when the parsed router would come out different.
++
++Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
+ 
+ **Failure this prevents:** a hand conversion that passes the format gate but drops a routing intent, or one that leaves the skill with no `ROUTER.md` at all.
+ 

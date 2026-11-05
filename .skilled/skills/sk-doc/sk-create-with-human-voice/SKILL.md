@@ -2,7 +2,7 @@
 name: sk-create-with-human-voice
 description: Apply the Human Voice Rules to prose, or score prose against them, with a scope gate first and a re-scan after the rewrite.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # create-with-human-voice

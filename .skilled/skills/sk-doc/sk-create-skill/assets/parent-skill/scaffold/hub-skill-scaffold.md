@@ -2,7 +2,7 @@
 name: "{{HUB_NAME}}"
 description: TODO hub description — routes the {{MODE}} workflow packet via mode-registry.json (fill in ≤130 chars).
 allowed-tools: "{{ALLOWED_TOOLS}}"
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # {{HUB_TITLE}}
@@ -93,4 +93,4 @@ This is the hub's only glossary. Its packets link here instead of defining routi
 
 - `README.md`: short operator entry point.
 - `graph-metadata.json`: hub discovery metadata.
-- [`description.json`](../../../references/shared/skill-root-metadata-contract.md): hub-doctor metadata.
+- `description.json`: hub-doctor metadata. See `.skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md` for the class-H fields.

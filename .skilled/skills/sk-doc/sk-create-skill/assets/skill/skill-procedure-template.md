@@ -8,7 +8,7 @@ trigger_phrases:
   - "when to use a procedure card"
 importance_tier: normal
 contextType: general
-version: 1.2.0.8
+version: 1.2.1.0
 ---
 
 # Skill Procedure Card Templates - Creation Guidelines
@@ -20,6 +20,19 @@ Templates and guidelines for creating private procedure cards: repeatable, selec
 ### What Is a Procedure Card
 
 A procedure card is a private markdown file that adds a repeatable, triggerable PROCESS to an existing skill or mode. It is not a public skill, not a public mode, and does not appear in any advisor routing table. A skill or hub always resolves its public identity first (through its own routing, or a parent hub's `mode-registry.json`). A procedure card is only ever selected AFTER that, from inside the already-chosen skill or mode, by matching the card's own `Trigger` field against the request. A card never grants tool permissions beyond what the owning skill or mode already has.
+
+### When to Create a Procedure Card
+
+**Create a procedure card when:**
+- The skill or mode has multiple distinct, individually-triggered internal procedures, not one dominant workflow.
+- Each procedure needs a strict, lint-able, consistent shape (required fields in a fixed order), not free-form prose.
+- Fine-grained behavior selection matters, but creating N public skills or modes for what is really one skill or mode with N internal procedures would over-fragment the public surface.
+- `SKILL.md`'s `HOW IT WORKS` section would otherwise balloon into several near-duplicate workflow write-ups.
+
+**Keep it a plain reference (`skill-reference-template.md`) instead when:**
+- There is only one dominant workflow, so no selection step is needed.
+- The content is general background knowledge or context, not an actionable process with its own trigger.
+- The content always applies whenever the skill or mode runs, rather than only on a specific request shape.
 
 ### Location & Naming
 
@@ -36,19 +49,6 @@ A procedure card is a private markdown file that adds a repeatable, triggerable 
 | `sensitive-field-redaction.md` | `SensitiveFieldRedaction.md` (PascalCase) |
 | `digital-signature-verification.md` | `digital_signature_verification.md` (snake_case) |
 | `batch-annotation-cleanup.md` | `batchAnnotationCleanup.MD` (wrong case) |
-
-### When to Create a Procedure Card
-
-**Create a procedure card when:**
-- The skill or mode has multiple distinct, individually-triggered internal procedures, not one dominant workflow.
-- Each procedure needs a strict, lint-able, consistent shape (required fields in a fixed order), not free-form prose.
-- Fine-grained behavior selection matters, but creating N public skills or modes for what is really one skill or mode with N internal procedures would over-fragment the public surface.
-- `SKILL.md`'s `HOW IT WORKS` section would otherwise balloon into several near-duplicate workflow write-ups.
-
-**Keep it a plain reference (`skill-reference-template.md`) instead when:**
-- There is only one dominant workflow, so no selection step is needed.
-- The content is general background knowledge or context, not an actionable process with its own trigger.
-- The content always applies whenever the skill or mode runs, rather than only on a specific request shape.
 
 ---
 
@@ -227,7 +227,7 @@ Placement:
 
 ### Real-World Implementation
 
-`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has two workflow modes and one transport packet, with procedure cards owned by the workflow packets plus shared coordination cards. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/shared/procedure-card-schema.md` is the schema this template generalizes from.
+`sk-design` (`.skilled/skills/sk-design/`) is an illustrative hub-scale example: its current registry has four workflow modes, and the `sk-design-md-generator` packet keeps its procedure cards under `procedures/`. Consult `sk-design/mode-registry.json` before copying this topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
 
 ### Templates
 - [skill-reference-template.md](./skill-reference-template.md) - Reference file templates (use when no trigger-based selection is needed)

@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface packet scaffold"
 importance_tier: normal
 contextType: general
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # Parent Skill Hub Template - Canonical Two-Axis Hub
@@ -31,6 +31,10 @@ Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#pr
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Give one advisor-routable identity to a family of packets while each packet keeps its own contract.
 
 ### When to Use This Template
 
@@ -91,6 +95,7 @@ Packet-specific sections follow those four.
 | Scope | File or directory | Required | Purpose |
 |-------|-------------------|----------|---------|
 | Hub | `SKILL.md` | Yes | Thin routing entry point with no packet-local logic |
+| Hub | `README.md` | Yes | Human-facing orientation: the pitch, the packet table, the navigation and the validation close |
 | Hub | `mode-registry.json` | Yes | Single packet array with `packetKind`, `toolSurface`, and `advisorRouting` |
 | Hub | `hub-router.json` | Yes | Router policy, tie-breaks, outcomes, signals, vocabulary classes |
 | Hub | `ROUTER.md` | Yes | Stage-two control document plus the hub's routing prose in a final `## MACHINE ROUTER` section. `router_state: stage1-only` on a fresh hub, `active` only with an authored leaf map |
@@ -113,7 +118,13 @@ Packet-specific sections follow those four.
 | Surface packet | `assets/` | Conditional | Add when the packet carries reusable snippets or examples |
 | Surface packet | `changelog/` | Yes | Real changelog files for the packet |
 
-Packets inside the hub follow the mode-packet shape: a short SMART ROUTING section of 8 to 12 non-blank lines of plain prose, its own `ROUTER.md` beside its `SKILL.md` holding that packet's machine router, and one relative markdown link from the packet's Section 2 to that file. The hub root `ROUTER.md` owns the hub's stage two; each packet's `ROUTER.md` owns the selections that stay inside that packet. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet `SKILL.md` shape and [`skill-router-template.md`](../skill/skill-router-template.md) for its router file.
+Packets inside the hub follow the mode-packet shape:
+
+- A short SMART ROUTING section of 8 to 12 non-blank lines of plain prose.
+- Its own `ROUTER.md` beside its `SKILL.md`, holding that packet's machine router.
+- One relative markdown link from the packet's Section 2 to that file.
+
+The hub root `ROUTER.md` owns the hub's stage two; each packet's `ROUTER.md` owns the selections that stay inside that packet. See [`skill-md-template.md`](../skill/skill-md-template.md) for the packet `SKILL.md` shape and [`skill-router-template.md`](../skill/skill-router-template.md) for its router file.
 
 ---
 
@@ -198,6 +209,7 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 | Path | Purpose |
 |---|---|
 | `[parent-skill-name]/SKILL.md` | Hub instructions |
+| `[parent-skill-name]/README.md` | Hub overview |
 | `[parent-skill-name]/mode-registry.json` | Packet registry |
 | `[parent-skill-name]/hub-router.json` | Routing policy |
 | `[parent-skill-name]/ROUTER.md` | Stage-two control document and the hub's routing prose |
@@ -209,9 +221,11 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 | `[parent-skill-name]/manual-testing-playbook/` | Manual test cases |
 | `[parent-skill-name]/benchmark/` | Benchmark baseline (parent-skill-check 9b warns if absent) |
 | `[parent-skill-name]/[workflow-packet-a]/SKILL.md` | Workflow instructions |
+| `[parent-skill-name]/[workflow-packet-a]/ROUTER.md` | Workflow packet router |
 | `[parent-skill-name]/[workflow-packet-a]/README.md` | Workflow overview |
 | `[parent-skill-name]/[workflow-packet-a]/changelog/` | Workflow changelogs |
 | `[parent-skill-name]/[surface-name]/SKILL.md` | Surface instructions |
+| `[parent-skill-name]/[surface-name]/ROUTER.md` | Surface packet router |
 | `[parent-skill-name]/[surface-name]/README.md` | Surface overview |
 | `[parent-skill-name]/[surface-name]/references/` | Surface evidence |
 | `[parent-skill-name]/[surface-name]/assets/` | Surface assets |
@@ -221,7 +235,11 @@ You run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) first.
 
 - `mode-registry.json` owns `workflowMode`, `packetKind`, `backendKind`, `toolSurface`, packet folder identity, alias phrases, and `advisorRouting`.
 - `hub-router.json` owns `routerPolicy`, `routerSignals`, `vocabularyClasses`, and bundle rules.
-- `ROUTER.md` is the stage-two control document: `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`, while `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one. Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents. Its final `## MACHINE ROUTER` section holds the compiled-routing directive and the fallback checklist, so the hub `SKILL.md` never repeats them.
+- `ROUTER.md` is the stage-two control document.
+  - `router_state: active` declares non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP`.
+  - `router_state: stage1-only` keeps all stage-two collections empty and delegates to stage one.
+  - Promote to `active` only after authoring concrete, resolvable leaf paths, never placeholder intents.
+  - Its final `## MACHINE ROUTER` section holds the compiled-routing directive and the fallback checklist, so the hub `SKILL.md` never repeats them.
 - `description.json` owns hub-doctor metadata fields and optional hub-specific arrays.
 - `graph-metadata.json` owns the one skill-graph identity node.
 
@@ -234,6 +252,7 @@ Use top-level `extensions` in `mode-registry.json` only when the hub needs extra
 - `transform-verbs`: declares verb-transform routing for design-like hubs.
 - `deprecated-modes`: documents retired modes kept as shims.
 - `surface-axis`: declares that the hub includes `packetKind: "surface"` packets.
+- `transport-axis`: declares that the hub includes `packetKind: "transport"` packets.
 
 These extensions activate in-place fields. They do not move `advisorRouting` data and do not create a third physical tier.
 
@@ -302,7 +321,7 @@ Before claiming the hub complete:
 - [ ] Every surface is read-only, `backendKind: "evidence-base"`, and `routingClass: "metadata"`.
 - [ ] `hub-router.json` has base outcomes (`single`, `orderedBundle`, `defer`), plus `surfaceBundle` iff surface packets exist, workflow-first `tieBreak`, bidirectional mode keys, and defined vocabulary classes.
 - [ ] Root `ROUTER.md` exists with `router_state: stage1-only` or `active`, a root `SKILL.md` pointer, and a four-part `version`. `active` maps are non-empty and equal-keyed, `stage1-only` maps are empty.
-- [ ] The hub `SKILL.md` carries no `## MACHINE ROUTER` section, and its Section 2 links to [`ROUTER.md`](./ROUTER.md).
+- [ ] The hub `SKILL.md` carries no `## MACHINE ROUTER` section, and its Section 2 links to `ROUTER.md`.
 - [ ] The hub `ROUTER.md` ends with a `## MACHINE ROUTER` section carrying the compiled-routing directive and the fallback checklist, after the `MACHINE-READABLE ROUTER` map.
 - [ ] Every packet owns `ROUTER.md` beside its `SKILL.md`, and the packet's Section 2 links to it.
 - [ ] `description.json` has the required hub-doctor fields and a four-part version.
@@ -316,6 +335,7 @@ Before claiming the hub complete:
 - `parent-skill-registry-template.json` - companion `mode-registry.json` scaffold.
 - `parent-skill-hub-router-template.json` - companion `hub-router.json` scaffold.
 - [`parent-skill-root-router-template.md`](./parent-skill-root-router-template.md) - the root `ROUTER.md` stage-two authoring template.
+- [`parent-skill-readme-template.md`](./parent-skill-readme-template.md) - the human-facing README template for the hub.
 - `parent-skill-description-template.json` - companion `description.json` scaffold.
 - `parent-skill-graph-metadata-template.json` - companion `graph-metadata.json` scaffold.
 - [`skill-root-metadata-contract.md`](../../references/shared/skill-root-metadata-contract.md) - complete root metadata matrix and authored/generated ownership.

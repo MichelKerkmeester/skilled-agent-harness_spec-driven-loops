@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Anatomy and Structure System
@@ -86,6 +86,11 @@ The content directories shown here are optional, but root metadata is not; use t
 Validation reminder:
 - `scripts/package_skill.py` fails if `REFERENCES` is missing and no approved combined heading variant is present.
 
+**Recommended Sections**:
+6. SUCCESS CRITERIA
+7. INTEGRATION POINTS
+8. RELATED RESOURCES
+
 ### README.md Guidance
 
 Create `README.md` when the skill needs human-facing orientation beyond runtime routing. Use [skill-readme-template.md](../../assets/skill/skill-readme-template.md) for skill package READMEs rather than the generic folder README template.
@@ -99,11 +104,6 @@ Keep boundaries clear:
 - `SKILL.md` is the runtime instruction and routing surface.
 - `README.md` is the human orientation and navigation surface.
 - Long conceptual depth belongs in focused `references/` files.
-
-**Recommended Sections**:
-6. SUCCESS CRITERIA
-7. INTEGRATION POINTS
-8. RELATED RESOURCES
 
 ### Routing Authority Standard
 

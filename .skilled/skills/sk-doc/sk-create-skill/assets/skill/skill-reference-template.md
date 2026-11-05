@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference creation guidelines"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Reference File Templates - AI Agent Skills
@@ -18,6 +18,36 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 ---
 
 ## 1. OVERVIEW
+
+### What Are AI Agent Skill Reference Files?
+
+Reference files are detailed technical documentation in the `references/` directory that provide deep-dive guidance with **explicit reasoning** - making thought processes visible, showing decision logic, and analyzing root causes.
+
+**Core Purpose**:
+- **Technical depth** - Step-by-step reasoning with rationale
+- **Phased workflows** - Structured processes with validation checkpoints
+- **Pattern libraries** - Before/after examples, comparison tables
+- **Tool integration** - MCP tools, scripts, asset references
+- **Root cause analysis** - Systematic debugging and troubleshooting
+
+**Key Difference from Generic Documentation**:
+- AI agent skills = Actionable workflows with explicit reasoning
+- Generic docs = Information reference without decision logic
+
+### Progressive Disclosure in Skills
+
+```
+Level 1: Metadata (name + description)
+         └─ Always in context (~100 words)
+            ↓
+Level 2: SKILL.md body
+         └─ When skill triggers (<5k words)
+            ↓
+Level 3: Reference files (this document)
+         └─ Loaded as needed (500-3000 lines per file)
+```
+
+**Reference files = Level 3**: Deep technical guidance loaded only when the agent needs specific workflow details.
 
 ### Location & Naming
 
@@ -37,7 +67,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 
 ## 2. DOCUMENT STRUCTURE
 
-### Document Structure: Title and Intro
+### Title and Intro
 
 **CRITICAL: The intro after the H1 title must be 1-2 SHORT sentences only.**
 
@@ -65,7 +95,12 @@ version: 1.0.0.0
 
 ```
 
-Every reference file carries this full 5-field frontmatter block: the Skill Advisor harvests it as routing signal (3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content. `importance_tier` defaults to `normal`, with `important` only for formal contract docs. `contextType` is one of `planning|research|implementation|general`). See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
+Every reference file carries this full 5-field frontmatter block. The Skill Advisor harvests it as routing signal:
+- 3-8 lowercase multi-word `trigger_phrases` drawn from the doc's content
+- `importance_tier`, which defaults to `normal`, with `important` only for formal contract docs
+- `contextType`, one of `planning|research|implementation|general`
+
+See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter-templates.md) for field rules.
 
 > **WARNING: DO NOT duplicate content between intro and Section 1.**
 > The intro is a hook. Section 1 provides the details.
@@ -196,38 +231,6 @@ Atomic commits...  ← DUPLICATED from intro!
 - Links are `[title](url)`, never a bare URL.
 - Every `---` has a blank line above it, so a divider never turns the line above into a setext heading.
 - A related section, when present, is the last H2.
-
----
-
-### What Are AI Agent Skill Reference Files?
-
-Reference files are detailed technical documentation in the `references/` directory that provide deep-dive guidance with **explicit reasoning** - making thought processes visible, showing decision logic, and analyzing root causes.
-
-**Core Purpose**:
-- **Technical depth** - Step-by-step reasoning with rationale
-- **Phased workflows** - Structured processes with validation checkpoints
-- **Pattern libraries** - Before/after examples, comparison tables
-- **Tool integration** - MCP tools, scripts, asset references
-- **Root cause analysis** - Systematic debugging and troubleshooting
-
-**Key Difference from Generic Documentation**:
-- AI agent skills = Actionable workflows with explicit reasoning
-- Generic docs = Information reference without decision logic
-
-### Progressive Disclosure in Skills
-
-```
-Level 1: Metadata (name + description)
-         └─ Always in context (~100 words)
-            ↓
-Level 2: SKILL.md body
-         └─ When skill triggers (<5k words)
-            ↓
-Level 3: Reference files (this document)
-         └─ Loaded as needed (500-3000 lines per file)
-```
-
-**Reference files = Level 3**: Deep technical guidance loaded only when the agent needs specific workflow details.
 
 ---
 

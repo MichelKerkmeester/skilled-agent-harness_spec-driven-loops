@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "10 docs of the sk-create-goal mode audited and refined: 16 findings, 6 review round(s), gate files=10 render_warnings=0 invalid=0."
 trigger_phrases:
   - "sk create goal implementation summary"
 importance_tier: "normal"
@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "sk-doc/066-skill-readability-refinement/008-sk-doc/009-sk-create-goal"
     last_updated_at: "2026-11-04T07:16:45Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_by: "claude-opus-5-5"
+    recent_action: "Audited, fixed and reviewed 10 docs"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-009-sk-create-goal"
+      session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +32,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +44,73 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The 10 in-scope docs of the `sk-create-goal` mode now follow their sk-doc templates and the parent rubric. The DeepSeek max audit listed 16 defects (4 P1), DeepSeek applied them, and the review re-read the diff until it passed.
 
-### Phase 9: sk-create-goal
+### 009-sk-create-goal
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Findings are in `scratch/findings.md`, each round's diff in `scratch/diff-N.patch` and its review in `scratch/review-N.md`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/sk-doc/sk-create-goal/README.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/ROUTER.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/SKILL.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/assets/goal-exemplars.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/references/authoring-standards.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md` | Modify | Readability, layout and structure |
+| `.skilled/skills/sk-doc/sk-create-goal/references/parent-and-nested-goals.md` | Modify | Readability, layout and structure |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+`run-leaf-v3.sh` ran the scope, the gate, the DeepSeek max audit, the DeepSeek high fix and the review rounds. `scratch/run.log` records each step with its exit.
+
+The run ended after three rounds without a pass. Its open finding was real: `scripts/tests/template-parity.test.cjs` failed 3 of 32 at HEAD and at the program's base, because system-spec-kit's `goal.md.tmpl` gained one FILL guidance comment under each section heading and the three asset templates never followed. At the operator's direction the drift is fixed: the top-level and child templates gain three FILL lines and the phase-parent template four, each under the heading `goal.md.tmpl` puts it under, and the suite now passes 32 of 32, which is what the README's test row states. The README's ten operator scenarios match the ten playbook files, and "Overview and Source Check" is an Overview with a Source Check subsection; no file links the old anchor. Repair review 6 passed with no further edit, and the files match the committed text.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Two model families per leaf | The model that writes a fix is not the one that judges it |
+| Inbound-linked headings frozen | Other files link to them |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Scope gate before | `files=10 render_warnings=1 invalid=0` |
+| Scope gate after | `files=10 render_warnings=0 invalid=0` |
+| Review 1 | VERDICT: FIX |
+| Review 2 | VERDICT: FIX |
+| Review 3 | VERDICT: FIX |
+| Review 4 | VERDICT: FIX |
+| Review 5 | VERDICT: FIX |
+| Review 6 | VERDICT: PASS |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **A review round judges one diff at a time.** A defect neither model saw stays; the render checks cover the mechanical classes.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

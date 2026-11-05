@@ -8,7 +8,7 @@ trigger_phrases:
   - "standard asset structure"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Asset File Templates - Creation Guidelines
@@ -16,19 +16,6 @@ version: 1.2.1.0
 Templates and guidelines for creating asset files in AI agent skills.
 
 ## 1. OVERVIEW
-
-### Location & Naming
-
-**Location:** `.skilled/skills/[skill-name]/assets/`
-
-**Naming Convention:** kebab-case with the appropriate extension
-
-| ✅ Valid Names | ❌ Invalid Names |
-|---------------|-----------------|
-| `frontmatter-templates.md` | `FrontmatterTemplates.md` (PascalCase) |
-| `config-examples.yaml` | `config_examples.yaml` (snake_case) |
-| `validation-checklist.md` | `ValidationChecklist.MD` (wrong case) |
-| `emoji-reference.md` | `emojiReference.md` (camelCase) |
 
 ### When to Create Assets
 
@@ -44,6 +31,19 @@ Templates and guidelines for creating asset files in AI agent skills.
 - Tightly coupled to workflow logic
 - Needs to be visible immediately (not progressive disclosure)
 - Part of core instructions (RULES, WORKFLOW sections)
+
+### Location & Naming
+
+**Location:** `.skilled/skills/[skill-name]/assets/`
+
+**Naming Convention:** kebab-case with the appropriate extension
+
+| ✅ Valid Names | ❌ Invalid Names |
+|---------------|-----------------|
+| `frontmatter-templates.md` | `FrontmatterTemplates.md` (PascalCase) |
+| `config-examples.yaml` | `config_examples.yaml` (snake_case) |
+| `validation-checklist.md` | `ValidationChecklist.MD` (wrong case) |
+| `emoji-reference.md` | `emojiReference.md` (camelCase) |
 
 ---
 

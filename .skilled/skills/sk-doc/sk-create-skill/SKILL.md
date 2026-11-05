@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.11.0.0
+version: 1.11.1.0
 ---
 
 # Create Skill
@@ -100,6 +100,7 @@ Follow these steps in order, skipping only when the target skill already exists 
 ```text
 skill-name/
 ├── SKILL.md
+├── ROUTER.md                      # sibling machine router
 ├── graph-metadata.json
 ├── leaf-manifest.config.json
 ├── leaf-scopes.json                # optional: narrows the leaf roots to scopes
@@ -161,7 +162,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
    Keep it `stage1-only` until a concrete leaf map is authored.
    Only then replace `router_state` with `active` and add non-empty equal-key `INTENT_SIGNALS`/`RESOURCE_MAP` whose paths resolve and map to typed `leaf-manifest.json` pairs.
    Never synthesize placeholder intents.
-7. Create each nested packet with `SKILL.md`, `README.md`, and `changelog/`.
+7. Create each nested packet with `SKILL.md`, `README.md`, its own `ROUTER.md`, and `changelog/`.
 8. Add `references/` and `assets/` to surface packets when they carry evidence material.
 9. Give a workflow packet its own `procedures/` folder, using `assets/skill/skill-procedure-template.md`, when it has multiple distinct, individually-triggered internal processes; use `shared/procedures/` only for a card that genuinely coordinates two or more packets.
 10. Do not add `graph-metadata.json` to nested workflow packets or surface packets.
@@ -200,6 +201,7 @@ Use the parent-hub path when one public skill identity must dispatch to multiple
 ```text
 parent-hub/
 ├── SKILL.md
+├── README.md
 ├── mode-registry.json
 ├── hub-router.json
 ├── ROUTER.md                   # stage-two control; stage1-only on a fresh scaffold
@@ -217,11 +219,13 @@ parent-hub/
 │       └── <YYYY-MM-DD>--<subject>--<variant>/
 ├── workflow-packet/
 │   ├── SKILL.md
+│   ├── ROUTER.md
 │   ├── README.md
 │   ├── procedures/       (optional - only if the packet has multiple distinct, triggered procedures)
 │   └── changelog/
 └── surface-packet/
     ├── SKILL.md
+    ├── ROUTER.md
     ├── README.md
     ├── references/
     ├── assets/

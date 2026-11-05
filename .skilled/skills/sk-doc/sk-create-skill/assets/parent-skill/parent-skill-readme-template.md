@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Parent Skill Hub README Template
@@ -31,6 +31,11 @@ version: 1.3.1.0
 
 ## 2. OVERVIEW
 
+### What It Does
+
+A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
+Use the two example hubs to check structure.
+
 ### Why This Template Exists
 
 A parent hub routes related packets through one identity. Its README gives people a quick map of modes, files and commands.
@@ -38,11 +43,6 @@ Use this template to build that map.
 
 Use this template when you have a hub folder with packets, a registry and a manifest.
 It gives you a README structure and stable relative links.
-
-### What It Does
-
-A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
-Use the two example hubs to check structure.
 
 ### When To Write A Hub README
 
@@ -229,7 +229,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 Run the sk-doc readme validator on this file:
 
 ```bash
-python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type readme
+python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/[hub-name]/README.md --type readme
 ```
 
 [Expected: zero issues. The validator enforces the numbered ALL-CAPS OVERVIEW section.]
@@ -237,7 +237,7 @@ python3 .skilled/skills/sk-doc/scripts/validate_document.py README.md --type rea
 Run this check. It passes when it finds no em dashes or semicolons:
 
 ```bash
-! rg -n '\x{2014}|\x{3B}' README.md
+! rg -n '\x{2014}|\x{3B}' .skilled/skills/[hub-name]/README.md
 ```
 
 [Keep zero Oxford commas, zero banned words and zero setup phrases in the prose as well. Optional extra: run the parent-skill check to prove the whole hub shape.]

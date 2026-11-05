@@ -9,7 +9,7 @@ trigger_phrases:
   - "vocabulary class ownership"
 importance_tier: important
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Parent Hub Router Schema
@@ -35,7 +35,7 @@ Schema reference for `hub-router.json`, the routing brain a thin parent hub uses
 
 ## 2. FILE SHAPE
 
-`hub-router.json` has four top-level fields:
+`hub-router.json` has five top-level fields:
 
 ```json
 {
@@ -295,7 +295,7 @@ If the next-ranked mode is within `routerPolicy.ambiguityDelta` of the winner, t
 
 All resource paths must be hub-root-relative and packet-qualified.
 
-| Good | Problem if omitted |
+| Good | Why it works |
 | --- | --- |
 | `sk-code-review/SKILL.md` | The router can load the selected packet contract directly. |
 | `sk-code-ci/references/workflow-verify.md` | Surface evidence stays under the owning surface packet. |
@@ -336,7 +336,17 @@ It validates:
 
 Treat check 5 warnings as schema drift. The parent hub may still route during migration, but the published contract is the shape above.
 
-`parent-skill-check` check 12 is the enforcement point for the `ROUTER.md` contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, the root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code. The gate runs for a hub root, a standalone skill root and every mode packet a hub declares, and its messages name the skill it checked. A standalone skill or a packet declares `router_state: active`, because `stage1-only` is a hub state with no mode registry to stage against, and it is held to the maps it declares rather than to the hub's pair. Three deliberate patterns are open to it and closed to a hub: it may name its intent map `INTENT_MODEL`, or declare both intent names, in which case the two must mirror each other in keys and keywords; it may route by pseudocode alone with no map at all, which suits a skill that loads its whole reference set on any match; and its `RESOURCE_MAP` may omit a key, or map it to an empty list, only when `NO_LOAD_INTENTS` names that key. A markdown file at the router's own root, which no leaf manifest lists, is routable when `ROOT_RESOURCES` declares it and a `RESOURCE_MAP` entry references it, because such a file must exist in the router's own folder. [skill-router-template.md](../../assets/skill/skill-router-template.md) is the authored form of this paragraph.
+`parent-skill-check` check 12 is the enforcement point for the `ROUTER.md` contract: the shared `root-router-contract.cjs` library validates the state declaration, stage-two map shape, the root `SKILL.md` pointer, legacy coexistence, and typed leaf membership, and every failure reports a stable RRC code. The gate runs for a hub root, a standalone skill root and every mode packet a hub declares, and its messages name the skill it checked.
+
+A standalone skill or a packet declares `router_state: active`, because `stage1-only` is a hub state with no mode registry to stage against, and it is held to the maps it declares rather than to the hub's pair.
+
+Three deliberate patterns are open to it and closed to a hub:
+
+- It may name its intent map `INTENT_MODEL`, or declare both intent names, in which case the two must mirror each other in keys and keywords.
+- It may route by pseudocode alone with no map at all, which suits a skill that loads its whole reference set on any match.
+- Its `RESOURCE_MAP` may omit a key, or map it to an empty list, only when `NO_LOAD_INTENTS` names that key.
+
+A markdown file at the router's own root, which no leaf manifest lists, is routable when `ROOT_RESOURCES` declares it and a `RESOURCE_MAP` entry references it, because such a file must exist in the router's own folder. [skill-router-template.md](../../assets/skill/skill-router-template.md) is the authored form of this paragraph.
 
 ---
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "create doctor shared vocabulary"
 importance_tier: normal
 contextType: implementation
-version: 1.2.0.3
+version: 1.2.1.0
 ---
 
 # Advisor Index Handoff
@@ -20,12 +20,12 @@ The shared field vocabulary that `/create:skill`, `/create:skill-parent`, `/doct
 
 ## 1. OVERVIEW
 
-**Core Principle**: One vocabulary, not one formatter. Create and doctor are separate prompt-asset workflows with genuinely different result shapes (create reports a scaffold; doctor reports a mutating, phase-gated diagnostic run) — see `research.md` Theme F1/F2 in `035-create-doctor-skill-advisor-alignment/001-research/`. What must stay identical across both is the field names, the metadata-ownership statements, and the verification-state enum below, not the surrounding prose or layout.
-
 **When to Use**:
 - Wiring a create or doctor workflow asset's completion/report section (A5 in `002-core-alignment-fixes/plan.md`)
 - Writing a contract test that pins the shared vocabulary across adapters (A6)
-- Deciding whether a given create branch renders the full handoff or the narrow leaf-freshness signal only (§4)
+- Deciding whether a given create branch renders the full handoff or the narrow leaf-freshness signal only (§6)
+
+**Core Principle**: One vocabulary, not one formatter. Create and doctor are separate prompt-asset workflows with genuinely different result shapes (create reports a scaffold; doctor reports a mutating, phase-gated diagnostic run) — see `research.md` Theme F1/F2 in `035-create-doctor-skill-advisor-alignment/001-research/`. What must stay identical across both is the field names, the metadata-ownership statements, and the verification-state enum below, not the surrounding prose or layout.
 
 > **Advisor refresh is always operator-owned.** No `/create:*` or `/doctor:*` workflow calls `skill_graph_scan` or `advisor_rebuild` as a side effect of scaffolding or diagnosing a skill. Every workflow that touches a skill root reports refresh status as `NOT RUN` and prints the exact command the operator would run — never chains it automatically (research.md Theme B1/B7, "Questions Answered").
 >

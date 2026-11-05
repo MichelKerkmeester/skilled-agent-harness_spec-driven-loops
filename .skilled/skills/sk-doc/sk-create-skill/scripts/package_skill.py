@@ -236,6 +236,12 @@ MARKDOWN_LINK_TARGET_RE = re.compile(r'(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)')
 # types, so the listed shape is tolerated while a new finding is not. The ledger
 # may only shrink: an entry comes out as its docs are fixed and never gets added
 # or raised to excuse a new finding.
+# A doc whose exact text code depends on is a different case: a reducer that
+# writes its headings verbatim, a generator that renders it, or an orchestrator
+# that sends it whole as a prompt. Reshaping it to the render canon would change
+# runtime behavior, so the ledger's `exempt` map lists each such file with the
+# code that reads or produces it, and the render check skips it. An entry whose
+# named code file no longer exists exempts nothing.
 RENDER_DEBT_FILE_ENV = 'RENDER_DEBT_FILE'
 RENDER_DEBT_PATH = Path(__file__).resolve().parent / 'render-known-debt.json'
 RENDER_SKILLS_ROOT_ENV = 'RENDER_SKILLS_ROOT'
@@ -871,6 +877,50 @@ def load_render_debt() -> Dict[str, Dict[str, Any]]:
     return debt
 
 
+def _render_skills_root() -> Path:
+    """Return the skills root that ledger keys and exempt paths are relative to."""
+    override = os.environ.get(RENDER_SKILLS_ROOT_ENV)
+    return Path(override).resolve() if override else Path(__file__).resolve().parents[3]
+
+
+def load_render_exempt() -> Dict[str, str]:
+    """Read the ledger's `exempt` map as file path to the code file that depends on it.
+
+    Both paths are relative to the skills root. An entry is kept only when it
+    names a `consumer` and a `reason` and that consumer file exists, so a stale
+    or malformed entry exempts nothing and the check stays at its strictest.
+    """
+    path = Path(os.environ.get(RENDER_DEBT_FILE_ENV) or RENDER_DEBT_PATH)
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError):
+        return {}
+    entries = data.get('exempt') if isinstance(data, dict) else None
+    if not isinstance(entries, dict):
+        return {}
+
+    root = _render_skills_root()
+    exempt: Dict[str, str] = {}
+    for doc, entry in entries.items():
+        if not isinstance(entry, dict) or set(entry) != {'consumer', 'reason'}:
+            continue
+        consumer, reason = entry['consumer'], entry['reason']
+        if not isinstance(consumer, str) or not isinstance(reason, str) or not reason.strip():
+            continue
+        # A consumer outside the skills root proves nothing about a skill doc.
+        if Path(consumer).is_absolute():
+            continue
+        consumer_path = (root / consumer).resolve()
+        try:
+            consumer_path.relative_to(root)
+        except ValueError:
+            continue
+        if not consumer_path.is_file():
+            continue
+        exempt[str(doc)] = consumer
+    return exempt
+
+
 def _render_debt_key(skill_path: Path) -> Optional[str]:
     """Return the known-debt key for a skill, or None when it sits outside the skills root.
 
@@ -878,8 +928,7 @@ def _render_debt_key(skill_path: Path) -> Optional[str]:
     only shares a debt skill's basename is not read as that skill, and a None
     key never matches a ledger entry.
     """
-    override = os.environ.get(RENDER_SKILLS_ROOT_ENV)
-    root = Path(override).resolve() if override else Path(__file__).resolve().parents[3]
+    root = _render_skills_root()
     try:
         relative = Path(skill_path).resolve().relative_to(root)
     except ValueError:
@@ -900,7 +949,14 @@ def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
     from validate_document import validate_document as shared_validate_document
 
     findings: List[Dict[str, Any]] = []
+    exempt = load_render_exempt()
+    root = _render_skills_root()
     for file, _subtree in _iter_subtree_markdown(skill_path, RESOURCE_DOC_SUBTREES):
+        try:
+            if Path(file).resolve().relative_to(root).as_posix() in exempt:
+                continue
+        except ValueError:
+            pass
         result = shared_validate_document(str(file))
         for finding in result.get('blocking_errors', []) + result.get('warnings', []):
             if not isinstance(finding, dict):

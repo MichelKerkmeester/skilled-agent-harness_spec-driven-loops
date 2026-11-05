@@ -8,7 +8,7 @@ trigger_phrases:
   - "hub versus standalone skill class"
 importance_tier: normal
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Skill Root Metadata Contract
@@ -21,12 +21,12 @@ Which root-level metadata JSON files a skill root must, may, and must not carry,
 
 A skill root carries up to nine metadata JSON files. Which of them apply is not a per-skill preference: it follows from the root's **class**, and the class follows from one authored declaration.
 
-**Core Principle**: Classify first, then check. A root's class is decided by an authored declaration, never by a generated artifact.
-
 **When to Use**:
 - Creating a new skill or parent hub and deciding which metadata files to write
 - Auditing an existing root, or diagnosing a `ci-skill-root-metadata` failure
 - Deciding whether a metadata file may be generated or must be authored
+
+**Core Principle**: Classify first, then check. A root's class is decided by an authored declaration, never by a generated artifact.
 
 > **Not the spec-folder schema.** `description.json` and `graph-metadata.json` also exist under `.opencode/specs/` under a completely separate continuity schema. The two are never the same file and never interchangeable. This contract governs `.skilled/skills/<root>/` only, and the gate never scans the spec tree.
 
@@ -78,7 +78,7 @@ No production consumer reads a skill-root `description.json`. The advisor ingest
 
 ### Why `command-metadata.json` is hub-optional
 
-A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the standard was set in `sk-doc/019-skill-routing-refactor/021-skill-metadata-json-unification`.
+A command surface exists only for hubs that actually ship slash commands, so the file is **optional** for hubs: present (and validated) when the hub owns commands, simply absent when it owns none. Requiring it fleet-wide forced command-less hubs to carry an empty-array placeholder nothing reads, so the rule was reversed to optional — the authority is the class contract module (`scripts/lib/skill-root-metadata-contract.cjs`, where `command-metadata.json` sits in `OPTIONAL_BY_CLASS[CLASS_HUB]`, not the required set), and the metadata JSON unification change set established that standard.
 
 When present, the fleet gate validates each entry's core schema (`command`, `ownerMode`, `description`, `argumentHint`, `userIntent`, `choreography`) against the hub's own registry and the disk: owner modes must exist in `mode-registry.json`, choreography resources must resolve, the command's definition file must exist under `.skilled/commands/`, and owned routing signals must be unique across the file. Entries may carry hub-specific extension fields beyond the core (the design hub's register policies and task projections, for example); unknown fields are legal so richer per-hub validators can layer on top. The core schema lives in `scripts/lib/command-metadata-schema.cjs`.
 
@@ -134,8 +134,18 @@ Beyond presence and forbidden files, the gate enforces:
 - **Generated freshness.** Every class-required generated file is regenerated and byte-compared, including when the committed file is absent.
 - **Command-metadata core schema (hubs).** Entries are validated against the registry and the disk; violations surface as `COMMAND_METADATA_*` codes naming the offending command.
 - **Optional surface detection block.** `graph-metadata.json` may carry a `surface_detection` object. When the key is present, the value must be an object. It needs a non-blank `label` and a `role` of `specific`. It also needs at least one non-empty marker array among `pathMarkers`, `fileMarkers` and `contentMarkers`. Each marker array that is present must hold only non-blank strings. Every broken rule reports one `GRAPH_METADATA_INVALID_SURFACE_DETECTION` finding, since the surface detectors would otherwise skip the block without a word.
-- **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row names its checklist file in `file`, a relative `.md` path inside the skill root, and scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot. A row carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included. Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word. A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
-- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings. `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays. A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename. An `intent_signals` entry no router declares is hand-curated: it never appears in `intent_signals_generated`, so it is never an orphan. A phrase a router does declare is recorded on the hub's first `--write`, so a later router rename prunes it unless `intent_signals_keep` pins it. A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
+- **Optional quality block.** `graph-metadata.json` may carry a `quality` object naming the checklists the skill's surface applies. It holds one key, `checklists`, a non-empty array of rows. Each row:
+  - names its checklist file in `file`, a relative `.md` path inside the skill root
+  - scopes it with at least one selector: `paths`, `extensions` or `contentMarkers`. Every selector present must be a non-empty array of non-blank strings, and an `extensions` entry must start with a dot.
+  - carries checklists only, because commands come from the repository's quality config and never from a skill, so any other key at block or row level is refused, `argv`, `command` and `run` included
+  - Every broken rule reports one finding under the quality code in the table below, since the quality runner reads these rows for the files that resolve to the skill's surface, and a block the gate let through would otherwise cover no file, or the wrong one, without a word.
+  - A block contributes nothing unless the same file also declares a `surface_detection`, because that surface is what resolves a file to these rows.
+- **Optional signal-provenance lists.** `graph-metadata.json` may carry `intent_signals_generated` and `intent_signals_keep`, each an array of non-blank strings.
+  - `generate-router-intent-signals.cjs --write` appends every phrase it adds to `intent_signals_generated`, so an entry there that no router declares any more is an orphan: `--check` reports and counts it, and `--write` removes it from both arrays while keeping the order of what stays.
+  - A phrase named in `intent_signals_keep` is left in place, which is how a generated phrase survives a router rename.
+  - An `intent_signals` entry no router declares is hand-curated: it never appears in `intent_signals_generated`, so it is never an orphan.
+  - A phrase a router does declare is recorded on the hub's first `--write`, so a later router rename prunes it unless `intent_signals_keep` pins it.
+  - A present list that holds anything but non-blank strings reports one `GRAPH_METADATA_INVALID_SIGNAL_LIST` finding.
 
 ### Violation codes
 
@@ -164,7 +174,7 @@ The gate also prints one non-failing note, `INTENT_SIGNALS_TRIGGER_RECONCILIATIO
 
 ## 6. ADDING A ROOT
 
-**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix below and does not affect class-H classification.
+**A new hub (H):** author `SKILL.md`, `graph-metadata.json`, `description.json`, `mode-registry.json`, and `hub-router.json`, and — only if the hub ships slash commands — `command-metadata.json` (one entry per owned command; omit the file when the hub owns none). Run `--fix` to generate the manifest. Author `leaf-aliases.json` only if a mode genuinely resolves a resource outside its own packet. Add the root `ROUTER.md` stage-two control document per the two-state contract (see [parent-hub-router-schema.md](../parent-skill/parent-hub-router-schema.md)); it is a markdown companion outside the JSON matrix above and does not affect class-H classification.
 
 **A new standalone skill (S):** author `SKILL.md`, `graph-metadata.json`, and `leaf-manifest.config.json` — that config is the single declaration that names the workflow mode and the leaf roots. Add `leaf-scopes.json` only when a configured leaf root must be narrowed to a subtree or a named set of docs. Run `--fix` to generate the manifest and the alias projection.
 
@@ -172,7 +182,7 @@ A standalone root therefore needs exactly one authored metadata file beyond iden
 
 ### Templates
 
-Every authored file except `leaf-scopes.json` has a scaffold under `create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
+Every authored file except `leaf-scopes.json` has a scaffold under `sk-create-skill/assets/`; the two generated files deliberately have none — hand-editing them is what the freshness gate exists to catch. For the scope file, copy the shape from a shipped root.
 
 | File | Class | Template |
 | --- | --- | --- |

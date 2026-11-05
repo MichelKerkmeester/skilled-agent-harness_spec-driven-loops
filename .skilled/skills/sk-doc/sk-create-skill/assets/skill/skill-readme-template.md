@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # Skill README Template
@@ -122,7 +122,12 @@ Every README this template produces must pass the Human Voice Rules. The full ru
 
 ### Banned Forms
 
-The banned forms are: em dashes (U+2014), semicolons (U+003B), Oxford commas (a comma before the final and or or in a list), the hard-blocker words listed below and forced three-item groups.
+The banned forms are:
+- em dashes (U+2014)
+- semicolons (U+003B)
+- Oxford commas (a comma before the final and or or in a list)
+- the hard-blocker words listed below
+- forced three-item groups
 
 ### Scripted Checks
 
@@ -342,7 +347,7 @@ Pass criteria in full:
 | 10 | Optional problem context names the reader's current problem and the skill's outcome in two to four short sentences. |
 | 11 | Skills with more than one step in HOW IT WORKS carry a Mermaid diagram. A single-step utility skill is exempt. |
 
-> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the nine checks above.
+> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the eleven checks above.
 
 ---
 

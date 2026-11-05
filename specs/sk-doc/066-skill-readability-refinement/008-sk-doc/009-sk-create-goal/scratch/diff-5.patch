@@ -1,0 +1,12 @@
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md b/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+index dbd6aa40a7..0ee1e74853 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/references/budget-and-handoff.md
+@@ -102,6 +102,6 @@ The table records each runtime's role and what the repository evidence can estab
+ 
+ ## 6. FIXED TEMPLATE COST
+ 
+-Measured on the unfilled blocks, the fixed text costs 1,624 durable characters for a phase parent, 1,004 for a top-level goal and 956 for a phase child. Most of that is placeholders and, for a parent, the binding rules. A live packet records its own count in its log, not here.
++Measured on the unfilled blocks, the fixed text costs 2,085 durable characters for a phase parent, 1,301 for a top-level goal and 1,253 for a phase child. Most of that is placeholders, fill guidance and, for a parent, the binding rules. A live packet records its own count in its log, not here.
+ 
+ The fixed-text cost is an authoring constraint. If a goal still cannot meet the contract after the section 3 cuts, raise the gap to system-spec-kit as an amendment.

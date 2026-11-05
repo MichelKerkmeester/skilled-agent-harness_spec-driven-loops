@@ -9,7 +9,7 @@ trigger_phrases:
   - "remove repo parent skill"
 importance_tier: normal
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Upgrading a Customized Skill to v4
@@ -22,13 +22,13 @@ Adopters who customized `sk-code` (their stack) or `sk-git` (their conventions) 
 
 v4 reshaped `sk-code` into a parent hub: one advisor identity that dispatches to nested workflow-mode packets and read-only surface packets. `sk-git` stayed a single skill. This file is the adopter-facing path for reconciling a customized copy with that split.
 
-**Core Principle**: Convert a skill into a parent hub only when it has two or more distinct jobs. Keep it single when it has one job. You may also drop the repo's parent `sk-code` and keep your own single skill.
-
 **When to Use**:
 - You customized `sk-code` or `sk-git` and a framework update now ships a different shape
 - You are deciding whether a flat skill should become a parent hub
 - You want to keep a customized skill single and avoid a false migration
 - You have a single skill in a plain or older Skilled shape, and you want it converted in place so it passes the format gate
+
+**Core Principle**: Convert a skill into a parent hub only when it has two or more distinct jobs. Keep it single when it has one job. You may also drop the repo's parent `sk-code` and keep your own single skill.
 
 **When not to Use**:
 - You are creating a brand-new skill from scratch. Use `/create:skill` or `/create:skill-parent` directly. See [creation-workflow.md](creation-workflow.md) and [parent-skills-nested-packets.md](../parent-skill/parent-skills-nested-packets.md)
@@ -95,7 +95,11 @@ Keep it single if git work stays one job (worktree, commit, finish under one con
 
 ## 4. CONVERT A SINGLE SKILL INTO A PARENT HUB
 
-Use existing tooling only. `/create:skill-parent` is the scaffold. `create` will not write on top of an occupied folder (`requires_existing_skill: false`). There is no in-place `--convert` flag here, because converting a skill into a hub is a scaffold-then-move, not an edit. A single skill does convert through `/doctor:sk-skill convert`, in place when it is an older Skilled skill and as a staged new root when it is a plain one, and that command refuses a hub candidate so a skill that really holds two jobs lands here.
+Use existing tooling only.
+- `/create:skill-parent` is the scaffold.
+- `create` will not write on top of an occupied folder (`requires_existing_skill: false`).
+- There is no in-place `--convert` flag here, because converting a skill into a hub is a scaffold-then-move, not an edit.
+- A single skill does convert through `/doctor:sk-skill convert`, in place when it is an older Skilled skill and as a staged new root when it is a plain one, and that command refuses a hub candidate so a skill that really holds two jobs lands here.
 
 The command requires `@markdown` for template-first generation. Restart with that prefix if the self-check blocks.
 
@@ -199,7 +203,14 @@ Stay on class S when the skill still has one job.
 
 A standalone root keeps `SKILL.md`, `ROUTER.md`, `graph-metadata.json`, and `leaf-manifest.config.json`. Its `SKILL.md` links to `./ROUTER.md`. It must not gain `mode-registry.json`, `hub-router.json`, `description.json`, or `command-metadata.json`. Repair that package with `/create:skill <skill-name> full-update` (or `reference-only` / `asset-only` for a scoped add). `/create:skill <skill-name> full-create` is only for a folder that does not exist yet.
 
-**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes. It adds the four-part `version`, writes an `allowed-tools` list only after you approve the list its plan proposes, moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing. A plain skill is staged under its own name as a new root once you approve at least eight intent phrases, and the workflow proves the reshaped prose kept every original body line. The write stops and restores the pre-edit bytes when the parsed router would come out different. Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
+**Convert a single skill in place.** When the skill has one job and is still in a plain shape, or its machine router still sits inside `SKILL.md`, run `/doctor:sk-skill convert <name-or-path>`. It prints the plan first and writes only after your yes.
+- It adds the four-part `version`.
+- It writes an `allowed-tools` list only after you approve the list its plan proposes.
+- It moves the machine router section verbatim into the sibling `ROUTER.md` and links to it from Smart Routing.
+- It stages a plain skill under its own name as a new root once you approve at least eight intent phrases, and the workflow proves the reshaped prose kept every original body line.
+- It stops and restores the pre-edit bytes when the parsed router would come out different.
+
+Run `/doctor:sk-skill check <name-or-path>` first if you want the gap row by row without any write.
 
 **Failure this prevents:** a hand conversion that passes the format gate but drops a routing intent, or one that leaves the skill with no `ROUTER.md` at all.
 

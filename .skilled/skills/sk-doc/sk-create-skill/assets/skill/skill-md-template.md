@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -38,7 +38,7 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
 - **All skills**: Section 2 (SMART ROUTING) is required: 8 to 12 non-blank lines of plain prose
 
-**Target size**: 800-2000 lines for SKILL.md (<5k words total)
+**Target size**: 800-2000 lines total, with SKILL.md under 1000 lines and the rest in bundled resources (<5k words total)
 
 **Examples**:
 - Simple: Unit test generator, documentation formatter (no bundled resources)
@@ -142,7 +142,7 @@ version: 1.0.0.0
 
 <!-- Keywords: [KEYWORDS] -->
 
-# [Skill Title - Comprehensive Name]
+\# [Skill Title - Comprehensive Name]
 
 [One-sentence tagline followed by key capabilities overview]
 

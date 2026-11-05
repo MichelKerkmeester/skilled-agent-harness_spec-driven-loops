@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Examples and Maintenance
@@ -22,12 +22,12 @@ Concrete example skill layouts to model new skills on, plus the workflow for kee
 
 This reference pairs worked example skills with the ongoing maintenance workflow. The examples show how anatomy and bundled resources come together for real skill types; the maintenance section covers when and how to update and version a skill.
 
-**Core Principle**: A skill is never "done" — model new skills on proven layouts, then iterate from real usage.
-
 **When to Use**:
 - Looking for a concrete layout to model a new skill on
 - Deciding whether an existing skill needs an update
 - Choosing a version bump (major/minor/patch) for a skill change
+
+**Core Principle**: A skill is never "done" — model new skills on proven layouts, then iterate from real usage.
 
 **Key Sources**:
 - [overview.md](../shared/overview.md) - skill anatomy these examples instantiate
@@ -45,6 +45,7 @@ This reference pairs worked example skills with the ongoing maintenance workflow
 ```
 pdf-editor/
 ├── SKILL.md
+├── ROUTER.md
 ├── scripts/
 │   ├── rotate_pdf.py
 │   ├── crop_pdf.py
@@ -73,6 +74,7 @@ pdf-editor/
 ```
 brand-guidelines/
 ├── SKILL.md
+├── ROUTER.md
 ├── assets/
 │   ├── logo.png
 │   ├── logo-dark.png
@@ -101,6 +103,7 @@ brand-guidelines/
 ```
 database-query/
 ├── SKILL.md
+├── ROUTER.md
 └── references/
     ├── schema.md
     └── common-queries.md
@@ -124,6 +127,7 @@ database-query/
 ```
 pdf-editor/
 ├── SKILL.md
+├── ROUTER.md
 ├── scripts/
 │   ├── rotate_pdf.py
 │   ├── crop_pdf.py
@@ -143,7 +147,7 @@ pdf-editor/
 - `references/procedures/digital-signature-verification.md` - private card
 - `references/procedures/batch-annotation-cleanup.md` - private card
 
-**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has two workflow modes and one transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. The shared schema lives at `sk-design/shared/procedure-card-schema.md`.
+**Real-world precedent**: `sk-design` is an illustrative hub-scale example. Its current registry has four workflow modes and no transport packet; consult `sk-design/mode-registry.json` before copying its procedure-card topology. `sk-design/sk-design-md-generator/procedures/` holds the card layout this template generalizes from.
 
 ---
 
@@ -178,7 +182,11 @@ pdf-editor/
 
 **Bump the release version**:
 
-Bump with `/create:changelog`, which writes the changelog entry and sets the new version in every carrier the skill root already has: SKILL.md, and for a hub description.json, hub-router.json and mode-registry.json. README.md and a hub ROUTER.md keep their own document versions. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
+Bump with `/create:changelog`. It writes the changelog entry and sets the new version in every carrier the skill root already has:
+- SKILL.md
+- for a hub, description.json, hub-router.json and mode-registry.json
+
+README.md and a hub ROUTER.md keep their own document versions. For a hub, `node .skilled/commands/doctor/scripts/parent-skill-check.cjs <hub-root>` then confirms every copy matches.
 
 ```yaml
 ---

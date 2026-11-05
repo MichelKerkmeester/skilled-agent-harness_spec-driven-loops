@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.5.0
+version: 1.2.6.0
 ---
 
 # create-skill
@@ -26,13 +26,13 @@ version: 1.2.5.0
 
 ## 2. OVERVIEW
 
-### Why This Skill Exists
-
-Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter rules, section order, routing pseudocode and validation gates every single time. The drift shows up as skills that skip a required field, use the wrong version format, bury routing logic where the advisor can never find it or miss a validation gate entirely. A parent hub multiplies that risk across a registry, a router and however many nested packets, all of which have to agree with each other or the hub silently misroutes. create-skill exists to scaffold both shapes from vetted templates and then prove the result is valid before anyone calls it done.
-
 ### What It Does
 
 create-skill runs one of two workflow modes from a single packet. `create-skill` scaffolds a standalone skill with its own advisor identity, `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`, built with `scripts/init_skill.py` and normalized to this repo's section order. `create-skill-parent` scaffolds a parent hub that dispatches to nested workflow or surface packets, with `mode-registry.json` and `hub-router.json` at the hub root and `graph-metadata.json` only there, never inside a nested packet. Both modes end at the same gate: `scripts/validate_skill_package.py` must exit clean before `scripts/package_skill.py` runs. It does not audit or improve an existing skill's prose quality once the skill already exists and only needs review. That is `create-quality-control`.
+
+### Why This Skill Exists
+
+Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter rules, section order, routing pseudocode and validation gates every single time. The drift shows up as skills that skip a required field, use the wrong version format, bury routing logic where the advisor can never find it or miss a validation gate entirely. A parent hub multiplies that risk across a registry, a router and however many nested packets, all of which have to agree with each other or the hub silently misroutes. create-skill exists to scaffold both shapes from vetted templates and then prove the result is valid before anyone calls it done.
 
 ### The Two Workflow Modes
 
@@ -54,7 +54,7 @@ create-skill runs one of two workflow modes from a single packet. `create-skill`
 python3 .skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --path .skilled/skills
 ```
 
-`init_skill.py` creates `my-skill/` with `SKILL.md` and two prepared trees: a `manual-testing-playbook/` corpus index and a `benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and `scripts/` are added by hand as the skill earns them.
+`init_skill.py` creates `my-skill/` with `SKILL.md`, `ROUTER.md` and two prepared trees: a `manual-testing-playbook/` corpus index and a `benchmark/reports/` tree carrying its own run index. `README.md`, `references/`, `assets/` and `scripts/` are added by hand as the skill earns them.
 
 **Step 2: Fill in the real content, then validate.**
 
@@ -69,6 +69,8 @@ Expected output ends with `package_skill.py --check: PASS (exit 0)`.
 ```bash
 python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled/skills/<skill-name> <output-directory>
 ```
+
+Expected: ✅ Successfully packaged <file-count> files to: <output-directory>/<skill-name>.zip
 
 ---
 
@@ -147,13 +149,15 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 
 ## 8. VERIFICATION
 
+Run every command in this table from the repository root.
+
 | Check | How to run it | Pass looks like |
 |---|---|---|
 | README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md --type readme` | Reports zero issues |
-| Package completion | `python3 scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
-| Strict contract check | `python3 scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
-| Structure extraction | `python3 ../shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
-| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 22` and `fail 0` |
+| Package completion | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
+| Strict contract check | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
+| Structure extraction | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
+| Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 26` and `fail 0` |
 
 ---
 
@@ -167,7 +171,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
 | [`assets/skill/skill-readme-template.md`](./assets/skill/skill-readme-template.md) | Standalone skill README scaffold, the template this file was written from |
 | [`assets/skill/skill-router-template.md`](./assets/skill/skill-router-template.md) | Sibling `ROUTER.md` scaffold for a standalone skill or mode packet |
 | [`assets/parent-skill/parent-skill-hub-template.md`](./assets/parent-skill/parent-skill-hub-template.md) | Parent hub `SKILL.md` scaffold |
-| [`references/README.md`](./references/README.md) | Route map into the `skill/` and `parent-skill/` reference groups |
+| [`references/README.md`](./references/README.md) | Route map into the `shared/`, `skill/` and `parent-skill/` reference groups |
 | [`references/skill/upgrading-a-skill-to-v4.md`](./references/skill/upgrading-a-skill-to-v4.md) | Adopter guide: reconcile a customized skill to the v4 parent-hub format |
 | [`scripts/init_skill.py`](./scripts/init_skill.py) | Scaffold helper for new standalone or parent-hub folders |
 | [`scripts/package_skill.py`](./scripts/package_skill.py) | Validation and packaging helper |
