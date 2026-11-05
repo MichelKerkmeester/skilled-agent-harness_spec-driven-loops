@@ -7,12 +7,12 @@ trigger_phrases:
   - "single writer lease"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Daemon Lease Contract
 
-Workspace single-writer lease semantics for the freshness daemon: lifecycle, contention recovery, stale lease handling, failure modes.
+Open this when two advisor processes collide on one workspace, when a lease file outlives its owner or when a `SQLite` busy failure needs explaining.
 
 ---
 

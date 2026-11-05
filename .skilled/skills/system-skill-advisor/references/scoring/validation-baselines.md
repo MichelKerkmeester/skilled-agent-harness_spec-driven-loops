@@ -7,12 +7,12 @@ trigger_phrases:
   - "advisor_validate troubleshooting"
 importance_tier: "normal"
 contextType: "research"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Validation Baselines + Troubleshooting
 
-Baseline metrics for advisor_validate (corpus, holdout, UNKNOWN, daemon, cache latency) plus the troubleshooting playbook when a slice regresses.
+Open this when release validation runs after a scorer, metadata or graph change, or when one slice fails and the next move is unclear.
 
 ---
 

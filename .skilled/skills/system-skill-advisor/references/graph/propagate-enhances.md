@@ -7,12 +7,12 @@ trigger_phrases:
   - "enhances edge propagation"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Skill Graph Propagate Enhances Tool
 
-Internal advisor command for detecting and optionally applying missing inbound enhances edges across skills.
+Open this when a trusted caller needs to audit or apply inbound `enhances` edges that no skill metadata declares, and to confirm why the helper stays internal.
 
 ---
 

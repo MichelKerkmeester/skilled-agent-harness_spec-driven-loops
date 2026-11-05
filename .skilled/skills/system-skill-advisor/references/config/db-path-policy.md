@@ -7,12 +7,12 @@ trigger_phrases:
   - "advisor database policy"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # System Skill Advisor DB Path Policy
 
-Policy for the package-local skill graph SQLite database path required by ADR-001 constraint A.
+Open this when you need to confirm where `skill-graph.sqlite` must live, or when a launcher change or an override proposal puts that location in question.
 
 ---
 

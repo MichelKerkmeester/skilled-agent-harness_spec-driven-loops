@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.13.0
+version: 0.12.14.0
 ---
 
 # system-skill-advisor
@@ -16,7 +16,9 @@ version: 0.12.13.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 0.12.13.0
 | **Invoke with** | "which skill should handle this", "route this request", "advisor_recommend", automatic Gate 2 routing |
 | **Works on** | Non-trivial prompts, scored against indexed skill metadata and a SQLite skill graph |
 | **Produces** | Ranked skill recommendations with per-lane attribution, a trust state and prompt-safe output |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -57,7 +55,7 @@ The single front door is the daemon-backed CLI at `.skilled/bin/skill-advisor.cj
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Check advisor health.**
 
@@ -124,11 +122,11 @@ When no skill answers a setup or health prompt, the fallback names the runnable 
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Fusion and the Options
 
-The advisor scores every prompt against the five lanes from Section 2, each producing its own evidence, then fuses them into one calibrated ranking. Public responses include per-lane contribution labels so hook telemetry stays safe to log without revealing the user's prompt text.
+The advisor scores every prompt against the five lanes from Section 1, each producing its own evidence, then fuses them into one calibrated ranking. Public responses include per-lane contribution labels so hook telemetry stays safe to log without revealing the user's prompt text.
 
 The lane weights live in `runtime/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. The launcher allowlist passes it through to the daemon child. An env change needs a daemon restart to apply. Use the env variable for experiments. Durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change. Ship the diff with doc updates across the feature catalog and the advisor scorer reference.
 
@@ -193,7 +191,7 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -206,7 +204,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -221,7 +219,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why is the advisor a separate daemon?**
 
@@ -245,7 +243,7 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -256,7 +254,7 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -7,12 +7,12 @@ trigger_phrases:
   - "skill-advisor architectural deferrals"
 importance_tier: "normal"
 contextType: "general"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Deferred Decisions (Tier D)
 
-Rationale plus recommendations for deferred findings that require explicit human decision before runtime or structural changes.
+Open this before resolving or retiring a Tier D finding, and when old review history needs its original reasoning back in view.
 
 ---
 

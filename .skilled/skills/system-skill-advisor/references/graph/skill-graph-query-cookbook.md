@@ -7,12 +7,12 @@ trigger_phrases:
   - "advisor graph traversal"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.5
+version: 0.8.1.0
 ---
 
 # Skill Graph Query Cookbook
 
-Worked examples for all 10 query types of skill_graph_query: depends_on, dependents, enhances, enhanced_by, family_members, conflicts, transitive_path, hub_skills, orphans, subgraph.
+Open this when you are writing or testing a graph traversal call, or when a query result needs explaining after a rebuild.
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "prompt isolation safety"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Advisor Scorer: Lane Attribution and Confidence Calibration
 
-Reference for the skill advisor's 5-lane scoring system, lane attribution assembly, confidence thresholds and prompt-safety boundaries.
+Open this when a recommendation scores unexpectedly, and when you need to see which lane moved a result and how much confidence the call earned.
 
 ---
 

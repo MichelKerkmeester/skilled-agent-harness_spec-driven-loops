@@ -7,12 +7,12 @@ trigger_phrases:
   - "skill graph rebuild"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Skill Graph Drift Reconciliation
 
-How to detect plus reconcile drift between the SQLite skill graph state and the live .skilled/skills/*/graph-metadata.json source files.
+Open this when status output looks stale or a metadata edit never reaches query results, and follow the rebuild sequence back to a consistent graph.
 
 ---
 

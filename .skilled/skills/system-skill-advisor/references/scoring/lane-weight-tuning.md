@@ -8,12 +8,12 @@ trigger_phrases:
   - "lane weight sweep"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Lane Weight Tuning Guide
 
-Process, measurement methodology, decision framework, approval gates plus rollback criteria for changing scorer lane weights in system_skill_advisor.
+Open this before proposing a weight change, when comparing slices ahead of promotion or when a promoted weight needs rolling back.
 
 ---
 

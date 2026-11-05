@@ -7,12 +7,12 @@ trigger_phrases:
   - "skill graph migration status"
 importance_tier: "normal"
 contextType: "planning"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Skill Graph Library Extraction Status
 
-Current state and roadmap for lib/skill-graph/ ownership inside system-skill-advisor after migration from system-spec-kit.
+Open this when old docs still credit `system-spec-kit` with skill graph ownership, or when a cleanup risks moving runtime code while only documentation is in scope.
 
 ---
 

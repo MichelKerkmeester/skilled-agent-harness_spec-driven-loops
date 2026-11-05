@@ -8,12 +8,12 @@ trigger_phrases:
   - "daemon contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.2.0
+version: 0.8.3.0
 ---
 
 # Freshness Contract
 
-Formal contract for advisor freshness: trust states, transition rules, consumer obligations, daemon responsibilities plus failure modes.
+Open this before deciding whether to use, rebuild or fall back from an advisor result, and when a state such as `stale` or `unavailable` needs a caller to act.
 
 ---
 

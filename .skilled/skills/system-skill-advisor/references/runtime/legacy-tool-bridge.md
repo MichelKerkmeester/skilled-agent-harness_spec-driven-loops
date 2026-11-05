@@ -7,12 +7,12 @@ trigger_phrases:
   - "stable advisor tool ids"
 importance_tier: "important"
 contextType: "implementation"
-version: 0.8.0.11
+version: 0.8.1.0
 ---
 
 # Legacy Tool Bridge
 
-Compatibility policy for stable advisor_* tool ids during the standalone system-skill-advisor migration.
+Open this before renaming a server or a tool id, and when an old caller still reaches the advisor through a bridge surface.
 
 ---
 

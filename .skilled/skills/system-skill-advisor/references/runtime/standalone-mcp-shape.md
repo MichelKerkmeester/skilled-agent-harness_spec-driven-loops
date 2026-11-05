@@ -7,12 +7,12 @@ trigger_phrases:
   - "advisor standalone boundary"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.0.3
+version: 0.8.1.0
 ---
 
 # Standalone Advisor Shape
 
-Summary of ADR-001 standalone system-skill-advisor topology and migration boundary.
+Open this when a change may cross from documentation into runtime ownership, or when it is unclear which package owns a command, schema, handler or scorer file.
 
 ---
 

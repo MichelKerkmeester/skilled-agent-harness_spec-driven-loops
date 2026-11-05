@@ -8,12 +8,12 @@ trigger_phrases:
   - "tool namespace convention"
 importance_tier: "normal"
 contextType: "implementation"
-version: 0.8.1.0
+version: 0.8.2.0
 ---
 
 # Tool IDs Reference
 
-Reference for the nine stable system-skill-advisor command ids with purposes, input or output schemas and usage signals.
+Open this to confirm the exact command id to call, and before a rename of an id or of a routing doc that a hook depends on.
 
 ---
 
