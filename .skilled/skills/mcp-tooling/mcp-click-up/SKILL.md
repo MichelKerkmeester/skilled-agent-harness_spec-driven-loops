@@ -2,7 +2,7 @@
 name: mcp-click-up
 description: Routes ClickUp between cupt CLI (daily ops) and the hosted MCP (task create, docs, search). Embedded install and safety rules.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 # mcp-click-up Skill
@@ -26,6 +26,8 @@ On the raw ClickUp v2 REST API, `markdown_content` is also accepted on task upda
 **Push shape for a markdown artifact:** the document's H1 becomes the task `name` (drop it from the body); strip internal HTML comments and processing metadata; everything else travels verbatim.
 
 **Failure symptom:** literal `###` or `**` visible in a ClickUp task means someone used the plain `description` field. That is the defect, not a rendering bug.
+
+**Doc page dividers:** a page the server creates or rewrites shows an empty line under every divider, and no MCP call removes it. Check with the `content_format: "text/plain"` read-back, because the markdown read-back cannot show it. Fix it in the ClickUp editor, and tell the user before pushing new pages. Steps: `references/mcp-tools.md` section 8.
 
 Worked examples: `references/mcp-tools.md` (Markdown Transport Contract + invocation patterns).
 

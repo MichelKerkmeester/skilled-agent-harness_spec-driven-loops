@@ -10,9 +10,10 @@ trigger_phrases:
   - "bulk create tasks"
   - "clickup webhooks"
   - "mcp tools"
+  - "clickup doc divider gap"
 importance_tier: "normal"
 contextType: "implementation"
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -65,7 +66,7 @@ Use the **official MCP** for:
 
 Use **cupt** for daily task work: listing your queue, showing a task, completing it with a dry run, notes, timers and tags (see `cupt-commands.md`).
 
-**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, space-tag definitions, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
+**No route on either surface.** The hosted server has no tools for goals or OKRs, bulk task creation or bulk update, webhooks, editing checklists, spaces, views, space-tag definitions, task templates, guests, user groups, audit logs or product feedback. It also has no whole-document read or update. Documents are read and written page by page. No tool deletes a document or a page, so a page the API creates stays until someone deletes it in the ClickUp app (checked 2026-11-05). Run trial writes in one scratch doc and tell the user what to delete. Its operator catalog (`clickup_get_operators`) returned "Enabled operators: none" for workspace `90151466006` on 2026-10-08, so `clickup_execute_operator` adds nothing either. Tell the user the feature is not available rather than routing it anywhere.
 
 Two reads survive for things that cannot be edited: `clickup_get_task` with `include: ["checklists"]` returns a task's checklists, and `include: ["dependencies"]` returns its dependencies.
 
@@ -214,6 +215,8 @@ ClickUp's markdown import has three traps, all observed on 2026-10-08:
 - A numbered list that follows a heading restarts at 1, whatever number the source gives. Escape each number (`3\.`) and leave a blank line between items when the numbers matter.
 - A paragraph directly above a `---` divider becomes a heading. Leave a blank line before the divider.
 
+One more trap has no markdown fix: every divider on a page the server writes shows an empty line under it in the ClickUp app. Section 8 covers how to detect it and how to remove it.
+
 This section describes the `clickup_official` manual only. The claude.ai ClickUp connector and the raw ClickUp v2 REST API were not re-checked on 2026-10-08.
 
 ---
@@ -267,16 +270,37 @@ The schema does not describe return shapes. Log the first response of a tool and
     create_page: false,
   });
   const page = await clickup_official.clickup_official_clickup_create_document_page({
-    document_id: doc.id,
+    document_id: doc.document_id,
     name: "What went well",
     content: "- Shipped on time\n- Clear handoffs",
     content_format: "text/md",
   });
-  console.log(JSON.stringify({ doc_id: doc.id, page }));
+  console.log(JSON.stringify({ doc_id: doc.document_id, page_id: page.page_id }));
 })();
 ```
 
+The IDs come back under their own names, checked 2026-11-05: `clickup_create_document` returns `document_id` and `document_url`, `clickup_create_document_page` returns `page_id`, and `clickup_get_document_pages` returns `{ pages: [{ id, name, content, date_updated, ... }] }`.
+
 To change an existing page, read it first with `clickup_get_document_pages`, then call `clickup_update_document_page`. Its default `content_edit_mode` is `replace`, which overwrites the whole page. `append` and `prepend` keep the existing content. In a ClickUp doc URL, the first ID after `/v/dc/` or `/docs/` is the `document_id` and the second is the `page_id`.
+
+### Divider spacing on pages the server writes
+
+Every divider the server writes gets an empty line under it, so a page built from markdown with `* * *` dividers shows a double gap below each one. Observed on 2026-11-05 across 65 pages:
+- It happens on `clickup_create_document_page`, and on `clickup_update_document_page` in `replace` and `append` mode, for every divider spelling: `* * *`, `---`, `***`, `___` and `- - -`. Blank lines around the divider change nothing, and a raw `<hr>` arrives as literal text.
+- A page whose dividers were made in the ClickUp editor keeps them tight, and a `replace` on such a page wrote a new divider tight as well. The gap comes from a page built from nothing, not from the markdown.
+- The markdown read-back cannot show it. `content_format: "text/md"` returns the same `* * *` with blank lines around it either way.
+
+**Detect it with the plain-text read-back.** `clickup_get_document_pages` with `content_format: "text/plain"` returns each divider as a single space. A tight divider runs straight into the next line (`"\n Who gets it"`), and a divider with the gap ends its own line (`"\n \nWho gets it"`). Count gaps with `/(^|\n) \n/g` and tight dividers with `/(^|\n) [^\n]/g`. An image at the end of a page also reads as `" \n"`, so check the text around each hit before calling it a divider.
+
+**The server has no fix.** No markdown spelling and no edit mode writes a tight divider. The fix happens in the ClickUp editor: put the caret on the empty line under the divider and press Delete, the forward delete. The next line moves up and keeps its own format, so a list stays a list and a heading stays a heading.
+
+For more than a few pages, drive the editor with the `mcp-chrome-devtools` mode, in a browser window where the user has logged in to ClickUp. The editor selectors below are ClickUp internals as of 2026-11-05 and can change.
+1. Read each page with `content_format: "text/md"` and keep it as the baseline.
+2. Open `https://app.clickup.com/<workspace_id>/v/dc/<document_id>/<page_id>` and wait 6 to 8 seconds. A key press sent before the editor loads does nothing.
+3. In the page, find each `.ql-editor > hr.ql-divider` whose next sibling is a `div.ql-block` holding only a `<br>`. Put the selection at the start of the first one and send `Delete`. Repeat until none are left, and reload the page when a key press stops removing them.
+4. Wait a few seconds for the save, then read the page back. The markdown, with trailing spaces and blank lines dropped, must equal the baseline, and the plain-text gap count must be 0.
+
+**Avoid the gap where the work allows it.** When the page already exists, put new content into it with `replace` rather than creating a new page. When new pages cannot be avoided, tell the user before the push that each divider will show a gap until the editor pass runs.
 
 ---
 

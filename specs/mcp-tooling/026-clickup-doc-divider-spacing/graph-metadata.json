@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/026-clickup-doc-divider-spacing",
+  "spec_folder": "mcp-tooling/026-clickup-doc-divider-spacing",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "clickup doc divider spacing",
+      "clickup doc divider spacing on api written pages",
+      "clickup doc divider spacing plan",
+      "clickup doc divider spacing tasks",
+      "clickup doc divider spacing implementation summary"
+    ],
+    "key_topics": [
+      "clickup",
+      "doc",
+      "divider",
+      "spacing",
+      "api",
+      "written",
+      "pages",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "every"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
+      ".hermes/skills/mcp-click-up/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/references/mcp-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.10.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-click-up/changelog/v1.2.10.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reference",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "policy",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every divider the hosted ClickUp MCP writes into a doc page gets an empty line under it, so a page built from markdown shows a double gap under each `  `",
+    "created_at": "2026-11-05T17:14:27Z",
+    "last_save_at": "2026-11-05T17:17:51.321Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a58bdb116d8d82af2a89592b9d2bbd81a1f4a5b0adf670690bf786b2d5e7f9ca",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "45c3f452140f7871266d3b3d913f0dc0c949f8d6bf7fba28be8b5614fb179d83",
+      "plan.md": "0937b1c53a464907f86cf6480735760ae4440c90b916272afd35aa6a83b1d752",
+      "tasks.md": "5e838a4418c9a28bc7520c51a419610cdfd9df7323b636691e9c8f7ffd1f31d6",
+      "implementation-summary.md": "d73eaec2d84c9a7020ebd5b239d4e9ce21147df55b84a0f7a036cc9c7554d12c"
+    },
+    "last_active_at": null
+  }
+}
