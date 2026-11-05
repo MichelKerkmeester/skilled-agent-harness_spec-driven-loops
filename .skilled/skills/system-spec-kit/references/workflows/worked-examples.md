@@ -8,12 +8,12 @@ trigger_phrases:
   - "feature implementation example"
 importance_tier: normal
 contextType: general
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Worked Examples Reference
 
-Practical scenarios demonstrating SpecKit workflows for different documentation levels.
+Open this when you want to see a whole packet walked from problem to finished state at a given level before writing your own.
 
 ---
 

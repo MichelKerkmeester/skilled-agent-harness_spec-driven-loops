@@ -8,12 +8,12 @@ trigger_phrases:
   - "save method selection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Memory Save Workflow - Context Preservation Methods
 
-Complete guide to saving conversation context, execution methods, and retrieval.
+Open this when it is time to preserve a session and you need the entrypoint to call and the continuity surfaces a save is expected to refresh.
 
 ---
 

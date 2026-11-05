@@ -9,12 +9,12 @@ trigger_phrases:
   - "adr decision records"
 importance_tier: important
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Structured Gate Decision Format
 
-Standardized format for documenting gate decisions to ensure auditability and traceability.
+Open this when a gate decision has to be written down and you need the fields, the compact form and the audit trail that shows who decided what.
 
 ---
 

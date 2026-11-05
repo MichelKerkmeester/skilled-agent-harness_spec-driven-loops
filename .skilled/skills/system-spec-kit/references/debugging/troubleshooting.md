@@ -9,12 +9,12 @@ trigger_phrases:
   - "spec folder diagnosis"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Troubleshooting Reference - Issue Resolution Guide
 
-Systematic diagnosis and resolution for retrieval, continuity and spec-folder problems.
+Open this when a lookup returns nothing or a save misbehaves, or when a folder sits somewhere unexpected and you want the cause rather than a guess.
 
 ---
 

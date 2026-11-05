@@ -8,12 +8,12 @@ trigger_phrases:
   - "progressive enhancement levels"
 importance_tier: important
 contextType: planning
-version: 1.6.7.0
+version: 1.6.8.0
 ---
 
 # Level Specifications - Complete Level 1-3+ Requirements
 
-Complete specifications for all documentation levels using the manifest-backed Level contract architecture where higher levels add value, not just length.
+Open this when you need the exact files and template contents a given level requires and the reason a higher level is worth its extra weight.
 
 ---
 

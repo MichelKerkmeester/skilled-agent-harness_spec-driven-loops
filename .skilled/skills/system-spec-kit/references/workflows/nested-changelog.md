@@ -8,7 +8,7 @@ trigger_phrases:
   - "changelog evidence stack"
 importance_tier: normal
 contextType: implementation
-version: 2.1.4.0
+version: 2.1.5.0
 ---
 
 # Nested Changelog Workflow
@@ -21,7 +21,15 @@ Packet-local changelogs captured completion state inside a spec folder instead o
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Re-render the existing packet-local changelog files for spec roots and phase child folders.
+
+### When to Use
+
+- Re-render an existing packet changelog under `specs/**/changelog/` after its packet docs changed
+- Render a spec root changelog or a phase child folder changelog that already exists and still validates
+- Write a new changelog entry with `/create:changelog` in `.skilled/changelog/`, not here
 
 ---
 

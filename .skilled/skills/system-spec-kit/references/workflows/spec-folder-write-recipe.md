@@ -8,7 +8,7 @@ trigger_phrases:
   - "strict validate first try"
 importance_tier: normal
 contextType: implementation
-version: 2.7.2.0
+version: 2.7.3.0
 ---
 
 # Spec Folder Write Recipe
@@ -19,7 +19,15 @@ Read this before the first file of a new spec folder is written.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 When `/speckit:complete` or any other workflow needs to write a new spec folder, this recipe is the canonical path. Follow each step in order. Each step has a verification gate.
+
+### When to Use
+
+- `/speckit:complete` or another workflow needs to write a new spec folder
+- You are about to write the first file of a new spec folder
+- You want each step's verification gate before moving to the next step
 
 ---
 

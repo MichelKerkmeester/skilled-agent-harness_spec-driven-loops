@@ -12,7 +12,7 @@ trigger_phrases:
   - "durable slice"
 importance_tier: normal
 contextType: implementation
-version: 1.12.3.0
+version: 1.12.4.0
 ---
 
 # Goal Set-String Playbook
@@ -23,9 +23,17 @@ A packet's goal document can be as long as it needs to be. The objective an oper
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Goal authoring belongs to `sk-create-goal`, run through `/create:goal`. Its [budget-and-handoff.md](../../../sk-doc/sk-create-goal/references/budget-and-handoff.md) holds the budget, the one cut order and what a parent goal sent in chat contains, and its [parent-and-nested-goals.md](../../../sk-doc/sk-create-goal/references/parent-and-nested-goals.md) holds precedence and amendments. This playbook covers what system-spec-kit owns: the set string a runtime binds and when a changed goal is resent.
 
 This playbook fixes the shape of what gets typed. The rule it complements checks the file: a phase parent or top-level `goal.md` has one limit, 4,000 durable characters, measured from the frontmatter's closing fence to the log anchor. Up to 4,000 passes and past it fails. Nothing can check what an operator pastes, so the shape below is guidance rather than a gate.
+
+### When to Use
+
+- You are typing the set string a runtime binds as a packet's session goal
+- Resending a goal after it changed
+- Checking the shape of what gets typed before it is pasted
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "manual save triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Trigger Configuration - Keywords and Manual Save Settings
 
-Complete configuration guide for memory trigger phrases and the fast trigger matching system.
+Open this when you are declaring trigger phrases and need to know how the committed index will match them, or why a phrase you added never fires.
 
 ---
 

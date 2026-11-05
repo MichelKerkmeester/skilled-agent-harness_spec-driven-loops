@@ -9,12 +9,12 @@ trigger_phrases:
   - "continuity freshness fix"
 importance_tier: important
 contextType: implementation
-version: 2.7.10.0
+version: 2.7.11.0
 ---
 
 # Validation Rules Reference - Complete Rule Reference
 
-Complete reference for all validation rules used by the SpecKit validation system.
+Open this when a checker rejects a packet and the rule name it prints means nothing to you yet.
 
 ---
 

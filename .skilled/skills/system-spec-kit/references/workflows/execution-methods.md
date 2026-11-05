@@ -8,12 +8,12 @@ trigger_phrases:
   - "context saving commands"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Execution Methods Reference
 
-How to execute spec folder operations - validation, completion checking, context saving, and template selection.
+Open this when a spec folder command is about to be typed and you want the flags and exit codes the run actually uses.
 
 ---
 

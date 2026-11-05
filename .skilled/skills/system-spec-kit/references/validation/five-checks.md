@@ -9,12 +9,12 @@ trigger_phrases:
   - "decision evaluation framework"
 importance_tier: normal
 contextType: planning
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Five Checks Framework
 
-Evaluation framework for validating significant decisions before implementation.
+Open this when an architectural decision is on the table and you want the five explicit checks it must pass before it earns its existence.
 
 ---
 

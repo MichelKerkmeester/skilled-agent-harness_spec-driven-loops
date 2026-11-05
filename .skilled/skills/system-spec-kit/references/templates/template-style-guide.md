@@ -8,12 +8,12 @@ trigger_phrases:
   - "placeholder syntax types"
 importance_tier: normal
 contextType: general
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Template Style Guide - Formatting Standards
 
-Conventions and standards for system-spec-kit templates ensuring documentation consistency across all spec folders.
+Open this when you are editing a template and need the metadata, placeholder or formatting convention that keeps every spec folder readable the same way.
 
 ---
 
@@ -23,7 +23,7 @@ Conventions and standards for system-spec-kit templates ensuring documentation c
 
 Let any spec folder be read the same way, because every template it was filled from follows one set of conventions.
 
-### When to Use This Guide
+### When to Use
 
 - Creating new spec folder templates
 - Modifying existing template files

@@ -8,12 +8,12 @@ trigger_phrases:
   - "feature decision matrix"
 importance_tier: normal
 contextType: planning
-version: 1.6.3.0
+version: 1.6.4.0
 ---
 
 # Complexity Decision Matrix - Quick Reference for Level Selection
 
-Quick reference for complexity-based level selection and feature enabling.
+Open this when you are sizing a task and need the documentation level it justifies, or when a template feature looks optional and you have to decide whether to enable it.
 
 ---
 

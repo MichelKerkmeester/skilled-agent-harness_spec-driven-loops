@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -27,6 +27,12 @@ Open it when you need a command, a checklist or a troubleshooting path without r
 ### Purpose
 
 Quick reference for spec folder management, commands, and troubleshooting using the progressive enhancement model.
+
+### When to Use
+
+- You need a command, a checklist or a troubleshooting path without reading the full guide
+- You need a template copy command
+- You need a level decision shortcut or a quick troubleshooting lookup
 
 ### Progressive Enhancement Model
 

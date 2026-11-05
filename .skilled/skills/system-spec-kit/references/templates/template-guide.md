@@ -8,12 +8,12 @@ trigger_phrases:
   - "template composition reference"
 importance_tier: normal
 contextType: general
-version: 1.6.10.0
+version: 1.6.11.0
 ---
 
 # Template Guide - Template Selection, Adaptation & Quality Standards
 
-Guide to template selection, copying, adaptation, and quality standards.
+Open this when you are filling in a spec document and need the right template, the way to adapt it and the quality bar it has to clear.
 
 ---
 

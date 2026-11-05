@@ -8,12 +8,12 @@ trigger_phrases:
   - "validation items by phase"
 importance_tier: normal
 contextType: general
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Phase Checklists - Validation Items by Development Phase
 
-Priority-based checklists for each phase of the SpecKit workflow.
+Open this when a phase is about to be called done and you need the blocking items that gate it, sorted by which can be deferred.
 
 ---
 

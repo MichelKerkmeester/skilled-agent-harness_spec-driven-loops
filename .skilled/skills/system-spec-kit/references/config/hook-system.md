@@ -9,12 +9,12 @@ trigger_phrases:
   - "opencode timeout fallback"
 importance_tier: important
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Hook System Reference
 
-Current hook registration, runtime vocabulary, lifecycle behavior, and fallback contracts for Spec Kit prompt-time and session hooks.
+Open this when a runtime's hooks are not firing or timing out, or when they behave differently from another runtime and you need the registration and lifecycle contract behind it.
 
 ---
 

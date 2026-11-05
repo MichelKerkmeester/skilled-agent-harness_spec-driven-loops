@@ -8,12 +8,12 @@ trigger_phrases:
   - "isolated continuity artifacts"
 importance_tier: normal
 contextType: general
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Sub-Folder Versioning - Iterative Work Organization Pattern
 
-Workflow-assisted pattern for organizing iterative work within existing spec folders using canonical packet continuity plus generated support artifacts.
+Open this when a packet has to hold a second round of work without losing the first, and you want each iteration to keep its own continuity and scratch workspace.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "strict validation checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.5.3.0
+version: 1.5.4.0
 ---
 
 # Spec Folder Authoring Checklist
 
-Checklist for writing spec folders that satisfy the Level contract, continuity frontmatter, metadata files, and strict validation.
+Open this when a spec folder is about to be written by hand and you want it to clear strict validation on the first run.
 
 ## 1. OVERVIEW
 
@@ -21,7 +21,7 @@ Checklist for writing spec folders that satisfy the Level contract, continuity f
 
 This checklist keeps spec folder writes compatible with the system-spec-kit validator and memory resume ladder. It is the companion checklist to the spec folder write recipe and focuses on required files, anchors, metadata, and strict validation.
 
-### Usage
+### When to Use
 
 - Use this when authoring a new spec folder under `specs/` or `.opencode/specs/`.
 - Use this when modifying a spec folder's canonical docs, frontmatter, `_memory.continuity`, or metadata files.

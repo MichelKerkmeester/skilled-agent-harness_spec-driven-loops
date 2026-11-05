@@ -8,12 +8,12 @@ trigger_phrases:
   - "location-based validation"
 importance_tier: important
 contextType: implementation
-version: 2.1.4.0
+version: 2.1.5.0
 ---
 
 # Path-Scoped Validation Rules - Location-Based Validation
 
-Path-scoped validation for differentiated rules based on file location, level, and type.
+Open this when a file sits somewhere unusual, such as a scratch or template directory, and you want to predict which checks still apply.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "level mapping thresholds"
 importance_tier: normal
 contextType: planning
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Level Selection Guide - Complexity Scoring Algorithm
 
-Guide to selecting appropriate documentation levels based on task complexity.
+Open this when a task's scope is unclear and you need the level it should be documented at before writing any files.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Folder Structure Reference
 
-Spec folder naming conventions, level requirements, and organization patterns.
+Open this when you are about to create a packet and need the folder name, the level it sits at and the files that level requires.
 
 ---
 

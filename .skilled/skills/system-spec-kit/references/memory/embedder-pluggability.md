@@ -11,12 +11,12 @@ trigger_phrases:
   - "embedder device selection"
 importance_tier: important
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Embedder Pluggability
 
-Canonical reference for the shared embedding stack at `.skilled/skills/system-spec-kit/shared/embeddings/`. Read this when a new user asks "which embedder do you use", before swapping embedders, or when triaging vector retrieval-quality regressions.
+Open this when someone asks which embedder the project uses, or when vector retrieval quality has dropped and the stack at `.skilled/skills/system-spec-kit/shared/embeddings/` needs a swap or a rollback.
 
 > **Scope.** Spec-folder retrieval does not use any of this. It is lexical: a trigger-index lookup plus the ripgrep recipes in `../retrieval/retrieval-conventions.md`. Embedders serve the skill advisor and the retained model-server consumers, and an embedder problem can never explain a spec-folder retrieval miss.
 

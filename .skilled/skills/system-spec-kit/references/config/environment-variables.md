@@ -8,12 +8,12 @@ trigger_phrases:
   - "script execution configuration"
 importance_tier: normal
 contextType: general
-version: 2.7.2.0
+version: 2.7.3.0
 ---
 
 # Environment Variables Reference
 
-Configuration options via environment variables for the Spec Kit system.
+Open this when you are about to set a Spec Kit variable and want to know which file reads it, or which default applies before you change one.
 
 ---
 

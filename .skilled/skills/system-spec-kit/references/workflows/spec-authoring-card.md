@@ -8,7 +8,7 @@ trigger_phrases:
   - "fill a spec scaffold"
 importance_tier: important
 contextType: implementation
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Spec Authoring Card
@@ -17,11 +17,19 @@ This card is the short path. Follow the steps in order. Each step has one action
 
 ## 1. OVERVIEW
 
+### Purpose
+
 You write one packet, in one folder. The folder is the one `create.sh` prints.
 
 Each step has one action, one acceptance line and one command. When the command prints what the acceptance line says, go to the next step.
 
 `references/templates/template-guide.md` is the long guide. Read it only when a section's fill note leaves you unsure what to write.
+
+### When to Use
+
+- You are writing one spec packet that passes strict validation with no unfilled tokens
+- You want the short path, where each step has one action, one acceptance line and one command
+- A section's fill note leaves you unsure what to write and the long guide has the answer
 
 ### Bounds
 

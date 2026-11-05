@@ -8,12 +8,12 @@ trigger_phrases:
   - "spec folder detection"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Folder Routing & Alignment
 
-Structured-first spec folder routing with alignment scoring for context preservation.
+Open this when a save lands in an unexpected spec folder, or when you need to see how alignment scoring picks the target over the structured hint.
 
 ---
 
