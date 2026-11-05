@@ -1303,7 +1303,11 @@ def validate_h2_headers(content: str, doc_type_rules: Dict[str, Any], rules: Dic
         # Some documents might use different header styles
         return errors
 
-    expected_num = 1
+    # A document may open on a deliberate section 0, such as a contract that
+    # must be read before section 1, so the sequence starts at the first
+    # number when that number is 0. Every later step must still add one.
+    outer = [m for m in matches if content.count('\n', 0, m.start()) + 1 not in fenced_lines]
+    expected_num = 0 if outer and int(outer[0].group(1)) == 0 else 1
     emoji_required = doc_type_rules.get('h2EmojiRequired', True)
     section_emojis = doc_type_rules.get('sectionEmojis', {})
     section_aliases = doc_type_rules.get('sectionAliases', {})
