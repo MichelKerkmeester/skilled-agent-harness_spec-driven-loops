@@ -31,7 +31,7 @@ The shared validator misses the rule classes that produced most of the 066 findi
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-05 |
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | ../spec.md |

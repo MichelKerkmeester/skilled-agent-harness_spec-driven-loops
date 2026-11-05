@@ -34,7 +34,7 @@
       "largest"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,14 +47,15 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs",
       ".github/workflows/sk-doc-script-tests.yml",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+      "scratch/dispatch.sh",
       ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-skill/README.md",
       ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
       ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
       "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/rubric.md",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
-      ".skilled/skills/system-deep-loop/runtime/references/integration-points.md"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json"
     ],
     "entities": [
       {
@@ -124,6 +125,18 @@
         "source": "derived"
       },
       {
+        "name": "scope-gate.py",
+        "kind": "file",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch.sh",
+        "kind": "script",
+        "path": "scratch/dispatch.sh",
+        "source": "derived"
+      },
+      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
@@ -160,12 +173,6 @@
         "source": "derived"
       },
       {
-        "name": "integration-points.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,18 +201,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The largest mechanical finding class in 066, overview without Purpose and When to Use, has no check because `template-rules.json` gives references only `requiredSections [\"overview\"]`",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-05T09:16:42.817Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-05T09:20:47.024Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -215,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a13fc61d5808e471eb2efb34e7894b18ebbaddc52f0c29b59981eebfd995ce1",
+    "source_fingerprint": "sha256:92742241adde69b640d6899796768ffa71adee7d0d6e1ae54e5ffc14f2b92920",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d9a8356ec05646b78a93c476d393c1ef802ee6297baa9d7eb8bd636458d1d6db",
+      "spec.md": "d2f03e649a8aa1efcdda8fec11be8a789e57dd4312579dc43008422f6e11658b",
       "plan.md": "59d28e2144e8aa5f511c283f3f94b8c76aa805438f2664174ad2a8a5b7cb70f1",
-      "tasks.md": "ae7a9c9fa41854a1fac80bbb7a19042870649a2070bb85935c072c5a94eab8f0",
-      "implementation-summary.md": "ab7b8eef6ed6be756149fae7a9e46ba7bcaee01877649b3c4fd3a6101c7c1070"
+      "tasks.md": "a700680d965b77f9611a63eceff4e476a7be047d4d4f830ac5b775b0a6a49d5f",
+      "implementation-summary.md": "274d72bcea29bbd320054213bb5ad1fcd925eba0c4e7de4d6a1e494c3c4847c3"
     },
     "last_active_at": null
   }

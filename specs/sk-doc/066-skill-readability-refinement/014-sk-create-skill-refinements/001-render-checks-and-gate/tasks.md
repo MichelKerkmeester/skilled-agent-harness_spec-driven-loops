@@ -62,9 +62,9 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T015 Run the full sk-doc suites from the final state. Verify: `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` prints `all sk-doc script tests passed` and `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/*.test.cjs` reports `fail 0`. Evidence: `all sk-doc script tests passed`; sk-create-skill node suite pass 108, fail 0.
-- [ ] T016 Run the 13-skill strict loop and the compiled-route suite. Verify: 13 of 13 exit 0 with staged findings shown as `render advisory:` warnings, and `node --test .skilled/bin/tests/compiled-route-*.test.cjs` reports `fail 0`.
+- [x] T016 Run the 13-skill strict loop and the compiled-route suite. Verify: 13 of 13 exit 0 with staged findings shown as `render advisory:` warnings, and `node --test .skilled/bin/tests/compiled-route-*.test.cjs` reports `fail 0`. Evidence: 13 of 13 hubs and 42 of 42 modes `Result: PASS` with staged findings as `render advisory:`; compiled-route suite pass 101, fail 0 after the remint in `cfdb82039d`.
 - [x] T017 Orchestrator reads the whole diff, then an independent opus-medium review runs before the phase commit. Verify: the review verdict and the diff range are logged in `goal.md` section 4. Evidence: orchestrator read the diff; the opus-medium review returned FIX with 1 P1 and 7 P2; the P1 and six P2 were fixed and one P2 was kept with its reason, logged in `goal.md` section 4.
-- [ ] T018 Validate the packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate --strict` prints `RESULT: PASSED`.
+- [x] T018 Validate the packet. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate --strict` prints `RESULT: PASSED`. Evidence: `validate.sh --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -72,10 +72,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] Every row in `acceptance-criteria.md` is Met
+- [x] All tasks marked `[x]` Evidence: T001 to T018 are `[x]`.
+- [x] No `[B]` blocked tasks remaining Evidence: no `[B]` marker in this file.
+- [x] Manual verification passed Evidence: the orchestrator read every diff and ran a 7,791-doc fleet scan per new check.
+- [x] Every row in `acceptance-criteria.md` is Met Evidence: all 16 rows read Met.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -109,9 +109,9 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md, each tied to a review item
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Baselines from T001 logged in `goal.md` section 4
+- [x] CHK-001 [P0] Requirements documented in spec.md, each tied to a review item Evidence: REQ-001 to REQ-012 each cite a review item.
+- [x] CHK-002 [P0] Technical approach defined in plan.md Evidence: `plan.md` holds the approach and both ADRs.
+- [x] CHK-003 [P1] Baselines from T001 logged in `goal.md` section 4 Evidence: the Baselines row in `goal.md` section 4.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -119,10 +119,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] `python3 -m py_compile .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` exits 0
-- [ ] CHK-011 [P0] `node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs` exits 0
-- [ ] CHK-012 [P1] Each new check returns findings in the existing `render_*` shape
-- [ ] CHK-013 [P1] No ephemeral ids in code comments: `rg -n "REQ-|ADR-|T0[0-9]{2}" .skilled/skills/sk-doc/shared/scripts/validate_document.py` prints nothing new
+- [x] CHK-010 [P0] `python3 -m py_compile .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py` exits 0 Evidence: `py_compile` exit 0.
+- [x] CHK-011 [P0] `node --check .skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs` exits 0 Evidence: `node --check` exit 0.
+- [x] CHK-012 [P1] Each new check returns findings in the existing `render_*` shape Evidence: every new check builds its finding with `_render_warning`, the shape the others use.
+- [x] CHK-013 [P1] No ephemeral ids in code comments: `rg -n "REQ-|ADR-|T0[0-9]{2}" .skilled/skills/sk-doc/shared/scripts/validate_document.py` prints nothing new Evidence: the added code lines carry no REQ, ADR, task or CHK id; the only spec paths are the changelogs' Spec folder lines.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -130,10 +130,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every acceptance criterion in `acceptance-criteria.md` is Met
-- [ ] CHK-021 [P0] Each new or fixed check has a bad and a good fixture
-- [ ] CHK-022 [P1] Fence and frontmatter edge cases tested for the section scan and the intro checks
-- [ ] CHK-023 [P1] Ratchet fails on a new debt entry and on a staged-set addition, and passes on a staged-set removal
+- [x] CHK-020 [P0] Every acceptance criterion in `acceptance-criteria.md` is Met Evidence: all 16 rows Met.
+- [x] CHK-021 [P0] Each new or fixed check has a bad and a good fixture Evidence: each new or fixed check has a firing and a clean fixture under `scripts/tests/render/`.
+- [x] CHK-022 [P1] Fence and frontmatter edge cases tested for the section scan and the intro checks Evidence: the fenced-REFERENCES section-scan test, `negative-intro-fenced-sample.md` (a fence with a numbered heading under the H1), and frontmatter-carrying fixtures for every intro check.
+- [x] CHK-023 [P1] Ratchet fails on a new debt entry and on a staged-set addition, and passes on a staged-set removal Evidence: ratchet suite passes, fails on a debt entry, exempt key or staged code added, passes on a staged code removed.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -141,13 +141,13 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Parser fixes include table tests for fenced, frontmatter, no-op and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] N/A unless a test reads process-wide state, in which case a hostile env variant runs.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. Evidence: class-of-bug for the related match, hard break, sub-number and fence scan; algorithmic for the citation and intro rules; cross-consumer for the staged sets read by `package_skill.py`, the ratchet and `scope-gate.py`.
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep. Evidence: the fence-blind `## ` scans in `package_skill.py` were inventoried; `validate_sections` was the one on the required-section path, the routing-shape scans read top-level lines by design.
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests. Evidence: consumers of the render output are `package_skill.py`, `validate_skill_package.py`, the 066 `scope-gate.py`, the CI job and the three test files; each was run.
+- [x] CHK-FIX-004 [P0] Parser fixes include table tests for fenced, frontmatter, no-op and fallback cases. Evidence: fenced, frontmatter, no-op (clean fixture) and fallback (unresolvable file, no `file_path`) cases are tested.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed. Evidence: matrix axes are code (staged or enforced) by scope (staged or enforced) by `RENDER_STAGED_OFF`; four branches tested.
+- [x] CHK-FIX-006 [P1] N/A unless a test reads process-wide state, in which case a hostile env variant runs. Evidence: the staging tests read `RENDER_STAGED_OFF` and set it with `monkeypatch`, so each run restores the environment.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range. Evidence: `9a6ee36f6f..cfdb82039d` plus the closeout commit.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -155,9 +155,9 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets in the changed files
-- [ ] CHK-031 [P0] The sweep reads only paths under `.skilled/skills`
-- [ ] CHK-032 [P1] N/A: no auth surface
+- [x] CHK-030 [P0] No hardcoded secrets in the changed files Evidence: a grep of the added lines for key, secret, token and password prints nothing.
+- [x] CHK-031 [P0] The sweep reads only paths under `.skilled/skills` Evidence: the sweep globs `.skilled/skills/*/SKILL.md` and `.skilled/skills/*/*/SKILL.md` only.
+- [x] CHK-032 [P1] N/A: no auth surface Evidence: N/A.
 <!-- /ANCHOR:security -->
 
 ---
@@ -165,9 +165,9 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec.md, plan.md and tasks.md name the same checks and files
-- [ ] CHK-041 [P1] Code comments state the durable why for each check
-- [ ] CHK-042 [P2] sk-create-skill README names the strict gate
+- [x] CHK-040 [P1] spec.md, plan.md and tasks.md name the same checks and files Evidence: spec, plan and tasks name the same six codes, the four scopes and the same files.
+- [x] CHK-041 [P1] Code comments state the durable why for each check Evidence: each new function opens with a docstring giving the reason, and the narrowing choices carry inline comments.
+- [x] CHK-042 [P2] sk-create-skill README names the strict gate Evidence: `README.md:62` and `:157` name `validate_skill_package.py <path> --strict`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -175,8 +175,8 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only Evidence: experiments ran under the session scratchpad, outside the repo.
+- [x] CHK-051 [P1] scratch/ cleaned before completion Evidence: `scratch/runs/` removed; `scratch/` keeps the briefs, `dispatch.sh` and `staged-counts.txt`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -198,10 +198,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:arch-verify -->
 ## L3+: Architecture Verification
 
-- [ ] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section
-- [ ] CHK-101 [P1] ADR-001 and ADR-002 carry a status
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
-- [ ] CHK-103 [P2] N/A: no migration path
+- [x] CHK-100 [P0] Architecture decisions documented in `plan.md`'s ARCHITECTURE DECISION RECORD section Evidence: `plan.md` section L3: ARCHITECTURE DECISION RECORD.
+- [x] CHK-101 [P1] ADR-001 and ADR-002 carry a status Evidence: ADR-001 and ADR-002 each carry a status.
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale Evidence: both ADRs list alternatives with the reason each was rejected.
+- [x] CHK-103 [P2] N/A: no migration path Evidence: N/A.
 <!-- /ANCHOR:arch-verify -->
 
 ---
@@ -209,10 +209,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:perf-verify -->
 ## L3+: Performance Verification
 
-- [ ] CHK-110 [P1] The fleet sweep finishes inside the job timeout (NFR-P01)
-- [ ] CHK-111 [P1] Clean skills report 0 new findings (NFR-R01)
-- [ ] CHK-112 [P2] N/A: no load testing
-- [ ] CHK-113 [P2] Sweep wall time logged in `goal.md` section 4
+- [x] CHK-110 [P1] The fleet sweep finishes inside the job timeout (NFR-P01) Evidence: the 13 hubs sweep in 3 s and all 55 skills and modes in 10 s, exit 0.
+- [x] CHK-111 [P1] Clean skills report 0 new findings (NFR-R01) Evidence: 55 of 55 strict PASS; clean skills show no new enforced finding.
+- [x] CHK-112 [P2] N/A: no load testing Evidence: N/A.
+- [x] CHK-113 [P2] Sweep wall time logged in `goal.md` section 4 Evidence: the Staged findings row in `goal.md` section 4.
 <!-- /ANCHOR:perf-verify -->
 
 ---
@@ -220,10 +220,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:deploy-ready -->
 ## L3+: Deployment Readiness
 
-- [ ] CHK-120 [P0] Rollback is one `git revert` of the phase commit
-- [ ] CHK-121 [P1] The CI steps respect the `SKILLED_CI` switch the job already checks
-- [ ] CHK-123 [P1] N/A: no runbook, the gate command is the runbook
-- [ ] CHK-124 [P2] N/A: no deployment
+- [x] CHK-120 [P0] Rollback is one `git revert` of the phase commit Evidence: the code lands in `dcd1466eb0`; reverting it and `cfdb82039d` restores the prior gate.
+- [x] CHK-121 [P1] The CI steps respect the `SKILLED_CI` switch the job already checks Evidence: the `render-gate` job carries the same `vars.SKILLED_CI` and `SKILLED_CI_FRESHNESS` condition.
+- [x] CHK-123 [P1] N/A: no runbook, the gate command is the runbook Evidence: N/A.
+- [x] CHK-124 [P2] N/A: no deployment Evidence: N/A.
 <!-- /ANCHOR:deploy-ready -->
 
 ---
@@ -231,10 +231,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:compliance-verify -->
 ## L3+: Compliance Verification
 
-- [ ] CHK-130 [P1] Independent opus-medium review completed before commit
-- [ ] CHK-131 [P1] No new dependency added
-- [ ] CHK-132 [P2] N/A: no web surface
-- [ ] CHK-133 [P2] N/A: no user data
+- [x] CHK-130 [P1] Independent opus-medium review completed before commit Evidence: opus-medium review before `dcd1466eb0`, logged in `goal.md` section 4.
+- [x] CHK-131 [P1] No new dependency added Evidence: the CI job installs only `pyyaml`, already pinned in this workflow.
+- [x] CHK-132 [P2] N/A: no web surface Evidence: N/A.
+- [x] CHK-133 [P2] N/A: no user data Evidence: N/A.
 <!-- /ANCHOR:compliance-verify -->
 
 ---
@@ -242,10 +242,10 @@ A blocked P0 task stops the phase. A blocked P1 task needs a recorded reason in 
 <!-- ANCHOR:docs-verify -->
 ## L3+: Documentation Verification
 
-- [ ] CHK-140 [P1] All spec documents synchronized
-- [ ] CHK-141 [P1] sk-create-skill SKILL.md, README and creation-workflow name one gate form
-- [ ] CHK-142 [P2] N/A: no user-facing doc beyond the sk-create-skill docs
-- [ ] CHK-143 [P2] Staged finding counts per skill logged for phase 003
+- [x] CHK-140 [P1] All spec documents synchronized Evidence: spec, plan, tasks, acceptance criteria and the implementation summary read Complete.
+- [x] CHK-141 [P1] sk-create-skill SKILL.md, README and creation-workflow name one gate form Evidence: `rg` shows `--strict` on every gate command line.
+- [x] CHK-142 [P2] N/A: no user-facing doc beyond the sk-create-skill docs Evidence: N/A.
+- [x] CHK-143 [P2] Staged finding counts per skill logged for phase 003 Evidence: `scratch/staged-counts.txt`, 347 findings across 44 skills and modes.
 <!-- /ANCHOR:docs-verify -->
 
 ---

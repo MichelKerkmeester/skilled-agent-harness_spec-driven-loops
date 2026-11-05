@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate
 **Level:** 3
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-05
 <!-- /ANCHOR:metadata -->
 
@@ -66,8 +66,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-011 | REQ-011 | Given the staged sets in force, When `for s in .skilled/skills/*/; do python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py "$s" --check --strict >/dev/null 2>&1; rc=$?; echo "$(basename "$s") exit=$rc"; done` runs, Then it prints `exit=0` for all 13 skills, staged findings print as `render advisory:` warnings in the unredirected output, and `python3 -c "import json;print(json.load(open('.skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json'))['debt'])"` prints `{}` | 13 of 13 exit 0, staged findings print as `render advisory:` (10 on system-deep-loop), `debt` prints `{}` | Met | - |
 | AC-012 | REQ-001 | Given the final state, When `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` runs, Then its last line is `all sk-doc script tests passed` | last line `all sk-doc script tests passed` | Met | - |
 | AC-013 | REQ-005 | Given the final state, When `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/*.test.cjs` runs, Then it reports `fail 0` | `pass 108`, `fail 0` | Met | - |
-| AC-014 | REQ-011 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | command output | Unmet | - |
-| AC-015 | REQ-011 | Given the packet, When `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate --strict` runs, Then it prints `RESULT: PASSED` | command output | Unmet | - |
+| AC-014 | REQ-011 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | after the remint in `cfdb82039d`: pass 101, fail 0 | Met | - |
+| AC-015 | REQ-011 | Given the packet, When `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate --strict` runs, Then it prints `RESULT: PASSED` | `validate.sh --strict` prints `RESULT: PASSED`, Errors 0 | Met | - |
 | AC-016 | REQ-012 | Given the T010 fixture skill, When `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py <fixture> --check --strict` runs with and without `RENDER_STAGED_OFF=1`, Then it exits 0 without the switch and non-zero with it, naming the four staged findings | staged-scope tests pass: strict valid without the switch, valid False naming the four files with `RENDER_STAGED_OFF=1` | Met | - |
 
 ### Status values
@@ -94,7 +94,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and no criterion is met yet.
+Every criterion is met with observed evidence.
 <!-- /ANCHOR:closure -->

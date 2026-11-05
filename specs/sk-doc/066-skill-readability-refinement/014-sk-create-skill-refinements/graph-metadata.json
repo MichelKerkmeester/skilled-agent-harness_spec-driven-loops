@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check enforces",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-05T07:10:56.112Z",
+    "last_save_at": "2026-11-05T09:20:47.055Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,7 @@
     "source_doc_hashes": {
       "spec.md": "94fa3384d5c96c0c5aa9832267b6e34e88063f92c9c08ddc27b66eaf20fc1a03"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-05T09:20:47.055Z",
+    "last_active_child_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate"
   }
 }

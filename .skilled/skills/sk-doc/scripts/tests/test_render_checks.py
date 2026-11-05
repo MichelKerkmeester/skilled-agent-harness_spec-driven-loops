@@ -306,3 +306,10 @@ def test_overview_subsections_after_another_subsection_are_reported():
     assert overview_subsection_findings("reference-overview-subsection-late.md") == [
         'OVERVIEW opens with "### Rules"; open it with Purpose then When to Use.',
     ]
+
+
+def test_fenced_sample_under_the_h1_counts_as_an_intro():
+    # The fence also holds a numbered heading, which must not count as a section.
+    _rc, _payload, types = render_types("negative-intro-fenced-sample.md")
+    assert "render_intro_missing" not in types
+    assert "render_h2_sequence" not in types

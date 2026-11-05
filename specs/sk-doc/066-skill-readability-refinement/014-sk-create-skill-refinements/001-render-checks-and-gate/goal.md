@@ -80,6 +80,8 @@ and findings belong here.
 | Baselines | Done | 13 of 13 skills exit 0 under `--check --strict`, `run-script-tests.sh` 49 PASS, sk-create-skill node 103/103, compiled-route 101/101 |
 | T001 baselines | Done | start 9a6ee36f6f; strict 13/13 exit 0; all sk-doc script tests passed; create-skill node i pass 103 i fail 0 ; compiled-route pass 101 fail 0 |
 | Phase 001 review | Fixed | opus-medium on the uncommitted diff over 9a6ee36f6f: VERDICT FIX, 1 P1 and 7 P2. Fixed: related matcher now a leading related token without a colon topic, CI sweep covers 42 modes, OVERVIEW subsections must open it, fenced block under H1 is an intro, scope-gate docstring, ratchet comment, code-staging test. Kept: render_h2_sequence beside non_sequential_numbering, since packaging reads only ren... |
+| Staged findings for phase 003 | Logged | 347 render advisory findings across 44 skills and modes, per-skill counts in scratch/staged-counts.txt; largest sk-code/sk-code-skilled 41, sk-doc/sk-create-skill 39, system-spec-kit 33. Strict sweep of 13 hubs plus 42 modes: 55 PASS, 3 s for the hubs, well inside the 10-minute job |
+| Baselines | Logged | at 9a6ee36f6f: 13 of 13 strict PASS, run-script-tests all passed, sk-create-skill node suite fail 0, compiled-route suite fail 0 |
 
 ### Deviations and findings
 
