@@ -10,12 +10,12 @@ trigger_phrases:
   - "spec anchoring output"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Deep Research Output Files Reference
 
-This reference covers human-readable packet outputs. JSONL records live in `state-jsonl.md`; reducer ownership lives in `state-reducer-registry.md`.
+Open this when you are writing or validating a research run's markdown outputs, from the strategy file through synthesis and the resource map. JSONL records live in `state-jsonl.md` and reducer ownership lives in `state-reducer-registry.md`.
 
 ---
 

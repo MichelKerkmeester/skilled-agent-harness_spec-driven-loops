@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.3.0
+version: 1.14.4.0
 ---
 
 # deep-research
@@ -17,7 +17,9 @@ version: 1.14.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.14.3.0
 | **Invoke with** | `/deep:research:auto "topic"` (autonomous) or `:confirm` (approval-gated). Keyword triggers include "autoresearch", "deep research" and "research loop" |
 | **Works on** | Any research topic with web sources, codebase references or both, through the LEAF agent's Read, WebFetch, Grep and Glob tool set |
 | **Produces** | A converged findings report at `research/research.md`, plus an iteration audit trail, a findings registry and a convergence dashboard under `{spec_folder}/research/` |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -42,7 +40,7 @@ It does not perform one-shot codebase lookup (`@context` does that), audit code 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Pick your mode. Autonomous runs straight through with no gates. Confirm asks for approval at setup, each iteration and synthesis.
 
@@ -69,7 +67,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Iteration Lifecycle
 
@@ -108,7 +106,7 @@ The minimum-iteration behavior is documented as the [anti-convergence floor](./f
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -129,7 +127,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -144,7 +142,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: How does convergence decide to stop?**
 
@@ -174,7 +172,7 @@ The YAML workflow routes the executor. The LEAF constraints still apply: no sub-
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships two validation packages. You can also check that this document passes structural validation.
 
@@ -194,7 +192,7 @@ Expected output: zero issues reported.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
@@ -228,7 +226,7 @@ Expected output: zero issues reported.
 A feature change to this skill typically touches more than one surface. Before calling a change complete, check each:
 
 - [ ] **`ROUTER.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
-- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
+- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 8 table for which doc owns what)
 - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
 - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
 - [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change

@@ -8,7 +8,7 @@ trigger_phrases:
   - "coverage_edges table"
 importance_tier: normal
 contextType: implementation
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # Deep Loop Runtime Coverage Graph Schema
@@ -19,6 +19,8 @@ SQLite schema and operational notes for `.skilled/skills/system-deep-loop/runtim
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The coverage graph is session-scoped evidence storage for deep-research and deep-review loops. It is owned by `lib/coverage-graph/coverage-graph-db.ts` and exposed through direct scripts under `scripts/`.
 
 Schema version: `2`.
@@ -26,6 +28,12 @@ Schema version: `2`.
 Storage directory: `.skilled/skills/system-deep-loop/runtime/database/`.
 
 Database file: `deep-loop-graph.sqlite`.
+
+### When to Use
+
+- You need the SQLite schema for the runtime coverage graph.
+- You are reading or writing `deep-loop-graph.sqlite` through `scripts/`.
+- You need the node kinds, relation kinds, indexes, lifecycle or namespace rules.
 
 ---
 

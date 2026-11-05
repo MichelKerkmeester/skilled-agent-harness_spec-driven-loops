@@ -8,12 +8,12 @@ trigger_phrases:
   - "council report path"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Folder Layout
 
-Packet-local artifact layout for completed AI Council runs.
+Open this when you need to know where a council run writes each artifact, whether you are starting the run or auditing a finished one.
 
 ---
 

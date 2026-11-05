@@ -10,12 +10,12 @@ trigger_phrases:
   - "research progress visualization"
 importance_tier: normal
 contextType: general
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Deep Research Quick Reference
 
-One-page operator cheat sheet for the autonomous deep research loop.
+Open this when you need the command defaults, the iteration checklist or a fast answer to a convergence question without loading the full protocol.
 
 ---
 

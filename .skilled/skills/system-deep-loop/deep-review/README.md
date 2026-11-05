@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # deep-review
@@ -17,7 +17,9 @@ version: 1.11.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.11.2.0
 | **Invoke with** | `/deep:review:auto` (autonomous), `/deep:review:confirm` (approval-gated) or `/deep:review` (asks which mode). Keyword triggers include "deep review", "convergence review", "release readiness" and "spec folder review" |
 | **Works on** | Five target types: a spec folder, a skill package, a named agent, a spec track or an explicit file set |
 | **Produces** | A release-readiness verdict (PASS, CONDITIONAL or FAIL), a full findings registry, a dashboard, an iteration audit trail and a nine-section review report under `{spec_folder}/review/` |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -53,7 +51,7 @@ That is the whole reason this skill exists. It gives you a review you can releas
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Pick a mode. Autonomous runs straight through with no gates. Confirm asks for approval at each iteration. Plain `/deep:review` asks which mode you want.
 
@@ -83,7 +81,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Iteration Lifecycle
 
@@ -152,7 +150,7 @@ Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enter
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -178,7 +176,7 @@ Skip it for the lighter cases:
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -192,7 +190,7 @@ Skip it for the lighter cases:
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: How does deep-review differ from sk-code's code-review mode?**
 
@@ -221,7 +219,7 @@ A: Yes. Place a `.deep-review-pause` sentinel file in the `review/` directory. T
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships two validation packages.
 
@@ -241,7 +239,7 @@ Expected output: zero issues reported.
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

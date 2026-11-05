@@ -8,12 +8,12 @@ trigger_phrases:
   - "review report output"
 importance_tier: normal
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review State Outputs
 
-This reference explains the files operators read during and after a review loop. Use `references/state/state-format.md` for schemas and field-level contracts.
+Open this when you are reading or checking what a review loop left in its packet, during the run or after it. Use `references/state/state-format.md` for schemas and field-level contracts.
 
 ---
 

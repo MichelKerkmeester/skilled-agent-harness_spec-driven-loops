@@ -8,12 +8,12 @@ trigger_phrases:
   - "review release readiness validation"
 importance_tier: important
 contextType: implementation
-version: 1.11.0.0
+version: 1.11.1.0
 ---
 
 # Deep Review Completion Criteria
 
-Full definition-of-done checklist for a deep-review loop: loop completion conditions, the binary quality gates STOP must clear, and release-readiness validation success criteria.
+Open this when a review run has finished and you need to prove it is done, or when a STOP landed early and you need to debug why.
 
 ---
 

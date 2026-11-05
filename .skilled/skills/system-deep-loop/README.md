@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review council"
   - "deep-loop hub routing"
-version: 1.6.6.0
+version: 1.6.7.0
 ---
 
 # system-deep-loop
@@ -15,7 +15,9 @@ version: 1.6.6.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -23,10 +25,6 @@ version: 1.6.6.0
 | **Invoke with** | `Skill(system-deep-loop)`, the `/deep:*` commands or the deep agents. |
 | **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
 | **Produces** | The mode's artifacts (for example research.md, review-report.md or council artifacts) plus convergence state. |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -38,7 +36,7 @@ The deep-loop workflows used to ship as five separate sibling skills over one ba
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Let the advisor route a deep-loop request, run a `/deep:*` command, or read `SKILL.md` directly.
 
@@ -54,7 +52,7 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
 
@@ -70,7 +68,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Layout
 
@@ -102,7 +100,7 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `a
 
 ---
 
-## 6. ADDING A WORKFLOW MODE
+## 5. ADDING A WORKFLOW MODE
 
 Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
 
@@ -112,13 +110,13 @@ Adding another active mode (a new packet beyond `deep-research`, `deep-review`, 
 - [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
 - [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
 - [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
-- [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
+- [ ] **`README.md`** (this document): add the mode to §1 OVERVIEW / §3 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
 - [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
 - [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

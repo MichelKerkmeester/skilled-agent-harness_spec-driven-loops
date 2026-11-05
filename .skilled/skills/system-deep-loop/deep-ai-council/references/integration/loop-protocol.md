@@ -8,12 +8,12 @@ trigger_phrases:
   - "council persistence flow"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Loop Protocol
 
-This reference describes the council loop from packet resolution to persisted planning handoff. It is intentionally planning-only: implementation belongs to the caller or a separate implementation workflow.
+Open this when a council planning round is under way and you need to know what it hands off to the packet and where the loop stops. It stays planning-only, so implementation belongs to the caller or a separate implementation workflow.
 
 ---
 

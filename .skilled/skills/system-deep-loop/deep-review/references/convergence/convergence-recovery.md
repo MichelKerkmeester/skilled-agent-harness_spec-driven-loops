@@ -8,12 +8,12 @@ trigger_phrases:
   - "graph aware review convergence"
 importance_tier: normal
 contextType: implementation
-version: 1.11.0.3
+version: 1.11.1.0
 ---
 
 # Deep Review Convergence Recovery and Reporting
 
-When a review loop stalls or finishes, these contracts take over. This reference covers stuck-recovery strategies, the convergence report format, and graph-aware review convergence.
+Open this when a review loop stalls or finishes and you need the recovery strategy to pick, the convergence report it must write or the graph-aware signals that can block a final STOP.
 
 ---
 

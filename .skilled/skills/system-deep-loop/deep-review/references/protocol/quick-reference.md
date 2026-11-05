@@ -9,12 +9,12 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review Quick Reference
 
-One-page cheat sheet for the autonomous deep review loop.
+Open this when you need a command shape, a threshold default or a verdict definition at a glance, whether mid-run or mid-triage.
 
 ---
 

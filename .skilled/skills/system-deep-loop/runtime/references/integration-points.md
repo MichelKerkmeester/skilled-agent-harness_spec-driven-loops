@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Deep Loop Runtime Integration Points
@@ -17,6 +17,8 @@ Consumer catalog for the shared runtime boundary owned by `.skilled/skills/syste
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 `runtime/` is not a direct user command. It is a peer skill consumed by workflow YAMLs, tests, and operational diagnostics.
 
@@ -28,6 +30,12 @@ Integration surfaces:
 - Runtime SQLite storage under `database/`.
 
 The removed MCP tool surface is not an integration point.
+
+### When to Use
+
+- You are wiring a workflow YAML, test or operational diagnostic to the shared runtime boundary.
+- You need the call shape a consumer uses against `runtime/`.
+- You need to check which surfaces are integration points.
 
 ---
 
@@ -146,9 +154,7 @@ node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs \
   --persist-snapshot true
 ```
 
----
-
-## 7.1 ADDITIONAL CONSUMERS
+### Additional Consumers
 
 The following consumers were surfaced by a deep-research audit and were absent from §2-§7 above:
 

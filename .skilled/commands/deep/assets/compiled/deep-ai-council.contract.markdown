@@ -32,12 +32,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "e13636ea737d9c77ea220c6ccec9830067df8dd869777ee14c0452035b2f067f",
+      "sha256": "0ecffa35bf2a8552c2650634e40b0d6769162e98ee8908604f512be85b1a3cf3",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "370a6b15cf42ab4eb98d11d498d7a0d485a2dbe020328070cfa1aac8db61fdd7",
+      "sha256": "05807560d41345848f427766edd3313d52ea095d0442047d00b7a742bbff2724",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      "sha256": "dffd4554e1ff5c9ff00f940feba8ced999bb6297ebddc490a904eaa64a2b6bb9",
+      "sha256": "1892c67285e797e6a3ec6a4a0a7f0ae1ba19d3a9655868d73b8ce7aa3ffb7bcc",
       "section": "full"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
-      "sha256": "e22dfcffdacd8545e50e73bf8f01386aa04fe9a775ad724f1f25cdedcc1f6684",
+      "sha256": "2aa7becdd97ac94ded270fb5e9ab725af121239b4f8c716b72d4d8d228f42836",
       "section": "full"
     },
     {

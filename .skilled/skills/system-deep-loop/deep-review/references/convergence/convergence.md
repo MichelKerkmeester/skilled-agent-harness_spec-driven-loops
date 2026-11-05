@@ -9,12 +9,12 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review Convergence
 
-Stop condition algorithms, quality guards, and stuck recovery for the deep review loop.
+Open this when you need to decide whether a review loop may stop, or to work out why a stop vote is blocked.
 
 ---
 

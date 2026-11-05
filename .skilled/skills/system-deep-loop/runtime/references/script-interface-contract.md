@@ -8,16 +8,18 @@ trigger_phrases:
   - "coverage graph script exit codes"
 importance_tier: important
 contextType: implementation
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # Deep Loop Runtime Script Interface Contract
 
-Formal contract for the direct `.cjs` script entry points under `.skilled/skills/system-deep-loop/runtime/scripts/`.
+Open this when you are invoking one of the `.cjs` scripts under `.skilled/skills/system-deep-loop/runtime/scripts/` directly and need its arguments, exit codes or stdout shape to match what the loop expects.
 
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 The 118 FULL_ISOLATE_NO_MCP arc removed the four deep-loop graph tools the retired memory server used to expose. Their live replacement is direct process invocation through four `.cjs` scripts.
 
@@ -29,6 +31,12 @@ The 118 FULL_ISOLATE_NO_MCP arc removed the four deep-loop graph tools the retir
 | `scripts/status.cjs` | `deep_loop_graph_status` | Reports graph health. |
 
 Every script follows the same lifecycle: parse CLI args, re-exec through the TSX loader when needed, import the TypeScript library, open SQLite through `coverage-graph-db.ts`, execute, emit one JSON object to stdout, close DB in `finally`, and map failures to exit codes.
+
+### When to Use
+
+- You are invoking one of the `.cjs` scripts under `.skilled/skills/system-deep-loop/runtime/scripts/` directly.
+- You need the argument list a call takes.
+- You need the exit codes or stdout shape.
 
 ---
 

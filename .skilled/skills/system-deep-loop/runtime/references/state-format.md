@@ -9,7 +9,7 @@ trigger_phrases:
   - "graphEvents"
 importance_tier: important
 contextType: implementation
-version: 1.4.0.3
+version: 1.4.1.0
 ---
 
 # Deep Loop Runtime State Format
@@ -19,6 +19,8 @@ State file and event formats used by the shared deep-loop runtime primitives.
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 `runtime/` does not own the full deep-review or deep-research packet schema. It owns shared primitives used by those packets:
 
@@ -30,6 +32,12 @@ State file and event formats used by the shared deep-loop runtime primitives.
 - optional `graphEvents` arrays consumed by coverage-graph scripts
 
 Consumer skills remain responsible for packet-specific config, strategy, dashboard, and final report files.
+
+### When to Use
+
+- You are reading or writing the JSONL state a deep-review or deep-research packet keeps.
+- You need the atomic JSON state write sequence.
+- You need the loop lock fields, the post-dispatch validation inputs or the graph event format.
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Deep Review State Log Records
 
-The `deep-review-state.jsonl` log is the append-only source of truth for a review run. This reference documents the config, iteration, event, and lineage record schemas plus the Review Depth Schema (v2) that the reducer consumes.
+Open this when you are writing or auditing `deep-review-state.jsonl`, the append-only source of truth for a review run, and need the record shape the reducer expects.
 
 ---
 

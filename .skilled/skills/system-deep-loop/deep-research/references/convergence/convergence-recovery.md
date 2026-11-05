@@ -9,12 +9,12 @@ trigger_phrases:
   - "research escalation conditions"
 importance_tier: normal
 contextType: implementation
-version: 1.14.0.3
+version: 1.14.1.0
 ---
 
 # Convergence Recovery Reference
 
-This reference covers what happens after convergence detects no progress, workflow errors, or unrecoverable state problems. The stop contract lives in `convergence.md`.
+Open this when a research loop stalls, throws a workflow error or hits state problems it cannot recover from on its own. The stop contract itself lives in `convergence.md`.
 
 ---
 

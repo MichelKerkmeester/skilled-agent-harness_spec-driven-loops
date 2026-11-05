@@ -8,7 +8,7 @@ trigger_phrases:
   - "multi-seat planning"
   - "planning council"
   - "council convergence"
-version: 1.8.3.0
+version: 1.8.4.0
 ---
 
 # deep-ai-council
@@ -17,7 +17,9 @@ version: 1.8.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.8.3.0
 | **Invoke with** | "ai council", "multi-seat planning", "compare strategies", or the `@ai-council` agent |
 | **Works on** | Your packet folder and its context, dispatching 2-3 seats with distinct reasoning lenses inside one CLI per round |
 | **Produces** | A recommended plan, an append-only state log, per-seat proposals, critiques, failed-round forensics and a final report under `ai-council/` |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -40,7 +38,7 @@ When a plan carries real trade-offs, one AI answer is one confident guess with n
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** The council offers two surfaces. Pick the one that fits your workload.
 
@@ -87,7 +85,7 @@ Expected result: confirmation that `ai-council-state.jsonl` ends with a `council
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Council Round
 
@@ -113,7 +111,7 @@ Convergence is not a popularity vote. A plan converges when two of three seats a
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -145,7 +143,7 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -158,7 +156,7 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Does the council implement the plan it recommends?**
 
@@ -186,7 +184,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -196,7 +194,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
