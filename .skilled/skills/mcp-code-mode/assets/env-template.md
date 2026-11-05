@@ -9,7 +9,7 @@ trigger_phrases:
   - "api token rotation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Environment Variables Template
@@ -24,13 +24,13 @@ Copy-ready `.env` template for Code Mode UTCP authentication with all supported 
 
 Centralized environment variables for Code Mode UTCP authentication and configuration. Use this template to securely manage credentials for ClickUp, Figma, Notion, GitHub, MyService, and Chrome DevTools MCP servers.
 
-### When to Use
-
-Use this template when creating the project-root `.env` for Code Mode.
-
 ### Usage
 
 Copy this template to `.env` in your project root, then replace placeholder values with your actual credentials. Never commit `.env` to version control - add it to `.gitignore` immediately.
+
+### When to Use
+
+Use this template when creating the project-root `.env` for Code Mode.
 
 ---
 

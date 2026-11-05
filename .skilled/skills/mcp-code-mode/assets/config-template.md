@@ -9,12 +9,12 @@ trigger_phrases:
   - "manual call templates array"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Configuration Template
 
-Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured MCP servers.
+Open this when you need a working `.utcp_config.json` without hand-writing each MCP server entry, since every pre-configured server is copy-ready.
 
 ---
 
@@ -24,13 +24,13 @@ Copy-ready `.utcp_config.json` template for Code Mode UTCP with pre-configured M
 
 Base configuration file for Code Mode UTCP with progressive tool loading and environment variable support. Includes pre-configured templates for MyService, ClickUp, Figma, Notion, and Chrome DevTools.
 
-### When to Use
-
-Use this template when creating or updating the project-root `.utcp_config.json`.
-
 ### Usage
 
 Copy this template to `.utcp_config.json` in your project root, then customize the `manual_call_templates` array with your desired MCP servers. Reference credentials using `${VARIABLE_NAME}` syntax.
+
+### When to Use
+
+Use this template when creating or updating the project-root `.utcp_config.json`.
 
 ---
 

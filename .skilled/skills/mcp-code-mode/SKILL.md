@@ -2,7 +2,7 @@
 name: mcp-code-mode
 description: "MCP orchestration via TypeScript execution. Use Code Mode for ALL external MCP tool calls; ~98% context reduction, type-safe."
 allowed-tools: [mcp__code_mode__call_tool_chain, mcp__code_mode__list_tools, mcp__code_mode__search_tools, mcp__code_mode__tool_info]
-version: 1.0.16.0
+version: 1.0.17.0
 ---
 
 <!-- Keywords: code mode, call_tool_chain, call an mcp tool, use code mode, chain mcp tools, search_tools, list_tools, tool_info, utcp config, .utcp_config.json, tool not found, manual name prefix, prefixed env variable, register an mcp server, mcp-code-mode -->

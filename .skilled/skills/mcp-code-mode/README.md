@@ -7,7 +7,7 @@ trigger_phrases:
   - "mcp tools"
   - "tool orchestration"
   - "context reduction"
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # mcp-code-mode
@@ -16,7 +16,9 @@ version: 1.0.3.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.0.3.0
 | **Invoke with** | "code mode", "call_tool_chain", "mcp tools", "tool orchestration" or automatic routing on external-tool keywords |
 | **Works on** | External tools registered in `.utcp_config.json` at the project root, with environment variables in `.env` |
 | **Produces** | Typed tool results, captured console logs and structured state returned from a single execution |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -60,7 +58,7 @@ Code Mode does not reach MCP servers a runtime registers natively in `opencode.j
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Discover tools with `search_tools`.** Before calling any external tool, search by task description to get the registered name. Never guess tool names.
 
@@ -112,7 +110,7 @@ call_tool_chain({
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Four Core Tools
 
@@ -149,7 +147,7 @@ Code Mode prefixes every environment variable with the manual name from `.utcp_c
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -163,7 +161,7 @@ The three MCP tool skills below are among the eight modes the `mcp-tooling` pare
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -177,7 +175,7 @@ The three MCP tool skills below are among the eight modes the `mcp-tooling` pare
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: When do I use `call_tool_chain` versus calling a tool directly?**
 
@@ -197,7 +195,7 @@ A: Without error handling, an unhandled exception stops the entire `call_tool_ch
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships a manual testing playbook covering nine categories of scenario: the core tools, the naming contract, environment variable prefixing, multi-tool workflows, ClickUp and Chrome through Code Mode, third-party servers through Code Mode, recovery and configuration, plugins and hooks, and the doctor commands.
 
@@ -210,7 +208,7 @@ The skill ships a manual testing playbook covering nine categories of scenario: 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
