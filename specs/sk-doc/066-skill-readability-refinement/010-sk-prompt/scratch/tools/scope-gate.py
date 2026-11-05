@@ -1,7 +1,7 @@
 """Render warnings and validity for the files in a scope list.
 
-A file the render ledger's `exempt` map lists, with a consumer file that still
-exists, is skipped: code depends on its exact text, so the render canon does not apply.
+A file the render ledger's `exempt` map lists is skipped when the shared loader
+accepts its entry: code depends on its exact text, so the render canon does not apply.
 A code packaging stages as advisory is counted apart unless RENDER_STAGED_OFF=1
 enforces it. Packaging also stages whole scopes (SKILL.md, ROUTER.md, shared and
 runtime references); this gate does not, so an enforced code counts in every file.
@@ -9,15 +9,9 @@ runtime references); this gate does not, so an enforced code counts in every fil
 import json, os, subprocess, sys
 files = [l.strip() for l in open(sys.argv[1]) if l.strip()]
 SKILLS = '.skilled/skills/'
-try:
-    ledger = json.load(open(SKILLS + 'sk-doc/sk-create-skill/scripts/render-known-debt.json'))
-except (OSError, ValueError):
-    ledger = {}
-exempt = {doc for doc, e in (ledger.get('exempt') or {}).items()
-          if isinstance(e, dict) and set(e) == {'consumer', 'reason'} and str(e.get('reason', '')).strip()
-          and not os.path.isabs(str(e['consumer']))
-          and os.path.realpath(SKILLS + str(e['consumer'])).startswith(os.path.realpath(SKILLS) + os.sep)
-          and os.path.isfile(SKILLS + str(e['consumer']))}
+sys.path.insert(0, SKILLS + 'sk-doc/shared/scripts')
+import render_exempt
+exempt = set(render_exempt.load_exempt())
 import ast, re
 _pk = open(SKILLS + 'sk-doc/sk-create-skill/scripts/package_skill.py').read()
 _m = re.search(r'^RENDER_STAGED_CODES = (\([^)]*\))', _pk, re.M)

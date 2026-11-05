@@ -1,0 +1,7 @@
+
+✅ VALID: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md
+Document type: asset
+Total issues: 1
+
+⚠️ Warnings (1):
+  - [render_h2_numbering] H2 number carries a letter suffix ("6A."); use integers only.

@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.7.0
+version: 1.2.8.0
 ---
 
 # Skill Creation Process
@@ -403,7 +403,7 @@ scripts/package_skill.py <path/to/skill-folder> ./dist
 1. Use skill on real tasks
 2. Notice struggles or inefficiencies
 3. Identify SKILL.md or bundled resource updates needed
-4. Implement changes
+4. Implement changes. When a change rewrites existing docs for form, run `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --base HEAD <skill-folder>` before you commit, clear every `HARD` line and read every `ADVISORY` line
 5. Repackage and test again
 
 **Best Time to Iterate**: Right after using skill, with fresh context of performance.

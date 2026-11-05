@@ -1,0 +1,13 @@
+cli-classifier exit=0
+cli-external-orchestration exit=0
+cli-orca exit=0
+mcp-code-mode exit=0
+mcp-tooling exit=0
+sk-code exit=0
+sk-design exit=0
+sk-doc exit=0
+sk-git exit=0
+sk-prompt exit=0
+system-deep-loop exit=0
+system-skill-advisor exit=0
+system-spec-kit exit=0

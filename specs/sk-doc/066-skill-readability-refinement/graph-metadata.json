@@ -213,7 +213,7 @@
     ],
     "causal_summary": "The render checks added to `validatedocument.py` catch the mechanical defects: joined labels, setext headings, bare URLs, empty overviews, repeated text, misnumbered or misplaced sections",
     "created_at": "2026-11-04T07:15:52Z",
-    "last_save_at": "2026-11-05T09:20:47.055Z",
+    "last_save_at": "2026-11-05T10:53:14.086Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,6 +228,6 @@
       "decision-record.md": "f8f58a7336b013b783f2b7900d4942ac89044be34750f6526887f7109462f9a9"
     },
     "last_active_child_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
-    "last_active_at": "2026-11-05T09:20:47.055Z"
+    "last_active_at": "2026-11-05T10:53:14.086Z"
   }
 }

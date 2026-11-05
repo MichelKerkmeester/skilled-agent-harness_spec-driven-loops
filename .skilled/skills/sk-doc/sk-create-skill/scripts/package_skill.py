@@ -47,6 +47,7 @@ except Exception:
 
 _SHARED_SCRIPTS = Path(__file__).resolve().parents[2] / 'shared' / 'scripts'
 sys.path.insert(0, str(_SHARED_SCRIPTS))
+import render_exempt  # type: ignore
 from naming_root_resolver import find_unsupported_root_dirs  # type: ignore
 
 # ───────────────────────────────────────────────────────────────
@@ -240,8 +241,10 @@ MARKDOWN_LINK_TARGET_RE = re.compile(r'(?<!!)\[[^\]]*\]\(\s*([^)]*?)\s*\)')
 # writes its headings verbatim, a generator that renders it, or an orchestrator
 # that sends it whole as a prompt. Reshaping it to the render canon would change
 # runtime behavior, so the ledger's `exempt` map lists each such file with the
-# code that reads or produces it, and the render check skips it. An entry whose
-# named code file no longer exists exempts nothing.
+# code that reads or produces it, and the render check skips it. The shared
+# `render_exempt.py` loader is the only reader of that map: it keeps an entry
+# only when the named code file still exists and its text names the doc, so an
+# entry whose consumer is gone or never mentions the doc exempts nothing.
 RENDER_DEBT_FILE_ENV = 'RENDER_DEBT_FILE'
 RENDER_DEBT_PATH = Path(__file__).resolve().parent / 'render-known-debt.json'
 RENDER_SKILLS_ROOT_ENV = 'RENDER_SKILLS_ROOT'
@@ -923,44 +926,6 @@ def _render_skills_root() -> Path:
     return Path(override).resolve() if override else Path(__file__).resolve().parents[3]
 
 
-def load_render_exempt() -> Dict[str, str]:
-    """Read the ledger's `exempt` map as file path to the code file that depends on it.
-
-    Both paths are relative to the skills root. An entry is kept only when it
-    names a `consumer` and a `reason` and that consumer file exists, so a stale
-    or malformed entry exempts nothing and the check stays at its strictest.
-    """
-    path = Path(os.environ.get(RENDER_DEBT_FILE_ENV) or RENDER_DEBT_PATH)
-    try:
-        data = json.loads(path.read_text(encoding='utf-8'))
-    except (OSError, ValueError):
-        return {}
-    entries = data.get('exempt') if isinstance(data, dict) else None
-    if not isinstance(entries, dict):
-        return {}
-
-    root = _render_skills_root()
-    exempt: Dict[str, str] = {}
-    for doc, entry in entries.items():
-        if not isinstance(entry, dict) or set(entry) != {'consumer', 'reason'}:
-            continue
-        consumer, reason = entry['consumer'], entry['reason']
-        if not isinstance(consumer, str) or not isinstance(reason, str) or not reason.strip():
-            continue
-        # A consumer outside the skills root proves nothing about a skill doc.
-        if Path(consumer).is_absolute():
-            continue
-        consumer_path = (root / consumer).resolve()
-        try:
-            consumer_path.relative_to(root)
-        except ValueError:
-            continue
-        if not consumer_path.is_file():
-            continue
-        exempt[str(doc)] = consumer
-    return exempt
-
-
 def _render_debt_key(skill_path: Path) -> Optional[str]:
     """Return the known-debt key for a skill, or None when it sits outside the skills root.
 
@@ -1010,7 +975,7 @@ def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
             scoped.append((file, entry))
 
     findings: List[Dict[str, Any]] = []
-    exempt = load_render_exempt()
+    exempt = render_exempt.load_exempt()
     root = _render_skills_root()
     for file, scope in scoped:
         try:

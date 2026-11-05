@@ -466,7 +466,9 @@ def test_render_exempt_doc_with_live_consumer_passes_strict(tmp_path, monkeypatc
     module = _load_module()
     skill_path = _write_render_fixture_skill(tmp_path)
     (skill_path / "scripts").mkdir(exist_ok=True)
-    (skill_path / "scripts" / "writer.cjs").write_text("// writes the fixture\n", encoding="utf-8")
+    (skill_path / "scripts" / "writer.cjs").write_text(
+        "// reads render-fixture.md verbatim\n", encoding="utf-8"
+    )
     ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/writer.cjs")
     monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
     monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
@@ -474,6 +476,24 @@ def test_render_exempt_doc_with_live_consumer_passes_strict(tmp_path, monkeypatc
     valid, message, warnings = module.validate_skill(skill_path, strict=True)
     assert valid is True, message
     assert not any("render check" in warning for warning in warnings)
+
+
+def test_render_exempt_consumer_that_never_names_the_doc_exempts_nothing(
+    tmp_path, monkeypatch
+):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    (skill_path / "scripts").mkdir(exist_ok=True)
+    (skill_path / "scripts" / "writer.cjs").write_text(
+        "// reads an unrelated doc\n", encoding="utf-8"
+    )
+    ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/writer.cjs")
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False
+    assert "render check" in message
 
 
 def test_render_exempt_entry_with_missing_consumer_exempts_nothing(tmp_path, monkeypatch):
@@ -495,7 +515,9 @@ def test_render_exempt_skips_only_the_listed_doc(tmp_path, monkeypatch):
         _RENDER_JOINED_LABEL_DOC, encoding="utf-8"
     )
     (skill_path / "scripts").mkdir(exist_ok=True)
-    (skill_path / "scripts" / "writer.cjs").write_text("// writes the fixture\n", encoding="utf-8")
+    (skill_path / "scripts" / "writer.cjs").write_text(
+        "// reads render-fixture.md verbatim\n", encoding="utf-8"
+    )
     ledger = _write_exempt_ledger(tmp_path, "render-label-skill/scripts/writer.cjs")
     monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
     monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))

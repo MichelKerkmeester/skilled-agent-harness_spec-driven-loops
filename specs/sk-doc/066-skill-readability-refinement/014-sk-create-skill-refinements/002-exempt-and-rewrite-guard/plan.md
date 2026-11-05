@@ -211,7 +211,7 @@ Setup ──► Implementation ──► Verification
 
 ### ADR-001: One guard script with hard and advisory tiers
 
-**Status**: Proposed
+**Status**: Accepted
 
 **Context**: 066 used seven separate scratch tools. A refinement step that asks for seven commands is skipped.
 
@@ -238,6 +238,22 @@ Setup ──► Implementation ──► Verification
 
 **Alternatives Rejected**:
 - Put pinned docs in the exempt map: it would hide their render findings, which the operator ruled out.
+
+### ADR-003: The DESIGN.md format spec stays a validator skip
+
+**Status**: Accepted
+
+**Context**: The plan moved both of the validator's hard-coded skips into the exempt map. An exempt entry must name a consumer file that names the doc, and the two Style Reference DESIGN.md files have one in `apply-design-md.cjs`. The five format-spec files in `FORMAT_SPEC_FILES` (`design-md-format.md` and four example DESIGN.md files) have no code consumer: they are skipped because other docs cite their section numbers as the format's ids.
+
+**Decision**: The operator chose on 2026-11-05 to keep the five format-spec files as a validator skip and move only the two Style Reference files into the exempt map. The consumer rule stays strict.
+
+**Consequences**:
+- The exempt rule still has one other home, `FORMAT_SPEC_FILES`, for docs no code reads.
+- AC-001 named that list as removed, so it is superseded by AC-014.
+
+**Alternatives Rejected**:
+- Allow a doc as a consumer: it loosens the rule that a consumer is code.
+- Validate the five files normally: it renumbers sections other docs cite by number.
 
 ---
 

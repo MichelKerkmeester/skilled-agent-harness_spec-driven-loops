@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill update triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Examples and Maintenance
@@ -168,10 +168,11 @@ pdf-editor/
 1. **Identify Issue**: Use skill, notice problem
 2. **Diagnose**: SKILL.md unclear? Missing resource? Outdated info?
 3. **Fix**: Update relevant files
-4. **Validate**: Run quality validation
-5. **Repackage**: Create new zip file
-6. **Test**: Try skill on real task
-7. **Document**: Note changes in version history
+4. **Guard a rewrite**: When the fix rewrites existing docs for form, run `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --base HEAD <skill-folder>` from the repository root before you commit. Clear every `HARD` line, because each one is a changed claim, code sample, citation or cited section, or an edit to an exempt or pinned doc. Read every `ADVISORY` line, since a moved line is fine and a dropped one is not
+5. **Validate**: Run quality validation
+6. **Repackage**: Create new zip file
+7. **Test**: Try skill on real task
+8. **Document**: Note changes in version history
 
 ### Versioning
 

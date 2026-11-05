@@ -1,0 +1,28 @@
+specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py:3:A file the render ledger's `exempt` map lists, with a consumer file that still
+specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py:16:exempt = {doc for doc, e in (ledger.get('exempt') or {}).items()
+specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py:28:    if f.startswith(SKILLS) and f[len(SKILLS):] in exempt:
+specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py:37:print(f'files={len(files)} render_warnings={warn} invalid={invalid}' + (f' exempt={skipped}' if skipped else '') + (f' advisory={advisory}' if advisory else ''))
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:137:# README.md is a distinct doc class and is exempt.
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:242:# runtime behavior, so the ledger's `exempt` map lists each such file with the
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:244:# named code file no longer exists exempts nothing.
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:673:def _is_exempt_package_path(path: Path, relative_path: Path, repo_paths: frozenset = frozenset()) -> bool:
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:726:        if _is_exempt_package_path(path, relative_path, repo_paths):
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:829:    README.md is exempt from the 5-field block (distinct doc class). Files
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:841:    # 5-field block on reference/asset docs (README.md exempt).
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:921:    """Return the skills root that ledger keys and exempt paths are relative to."""
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:926:def load_render_exempt() -> Dict[str, str]:
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:927:    """Read the ledger's `exempt` map as file path to the code file that depends on it.
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:931:    or malformed entry exempts nothing and the check stays at its strictest.
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:938:    entries = data.get('exempt') if isinstance(data, dict) else None
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:943:    exempt: Dict[str, str] = {}
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:960:        exempt[str(doc)] = consumer
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:961:    return exempt
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1013:    exempt = load_render_exempt()
+.skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py:1017:            if Path(file).resolve().relative_to(root).as_posix() in exempt:
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:158:# `package_skill.py` exempts the same trees from its naming check for the same reason;
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:190:FORMAT_SPEC_FILES = [
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:232:    # package_skill.py's naming exemption), plus known fixture trees that a test
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:250:    if any(normalized.endswith('/' + suffix) for suffix in FORMAT_SPEC_FILES):
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:255:    # overview would break the reader. Only assets/style-reference/<name>/DESIGN.md
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:257:    if len(folders) >= 3 and folders[-3:-1] == ['assets', 'style-reference'] \
+.skilled/skills/sk-doc/shared/scripts/validate_document.py:2654:    The frontmatter block and the spec-folder blockquote are exempt: the quoted

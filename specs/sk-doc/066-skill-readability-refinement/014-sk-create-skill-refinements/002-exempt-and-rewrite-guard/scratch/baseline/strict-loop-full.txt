@@ -1,0 +1,211 @@
+cli-classifier: 🔍 Validating skill: cli-classifier
+cli-classifier: (strict mode)
+cli-classifier: ==================================================
+cli-classifier: 
+cli-classifier: ✅ Skill is valid!
+cli-classifier: 
+cli-classifier: ==================================================
+cli-classifier: Result: PASS
+cli-external-orchestration: 🔍 Validating skill: cli-external-orchestration
+cli-external-orchestration: (strict mode)
+cli-external-orchestration: ==================================================
+cli-external-orchestration: 
+cli-external-orchestration: ✅ Skill is valid!
+cli-external-orchestration: 
+cli-external-orchestration: ==================================================
+cli-external-orchestration: Result: PASS
+cli-orca: 🔍 Validating skill: cli-orca
+cli-orca: (strict mode)
+cli-orca: ==================================================
+cli-orca: 
+cli-orca: ✅ Skill is valid!
+cli-orca: 
+cli-orca: ⚠️  15 warning(s):
+cli-orca:    • render advisory: references/orca-skills/orca-cli.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-cli.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-emulator-android.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-emulator-android.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-emulator.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-emulator.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-linear.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-linear.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-per-workspace-env.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orca-per-workspace-env.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orchestration.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/orchestration.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/overview.md:19 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: references/orca-skills/overview.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+cli-orca:    • render advisory: assets/PROVENANCE.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+cli-orca: 
+cli-orca: ==================================================
+cli-orca: Result: PASS
+mcp-code-mode: 🔍 Validating skill: mcp-code-mode
+mcp-code-mode: (strict mode)
+mcp-code-mode: ==================================================
+mcp-code-mode: 
+mcp-code-mode: ✅ Skill is valid!
+mcp-code-mode: 
+mcp-code-mode: ⚠️  3 warning(s):
+mcp-code-mode:    • render advisory: assets/config-template.md:21 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.
+mcp-code-mode:    • render advisory: assets/config-template.md:17 The intro sentence "Copy-ready `.utcp_config.json` template for Code Mode UTCP w" repeats the description (0.67 overlap); say what the reader gets instead.
+mcp-code-mode:    • render advisory: assets/env-template.md:21 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.
+mcp-code-mode: 
+mcp-code-mode: ==================================================
+mcp-code-mode: Result: PASS
+mcp-tooling: 🔍 Validating skill: mcp-tooling
+mcp-tooling: (strict mode)
+mcp-tooling: ==================================================
+mcp-tooling: 
+mcp-tooling: ✅ Skill is valid!
+mcp-tooling: 
+mcp-tooling: ==================================================
+mcp-tooling: Result: PASS
+sk-code: 🔍 Validating skill: sk-code
+sk-code: (strict mode)
+sk-code: ==================================================
+sk-code: 
+sk-code: ✅ Skill is valid!
+sk-code: 
+sk-code: ⚠️  4 warning(s):
+sk-code:    • render advisory: shared/references/universal/code-quality-standards.md:17 The intro sentence "Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Cod" repeats the description (0.68 overlap); say what the reader gets instead.
+sk-code:    • render advisory: shared/references/workflow-debug.md:16 The intro sentence "Shared `sk-code` doctrine for root-cause diagnosis and scope" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-code:    • render advisory: shared/references/workflow-implement.md:16 The intro sentence "Shared `sk-code` doctrine for the mutating build phase, from" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-code:    • render advisory: shared/references/workflow-verify.md:16 The intro sentence "Shared `sk-code` doctrine for the final non-mutating evidenc" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-code: 
+sk-code: ==================================================
+sk-code: Result: PASS
+sk-design: 🔍 Validating skill: sk-design
+sk-design: (strict mode)
+sk-design: ==================================================
+sk-design: 
+sk-design: ✅ Skill is valid!
+sk-design: 
+sk-design: ==================================================
+sk-design: Result: PASS
+sk-doc: 🔍 Validating skill: sk-doc
+sk-doc: (strict mode)
+sk-doc: ==================================================
+sk-doc: 
+sk-doc: ✅ Skill is valid!
+sk-doc: 
+sk-doc: ⚠️  2 warning(s):
+sk-doc:    • render advisory: shared/references/core-standards.md:16 The intro sentence "Filename conventions, document type detection, and structura" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-doc:    • render advisory: shared/references/validation.md:16 The intro sentence "Quality gates, DQI scoring, and script-assisted AI analysis " repeats the description (0.67 overlap); say what the reader gets instead.
+sk-doc: 
+sk-doc: ==================================================
+sk-doc: Result: PASS
+sk-git: 🔍 Validating skill: sk-git
+sk-git: (strict mode)
+sk-git: ==================================================
+sk-git: 
+sk-git: ✅ Skill is valid!
+sk-git: 
+sk-git: ⚠️  9 warning(s):
+sk-git:    • SKILL.md has 4346 words (recommended max: 3000)
+sk-git:    • render advisory: references/commit-workflows.md:18 The intro sentence "Complete workflow documentation for professional commit prac" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/finish-workflows.md:20 The intro sentence "Complete workflow documentation for completing development w" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/github-mcp-integration.md:17 The intro sentence "Programmatic access to GitHub's remote operations via Code M" repeats the description (0.62 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/gitkraken-mcp-integration.md:17 The intro sentence "Programmatic access to GitKraken's tools via Code Mode (`cal" repeats the Purpose (1.00 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/large-reorg-playbook.md:18 The intro sentence "Step-ordered runbook for a LARGE rename/reorg (hundreds-to-t" repeats the description (0.86 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/quick-reference.md:17 The intro sentence "One-page cheat sheet for git-worktrees, git-commit, and git-" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/shared-patterns.md:18 The intro sentence "Common patterns, commands, and conventions used across all g" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-git:    • render advisory: references/worktree-workflows.md:19 The intro sentence "Complete workflow documentation for creating isolated git wo" repeats the description (1.00 overlap); say what the reader gets instead.
+sk-git: 
+sk-git: ==================================================
+sk-git: Result: PASS
+sk-prompt: 🔍 Validating skill: sk-prompt
+sk-prompt: (strict mode)
+sk-prompt: ==================================================
+sk-prompt: 
+sk-prompt: ✅ Skill is valid!
+sk-prompt: 
+sk-prompt: ==================================================
+sk-prompt: Result: PASS
+system-deep-loop: 🔍 Validating skill: system-deep-loop
+system-deep-loop: (strict mode)
+system-deep-loop: ==================================================
+system-deep-loop: 
+system-deep-loop: ✅ Skill is valid!
+system-deep-loop: 
+system-deep-loop: ⚠️  10 warning(s):
+system-deep-loop:    • render advisory: runtime/references/coverage-graph-schema.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/coverage-graph-schema.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/integration-points.md:19 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/integration-points.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/integration-points.md:151 H2 "7.1 ADDITIONAL CONSUMERS" carries a sub-number; use an integer H2 or make it an H3.
+system-deep-loop:    • render advisory: runtime/references/script-interface-contract.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/script-interface-contract.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/script-interface-contract.md:16 The intro sentence "Formal contract for the direct `.cjs` script entry points un" repeats the description (0.61 overlap); say what the reader gets instead.
+system-deep-loop:    • render advisory: runtime/references/state-format.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-deep-loop:    • render advisory: runtime/references/state-format.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-deep-loop: 
+system-deep-loop: ==================================================
+system-deep-loop: Result: PASS
+system-skill-advisor: 🔍 Validating skill: system-skill-advisor
+system-skill-advisor: (strict mode)
+system-skill-advisor: ==================================================
+system-skill-advisor: 
+system-skill-advisor: ✅ Skill is valid!
+system-skill-advisor: 
+system-skill-advisor: ⚠️  14 warning(s):
+system-skill-advisor:    • render advisory: references/config/db-path-policy.md:15 The intro sentence "Policy for the package-local skill graph SQLite database pat" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/decisions/deferred-decisions.md:15 The intro sentence "Rationale plus recommendations for deferred findings that re" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/graph/propagate-enhances.md:15 The intro sentence "Internal advisor command for detecting and optionally applyi" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/graph/skill-graph-drift.md:15 The intro sentence "How to detect plus reconcile drift between the SQLite skill " repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/graph/skill-graph-extraction-plan.md:15 The intro sentence "Current state and roadmap for lib/skill-graph/ ownership ins" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/graph/skill-graph-query-cookbook.md:15 The intro sentence "Worked examples for all 10 query types of skill_graph_query:" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/runtime/daemon-lease-contract.md:15 The intro sentence "Workspace single-writer lease semantics for the freshness da" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/runtime/freshness-contract.md:16 The intro sentence "Formal contract for advisor freshness: trust states, transit" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/runtime/legacy-tool-bridge.md:15 The intro sentence "Compatibility policy for stable advisor_* tool ids during th" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/runtime/standalone-mcp-shape.md:15 The intro sentence "Summary of ADR-001 standalone system-skill-advisor topology " repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/runtime/tool-ids-reference.md:16 The intro sentence "Reference for the nine stable system-skill-advisor command i" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/scoring/advisor-scorer.md:17 The intro sentence "Reference for the skill advisor's 5-lane scoring system, lan" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/scoring/lane-weight-tuning.md:16 The intro sentence "Process, measurement methodology, decision framework, approv" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor:    • render advisory: references/scoring/validation-baselines.md:15 The intro sentence "Baseline metrics for advisor_validate (corpus, holdout, UNKN" repeats the description (1.00 overlap); say what the reader gets instead.
+system-skill-advisor: 
+system-skill-advisor: ==================================================
+system-skill-advisor: Result: PASS
+system-spec-kit: 🔍 Validating skill: system-spec-kit
+system-spec-kit: (strict mode)
+system-spec-kit: ==================================================
+system-spec-kit: 
+system-spec-kit: ✅ Skill is valid!
+system-spec-kit: 
+system-spec-kit: ⚠️  34 warning(s):
+system-spec-kit:    • SKILL.md has 3415 words (recommended max: 3000)
+system-spec-kit:    • render advisory: references/config/environment-variables.md:16 The intro sentence "Configuration options via environment variables for the Spec" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/config/hook-system.md:17 The intro sentence "Current hook registration, runtime vocabulary, lifecycle beh" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/debugging/troubleshooting.md:17 The intro sentence "Systematic diagnosis and resolution for retrieval, continuit" repeats the description (0.69 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/memory/embedder-pluggability.md:19 The intro sentence "Canonical reference for the shared embedding stack at `.skil" repeats the Purpose (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/memory/save-workflow.md:16 The intro sentence "Complete guide to saving conversation context, execution met" repeats the description (0.77 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/memory/trigger-config.md:17 The intro sentence "Complete configuration guide for memory trigger phrases and " repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/structure/folder-routing.md:16 The intro sentence "Structured-first spec folder routing with alignment scoring " repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/structure/folder-structure.md:16 The intro sentence "Spec folder naming conventions, level requirements, and orga" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/structure/sub-folder-versioning.md:16 The intro sentence "Workflow-assisted pattern for organizing iterative work with" repeats the description (0.70 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/templates/level-selection-guide.md:16 The intro sentence "Guide to selecting appropriate documentation levels based on" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/templates/level-specifications.md:16 The intro sentence "Complete specifications for all documentation levels using t" repeats the description (0.62 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/templates/template-guide.md:16 The intro sentence "Guide to template selection, copying, adaptation, and qualit" repeats the description (0.60 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/templates/template-style-guide.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/templates/template-style-guide.md:16 The intro sentence "Conventions and standards for system-spec-kit templates ensu" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/validation/decision-format.md:17 The intro sentence "Standardized format for documenting gate decisions to ensure" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/validation/five-checks.md:17 The intro sentence "Evaluation framework for validating significant decisions be" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/validation/path-scoped-rules.md:16 The intro sentence "Path-scoped validation for differentiated rules based on fil" repeats the description (0.86 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/validation/phase-checklists.md:16 The intro sentence "Priority-based checklists for each phase of the SpecKit work" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/validation/validation-rules.md:17 The intro sentence "Complete reference for all validation rules used by the Spec" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/workflows/execution-methods.md:16 The intro sentence "How to execute spec folder operations - validation, completi" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/workflows/goal-set-string-playbook.md:24 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/goal-set-string-playbook.md:24 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/nested-changelog.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/nested-changelog.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/quick-reference.md:25 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/spec-authoring-card.md:18 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/spec-authoring-card.md:18 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/spec-folder-authoring-checklist.md:18 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/spec-folder-authoring-checklist.md:16 The intro sentence "Checklist for writing spec folders that satisfy the Level co" repeats the description (0.94 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: references/workflows/spec-folder-write-recipe.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/spec-folder-write-recipe.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+system-spec-kit:    • render advisory: references/workflows/worked-examples.md:16 The intro sentence "Practical scenarios demonstrating SpecKit workflows for diff" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit:    • render advisory: assets/complexity-decision-matrix.md:16 The intro sentence "Quick reference for complexity-based level selection and fea" repeats the description (1.00 overlap); say what the reader gets instead.
+system-spec-kit: 
+system-spec-kit: ==================================================
+system-spec-kit: Result: PASS

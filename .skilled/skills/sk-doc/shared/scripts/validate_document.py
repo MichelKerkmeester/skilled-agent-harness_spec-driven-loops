@@ -201,6 +201,7 @@ FORMAT_SPEC_FILES = [
 # root names are recognized. Fall back to local copies so the validator still runs
 # standalone if the sibling cannot be imported.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import render_exempt  # type: ignore
 from naming_root_resolver import (  # type: ignore
     PLAYBOOK_ROOT_NAMES as PLAYBOOK_DIR_NAMES,
     CATALOG_ROOT_NAMES as CATALOG_DIR_NAMES,
@@ -249,14 +250,6 @@ def should_exclude_path(file_path: str) -> Tuple[bool, Optional[str]]:
 
     if any(normalized.endswith('/' + suffix) for suffix in FORMAT_SPEC_FILES):
         return True, "Format spec: its section numbers are the DESIGN.md format's ids"
-
-    # A mode's Style Reference is DESIGN.md format output: its scripts find each
-    # section by its literal heading and some pin the file's hash, so a numbered
-    # overview would break the reader. Only assets/style-reference/<name>/DESIGN.md
-    # matches, so a style-library bundle or a sibling README is still validated.
-    if len(folders) >= 3 and folders[-3:-1] == ['assets', 'style-reference'] \
-            and normalized.rsplit('/', 1)[-1] == 'DESIGN.md':
-        return True, "Style Reference: DESIGN.md format output, read by heading text"
 
     return False, None
 
@@ -2905,6 +2898,19 @@ def validate_frontmatter_values(content: str, values: Any) -> List[Dict[str, Any
     return warnings
 
 
+def exempt_consumer_for(file_path: str) -> Optional[str]:
+    """Return the code file that depends on this doc's text, or None when none does.
+
+    The ledger keys its docs relative to the skills root, so a path outside that
+    root cannot match a record and is validated in full.
+    """
+    try:
+        relative = Path(file_path).resolve().relative_to(render_exempt.skills_root())
+    except ValueError:
+        return None
+    return render_exempt.load_exempt().get(relative.as_posix())
+
+
 def validate_document(
     file_path: str,
     doc_type: Optional[str] = None,
@@ -2961,6 +2967,11 @@ def validate_document(
             'exit_code': 2
         }
 
+    # A doc whose exact text a code file depends on still gets checked, but its
+    # findings are reported as advice with that reader named: rewriting the text is
+    # the one fix that would break the code, so it must not fail the build.
+    exempt_consumer = exempt_consumer_for(file_path)
+
     type_source = 'explicit'
     if doc_type is None:
         doc_type, type_source = _detect_document_type_with_source(file_path, content, rules)
@@ -3010,6 +3021,17 @@ def validate_document(
             'auto_fixable': False,
         })
 
+    # An exempt doc's findings are demoted rather than dropped, so the reader that
+    # owns the text still sees what would change and every finding says why it does
+    # not block.
+    if exempt_consumer:
+        prefix = f'exempt (read by {exempt_consumer}): '
+        for finding in all_errors:
+            if finding.get('severity') == 'blocking':
+                finding['severity'] = 'warning'
+            finding['exempt_consumer'] = exempt_consumer
+            finding['message'] = prefix + finding.get('message', '')
+
     blocking_errors = [e for e in all_errors if e.get('severity') == 'blocking']
     warnings = [e for e in all_errors if e.get('severity') == 'warning']
     info = [e for e in all_errors if e.get('severity') == 'info']
@@ -3017,7 +3039,7 @@ def validate_document(
     valid = len(blocking_errors) == 0
     exit_code = 0 if valid else 1
 
-    return {
+    result = {
         'valid': valid,
         'document_type': doc_type,
         'file_path': str(file_path),
@@ -3028,6 +3050,9 @@ def validate_document(
         'auto_fixable_count': sum(1 for e in all_errors if e.get('auto_fixable')),
         'exit_code': exit_code
     }
+    if exempt_consumer:
+        result['exempt_consumer'] = exempt_consumer
+    return result
 
 
 # ───────────────────────────────────────────────────────────────
@@ -3130,8 +3155,11 @@ def main() -> None:
             print("Use --no-exclude to validate anyway")
         sys.exit(0)
 
-    # Apply fixes if requested
-    if args.fix and result.get('auto_fixable_count', 0) > 0:
+    # Apply fixes if requested. An exempt doc is never rewritten: a code file reads
+    # its exact text, so an automatic fix is the one change that would break it.
+    if args.fix and result.get('exempt_consumer'):
+        print(f"Not fixing {args.file}: read by {result['exempt_consumer']}")
+    elif args.fix and result.get('auto_fixable_count', 0) > 0:
         with open(args.file, 'r', encoding='utf-8') as f:
             content = f.read()
 
@@ -3165,12 +3193,16 @@ def main() -> None:
             'blocking_errors': result['blocking_errors'],
             'warnings': result['warnings'] if not args.blocking_only else []
         }
+        if result.get('exempt_consumer'):
+            output['exempt_consumer'] = result['exempt_consumer']
         print(json.dumps(output, indent=2))
     else:
         # Human-readable output
         status = "✅ VALID" if result['valid'] else "❌ INVALID"
         print(f"\n{status}: {args.file}")
         print(f"Document type: {result['document_type']}")
+        if result.get('exempt_consumer'):
+            print(f"Exempt: read by {result['exempt_consumer']}")
         print(f"Total issues: {result['total_issues']}")
 
         if result['blocking_errors']:
