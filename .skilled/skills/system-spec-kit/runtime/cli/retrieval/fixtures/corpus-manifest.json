@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5b4ced6bd6968fb1be3ada072fd9c485f7172a6bbe72e8e6e8fd225e7e3e9f8c",
+  "corpusHash": "abff097af91f7327301ec4a8d211c5e561aceeb17091498768793be0530e9cb9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27903,
+  "includedPathCount": 27907,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3341,6 +3341,7 @@
     ".skilled/skills/sk-design/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-design/manual-testing-playbook/resource-loading/assets-only.md",
     ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+    ".skilled/skills/sk-design/shared/scripts/README.md",
     ".skilled/skills/sk-design/sk-design-chart/README.md",
     ".skilled/skills/sk-design/sk-design-chart/ROUTER.md",
     ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
@@ -3392,6 +3393,7 @@
     ".skilled/skills/sk-design/sk-design-chart/references/design-md-theming.md",
     ".skilled/skills/sk-design/sk-design-chart/references/template-contract.md",
     ".skilled/skills/sk-design/sk-design-chart/scripts/README.md",
+    ".skilled/skills/sk-design/sk-design-chart/scripts/tests/README.md",
     ".skilled/skills/sk-design/sk-design-diagram/README.md",
     ".skilled/skills/sk-design/sk-design-diagram/ROUTER.md",
     ".skilled/skills/sk-design/sk-design-diagram/SKILL.md",
@@ -3555,6 +3557,8 @@
     ".skilled/skills/sk-design/sk-design-diagram/references/types/type-tree.md",
     ".skilled/skills/sk-design/sk-design-diagram/references/types/type-venn.md",
     ".skilled/skills/sk-design/sk-design-diagram/scripts/README.md",
+    ".skilled/skills/sk-design/sk-design-diagram/scripts/families/README.md",
+    ".skilled/skills/sk-design/sk-design-diagram/scripts/tests/README.md",
     ".skilled/skills/sk-design/sk-design-md-generator/INSTALL-GUIDE.md",
     ".skilled/skills/sk-design/sk-design-md-generator/README.md",
     ".skilled/skills/sk-design/sk-design-md-generator/ROUTER.md",
@@ -27934,7 +27938,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b646ca049f181ba04fdf75431e61638623fd91d2bba827e48ac2bc8c4b3a79b1",
+  "manifestHash": "4542cf6e59e9ef5b1851476c04eae46346c55397eeacdeaa134d6e50934f9621",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -31242,6 +31246,14 @@
     },
     {
       "path": "specs/sk-code/z_archive",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/001-research-communication-context/research/luna-fanout/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-communication/006-sk-communication-clarity/review/program-review/lineages",
       "reason": "excluded directory"
     },
     {

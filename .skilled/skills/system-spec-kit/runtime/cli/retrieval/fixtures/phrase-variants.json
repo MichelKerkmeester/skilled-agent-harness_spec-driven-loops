@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b646ca049f181ba04fdf75431e61638623fd91d2bba827e48ac2bc8c4b3a79b1",
+  "manifestHash": "4542cf6e59e9ef5b1851476c04eae46346c55397eeacdeaa134d6e50934f9621",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8039,6 +8039,9 @@
     "add a comment to a notion page": [
       "add a comment to a Notion page"
     ],
+    "add a diagram check family": [
+      "add a diagram check family"
+    ],
     "add a phase binding row": [
       "add a phase binding row"
     ],
@@ -11866,6 +11869,9 @@
     ],
     "apply design md local references": [
       "apply-design-md local references"
+    ],
+    "apply design md test": [
+      "apply design md test"
     ],
     "apply design md to chart": [
       "apply DESIGN.md to chart",
@@ -17949,6 +17955,9 @@
     "chart routing integration": [
       "chart routing integration"
     ],
+    "chart scripts tests": [
+      "chart scripts tests"
+    ],
     "chart series capacity": [
       "chart series capacity"
     ],
@@ -18420,6 +18429,9 @@
     ],
     "checker debt closeout tasks": [
       "checker debt closeout tasks"
+    ],
+    "checker family coverage": [
+      "checker family coverage"
     ],
     "checker mutation ci": [
       "checker mutation ci"
@@ -29879,6 +29891,9 @@
     "corpus mutation suite": [
       "corpus mutation suite"
     ],
+    "corpus mutations": [
+      "corpus mutations"
+    ],
     "corpus parity gate deep research": [
       "corpus parity gate deep-research"
     ],
@@ -39342,11 +39357,17 @@
     "diagram catalog": [
       "diagram catalog"
     ],
+    "diagram check families": [
+      "diagram check families"
+    ],
     "diagram command path fix": [
       "diagram command path fix"
     ],
     "diagram command router": [
       "diagram command router"
+    ],
+    "diagram corpus checker": [
+      "diagram corpus checker"
     ],
     "diagram corpus ci": [
       "diagram corpus ci"
@@ -39368,6 +39389,9 @@
     ],
     "diagram extractor": [
       "diagram extractor"
+    ],
+    "diagram family contract": [
+      "diagram family contract"
     ],
     "diagram feature catalog": [
       "diagram feature catalog"
@@ -39395,6 +39419,9 @@
     ],
     "diagram lookup": [
       "diagram lookup"
+    ],
+    "diagram mutation tests": [
+      "diagram mutation tests"
     ],
     "diagram palette origin": [
       "diagram palette origin"
@@ -39450,6 +39477,9 @@
     "diagram routing canon": [
       "diagram routing canon"
     ],
+    "diagram screenshot capture": [
+      "diagram screenshot capture"
+    ],
     "diagram semantic roles": [
       "diagram semantic roles"
     ],
@@ -39470,6 +39500,9 @@
     ],
     "diagram styling correction plan": [
       "diagram styling correction plan"
+    ],
+    "diagram tests": [
+      "diagram tests"
     ],
     "diagram token derivation": [
       "diagram token derivation"
@@ -54006,6 +54039,9 @@
     ],
     "greppable spec docs": [
       "greppable spec docs"
+    ],
+    "grid baseline": [
+      "grid baseline"
     ],
     "grid intrinsic sizing": [
       "grid intrinsic sizing"
@@ -70155,6 +70191,9 @@
     ],
     "mutation and ownership boundaries": [
       "mutation and ownership boundaries"
+    ],
+    "mutation cases": [
+      "mutation cases"
     ],
     "mutation class coverage": [
       "mutation class coverage"
@@ -86613,6 +86652,9 @@
     "regenerate 113 clean packets": [
       "regenerate 113 clean packets"
     ],
+    "regenerate chart screenshots": [
+      "regenerate chart screenshots"
+    ],
     "regenerate clean packets": [
       "regenerate clean packets"
     ],
@@ -88669,6 +88711,12 @@
     ],
     "render prompt": [
       "render prompt"
+    ],
+    "render screenshots": [
+      "render screenshots"
+    ],
+    "render screenshots cjs": [
+      "render-screenshots.cjs"
     ],
     "render ts directives": [
       "render.ts directives"
@@ -104052,6 +104100,9 @@
     "sk design rule 6 summary": [
       "sk-design rule 6 summary"
     ],
+    "sk design screenshot renderer": [
+      "sk-design screenshot renderer"
+    ],
     "sk design skill benchmark artifacts": [
       "sk-design skill-benchmark artifacts"
     ],
@@ -119023,6 +119074,9 @@
     ],
     "typescript workspace configuration": [
       "typescript workspace configuration"
+    ],
+    "typo flag test": [
+      "typo flag test"
     ],
     "typo proof parsers": [
       "typo proof parsers"
