@@ -47,3 +47,13 @@ Results after `npm run build` of the runtime:
 v4.0.1.0 is tagged at 10474a9567 and published as a GitHub release (2026-11-05T05:39:47Z). Its Frontend
 Surface section still says "Open Design Values Go to `sk-design-fundamentals`", which this branch retires.
 The operator chose to update the entry and republish the tag.
+
+## 4. Release republished
+
+- main fast-forwarded 10474a9567 -> d1c57bb81d and pushed. The push bypassed the branch protection rules
+  for a pull request and signed commits.
+- The old release body was saved, and the same strip of the changelog's frontmatter and H1 reproduced it
+  apart from edge blank lines.
+- The release and the tag were deleted, then the annotated tag was recreated on d1c57bb81d and the release
+  created from the stripped entry. `git ls-remote` prints `refs/tags/v4.0.1.0^{}` at d1c57bb81d, the
+  release is Latest, not a draft, and its body carries the two new sections.

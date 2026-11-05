@@ -119,7 +119,7 @@ Summary for audit only. Per-phase detail lives in each child's `plan.md`.
 | 2 | 002-retire-fundamentals/ | A three-mode sk-design hub, the agent decide path and every repointed link | Complete |
 | 3 | 003-chart-research-cleanup/ | Four chart documents with every research citation removed and every rule stated on its own | Complete |
 | 4 | 004-review-remediation/ | Nine deep-review findings fixed across the sk-code routing vocabulary, the sk-design metadata and two frontend references | Complete |
-| 5 | 005-advisor-negation-and-routing/ | [Phase 5 scope] | Pending |
+| 5 | 005-advisor-negation-and-routing/ | A negated write that stays neutral in the advisor, two borderline routes sent to their modes and the republished v4.0.1.0 release | Complete |
 
 ### Phase Transition Rules
 
@@ -136,7 +136,7 @@ Summary for audit only. Per-phase detail lives in each child's `plan.md`.
 | 002-retire-fundamentals | 003-chart-research-cleanup | The sk-design hub registers three modes and no live hub file names the deleted folder | `parent-skill-check sk-design` prints OK with 0 warnings and the hub search prints no line |
 | 003-chart-research-cleanup | 004-review-remediation | The deep review is complete with nine active findings and each one has a phase 4 requirement | The review report lists nine active findings and phase 4 `spec.md` names REQ-001 to REQ-009 |
 | 004-review-remediation | Packet close | Every finding is fixed, the four visual-review phrases return a surfaceBundle and the packet gate passes | `compiled-route --hub sk-code` returns `sk-code-review` and `sk-code-frontend` for the four phrases and `validate.sh specs/sk-design/021-deprecate-fundamentals --strict --recursive` prints RESULT: PASSED |
-| 004-review-remediation | 005-advisor-negation-and-routing | [Criteria TBD] | [Verification TBD] |
+| 004-review-remediation | 005-advisor-negation-and-routing | The alignment run left one advisor regression and two borderline routes | The negated-write test passes and the v4.0.1.0 release body matches the entry |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -150,16 +150,16 @@
     ],
     "causal_summary": "Two design surfaces owned the same rules",
     "created_at": "2026-11-05T08:27:36Z",
-    "last_save_at": "2026-11-05T14:07:19.193Z",
+    "last_save_at": "2026-11-05T15:14:52.512Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dc7c82bd0e94077aadd49fd5df8ca32d54f13ab051cb19feb89255769f285c2e",
+    "source_fingerprint": "sha256:79c251ced61f0ff54dbfae7e53314da9217df6b014813204e35b0b0daf5c32ab",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0d07a6b859ac632a505300c8aee8dc27685dd069fe6716194ea1e3d74036b02f"
+      "spec.md": "b88667b600713da2d1c092f839e64ea3f3274ca10f114aa290143b3023addee1"
     },
     "last_active_at": null
   }

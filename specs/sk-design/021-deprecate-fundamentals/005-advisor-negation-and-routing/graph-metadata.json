@@ -39,7 +39,7 @@
       "release"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -156,12 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -181,6 +175,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The explicit lane gives sk-doc a 0.7 write-doc-surface boost whenever a write verb and a doc word co-occur, even when the write is negated",
     "created_at": "2026-11-05T14:07:18Z",
-    "last_save_at": "2026-11-05T14:32:19.667Z",
+    "last_save_at": "2026-11-05T15:14:54.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:152d0f02be58bce904e394fd98d4aa0d33323a70ed81bbe765b7149c33b96923",
+    "source_fingerprint": "sha256:afa61cc314e987bd1ea5e24b321525dec7bf171302884628afd041c1147c7648",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0ad5c5cb2d575d3beb1d794279529edb5cae526faf84b61b8cc45fae6612142",
+      "spec.md": "e37d70a81fd30dfcea13c1fb66aee9f59cc501fac65276549b14f9c7951d9656",
       "plan.md": "4610f0549879a1b070c99888fd120d7af78a2adfa68332158b4f9d9f822cd08e",
-      "tasks.md": "8faa54b5bb3f4fe00b94e4879e3d1ba09b90f9966166d8b25327f2a5fb196e66",
-      "implementation-summary.md": "7631994c237d933244ff47e53d53432d09c37a69edd57fb59441a73c9b5ea81a"
+      "tasks.md": "a8e5bcc1732f624bec62d70e980151a562fe1aeca621f539586da974e88f5840",
+      "implementation-summary.md": "2a8f797c0f8b4365bd88afb0a3a063a2fe3a8115e90427f885a8bef0bac06064"
     },
     "last_active_at": null
   }

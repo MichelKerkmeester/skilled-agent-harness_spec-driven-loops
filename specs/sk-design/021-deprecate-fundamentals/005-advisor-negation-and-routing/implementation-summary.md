@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "A negated write no longer earns sk-doc a document-writing boost. The design-document and chart-colour prompts now reach the modes that own them. The v4.0.1.0 release entry update and its tag republish remain open."
+description: "A negated write no longer earns sk-doc a document-writing boost. The design-document and chart-colour prompts now reach the modes that own them. The v4.0.1.0 release entry is updated and its tag and release are republished."
 trigger_phrases:
   - "advisor negation and routing implementation summary"
   - "negated write fix"
@@ -12,10 +12,9 @@ _memory:
     packet_pointer: "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing"
     last_updated_at: "2026-11-05T15:30:00Z"
     last_updated_by: "markdown"
-    recent_action: "Recorded the three completed fixes and the pending release entry"
-    next_safe_action: "Update the v4.0.1.0 release entry and republish its tag"
-    blockers:
-      - "Release entry and tag republish"
+    recent_action: "Republished the v4.0.1.0 tag and release on d1c57bb81d"
+    next_safe_action: "None; the phase is complete"
+    blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -39,8 +38,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-advisor-negation-and-routing |
-| **Status** | In Progress |
-| **Completed** | Pending, release notes open |
+| **Status** | Complete |
+| **Completed** | 2026-11-05 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,7 +48,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A negated write no longer earns sk-doc a document-writing boost, so a review that asks for no edits now stays with sk-code. A design-document review now reaches the sk-doc quality mode and a chart-colour review now reaches the sk-design chart mode. The v4.0.1.0 release entry update and its tag republish remain open.
+A negated write no longer earns sk-doc a document-writing boost, so a review that asks for no edits now stays with sk-code. A design-document review now reaches the sk-doc quality mode and a chart-colour review now reaches the sk-design chart mode. The v4.0.1.0 release entry names this work, and its tag and release are republished.
 
 ### Phase 5: advisor-negation-and-routing
 
@@ -72,7 +71,7 @@ The negation case is class-of-bug because the pattern affects every negated writ
 | `.skilled/skills/system-skill-advisor/changelog/v0.18.3.0.md` | Created | Records the negated-write fix and the accuracy rise |
 | `.skilled/skills/sk-doc/changelog/v2.4.2.0.md` | Created | Records the design-document route |
 | `.skilled/skills/sk-design/changelog/v3.0.0.0.md` | Created | Records the chart-colour route |
-| `.skilled/changelog/skilled/v4.0.1.0.md` | Modify, pending | Points open design values at `sk-code-frontend` and names the branch work |
+| `.skilled/changelog/skilled/v4.0.1.0.md` | Modified | Points open design values at `sk-code-frontend` and names the branch work |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -82,7 +81,7 @@ The negation case is class-of-bug because the pattern affects every negated writ
 
 The negation fix ran in the advisor runtime. The lane now blanks a negated write phrase and the new test covers three affirmed and four negated prompts. The rebuild moved tsAlsoCorrect from 103 to 104 and the full corpus from 155 to 157. The parity regression list lost rr-iter3-146 and the ledger moved from 75 to 74.
 
-The two borderline routes ran as vocabulary additions to the sk-doc and sk-design metadata. A fresh Opus agent at medium effort made both edits. A later replay returned sk-doc 0.949 first for the design-document prompt and sk-design 0.9268 first for the chart-colour prompt. The five protected routes kept their prior selection and the routing gates passed. The release entry step is still open. The operator chose to update the v4.0.1.0 entry in place and republish its tag. That work has not started.
+The two borderline routes ran as vocabulary additions to the sk-doc and sk-design metadata. A fresh Opus agent at medium effort made both edits. A later replay returned sk-doc 0.949 first for the design-document prompt and sk-design 0.9268 first for the chart-colour prompt. The five protected routes kept their prior selection and the routing gates passed. The operator chose to update the v4.0.1.0 entry in place and republish its tag. Main was fast-forwarded to the branch, then the tag and the GitHub release were deleted and recreated on `d1c57bb81d` with a body built from the entry.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -128,7 +127,7 @@ The two borderline routes ran as vocabulary additions to the sk-doc and sk-desig
 1. **The two new routes have thin margins of 0.007 and 0.020.** A later vocabulary edit can move them, so rerun both replays and the five protected prompts.
 2. **The advisor suite keeps one legacy failure.** It is the same pin as main and this phase does not change it.
 3. **The legacy advisor-corpus-parity reads 109 against a pinned 110.** The same gap exists on main and this phase does not change it.
-4. **The release entry and tag are pending.** The operator will update `.skilled/changelog/skilled/v4.0.1.0.md` and republish the tag.
+4. **The release was republished.** Anyone who fetched the old v4.0.1.0 tag holds an object that now differs from origin, and `git fetch --tags --force` updates it.
 5. **sk-doc's derived trigger phrases still list older chart phrases.** They predate this change and stay as they are.
 <!-- /ANCHOR:limitations -->
 

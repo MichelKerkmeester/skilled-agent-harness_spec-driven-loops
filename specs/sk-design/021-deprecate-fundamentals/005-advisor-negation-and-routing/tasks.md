@@ -64,7 +64,7 @@ contextType: "general"
 <!-- ANCHOR:phase-4 -->
 ## Phase 4: Release notes
 
-- [ ] T009 Update the v4.0.1.0 entry so open design values point at `sk-code-frontend`, fold the branch work into the release and republish the tag (`$REL`). Verify: `rg -n 'Open Design Values|Retired Surfaces|sk-code-frontend' $REL` prints the corrected heading and the retirement section. The published v4.0.1.0 release body matches the entry. Evidence: Pending. `scratch/facts.md` section 3 records the stale heading and the tag at `10474a9567`.
+- [x] T009 Update the v4.0.1.0 entry so open design values point at `sk-code-frontend`, fold the branch work into the release and republish the tag (`$REL`). Verify: `rg -n 'Open Design Values|Retired Surfaces|sk-code-frontend' $REL` prints the corrected heading and the retirement section. The published v4.0.1.0 release body matches the entry. Evidence: `scratch/facts.md` section 4 records the tag on `d1c57bb81d` and a release body built from the entry.
 <!-- /ANCHOR:phase-4 -->
 
 ---
@@ -82,10 +82,10 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
-- [ ] The packet gate prints `RESULT: PASSED` and every acceptance row is Met
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed
+- [x] The packet gate prints `RESULT: PASSED` and every acceptance row is Met
 <!-- /ANCHOR:completion -->
 
 ---
@@ -143,7 +143,7 @@ contextType: "general"
 - [x] CHK-021 [P0] The design-document prompt returns sk-doc first. Evidence: `scratch/facts.md` section 2 records sk-doc 0.949 first with a single `sk-create-quality-control` route.
 - [x] CHK-022 [P0] The chart-colour prompt returns sk-design first. Evidence: `scratch/facts.md` section 2 records sk-design 0.9268 first with a single `sk-design-chart` route.
 - [x] CHK-023 [P1] The five protected routes keep their prior selection. Evidence: `scratch/facts.md` section 2 records design review findings, review this design, review this screen, code review and what padding should this have unchanged.
-- [ ] CHK-024 [P1] The release entry and tag are republished. Evidence: Pending.
+- [x] CHK-024 [P1] The release entry and tag are republished. Evidence: `scratch/facts.md` section 4.
 <!-- /ANCHOR:testing -->
 
 ---

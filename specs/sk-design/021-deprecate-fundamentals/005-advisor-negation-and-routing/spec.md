@@ -24,7 +24,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-05 |
 | **Branch** | `worktrees/316-deprecate-design-fundamentals` |
 | **Parent Spec** | ../spec.md |

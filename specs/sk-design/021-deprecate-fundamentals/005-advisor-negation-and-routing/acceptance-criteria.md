@@ -56,7 +56,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-001 | REQ-001 | Given the labeled case rr-iter3-146 with its negated write prompt, When the advisor scores it, Then sk-code ranks first at 0.8377 and the prompt earns no write-doc-surface boost | `scratch/facts.md:19` records the seven-prompt test and `scratch/facts.md:27` records sk-code 0.8377 first | Met | - |
 | AC-002 | REQ-002 | Given the prompt "Review this design document for clarity.", When the advisor and the sk-doc hub score it, Then sk-doc ranks first at 0.949 and the route is a single `sk-create-quality-control` | `scratch/facts.md:31` records sk-doc 0.949 first and a single `sk-create-quality-control` route | Met | - |
 | AC-003 | REQ-003 | Given the prompt "review the chart colour system", When the advisor and the sk-design hub score it, Then sk-design ranks first at 0.9268 and the route is a single `sk-design-chart` | `scratch/facts.md:35` records sk-design 0.9268 first and a single `sk-design-chart` route | Met | - |
-| AC-004 | REQ-004 | Given the v4.0.1.0 release entry, When the entry is updated and the tag is republished, Then the entry sends open design values to `sk-code-frontend`, names the branch work and the published release matches the entry | Pending. `scratch/facts.md:47` records the stale open-values heading and the tag at `10474a9567` before the update | Pending | - |
+| AC-004 | REQ-004 | Given the v4.0.1.0 release entry, When the entry is updated and the tag is republished, Then the entry sends open design values to `sk-code-frontend`, names the branch work and the published release matches the entry | `scratch/facts.md` section 4 records the republished tag on `d1c57bb81d` and a release body that matches the entry | Met | - |
 
 ### Status values
 
@@ -82,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-004 is Pending because the v4.0.1.0 entry and its tag are not updated yet.
+Every criterion is Met. The v4.0.1.0 entry is updated, and its tag and release are republished on `d1c57bb81d`.
 <!-- /ANCHOR:closure -->
