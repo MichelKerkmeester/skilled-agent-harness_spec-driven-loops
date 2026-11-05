@@ -1,5 +1,5 @@
 {
-  "manifestHash": "57477b752ab00750b93faf1f43a7468ebee961c6729f733e1fb9e1e3f4ec8b86",
+  "manifestHash": "95d3e580e36f7ae87b65e9e7d75bf2433421e0b7b34aa9f1e40c8d33e9f17144",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -14282,6 +14282,9 @@
     ],
     "benchmark readme numbered sections": [
       "benchmark readme numbered sections"
+    ],
+    "benchmark readme trigger": [
+      "benchmark readme trigger"
     ],
     "benchmark redesign and remeasure": [
       "benchmark redesign and remeasure"
@@ -102171,6 +102174,9 @@
     "sk create benchmark 1 6 5 0": [
       "sk-create-benchmark 1.6.5.0"
     ],
+    "sk create benchmark 1 6 6 0": [
+      "sk-create-benchmark 1.6.6.0"
+    ],
     "sk create benchmark implementation summary": [
       "sk create benchmark implementation summary"
     ],
@@ -102224,6 +102230,9 @@
     ],
     "sk create benchmark v1 6 5 0": [
       "sk-create-benchmark v1.6.5.0"
+    ],
+    "sk create benchmark v1 6 6 0": [
+      "sk-create-benchmark v1.6.6.0"
     ],
     "sk create changelog": [
       "sk create changelog"
