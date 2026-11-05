@@ -8,7 +8,7 @@ trigger_phrases:
   - "reference creation guidelines"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Reference File Templates - AI Agent Skills
@@ -19,7 +19,7 @@ Templates for creating reference files in AI agent skills with deep-dive technic
 
 ## 1. OVERVIEW
 
-### What Are AI Agent Skill Reference Files?
+### Purpose
 
 Reference files are detailed technical documentation in the `references/` directory that provide deep-dive guidance with **explicit reasoning** - making thought processes visible, showing decision logic, and analyzing root causes.
 
@@ -34,6 +34,10 @@ Reference files are detailed technical documentation in the `references/` direct
 - AI agent skills = Actionable workflows with explicit reasoning
 - Generic docs = Information reference without decision logic
 
+### Usage
+
+Copy the Reference Body Skeleton in section 2 into a new file under `references/`, fill each bracket, then run `validate_document.py` on it.
+
 ### Progressive Disclosure in Skills
 
 ```
@@ -41,7 +45,7 @@ Level 1: Metadata (name + description)
          └─ Always in context (~100 words)
             ↓
 Level 2: SKILL.md body
-         └─ When skill triggers (<5k words)
+         └─ When skill triggers (within the skill-md-template.md Size Limits)
             ↓
 Level 3: Reference files (this document)
          └─ Loaded as needed (500-3000 lines per file)
@@ -74,7 +78,7 @@ Level 3: Reference files (this document)
 ```markdown
 ---
 title: [Title]
-description: [One-line description - same as intro]
+description: [One-line description of what the file holds - the intro says something different]
 trigger_phrases:
   - "[distinctive phrase one]"
   - "[distinctive phrase two]"
@@ -86,7 +90,7 @@ version: 1.0.0.0
 
 # [Title]
 
-[1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
+[1-2 SHORT sentences only. A hook that says when to open the file, not a repeat of the description. NO subsections, NO headers here.]
 
 ---
 
@@ -104,6 +108,8 @@ See [frontmatter-templates.md](../../../sk-create-frontmatter/assets/frontmatter
 
 > **WARNING: DO NOT duplicate content between intro and Section 1.**
 > The intro is a hook. Section 1 provides the details.
+
+> **Avoid pointer intros.** An intro that opens with "The sections below", "The rules below", "The examples below", "The tables below" or "The steps below", or with "This reference", "This asset", "This document", "This file", "This guide" or "This page" followed by explains, covers, describes, documents, lists, shows, contains or outlines, announces the content instead of saying when to open the file. The validator flags each one.
 
 #### GOOD Intro Structure
 
@@ -156,7 +162,7 @@ Atomic commits...  ← DUPLICATED from intro!
 
 | Content Type          | Intro (after H1) | Section 1 OVERVIEW |
 | --------------------- | ---------------- | ------------------ |
-| 1-2 sentence summary  | ✅ YES            | ❌ NO (don't repeat) |
+| 1-2 sentence hook     | ✅ YES            | ❌ NO (don't repeat) |
 | Core Principle        | ❌ NO             | ✅ YES              |
 | When to Use           | ❌ NO             | ✅ YES              |
 | Primary Sources       | ❌ NO             | ✅ YES (as "Key Sources") |

@@ -2055,8 +2055,30 @@ def _code_folder_has_flat_inventory(content: str, fenced: set, folder: Path) -> 
         r'(?im)^\s*(?:#{1,6}\s+)?(?:\d+\.\s+)?(?:CONTENTS|FILES|KEY FILES)\b',
         body,
     ))
-    if not has_inventory_heading:
+    # The package and structure names are ordinary words in prose, so they
+    # count only as a real heading, and the files they list are read from that
+    # section alone.
+    section_heading = re.compile(r'^\s*#{1,6}\s+(?:\d+\.\s+)?(?:WHAT IS IN THE PACKAGE|STRUCTURE)\b', re.IGNORECASE)
+    section_start = next(
+        (number for number, line in enumerate(lines, start=1)
+         if number not in fenced and section_heading.match(line)),
+        None,
+    )
+    if not has_inventory_heading and section_start is None:
         return False
+    if section_start is not None:
+        section_end = next(
+            (number for number, line in enumerate(lines, start=1)
+             if number > section_start and number not in fenced and re.match(r'^##(?!#)\s', line)),
+            len(lines) + 1,
+        )
+        # A fenced structure tree in that section lists files as well as a table does.
+        tree_lines = [
+            line for number, line in enumerate(lines, start=1)
+            if section_start < number < section_end and number in fenced
+            and any(glyph in line for glyph in _CODE_FOLDER_TREE_GLYPHS)
+        ]
+        body = body + '\n' + '\n'.join(tree_lines)
 
     expected_files = [
         child.name for child in folder.iterdir()
@@ -2220,7 +2242,7 @@ def validate_code_folder(content: str, file_path: str) -> List[Dict[str, Any]]:
     elif not _code_folder_has_flat_inventory(content, fenced, path.parent):
         errors.append(_code_folder_error(
             'code_folder_flat_inventory',
-            'Flat folders require a complete CONTENTS, FILES or KEY FILES table naming every file.',
+            'Flat folders require a complete CONTENTS, FILES, KEY FILES, WHAT IS IN THE PACKAGE or STRUCTURE inventory naming every file.',
         ))
 
     errors.extend(_code_folder_reference_errors(content, path, fenced))

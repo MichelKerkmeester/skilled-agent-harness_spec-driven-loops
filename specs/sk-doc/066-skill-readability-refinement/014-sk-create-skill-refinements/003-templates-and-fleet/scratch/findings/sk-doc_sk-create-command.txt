@@ -1,0 +1,8 @@
+render check: references/argument-hints-and-modes.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/argument-hints-and-modes.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: assets/command-presentation-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/command-presentation-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/command-router-template.md:24 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/command-router-template.md:24 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/command-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/command-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

@@ -1,0 +1,8 @@
+render check: references/agents-md-integration.md:23 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/agents-md-integration.md:23 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/creation-standards.md:24 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/creation-standards.md:24 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: assets/repo-rule-template.md:26 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/repo-rule-template.md:26 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/repo-rules-router-template.md:23 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/repo-rules-router-template.md:23 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

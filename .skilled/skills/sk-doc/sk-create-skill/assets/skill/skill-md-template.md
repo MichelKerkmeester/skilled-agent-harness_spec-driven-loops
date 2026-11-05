@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill section guidance"
 importance_tier: normal
 contextType: general
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # SKILL.md File Templates - Creation Guide
@@ -19,7 +19,7 @@ Templates for creating SKILL.md files with proper structure, frontmatter, and re
 
 ## 1. OVERVIEW
 
-### Purpose of SKILL.md Files
+### Purpose
 
 SKILL.md files define AI agent skills - reusable capabilities that extend an agent's functionality for specific domains or workflows. A well-crafted SKILL.md:
 
@@ -28,17 +28,17 @@ SKILL.md files define AI agent skills - reusable capabilities that extend an age
 - **Maintains consistency** across conversations
 - **Encodes expertise** in specific domains
 
-### Template Overview
+### Usage
 
 This guide provides **one comprehensive SKILL template** (Section 3) that covers all skill types from simple single-purpose tools to complex multi-mode orchestrators.
 
 **The template is flexible:**
-- **Simple skills**: Use required core sections only (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES)
+- **Simple skills**: Use required core sections only (WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES AND RELATED RESOURCES)
 - **Skills with bundled resources**: Say in Section 2 what selects the skill and what it loads first, and put the router in the sibling `ROUTER.md`. Use `references/`, `assets/`, and `scripts/`
 - **Multi-mode skills**: Expand WHEN TO USE and HOW IT WORKS sections by mode
 - **All skills**: Section 2 (SMART ROUTING) is required: 8 to 12 non-blank lines of plain prose
 
-**Target size**: 800-2000 lines total, with SKILL.md under 1000 lines and the rest in bundled resources (<5k words total)
+**Target size**: keep SKILL.md within the Size Limits table in section 3 and move the rest into bundled resources.
 
 **Examples**:
 - Simple: Unit test generator, documentation formatter (no bundled resources)
@@ -50,10 +50,10 @@ This guide provides **one comprehensive SKILL template** (Section 3) that covers
 SKILL.md architecture follows progressive disclosure:
 
 1. **Metadata** (YAML frontmatter) - Always in context (~100 words)
-2. **SKILL.md body** - When skill activates (<5k words)
+2. **SKILL.md body** - When skill activates (within the Size Limits in section 3)
 3. **Bundled resources** - Loaded as needed (unlimited size)
 
-**Critical**: Keep SKILL.md <5k words. Move detailed content to `references/`, `scripts/`, or `assets/`.
+**Critical**: Keep SKILL.md within the Size Limits in section 3. Move detailed content to `references/`, `scripts/`, or `assets/`.
 
 ### Document Type Requirements
 
@@ -116,18 +116,26 @@ version: 1.0.0.0
 
 **Use for**: Skills with bundled resources (references, scripts, or assets)
 
-**Target**: 800-2000 lines (SKILL.md <1000 lines, rest in resources)
+### Size Limits
 
-**Size Constraints** (package_skill.py validation):
-- Max 5000 words (3000 recommended)
-- Max 3000 lines
+This is the one size table for `SKILL.md`. `package_skill.py` enforces each row, and a test fails when the table and its constants drift apart.
 
-**Required Sections**: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (with ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF), REFERENCES (or combined `SMART ROUTING & REFERENCES`)
+| Limit | Value | What `package_skill.py` does above it |
+|-------|-------|----------------------------------------|
+| SKILL.md words | 5000 | Fails the check |
+| SKILL.md recommended words | 3000 | Warns |
+| SKILL.md lines | 3000 | Warns |
+| SMART ROUTING non-blank lines | 12 | Warns with RS-001, an error under `--strict`, which packaging runs |
+| SMART ROUTING words | 180 | Warns with RS-001, an error under `--strict`, which packaging runs |
+
+Keep the rest of the skill in bundled resources, which have no size limit.
+
+**Required Sections**: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES (with ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF), REFERENCES AND RELATED RESOURCES (always the last section)
 
 Packaging enforcement note:
-- `package_skill.py` fails if `REFERENCES` is missing and no approved combined `SMART ROUTING & REFERENCES` structure exists.
+- `package_skill.py` fails if no section heading contains `REFERENCES`. It still accepts an older combined `SMART ROUTING & REFERENCES` heading, but a new standalone skill keeps one `REFERENCES AND RELATED RESOURCES` section, last. Parent hubs and their packets follow the parent-skill templates.
 
-**Recommended Sections**: SUCCESS CRITERIA, INTEGRATION POINTS, REFERENCES AND RELATED RESOURCES
+**Recommended Sections**: SUCCESS CRITERIA, INTEGRATION POINTS
 
 ### Template
 
@@ -311,27 +319,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-\## 5. REFERENCES
-
-### Core References
-
-- [reference-name.md](./references/reference-name.md) - Primary operational guidance
-- [workflow-name.md](./references/workflow-name.md) - End-to-end execution flow
-
-### Templates and Assets
-
-- [template-name.md](./assets/template-name.md) - Reusable output template
-- [checklist-name.md](./assets/checklist-name.md) - Validation checklist
-
-### Reference Loading Notes
-
-- Load only references needed for current intent.
-- Keep `SMART ROUTING` as the plain-word summary of what loads, and the sibling `ROUTER.md` as the router that does it.
-- Use combined heading `SMART ROUTING & REFERENCES` only if both concerns stay clear.
-
----
-
-\## 6. SUCCESS CRITERIA
+\## 5. SUCCESS CRITERIA
 
 ### [Primary Workflow] Completion Checklist
 
@@ -358,7 +346,7 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-\## 7. INTEGRATION POINTS
+\## 6. INTEGRATION POINTS
 
 ### [Integration System 1 - e.g., Validation Workflow]
 
@@ -397,7 +385,19 @@ See [workflow-details.md](./references/workflow-details.md) for complete step-by
 
 ---
 
-\## 8. REFERENCES AND RELATED RESOURCES
+\## 7. REFERENCES AND RELATED RESOURCES
+
+### Core References
+
+- [reference-name.md](./references/reference-name.md) - Primary operational guidance
+- [workflow-name.md](./references/workflow-name.md) - End-to-end execution flow
+
+### Templates and Assets
+
+- [template-name.md](./assets/template-name.md) - Reusable output template
+- [checklist-name.md](./assets/checklist-name.md) - Validation checklist
+
+### Related Resources
 
 The router in `ROUTER.md` discovers reference, asset, and script docs dynamically. Start with `references/[primary].md`, `assets/[template].md`, and any skill-specific automation under `scripts/`, then load task-specific resources according to Section 2.
 
@@ -407,6 +407,11 @@ Related skills: `[related-skill]` for [relationship], `[other-skill]` for [relat
 
 Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installation or configuration steps.
 
+### Reference Loading Notes
+
+- Load only references needed for current intent.
+- Keep `SMART ROUTING` as the plain-word summary of what loads, and the sibling `ROUTER.md` as the router that does it.
+
 ---
 
 **Word Count Targets**:
@@ -414,15 +419,14 @@ Install guide: [INSTALL-GUIDE.md](INSTALL-GUIDE.md) when the skill has installat
 - Section 2 (SMART ROUTING): 8-12 non-blank lines of plain prose (the router block lives in the sibling `ROUTER.md`)
 - Section 3 (HOW IT WORKS): 200-300 lines
 - Section 4 (RULES): 150-200 lines
-- Section 5 (REFERENCES): 40-120 lines
-- Section 6 (SUCCESS CRITERIA): 80-120 lines
-- Section 7 (INTEGRATION POINTS): 100-150 lines
-- Section 8 (REFERENCES AND RELATED RESOURCES): 20-60 lines
+- Section 5 (SUCCESS CRITERIA): 80-120 lines
+- Section 6 (INTEGRATION POINTS): 100-150 lines
+- Section 7 (REFERENCES AND RELATED RESOURCES): 60-180 lines
 
 **Bundled Resources Structure (Monolithic)**:
 ```
 .skilled/skills/skill-name/       # Note: .skilled/skills/ (singular, NOT skills)
-├── SKILL.md (800-1000 lines)
+├── SKILL.md (within the Size Limits above)
 └── Bundled Resources
     ├── scripts/          - Executable automation
     ├── references/       - Detailed documentation (flat or domain subfolders)
@@ -766,32 +770,7 @@ mode_detection:
 
 ---
 
-### Section 5: REFERENCES
-
-**Purpose**: Expose the operational references and templates the skill depends on.
-
-**Essential Content**:
-- Core references used during execution
-- Templates/assets used during output generation
-- Loading notes that stay consistent with Section 2 (SMART ROUTING)
-
-**Structure**:
-
-### Core References
-- [reference-name.md](./references/reference-name.md) - Primary guidance
-
-### Templates and Assets
-- [template-name.md](./assets/template-name.md) - Reusable output template
-
-### Reference Loading Notes
-- Load only what current intent requires.
-- Keep Smart Routing as the single routing authority.
-
-**Word Budget**: 40-120 lines
-
----
-
-### Section 6: SUCCESS CRITERIA
+### Section 5: SUCCESS CRITERIA
 
 **Purpose**: Define completion conditions and quality standards
 
@@ -827,7 +806,7 @@ mode_detection:
 
 ---
 
-### Section 7: INTEGRATION POINTS
+### Section 6: INTEGRATION POINTS
 
 **Purpose**: Document how skill integrates with systems, tools, and workflow contracts
 
@@ -872,6 +851,31 @@ mode_detection:
 - Link related skills by name
 
 **Word Budget**: 50-150 lines
+
+---
+
+### Section 7: REFERENCES AND RELATED RESOURCES
+
+**Purpose**: Expose the operational references and templates the skill depends on, then related skills and scripts. This is always the last section.
+
+**Essential Content**:
+- Core references used during execution
+- Templates/assets used during output generation
+- Loading notes that stay consistent with Section 2 (SMART ROUTING)
+
+**Structure**:
+
+### Core References
+- [reference-name.md](./references/reference-name.md) - Primary guidance
+
+### Templates and Assets
+- [template-name.md](./assets/template-name.md) - Reusable output template
+
+### Reference Loading Notes
+- Load only what current intent requires.
+- Keep Smart Routing as the single routing authority.
+
+**Word Budget**: 60-180 lines
 
 ---
 
@@ -924,7 +928,7 @@ Content - Standard Sections:
 □ WHEN TO USE section includes use cases + anti-patterns
 □ HOW IT WORKS section explains workflow clearly
 □ RULES section has ALWAYS, NEVER, ESCALATE IF
-□ REFERENCES section lists core references/templates explicitly
+□ REFERENCES AND RELATED RESOURCES section, last, lists core references/templates explicitly
 □ SUCCESS CRITERIA section defines completion
 □ INTEGRATION POINTS section documents dependencies
 □ All bundled resources referenced from SKILL.md
@@ -945,7 +949,7 @@ Content - Routing Canon:
 □ Mermaid diagrams use valid syntax (when used)
 
 Quality:
-□ SKILL.md under 5k words (<3k preferred)
+□ SKILL.md within the Size Limits table in section 3
 □ Concrete examples included
 □ Rationale provided for rules
 □ Instructions follow the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist)
@@ -965,9 +969,9 @@ Quality:
 | **Description Voice** | Third-person               | ✅ "Use when..."  ❌ "You should..."                                                                 |
 | **H2 Format**         | Number + ALL CAPS          | ✅ `## 1. WHEN TO USE`                                                                            |
 | **TOC**               | Forbidden in SKILL.md      | ❌ No table of contents                                                                             |
-| **Sections**          | 5 required + 3 recommended | Required: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES (or combined `SMART ROUTING & REFERENCES`). Recommended: SUCCESS CRITERIA, INTEGRATION POINTS, REFERENCES AND RELATED RESOURCES |
+| **Sections**          | 5 required + 2 recommended | Required: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES AND RELATED RESOURCES (last). Recommended: SUCCESS CRITERIA, INTEGRATION POINTS |
 | **Sibling Router**   | `ROUTER.md` beside `SKILL.md` | Its `## MACHINE ROUTER` section holds the only router pseudocode, and Section 2 links to the file |
-| **File Size**         | <5k words (<3k preferred)  | Move details to references/                                                                        |
+| **File Size**         | Size Limits in section 3   | Move details to references/                                                                        |
 | **Rules Format**      | ALWAYS, NEVER, ESCALATE IF | All caps headers, specific rules                                                                   |
 | **Examples**          | Concrete and realistic     | Show actual use cases                                                                              |
 
@@ -978,7 +982,6 @@ Quality:
 | **Workflows**         | Single                    | Single                           | Multiple modes                      |
 | **Bundled Resources** | None                      | Some (refs/scripts/assets)       | Extensive                           |
 | **Total Lines**       | 400-800                   | 800-2000                         | 2000-5000                           |
-| **SKILL.md Lines**    | 400-800                   | 800-1000                         | <3000                               |
 | **Sections**          | 5 required core           | 5 required + recommended sections | 5 required per mode + overview       |
 | **Example Skills**    | mcp-chrome-devtools | system-spec-kit, sk-code | sk-doc, sk-git |
 
@@ -990,10 +993,10 @@ python .skilled/skills/sk-doc/scripts/package_skill.py .skilled/skills/[skill-na
 
 # Validation checks:
 # - Frontmatter: name (hyphen-case), description (no <>), allowed-tools (array format), version
-# - Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, REFERENCES
+# - Required sections: WHEN TO USE, SMART ROUTING, HOW IT WORKS, RULES, a heading containing REFERENCES
 # - RULES subsections: ✅ ALWAYS, ❌ NEVER, ⚠️ ESCALATE IF
 # - Routing shape: SMART ROUTING 8-12 non-blank lines, a sibling ROUTER.md with a final `## MACHINE ROUTER` section, and a relative link to it from SKILL.md (RS-001 to RS-005 under --strict)
-# - Size constraints: max 5000 words, max 3000 lines
+# - Size constraints: the Size Limits table in section 3
 
 # Native discovery:
 # - Skills auto-discovered from .skilled/skills/*/SKILL.md frontmatter

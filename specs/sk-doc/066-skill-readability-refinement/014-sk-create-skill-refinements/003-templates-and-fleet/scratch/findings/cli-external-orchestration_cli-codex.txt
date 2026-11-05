@@ -1,0 +1,1 @@
+render check: references/integration-patterns.md:18 The intro sentence "Proven patterns for orchestrating Codex CLI from any AI assi" repeats the description (0.65 overlap); say what the reader gets instead.

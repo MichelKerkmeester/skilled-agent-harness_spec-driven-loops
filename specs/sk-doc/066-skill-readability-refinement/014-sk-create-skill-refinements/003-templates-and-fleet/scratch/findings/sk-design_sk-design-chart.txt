@@ -1,0 +1,2 @@
+render check: references/catalog.md:16 The intro sentence "It turns the comparison a reader needs into one chart form, " repeats the Purpose (0.60 overlap); say what the reader gets instead.
+render check: assets/style-reference/evilcharts/origin.md:21 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

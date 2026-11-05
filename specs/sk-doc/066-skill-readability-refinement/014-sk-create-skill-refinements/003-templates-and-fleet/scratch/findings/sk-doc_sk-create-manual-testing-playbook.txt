@@ -1,0 +1,6 @@
+render check: assets/manual-testing-playbook-conversation-snippet-template.md:24 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/manual-testing-playbook-conversation-snippet-template.md:24 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/manual-testing-playbook-snippet-template.md:25 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/manual-testing-playbook-snippet-template.md:25 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/manual-testing-playbook-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/manual-testing-playbook-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

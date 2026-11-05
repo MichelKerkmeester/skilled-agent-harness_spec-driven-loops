@@ -1,0 +1,5 @@
+render check: references/cli-versus-mcp.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/cli-versus-mcp.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/mcp-tools.md:29 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/mcp-tools.md:29 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/plugins/plugin-operation-logic.md:18 The intro sentence "The `mcp-obsidian` mode operates Obsidian community plugins " repeats the description (1.00 overlap); say what the reader gets instead.

@@ -1,0 +1,1263 @@
+diff --git a/.skilled/skills/mcp-tooling/README.md b/.skilled/skills/mcp-tooling/README.md
+index 90d8882722c..30b9a444132 100644
+--- a/.skilled/skills/mcp-tooling/README.md
++++ b/.skilled/skills/mcp-tooling/README.md
+@@ -16,7 +16,9 @@ version: 1.8.6.0
+ 
+ > One advisor identity routes eight MCP tool bridges through the right workflow packet: five workflow bridges and three read-only design transports.
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -27,10 +29,6 @@ version: 1.8.6.0
+ | **Transport modes** | `mcp-figma`, `mcp-refero`, `mcp-mobbin` |
+ | **Produces** | External-tool evidence and state changes owned by the selected packet, with explicit safety boundaries |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ External tools do not share one setup story or one safety model. The hub gives them one advisor identity while keeping each provider's command surface, credential boundary, mutation policy, and recovery rules in a nested packet.
+ 
+ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.json`. The root `ROUTER.md` then maps the selected mode to the exact packet-local references needed for the request. `mcp-code-mode` is shared infrastructure for packets that use Code Mode, not another hub member.
+@@ -39,7 +37,7 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
+ 
+ ---
+ 
+-## 3. MODE DIRECTORY
++## 2. MODE DIRECTORY
+ 
+ | Mode | What the hub routes |
+ |---|---|
+@@ -54,7 +52,7 @@ The hub selects a `workflowMode` through `mode-registry.json` and `hub-router.js
+ 
+ ---
+ 
+-## 4. QUICK START
++## 3. QUICK START
+ 
+ For installation or debugging, use `/doctor:mcp`. Its `debug` action reports bridge state without changing configuration, and `install` changes a configuration file only after you approve that write.
+ 
+@@ -74,7 +72,7 @@ The hub routes a browser/CDP request to Chrome and a generic agentic browser req
+ 
+ ---
+ 
+-## 5. ROUTING AND BOUNDARIES
++## 4. ROUTING AND BOUNDARIES
+ 
+ ### Two-stage routing
+ 
+@@ -100,7 +98,7 @@ Transport packets bridge external tool surfaces and remain `mutatesWorkspace:fal
+ 
+ ---
+ 
+-## 6. VERIFICATION
++## 5. VERIFICATION
+ 
+ Hub structure and coupled metadata:
+ 
+@@ -129,7 +127,7 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py .skilled
+ 
+ ---
+ 
+-## 7. RELATED SKILLS
++## 6. RELATED SKILLS
+ 
+ | Skill | Relationship |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-aside-devtools/README.md b/.skilled/skills/mcp-tooling/mcp-aside-devtools/README.md
+index c0e68ff62bd..a9663f2b7a2 100644
+--- a/.skilled/skills/mcp-tooling/mcp-aside-devtools/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-aside-devtools/README.md
+@@ -16,7 +16,9 @@ version: 1.1.4.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.1.4.0
+ | **Works on** | macOS (Darwin) arm64/x64 only. The official installer rejects Linux and Windows |
+ | **Produces** | Agent-task outcomes, REPL evaluation results, screenshots, PDFs and snapshots, plus discovered MCP tool fixtures |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Browser work from an agent splits into two shapes. One is outcome-oriented: multi-step goals like `"sign in, compare, download"`. The other is deterministic evidence: `"open this tab, snapshot it, screenshot it"`. Aside serves both from one binary, a natural-language browser agent and a Playwright-compatible JavaScript REPL, plus a local MCP server for composition with other tools. Picking the wrong lane wastes tokens. Worse, it hands a deterministic proof job to a nondeterministic agent. This skill routes between the lanes and holds the safety lines Aside's identity and permission model requires.
+@@ -57,7 +55,7 @@ The MCP transport belongs to `mcp-code-mode`. This skill consumes Code Mode as a
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install the CLI (macOS only, operator-invoked).**
+ 
+@@ -105,7 +103,7 @@ call_tool_chain(`
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Routing Rule
+ 
+@@ -121,7 +119,7 @@ The agent-task lane (`aside "<task>"`, `aside exec`, `--session <id>` continuati
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -137,7 +135,7 @@ Reach for this skill when browser work should run through the Aside AI browser:
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -150,7 +148,7 @@ Reach for this skill when browser work should run through the Aside AI browser:
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: When do I use the agent-task lane versus the REPL?**
+ 
+@@ -174,7 +172,7 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -185,7 +183,7 @@ A: Unresolved. Docs examples show `-m provider/model`. The installed help shows
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md b/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md
+index d6ee5f2f258..8348056c916 100644
+--- a/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-cli/README.md
+@@ -15,7 +15,9 @@ version: 1.0.0.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.0.0.0
+ | **Works on** | macOS (Darwin) arm64/aarch64 and x64 ONLY: the installer rejects Linux and Windows. |
+ | **Produces** | An `aside` shim at `~/.local/bin/aside` (default), signed in against an Aside account. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-aside-devtools drives real Aside surfaces (`aside "<task>"`, `aside exec`, `aside repl`, `aside account`, `aside mcp`) rather than reimplementing them. This folder is not vendored source: it is the install pointer the parent packet's `INSTALL-GUIDE.md` and `scripts/install.sh` align with. Distribution is a curl-piped macOS app-bundle installer; `npm install -g aside` and GitHub-package installs were researched and ruled out.
+@@ -38,7 +36,7 @@ The official installer places the executable/shim at `~/.local/bin/aside` by def
+ 
+ ---
+ 
+-## 3. INSTALL AND VERIFY
++## 2. INSTALL AND VERIFY
+ 
+ ```bash
+ # Official installer (macOS only, operator-invoked)
+@@ -60,7 +58,7 @@ Or use the wrapper with platform gate and idempotency: `bash ../../scripts/insta
+ 
+ ---
+ 
+-## 4. RELATED DOCUMENTS
++## 3. RELATED DOCUMENTS
+ 
+ - [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md): full install, sign-in, and permission-tier walkthrough
+ - [`../../references/aside-cli-reference.md`](../../references/aside-cli-reference.md), verified command surface
+diff --git a/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md b/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md
+index 385e7ca966d..19378fd517c 100644
+--- a/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-aside-devtools/mcp-servers/aside-mcp/README.md
+@@ -15,7 +15,9 @@ version: 1.0.0.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.0.0.0
+ | **Works on** | `aside mcp` over local stdio, spawned by the client; no URL, port, token, or env credential. |
+ | **Produces** | A runtime-discovered tool surface (exactly one `repl` tool on the pinned version `1.26.626.1517`, protocol `2024-11-05`). |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-aside-devtools routes composition work, browser operations chained with other Code Mode tools, through the Aside MCP server. That server is not vendored source: it ships inside the `aside` binary (install via [`../aside-cli/README.md`](../aside-cli/README.md)). This folder documents the transport facts and mirrors the registered manual object; the canonical byte-true snapshot lives in [`../../assets/utcp-aside-manual.md`](../../assets/utcp-aside-manual.md).
+@@ -38,7 +36,7 @@ mcp-aside-devtools routes composition work, browser operations chained with othe
+ 
+ ---
+ 
+-## 3. REGISTERED UTCP MANUAL
++## 2. REGISTERED UTCP MANUAL
+ 
+ > **Status: REGISTERED** (2026-07-16). This entry is present in `.utcp_config.json` `manual_call_templates[]`: verify with `jq '.manual_call_templates[] | select(.name == "aside")' .utcp_config.json`, do not re-add it. Post-registration discovery ran 2026-07-16 (fixture: `references/discovery-fixture-2026-07-16.json`): registry name `aside.aside.repl`, TS callable `aside.aside_repl(args)`.
+ 
+@@ -77,7 +75,7 @@ Register **one** manual. The dual-manual layout (`aside_1`/`aside_2`, mirroring
+ 
+ ---
+ 
+-## 4. RELATED DOCUMENTS
++## 3. RELATED DOCUMENTS
+ 
+ - [`../../references/mcp-wiring.md`](../../references/mcp-wiring.md): transport, handshake, discovery, and binding detail
+ - [`../../references/session-management.md`](../../references/session-management.md): daemon lifecycle and concurrency posture
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
+index e4079344848..4b667bfcdf2 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/README.md
+@@ -16,7 +16,9 @@ version: 1.0.17.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.0.17.0
+ | **Works on** | Chrome, Chromium and Edge through a local browser instance |
+ | **Produces** | PNG screenshots, HAR network traces, console logs, DOM query results and CDP responses |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Driving a browser from an agent usually means a heavyweight automation framework or burning tokens on verbose protocol dumps. A one-shot screenshot or a console read wants a fast single-purpose command. A multi-step flow that chains browser actions with other tool calls wants a typed composable interface. Picking the wrong approach wastes tokens or blocks parallelism. A single tool does not fit both needs, so this skill gives you two paths and routes between them.
+@@ -63,7 +61,7 @@ This skill is not a cross-browser test framework. The CLI targets Chromium-based
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install the CLI.**
+ 
+@@ -109,7 +107,7 @@ The block returns a screenshot and console messages as typed objects.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Routing Rule
+ 
+@@ -163,7 +161,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
+ 
+ ---
+ 
+-## 5. TROUBLESHOOTING
++## 4. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -176,7 +174,7 @@ All three scripts under `examples/` support headless mode through `CHROME_HEADLE
+ 
+ ---
+ 
+-## 6. FAQ
++## 5. FAQ
+ 
+ **Q: When do I use the CLI versus the MCP path?**
+ 
+@@ -200,7 +198,7 @@ A: Register multiple entries in `.utcp_config.json`, each with its own name such
+ 
+ ---
+ 
+-## 7. VERIFICATION
++## 6. VERIFICATION
+ 
+ The skill ships a manual testing playbook and three example scripts that double as verification gates.
+ 
+@@ -216,7 +214,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
+ 
+ ---
+ 
+-## 8. RELATED RESOURCES
++## 7. RELATED RESOURCES
+ 
+ ### Related Skills
+ 
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md
+index 3477a5f849e..65b1d51eac8 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/bdg-cli/README.md
+@@ -14,7 +14,9 @@ version: 1.0.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -23,10 +25,6 @@ version: 1.0.1.0
+ | **Works on** | Node.js 18+ with Chrome/Chromium/Edge. macOS and Linux native; Windows via WSL only. |
+ | **Produces** | A working `bdg` binary on `PATH` able to start sessions, capture screenshots, read console logs, and export HAR files. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer the parent skill's `INSTALL-GUIDE.md` and `scripts/install.sh` describe: the canonical, step-by-step install with validation checkpoints lives in [`../../INSTALL-GUIDE.md`](../../INSTALL-GUIDE.md).
+@@ -37,7 +35,7 @@ mcp-chrome-devtools drives browser debugging through `bdg`, a real third-party C
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install.**
+ 
+@@ -68,7 +66,7 @@ ls -la /tmp/verify.png
+ 
+ ---
+ 
+-## 4. TROUBLESHOOTING
++## 3. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -78,7 +76,7 @@ ls -la /tmp/verify.png
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md
+index 842f798dce9..d20153b2b36 100644
+--- a/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-chrome-devtools/mcp-servers/chrome-devtools-mcp/README.md
+@@ -14,7 +14,9 @@ version: 1.0.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -23,10 +25,6 @@ version: 1.0.1.0
+ | **Works on** | `npx chrome-devtools-mcp` over stdio with `--isolated=true`, launched by Code Mode on demand. |
+ | **Produces** | 26 exposed browser tools (navigation, screenshots, console, viewport, clicks, page management) per registered instance. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-chrome-devtools routes multi-tool and parallel-browser work, the surfaces the sequential-only `bdg` CLI cannot reach, to the Chrome DevTools MCP server ([ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp), Apache-2.0). The server is launched on demand by Code Mode and is not vendored as source in this repository, so nothing installs in this folder. It documents the registration instead.
+@@ -37,7 +35,7 @@ Two manuals in `.utcp_config.json` (`chrome_devtools_1`, `chrome_devtools_2`) ea
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Confirm registration.**
+ 
+@@ -71,7 +69,7 @@ Close pages in a `finally` block so no browser instance leaks.
+ 
+ ---
+ 
+-## 4. TROUBLESHOOTING
++## 3. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -81,7 +79,7 @@ Close pages in a `finally` block so no browser instance leaks.
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/README.md b/.skilled/skills/mcp-tooling/mcp-click-up/README.md
+index 58af55e6648..916b1fa53d4 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/README.md
+@@ -16,7 +16,9 @@ version: 1.1.4.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.1.4.0
+ | **Works on** | Any ClickUp workspace, cupt uses a Personal API Token, the MCP path signs in with OAuth to the hosted ClickUp server, cupt works offline after `cupt prefetch` |
+ | **Produces** | Task completions with status resolution, time logs, tagged queues and structured documents via two operation-routed paths |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Managing ClickUp from an agent is risky when every small action hits the heavyweight API. A "mark this done" or "list my tasks today" wants one fast command. Each ClickUp list carries its own status schema, so a blind completion writes the wrong status and that is hard to reverse. Creating tasks and documents needs the full API surface, but routing daily reads and writes through it wastes tokens and loses the dry-run safety net. A single tool does not solve both problems, so this skill gives you two paths and routes between them.
+@@ -50,7 +48,7 @@ The MCP transport is owned by `mcp-code-mode`. This skill consumes Code Mode as
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install cupt and authenticate.**
+ 
+@@ -104,7 +102,7 @@ The MCP config snippet from `install.sh` is the JSON block to paste. It needs no
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Operation Router
+ 
+@@ -166,7 +164,7 @@ The skill ships two production scripts under `examples/`. Each doubles as an end
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -186,7 +184,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -200,7 +198,7 @@ This skill uses only ClickUp's official MCP server (the hosted server at `https:
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: When do I use cupt versus the official MCP?**
+ 
+@@ -224,7 +222,7 @@ A: No. An empty `cupt list` result is valid. Before you escalate, check the tag
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships a manual testing playbook and two example scripts that double as verification gates.
+ 
+@@ -237,7 +235,7 @@ The skill ships a manual testing playbook and two example scripts that double as
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md b/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md
+index 3621d634f92..5c2c55276aa 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-cli/README.md
+@@ -15,7 +15,9 @@ version: 1.0.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.0.2.0
+ | **Works on** | Python 3.8+ with `pipx` (preferred) or `pip`. |
+ | **Produces** | A working `cupt` binary on `PATH`, authenticated against a ClickUp workspace. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-click-up drives daily ClickUp task operations (listing, completing, time tracking, notes, attachments) through `cupt`, a real third-party CLI, rather than reimplementing that surface. This folder is not vendored source. It is the install pointer and the minimum version constraint that the parent skill's `SKILL.md` names. Neither `setup.sh` nor `scripts/install.sh` reads `requirements.txt`, both install the latest `cupt`.
+@@ -38,7 +36,7 @@ mcp-click-up drives daily ClickUp task operations (listing, completing, time tra
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install.**
+ 
+@@ -69,7 +67,7 @@ Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticate
+ 
+ ---
+ 
+-## 4. TROUBLESHOOTING
++## 3. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -78,7 +76,7 @@ Expected: `cupt, version <installed version>`, then two lines: `OK: Authenticate
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md b/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md
+index 5e377582832..bab52361714 100644
+--- a/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-click-up/mcp-servers/clickup-mcp/README.md
+@@ -15,18 +15,16 @@ version: 1.0.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+ | **Use it for** | Confirming how the official ClickUp MCP server is configured. There is no local package to install. |
+ | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `clickup_official` manual is registered. |
+ | **Works on** | `npx -y mcp-remote https://mcp.clickup.com/mcp` over stdio, launched by Code Mode on demand, then one OAuth approval. |
+-| **Produces** | Task, document, time-tracking and chat tools under the `clickup_official.clickup_official_*` namespace once registered. Registered in this environment on 2026-10-08, see Section 4. |
+-
+----
+-
+-## 2. OVERVIEW
++| **Produces** | Task, document, time-tracking and chat tools under the `clickup_official.clickup_official_*` namespace once registered. Registered in this environment on 2026-10-08, see Section 3. |
+ 
+ ### Why This Package Exists
+ 
+@@ -38,7 +36,7 @@ The `clickup_official` manual registered in `.utcp_config.json` launches the hos
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Sign in.** On the first launch, approve the ClickUp OAuth prompt in the browser. The `clickup_official` entry in `.utcp_config.json` needs no environment variables.
+ 
+@@ -48,7 +46,7 @@ The `clickup_official` manual registered in `.utcp_config.json` launches the hos
+ list_tools()
+ ```
+ 
+-Expected: entries prefixed `clickup_official.clickup_official_*`. On 2026-10-08 the hosted server registered 61 tools, see Section 4.
++Expected: entries prefixed `clickup_official.clickup_official_*`. On 2026-10-08 the hosted server registered 61 tools, see Section 3.
+ 
+ **Step 3: Confirm a callable name before using it.**
+ 
+@@ -60,7 +58,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
+ 
+ ---
+ 
+-## 4. VERIFICATION
++## 3. VERIFICATION
+ 
+ > **Verification status (2026-10-08):** the `clickup_official` manual runs the hosted server through `mcp-remote`, after the npm package `@clickup/mcp-server` returned 404 on 2026-07-10 and again on 2026-10-08. The hosted server registered 61 tools on 2026-10-08.
+ 
+@@ -71,7 +69,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-figma/README.md b/.skilled/skills/mcp-tooling/mcp-figma/README.md
+index b4f05a81892..8d4de0cd296 100644
+--- a/.skilled/skills/mcp-tooling/mcp-figma/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-figma/README.md
+@@ -17,7 +17,9 @@ version: 1.1.8.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.1.8.0
+ | **Works on** | The installed Figma **Desktop** app while it is open with a file, since the CLI drives the live Desktop session over a local daemon. Needs Node.js 18 or newer and the silships `figma-ds-cli` on PATH. macOS is the supported baseline |
+ | **Produces** | Rendered frames and components in the open file, design-system tokens and variables, read-only exports (DESIGN.md, PNG, SVG, JSX, CSS, Tailwind, Storybook, a11y audits) and optional design context pulled in through Code Mode |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Figma's natural home is its own canvas. Reaching it from a coding agent is awkward without a contract. The silships CLI closes that gap by driving Figma Desktop directly, but an agent needs to know several things before it touches a real file. The canonical binary is `figma-ds-cli`. The npm package literally named `figma-cli` is an unrelated tool. There is no API key, so the live Desktop session is the source of truth and a closed app means nothing works. Connecting has a safe default and a riskier patched mode, a local daemon brokers every command. The command surface ranges from harmless reads to destructive verbs that can delete nodes and variables or clear whole batches. Guessing at any of that wastes a round trip or, worse, fires a destructive verb against real work. This skill wraps the CLI, its daemon and an optional Figma MCP behind one set of instructions, so the agent always knows which binary is real, which calls are safe and exactly where the gates are.
+@@ -51,7 +49,7 @@ This is a CLI-primary surface with an optional MCP, not the reverse. The binary
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ > Examples below are illustrative. Verify exact flags with `figma-ds-cli --help`. Do not run the patched yolo connect mode without explicit consent and a stated rollback.
+ 
+@@ -92,7 +90,7 @@ For authoring, every create, render, token, variable or bind verb changes the op
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### First Step Always
+ 
+@@ -126,7 +124,7 @@ The skill is complete with the CLI alone. When the agent needs to pull design co
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -143,7 +141,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ > Symptoms and fixes below come from the skill contract and research digest. Verify exact command output against your installed version.
+ 
+@@ -160,7 +158,7 @@ Reach for this skill whenever a user wants to drive Figma Desktop from the termi
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Do I need a Figma API key?**
+ 
+@@ -184,7 +182,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ > The CLI reachability check requires `figma-ds-cli` installed and Figma Desktop open. The skill ships without vendoring the CLI source.
+ 
+@@ -198,7 +196,7 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-mobbin/README.md b/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
+index 59a5ad7a758..bc463340572 100644
+--- a/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-mobbin/README.md
+@@ -16,7 +16,9 @@ version: 1.1.5.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.1.5.0
+ | **Works on** | The hosted Mobbin MCP at `api.mobbin.com/mcp`, bridged by `npx mcp-remote` through the registered `mobbin` Code Mode manual. Needs a paid plan (Pro or higher, Free has no MCP access) and operator browser OAuth. There is no API key |
+ | **Produces** | Cited screen evidence: `screens[]` metadata (`app_name`, `mobbin_url`, `image_url`, platform) with ordered inline images and a `failed[]` report, handed to the requesting workflow |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Mobbin holds one of the largest libraries of real app UI screenshots. It exposes that library through a paid hosted MCP. Reaching it from a coding agent without a written contract is risky in specific, documented ways. Live pre-auth discovery on 2026-07-16 listed exactly three read-only search tools, so an agent that guesses beyond them invents tools that do not exist. The auth model invites a worse guess: there is no API key, only browser OAuth, so a helper that wires a `MOBBIN_API_KEY` env var fabricates a credential path the provider never published. This README records the wiring truth, the three-tool contract, the auth expectations and the boundary that this transport produces no design tokens or Style Reference of its own: `sk-design-md-generator` is the measured-extraction companion for that.
+@@ -57,7 +55,7 @@ Live pre-auth discovery confirmed a bounded read-only surface. Each tool covers
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ > The examples below are illustrative. The `mobbin` manual is registered and the callables are discovery-confirmed (2026-07-16 fixture). Each session re-confirms them with `tool_info`. Live calls need an authenticated paid account (Pro or higher).
+ 
+@@ -105,7 +103,7 @@ For a measured Style Reference of real, extracted design tokens, pair `sk-design
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Live Three-Tool Surface
+ 
+@@ -134,7 +132,7 @@ The transport allows breadth while researching: apps, screens, flows and intents
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -151,7 +149,7 @@ The packet is the hub's third transport. Its closest structural sibling is `mcp-
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ > Full symptom, cause and fix detail: [`references/troubleshooting.md`](./references/troubleshooting.md).
+ 
+@@ -167,7 +165,7 @@ The packet is the hub's third transport. Its closest structural sibling is `mcp-
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Do I need a Mobbin API key?**
+ 
+@@ -201,7 +199,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ > Post-registration and live-call checks require an authenticated paid account and are operator-gated. SKIP with a documented blocker is a valid result for those.
+ 
+@@ -216,7 +214,7 @@ A: No. It is a transport with `mutatesWorkspace: false`:
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-notion/README.md b/.skilled/skills/mcp-tooling/mcp-notion/README.md
+index c0c301185b1..6ed20e68243 100644
+--- a/.skilled/skills/mcp-tooling/mcp-notion/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-notion/README.md
+@@ -16,7 +16,9 @@ version: 0.1.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 0.1.2.0
+ | **Works on** | Any Notion workspace shared with an internal integration; the local stdio MCP server via `NOTION_TOKEN` for headless and Code Mode work, the remote OAuth MCP for interactive sessions |
+ | **Produces** | Created and updated pages, filtered data-source queries, appended blocks, comments and gap operations through one MCP path and one direct-API path |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Notion is cloud-only. There is no headless filesystem to edit, no third-party plugin ecosystem to wrap, and no daily-driver CLI equivalent to ClickUp's `cupt`. The official Notion MCP covers every CRUD operation across pages, blocks, data sources, comments and users in 24 tools, but it leaves five capabilities unexposed and it does nothing to protect an agent from Notion's relational and computed model. A blind property write against a mismatched schema fails validation, and a burst of calls trips the 3-requests-per-second rate limit. A thin transport cannot fill the five gaps or route between Notion's two server backends, and Notion's lack of a plugin layer makes a full file-layer skill unnecessary. So this skill is a light workflow mode: the MCP for what it covers, direct API calls for what it does not, and a knowledge layer so both paths write correct data.
+@@ -54,7 +52,7 @@ Reach for this skill when you need to create, read, update or organize Notion pa
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Provide the integration token.**
+ 
+@@ -90,7 +88,7 @@ The local stdio server runs headless with `NOTION_TOKEN`, which is why Code Mode
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Operation Router
+ 
+@@ -147,7 +145,7 @@ call_tool_chain({
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ The MCP path and the direct API path cover different operation sets by design. Neither is a drop-in for the other. For "create a page" or "query this database with a filter", the official MCP is the right answer. For "upload this file to a page" or "read the full multi-select values that got truncated", only a direct API call will work.
+ 
+@@ -164,7 +162,7 @@ This skill uses only Notion's official MCP server (`@notionhq/notion-mcp-server`
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -179,7 +177,7 @@ This skill uses only Notion's official MCP server (`@notionhq/notion-mcp-server`
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Is there a Notion CLI like ClickUp's `cupt`?**
+ 
+@@ -203,7 +201,7 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -214,7 +212,7 @@ A: Most tools pin `2025-09-03`, the version that introduced data sources. The tw
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md b/.skilled/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md
+index ad19c1fa460..0532f6087cf 100644
+--- a/.skilled/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md
+@@ -15,18 +15,16 @@ version: 0.1.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+ | **Use it for** | Confirming how the official Notion MCP server is configured. There is no local package to install. |
+ | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `notion` manual is registered. |
+ | **Works on** | `npx -y @notionhq/notion-mcp-server` over stdio (local backend), launched by Code Mode on demand. |
+-| **Produces** | 24 page, block, data-source, comment, user, and search tools under the `notion.notion_*` namespace once registered. Unregistered in this environment as of 2026-08-21, see Section 4. |
+-
+----
+-
+-## 2. OVERVIEW
++| **Produces** | 24 page, block, data-source, comment, user, and search tools under the `notion.notion_*` namespace once registered. Unregistered in this environment as of 2026-08-21, see Section 3. |
+ 
+ ### Why This Package Exists
+ 
+@@ -53,7 +51,7 @@ Notion is prioritizing the remote MCP and states it "may sunset this local MCP s
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Set credentials.** Create an internal integration in the Notion integrations dashboard, copy its token (prefix `ntn_`), and export it as `NOTION_TOKEN` in the environment Code Mode runs in. Share the target pages and databases with that integration in the Notion UI. See the `notion` entry in `.utcp_config.json` for the exact variable name it interpolates.
+ 
+@@ -63,7 +61,7 @@ Notion is prioritizing the remote MCP and states it "may sunset this local MCP s
+ list_tools()
+ ```
+ 
+-Expected: entries prefixed `notion.notion_*`. As of 2026-08-21 this returns none in this environment, see Section 4.
++Expected: entries prefixed `notion.notion_*`. As of 2026-08-21 this returns none in this environment, see Section 3.
+ 
+ **Step 3: Confirm a callable name before using it.**
+ 
+@@ -75,7 +73,7 @@ Never hardcode a tool name without confirming it this way first. Notion tool nam
+ 
+ ---
+ 
+-## 4. VERIFICATION
++## 3. VERIFICATION
+ 
+ > **Verification status (2026-08-21):** the `notion` manual is not yet registered in this environment. `NOTION_TOKEN` is unset, and a live `list_tools()` call returns zero `notion.*` entries. The 24 tool names in `../../references/mcp-tools.md` were confirmed verbatim against the official README (`https://raw.githubusercontent.com/makenotion/notion-mcp-server/main/README.md`, fetched 2026-08-21) but have not been runtime-reconfirmed through Code Mode. Re-run `list_tools()` / `tool_info()` once the manual is registered before hardcoding any callable.
+ 
+@@ -86,7 +84,7 @@ Never hardcode a tool name without confirming it this way first. Notion tool nam
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/README.md b/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
+index cc876ce882a..46df01de0bc 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/README.md
+@@ -16,7 +16,9 @@ version: 0.18.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 0.18.3.0
+ | **Works on** | Vault files directly with no running app or through the live desktop app and its Local REST API when the situation needs it |
+ | **Produces** | Created, moved and tagged notes, daily notes, vault registrations, live-app opens and plugin data files edited at the file layer |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ The skill gives an agent three ways to touch a vault, chosen by what the request needs:
+@@ -55,7 +53,7 @@ That is the whole reason this skill exists. It makes AI use inside Obsidian effe
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install or inspect the headless profile.**
+ 
+@@ -98,7 +96,7 @@ const info = await tool_info("obsidian.obsidian_get_note");
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Router
+ 
+@@ -127,7 +125,7 @@ Obsidian plugins are render layers over plain data. The skill operates the data,
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -143,7 +141,7 @@ Use this mode for an Obsidian vault, a daily note, a note search, a Local REST A
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -160,7 +158,7 @@ Full recovery procedures live in `references/troubleshooting.md`.
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: When should I use `notesmd-cli` instead of the official `obsidian` CLI?**
+ 
+@@ -188,7 +186,7 @@ A: It ships reference sets for Health.md and Iconic, plus a general Obsidian the
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The mode-root scripts are the first checks because they separate required headless pieces from optional app-backed pieces.
+ 
+@@ -205,7 +203,7 @@ The manual testing playbook (`manual-testing-playbook/manual-testing-playbook.md
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md b/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md
+index c8f1b5ceb87..0a5cb45cb3e 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-cli/README.md
+@@ -15,7 +15,9 @@ version: 0.1.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 0.1.1.0
+ | **Works on** | macOS/Linux via Homebrew (`notesmd-cli`); Obsidian desktop **v1.12.4+** for the official `obsidian` CLI. |
+ | **Produces** | A `notesmd-cli` binary on `PATH` operating on the vault filesystem, plus an optional `obsidian` binary that controls a running Obsidian app. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Package Exists
+ 
+ mcp-obsidian drives Obsidian vault operations through real third-party and first-party CLIs rather than reimplementing that surface. This folder is not vendored source. It is the install pointer and pinned identities that the parent skill's `SKILL.md` and `scripts/install.sh` read from.
+@@ -47,7 +45,7 @@ The two profiles cover different runtime conditions, and the router picks by whe
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Install the headless CLI.**
+ 
+@@ -82,7 +80,7 @@ Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help o
+ 
+ ---
+ 
+-## 4. TROUBLESHOOTING
++## 3. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -93,7 +91,7 @@ Expected: `notesmd-cli` prints its subcommand list; `obsidian` prints its help o
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md b/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md
+index 3f1da76a9f9..00a7df4088d 100644
+--- a/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md
+@@ -15,18 +15,16 @@ version: 0.1.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+ | **Use it for** | Confirming how the Obsidian MCP server is configured. There is no local package to install. |
+ | **Invoke with** | Code Mode `call_tool_chain({ code: "..." })` once the `obsidian` manual is registered. |
+ | **Works on** | `npx -y obsidian-mcp-server@latest` (cyanheads, v3.5.0) over stdio, launched by Code Mode on demand. |
+-| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 4. |
+-
+----
+-
+-## 2. OVERVIEW
++| **Produces** | Note, search and tag tools under the `obsidian.obsidian_*` namespace. Already registered in `.utcp_config.json`, see Section 3. |
+ 
+ ### Why This Package Exists
+ 
+@@ -39,7 +37,7 @@ The default server is **`obsidian-mcp-server`** (cyanheads, npm **v3.5.0**). The
+ - Obsidian **Local REST API plugin v4.0.0+** enabled, with an API key generated
+ - A **running Obsidian app** (the plugin serves the REST API from inside it)
+ 
+-It reads three environment variables (interpolated by the manual, see Section 3):
++It reads three environment variables (interpolated by the manual, see Section 2):
+ 
+ | Variable | Required | Default |
+ |---|---|---|
+@@ -55,7 +53,7 @@ For filesystem-based access with **no running app and no token**, the headless a
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Prepare the app.** In Obsidian, install and enable the **Local REST API** plugin (v4.0.0+), generate an API key, and keep the app running. Note the base URL (default `http://127.0.0.1:27123`).
+ 
+@@ -85,7 +83,7 @@ Never hardcode a tool name without confirming it this way first. See `../../refe
+ 
+ ---
+ 
+-## 4. VERIFICATION
++## 3. VERIFICATION
+ 
+ > **Registration note:** the `obsidian` manual is already registered in `.utcp_config.json`, not by this folder. For reference, the registered manual is:
+ 
+@@ -120,7 +118,7 @@ Tools are called via Code Mode `call_tool_chain` as `obsidian.obsidian_<tool>`.
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/mcp-tooling/mcp-refero/README.md b/.skilled/skills/mcp-tooling/mcp-refero/README.md
+index 837eec37c85..d39bb41dade 100644
+--- a/.skilled/skills/mcp-tooling/mcp-refero/README.md
++++ b/.skilled/skills/mcp-tooling/mcp-refero/README.md
+@@ -16,7 +16,9 @@ version: 1.1.5.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.1.5.0
+ | **Works on** | The remote Refero MCP at `api.refero.design/mcp`, bridged by `npx mcp-remote` through the `refero` manual already registered in this repo's Code Mode. Needs a Refero Pro (or higher) plan and operator authentication. The Free plan has no MCP access |
+ | **Produces** | Cited reference evidence: style records, full style references, screen metadata, screenshots and ordered flow steps, all returned to the requesting workflow, usually paired with `sk-design-md-generator` for a measured Style Reference |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Refero indexes a large library of real shipped UI. Its official repository counts 150,000+ app screens and 6,000+ user flows, exposed through a paid, read-only MCP. Reaching that library from a coding agent without a contract is risky in specific, documented ways.
+@@ -60,7 +58,7 @@ Styles and screens use UUID strings. Flows use numeric IDs. The two typings are
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ The callable names must be confirmed live with `tool_info` before use. Live calls need an authenticated Pro (or higher) account.
+ 
+@@ -104,7 +102,7 @@ Any design-affecting use pairs with `sk-design-md-generator` for a measured Styl
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Research Funnel
+ 
+@@ -134,7 +132,7 @@ A transport response is untrusted reference evidence. Search rank is not taste.
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -154,7 +152,7 @@ Skip it when the work is the design judgment itself; this packet stays the trans
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ > Full detail for each failure mode lives in [`references/troubleshooting.md`](./references/troubleshooting.md).
+ 
+@@ -170,7 +168,7 @@ Skip it when the work is the design judgment itself; this packet stays the trans
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Do I need a paid Refero account?**
+ 
+@@ -194,7 +192,7 @@ A: `sk-design-md-generator` provides a measured Style Reference (extracted desig
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ Live-call checks require an authenticated Pro (or higher) account and are operator-gated. SKIP with a documented blocker is a valid result for those.
+ 
+@@ -209,7 +207,7 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

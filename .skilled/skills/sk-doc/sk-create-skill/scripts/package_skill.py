@@ -85,7 +85,6 @@ SECTION_ALIASES = {
 RECOMMENDED_SECTIONS = [
     'SUCCESS CRITERIA',
     'INTEGRATION POINTS',
-    'RELATED RESOURCES',
 ]
 
 # Valid file extensions for each resource type.

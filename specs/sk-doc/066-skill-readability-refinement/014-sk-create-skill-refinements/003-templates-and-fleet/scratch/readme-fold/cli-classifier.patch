@@ -1,0 +1,62 @@
+diff --git a/.skilled/skills/cli-classifier/README.md b/.skilled/skills/cli-classifier/README.md
+index 2b091c03b5..269f2c533d 100644
+--- a/.skilled/skills/cli-classifier/README.md
++++ b/.skilled/skills/cli-classifier/README.md
+@@ -14,7 +14,9 @@ version: 0.8.4.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 0.8.4.0
+ | **Routes to** | The current mode `cli-jev` (packet `cli-jev`), through `mode-registry.json` and `hub-router.json` |
+ | **Produces** | One typed Jev value, with an exit code that names the outcome |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Purpose
+ 
+ `cli-classifier` is one public advisor identity over its registered transport packets. Today, its only `packetKind: "transport"` mode is `cli-jev`, which bridges the `jev` CLI and MCP surface. Each transport defines how to check its backend and return a typed judgment. The current mode, `cli-jev`, answers through the `jev` CLI with a stored key. The hub holds no packet-local logic. `mode-registry.json` resolves the mode, and `leaf-manifest.json` inventories its leaves. A future classifier backend joins as a new mode with a packet of its own, and the parent hub stays ready for it without changing its public identity.
+@@ -79,7 +77,7 @@ Once `jev auth status` passes, two features ask Jev on their own:
+ 
+ ---
+ 
+-## 3. MODES AND PACKETS
++## 2. MODES AND PACKETS
+ 
+ The hub registers one mode today. A future classifier is added as a new mode and packet, and the root hub router remains the selection point.
+ 
+@@ -89,7 +87,7 @@ The hub registers one mode today. A future classifier is added as a new mode and
+ 
+ ---
+ 
+-## 4. NAVIGATION
++## 3. NAVIGATION
+ 
+ | File | What it holds | Why it matters |
+ |---|---|---|
+@@ -104,7 +102,7 @@ The manifest regenerates when packets change, so read it as a snapshot.
+ 
+ ---
+ 
+-## 5. CHANGELOG
++## 4. CHANGELOG
+ 
+ Releases live in `changelog/` with one file per release, named `v[version].md`. `v0.1.0.0` and `v0.2.0.0` are the Jev hub's own releases from before it became mode `cli-jev` here.
+ 
+@@ -127,7 +125,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`.
+ 
+ ---
+ 
+-## 6. VERIFICATION
++## 5. VERIFICATION
+ 
+ | Check | Command | Expected |
+ |---|---|---|

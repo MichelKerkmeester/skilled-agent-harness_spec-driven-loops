@@ -2,7 +2,7 @@
 name: "{{SKILL_NAME}}"
 description: TODO one-line description of what this skill does and when to use it (verb + domain noun + trigger phrase)
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # {{SKILL_TITLE}}
@@ -91,23 +91,7 @@ match. Read it before loading a skill-local resource.
 
 ---
 
-## 5. REFERENCES
-
-### Core References
-
-- [TODO: Add only references needed for deeper guidance.]
-
-### Templates and Assets
-
-- [TODO: Add reusable templates or assets when needed.]
-
-### Loading Notes
-
-- [TODO: State when optional resources should be loaded.]
-
----
-
-## 6. SUCCESS CRITERIA
+## 5. SUCCESS CRITERIA
 
 The task is complete when:
 
@@ -117,7 +101,7 @@ The task is complete when:
 
 ---
 
-## 7. INTEGRATION POINTS
+## 6. INTEGRATION POINTS
 
 ### Inputs
 
@@ -130,3 +114,19 @@ The task is complete when:
 ### Related Workflows
 
 - [TODO: Name adjacent skills or workflows and their boundaries.]
+
+---
+
+## 7. REFERENCES AND RELATED RESOURCES
+
+### Core References
+
+- [TODO: Add only references needed for deeper guidance.]
+
+### Templates and Assets
+
+- [TODO: Add reusable templates or assets when needed.]
+
+### Loading Notes
+
+- [TODO: State when optional resources should be loaded.]

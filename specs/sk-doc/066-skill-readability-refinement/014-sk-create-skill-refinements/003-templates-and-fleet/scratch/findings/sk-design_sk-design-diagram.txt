@@ -1,0 +1,27 @@
+render check: references/foundations/onboarding.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/foundations/onboarding.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/foundations/output-spec.md:23 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/foundations/output-spec.md:23 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/import-export/export.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/import-export/export.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/import-export/import-drawio.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/import-export/import-drawio.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/import-export/import-mermaid.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/import-export/import-mermaid.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/primitives/primitive-annotation.md:17 The intro sentence "Editorial callouts pair italic Instrument Serif text with a " repeats the description (0.72 overlap); say what the reader gets instead.
+render check: references/primitives/primitive-icons.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/primitives/primitive-icons.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: assets/ascii-patterns/approval-workflow-loops.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/approval-workflow-loops.md:15 The intro sentence "Document approval flow with multiple reviewers, revision cyc" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/ascii-patterns/decision-tree-flow.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/decision-tree-flow.md:15 The intro sentence "Complex decision tree with multiple branches and conditional" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/ascii-patterns/parallel-execution.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/parallel-execution.md:15 The intro sentence "Demonstrates multiple tasks running simultaneously with sync" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/ascii-patterns/simple-workflow.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/simple-workflow.md:15 The intro sentence "A basic linear workflow demonstrating sequential steps witho" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/ascii-patterns/system-architecture-swimlane.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/system-architecture-swimlane.md:15 The intro sentence "Multi-tier system architecture showing interaction between d" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/ascii-patterns/user-onboarding.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/ascii-patterns/user-onboarding.md:15 The intro sentence "Complete user onboarding journey with embedded multi-step pr" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/style-reference/harness-diagram/origin.md:19 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/style-reference/harness-diagram/origin.md:15 The intro sentence "**This reference was written from the packet's own palette, " repeats the description (0.62 overlap); say what the reader gets instead.

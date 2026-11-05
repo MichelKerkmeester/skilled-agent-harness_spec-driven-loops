@@ -1,0 +1,1374 @@
+diff --git a/.skilled/skills/sk-doc/README.md b/.skilled/skills/sk-doc/README.md
+index 38743e2bd7f..8b41ffb7bd8 100644
+--- a/.skilled/skills/sk-doc/README.md
++++ b/.skilled/skills/sk-doc/README.md
+@@ -28,7 +28,9 @@ version: 2.3.10.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -37,10 +39,6 @@ version: 2.3.10.0
+ | **Works on** | Markdown files, OpenCode components (skills, agents, commands), standalone HTML diagrams/charts and ASCII flowcharts |
+ | **Produces** | DQI scores, validated documents, packaged skill zips, templated component directories, standalone HTML diagrams/charts and self-contained HTML diff reports |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Documentation drifts without a standard. Section order wanders. Frontmatter goes missing. Voice slides into filler and one author's README reads nothing like the next. A reader re-learns the layout every time. An AI assistant cannot parse the structure reliably. Hand-checking every document against a style guide does not scale and misses things.
+@@ -86,7 +84,7 @@ The validator reads the file path and content shape, then applies the matching e
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Gate 2 auto-routing fires on documentation keywords. Otherwise read the skill directly.
+ 
+@@ -114,7 +112,7 @@ Exit 0 means the document is valid and ready to ship. Exit 1 means a blocking fo
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Structure-First Pipeline
+ 
+@@ -153,7 +151,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -165,7 +163,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -176,7 +174,7 @@ The AI owns the quality judgment: it reads the JSON, evaluates content depth and
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: When do I use sk-doc instead of system-spec-kit? Both touch markdown.**
+ 
+@@ -196,7 +194,7 @@ A: `/create:skill` for a new skill under `.skilled/skills/`. `/create:skill-pare
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships the checks that prove a document is ready.
+ 
+@@ -210,7 +208,7 @@ The skill ships the checks that prove a document is ready.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-agent/README.md b/.skilled/skills/sk-doc/sk-create-agent/README.md
+index 9b57a4b6ba1..2b1b4e0919b 100644
+--- a/.skilled/skills/sk-doc/sk-create-agent/README.md
++++ b/.skilled/skills/sk-doc/sk-create-agent/README.md
+@@ -13,7 +13,9 @@ version: 1.0.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.0.3.0
+ | **Works on** | Agent files under `.skilled/agents/` or `.claude/agents/` |
+ | **Produces** | One validated agent file with runtime-correct frontmatter, boundaries, workflow and verification |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ create-agent is the `sk-doc` workflow behind `/create:agent`. It decides whether an agent is the right component, places the file in the active runtime directory and writes the runtime-correct frontmatter schema with least-authority permissions. It requires a hard boundary section, a core workflow, explicit output verification and an anti-patterns table before the file ships. It does not own reusable domain knowledge or slash-command entry points. Those live in `create-skill` and `create-command`.
+@@ -44,7 +42,7 @@ Two runtimes read agent frontmatter differently. Neither warns you when you get
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Confirm an agent is the right call.** A skill answers how the work should be done. A command answers how a user triggers it. An agent answers who does it, with explicit authority. Only write an agent when you need that third answer.
+ 
+@@ -66,7 +64,7 @@ A clean file reports `✅ VALID: <path>` with `Total issues: 0`.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ Start by choosing the component. A skill answers how the work should be done, a command answers how a user triggers it. An agent answers who does it, with explicit authority. Search existing agents for overlap before creating a new one, so you don't end up with two personas covering the same authority. Resolve the runtime directory (`.skilled/agents/` or `.claude/agents/`) and draft frontmatter first, especially `permission` or `tools`. Write the hard boundary section before the general workflow. The boundary comes first on purpose: it states what the agent must never do, nested dispatch, writes outside its scope, before the file describes what it does do, so a reader who only skims the top already knows the limits.
+ 
+@@ -80,7 +78,7 @@ The same role needs two different frontmatter blocks depending on where it lives
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -96,7 +94,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -109,7 +107,7 @@ Reach for create-agent when a request needs a stable named persona with explicit
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just add another skill instead of an agent?**
+ 
+@@ -129,7 +127,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -139,7 +137,7 @@ A: Yes. Read the current file completely first, apply the same frontmatter and s
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-benchmark/README.md b/.skilled/skills/sk-doc/sk-create-benchmark/README.md
+index 6a27c133651..3c1a282c04d 100644
+--- a/.skilled/skills/sk-doc/sk-create-benchmark/README.md
++++ b/.skilled/skills/sk-doc/sk-create-benchmark/README.md
+@@ -13,7 +13,9 @@ version: 1.6.5.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.6.5.0
+ | **Works on** | Completed benchmark runs and bake-offs, plus the input fixtures a benchmark lane needs before it runs |
+ | **Produces** | Ten-section benchmark reports, package indexes, machine-contract scenario files. Never a rubric, scorer or runner |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A benchmark finishes inside a spec packet. The result lives three folders deep in an `evidence/` directory, so the next person who touches the MCP code cannot find why a default exists without remembering which packet ran the benchmark. A second gap opens before a benchmark runs at all. Deep-loop modes need stable input fixtures and an index. Hand-rolling those inputs invites exactly the kind of scoring logic that should stay lane-owned. Two distinct benchmark families each have their own package shape. Conflating them breaks the thing the next run depends on.
+@@ -43,7 +41,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Run `/create:benchmark` or read `ROUTER.md` section 3 to route to a family first.
+ 
+@@ -68,7 +66,7 @@ Expected: zero blocking issues once the ten required sections are filled in.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The flagship family, MCP promotion, runs a fixed sequence.
+ 
+@@ -91,7 +89,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -108,7 +106,7 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -118,7 +116,7 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just drop the benchmark CSV into the skill's README?**
+ 
+@@ -138,7 +136,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -148,7 +146,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-changelog/README.md b/.skilled/skills/sk-doc/sk-create-changelog/README.md
+index 0825a810494..b360becc6c5 100644
+--- a/.skilled/skills/sk-doc/sk-create-changelog/README.md
++++ b/.skilled/skills/sk-doc/sk-create-changelog/README.md
+@@ -13,7 +13,9 @@ version: 1.3.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.3.3.0
+ | **Works on** | A spec folder, a component hint or recent git history |
+ | **Produces** | A validated entry that search can find, plus a GitHub release for the `skilled` line when asked |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ create-changelog is the `sk-doc` workflow behind `/create:changelog`. It resolves the source to a global component, calculates the version, writes the entry in the compact or expanded v4 narrative format and checks voice and structure before writing. Every global entry opens with the search metadata a spec document carries, so Gate 1 and `/speckit:search` find it by component and version. With `--release` it also tags the version and publishes the GitHub release, and `sk-git` owns the branch, commit and PR work around it.
+@@ -36,7 +34,7 @@ A changelog entry can go wrong in three ways. It lands in the wrong place, as wh
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Identify the source.** A spec folder, a component name or "recent commits" are all valid starting points.
+ 
+@@ -59,7 +57,7 @@ The scan must report zero hard blockers, meaning no banned punctuation and no ba
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The workflow reads the source, resolves the component, calculates the version, chooses what goes in and writes. It discovers the real folders under `.skilled/changelog/` at run time and picks the primary component by its share of the changed files. Global mode calculates the next `vMAJOR.MINOR.PATCH.BUILD` and never overwrites an existing version. The one exception is the `skilled` release line: when its latest entry has no release tag on origin, that release is still open, and new work is folded into its entry instead of opening a second one.
+ 
+@@ -73,7 +71,7 @@ Spec folders no longer get changelogs. A spec folder source, a phase child inclu
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -89,7 +87,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -104,7 +102,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just run `git log --oneline` for a changelog?**
+ 
+@@ -120,7 +118,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -130,7 +128,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-command/README.md b/.skilled/skills/sk-doc/sk-create-command/README.md
+index 7b95dab1a8e..f3724f06a05 100644
+--- a/.skilled/skills/sk-doc/sk-create-command/README.md
++++ b/.skilled/skills/sk-doc/sk-create-command/README.md
+@@ -13,7 +13,9 @@ version: 1.0.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.0.2.0
+ | **Works on** | Root and namespace command files, plus router and presentation splits |
+ | **Produces** | A validated command file or a router with its presentation asset, with correct frontmatter and gates |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A slash command looks simple until you hit its edges. The `argument-hint` must summarize the invocation shape without ballooning past its budget. A required argument needs a gate that stops the command cold instead of letting the model guess at missing input. A mode-based command that grows dashboards, startup prompts, result templates and next-step wording inline turns into an unreadable router the moment someone adds a second mode. Get any of these wrong and the command either breaks silently or becomes the file nobody wants to touch.
+@@ -48,7 +46,7 @@ create-command is the `sk-doc` workflow behind `/create:command`. It decides whe
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Decide the command type.** A one-off task does not need a command. A repeatable, multi-step workflow with defined steps does.
+ 
+@@ -70,7 +68,7 @@ You get `✅ VALID` with any warnings listed by name. Warnings do not block deli
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ - **Resolve the invocation path first.** `.skilled/commands/<command>.md` becomes `/<command>`, while `.skilled/commands/<namespace>/<action>.md` becomes `/<namespace>:<action>`.
+ - **Read any existing command completely before editing it**, then check nearby commands in the same namespace so structure and vocabulary match the family.
+@@ -88,7 +86,7 @@ A mode-based command that supports `:auto` and `:confirm` can outgrow a single f
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -104,7 +102,7 @@ Reach for create-command when a workflow is repeatable and needs `$ARGUMENTS` pa
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -117,7 +115,7 @@ Reach for create-command when a workflow is repeatable and needs `$ARGUMENTS` pa
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just write a skill instead of a command?**
+ 
+@@ -141,7 +139,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -152,7 +150,7 @@ A: Put them under a namespace directory. `.skilled/commands/<namespace>/<action>
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-diff/README.md b/.skilled/skills/sk-doc/sk-create-diff/README.md
+index a304108857b..b127db3ae40 100644
+--- a/.skilled/skills/sk-doc/sk-create-diff/README.md
++++ b/.skilled/skills/sk-doc/sk-create-diff/README.md
+@@ -13,7 +13,9 @@ version: 1.1.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.1.3.0
+ | **Works on** | One document at a time or a pre-composed multi-file aggregate pair |
+ | **Produces** | A single self-contained HTML report with inlined CSS, zero JavaScript, no remote references and no network calls |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Not everything you edit lives in Git. An AI or a person edits a Markdown spec, a DOCX brief, a PDF export or a text file outside version control and now needs to know exactly what changed before trusting it. Diffing that by eye is unreliable beyond a sentence. Pasting the file into a hosted diff tool sends its content somewhere you may not want it to go. create-diff exists so review works the same everywhere: local and offline, never touching the source file.
+@@ -62,7 +60,7 @@ Every comparison runs at a stated fidelity tier so a limited result is never mis
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: capture a baseline before the edit.**
+ 
+@@ -99,7 +97,7 @@ Prints `PASS` when the report is safe and self-contained.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The lifecycle has one hard invariant: the baseline has to exist before the edit happens.
+ 
+@@ -114,7 +112,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -126,7 +124,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -138,7 +136,7 @@ The lifecycle has one hard invariant: the baseline has to exist before the edit
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just use `git diff` for this?**
+ 
+@@ -154,11 +152,11 @@ A: There is no text layer to diff, so the comparison would be empty. OCR is out
+ 
+ **Q: Can I compare more than two files at once?**
+ 
+-A: `compare-pair` accepts one before-document and one after-document, but you can pre-compose either side into a multi-file bundle using the `BEGIN FILE` and `END FILE` markers described in Section 4.
++A: `compare-pair` accepts one before-document and one after-document, but you can pre-compose either side into a multi-file bundle using the `BEGIN FILE` and `END FILE` markers described in Section 3.
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | Result |
+ |---|---|
+@@ -168,7 +166,7 @@ A: `compare-pair` accepts one before-document and one after-document, but you ca
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
+index 7dd6fda67cf..2fff76a026c 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/README.md
+@@ -13,7 +13,9 @@ version: 1.0.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.0.3.0
+ | **Works on** | A feature surface too large or too cross-referenced for a trustworthy README-only summary |
+ | **Produces** | `feature-catalog/feature-catalog.md` plus one per-feature file per root entry, each with source and validation anchors |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A README can describe five features honestly. Once a system has thirty, a flat bullet list stops being trustworthy: entries go stale and nobody can tell which claim still matches the code. Different docs disagree about what a feature is even called. create-feature-catalog exists so a large feature surface gets one canonical, navigable inventory instead of scattered, drifting summaries: a root catalog for orientation and a stable per-feature file behind each entry that ties the claim back to a real source file and a real test.
+@@ -48,7 +46,7 @@ create-feature-catalog authors a `feature-catalog/` package: a root `feature-cat
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: invoke it.**
+ 
+@@ -75,7 +73,7 @@ Passes when the file carries its required sections and a Validation And Tests ta
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ Authoring runs in a fixed order because names have to stabilize before prose does.
+ 
+@@ -91,7 +89,7 @@ The root catalog and the per-feature files answer different questions on purpose
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -103,7 +101,7 @@ The root catalog and the per-feature files answer different questions on purpose
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -115,7 +113,7 @@ The root catalog and the per-feature files answer different questions on purpose
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why this instead of just expanding the README?**
+ 
+@@ -131,7 +129,7 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | Result |
+ |---|---|
+@@ -143,7 +141,7 @@ A: No. `validate_document.py` checks structure and the leaf's Validation And Tes
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/scope-and-validation/leave-execution-matrices-to-playbook.md b/.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/scope-and-validation/leave-execution-matrices-to-playbook.md
+index 80b4f7a2fe6..62695616f59 100644
+--- a/.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/scope-and-validation/leave-execution-matrices-to-playbook.md
++++ b/.skilled/skills/sk-doc/sk-create-feature-catalog/manual-testing-playbook/scope-and-validation/leave-execution-matrices-to-playbook.md
+@@ -40,11 +40,11 @@ Operators run the exact prompt and command sequence for `FCR-005` and confirm th
+ 
+ | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ |---|---|---|---|---|---|---|---|---|
+-| FCR-005 | Leave execution matrices to the playbook | Keep manual test detail outside the catalog | `Review this catalog addition. Keep current behavior and source anchors in the catalog, but move manual command sequences, evidence rules and pass criteria to the matching manual testing playbook.` | 1. `agent: Read SKILL.md section 7 and README.md section 5` -> 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules` -> 3. `agent: Separate current behavior from manual execution detail` -> 4. `agent: State the catalog edit and the playbook link required` | Step 1 states the boundary. Step 2 finds execution-heavy material. Step 3 keeps behavior and anchors in the catalog. Step 4 moves commands, evidence and verdict rules to the playbook | Exact prompt, boundary source, proposed content, separated content decision and required link | PASS if the catalog stays inventory-first and the playbook receives execution detail. FAIL if the catalog retains a scenario matrix or loses the behavior summary | 1. Remove step-by-step instructions from the catalog. 2. Keep source anchors in the leaf. 3. Link the matching playbook scenario |
++| FCR-005 | Leave execution matrices to the playbook | Keep manual test detail outside the catalog | `Review this catalog addition. Keep current behavior and source anchors in the catalog, but move manual command sequences, evidence rules and pass criteria to the matching manual testing playbook.` | 1. `agent: Read SKILL.md section 7 and README.md section 4` -> 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules` -> 3. `agent: Separate current behavior from manual execution detail` -> 4. `agent: State the catalog edit and the playbook link required` | Step 1 states the boundary. Step 2 finds execution-heavy material. Step 3 keeps behavior and anchors in the catalog. Step 4 moves commands, evidence and verdict rules to the playbook | Exact prompt, boundary source, proposed content, separated content decision and required link | PASS if the catalog stays inventory-first and the playbook receives execution detail. FAIL if the catalog retains a scenario matrix or loses the behavior summary | 1. Remove step-by-step instructions from the catalog. 2. Keep source anchors in the leaf. 3. Link the matching playbook scenario |
+ 
+ ### Commands
+ 
+-1. `agent: Read SKILL.md section 7 and README.md section 5`
++1. `agent: Read SKILL.md section 7 and README.md section 4`
+ 2. `agent: Inspect the proposed catalog addition for commands, evidence fields and verdict rules`
+ 3. `agent: Separate current behavior from manual execution detail`
+ 4. `agent: State the catalog edit and the playbook link required`
+diff --git a/.skilled/skills/sk-doc/sk-create-frontmatter/README.md b/.skilled/skills/sk-doc/sk-create-frontmatter/README.md
+index b4bff816108..729a0e888c4 100644
+--- a/.skilled/skills/sk-doc/sk-create-frontmatter/README.md
++++ b/.skilled/skills/sk-doc/sk-create-frontmatter/README.md
+@@ -19,7 +19,9 @@ version: 1.0.6.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -29,10 +31,6 @@ version: 1.0.6.0
+ | **Produces** | A correct block, a specific fix, or a derived 4-part version |
+ | **Does not produce** | The document itself, or a change to a validator |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Frontmatter is small and it is load-bearing.
+@@ -65,7 +63,7 @@ Skill manifests carry a name and an allowed-tools list. References and assets ca
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Name the class.** Skill manifest, readme, reference, asset, feature catalog, testing playbook, command, agent or spec doc. Everything else follows from it.
+ 
+@@ -87,7 +85,7 @@ It reports missing fields, a malformed `version`, and a description over its sof
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ Two documents carry everything.
+ 
+@@ -117,7 +115,7 @@ A description trimmed by deleting the routing tokens is under budget and no long
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -139,7 +137,7 @@ Skip it when the document body is what needs writing, when a validator needs cha
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -153,7 +151,7 @@ Skip it when the document body is what needs writing, when a validator needs cha
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why does frontmatter get its own mode when it is four lines at the top of a file?**
+ 
+@@ -177,7 +175,7 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -189,7 +187,7 @@ A: Yes, for now. They carry frontmatter and are governed separately. The version
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-goal/README.md b/.skilled/skills/sk-doc/sk-create-goal/README.md
+index aa7c9ff4ff8..482b8c92b1d 100644
+--- a/.skilled/skills/sk-doc/sk-create-goal/README.md
++++ b/.skilled/skills/sk-doc/sk-create-goal/README.md
+@@ -17,7 +17,9 @@ version: 1.2.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -27,10 +29,6 @@ version: 1.2.1.0
+ | **Produces** | One goal filled from the template for its kind and the packet's sources, plus the parent chat slice for the operator |
+ | **Never touches** | Session objective state. A request to set, bind or resend a goal goes to the goal hooks |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What The Mode Does
+ 
+ `sk-create-goal` turns a packet's own specifications into its `goal.md`. Every goal starts from one of three templates, for a top-level packet, a phase parent or a phase child, and is filled with one objective sentence, the frozen decisions later work must honor and three to seven completion criteria. Each criterion resolves to an exit code, a count or a named artifact. Each template is a checked copy of the system-spec-kit goal template, and a test fails when the two drift apart.
+@@ -47,7 +45,7 @@ Goal content is derived from the packet's own documents, never from a remembered
+ 
+ ---
+ 
+-## 3. WHEN TO USE
++## 2. WHEN TO USE
+ 
+ ### Use This Mode When
+ 
+@@ -67,7 +65,7 @@ Goal content is derived from the packet's own documents, never from a remembered
+ 
+ ---
+ 
+-## 4. THE SIX OPERATIONS
++## 3. THE SIX OPERATIONS
+ 
+ | Operation | Use it when |
+ |---|---|
+@@ -82,7 +80,7 @@ An operation that alters a parent decision or criterion amends the parent first,
+ 
+ ---
+ 
+-## 5. HOW IT WORKS
++## 4. HOW IT WORKS
+ 
+ 1. **Read the sources.** The packet's own `spec.md` and `acceptance-criteria.md`. For a phase parent, the Phase Documentation Map and every direct phase-child directory. For a nested child, only that child's own documents.
+ 2. **Route.** File content or session state? What role does the packet play? Does `goal.md` exist? Does a child change force a parent amendment? A session-state request is redirected and nothing is written.
+@@ -99,7 +97,7 @@ Cut in the order section 3 of [`budget-and-handoff.md`](references/budget-and-ha
+ 
+ ---
+ 
+-## 6. THE CHECKER
++## 5. THE CHECKER
+ 
+ [`check-goal.cjs`](./scripts/check-goal.cjs) is a read-only conformance check. Run it from the repository root:
+ 
+@@ -132,7 +130,7 @@ Rule 4 flags a phrase such as "the report" whose subject the line never names. R
+ 
+ ---
+ 
+-## 7. THE COMMAND
++## 6. THE COMMAND
+ 
+ `/create:goal` is the entry point, routed through [`goal.md`](../../../commands/create/goal.md):
+ 
+@@ -144,7 +142,7 @@ The packet path is required and never inferred from conversation history or open
+ 
+ ---
+ 
+-## 8. MANUAL TESTING PLAYBOOK
++## 7. MANUAL TESTING PLAYBOOK
+ 
+ [`manual-testing-playbook/`](./manual-testing-playbook/manual-testing-playbook.md) holds ten deterministic operator scenarios in one category, goal authoring. Each scenario builds a disposable scratch packet, drives the mode against it and removes the scratch root when it ends, so a run leaves the repository untouched.
+ 
+@@ -165,7 +163,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -177,7 +175,7 @@ The boundary cases carry the weight. In `route-session-goal-away.md` a run that
+ 
+ ---
+ 
+-## 10. RELATED RESOURCES
++## 9. RELATED RESOURCES
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
+index cf19ca9ad98..5ea4caec87d 100644
+--- a/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
++++ b/.skilled/skills/sk-doc/sk-create-manual-testing-playbook/README.md
+@@ -15,7 +15,9 @@ version: 1.0.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.0.3.0
+ | **Works on** | Skills and systems that need operator-facing manual validation ahead of a release |
+ | **Produces** | One root `manual-testing-playbook.md` index plus one scenario file per feature ID; `scripts/run-conversation-scenario.cjs` plays conversation scenarios into live runtimes |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ When a skill ships, the only proof it works is a checklist row someone wrote at the last minute that nobody can rerun. Automated tests cover internals, not what an operator sees when they type a real prompt at a real CLI. A release decision depends on structured evidence, but a bullet list is often the only artifact, so two operators run "the same" test and reach two different verdicts. The prompt, the command and the pass bar were never pinned down. Writing fifteen near-identical scenario write-ups by hand also just doesn't happen, so testing scope quietly shrinks to whatever fits in a paragraph.
+@@ -60,7 +58,7 @@ The headline strength of this skill is the nine-field contract every per-feature
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Run `/create:manual-testing-playbook`. To read the full contract directly, open `SKILL.md`.
+ 
+@@ -85,7 +83,7 @@ Expected: zero blocking issues once frontmatter, required sections and the featu
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ 1. Confirm the target skill or system, its feature set and whether a feature catalog already exists.
+ 2. Decide categories and stable feature IDs using a `{PREFIX}-{NNN}` pattern before writing anything else.
+@@ -111,7 +109,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -123,7 +121,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -135,7 +133,7 @@ Every scenario resolves to one of three states: `PASS`, `FAIL` or `SKIP` with a
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not just add rows to a spec-folder `checklist.md`?**
+ 
+@@ -155,7 +153,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -165,7 +163,7 @@ A: Escalate rather than design around it. This packet expects sandboxed, reprodu
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-quality-control/README.md b/.skilled/skills/sk-doc/sk-create-quality-control/README.md
+index 9b803931f00..791fa2555b0 100644
+--- a/.skilled/skills/sk-doc/sk-create-quality-control/README.md
++++ b/.skilled/skills/sk-doc/sk-create-quality-control/README.md
+@@ -15,7 +15,9 @@ version: 1.0.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.0.2.0
+ | **Works on** | Any existing markdown file already in the repo: README, `SKILL.md`, command doc, spec doc, reference |
+ | **Produces** | A DQI score and band with the blocking/warning/recommendation issue list behind it, plus a targeted edit to that one file only when you ask |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A document either reads well to the person who wrote it or it does not. A self-assessment is not evidence. Without a scoring pass, "looks fine to me" is the only quality bar a README or `SKILL.md` ever clears. A document can then ship with missing frontmatter, a broken section order, a misdetected document type or robotic AI-pattern prose that nobody catches until an operator hits it mid-task. Fixing that blind, by rewriting on instinct, risks changing product claims or policy text that nobody actually asked to touch.
+@@ -42,7 +40,7 @@ Reach for this packet when a document needs to clear a real quality gate before
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Ask for a doc-quality audit, score or validation of a named file and `sk-doc` routes here. Read `SKILL.md` directly for the full contract.
+ 
+@@ -64,7 +62,7 @@ Expected: zero blocking issues before the document counts as ready.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ 1. Confirm the target file and pick one execution mode: report-only audit (the default), structure validation, content optimization (only when edits are explicitly requested) or a batch snapshot across multiple docs.
+ 2. Run `extract_structure.py` and treat its JSON output as the source of truth for structure, metrics, checklist results and DQI. Never claim a score without reading it.
+@@ -94,7 +92,7 @@ When the missing content needs source evidence that is not in the workspace, the
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -106,7 +104,7 @@ When the missing content needs source evidence that is not in the workspace, the
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -118,7 +116,7 @@ When the missing content needs source evidence that is not in the workspace, the
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why is the audit report-only by default?**
+ 
+@@ -138,7 +136,7 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -148,7 +146,7 @@ A: The packet escalates instead of editing. Product claims and policy text, plus
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-readme/README.md b/.skilled/skills/sk-doc/sk-create-readme/README.md
+index 97dad07a297..aad91941dc7 100644
+--- a/.skilled/skills/sk-doc/sk-create-readme/README.md
++++ b/.skilled/skills/sk-doc/sk-create-readme/README.md
+@@ -13,7 +13,9 @@ version: 1.1.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.1.2.0
+ | **Works on** | Project, skill, feature, component and source-code folders |
+ | **Produces** | A `README.md` in the target folder, or a skill package's `ARCHITECTURE.md` |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ create-readme turns a request into one of two current-state README shapes, chosen by what the folder needs. The shape table below names each one and what it operates on. It reads the target folder, nearby docs and existing commands before drafting, then copies the matching template as a scaffold and removes what does not fit. The entry point is the `/create:readme` command, with the natural phrases "create readme" and "write a readme" as alternatives.
+@@ -60,7 +58,7 @@ The packet also writes a skill package's `ARCHITECTURE.md` from `assets/architec
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Point it at a folder.**
+ 
+@@ -102,7 +100,7 @@ Expected output is a JSON summary, for example:
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ Every run follows one lifecycle no matter which artifact comes out the other end:
+ 
+@@ -117,7 +115,7 @@ The same read-route-draft-validate sequence produces very different documents de
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -129,7 +127,7 @@ The same read-route-draft-validate sequence produces very different documents de
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -140,7 +138,7 @@ The same read-route-draft-validate sequence produces very different documents de
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why not use one README template for everything?**
+ 
+@@ -152,7 +150,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | Pass looks like |
+ |---|---|---|
+@@ -164,7 +162,7 @@ A: `create-skill`, using its own `skill-readme-template.md`, as one step in scaf
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-repo-rule/README.md b/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
+index a0569b07cff..4811dea58b6 100644
+--- a/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
++++ b/.skilled/skills/sk-doc/sk-create-repo-rule/README.md
+@@ -19,7 +19,9 @@ version: 1.1.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -29,10 +31,6 @@ version: 1.1.2.0
+ | **Produces** | One rule file, two router rows and a pointer. Or a refusal naming where the content belongs |
+ | **Most likely outcome** | A refusal. The four tests decline more than they admit |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Some failures repeat. Someone edits a file they never opened. Someone reports a green test run nobody watched finish. Someone deletes a migration with no way back. Catching those in review costs the same amount every time, so writing the constraint down where it loads at the moment of the action is cheaper.
+@@ -68,7 +66,7 @@ This skill owns all three moves. A create mode that cannot delete produces a set
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Describe the failure, not the file you want.** "We keep forgetting to check X before Y" works better than "add a rule with these sections." You do not need the vocabulary of the rule set.
+ 
+@@ -90,7 +88,7 @@ Sections and dividers match in all nine shipped rules and in the router. The com
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The four decision tests load on every path, including retirement, because "should this exist" and "should this still exist" are the same four questions.
+ 
+@@ -124,7 +122,7 @@ Both orderings answer the same question. What does an interrupted run leave behi
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -143,20 +141,20 @@ Skip it when the request teaches a capability rather than constraining one, when
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+ | Your request was refused and you disagree | Most requests are refused by design, usually on test 1 | Read which test refused it. The destination it names is generally a better home than a new file |
+ | A rule was written but never fires | It has a file and no trigger row, or the row describes a topic rather than an action | Check the router for a matching row, then check that the row lists actions you take |
+-| The router points at a file that does not exist | A retirement removed the file before the row | Remove the row too, then run the count check in section 8. Rows and files must match |
++| The router points at a file that does not exist | A retirement removed the file before the row | Remove the row too, then run the count check in section 7. Rows and files must match |
+ | A trigger phrase reaches the wrong rule | Two rules claim the same phrase | Sweep for duplicates. The set carries 161 phrases with zero collisions, so any duplicate is a defect |
+-| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 8. All nine shipped rules fail that document type for this same reason |
++| `validate_document.py --type reference` calls a rule invalid | A repo rule has no Overview section by design, and that type requires one | Use the structural check in section 7. All nine shipped rules fail that document type for this same reason |
+ | The draft passes every check and still reads as filler | Structure is checkable and it is not the bar | Run the five reader tests in `creation-standards.md`. They need a person, not a script |
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why does it refuse so much?**
+ 
+@@ -184,7 +182,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -195,7 +193,7 @@ A: No. Every refusal except the restraint one names a destination. The restraint
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-skill/README.md b/.skilled/skills/sk-doc/sk-create-skill/README.md
+index b443cf40e46..cad673ec665 100644
+--- a/.skilled/skills/sk-doc/sk-create-skill/README.md
++++ b/.skilled/skills/sk-doc/sk-create-skill/README.md
+@@ -13,7 +13,9 @@ version: 1.2.7.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -22,10 +24,6 @@ version: 1.2.7.0
+ | **Works on** | New skill folders and existing skill or hub packages that need repair or re-validation |
+ | **Produces** | `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/` for a skill, a full parent-hub router set for a hub |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ create-skill runs one of two workflow modes from a single packet. `create-skill` scaffolds a standalone skill with its own advisor identity, `SKILL.md`, `README.md`, `references/`, `assets/` and `scripts/`, built with `scripts/init_skill.py` and normalized to this repo's section order. `create-skill-parent` scaffolds a parent hub that dispatches to nested workflow or surface packets, with `mode-registry.json` and `hub-router.json` at the hub root and `graph-metadata.json` only there, never inside a nested packet. Both modes end at the same gate: `scripts/validate_skill_package.py` must exit clean before `scripts/package_skill.py` runs. It does not audit or improve an existing skill's prose quality once the skill already exists and only needs review. That is `create-quality-control`.
+@@ -43,7 +41,7 @@ Hand-rolling a new skill from a blank `SKILL.md` means reinventing frontmatter r
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ > Run these commands from the repository root.
+ 
+@@ -74,7 +72,7 @@ Expected: ✅ Successfully packaged <file-count> files to: <output-directory>/<s
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Standalone Path
+ 
+@@ -98,7 +96,7 @@ node .skilled/skills/sk-doc/sk-create-skill/scripts/leaf-route-replay.cjs --repo
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -115,7 +113,7 @@ Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an e
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -127,7 +125,7 @@ Reach for create-skill when creating a brand-new OpenCode skill, rebuilding an e
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why two workflow modes in one packet instead of two skills?**
+ 
+@@ -147,7 +145,7 @@ A: No. `SKILL.md` is the root marker, while each class has required root metadat
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ Run every command in this table from the repository root.
+ 
+@@ -160,7 +158,7 @@ Run every command in this table from the repository root.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md b/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+index 7da5f4b1d7b..eb4e0e11031 100644
+--- a/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
++++ b/.skilled/skills/sk-doc/sk-create-with-human-voice/README.md
+@@ -19,7 +19,9 @@ version: 1.1.1.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -30,10 +32,6 @@ version: 1.1.1.0
+ | **Owns** | The standard at `references/hvr-rules.md`, and the workflow that applies it |
+ | **Does not own** | The document-level audit. Structure, the Document Quality Index and the validators belong to `sk-create-quality-control` |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Mode Exists
+ 
+ The Human Voice Rules have been in this repository for a long time, and hundreds of files
+@@ -60,7 +58,7 @@ and calls this one for the voice finding it reports.
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Decide what the scanner may not touch.** Quotations, code, generated files and
+ released changelog entries are out. `references/scope-and-exemptions.md` has the classes,
+@@ -84,7 +82,7 @@ its final score has proved nothing.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The scanner parses its term lists out of the standard on every run. Section 6 gives the
+ hard blocker words, section 7 the phrase blockers, section 8 the soft deductions and
+@@ -112,7 +110,7 @@ candidate. Under-reporting ships the tell.
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Mode
+ 
+@@ -134,7 +132,7 @@ writing.
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -147,7 +145,7 @@ writing.
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why does the standard sit in this packet rather than the hub's shared tier?**
+ 
+@@ -180,7 +178,7 @@ find nothing to mask.
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it | What a pass looks like |
+ |---|---|---|
+@@ -194,7 +192,7 @@ Paths are relative to this packet directory.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

@@ -1,0 +1,2 @@
+render check: assets/env-template.md:16 The intro sentence "The single prefixed `.env` line that authenticates the OPTIO" repeats the description (0.74 overlap); say what the reader gets instead.
+render check: assets/utcp-figma-manual.md:16 The intro sentence "Paste-ready `.utcp_config.json` manual entry and the matchin" repeats the description (0.69 overlap); say what the reader gets instead.

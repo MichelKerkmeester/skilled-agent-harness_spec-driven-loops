@@ -1,0 +1,3 @@
+render check: references/troubleshooting.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/troubleshooting.md:22 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: SKILL.md:16 The first numbered H2 is 0; number sections from 1.

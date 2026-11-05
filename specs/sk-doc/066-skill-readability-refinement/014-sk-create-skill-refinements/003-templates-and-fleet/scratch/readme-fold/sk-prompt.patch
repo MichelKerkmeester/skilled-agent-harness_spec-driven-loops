@@ -1,0 +1,89 @@
+diff --git a/.skilled/skills/sk-prompt/README.md b/.skilled/skills/sk-prompt/README.md
+index 509d1c3dd4..903677bb22 100644
+--- a/.skilled/skills/sk-prompt/README.md
++++ b/.skilled/skills/sk-prompt/README.md
+@@ -16,7 +16,9 @@ version: 4.0.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 4.0.2.0
+ | **Works on** | Any text task that benefits from structure: generation, review, research, editing and analysis |
+ | **Produces** | An enhanced prompt with a transparency report naming the framework, the effort level, the checklist marks, the CLEAR breakdown, the change report and any flagged assumptions |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A vague prompt gets a vague answer. People under-specify the role, skip the constraints, bury the real ask and leave the model to guess, then blame the output when it misses. Picking a structure by feel does not help, because different tasks want different shapes and nothing signals when a prompt is actually good enough to send. This skill checks the request once against ten components, writes the prompt from one skeleton or a named preset, records its assumptions and screens the result against a fixed rubric so a prompt ships only when it clears the bar.
+@@ -66,7 +64,7 @@ The skill operates a library of seven prompt frameworks, each one a proven shape
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Type `/prompt:improve` followed by a mode flag and your request.
+ 
+@@ -107,7 +105,7 @@ Zero issues means the README matches the house template.
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### Framework Selection
+ 
+@@ -167,7 +165,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -180,7 +178,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -193,7 +191,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: What is the difference between `$improve` and `$refine`?**
+ 
+@@ -213,7 +211,7 @@ A: No. The self-check reads the draft against the intent you stated before it is
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -224,7 +222,7 @@ A: No. The self-check reads the draft against the intent you stated before it is
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

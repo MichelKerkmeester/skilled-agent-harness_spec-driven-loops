@@ -1,0 +1,1 @@
+render check: assets/token-starter-set.md:20 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.

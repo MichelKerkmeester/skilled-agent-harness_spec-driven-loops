@@ -63,7 +63,7 @@
         "SMART ROUTING",
         "HOW IT WORKS",
         "RULES",
-        "REFERENCES"
+        "REFERENCES AND RELATED RESOURCES"
       ],
       "required": [
         "WHEN TO USE",
@@ -74,8 +74,7 @@
       ],
       "recommended": [
         "SUCCESS CRITERIA",
-        "INTEGRATION POINTS",
-        "RELATED RESOURCES"
+        "INTEGRATION POINTS"
       ],
       "sectionAliases": {
         "HOW IT WORKS": [

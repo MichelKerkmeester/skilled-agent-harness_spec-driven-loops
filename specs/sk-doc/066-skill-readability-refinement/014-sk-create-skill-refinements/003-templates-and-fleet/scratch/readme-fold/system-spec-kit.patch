@@ -1,0 +1,107 @@
+diff --git a/.skilled/skills/system-spec-kit/README.md b/.skilled/skills/system-spec-kit/README.md
+index e8f0d0ffa5..72bd339899 100644
+--- a/.skilled/skills/system-spec-kit/README.md
++++ b/.skilled/skills/system-spec-kit/README.md
+@@ -19,7 +19,9 @@ version: 2.7.24.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -28,10 +30,6 @@ version: 2.7.24.0
+ | **Works on** | File-modifying AI conversations that need a documentation trail and cross-session continuity |
+ | **Produces** | Templated spec folders at four levels, a validated file structure and entries in the committed trigger index |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Purpose
+ 
+ AI conversations that modify files leave no reasoning trail. The session ends and the why behind every decision vanishes. A new session starts from a blank slate, so the architecture you explained on Monday is gone by Wednesday. Without enforced documentation and durable continuity, one session cannot build on another.
+@@ -105,7 +103,7 @@ The retrieval contract is `references/retrieval/retrieval-conventions.md`, and t
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Create your first spec folder.**
+ 
+@@ -194,7 +192,7 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-inde
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Packet Lifecycle
+ 
+@@ -333,7 +331,7 @@ Retrieval is two lexical lanes over committed files.
+ 
+ ---
+ 
+-## 5. COMMANDS
++## 4. COMMANDS
+ 
+ ### Spec Kit Commands
+ 
+@@ -369,7 +367,7 @@ Command source files: `.skilled/commands/speckit/`.
+ 
+ ---
+ 
+-## 6. CONFIGURATION
++## 5. CONFIGURATION
+ 
+ ### Embedding Providers
+ 
+@@ -421,7 +419,7 @@ The engine resolves feature flags at call time rather than at import, so a long-
+ 
+ ---
+ 
+-## 7. INTEGRATION & NAVIGATION
++## 6. INTEGRATION & NAVIGATION
+ 
+ ### Boundaries
+ 
+@@ -492,7 +490,7 @@ System Spec Kit owns four surfaces: the spec folder workflow, the validation sur
+ 
+ ---
+ 
+-## 8. TROUBLESHOOTING
++## 7. TROUBLESHOOTING
+ 
+ ### Trigger Lookup Fails
+ 
+@@ -577,7 +575,7 @@ Seven doctor commands wrap the checks this skill owns:
+ 
+ ---
+ 
+-## 9. FAQ
++## 8. FAQ
+ 
+ **Q: Is System Spec Kit mandatory for every file change?**
+ 
+@@ -617,7 +615,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<tr
+ 
+ ---
+ 
+-## 10. VERIFICATION
++## 9. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -668,7 +666,7 @@ The manual testing playbook runs every scenario behind these checks.
+ 
+ ---
+ 
+-## 11. RELATED DOCUMENTS
++## 10. RELATED DOCUMENTS
+ 
+ ### Internal Documentation
+ 

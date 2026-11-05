@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Skill Creation Workflow - Complete Development Guide
@@ -26,7 +26,7 @@ This file is a thin index over the skill-creation reference set. Each stage of t
 
 ```
 Level 1: SKILL.md metadata (name + description) — Always in context (~100 words)
-Level 2: SKILL.md body — When skill triggers (<5k words)
+Level 2: SKILL.md body — When skill triggers (within the skill-md-template.md Size Limits)
 Level 3: Bundled resources (the shared/, skill/, parent-skill/ groups) — Loaded as needed
 ```
 

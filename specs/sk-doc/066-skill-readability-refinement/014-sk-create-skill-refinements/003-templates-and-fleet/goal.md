@@ -79,6 +79,12 @@ and findings belong here.
 |------|-------|----------|
 | Planning docs | Done | spec, plan, tasks and acceptance criteria authored 2026-11-05 |
 | Phase 002 handoff | Pending | waits for the phase 002 commit |
+| T001 baseline | Done | start sha 273224bbed; 347 staged findings in 44 units: cli-external-orchestration/cli-claude-code 3, cli-external-orchestration/cli-codex 1, cli-external-orchestration/cli-cursor 3, cli-external-orchestration/cli-devin 1, cli-external-orchestration/cli-hermes 1, cli-external-orchestration/cli-opencode 1, cli-external-orchestration/cli-pi 2, cli-orca 15, mcp-code-mode 3, mcp-tooling/mcp-aside-de... |
+| T002 no-Purpose refs | Done | 83 docs, all fixable by inserting Purpose, none frozen; scratch/no-purpose-verdicts.md |
+| T003 pinned docs | Done | code-quality-standards.md:17 intro restates description; operator approved an intro-only edit verified by check-rule-copies.js; review-core.md has 0 findings |
+| T010 guard rule | Amended | operator 2026-11-05: template hard findings map to T004-T009 in scratch/guard-t010-map.md |
+| README switch order | Deviation | renderChecks for readme and README.md scan scope move to after the last fleet fold, so leaf gates stay green between skill commits |
+| T010 review | FIX then fixed | opus-medium 2 P1 + 10 P2: inventory heading anchored and tree names read from the inventory section (2 new negatives, mutation-checked), parent README 4.x subsections renumbered, size-table effect column tested, RS-001 wording, stale checklist and size lines, recommended lists drop RELATED RESOURCES. Not changed: hub and packet scaffolds and core-standards fix template keep the hub shape, out o... |
 
 ### Deviations and findings
 

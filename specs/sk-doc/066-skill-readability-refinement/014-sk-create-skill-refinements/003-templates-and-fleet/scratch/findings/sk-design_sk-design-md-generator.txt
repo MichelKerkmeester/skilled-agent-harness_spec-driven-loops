@@ -1,0 +1,22 @@
+render check: references/anti-patterns.md:20 The intro sentence "A catalog of common mistakes when generating DESIGN.md files" repeats the description (0.70 overlap); say what the reader gets instead.
+render check: references/component-taxonomy.md:20 The intro sentence "Reference for identifying, classifying, and documenting UI c" repeats the description (0.68 overlap); say what the reader gets instead.
+render check: references/design-knowledge/anti-slop-principles.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/design-knowledge/cognitive-laws.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/design-knowledge/design-token-vocabulary.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/design-knowledge/numeric-design-laws.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/design-knowledge/register-card.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/design-knowledge/register.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/examples/linear/writing-notes.md:17 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/examples/linear/writing-notes.md:17 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/examples/stripe/writing-notes.md:17 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/examples/stripe/writing-notes.md:17 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/examples/supabase/writing-notes.md:17 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/examples/supabase/writing-notes.md:17 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/examples/vercel/writing-notes.md:17 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/examples/vercel/writing-notes.md:17 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/quality-checklist.md:23 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/quality-checklist.md:23 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/sk-code-handoff.md:15 The intro sentence "Envelope for when an extracted Style Reference DESIGN.md mov" repeats the description (0.62 overlap); say what the reader gets instead.
+render check: references/troubleshooting.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/writing-style-guide.md:23 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/writing-style-guide.md:23 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.

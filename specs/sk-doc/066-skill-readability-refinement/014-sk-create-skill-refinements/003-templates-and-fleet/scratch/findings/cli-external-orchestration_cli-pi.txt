@@ -1,0 +1,2 @@
+render check: references/integration-patterns.md:17 The intro sentence "This reference describes how the calling AI should integrate" points at the content instead of saying when to open the file; rewrite it as a hook.
+render check: references/native-skills-and-extensions.md:17 The intro sentence "This reference covers Pi's own resource model, which is dist" points at the content instead of saying when to open the file; rewrite it as a hook.

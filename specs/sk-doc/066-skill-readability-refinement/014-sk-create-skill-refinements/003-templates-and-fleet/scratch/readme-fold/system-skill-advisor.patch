@@ -1,0 +1,94 @@
+diff --git a/.skilled/skills/system-skill-advisor/README.md b/.skilled/skills/system-skill-advisor/README.md
+index 97bad9d51d..806e2f29e1 100644
+--- a/.skilled/skills/system-skill-advisor/README.md
++++ b/.skilled/skills/system-skill-advisor/README.md
+@@ -16,7 +16,9 @@ version: 0.12.13.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 0.12.13.0
+ | **Works on** | Non-trivial prompts, scored against indexed skill metadata and a SQLite skill graph |
+ | **Produces** | Ranked skill recommendations with per-lane attribution, a trust state and prompt-safe output |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Purpose
+ 
+ When a runtime meets an ambiguous prompt, guessing which skill to dispatch silently misroutes work. Guessing also hides the reason, so a bad route cannot be explained or repaired. And hook code that echoes the user prompt into logs creates a privacy problem that scales with every invocation.
+@@ -57,7 +55,7 @@ The single front door is the daemon-backed CLI at `.skilled/bin/skill-advisor.cj
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Check advisor health.**
+ 
+@@ -124,11 +122,11 @@ When no skill answers a setup or health prompt, the fallback names the runnable
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Fusion and the Options
+ 
+-The advisor scores every prompt against the five lanes from Section 2, each producing its own evidence, then fuses them into one calibrated ranking. Public responses include per-lane contribution labels so hook telemetry stays safe to log without revealing the user's prompt text.
++The advisor scores every prompt against the five lanes from Section 1, each producing its own evidence, then fuses them into one calibrated ranking. Public responses include per-lane contribution labels so hook telemetry stays safe to log without revealing the user's prompt text.
+ 
+ The lane weights live in `runtime/lib/scorer/lane-registry.ts`. The scorer reads `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON`. The launcher allowlist passes it through to the daemon child. An env change needs a daemon restart to apply. Use the env variable for experiments. Durable tuning is editing `lane-registry.ts` with measured evidence. Run `advisor_validate` before and after the change. Ship the diff with doc updates across the feature catalog and the advisor scorer reference.
+ 
+@@ -193,7 +191,7 @@ The CLI exposes nine commands, each accepting snake case, kebab case and camel c
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -206,7 +204,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -221,7 +219,7 @@ Skill-root metadata ownership follows the [canonical contract](../sk-doc/sk-crea
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why is the advisor a separate daemon?**
+ 
+@@ -245,7 +243,7 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -256,7 +254,7 @@ A: `hooks/skill-advisor-hook.md` covers the prompt-time hook contract across eve
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

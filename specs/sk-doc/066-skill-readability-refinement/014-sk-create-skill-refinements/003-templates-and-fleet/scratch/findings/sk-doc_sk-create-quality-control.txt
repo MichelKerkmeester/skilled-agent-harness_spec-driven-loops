@@ -1,0 +1,1 @@
+render check: references/validation-and-enforcement.md:16 The intro sentence "How a create-quality-control run validates and enforces stan" repeats the Purpose (0.76 overlap); say what the reader gets instead.

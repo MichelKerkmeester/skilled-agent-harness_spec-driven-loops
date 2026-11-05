@@ -1,0 +1,6 @@
+render check: assets/goal-phase-child-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/goal-phase-child-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/goal-phase-parent-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/goal-phase-parent-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/goal-top-level-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/goal-top-level-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

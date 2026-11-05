@@ -1,0 +1,6 @@
+render check: references/pr-state-dedup.md:17 The intro sentence "The sections below hold the signature, the cache and the sta" points at the content instead of saying when to open the file; rewrite it as a hook.
+render check: assets/code-quality-checklist.md:17 The intro sentence "Correctness, performance, and boundary-condition checklist f" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/removal-plan.md:16 The intro sentence "Template for identifying safe deletion candidates and planni" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/security-checklist.md:18 The intro sentence "Structured risk checklist for security vulnerabilities, runt" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/solid-checklist.md:16 The intro sentence "Review prompts and smell patterns for evaluating architectur" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/test-quality-checklist.md:17 The intro sentence "Test adequacy, coverage quality, and anti-pattern detection " repeats the description (1.00 overlap); say what the reader gets instead.

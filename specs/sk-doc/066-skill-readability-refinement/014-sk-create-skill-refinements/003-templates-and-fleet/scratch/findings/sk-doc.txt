@@ -1,0 +1,2 @@
+render check: shared/references/core-standards.md:16 The intro sentence "Filename conventions, document type detection, and structura" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: shared/references/validation.md:16 The intro sentence "Quality gates, DQI scoring, and script-assisted AI analysis " repeats the description (0.67 overlap); say what the reader gets instead.

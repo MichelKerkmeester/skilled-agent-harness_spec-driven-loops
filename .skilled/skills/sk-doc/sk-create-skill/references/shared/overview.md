@@ -9,7 +9,7 @@ trigger_phrases:
   - "progressive disclosure skills"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Skill Anatomy and Structure System
@@ -26,7 +26,7 @@ Level 3 reference for what a skill *is*: its anatomy, the required `SKILL.md` co
 
 ```
 Level 1: SKILL.md metadata (name + description) — Always in context (~100 words)
-Level 2: SKILL.md body — When skill triggers (<5k words)
+Level 2: SKILL.md body — When skill triggers (within the skill-md-template.md Size Limits)
 Level 3: Bundled resources (this document) — Loaded as needed
 ```
 
@@ -74,22 +74,21 @@ The content directories shown here are optional, but root metadata is not; use t
 - Use **third-person** in descriptions (e.g., "This skill should be used when..." instead of "Use this skill when...")
 - Write using **imperative/infinitive form** (verb-first instructions), not second person
 - Use objective, instructional language (e.g., "To accomplish X, do Y" rather than "You should do X")
-- Keep SKILL.md body under **5k words**
+- Keep SKILL.md body within the Size Limits table in [skill-md-template.md](../../assets/skill/skill-md-template.md) section 3
 
 **Required Sections** (enforced by markdown-document-specialist validation):
 1. WHEN TO USE (activation triggers and use cases ONLY)
 2. SMART ROUTING (8 to 12 lines of plain prose: what selects this skill, what it loads first, where the machine router is)
 3. HOW IT WORKS
 4. RULES (ALWAYS/NEVER/ESCALATE IF)
-5. REFERENCES (or combined `SMART ROUTING & REFERENCES`)
+5. REFERENCES AND RELATED RESOURCES, always the last section, numbered after any recommended section
 
 Validation reminder:
-- `scripts/package_skill.py` fails if `REFERENCES` is missing and no approved combined heading variant is present.
+- `scripts/package_skill.py` fails if no section heading contains `REFERENCES`.
 
-**Recommended Sections**:
-6. SUCCESS CRITERIA
-7. INTEGRATION POINTS
-8. RELATED RESOURCES
+**Recommended Sections**, placed between RULES and REFERENCES AND RELATED RESOURCES:
+- SUCCESS CRITERIA
+- INTEGRATION POINTS
 
 ### README.md Guidance
 

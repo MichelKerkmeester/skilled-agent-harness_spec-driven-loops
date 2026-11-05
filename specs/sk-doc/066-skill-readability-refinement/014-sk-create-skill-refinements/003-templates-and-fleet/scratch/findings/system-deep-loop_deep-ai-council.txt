@@ -1,0 +1,2 @@
+render check: references/integration/loop-protocol.md:16 The intro sentence "This reference describes the council loop from packet resolu" points at the content instead of saying when to open the file; rewrite it as a hook.
+render check: references/structure/folder-layout.md:16 The intro sentence "Packet-local artifact layout for completed AI Council runs." repeats the description (0.89 overlap); say what the reader gets instead.

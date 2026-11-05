@@ -1,0 +1,1 @@
+render check: assets/prompt-quality-card.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

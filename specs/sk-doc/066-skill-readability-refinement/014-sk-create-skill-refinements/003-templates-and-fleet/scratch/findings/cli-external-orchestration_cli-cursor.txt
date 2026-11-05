@@ -1,0 +1,3 @@
+render check: references/cli-reference.md:18 The intro sentence "Comprehensive reference for all Cursor CLI commands, flags, " repeats the description (0.67 overlap); say what the reader gets instead.
+render check: references/integration-patterns.md:18 The intro sentence "Proven patterns for orchestrating Cursor CLI from any AI ass" repeats the description (0.65 overlap); say what the reader gets instead.
+render check: assets/prompt-quality-card.md:18 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

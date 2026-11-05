@@ -1,0 +1,89 @@
+diff --git a/.skilled/skills/sk-git/README.md b/.skilled/skills/sk-git/README.md
+index efe62e8898..7cae8638ab 100644
+--- a/.skilled/skills/sk-git/README.md
++++ b/.skilled/skills/sk-git/README.md
+@@ -17,7 +17,9 @@ version: 1.8.16.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -27,10 +29,6 @@ version: 1.8.16.0
+ | **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
+ | **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and a stamped seven-digit `Commit-Id:` ordinal |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A shared repository with many AI sessions fails quietly unless the git workflow has rules. Branch names drift, numbers collide, commits become unreproducible and cleanup stalls. sk-git exists to hold those rules so a fleet of sessions can share one repository without stepping on each other.
+@@ -73,7 +71,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ ### Requirements
+ 
+@@ -115,7 +113,7 @@ Expected result: an isolated directory on a numbered `worktrees/{NNN}-{slug}` br
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### Numbered Worktree Grammar
+ 
+@@ -189,7 +187,7 @@ The skill also refuses a fixed set of unsafe actions: a `--no-verify` bypass, a
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -249,7 +247,7 @@ sk-git/
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -262,7 +260,7 @@ sk-git/
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why does it always ask before creating a branch?**
+ 
+@@ -290,7 +288,7 @@ A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: yo
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships a manual testing playbook with scenarios across 9 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
+ 
+@@ -306,7 +304,7 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

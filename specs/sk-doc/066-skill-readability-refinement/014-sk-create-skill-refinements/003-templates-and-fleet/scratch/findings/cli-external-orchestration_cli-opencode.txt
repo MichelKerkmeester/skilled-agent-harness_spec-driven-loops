@@ -1,0 +1,1 @@
+render check: references/permissions-matrix.md:17 The intro sentence "Structured permissions-matrix schema, resolution semantics, " repeats the description (0.81 overlap); say what the reader gets instead.

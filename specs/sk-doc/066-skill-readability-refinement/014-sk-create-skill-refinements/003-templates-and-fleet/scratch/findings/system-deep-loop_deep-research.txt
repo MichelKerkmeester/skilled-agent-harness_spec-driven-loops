@@ -1,0 +1,3 @@
+render check: references/convergence/convergence-recovery.md:17 The intro sentence "This reference covers what happens after convergence detects" points at the content instead of saying when to open the file; rewrite it as a hook.
+render check: references/guides/quick-reference.md:18 The intro sentence "One-page operator cheat sheet for the autonomous deep resear" repeats the description (0.91 overlap); say what the reader gets instead.
+render check: references/state/state-outputs.md:18 The intro sentence "This reference covers human-readable packet outputs." points at the content instead of saying when to open the file; rewrite it as a hook.

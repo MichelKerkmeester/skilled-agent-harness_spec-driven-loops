@@ -1,0 +1,39 @@
+render check: references/parent-skill/compiled-routing-architecture.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/parent-skill/compiled-routing-architecture.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/parent-skill/compiled-routing-architecture.md:17 The intro sentence "This reference explains what the router actually serves, the" points at the content instead of saying when to open the file; rewrite it as a hook.
+render check: references/parent-skill/parent-hub-router-schema.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/parent-skill/parent-hub-router-schema.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/parent-skill/parent-skills-nested-packets.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/parent-skill/parent-skills-nested-packets.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/shared/advisor-index-handoff.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/shared/advisor-index-handoff.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/shared/common-pitfalls.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/shared/common-pitfalls.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/shared/overview.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/shared/overview.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/shared/skill-root-metadata-contract.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/shared/skill-root-metadata-contract.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/shared/validation-and-packaging.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/shared/validation-and-packaging.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/skill/creation-workflow.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/skill/creation-workflow.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/skill/examples-and-maintenance.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/skill/examples-and-maintenance.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/skill/upgrading-a-skill-to-v4.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/skill/upgrading-a-skill-to-v4.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: assets/parent-skill/parent-skill-hub-template.md:33 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/parent-skill/parent-skill-root-router-template.md:36 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/parent-skill/parent-skill-root-router-template.md:36 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-asset-template.md:18 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-asset-template.md:18 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-asset-template.md:16 The intro sentence "Templates and guidelines for creating asset files in AI agen" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: assets/skill/skill-md-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-md-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-procedure-template.md:18 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-procedure-template.md:18 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-readme-template.md:20 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.
+render check: assets/skill/skill-readme-template.md:361 "Section 2 OVERVIEW" names OVERVIEW, but section 2 of this file is SECTION MODEL.
+render check: assets/skill/skill-reference-template.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-reference-template.md:20 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-router-template.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/skill/skill-router-template.md:21 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.

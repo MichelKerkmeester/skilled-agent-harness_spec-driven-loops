@@ -1,0 +1,448 @@
+diff --git a/.skilled/skills/sk-code/README.md b/.skilled/skills/sk-code/README.md
+index d5f457f194..05ab4e9b6f 100644
+--- a/.skilled/skills/sk-code/README.md
++++ b/.skilled/skills/sk-code/README.md
+@@ -14,7 +14,9 @@ version: 2.2.41.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -23,10 +25,6 @@ version: 2.2.41.0
+ | **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface, the `sk-code-ci` CI standards surface and the stack-agnostic `sk-code-frontend` surface |
+ | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface. The quality and review modes work in any repository and read that repository's own rule overrides |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Purpose
+ 
+ Code work is not one activity. Writing code needs author-side quality gates and comment hygiene. Reviewing it needs a findings-first baseline with security and correctness checks. CI workflow work needs trigger, permission and job-shape rules. System work needs hook and alignment verification. Each kind of code work carries its own contract, yet they all share the same surface identity rules.
+@@ -62,7 +60,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
+ 
+ ---
+ 
+-## 3. HOW IT WORKS
++## 2. HOW IT WORKS
+ 
+ ### How A Request Resolves
+ 
+@@ -100,7 +98,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The
+ 
+ ---
+ 
+-## 4. INTEGRATION & NAVIGATION
++## 3. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -115,7 +113,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The
+ 
+ ---
+ 
+-## 5. ADAPTING TO YOUR STACK
++## 4. ADAPTING TO YOUR STACK
+ 
+ sk-code ships three surfaces:
+ 
+@@ -185,7 +183,7 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about you
+ 
+ ---
+ 
+-## 6. FAQ
++## 5. FAQ
+ 
+ **Q: Why does the advisor see only one code skill when the hub contains a packet per mode and surface?**
+ 
+@@ -197,7 +195,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
+ 
+ ---
+ 
+-## 7. VERIFICATION
++## 6. VERIFICATION
+ 
+ | Check | Result |
+ |---|---|
+@@ -208,7 +206,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
+ 
+ ---
+ 
+-## 8. RELATED DOCUMENTS
++## 7. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-code/sk-code-ci/README.md b/.skilled/skills/sk-code/sk-code-ci/README.md
+index 1f39e166b4..14ca5673cc 100644
+--- a/.skilled/skills/sk-code/sk-code-ci/README.md
++++ b/.skilled/skills/sk-code/sk-code-ci/README.md
+@@ -14,7 +14,9 @@ version: 1.0.6.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.0.6.0
+ | **Bundled with** | `sk-code-quality` when authoring, `sk-code-review` when reviewing |
+ | **Produces** | The rule evidence, the protected set, the exception record, the scaffold templates and a CI profile template. The packet itself edits nothing |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Surface Exists
+ 
+ The repository's workflows follow a set of rules that live mostly in review memory. Only path parity between the two source roots is checked by a machine. SHA pinning, a README row per workflow, timeouts, least-privilege permissions, concurrency and the cached setup action are conventions that nothing enforces. Two further facts are easy to misread: a rebuild commit must not start the downstream workflows, and `.github/workflows/message-contract.yml` deliberately pushes on every branch.
+@@ -59,7 +57,7 @@ The rules are universal, but the values they apply to are not. Branch names, swi
+ 
+ ---
+ 
+-## 3. REFERENCE MAP
++## 2. REFERENCE MAP
+ 
+ | File | Carries |
+ |---|---|
+@@ -76,7 +74,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
+ 
+ ---
+ 
+-## 4. VERIFICATION
++## 3. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -88,7 +86,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Why to read it |
+ |---|---|
+diff --git a/.skilled/skills/sk-code/sk-code-frontend/README.md b/.skilled/skills/sk-code/sk-code-frontend/README.md
+index bff0fc1044..14a286672f 100644
+--- a/.skilled/skills/sk-code/sk-code-frontend/README.md
++++ b/.skilled/skills/sk-code/sk-code-frontend/README.md
+@@ -13,7 +13,9 @@ version: 1.0.5.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.0.5.0
+ | **Bundled with** | `sk-code-quality` for authoring and `sk-code-review` for review, or routed alone |
+ | **Produces** | Shared principles, web guidance, topic references, and the five-pass Figma check; the packet edits nothing |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Surface Exists
+ 
+ Frontend work needs shared rules that hold across frameworks, with a web layer for the mechanics the web platform uses. A design frame also needs a consistent check against the built screen without copying its layer tree into code.
+@@ -41,7 +39,7 @@ The packet is read-only. The paired workflow mode applies its evidence to the re
+ 
+ ---
+ 
+-## 3. REFERENCE MAP
++## 2. REFERENCE MAP
+ 
+ | File | Carries |
+ |---|---|
+@@ -57,7 +55,7 @@ The packet router lists each topic file and the condition that calls for it.
+ 
+ ---
+ 
+-## 4. VERIFICATION
++## 3. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -69,7 +67,7 @@ The listing shows the web and topic references plus the three shared workflow li
+ 
+ ---
+ 
+-## 5. RELATED DOCUMENTS
++## 4. RELATED DOCUMENTS
+ 
+ | Document | Why to read it |
+ |---|---|
+diff --git a/.skilled/skills/sk-code/sk-code-quality/README.md b/.skilled/skills/sk-code/sk-code-quality/README.md
+index 465f1e7544..10ecc6f379 100644
+--- a/.skilled/skills/sk-code/sk-code-quality/README.md
++++ b/.skilled/skills/sk-code/sk-code-quality/README.md
+@@ -17,7 +17,9 @@ version: 1.3.8.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.3.8.0
+ | **Works on** | Any repository: the runner checks the change with the universal floor and the checks the repository names. In this repository it also loads the SKILLED checklists for skills, agents, commands, specs, MCP servers, scripts, config and language files |
+ | **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used, the hygiene rules switched off and any remaining risk |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Mode Exists
+ 
+ Implementation can produce code that is behaviorally close and still not shippable: a forbidden comment label, a missing authoring checklist, stale generated output, a style violation or a P0 quality defect that verification would not explain well. The quality mode closes that gap before final evidence is collected.
+@@ -53,7 +51,7 @@ The mode's headline strength is routing by target path: every surface family lan
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-skilled`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
+ 
+@@ -78,7 +76,7 @@ The runner reads the change, by default the working tree against `HEAD`. It runs
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ The mode sits between implementation and verification. It runs the quality runner over the changed files, which resolves surface identity through the shared surface reader and names the checklists that apply. The mode loads them and checks P0/P1/P2 status. P0 blocks completion. P1 is fixed unless the user accepts a documented risk. P2 is fixed when cheap or explicitly deferred with a reason.
+ 
+@@ -113,7 +111,7 @@ This mode can edit already-scoped files because author-side quality correction i
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Mode
+ 
+@@ -129,7 +127,7 @@ Use it when a change is already written and needs standards enforcement before f
+ 
+ ---
+ 
+-## 6. VERIFICATION
++## 5. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -144,7 +142,7 @@ Use it when a change is already written and needs standards enforcement before f
+ 
+ ---
+ 
+-## 7. RELATED DOCUMENTS
++## 6. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-code/sk-code-review/README.md b/.skilled/skills/sk-code/sk-code-review/README.md
+index db1c18f6b4..6553b0dcad 100644
+--- a/.skilled/skills/sk-code/sk-code-review/README.md
++++ b/.skilled/skills/sk-code/sk-code-review/README.md
+@@ -17,7 +17,9 @@ version: 1.7.14.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.7.14.0
+ | **Works on** | Diffs, staged files, commit ranges or explicit file lists |
+ | **Produces** | Severity-ranked findings (P0/P1/P2), a `Rule sources:` line naming the rules applied, a removal plan, next steps and one exact `Review status:` line |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Mode Exists
+ 
+ An ad-hoc review reads the diff once and reports whatever the reviewer happened to notice. Security gaps slip through. Correctness bugs get a mention but no evidence. A single generic checklist cannot capture a specific stack's idioms and its build and test commands, but a per-stack reviewer would need rebuilding for every language. Without a fixed output shape, downstream automation cannot tell an approval from a request for changes. And a reviewer that carries one house style into every repository raises findings the repository has already decided against.
+@@ -62,7 +60,7 @@ A P0 or P1 finding must name its reach: an input or call path the code's stated
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. When `@orchestrate` dispatches the review, it adds `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline. The `/speckit:implement` and `/speckit:complete` workflows state the same marker for any step that dispatches `@review`.
+ 
+@@ -128,7 +126,7 @@ Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep acros
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Analysis Order
+ 
+@@ -158,7 +156,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -172,7 +170,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -188,7 +186,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why findings-first instead of summary-first?**
+ 
+@@ -216,7 +214,7 @@ A: Downstream automation reads the final line by exact string match to decide wh
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -228,7 +226,7 @@ A: Downstream automation reads the final line by exact string match to decide wh
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/sk-code/sk-code-skilled/README.md b/.skilled/skills/sk-code/sk-code-skilled/README.md
+index c3e5df676e..62fb2fad33 100644
+--- a/.skilled/skills/sk-code/sk-code-skilled/README.md
++++ b/.skilled/skills/sk-code/sk-code-skilled/README.md
+@@ -14,7 +14,9 @@ version: 1.0.7.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -23,10 +25,6 @@ version: 1.0.7.0
+ | **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification, authoring checklists and this framework's house style |
+ | **Produces** | The language-sliced evidence a workflow mode applies, plus drift-guard verification results. The surface itself edits nothing |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ This surface carries the system-code evidence for the sk-code hub:
+@@ -61,7 +59,7 @@ These checks load only for a file the surface detection places in SKILLED, so a
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Let the hub bundle it.** There is nothing to install and no command to run. When a task touches `.skilled/` system code, the sk-code hub bundles this surface alongside the active workflow mode and slices the evidence to the languages the task touches.
+ 
+@@ -77,7 +75,7 @@ A clean exit means all four guards pass: the alignment verifier, the stack-folde
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### Detection and Slicing
+ 
+@@ -106,7 +104,7 @@ Five non-negotiables hold across the evidence.
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Surface
+ 
+@@ -123,7 +121,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -132,7 +130,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Why does this surface exist as a separate skill?**
+ 
+@@ -144,7 +142,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary.
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -154,7 +152,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/README.md b/README.md
+index 39b0a9c0c5..5bb68cd0da 100644
+--- a/README.md
++++ b/README.md
+@@ -1583,7 +1583,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one
+ - **Drop or replace a rule** with a `## Rule overrides` section in a checklist your `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, or switch off comment-hygiene rules with `commentHygiene.disableRules`. The quality and review modes read the same section, so a rule you drop does not come back as a review finding, and a section the linter refuses stops the quality run with `CONFIG_INVALID`. See the [rule overrides contract](.skilled/skills/sk-code/shared/references/universal/rule-overrides.md)
+ - **Check the result** with `/doctor:sk-code setup`, which runs every check read-only and names one repair command for each failure
+ 
+-The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces and your rule overrides at review time.
++The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces and your rule overrides at review time.
+ 
+ &nbsp;
+ #### What Adapting `sk-git` Looks Like

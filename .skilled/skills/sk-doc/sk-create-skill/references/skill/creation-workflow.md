@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill frontmatter completion"
 importance_tier: normal
 contextType: implementation
-version: 1.2.8.0
+version: 1.2.9.0
 ---
 
 # Skill Creation Process
@@ -210,7 +210,7 @@ Choose the README template before writing the file.
 
 **Template choice rule**:
 
-- **Standalone skill**: use [skill-readme-template.md](../../assets/skill/skill-readme-template.md). Keep its purpose-first identity, `AT A GLANCE` table, numbered narrative sections, required `OVERVIEW` and `title`, `description` and `version` frontmatter.
+- **Standalone skill**: use [skill-readme-template.md](../../assets/skill/skill-readme-template.md). Keep its purpose-first identity, numbered narrative sections and the required `OVERVIEW` that opens with the At a Glance table, plus `title`, `description` and `version` frontmatter.
 - **Parent hub**: use [parent-skill-readme-template.md](../../assets/parent-skill/parent-skill-readme-template.md). Include the hub pitch, purpose, modes and packets, registry and manifest navigation, changelog, scripts and commands and verification.
 - **Child mode**: use the standalone template for the child README unless the child phase contract names a more specific README template. The child mode remains responsible for its own README and changelog.
 
@@ -285,12 +285,12 @@ Answer these questions in SKILL.md:
    - ESCALATE IF (when to ask user)
 
 7. **What references should the skill expose explicitly?**
-   - Section 5: REFERENCES
-   - Include core references and templates or use combined `SMART ROUTING & REFERENCES` if preferred.
+   - REFERENCES AND RELATED RESOURCES, always the last section, numbered after any recommended section
+   - Include core references and templates, then related skills and scripts.
 
 **Writing Style Reminders**:
 - Apply the [Prose Clarity Checklist](#prose-clarity-checklist) to instructions and README prose.
-- Keep the SKILL.md under 5,000 words.
+- Keep the SKILL.md within the Size Limits table in [skill-md-template.md](../../assets/skill/skill-md-template.md) section 3.
 
 **Frontmatter Completion**:
 
@@ -433,7 +433,7 @@ scripts/package_skill.py <path/to/skill-folder> ./dist
 **Iteration Example - Markdown Optimizer**:
 ```
 Initial Version:
-- SKILL.md: 800 words
+- SKILL.md: one file with no bundled resources
 - description: "Optimizes markdown files"
 - Problem: Too generic, skill didn't trigger
 

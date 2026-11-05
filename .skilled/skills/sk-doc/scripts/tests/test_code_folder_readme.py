@@ -17,6 +17,9 @@ FIXTURE_ROOT = TESTS / "code-folder"
 NEGATIVE_CASES = {
     "missing-tree": {"code_folder_directory_tree"},
     "incomplete-flat-inventory": {"code_folder_flat_inventory"},
+    "package-list-incomplete": {"code_folder_flat_inventory"},
+    "structure-prose-only": {"code_folder_flat_inventory"},
+    "tree-outside-inventory": {"code_folder_flat_inventory"},
     "missing-separator": {"code_folder_h2_separator"},
     "unnumbered-h2": {"code_folder_h2_numbering"},
     "non-sequential-h2": {"code_folder_h2_sequence"},
@@ -57,7 +60,7 @@ def main() -> int:
             failures.append(f"{name}: expected {sorted(expected_rules)}, got {sorted(actual_rules)}")
         print(f"NEGATIVE {name}: rc={payload['process_return_code']} rules={sorted(actual_rules)}")
 
-    for name in ("flat-contents-pass",):
+    for name in ("flat-contents-pass", "package-list-pass", "structure-tree-pass"):
         payload = validate(FIXTURE_ROOT / name / "README.md")
         if payload["process_return_code"] != 0 or payload.get("blocking_errors"):
             failures.append(f"{name}: expected pass, got {payload.get('blocking_errors')}")
@@ -73,7 +76,7 @@ def main() -> int:
         for failure in failures:
             print(f"- {failure}")
         return 1
-    print(f"SUMMARY: negatives={len(NEGATIVE_CASES)} flat_table_pass=1 positive_control=1 failures=0")
+    print(f"SUMMARY: negatives={len(NEGATIVE_CASES)} flat_table_pass=3 positive_control=1 failures=0")
     return 0
 
 

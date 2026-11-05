@@ -1,0 +1,3 @@
+render check: references/workflow-debug.md:16 The intro sentence "Shared `sk-code` doctrine for root-cause diagnosis and scope" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: references/workflow-implement.md:16 The intro sentence "Shared `sk-code` doctrine for the mutating build phase, from" repeats the description (1.00 overlap); say what the reader gets instead.
+render check: references/workflow-verify.md:16 The intro sentence "Shared `sk-code` doctrine for the final non-mutating evidenc" repeats the description (1.00 overlap); say what the reader gets instead.

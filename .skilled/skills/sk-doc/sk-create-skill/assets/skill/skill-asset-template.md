@@ -8,14 +8,22 @@ trigger_phrases:
   - "standard asset structure"
 importance_tier: normal
 contextType: general
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Skill Asset File Templates - Creation Guidelines
 
-Templates and guidelines for creating asset files in AI agent skills.
+Open this when a skill needs a template, checklist or lookup table that readers copy rather than read through.
 
 ## 1. OVERVIEW
+
+### Purpose
+
+Assets hold content a reader copies or looks up: templates, checklists, lookup tables and example sets. This file sets when to make one and what shape it takes.
+
+### Usage
+
+Check the criteria under When to Create Assets, copy the structure in section 4 into a new file under `assets/`, fill each bracket, then run `validate_document.py` on it.
 
 ### When to Create Assets
 
@@ -131,7 +139,7 @@ Templates and guidelines for creating asset files in AI agent skills.
 ```markdown
 ---
 title: [Title]
-description: [One-line description - same as intro]
+description: [One-line description of what the file holds - the intro says something different]
 trigger_phrases:
   - "[distinctive phrase one]"
   - "[distinctive phrase two]"
@@ -143,7 +151,7 @@ version: 1.0.0.0
 
 # [Title]
 
-[1-2 SHORT sentences only. Brief hook/summary. NO subsections, NO headers here.]
+[1-2 SHORT sentences only. A hook that says when to open the file, not a repeat of the description. NO subsections, NO headers here.]
 
 \## 1. OVERVIEW
 
@@ -173,6 +181,8 @@ Every asset file carries this full 5-field frontmatter block: the Skill Advisor 
 
 > **WARNING: DO NOT duplicate content between intro and OVERVIEW section.**
 > The intro is a hook. OVERVIEW provides the details.
+
+> **Avoid pointer intros.** An intro that opens with "The sections below", "The rules below", "The examples below", "The tables below" or "The steps below", or with "This reference", "This asset", "This document", "This file", "This guide" or "This page" followed by explains, covers, describes, documents, lists, shows, contains or outlines, announces the content instead of saying when to open the file. The validator flags each one.
 
 #### GOOD Intro Structure
 
@@ -218,7 +228,7 @@ Atomic commits with clear intent = maintainable history.
 
 | Content Type          | Intro (after H1) | OVERVIEW Section       |
 | --------------------- | ---------------- | ---------------------- |
-| 1-2 sentence summary  | ✅ YES            | ❌ NO (don't repeat)    |
+| 1-2 sentence hook     | ✅ YES            | ❌ NO (don't repeat)    |
 | Core Principle        | ❌ NO             | ✅ YES (in Purpose)     |
 | When to Use           | ❌ NO             | ✅ YES (in Purpose)     |
 | How to copy/customize | ❌ NO             | ✅ YES (in Usage)       |

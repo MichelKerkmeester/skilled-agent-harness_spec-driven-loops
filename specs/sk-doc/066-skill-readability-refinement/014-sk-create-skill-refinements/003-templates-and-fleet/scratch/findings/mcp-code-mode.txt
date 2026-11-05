@@ -1,0 +1,3 @@
+render check: assets/config-template.md:21 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.
+render check: assets/config-template.md:17 The intro sentence "Copy-ready `.utcp_config.json` template for Code Mode UTCP w" repeats the description (0.67 overlap); say what the reader gets instead.
+render check: assets/env-template.md:21 OVERVIEW opens with "### Purpose"; open it with Purpose then Usage.

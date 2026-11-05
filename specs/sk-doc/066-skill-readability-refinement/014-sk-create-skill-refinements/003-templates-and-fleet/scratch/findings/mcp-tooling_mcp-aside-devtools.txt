@@ -1,0 +1,6 @@
+render check: references/aside-cli-reference.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/aside-cli-reference.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/aside-online-research-2026-07-17.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/mcp-wiring.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/session-management.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/troubleshooting.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.

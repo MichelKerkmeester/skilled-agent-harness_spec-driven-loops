@@ -9,7 +9,7 @@ trigger_phrases:
   - "hub readme validation"
 importance_tier: normal
 contextType: general
-version: 1.3.2.0
+version: 1.3.3.0
 ---
 
 # Parent Skill Hub README Template
@@ -18,7 +18,18 @@ version: 1.3.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### Purpose
+
+A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
+Use the two example hubs to check structure.
+
+### Usage
+
+Copy the fillable scaffold in section 4 into `[hub-name]/README.md`, fill every placeholder from the hub's real files, then run the readme validator on it.
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -26,15 +37,6 @@ version: 1.3.2.0
 | **Invoke with** | Copy the fillable scaffold into `[hub-name]/README.md` and fill every placeholder from the hub's real files |
 | **Covers** | The six hub surfaces: pitch, modes and packets, navigation, changelog, scripts and commands, verification |
 | **Produces** | A numbered ALL-CAPS section README that passes the sk-doc readme validator and the Human Voice Rules |
-
----
-
-## 2. OVERVIEW
-
-### What It Does
-
-A hub README introduces the hub and lists its modes, navigation, changelog, commands and verification.
-Use the two example hubs to check structure.
 
 ### Why This Template Exists
 
@@ -53,7 +55,7 @@ Include every mode listed there.
 
 ---
 
-## 3. SECTION MODEL
+## 2. SECTION MODEL
 
 Use the [Prose Clarity Checklist](../../references/skill/creation-workflow.md#prose-clarity-checklist) when you write hub README prose.
 
@@ -61,21 +63,20 @@ A hub README uses numbered ALL-CAPS H2 sections with `---` dividers between them
 
 | # | Section | Purpose | Keep When |
 |---|---------|---------|-----------|
-| 1 | AT A GLANCE | A four-row table a reader scans in five seconds | Always |
-| 2 | OVERVIEW | What the hub is and what it routes first, then the optional problem narrative | Always, it is the only required section |
-| 3 | MODES AND PACKETS | One table row per child packet with a pointer | The hub has two or more packets |
-| 4 | NAVIGATION | Stable links to the registry and the manifest | The hub is registry-driven |
-| 5 | CHANGELOG | The per-release entry convention | The hub keeps a changelog folder |
-| 6 | SCRIPTS AND COMMANDS | One-line usage per owned script or command | The hub owns scripts or commands |
-| 7 | VERIFICATION | The validator and HVR checks for the README | Always |
+| 1 | OVERVIEW | The At a Glance table a reader scans in five seconds, then what the hub is and what it routes, then the optional problem narrative | Always, it is the only required section |
+| 2 | MODES AND PACKETS | One table row per child packet with a pointer | The hub has two or more packets |
+| 3 | NAVIGATION | Stable links to the registry and the manifest | The hub is registry-driven |
+| 4 | CHANGELOG | The per-release entry convention | The hub keeps a changelog folder |
+| 5 | SCRIPTS AND COMMANDS | One-line usage per owned script or command | The hub owns scripts or commands |
+| 6 | VERIFICATION | The validator and HVR checks for the README | Always |
 
 `OVERVIEW` is the one section the validator requires. Every other section is optional, but a hub README without MODES AND PACKETS or NAVIGATION misses its job. Those two are the map a reader comes for.
 
 ---
 
-## 4. THE SIX HUB SURFACES
+## 3. THE SIX HUB SURFACES
 
-### 4.1 Pitch And Purpose-First Overview
+### 3.1 Pitch And Purpose-First Overview
 
 Open with a one-line blockquote pitch right after the H1. The pitch states the whole family outcome in plain words. The two example hubs show the shape: mcp-tooling opens with "One advisor identity, seven modes" and system-deep-loop opens with "One skill that routes to every active deep-loop workflow".
 
@@ -89,7 +90,7 @@ Add a simple Mermaid diagram when it clarifies multi-step routing.
 
 Emoji use follows the technical register. Semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers, and sparingly. Decorative section emoji stay on the repository front-page README, never on a hub README.
 
-### 4.2 Modes And Packets
+### 3.2 Modes And Packets
 
 Open MODES AND PACKETS with one or two sentences that frame the table.
 Give each child packet one row with its folder, kind, use and relative pointer.
@@ -97,33 +98,33 @@ Link to its README when it exists. Otherwise link to the folder with a trailing 
 
 The registry is the truth for this table. Read `mode-registry.json` and list every entry in `modes[]`. Do not invent rows. The mcp-tooling README lists all seven packet folders with one bullet each and a per-packet README pointer. The system-deep-loop README uses a layout table for the same job, mapping each mode packet to what it holds.
 
-### 4.3 Navigation
+### 3.3 Navigation
 
 Link `mode-registry.json` and `leaf-manifest.json` with stable relative paths from the hub root.
 Use `[mode-registry.json](./mode-registry.json)` and `[leaf-manifest.json](./leaf-manifest.json)`.
 Explain each file in one line. The registry is the source of truth for modes.
 The manifest lists routed leaves. State that it regenerates when packets change.
 
-The system-deep-loop README links `mode-registry.json` from its RELATED DOCUMENTS table with a purpose note per row. The mcp-tooling README names the registry and the router in its AT A GLANCE table, so a reader finds the routing files in the first scan.
+The system-deep-loop README links `mode-registry.json` from its RELATED DOCUMENTS table with a purpose note per row. The mcp-tooling README names the registry and the router in its At a Glance table, so a reader finds the routing files in the first scan.
 
-### 4.4 Changelog
+### 3.4 Changelog
 
 Keep one file per release in the hub `changelog/` folder. Name it `v[version].md`.
 Open each entry with its release title and a plain-language reason.
 Group changes by surface and add a files-changed table.
 The newest mcp-tooling entry shows this structure.
 
-### 4.5 Scripts And Commands
+### 3.5 Scripts And Commands
 
 List every script and command the hub owns with a one-line usage line. Each row names the script or command, the exact invocation and the expected output, so a reader can tell success from failure. When the hub owns slash commands, list them with their dispatch target. The system-deep-loop hub runs its modes through `/deep:*` commands. Its README names the command and the mode it resolves.
 
-### 4.6 Verification
+### 3.6 Verification
 
 Close with the checks that prove the README is real. The sk-doc readme validator enforces the numbered ALL-CAPS `OVERVIEW` section. The HVR grep enforces the voice. Show both commands with their expected results. The mcp-tooling README closes with a VERIFICATION section that runs the parent-skill check and states the expected output.
 
 ---
 
-## 5. FILLABLE SCAFFOLD
+## 4. FILLABLE SCAFFOLD
 
 Copy this into `.skilled/skills/[hub-name]/README.md`, fill every placeholder from the hub's real files, then remove sections that do not fit and renumber.
 
@@ -141,11 +142,13 @@ version: 1.0.0.0
 
 > [One line. The outcome the hub delivers for its whole family, in plain words a person would say out loud.]
 
-[Optional. Add one or two sentences about the reader's current need before the scan table. AT A GLANCE stays the first numbered section.]
+[Optional. Add one or two sentences about the reader's current need before the scan table. OVERVIEW stays the first numbered section.]
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -153,10 +156,6 @@ version: 1.0.0.0
 | **Invoke with** | [Keyword routing, slash commands or the manual read path.] |
 | **Routes to** | [The nested packets via mode-registry.json and hub-router.json.] |
 | **Produces** | [The artifacts or decisions the modes return.] |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -180,7 +179,7 @@ flowchart TD
 
 ---
 
-## 3. MODES AND PACKETS
+## 2. MODES AND PACKETS
 
 [One or two sentences that frame the family this table lists, so the table reads as a map. Then the table.]
 
@@ -194,7 +193,7 @@ flowchart TD
 
 ---
 
-## 4. NAVIGATION
+## 3. NAVIGATION
 
 | File | What it holds | Why it matters |
 |---|---|---|
@@ -205,7 +204,7 @@ flowchart TD
 
 ---
 
-## 5. CHANGELOG
+## 4. CHANGELOG
 
 Releases live in `changelog/` with one file per release, named `v[version].md`. Every entry opens with the release title and the reason in plain words, then a what-changed list grouped by surface, then a files-changed table. Link the newest entry:
 
@@ -215,7 +214,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 ---
 
-## 6. SCRIPTS AND COMMANDS
+## 5. SCRIPTS AND COMMANDS
 
 | Script or command | One-line usage | Expected output |
 |---|---|---|
@@ -224,7 +223,7 @@ Releases live in `changelog/` with one file per release, named `v[version].md`. 
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 Run the sk-doc readme validator on this file:
 
@@ -251,10 +250,10 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hu
 
 ---
 
-## 6. VALIDATION CHECKLIST
+## 5. VALIDATION CHECKLIST
 
 - [ ] H1 is followed by a one-line blockquote pitch stating the family outcome.
-- [ ] `AT A GLANCE` is the first section and its table is four rows of one-line cells.
+- [ ] `OVERVIEW` is the first section and opens with the At a Glance table of four rows of one-line cells.
 - [ ] A numbered `OVERVIEW` section exists and opens value-first: what the hub delivers before any feature list. `### Why This Hub Exists` is optional.
 - [ ] H2 sections are numbered, ALL CAPS and separated by `---` dividers.
 - [ ] `MODES AND PACKETS` lists every mode from `mode-registry.json` with a relative pointer per row.
@@ -267,11 +266,11 @@ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/[hu
 - [ ] Emoji use stays semantic (✅ ❌ ⚠️ 🔒 🚨) and sparing. No decorative section emoji.
 - [ ] `python3 .skilled/skills/sk-doc/scripts/validate_document.py <readme> --type readme` reports zero issues.
 
-> The script above is a floor, not a proxy for this checklist. It enforces the numbered ALL-CAPS `OVERVIEW` header. It does not check the pitch, the `AT A GLANCE` table, the packet table or HVR. A green run means the file cleared the floor, not that it passed the checks above.
+> The script above is a floor, not a proxy for this checklist. It enforces the numbered ALL-CAPS `OVERVIEW` header. It does not check the pitch, the At a Glance table, the packet table or HVR. A green run means the file cleared the floor, not that it passed the checks above.
 
 ---
 
-## 7. RELATED RESOURCES
+## 6. RELATED RESOURCES
 
 - [`parent-skill-hub-template.md`](./parent-skill-hub-template.md) - The hub `SKILL.md` scaffold this README template pairs with.
 - [`skill-readme-template.md`](../skill/skill-readme-template.md) - The standalone skill README template this hub template extends.

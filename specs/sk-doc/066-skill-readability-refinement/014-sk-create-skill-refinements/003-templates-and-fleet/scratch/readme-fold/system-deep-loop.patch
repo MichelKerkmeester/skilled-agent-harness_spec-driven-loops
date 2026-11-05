@@ -1,0 +1,354 @@
+diff --git a/.skilled/skills/system-deep-loop/README.md b/.skilled/skills/system-deep-loop/README.md
+index 0d912c52b8..68ab4d2e77 100644
+--- a/.skilled/skills/system-deep-loop/README.md
++++ b/.skilled/skills/system-deep-loop/README.md
+@@ -15,7 +15,9 @@ version: 1.6.6.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -24,10 +26,6 @@ version: 1.6.6.0
+ | **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
+ | **Produces** | The mode's artifacts (for example research.md, review-report.md or council artifacts) plus convergence state. |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ `Skill(system-deep-loop)` loads the hub, and the hub routes by `workflowMode` through `mode-registry.json` to one active mode packet. The hub holds no per-mode logic. Each packet keeps its own convergence math, state shape, artifacts and tool-permission guards. The shared backend, `runtime/`, does the executor configuration, prompt-pack rendering, validation, atomic state, coverage graph and scoring.
+@@ -38,7 +36,7 @@ The deep-loop workflows used to ship as five separate sibling skills over one ba
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Let the advisor route a deep-loop request, run a `/deep:*` command, or read `SKILL.md` directly.
+ 
+@@ -54,7 +52,7 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
+ 
+@@ -70,7 +68,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Layout
+ 
+@@ -102,7 +100,7 @@ Active `/deep:*` commands and deep agents (`deep-research`, `deep-review` and `a
+ 
+ ---
+ 
+-## 6. ADDING A WORKFLOW MODE
++## 5. ADDING A WORKFLOW MODE
+ 
+ Adding another active mode (a new packet beyond `deep-research`, `deep-review`, `deep-ai-council`) touches every one of these surfaces: miss one and the mode is either unroutable, undiscoverable, or drift-guard-broken:
+ 
+@@ -112,13 +110,13 @@ Adding another active mode (a new packet beyond `deep-research`, `deep-review`,
+ - [ ] **`ROUTER.md`**: add the mode's intent class to `INTENT_SIGNALS` and its leaf files to `RESOURCE_MAP` and `LOADING_LEVELS`, so the compiled route can name the mode's resources.
+ - [ ] **`hub-router.json`**: add a `routerSignals` entry for the new mode's vocabulary classes, and add it to `routerPolicy.tieBreak`.
+ - [ ] **`SKILL.md`**, add a row to the §1 WHEN TO USE mode table (mode, use-it-for, packet, command, agent), and update the frontmatter `allowed-tools` if the new mode's `toolSurface.allowed` introduces a tool no existing mode grants (keep it equal to the union, see the final MACHINE ROUTER section of `ROUTER.md`).
+-- [ ] **`README.md`** (this document): add the mode to §1 AT A GLANCE / §4 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
++- [ ] **`README.md`** (this document): add the mode to §1 OVERVIEW / §3 HOW IT WORKS as applicable, and to the Layout table if it changes the directory listing.
+ - [ ] **Drift-guard test**: `system-skill-advisor/runtime/tests/routing-registry-drift-guard.vitest.ts` asserts the advisor's hardcoded projection maps equal the registry projection; update the maps it checks against or the test fails on the next run.
+ - [ ] **`node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop`**: re-run after all of the above; it validates registry shape, alias uniqueness, tool-surface union (3j), hub-router consistency and the ROUTER contract in one pass.
+ 
+ ---
+ 
+-## 7. RELATED DOCUMENTS
++## 6. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/system-deep-loop/deep-ai-council/README.md b/.skilled/skills/system-deep-loop/deep-ai-council/README.md
+index e36e99312a..ff6198db4c 100644
+--- a/.skilled/skills/system-deep-loop/deep-ai-council/README.md
++++ b/.skilled/skills/system-deep-loop/deep-ai-council/README.md
+@@ -17,7 +17,9 @@ version: 1.8.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.8.3.0
+ | **Works on** | Your packet folder and its context, dispatching 2-3 seats with distinct reasoning lenses inside one CLI per round |
+ | **Produces** | A recommended plan, an append-only state log, per-seat proposals, critiques, failed-round forensics and a final report under `ai-council/` |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ When a plan carries real trade-offs, one AI answer is one confident guess with no record of what it ruled out. You can hand-run "ask three models" but you get diversity without a convergence rule, no persistence and no audit trail. You need structured disagreement: seats that propose independently, critique each other and only agree when the evidence supports it, not when politeness demands it. You also need a replayable record of every round so your team can see why a plan won, not just what won.
+@@ -40,7 +38,7 @@ When a plan carries real trade-offs, one AI answer is one confident guess with n
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** The council offers two surfaces. Pick the one that fits your workload.
+ 
+@@ -87,7 +85,7 @@ Expected result: confirmation that `ai-council-state.jsonl` ends with a `council
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Council Round
+ 
+@@ -113,7 +111,7 @@ Convergence is not a popularity vote. A plan converges when two of three seats a
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -145,7 +143,7 @@ The council shares the `runtime/` with the other active deep-loop families. The
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -158,7 +156,7 @@ The council shares the `runtime/` with the other active deep-loop families. The
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: Does the council implement the plan it recommends?**
+ 
+@@ -186,7 +184,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -196,7 +194,7 @@ A: The run completes as `non-converged`. This is an honest answer: the evidence
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/system-deep-loop/deep-research/README.md b/.skilled/skills/system-deep-loop/deep-research/README.md
+index ba914418fe..975b989625 100644
+--- a/.skilled/skills/system-deep-loop/deep-research/README.md
++++ b/.skilled/skills/system-deep-loop/deep-research/README.md
+@@ -17,7 +17,9 @@ version: 1.14.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.14.3.0
+ | **Works on** | Any research topic with web sources, codebase references or both, through the LEAF agent's Read, WebFetch, Grep and Glob tool set |
+ | **Produces** | A converged findings report at `research/research.md`, plus an iteration audit trail, a findings registry and a convergence dashboard under `{spec_folder}/research/` |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ Long-form investigation inside a conversation degrades as findings pile up in the context window. You prune to make room, which means you lose earlier insights. Each follow-up round re-injects prior results and the model rereads what it already decided. Multi-domain topics compound the problem because each sub-question drags in its own evidence trail. Without an explicit stop condition you keep digging past diminishing returns, or you stop too early and miss evidence. This skill externalizes every finding to disk, starts each round from a clean context window and computes a stop signal from the ratio of new information. You get a complete investigation without context fatigue.
+@@ -42,7 +40,7 @@ It does not perform one-shot codebase lookup (`@context` does that), audit code
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Pick your mode. Autonomous runs straight through with no gates. Confirm asks for approval at setup, each iteration and synthesis.
+ 
+@@ -69,7 +67,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Iteration Lifecycle
+ 
+@@ -108,7 +106,7 @@ The minimum-iteration behavior is documented as the [anti-convergence floor](./f
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -129,7 +127,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -144,7 +142,7 @@ Skip it for a single-question lookup, where a direct web search or the `@context
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: How does convergence decide to stop?**
+ 
+@@ -174,7 +172,7 @@ The YAML workflow routes the executor. The LEAF constraints still apply: no sub-
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships two validation packages. You can also check that this document passes structural validation.
+ 
+@@ -194,7 +192,7 @@ Expected output: zero issues reported.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+@@ -228,7 +226,7 @@ Expected output: zero issues reported.
+ A feature change to this skill typically touches more than one surface. Before calling a change complete, check each:
+ 
+ - [ ] **`ROUTER.md`** -- routing rules and the resource list stay in sync with the new or changed behavior
+-- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 9 table for which doc owns what)
++- [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 8 table for which doc owns what)
+ - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
+ - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
+ - [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+diff --git a/.skilled/skills/system-deep-loop/deep-review/README.md b/.skilled/skills/system-deep-loop/deep-review/README.md
+index 05366aeb11..fa90abf32f 100644
+--- a/.skilled/skills/system-deep-loop/deep-review/README.md
++++ b/.skilled/skills/system-deep-loop/deep-review/README.md
+@@ -17,7 +17,9 @@ version: 1.11.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.11.2.0
+ | **Works on** | Five target types: a spec folder, a skill package, a named agent, a spec track or an explicit file set |
+ | **Produces** | A release-readiness verdict (PASS, CONDITIONAL or FAIL), a full findings registry, a dashboard, an iteration audit trail and a nine-section review report under `{spec_folder}/review/` |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
+@@ -53,7 +51,7 @@ That is the whole reason this skill exists. It gives you a review you can releas
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Pick a mode. Autonomous runs straight through with no gates. Confirm asks for approval at each iteration. Plain `/deep:review` asks which mode you want.
+ 
+@@ -83,7 +81,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### Iteration Lifecycle
+ 
+@@ -152,7 +150,7 @@ Every P0 finding runs through a Hunter, Skeptic, Referee re-read before it enter
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -178,7 +176,7 @@ Skip it for the lighter cases:
+ 
+ ---
+ 
+-## 6. TROUBLESHOOTING
++## 5. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -192,7 +190,7 @@ Skip it for the lighter cases:
+ 
+ ---
+ 
+-## 7. FAQ
++## 6. FAQ
+ 
+ **Q: How does deep-review differ from sk-code's code-review mode?**
+ 
+@@ -221,7 +219,7 @@ A: Yes. Place a `.deep-review-pause` sentinel file in the `review/` directory. T
+ 
+ ---
+ 
+-## 8. VERIFICATION
++## 7. VERIFICATION
+ 
+ The skill ships two validation packages.
+ 
+@@ -241,7 +239,7 @@ Expected output: zero issues reported.
+ 
+ ---
+ 
+-## 9. RELATED DOCUMENTS
++## 8. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

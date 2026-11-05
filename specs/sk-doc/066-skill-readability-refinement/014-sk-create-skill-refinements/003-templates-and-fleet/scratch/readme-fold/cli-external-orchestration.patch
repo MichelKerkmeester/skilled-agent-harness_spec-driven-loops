@@ -1,0 +1,659 @@
+diff --git a/.skilled/skills/cli-external-orchestration/README.md b/.skilled/skills/cli-external-orchestration/README.md
+index 3ed3e8c935..213952a71f 100644
+--- a/.skilled/skills/cli-external-orchestration/README.md
++++ b/.skilled/skills/cli-external-orchestration/README.md
+@@ -26,7 +26,9 @@ version: 1.7.9.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -35,10 +37,6 @@ version: 1.7.9.0
+ | **Routes to** | `cli-opencode/`, `cli-claude-code/`, `cli-codex/`, `cli-cursor/`, `cli-devin/`, `cli-pi/` or `cli-hermes/` via `mode-registry.json` (all mutating packets, `mutatesWorkspace: true`) |
+ | **Produces** | A dispatched OpenCode, Claude Code, Codex, Cursor, Devin, Pi or Hermes session whose writes land in this repo's workspace. Most modes' guards block a runtime from dispatching itself, and `cli-pi` is the deliberate exception |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Purpose
+ 
+ Your machine runs more than one external AI runtime, each with its own CLI and its own failure modes. Picking one by habit is guesswork: the session runs, but it may not fit the task. The hub makes the choice deliberate. One advisor identity reads the request and picks the external CLI that fits it best. Then it dispatches the matching workflow packet.
+@@ -65,7 +63,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of seve
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Invoke it.** Gate 2 keyword routing matches trigger phrases such as "cli dispatch" or "delegate to codex". No slash command exists for any of the seven modes (`command: null`).
+ 
+@@ -87,7 +85,7 @@ When a request names several modes at once, the `tieBreak` order runs them as an
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Routing Chain
+ 
+@@ -108,7 +106,7 @@ Four behaviors keep dispatch honest:
+ 
+ ---
+ 
+-## 5. INTEGRATION & NAVIGATION
++## 4. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -123,7 +121,7 @@ Four behaviors keep dispatch honest:
+ 
+ ---
+ 
+-## 6. VERIFICATION
++## 5. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -132,7 +130,7 @@ Four behaviors keep dispatch honest:
+ 
+ ---
+ 
+-## 7. RELATED DOCUMENTS
++## 6. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md b/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+index 01fbf7d63e..6e8d2bc4f0 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-claude-code/README.md
+@@ -17,7 +17,9 @@ version: 1.5.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.5.2.0
+ | **Works on** | Any external runtime (OpenCode, Copilot, raw shell) that needs to reach the `claude` binary |
+ | **Produces** | Text or JSON responses, diff-based edits, schema-validated output and agent-delegated analysis |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ cli-claude-code is the single routing point for external runtimes that need Claude Code. A smart router scores the task against intent signals (deep reasoning, code editing, structured output, review, agent delegation) and loads only the references that match. A self-invocation guard checks three layers and refuses to load if the caller is already inside Claude Code.
+@@ -64,7 +62,7 @@ The skill routes to a roster of specialized `.claude/agents/*.md` definitions wi
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Verify the CLI is installed.**
+ 
+@@ -112,7 +110,7 @@ You get a JSON object that conforms to the schema you passed, ready to pipe down
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Dispatch Lifecycle
+ 
+@@ -150,7 +148,7 @@ When the caller needs to keep a Claude Code session's context, a 7-step Memory H
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ ```text
+ cli-claude-code/
+@@ -187,7 +185,7 @@ cli-claude-code/
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -220,7 +218,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -233,7 +231,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: Why not just call `claude` directly from my shell?**
+ 
+@@ -257,7 +255,7 @@ A: The self-invocation guard detects it (via `$CLAUDECODE`, process ancestry or
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, permission modes, reasoning and models, agent routing and session continuity.
+ 
+@@ -269,7 +267,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-codex/README.md b/.skilled/skills/cli-external-orchestration/cli-codex/README.md
+index f60a8e25e0..aac0ea3aec 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-codex/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-codex/README.md
+@@ -18,7 +18,9 @@ version: 1.9.3.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -27,10 +29,6 @@ version: 1.9.3.0
+ | **Works on** | Any external runtime (Claude Code, Copilot, raw shell) that needs to reach the `codex` binary |
+ | **Produces** | Code edits in a sandbox, text responses, diff-aware reviews and web-enriched research |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A non-Codex assistant has no built-in way to reach the `codex` binary. When a task wants OpenAI-model strengths, like sandboxed file edits, live web browsing mid-execution, the diff-aware review workflow or a second model's opinion, the caller either hand-builds fragile `codex exec` invocations and picks flags by trial or skips the capability. The worst trap: `codex exec` defaults to a read-only sandbox, so edit tasks fail silently. Auth handling, service-tier selection, sandbox mapping and reasoning effort all become guesswork. If the calling assistant is itself Codex, a circular self-dispatch burns tokens for no value. This skill standardizes the dispatch, the auth pre-flight, the self-invocation guard and the readiness check. The caller never builds its own CLI wrapper.
+@@ -58,7 +56,7 @@ Reach for cli-codex when a task benefits from sandboxed file operations, live we
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Verify the CLI is installed.**
+ 
+@@ -106,7 +104,7 @@ You get a structured review of the latest commit's diff, scoped to the focus are
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Dispatch Lifecycle
+ 
+@@ -171,7 +169,7 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ ```text
+ .skilled/skills/cli-external-orchestration/cli-codex/
+@@ -210,7 +208,7 @@ The `.codex/agents/*.toml` roster above pins `gpt-5.5`. Override per dispatch wi
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### Sibling Boundaries
+ 
+@@ -237,7 +235,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -252,7 +250,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: Why not just call `codex exec` directly from my shell?**
+ 
+@@ -276,7 +274,7 @@ A: Reach for Codex when the task needs sandboxed edits, live web search, a diff-
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, sandbox modes, reasoning effort, agent routing, session continuity, integration patterns, prompt templates and built-in tools.
+ 
+@@ -288,7 +286,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-cursor/README.md b/.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+index 85657c2a3d..118f29dee0 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-cursor/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-cursor/README.md
+@@ -17,7 +17,9 @@ version: 1.4.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.4.2.0
+ | **Works on** | Any external runtime (Claude Code, Codex, raw shell) that needs to reach the `cursor-agent` binary |
+ | **Produces** | Code edits in a workspace, text responses and read-only plan or ask analyses |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A non-Cursor assistant has no built-in way to reach the `cursor-agent` binary. When a task wants Cursor's own Composer model, a read-only plan or ask pass or a second AI opinion, the caller either hand-builds fragile `cursor-agent -p` invocations and picks flags by trial or skips the capability.
+@@ -61,7 +59,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Verify the CLI is installed.**
+ 
+@@ -109,7 +107,7 @@ You get an analysis with no file writes. `--mode ask` and `--mode plan` are read
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Dispatch Lifecycle
+ 
+@@ -156,7 +154,7 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ ```text
+ .skilled/skills/cli-external-orchestration/cli-cursor/
+@@ -197,7 +195,7 @@ cli-cursor authenticates through Cursor account OAuth (`cursor-agent login`) or
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -227,7 +225,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ | `system-spec-kit` | Owns spec folders, memory and continuity. The Memory Handback bridges a Cursor session back into the caller's spec folder. |
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -242,7 +240,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: Why not just call `cursor-agent -p` directly from my shell?**
+ 
+@@ -266,7 +264,7 @@ A: Reach for Cursor when the task specifically wants Composer, a read-only plan
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, execution modes, approvals and sandbox, worktree isolation, MCP integration, hooks, session continuity, cloud worker and prompt templates.
+ 
+@@ -279,7 +277,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-devin/README.md b/.skilled/skills/cli-external-orchestration/cli-devin/README.md
+index c19b37e067..1463f50b4e 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-devin/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-devin/README.md
+@@ -18,7 +18,9 @@ version: 1.4.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -27,10 +29,6 @@ version: 1.4.2.0
+ | **Works on** | Any external runtime (Claude Code, Codex, Cursor, OpenCode or raw shell) that can reach the `devin` binary |
+ | **Produces** | Code edits, structured reviews, subagent task results, cloud sessions with their own VM and web-enriched research |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A long generation, an independent review, a browser-heavy task or a security audit can drain your context window and bias your own judgment. cli-devin hands such tasks to Cognition's Devin CLI, which runs its own agent in its own context with a model of your choice. The calling AI stays the conductor. The skill exists so a second AI can work on your codebase without you switching runtimes or babysitting a session.
+@@ -72,7 +70,7 @@ Subagents take a profile, not a model. `subagent_explore` runs on the cheap defa
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Confirm the binary and the login.**
+ 
+@@ -112,7 +110,7 @@ Inside the session, type `/handoff fix the flaky integration tests in CI`. The c
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Smart Router
+ 
+@@ -150,7 +148,7 @@ The skill refuses to load when the calling session is itself running inside Devi
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ ```text
+ cli-devin/
+@@ -190,7 +188,7 @@ cli-devin/
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### Related Skills
+ 
+@@ -203,7 +201,7 @@ cli-devin/
+ 
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -221,7 +219,7 @@ Full recovery procedures live in `references/cli-reference.md` and `references/i
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: When should I dispatch to Devin instead of doing the work myself?**
+ 
+@@ -245,7 +243,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ | Check | How to run it |
+ |---|---|
+@@ -255,7 +253,7 @@ A: Orchestrated dispatches run through the shared deep-loop runtime (`fanout-run
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+index d1036b12ec..4aaed23e15 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/README.md
+@@ -17,7 +17,9 @@ version: 1.4.21.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -26,10 +28,6 @@ version: 1.4.21.0
+ | **Works on** | Any external runtime (Claude Code, OpenCode, raw shell) and from inside OpenCode for parallel detached workers |
+ | **Produces** | Structured JSON event streams, code changes with full project context, parallel research sessions and cross-AI handback results |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### What It Does
+ 
+ cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. OpenCode 2 is the expected and recommended version: on OpenCode 2 (2.0.32) the default dispatch is `cd <repo-root> && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json "<prompt>"`. On OpenCode 1 (1.19.3), supported for now as a fallback for users who have not updated, it is `opencode run --model llmgateway/deepseek-v4.1-flash-1017 --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+@@ -54,7 +52,7 @@ An external session that needs the project's whole runtime has no native path to
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Verify the CLI is installed.**
+ 
+@@ -115,7 +113,7 @@ The session runs under its own session id in the shared `~/.local/share/opencode
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Dispatch Lifecycle
+ 
+@@ -153,7 +151,7 @@ OpenCode resolves project-local agent files from `.opencode/agents/<slug>.md`, b
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ ```text
+ cli-opencode/
+@@ -212,7 +210,7 @@ cli-opencode/
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -243,7 +241,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ | `mcp-code-mode` | Orchestrates external MCP tool calls. The dispatched OpenCode session has MCP tools loaded natively. |
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -258,7 +256,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: What does the full-runtime dispatch buy over a sibling cli-* skill?**
+ 
+@@ -282,7 +280,7 @@ A: Default to `llmgateway/deepseek-v4.1-flash-1017` on both versions. On OpenCod
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ The skill ships a manual testing playbook with per-feature scenarios grouped by category: CLI invocation, external dispatch, multi-provider routing, agent routing, session continuity, integration patterns, prompt templates, parallel detached sessions and cross-repo or cross-server dispatch.
+ 
+@@ -294,7 +292,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|
+diff --git a/.skilled/skills/cli-external-orchestration/cli-pi/README.md b/.skilled/skills/cli-external-orchestration/cli-pi/README.md
+index 1e4c33a050..437fd57c1d 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-pi/README.md
++++ b/.skilled/skills/cli-external-orchestration/cli-pi/README.md
+@@ -16,7 +16,9 @@ version: 1.5.2.0
+ 
+ ---
+ 
+-## 1. AT A GLANCE
++## 1. OVERVIEW
++
++### At a Glance
+ 
+ | Aspect | What you get |
+ |---|---|
+@@ -25,10 +27,6 @@ version: 1.5.2.0
+ | **Works on** | An external runtime that can reach the pi binary and the shared deep-loop executor |
+ | **Produces** | Validated text, JSONL event output, RPC handback or workspace changes |
+ 
+----
+-
+-## 2. OVERVIEW
+-
+ ### Why This Skill Exists
+ 
+ A calling AI that wants Pi's headless surfaces has no safe shortcut. Hand-building a dispatch risks malformed flags, a failed provider call treated as success or a surface mismatch. Pi exposes more than one headless surface. Its JSON event mode and persistent RPC mode require different consumers. The local contract pin confirms the core command shape and the unreliable failure exit-code behavior. See the [pinned contract](../../../specs/cli-external-orchestration/z_archive/031-cli-pi-creation/001-pi-contract-pin/implementation-summary.md).
+@@ -49,7 +47,7 @@ cli-pi probes for the pi binary, selects the requested headless surface and dele
+ 
+ ---
+ 
+-## 3. QUICK START
++## 2. QUICK START
+ 
+ **Step 1: Verify the CLI is installed.**
+ 
+@@ -77,7 +75,7 @@ JSON mode emits one JSON object per line. For a persistent integration, use pi -
+ 
+ ---
+ 
+-## 4. HOW IT WORKS
++## 3. HOW IT WORKS
+ 
+ ### The Conductor Model
+ 
+@@ -93,7 +91,7 @@ The packet's guard is conservative. Process ancestry is checked first, then a .p
+ 
+ ---
+ 
+-## 5. STRUCTURE
++## 4. STRUCTURE
+ 
+ The packet folder holds the routing contract in [`ROUTER.md`](./ROUTER.md), plus this README and the resources the smart router loads.
+ 
+@@ -136,7 +134,7 @@ cli-pi/
+ 
+ ---
+ 
+-## 6. INTEGRATION & NAVIGATION
++## 5. INTEGRATION & NAVIGATION
+ 
+ ### When To Use This Skill
+ 
+@@ -164,7 +162,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
+ 
+ ---
+ 
+-## 7. TROUBLESHOOTING
++## 6. TROUBLESHOOTING
+ 
+ | What you see | Why | Fix |
+ |---|---|---|
+@@ -177,7 +175,7 @@ Use cli-pi when the request names Pi, needs Pi's native model or provider surfac
+ 
+ ---
+ 
+-## 8. FAQ
++## 7. FAQ
+ 
+ **Q: Is Pi's RPC mode a JSON version of print mode?**
+ 
+@@ -197,7 +195,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
+ 
+ ---
+ 
+-## 9. VERIFICATION
++## 8. VERIFICATION
+ 
+ | Check | Result |
+ |---|---|
+@@ -212,7 +210,7 @@ A: It is a common short word and a math constant. This packet uses multi-word al
+ 
+ ---
+ 
+-## 10. RELATED DOCUMENTS
++## 9. RELATED DOCUMENTS
+ 
+ | Document | Purpose |
+ |---|---|

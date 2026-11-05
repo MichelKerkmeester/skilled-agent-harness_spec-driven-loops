@@ -1,0 +1,10 @@
+render check: runtime/references/coverage-graph-schema.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: runtime/references/coverage-graph-schema.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: runtime/references/integration-points.md:19 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: runtime/references/integration-points.md:19 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: runtime/references/integration-points.md:151 H2 "7.1 ADDITIONAL CONSUMERS" carries a sub-number; use an integer H2 or make it an H3.
+render check: runtime/references/script-interface-contract.md:20 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: runtime/references/script-interface-contract.md:20 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: runtime/references/script-interface-contract.md:16 The intro sentence "Formal contract for the direct `.cjs` script entry points un" repeats the description (0.61 overlap); say what the reader gets instead.
+render check: runtime/references/state-format.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: runtime/references/state-format.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.

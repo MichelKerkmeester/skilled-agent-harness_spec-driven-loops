@@ -8,7 +8,7 @@ trigger_phrases:
   - "skill readme scaffold"
 importance_tier: normal
 contextType: general
-version: 1.3.3.0
+version: 1.3.4.0
 ---
 
 # Skill README Template
@@ -23,6 +23,10 @@ Use this template for `.skilled/skills/[skill-name]/README.md`. It writes a skil
 
 Give a person a fast, honest orientation to a skill before they open `SKILL.md`. The README answers what outcome the skill delivers, when to reach for it, what it does not own and how to navigate its files. `SKILL.md` stays the runtime instruction surface. The README is the front door a person reads.
 
+### Usage
+
+Copy the fillable scaffold in Section 6 into `.skilled/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
+
 ### Identity Guidance (Purpose First)
 
 The identity of a skill is the outcome it delivers. State that outcome in one plain sentence before naming tools.
@@ -33,10 +37,6 @@ The mcp-obsidian README states the outcome first: it makes AI use inside Obsidia
 It names the CLIs and MCP server later as delivery surfaces.
 Repeat the outcome in the frontmatter description and the pitch.
 The description supports a quick scan. The pitch opens the full README.
-
-### Usage
-
-Copy the fillable scaffold in Section 6 into `.skilled/skills/[skill-name]/README.md`, then replace every placeholder with current behavior taken from the skill's real files. Keep the numbered ALL-CAPS section headers, the house style and the validator both require them. Drop any section that does not earn its place and renumber the rest.
 
 ### Template Focus
 
@@ -56,19 +56,18 @@ A skill README uses numbered ALL-CAPS H2 sections with `---` dividers between th
 
 | # | Section | Purpose | Keep When |
 |---|---------|---------|-----------|
-| 1 | AT A GLANCE | Four-row table a reader scans in five seconds | Always |
-| 2 | OVERVIEW | What the skill is and what the reader gets first, then the optional problem narrative | Always (required by the validator) |
-| 3 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
-| 4 | HOW IT WORKS | The main workflow in prose, with a small Mermaid diagram for multi-step flows | Skill has non-obvious behavior worth explaining |
-| 5 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
-| 6 | TROUBLESHOOTING | The failure modes operators actually hit | Predictable issues exist |
-| 7 | FAQ | The two to five questions readers keep asking | High-value answers exist |
-| 8 | VERIFICATION | How you know the skill works | Skill ships a playbook or validation command |
-| 9 | RELATED DOCUMENTS | Stable links out, `SKILL.md` first | Always when links exist |
+| 1 | OVERVIEW | The At a Glance table a reader scans in five seconds, then what the skill is and what the reader gets, then the optional problem narrative | Always (required by the validator) |
+| 2 | QUICK START | The fastest path to a first result | Skill has commands, scripts or a workflow |
+| 3 | HOW IT WORKS | The main workflow in prose, with a small Mermaid diagram for multi-step flows | Skill has non-obvious behavior worth explaining |
+| 4 | INTEGRATION & NAVIGATION | When to use it, plus how it hands off to sibling skills | Readers can confuse it with a neighbor |
+| 5 | TROUBLESHOOTING | The failure modes operators actually hit | Predictable issues exist |
+| 6 | FAQ | The two to five questions readers keep asking | High-value answers exist |
+| 7 | VERIFICATION | How you know the skill works | Skill ships a playbook or validation command |
+| 8 | RELATED DOCUMENTS | Stable links out, `SKILL.md` first | Always when links exist |
 
-`OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. A small utility skill might run four sections (AT A GLANCE, OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all nine. Match the count to the skill. Never pad to hit a number.
+`OVERVIEW` is the one required section. Its normalized name must appear as a numbered header so the validator finds it. Every other section is optional. OVERVIEW is also the first section. A small utility skill might run three sections (OVERVIEW, QUICK START, RELATED DOCUMENTS). A large orchestrator might run all eight. Match the count to the skill. Never pad to hit a number.
 
-Inside OVERVIEW, start with `### What It Does`. Say what the skill is and what the reader gets.
+Inside OVERVIEW, start with `### At a Glance`, the four-row table, then `### What It Does`. Say what the skill is and what the reader gets.
 Add up to two optional subsections after it.
 Use `### Why This Skill Exists` only to name a current reader problem.
 Add the capability section below when it earns a table.
@@ -99,11 +98,11 @@ Avoid marketing claims. The prose explains why the capability matters. The table
 - State the outcome before the tooling. The pitch and the identity guidance name what the reader gets. The tool names follow as the means.
 - Open OVERVIEW with what the skill is and what the reader gets.
 - Use `### Why This Skill Exists` only to explain a current reader problem.
-- Add a short context hook after the blockquote only when it helps the reader. Keep AT A GLANCE as the first numbered section.
+- Add a short context hook after the blockquote only when it helps the reader. Keep OVERVIEW as the first numbered section.
 - Carry the explanation in prose. Reach for a table only when 4 or more parallel items need a lookup grid (skill relationships, CLI flags, a comparison).
 - Use semantic emoji only (✅ ❌ ⚠️ 🔒 🚨) for rules and status markers. Decorative section emoji never: that register belongs to the repository front-page README, while a skill README keeps the technical formatting.
 - A short, concrete analogy can carry an abstract mechanism better than adjectives (the repo root README uses "like a lab notebook for software"). Use one only where it clarifies, never as decoration.
-- Put the AT A GLANCE table first. Four rows, one line each, no prose cells.
+- Put the At a Glance table first inside OVERVIEW. Four rows, one line each, no prose cells.
 - Name the canonical command or entry point in OVERVIEW or QUICK START so a reader knows where to start.
 - Link to real files under `references/`, `assets/`, `scripts/`, `feature-catalog/` or `manual-testing-playbook/`. Verify each path resolves.
 - State the expected output for every command you show, so a reader can tell success from failure.
@@ -176,11 +175,13 @@ version: 1.0.0.0
 
 > [One line. The delivered outcome, in plain words a person would say out loud, stated before any tool name.]
 
-[Optional. Add one or two sentences about the reader's current need before the scan table. Delete this for a small utility skill. AT A GLANCE stays the first numbered section.]
+[Optional. Add one or two sentences about the reader's current need before the scan table. Delete this for a small utility skill. OVERVIEW stays the first numbered section.]
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -188,10 +189,6 @@ version: 1.0.0.0
 | **Invoke with** | [Trigger keywords, command or routing path.] |
 | **Works on** | [Inputs, surfaces or scope.] |
 | **Produces** | [The artifacts or decisions it returns.] |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -219,7 +216,7 @@ Use an analogy only when it clarifies the mechanism.]
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** [Automatic routing, a slash command or the manual read path.]
 
@@ -241,7 +238,7 @@ Use an analogy only when it clarifies the mechanism.]
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 [Narrate the lifecycle or main workflow as prose: the sequence of steps, the decision points and the outputs. A reader should finish this section understanding the shape of the skill.]
 
@@ -260,7 +257,7 @@ flowchart TD
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -274,7 +271,7 @@ flowchart TD
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -282,7 +279,7 @@ flowchart TD
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: [The question a reader actually asks, including "why this instead of X".]**
 
@@ -290,7 +287,7 @@ A: [A short, direct answer. Link a stable file when it helps.]
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 [For skills that ship a manual testing playbook or validation commands. List the checks that prove the skill works, plus the one command that runs them all. Remove this section for a small skill.]
 
@@ -301,7 +298,7 @@ A: [A short, direct answer. Link a stable file when it helps.]
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
@@ -320,7 +317,7 @@ Each check has a pass criterion. A check only passes when its criterion holds, n
 | # | Check | Pass criterion |
 |---|---|---|
 | 1 | Pitch | H1 is followed by a one-line blockquote stating the delivered outcome |
-| 2 | AT A GLANCE | First section, four rows, one line each |
+| 2 | At a Glance | First subsection of OVERVIEW, four rows, one line each |
 | 3 | Numbered ALL-CAPS H2 | Every H2 is numbered sequentially with `---` dividers |
 | 4 | OVERVIEW required | A numbered OVERVIEW section exists and opens value-first: what the skill delivers before any feature list |
 | 5 | Command output expectations | Every command block shows its expected output |
@@ -347,7 +344,7 @@ Pass criteria in full:
 | 10 | Optional problem context names the reader's current problem and the skill's outcome in two to four short sentences. |
 | 11 | Skills with more than one step in HOW IT WORKS carry a Mermaid diagram. A single-step utility skill is exempt. |
 
-> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the AT A GLANCE table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the eleven checks above.
+> The validator is a floor, not a proxy for this checklist. It enforces a numbered ALL-CAPS H2 named OVERVIEW and little else. It does not check the pitch, the At a Glance table, command outputs, links or HVR. A green run means the file cleared the floor, not that it passed the eleven checks above.
 
 ---
 
@@ -358,10 +355,10 @@ The pilot README work distilled eight writing directives. Every directive has a 
 | Pilot directive | Template home | What the home says |
 |---|---|---|
 | Purpose-first identity | Section 1 Identity Guidance, Section 6 pitch and description placeholders | The outcome statement opens the README. The tooling is named after it as the means. |
-| Value-first OVERVIEW | Section 2 OVERVIEW row, Section 6 What It Does | What the skill is and what the reader gets come before any feature list, modeled on the root README SUMMARY section. The problem narrative is optional. |
+| Value-first OVERVIEW | The OVERVIEW row in Section 2, Section 6 What It Does | What the skill is and what the reader gets come before any feature list, modeled on the root README SUMMARY section. The problem narrative is optional. |
 | One-line pitch | Section 3 first bullet, Section 6 blockquote | H1 is followed by a one-line blockquote stating the outcome in plain words. |
 | Narrative prose | Section 3 Writing Rules | Prose carries the explanation. Tables appear only for genuine lookups. |
-| Template structure | Section 2 Section Model, Section 6 scaffold | Numbered ALL-CAPS H2 with `---` dividers, AT A GLANCE first, OVERVIEW the only required section. |
+| Template structure | Section 2 Section Model, Section 6 scaffold | Numbered ALL-CAPS H2 with `---` dividers, OVERVIEW first and the only required section, At a Glance its first subsection. |
 | Human Voice Rules | Section 4 HVR Enforcement, Section 7 HVR row | Banned forms listed verbatim, scripted checks, link to hvr-rules.md. |
 | Honest boundaries | Section 3 boundaries bullet | What the skill does not own is stated, with the sibling skill that owns it. |
 | Current state only | Section 3 current-state bullet, Section 5 Versioning | Current behavior with stable paths. Version and changelog move with every release. |

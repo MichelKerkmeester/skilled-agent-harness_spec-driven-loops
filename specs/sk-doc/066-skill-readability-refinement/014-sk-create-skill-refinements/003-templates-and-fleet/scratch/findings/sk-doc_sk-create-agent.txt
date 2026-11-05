@@ -1,0 +1,8 @@
+render check: references/agent-vs-skill-vs-command.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/agent-vs-skill-vs-command.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/common-pitfalls.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/common-pitfalls.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: references/permission-design.md:21 OVERVIEW has no "### Purpose" subsection; open it with Purpose then When to Use.
+render check: references/permission-design.md:21 OVERVIEW has no "### When to Use" subsection; open it with Purpose then When to Use.
+render check: assets/agent-template.md:22 OVERVIEW has no "### Purpose" subsection; open it with Purpose then Usage.
+render check: assets/agent-template.md:22 OVERVIEW has no "### Usage" subsection; open it with Purpose then Usage.
