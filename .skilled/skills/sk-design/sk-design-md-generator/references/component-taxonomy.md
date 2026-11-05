@@ -12,12 +12,12 @@ trigger_phrases:
   - component decision logic
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Component Taxonomy
 
-Reference for identifying, classifying, and documenting UI components extracted from a live site. Use this taxonomy to produce consistent component documentation in DESIGN.md output.
+Open this once the element inventory is extracted, before naming or classifying anything. Standard and distinctive components each get one name and one way to record their states.
 
 ---
 

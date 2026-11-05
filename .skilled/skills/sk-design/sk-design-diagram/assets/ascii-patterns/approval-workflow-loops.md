@@ -7,12 +7,12 @@ trigger_phrases:
   - "multi reviewer escalation flow"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Approval Workflow with Loops - Multiple Reviewers and Revision Cycles
 
-Document approval flow with multiple reviewers, revision cycles, and escalation paths.
+Open this when sign-off takes several passes. The layout shows the reviewers, the loop-backs and the escalation path a document travels before it is approved.
 
 ---
 
@@ -22,7 +22,7 @@ Document approval flow with multiple reviewers, revision cycles, and escalation 
 
 Lets a reader copy a proven multi-reviewer layout with loop-backs instead of inventing revision notation from scratch.
 
-### When to Use
+### Usage
 
 Use this asset when documenting approval workflows that can loop through revisions before final sign-off.
 

@@ -6,7 +6,7 @@ trigger_phrases:
   - "make this look better"
   - "spacing and type scale"
   - "design review findings"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # sk-design-fundamentals
@@ -17,7 +17,9 @@ Most interfaces built by people who do not consider themselves designers fail th
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ Most interfaces built by people who do not consider themselves designers fail th
 | **Invoke with** | "make this look better", "looks off", "spacing scale", "color palette", "focus ring", "animation duration", "design review". |
 | **Works on** | Any laid-out surface: screen UI, slide decks, printed layouts, document layouts, a component, a described complaint, or a set of files. |
 | **Produces** | Concrete values and CSS with the reason each was chosen, or severity-tiered review findings with file, line and fix. |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -63,7 +61,7 @@ The skill distills four public sources into one operating model, kept in the ord
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Routing is automatic on the trigger phrases above. To load it manually:
 
@@ -91,7 +89,7 @@ Exit 0 with no hard failures.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 A request arrives and the router asks one question first: is there nothing yet, a complaint, or existing code? That answer decides which reference loads before anything else happens. From there the work follows the same four phases regardless of entry point: choose values from the scales, establish hierarchy, implement behavior, then verify against the hard rules and contrast minimums.
 
@@ -122,7 +120,7 @@ The same applies across skills: `sk-design-md-generator` records type ratios and
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -143,7 +141,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -154,7 +152,7 @@ Do not use it to document a live site's existing CSS. That is extraction and bel
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why not just use a component library?**
 
@@ -170,7 +168,7 @@ A: That skill measures what a live site already does. This one decides what a su
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -180,7 +178,7 @@ A: That skill measures what a live site already does. This one decides what a su
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

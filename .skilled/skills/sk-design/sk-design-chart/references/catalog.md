@@ -8,12 +8,12 @@ trigger_phrases:
   - "chart index"
 importance_tier: normal
 contextType: reference
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # Chart Catalog
 
-Read this before writing anything. It turns the comparison a reader needs into one chart form, and it names the file that draws that form.
+Open this before drawing anything, especially when the request arrives as a question rather than a chart name, since the row you land on names the template that renders it.
 
 ---
 

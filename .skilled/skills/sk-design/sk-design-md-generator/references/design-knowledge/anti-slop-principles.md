@@ -8,7 +8,7 @@ trigger_phrases:
   - "design slop test"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Anti-Slop Design Principles
@@ -23,7 +23,7 @@ A common language for spotting and naming generic AI-default visual decisions, s
 
 Give the extraction a shared vocabulary for telling deliberate design apart from median web defaults. When a captured surface is genuinely distinctive, the reference should say so and preserve the move; when a surface is itself generic, that is worth naming too.
 
-### Usage
+### When to Use
 
 Cite these principles when reading a surface's direction and when judging whether its tokens are purposeful.
 

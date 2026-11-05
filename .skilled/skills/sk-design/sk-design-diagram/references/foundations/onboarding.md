@@ -10,7 +10,7 @@ trigger_phrases:
   - "map tokens to semantic roles"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Style Guide Onboarding
@@ -21,6 +21,8 @@ A guided path from a design source to a reusable diagram skin.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 **Goal:** point the skill at a design source — a website, an installed skill, or a local folder — and have it extract the palette + typography, then rewrite `style-guide.md` so every future diagram inherits that skin. Takes about 60 seconds.
 
 Three source methods are supported. Jump to the relevant section:
@@ -28,6 +30,12 @@ Three source methods are supported. Jump to the relevant section:
 - [§2 URL](#2-url-source) — a live website the user provides
 - [§3 Skill](#3-skill-source) — an installed Agent Skill that carries design tokens
 - [§4 Folder](#4-folder-source) — a local design-system directory (CSS, JSON, Markdown)
+
+### When to Use
+
+- When a design source has to become a reusable diagram skin.
+- When the palette and typography of a website, an installed skill or a local folder must be extracted.
+- When every future diagram has to inherit that skin.
 
 ### The flow (all methods)
 

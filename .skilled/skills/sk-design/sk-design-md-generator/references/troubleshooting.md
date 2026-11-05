@@ -9,7 +9,7 @@ trigger_phrases:
   - "extract.ts not running"
 importance_tier: "normal"
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Troubleshooting
@@ -23,6 +23,13 @@ Symptom-and-fix guidance for the common failure modes of the embedded extraction
 ### Purpose
 
 Resolve the failures that block an extraction run: missing browser binaries, uninstalled dependencies, crawl blocks, dark-mode detection gaps, and validation mismatches. The guiding rule when a phase fails is to escalate rather than fabricate tokens.
+
+### When to Use
+
+- When `extract.ts` throws a missing Chromium or Playwright binary or a module error from an uninstalled dependency.
+- When a crawl returns empty or partial `tokens.json` because the site blocks the crawl.
+- When a site has a dark mode but `tokens.json` carries no dark tokens.
+- When `validate.ts` reports a hex mismatch or a prose-discipline or section-coverage warning.
 
 ---
 

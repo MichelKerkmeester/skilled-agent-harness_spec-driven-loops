@@ -7,7 +7,7 @@ trigger_phrases:
   - "design register checklist"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Register Card
@@ -22,7 +22,7 @@ A one-page card for resolving the Brand versus Product posture of a surface befo
 
 Sets the register for a captured surface and records the dial defaults it expresses.
 
-### Usage
+### When to Use
 
 Fill this in once at the start of an extraction, before recording tokens. Use the chosen register to frame how the reference is read. Full rationale: `./register.md`.
 

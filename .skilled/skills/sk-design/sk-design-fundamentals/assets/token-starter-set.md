@@ -8,7 +8,7 @@ trigger_phrases:
   - "which grey for which text"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Token Starter Set
@@ -23,15 +23,15 @@ version: 1.0.1.0
 
 A project that starts from decided values instead of ad hoc ones, with components pointing at roles rather than raw ramps.
 
+### Usage
+
+Copy `tokens.css` into the project's styles, then follow Section 5 to retune the hues. Components reference the semantic roles, never the raw ramps.
+
 ### When to Use
 
 - Starting a project with no established design system.
 - Adding a token layer to a codebase that currently hardcodes values.
 - Needing a worked example of a ramp that already satisfies the saturation and contrast rules.
-
-### Usage
-
-Copy `tokens.css` into the project's styles, then follow Section 5 to retune the hues. Components reference the semantic roles, never the raw ramps.
 
 ### Core Principle
 

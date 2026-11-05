@@ -7,12 +7,12 @@ trigger_phrases:
   - "microservices data flow diagram"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # System Architecture Flow (Swimlane) - Multi-Tier System Interaction
 
-Multi-tier system architecture showing interaction between different layers and components.
+Open this when a request crosses several tiers and a reader needs to see which service or store handles each hop. The example fixes the lane boundaries so the same split can be reused.
 
 ---
 
@@ -22,7 +22,7 @@ Multi-tier system architecture showing interaction between different layers and 
 
 Lets a reader copy a proven layer-and-service layout instead of inventing swimlane boundaries from scratch.
 
-### When to Use
+### Usage
 
 Use this asset when documenting system interactions across layers, services, stores, caches, and error paths.
 

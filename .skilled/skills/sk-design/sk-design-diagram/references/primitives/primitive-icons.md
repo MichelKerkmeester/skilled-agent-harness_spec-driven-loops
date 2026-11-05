@@ -10,7 +10,7 @@ trigger_phrases:
   - "brand logo icons"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Icons (primitive)
@@ -19,7 +19,15 @@ Open this when a diagram needs a symbol a reader already knows (a database, a qu
 
 ## 1. OVERVIEW
 
+### Purpose
+
 A monochrome 24×24 icon library for IT/cloud diagrams. Each icon uses `currentColor` so it inherits ink from its parent SVG and adapts to the editorial skin or any user-onboarded brand palette.
+
+### When to Use
+
+- When a diagram needs a symbol a reader already knows, such as a database, a queue or a cloud.
+- When a label alone will not carry the meaning.
+- When an icon has to adapt to the editorial skin or a user-onboarded brand palette.
 
 ---
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "concurrent branch pipeline"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Parallel Execution Example - Simultaneous Tasks with Synchronization
 
-Demonstrates multiple tasks running simultaneously with synchronization points.
+Open this when work splits into concurrent branches that must meet again before the flow continues, since the example shows where the fan-out and the join sit.
 
 ---
 
@@ -22,7 +22,7 @@ Demonstrates multiple tasks running simultaneously with synchronization points.
 
 Lets a reader copy a proven fan-out and join layout instead of inventing synchronization notation from scratch.
 
-### When to Use
+### Usage
 
 Use this asset when documenting workflows that split into concurrent branches and later join at a synchronization point.
 

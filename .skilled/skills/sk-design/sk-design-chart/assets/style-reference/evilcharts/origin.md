@@ -7,7 +7,7 @@ trigger_phrases:
   - "where the chart palette came from"
 importance_tier: normal
 contextType: reference
-version: 0.23.1.0
+version: 0.23.2.0
 ---
 
 # Origin of this Style Reference
@@ -24,7 +24,7 @@ are recorded separately below.
 
 Records where the evilcharts reference came from, so what was measured and what was authored can be read apart.
 
-### When to Use
+### Usage
 
 - Checking a converted hex against the `oklch()` it came from.
 - Changing `DESIGN.md`, `tokens.json` or `source-globals.css`, because each row in the table pins a hash.

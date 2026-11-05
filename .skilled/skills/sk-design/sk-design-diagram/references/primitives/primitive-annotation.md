@@ -9,12 +9,12 @@ trigger_phrases:
   - "marginalia annotation"
 importance_tier: normal
 contextType: implementation
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Annotation Callout (italic-serif aside)
 
-Editorial callouts pair italic Instrument Serif text with a dashed Bézier leader and landing dot.
+Open this when a diagram needs an editorial aside that its labels cannot carry, or a detail needs pointing at without adding a node or an arrow.
 
 ---
 

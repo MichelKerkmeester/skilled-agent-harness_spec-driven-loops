@@ -7,12 +7,12 @@ trigger_phrases:
   - "diagram palette origin"
 importance_tier: normal
 contextType: reference
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Origin of this Style Reference
 
-**This reference was written from the packet's own palette, not measured from an external product.**
+**Open this when it matters whether the palette was measured from a real product or written for the harness, since this records the second case.**
 
 ---
 
@@ -33,7 +33,7 @@ That is the property the checker holds. It is not evidence that the mapping rule
 reference measured from a real product exercises them properly, and the second reference a user
 brings is the real test.
 
-### When to Use
+### Usage
 
 - Deciding whether a theme drawn from this reference was measured or written.
 - Changing `DESIGN.md` or `diagram-palette.json`, since the palette, not this file, is the source the corpus is generated from.

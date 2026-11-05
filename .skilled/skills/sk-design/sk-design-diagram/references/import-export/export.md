@@ -10,7 +10,7 @@ trigger_phrases:
   - "manual export never automatic"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Export to PNG / SVG
@@ -21,7 +21,14 @@ Open this when a finished diagram has to leave the browser for a slide, a doc, a
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Convert a generated diagram HTML file into a portable `.svg` and/or `.png` next to it. **Manual only — never run unprompted.**
+
+### When to Use
+
+- When a finished diagram has to leave the browser for a slide, a doc, a chat message or a print handout.
+- When the user asks in natural language to export, save, rasterize, convert or download a diagram in `.svg` or `.png` form.
 
 ---
 

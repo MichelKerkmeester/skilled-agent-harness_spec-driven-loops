@@ -10,7 +10,7 @@ trigger_phrases:
   - "make this presentable"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Import from draw.io
@@ -21,7 +21,15 @@ Open this when a `.drawio` file is the only record of a system's shape and nobod
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Turn a `.drawio` file into an editorial-quality diagram at the format, size, and detail level the destination needs. This is a redraw, not a conversion: you read the source for its *content* — components, relationships, grouping, direction — and then draw a new diagram in this skill's design system.
+
+### When to Use
+
+- When a `.drawio`, `.drawio.xml`, `.drawio.png` or `.drawio.svg` file is the only record of a system's shape.
+- When the user asks to convert or redraw a drawio file.
+- When the `create:diagram` command's import route is running.
 
 ---
 

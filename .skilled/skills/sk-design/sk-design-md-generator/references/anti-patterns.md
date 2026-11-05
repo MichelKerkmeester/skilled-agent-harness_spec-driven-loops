@@ -12,12 +12,12 @@ trigger_phrases:
   - dark mode omission
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # DESIGN.md Anti-Pattern Catalog
 
-A catalog of common mistakes when generating DESIGN.md files from extracted design data. Each entry documents the mistake, why it degrades output quality, and how to avoid it.
+Open this before writing a DESIGN.md and again when a validation finding needs a named cause. Each entry explains the mistake and why it costs output quality, then gives the correction that removes it.
 
 ---
 

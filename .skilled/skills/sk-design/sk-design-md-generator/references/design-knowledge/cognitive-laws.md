@@ -8,7 +8,7 @@ trigger_phrases:
   - "aesthetic-usability effect"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Cognitive Laws for Interface Design
@@ -23,7 +23,7 @@ Eight cognitive laws that give concise, citable rationale for why a surface's hi
 
 Give a compact, citable rationale set for reading and explaining design choices captured in a Style Reference.
 
-### Usage
+### When to Use
 
 Reference a law by name when explaining why a captured hierarchy, interaction, or timing works — or where a surface violates it.
 

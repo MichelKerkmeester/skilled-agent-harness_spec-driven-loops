@@ -10,7 +10,7 @@ trigger_phrases:
   - "simplify mermaid diagram"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Import from Mermaid
@@ -21,7 +21,15 @@ Open this when a README, an issue, or a design doc hands you a Mermaid block tha
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Turn Mermaid source into an editorial-quality diagram at the format, size, and detail level the destination needs. This is a redraw, not a render or conversion: Mermaid supplies content and declared direction, not coordinates — discard its computed renderer layout, theme, classes, and shape styling, and create a fresh layout in this skill's design system.
+
+### When to Use
+
+- When a README, an issue or a design doc hands you a Mermaid block that has to match the rest of the set.
+- When the source is a `.mmd` file, a `.mermaid` file or Markdown fenced `mermaid` blocks.
+- When the user asks to convert, redraw, simplify or present the diagram.
 
 ---
 

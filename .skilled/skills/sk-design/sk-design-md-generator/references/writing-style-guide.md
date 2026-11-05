@@ -12,7 +12,7 @@ trigger_phrases:
   - information density
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 # DESIGN.md Writing Style Guide
 
@@ -21,6 +21,8 @@ Writing quality standard for the v3 **Style Reference** output (see `design-md-f
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 The Style Reference is a named, role-driven, ship-ready design-system handoff — not an extraction report. Every value still traces verbatim to `tokens.json`. Write like a design-systems lead handing the system off to the team that will ship it tomorrow. The reader already knows CSS, typography, and color theory -- never explain fundamentals.
 
@@ -34,6 +36,12 @@ The Style Reference is a named, role-driven, ship-ready design-system handoff �
 - **Dense, not noisy.** Every sentence carries one piece of implementation-changing information. But never dump raw mechanics: no frequency counts ("border 9685, text 4258"), no extractor-internal var names (`--_color-primitives---neutral--1400`), no DOM-tag labels ("div"). Frequency DECIDES prominence and role; it is never printed.
 
 **Audience model:** A frontend engineer absorbing the system before building a component. Do NOT assume a market audience the page never states ("targets captains and port agents") — characterize the design, not an imagined user.
+
+### When to Use
+
+- When writing the prose sections of a v3 Style Reference.
+- When a descriptive word needs checking against the banned-word list.
+- When an intro, tagline or colour name needs the format the voice requires.
 
 ---
 

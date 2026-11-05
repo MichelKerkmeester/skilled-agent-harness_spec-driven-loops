@@ -7,12 +7,12 @@ trigger_phrases:
   - "basic flow diagram example"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Simple Workflow Example - Linear Sequential Process
 
-A basic linear workflow demonstrating sequential steps without branching.
+Open this when each step follows directly from the one before and nothing branches, since the pattern gives a working box-and-arrow sequence to copy.
 
 ---
 
@@ -22,7 +22,7 @@ A basic linear workflow demonstrating sequential steps without branching.
 
 Lets a reader copy a proven box-and-arrow layout instead of drawing a linear flow from scratch.
 
-### When to Use
+### Usage
 
 Use this asset when documenting a short linear workflow where each step follows directly from the previous one.
 

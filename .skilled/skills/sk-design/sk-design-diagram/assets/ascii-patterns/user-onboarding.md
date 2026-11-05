@@ -7,12 +7,12 @@ trigger_phrases:
   - "onboarding completion states"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # User Onboarding Flow Example - Complete Multi-Step Journey
 
-Complete user onboarding journey with embedded multi-step processes.
+Open this when onboarding mixes education, validation and progress feedback in one journey, since the stage order here carries a reader to an active account. The example embeds the profile and content creation sub-processes inside that flow.
 
 ---
 
@@ -22,7 +22,7 @@ Complete user onboarding journey with embedded multi-step processes.
 
 A worked journey that carries a reader from signup to an active account, so a new onboarding diagram can follow the same stages.
 
-### When to Use
+### Usage
 
 Use this asset when documenting onboarding journeys that mix education, validation, progress feedback, and completion states.
 

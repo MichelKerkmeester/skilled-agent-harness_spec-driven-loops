@@ -7,12 +7,12 @@ trigger_phrases:
   - "order processing flow example"
 importance_tier: normal
 contextType: general
-version: 1.2.1.0
+version: 1.2.2.0
 ---
 
 # Decision Tree Flow Example - Complex Branching and Conditional Logic
 
-Complex decision tree with multiple branches and conditional logic.
+Open this when a process forks on more than one condition and a dead end can send a reader back for a retry. The example shows how branches, retries and terminal outcomes are drawn.
 
 ---
 
@@ -22,7 +22,7 @@ Complex decision tree with multiple branches and conditional logic.
 
 Lets a reader copy a proven branching layout instead of inventing branch, retry, and terminal notation from scratch.
 
-### When to Use
+### Usage
 
 Use this asset when documenting conditional workflows with explicit branch labels, retries, and terminal outcomes.
 

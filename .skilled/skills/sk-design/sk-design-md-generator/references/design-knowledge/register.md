@@ -8,7 +8,7 @@ trigger_phrases:
   - "design serves the product"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Brand-vs-Product Operating Register
@@ -23,7 +23,7 @@ The first thing to read off a surface, before color, type, layout, or motion: is
 
 Give a measured extraction one shared, up-front reading that calibrates how the rest of the surface is interpreted. "Brand" and "Product" are not styles, they are operating postures. Naming the posture once lets the six dials inherit it, so a landing page and an admin dashboard are never read against the same defaults by accident.
 
-### Usage
+### When to Use
 
 Read the register from the surface being extracted, before recording tokens, components, or motion. This skill **records** the register the captured surface already expresses; it never authors a register from a brief. The register is shared vocabulary, not a mode.
 

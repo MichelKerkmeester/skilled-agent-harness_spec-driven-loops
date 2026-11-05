@@ -12,7 +12,7 @@ trigger_phrases:
   - state matrix validation
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 # Design System Documentation Quality Checklist
 
@@ -21,6 +21,8 @@ Use this checklist to validate every generated design system document before del
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 The current output is the v3 **Style Reference** (`design-md-format.md`): a named, confident, restrained design-system handoff whose value-bearing sections (`## Tokens — Colors`, `## Tokens — Spacing & Shapes`, `## Surfaces`, `## Quick Start`) are pre-rendered deterministically by `backend/scripts/formatters-v3.ts` and pasted unchanged. The agent writes prose only. Many checks below therefore verify that the pre-rendered sections were not edited and that the prose is named, grounded, and honest.
 
@@ -37,6 +39,12 @@ The current output is the v3 **Style Reference** (`design-md-format.md`): a name
 - `validate.ts` enforces this with prose-discipline and section-coverage checks (both WARNING-tier) and reports a dual score — `valuesScore` (hex/section/format fidelity) and `claimsScore` (prose provenance).
 - `isValidationPass` passes only with zero hard failures in the `target`, `schema` and `provenance` categories.
 - The dual score is printed for information and does not decide the verdict.
+
+### When to Use
+
+- Before delivery, to validate every generated design system document.
+- When a numerical accuracy, semantic correctness, completeness or publication quality check needs its verification steps.
+- When a common failure mode needs its fix.
 
 ---
 

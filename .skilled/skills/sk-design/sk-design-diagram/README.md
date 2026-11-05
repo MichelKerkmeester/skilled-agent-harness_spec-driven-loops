@@ -4,7 +4,7 @@ description: "Draw a self-contained HTML/SVG technical diagram across 27 types a
 trigger_phrases:
   - "create diagram"
   - "architecture diagram"
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # sk-design-diagram
@@ -13,7 +13,9 @@ version: 1.2.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -21,10 +23,6 @@ version: 1.2.2.0
 | **Invoke with** | `/design:diagram` or the keywords "diagram", "architecture diagram", "sequence diagram", "draw.io", "mermaid" |
 | **Works on** | 27 diagram types (generate), `.drawio*` / `.mmd` / `.mermaid` sources (import), and PNG/SVG export of a generated diagram |
 | **Produces** | A single self-contained `.html` file: inline SVG, inlined CSS, no external images, no required JavaScript |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -52,7 +50,7 @@ Full selection guide with per-type reference links: `SKILL.md` §1.
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Pick the right type for what you're showing.**
 
@@ -77,7 +75,7 @@ Each prints the same structural digest shape: nodes, edges, containers, hubs, an
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 Every build follows the same order. Detect the request shape, generate, import, or export.
 
@@ -93,7 +91,7 @@ Every path ends at the same taste gate before delivery.
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -104,7 +102,7 @@ Every path ends at the same taste gate before delivery.
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -116,7 +114,7 @@ Every path ends at the same taste gate before delivery.
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why HTML/SVG instead of Mermaid or a design tool?**
 
@@ -132,7 +130,7 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -146,7 +144,7 @@ A: No: the packet has no network-fetch tool. Onboarding is agent-mediated: the c
 
 ---
 
-## 9. SCREENSHOTS
+## 8. SCREENSHOTS
 
 Every form in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
@@ -171,7 +169,7 @@ own, so regenerate on the machine whose theme you want committed.
 
 ---
 
-## 10. RELATED DOCUMENTS
+## 9. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

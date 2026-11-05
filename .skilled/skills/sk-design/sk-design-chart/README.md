@@ -12,7 +12,7 @@ trigger_phrases:
   - "style reference chart"
 importance_tier: normal
 contextType: general
-version: 0.23.2.0
+version: 0.23.3.0
 ---
 
 # sk-design-chart
@@ -21,7 +21,9 @@ version: 0.23.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -30,10 +32,6 @@ version: 0.23.2.0
 | **Works on** | A dataset and the comparison someone wants to make from it |
 | **Produces** | One self-contained HTML file, built from a form file and one colour system |
 | **Corpus** | Twenty-nine chart forms across six question families, plus three stock colour systems and provenance-gated design-md deliveries |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -64,7 +62,7 @@ A form file that already renders has had those problems solved once. Copying it 
 
 ---
 
-## 3. CHART OR DIAGRAM
+## 2. CHART OR DIAGRAM
 
 This packet and `sk-design-diagram` both answer "make me a bar chart", so the boundary is worth stating before the first request rather than after a misroute.
 
@@ -79,7 +77,7 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 
 ---
 
-## 4. LAYOUT
+## 3. LAYOUT
 
 | Path | What it holds |
 |---|---|
@@ -97,7 +95,7 @@ The hub router draws the same line by name. The bare type names `sk-design-diagr
 
 ---
 
-## 5. LICENSING
+## 4. LICENSING
 
 Every chart, palette and script in this packet is authored here. Nothing is copied in from an outside chart library.
 
@@ -105,7 +103,7 @@ That is a constraint rather than a preference. This repository is MIT and public
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 | Check | How to run it | What a pass looks like |
 |---|---|---|
@@ -119,7 +117,7 @@ That is a constraint rather than a preference. This repository is MIT and public
 
 ---
 
-## 7. SCREENSHOTS
+## 6. SCREENSHOTS
 
 Every template and example in this mode is rendered to a PNG under
 [`screenshots/`](./screenshots/), mirroring the source layout, so a form can be
@@ -144,7 +142,7 @@ own, so regenerate on the machine whose theme you want committed.
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

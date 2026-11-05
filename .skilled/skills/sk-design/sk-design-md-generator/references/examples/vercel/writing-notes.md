@@ -7,7 +7,7 @@ trigger_phrases:
   - Vercel extraction caveats
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Writing Notes: Vercel (v3 Style Reference)
@@ -16,9 +16,18 @@ Open this beside the Vercel `DESIGN.md` when a value needs explaining: the notes
 
 ## 1. OVERVIEW
 
+### Purpose
+
 - This DESIGN.md is a **v3 Style Reference** regenerated from the existing `tokens.json` — no re-crawl, no network. Only the deterministic WRITE prompt (`build-write-prompt.ts`) was run over the extracted tokens.
 - Final validation at generation: **score 99/100, claims 100/100, PASS** (`validate.ts`). Zero critical failures, no phantom hex, no quickstart-phantom-color. A current `validate.ts` run over the shipped pair reports **45/100, FAIL** (eleven hard failures: missing `## Motion` and ten missing Quick Start groups, plus two advisory warnings) until the exemplar is regenerated.
 - The `unknown-font: ### Tailwind v4` warning is a benign parser artifact: the validator reads the pre-rendered Quick Start sub-heading as a font name. Warnings do not block PASS; the heading is pasted unchanged per the fidelity contract.
 - Data-quality caveat: the older extraction produced a **42-row Colors table** — far more than a curated palette would carry. Most low-frequency hues (Magenta/Teal/Voltage/Ember families) appear only in icons and gradients, so prose rations them to the chromatic reserve and keeps page chrome neutral.
 - Component fills for the Primary CTA and the scrolled Nav variant are stored as `lab()` values in `tokens.json`; prose names those by their captured semantic tokens (Obsidian / near-white) rather than concretizing a hex from lab-space.
 - The pre-rendered sections (Colors, Spacing & Shapes, Surfaces, Quick Start) were pasted verbatim — including the noisy raw Border-Radius element tags — to preserve fidelity.
+
+### When to Use
+
+- When a value in the Vercel `DESIGN.md` needs explaining.
+- When what the older extractor left raw needs checking.
+- When a fill named from lab-space needs tracing.
+- When what the validator reported when the file was written needs reading.

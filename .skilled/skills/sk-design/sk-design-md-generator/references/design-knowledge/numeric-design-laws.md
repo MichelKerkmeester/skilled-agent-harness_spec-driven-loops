@@ -7,7 +7,7 @@ trigger_phrases:
   - "contrast motion spacing type thresholds"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Numeric Design Laws
@@ -22,7 +22,7 @@ A condensed index of numeric design thresholds for contrast, motion, spacing, ty
 
 Give one stable, citable row per numeric threshold instead of re-deriving contrast, motion, spacing, type, and neutral-color values independently when a captured surface is measured.
 
-### Usage
+### When to Use
 
 Cite a row by `law_id` when a finding or observation about an extracted surface depends on a numeric threshold — a contrast pair, a motion band, a spacing step, a type ratio. Values are craft targets, not hard gates in this skill — a captured surface may legitimately differ; the row explains what "on target" means. The values give a Style Reference honest, comparable numbers instead of vague adjectives.
 

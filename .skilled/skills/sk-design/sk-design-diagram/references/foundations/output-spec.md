@@ -11,7 +11,7 @@ trigger_phrases:
   - "degrade ladder"
 importance_tier: normal
 contextType: implementation
-version: 1.2.2.0
+version: 1.2.3.0
 ---
 
 # Output Spec — format × size × detail × audience
@@ -22,7 +22,15 @@ Open this before an import is redrawn or an export is sized.
 
 ## 1. OVERVIEW
 
+### Purpose
+
 Four dials decide what an imported diagram becomes. Set them **before** redrawing — they change the deliverable, layout, type ramp, node count, and wording.
+
+### When to Use
+
+- Before an import is redrawn.
+- Before an export is sized.
+- When the format, size, detail level or audience level has to be picked for a destination.
 
 ---
 

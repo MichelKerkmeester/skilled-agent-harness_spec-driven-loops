@@ -7,7 +7,7 @@ trigger_phrases:
   - "capture website css"
   - "design tokens from url"
   - "validate design.md"
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # sk-design-md-generator
@@ -16,7 +16,9 @@ version: 1.1.6.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.1.6.0
 | **Invoke with** | "extract design system", "generate DESIGN.md", "capture website css", "design tokens from url", "validate design.md" or auto-routing on extraction keywords |
 | **Works on** | Any publicly accessible URL that renders JavaScript. Needs Node 20 or newer, Playwright and Chromium (~500 MB one-time install) |
 | **Produces** | A `tokens.json` with every measured CSS value and a v3 **Style Reference** `DESIGN.md` (a named, role-driven design-system handoff with copy-paste CSS and Tailwind), plus optional HTML reports and fidelity proofs |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -94,7 +92,7 @@ Authoring a design from a brief alone, with no live site to measure, is forward-
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Install dependencies.** From the skill root, run:
 
@@ -127,7 +125,7 @@ Expected: zero hex mismatches, all required v3 sections present and the Quick-St
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Schema and Study Layer
 
@@ -218,7 +216,7 @@ npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/pre
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -231,7 +229,7 @@ npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/pre
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -243,7 +241,7 @@ npx ts-node .skilled/skills/sk-design/sk-design-md-generator/backend/scripts/pre
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: How is this different from curated design-system template libraries?**
 
@@ -267,7 +265,7 @@ A: This skill captures what exists on a live site. `sk-design` invents new direc
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -278,7 +276,7 @@ A: This skill captures what exists on a live site. `sk-design` invents new direc
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

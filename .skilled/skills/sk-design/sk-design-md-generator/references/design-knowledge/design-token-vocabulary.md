@@ -8,7 +8,7 @@ trigger_phrases:
   - "shared design tokens"
 importance_tier: normal
 contextType: general
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Design Token Vocabulary
@@ -23,7 +23,7 @@ Shared naming for color, typography, layout, elevation, motion, and state tokens
 
 Keep token language consistent when a captured visual system is described, so a name in a Style Reference carries one meaning.
 
-### Usage
+### When to Use
 
 Use these terms when naming or grouping the tokens read off an extracted surface. The detailed math behind each token stays with the extraction workflow and the reference format.
 

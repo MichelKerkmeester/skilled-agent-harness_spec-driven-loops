@@ -7,12 +7,12 @@ trigger_phrases:
   - "design build manifest"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # sk-code Handoff Schema
 
-Envelope for when an extracted Style Reference DESIGN.md moves to `sk-code` implementation. This file defines the contract shape; the extraction fills the subset it owns and keeps extraction judgment in this skill.
+Open this at the moment an accepted Style Reference moves into implementation. It fixes the shared contract shape, while the extraction fills only the fields it owns and keeps its judgment here.
 
 ---
 
