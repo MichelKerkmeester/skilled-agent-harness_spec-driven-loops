@@ -8,12 +8,12 @@ trigger_phrases:
   - "doc quality troubleshooting"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Validation and Enforcement Operations
 
-Open this when a doc-quality run stops and you need to know which validation step to run by hand, what to say in the approval prompt or where the broken phase left off. The executable steps live in `SKILL.md` and this file is the overflow detail.
+Open this when a doc-quality run stops and you need to know which validation step to run by hand, what to say in the approval prompt or where the broken phase left off. The executable steps live in `SKILL.md` §3-§5 and this file is the overflow detail.
 
 For execution modes see [workflows.md](./workflows.md). For worked command recipes see [workflow-examples.md](./workflow-examples.md).
 

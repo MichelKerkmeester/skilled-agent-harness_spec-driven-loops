@@ -2073,12 +2073,15 @@ def _code_folder_has_flat_inventory(content: str, fenced: set, folder: Path) -> 
             len(lines) + 1,
         )
         # A fenced structure tree in that section lists files as well as a table does.
-        tree_lines = [
+        section_lines = [
             line for number, line in enumerate(lines, start=1)
-            if section_start < number < section_end and number in fenced
-            and any(glyph in line for glyph in _CODE_FOLDER_TREE_GLYPHS)
+            if section_start < number < section_end and (
+                number not in fenced
+                or any(glyph in line for glyph in _CODE_FOLDER_TREE_GLYPHS)
+            )
         ]
-        body = body + '\n' + '\n'.join(tree_lines)
+        section_body = '\n'.join(section_lines)
+        body = section_body if not has_inventory_heading else body + '\n' + section_body
 
     expected_files = [
         child.name for child in folder.iterdir()

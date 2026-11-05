@@ -20,6 +20,7 @@ NEGATIVE_CASES = {
     "package-list-incomplete": {"code_folder_flat_inventory"},
     "structure-prose-only": {"code_folder_flat_inventory"},
     "tree-outside-inventory": {"code_folder_flat_inventory"},
+    "prose-outside-inventory": {"code_folder_flat_inventory"},
     "missing-separator": {"code_folder_h2_separator"},
     "unnumbered-h2": {"code_folder_h2_numbering"},
     "non-sequential-h2": {"code_folder_h2_sequence"},
