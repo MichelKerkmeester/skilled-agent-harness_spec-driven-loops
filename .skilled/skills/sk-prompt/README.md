@@ -7,7 +7,7 @@ trigger_phrases:
   - "framework"
   - "CLEAR scoring"
   - "/prompt:improve"
-version: 4.0.2.0
+version: 4.0.3.0
 ---
 
 # sk-prompt
@@ -16,7 +16,9 @@ version: 4.0.2.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 4.0.2.0
 | **Invoke with** | The `/prompt:improve` command, the `@prompt-improver` agent, keyword routing through Gate 2 or a framework name stated directly |
 | **Works on** | Any text task that benefits from structure: generation, review, research, editing and analysis |
 | **Produces** | An enhanced prompt with a transparency report naming the framework, the effort level, the checklist marks, the CLEAR breakdown, the change report and any flagged assumptions |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -66,7 +64,7 @@ The skill operates a library of seven prompt frameworks, each one a proven shape
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Type `/prompt:improve` followed by a mode flag and your request.
 
@@ -107,7 +105,7 @@ Zero issues means the README matches the house template.
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Framework Selection
 
@@ -167,7 +165,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -180,7 +178,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -193,7 +191,7 @@ The `@prompt-improver` agent is the fresh-context escalation surface. It loads t
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: What is the difference between `$improve` and `$refine`?**
 
@@ -213,7 +211,7 @@ A: No. The self-check reads the draft against the intent you stated before it is
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -224,7 +222,7 @@ A: No. The self-check reads the draft against the intent you stated before it is
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|
