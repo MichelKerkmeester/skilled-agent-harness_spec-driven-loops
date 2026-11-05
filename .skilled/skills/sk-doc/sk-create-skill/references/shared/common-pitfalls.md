@@ -9,7 +9,7 @@ trigger_phrases:
   - "skill description trim rules"
 importance_tier: normal
 contextType: implementation
-version: 1.2.3.0
+version: 1.2.4.0
 ---
 
 # Common Skill-Creation Pitfalls
@@ -29,8 +29,6 @@ This reference catalogs the nine pitfalls that most often degrade a skill: from 
 - Reviewing a freshly authored skill for common defects
 
 **Core Principle**: Most failed skills fail at the description and the section boundaries — fix those first.
-
-> **Note on examples below**: illustrative SKILL.md headings inside the fenced examples are written `\##` (not `##`) so the section-numbering validator — which scans `## N.` lines regardless of code fences — does not count them as this document's own sections. Drop the leading `\` when copying a heading into a real SKILL.md.
 
 ---
 
@@ -73,13 +71,13 @@ description: "Multi-stack coding standards and verification. Smart router auto-d
 **Example**:
 ```markdown
 # Bad - Everything in SKILL.md
-\## 4. HOW IT WORKS
+## 4. HOW IT WORKS
 [2000 words of detailed documentation]
 [500 lines of examples]
 [1000 words of API specs]
 
 # Good - Progressive disclosure
-\## 4. HOW IT WORKS
+## 4. HOW IT WORKS
 See [workflows.md](global/workflows.md) for execution modes.
 See [optimization.md](global/optimization.md) for transformation patterns.
 ```
@@ -93,11 +91,11 @@ See [optimization.md](global/optimization.md) for transformation patterns.
 **Example**:
 ```markdown
 # Bad - No script provided
-\## HOW IT WORKS
+## HOW IT WORKS
 Rotate PDF by writing Python code using PyPDF2...
 
 # Good - Script provided
-\## HOW IT WORKS
+## HOW IT WORKS
 Use scripts/rotate_pdf.py to rotate PDF files.
 ```
 
@@ -110,11 +108,11 @@ Use scripts/rotate_pdf.py to rotate PDF files.
 **Example**:
 ```markdown
 # Bad
-\## 1. WHEN TO USE
+## 1. WHEN TO USE
 Use this skill for documents.
 
 # Good
-\## 1. WHEN TO USE
+## 1. WHEN TO USE
 Use this skill when validating markdown files after Write/Edit operations.
 Manual optimization when:
 - README needs major AI-friendliness improvements
@@ -198,11 +196,11 @@ description: This is my skill description all on one line.
 **Example**:
 ```markdown
 # Bad - File references in "When to Use"
-\## 1. WHEN TO USE
+## 1. WHEN TO USE
 See `references/guide.md` for details...
 
 # Bad - Separate lookup table duplicates router logic
-\## 2. SMART ROUTING
+## 2. SMART ROUTING
 
 ### Routing Table
 | Intent     | Path                           |
@@ -213,23 +211,23 @@ See `references/guide.md` for details...
 ...
 
 # Good - Short prose in Section 2, pseudocode in the sibling router file
-\## 1. WHEN TO USE
+## 1. WHEN TO USE
 
 ### Activation Triggers
 - User requests validation...
 
-\## 2. SMART ROUTING
+## 2. SMART ROUTING
 
 Use this skill when a request needs a document validated.
 Check the detection signal first, then load one resource domain.
 The router block that loads resources sits in `ROUTER.md`.
 
-\## 3. HOW IT WORKS
+## 3. HOW IT WORKS
 ...
 
 # ROUTER.md
 
-\## MACHINE ROUTER
+## MACHINE ROUTER
 
 INTENT_SIGNALS = {"validate": ["validate", "check"]}
 RESOURCE_MAP = {"validate": "references/core-standards.md"}
@@ -255,13 +253,13 @@ def discover_markdown_resources(): ...
 **Example**:
 ```markdown
 # Bad - Router block inside Section 2
-\## 2. SMART ROUTING
+## 2. SMART ROUTING
 [prose, then the whole router block]
 
 # Bad - Router section still inline
 parent-hub/example-packet/
   SKILL.md
-  \## MACHINE ROUTER
+  ## MACHINE ROUTER
   [the router block]
 
 # Good - Packet keeps its router in the sibling file

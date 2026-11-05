@@ -119,6 +119,28 @@ def test_smart_routing_and_references_combined_header_still_satisfies_requiremen
     assert valid is True
 
 
+def test_references_heading_inside_a_fence_does_not_satisfy_the_contract():
+    module = _load_module()
+    body = (
+        "## 1. WHEN TO USE\n"
+        "Text.\n\n"
+        "## 2. SMART ROUTING\n"
+        "Text.\n\n"
+        "## 3. HOW IT WORKS\n"
+        "Text.\n\n"
+        "## 4. RULES\n"
+        "Text.\n\n"
+    )
+    fenced = "```markdown\n## REFERENCES\n```\n"
+
+    valid, message, _warnings = module.validate_sections(body + fenced)
+    assert valid is False
+    assert "REFERENCES" in message
+
+    valid, message, _warnings = module.validate_sections(body + "## REFERENCES\nText.\n")
+    assert valid is True, message
+
+
 def test_allowed_tools_remains_mandatory():
     module = _load_module()
     content = (
@@ -232,7 +254,11 @@ def _write_valid_skill(
         encoding="utf-8",
     )
     (skill_path / "ROUTER.md").write_text(
-        "# Demo Router\n\n## MACHINE ROUTER\n\nThe routing detail lives here, apart from SKILL.md.\n",
+        "# Demo Router\n\n"
+        "## 1. OVERVIEW\n\n"
+        "Open this when a demo request needs the router line by line.\n\n"
+        "## 2. MACHINE ROUTER\n\n"
+        "The routing detail lives here, apart from SKILL.md.\n",
         encoding="utf-8",
     )
     return skill_path
@@ -247,6 +273,39 @@ def _write_render_fixture_skill(tmp_path):
     refs = skill_path / "references"
     refs.mkdir()
     (refs / "render-fixture.md").write_text(_RENDER_JOINED_LABEL_DOC, encoding="utf-8")
+    return skill_path
+
+
+def _write_render_scope_fixture_skill(tmp_path):
+    """A skill joining two bold labels in its entry point, its router and its hub trees."""
+    skill_path = _write_valid_skill(
+        tmp_path / "render-scope-skill",
+        with_recommended_sections=True,
+    )
+    pair = (
+        "**File**: {name}\n"
+        "**Purpose**: Exercise the joined bold label check.\n"
+    )
+    with (skill_path / "SKILL.md").open("a", encoding="utf-8") as skill_md:
+        skill_md.write("\n" + pair.format(name="SKILL.md"))
+    (skill_path / "ROUTER.md").write_text(
+        "---\n"
+        "title: Render Scope Router\n"
+        "description: A fixture router that joins two bold labels into one rendered paragraph.\n"
+        "version: 1.0.0.0\n"
+        "---\n\n"
+        "# Render Scope Router\n\n"
+        "The routing detail lives here, apart from SKILL.md.\n\n"
+        "## 1. OVERVIEW\n\n"
+        "The fixture shows the joined bold label shape.\n\n"
+        "## 2. MACHINE ROUTER\n\n"
+        + pair.format(name="ROUTER.md"),
+        encoding="utf-8",
+    )
+    for folder, name in (("shared/references", "a.md"), ("runtime/references", "b.md")):
+        base = skill_path / folder
+        base.mkdir(parents=True)
+        (base / name).write_text(_RENDER_JOINED_LABEL_DOC, encoding="utf-8")
     return skill_path
 
 
@@ -356,6 +415,36 @@ def test_render_debt_cannot_cover_a_growing_count(tmp_path, monkeypatch):
     assert "above its known debt" in message
 
 
+def test_stale_render_debt_is_promoted_by_strict(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    ledger = tmp_path / "render-known-debt.json"
+    ledger.write_text(
+        json.dumps({
+            "debt": {
+                "render-label-skill": {
+                    "findings": 2,
+                    "codes": ["render_bold_label_join"],
+                },
+            },
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("RENDER_DEBT_FILE", str(ledger))
+    monkeypatch.setenv("RENDER_SKILLS_ROOT", str(tmp_path))
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=False)
+    assert valid is True, message
+    assert any("stale known debt" in warning for warning in warnings)
+
+    strict_valid, strict_message, _strict_warnings = module.validate_skill(
+        skill_path,
+        strict=True,
+    )
+    assert strict_valid is False
+    assert "stale known debt" in strict_message
+
+
 def _write_exempt_ledger(tmp_path, consumer):
     ledger = tmp_path / "render-known-debt.json"
     ledger.write_text(
@@ -436,6 +525,110 @@ def test_render_exempt_rejects_malformed_and_outside_consumers(tmp_path, monkeyp
         valid, message, _warnings = module.validate_skill(skill_path, strict=True)
         assert valid is False, entry
         assert "render check" in message
+
+
+def test_render_scan_reads_the_entry_point_router_and_hub_reference_trees(tmp_path):
+    module = _load_module()
+    skill_path = _write_render_scope_fixture_skill(tmp_path)
+
+    joined = [
+        finding for finding in module._render_findings(skill_path)
+        if finding["code"] == "render_bold_label_join"
+    ]
+    assert {finding["file"] for finding in joined} == {
+        "SKILL.md",
+        "ROUTER.md",
+        "shared/references/a.md",
+        "runtime/references/b.md",
+    }
+    assert {finding["scope"] for finding in joined} == {
+        "SKILL.md",
+        "ROUTER.md",
+        "shared/references",
+        "runtime/references",
+    }
+
+
+_STAGED_SCOPE_FILES = {
+    "SKILL.md",
+    "ROUTER.md",
+    "shared/references/a.md",
+    "runtime/references/b.md",
+}
+
+
+def _advisory_files(warnings):
+    """The files named by the render warnings the stage holds advisory."""
+    return {
+        warning[len("render advisory: "):].split(":", 1)[0]
+        for warning in warnings
+        if warning.startswith("render advisory: ")
+    }
+
+
+def test_staged_render_scopes_stay_advisory_under_strict(tmp_path):
+    # The widened scan reads docs the fleet already shaped, so its findings must
+    # not turn --strict red before they can be worked off.
+    module = _load_module()
+    skill_path = _write_render_scope_fixture_skill(tmp_path)
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=True)
+
+    assert valid is True, message
+    assert _advisory_files(warnings) == _STAGED_SCOPE_FILES
+    assert not any(warning.startswith("render check:") for warning in warnings)
+
+
+def test_staged_off_env_enforces_the_staged_scopes(tmp_path, monkeypatch):
+    # The opt-out is how a stage is measured before it is retired.
+    module = _load_module()
+    skill_path = _write_render_scope_fixture_skill(tmp_path)
+    monkeypatch.setenv("RENDER_STAGED_OFF", "1")
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+
+    assert valid is False
+    for name in sorted(_STAGED_SCOPE_FILES):
+        assert name in message
+
+
+def test_unstaged_reference_render_finding_still_fails_strict(tmp_path):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+
+    assert valid is False
+    assert (
+        "render check: references/render-fixture.md:22 "
+        "Consecutive bold labels" in message
+    )
+
+
+def test_staged_render_code_stays_advisory_in_an_enforced_scope(tmp_path, monkeypatch):
+    module = _load_module()
+    skill_path = _write_render_fixture_skill(tmp_path)
+    staged_code = module.RENDER_STAGED_CODES[0]
+    finding = {
+        "code": staged_code,
+        "file": "references/render-fixture.md",
+        "line": 3,
+        "message": "staged code in an enforced scope",
+        "scope": "references",
+    }
+    monkeypatch.setattr(module, "_render_findings", lambda _path: [finding])
+
+    valid, message, warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is True, message
+    assert any(
+        warning.startswith("render advisory: references/render-fixture.md:3")
+        for warning in warnings
+    )
+
+    monkeypatch.setenv("RENDER_STAGED_OFF", "1")
+    valid, message, _warnings = module.validate_skill(skill_path, strict=True)
+    assert valid is False
+    assert "render check: references/render-fixture.md:3" in message
 
 
 def test_resource_frontmatter_flags_missing_five_fields(tmp_path):

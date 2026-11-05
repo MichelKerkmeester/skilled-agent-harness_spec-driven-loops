@@ -82,6 +82,49 @@ jobs:
       - name: Run the catalog validator fixture tests
         run: python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/tests/test_validator_fixtures.py
 
+  # The render ledger and its staged sets may only shrink, and every skill must
+  # package under --strict. Staged findings print as advisory warnings, so the
+  # sweep fails only on an enforced render finding or another contract break.
+  render-gate:
+    name: Render ledger holds and every skill packages strictly
+    if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.x'
+
+      - name: Setup Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+
+      # The packager parses frontmatter with PyYAML and is laxer without it.
+      - name: Install the packager dependency
+        run: python3 -m pip install pyyaml==6.0.3
+
+      - name: Run the render-known-debt ratchet
+        run: node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs
+
+      # Packaging a hub reads only its own root, so each mode is packaged too.
+      - name: Package every skill and mode under --strict
+        run: |
+          set -uo pipefail
+          failed=0
+          for skill_md in .skilled/skills/*/SKILL.md .skilled/skills/*/*/SKILL.md; do
+            [ -f "$skill_md" ] || continue
+            skill="$(dirname "$skill_md")"
+            if ! python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py "$skill" --check --strict; then
+              echo "::error::${skill} fails package_skill.py --check --strict"
+              failed=1
+            fi
+          done
+          exit "$failed"
+
   citation-drift:
     name: No new broken citations
     if: vars.SKILLED_CI != 'off' && vars.SKILLED_CI_FRESHNESS != 'off'

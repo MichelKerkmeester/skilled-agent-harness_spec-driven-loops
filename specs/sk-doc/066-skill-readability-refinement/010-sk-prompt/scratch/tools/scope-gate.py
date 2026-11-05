@@ -2,6 +2,9 @@
 
 A file the render ledger's `exempt` map lists, with a consumer file that still
 exists, is skipped: code depends on its exact text, so the render canon does not apply.
+A code packaging stages as advisory is counted apart unless RENDER_STAGED_OFF=1
+enforces it. Packaging also stages whole scopes (SKILL.md, ROUTER.md, shared and
+runtime references); this gate does not, so an enforced code counts in every file.
 """
 import json, os, subprocess, sys
 files = [l.strip() for l in open(sys.argv[1]) if l.strip()]
@@ -15,7 +18,11 @@ exempt = {doc for doc, e in (ledger.get('exempt') or {}).items()
           and not os.path.isabs(str(e['consumer']))
           and os.path.realpath(SKILLS + str(e['consumer'])).startswith(os.path.realpath(SKILLS) + os.sep)
           and os.path.isfile(SKILLS + str(e['consumer']))}
-env = dict(os.environ, JEV_FEATURES='0'); warn = invalid = skipped = 0
+import ast, re
+_pk = open(SKILLS + 'sk-doc/sk-create-skill/scripts/package_skill.py').read()
+_m = re.search(r'^RENDER_STAGED_CODES = (\([^)]*\))', _pk, re.M)
+staged = set(ast.literal_eval(_m.group(1))) if _m and os.environ.get('RENDER_STAGED_OFF') != '1' else set()
+env = dict(os.environ, JEV_FEATURES='0'); warn = invalid = skipped = advisory = 0
 for f in files:
     if not os.path.isfile(f): continue
     if f.startswith(SKILLS) and f[len(SKILLS):] in exempt:
@@ -23,6 +30,8 @@ for f in files:
     d = json.loads(subprocess.run([sys.executable, '-B', '.skilled/skills/sk-doc/scripts/validate_document.py', f, '--json'], capture_output=True, text=True, env=env).stdout or '{}')
     if not d.get('valid', False): invalid += 1; print(f'INVALID {f}: {[e.get("message","")[:80] for e in d.get("blocking_errors", [])][:2]}')
     for w in d.get('warnings', []):
-        if str(w.get('type', '')).startswith('render_'):
+        if str(w.get('type', '')) in staged:
+            advisory += 1
+        elif str(w.get('type', '')).startswith('render_'):
             warn += 1; print(f"{f}:{w.get('line','?')}: {w['type']}: {w.get('message','')[:110]}")
-print(f'files={len(files)} render_warnings={warn} invalid={invalid}' + (f' exempt={skipped}' if skipped else ''))
+print(f'files={len(files)} render_warnings={warn} invalid={invalid}' + (f' exempt={skipped}' if skipped else '') + (f' advisory={advisory}' if advisory else ''))

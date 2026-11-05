@@ -253,12 +253,45 @@ RENDER_CHECK_TYPES = (
     'render_bare_url',
     'render_overview_heading',
     'render_overview_orientation',
+    'render_overview_subsections',
     'render_repeated_sentence',
     'render_repeated_label',
     'render_h2_numbering',
+    'render_h2_sequence',
     'render_section_order',
+    'render_section_reference',
     'render_intro_restates_purpose',
+    'render_intro_missing',
+    'render_intro_pointer',
+    'render_intro_sentence_restates',
 )
+
+# The scopes beyond references/ and assets/ that the render scan reads: a skill's
+# entry point, its router, and the hub reference trees it hands a reader.
+RENDER_SCAN_SCOPES = ('SKILL.md', 'ROUTER.md', 'shared/references', 'runtime/references')
+
+# Render checking widened past references/ and assets/ after the fleet already
+# carried docs in those shapes, so the codes and scopes below stay advisory under
+# --strict while the findings they carry are worked off. Both sets may only
+# shrink: an entry leaves once its findings are fixed, and the sets empty once the
+# fleet is clear. RENDER_STAGED_OFF=1 enforces every staged finding, which is how
+# a stage is measured before it is retired.
+RENDER_STAGED_CODES = (
+    'render_h2_sequence',
+    'render_overview_subsections',
+    'render_section_reference',
+    'render_intro_missing',
+    'render_intro_pointer',
+    'render_intro_sentence_restates',
+)
+RENDER_STAGED_SCOPES = (
+    'SKILL.md',
+    'ROUTER.md',
+    'shared/references',
+    'runtime/references',
+    'README.md',
+)
+RENDER_STAGED_OFF_ENV = 'RENDER_STAGED_OFF'
 
 # 4-part version pattern X.Y.Z.W (frontmatter_versioning.md).
 VERSION_4PART_RE = re.compile(r'^\d+\.\d+\.\d+\.\d+$')
@@ -459,7 +492,14 @@ def validate_sections(content: str, is_hub: bool = False) -> Tuple[bool, str, Li
     """
     warnings = []
     h2_pattern = r'^##\s+(.+?)\s*$'
-    headings = re.findall(h2_pattern, content, re.MULTILINE)
+    # A heading inside a fenced sample is the document showing a layout, not
+    # this skill declaring one, so it cannot satisfy a required section.
+    fenced_spans = _fenced_spans(content)
+    headings = [
+        match.group(1)
+        for match in re.finditer(h2_pattern, content, re.MULTILINE)
+        if not any(start <= match.start() < end for start, end in fenced_spans)
+    ]
     headings_upper = []
     for heading in headings:
         heading = re.sub(r'^\d+\.\s*', '', heading).strip()
@@ -939,19 +979,40 @@ def _render_debt_key(skill_path: Path) -> Optional[str]:
 
 
 def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
-    """Return the shared validator's render findings for a skill's reference and asset docs.
+    """Return the shared validator's render findings across every doc the scan reads.
 
     The shared validator owns the render rules, so the packaging gate asks it
-    rather than keeping a second copy that could drift. Only the reference and
-    asset subtrees are read: those docs are the guidance a skill hands a reader,
-    and a finding there is the skill teaching the shape it forbids.
+    rather than keeping a second copy that could drift. The scan reads the
+    reference and asset subtrees, SKILL.md, ROUTER.md and the shared and runtime
+    reference trees: those docs are the guidance a skill hands a reader or the
+    entry point it opens with, and a finding there is the skill teaching the
+    shape it forbids.
     """
     from validate_document import validate_document as shared_validate_document
+
+    scoped: List[Tuple[Path, str]] = [
+        (file, subtree)
+        for file, subtree in _iter_subtree_markdown(skill_path, RESOURCE_DOC_SUBTREES)
+    ]
+    seen = {file for file, _scope in scoped}
+    for entry in RENDER_SCAN_SCOPES:
+        base = skill_path / entry
+        if entry.endswith('.md'):
+            candidates = [base] if base.is_file() else []
+        elif base.is_dir():
+            candidates = [file for file in sorted(base.rglob('*.md')) if file.is_file()]
+        else:
+            candidates = []
+        for file in candidates:
+            if file in seen:
+                continue
+            seen.add(file)
+            scoped.append((file, entry))
 
     findings: List[Dict[str, Any]] = []
     exempt = load_render_exempt()
     root = _render_skills_root()
-    for file, _subtree in _iter_subtree_markdown(skill_path, RESOURCE_DOC_SUBTREES):
+    for file, scope in scoped:
         try:
             if Path(file).resolve().relative_to(root).as_posix() in exempt:
                 continue
@@ -970,8 +1031,23 @@ def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
                 'file': file.relative_to(skill_path).as_posix(),
                 'line': line,
                 'message': str(finding.get('message', '')).strip(),
+                'scope': scope,
             })
     return findings
+
+
+def _is_staged(finding: Dict[str, Any]) -> bool:
+    """Whether a render finding is advisory-only under --strict.
+
+    A finding is staged when its code or the scope it was scanned in is on the
+    staged list, which holds the shapes the fleet carried before the scan widened.
+    """
+    if os.environ.get(RENDER_STAGED_OFF_ENV) == '1':
+        return False
+    return (
+        finding['code'] in RENDER_STAGED_CODES
+        or finding.get('scope') in RENDER_STAGED_SCOPES
+    )
 
 
 def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
@@ -980,7 +1056,8 @@ def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
     A skill recorded in the known-debt ledger keeps the findings it was listed
     with while that set does not grow: its finding count may not pass the
     recorded count, and a type the entry does not record is never tolerated.
-    Every other finding is a warning that --strict promotes to an error.
+    Every other finding is a warning that --strict promotes to an error, except a
+    staged one, which stays a `render advisory` warning until its stage is retired.
 
     Args:
         skill_path: Path to the skill directory.
@@ -990,6 +1067,12 @@ def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
     """
     warnings: List[str] = []
     findings = _render_findings(skill_path)
+    staged = [finding for finding in findings if _is_staged(finding)]
+    enforced = [finding for finding in findings if not _is_staged(finding)]
+    warnings.extend(
+        f"render advisory: {finding['file']}:{finding['line']} {finding['message']}"
+        for finding in staged
+    )
     key = _render_debt_key(skill_path)
     debt = load_render_debt()
     entry = debt.get(key) if key is not None else None
@@ -998,12 +1081,12 @@ def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
         return f"render check: {finding['file']}:{finding['line']} {finding['message']}"
 
     if entry is None:
-        warnings.extend(describe(finding) for finding in findings)
+        warnings.extend(describe(finding) for finding in enforced)
         return True, "Render checks ran", warnings
 
     recorded_codes = entry['codes']
     kept: List[Dict[str, Any]] = []
-    for finding in findings:
+    for finding in enforced:
         if finding['code'] in recorded_codes:
             kept.append(finding)
         else:
@@ -1019,10 +1102,10 @@ def validate_render(skill_path: Path) -> Tuple[bool, str, List[str]]:
             f"render known-debt: {len(kept)} render finding(s) tolerated for {key}"
         )
 
-    if len(findings) < entry['findings']:
+    if len(enforced) < entry['findings']:
         warnings.append(
-            f"render known-debt: {key} records {entry['findings']} render finding(s) "
-            f"but {len(findings)} remain; lower or remove the entry"
+            f"render check: stale known debt: {key} records {entry['findings']} render finding(s) "
+            f"but {len(enforced)} remain; lower or remove the entry"
         )
 
     return True, "Render checks ran", warnings

@@ -749,6 +749,7 @@ def validate_general_structure(content: str, doc_type_rules: Dict[str, Any]) -> 
 _LIST_LINE = re.compile(r'^\s*(?:[-*+]|\d+[.)])\s+')
 _H2_ANY = re.compile(r'^##(?!#)\s+(\S.*?)\s*$')
 _H2_NUMBERED = re.compile(r'^##(?!#)\s+(\d+)([A-Za-z]?)\.\s+(\S.*?)\s*$')
+_H3_ANY = re.compile(r'^###(?!#)\s+(\S.*?)\s*$')
 _RULE_ID_H3 = re.compile(r'^###(?!#)\s+[A-Z]{1,4}\d+[a-z]?\.\s')
 _SEPARATOR_LINE = re.compile(r'^\s*(?:-{3,}|\*{3,}|_{3,})\s*$')
 _SETEXT_UNDERLINE = re.compile(r'^\s*(?:-{3,}|={3,})\s*$')
@@ -764,6 +765,28 @@ _WORD = re.compile(r'[a-z0-9]+')
 # Advisory threshold for the intro/Purpose overlap. A restatement scores high
 # because it reuses the Purpose's own vocabulary; a hook shares little.
 _PURPOSE_OVERLAP_THRESHOLD = 0.6
+
+# An intro sentence that announces the content instead of telling a reader when
+# the file is worth opening: "The rules below cover ...", "This reference explains ...".
+_INTRO_POINTER = re.compile(
+    r'^(?:the\s+(?:sections?|examples?|tables?|steps?|rules?)\s+below\b'
+    r'|this\s+(?:reference|asset|document|file|guide|page)\s+'
+    r'(?:explains|covers|describes|documents|lists|shows|contains|outlines)\b)',
+    re.IGNORECASE,
+)
+
+_FRONTMATTER_DESCRIPTION = re.compile(r'^description:\s*(.*?)\s*$')
+
+# A cross-reference to a numbered section: "§8 EXAMPLES", "Section 4", or an
+# optional leading file name such as "loop-state-and-gates.md §3". The title is
+# optional because most prose cites the number alone.
+_SECTION_REFERENCE = re.compile(
+    r'(?:(?P<file>[\w./-]+\.md)\s+)?'
+    r'(?:§\s*|\b[Ss]ection\s+)'
+    r'(?P<num>\d+)\b'
+    r'(?:\s+(?P<title>[A-Z][A-Z0-9&/-]+(?:\s+[A-Z][A-Z0-9&/-]+)*)(?![a-z]))?'
+)
+_MD_FILE_NAME = re.compile(r'[\w./-]+\.md')
 
 
 def _render_warning(check: str, message: str, line_number: int) -> Dict[str, Any]:
@@ -857,6 +880,9 @@ def _render_bold_label_join(lines: List[str], skip: set) -> List[Dict[str, Any]]
         if first_label is None or second_label is None:
             continue
         if _is_placeholder_label(first_label) or _is_placeholder_label(second_label):
+            continue
+        # A trailing hard break renders each label on its own line, so they never join.
+        if first.endswith('  ') or first.endswith('\\'):
             continue
         issues.append(_render_warning(
             'render_bold_label_join',
@@ -970,6 +996,81 @@ def _render_overview_orientation(lines: List[str], skip: set) -> List[Dict[str, 
     return []
 
 
+def _overview_subsection_title(name: str) -> str:
+    """A rule name as a heading title: "when_to_use" becomes "When to Use"."""
+    words = name.replace('_', ' ').split()
+    return ' '.join(
+        word.lower() if word.lower() == 'to' else word.capitalize()
+        for word in words
+    )
+
+
+def _render_overview_subsections(
+    lines: List[str],
+    skip: set,
+    doc_type_rules: Dict[str, Any],
+) -> List[Dict[str, Any]]:
+    """OVERVIEW opens with the document type's subsections in the listed order."""
+    required = [
+        normalize_section_name(name)
+        for name in doc_type_rules.get('overviewSubsections') or []
+    ]
+    if not required:
+        return []
+    first = _first_numbered_h2(lines, skip)
+    if first is None:
+        return []
+    line_number, match = first
+    words = extract_section_name_text(match.group(3)).split()
+    if not words or words[0].upper() != 'OVERVIEW':
+        return []
+
+    present: List[str] = []
+    for index in range(line_number, len(lines)):
+        if index + 1 in skip:
+            continue
+        stripped = lines[index].strip()
+        if _H2_ANY.match(stripped):
+            break
+        heading = _H3_ANY.match(stripped)
+        if heading:
+            present.append(
+                normalize_section_name(extract_section_name_text(heading.group(1)))
+            )
+
+    issues: List[Dict[str, Any]] = []
+    opening = ' then '.join(_overview_subsection_title(name) for name in required)
+    for name in required:
+        if name in present:
+            continue
+        title = _overview_subsection_title(name)
+        issues.append(_render_warning(
+            'render_overview_subsections',
+            f'OVERVIEW has no "### {title}" subsection; open it with {opening}.',
+            line_number,
+        ))
+    if issues:
+        return issues
+
+    positions = [present.index(name) for name in required]
+    if any(later < earlier for earlier, later in zip(positions, positions[1:])):
+        ordered = ' before '.join(_overview_subsection_title(name) for name in required)
+        issues.append(_render_warning(
+            'render_overview_subsections',
+            f'OVERVIEW subsections run out of order; put {ordered}.',
+            line_number,
+        ))
+    elif present[:len(required)] != required:
+        # The orienting subsections only orient when a reader meets them first.
+        first = _overview_subsection_title(present[0])
+        issues.append(_render_warning(
+            'render_overview_subsections',
+            f'OVERVIEW opens with "### {first}"; open it with {opening}.',
+            line_number,
+        ))
+    return issues
+
+
 def _prose_blocks(lines: List[str], skip: set) -> List[Tuple[int, str]]:
     """Prose paragraphs and list items as (start line, joined text)."""
     blocks: List[Tuple[int, str]] = []
@@ -1051,7 +1152,7 @@ def _render_repeated_label(lines: List[str], skip: set) -> List[Dict[str, Any]]:
 
 
 def _render_h2_numbering(lines: List[str], skip: set, doc_type: str) -> List[Dict[str, Any]]:
-    """A letter-suffixed H2 number, or an unnumbered H2 among numbered ones."""
+    """A letter-suffixed, sub-numbered or unnumbered H2 among numbered ones."""
     if doc_type not in ('reference', 'asset', 'skill'):
         return []
     headings: List[Tuple[int, str]] = []
@@ -1071,6 +1172,14 @@ def _render_h2_numbering(lines: List[str], skip: set, doc_type: str) -> List[Dic
                 f'H2 number carries a letter suffix ("{match.group(1)}{match.group(2)}."); use integers only.',
                 line_number,
             ))
+        elif re.match(r'^(\d+)\.(\d+)\.?\s+\S', title):
+            # A dotted number is a sub-number: it names a child of the section
+            # above it, and a level-one heading carries only the integer.
+            issues.append(_render_warning(
+                'render_h2_numbering',
+                f'H2 "{title}" carries a sub-number; use an integer H2 or make it an H3.',
+                line_number,
+            ))
         elif not match and has_numbered:
             issues.append(_render_warning(
                 'render_h2_numbering',
@@ -1080,10 +1189,54 @@ def _render_h2_numbering(lines: List[str], skip: set, doc_type: str) -> List[Dic
     return issues
 
 
+def _render_h2_sequence(lines: List[str], skip: set, doc_type: str) -> List[Dict[str, Any]]:
+    """A numbered H2 whose number is not the previous number plus one.
+
+    A gap or a repeat leaves the reader without a position in the document and
+    breaks the number-to-order promise the sections make, so the sequence starts
+    at 1 and every numbered H2 has to continue it.
+    """
+    if doc_type not in ('reference', 'asset', 'skill'):
+        return []
+    issues: List[Dict[str, Any]] = []
+    previous = 0
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = _H2_NUMBERED.match(line)
+        # A letter-suffixed number is already reported by the numbering check.
+        if not match or match.group(2):
+            continue
+        number = int(match.group(1))
+        if number != previous + 1:
+            message = (
+                f'H2 number {number} follows {previous}; number sections 1, 2, 3 without gaps or repeats.'
+                if previous else
+                f'The first numbered H2 is {number}; number sections from 1.'
+            )
+            issues.append(_render_warning('render_h2_sequence', message, index + 1))
+        previous = number
+    return issues
+
+
 def _heading_name(title: str) -> str:
     """Section text with any number prefix and emoji removed."""
     name = re.sub(r'^\d+[A-Za-z]?\.\s*', '', title)
     return EMOJI_PATTERN.sub('', name).strip()
+
+
+def _is_related_section(name: str) -> bool:
+    """A heading that opens with the word `related` and names no topic of its own.
+
+    RELATED RESOURCES, RELATED COMMANDS and RELATED WORK list pointers, so they
+    close the document. UNRELATED CHANGES and CORRELATED SIGNALS only contain the
+    letters, and RELATED SPECS: UPDATE VS CREATE carries a topic after its colon,
+    so none of them is the closing related section.
+    """
+    if ':' in name:
+        return False
+    tokens = [token for token in normalize_section_name(name).split('_') if token]
+    return bool(tokens) and tokens[0] == 'related'
 
 
 def _render_section_order(
@@ -1117,8 +1270,13 @@ def _render_section_order(
 
     if last_pattern:
         wanted = normalize_section_name(last_pattern)
+        related_only = wanted == 'related'
         for position, (line_number, name) in enumerate(headings):
-            if wanted not in normalize_section_name(name):
+            matched = (
+                _is_related_section(name) if related_only
+                else wanted in normalize_section_name(name)
+            )
+            if not matched:
                 continue
             trailing = headings[position + 1:]
             if not trailing:
@@ -1133,7 +1291,7 @@ def _render_section_order(
 
     if doc_type == 'skill_router':
         for position, (line_number, name) in enumerate(headings):
-            if 'related' not in normalize_section_name(name):
+            if not _is_related_section(name):
                 continue
             following = headings[position + 1:]
             if following and 'machine_router' in normalize_section_name(following[0][1]):
@@ -1265,10 +1423,256 @@ def _render_intro_restates_purpose(lines: List[str], skip: set) -> List[Dict[str
     )]
 
 
+# Only the types that open with a hook: a reference or an asset earns a reader
+# by saying when to open it, while a skill hub opens with its router.
+_INTRO_CHECK_TYPES = ('reference', 'asset')
+
+
+def _h1_line(lines: List[str], skip: set) -> Optional[int]:
+    """1-based line number of the document's H1, when it carries one."""
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        if re.match(r'^#\s+\S', line):
+            return index + 1
+    return None
+
+
+def _intro_sentences(text: str) -> List[str]:
+    """The sentences of a paragraph, in order."""
+    return [part.strip() for part in _SENTENCE_BREAK.split(text) if part.strip()]
+
+
+def _frontmatter_description(lines: List[str]) -> Optional[str]:
+    """The frontmatter `description` value, when the leading block carries one."""
+    index = 0
+    while index < len(lines) and not lines[index].strip():
+        index += 1
+    if index >= len(lines) or lines[index].strip() != '---':
+        return None
+    for line in lines[index + 1:]:
+        if line.strip() == '---':
+            break
+        match = _FRONTMATTER_DESCRIPTION.match(line)
+        if match:
+            return _strip_matching_quotes(match.group(1))
+    return None
+
+
+def _render_intro_missing(lines: List[str], skip: set, doc_type: str) -> List[Dict[str, Any]]:
+    """The H1 jumps straight into a section, leaving no hook for a skimming reader."""
+    if doc_type not in _INTRO_CHECK_TYPES:
+        return []
+    heading = _h1_line(lines, skip)
+    if heading is None:
+        return []
+    # Only a heading straight after the H1 leaves nothing to read; a callout,
+    # list, table or fenced block there is an intro in another shape. Frontmatter
+    # sits above the H1, so a skipped line below it is a fence.
+    for index in range(heading, len(lines)):
+        stripped = lines[index].strip()
+        if index + 1 in skip:
+            return []
+        if not stripped or _HTML_COMMENT_LINE.match(lines[index]):
+            continue
+        if re.fullmatch(r'-{3,}', stripped):
+            continue
+        if not re.match(r'^#{2,6}\s', stripped):
+            return []
+        break
+    return [_render_warning(
+        'render_intro_missing',
+        'No intro paragraph sits between the H1 and the first section; '
+        'add a one- or two-sentence hook.',
+        heading,
+    )]
+
+
+def _render_intro_pointer(lines: List[str], skip: set, doc_type: str) -> List[Dict[str, Any]]:
+    """An intro sentence announces the content below instead of a moment to open it."""
+    if doc_type not in _INTRO_CHECK_TYPES:
+        return []
+    intro = _intro_paragraph(lines, skip)
+    if intro is None:
+        return []
+    issues: List[Dict[str, Any]] = []
+    for sentence in _intro_sentences(intro[1]):
+        if not _INTRO_POINTER.match(sentence):
+            continue
+        issues.append(_render_warning(
+            'render_intro_pointer',
+            f'The intro sentence "{sentence[:60]}" points at the content instead of '
+            'saying when to open the file; rewrite it as a hook.',
+            intro[0],
+        ))
+    return issues
+
+
+def _render_intro_sentence_restates(
+    lines: List[str],
+    skip: set,
+    doc_type: str,
+) -> List[Dict[str, Any]]:
+    """An intro sentence reuses the vocabulary of the Purpose or the description."""
+    if doc_type not in _INTRO_CHECK_TYPES:
+        return []
+    intro = _intro_paragraph(lines, skip)
+    if intro is None:
+        return []
+    sources: List[Tuple[str, str]] = []
+    purpose = _first_purpose_sentence(lines, skip)
+    if purpose:
+        sources.append(('Purpose', purpose))
+    description = _frontmatter_description(lines)
+    if description:
+        sources.append(('description', description))
+    issues: List[Dict[str, Any]] = []
+    for sentence in _intro_sentences(intro[1]):
+        # A few-word fragment cannot restate anything, so it never warns.
+        if len(_WORD.findall(sentence)) < 5:
+            continue
+        source_name = ''
+        best = 0.0
+        for name, text in sources:
+            overlap = _token_overlap(sentence, text)
+            if overlap > best:
+                source_name, best = name, overlap
+        if best < _PURPOSE_OVERLAP_THRESHOLD:
+            continue
+        issues.append(_render_warning(
+            'render_intro_sentence_restates',
+            f'The intro sentence "{sentence[:60]}" repeats the {source_name} '
+            f'({best:.2f} overlap); say what the reader gets instead.',
+            intro[0],
+        ))
+    return issues
+
+
+def _numbered_section_titles(lines: List[str], skip: set) -> Dict[str, str]:
+    """Numbered H2 titles keyed by number, emoji removed and uppercased."""
+    titles: Dict[str, str] = {}
+    for index, line in enumerate(lines):
+        if index + 1 in skip:
+            continue
+        match = _H2_NUMBERED.match(line)
+        if match:
+            titles.setdefault(
+                match.group(1),
+                extract_section_name_text(match.group(3)).upper(),
+            )
+    return titles
+
+
+def _checkout_root(path: Path) -> Optional[Path]:
+    """The nearest ancestor of `path` holding a `.skilled` directory."""
+    for parent in path.parents:
+        if (parent / '.skilled').is_dir():
+            return parent
+    return None
+
+
+def _resolve_reference_target(
+    name: str,
+    file_path: Optional[Path],
+) -> Optional[Path]:
+    """The cited file, looked up beside the current one and then at the checkout root."""
+    if file_path is None:
+        return None
+    bases = [file_path.parent]
+    root = _checkout_root(file_path)
+    if root is not None:
+        bases.append(root)
+    for base in bases:
+        candidate = base / name
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def _render_section_reference(
+    lines: List[str],
+    skip: set,
+    file_path: Optional[Path] = None,
+) -> List[Dict[str, Any]]:
+    """A cited section number exists in the cited document and keeps its name.
+
+    Prose points at sections by number, so a renumbered or renamed section leaves
+    a citation that resolves to nothing or to the wrong title. Without the source
+    path there is no document to look a number up in, so the check stays quiet.
+    """
+    if file_path is None:
+        return []
+    own_titles = _numbered_section_titles(lines, skip)
+    target_titles: Dict[str, Optional[Dict[str, str]]] = {}
+    issues: List[Dict[str, Any]] = []
+    for index, line in enumerate(lines):
+        line_number = index + 1
+        if line_number in skip:
+            continue
+        for match in _SECTION_REFERENCE.finditer(line):
+            number = match.group('num')
+            cited_title = match.group('title')
+            name = match.group('file')
+            if name:
+                if name not in target_titles:
+                    target = _resolve_reference_target(name, file_path)
+                    titles: Optional[Dict[str, str]] = None
+                    if target is not None:
+                        try:
+                            text = target.read_text(encoding='utf-8')
+                        except OSError:
+                            pass
+                        else:
+                            titles = _numbered_section_titles(
+                                text.splitlines(),
+                                _fenced_line_numbers(text),
+                            )
+                    target_titles[name] = titles
+                titles = target_titles[name]
+                if titles is None:
+                    continue
+                target_name = Path(name).name
+            else:
+                if not own_titles:
+                    continue
+                # A line that also names another file usually cites that file's
+                # section, so its bare number says nothing about this document.
+                if _MD_FILE_NAME.search(line):
+                    continue
+                titles = own_titles
+                target_name = 'this file'
+            actual = titles.get(number)
+            # A capitalised word after a bare number is often prose, so a cited
+            # title only counts when it names a real section of the target.
+            names_a_section = bool(cited_title) and any(
+                title.startswith(cited_title) for title in titles.values()
+            )
+            if actual is None:
+                # A bare number in prose often cites a document named earlier in
+                # the paragraph, so only a named file or a real title proves it.
+                if name or names_a_section:
+                    issues.append(_render_warning(
+                        'render_section_reference',
+                        f'"{match.group(0).strip()}" points at section {number}, but '
+                        f'{target_name} has no section {number}.',
+                        line_number,
+                    ))
+                continue
+            if names_a_section and not actual.startswith(cited_title):
+                issues.append(_render_warning(
+                    'render_section_reference',
+                    f'"{match.group(0).strip()}" names {cited_title}, but section '
+                    f'{number} of {target_name} is {actual}.',
+                    line_number,
+                ))
+    return issues
+
+
 def validate_render_checks(
     content: str,
     doc_type: str,
     doc_type_rules: Dict[str, Any],
+    file_path: Optional[Path] = None,
 ) -> List[Dict[str, Any]]:
     """Run the rendered-shape checks for document types that opt in."""
     if not doc_type_rules.get('renderChecks', False):
@@ -1282,11 +1686,17 @@ def validate_render_checks(
     issues.extend(_render_bare_url(lines, skip))
     issues.extend(_render_overview_heading(lines, skip))
     issues.extend(_render_overview_orientation(lines, skip))
+    issues.extend(_render_overview_subsections(lines, skip, doc_type_rules))
     issues.extend(_render_repeated_sentence(lines, skip))
     issues.extend(_render_repeated_label(lines, skip))
     issues.extend(_render_h2_numbering(lines, skip, doc_type))
+    issues.extend(_render_h2_sequence(lines, skip, doc_type))
     issues.extend(_render_section_order(lines, skip, doc_type, doc_type_rules))
     issues.extend(_render_intro_restates_purpose(lines, skip))
+    issues.extend(_render_intro_missing(lines, skip, doc_type))
+    issues.extend(_render_intro_pointer(lines, skip, doc_type))
+    issues.extend(_render_intro_sentence_restates(lines, skip, doc_type))
+    issues.extend(_render_section_reference(lines, skip, file_path))
     return issues
 
 
@@ -2574,7 +2984,7 @@ def validate_document(
         if is_repo_root_readme(file_path):
             structure_rules = {**doc_type_rules, 'h2DividerRequired': False}
         all_errors.extend(validate_general_structure(content, structure_rules))
-    all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules))
+    all_errors.extend(validate_render_checks(content, doc_type, doc_type_rules, Path(file_path)))
     all_errors.extend(validate_required_sections(content, doc_type_rules))
     if doc_type == 'feature_catalog':
         all_errors.extend(validate_feature_catalog_table(content, doc_type_rules))

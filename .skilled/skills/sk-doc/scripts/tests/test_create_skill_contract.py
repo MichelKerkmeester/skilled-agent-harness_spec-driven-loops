@@ -101,7 +101,7 @@ def _write_valid_skill(
         encoding="utf-8",
     )
     (skill_path / "ROUTER.md").write_text(
-        "# Demo Router\n\n## MACHINE ROUTER\n\nThe routing detail lives here, apart from SKILL.md.\n",
+        "# Demo Router\n\n## 1. OVERVIEW\n\nThe routing detail lives here, apart from SKILL.md.\n\n---\n\n## 2. MACHINE ROUTER\n\nRoutes the demo request.\n",
         encoding="utf-8",
     )
     return skill_path

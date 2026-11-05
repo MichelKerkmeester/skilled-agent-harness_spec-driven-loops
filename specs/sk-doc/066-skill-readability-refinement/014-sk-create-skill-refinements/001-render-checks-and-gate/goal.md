@@ -78,6 +78,8 @@ and findings belong here.
 |------|-------|----------|
 | Planning docs | Done | spec, plan, tasks and acceptance criteria authored 2026-11-05 |
 | Baselines | Done | 13 of 13 skills exit 0 under `--check --strict`, `run-script-tests.sh` 49 PASS, sk-create-skill node 103/103, compiled-route 101/101 |
+| T001 baselines | Done | start 9a6ee36f6f; strict 13/13 exit 0; all sk-doc script tests passed; create-skill node i pass 103 i fail 0 ; compiled-route pass 101 fail 0 |
+| Phase 001 review | Fixed | opus-medium on the uncommitted diff over 9a6ee36f6f: VERDICT FIX, 1 P1 and 7 P2. Fixed: related matcher now a leading related token without a colon topic, CI sweep covers 42 modes, OVERVIEW subsections must open it, fenced block under H1 is an intro, scope-gate docstring, ratchet comment, code-staging test. Kept: render_h2_sequence beside non_sequential_numbering, since packaging reads only ren... |
 
 ### Deviations and findings
 

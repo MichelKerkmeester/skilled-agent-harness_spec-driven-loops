@@ -45,6 +45,7 @@
       ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
       ".skilled/skills/sk-doc/shared/assets/template-rules.json",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs",
       ".github/workflows/sk-doc-script-tests.yml",
       ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-skill/README.md",
@@ -108,6 +109,12 @@
         "name": "package_skill.py",
         "kind": "file",
         "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt-ratchet.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/render-known-debt-ratchet.test.cjs",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The largest mechanical finding class in 066, overview without Purpose and When to Use, has no check because `template-rules.json` gives references only `requiredSections [\"overview\"]`",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-05T07:10:56.137Z",
+    "last_save_at": "2026-11-05T09:16:42.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +215,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eef30418c2d281ff55c11401095519881dba5b19348bc39c3b8f2e950d340f12",
+    "source_fingerprint": "sha256:5a13fc61d5808e471eb2efb34e7894b18ebbaddc52f0c29b59981eebfd995ce1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d9a8356ec05646b78a93c476d393c1ef802ee6297baa9d7eb8bd636458d1d6db",
       "plan.md": "59d28e2144e8aa5f511c283f3f94b8c76aa805438f2664174ad2a8a5b7cb70f1",
-      "tasks.md": "b2c06f3649104ac9d4e977b981a3ad7e9dc2e8c72c7464b9e72c3792fd3a1780",
+      "tasks.md": "ae7a9c9fa41854a1fac80bbb7a19042870649a2070bb85935c072c5a94eab8f0",
       "implementation-summary.md": "ab7b8eef6ed6be756149fae7a9e46ba7bcaee01877649b3c4fd3a6101c7c1070"
     },
     "last_active_at": null

@@ -4,7 +4,7 @@ description: "Scaffold, validate and package standalone OpenCode skills and two-
 trigger_phrases:
   - "create skill"
   - "parent hub"
-version: 1.2.6.0
+version: 1.2.7.0
 ---
 
 # create-skill
@@ -59,10 +59,10 @@ python3 .skilled/skills/sk-doc/sk-create-skill/scripts/init_skill.py my-skill --
 **Step 2: Fill in the real content, then validate.**
 
 ```bash
-python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name>
+python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/<skill-name> --strict
 ```
 
-Expected output ends with `package_skill.py --check: PASS (exit 0)`.
+Expected output ends with `package_skill.py --check --strict: PASS (exit 0)`.
 
 **Step 3: Package only after validation passes.**
 
@@ -154,8 +154,7 @@ Run every command in this table from the repository root.
 | Check | How to run it | Pass looks like |
 |---|---|---|
 | README structure | `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-doc/sk-create-skill/README.md --type readme` | Reports zero issues |
-| Package completion | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path>` | Ends with `package_skill.py --check: PASS (exit 0)`. Parent hubs also report legacy or compiled-ready state |
-| Strict contract check | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path> --strict` | Promotes noncanonical generated paths from advisory to blocking |
+| Package completion | `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py <path> --strict` | Ends with `package_skill.py --check --strict: PASS (exit 0)`. Contract and render findings block, staged render findings print as `render advisory:`. Parent hubs also report legacy or compiled-ready state |
 | Structure extraction | `python3 .skilled/skills/sk-doc/shared/scripts/extract_structure.py <path/to/SKILL.md>` | Prints the parsed section outline for a fast quality read |
 | Leaf-route replay | `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/leaf-route-replay.test.cjs` | `pass 26` and `fail 0` |
 

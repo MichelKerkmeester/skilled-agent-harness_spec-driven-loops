@@ -1,0 +1,26 @@
+{
+  "debt": {},
+  "exempt": [
+    "system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
+    "system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+    "system-deep-loop/deep-research/assets/deep-research-strategy.md",
+    "system-deep-loop/deep-review/assets/deep-review-dashboard.md",
+    "system-deep-loop/deep-review/assets/deep-review-strategy.md",
+    "system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md"
+  ],
+  "stagedCodes": [
+    "render_h2_sequence",
+    "render_overview_subsections",
+    "render_section_reference",
+    "render_intro_missing",
+    "render_intro_pointer",
+    "render_intro_sentence_restates"
+  ],
+  "stagedScopes": [
+    "SKILL.md",
+    "ROUTER.md",
+    "shared/references",
+    "runtime/references",
+    "README.md"
+  ]
+}

@@ -2,7 +2,7 @@
 name: sk-create-skill
 description: Scaffold OpenCode skills and two-axis sk-doc parent hubs, including standalone, nested workflow, and surface packets.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.11.1.0
+version: 1.12.0.0
 ---
 
 # Create Skill
@@ -90,7 +90,7 @@ Follow these steps in order, skipping only when the target skill already exists 
    With no daemon running, the next daemon start ingests it.
    Manual refresh: `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted`.
    Smoke-test routing with `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"<a phrase from your intent signals>"}' --warm-only --format json` and confirm your skill appears in the recommendations.
-29. Run `scripts/validate_skill_package.py <path/to/skill-folder>` before claiming the skill is complete.
+29. Run `scripts/validate_skill_package.py <path/to/skill-folder> --strict` before claiming the skill is complete.
 30. Fix every hard failure and rerun the check until it exits clean.
 31. Package only after validation passes with `scripts/package_skill.py <path/to/skill-folder> <output-directory>`.
 32. Iterate after real usage by improving unclear instructions, adding missing resources, trimming bloated `SKILL.md` content into references, and improving trigger descriptions.
@@ -243,7 +243,7 @@ apply identically here.
 Run the completion gate before any completion claim:
 
 ```bash
-scripts/validate_skill_package.py <path/to/skill-folder>
+scripts/validate_skill_package.py <path/to/skill-folder> --strict
 ```
 
 It auto-detects skill kind — standalone skills run the package check; parent hubs additionally run the parent-hub structural check and the canonical manifest freshness check. A missing manifest reports the valid legacy state; a valid fresh manifest reports compiled-ready; malformed or stale manifests fail validation.
@@ -280,7 +280,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 7. Keep `WHEN TO USE` free of file references and navigation tables.
 8. Keep one authoritative routing source in `SMART ROUTING`.
 9. Delete TODO placeholders and generated example files before validation.
-10. Run `scripts/validate_skill_package.py <path>` before calling the scaffold complete.
+10. Run `scripts/validate_skill_package.py <path> --strict` before calling the scaffold complete.
 11. Use `assets/skill/skill-procedure-template.md` for a private, triggerable internal procedure; use `assets/skill/skill-reference-template.md` when no trigger-based selection is needed.
 
 ### ⛔ NEVER
@@ -313,7 +313,7 @@ scripts/package_skill.py <path/to/skill-folder> <output-directory>
 - Standalone skills contain valid frontmatter, executable `SKILL.md` workflow content, useful resources, and no placeholder examples.
 - Parent hubs contain one hub identity, one `modes[]` registry, valid router metadata, one root `ROUTER.md` in a valid `stage1-only` or `active` state, and nested packets without packet-local graph metadata.
 - Generated resource paths use kebab-case, with Python and tool-mandated names preserved exactly.
-- `scripts/validate_skill_package.py <path>` exits clean, or exact blockers are reported.
+- `scripts/validate_skill_package.py <path> --strict` exits clean, or exact blockers are reported.
 - Shared create-quality-control standards from `../shared` were applied when quality evidence was needed.
 
 ---
