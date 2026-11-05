@@ -7,7 +7,7 @@ trigger_phrases:
   - "package digest orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill Snapshots - Provenance
@@ -22,7 +22,7 @@ Verbatim `SKILL.md` snapshots of the eight official Orca Agent Skills, vendored 
 
 Each `assets/<skill-name>.txt` file holds the unmodified `SKILL.md` of one official Orca Agent Skill, copied from the vendored `orca-main` source tree recorded below. The snapshot exists because the official files are hybrid discovery stubs whose real flags live in the installed binary, and a local skill that paraphrases them would drift. The records in this directory let a future maintainer prove which upstream revision each file came from.
 
-### When to Use
+### Usage
 
 Use this record when verifying the source, release revision or digest of a bundled snapshot.
 

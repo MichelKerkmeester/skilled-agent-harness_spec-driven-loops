@@ -9,7 +9,7 @@ trigger_phrases:
   - "install official orca skill"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skills - Overview
@@ -18,7 +18,15 @@ Local index of the eight official Orca Agent Skills. Snapshot paths cited below 
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The eight official skills form one family. Three of them, `orca-cli`, `computer-use` and `orchestration`, are the ones default agent setup usually installs, while the others cover Linear, the two emulator backends and per-workspace environment recipes (snapshot: docs/site/content/docs/cli/skills.mdx). One stub, `linear-tickets`, is a legacy alias rather than a separate surface, so seven install rows cover the eight names (snapshot: skills/linear-tickets/SKILL.md).
+
+### When to Use
+
+- Open this reference to see how the eight official skills form one family.
+- Open it to check which three skills default agent setup usually installs.
+- Open it to place `linear-tickets` as a legacy alias rather than a separate surface.
 
 ---
 

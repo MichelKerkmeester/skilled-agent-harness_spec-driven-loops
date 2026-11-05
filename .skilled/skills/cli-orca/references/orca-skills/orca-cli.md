@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca embedded browser"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Orca CLI
@@ -19,6 +19,8 @@ Local reference for the official `orca-cli` skill. The upstream file is a discov
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 `orca-cli` declares the operation of Orca-managed worktrees, folder contexts, terminals, repositories, automations, artifacts, skill sharing, worktree comments and Orca's embedded browser through the `orca` CLI (snapshot: skills/orca-cli/SKILL.md, frontmatter). The frontmatter names the engagement phrases: "$orca-cli", "Orca worktree", "child worktree", "spawn codex/claude in a worktree", "read/wait/send Orca terminal", "handoff" / "handover" / "give this to another agent", "Orca browser", "orca artifacts" or "share skills" (snapshot: skills/orca-cli/SKILL.md, frontmatter).
 
@@ -32,6 +34,13 @@ ORCA skills get orca-cli
 - Use the executable's `--help` for commands or flags the guide does not cover.
 - If a command reports that Orca is not running, start it with `ORCA open --json` and retry.
 - If `skills get` is unknown, explain that updating Orca restores the guide and do not guess unsupported commands (snapshot: skills/orca-cli/SKILL.md, Load the version-matched guide before running Orca commands).
+
+### When to Use
+
+- Open this reference when the request names `$orca-cli`, "Orca worktree" or "child worktree".
+- Open it when spawning `codex` or `claude` in a worktree.
+- Open it to read, wait on or send to an Orca terminal.
+- Open it for a handoff or handover, the Orca browser, `orca artifacts` or sharing skills.
 
 ---
 

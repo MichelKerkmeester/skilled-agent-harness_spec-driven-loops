@@ -7,14 +7,16 @@ trigger_phrases:
   - "official orca skills package"
 importance_tier: normal
 contextType: general
-version: 0.1.6.0
+version: 0.1.7.0
 ---
 
 # cli-orca
 
 > Route Orca-managed work and the eight official Orca skills through one standalone skill, and keep the version-sensitive flags in the guide the running Orca binary serves.
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Field | Value |
 |-------|-------|
@@ -23,10 +25,6 @@ version: 0.1.6.0
 | Entry point | [SKILL.md](SKILL.md) |
 | Defers | Generic worktrees to `sk-git`, CDP work to `mcp-chrome-devtools`, generic agentic browser work to `mcp-aside-devtools`, supervised coordination to the official `orchestration` skill |
 | Package root | `.skilled/skills/cli-orca/` |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -51,7 +49,7 @@ What it deliberately does not own:
 
 ---
 
-## 3. WHAT IS IN THE PACKAGE
+## 2. WHAT IS IN THE PACKAGE
 
 The package is organized around the four leaf roots declared in `leaf-manifest.config.json`: `references`, `assets`, `feature-catalog` and `manual-testing-playbook`. The changelog tree sits outside the leaf roots on purpose, because it records history rather than a routing target. The tree holds one `v<version>.md` file per release, from `v0.1.0.0.md` on.
 
@@ -66,7 +64,7 @@ The package is organized around the four leaf roots declared in `leaf-manifest.c
 
 ---
 
-## 4. ROUTING
+## 3. ROUTING
 
 **The bare token warning**: a bare `orca` mention is never sufficient. The same token matches the `OpenOrca` model label, the GNOME Orca screen reader on Linux and Orca app-internal strings, so routing needs an Orca-qualified phrase or a named Orca surface.
 
@@ -83,7 +81,7 @@ Two collisions are worth keeping straight:
 
 ---
 
-## 5. VERIFICATION
+## 4. VERIFICATION
 
 The local gates that govern this package:
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "linear status orca"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Orca Linear
@@ -20,6 +20,8 @@ Local reference for the official `orca-linear` skill. The upstream file is a dis
 
 ## 1. OVERVIEW
 
+### Purpose
+
 `orca-linear` declares Linear ticket work through Orca's CLI. Engage it when working from a linked Linear issue, finishing work with a PR or MR link and a completion comment, moving a ticket through workflow states, searching Linear or creating a parented follow-up ticket (snapshot: skills/orca-linear/SKILL.md, frontmatter).
 
 The stub resolves one executable for the session in this order: the `ORCA_CLI_COMMAND` environment variable when set, then `orca-dev` in a dev checkout that exposes `ORCA_DEV_REPO_ROOT`, then `orca-ide` on Linux outside an Orca-managed terminal, then `orca`. The version-matched guide then loads with:
@@ -29,6 +31,13 @@ ORCA skills get orca-linear
 ```
 
 Prefer `--json` for agent-driven calls. Use the resolved executable's `--help` for commands or flags the guide does not cover. Start Orca with `ORCA open --json` and retry if a command reports that Orca is not running (snapshot: skills/orca-linear/SKILL.md, Load the version-matched guide before running Orca commands).
+
+### When to Use
+
+- Open this reference when working from a linked Linear issue.
+- Open it to finish work with a PR or MR link and a completion comment.
+- Open it to move a ticket through workflow states.
+- Open it to search Linear or create a parented follow-up ticket.
 
 ### Untrusted data rule
 

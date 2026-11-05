@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca recipe setup"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Per-Workspace Environments
@@ -19,6 +19,8 @@ Local reference for the official `orca-per-workspace-env` skill. The upstream fi
 ---
 
 ## 1. OVERVIEW
+
+### Purpose
 
 `orca-per-workspace-env` declares set up, review, debug or validate for an Orca per-workspace environment recipe, the on-demand, disposable runtime, cloud sandbox, VM, SSH host or local container, that Orca creates fresh for each workspace (snapshot: skills/orca-per-workspace-env/SKILL.md, frontmatter). Engage it to stand up a new recipe end to end, fix an `environmentRecipes` entry in `orca.yaml`, scaffold provider lifecycle scripts or resolve an `orca vm recipe doctor` failure (snapshot: skills/orca-per-workspace-env/SKILL.md, frontmatter). Use `orca-cli` for ordinary worktree and workspace creation with no recipe involved (snapshot: skills/orca-per-workspace-env/SKILL.md, frontmatter description).
 
@@ -31,6 +33,13 @@ ORCA skills get orca-per-workspace-env
 Inside the lifecycle scripts the `ORCA` placeholder does not apply, because `orca serve` written there runs on the remote machine's own binary (guide: skill-guides/orca-per-workspace-env.md, header note).
 
 The guide carries five conditional references, `provider-vercel.md`, `ssh-host.md`, `docker-ssh.md`, `windows-scripts.md` and `failure-modes.md`, under a read-at-the-gate protocol: run `ORCA skills get orca-per-workspace-env --reference references/<file>.md` at the gate that needs it and read only that document, with `--references` listing the names, rather than reading them up front. If `--reference` is rejected, run `ORCA skills get orca-per-workspace-env --full` once and read only the named section (guide: skill-guides/orca-per-workspace-env.md, Conditional references).
+
+### When to Use
+
+- Open this reference to stand up a new per-workspace environment recipe end to end.
+- Open it to fix an `environmentRecipes` entry in `orca.yaml`.
+- Open it to scaffold provider lifecycle scripts or resolve an `orca vm recipe doctor` failure.
+- Open `orca-cli` instead for ordinary worktree and workspace creation with no recipe involved.
 
 ---
 

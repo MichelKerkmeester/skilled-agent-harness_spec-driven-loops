@@ -9,7 +9,7 @@ trigger_phrases:
   - "orca worker done"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Orchestration
@@ -20,11 +20,20 @@ Use this when an agent must supervise Orca workers or act as a dispatched worker
 
 ## 1. OVERVIEW
 
+### Purpose
+
 The stub declares coordinated supervision of Orca workers: threaded messages, blocking ask/reply flows, task dispatch, `worker_done` and escalation waits, task DAGs, decision gates, coordinator loops and decomposing work across agents (snapshot: skills/orchestration/SKILL.md, frontmatter).
 
 The stub states its own status and the reason for its shape: "This file is a discovery stub, not the usage guide. The full, version-matched Orca orchestration reference is served by the `orca` binary itself — kept out of this file on purpose so it can never drift from the binary that will actually run your commands." (snapshot: skills/orchestration/SKILL.md, stub body). The full guide is deliberately withheld from the stub so it cannot drift from the binary that runs the commands. The guide loads with `ORCA skills get orchestration` (snapshot: skills/orchestration/SKILL.md, Load the version-matched guide before running Orca commands). That prints the compact version-matched guide for the exact binary handling the next commands, covering the normal local coordinator loop. For a conditional action gate such as remote placement, uncertain release recovery or expanded DAG work, load only the reference that gate names with `ORCA skills get orchestration --reference references/<file>.md`, where `--references` lists the names. If the binary rejects `--reference`, run `ORCA skills get orchestration --full` and read the named bundled reference before acting (snapshot: skills/orchestration/SKILL.md, Load the version-matched guide before running Orca commands).
 
 The guide opens by positioning the layer: orchestration records who owns work, which attempt is authoritative, and when supervised work has settled (guide: skill-guides/orchestration.md, Orca orchestration).
+
+### When to Use
+
+- Open this reference for coordinated supervision of Orca workers.
+- Open it for threaded messages, blocking ask/reply flows or task dispatch.
+- Open it for `worker_done` and escalation waits, task DAGs or decision gates.
+- Open it for coordinator loops or for decomposing work across agents.
 
 ---
 

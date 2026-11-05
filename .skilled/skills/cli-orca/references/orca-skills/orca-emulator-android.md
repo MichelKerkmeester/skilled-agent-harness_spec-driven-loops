@@ -8,7 +8,7 @@ trigger_phrases:
   - "adb orca"
 importance_tier: normal
 contextType: general
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Official Orca Skill - Orca Emulator (Android)
@@ -19,6 +19,8 @@ Local reference for the official `orca-emulator-android` skill. The upstream fil
 
 ## 1. OVERVIEW
 
+### Purpose
+
 `orca-emulator-android` declares Android device and emulator control from inside Orca over adb, with the live device view in Orca's emulator pane (snapshot: skills/orca-emulator-android/SKILL.md, frontmatter). Engage it when driving an adb-connected emulator or phone on Windows, Linux or macOS for booting AVDs, taps, swipes, typing, hardware buttons, rotation, app install and launch, runtime permissions, the accessibility tree and logcat (snapshot: skills/orca-emulator-android/SKILL.md, frontmatter).
 
 The stub resolves one executable for the session in this order: the `ORCA_CLI_COMMAND` environment variable when set, then `orca-dev` in a dev checkout that exposes `ORCA_DEV_REPO_ROOT`, then `orca-ide` on Linux outside an Orca-managed terminal, then `orca`. If the selected executable cannot run, report its exact error and stop rather than falling through to another executable, which could silently target a different Orca build (snapshot: skills/orca-emulator-android/SKILL.md, Resolve the CLI for this session). The version-matched guide then loads with:
@@ -28,6 +30,12 @@ ORCA skills get orca-emulator-android
 ```
 
 Prefer `--json` and use the executable's `--help` for commands or flags the guide does not cover. Start Orca with `ORCA open --json` and retry if a command reports that Orca is not running (snapshot: skills/orca-emulator-android/SKILL.md, Load the version-matched guide before running Orca commands).
+
+### When to Use
+
+- Open this reference to drive an adb-connected emulator or phone from inside Orca.
+- Open it on Windows, Linux or macOS when booting AVDs.
+- Open it for taps, swipes, typing, hardware buttons, rotation, app install and launch, runtime permissions, the accessibility tree or logcat.
 
 ---
 
