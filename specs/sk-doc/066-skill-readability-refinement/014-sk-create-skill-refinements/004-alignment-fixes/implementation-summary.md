@@ -15,7 +15,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:79918c4b20b3025be849e48ec0f0f3d5468be50896f97d390258220ee973cd5b"
       session_id: "ae286a84-7880-4ce7-a5fe-7d1335e09c78"
       parent_session_id: null
     completion_pct: 100

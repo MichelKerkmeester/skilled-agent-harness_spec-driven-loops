@@ -106,6 +106,7 @@ and findings belong here.
 | 003-templates-and-fleet | Pending | waits for 002 |
 | 004 alignment fixes | done | recheck 20261105T165214Z-recheck new=0; strict recursive PASSED |
 | 004 unfixed items | done | A-4 + B-04 in 6b1d281efb; repo root operator-local; plain-node recheck resolved=12 new=0 |
+| operator decisions | done | 39 answers saved to 004-alignment-fixes/decision-record.md |
 
 ### Deviations and findings
 
