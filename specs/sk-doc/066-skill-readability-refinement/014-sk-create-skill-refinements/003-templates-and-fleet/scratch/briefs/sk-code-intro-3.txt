@@ -1,0 +1,26 @@
+ROLE: You edit Markdown docs for form only.
+
+CHANGE: In each file listed under FILES, the intro (the one or two sentences directly under the `# ` title) repeats the frontmatter `description`. Rewrite only that intro as a one- or two-sentence hook that tells a reader when to open the file, for example "Open this when you ...". Keep any fact the old intro stated that the description does not carry.
+
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
+DO NOT: touch frontmatter, headings, code blocks, tables, links, or any line other than the intro. Do not start the intro with "This reference/asset/document/file/guide/page explains/covers/describes/documents/lists/shows/contains/outlines" or "The sections/examples/tables/steps/rules below".
+
+FILES (path:line of the intro):
+- .skilled/skills/sk-code/sk-code-skilled/references/javascript/style-guide.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/python/quality-standards.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/python/style-guide.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/build-and-organization.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/determinism-and-parity.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/docs-errors-and-async.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/modeling-collections-and-api.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quality-standards/overview-and-data-ownership.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/collections-imports-and-errors.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/determinism-parity-and-related.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/naming-ordering-and-signatures.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md:16
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/quick-reference/rustdoc-and-cargo.md:15
+- .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/commenting-and-rustdoc.md:15
+
+VERIFY: run `python3 -B .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>` on each file. No line for `render_intro_sentence_restates` or `render_intro_pointer` may remain. Report the last line for each file.

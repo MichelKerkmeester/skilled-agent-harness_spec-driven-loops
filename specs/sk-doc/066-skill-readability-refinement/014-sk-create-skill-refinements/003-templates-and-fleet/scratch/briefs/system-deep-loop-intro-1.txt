@@ -1,0 +1,23 @@
+ROLE: You edit Markdown docs for form only.
+
+CHANGE: In each file listed under FILES, the intro (the one or two sentences directly under the `# ` title) repeats the frontmatter `description`. Rewrite only that intro as a one- or two-sentence hook that tells a reader when to open the file, for example "Open this when you ...". Keep any fact the old intro stated that the description does not carry.
+
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
+DO NOT: touch frontmatter, headings, code blocks, tables, links, or any line other than the intro. Do not start the intro with "This reference/asset/document/file/guide/page explains/covers/describes/documents/lists/shows/contains/outlines" or "The sections/examples/tables/steps/rules below".
+
+FILES (path:line of the intro):
+- .skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md:16
+- .skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:16
+- .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md:17
+- .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md:18
+- .skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md:18
+- .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md:16
+- .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md:17
+- .skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md:16
+- .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md:17
+- .skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md:17
+- .skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md:16
+- .skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md:16
+
+VERIFY: run `python3 -B .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>` on each file. No line for `render_intro_sentence_restates` or `render_intro_pointer` may remain. Report the last line for each file.

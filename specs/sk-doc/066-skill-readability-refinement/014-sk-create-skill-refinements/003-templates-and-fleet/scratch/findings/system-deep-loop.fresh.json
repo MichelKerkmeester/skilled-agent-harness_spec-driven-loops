@@ -1,0 +1,107 @@
+[
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/coverage-graph-schema.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/coverage-graph-schema.md",
+  "20",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+  "19",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+  "19",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+  "151",
+  "H2 \"7.1 ADDITIONAL CONSUMERS\" carries a sub-number; use an integer H2 or make it an H3."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+  "20",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/script-interface-contract.md",
+  "16",
+  "The intro sentence \"Formal contract for the direct `.cjs` script entry points un\" repeats the description (0.61 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/state-format.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/runtime/references/state-format.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-ai-council/references/integration/loop-protocol.md",
+  "16",
+  "The intro sentence \"This reference describes the council loop from packet resolu\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
+  "16",
+  "The intro sentence \"Packet-local artifact layout for completed AI Council runs.\" repeats the description (0.89 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence-recovery.md",
+  "17",
+  "The intro sentence \"This reference covers what happens after convergence detects\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md",
+  "18",
+  "The intro sentence \"One-page operator cheat sheet for the autonomous deep resear\" repeats the description (0.91 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-research/references/state/state-outputs.md",
+  "18",
+  "The intro sentence \"This reference covers human-readable packet outputs.\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence-recovery.md",
+  "16",
+  "The intro sentence \"This reference covers stuck-recovery strategies, the converg\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
+  "17",
+  "The intro sentence \"Stop condition algorithms, quality guards, and stuck recover\" repeats the description (0.79 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/completion-criteria.md",
+  "16",
+  "The intro sentence \"Full definition-of-done checklist for a deep-review loop: lo\" repeats the description (0.86 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md",
+  "17",
+  "The intro sentence \"One-page cheat sheet for the autonomous deep review loop.\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md",
+  "17",
+  "The intro sentence \"This reference documents the config, iteration, event, and l\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/system-deep-loop/deep-review/references/state/state-outputs.md",
+  "16",
+  "The intro sentence \"This reference explains the files operators read during and \" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ]
+]

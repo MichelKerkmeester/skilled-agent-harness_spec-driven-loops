@@ -1,0 +1,167 @@
+[
+ [
+  ".skilled/skills/system-spec-kit/references/config/environment-variables.md",
+  "16",
+  "The intro sentence \"Configuration options via environment variables for the Spec\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/config/hook-system.md",
+  "17",
+  "The intro sentence \"Current hook registration, runtime vocabulary, lifecycle beh\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/debugging/troubleshooting.md",
+  "17",
+  "The intro sentence \"Systematic diagnosis and resolution for retrieval, continuit\" repeats the description (0.69 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/memory/embedder-pluggability.md",
+  "19",
+  "The intro sentence \"Canonical reference for the shared embedding stack at `.skil\" repeats the Purpose (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/memory/save-workflow.md",
+  "16",
+  "The intro sentence \"Complete guide to saving conversation context, execution met\" repeats the description (0.77 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+  "17",
+  "The intro sentence \"Complete configuration guide for memory trigger phrases and \" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/structure/folder-routing.md",
+  "16",
+  "The intro sentence \"Structured-first spec folder routing with alignment scoring \" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+  "16",
+  "The intro sentence \"Spec folder naming conventions, level requirements, and orga\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md",
+  "16",
+  "The intro sentence \"Workflow-assisted pattern for organizing iterative work with\" repeats the description (0.70 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/templates/level-selection-guide.md",
+  "16",
+  "The intro sentence \"Guide to selecting appropriate documentation levels based on\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/templates/level-specifications.md",
+  "16",
+  "The intro sentence \"Complete specifications for all documentation levels using t\" repeats the description (0.62 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/templates/template-guide.md",
+  "16",
+  "The intro sentence \"Guide to template selection, copying, adaptation, and qualit\" repeats the description (0.60 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+  "20",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/templates/template-style-guide.md",
+  "16",
+  "The intro sentence \"Conventions and standards for system-spec-kit templates ensu\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/validation/decision-format.md",
+  "17",
+  "The intro sentence \"Standardized format for documenting gate decisions to ensure\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/validation/five-checks.md",
+  "17",
+  "The intro sentence \"Evaluation framework for validating significant decisions be\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/validation/path-scoped-rules.md",
+  "16",
+  "The intro sentence \"Path-scoped validation for differentiated rules based on fil\" repeats the description (0.86 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/validation/phase-checklists.md",
+  "16",
+  "The intro sentence \"Priority-based checklists for each phase of the SpecKit work\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/validation/validation-rules.md",
+  "17",
+  "The intro sentence \"Complete reference for all validation rules used by the Spec\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/execution-methods.md",
+  "16",
+  "The intro sentence \"How to execute spec folder operations - validation, completi\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+  "24",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
+  "24",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+  "22",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+  "22",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
+  "25",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+  "18",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
+  "18",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+  "18",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md",
+  "16",
+  "The intro sentence \"Checklist for writing spec folders that satisfy the Level co\" repeats the description (0.94 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md",
+  "20",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+  "16",
+  "The intro sentence \"Practical scenarios demonstrating SpecKit workflows for diff\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/system-spec-kit/assets/complexity-decision-matrix.md",
+  "16",
+  "The intro sentence \"Quick reference for complexity-based level selection and fea\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ]
+]

@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet
 **Level:** 3
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-05
 <!-- /ANCHOR:metadata -->
 
@@ -53,19 +53,20 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the changed templates, When `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py` runs on `skill-reference-template.md` and on `skill-asset-template.md`, Then each prints `Total issues: 0` | command output in `goal.md` section 4 | Unmet | - |
-| AC-002 | REQ-002 | Given the final tree, When `rg -n "^## 1\. AT A GLANCE" .skilled/skills --glob 'README.md' --glob '*readme-template.md'` runs, Then it prints nothing | command output | Unmet | - |
-| AC-003 | REQ-003 | Given the final state, When `python3 -c "import sys;sys.path.insert(0,'.skilled/skills/sk-doc/sk-create-skill/scripts');import package_skill as p;print(p.RENDER_STAGED_CODES,p.RENDER_STAGED_SCOPES)"` and `python3 -c "import json;print(json.load(open('.skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json'))['debt'])"` run, Then the first prints `() ()` and the second prints `{}` | command output | Unmet | - |
-| AC-004 | REQ-003 | Given each skill commit in the phase, When `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --base <phase start sha>` runs on its changed docs, Then it reports no hard finding, and the run is logged per skill | guard output per skill in `goal.md` section 4 | Unmet | - |
-| AC-005 | REQ-004 | Given the templates, When `rg -n "same as intro" .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` runs, Then it prints nothing | command output | Unmet | - |
-| AC-006 | REQ-005 | Given the readme rules, When `python3 -c "import json;print(json.load(open('.skilled/skills/sk-doc/shared/assets/template-rules.json'))['documentTypes']['readme'].get('renderChecks'))"` runs, Then it prints `True` (today `None`), and a fixture whose WHAT IS IN THE PACKAGE section is a flat list fires the inventory check | command output and pytest case | Unmet | - |
-| AC-007 | REQ-006 | Given the SKILL.md template, When `grep -cE '^\\?## [0-9]+\. REFERENCES' .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` runs, Then it prints `2`, and the scaffold template's last H2 carries the same REFERENCES name | command output | Unmet | - |
-| AC-008 | REQ-007 | Given the size rules, When `rg -n "800 words" .skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` runs, Then it prints nothing, and the drift test that compares the size table with `package_skill.py` passes | command output and test output | Unmet | - |
-| AC-009 | REQ-008 | Given the 80 references without `### Purpose`, When the T002 list under `scratch/` is read, Then each doc carries a verdict, fixed or frozen with its inbound reference | artifact under `scratch/` | Unmet | - |
-| AC-010 | REQ-003 | Given the final state, When `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` runs, Then its last line is `all sk-doc script tests passed`, and `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/*.test.cjs` reports `fail 0` | command output | Unmet | - |
-| AC-011 | REQ-003 | Given empty staged sets, When `for s in .skilled/skills/*/; do python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py "$s" --check --strict >/dev/null 2>&1; rc=$?; echo "$(basename "$s") exit=$rc"; done` runs, Then it prints `exit=0` for all 13 skills, and the same loop without the redirect prints no `render advisory:` line | command output | Unmet | - |
-| AC-012 | REQ-003 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | command output | Unmet | - |
-| AC-013 | REQ-003 | Given the packet, When `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements --recursive --strict` runs, Then it prints `RESULT: PASSED` for the parent and all three children | command output | Unmet | - |
+| AC-001 | REQ-001 | Given the changed templates, When `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py` runs on `skill-reference-template.md` and on `skill-asset-template.md`, Then each prints `Total issues: 0` | `Total issues: 0` for both templates, rerun at 45af20eb71 | Met | - |
+| AC-002 | REQ-002 | Given the final tree, When `rg -n "^## 1\. AT A GLANCE" .skilled/skills --glob 'README.md' --glob '*readme-template.md'` runs, Then it prints nothing | `rg` printed nothing at 45af20eb71 | Met | - |
+| AC-003 | REQ-003 | Given the final state, When `python3 -c "import sys;sys.path.insert(0,'.skilled/skills/sk-doc/sk-create-skill/scripts');import package_skill as p;print(p.RENDER_STAGED_CODES,p.RENDER_STAGED_SCOPES)"` and `python3 -c "import json;print(json.load(open('.skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json'))['debt'])"` run, Then the first prints `() ()` and the second prints `{}` | printed `() ()` and `{}` at 45af20eb71 | Met | - |
+| AC-004 | REQ-003 | Given each skill commit in the phase, When `python3 .skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py --base <phase start sha>` runs on its changed docs, Then it reports no hard finding, and the run is logged per skill | guard output per skill in `goal.md` section 4 | Superseded | ADR-003 |
+| AC-005 | REQ-004 | Given the templates, When `rg -n "same as intro" .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` runs, Then it prints nothing | `rg` printed nothing | Met | - |
+| AC-006 | REQ-005 | Given the readme rules, When `python3 -c "import json;print(json.load(open('.skilled/skills/sk-doc/shared/assets/template-rules.json'))['documentTypes']['readme'].get('renderChecks'))"` runs, Then it prints `True` (today `None`), and a fixture whose WHAT IS IN THE PACKAGE section is a flat list fires the inventory check | printed `True`; `test_code_folder_readme.py` SUMMARY `negatives=12 ... failures=0` with the package-list and structure-tree fixtures | Met | - |
+| AC-007 | REQ-006 | Given the SKILL.md template, When `grep -cE '^\\?## [0-9]+\. REFERENCES' .skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md` runs, Then it prints `2`, and the scaffold template's last H2 carries the same REFERENCES name | printed `2`; the scaffold last H2 is `## 7. REFERENCES AND RELATED RESOURCES` | Met | - |
+| AC-008 | REQ-007 | Given the size rules, When `rg -n "800 words" .skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` runs, Then it prints nothing, and the drift test that compares the size table with `package_skill.py` passes | `rg` printed nothing; `test_skill_size_table.py` 3 passed | Met | - |
+| AC-009 | REQ-008 | Given the 80 references without `### Purpose`, When the T002 list under `scratch/` is read, Then each doc carries a verdict, fixed or frozen with its inbound reference | `scratch/no-purpose-verdicts.md` carries one verdict per doc | Met | - |
+| AC-010 | REQ-003 | Given the final state, When `bash .skilled/skills/sk-doc/scripts/tests/run-script-tests.sh` runs, Then its last line is `all sk-doc script tests passed`, and `node --test .skilled/skills/sk-doc/sk-create-skill/scripts/tests/*.test.cjs` reports `fail 0` | `all sk-doc script tests passed`; node `pass 108, fail 0` | Met | - |
+| AC-011 | REQ-003 | Given empty staged sets, When `for s in .skilled/skills/*/; do python3 .skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py "$s" --check --strict >/dev/null 2>&1; rc=$?; echo "$(basename "$s") exit=$rc"; done` runs, Then it prints `exit=0` for all 13 skills, and the same loop without the redirect prints no `render advisory:` line | `scratch/strict-loop-13.txt`: 13 of 13 `exit=0`, 0 `render advisory:` lines | Met | - |
+| AC-012 | REQ-003 | Given the final state, When `node --test .skilled/bin/tests/compiled-route-*.test.cjs` runs, Then it reports `fail 0` | `pass 101, fail 0` | Met | - |
+| AC-013 | REQ-003 | Given the packet, When `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements --recursive --strict` runs, Then it prints `RESULT: PASSED` for the parent and all three children | `validate.sh --recursive --strict` printed `RESULT: PASSED` for the parent and three children | Met | - |
+| AC-014 | REQ-003 | Given each skill commit in the phase, When `doc-rewrite-guard.py --base <commit>^` runs on its changed docs, Then every hard finding is either the operator-approved pinned intro or a citation whose citing line names another file, and each is listed with its commit | `scratch/guard-fleet.txt` and the T011 to T023 evidence: six hard findings in four commits, all mapped | Met | - |
 
 ### Status values
 
@@ -91,7 +92,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and no criterion is met yet.
+Every criterion is Met, and AC-004 is superseded by AC-014 under ADR-003.
 <!-- /ANCHOR:closure -->

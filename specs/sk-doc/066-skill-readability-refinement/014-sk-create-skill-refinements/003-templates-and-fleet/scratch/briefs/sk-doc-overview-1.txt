@@ -1,0 +1,31 @@
+ROLE: You edit Markdown docs for form only.
+
+CHANGE: In each file listed under FILES, the `## 1. OVERVIEW` section must open with two subsections, in this order: `### Purpose`, then `### When to Use` for a file under `references/`, or `### Purpose`, then `### Usage` for a file under `assets/`. Restructure only the OVERVIEW:
+1. Prose that sits between the OVERVIEW heading and its first `###` goes under a new `### Purpose`.
+2. If an existing `###` subsection already states the purpose (for example "Core Purpose", "What This Covers", "Purpose of ..."), rename it `### Purpose` and move it first.
+3. If an existing `###` subsection already says when or how to use the file (for example "When to Use This Reference", "Use This When", "How to Use", "Usage Notes"), rename it to the second heading and move it second.
+4. If no such text exists, add the second subsection with two to four bullets that only restate when to open the file, using words already in the file or its description.
+Keep every other OVERVIEW subsection after these two, in its original order, with its text unchanged.
+
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
+DO NOT: reword existing sentences, edit code blocks, tables, frontmatter, or any section other than OVERVIEW. Do not renumber `##` sections.
+
+FILES:
+- .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+- .skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md
+- .skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md
+- .skilled/skills/sk-doc/sk-create-agent/references/permission-design.md
+- .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md
+- .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
+- .skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md
+- .skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md
+- .skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md
+- .skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md
+- .skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md
+- .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
+- .skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md
+- .skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md
+- .skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md
+
+VERIFY: run `python3 -B .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>` on each file. No line for `render_overview_subsections` may remain. Report the last line for each file.

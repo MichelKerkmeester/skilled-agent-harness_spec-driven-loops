@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-05 |
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | `../spec.md` |
@@ -113,9 +113,9 @@ Turn the 14 refinements in `scratch/review-report.md` into shipped checks, one s
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-render-checks-and-gate/ | Validator checks for items 1, 7, 8, 11, 13 and 14, the strict gate (2), the wider scan and CI sweep (3) and the ledger ratchet (4) | Pending |
-| 2 | 002-exempt-and-rewrite-guard/ | One exempt loader with a pinned list (5) and the shipped rewrite guard with its workflow steps (6) | Pending |
-| 3 | 003-templates-and-fleet/ | Template fixes for items 1, 8, 9, 10 and 12, README render checks, then the fleet clean-up under the rewrite guard | Pending |
+| 1 | 001-render-checks-and-gate/ | Validator checks for items 1, 7, 8, 11, 13 and 14, the strict gate (2), the wider scan and CI sweep (3) and the ledger ratchet (4) | Complete |
+| 2 | 002-exempt-and-rewrite-guard/ | One exempt loader with a pinned list (5) and the shipped rewrite guard with its workflow steps (6) | Complete |
+| 3 | 003-templates-and-fleet/ | Template fixes for items 1, 8, 9, 10 and 12, README render checks, then the fleet clean-up under the rewrite guard | Complete |
 
 ### Phase Transition Rules
 

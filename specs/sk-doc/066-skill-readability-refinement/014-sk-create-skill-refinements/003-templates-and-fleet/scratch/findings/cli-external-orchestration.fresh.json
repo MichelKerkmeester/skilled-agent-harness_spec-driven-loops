@@ -1,0 +1,62 @@
+[
+ [
+  ".skilled/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md",
+  "19",
+  "The intro sentence \"Comprehensive reference for all Claude Code CLI commands, fl\" repeats the description (0.60 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-claude-code/references/integration-patterns.md",
+  "18",
+  "The intro sentence \"Proven patterns for orchestrating Claude Code CLI from exter\" repeats the description (0.69 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-claude-code/assets/prompt-templates.md",
+  "17",
+  "The intro sentence \"Copy-paste ready prompt templates for common Claude Code CLI\" repeats the description (0.61 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-codex/references/integration-patterns.md",
+  "18",
+  "The intro sentence \"Proven patterns for orchestrating Codex CLI from any AI assi\" repeats the description (0.65 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-cursor/references/cli-reference.md",
+  "18",
+  "The intro sentence \"Comprehensive reference for all Cursor CLI commands, flags, \" repeats the description (0.67 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-cursor/references/integration-patterns.md",
+  "18",
+  "The intro sentence \"Proven patterns for orchestrating Cursor CLI from any AI ass\" repeats the description (0.65 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md",
+  "18",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-devin/references/integration-patterns.md",
+  "18",
+  "The intro sentence \"Proven patterns for orchestrating Devin CLI from any AI assi\" repeats the description (0.65 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-hermes/assets/prompt-quality-card.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-opencode/references/permissions-matrix.md",
+  "17",
+  "The intro sentence \"Structured permissions-matrix schema, resolution semantics, \" repeats the description (0.81 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-pi/references/integration-patterns.md",
+  "17",
+  "The intro sentence \"This reference describes how the calling AI should integrate\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/cli-external-orchestration/cli-pi/references/native-skills-and-extensions.md",
+  "17",
+  "The intro sentence \"This reference covers Pi's own resource model, which is dist\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ]
+]

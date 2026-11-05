@@ -31,7 +31,7 @@ The templates authors copy from contradict the checks phase 001 adds, so every n
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-05 |
 | **Branch** | `worktrees/315-frontend-reference-restructure` |
 | **Parent Spec** | ../spec.md |

@@ -85,6 +85,10 @@ and findings belong here.
 | T010 guard rule | Amended | operator 2026-11-05: template hard findings map to T004-T009 in scratch/guard-t010-map.md |
 | README switch order | Deviation | renderChecks for readme and README.md scan scope move to after the last fleet fold, so leaf gates stay green between skill commits |
 | T010 review | FIX then fixed | opus-medium 2 P1 + 10 P2: inventory heading anchored and tree names read from the inventory section (2 new negatives, mutation-checked), parent README 4.x subsections renumbered, size-table effect column tested, RS-001 wording, stale checklist and size lines, recommended lists drop RELATED RESOURCES. Not changed: hub and packet scaffolds and core-standards fix template keep the hub shape, out o... |
+| T011-T023 fleet guard | done | 14 commits f81581e246..45af20eb71; 0 hard in 10, 6 hard in 4 (1 approved pinned intro, 5 basename false positives) mapped in scratch/guard-fleet.txt per ADR-003 |
+| T007+T024 render switch | done | 45af20eb71: staged sets () (), readme renderChecks on, README.md scanned; 13/13 strict exit 0, 0 advisories |
+| T025 final gates | done | script tests pass, pytest 402 passed, node 108/0, compiled-route 101/0, sweep 55 PASS, 55 leaves render_warnings=0 invalid=0 |
+| T026 review | done | opus-medium over 273224bbed..45af20eb71: PASS, 0 P0/P1, 3 P2 (inventory search read the whole doc, a dropped SKILL.md §3-§5 cite, an Oxford comma) all fixed in 8a3d2e24e3 |
 
 ### Deviations and findings
 

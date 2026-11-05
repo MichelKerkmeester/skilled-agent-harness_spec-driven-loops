@@ -1,0 +1,20 @@
+f81581e246 doc-rewrite-guard: 2 files, 0 hard, 0 advisory
+74d77ccbe8 doc-rewrite-guard: 2 files, 0 hard, 0 advisory
+d0e5da9399 doc-rewrite-guard: 20 files, 0 hard, 17 advisory
+4a0ea8c233 doc-rewrite-guard: 10 files, 0 hard, 0 advisory
+af10403311 doc-rewrite-guard: 4 files, 0 hard, 2 advisory
+2ff7c32e9c doc-rewrite-guard: 10 files, 0 hard, 10 advisory
+da40e0c410 doc-rewrite-guard: 37 files, 0 hard, 12 advisory
+23cf9e350b doc-rewrite-guard: 58 files, 1 hard, 57 advisory
+HARD protected .skilled/skills/sk-code/shared/references/universal/code-quality-standards.md: pinned doc, pinned by sk-code/sk-code-review/scripts/check-rule-copies.js
+27590faa2e doc-rewrite-guard: 38 files, 2 hard, 18 advisory
+HARD cited-section .skilled/skills/sk-design/sk-design-diagram/README.md: section 1 cited by .skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md:241 was ret
+HARD cited-section .skilled/skills/sk-design/sk-design-fundamentals/README.md: section 1 cited by .skilled/skills/sk-design/benchmark/reports/2026-09-27--manual-testing-playbook--hub-routing-replay/skill-benchmark-report.md:241 wa
+5c5bd22228 doc-rewrite-guard: 69 files, 2 hard, 14 advisory
+HARD cited-section .skilled/skills/sk-doc/README.md: section 2 cited by .skilled/skills/sk-code/README.md:151 was retitled
+HARD cited-section .skilled/skills/sk-doc/README.md: section 8 cited by .skilled/skills/sk-code/README.md:151 was retitled
+12c592ec17 doc-rewrite-guard: 20 files, 0 hard, 25 advisory
+647d7e871f doc-rewrite-guard: 16 files, 0 hard, 15 advisory
+d3e9fbdefc doc-rewrite-guard: 29 files, 1 hard, 29 advisory
+HARD cited-section .skilled/skills/system-spec-kit/README.md: section 1 cited by .skilled/skills/system-spec-kit/feature-catalog/feature-flag-reference/runtime-config-contract.md:72 was retitled
+45af20eb71 doc-rewrite-guard: 3 files, 0 hard, 0 advisory

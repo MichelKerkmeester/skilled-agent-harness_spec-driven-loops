@@ -1,0 +1,482 @@
+[
+ [
+  ".skilled/skills/sk-doc/shared/references/core-standards.md",
+  "16",
+  "The intro sentence \"Filename conventions, document type detection, and structura\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-doc/shared/references/validation.md",
+  "16",
+  "The intro sentence \"Quality gates, DQI scoring, and script-assisted AI analysis \" repeats the description (0.67 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/agent-vs-skill-vs-command.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/permission-design.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/references/permission-design.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+  "22",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+  "22",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/case-studies.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/references/shared/worked-example.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+  "46",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md",
+  "46",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
+  "45",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md",
+  "45",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+  "48",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+  "48",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md",
+  "37",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-benchmark/assets/shared/source-template.md",
+  "37",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md",
+  "19",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/references/argument-hints-and-modes.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-presentation-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-presentation-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+  "24",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+  "24",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-command/assets/command-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/references/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/references/examples.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+  "22",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-template.md",
+  "22",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-child-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-phase-parent-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-goal/assets/goal-top-level-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+  "24",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-conversation-snippet-template.md",
+  "24",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+  "25",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+  "25",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+  "20",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-quality-control/references/validation-and-enforcement.md",
+  "16",
+  "The intro sentence \"How a create-quality-control run validates and enforces stan\" repeats the Purpose (0.76 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "23",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md",
+  "23",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+  "24",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/references/creation-standards.md",
+  "24",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
+  "26",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rule-template.md",
+  "26",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md",
+  "23",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-repo-rule/assets/repo-rules-router-template.md",
+  "23",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/compiled-routing-architecture.md",
+  "17",
+  "The intro sentence \"This reference explains what the router actually serves, the\" points at the content instead of saying when to open the file; rewrite it as a hook."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/advisor-index-handoff.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/overview.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+  "20",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md",
+  "20",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/shared/validation-and-packaging.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+  "33",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
+  "36",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-root-router-template.md",
+  "36",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
+  "18",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-procedure-template.md",
+  "18",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+  "21",
+  "OVERVIEW has no \"### Purpose\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-router-template.md",
+  "21",
+  "OVERVIEW has no \"### Usage\" subsection; open it with Purpose then Usage."
+ ],
+ [
+  ".skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md",
+  "21",
+  "OVERVIEW has no \"### When to Use\" subsection; open it with Purpose then When to Use."
+ ]
+]

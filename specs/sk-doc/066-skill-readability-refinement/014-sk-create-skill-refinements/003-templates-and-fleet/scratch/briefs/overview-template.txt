@@ -7,6 +7,8 @@ CHANGE: In each file listed under FILES, the `## 1. OVERVIEW` section must open 
 4. If no such text exists, add the second subsection with two to four bullets that only restate when to open the file, using words already in the file or its description.
 Keep every other OVERVIEW subsection after these two, in its original order, with its text unchanged.
 
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
 DO NOT: reword existing sentences, edit code blocks, tables, frontmatter, or any section other than OVERVIEW. Do not renumber `##` sections.
 
 FILES:

@@ -1,0 +1,26 @@
+ROLE: You edit Markdown docs for form only.
+
+CHANGE: In each file listed under FILES, the intro (the one or two sentences directly under the `# ` title) repeats the frontmatter `description`. Rewrite only that intro as a one- or two-sentence hook that tells a reader when to open the file, for example "Open this when you ...". Keep any fact the old intro stated that the description does not carry.
+
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
+DO NOT: touch frontmatter, headings, code blocks, tables, links, or any line other than the intro. Do not start the intro with "This reference/asset/document/file/guide/page explains/covers/describes/documents/lists/shows/contains/outlines" or "The sections/examples/tables/steps/rules below".
+
+FILES (path:line of the intro):
+- .skilled/skills/system-spec-kit/assets/complexity-decision-matrix.md:16
+- .skilled/skills/system-spec-kit/references/config/environment-variables.md:16
+- .skilled/skills/system-spec-kit/references/config/hook-system.md:17
+- .skilled/skills/system-spec-kit/references/debugging/troubleshooting.md:17
+- .skilled/skills/system-spec-kit/references/memory/embedder-pluggability.md:19
+- .skilled/skills/system-spec-kit/references/memory/save-workflow.md:16
+- .skilled/skills/system-spec-kit/references/memory/trigger-config.md:17
+- .skilled/skills/system-spec-kit/references/structure/folder-routing.md:16
+- .skilled/skills/system-spec-kit/references/structure/folder-structure.md:16
+- .skilled/skills/system-spec-kit/references/structure/sub-folder-versioning.md:16
+- .skilled/skills/system-spec-kit/references/templates/level-selection-guide.md:16
+- .skilled/skills/system-spec-kit/references/templates/level-specifications.md:16
+- .skilled/skills/system-spec-kit/references/templates/template-guide.md:16
+- .skilled/skills/system-spec-kit/references/templates/template-style-guide.md:16
+- .skilled/skills/system-spec-kit/references/validation/decision-format.md:17
+
+VERIFY: run `python3 -B .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>` on each file. No line for `render_intro_sentence_restates` or `render_intro_pointer` may remain. Report the last line for each file.

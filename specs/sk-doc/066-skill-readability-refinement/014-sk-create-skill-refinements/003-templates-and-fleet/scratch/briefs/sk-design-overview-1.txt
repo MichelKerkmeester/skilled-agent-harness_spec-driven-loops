@@ -1,0 +1,31 @@
+ROLE: You edit Markdown docs for form only.
+
+CHANGE: In each file listed under FILES, the `## 1. OVERVIEW` section must open with two subsections, in this order: `### Purpose`, then `### When to Use` for a file under `references/`, or `### Purpose`, then `### Usage` for a file under `assets/`. Restructure only the OVERVIEW:
+1. Prose that sits between the OVERVIEW heading and its first `###` goes under a new `### Purpose`.
+2. If an existing `###` subsection already states the purpose (for example "Core Purpose", "What This Covers", "Purpose of ..."), rename it `### Purpose` and move it first.
+3. If an existing `###` subsection already says when or how to use the file (for example "When to Use This Reference", "Use This When", "How to Use", "Usage Notes"), rename it to the second heading and move it second.
+4. If no such text exists, add the second subsection with two to four bullets that only restate when to open the file, using words already in the file or its description.
+Keep every other OVERVIEW subsection after these two, in its original order, with its text unchanged.
+
+VOICE: no em dashes, no semicolons, no Oxford comma before "and" or "or" in a list. Add no fact the file does not already state.
+
+DO NOT: reword existing sentences, edit code blocks, tables, frontmatter, or any section other than OVERVIEW. Do not renumber `##` sections.
+
+FILES:
+- .skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/approval-workflow-loops.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/decision-tree-flow.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/parallel-execution.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/simple-workflow.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/system-architecture-swimlane.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/ascii-patterns/user-onboarding.md
+- .skilled/skills/sk-design/sk-design-diagram/assets/style-reference/harness-diagram/origin.md
+- .skilled/skills/sk-design/sk-design-diagram/references/foundations/onboarding.md
+- .skilled/skills/sk-design/sk-design-diagram/references/foundations/output-spec.md
+- .skilled/skills/sk-design/sk-design-diagram/references/import-export/export.md
+- .skilled/skills/sk-design/sk-design-diagram/references/import-export/import-drawio.md
+- .skilled/skills/sk-design/sk-design-diagram/references/import-export/import-mermaid.md
+- .skilled/skills/sk-design/sk-design-diagram/references/primitives/primitive-icons.md
+- .skilled/skills/sk-design/sk-design-fundamentals/assets/token-starter-set.md
+
+VERIFY: run `python3 -B .skilled/skills/sk-doc/shared/scripts/validate_document.py <file>` on each file. No line for `render_overview_subsections` may remain. Report the last line for each file.

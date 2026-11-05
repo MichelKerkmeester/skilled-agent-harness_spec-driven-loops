@@ -1,0 +1,42 @@
+[
+ [
+  ".skilled/skills/sk-git/references/commit-workflows.md",
+  "18",
+  "The intro sentence \"Complete workflow documentation for professional commit prac\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/finish-workflows.md",
+  "20",
+  "The intro sentence \"Complete workflow documentation for completing development w\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/github-mcp-integration.md",
+  "17",
+  "The intro sentence \"Programmatic access to GitHub's remote operations via Code M\" repeats the description (0.62 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/gitkraken-mcp-integration.md",
+  "17",
+  "The intro sentence \"Programmatic access to GitKraken's tools via Code Mode (`cal\" repeats the Purpose (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/large-reorg-playbook.md",
+  "18",
+  "The intro sentence \"Step-ordered runbook for a LARGE rename/reorg (hundreds-to-t\" repeats the description (0.86 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/quick-reference.md",
+  "17",
+  "The intro sentence \"One-page cheat sheet for git-worktrees, git-commit, and git-\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/shared-patterns.md",
+  "18",
+  "The intro sentence \"Common patterns, commands, and conventions used across all g\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ],
+ [
+  ".skilled/skills/sk-git/references/worktree-workflows.md",
+  "19",
+  "The intro sentence \"Complete workflow documentation for creating isolated git wo\" repeats the description (1.00 overlap); say what the reader gets instead."
+ ]
+]

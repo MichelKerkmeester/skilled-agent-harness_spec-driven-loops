@@ -17,6 +17,8 @@
       "templates and fleet tasks",
       "templates and fleet acceptance criteria",
       "templates and fleet goal",
+      "guard hard finding mapping",
+      "fleet guard false positive",
       "templates and fleet implementation summary"
     ],
     "key_topics": [
@@ -28,19 +30,20 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "skill-reference-template",
-      "skill-asset-template"
+      "guard",
+      "hard",
+      "finding",
+      "mapping"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
       ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
@@ -54,8 +57,7 @@
       ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
       ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py",
-      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
-      "scratch/start-sha.txt"
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json"
     ],
     "entities": [
       {
@@ -86,6 +88,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -173,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "start-sha.txt",
-        "kind": "file",
-        "path": "scratch/start-sha.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,8 +207,8 @@
     ],
     "causal_summary": "`skill-reference-template.md:20-36` and `skill-asset-template.md:18-20` break their own OVERVIEW skeleton, and their intro guidance says `description: [One-line description - same as intro]` and calls the intro a summary",
     "created_at": "2026-11-05T06:39:44Z",
-    "last_save_at": "2026-11-05T11:52:41.090Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-05T13:06:19.825Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,15 +216,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:00352b1e7801bcb0630dd0fc547b43f5c0557b67f426e0b4091d57f7acc6aad6",
+    "source_fingerprint": "sha256:72f0b51dd851b748b56c92e0b524b43551fd3a8d7dcd1aedef46c74cce8867a3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c45f90628d67f430b26976fdfe126a96b0c776e0c76d7275db42df34e348782",
+      "spec.md": "b5ecb9dca024ddc85a47a6af2d064470d72d0abd0ac1756dfb138d3d128c8af9",
       "plan.md": "c7e068b147ec548b07d954cac25a12c856d4a1fc54e9f36c7c03378dcd42197a",
-      "tasks.md": "93bd08a8b00c431f51a88baf0f170cbbce1817890c446ef0a6dc68ddb97da463",
-      "implementation-summary.md": "86f5b9efb56eb866553a540d4ac4fda86021eec850f2cb37a59ed92e78ac0d71"
+      "tasks.md": "28539ca3893866a22bc55d89fae13dcf933515f7e9e75f7ffbc2cb1adc5f4052",
+      "decision-record.md": "115e965872e696a2543c69811fae66869661885d1ca626be551eac68b61cd22a",
+      "implementation-summary.md": "7409563f4a65dda21b075ae00ff909df3f9603f9f645a77e59cc3b59cd6c9c38"
     },
     "last_active_at": null
   }
