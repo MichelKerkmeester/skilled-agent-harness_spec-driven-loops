@@ -70,6 +70,7 @@ Run over 65 pages: 432 tight dividers, 0 gaps left, 65 of 65 markdown read-backs
 - Record in section 4 that no tool deletes a document or a page
 - Bump the mode to 1.2.10.0 with a changelog entry and regenerate the Hermes copy
 - Make the import check and the gap removal a required routine after every page write, with a Code Mode program that runs both, in `references/mcp-tools.md` section 8 (mode 1.2.11.0)
+- Restore the sk-create-benchmark trigger the hub vocabulary routes, and let the document validator accept a deliberate section 0
 - Move the compiled-routing directive in the `mcp-tooling` and `sk-doc` hub `ROUTER.md` files back into `## 5. MACHINE ROUTER`, where `validate_skill_package.py` reads it, and release each hub one patch step
 
 ### Out of Scope

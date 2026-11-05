@@ -61,6 +61,8 @@ contextType: "general"
 - [x] T012 Run the sk-create-skill fleet checks. Verify: `ci-leaf-manifest-freshness`, `ci-skill-derived-freshness`, `ci-skill-root-metadata` and `validate-playbook-topology` exit 0, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up`.
 - [x] T013 Add the required routine and its program (`M/references/mcp-tools.md` 1.1.5.0, `M/SKILL.md` 1.2.11.0, `M/references/troubleshooting.md` 1.0.3.0, `M/changelog/v1.2.11.0.md`). Verify: `node --check` on the extracted program prints nothing and `package_skill.py --check --strict` passes.
 - [x] T014 Run the program on a gapped scratch page (doc `2kyq4d0p-147455`). Verify: the report shows `gapsLeft: 0` and `textUnchanged: true`. Logged out it reported `login: true` and touched nothing. Logged in it reported `gapsBefore: 3`, `presses: 3`, `gapsLeft: 0`, `textUnchanged: true`, `importDiff: []`. A push with a paragraph above a divider reported `importDiff: ["Intro line.", "* * *"]`, the line ClickUp turned into `## Intro line.`
+- [x] T015 Restore the `benchmark/README.md` trigger in `sk-doc/sk-create-benchmark/SKILL.md` (1.6.6.0), which a readability pass had pluralized. Verify: `ci-hub-vocabulary-source.cjs --hub sk-doc` prints `RESULT: PASSED`, where it reported drift=1.
+- [x] T016 Let `validate_document.py` accept a deliberate section 0 as the start of the H2 sequence (`sk-doc/shared/scripts/validate_document.py`, new `scripts/tests/test_h2_numbering_start.py`). Verify: the test passes 5 of 5 and fails 2 of 5 on the old validator, `mcp-click-up` and `mcp-notion` `SKILL.md` report 0 issues, and 45 of 46 sk-doc tests pass, the one failure being `test_readme_manifest.py`, which fails the same way without this change.
 <!-- /ANCHOR:phase-3 -->
 
 ---
