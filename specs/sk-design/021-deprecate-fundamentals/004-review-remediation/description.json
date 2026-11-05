@@ -1,0 +1,18 @@
+{
+  "specFolder": "sk-design/021-deprecate-fundamentals/004-review-remediation",
+  "description": "Phase 4: review-remediation",
+  "keywords": [
+    "phase",
+    "review-remediation"
+  ],
+  "lastUpdated": "2026-11-05T10:33:16.418Z",
+  "specId": "004",
+  "folderSlug": "review-remediation",
+  "parentChain": [
+    "sk-design",
+    "021-deprecate-fundamentals"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

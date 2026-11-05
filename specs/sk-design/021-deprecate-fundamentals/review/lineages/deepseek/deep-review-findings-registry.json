@@ -1,0 +1,376 @@
+{
+  "sessionId": "fanout-deepseek-1793872885543-931fzb",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-05T10:15:24.345Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Visual-review vocabulary never reaches the frontend surface",
+      "file": ".skilled/skills/sk-code/hub-router.json",
+      "line": 90,
+      "description": "The documented visual-review phrases do not reach sk-code-frontend; replaying 'design review findings' and 'design review of this pricing page' resolves to sk-code-review alone.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "grep hits the phrase in hub-router.json:90 and sk-code-frontend/ROUTER.md:48; the replay of 'review this screen' returns surfaceBundle [sk-code-review, sk-code-frontend].",
+      "affectedSurfaceHints": [
+        "sk-code hub-router",
+        "sk-code-frontend ROUTER",
+        "compiled-route",
+        "web-visual-hierarchy"
+      ],
+      "contentHash": "23af1185fcbdcb2f7d1e2ca463ea69e5365665fd6f59a79425861022e3e9c2ad",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "Graph metadata still advertises the retired values vocabulary",
+      "file": ".skilled/skills/sk-design/graph-metadata.json",
+      "line": 178,
+      "description": "sk-design graph-metadata.json keeps ten retired fundamentals phrases in derived.intent_signals while the phase summary says they were removed and the top-level intent_signals carries none of them.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "grep -n over the file finds the ten phrases only inside derived.intent_signals.",
+      "affectedSurfaceHints": [
+        "sk-design graph metadata",
+        "advisor metadata consumers"
+      ],
+      "contentHash": "cfebd9dfda59726bed4e278b5b55d249cff71ccad406b33ab68715e5a93840bf",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "Phase 2 changed-file table names a file that never changed",
+      "file": "specs/sk-design/021-deprecate-fundamentals/002-retire-fundamentals/implementation-summary.md",
+      "line": 75,
+      "description": "The table says mcp-figma/manual-testing-playbook/figma-to-code/node-to-token-markup.md was modified to point at the frontend reference, but the file is byte-identical to baseline 10474a9567.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "git diff --stat for the path prints nothing and grep for fundamentals or web-visual-values in the file prints no line.",
+      "affectedSurfaceHints": [
+        "phase 2 implementation summary",
+        "mcp-figma playbook audit"
+      ],
+      "contentHash": "4ef69bdd612f63ba681c05c8023620f4ae6af6645eb5976f7d0ce97bb9cc9eb9",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-004",
+      "severity": "P2",
+      "title": "Phase 1 routing criterion mixes a five-prompt baseline with an eight-prompt replay",
+      "file": "specs/sk-design/021-deprecate-fundamentals/001-frontend-upgrade/acceptance-criteria.md",
+      "line": 62,
+      "description": "AC-005 says five baseline value prompts while its verification cell claims all eight value, review and motion prompts, and the packet never lists the eight.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "The two counts appear only in the AC row and the phase summary; the replay output is not recorded per prompt.",
+      "affectedSurfaceHints": [
+        "phase 1 acceptance criteria",
+        "phase 1 implementation summary",
+        "routing evidence"
+      ],
+      "contentHash": "290c5a8d58a2fb8e0f6cca726e2fa064cc8b7cfc8ec2965c38b5167e1b602c45",
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-005",
+      "severity": "P2",
+      "title": "Hub canonical surface description still omits the three visual references",
+      "file": ".skilled/skills/sk-code/SKILL.md",
+      "line": 44,
+      "description": "The sk-code surface table, surface list and layout comment describe the frontend surface without the three visual references or tokens.css, and description.json keeps the old wording and a stale lastUpdated.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "grep for web-visual-values in sk-code/SKILL.md prints no line; the surface README and surface SKILL both name the file.",
+      "affectedSurfaceHints": [
+        "sk-code SKILL",
+        "sk-code description.json",
+        "surface discovery"
+      ],
+      "contentHash": "8671d8a8a1a7667da53361f26b2d34357f9bdde3fdbe03bc77a8574e1e9c8c22",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-006",
+      "severity": "P2",
+      "title": "Shadow-animation performance rule did not move with the depth guidance",
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+      "line": 247,
+      "description": "The retired depth-and-detail rule that avoids transitioning box-shadow by animating a pseudo-element's opacity is absent from both new shadow and motion references.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "grep for pseudo-element in the two new files hits only the touch-target M9 rule, not shadow animation; the old section has no successor.",
+      "affectedSurfaceHints": [
+        "web-visual-values elevation",
+        "web-motion-and-interaction performance",
+        "tokens.css shadow set"
+      ],
+      "contentHash": "6f8eb7afe6e7c8a4a602bcced33091429e8ca128fbd3b5b97aed2f9ed413c148",
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-007",
+      "severity": "P2",
+      "title": "Session-expiry exception can be read as client-side authorization",
+      "file": ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+      "line": 361,
+      "description": "M33 permits a client-side redirect when a session expires while the page is open and never says data calls must still be refused server-side, so a reader can treat the UX redirect as the authorization boundary.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "grep for auth in the three new references returns only M33; no adjacent item covers session expiry.",
+      "affectedSurfaceHints": [
+        "web-motion-and-interaction M33",
+        "auth redirect guidance",
+        "session expiry"
+      ],
+      "contentHash": "29940fe8d9d3c759840c38b9be0b94f9b7ab98e75e38ab716b9883c2753af2b7",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-008",
+      "severity": "P2",
+      "title": "Visual-review intent does not load the accessibility reference it cites",
+      "file": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      "line": 112,
+      "description": "WEB_VISUAL_HIERARCHY loads three files but its review pass cites web-accessibility-patterns.md for seven checks, and the router rule says a row loads what it resolves and nothing more.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "The three-file map is the only stage-two row for this intent; seven A-anchor links in the review pass point at a file not in it.",
+      "affectedSurfaceHints": [
+        "sk-code-frontend ROUTER",
+        "web-visual-hierarchy review pass",
+        "web-accessibility-patterns"
+      ],
+      "contentHash": "15149c6f5fbddb315f9ab662fa824f284511f2a9dff8919b260a56294550eb9d",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R5-P2-009",
+      "severity": "P2",
+      "title": "Hub canary never exercises the new visual vocabulary",
+      "file": ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/001-sk-code/fixtures/canary-cases.v1.json",
+      "line": 190,
+      "description": "The sk-code canary has nine cases and no prompt containing a code-frontend-visual keyword, so the regression harness cannot catch the visual-review route failure or a future tie-break change.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Parsed all nine canary cases; none of their prompts contains a code-frontend-visual keyword.",
+      "affectedSurfaceHints": [
+        "sk-code canary",
+        "compiled-route regression",
+        "code-frontend-visual"
+      ],
+      "contentHash": "34b47e3cb9224bb9f8a35a51d3eba3fc156e626c36155345bab4762086ed91ab",
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 8
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

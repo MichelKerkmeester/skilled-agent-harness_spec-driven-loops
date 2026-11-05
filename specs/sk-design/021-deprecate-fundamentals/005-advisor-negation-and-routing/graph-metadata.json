@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing",
+  "spec_folder": "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing",
+  "parent_id": "sk-design/021-deprecate-fundamentals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "advisor negation and routing",
+      "phase 5 advisor negation and routing",
+      "advisor negated write",
+      "design document route",
+      "chart colour route",
+      "v4.0.1.0 release notes",
+      "advisor negation and routing plan",
+      "negated write scorer plan",
+      "borderline route plan",
+      "advisor negation and routing tasks",
+      "negated write scorer tasks",
+      "borderline route tasks"
+    ],
+    "key_topics": [
+      "advisor",
+      "negation",
+      "routing",
+      "phase",
+      "negated",
+      "write",
+      "design",
+      "document",
+      "route",
+      "chart",
+      "colour",
+      "release"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/scorer/negated-write-surface.vitest.ts",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/sk-design/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/changelog/v0.18.3.0.md",
+      ".skilled/skills/sk-doc/changelog/v2.4.2.0.md",
+      ".skilled/skills/sk-design/changelog/v3.0.0.0.md",
+      ".skilled/changelog/skilled/v4.0.1.0.md",
+      "scratch/facts.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "explicit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "negated-write-surface.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/scorer/negated-write-surface.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.18.3.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v0.18.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.2.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/changelog/v2.4.2.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.0.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/changelog/v3.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "facts.md",
+        "kind": "doc",
+        "path": "scratch/facts.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The explicit lane gives sk-doc a 0.7 write-doc-surface boost whenever a write verb and a doc word co-occur, even when the write is negated",
+    "created_at": "2026-11-05T14:07:18Z",
+    "last_save_at": "2026-11-05T14:32:19.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:152d0f02be58bce904e394fd98d4aa0d33323a70ed81bbe765b7149c33b96923",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0ad5c5cb2d575d3beb1d794279529edb5cae526faf84b61b8cc45fae6612142",
+      "plan.md": "4610f0549879a1b070c99888fd120d7af78a2adfa68332158b4f9d9f822cd08e",
+      "tasks.md": "8faa54b5bb3f4fe00b94e4879e3d1ba09b90f9966166d8b25327f2a5fb196e66",
+      "implementation-summary.md": "7631994c237d933244ff47e53d53432d09c37a69edd57fb59441a73c9b5ea81a"
+    },
+    "last_active_at": null
+  }
+}

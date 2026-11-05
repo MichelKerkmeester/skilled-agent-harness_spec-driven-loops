@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals/003-chart-research-cleanup",
+  "spec_folder": "sk-design/021-deprecate-fundamentals/003-chart-research-cleanup",
+  "parent_id": "sk-design/021-deprecate-fundamentals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "chart research cleanup",
+      "sk-design-chart reference citations",
+      "remove research citations from chart",
+      "chart references state their own rules",
+      "chart research cleanup plan",
+      "chart citation removal plan",
+      "sk-design-chart cleanup steps",
+      "chart research cleanup tasks",
+      "chart citation removal tasks",
+      "sk-design-chart cleanup checklist",
+      "chart research cleanup acceptance criteria",
+      "chart citation removal criteria"
+    ],
+    "key_topics": [
+      "chart",
+      "research",
+      "cleanup",
+      "sk-design-chart",
+      "reference",
+      "citations",
+      "remove",
+      "references",
+      "state",
+      "own",
+      "rules",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+      ".skilled/skills/sk-design/sk-design-chart/references/catalog.md",
+      ".skilled/skills/sk-design/sk-design-chart/references/template-contract.md",
+      ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+      ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+      ".skilled/skills/sk-design/sk-design-chart/changelog/v0.23.7.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalog.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/references/catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-contract.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/references/template-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.23.7.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/changelog/v0.23.7.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The chart references cite a research packet a reader cannot open and name a phase that no longer explains the rule",
+    "created_at": "2026-11-05T08:27:37Z",
+    "last_save_at": "2026-11-05T09:24:19.861Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:362ec7cd1a07ff801c315dd9fac6112ccb5e270f892731c0bc26579311f8bc71",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7401fe21ff9c501f13908e5ef6cb7dfeb021aa0e9a7eead96fd8d75f371c4eaa",
+      "plan.md": "c2b2d79b65025f00b86291d44a258423d436edea960ed200ebf2172f4dcd4fca",
+      "tasks.md": "4700a40ceae07daf69aa65d020ef2354bac16a6795b446f56fbeecd4cbc34ffa",
+      "implementation-summary.md": "783bae6c804382986b655808612bf0afaf2f6daea99421bb58a904617efae91c"
+    },
+    "last_active_at": null
+  }
+}

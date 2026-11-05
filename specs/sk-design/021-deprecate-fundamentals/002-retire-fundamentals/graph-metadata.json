@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
+  "spec_folder": "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
+  "parent_id": "sk-design/021-deprecate-fundamentals",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire sk-design-fundamentals",
+      "sk-design three modes",
+      "remove fundamentals routing",
+      "design agent decide path",
+      "retire fundamentals plan",
+      "sk-design three mode hub",
+      "repoint fundamentals links",
+      "compiled routing sk-design",
+      "retire fundamentals tasks",
+      "sk-design hub rebuild tasks",
+      "phase 2 routing checklist",
+      "retire fundamentals acceptance criteria"
+    ],
+    "key_topics": [
+      "retire",
+      "sk-design-fundamentals",
+      "sk-design",
+      "three",
+      "modes",
+      "remove",
+      "fundamentals",
+      "routing",
+      "design",
+      "agent",
+      "decide",
+      "path"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-design/mode-registry.json",
+      ".skilled/skills/sk-design/hub-router.json",
+      ".skilled/skills/sk-design/ROUTER.md",
+      ".skilled/skills/sk-design/SKILL.md",
+      ".skilled/skills/sk-design/description.json",
+      ".skilled/skills/sk-design/command-metadata.json",
+      ".skilled/skills/sk-design/graph-metadata.json",
+      ".skilled/skills/sk-design/leaf-manifest.json",
+      ".skilled/agents/design.md",
+      ".claude/agents/design.md",
+      ".codex/agents/design.toml",
+      ".pi/agents/design.md",
+      ".hermes/skills/agent-design/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/token-drift.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.toml",
+        "kind": "file",
+        "path": ".codex/agents/design.toml",
+        "source": "derived"
+      },
+      {
+        "name": "token-drift.md",
+        "kind": "doc",
+        "path": ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/token-drift.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-design-fundamentals` was a fourth design mode whose value and decision guidance moved into `sk-code-frontend` during phase 1",
+    "created_at": "2026-11-05T08:27:37Z",
+    "last_save_at": "2026-11-05T11:02:39.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f5025f251f2f3b65df7a850b311b0df2d725834d936b667eda04864fb9dedfe1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "72d14a91fc24d633c0742e30833f28fde37aa7ce5205c26d1fb6a782282452c0",
+      "plan.md": "6300f5ceab68389feb7f37808e6044d8d74f7855a9b7d709a7c34322b687cfa4",
+      "tasks.md": "5c985c4d3723a83caf5cbf141ad1f583ff96f7f3ad4685adc5da87b2158492af",
+      "implementation-summary.md": "e76070bc4cd65d71366921e1333fe1b961b2a659b7a15718f3f90ba84debd74c"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-design/021-deprecate-fundamentals",
+  "spec_folder": "sk-design/021-deprecate-fundamentals",
+  "parent_id": null,
+  "children_ids": [
+    "sk-design/021-deprecate-fundamentals/001-frontend-upgrade",
+    "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
+    "sk-design/021-deprecate-fundamentals/003-chart-research-cleanup",
+    "sk-design/021-deprecate-fundamentals/004-review-remediation",
+    "sk-design/021-deprecate-fundamentals/005-advisor-negation-and-routing"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deprecate fundamentals phase parent spec",
+      "sk-design three modes",
+      "sk-code frontend visual values",
+      "chart reference research cleanup"
+    ],
+    "key_topics": [
+      "deprecate",
+      "fundamentals",
+      "phase",
+      "parent",
+      "spec",
+      "sk-design",
+      "three",
+      "modes",
+      "sk-code",
+      "frontend",
+      "visual",
+      "values"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+      ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+      ".skilled/skills/sk-design/mode-registry.json",
+      ".skilled/agents/design.md",
+      ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+      ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+      ".skilled/skills/sk-design/sk-design-chart/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-values.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-visual-hierarchy.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-motion-and-interaction.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+        "source": "derived"
+      },
+      {
+        "name": "tokens.css",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "origin.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two design surfaces owned the same rules",
+    "created_at": "2026-11-05T08:27:36Z",
+    "last_save_at": "2026-11-05T14:07:19.193Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:dc7c82bd0e94077aadd49fd5df8ca32d54f13ab051cb19feb89255769f285c2e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0d07a6b859ac632a505300c8aee8dc27685dd069fe6716194ea1e3d74036b02f"
+    },
+    "last_active_at": null
+  }
+}

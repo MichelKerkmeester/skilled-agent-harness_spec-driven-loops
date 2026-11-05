@@ -1,0 +1,145 @@
+{
+  "topic": "Review: specs/sk-design/021-deprecate-fundamentals",
+  "sessionId": "fanout-deepseek-1793872885543-931fzb",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/sk-design/021-deprecate-fundamentals",
+  "createdAt": "2026-11-05T10:09:34Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "llmgateway/deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "danger-full-access",
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/sk-design/021-deprecate-fundamentals",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Change set in this worktree vs baseline 10474a9567: sk-design-fundamentals retired (folder removed, hub cut to three modes, routing/compiled manifests/agent/mirrors updated); sk-code-frontend gained web-visual-values, web-visual-hierarchy, web-motion-and-interaction references, tokens.css and routing intents; sk-design-chart research citations removed. Check correctness, lost guidance, dangling references to fundamentals, routing reach and doc accuracy.",
+  "resource_map_present": false,
+  "reviewScopeFiles": [
+    ".skilled/skills/sk-design/SKILL.md",
+    ".skilled/skills/sk-design/ROUTER.md",
+    ".skilled/skills/sk-design/hub-router.json",
+    ".skilled/skills/sk-design/mode-registry.json",
+    ".skilled/skills/sk-design/description.json",
+    ".skilled/skills/sk-design/command-metadata.json",
+    ".skilled/skills/sk-design/graph-metadata.json",
+    ".skilled/skills/sk-design/leaf-manifest.json",
+    ".skilled/skills/sk-design/benchmark/README.md",
+    ".skilled/skills/sk-design/manual-testing-playbook/resource-loading/assets-only.md",
+    ".skilled/skills/sk-design/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md",
+    ".skilled/skills/sk-design/sk-design-chart/SKILL.md",
+    ".skilled/skills/sk-design/sk-design-chart/references/color-system.md",
+    ".skilled/skills/sk-design/sk-design-chart/references/catalog.md",
+    ".skilled/skills/sk-design/sk-design-chart/references/template-contract.md",
+    ".skilled/skills/sk-design/sk-design-chart/assets/style-reference/evilcharts/origin.md",
+    ".skilled/skills/sk-code/SKILL.md",
+    ".skilled/skills/sk-code/ROUTER.md",
+    ".skilled/skills/sk-code/hub-router.json",
+    ".skilled/skills/sk-code/mode-registry.json",
+    ".skilled/skills/sk-code/description.json",
+    ".skilled/skills/sk-code/leaf-manifest.json",
+    ".skilled/skills/sk-code/graph-metadata.json",
+    ".skilled/skills/sk-code/README.md",
+    ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+    ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+    ".skilled/skills/sk-code/sk-code-frontend/README.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+    ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
+    ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+    ".skilled/agents/design.md",
+    ".claude/agents/design.md",
+    ".codex/agents/design.toml",
+    ".pi/agents/design.md",
+    ".hermes/skills/agent-design/SKILL.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/SKILL.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/token-drift.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/figma-to-code/check-built-screen.md",
+    ".skilled/skills/mcp-tooling/mcp-figma/manual-testing-playbook/manual-testing-playbook.md",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs",
+    ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/fixtures/canary-cases.v1.json",
+    "README.md"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "fanout_lineage_artifact_dir": "/Users/michelkerkmeester/worktrees/public/316-deprecate-design-fundamentals/specs/sk-design/021-deprecate-fundamentals/review/lineages/deepseek"
+}

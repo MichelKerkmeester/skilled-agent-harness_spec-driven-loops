@@ -1,0 +1,205 @@
+[
+  {
+    "id": "B-01",
+    "source_id": "B-01",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+    "line": "18",
+    "issue": "The packet's entry document still hands brief-only authoring and value decisions to `sk-design` as 'the sibling authoring skill', but this change retired the hub's only authoring mode: sk-design/mode-registry.json now lists three artifact modes and sk-design/SKILL.md:36 says values and visual review belong to `sk-code`. Occurrences: SKILL.md:18 ('that belongs to the sibling skill `sk-design`'), :22 ('this reference outranks `sk-design`'s defaults. Where no measurement exists, `sk-design` decides'), :56, :196, :259; README.md:93; references/authoring-boundary.md:116; procedures/design-system-extraction.md:49; assets/source-of-truth-router-card.md:86; manual-testing-playbook/manual-testing-playbook.md:478. Case: a user asks for a DESIGN.md from a brief with no live site, the exact input SKILL.md:56 documents; the doc routes them to a hub that has no authoring mode and now answers that the decision belongs to sk-code, so the documented handoff dead-ends. SKILL.md:22 is the sharper half: it still grants precedence to `sk-design`'s defaults, while the reference this change did edit (references/design-knowledge/numeric-design-laws.md:39) now states the authoring side and the reconciliation live in sk-code-frontend's web-visual-values.md and web-motion-and-interaction.md, so the packet contradicts the reference it cites and changelog v1.1.12.0's claim that value decisions 'have a live owner again' holds only inside the reference, not at the entry doc.",
+    "evidence": {
+      "cmd": "grep -n \"sibling.*`sk-design`\\|`sk-design` decides\\|`sk-design`'s defaults\" .skilled/skills/sk-design/sk-design-md-generator/SKILL.md",
+      "exit": 0,
+      "out": "18:> It does not decide values for a surface that does not exist yet; that belongs to the sibling skill `sk-design`.\n22:> When both skills apply to the same surface, this reference outranks `sk-design`'s defaults. Where no measurement exists, `sk-design` decides.\n56:  A brief-only request ... Route it to the sibling authoring skill `sk-design`; never loosen fidelity here to satisfy it.\n196:    - ... name the sibling authoring skill `sk-design` as the route.\n259:- ... States that forward-authoring from a brief with no live site is out of scope and routes to the sibling authoring skill `sk-design`.\n(same stale pointer in README.md:93, references/authoring-boundary.md:116, procedures/design-system-extraction.md:49, assets/source-of-truth-router-card.md:86, manual-testing-playbook/manual-testing-playbook.md:478)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-02",
+    "source_id": "B-02",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-code/ROUTER.md",
+    "line": "220",
+    "issue": "The file states its own maintenance rule at line 220: 'When an intent row changes here, update the matching prose row in \u00a74', and its \u00a74 Frontend Map claims at line 167 that the map equals the packet's RESOURCE_MAP ('the two stay equal there'). This change added three intents to INTENT_SIGNALS/RESOURCE_MAP (lines 257-259, 402-415: WEB_VISUAL_VALUES, WEB_VISUAL_HIERARCHY, WEB_MOTION) with four frontend paths, but \u00a74's Frontend Map table (lines 155-165) still lists only the pre-change nine rows. Case: a reader who follows \u00a72 and \u00a74 instead of the machine block asks 'what padding should this have' and finds no visual-values intent or path in the prose map, so the three new capabilities are unreachable from the hub doc's own prose rendering and the stated equality invariant is false. The sibling routers were updated consistently (sk-code-frontend/ROUTER.md Web Topic Files gained three rows and its intent bullets gained all three; sk-design/ROUTER.md dropped VALUES/REVIEW from both prose and machine block), which makes this the one incomplete half of a two-router edit.",
+    "evidence": {
+      "cmd": "awk '/^### Frontend Map/,/^## 5\\. VERIFICATION/' .skilled/skills/sk-code/ROUTER.md > $TMPDIR/frontend-map.txt && for p in references/web-visual-values.md references/web-visual-hierarchy.md references/web-motion-and-interaction.md; do printf \"%s prose=%s map=%s\\n\" \"$p\" \"$(grep -c \"sk-code-frontend/$p\" $TMPDIR/frontend-map.txt)\" \"$(grep -c \"sk-code-frontend/$p\" .skilled/skills/sk-code/ROUTER.md)\"; done",
+      "exit": 0,
+      "out": "references/web-visual-values.md prose=0 map=2\nreferences/web-visual-hierarchy.md prose=0 map=1\nreferences/web-motion-and-interaction.md prose=0 map=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-05",
+    "source_id": "D-05",
+    "lane": "D",
+    "surface": "S10",
+    "standard": "sk-doc/sk-create-agent: an agent doc that names a changed skill matches the new workflow",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/agents/README.txt",
+    "line": "25",
+    "issue": "The agent roster index still routes the decide path through the hub that no longer decides values. Case: `.skilled/agents/README.txt:25` says `decides UI values via sk-design`, while the agent it indexes now says `decides values and behavior through the visual references in sk-code-frontend` (`.skilled/agents/design.md:24`) and `SKILL.md` section 1 of sk-design hands value decisions to sk-code. An operator reading the roster to pick an agent is told the retired path. The file is unchanged in this work tree and no gate reads it (S10-agent-roster passes), which is why the mismatch survived the mirror checks. Fix is the one-line edit below.",
+    "evidence": {
+      "cmd": "grep -n \"decides UI values\" .skilled/agents/README.txt",
+      "exit": 0,
+      "out": "25:  design:           design specialist across two skills: decides UI values via sk-design, measures a live surface into a Style Reference via sk-design-md-generator, LEAF"
+    },
+    "fix": {
+      "old": "  design:           design specialist across two skills: decides UI values via sk-design, measures a live surface into a Style Reference via sk-design-md-generator, LEAF",
+      "new": "  design:           design specialist across two skills: decides UI values from sk-code-frontend's visual references, measures a live surface into a Style Reference via sk-design-md-generator, LEAF"
+    },
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": null
+  },
+  {
+    "id": "D-06",
+    "source_id": "D-06",
+    "lane": "D",
+    "surface": "S10",
+    "standard": "sk-doc/sk-create-agent: an agent doc that names a changed skill matches the new workflow",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/agents/design.md",
+    "line": "95",
+    "issue": "The design agent's decide path loads the frontend surface's references but never carries the hand-off that surface now requires. `sk-code-frontend/SKILL.md:21` states that when no workflow mode scores the hub routes the surface alone, and 'the acting agent applies the guidance and hands the author gates to `sk-code-quality` before it claims completion'; the agent never mentions `sk-code-quality` (grep count 0) and its completion rule at line 171 is 'complete only when the routed skill's verification passes', where the routed skill is now a reference set with no verification command. Case: the agent answers a decide request that edits values (its Step 2a item 4 plus the write and edit permissions in its frontmatter), reports `Quality gates: which gates ran`, and can claim completion with no quality-mode gate having run. The agent's own section 6 checks (on-scale values, contrast minimums) cover part of it but are not the author gate the packet names. Fix by adding the hand-off to the Step 2a sequence or the ALWAYS list.",
+    "evidence": {
+      "cmd": "grep -c \"sk-code-quality\" .skilled/agents/design.md",
+      "exit": 1,
+      "out": "0   (while .skilled/skills/sk-code/sk-code-frontend/SKILL.md:21 requires the acting agent to hand the author gates to sk-code-quality before claiming completion)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-04",
+    "source_id": "B-04",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-code/README.md",
+    "line": "60",
+    "issue": "The new changelog entry v3.11.0.0 line 27 asserts '`SKILL.md` and `README.md` send an open visual value to `sk-code-frontend`. The hub description and surface table list the three visual references and the starter `tokens.css` file.' Only SKILL.md was changed: README.md's entire contribution to this diff is one deleted row (the retired sk-design-fundamentals relationship), and its surface row (line 60) and shipped-surface list (line 122) still read 'Stack-agnostic web practice, topic references, and Figma-to-code checks', with no mention of visual values, visual hierarchy, motion or tokens.css anywhere in the file. Case: a maintainer trusts the release note that the hub README documents the new owner, and a reader of the README is left with no statement of where an open visual value is decided now that the row that used to say so was deleted. Either the two README rows are updated or the changelog sentence is narrowed to SKILL.md and description.json.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff --numstat 10474a9567 -- .skilled/skills/sk-code/README.md; grep -c \"visual values\\|web-visual-values\\|visual hierarchy\" .skilled/skills/sk-code/README.md; true",
+      "exit": 0,
+      "out": "0\t1\t.skilled/skills/sk-code/README.md\n0"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-05",
+    "source_id": "B-05",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+    "line": "752",
+    "issue": "The sk-doc agent asset is invalidated by this change but was not updated, so a sk-doc reference now describes a fleet that does not exist. Under '9. PRODUCTION EXAMPLES / Current Production Agents' the @design row still says the agent 'routes between `sk-design` (decide values) and `sk-design-md-generator` (measure a surface)', while the shipped `.skilled/agents/design.md` and all four runtime mirrors changed in this diff (`.claude/agents/design.md`, `.codex/agents/design.toml`, `.pi/agents/design.md`, `.hermes/skills/agent-design/SKILL.md`) now route the decide path to `sk-code-frontend`'s visual references and describe 'four paths' rather than the hub's four modes. Case: someone scaffolding or porting the agent fleet from the template's production list reproduces the retired decide owner, and the template contradicts the canonical agent it claims to show. The file is outside the lane's changed-file list but is the same sk-doc tree this change edits elsewhere.",
+    "evidence": {
+      "cmd": "grep -n '@design' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md; grep -n 'sk-code-frontend' .skilled/agents/design.md | head -1",
+      "exit": 0,
+      "out": "752:| `@design` | `design.md` | LEAF write-capable design subagent | routes between `sk-design` (decide values) and `sk-design-md-generator` (measure a surface), applies the path, then verifies |\n3:description: \"Design specialist: values and behavior from sk-code-frontend's visual references, Style Reference measurement, charts and diagrams. LEAF.\""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": null
+  },
+  {
+    "id": "B-03",
+    "source_id": "B-03",
+    "lane": "B",
+    "surface": "S3",
+    "standard": "sk-doc/sk-create-feature-catalog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-design/sk-design-md-generator/feature-catalog/procedure-cards/md-generator-procedure-card-inventory.md",
+    "line": "28",
+    "issue": "The card entry has not been updated for the retirement, so it no longer describes shipped behaviour. It says the card 'does not grant Write, Edit, or Bash to the read-only sibling `sk-design` mode' and that 'the card routes to the sibling authoring skill `sk-design`'. The registry has no such mode (three artifact modes only), the hub is not read-only (all three modes build artifacts, and md-generator itself is the mutating one this same entry names as 'the sole design mode with an existing extraction pipeline'), and the authoring owner is now `sk-code-frontend`. Case: an operator auditing the md-generator feature set from its catalog is told a brief-only value request hands off to a read-only sk-design mode that has never existed and to an authoring skill that was retired in this change.",
+    "evidence": {
+      "cmd": "python3 -c \"import json;print([m['workflowMode'] for m in json.load(open('.skilled/skills/sk-design/mode-registry.json',encoding='utf-8'))['modes']])\"",
+      "exit": 0,
+      "out": "['sk-design-md-generator', 'sk-design-diagram', 'sk-design-chart']"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": null
+  },
+  {
+    "id": "C-1",
+    "source_id": "C-1",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/sk-code/sk-code-frontend/README.md",
+    "line": "70",
+    "issue": "The README's own verification sentence still says the playbook check reports two scenarios. This change added `frontend-surface-visual-values` as a third scenario and updated line 54 of this same file, but line 70 was left behind, so Section 4 tells a reader to run a check whose output contradicts the doc. Fails the lane's S5-derived-counts row: the stated count and the derivable count disagree.",
+    "evidence": {
+      "cmd": "node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook",
+      "exit": 0,
+      "out": "PASS package=sk-code/sk-code-frontend tier=FAIL_CLOSED scenarios=3 categories=1 operator=3 routing_gold_excluded=0 violations=0 warnings=0"
+    },
+    "fix": {
+      "old": "The playbook check reports the two scenarios and exits 0.",
+      "new": "The playbook check reports the three scenarios and exits 0."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "severity",
+      "note": "Stale prose count in a README; no behavior depends on it.",
+      "lane_severity": "P1"
+    }
+  },
+  {
+    "id": "C-2",
+    "source_id": "C-2",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/sk-code/sk-code-frontend/README.md",
+    "line": "83",
+    "issue": "The RELATED DOCUMENTS row still says the playbook validates only 'the web and Figma-check routing'. The playbook's scenario table now carries three scenario ids, including frontend-surface-visual-values, so the row under-reports what the file it points at covers. Secondary to C-1 in the same file: the count sentence and the link label both lag the third scenario.",
+    "evidence": {
+      "cmd": "grep -n \"frontend-surface-visual-values\" .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
+      "exit": 0,
+      "out": "37:| 1 | Frontend Surface | `frontend-surface/` | frontend-surface-web, frontend-surface-figma-check, frontend-surface-visual-values |\n45:| 3 | frontend-surface-visual-values | WEB_VISUAL_VALUES | [visual-values.md](frontend-surface/visual-values.md) |"
+    },
+    "fix": {
+      "old": "Manual scenarios that validate the web and Figma-check routing",
+      "new": "Manual scenarios that validate the web, Figma-check and visual-values routing"
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

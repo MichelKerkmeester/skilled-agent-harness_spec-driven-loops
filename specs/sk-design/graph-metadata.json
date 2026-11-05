@@ -6,7 +6,8 @@
   "children_ids": [
     "sk-design/018-sk-design-parent-v2",
     "sk-design/019-sk-design-diagram-upgrade",
-    "sk-design/020-chart-and-diagram-review"
+    "sk-design/020-chart-and-diagram-review",
+    "sk-design/021-deprecate-fundamentals"
   ],
   "manual": {
     "depends_on": [],

@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-design/021-deprecate-fundamentals",
+  "description": "Two design surfaces owned the same rules",
+  "keywords": [
+    "two",
+    "design",
+    "surfaces",
+    "owned",
+    "same",
+    "rules"
+  ],
+  "lastUpdated": "2026-11-05T09:22:24.915Z",
+  "specId": "021",
+  "folderSlug": "deprecate-fundamentals",
+  "parentChain": [
+    "sk-design"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
