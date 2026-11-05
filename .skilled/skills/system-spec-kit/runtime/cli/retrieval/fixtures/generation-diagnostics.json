@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7328,
-    "ok": 17128,
+    "missing-frontmatter": 7360,
+    "ok": 17141,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 28004,
+  "documentsScanned": 28049,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "cce1c9ca1fefe6c07a1a65f897530b5041d7a0b0c00456a0bf56c987c59c2389",
+  "manifestHash": "be85d894ef0051f5dd7f51fc8211fb45165253b99a9fe4af08b0fcf423fb8dc2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 41104,
+      "ok": 41125,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -29155,6 +29155,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-changelog/scripts/README.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -34720,6 +34726,84 @@
       "line": 1,
       "path": "specs/agents-md/014-communication-rules-consolidation/research/reviews/swe-2-max.md",
       "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/deep-research-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
     },
     {
       "category": "missing-frontmatter",
@@ -40800,6 +40884,114 @@
       "category": "missing-frontmatter",
       "line": 2,
       "path": "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/007-ai-systems-research/research/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/deep-research-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/deep-research-strategy.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-1.pack.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-2.pack.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-3.pack.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-4.pack.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-5.pack.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/research/resource-map.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -69712,6 +69904,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/agents-md/z_archive",
       "reason": "excluded directory"
     },
@@ -72933,6 +73129,10 @@
     },
     {
       "path": "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/scratch",
       "reason": "excluded directory"
     },
     {

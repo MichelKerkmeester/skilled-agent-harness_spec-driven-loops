@@ -1,5 +1,5 @@
 {
-  "corpusHash": "45d31d13856e6a57dbc70b2cd824209a1d39931c936fb8786b4a0c1ecdd27201",
+  "corpusHash": "ae7b1560461f670f07fae8f0b2efc7dd9169c05fc83cc5246094b7c81b2771f3",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 28004,
+  "includedPathCount": 28049,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6356,6 +6356,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.5.0.md",
     ".skilled/skills/sk-doc/feature-catalog/compiled-routing-and-legacy-fallback/compiled-routing-and-legacy-fallback.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/changelog-entry-frontmatter-check.md",
     ".skilled/skills/sk-doc/feature-catalog/document-validation/citation-drift-census-across-doc-families.md",
@@ -6572,6 +6573,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.7.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.8.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.3.9.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.0.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -6591,6 +6593,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/references/topology-edge-cases.md",
     ".skilled/skills/sk-doc/sk-create-changelog/references/version-bump-rules.md",
     ".skilled/skills/sk-doc/sk-create-changelog/references/worked-examples.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/scripts/README.md",
     ".skilled/skills/sk-doc/sk-create-command/README.md",
     ".skilled/skills/sk-doc/sk-create-command/ROUTER.md",
     ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
@@ -9121,6 +9124,24 @@
     "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/tasks.md",
     "specs/agents-md/016-doctor-agents-md/goal.md",
     "specs/agents-md/016-doctor-agents-md/spec.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/implementation-summary.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/plan.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/deep-research-dashboard.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/deep-research-strategy.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-001.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-002.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-003.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-004.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/iterations/iteration-005.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-1.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-2.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-3.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-4.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/prompts/iteration-5.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/research.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/research/resource-map.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/spec.md",
+    "specs/agents-md/017-v4-0-1-0-rules-refresh/tasks.md",
     "specs/agents/001-orchestrator-inline-authority/acceptance-criteria.md",
     "specs/agents/001-orchestrator-inline-authority/implementation-summary.md",
     "specs/agents/001-orchestrator-inline-authority/plan.md",
@@ -14595,6 +14616,30 @@
     "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/plan.md",
     "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/spec.md",
     "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/tasks.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/acceptance-criteria.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/implementation-summary.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/plan.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/deep-research-dashboard.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/deep-research-strategy.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-001.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-002.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-003.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-004.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/iterations/iteration-005.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-1.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-1.pack.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-2.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-2.pack.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-3.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-3.pack.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-4.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-4.pack.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-5.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/prompts/iteration-5.pack.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/research.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/research/resource-map.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/spec.md",
+    "specs/sk-doc/055-changelog-system/005-concise-release-format/tasks.md",
     "specs/sk-doc/055-changelog-system/spec.md",
     "specs/sk-doc/055-changelog-system/timeline.md",
     "specs/sk-doc/056-create-goal-mode/001-goal-inventory-and-mode-contract/acceptance-criteria.md",
@@ -28035,7 +28080,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "cce1c9ca1fefe6c07a1a65f897530b5041d7a0b0c00456a0bf56c987c59c2389",
+  "manifestHash": "be85d894ef0051f5dd7f51fc8211fb45165253b99a9fe4af08b0fcf423fb8dc2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28895,6 +28940,10 @@
     },
     {
       "path": "specs/agents-md/016-doctor-agents-md/003-advisor-bridge-activation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents-md/017-v4-0-1-0-rules-refresh/scratch",
       "reason": "excluded directory"
     },
     {
@@ -32119,6 +32168,10 @@
     },
     {
       "path": "specs/sk-doc/055-changelog-system/004-changelog-section-spacing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/055-changelog-system/005-concise-release-format/scratch",
       "reason": "excluded directory"
     },
     {
