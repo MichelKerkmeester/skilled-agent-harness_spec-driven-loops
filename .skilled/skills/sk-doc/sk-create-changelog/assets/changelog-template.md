@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.2.0.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -26,9 +26,14 @@ The two-tier narrative format for global component changelogs at `.skilled/chang
 
 The `/create:changelog` workflow reads this template at step 4. Section 5 picks the format. Packet-local changelogs are deprecated and no longer written (section 7).
 
-### The Canonical Exemplar
+### The Model Entries
 
-`.skilled/changelog/skilled/v4.0.0.0.md` is the house style, so read it before writing. It shows the opening narrative, Why This Release, What's New at a Glance, topical H2 sections with benefit-led H4 items, inline Breaking markers and Upgrade Notes. Copy its voice and shape, not its length: it records a major release, and most releases need a fraction of it. Older entries in the same folders predate this style, so do not copy them. When this template and the exemplar disagree on shape, the exemplar wins and the discrepancy is recorded.
+Two published entries show the house style, and each one teaches something different, so read both before writing.
+
+- `.skilled/changelog/skilled/v4.0.1.0.md` is the model for length and selection. It keeps what a reader would notice, gives each item one paragraph and cuts items rather than sections. It also collects small fixes into a Smaller Fixes list, orders its upgrade notes by section and names the components with their own entry in one sentence. Model a release with many changes on it.
+- `.skilled/changelog/skilled/v4.0.0.0.md` is the model for voice and for how a major release opens. Its opening narrative and Why This Release frame a large change for a reader who was not there. Copy that voice and framing, never its length, because it records one unusually large release and runs past this template's ceilings.
+
+When this template and a model entry disagree on how a section reads, the model entry wins. When they disagree on how long an entry runs, this template's ceilings win (section 4). Record the discrepancy either way. Older entries in the same folders predate this style, so do not copy them.
 
 ---
 
@@ -52,7 +57,7 @@ contextType: "general"
 
 {Summary: 1-3 sentences on what the release does for the reader and why it matters.}
 
-> Spec folder: `{path}` (Level {N})
+> Spec folder: `{path}`
 
 &nbsp;
 
@@ -76,7 +81,7 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 {Opening narrative: 1-5 paragraphs in plain prose, one per theme, no headers.}
 
-> Spec folder: `{path}` (Level {N})
+> Spec folder: `{path}`
 
 &nbsp;
 
@@ -88,7 +93,7 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 ## What's New at a Glance
 
-- **{The theme, as a short sentence.}** {One plain sentence that adds what the bold one does not say.}
+- **{The theme, as a short sentence.}** ({Topical Domain}) {One plain sentence that adds what the bold one does not say.}
 
 &nbsp;
 
@@ -98,29 +103,34 @@ Include the spec-folder line only when the release has a spec folder. Add a `## 
 
 #### {Benefit-led heading, usually 2-7 words}
 
-{One or two paragraphs for most items, seven at most: what was broken, what changed and why it matters. Start where the glance bullet stopped.}
+{One paragraph of three sentences at most: what was broken, what changed and why it matters. Start where the glance bullet stopped. A second paragraph is for a breaking change, whose exact step must stand apart.}
 
 #### {Next heading}
 
 **Breaking:** {What breaks and exactly what to do about it.}
 
+#### Smaller Fixes
+
+- **{The fix, as a short sentence.}** {One sentence on what the reader now sees.}
+
 &nbsp;
 
 ## Upgrade Notes
 
-- **Adopt.** {Renames and new things to start using.}
-- **Repoint.** {Moved paths and surfaces that changed address.}
-- **Drop.** {Removed things and what replaces them.}
+- **{The reader's situation, such as "Skills you wrote yourself"}:** {The action, as a short instruction.}
 ```
 
 Include the spec-folder line only when the release has a spec folder.
 
 **Field guidelines**:
 
-- **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the exemplar names `Spec Kit` and `Safer Git`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need one to five domains. A release the exemplar's size may need more when each one earns its section.
+- **`{Topical Domain}` (H2).** Name the section for the domain it changes, the way the model entries name `Spec Kit` and `Doctor Commands`, never for a change type such as `New Features` or `Bug Fixes`. Most releases need three to six domains, and eight is the most. Add one past six only when a reader would look for it by name.
+- **`({Topical Domain})` tag.** Each glance bullet names the topical section it summarizes, in parentheses after its bold sentence and spelled as that section's H2, and the bullets follow the order of those sections. A section may go without a glance bullet, but the tagged bullets never run out of order. A compact entry has no topical sections, so its bullets carry no tag.
 - **`{Benefit-led heading}` (H4).** 2-7 words for most headings and 10 at most, stating the gain or the fact. Good: `Specs Move to the Top Level`. Bad: `Improved validation logic`, a numbered item or a sentence-length title.
 - **Separators.** An `&nbsp;` line, a forced blank line, goes before every H2: between the opening and Why This Release, between Why This Release and What's New at a Glance, and between every later section. Nothing separates the H4 items inside one H2, and no `---` rule appears anywhere in the entry body.
-- **Upgrade Notes.** Use the Adopt, Repoint and Drop lead-ins only when the release has all three kinds of work. Otherwise write plain bullets or a short paragraph, and "No upgrade needed." when there is nothing to do.
+- **`#### Smaller Fixes` (optional H4).** Small fixes a reader would notice, but that need no paragraph of their own, collect into one Smaller Fixes item with one bold-led bullet per fix. It sits last in the section that owns the fixes, and it is the one H4 whose body is a list. Leave it out when no such fix exists, and leave out a fix with no visible effect.
+- **Coverage sentence.** When other components or modes have their own changelog entry for this release, one sentence in the last body section names every one of them, so a reader knows where the detail lives. It may stand as its own paragraph at the end of the item it closes.
+- **Upgrade Notes.** One bullet per action, in the same order as the entry's sections, each led in bold by the reader's situation, such as `**Skills you wrote yourself:**`. A note about the release as a whole goes first. A retirement's note sits where the section that names its replacement sits, and a retirement with no replacement sits with its own section. Use the Adopt, Repoint and Drop lead-ins only in a compact entry, where section order does not apply. Write "No upgrade needed." when there is nothing to do.
 
 ---
 
@@ -130,7 +140,11 @@ What goes in decides the length more than the wording does, so choose the conten
 
 ### Choose by Reader Impact
 
-List every change the source records. Keep an item only when the reader would notice it, act on it or decide differently because of it. Merge items that have the same effect for the reader, and lead with the one that matters most. A task list is evidence of what shipped, not an outline: ten tasks that produced one visible change make one bullet.
+Start from the reader: write down what they would notice, act on or decide differently about, then confirm each one in the source. A change the source records and the reader would not notice is not an item. Merge items that have the same effect for the reader, and lead with the one that matters most. A task list is evidence of what shipped, not an outline: ten tasks that produced one visible change make one bullet.
+
+### Cut Items, Never Sections
+
+When an entry runs past a ceiling, cut at the H4 level. A cut item leaves in one of three ways: it folds into a sibling item as a closing sentence, it moves into its section's Smaller Fixes list or it is dropped as process, housekeeping or a fix with no visible effect. Never drop a whole section to shorten the entry, because each section is a domain a reader looks for by name.
 
 ### Keep
 
@@ -143,13 +157,14 @@ List every change the source records. Keep an item only when the reader would no
 ### Drop by Default
 
 - File inventories and Files Changed tables.
-- Test counts, test tables and new test or playbook scenarios.
+- Test counts, test tables and lists of new tests or playbook scenarios.
 - Schema internals, index churn and machinery names the reader never touches.
 - Internal labels such as task or requirement IDs, scenario IDs and packet or phase numbers. The spec-folder line is the one pointer an entry needs.
-- How the work was done: review rounds, models, agents and research phases, unless it changes how far the reader can trust the result.
+- How the work was done: review rounds, models, agents, research phases and the order the work landed in, unless it changes how far the reader can trust the result.
+- How a router or scorer decides between candidates, such as the order that breaks a tie, unless the reader must act on it.
 - Follow-on housekeeping: docs brought in line with the change, regenerated copies, rebuilt indexes and refreshed metadata or versions.
-- Small fixes with no visible effect. Fold several into one sentence, or leave them out.
-- Work tried and reverted during the cycle. It gets one story sentence at most, written into the narrative: what was tried and that it left before release. The exemplar's model is "An alignment mode was built during the cycle and removed before release, and the removal took `/deep:command-benchmark` and the conformance benchmark family with it."
+- Small fixes with no visible effect. Leave them out. A small fix with a visible effect goes in the section's Smaller Fixes list (section 2).
+- Work tried and reverted during the cycle. It gets one story sentence at most, written into the narrative: what was tried and that it left before release. The v4.0.0.0 entry's model is "An alignment mode was built during the cycle and removed before release, and the removal took `/deep:command-benchmark` and the conformance benchmark family with it."
 
 ### Say Each Fact Once
 
@@ -167,7 +182,7 @@ When a sentence would repeat an earlier one, cut it or replace it with something
 
 ### When a Table Earns Its Place
 
-A table appears only when the numbers are the claim. The exemplar carries one in six hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. A table that restates prose, lists files or counts tests does not earn its place, and most entries carry none.
+A table appears only when the numbers are the claim. The v4.0.0.0 entry carries one in more than five hundred lines, the measured cached-input cost per model, because the dollar difference was the finding. A table that restates prose, lists files or counts tests does not earn its place, and most entries carry none.
 
 ### The Cut Test
 
@@ -186,7 +201,7 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 - Explain each change as what was broken, what changed and why it matters.
 - One idea per sentence, active voice, no hedging.
 - Define a technical term on first use, such as "BM25 (exact word matching)".
-- Name an identifier (a skill, a path or a command) only where the reader acts on it, the way the exemplar names `mode-registry.json` where it explains dispatch.
+- Name an identifier (a skill, a path or a command) only where the reader acts on it, the way the v4.0.0.0 entry names `mode-registry.json` where it explains dispatch.
 - No Oxford commas, em dashes or semicolons, per `.skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md`.
 
 ### Structure
@@ -205,11 +220,13 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 | Why This Release | 1-2 short paragraphs | 3 short paragraphs or 4 sentences, gain bullets allowed |
 | What's New at a Glance | 3-6 bullets compact, 5-9 expanded | 12 bullets, one line each |
 | Glance bullet | A bold sentence and one plain sentence | A bold sentence and three plain sentences |
-| H4 item narrative | 1-2 paragraphs | 7 paragraphs |
+| H4 item narrative | 1 paragraph | 2 paragraphs, only for a breaking change or the coverage sentence |
 | H4 heading | 2-7 words | 10 words |
 | Compact file total | 10-25 lines of prose | 40 lines of prose |
+| Expanded file total | 120-180 lines below the frontmatter | 240 lines below the frontmatter |
+| Expanded H4 items | 12-22 | 26 |
 
-Validation checks the ceilings, and each one sits at or above what the exemplar does, so the exemplar passes every check it teaches. The usual column is the target. A release with one fix reads short.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. The usual column is the target. A release with one fix reads short.
 
 ---
 
@@ -257,7 +274,9 @@ Existing `changelog-<packet>-root.md` and `changelog-<packet>-<phase-folder>.md`
 
 ## 8. RELATED RESOURCES
 
-- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar this template derives from
+- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and the shape of a release with many changes
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and for how a major release opens
+- [check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape check that enforces the expanded ceilings
 - [hvr-rules.md](../../sk-create-with-human-voice/references/hvr-rules.md) - Human Voice Rules (banned words, punctuation, structure)
 - [core-standards.md](../../shared/references/core-standards.md) - Markdown structure and naming conventions
 - [worked-examples.md](../references/worked-examples.md) - a filled-in v4-style entry with annotations

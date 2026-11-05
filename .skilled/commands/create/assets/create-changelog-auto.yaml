@@ -307,19 +307,25 @@ changelog_template:
   #   - At-a-glance bullets open with a bold lead-in sentence
   #   - No Oxford commas, em dashes, or semicolons
   #
-  # Canonical exemplar: .skilled/changelog/skilled/v4.0.0.0.md
+  # Model entries: .skilled/changelog/skilled/v4.0.1.0.md for length, selection
+  # and a release with many changes, and .skilled/changelog/skilled/v4.0.0.0.md
+  # for voice and how a major release opens. Length comes from the template's
+  # ceilings, never from either entry.
   # Read the template file at Step 4 before generating content.
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-  style_reference: ".skilled/changelog/skilled/v4.0.0.0.md"
+  style_reference: ".skilled/changelog/skilled/v4.0.1.0.md"
+  voice_reference: ".skilled/changelog/skilled/v4.0.0.0.md"
+  shape_check: ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py"
 
 # ─────────────────────────────────────────────────────────────────
 # SECTION NAMING
 # ─────────────────────────────────────────────────────────────────
 section_naming:
-  # Name H2 sections for the domain they change, the way the exemplar names
-  # sections like "Spec Kit" and "Safer Git". One to five domains for most
-  # releases, more for a release the size of the exemplar.
+  # Name H2 sections for the domain they change, the way the model entries name
+  # sections like "Spec Kit" and "Doctor Commands". Three to six domains for most
+  # releases and eight at most. Add one past six only when a reader would look
+  # for it by name.
   h2_topical_domain: "## {Domain Name}"
   h4_benefit_led_item: "#### {Benefit-led heading, usually 2-7 words}"
   note: |
@@ -529,11 +535,14 @@ workflow:
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
         SELECT CONTENT before writing (template section 3, Choose by Reader Impact):
-          List every change the source records
-          Keep a change only when the reader would notice it, act on it or decide differently because of it
+          Start from what the reader would notice, act on or decide differently about, then confirm each against the source
+          A change the source records and the reader would not notice is not an item
           Merge changes that have the same effect for the reader, and rank the rest by impact
-          Drop test and playbook changes, internal labels, process detail and follow-on housekeeping
+          Drop test and scenario lists, internal labels, how the work was done, the order a router or scorer
+            breaks ties in and follow-on housekeeping
             (docs brought in line, regenerated copies, rebuilt indexes, refreshed metadata or versions)
+          To get under a ceiling, cut at the H4 level: fold an item into a sibling, move it into the section's
+            Smaller Fixes list or drop it. Never drop a whole section
       - |
         SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
@@ -568,10 +577,19 @@ workflow:
           EXPANDED FORMAT:
             ## Why This Release
             ## What's New at a Glance
+              - **{The theme, stated as a short sentence.}** ({Topical Domain}) {One plain sentence that adds what the bold one does not say.}
+              (one bullet per theme, tagged with the topical section it summarizes, in section order)
             ## {Topical Domain}
               #### {Benefit-led heading, usually 2-7 words}
-              {One or two paragraphs, seven at most: what was broken, what changed, why it matters. Start where the glance bullet stopped}
+              {One paragraph of three sentences at most, or two for a breaking change: what was broken, what changed, why it matters. Start where the glance bullet stopped}
               (inline **Breaking:** markers where a change breaks something)
+              #### Smaller Fixes
+              - **{The fix.}** {One sentence on what the reader now sees.}
+              (optional: group visible fixes that share a section rather than giving each one a heading, last in that section)
+            In the last body section, one sentence names every component and mode with its own changelog entry for this release
+
+          Expanded ceilings (template section 4, enforced by shape_check in Step 5):
+            240 lines below the frontmatter, 26 H4 items, 12 glance bullets
 
         Omission rules apply to every format:
           - No Files Changed tables, no test metrics, no schema tables
@@ -594,7 +612,8 @@ workflow:
           component/git: commit messages, merged by the effect each change has for the reader
       - |
         Generate UPGRADE section:
-          IF breaking changes -> Upgrade Notes with Adopt/Repoint/Drop bold lead-ins
+          IF breaking changes -> Upgrade Notes, one bullet per action in section order, each led in bold by the reader's situation
+            (a note about the release as a whole goes first, and a retirement's note sits with the section that names its replacement)
           IF no migration needed -> "No migration required."
           List only the actions, one line each, never why the change was made
           Compact format uses "## Upgrade"; expanded format uses "## Upgrade Notes".
@@ -605,7 +624,7 @@ workflow:
           IF the open entry is compact and the merged changes reach the expanded threshold (SELECT FORMAT above), convert it to the expanded format
           Fold the selected changes into it rather than generating a second entry:
             Add a topical H2 section, or H4 items under an existing section the change belongs to
-            Add one glance bullet per new theme, in section order
+            Add one glance bullet per new theme, with its section tag, in section order
             Add the spec folder to the spec-folder line and any action to Upgrade Notes
             Widen the opening and Why This Release only enough to name the new theme
             Keep the title and frontmatter unless the new work changes the headline
@@ -615,6 +634,7 @@ workflow:
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
       - section_count: "Number of narrative sections generated"
+      - h4_item_count: "Number of H4 items generated"
     validation: content_generated
 
   step_5_quality_validation:
@@ -644,10 +664,18 @@ workflow:
         CONTENT CHECKS:
           [ ] Compact summary within 3 sentences, expanded opening within 5 paragraphs
           [ ] Each at-a-glance bullet opens with a bold lead-in sentence
-          [ ] H4 headings 10 words at most, H4 items 7 paragraphs at most
+          [ ] H4 headings 10 words at most, H4 items one paragraph, two only for a breaking change or the coverage sentence
           [ ] Omission rules applied (no file inventories, test counts, process detail or housekeeping items)
           [ ] No internal labels outside the spec-folder line
           [ ] Each fact appears once: no sentence restates one from another section
+      - |
+        SHAPE GATE (blocking):
+          Write changelog_content to a temp draft file, e.g. /tmp/changelog-draft-{next_version}.md
+          Run: python3 {shape_check} {draft_file}
+          Exit 0 -> the shape gate passes
+          Exit 1 -> each printed [rule] line is a failed check. Cut at the H4 level (template section 3), never by dropping a section. Then rerun
+          Exit 2 -> the draft could not be read. Report it as a failure
+          Never write the entry while the shape gate exits non-zero
       - |
         IF any check fails:
           Log failed check(s)
@@ -809,7 +837,7 @@ completion_report:
 
     Summary: {summary_first_sentence}
 
-    Sections: {section_count}
+    Sections: {section_count}  Items: {h4_item_count}
     Release Published: {release_published_display}
 
     STATUS=OK PATH={output_path}

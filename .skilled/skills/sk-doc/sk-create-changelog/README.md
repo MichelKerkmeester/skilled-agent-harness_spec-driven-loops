@@ -4,7 +4,7 @@ description: "Writes a correctly versioned, correctly placed changelog entry fro
 trigger_phrases:
   - "create changelog"
   - "release notes"
-version: 1.3.4.0
+version: 1.3.5.0
 ---
 
 # create-changelog
@@ -44,16 +44,17 @@ A changelog entry can go wrong in three ways. It lands in the wrong place, as wh
 cat .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md
 ```
 
-It holds the compact and expanded shapes, the rules for what to leave out and the length ceilings, all modeled on the v4 exemplar at `.skilled/changelog/skilled/v4.0.0.0.md`.
+It holds the compact and expanded shapes, the rules for what to leave out and the length ceilings. Two published entries model them: `.skilled/changelog/skilled/v4.0.1.0.md` for length and selection, and `.skilled/changelog/skilled/v4.0.0.0.md` for the voice and opening of a major release.
 
-**Step 3: Check voice and structure.**
+**Step 3: Check voice, shape and structure.**
 
 ```bash
 python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/changelog/<component>/v<version>.md
+python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/changelog/<component>/v<version>.md
 python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/changelog/<component>/v<version>.md --type changelog
 ```
 
-The scan must report zero hard blockers, meaning no banned punctuation and no banned words. The validator prints `✅ VALID` when the structure and the search metadata are sound. It does not judge the narrative, so the `SKILL.md` checks still apply.
+The scan must report zero hard blockers, meaning no banned punctuation and no banned words. The shape check must print `PASS`, and on `FAIL` it names each ceiling the entry breaks. The validator prints `✅ VALID` when the structure and the search metadata are sound. It does not judge the narrative, so the `SKILL.md` checks still apply.
 
 ---
 
@@ -98,7 +99,7 @@ Reach for create-changelog when a shipped change needs a global release entry, a
 | A `skilled` run edits the latest entry instead of writing a new one | That release has no tag on origin yet, so it is still open | Expected. Tag and publish it first if the new work belongs in the next release |
 | `--nested` is refused | Packet-local changelogs are deprecated | Write a global entry for the component the packet changed |
 | File uses `Added`/`Changed`/`Fixed` headings | The caller asked for another external format | Rewrite as topical sections named for the domain they change, unless the user needs that format |
-| Entry runs long or repeats itself | Every task or fix became its own bullet | Apply the template's section 3: keep what the reader would notice, merge items with one effect and say each fact once |
+| Entry runs long or repeats itself | Every task or fix became its own bullet | Run `scripts/check_changelog_shape.py` to see which ceiling it breaks. Then apply the template's section 3: keep what the reader would notice, cut at the H4 level into a sibling item or the Smaller Fixes list and say each fact once |
 
 ---
 
@@ -124,6 +125,7 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 |---|---|---|
 | Global format | `python3 .skilled/skills/sk-doc/scripts/validate_document.py <changelog-file> --type changelog` | `✅ VALID`: the required frontmatter keys are present, at least one trigger phrase is declared and a version file names its version in a phrase. The summary-first order, the tier sections, the spec-folder line when sourced from a spec and the upgrade guidance are checked by hand against `SKILL.md` section 9 |
 | Voice | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py <changelog-file>` | Zero hard blockers |
+| Shape | `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py <changelog-file>` | `PASS` and exit 0: an expanded entry within 240 lines and 26 H4 items, at most 12 glance bullets, tagged glance bullets in section order and no level label on the spec-folder line |
 | Version sequencing | List the target folder and its generation folders, then compare against the calculated version | The new version is strictly greater than the latest, and no file exists at that path. An extended `skilled` entry keeps its version |
 
 ---
@@ -139,3 +141,4 @@ A: The entry goes to the primary one by file count, and the report lists the oth
 | [`references/worked-examples.md`](./references/worked-examples.md) | Fully written global entries and a note on deprecated packet-local files |
 | [`references/version-bump-rules.md`](./references/version-bump-rules.md) | Concrete four-part version examples |
 | [`references/topology-edge-cases.md`](./references/topology-edge-cases.md) | Placement, back-dating, source conflicts and the GitHub release flow |
+| [`scripts/check_changelog_shape.py`](./scripts/check_changelog_shape.py) | The shape gate run on every draft before it is written |

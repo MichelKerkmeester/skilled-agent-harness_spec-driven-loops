@@ -9,7 +9,7 @@ trigger_phrases:
   - "annotated changelog sample"
 importance_tier: normal
 contextType: implementation
-version: 1.1.5.0
+version: 1.2.0.0
 ---
 
 # Changelog Worked Examples
@@ -22,7 +22,7 @@ Filled-in changelog entries in the v4 narrative style, annotated to explain the 
 
 ### Purpose
 
-These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the full expanded shape, read the canonical exemplar, `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
+These examples apply [../assets/changelog-template.md](../assets/changelog-template.md) to real content. For the expanded shape, read `.skilled/changelog/skilled/v4.0.1.0.md`. For the voice and opening of a major release, read `.skilled/changelog/skilled/v4.0.0.0.md`. The workflow in [../SKILL.md](../SKILL.md) stays authoritative.
 
 ### When to Use
 
@@ -52,7 +52,7 @@ contextType: "general"
 
 `/create:changelog` now writes a hub's changelog where the hub keeps it. A hub such as `sk-doc` holds one link per mode plus `parent` and no entry of its own, so the workflow used to find no version there and would have written beside the links.
 
-> Spec folder: `specs/sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment` (Level 2)
+> Spec folder: `specs/sk-doc/055-changelog-system/003-skilled-release-changelog/003-adjacent-alignment`
 
 &nbsp;
 
@@ -80,7 +80,7 @@ No migration required.
 
 ## 3. EXPANDED FORMAT EXCERPT
 
-For 10 or more changes, a major bump or a breaking change. The excerpt condenses one topical section in the exemplar's style, without quoting it.
+For 10 or more changes, a major bump or a breaking change. The excerpt condenses one topical section in the style of the model entries, without quoting either one.
 
 ```markdown
 &nbsp;
@@ -101,8 +101,8 @@ The spec, plan and task templates consolidated into one shared core with level-g
 
 ## Upgrade Notes
 
-- **Repoint.** Move anything pinned to `memory_search` or `memory_save` to `/speckit:search` and the continuity writer.
-- **Drop.** Remove the spec-memory MCP server from your runtime configs.
+- **Anything pinned to `memory_search` or `memory_save`:** move it to `/speckit:search` and the continuity writer.
+- **Runtime configs that load the spec-memory MCP server:** remove the server.
 ```
 
 **Annotations**:
@@ -111,7 +111,7 @@ The spec, plan and task templates consolidated into one shared core with level-g
 - The section intro says what neither item says, so nothing is stated twice.
 - Each H4 heading states the fact or the gain in four or five words, and each item runs one paragraph: what was there, what replaced it and why it matters.
 - An `&nbsp;` line sits before each H2, nothing separates the H4 items and no `---` rule appears.
-- The Upgrade Notes carry only the actions, with the names the reader must change. Why the engine left belongs to the section above.
+- The Upgrade Notes carry only the actions, with the names the reader must change. Each bullet opens with the reader's situation and follows the order of the sections. Why the engine left belongs to the section above.
 
 ---
 
@@ -129,4 +129,5 @@ Existing files such as `changelog-<packet>-root.md` stay and still validate. The
 - [version-bump-rules.md](version-bump-rules.md) - choosing and calculating the global four-part version
 - [topology-edge-cases.md](topology-edge-cases.md) - placement, back-dating, source conflicts and release edge cases
 - [../SKILL.md](../SKILL.md) - authoritative packet workflow
-- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar
+- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and a release with many changes
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and how a major release opens

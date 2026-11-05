@@ -96,6 +96,7 @@ Each row identifies one child phase and its purpose.
 | specs/sk-doc/055-changelog-system/002-skill-changelog-retrofit/ | Phase | 002-skill-changelog-retrofit | Updates skill release histories to current changelog formats. |
 | specs/sk-doc/055-changelog-system/003-skilled-release-changelog/ | Phase | 003-skilled-release-changelog | Establishes a Skilled release line and searchable changelog metadata. |
 | specs/sk-doc/055-changelog-system/004-changelog-section-spacing/ | Phase | 004-changelog-section-spacing | Sets section spacing for entries and release notes. |
+| specs/sk-doc/055-changelog-system/005-concise-release-format/ | Phase | 005-concise-release-format | Bounds the expanded format and adds the changelog shape gate. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -111,6 +112,7 @@ Each row identifies one child phase and its purpose.
 | 2 | `002-skill-changelog-retrofit/` | Rewrite skill histories into compact and expanded formats | Complete |
 | 3 | `003-skilled-release-changelog/` | Separate Skilled releases and improve changelog discovery | Complete |
 | 4 | `004-changelog-section-spacing/` | Apply consistent spacing to entries and release notes | Complete |
+| 5 | `005-concise-release-format/` | Bound the expanded format, model it on the v4.0.1.0 entry and block drafts that break its ceilings | Complete |
 
 ### Phase Transition Rules
 
@@ -126,6 +128,7 @@ Each row identifies one child phase and its purpose.
 | 001-sk-create-changelog-v4-style | 002-skill-changelog-retrofit | 001-sk-create-changelog-v4-style validates on its own | validate.sh --strict on 001-sk-create-changelog-v4-style |
 | 002-skill-changelog-retrofit | 003-skilled-release-changelog | 002-skill-changelog-retrofit validates on its own | validate.sh --strict on 002-skill-changelog-retrofit |
 | 003-skilled-release-changelog | 004-changelog-section-spacing | 003-skilled-release-changelog validates on its own | validate.sh --strict on 003-skilled-release-changelog |
+| 004-changelog-section-spacing | 005-concise-release-format | 004-changelog-section-spacing validates on its own | validate.sh --strict on 004-changelog-section-spacing |
 <!-- /ANCHOR:phase-map -->
 
 ---

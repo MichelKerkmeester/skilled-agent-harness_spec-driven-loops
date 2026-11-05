@@ -287,19 +287,25 @@ changelog_template:
   #            topical H2 sections with H4 benefit-led story items -> Upgrade Notes
   #
   # Read the template file at Step 4 before generating content.
-  # Canonical exemplar: .skilled/changelog/skilled/v4.0.0.0.md
+  # Model entries: .skilled/changelog/skilled/v4.0.1.0.md for length, selection
+  # and a release with many changes, and .skilled/changelog/skilled/v4.0.0.0.md
+  # for voice and how a major release opens. Length comes from the template's
+  # ceilings, never from either entry.
   # Expanded-format sub-headings should stay short (2-7 words for most, 10 at most, not full sentences).
   # ─────────────────────────────────────────────────────────────────
   template_file: ".skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
-  style_reference: ".skilled/changelog/skilled/v4.0.0.0.md"
+  style_reference: ".skilled/changelog/skilled/v4.0.1.0.md"
+  voice_reference: ".skilled/changelog/skilled/v4.0.0.0.md"
+  shape_check: ".skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py"
 
 # ─────────────────────────────────────────────────────────────────
 # SECTION NAMING
 # ─────────────────────────────────────────────────────────────────
 section_naming:
-  # Name H2 sections for the domain they change, the way the exemplar names
-  # sections like "Spec Kit" and "Safer Git". One to five domains for most
-  # releases, more for a release the size of the exemplar.
+  # Name H2 sections for the domain they change, the way the model entries name
+  # sections like "Spec Kit" and "Doctor Commands". Three to six domains for most
+  # releases and eight at most. Add one past six only when a reader would look
+  # for it by name.
   h2_topical_domain: "## {Domain Name}"
   h4_benefit_led_item: "#### {Benefit-led heading, usually 2-7 words}"
   note: |
@@ -524,10 +530,13 @@ workflow:
       - "Read the template: .skilled/skills/sk-doc/sk-create-changelog/assets/changelog-template.md"
       - "Set DATE to today's date in YYYY-MM-DD format"
       - |
-        SELECT CONTENT before writing (template section 3): keep a change only when the reader
-        would notice it, act on it or decide differently because of it. Merge changes with the
-        same effect, rank the rest by impact and drop test and playbook changes, internal labels,
-        process detail and follow-on housekeeping. Read tasks.md only to confirm what shipped.
+        SELECT CONTENT before writing (template section 3): start from what the reader would
+        notice, act on or decide differently about, then confirm each against the source. Merge
+        changes with the same effect, rank the rest by impact and drop test and scenario lists,
+        internal labels, how the work was done, the order a router or scorer breaks ties in and
+        follow-on housekeeping. Read tasks.md only to confirm what shipped. To get under a ceiling,
+        cut at the H4 level into a sibling item or the section's Smaller Fixes list, never by
+        dropping a whole section.
       - |
         SELECT FORMAT based on the changes that survive SELECT CONTENT and the release type:
           IF change_count < 10 AND change_type != major AND no breaking change -> COMPACT format
@@ -537,8 +546,13 @@ workflow:
       - |
         Generate BODY using selected format:
           COMPACT: summary narrative + at-a-glance bullets with bold lead-in sentences + Upgrade
-          EXPANDED: opening narrative + Why This Release + at-a-glance + topical
-                    H2 sections with H4 benefit-led story items + Upgrade Notes
+          EXPANDED: opening narrative + Why This Release + at-a-glance bullets with bold lead-in
+                    sentences and a ({Topical Domain}) tag, in section order + topical H2 sections
+                    with H4 benefit-led story items of one paragraph each (two for a breaking
+                    change) + an optional Smaller Fixes H4 list last in its section + one sentence
+                    in the last body section naming every component with its own entry + Upgrade Notes
+          Expanded ceilings (template section 4, enforced by shape_check in Step 5):
+            240 lines below the frontmatter, 26 H4 items, 12 glance bullets
         Omission rules apply: no Files Changed tables, no test metrics, no schema
         tables. A table appears only when the numbers themselves are the story.
         No internal labels outside the spec-folder line.
@@ -548,7 +562,7 @@ workflow:
           - Prefer 2-7 words, 10 at most, benefit-led
           - Make it easy to scan at a glance
           - Avoid packet IDs, numbering, and sentence-length headings unless truly required
-      - "Generate UPGRADE section (Upgrade Notes with Adopt/Repoint/Drop lead-ins when there is migration work)"
+      - "Generate UPGRADE section (Upgrade Notes, one bullet per action in section order, each led in bold by the reader's situation, when there is migration work)"
       - |
         IF entry_mode == "extend":
           Read the open entry at open_entry_path first; it is the base, not the template
@@ -556,7 +570,7 @@ workflow:
           IF the open entry is compact and the merged changes reach the expanded threshold (SELECT FORMAT above), convert it to the expanded format
           Fold the selected changes into it rather than generating a second entry:
             Add a topical H2 section, or H4 items under an existing section the change belongs to
-            Add one glance bullet per new theme, in section order
+            Add one glance bullet per new theme, with its section tag, in section order
             Add the spec folder to the spec-folder line and any action to Upgrade Notes
             Widen the opening and Why This Release only enough to name the new theme
             Keep the title and frontmatter unless the new work changes the headline
@@ -566,9 +580,10 @@ workflow:
     outputs:
       - changelog_content: "Complete formatted changelog markdown"
       - section_count: "Number of narrative sections generated"
+      - h4_item_count: "Number of H4 items generated"
     validation: content_generated
     checkpoint:
-      question: "Changelog content generated with {section_count} sections. Review before validation?"
+      question: "Changelog content generated with {section_count} sections and {h4_item_count} items. Review before validation?"
       options:
         - label: "A) Approve - proceed to validation"
         - label: "B) Review - show full changelog preview"
@@ -580,7 +595,8 @@ workflow:
     activities:
       - "Run FORMAT CHECKS (frontmatter block with the five contract keys in order, both identity phrases and at least one topic phrase, narrative summary opening after the frontmatter and any editorial title, spec-folder blockquote when the source is a spec folder, at-a-glance bullets with bold lead-ins, expanded: Why This Release + topical H2/H4 sections + Upgrade Notes, no Files Changed/Test Impact/Schema default sections, an &nbsp; line before every H2, nothing between H4 items and no --- rule in the body)"
       - "Run VERSION CHECKS (4-segment; for a new entry sequential with no duplicates; when extending, the version equals the open entry's and no v{next_version} release tag exists yet)"
-      - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items 7 paragraphs at most, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
+      - "Run CONTENT CHECKS (compact summary within 3 sentences or expanded opening within 5 paragraphs, bold lead-in bullets, H4 headings 10 words at most, H4 items one paragraph and two only for a breaking change or the coverage sentence, omission rules applied, no internal labels outside the spec-folder line, each fact said once)"
+      - "Run the SHAPE GATE (blocking): write changelog_content to a temp draft file, run `python3 {shape_check} {draft_file}` and treat each printed [rule] line as a failed check. Exit 1 means cut at the H4 level (template section 3) and rerun, exit 2 means the draft could not be read. Never write the entry while it exits non-zero"
       - "Auto-fix minor issues if possible"
     outputs:
       - validation_passed: "true/false"
@@ -756,7 +772,7 @@ completion_report:
 
     Summary: {summary_first_sentence}
 
-    Sections: {section_count}
+    Sections: {section_count}  Items: {h4_item_count}
     Release Published: {release_published_display}
 
     STATUS=OK PATH={output_path}

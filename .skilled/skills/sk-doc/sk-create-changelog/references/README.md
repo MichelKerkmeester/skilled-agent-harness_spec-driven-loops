@@ -9,7 +9,7 @@ trigger_phrases:
   - "github release changelog option"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # create-changelog References. Overflow Map
@@ -39,6 +39,7 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 ### Packet contract
 - [../SKILL.md](../SKILL.md) - authoritative workflow, versioning, topology, validation and rules
 - [../README.md](../README.md) - packet overview and quick start
+- [../scripts/check_changelog_shape.py](../scripts/check_changelog_shape.py) - the shape gate for the expanded ceilings, the glance order and the spec-folder line
 
 ### Command surface
 - `.skilled/commands/create/changelog.md` - thin router for `/create:changelog`
@@ -49,5 +50,6 @@ Open a reference here when the workflow is clear but you need a filled-in exampl
 ### Packet-local (nested) output, deprecated
 - `.skilled/skills/system-spec-kit/runtime/cli/spec-folder/nested-changelog.ts` - the deprecated generator, which only renders existing packet-local files. No workflow writes a new one
 
-### Real entry to model
-- `.skilled/changelog/skilled/v4.0.0.0.md` - the canonical exemplar for the v4 narrative style
+### Real entries to model
+- `.skilled/changelog/skilled/v4.0.1.0.md` - the model for length, selection and a release with many changes
+- `.skilled/changelog/skilled/v4.0.0.0.md` - the model for voice and how a major release opens

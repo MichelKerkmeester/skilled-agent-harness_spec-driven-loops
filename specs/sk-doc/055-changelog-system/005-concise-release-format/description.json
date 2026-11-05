@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "sk-doc/055-changelog-system/005-concise-release-format",
+  "description": "Phase 5: concise-release-format",
+  "keywords": [
+    "phase",
+    "concise-release-format"
+  ],
+  "lastUpdated": "2026-11-05T20:31:25.272Z",
+  "specId": "005",
+  "folderSlug": "concise-release-format",
+  "parentChain": [
+    "sk-doc",
+    "055-changelog-system"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-11-26_21-31__deep-research-5-iterations-cli-pi-deepseek-v4-1.md"
+  ]
+}
