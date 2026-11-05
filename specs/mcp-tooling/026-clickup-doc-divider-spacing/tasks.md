@@ -57,6 +57,8 @@ contextType: "general"
 - [x] T008 Validate the changed docs (`validate_document.py`). Verify: both references and the changelog report 0 issues. `SKILL.md` keeps its one existing warning about section 0.
 - [x] T009 Validate the package (`validate_skill_package.py M`). Verify: `package_skill.py --check: PASS`.
 - [x] T010 Check the route (`compiled-route.cjs --hub mcp-tooling`). Verify: the divider prompt routes to `mcp-click-up` with policy hash `360bf02a...`, unchanged.
+- [x] T011 Move the compiled-routing directive back into section 5 and release the hubs (`mcp-tooling/ROUTER.md`, `sk-doc/ROUTER.md`, versions 1.9.5.0 and 2.4.3.0). Verify: `validate_skill_package.py` prints `compiled-ready: PASS` for both hubs, where it printed `Missing directive markers` before.
+- [x] T012 Run the sk-create-skill fleet checks. Verify: `ci-leaf-manifest-freshness`, `ci-skill-derived-freshness`, `ci-skill-root-metadata` and `validate-playbook-topology` exit 0, and `package_skill.py --check --strict` passes on both hubs and on `mcp-click-up`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
