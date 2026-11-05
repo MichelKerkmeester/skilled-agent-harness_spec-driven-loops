@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 48,
-    "missing-frontmatter": 7335,
-    "ok": 17061,
+    "missing-frontmatter": 7341,
+    "ok": 17080,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27944,
+  "documentsScanned": 27969,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a00361c0cb64213f3d646b2d95b61cfd7b3050cd466db3f50c30dff14cfb0467",
+  "manifestHash": "6deaf5a134cb0b19730873313885b797fd7cefb0e34f6b4ec20b80c4a279796a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40955,
+      "ok": 40997,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -28615,7 +28615,31 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/package-list-incomplete/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/prose-outside-inventory/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/structure-prose-only/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/toc-anchor/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/negative/tree-outside-inventory/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {
@@ -28633,7 +28657,19 @@
     {
       "category": "missing-frontmatter",
       "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/package-list-pass/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
       "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/positive/control/README.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": ".skilled/skills/sk-doc/scripts/tests/code-folder/structure-tree-pass/README.md",
       "reason": "no opening frontmatter delimiter"
     },
     {

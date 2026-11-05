@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a00361c0cb64213f3d646b2d95b61cfd7b3050cd466db3f50c30dff14cfb0467",
+  "manifestHash": "6deaf5a134cb0b19730873313885b797fd7cefb0e34f6b4ec20b80c4a279796a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20134,6 +20134,9 @@
     "cli classifier 0 8 7 0": [
       "cli-classifier 0.8.7.0"
     ],
+    "cli classifier 0 8 8 0": [
+      "cli-classifier 0.8.8.0"
+    ],
     "cli classifier audit findings": [
       "cli-classifier audit findings"
     ],
@@ -20298,6 +20301,9 @@
     ],
     "cli classifier v0 8 7 0": [
       "cli-classifier v0.8.7.0"
+    ],
+    "cli classifier v0 8 8 0": [
+      "cli-classifier v0.8.8.0"
     ],
     "cli claude code": [
       "cli claude code"
@@ -21513,6 +21519,9 @@
     "cli external orchestration 1 7 13 0": [
       "cli-external-orchestration 1.7.13.0"
     ],
+    "cli external orchestration 1 7 14 0": [
+      "cli-external-orchestration 1.7.14.0"
+    ],
     "cli external orchestration 1 7 2 0": [
       "cli-external-orchestration 1.7.2.0"
     ],
@@ -21641,6 +21650,9 @@
     ],
     "cli external orchestration v1 7 13 0": [
       "cli-external-orchestration v1.7.13.0"
+    ],
+    "cli external orchestration v1 7 14 0": [
+      "cli-external-orchestration v1.7.14.0"
     ],
     "cli external orchestration v1 7 2 0": [
       "cli-external-orchestration v1.7.2.0"
@@ -22701,6 +22713,9 @@
     "cli orca 0 1 8 0": [
       "cli-orca 0.1.8.0"
     ],
+    "cli orca 0 1 9 0": [
+      "cli-orca 0.1.9.0"
+    ],
     "cli orca audit surfaces": [
       "cli-orca audit surfaces"
     ],
@@ -22804,6 +22819,9 @@
     ],
     "cli orca v0 1 8 0": [
       "cli-orca v0.1.8.0"
+    ],
+    "cli orca v0 1 9 0": [
+      "cli-orca v0.1.9.0"
     ],
     "cli orchestration ram overload": [
       "CLI orchestration RAM overload"
@@ -24500,6 +24518,9 @@
     ],
     "code embedder benchmark verdict": [
       "code embedder benchmark verdict"
+    ],
+    "code folder inventory check": [
+      "code folder inventory check"
     ],
     "code folder readme": [
       "code folder readme"
@@ -48978,6 +48999,9 @@
     "fleet gates final state": [
       "fleet gates final state"
     ],
+    "fleet guard false positive": [
+      "fleet guard false positive"
+    ],
     "fleet marker validation": [
       "fleet marker validation"
     ],
@@ -54017,6 +54041,9 @@
     ],
     "guard comment canonical card": [
       "guard comment canonical card"
+    ],
+    "guard hard finding mapping": [
+      "guard hard finding mapping"
     ],
     "guard index fixes acceptance": [
       "guard index fixes acceptance"
@@ -63891,6 +63918,9 @@
     "mcp code mode 1 0 16 0": [
       "mcp-code-mode 1.0.16.0"
     ],
+    "mcp code mode 1 0 17 0": [
+      "mcp-code-mode 1.0.17.0"
+    ],
     "mcp code mode 1 0 2 0": [
       "mcp-code-mode 1.0.2.0"
     ],
@@ -64001,6 +64031,9 @@
     ],
     "mcp code mode v1 0 16 0": [
       "mcp-code-mode v1.0.16.0"
+    ],
+    "mcp code mode v1 0 17 0": [
+      "mcp-code-mode v1.0.17.0"
     ],
     "mcp code mode v1 0 2 0": [
       "mcp-code-mode v1.0.2.0"
@@ -65259,6 +65292,9 @@
     "mcp tooling 1 9 4 0": [
       "mcp-tooling 1.9.4.0"
     ],
+    "mcp tooling 1 9 5 0": [
+      "mcp-tooling 1.9.5.0"
+    ],
     "mcp tooling benchmark": [
       "mcp-tooling benchmark"
     ],
@@ -65411,6 +65447,9 @@
     ],
     "mcp tooling v1 9 4 0": [
       "mcp-tooling v1.9.4.0"
+    ],
+    "mcp tooling v1 9 5 0": [
+      "mcp-tooling v1.9.5.0"
     ],
     "mcp tools": [
       "mcp tools"
@@ -85252,6 +85291,9 @@
     "readme remediation tasks": [
       "readme remediation tasks"
     ],
+    "readme render checks": [
+      "readme render checks"
+    ],
     "readme resource map tasks": [
       "readme resource map tasks"
     ],
@@ -88614,6 +88656,9 @@
     ],
     "render checks and gate tasks": [
       "render checks and gate tasks"
+    ],
+    "render checks enforced": [
+      "render checks enforced"
     ],
     "render checks for skill docs": [
       "render checks for skill docs"
@@ -99542,6 +99587,9 @@
     "sk code 3 10 2 0": [
       "sk-code 3.10.2.0"
     ],
+    "sk code 3 10 3 0": [
+      "sk-code 3.10.3.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -101573,6 +101621,9 @@
     "sk code v3 10 2 0": [
       "sk-code v3.10.2.0"
     ],
+    "sk code v3 10 3 0": [
+      "sk-code v3.10.3.0"
+    ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
     ],
@@ -103057,6 +103108,12 @@
     "sk create skill 1 13 0 0": [
       "sk-create-skill 1.13.0.0"
     ],
+    "sk create skill 1 14 0 0": [
+      "sk-create-skill 1.14.0.0"
+    ],
+    "sk create skill 1 15 0 0": [
+      "sk-create-skill 1.15.0.0"
+    ],
     "sk create skill 1 2 0 0": [
       "sk-create-skill 1.2.0.0"
     ],
@@ -103188,6 +103245,12 @@
     ],
     "sk create skill v1 13 0 0": [
       "sk-create-skill v1.13.0.0"
+    ],
+    "sk create skill v1 14 0 0": [
+      "sk-create-skill v1.14.0.0"
+    ],
+    "sk create skill v1 15 0 0": [
+      "sk-create-skill v1.15.0.0"
     ],
     "sk create skill v1 2 0 0": [
       "sk-create-skill v1.2.0.0"
@@ -103350,6 +103413,9 @@
     ],
     "sk design 2 0 11 0": [
       "sk-design 2.0.11.0"
+    ],
+    "sk design 2 0 12 0": [
+      "sk-design 2.0.12.0"
     ],
     "sk design 2 0 2 0": [
       "sk-design 2.0.2.0"
@@ -104039,6 +104105,9 @@
     "sk design v2 0 11 0": [
       "sk-design v2.0.11.0"
     ],
+    "sk design v2 0 12 0": [
+      "sk-design v2.0.12.0"
+    ],
     "sk design v2 0 2 0": [
       "sk-design v2.0.2.0"
     ],
@@ -104230,6 +104299,18 @@
     ],
     "sk doc 2 6 0 0": [
       "sk-doc 2.6.0.0"
+    ],
+    "sk doc 2 7 0 0": [
+      "sk-doc 2.7.0.0"
+    ],
+    "sk doc 2 8 0 0": [
+      "sk-doc 2.8.0.0"
+    ],
+    "sk doc 2 9 0 0": [
+      "sk-doc 2.9.0.0"
+    ],
+    "sk doc 2 9 1 0": [
+      "sk-doc 2.9.1.0"
     ],
     "sk doc aligned code readmes": [
       "sk-doc aligned code readmes"
@@ -104672,6 +104753,18 @@
     "sk doc v2 6 0 0": [
       "sk-doc v2.6.0.0"
     ],
+    "sk doc v2 7 0 0": [
+      "sk-doc v2.7.0.0"
+    ],
+    "sk doc v2 8 0 0": [
+      "sk-doc v2.8.0.0"
+    ],
+    "sk doc v2 9 0 0": [
+      "sk-doc v2.9.0.0"
+    ],
+    "sk doc v2 9 1 0": [
+      "sk-doc v2.9.1.0"
+    ],
     "sk doc validation off switch": [
       "sk-doc validation off switch"
     ],
@@ -104768,6 +104861,9 @@
     ],
     "sk git 1 11 8 0": [
       "sk-git 1.11.8.0"
+    ],
+    "sk git 1 11 9 0": [
+      "sk-git 1.11.9.0"
     ],
     "sk git 1 2 0 0": [
       "sk-git 1.2.0.0"
@@ -105033,6 +105129,9 @@
     "sk git v1 11 8 0": [
       "sk-git v1.11.8.0"
     ],
+    "sk git v1 11 9 0": [
+      "sk-git v1.11.9.0"
+    ],
     "sk git v1 2 0 0": [
       "sk-git v1.2.0.0"
     ],
@@ -105209,6 +105308,9 @@
     ],
     "sk prompt 4 0 2 0": [
       "sk-prompt 4.0.2.0"
+    ],
+    "sk prompt 4 0 3 0": [
+      "sk-prompt 4.0.3.0"
     ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
@@ -105572,6 +105674,9 @@
     ],
     "sk prompt v4 0 2 0": [
       "sk-prompt v4.0.2.0"
+    ],
+    "sk prompt v4 0 3 0": [
+      "sk-prompt v4.0.3.0"
     ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"
@@ -107344,6 +107449,9 @@
     ],
     "skill semantic versioning": [
       "skill semantic versioning"
+    ],
+    "skill size limits table": [
+      "skill size limits table"
     ],
     "skill smart router": [
       "skill smart router"
@@ -113592,6 +113700,9 @@
     "system deep loop 1 6 21 0": [
       "system-deep-loop 1.6.21.0"
     ],
+    "system deep loop 1 6 22 0": [
+      "system-deep-loop 1.6.22.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -113780,6 +113891,9 @@
     ],
     "system deep loop v1 6 21 0": [
       "system-deep-loop v1.6.21.0"
+    ],
+    "system deep loop v1 6 22 0": [
+      "system-deep-loop v1.6.22.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
@@ -114011,6 +114125,9 @@
     ],
     "system skill advisor 0 18 2 0": [
       "system-skill-advisor 0.18.2.0"
+    ],
+    "system skill advisor 0 18 3 0": [
+      "system-skill-advisor 0.18.3.0"
     ],
     "system skill advisor 0 2 0 0": [
       "system-skill-advisor 0.2.0.0"
@@ -114317,6 +114434,9 @@
     ],
     "system skill advisor v0 18 2 0": [
       "system-skill-advisor v0.18.2.0"
+    ],
+    "system skill advisor v0 18 3 0": [
+      "system-skill-advisor v0.18.3.0"
     ],
     "system skill advisor v0 2 0 0": [
       "system-skill-advisor v0.2.0.0"
@@ -114659,6 +114779,9 @@
     ],
     "system spec kit 2 12 32 0": [
       "system-spec-kit 2.12.32.0"
+    ],
+    "system spec kit 2 12 33 0": [
+      "system-spec-kit 2.12.33.0"
     ],
     "system spec kit 2 12 4 0": [
       "system-spec-kit 2.12.4.0"
@@ -115223,6 +115346,9 @@
     ],
     "system spec kit v2 12 32 0": [
       "system-spec-kit v2.12.32.0"
+    ],
+    "system spec kit v2 12 33 0": [
+      "system-spec-kit v2.12.33.0"
     ],
     "system spec kit v2 12 4 0": [
       "system-spec-kit v2.12.4.0"
