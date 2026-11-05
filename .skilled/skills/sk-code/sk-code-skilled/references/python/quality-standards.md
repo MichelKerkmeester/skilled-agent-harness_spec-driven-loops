@@ -8,12 +8,12 @@ trigger_phrases:
   - "snake case function naming"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Python Quality Standards
 
-Code quality requirements, validation rules, and best practices for Python scripts in the OpenCode development environment.
+Open this when you are about to commit Python work and need to know which defect blocks the commit, which one needs an approval and which one can wait.
 
 ---
 

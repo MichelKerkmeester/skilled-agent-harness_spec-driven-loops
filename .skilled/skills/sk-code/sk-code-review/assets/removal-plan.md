@@ -8,12 +8,12 @@ trigger_phrases:
   - "removal usage evidence check"
 importance_tier: normal
 contextType: planning
-version: 1.5.0.9
+version: 1.5.1.0
 ---
 
 # Removal and Iteration Plan
 
-Template for identifying safe deletion candidates and planning deferred removals with rollback safeguards.
+Open this when code may be dead but nobody has proven it, or when a removal has to wait for a safer window.
 
 ---
 

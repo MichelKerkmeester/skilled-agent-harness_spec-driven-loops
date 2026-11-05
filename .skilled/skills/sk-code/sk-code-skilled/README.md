@@ -5,7 +5,7 @@ trigger_phrases:
   - "opencode system code"
   - "opencode authoring"
   - "system code standards"
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # opencode
@@ -14,7 +14,9 @@ version: 1.0.7.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -22,10 +24,6 @@ version: 1.0.7.0
 | **Invoke with** | No direct invocation. The sk-code hub bundles this surface beside a workflow mode when it detects a system-code surface, then slices evidence by the detected language |
 | **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification, authoring checklists and this framework's house style |
 | **Produces** | The language-sliced evidence a workflow mode applies, plus drift-guard verification results. The surface itself edits nothing |
-
----
-
-## 2. OVERVIEW
 
 ### What It Does
 
@@ -61,7 +59,7 @@ These checks load only for a file the surface detection places in SKILLED, so a 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Let the hub bundle it.** There is nothing to install and no command to run. When a task touches `.skilled/` system code, the sk-code hub bundles this surface alongside the active workflow mode and slices the evidence to the languages the task touches.
 
@@ -77,7 +75,7 @@ A clean exit means all four guards pass: the alignment verifier, the stack-folde
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Detection and Slicing
 
@@ -106,7 +104,7 @@ Five non-negotiables hold across the evidence.
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Surface
 
@@ -123,7 +121,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -132,7 +130,7 @@ Use this surface when a task touches `.skilled/` system code, be it a skill, age
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why does this surface exist as a separate skill?**
 
@@ -144,7 +142,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -154,7 +152,7 @@ A: No. The hub bundles it beside a workflow mode. It never routes as a primary. 
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

@@ -7,12 +7,12 @@ trigger_phrases:
   - "browser accessibility preferences"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Accessibility Patterns
 
-Widget contracts, focus handling and browser accessibility preferences for web interfaces.
+Open this when a dialog traps the keyboard, a popover drops the caret or a reduced-motion preference is ignored.
 
 ---
 

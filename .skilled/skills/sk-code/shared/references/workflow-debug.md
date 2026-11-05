@@ -8,12 +8,12 @@ trigger_phrases:
   - "scoped repair workflow"
 importance_tier: important
 contextType: general
-version: 1.1.3.0
+version: 1.1.4.0
 ---
 
 # Workflow Reference - Debugging
 
-Shared `sk-code` doctrine for root-cause diagnosis and scoped repair once a symptom, failing command or failed check appears.
+Open this when a command fails, a check turns red or a report describes behavior you cannot yet reproduce.
 
 ---
 

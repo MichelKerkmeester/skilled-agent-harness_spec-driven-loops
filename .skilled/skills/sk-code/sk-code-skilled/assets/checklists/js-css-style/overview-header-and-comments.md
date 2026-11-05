@@ -6,12 +6,12 @@ trigger_phrases:
   - "review baseline handoff"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Code Quality Checklist
 
-SKILLED JavaScript header and section house checks that the SKILLED JavaScript checklist does not state.
+Open this when a JavaScript or CSS target resolves to SKILLED and you need the house checks its JavaScript checklist does not state. They are house style, not universal rules.
 
 ## 1. OVERVIEW
 

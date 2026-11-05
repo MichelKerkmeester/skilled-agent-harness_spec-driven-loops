@@ -8,12 +8,12 @@ trigger_phrases:
   - "architecture smell patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # SOLID and Architecture Checklist
 
-Review prompts and smell patterns for evaluating architecture cohesion, coupling, and extensibility risks.
+Open this when a module boundary feels wrong and you want repeatable prompts to name the smell before it hardens into maintenance cost.
 
 ---
 

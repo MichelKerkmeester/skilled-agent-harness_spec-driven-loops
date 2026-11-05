@@ -8,12 +8,12 @@ trigger_phrases:
   - "surface implementation standards"
 importance_tier: important
 contextType: general
-version: 2.1.5.0
+version: 2.1.6.0
 ---
 
 # Workflow Reference - Implementation
 
-Shared `sk-code` doctrine for the mutating build phase, from research before a change to the handoff into quality and verification.
+Open this when you are about to change behavior and need to know how much to read before the first edit.
 
 ---
 

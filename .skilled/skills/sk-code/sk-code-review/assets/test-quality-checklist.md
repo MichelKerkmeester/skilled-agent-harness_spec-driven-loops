@@ -9,12 +9,12 @@ trigger_phrases:
   - "test pyramid awareness"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Test Quality Checklist
 
-Test adequacy, coverage quality, and anti-pattern detection checklist for identifying unreliable or misleading test suites.
+Open this when a suite looks green but you doubt what it proves. It gives a systematic pass over the tests themselves, not over the code they cover.
 
 ---
 

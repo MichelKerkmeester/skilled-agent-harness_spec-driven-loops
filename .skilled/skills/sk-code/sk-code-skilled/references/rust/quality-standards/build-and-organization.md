@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Cargo/Build Baseline & Module Organization
 
-Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+Open this when you are bootstrapping a Rust crate or splitting a workspace and need the edition, MSRV, Clippy and test-layout choices settled.
 
 ---
 

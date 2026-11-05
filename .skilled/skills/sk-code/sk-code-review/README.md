@@ -8,7 +8,7 @@ trigger_phrases:
   - "pull request"
   - "security review"
   - "code-review"
-version: 1.7.14.0
+version: 1.7.15.0
 ---
 
 # sk-code-review mode
@@ -17,7 +17,9 @@ version: 1.7.14.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.7.14.0
 | **Invoke with** | `@review` agent dispatch, the "code review", "review", "pull request" and "security review" keywords |
 | **Works on** | Diffs, staged files, commit ranges or explicit file lists |
 | **Produces** | Severity-ranked findings (P0/P1/P2), a `Rule sources:` line naming the rules applied, a removal plan, next steps and one exact `Review status:` line |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Mode Exists
 
@@ -62,7 +60,7 @@ A P0 or P1 finding must name its reach: an input or call path the code's stated 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Invoke it.** Gate 2 routing fires on review keywords. You can also dispatch the `@review` agent directly. When `@orchestrate` dispatches the review, it adds `CODE-REVIEW` as the first line of the rendered prompt so the reviewer knows it is operating as the baseline. The `/speckit:implement` and `/speckit:complete` workflows state the same marker for any step that dispatches `@review`.
 
@@ -128,7 +126,7 @@ Exits 0 when the verdict triplet and the Iron Law wording stay in lockstep acros
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### The Analysis Order
 
@@ -158,7 +156,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -172,7 +170,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -188,7 +186,7 @@ The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias names and persists thi
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why findings-first instead of summary-first?**
 
@@ -216,7 +214,7 @@ A: Downstream automation reads the final line by exact string match to decide wh
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -228,7 +226,7 @@ A: Downstream automation reads the final line by exact string match to decide wh
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

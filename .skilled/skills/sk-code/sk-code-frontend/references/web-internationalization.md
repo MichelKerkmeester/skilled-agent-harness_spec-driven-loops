@@ -7,12 +7,12 @@ trigger_phrases:
   - "translation tolerant layout"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Web Internationalization
 
-HTML language and direction, bidirectional text, locale formatting and translation-tolerant layout.
+Open this when text renders right to left, dates and numbers need a locale or a translated string breaks the layout.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # TypeScript Style Guide
 
-Formatting standards and naming conventions for TypeScript files in the OpenCode development environment.
+Open this when you are writing a new TypeScript file, resolving a style disagreement in review or checking how strict mode is configured.
 
 ---
 

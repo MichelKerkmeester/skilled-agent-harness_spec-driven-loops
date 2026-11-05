@@ -8,12 +8,12 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # Verification Summary, Quick Reference & Related
 
-Templates, pass criteria, and source links for reporting the SKILLED JavaScript and CSS house-style checks.
+Open this when the house-style checks are done and you need to fill in the verification summary, confirm each pass criterion and point to the source links.
 
 ## 1. OVERVIEW
 

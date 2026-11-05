@@ -8,12 +8,12 @@ trigger_phrases:
   - "bash naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Shell Style Guide
 
-Coding conventions and formatting standards for Bash scripts in the OpenCode development environment.
+Open this when you are writing or reviewing a Bash script and need the shebang, header, strict mode and naming rules it has to follow.
 
 ---
 

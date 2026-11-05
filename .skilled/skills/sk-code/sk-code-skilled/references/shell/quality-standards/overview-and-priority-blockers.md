@@ -8,12 +8,12 @@ trigger_phrases:
   - "shell quality validation"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Shell Quality Standards
 
-Code quality requirements, validation rules, and best practices for Bash scripts in the OpenCode development environment.
+Open this when a Bash script is about to be committed and you need to know which defects block it outright and which need approval first.
 
 ---
 

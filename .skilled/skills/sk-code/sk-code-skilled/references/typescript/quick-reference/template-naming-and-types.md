@@ -8,12 +8,12 @@ trigger_phrases:
   - "typescript naming cheat sheet"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # TypeScript Quick Reference
 
-Copy-paste templates, naming cheat sheet, and common patterns for TypeScript development in OpenCode.
+Open this when you are starting a TypeScript file from the standard template or checking a name or type annotation against the cheat sheet.
 
 ---
 

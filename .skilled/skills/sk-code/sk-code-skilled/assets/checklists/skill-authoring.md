@@ -8,12 +8,12 @@ trigger_phrases:
   - "skill validation path"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Skill Authoring Checklist
 
-Checklist for authoring or modifying OpenCode skills with correct metadata, resource layout, parent-hub routing files, versioning, and validation.
+Open this before handing a new or changed skill to another runtime, so its metadata, layout and validation match the live skill contract.
 
 ## 1. OVERVIEW
 

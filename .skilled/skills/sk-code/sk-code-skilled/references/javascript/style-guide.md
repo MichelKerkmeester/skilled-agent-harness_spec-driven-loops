@@ -8,12 +8,12 @@ trigger_phrases:
   - "javascript section organization"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # JavaScript Style Guide
 
-Formatting standards and naming conventions for JavaScript files in the OpenCode development environment.
+Open this when you are drafting or reviewing a JavaScript file and need the header, section order, naming rule or formatting detail that settles the point.
 
 ---
 

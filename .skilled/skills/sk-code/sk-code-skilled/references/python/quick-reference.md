@@ -8,12 +8,12 @@ trigger_phrases:
   - "python docstring format"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Python Quick Reference
 
-Fast lookup for Python coding patterns, naming conventions, and common structures in OpenCode.
+Open this when you are writing Python and want the template, pattern or syntax spelled out so you can paste it and keep moving.
 
 ---
 

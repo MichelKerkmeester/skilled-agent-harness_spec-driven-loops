@@ -4,7 +4,7 @@ description: "Stack-agnostic web frontend practice with a five-pass Figma check,
 trigger_phrases:
   - "web frontend practice"
   - "figma to code check"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # sk-code-frontend
@@ -13,7 +13,9 @@ version: 1.0.5.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -24,10 +26,6 @@ version: 1.0.5.0
 | **Advisor** | Invisible (`routingClass: metadata`) |
 | **Bundled with** | `sk-code-quality` for authoring and `sk-code-review` for review, or routed alone |
 | **Produces** | Shared principles, web guidance, topic references, and the five-pass Figma check; the packet edits nothing |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Surface Exists
 
@@ -41,7 +39,7 @@ The packet is read-only. The paired workflow mode applies its evidence to the re
 
 ---
 
-## 3. REFERENCE MAP
+## 2. REFERENCE MAP
 
 | File | Carries |
 |---|---|
@@ -57,7 +55,7 @@ The packet router lists each topic file and the condition that calls for it.
 
 ---
 
-## 4. VERIFICATION
+## 3. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -69,7 +67,7 @@ The listing shows the web and topic references plus the three shared workflow li
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Why to read it |
 |---|---|

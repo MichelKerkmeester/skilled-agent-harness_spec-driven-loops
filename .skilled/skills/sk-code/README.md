@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.41.0
+version: 2.2.42.0
 ---
 
 # sk-code
@@ -14,7 +14,9 @@ version: 2.2.41.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -22,10 +24,6 @@ version: 2.2.41.0
 | **Invoke with** | `Skill(sk-code)` plus an optional mode hint such as `sk-code-quality:` or `sk-code-review:` |
 | **Works on** | The shared surface-detection router for the three surfaces the hub `SKILL.md` lists: the native SKILLED surface, the `sk-code-ci` CI standards surface and the stack-agnostic `sk-code-frontend` surface |
 | **Produces** | A routed workflow mode or bundled surface evidence packet with the matching code-work contract and tool surface. The quality and review modes work in any repository and read that repository's own rule overrides |
-
----
-
-## 2. OVERVIEW
 
 ### Purpose
 
@@ -62,7 +60,7 @@ The boundary is deliberate: sk-code routes code work. Documentation quality, git
 
 ---
 
-## 3. HOW IT WORKS
+## 2. HOW IT WORKS
 
 ### How A Request Resolves
 
@@ -100,7 +98,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 
 ---
 
-## 4. INTEGRATION & NAVIGATION
+## 3. INTEGRATION & NAVIGATION
 
 ### Related Skills
 
@@ -115,7 +113,7 @@ The mode packets and `shared/` carry no `graph-metadata.json` of their own. The 
 
 ---
 
-## 5. ADAPTING TO YOUR STACK
+## 4. ADAPTING TO YOUR STACK
 
 sk-code ships three surfaces:
 
@@ -185,7 +183,7 @@ node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<a prompt about you
 
 ---
 
-## 6. FAQ
+## 5. FAQ
 
 **Q: Why does the advisor see only one code skill when the hub contains a packet per mode and surface?**
 
@@ -197,7 +195,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 
 ---
 
-## 7. VERIFICATION
+## 6. VERIFICATION
 
 | Check | Result |
 |---|---|
@@ -208,7 +206,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 7. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

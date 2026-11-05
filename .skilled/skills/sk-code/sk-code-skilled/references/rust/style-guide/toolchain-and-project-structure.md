@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Toolchain, Compilation Baseline & Project Structure
 
-Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+Open this when you are settling a workspace toolchain, an edition bump, the MSRV or a release profile and how a crate's sections and modules should be laid out.
 
 ---
 

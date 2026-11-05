@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Domain Modeling, Collections & Public API/ABI Contracts
 
-Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+Open this when you are shaping Rust state, picking a collection or reviewing an exported contract for napi-rs, WASM or a sidecar.
 
 ---
 

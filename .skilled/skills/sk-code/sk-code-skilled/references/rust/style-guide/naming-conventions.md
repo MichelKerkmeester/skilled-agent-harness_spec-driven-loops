@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Naming Conventions
 
-Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+Open this when you are naming a type, trait, function, constant or module and checking a JavaScript-visible export against the summary table.
 
 ---
 

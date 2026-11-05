@@ -8,12 +8,12 @@ trigger_phrases:
   - "python naming checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Python Code Quality Checklist
 
-Quality validation checklist for Python code in the OpenCode development environment.
+Open this when a Python file is ready for review and you want the quality checks specific to it. It runs alongside the universal checklist.
 
 ---
 

@@ -10,12 +10,12 @@ trigger_phrases:
   - "dependency supply chain audit"
 importance_tier: normal
 contextType: implementation
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Security and Reliability Checklist
 
-Structured risk checklist for security vulnerabilities, runtime reliability issues, and concurrent-behavior defects.
+Open this when a change touches auth, input handling, secrets or shared mutable state. It keeps the review on exploitability and business impact rather than code style.
 
 ---
 

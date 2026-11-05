@@ -8,12 +8,12 @@ trigger_phrases:
   - "cargo verification baseline"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rust Quality Standards
 
-Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+Open this when you are writing a Rust core module or adapter and need the owned-versus-borrowed call, the safety policy or the unsafety justification in front of you.
 
 ---
 

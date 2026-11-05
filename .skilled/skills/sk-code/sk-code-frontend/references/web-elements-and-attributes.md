@@ -7,12 +7,12 @@ trigger_phrases:
   - "html resource loading attributes"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Web Elements and Attributes
 
-HTML element and attribute behavior for dialogs, popovers, forms, media hints and document language.
+Open this when a dialog, form or media element misbehaves and the right attribute is not obvious.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "completion claim gate"
 importance_tier: important
 contextType: general
-version: 2.2.5.0
+version: 2.2.6.0
 ---
 
 # Workflow Reference - Verification
 
-Shared `sk-code` doctrine for the final non-mutating evidence phase that gates every done, works, complete, fixed, passing or ready claim.
+Open this before you claim a change is finished, and when you need a falsifier that could disprove it.
 
 ---
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Commenting & Rustdoc Rules
 
-Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+Open this when you are about to write a comment and need the form that explains why the code is shaped this way rather than restating what it does.
 
 ---
 

@@ -9,12 +9,12 @@ trigger_phrases:
   - "design restraint ladder"
 importance_tier: important
 contextType: implementation
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Universal Code Quality Standards
 
-Stack-agnostic P0/P1/P2 severity model for the Phase 1.5 Code Quality Gate, plus the pre-write Design Restraint Ladder.
+Open this when a review finding needs a severity tier, or before the first write, to check the Design Restraint Ladder.
 
 ---
 

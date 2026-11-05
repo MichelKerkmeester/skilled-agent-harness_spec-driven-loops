@@ -5,7 +5,7 @@ trigger_phrases:
   - "github actions workflow standards"
   - "ci workflow rules"
   - "workflow yaml evidence"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # sk-code-ci
@@ -14,7 +14,9 @@ version: 1.0.6.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.0.6.0
 | **Advisor** | invisible (`routingClass: metadata`) |
 | **Bundled with** | `sk-code-quality` when authoring, `sk-code-review` when reviewing |
 | **Produces** | The rule evidence, the protected set, the exception record, the scaffold templates and a CI profile template. The packet itself edits nothing |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Surface Exists
 
@@ -59,7 +57,7 @@ The rules are universal, but the values they apply to are not. Branch names, swi
 
 ---
 
-## 3. REFERENCE MAP
+## 2. REFERENCE MAP
 
 | File | Carries |
 |---|---|
@@ -76,7 +74,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 
 ---
 
-## 4. VERIFICATION
+## 3. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -88,7 +86,7 @@ The implement, debug and verify doctrine is symlinked in from `../shared/referen
 
 ---
 
-## 5. RELATED DOCUMENTS
+## 4. RELATED DOCUMENTS
 
 | Document | Why to read it |
 |---|---|

@@ -8,12 +8,12 @@ trigger_phrases:
   - "python naming conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Python Style Guide
 
-Coding conventions and formatting standards for Python scripts in the OpenCode development environment.
+Open this when a Python file needs its header, docstring, naming or line-length convention decided rather than guessed.
 
 ---
 

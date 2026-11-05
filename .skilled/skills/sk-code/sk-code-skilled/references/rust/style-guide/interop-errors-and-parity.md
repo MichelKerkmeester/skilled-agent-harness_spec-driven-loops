@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust style guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rust/TypeScript Interop — Errors, Parity & Related Resources
 
-Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+Open this when you are adding a JavaScript mapping for a core error type, pulling a panic path out of boundary validation or wiring a differential parity test.
 
 ---
 

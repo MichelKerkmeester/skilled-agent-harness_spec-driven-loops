@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.8.0
+version: 1.3.9.0
 ---
 
 # sk-code-quality
@@ -17,7 +17,9 @@ version: 1.3.8.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -25,10 +27,6 @@ version: 1.3.8.0
 | **Invoke with** | `quality gate`, `code quality`, `comment hygiene`, `authoring checklist`, `check before done` |
 | **Works on** | Any repository: the runner checks the change with the universal floor and the checks the repository names. In this repository it also loads the SKILLED checklists for skills, agents, commands, specs, MCP servers, scripts, config and language files |
 | **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used, the hygiene rules switched off and any remaining risk |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Mode Exists
 
@@ -53,7 +51,7 @@ The mode's headline strength is routing by target path: every surface family lan
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 **Step 1: Route after implementation.** Use this mode after the surface skill (`sk-code-skilled`) has changed files and before the surface verification workflow (`workflow-verify.md`) collects final evidence.
 
@@ -78,7 +76,7 @@ The runner reads the change, by default the working tree against `HEAD`. It runs
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 The mode sits between implementation and verification. It runs the quality runner over the changed files, which resolves surface identity through the shared surface reader and names the checklists that apply. The mode loads them and checks P0/P1/P2 status. P0 blocks completion. P1 is fixed unless the user accepts a documented risk. P2 is fixed when cheap or explicitly deferred with a reason.
 
@@ -113,7 +111,7 @@ This mode can edit already-scoped files because author-side quality correction i
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Mode
 
@@ -129,7 +127,7 @@ Use it when a change is already written and needs standards enforcement before f
 
 ---
 
-## 6. VERIFICATION
+## 5. VERIFICATION
 
 | Check | How to run it |
 |---|---|
@@ -144,7 +142,7 @@ Use it when a change is already written and needs standards enforcement before f
 
 ---
 
-## 7. RELATED DOCUMENTS
+## 6. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

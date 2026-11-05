@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rustdoc, Error/Panic Translation & Async Patterns
 
-Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+Open this when you are documenting a public Rust operation, turning a core failure into the JavaScript error shape or deciding whether work belongs off the Node thread.
 
 ---
 

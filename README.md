@@ -1583,7 +1583,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 - **Drop or replace a rule** with a `## Rule overrides` section in a checklist your `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, or switch off comment-hygiene rules with `commentHygiene.disableRules`. The quality and review modes read the same section, so a rule you drop does not come back as a review finding, and a section the linter refuses stops the quality run with `CONFIG_INVALID`. See the [rule overrides contract](.skilled/skills/sk-code/shared/references/universal/rule-overrides.md)
 - **Check the result** with `/doctor:sk-code setup`, which runs every check read-only and names one repair command for each failure
 
-The [sk-code README](.skilled/skills/sk-code/README.md#5-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces and your rule overrides at review time.
+The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack) has the step-by-step guide. The other shipped skills keep working unchanged, and `sk-code`'s review mode adapts to your surfaces and your rule overrides at review time.
 
 &nbsp;
 #### What Adapting `sk-git` Looks Like

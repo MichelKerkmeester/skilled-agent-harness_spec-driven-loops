@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Naming, Section Ordering & Signature Patterns
 
-Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+Open this when you are naming a crate, ordering a source file's sections or drafting an export signature that has to match the TypeScript contract.
 
 ---
 

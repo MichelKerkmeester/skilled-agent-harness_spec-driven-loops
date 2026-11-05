@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Rustdoc Template & Cargo/Build Quick Reference
 
-Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+Open this when you need the rustdoc block or the Cargo command that carries a crate through its release gate.
 
 ---
 

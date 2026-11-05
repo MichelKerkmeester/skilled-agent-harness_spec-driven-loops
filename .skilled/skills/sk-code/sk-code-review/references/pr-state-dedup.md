@@ -9,12 +9,12 @@ trigger_phrases:
   - "commented no changes status"
 importance_tier: important
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # PR-State Content-Hash Dedup (M-1)
 
-An unchanged pull request should not be reviewed twice, and a skip is only trustworthy when its evidence is written down. The sections below hold the signature, the cache and the status line that prove it.
+An unchanged pull request should not be reviewed twice, and a skip is only trustworthy when its evidence is written down. Open this when a run reports an unchanged pull request and you want the recorded signature, cache entry and status line behind the skip.
 
 ---
 

@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Determinism, Parity & Common Recipes
 
-Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+Open this when a rounding, sort or identifier result must reproduce the TypeScript bytes and you want the recipe that gets you there.
 
 ---
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "json section headers"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Config Quick Reference
 
-Fast lookup for JSON/JSONC configuration patterns and common structures in OpenCode.
+Open this when you are writing a config file and want the pattern in front of you rather than a rule to read.
 
 ---
 

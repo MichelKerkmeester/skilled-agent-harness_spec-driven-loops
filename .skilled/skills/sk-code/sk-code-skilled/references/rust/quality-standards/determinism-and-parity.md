@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quality guidance"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Byte-for-Byte Determinism & Parity
 
-Ownership, safety, interop, error handling, async patterns, Cargo baseline, and byte-for-byte TypeScript parity standards for Rust in the OpenCode development environment.
+Open this when a behavior moves from TypeScript to Rust and the release gate turns on whether the output bytes match exactly.
 
 ---
 

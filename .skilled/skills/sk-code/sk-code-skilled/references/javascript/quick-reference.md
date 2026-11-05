@@ -8,12 +8,12 @@ trigger_phrases:
   - "jsdoc template pattern"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # JavaScript Quick Reference
 
-Copy-paste templates, naming cheat sheet, and common patterns for JavaScript development.
+Open this when a JavaScript file is open in front of you and you want the template or the naming answer without leaving the editor.
 
 ---
 

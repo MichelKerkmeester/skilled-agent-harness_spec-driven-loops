@@ -7,12 +7,12 @@ trigger_phrases:
   - "rust quick reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Collections, Imports/Exports & Error Mapping
 
-Copy-paste boundary templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+Open this when you need a collection, import or error-mapping pattern to copy into a Rust boundary instead of writing it from scratch.
 
 ---
 

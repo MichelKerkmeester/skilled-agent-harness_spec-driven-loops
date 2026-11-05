@@ -8,12 +8,12 @@ trigger_phrases:
   - "rust typescript interop style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rust Style Guide
 
-Formatting standards, naming conventions, and TypeScript interoperability rules for Rust files in the OpenCode development environment.
+Open this when you are writing a new Rust file for an OpenCode workspace or reviewing one against the required header and the repository non-negotiables.
 
 ---
 

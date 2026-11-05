@@ -8,12 +8,12 @@ trigger_phrases:
   - "config file quality checklist"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.21
+version: 1.0.1.0
 ---
 
 # Config File Quality Checklist
 
-Quality validation checklist for JSON and JSONC configuration files in the OpenCode development environment.
+Open this when you add or change a JSON or JSONC config file and want the quality checks that apply to it. It is meant to run alongside the universal checklist.
 
 ---
 

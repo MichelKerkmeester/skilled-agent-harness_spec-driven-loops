@@ -8,12 +8,12 @@ trigger_phrases:
   - "rust determinism recipes"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Rust Quick Reference
 
-Copy-paste templates, naming conventions, deterministic recipes, and Cargo commands for Rust development in OpenCode.
+Open this when you are starting a Rust kernel or an adapter and want the whole boundary module template in one place before you write a line.
 
 ---
 

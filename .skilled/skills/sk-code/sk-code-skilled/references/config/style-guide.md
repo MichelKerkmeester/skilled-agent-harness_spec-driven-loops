@@ -8,12 +8,12 @@ trigger_phrases:
   - "json style conventions"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Config Style Guide
 
-Formatting standards and conventions for JSONC behavior config and strict-JSON machine descriptors in the OpenCode development environment.
+Open this when a config file needs its formatting decided and you want one set of rules covering behavior config and machine descriptors alike.
 
 ---
 

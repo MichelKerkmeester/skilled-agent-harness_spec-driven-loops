@@ -8,12 +8,12 @@ trigger_phrases:
   - "shell conditionals reference"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Shell Quick Reference
 
-Fast lookup for Bash scripting patterns, syntax, and common structures in OpenCode.
+Open this when you are starting a Bash script from the standard template or need the exact syntax for a variable, conditional or loop.
 
 ---
 

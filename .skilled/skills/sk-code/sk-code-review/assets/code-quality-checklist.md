@@ -9,12 +9,12 @@ trigger_phrases:
   - "error handling review defects"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Code Quality Checklist
 
-Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+Open this during review when a defect could corrupt data, stall under load or slip past an edge case unnoticed.
 
 ---
 

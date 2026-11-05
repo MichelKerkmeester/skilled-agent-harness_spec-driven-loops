@@ -8,12 +8,12 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Alignment Verification Automation
 
-This document describes the repeatable verifier introduced for recurring alignment drift checks.
+Open this when you are tuning a recurring alignment check or reading verifier output and need to know which findings fail the build.
 
 ## 1. OVERVIEW
 

@@ -8,12 +8,12 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # TypeScript Code Quality Checklist
 
-Quality validation checklist for TypeScript code in the OpenCode development environment.
+Open this when a TypeScript file is ready for review and you want the quality checks specific to it. It runs alongside the universal checklist.
 
 ---
 
