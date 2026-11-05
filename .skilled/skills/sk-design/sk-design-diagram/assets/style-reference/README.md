@@ -9,7 +9,7 @@ trigger_phrases:
   - "where do the colours come from"
   - "add a style reference"
 contextType: general
-version: 1.2.4.0
+version: 1.2.5.0
 ---
 
 # assets/style-reference
@@ -62,3 +62,7 @@ role selects from and what happens when a reference cannot fill one, is in
 | [`../../references/foundations/derivation-record.md`](../../references/foundations/derivation-record.md) | Why each stock value is what it is, and every recorded departure. |
 | [`../../references/foundations/style-guide.md`](../../references/foundations/style-guide.md) | How to use the roles a language defines. |
 | [`../diagrams/README.md`](../diagrams/README.md) | The 38 forms these tokens paint. |
+
+<!-- readme-check
+allow-count four files | the four files sit in each language folder, harness-diagram/ here, which section 2 lists, not in this folder
+-->
