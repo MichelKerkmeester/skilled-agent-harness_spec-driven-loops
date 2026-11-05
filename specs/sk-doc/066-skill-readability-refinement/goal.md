@@ -119,6 +119,7 @@ and findings belong here.
 | 013-system-spec-kit | Done | `f4a7b163a8` and `8885314f91`; review 3 passed, 37 intros and two dropped claims restored, the auto-mode contract numbered with its section 2 kept, debt entry removed |
 | Executor amendment | Done | Operator moved audits and reviews off Codex to DeepSeek on 2026-11-04 after the Codex usage limit; D1 and D3 amended |
 | Remaining 53 leaves | Queued | Codex usage limit hit at 10:42 on 2026-11-04, reset reported at 1:22 PM. Run stopped per D1; resume queue `010-sk-prompt/scratch/tools/queue-v3.txt` waits for the operator |
+| Program closeout | Done | all 7 criteria green from final state; main at a5a25d88ef; 9 operator decisions recorded |
 
 ### Deviations and findings
 

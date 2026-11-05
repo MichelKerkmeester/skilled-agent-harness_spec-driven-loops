@@ -164,7 +164,7 @@
     ],
     "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-11-04T07:15:56Z",
-    "last_save_at": "2026-11-04T08:11:13.318Z",
+    "last_save_at": "2026-11-05T05:22:46.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -176,6 +176,7 @@
     "source_doc_hashes": {
       "spec.md": "ee318329639cd0842d7b7e2aa2c47f171b43631a6f72a799461c0cc01a9f7ae7"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-05T05:22:46.434Z",
+    "last_active_child_id": "sk-doc/066-skill-readability-refinement/008-sk-doc/014-sk-create-skill"
   }
 }

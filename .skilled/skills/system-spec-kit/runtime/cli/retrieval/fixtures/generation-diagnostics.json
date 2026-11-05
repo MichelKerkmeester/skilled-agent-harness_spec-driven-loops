@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7314,
-    "ok": 17010,
+    "ok": 17035,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27872,
+  "documentsScanned": 27897,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "2dede128e130fb3aa5984b93e3fa20ab6fbc41bcc74e93a2cbc05b1fea91b883",
+  "manifestHash": "82163578b769726bb9d623b99becef854a666ed806125599b320e0ce2b4c621b",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40867,
+      "ok": 40910,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -73261,6 +73261,10 @@
     },
     {
       "path": "specs/sk-doc/066-skill-readability-refinement/008-sk-doc/013-sk-create-repo-rule/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/008-sk-doc/014-sk-create-skill/scratch",
       "reason": "excluded directory"
     },
     {

@@ -29,7 +29,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "018-frontend-upstream-proposals operator decisions"
     ],
     "key_topics": [
       "frontend",
@@ -45,11 +46,12 @@
       "skilled",
       "five-pass"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/ROUTER.md",
@@ -66,8 +68,7 @@
       "007-web-only-frontend/decision-record.md",
       "002-tooling-fixes/decision-record.md",
       "001-frontend-surface-mode/goal.md",
-      "002-tooling-fixes/goal.md",
-      "003-design-handoffs/goal.md"
+      "002-tooling-fixes/goal.md"
     ],
     "entities": [
       {
@@ -80,6 +81,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -201,21 +208,29 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skilled's sk-code hub has no frontend guidance",
     "created_at": "2026-11-03T08:33:52Z",
-    "last_save_at": "2026-11-04T07:12:20.963Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-05T05:24:33.875Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:de28d99665432fef6b745744e3bc7f21c93f82bc9e43a73515bb9dd18354f203",
+    "source_fingerprint": "sha256:b11e92da86eb971edbd6d29df80cd09b66e33ec575a4cc159b435288ba1b40fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "94bd08f5a7b131d3963c0214e5e3fb1300f827ac725b8b8d599c64f84c6845ea"
+      "spec.md": "94bd08f5a7b131d3963c0214e5e3fb1300f827ac725b8b8d599c64f84c6845ea",
+      "decision-record.md": "ada83f734a624ebc926fd622920550faf339287835a3f5c97b69d3935f5d4e9a"
     },
     "last_active_at": null
   }

@@ -106,6 +106,7 @@ and findings belong here.
 |------|-------|----------|
 | Packet planned | Done | Parent, five children and six goals authored 2026-11-03 on `worktrees/314-frontend-upstream-proposals` |
 | 001-frontend-surface-mode | Pending | Waits on the operator's React Native ruling for its native half |
+| Decision capture | Done | 17 operator answers from session ae286a84 written to decision-record.md |
 
 ### Deviations and findings
 

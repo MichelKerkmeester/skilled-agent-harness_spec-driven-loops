@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-code/018-frontend-upstream-proposals",
   "description": "Frontend upstream proposals from Barter's frontend practice program",
   "keywords": [
@@ -9,13 +10,14 @@
     "practice",
     "program"
   ],
-  "lastUpdated": "2026-11-03T08:33:52.772Z",
+  "lastUpdated": "2026-11-05T05:22:55.505Z",
   "specId": "018",
   "folderSlug": "frontend-upstream-proposals",
   "parentChain": [
     "sk-code"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-11-26_06-22__records-the-operator-decisions-this-session-made.md"
+  ]
 }

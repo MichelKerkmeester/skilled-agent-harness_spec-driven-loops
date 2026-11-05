@@ -207,8 +207,8 @@
     ],
     "causal_summary": "The docs of the `sk-create-skill` mode were never read as a whole for readability, layout and structure",
     "created_at": "2026-11-04T07:16:48Z",
-    "last_save_at": "2026-11-05T04:42:01.549Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-05T05:22:46.398Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba261ca3d3bac009cbfb0e93f6393dafcbe27f2b376e0755ae08aa2ce2dbe350",
+    "source_fingerprint": "sha256:81228569c776ebe66591848662fbdd09845d27c74ab91fa9421938580dbd7235",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8911adae91795217b6520d90d9233407a00421b4e2a8d1e7401cfbf90f66e19a",
       "plan.md": "caf686a01db53d7c78d6a179f501fde87065305260eb18a99fb1ac97a25f2437",
       "tasks.md": "c05a8a178aa738944c04ae1ca31121d937fb71a00450892769020e9e058f3307",
-      "implementation-summary.md": "6952431d0b911f216238de7808f2b105fdbb98cc3f2fe1e42dabd8b51370fe2f"
+      "implementation-summary.md": "02c60f2fddb55ee9f9e42ecd9411c86cbde3e27382c3dca750640cb6662549b4"
     },
     "last_active_at": null
   }
