@@ -47,7 +47,12 @@
       ".skilled/skills/mcp-tooling/ROUTER.md",
       "shared/scripts/README.md",
       ".skilled/changelog/skilled/v4.0.1.0.md",
-      ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs"
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      "feature-catalog/feature-catalog.md",
+      "changelog/v2.9.3.0.md",
+      ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+      ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs",
+      ".skilled/skills/sk-doc/feature-catalog/feature-catalog.md"
     ],
     "entities": [
       {
@@ -117,6 +122,30 @@
         "source": "derived"
       },
       {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.9.3.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.9.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-lib.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs",
+        "source": "derived"
+      },
+      {
         "name": "routing-shape-parity.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/doctor/scripts/tests/routing-shape-parity.test.cjs",
@@ -169,35 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Each",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two doctor test suites failed in CI because their fixture routers did not open with OVERVIEW, and `/doctor:sk-skill` converted references whose description restated the intro, which the strict render check fails",
     "created_at": "2026-11-05T16:15:37Z",
-    "last_save_at": "2026-11-05T16:56:52.213Z",
+    "last_save_at": "2026-11-05T17:33:37.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:55b3fa4c22ac27ec1e44d8d90c2792d3790c6ed567ac14e24a574f717eb53486",
+    "source_fingerprint": "sha256:5d57daaf60b9067910718876ccb4ed948183d000824cf0d0ee26c968ac8c6d79",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b93a41a49e6ae170332b5c3c525ec23cb44a8c0345024a6bfbac9eb6061df9c",
+      "spec.md": "f0d6cd390db62e7eab12a279cc702496cfe039599c5c8cabd2705b1a23251fe0",
       "plan.md": "d9e9a7bdf4ece31df84b2d23f315c0fe48d034beeb4cc4b06f5df5d7cdd67418",
-      "tasks.md": "d93935094eedeb992e61917d4d83a9afa201543b0c88e4fbcf1db1c5d084ce87",
-      "implementation-summary.md": "c407b4e87c280bad0877fb7f9b73f1ba13e21231efe3c66c63f68fe2c7ed3b57"
+      "tasks.md": "de0dd2ca1cbf4dba84faf213e93359fe1341f61db7cdf125f28523f3dd5be771",
+      "implementation-summary.md": "79918c4b20b3025be849e48ec0f0f3d5468be50896f97d390258220ee973cd5b"
     },
     "last_active_at": null
   }

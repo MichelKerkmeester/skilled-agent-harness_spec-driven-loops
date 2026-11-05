@@ -197,14 +197,14 @@
     ],
     "causal_summary": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check enforces",
     "created_at": "2026-11-05T06:39:42Z",
-    "last_save_at": "2026-11-05T16:57:19.610Z",
+    "last_save_at": "2026-11-05T17:33:56.315Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:ca568b0fe7621228a0e6d621bba6b79b5b900146424fb375d078c1967dae9404",
+    "source_fingerprint": "sha256:e2467e63d36ab92aa60a947c8aab62bbe8f7db885d6d1b3a36ccaf1ccff1f093",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "64602d4560954ec1a4049b4bf8568a624414d3dc5f34a783b3bd4717a177765b"

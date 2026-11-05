@@ -60,6 +60,9 @@ contextType: "general"
 - [x] T012 Run the recheck and the probe replay. Verify: the recheck prints `new=0` and the probes print `fail=0`. Evidence: `resolved=8 still_open=6 new=0 needs_review=20`; probes `pass=18 fail=0`.
 - [x] T013 Review each still-open row and each needs-review finding by hand. Verify: each is fixed in the tree or recorded as an artifact. Evidence: S14 replays print `0 error rules` with the symlink flags; S9 cites a database `.gitignore:146` ignores; every needs-review fix confirmed by grep (see `implementation-summary.md`).
 - [x] T014 Run `G --base 0e88ba257b` over the phase's changed docs. Verify: every HARD finding is an intended change. Evidence: 4 HARD, all the edited router-map fences of D-04; 24 advisories, each a replaced line.
+- [x] T015 Run `render_section_reference` for every type except changelog and spec (A-4). Verify: the playbook test fails on the old validator and passes now. Evidence: 36 render tests pass; a scan of every tracked skill doc and 99 command and agent docs finds 0 broken citations; commit 6b1d281efb.
+- [x] T016 Add the two catalog entries and their feature files (B-04). Verify: `validate_catalog_package.py --strict` passes. Evidence: 27 packages PASS, 0 FAIL.
+- [x] T017 Resolve `REPO_ROOT` from the working checkout in `alignment-lib.cjs`, after backing the folder up to the session scratchpad. Verify: the recheck run with plain `node` from the worktree passes the S14 rows. Evidence: 42 command tests pass; `resolved=12 still_open=2 new=0`.
 <!-- /ANCHOR:phase-3 -->
 
 ---

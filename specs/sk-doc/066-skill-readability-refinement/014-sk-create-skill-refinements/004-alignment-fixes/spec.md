@@ -63,13 +63,13 @@ Every finding the critic upheld is fixed, and every gate the program used passes
 <!-- ANCHOR:measured-behavior -->
 ### Measured Behavior
 ```text
-$ node --preserve-symlinks --preserve-symlinks-main recheck.cjs --from 20261105T151115Z --battery battery.json --out 20261105T165214Z-recheck
-STATUS=OPEN recheck: resolved=8 still_open=6 new=0 needs_review=20
+$ node recheck.cjs --from 20261105T151115Z --battery battery.json --out <run>-recheck2
+STATUS=OPEN recheck: resolved=12 still_open=2 new=0 needs_review=20
 
 $ node --preserve-symlinks --preserve-symlinks-main run-probes.cjs --probes 20261105T151115Z/probes-input.json
 STATUS=OK run-probes: pass=18 fail=0 cannot_run=0
 ```
-The six still-open rows are the four S14 packet replays, which pass when run with the symlink flags, the S9 reference to a gitignored database, and the S2 overflow cap.
+The two still-open rows are the S9 reference to a gitignored database and the S2 overflow cap. The first recheck, before the repo-root fix, also left the four S14 packet replays open, because the battery validated the main checkout.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -83,11 +83,12 @@ The six still-open rows are the four S14 packet replays, which pass when run wit
 - Make `doc-rewrite-guard.py` resolve the cited file, and make `validate_document.py` read section citations written as a code span or a link.
 - Route rewrite-guard and render-ledger prompts to sk-create-skill, and document the render ledger and the sixteen render checks.
 - Fix the stale counts, section numbers and paths in the named READMEs, playbook scenarios, the checklist and the v4.0.1.0 release note.
+- Run the section-citation check for every document type except changelog and spec (A-4), and add the render checks and the render ledger to the sk-doc feature catalog (B-04).
+- Resolve the alignment command's repository root from the checkout it runs in, so a worktree run checks the worktree.
 
 ### Out of Scope
-- B-04, the feature catalog entry - feature catalogs are outside the program's form-only scope.
-- A-4, running the section-reference check on playbook docs - a design change, not a defect.
-- The alignment command's REPO_ROOT resolution - the file is operator-local and gitignored in the main checkout.
+- C-08 - the count it names is true; the allow-count marker records why the checker cannot derive it.
+- The S9 and S2 overflow battery rows - the first reads a gitignored database a fresh worktree lacks, the second is the battery's file cap.
 
 ### Files to Change
 
@@ -98,6 +99,9 @@ The six still-open rows are the four S14 packet replays, which pass when run wit
 | `.skilled/skills/sk-doc/shared/scripts/doc-rewrite-guard.py`, `validate_document.py` | Modify | Citation resolution |
 | `.skilled/skills/sk-doc/ROUTER.md`, `hub-router.json`, `sk-create-skill/ROUTER.md`, `.skilled/skills/mcp-tooling/ROUTER.md` | Modify | Callout placement and routing vocabulary |
 | `validation-and-packaging.md`, `render-known-debt.json`, five READMEs, eleven playbook scenarios, `javascript-checklist.md`, `v4.0.1.0.md`, root `README.md` | Modify | Stale text |
+| `.skilled/skills/sk-doc/shared/assets/template-rules.json` | Modify | `sectionReferenceChecks` false for changelog and spec |
+| `.skilled/skills/sk-doc/feature-catalog/feature-catalog.md`, `document-validation/render-checks.md`, `render-ledger-and-rewrite-guard.md` | Modify, Create | Catalog entries |
+| `.skilled/commands/assets/local-skilled-alignment/alignment-lib.cjs`, `tests/alignment-lib.test.cjs` | Modify, Create | Repo root from the working checkout; operator-local and gitignored, so not committed |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -121,6 +125,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | Every routing probe of the run routes to its expected skill. |
 | REQ-005 | Every literal finding the recheck tests is resolved, and the recheck reports no new battery row. |
 | REQ-006 | Each changed skill is committed on its own with a changelog and a hub version bump, and the Hermes mirrors pass `--check`. |
+| REQ-007 | `render_section_reference` reports a missing section in a playbook-typed doc and stays silent for a changelog. |
+| REQ-008 | The sk-doc feature catalog has an entry for the render checks and for the render ledger with its rewrite guard, and `validate_catalog_package.py --strict` passes. |
+| REQ-009 | Started from a linked worktree with plain `node`, the alignment scripts resolve the worktree as the repository root. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -181,7 +188,7 @@ N/A: the phase changes validators and docs, and runs no service.
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- None. The REPO_ROOT fix to the operator-local alignment command waits on an operator yes.
+- None.
 <!-- /ANCHOR:questions -->
 
 ---
