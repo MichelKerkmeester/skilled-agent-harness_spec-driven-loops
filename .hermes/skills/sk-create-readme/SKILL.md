@@ -186,7 +186,7 @@ The Directory Tree rule is shape-conditional and script-implementable:
 
 1. Count the target folder's immediate subdirectories.
 2. When that count is greater than zero, include a fenced Directory Tree because the folder has nesting or layering. The validator emits `code_folder_directory_tree` when it is missing.
-3. When that count is zero, a complete `CONTENTS`, `FILES` or `KEY FILES` table naming every direct file other than the README satisfies the navigation requirement. The validator emits `code_folder_flat_inventory` when that table is absent or incomplete.
+3. When that count is zero, a complete `CONTENTS`, `FILES`, `KEY FILES`, `WHAT IS IN THE PACKAGE` or `STRUCTURE` inventory naming every direct file other than the README satisfies the navigation requirement. A file named in a fenced structure tree counts. The validator emits `code_folder_flat_inventory` when that table is absent or incomplete.
 
 Both branches are named rules. A reviewer must not replace the subdirectory-count condition with a judgement about whether a tree feels useful.
 
