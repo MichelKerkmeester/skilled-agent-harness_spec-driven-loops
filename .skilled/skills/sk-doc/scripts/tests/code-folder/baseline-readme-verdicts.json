@@ -118,26 +118,9 @@
       "document_type": "readme",
       "file": ".pi/extensions/pi-cache-optimizer/README.md",
       "return_code": 0,
-      "total_issues": 2,
+      "total_issues": 0,
       "valid": true,
-      "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 3,
-          "line_number": 3,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        },
-        {
-          "auto_fixable": false,
-          "line": 4,
-          "line_number": 4,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        }
-      ]
+      "warnings": []
     },
     {
       "auto_fixable_count": 0,
@@ -8801,25 +8784,9 @@
       "document_type": "readme",
       "file": "README.md",
       "return_code": 0,
-      "total_issues": 4,
+      "total_issues": 2,
       "valid": true,
       "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 3,
-          "line_number": 3,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        },
-        {
-          "auto_fixable": false,
-          "line": 5,
-          "line_number": 5,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        },
         {
           "auto_fixable": false,
           "line": 7,
@@ -10875,17 +10842,9 @@
       "document_type": "readme",
       "file": "specs/system-speckit/z_archive/020-mcp-working-memory-hybrid-rag/scratch/opencode-working-memory/README.md",
       "return_code": 1,
-      "total_issues": 3,
+      "total_issues": 2,
       "valid": false,
       "warnings": [
-        {
-          "auto_fixable": false,
-          "line": 3,
-          "line_number": 3,
-          "message": "Bare URL outside a link target; wrap it as [title](url).",
-          "severity": "warning",
-          "type": "render_bare_url"
-        },
         {
           "auto_fixable": false,
           "line": 10,

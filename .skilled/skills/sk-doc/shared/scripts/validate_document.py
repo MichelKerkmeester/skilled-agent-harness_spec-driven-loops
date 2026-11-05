@@ -750,6 +750,8 @@ _HTML_COMMENT_LINE = re.compile(r'^\s*<!--.*-->\s*$')
 _BARE_URL = re.compile(r'https?://')
 _INLINE_CODE = re.compile(r'`[^`\n]*`')
 _INLINE_LINK = re.compile(r'\[[^\]]*\]\([^)]*\)')
+# An image inside a link, as a badge is, is masked first so the outer link matches.
+_INLINE_IMAGE = re.compile(r'!\[[^\]]*\]\([^)]*\)')
 _ANGLE_TAG = re.compile(r'<[^>\n]*>')
 _LINK_DEFINITION = re.compile(r'^\s*\[[^\]]+\]:\s*\S+')
 _SENTENCE_BREAK = re.compile(r'(?<=[.!?])\s+')
@@ -919,6 +921,7 @@ def _render_bare_url(lines: List[str], skip: set) -> List[Dict[str, Any]]:
         if line_number in skip or _LINK_DEFINITION.match(line):
             continue
         masked = _INLINE_CODE.sub(' ', line)
+        masked = _INLINE_IMAGE.sub('image', masked)
         masked = _INLINE_LINK.sub(' ', masked)
         masked = _ANGLE_TAG.sub(' ', masked)
         if _BARE_URL.search(masked):

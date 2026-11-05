@@ -272,6 +272,11 @@ RENDER_CHECK_TYPES = (
 # entry point, its router, and the hub reference trees it hands a reader.
 RENDER_SCAN_SCOPES = ('SKILL.md', 'ROUTER.md', 'README.md', 'shared/references', 'runtime/references')
 
+# A file under assets/examples/ is a sample of the artifact the skill produces, in
+# the exact shape a model copies, so the prose render rules would reshape the
+# deliverable. The other checks still read it.
+RENDER_SKIPPED_PREFIXES = ('assets/examples/',)
+
 # Render checking widened past references/ and assets/ after the fleet already
 # carried docs in those shapes. A code or scope listed below stays advisory under
 # --strict while its findings are worked off. Both sets may only shrink, and they
@@ -964,6 +969,11 @@ def _render_findings(skill_path: Path) -> List[Dict[str, Any]]:
     exempt = render_exempt.load_exempt()
     root = _render_skills_root()
     for file, scope in scoped:
+        try:
+            if Path(file).relative_to(skill_path).as_posix().startswith(RENDER_SKIPPED_PREFIXES):
+                continue
+        except ValueError:
+            pass
         try:
             if Path(file).resolve().relative_to(root).as_posix() in exempt:
                 continue
