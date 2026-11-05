@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f65ea90d9c783b34e2f3040ca591c3ea5d17c9bc31c01449176ba441797f64d7",
+  "corpusHash": "94582d604dabc3535b7429250d88be8df974fbb48a5d335e62ee7955a2e9e006",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27897,
+  "includedPathCount": 27898,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7256,6 +7256,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.19.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.2.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.20.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.21.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -27928,7 +27929,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "82163578b769726bb9d623b99becef854a666ed806125599b320e0ce2b4c621b",
+  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

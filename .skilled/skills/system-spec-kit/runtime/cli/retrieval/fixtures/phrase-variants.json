@@ -1,5 +1,5 @@
 {
-  "manifestHash": "82163578b769726bb9d623b99becef854a666ed806125599b320e0ce2b4c621b",
+  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -88546,6 +88546,9 @@
     "rename surface taxonomy": [
       "rename surface taxonomy"
     ],
+    "render checks for skill docs": [
+      "render checks for skill docs"
+    ],
     "render checks in the document validator": [
       "render checks in the document validator"
     ],
@@ -106575,6 +106578,9 @@
     "skill docs missing from index": [
       "skill docs missing from index"
     ],
+    "skill docs readability pass": [
+      "skill docs readability pass"
+    ],
     "skill docs sweep": [
       "skill docs sweep"
     ],
@@ -113478,6 +113484,9 @@
     "system deep loop 1 6 20 0": [
       "system-deep-loop 1.6.20.0"
     ],
+    "system deep loop 1 6 21 0": [
+      "system-deep-loop 1.6.21.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -113663,6 +113672,9 @@
     ],
     "system deep loop v1 6 20 0": [
       "system-deep-loop v1.6.20.0"
+    ],
+    "system deep loop v1 6 21 0": [
+      "system-deep-loop v1.6.21.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
