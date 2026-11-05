@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate",
+  "parent_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "render checks and gate",
+      "phase 1 render checks and gate",
+      "render checks and gate plan",
+      "render checks and gate tasks",
+      "render checks and gate acceptance criteria",
+      "render checks and gate goal",
+      "render checks and gate implementation summary"
+    ],
+    "key_topics": [
+      "render",
+      "checks",
+      "gate",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "largest"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/rubric.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      ".skilled/skills/system-deep-loop/runtime/references/integration-points.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "common-pitfalls.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/shared/common-pitfalls.md",
+        "source": "derived"
+      },
+      {
+        "name": "rubric.md",
+        "kind": "doc",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/rubric.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "integration-points.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/runtime/references/integration-points.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The largest mechanical finding class in 066, overview without Purpose and When to Use, has no check because `template-rules.json` gives references only `requiredSections [\"overview\"]`",
+    "created_at": "2026-11-05T06:39:42Z",
+    "last_save_at": "2026-11-05T07:10:56.137Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:eef30418c2d281ff55c11401095519881dba5b19348bc39c3b8f2e950d340f12",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9a8356ec05646b78a93c476d393c1ef802ee6297baa9d7eb8bd636458d1d6db",
+      "plan.md": "59d28e2144e8aa5f511c283f3f94b8c76aa805438f2664174ad2a8a5b7cb70f1",
+      "tasks.md": "b2c06f3649104ac9d4e977b981a3ad7e9dc2e8c72c7464b9e72c3792fd3a1780",
+      "implementation-summary.md": "ab7b8eef6ed6be756149fae7a9e46ba7bcaee01877649b3c4fd3a6101c7c1070"
+    },
+    "last_active_at": null
+  }
+}

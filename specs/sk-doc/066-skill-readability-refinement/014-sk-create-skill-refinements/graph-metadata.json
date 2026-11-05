@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "parent_id": "sk-doc/066-skill-readability-refinement",
+  "children_ids": [
+    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate",
+    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
+    "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk create skill refinements phase parent spec",
+      "render checks strict gate exempt map rewrite guard",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "skill",
+      "refinements",
+      "phase",
+      "parent",
+      "spec",
+      "render",
+      "checks",
+      "strict",
+      "gate",
+      "exempt",
+      "map",
+      "rewrite"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "scratch/review-report.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      ".github/workflows/sk-doc-script-tests.yml",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      "001-render-checks-and-gate/goal.md",
+      "002-exempt-and-rewrite-guard/goal.md",
+      "003-templates-and-fleet/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "scratch/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-doc-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-doc-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Turn",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. BINDING",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. COMPLETION CRITERIA",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 066 readability program found 1,764 findings across 57 consolidated findings files, and most of them repeat a few rule classes that no check enforces",
+    "created_at": "2026-11-05T06:39:42Z",
+    "last_save_at": "2026-11-05T07:10:56.112Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:3ef241d1663d4af3a107bd03e500f2cc106ee716499e5e3bdc2306114e0b7ad8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "94fa3384d5c96c0c5aa9832267b6e34e88063f92c9c08ddc27b66eaf20fc1a03"
+    },
+    "last_active_at": null
+  }
+}

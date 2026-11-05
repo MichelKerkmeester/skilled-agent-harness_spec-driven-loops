@@ -1,5 +1,5 @@
 {
-  "corpusHash": "94582d604dabc3535b7429250d88be8df974fbb48a5d335e62ee7955a2e9e006",
+  "corpusHash": "e0e47b974830562417e3423d9ca12a228c7a2dd86a2ba5a44eeb767e17cf5aa7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -27,7 +27,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27898,
+  "includedPathCount": 27918,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -15166,6 +15166,26 @@
     "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/plan.md",
     "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/spec.md",
     "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/tasks.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/acceptance-criteria.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/goal.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/implementation-summary.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/plan.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/spec.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/tasks.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/acceptance-criteria.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/goal.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/implementation-summary.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/plan.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/spec.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/tasks.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/acceptance-criteria.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/goal.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/implementation-summary.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/plan.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/spec.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/tasks.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/goal.md",
+    "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/spec.md",
     "specs/sk-doc/066-skill-readability-refinement/decision-record.md",
     "specs/sk-doc/066-skill-readability-refinement/goal.md",
     "specs/sk-doc/066-skill-readability-refinement/spec.md",
@@ -27929,7 +27949,7 @@
     "specs/system-speckit/043-decision-capture/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
+  "manifestHash": "841d634fc1e635c1a7657daac312b1e6fa084701c02b32caffeedaaf7417d96a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32465,6 +32485,22 @@
     },
     {
       "path": "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/scratch",
       "reason": "excluded directory"
     },
     {

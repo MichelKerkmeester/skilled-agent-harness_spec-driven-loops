@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
+  "manifestHash": "841d634fc1e635c1a7657daac312b1e6fa084701c02b32caffeedaaf7417d96a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45422,6 +45422,24 @@
     "executor workflow owner guard tasks": [
       "executor workflow owner guard tasks"
     ],
+    "exempt and rewrite guard": [
+      "exempt and rewrite guard"
+    ],
+    "exempt and rewrite guard acceptance criteria": [
+      "exempt and rewrite guard acceptance criteria"
+    ],
+    "exempt and rewrite guard goal": [
+      "exempt and rewrite guard goal"
+    ],
+    "exempt and rewrite guard implementation summary": [
+      "exempt and rewrite guard implementation summary"
+    ],
+    "exempt and rewrite guard plan": [
+      "exempt and rewrite guard plan"
+    ],
+    "exempt and rewrite guard tasks": [
+      "exempt and rewrite guard tasks"
+    ],
     "exfil audit no querytext": [
       "exfil audit no querytext"
     ],
@@ -76985,6 +77003,9 @@
     "phase 1 rename impact research": [
       "phase 1 rename impact research"
     ],
+    "phase 1 render checks and gate": [
+      "phase 1 render checks and gate"
+    ],
     "phase 1 restraint routing": [
       "phase 1 restraint routing"
     ],
@@ -77510,6 +77531,9 @@
     "phase 2 doctor sk code setup": [
       "phase 2 doctor sk-code setup"
     ],
+    "phase 2 exempt and rewrite guard": [
+      "phase 2 exempt and rewrite guard"
+    ],
     "phase 2 fresh clone onboarding": [
       "phase 2 fresh clone onboarding"
     ],
@@ -77929,6 +77953,9 @@
     ],
     "phase 3 system spec kit": [
       "phase 3 system spec kit"
+    ],
+    "phase 3 templates and fleet": [
+      "phase 3 templates and fleet"
     ],
     "phase 3 trigger and job hygiene": [
       "phase 3 trigger and job hygiene"
@@ -88546,11 +88573,32 @@
     "rename surface taxonomy": [
       "rename surface taxonomy"
     ],
+    "render checks and gate": [
+      "render checks and gate"
+    ],
+    "render checks and gate acceptance criteria": [
+      "render checks and gate acceptance criteria"
+    ],
+    "render checks and gate goal": [
+      "render checks and gate goal"
+    ],
+    "render checks and gate implementation summary": [
+      "render checks and gate implementation summary"
+    ],
+    "render checks and gate plan": [
+      "render checks and gate plan"
+    ],
+    "render checks and gate tasks": [
+      "render checks and gate tasks"
+    ],
     "render checks for skill docs": [
       "render checks for skill docs"
     ],
     "render checks in the document validator": [
       "render checks in the document validator"
+    ],
+    "render checks strict gate exempt map rewrite guard": [
+      "render checks strict gate exempt map rewrite guard"
     ],
     "render contract probe harness artifact": [
       "render contract probe harness artifact"
@@ -103069,6 +103117,9 @@
     "sk create skill reference quality": [
       "sk-create-skill reference quality"
     ],
+    "sk create skill refinements phase parent spec": [
+      "sk create skill refinements phase parent spec"
+    ],
     "sk create skill router": [
       "sk-create-skill router"
     ],
@@ -116188,6 +116239,24 @@
     ],
     "templates": [
       "templates"
+    ],
+    "templates and fleet": [
+      "templates and fleet"
+    ],
+    "templates and fleet acceptance criteria": [
+      "templates and fleet acceptance criteria"
+    ],
+    "templates and fleet goal": [
+      "templates and fleet goal"
+    ],
+    "templates and fleet implementation summary": [
+      "templates and fleet implementation summary"
+    ],
+    "templates and fleet plan": [
+      "templates and fleet plan"
+    ],
+    "templates and fleet tasks": [
+      "templates and fleet tasks"
     ],
     "templates folder": [
       "templates folder"

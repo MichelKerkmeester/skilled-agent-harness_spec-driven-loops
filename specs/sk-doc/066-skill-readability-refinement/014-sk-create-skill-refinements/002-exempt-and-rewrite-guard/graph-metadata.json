@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
+  "parent_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "exempt and rewrite guard",
+      "phase 2 exempt and rewrite guard",
+      "exempt and rewrite guard plan",
+      "exempt and rewrite guard tasks",
+      "exempt and rewrite guard acceptance criteria",
+      "exempt and rewrite guard goal",
+      "exempt and rewrite guard implementation summary"
+    ],
+    "key_topics": [
+      "exempt",
+      "rewrite",
+      "guard",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "rule"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+      "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+      "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch",
+      "shared/parsing/README.md",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+      ".skilled/skills/system-spec-kit/shared/parsing/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "scope-gate.py",
+        "kind": "file",
+        "path": "specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/scope-gate.py",
+        "source": "derived"
+      },
+      {
+        "name": "diff-1.patch",
+        "kind": "file",
+        "path": "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/scratch/diff-1.patch",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/parsing/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Workflow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The exempt rule has three copies: `validatedocument.py:186-195` and `:253-258` skip all validation with no consumer, `packageskill.py:886-921` skips render only, and the 066 `scope-gate.py` re-implements it",
+    "created_at": "2026-11-05T06:39:43Z",
+    "last_save_at": "2026-11-05T07:10:56.138Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0983e9ea511d20a08cf4d8861bcbe914ea35c71d441398872110f08c227cb5c0",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4e4a0c80ffab2331c4d35e866ee5238c179ee5cdc631d9129fab6c0eff2356f7",
+      "plan.md": "a11dc1d011f2e9a4518fa8730158756fc27cabbc5a4d9c91c3cb10cd01b32348",
+      "tasks.md": "63dbcb69dc9cc2e1d9f90cf4158d00746345ed5d984776661d28ad6d0219843a",
+      "implementation-summary.md": "0ee927e49f48a2d46cfca0c945934894d275b48000e441fb527975b99b305605"
+    },
+    "last_active_at": null
+  }
+}

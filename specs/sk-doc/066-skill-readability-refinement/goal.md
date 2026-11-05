@@ -46,7 +46,7 @@ Frozen choices. Changing one is an amendment.
 |----|----------|
 | D1 | Executors are `cli-opencode`, `cli-pi` and `cli-codex` only, never Devin. DeepSeek V4.1 Flash max on `cli-opencode` (`opencode-go/deepseek-v4.1-flash#max`) audits and reviews, with scope writes undone; high on `cli-pi` (`llmgateway/deepseek-v4.1-flash-1017`) fixes; `cli-codex` Luna may audit or review. A quota stop halts for the operator |
 | D2 | Form only: text moves, splits and is reformatted, and every claim survives. Changelogs, playbooks, feature catalogs, benchmarks and tests stay out of scope |
-| D3 | Each leaf runs through `specs/sk-doc/066-skill-readability-refinement/010-sk-prompt/scratch/tools/drive-v3.sh` (audit, fix, at most three reviews); a leaf that ends without a pass is fixed by hand and reviewed again |
+| D3 | Each leaf runs through the packet's `010-sk-prompt/scratch/tools/drive-v3.sh` (audit, fix, at most three reviews); a leaf that ends without a pass is fixed by hand and reviewed again |
 | D4 | The orchestrator reads each skill's diff itself before committing; a review pass alone closes nothing |
 | D5 | Work stays in worktree 315: one commit per skill with changelog, version bump and Hermes mirror sync, and no push or merge without an operator instruction |
 
@@ -57,8 +57,7 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working a phase.** It binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
@@ -75,9 +74,10 @@ phase and binds as if written here.
 | 011-system-deep-loop | `011-system-deep-loop/goal.md` |
 | 012-system-skill-advisor | `012-system-skill-advisor/goal.md` |
 | 013-system-spec-kit | `013-system-spec-kit/goal.md` |
+| 014-sk-create-skill-refinements | `014-sk-create-skill-refinements/goal.md` |
 
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions outrank child detail, which outranks any summary of it.
+Name a conflict rather than resolving it silently.
 
 **Stop.** Only the criteria below decide done. An evaluator sees the objective
 string, not these files.

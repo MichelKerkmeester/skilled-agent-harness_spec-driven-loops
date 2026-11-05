@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 48,
     "missing-frontmatter": 7314,
-    "ok": 17036,
+    "ok": 17056,
     "valid-empty-list": 3500
   },
-  "documentsScanned": 27898,
+  "documentsScanned": 27918,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c906505765505e33cd6332ba2acfa5875044b9da3ec1d6c827e8e2ecd93f1470",
+  "manifestHash": "841d634fc1e635c1a7657daac312b1e6fa084701c02b32caffeedaaf7417d96a",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 32,
       "generic-workflow-word": 3,
       "numeric-only": 28,
-      "ok": 40914,
+      "ok": 40937,
       "prose-sentence": 19,
       "single-token": 161,
       "stop-word-only": 1,
@@ -73301,6 +73301,22 @@
     },
     {
       "path": "specs/sk-doc/066-skill-readability-refinement/013-system-spec-kit/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/001-render-checks-and-gate/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/scratch",
       "reason": "excluded directory"
     },
     {

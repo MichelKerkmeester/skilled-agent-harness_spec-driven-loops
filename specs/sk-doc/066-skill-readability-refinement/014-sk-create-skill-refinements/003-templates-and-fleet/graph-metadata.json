@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet",
+  "spec_folder": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet",
+  "parent_id": "sk-doc/066-skill-readability-refinement/014-sk-create-skill-refinements",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "templates and fleet",
+      "phase 3 templates and fleet",
+      "templates and fleet plan",
+      "templates and fleet tasks",
+      "templates and fleet acceptance criteria",
+      "templates and fleet goal",
+      "templates and fleet implementation summary"
+    ],
+    "key_topics": [
+      "templates",
+      "fleet",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "skill-reference-template",
+      "skill-asset-template"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md",
+      ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+      ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+      ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-reference-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-asset-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-readme-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-md-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-scaffold-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-scaffold-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "creation-workflow.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "package_skill.py",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/package_skill.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-known-debt.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/render-known-debt.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`skill-reference-template.md:20-36` and `skill-asset-template.md:18-20` break their own OVERVIEW skeleton, and their intro guidance says `description: [One-line description - same as intro]` and calls the intro a summary",
+    "created_at": "2026-11-05T06:39:44Z",
+    "last_save_at": "2026-11-05T07:10:56.136Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:79b1e4b137b73991d73bfa2b9ce37bf4dabf4ce26f80573bf9e71792f1e33e8c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1c45f90628d67f430b26976fdfe126a96b0c776e0c76d7275db42df34e348782",
+      "plan.md": "c7e068b147ec548b07d954cac25a12c856d4a1fc54e9f36c7c03378dcd42197a",
+      "tasks.md": "989f07524ef7f0beb2d052663ab3e3447d59607d54278619250641f0a66d6a89",
+      "implementation-summary.md": "86f5b9efb56eb866553a540d4ac4fda86021eec850f2cb37a59ed92e78ac0d71"
+    },
+    "last_active_at": null
+  }
+}
