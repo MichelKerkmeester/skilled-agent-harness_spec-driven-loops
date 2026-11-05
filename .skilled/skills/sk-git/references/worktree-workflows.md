@@ -11,12 +11,12 @@ trigger_phrases:
   - "ephemeral session worktrees"
 importance_tier: important
 contextType: implementation
-version: 1.1.6.0
+version: 1.1.7.0
 ---
 
 # Git Worktrees - Detailed Workflow Reference
 
-Complete workflow documentation for creating isolated git workspaces with minimal branching.
+Open this when parallel work needs a second checkout without switching branches in place, or when a numbering scheme must keep worktree branches distinct across sessions.
 
 ---
 

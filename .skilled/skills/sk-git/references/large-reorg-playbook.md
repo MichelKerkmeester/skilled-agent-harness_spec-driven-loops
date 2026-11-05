@@ -10,12 +10,12 @@ trigger_phrases:
   - "toolchain on main after merge"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Large Reorg Playbook - Rename/Renumber in a Worktree
 
-Step-ordered runbook for a LARGE rename/reorg (hundreds-to-thousands of `git mv`) executed in a worktree and merged to `main` without the known failure modes.
+Open this before moving hundreds or thousands of tracked paths at once, when an unplanned rename spree would churn history and leave ignored cruft behind. It orders the moves, the status checks between them and the verification that runs on `main` once the merge lands.
 
 ---
 

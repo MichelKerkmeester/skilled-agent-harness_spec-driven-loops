@@ -10,12 +10,12 @@ trigger_phrases:
   - "staged deny pattern assertion"
 importance_tier: normal
 contextType: implementation
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # Git Commit - Detailed Workflow Reference
 
-Complete workflow documentation for professional commit practices with Conventional Commits.
+Open this when a working tree holds too many unrelated edits to commit at once, or when a message needs the right Conventional Commits type and scope.
 
 ---
 

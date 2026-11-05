@@ -9,12 +9,12 @@ trigger_phrases:
   - "essential git commands"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # Git Workflows - Quick Reference
 
-One-page cheat sheet for git-worktrees, git-commit, and git-finish workflows.
+Open this when you know the task but not which git workflow owns it, or when you need the command name without reading the long form.
 
 ---
 

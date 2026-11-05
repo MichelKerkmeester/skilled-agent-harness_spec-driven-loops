@@ -10,12 +10,12 @@ trigger_phrases:
   - "failed push rejected remote"
 importance_tier: normal
 contextType: general
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # Shared Patterns - Cross-Workflow Reference
 
-Common patterns, commands, and conventions used across all git workflows.
+Open this when a git situation looks familiar but the fix is not obvious: a detached HEAD, a rejected push, a stale worktree reference or a rename-heavy merge that needs verifying.
 
 ---
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "git workspace commit finish"
   - "pull request commit hygiene"
   - "commit id trailer"
-version: 1.8.16.0
+version: 1.8.17.0
 ---
 
 # sk-git
@@ -17,7 +17,9 @@ version: 1.8.16.0
 
 ---
 
-## 1. AT A GLANCE
+## 1. OVERVIEW
+
+### At a Glance
 
 | Aspect | What you get |
 |---|---|
@@ -26,10 +28,6 @@ version: 1.8.16.0
 | **Works on** | Any repository with numbered worktrees, staged changes ready to commit or finished work ready to integrate |
 | **Produces** | Numbered worktrees and branches, deterministic Conventional Commit subjects, merged or closed PRs with cleanup |
 | **Commit identity** | Every commit ends with a trailer paragraph carrying a packet `Spec:` line and a stamped seven-digit `Commit-Id:` ordinal |
-
----
-
-## 2. OVERVIEW
 
 ### Why This Skill Exists
 
@@ -73,7 +71,7 @@ sk-git does not write code or manage spec folders. `sk-code` owns the code that 
 
 ---
 
-## 3. QUICK START
+## 2. QUICK START
 
 ### Requirements
 
@@ -115,7 +113,7 @@ Expected result: an isolated directory on a numbered `worktrees/{NNN}-{slug}` br
 
 ---
 
-## 4. HOW IT WORKS
+## 3. HOW IT WORKS
 
 ### Numbered Worktree Grammar
 
@@ -189,7 +187,7 @@ The skill also refuses a fixed set of unsafe actions: a `--no-verify` bypass, a 
 
 ---
 
-## 5. INTEGRATION & NAVIGATION
+## 4. INTEGRATION & NAVIGATION
 
 ### When To Use This Skill
 
@@ -249,7 +247,7 @@ sk-git/
 
 ---
 
-## 6. TROUBLESHOOTING
+## 5. TROUBLESHOOTING
 
 | What you see | Why | Fix |
 |---|---|---|
@@ -262,7 +260,7 @@ sk-git/
 
 ---
 
-## 7. FAQ
+## 6. FAQ
 
 **Q: Why does it always ask before creating a branch?**
 
@@ -290,7 +288,7 @@ A: Grep the `Spec:` trailer with the packet query: `git log -E --grep='^Spec: yo
 
 ---
 
-## 8. VERIFICATION
+## 7. VERIFICATION
 
 The skill ships a manual testing playbook with scenarios across 9 categories and a feature catalog covering worktree, commit, the template-driven message contract, finish, GitKraken and numbered worktree tooling.
 
@@ -306,7 +304,7 @@ The skill ships a manual testing playbook with scenarios across 9 categories and
 
 ---
 
-## 9. RELATED DOCUMENTS
+## 8. RELATED DOCUMENTS
 
 | Document | Purpose |
 |---|---|

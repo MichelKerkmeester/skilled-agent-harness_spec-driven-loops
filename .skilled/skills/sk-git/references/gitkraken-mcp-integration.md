@@ -9,12 +9,12 @@ trigger_phrases:
   - "gitkraken start review"
 importance_tier: normal
 contextType: implementation
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # GitKraken MCP Integration - Cross-Platform Git, Issue, and PR Reference
 
-Programmatic access to GitKraken's tools via Code Mode (`call_tool_chain`). Registered as the `gitkraken` manual in `.utcp_config.json` (stdio, `npx -y @gitkraken/gk mcp`).
+Open this when the remote is hosted on GitLab, Azure DevOps or Bitbucket instead of GitHub and the same remote calls should still come from one place. The `gitkraken` manual is registered as a stdio server in `.utcp_config.json` and runs `npx -y @gitkraken/gk mcp`.
 
 ---
 

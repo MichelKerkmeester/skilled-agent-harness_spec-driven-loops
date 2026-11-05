@@ -9,12 +9,12 @@ trigger_phrases:
   - "pr status checks via mcp"
 importance_tier: normal
 contextType: implementation
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
 # GitHub MCP Integration - Remote Operations Reference
 
-Programmatic access to GitHub's remote operations via Code Mode (`call_tool_chain`).
+Open this when a sk-git step needs a GitHub action the local CLI cannot reach: opening a pull request, triaging an issue or reading remote status through `call_tool_chain`.
 
 ---
 

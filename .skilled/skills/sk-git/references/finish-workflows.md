@@ -12,12 +12,12 @@ trigger_phrases:
   - "reconcile primary checkout after worktree push"
 importance_tier: normal
 contextType: implementation
-version: 1.7.5.0
+version: 1.7.6.0
 ---
 
 # Git Finish - Detailed Workflow Reference
 
-Complete workflow documentation for completing development work with structured integration options.
+Open this when the work is done and the question is how it lands: merge back to main locally, push and open a pull request or drop a failed experiment.
 
 ---
 
